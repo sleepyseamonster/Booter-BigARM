@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-13",
+  "scope": "download inventory and documentation evidence; no Unity import or gameplay tests",
+  "result": "PASS",
+  "json_files_parsed_before_receipt": 4,
+  "fbx_hashes_and_sizes_checked": 73,
+  "unique_files": 72,
+  "distinct_unarmed_candidates": 68,
+  "original_action_files": 47,
+  "original_download_manifest_entries": 47,
+  "base_alias_matches_collection_t_pose": true,
+  "all_fbx_skeletons_match": true,
+  "markdown_inventory_rows": 73,
+  "relative_document_links_checked_before_receipt": 11,
+  "live_asset_paths_checked": 17,
+  "scene_clean_loaded_not_playing": true,
+  "fbx_probe_python_syntax": "PASS via background Blender ast.parse",
+  "commands": [
+    "PowerShell check-mixamo-audit.ps1: JSON parse, current SHA-256 and file size, counts, source titles, local links, live referenced asset paths",
+    "Background Blender --factory-startup --disable-autoexec --python-expr ast.parse saved fbx-probe.py",
+    "git diff --check"
+  ],
+  "limits": [
+    "Pose samples are first, midpoint and last frames; not a continuous animation quality check",
+    "Hip samples are rig-local Blender units, not Unity metres",
+    "No Unity Humanoid/import/contact/physics acceptance is claimed"
+  ]
+}

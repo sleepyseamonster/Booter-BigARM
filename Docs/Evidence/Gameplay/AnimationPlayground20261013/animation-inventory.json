@@ -1,0 +1,3522 @@
+{
+  "model": {
+    "path": "male_basemesh_mixamo_rigged.fbx",
+    "bones": [
+      "mixamorig:Head",
+      "mixamorig:HeadTop_End",
+      "mixamorig:Hips",
+      "mixamorig:LeftArm",
+      "mixamorig:LeftFoot",
+      "mixamorig:LeftForeArm",
+      "mixamorig:LeftHand",
+      "mixamorig:LeftHandIndex1",
+      "mixamorig:LeftHandIndex2",
+      "mixamorig:LeftHandIndex3",
+      "mixamorig:LeftHandIndex4",
+      "mixamorig:LeftLeg",
+      "mixamorig:LeftShoulder",
+      "mixamorig:LeftToeBase",
+      "mixamorig:LeftToe_End",
+      "mixamorig:LeftUpLeg",
+      "mixamorig:Neck",
+      "mixamorig:RightArm",
+      "mixamorig:RightFoot",
+      "mixamorig:RightForeArm",
+      "mixamorig:RightHand",
+      "mixamorig:RightHandIndex1",
+      "mixamorig:RightHandIndex2",
+      "mixamorig:RightHandIndex3",
+      "mixamorig:RightHandIndex4",
+      "mixamorig:RightLeg",
+      "mixamorig:RightShoulder",
+      "mixamorig:RightToeBase",
+      "mixamorig:RightToe_End",
+      "mixamorig:RightUpLeg",
+      "mixamorig:Spine",
+      "mixamorig:Spine1",
+      "mixamorig:Spine2"
+    ],
+    "scene_unit_scale": 1.0,
+    "objects": [
+      {
+        "name": "Armature",
+        "type": "ARMATURE",
+        "dimensions": [
+          21.651092529296875,
+          22.53521156311035,
+          2.8566386699676514
+        ],
+        "scale": [
+          0.009999999776482582,
+          0.009999999776482582,
+          0.009999999776482582
+        ],
+        "vertices": null,
+        "polygons": null,
+        "triangles": null,
+        "material_slots": null
+      },
+      {
+        "name": "skull",
+        "type": "MESH",
+        "dimensions": [
+          20.878976821899414,
+          3.6157219409942627,
+          20.082990646362305
+        ],
+        "scale": [
+          0.010000001639127731,
+          0.009999996982514858,
+          0.010000001639127731
+        ],
+        "vertices": 31739,
+        "polygons": 31580,
+        "triangles": 63134,
+        "material_slots": 0
+      }
+    ],
+    "sha256": "df84725e3654fc8221e110404c3fc921daabec368d4f29f70fb9a7a97dc20ef4"
+  },
+  "records": [
+    {
+      "group": "MixamoLocomotion20261013",
+      "file": "Breathing Idle.fbx",
+      "bytes": 607248,
+      "sha256": "99f9088d8e88608cb1f2df859d88ad0109ddae80a2f8831d8861d5ad030a8ce6",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 299.0,
+          "duration_seconds": 9.933333333333334
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          0.11447286605834961,
+          1096.8983154296875,
+          1.399390459060669
+        ],
+        [
+          -15.146763801574707,
+          1106.3719482421875,
+          -1.6695325374603271
+        ],
+        [
+          0.11448991298675537,
+          1096.8985595703125,
+          1.3993875980377197
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        1.704692840576172E-05,
+        0.000244140625,
+        -2.86102294921875E-06
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoLocomotion20261013/Breathing Idle.fbx",
+      "mixamo_source_title": "Breathing Idle",
+      "category": "Locomotion",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoLocomotion20261013",
+      "file": "Character T-Pose.fbx",
+      "bytes": 2251184,
+      "sha256": "df84725e3654fc8221e110404c3fc921daabec368d4f29f70fb9a7a97dc20ef4",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 1,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 2.0,
+          "duration_seconds": 0.03333333333333333
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -0.003606646554544568,
+          1126.44921875,
+          -2.330310344696045
+        ],
+        [
+          -0.003606646554544568,
+          1126.44921875,
+          -2.330310344696045
+        ],
+        [
+          -0.003606646554544568,
+          1126.44921875,
+          -2.330310344696045
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "animated_pose_verified": false,
+      "source_relative_path": "MixamoLocomotion20261013/Character T-Pose.fbx",
+      "mixamo_source_title": "Character T-Pose",
+      "category": "Character",
+      "audit_status": "base-character",
+      "audit_note": "Static pose expected; skin-bearing character; verify scale, material and Humanoid Avatar.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoLocomotion20261013",
+      "file": "Sprint - forward travel alternative.fbx",
+      "bytes": 177824,
+      "sha256": "a09071f70bdb8887f94ce90a49998a6966b13ab13b3f898aa94fd8fb79e40d99",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 17.0,
+          "duration_seconds": 0.5333333333333333
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          32.53086853027344,
+          960.8455200195312,
+          -11.894742965698242
+        ],
+        [
+          21.113842010498047,
+          959.64013671875,
+          1797.778564453125
+        ],
+        [
+          32.53086471557617,
+          960.8455810546875,
+          3656.63916015625
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -3.814697265625E-06,
+        6.103515625E-05,
+        3668.5339031219482
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoLocomotion20261013/Sprint - forward travel alternative.fbx",
+      "mixamo_source_title": "Sprint",
+      "category": "Locomotion",
+      "audit_status": "reference-forward-travel",
+      "audit_note": "Retains forward travel despite earlier In Place export attempts; not the preferred in-place sprint.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoLocomotion20261013",
+      "file": "Standard Run.fbx",
+      "bytes": 191280,
+      "sha256": "06ce6184815280b47e7726aa263dbc491788e4677ac9368ac6cca1bf27d9a734",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 23.0,
+          "duration_seconds": 0.7333333333333333
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          4.882067680358887,
+          918.1022338867188,
+          -11.204423904418945
+        ],
+        [
+          17.343854904174805,
+          904.98388671875,
+          -108.87508392333984
+        ],
+        [
+          4.882086753845215,
+          918.1021728515625,
+          -11.204444885253906
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        1.9073486328125E-05,
+        -6.103515625E-05,
+        -2.09808349609375E-05
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoLocomotion20261013/Standard Run.fbx",
+      "mixamo_source_title": "Standard Run",
+      "category": "Locomotion",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoLocomotion20261013",
+      "file": "Standard Walk.fbx",
+      "bytes": 217952,
+      "sha256": "76d67f23891d0cba86be6385d435e6e8769314f6cc7df4a0ab021a5768f79814",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 36.0,
+          "duration_seconds": 1.1666666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.2082455158233643,
+          1102.1455078125,
+          -3.5995240211486816
+        ],
+        [
+          44.31846237182617,
+          1100.4990234375,
+          44.07789611816406
+        ],
+        [
+          1.2082431316375732,
+          1102.1455078125,
+          -3.5995242595672607
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -2.384185791015625E-06,
+        0.0,
+        -2.384185791015625E-07
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoLocomotion20261013/Standard Walk.fbx",
+      "mixamo_source_title": "Standard Walk",
+      "category": "Locomotion",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoLocomotion20261013",
+      "file": "Two Cycle Sprint.fbx",
+      "bytes": 211808,
+      "sha256": "9f0f7650f92962b82fa25f767b84f3ed32e375dde8c0c8bdd85898b3f8fa9e52",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 33.0,
+          "duration_seconds": 1.0666666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          30.61224937438965,
+          966.1245727539062,
+          -16.520606994628906
+        ],
+        [
+          32.84413146972656,
+          919.9595947265625,
+          -121.21590423583984
+        ],
+        [
+          30.612272262573242,
+          966.1244506835938,
+          -16.520652770996094
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        2.288818359375E-05,
+        -0.0001220703125,
+        -4.57763671875E-05
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoLocomotion20261013/Two Cycle Sprint.fbx",
+      "mixamo_source_title": "Two Cycle Sprint",
+      "category": "Locomotion",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Crouch - enter.fbx",
+      "bytes": 387696,
+      "sha256": "034ef9847cf890836644a5ccd34b46eb0df7fe44c6ccfe72b5a7a3432a5d2baf",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 123.0,
+          "duration_seconds": 4.066666666666666
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -0.2772068977355957,
+          1112.34716796875,
+          -14.956258773803711
+        ],
+        [
+          -54.431968688964844,
+          541.3872680664062,
+          -101.37881469726562
+        ],
+        [
+          86.42999267578125,
+          457.0025634765625,
+          -58.770652770996094
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        86.70719957351685,
+        -655.3446044921875,
+        -43.81439399719238
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Crouch - enter.fbx",
+      "mixamo_source_title": "Crouching",
+      "category": "Crouch",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Crouch - exit.fbx",
+      "bytes": 287504,
+      "sha256": "4c3053d5cd997114747772f79e8df5b833af42d84827b3095ff96d8d340d0397",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 78.0,
+          "duration_seconds": 2.566666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.505873203277588,
+          540.8547973632812,
+          -21.3991756439209
+        ],
+        [
+          325.99310302734375,
+          1044.789794921875,
+          220.0081787109375
+        ],
+        [
+          216.53564453125,
+          1128.1181640625,
+          236.16659545898438
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        215.0297713279724,
+        587.2633666992188,
+        257.5657711029053
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Crouch - exit.fbx",
+      "mixamo_source_title": "Crouch To Stand",
+      "category": "Crouch",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Crouch - idle.fbx",
+      "bytes": 228800,
+      "sha256": "90d5a2ff23f639ed32743efd36c051599cdb6f8d41906bab897990003fe84f65",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 42.0,
+          "duration_seconds": 1.3666666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -0.19708919525146484,
+          577.6502685546875,
+          2.8779163360595703
+        ],
+        [
+          16.558481216430664,
+          621.7852172851562,
+          12.31391716003418
+        ],
+        [
+          -0.1972503662109375,
+          577.6500244140625,
+          2.8780431747436523
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -0.00016117095947265625,
+        -0.000244140625,
+        0.00012683868408203125
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Crouch - idle.fbx",
+      "mixamo_source_title": "Crouch Idle",
+      "category": "Crouch",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Crouch walk - backward.fbx",
+      "bytes": 222064,
+      "sha256": "b2f9ff0ec39f794bcac7c076fa9a41ae0ac02d2dbf6a9a53fd9bcb995f358b2e",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 38.0,
+          "duration_seconds": 1.2333333333333334
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          5.034398078918457,
+          900.0159912109375,
+          -0.020477294921875
+        ],
+        [
+          91.4672622680664,
+          892.722412109375,
+          -802.4224243164062
+        ],
+        [
+          5.040505409240723,
+          900.0030517578125,
+          -1768.4808349609375
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.006107330322265625,
+        -0.012939453125,
+        -1768.4603576660156
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Crouch walk - backward.fbx",
+      "mixamo_source_title": "Crouch Walk Back",
+      "category": "Crouch",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Crouch walk - forward.fbx",
+      "bytes": 215904,
+      "sha256": "9d67675c52fceb552dd493a8cd3f93bfb1752cafaadbda3c38b1400f84d90aeb",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 35.0,
+          "duration_seconds": 1.1333333333333333
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          5.043971061706543,
+          900.0166625976562,
+          -0.016653060913085938
+        ],
+        [
+          66.54765319824219,
+          866.6121826171875,
+          1057.1885986328125
+        ],
+        [
+          5.062408447265625,
+          900.012939453125,
+          2237.13232421875
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.01843738555908203,
+        -0.00372314453125,
+        2237.148977279663
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Crouch walk - forward.fbx",
+      "mixamo_source_title": "Crouch Walk Forward",
+      "category": "Crouch",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Crouch walk - left.fbx",
+      "bytes": 218032,
+      "sha256": "338ad99ca412d50cd2dc8f5421ccaa68ca20334198a08f12691ef3030d60f2fd",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 36.0,
+          "duration_seconds": 1.1666666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          4.889591217041016,
+          900.306884765625,
+          -1.4064388275146484
+        ],
+        [
+          1088.359619140625,
+          858.0477905273438,
+          87.60379028320312
+        ],
+        [
+          1860.3353271484375,
+          900.307861328125,
+          -1.4052276611328125
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        1855.4457359313965,
+        0.0009765625,
+        0.0012111663818359375
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Crouch walk - left.fbx",
+      "mixamo_source_title": "Crouch Walk Left",
+      "category": "Crouch",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Crouch walk - right.fbx",
+      "bytes": 224112,
+      "sha256": "0636fbdca9eeed58814c00babf8e951ec5ce2677716a88d1635c129f67ee06eb",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 39.0,
+          "duration_seconds": 1.2666666666666666
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          5.034604072570801,
+          900.014404296875,
+          -0.020154953002929688
+        ],
+        [
+          -848.1234741210938,
+          891.3268432617188,
+          148.512939453125
+        ],
+        [
+          -1723.232421875,
+          900.0140991210938,
+          -0.019985198974609375
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -1728.2670259475708,
+        -0.00030517578125,
+        0.0001697540283203125
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Crouch walk - right.fbx",
+      "mixamo_source_title": "Crouch Walk Right",
+      "category": "Crouch",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Death - falling backward.fbx",
+      "bytes": 297776,
+      "sha256": "af48a8c77122829ace96a18062ed3d492d32f01f9623e2f34a90d59f4febf8f4",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 79.0,
+          "duration_seconds": 2.6
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          7.968484878540039,
+          943.6344604492188,
+          -4.024749755859375
+        ],
+        [
+          -269.2076110839844,
+          254.0396728515625,
+          -1073.0084228515625
+        ],
+        [
+          -299.8459777832031,
+          152.6302490234375,
+          -1023.9525756835938
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -307.81446266174316,
+        -791.0042114257812,
+        -1019.9278259277344
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Death - falling backward.fbx",
+      "mixamo_source_title": "Falling Back Death",
+      "category": "Death",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Death - falling forward.fbx",
+      "bytes": 295824,
+      "sha256": "af3552f7751616a3be873862544ffcf86b03057318482786ef73d3ef7823eba2",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 78.0,
+          "duration_seconds": 2.566666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          7.976314067840576,
+          943.6156616210938,
+          -4.008708953857422
+        ],
+        [
+          -175.6635284423828,
+          235.95819091796875,
+          957.529541015625
+        ],
+        [
+          -171.12498474121094,
+          206.3739013671875,
+          937.8182983398438
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -179.1012988090515,
+        -737.2417602539062,
+        941.8270072937012
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Death - falling forward.fbx",
+      "mixamo_source_title": "Falling Forward Death",
+      "category": "Death",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Death - standing backward.fbx",
+      "bytes": 369808,
+      "sha256": "4bcf5b95bdf255112b036a92c228ef2bde0432b194284b126f8ec3a5b49f491d",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 110.0,
+          "duration_seconds": 3.6333333333333333
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.6551191806793213,
+          985.57421875,
+          -0.1469728946685791
+        ],
+        [
+          -44.382816314697266,
+          755.7942504882812,
+          -331.49267578125
+        ],
+        [
+          -163.15736389160156,
+          126.2572021484375,
+          -954.013427734375
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -164.81248307228088,
+        -859.3170166015625,
+        -953.8664548397064
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Death - standing backward.fbx",
+      "mixamo_source_title": "Standing React Death Backward",
+      "category": "Death",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Fall - airborne idle.fbx",
+      "bytes": 187712,
+      "sha256": "31f22b4c16cc723cfb284141247b5074e6376822f11c377df367697b58f5d53a",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 22.0,
+          "duration_seconds": 0.7
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          2.5843541622161865,
+          1002.1963500976562,
+          -0.5605435371398926
+        ],
+        [
+          2.187502145767212,
+          1002.3917236328125,
+          -2.054208755493164
+        ],
+        [
+          2.5843541622161865,
+          1002.1963500976562,
+          -0.5605435371398926
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Fall - airborne idle.fbx",
+      "mixamo_source_title": "Falling Idle",
+      "category": "Fall",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Fall - landing.fbx",
+      "bytes": 207200,
+      "sha256": "7d697f79133f798eb83f303070b7983ac07cd4fd691a68a109c905bba5a2f9b9",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 33.0,
+          "duration_seconds": 1.0666666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -56.91400909423828,
+          1680.672119140625,
+          -80.06727600097656
+        ],
+        [
+          7.354848861694336,
+          661.6381225585938,
+          6.465358734130859
+        ],
+        [
+          3.804612636566162,
+          1036.1602783203125,
+          -11.588794708251953
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        60.71862173080444,
+        -644.5118408203125,
+        68.47848129272461
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Fall - landing.fbx",
+      "mixamo_source_title": "Falling To Landing",
+      "category": "Fall",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Fall - roll landing.fbx",
+      "bytes": 272864,
+      "sha256": "cca1253efe8a04a38b3fe7b0d7dc109e29baa703112c4e228030484bb8ce7b37",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 65.0,
+          "duration_seconds": 2.1333333333333333
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          3.0719587802886963,
+          2547.3369140625,
+          2.1053638458251953
+        ],
+        [
+          -89.01640319824219,
+          185.63348388671875,
+          3103.432373046875
+        ],
+        [
+          -16.22053337097168,
+          1021.099365234375,
+          4220.20361328125
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -19.292492151260376,
+        -1526.237548828125,
+        4218.098249435425
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Fall - roll landing.fbx",
+      "mixamo_source_title": "Falling To Roll",
+      "category": "Fall",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Hit - body.fbx",
+      "bytes": 244640,
+      "sha256": "3fa42b5c837657743ac1d2be5eb94c3cd98c09d1fde42593f2f9299147ecae3e",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 49.0,
+          "duration_seconds": 1.6
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -1.1201145648956299,
+          994.6503295898438,
+          -4.014312267303467
+        ],
+        [
+          37.12234115600586,
+          906.2752685546875,
+          -59.79576110839844
+        ],
+        [
+          -1.124387264251709,
+          994.6497802734375,
+          -4.020512580871582
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -0.0042726993560791016,
+        -0.00054931640625,
+        -0.006200313568115234
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Hit - body.fbx",
+      "mixamo_source_title": "Hit Reaction",
+      "category": "Hurt",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Hit large - back.fbx",
+      "bytes": 248736,
+      "sha256": "e38d45ce2da53ec80d7c24558c6ae82a3ab803e8219937735a84eea4211554c2",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 51.0,
+          "duration_seconds": 1.6666666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.6518878936767578,
+          985.5770874023438,
+          -0.1443178653717041
+        ],
+        [
+          -36.270530700683594,
+          848.0313110351562,
+          1640.6751708984375
+        ],
+        [
+          1.6518332958221436,
+          985.5775146484375,
+          1810.3052978515625
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -5.459785461425781E-05,
+        0.00042724609375,
+        1810.4496157169342
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Hit large - back.fbx",
+      "mixamo_source_title": "Standing React Large From Back",
+      "category": "Hurt",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Hit large - front.fbx",
+      "bytes": 230272,
+      "sha256": "0699b804a44f9f4f91c952d54d3f6c3e0e627ed34e9a4d1340864e806ebcd1cc",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 42.0,
+          "duration_seconds": 1.3666666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.6514904499053955,
+          985.5729370117188,
+          -0.14496183395385742
+        ],
+        [
+          108.24867248535156,
+          1025.73681640625,
+          -977.9600830078125
+        ],
+        [
+          1.6516683101654053,
+          985.5740966796875,
+          -1255.5438232421875
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.00017786026000976562,
+        0.00115966796875,
+        -1255.3988614082336
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Hit large - front.fbx",
+      "mixamo_source_title": "Standing React Large From Front",
+      "category": "Hurt",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Hit large - left.fbx",
+      "bytes": 242576,
+      "sha256": "8a36e89574955864f6dd796cb5ae4acbf503d1b55652c390a56e77f2f2f6cc79",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 48.0,
+          "duration_seconds": 1.5666666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.6516518592834473,
+          985.5755615234375,
+          -0.14479470252990723
+        ],
+        [
+          -1162.396728515625,
+          930.734130859375,
+          -84.35710906982422
+        ],
+        [
+          -1400.0172119140625,
+          985.5789794921875,
+          -0.14443325996398926
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -1401.668863773346,
+        0.00341796875,
+        0.00036144256591796875
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Hit large - left.fbx",
+      "mixamo_source_title": "Standing React Large From Left",
+      "category": "Hurt",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Hit large - right.fbx",
+      "bytes": 246688,
+      "sha256": "c636b06a2176225ce9d3a2111d29065f47245f3b1e1d0e03149b44323c9868ea",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 50.0,
+          "duration_seconds": 1.6333333333333333
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.6515159606933594,
+          985.5740356445312,
+          -0.14492154121398926
+        ],
+        [
+          1079.550048828125,
+          991.5164184570312,
+          -140.7495880126953
+        ],
+        [
+          1254.4390869140625,
+          985.5718994140625,
+          -0.14597749710083008
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        1252.7875709533691,
+        -0.00213623046875,
+        -0.0010559558868408203
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Hit large - right.fbx",
+      "mixamo_source_title": "Standing React Large From Right",
+      "category": "Hurt",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Hit small - back.fbx",
+      "bytes": 224112,
+      "sha256": "43a0327babfe541a4aee711c99ac44971e0f74b66ecad6fc0cf2c82926b5a445",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 39.0,
+          "duration_seconds": 1.2666666666666666
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.6516332626342773,
+          985.5733032226562,
+          -0.14467215538024902
+        ],
+        [
+          -9.625869750976562,
+          1005.4110717773438,
+          77.89600372314453
+        ],
+        [
+          1.6513288021087646,
+          985.5750122070312,
+          -0.1453230381011963
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -0.0003044605255126953,
+        0.001708984375,
+        -0.0006508827209472656
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Hit small - back.fbx",
+      "mixamo_source_title": "Standing React Small From Back",
+      "category": "Hurt",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Hit small - front.fbx",
+      "bytes": 218720,
+      "sha256": "f2019c33192b3a83e7ab30d41c90989353393d593fd60304e9563dc9d089148d",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 37.0,
+          "duration_seconds": 1.2
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.6518402099609375,
+          985.5768432617188,
+          -0.14450931549072266
+        ],
+        [
+          -12.874385833740234,
+          987.795166015625,
+          -10.585601806640625
+        ],
+        [
+          1.651822805404663,
+          985.5771484375,
+          -0.14466524124145508
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -1.7404556274414062E-05,
+        0.00030517578125,
+        -0.00015592575073242188
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Hit small - front.fbx",
+      "mixamo_source_title": "Standing React Small From Front",
+      "category": "Hurt",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Hit small - left.fbx",
+      "bytes": 218720,
+      "sha256": "eddf448288b0814817e882c85149febf2e53c6e44390e5f2bdf597c0894e0918",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 37.0,
+          "duration_seconds": 1.2
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.6518104076385498,
+          985.5771484375,
+          -0.1445326805114746
+        ],
+        [
+          -55.706295013427734,
+          957.923095703125,
+          -26.7963924407959
+        ],
+        [
+          1.6517703533172607,
+          985.5774536132812,
+          -0.14506173133850098
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -4.00543212890625E-05,
+        0.00030517578125,
+        -0.0005290508270263672
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Hit small - left.fbx",
+      "mixamo_source_title": "Standing React Small From Left",
+      "category": "Hurt",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Hit small - right.fbx",
+      "bytes": 205536,
+      "sha256": "e9925c2843ad32bad81b20a0cc0472ea72dccd4db641fe60ccbff61bdeeb2045",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 31.0,
+          "duration_seconds": 1.0
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.6517529487609863,
+          985.5771484375,
+          -0.14470481872558594
+        ],
+        [
+          15.479093551635742,
+          989.0637817382812,
+          -6.806133270263672
+        ],
+        [
+          1.6513991355895996,
+          985.5765380859375,
+          -0.14379668235778809
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -0.00035381317138671875,
+        -0.0006103515625,
+        0.0009081363677978516
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Hit small - right.fbx",
+      "mixamo_source_title": "Standing React Small From Right",
+      "category": "Hurt",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Jump - running.fbx",
+      "bytes": 201536,
+      "sha256": "6993cb9cc44d017fd75d1edb6814d34f9b5ca059d8c0f5448da9e270a5f4392e",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 28.0,
+          "duration_seconds": 0.9
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -6.605323791503906,
+          945.0534057617188,
+          -17.11896324157715
+        ],
+        [
+          12.612415313720703,
+          1399.1683349609375,
+          2267.2578125
+        ],
+        [
+          -4.9261884689331055,
+          945.0819091796875,
+          4947.56982421875
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        1.6791353225708008,
+        0.02850341796875,
+        4964.688787460327
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Jump - running.fbx",
+      "mixamo_source_title": "Running Jump",
+      "category": "Jump",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Jump - standing.fbx",
+      "bytes": 291824,
+      "sha256": "3605b12a8024b214a2db6c86d301c3b5ad05bff500d93445d0e2ddbf4fb1ede7",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 72.0,
+          "duration_seconds": 2.3666666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.6518640518188477,
+          985.5802001953125,
+          -0.14464259147644043
+        ],
+        [
+          -0.30637264251708984,
+          1230.2467041015625,
+          56.44956970214844
+        ],
+        [
+          1.651761770248413,
+          985.58056640625,
+          -0.14479756355285645
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -0.00010228157043457031,
+        0.0003662109375,
+        -0.00015497207641601562
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Jump - standing.fbx",
+      "mixamo_source_title": "Standing Jump",
+      "category": "Jump",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Jump - unarmed.fbx",
+      "bytes": 289776,
+      "sha256": "854db1b3db23f109a9df33e0d838cf4143637696d21e868e821bce84a88429ad",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 71.0,
+          "duration_seconds": 2.3333333333333335
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          0.42891451716423035,
+          1088.404541015625,
+          0.390755832195282
+        ],
+        [
+          28.787771224975586,
+          1543.845458984375,
+          -50.99195861816406
+        ],
+        [
+          0.42891451716423035,
+          1088.404541015625,
+          0.390755832195282
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Jump - unarmed.fbx",
+      "mixamo_source_title": "Unarmed Jump",
+      "category": "Jump",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Kick - front snap.fbx",
+      "bytes": 234272,
+      "sha256": "e3fe51ae90af770ccac85a3ac89113d871a814375da63a31b8a0847d780a0cb9",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 49.0,
+          "duration_seconds": 1.6
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -10.116752624511719,
+          1073.496337890625,
+          7.0537519454956055
+        ],
+        [
+          20.5078067779541,
+          1351.849853515625,
+          3.568208694458008
+        ],
+        [
+          -10.116657257080078,
+          1073.49609375,
+          7.053798675537109
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        9.5367431640625E-05,
+        -0.000244140625,
+        4.673004150390625E-05
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Kick - front snap.fbx",
+      "mixamo_source_title": "Kicking",
+      "category": "Kick",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Kick - MMA low.fbx",
+      "bytes": 238480,
+      "sha256": "3d2f8da10378a407299cc5b03a46033f2b91b4b0c748430028f8f00b3eaccff4",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 46.0,
+          "duration_seconds": 1.5
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          0.53586745262146,
+          998.1699829101562,
+          2.399366855621338
+        ],
+        [
+          -33.32332229614258,
+          1041.07275390625,
+          301.1419677734375
+        ],
+        [
+          0.5358589887619019,
+          998.170166015625,
+          2.3992862701416016
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -8.463859558105469E-06,
+        0.00018310546875,
+        -8.058547973632812E-05
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Kick - MMA low.fbx",
+      "mixamo_source_title": "Mma Kick",
+      "category": "Kick",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Kick - side.fbx",
+      "bytes": 256304,
+      "sha256": "7091a0c808a5e750b2c325d95e98d4c88da8047197b0c7c657ef7ec55935338f",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 61.0,
+          "duration_seconds": 2.0
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          3.91025710105896,
+          879.4873046875,
+          -0.6068505048751831
+        ],
+        [
+          -62.36338806152344,
+          1082.8775634765625,
+          611.5519409179688
+        ],
+        [
+          3.9102795124053955,
+          879.4876098632812,
+          -0.6067259907722473
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        2.2411346435546875E-05,
+        0.00030517578125,
+        0.00012451410293579102
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Kick - side.fbx",
+      "mixamo_source_title": "Side Kick",
+      "category": "Kick",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Kick - thrust.fbx",
+      "bytes": 263136,
+      "sha256": "a37fe3ca7bd169c5c5ceb8f536ce3906faa5dac42e7d6f4d7945403d68c5e69f",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 66.0,
+          "duration_seconds": 2.1666666666666665
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -15.934930801391602,
+          1064.1357421875,
+          5.332213401794434
+        ],
+        [
+          -8.19558048248291,
+          1065.176025390625,
+          -197.12106323242188
+        ],
+        [
+          -15.934850692749023,
+          1064.1358642578125,
+          5.332225799560547
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        8.0108642578125E-05,
+        0.0001220703125,
+        1.239776611328125E-05
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Kick - thrust.fbx",
+      "mixamo_source_title": "Kicking",
+      "category": "Kick",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Ladder - climb.fbx",
+      "bytes": 191680,
+      "sha256": "238e36087a8c0b3f754e9965dc50d58efd936a5be81e1d049682d32fdfa79922",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 24.0,
+          "duration_seconds": 0.7666666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1152.8790283203125,
+          1964.4659423828125,
+          475.50457763671875
+        ],
+        [
+          1259.7138671875,
+          2221.187744140625,
+          475.2052917480469
+        ],
+        [
+          1151.115966796875,
+          2520.090576171875,
+          505.52374267578125
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -1.7630615234375,
+        555.6246337890625,
+        30.0191650390625
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Ladder - climb.fbx",
+      "mixamo_source_title": "Climbing Ladder",
+      "category": "Climb",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Ladder - one step.fbx",
+      "bytes": 230736,
+      "sha256": "90458be5bf0e252c22579c4fb9e03788cfb6740fcd70c2d49669f9978dbccdd9",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 48.0,
+          "duration_seconds": 1.5666666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -30.609853744506836,
+          1050.9742431640625,
+          -34.077919006347656
+        ],
+        [
+          -92.16792297363281,
+          1360.2568359375,
+          90.27079772949219
+        ],
+        [
+          -30.609729766845703,
+          1709.43359375,
+          213.94631958007812
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.0001239776611328125,
+        658.4593505859375,
+        248.02423858642578
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Ladder - one step.fbx",
+      "mixamo_source_title": "Climbing",
+      "category": "Climb",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Ladder - start.fbx",
+      "bytes": 268144,
+      "sha256": "c0d05f478076ee0dbd12e95f18f0a058013cf10c0a821b7ae36bb5aeab628898",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 62.0,
+          "duration_seconds": 2.033333333333333
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.5959737300872803,
+          1046.1866455078125,
+          7.283839225769043
+        ],
+        [
+          577.6160888671875,
+          907.59375,
+          428.1114196777344
+        ],
+        [
+          1152.8790283203125,
+          1964.4659423828125,
+          475.5046081542969
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        1151.2830545902252,
+        918.279296875,
+        468.22076892852783
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Ladder - start.fbx",
+      "mixamo_source_title": "Start Climbing Ladder",
+      "category": "Climb",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Ladder - top exit.fbx",
+      "bytes": 383744,
+      "sha256": "2a0df7401f1099610039dc5cedec422d773341b79b6492e723bcd673a079a5b5",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 121.0,
+          "duration_seconds": 4.0
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -28.911230087280273,
+          1032.5093994140625,
+          10.775300979614258
+        ],
+        [
+          -209.1145477294922,
+          2292.20458984375,
+          300.3128662109375
+        ],
+        [
+          -78.11544036865234,
+          2862.308349609375,
+          1518.6270751953125
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -49.20421028137207,
+        1829.7989501953125,
+        1507.8517742156982
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Ladder - top exit.fbx",
+      "mixamo_source_title": "Climbing To Top",
+      "category": "Climb",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Ladder - two steps.fbx",
+      "bytes": 306336,
+      "sha256": "fd57e66ece0554293cfcf74abf57603cd22a2b4023a0f8e2ba72a9b1c2defd88",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 90.0,
+          "duration_seconds": 2.966666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -1.3272676467895508,
+          1310.624755859375,
+          20.61758804321289
+        ],
+        [
+          -2.1864538192749023,
+          1904.1007080078125,
+          244.9571533203125
+        ],
+        [
+          -1.2764892578125,
+          2609.733642578125,
+          499.55670166015625
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.05077838897705078,
+        1299.10888671875,
+        478.93911361694336
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Ladder - two steps.fbx",
+      "mixamo_source_title": "Climbing",
+      "category": "Climb",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Mining reference - downward tool swing.fbx",
+      "bytes": 280208,
+      "sha256": "849423196165ede1e42ad9e402b76232ee0e8142b318ffbd7daf47fc70bb4b1f",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 69.0,
+          "duration_seconds": 2.2666666666666666
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.2592792510986328,
+          941.5481567382812,
+          0.8229352235794067
+        ],
+        [
+          -8.887979507446289,
+          950.2449951171875,
+          136.99586486816406
+        ],
+        [
+          1.2593064308166504,
+          941.548095703125,
+          0.8230071067810059
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        2.7179718017578125E-05,
+        -6.103515625E-05,
+        7.18832015991211E-05
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Mining reference - downward tool swing.fbx",
+      "mixamo_source_title": "Standing Melee Attack Downward",
+      "category": "Mining",
+      "audit_status": "reference-adaptation-required",
+      "audit_note": "One-handed axe-style swing; adapt grip, tool, impact and return before mining use.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Punch - cross.fbx",
+      "bytes": 256304,
+      "sha256": "054f8d20f6486934cbc88a70e04c0313f7beee4fbca6f3172ae75a41766860de",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 61.0,
+          "duration_seconds": 2.0
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          4.69816780090332,
+          980.0439453125,
+          -4.049319744110107
+        ],
+        [
+          1.3817777633666992,
+          1024.017822265625,
+          101.80241394042969
+        ],
+        [
+          4.698177337646484,
+          980.0438232421875,
+          -4.049412727355957
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        9.5367431640625E-06,
+        -0.0001220703125,
+        -9.298324584960938E-05
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Punch - cross.fbx",
+      "mixamo_source_title": "Cross Punch",
+      "category": "Punch",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Punch - hook.fbx",
+      "bytes": 265472,
+      "sha256": "c24db1e020055b3c6f7b63712be6bd23f9a1ddff6a2f3a0c87ea4ef75421f39b",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 66.0,
+          "duration_seconds": 2.1666666666666665
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          5.963840961456299,
+          991.2805786132812,
+          -14.276615142822266
+        ],
+        [
+          -28.60626220703125,
+          1032.74072265625,
+          138.46229553222656
+        ],
+        [
+          5.96376895904541,
+          991.2804565429688,
+          -14.276721954345703
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -7.200241088867188E-05,
+        -0.0001220703125,
+        -0.0001068115234375
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Punch - hook.fbx",
+      "mixamo_source_title": "Hook Punch",
+      "category": "Punch",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Punch - jab.fbx",
+      "bytes": 201936,
+      "sha256": "6079eb74349e3854f3cf2c85b664271cdc5bf891a613da3666f1a19f1f1f397d",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 32.0,
+          "duration_seconds": 1.0333333333333334
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -15.960390090942383,
+          1006.7365112304688,
+          11.589029312133789
+        ],
+        [
+          31.316490173339844,
+          862.6282348632812,
+          -5.887319564819336
+        ],
+        [
+          -15.960390090942383,
+          1006.7365112304688,
+          11.589029312133789
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Punch - jab.fbx",
+      "mixamo_source_title": "Punching",
+      "category": "Punch",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Reference only - crouched death weapon pose.fbx",
+      "bytes": 294560,
+      "sha256": "2a6e16dd367dd4f919934ffa70ecdb48b3fcaa9c922b5d7d12ccaec507b3c541",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 72.0,
+          "duration_seconds": 2.3666666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -3.0928573608398438,
+          457.94769287109375,
+          0.6797542572021484
+        ],
+        [
+          -72.96353912353516,
+          200.630126953125,
+          -984.4259643554688
+        ],
+        [
+          -93.37390899658203,
+          172.641357421875,
+          -1113.933349609375
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -90.28105163574219,
+        -285.30633544921875,
+        -1114.6131038665771
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Reference only - crouched death weapon pose.fbx",
+      "mixamo_source_title": "Crouch Death",
+      "category": "Death",
+      "audit_status": "reference-excluded-weapon-pose",
+      "audit_note": "Weapon-style starting pose; excluded from active unarmed set.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Running slide.fbx",
+      "bytes": 237216,
+      "sha256": "2c849d828aad87f6b716e95281a8b1dfa8b292a5082920b2ee55a5d47bd748b7",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 47.0,
+          "duration_seconds": 1.5333333333333334
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -1.5919904708862305,
+          1008.5675048828125,
+          -8.0185546875
+        ],
+        [
+          171.9427947998047,
+          424.34619140625,
+          4557.0927734375
+        ],
+        [
+          -1.5920147895812988,
+          1008.5674438476562,
+          7459.67626953125
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -2.4318695068359375E-05,
+        -6.103515625E-05,
+        7467.69482421875
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Running slide.fbx",
+      "mixamo_source_title": "Running Slide",
+      "category": "Slide",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Strafe run - left.fbx",
+      "bytes": 187184,
+      "sha256": "d0ebacb98080968155ef8712770764dfd77be0196a77634238e28974aafe06af",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 21.0,
+          "duration_seconds": 0.6666666666666666
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -22.300254821777344,
+          971.2891235351562,
+          1.5940446853637695
+        ],
+        [
+          1609.1636962890625,
+          969.7994384765625,
+          -14.45830249786377
+        ],
+        [
+          3338.0478515625,
+          971.2891235351562,
+          1.5940418243408203
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        3360.3481063842773,
+        0.0,
+        -2.86102294921875E-06
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Strafe run - left.fbx",
+      "mixamo_source_title": "Left Strafe",
+      "category": "Strafe",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Strafe run - right.fbx",
+      "bytes": 187184,
+      "sha256": "f2324abd74ab2440c9f6bc4dbe53c96f5ea4f27946c9844fc21536e432448947",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 21.0,
+          "duration_seconds": 0.6666666666666666
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          14.255386352539062,
+          1025.375732421875,
+          3.2950949668884277
+        ],
+        [
+          -1339.0101318359375,
+          1024.821533203125,
+          65.70752716064453
+        ],
+        [
+          -2673.596435546875,
+          1025.37548828125,
+          3.2951040267944336
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -2687.851821899414,
+        -0.000244140625,
+        9.059906005859375E-06
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Strafe run - right.fbx",
+      "mixamo_source_title": "Right Strafe",
+      "category": "Strafe",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Strafe walk - left.fbx",
+      "bytes": 226928,
+      "sha256": "957e963aaa528bde8ce8f8cb89b4ce4857fadba693be4a707f4a654198463c65",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 45.0,
+          "duration_seconds": 1.4666666666666666
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -5.138311386108398,
+          1086.81689453125,
+          -5.619936943054199
+        ],
+        [
+          572.5289306640625,
+          1075.738525390625,
+          -35.1733283996582
+        ],
+        [
+          999.4232788085938,
+          1087.6629638671875,
+          -5.6199469566345215
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        1004.5615901947021,
+        0.8460693359375,
+        -1.0013580322265625E-05
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Strafe walk - left.fbx",
+      "mixamo_source_title": "Walk Strafe Left",
+      "category": "Strafe",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Strafe walk - right.fbx",
+      "bytes": 226928,
+      "sha256": "5198884d344292a0650afcb00dd13d46963ff84048b230cb0a1389a04beca1d6",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 45.0,
+          "duration_seconds": 1.4666666666666666
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          3.931196451187134,
+          1075.0509033203125,
+          3.6362075805664062
+        ],
+        [
+          -423.041259765625,
+          1088.1749267578125,
+          33.12089157104492
+        ],
+        [
+          -1000.63037109375,
+          1075.89697265625,
+          3.636199951171875
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -1004.5615675449371,
+        0.8460693359375,
+        -7.62939453125E-06
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Strafe walk - right.fbx",
+      "mixamo_source_title": "Walk Strafe Right",
+      "category": "Strafe",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Throw - alternate.fbx",
+      "bytes": 408320,
+      "sha256": "414f890f63209bf2f9a601557f6d9c5419a9fc3e1a4924fbcf3bc34c9be6b450",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 168.0,
+          "duration_seconds": 5.566666666666666
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          8.59524917602539,
+          1016.5087280273438,
+          -81.20057678222656
+        ],
+        [
+          95.79879760742188,
+          973.8056030273438,
+          1006.16015625
+        ],
+        [
+          65.62741088867188,
+          978.294921875,
+          843.6659545898438
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        57.032161712646484,
+        -38.21380615234375,
+        924.8665313720703
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Throw - alternate.fbx",
+      "mixamo_source_title": "Throwing",
+      "category": "Throw",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Throw - pickup and throw.fbx",
+      "bytes": 385872,
+      "sha256": "247703d55173e0617b23090c91db0d9ba6baf584cbe5fda7c31b701bcdb83ddf",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 147.0,
+          "duration_seconds": 4.866666666666666
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          3.443042516708374,
+          1113.27734375,
+          -1.9067296981811523
+        ],
+        [
+          -116.15171813964844,
+          915.1796875,
+          714.9300537109375
+        ],
+        [
+          3.443174123764038,
+          1113.27880859375,
+          -1.9066412448883057
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.0001316070556640625,
+        0.00146484375,
+        8.845329284667969E-05
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Throw - pickup and throw.fbx",
+      "mixamo_source_title": "Throw Object",
+      "category": "Throw",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoOriginalActions20261013",
+      "file": "Throw - standard.fbx",
+      "bytes": 281568,
+      "sha256": "e1b7f72323527b0425c5f9549acc38d0e4167fa14fbe53aab00da55669f90a44",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 67.0,
+          "duration_seconds": 2.2
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          3.4352095127105713,
+          1096.81982421875,
+          -1.2020089626312256
+        ],
+        [
+          91.16749572753906,
+          1093.38330078125,
+          62.85424041748047
+        ],
+        [
+          3.435197353363037,
+          1096.81982421875,
+          -1.202019453048706
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -1.2159347534179688E-05,
+        0.0,
+        -1.049041748046875E-05
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoOriginalActions20261013/Throw - standard.fbx",
+      "mixamo_source_title": "Throw",
+      "category": "Throw",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoRest20261013",
+      "file": "Sleeping Idle - Sleeping Deeply.fbx",
+      "bytes": 472224,
+      "sha256": "fb348c038f93937914bd835fc1d9a11336531ed21047edcc5e7489eeffdf46e2",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 207.0,
+          "duration_seconds": 6.866666666666666
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          20.97789764404297,
+          148.8682861328125,
+          -8.348308563232422
+        ],
+        [
+          18.629566192626953,
+          153.036865234375,
+          -8.251153945922852
+        ],
+        [
+          20.977943420410156,
+          148.868408203125,
+          -8.348335266113281
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        4.57763671875E-05,
+        0.0001220703125,
+        -2.6702880859375E-05
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoRest20261013/Sleeping Idle - Sleeping Deeply.fbx",
+      "mixamo_source_title": "Sleeping Idle (Sleeping Deeply)",
+      "category": "Sleep",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedCover20261013",
+      "file": "Cover Idle.fbx",
+      "bytes": 293056,
+      "sha256": "8529de116cd7b93033bf55a791b0170b0fc643b0164b2d1e741bffc2c1eaa136",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 78.0,
+          "duration_seconds": 2.566666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          5.39417028427124,
+          606.3145751953125,
+          2.9403417110443115
+        ],
+        [
+          6.889575004577637,
+          607.94287109375,
+          2.668389320373535
+        ],
+        [
+          5.392894744873047,
+          606.3148193359375,
+          2.9405341148376465
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -0.0012755393981933594,
+        0.000244140625,
+        0.00019240379333496094
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedCover20261013/Cover Idle.fbx",
+      "mixamo_source_title": "Cover Idle (Crouched For Cover Against Object)",
+      "category": "Cover",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedCover20261013",
+      "file": "Left Cover Sneak.fbx",
+      "bytes": 211008,
+      "sha256": "506b4124b1bba13b24ada0cff03551a5e6252e0604e15154344a9b97d84ef8cd",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 35.0,
+          "duration_seconds": 1.1333333333333333
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -3.494504928588867,
+          955.1346435546875,
+          -25.84442138671875
+        ],
+        [
+          69.24124908447266,
+          1015.0015258789062,
+          -22.42709732055664
+        ],
+        [
+          -3.494503974914551,
+          955.1345825195312,
+          -25.844425201416016
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        9.5367431640625E-07,
+        -6.103515625E-05,
+        -3.814697265625E-06
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedCover20261013/Left Cover Sneak.fbx",
+      "mixamo_source_title": "Left Cover Sneak",
+      "category": "Cover",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedCover20261013",
+      "file": "Right Cover Sneak.fbx",
+      "bytes": 211008,
+      "sha256": "32c577a590f16f57c979e91f1db3658c02dc6bb61f034d78c5b4f0f6525168a9",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 35.0,
+          "duration_seconds": 1.1333333333333333
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.9450922012329102,
+          1022.8238525390625,
+          -9.106087684631348
+        ],
+        [
+          65.97869873046875,
+          962.9718017578125,
+          -15.585750579833984
+        ],
+        [
+          1.945073127746582,
+          1022.823974609375,
+          -9.106084823608398
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -1.9073486328125E-05,
+        0.0001220703125,
+        2.86102294921875E-06
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedCover20261013/Right Cover Sneak.fbx",
+      "mixamo_source_title": "Right Cover Sneak",
+      "category": "Cover",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedCover20261013",
+      "file": "Stand To Cover.fbx",
+      "bytes": 221376,
+      "sha256": "2c46a95f102b99a063e1dac472fda41a0fe5ea2aa1c477f0865faf9a36d59033",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 39.0,
+          "duration_seconds": 1.2666666666666666
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          2.333765983581543,
+          1036.14013671875,
+          -1.926077127456665
+        ],
+        [
+          -28.079761505126953,
+          703.0409545898438,
+          1016.0671997070312
+        ],
+        [
+          -4.9046406745910645,
+          605.36181640625,
+          1369.9798583984375
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -7.238406658172607,
+        -430.7783203125,
+        1371.9059355258942
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedCover20261013/Stand To Cover.fbx",
+      "mixamo_source_title": "Stand To Cover",
+      "category": "Cover",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Button press.fbx",
+      "bytes": 331216,
+      "sha256": "e307c8719363c117b0faf33dff3090d34819815b0be36e9c0103838fbb94fd61",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 98.0,
+          "duration_seconds": 3.2333333333333334
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          2.653416156768799,
+          1124.3521728515625,
+          -16.063528060913086
+        ],
+        [
+          -0.982207179069519,
+          1125.4422607421875,
+          -23.528900146484375
+        ],
+        [
+          2.653416156768799,
+          1124.3521728515625,
+          -16.063528060913086
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Button press.fbx",
+      "mixamo_source_title": "Button Pushing",
+      "category": "Button",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Dodge - backward.fbx",
+      "bytes": 304544,
+      "sha256": "37140647db20ce2c8042cc0e11fe94ccb385247078e75299f9707d3a6092f36c",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 81.0,
+          "duration_seconds": 2.6666666666666665
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -3.8488705158233643,
+          1046.2877197265625,
+          -5.766148567199707
+        ],
+        [
+          -180.02040100097656,
+          981.6052856445312,
+          -1790.08544921875
+        ],
+        [
+          -3.8488759994506836,
+          1046.28759765625,
+          -2611.2900390625
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -5.4836273193359375E-06,
+        -0.0001220703125,
+        -2605.5238904953003
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Dodge - backward.fbx",
+      "mixamo_source_title": "Dodging Back",
+      "category": "Evade",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Dodge - right.fbx",
+      "bytes": 225088,
+      "sha256": "230356258ca5d231cc9f0263e654a0ed2bb7233053e261adefe7b6bad589f7f9",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 44.0,
+          "duration_seconds": 1.4333333333333333
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -1.5700106620788574,
+          1046.28759765625,
+          -5.046785354614258
+        ],
+        [
+          -122.739501953125,
+          902.0352783203125,
+          -7.124163627624512
+        ],
+        [
+          -1.2815003395080566,
+          1046.2877197265625,
+          -2.380014419555664
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.2885103225708008,
+        0.0001220703125,
+        2.6667709350585938
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Dodge - right.fbx",
+      "mixamo_source_title": "Dodging Right",
+      "category": "Evade",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Duck from standing.fbx",
+      "bytes": 237216,
+      "sha256": "f41b40def2b44697f92edc29110fcf46dbabac21daed847924b3fcffa70de7b5",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 47.0,
+          "duration_seconds": 1.5333333333333334
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -0.619667112827301,
+          1113.2421875,
+          -2.658360242843628
+        ],
+        [
+          103.94440460205078,
+          704.7491455078125,
+          -395.8531188964844
+        ],
+        [
+          124.18952941894531,
+          660.0421142578125,
+          -430.6055603027344
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        124.80919653177261,
+        -453.2000732421875,
+        -427.94720005989075
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Duck from standing.fbx",
+      "mixamo_source_title": "Ducking",
+      "category": "Evade",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Get up - back.fbx",
+      "bytes": 545936,
+      "sha256": "e72bdf1109ad6e2e9a5106e681a8ee3725997fa2d03338134a8574fd9b13632e",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 251.0,
+          "duration_seconds": 8.333333333333334
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          43.07483673095703,
+          92.284423828125,
+          -218.60891723632812
+        ],
+        [
+          67.26166534423828,
+          137.58135986328125,
+          -91.61337280273438
+        ],
+        [
+          91.30948638916016,
+          978.700927734375,
+          559.6632690429688
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        48.234649658203125,
+        886.41650390625,
+        778.2721862792969
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Get up - back.fbx",
+      "mixamo_source_title": "Getting Up (back)",
+      "category": "Recovery",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Get up - stomach.fbx",
+      "bytes": 539360,
+      "sha256": "364661559b9b344e2fa8be37c45148b1fa492019d86dbae2454d34fe1199d3d1",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 259.0,
+          "duration_seconds": 8.6
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          43.55497360229492,
+          111.1781005859375,
+          77.09669494628906
+        ],
+        [
+          170.35501098632812,
+          695.3591918945312,
+          -475.9538269042969
+        ],
+        [
+          148.3712158203125,
+          942.2080078125,
+          -227.0397186279297
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        104.81624221801758,
+        831.0299072265625,
+        -304.13641357421875
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Get up - stomach.fbx",
+      "mixamo_source_title": "Getting Up (stomach)",
+      "category": "Recovery",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Mining reference - downward tool swing.fbx",
+      "bytes": 280208,
+      "sha256": "849423196165ede1e42ad9e402b76232ee0e8142b318ffbd7daf47fc70bb4b1f",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 69.0,
+          "duration_seconds": 2.2666666666666666
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.2592792510986328,
+          941.5481567382812,
+          0.8229352235794067
+        ],
+        [
+          -8.887979507446289,
+          950.2449951171875,
+          136.99586486816406
+        ],
+        [
+          1.2593064308166504,
+          941.548095703125,
+          0.8230071067810059
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        2.7179718017578125E-05,
+        -6.103515625E-05,
+        7.18832015991211E-05
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Mining reference - downward tool swing.fbx",
+      "mixamo_source_title": "Standing Melee Attack Downward",
+      "category": "Mining",
+      "audit_status": "reference-adaptation-required",
+      "audit_note": "One-handed axe-style swing; adapt grip, tool, impact and return before mining use.",
+      "duplicate_of": "MixamoOriginalActions20261013/Mining reference - downward tool swing.fbx"
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Pickup - one hand.fbx",
+      "bytes": 346368,
+      "sha256": "d864539798595cc242faef5e4fe56fced90a3f8b42d7b0a55e969fcfdd73f736",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 104.0,
+          "duration_seconds": 3.433333333333333
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          0.9585781097412109,
+          1088.253173828125,
+          -4.492805480957031
+        ],
+        [
+          -6.033730983734131,
+          1086.196533203125,
+          -45.97529602050781
+        ],
+        [
+          -13.267110824584961,
+          1082.8880615234375,
+          -63.23973083496094
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -14.225688934326172,
+        -5.3651123046875,
+        -58.746925354003906
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Pickup - one hand.fbx",
+      "mixamo_source_title": "Picking Up Object (one hand)",
+      "category": "Pickup",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Pickup and examine.fbx",
+      "bytes": 493264,
+      "sha256": "2f9482b994ca8af8e7b9706a946932939c8b82a8c7efd0bd08d7dbf273b39c09",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 217.0,
+          "duration_seconds": 7.2
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -19.806529998779297,
+          1070.7540283203125,
+          42.74017333984375
+        ],
+        [
+          22.74864959716797,
+          1075.8206787109375,
+          5.742844581604004
+        ],
+        [
+          -19.806529998779297,
+          1070.7540283203125,
+          42.74017333984375
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Pickup and examine.fbx",
+      "mixamo_source_title": "Lifting",
+      "category": "Pickup",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Push - cycle.fbx",
+      "bytes": 293024,
+      "sha256": "da0240bb73dce3dd975ac2dab243e9004524de114a47678996981afa07049735",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 81.0,
+          "duration_seconds": 2.6666666666666665
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -1.5012321472167969,
+          820.3234252929688,
+          0.2245330810546875
+        ],
+        [
+          132.29600524902344,
+          822.4183349609375,
+          525.0197143554688
+        ],
+        [
+          -1.5012321472167969,
+          820.3235473632812,
+          1174.1611328125
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.0,
+        0.0001220703125,
+        1173.9365997314453
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Push - cycle.fbx",
+      "mixamo_source_title": "Pushing A Heavy Object",
+      "category": "Push",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Push - start.fbx",
+      "bytes": 369712,
+      "sha256": "ef740a93c86c3f34400b7b7717d2efe5bce5a505311035349f72444c0d4912b7",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 143.0,
+          "duration_seconds": 4.733333333333333
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          2.3337461948394775,
+          1036.14013671875,
+          -1.9260668754577637
+        ],
+        [
+          -46.73973083496094,
+          968.7335205078125,
+          902.9933471679688
+        ],
+        [
+          -57.27299499511719,
+          820.3233032226562,
+          1506.811767578125
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        -59.606741189956665,
+        -215.81683349609375,
+        1508.7378344535828
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Push - start.fbx",
+      "mixamo_source_title": "Push Start",
+      "category": "Push",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Push - stop.fbx",
+      "bytes": 300576,
+      "sha256": "6bfeb9598e294389eae5049261e80f3a5011cf2eb7ee044bd8bccb2174b25928",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 79.0,
+          "duration_seconds": 2.6
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -1.5012469291687012,
+          820.3234252929688,
+          0.2245941162109375
+        ],
+        [
+          81.12419128417969,
+          890.8209838867188,
+          678.0927124023438
+        ],
+        [
+          58.105525970458984,
+          1036.139892578125,
+          919.9928588867188
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        59.606772899627686,
+        215.81646728515625,
+        919.7682647705078
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Push - stop.fbx",
+      "mixamo_source_title": "Push Stop",
+      "category": "Push",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Sit down - chair.fbx",
+      "bytes": 363648,
+      "sha256": "583286fd1821e85ed32ba126eaccfa46ef0874fe68b98a3c3b4e2126c0d77165",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 134.0,
+          "duration_seconds": 4.433333333333334
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          -3.2994189262390137,
+          1107.9014892578125,
+          9.650413513183594
+        ],
+        [
+          42.71241760253906,
+          994.7481079101562,
+          -319.4888916015625
+        ],
+        [
+          51.483741760253906,
+          654.3471069335938,
+          -501.9271545410156
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        54.78316068649292,
+        -453.55438232421875,
+        -511.5775680541992
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Sit down - chair.fbx",
+      "mixamo_source_title": "Sitting Down (Arms Outside Armrests)",
+      "category": "Sit",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Sitting idle - chair.fbx",
+      "bytes": 322352,
+      "sha256": "35bc286dd70953e8ddbed8796baed89a38f19e0039ba8a5396b06e1ef5dfd5fa",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 90.0,
+          "duration_seconds": 2.966666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          1.2745683193206787,
+          647.8556518554688,
+          41.99538803100586
+        ],
+        [
+          1.2291756868362427,
+          648.0140991210938,
+          41.94206237792969
+        ],
+        [
+          1.2805895805358887,
+          647.8588256835938,
+          41.99574661254883
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        0.006021261215209961,
+        0.003173828125,
+        0.00035858154296875
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Sitting idle - chair.fbx",
+      "mixamo_source_title": "Sitting Idle (Sitting Still In A Chair)",
+      "category": "Sit",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    },
+    {
+      "group": "MixamoUnarmedInteractions20261013",
+      "file": "Sitting idle - ground.fbx",
+      "bytes": 562192,
+      "sha256": "cc4b616b2cf15aec5da943d6bfdad6299125cf6a26c406a5631d15f591bf6d40",
+      "bone_count": 33,
+      "skeleton_matches": true,
+      "mesh_count": 0,
+      "actions": [
+        {
+          "name": "Armature|mixamo.com|Layer0",
+          "start": 1.0,
+          "end": 327.0,
+          "duration_seconds": 10.866666666666667
+        }
+      ],
+      "fps": 30,
+      "hip_samples_blender_rig_units": [
+        [
+          14.514450073242188,
+          130.81854248046875,
+          28.82756996154785
+        ],
+        [
+          14.4037446975708,
+          130.674560546875,
+          28.84632682800293
+        ],
+        [
+          14.5144681930542,
+          130.81854248046875,
+          28.827587127685547
+        ]
+      ],
+      "hip_start_end_delta_blender_rig_units": [
+        1.811981201171875E-05,
+        0.0,
+        1.71661376953125E-05
+      ],
+      "animated_pose_verified": true,
+      "source_relative_path": "MixamoUnarmedInteractions20261013/Sitting idle - ground.fbx",
+      "mixamo_source_title": "Sitting Idle (Sitting On Floor)",
+      "category": "Sit",
+      "audit_status": "unarmed-candidate",
+      "audit_note": "Unity Avatar, import settings, retargeting and gameplay/contact quality pending.",
+      "duplicate_of": null
+    }
+  ],
+  "fbx_copies": 73,
+  "unique_byte_hashes": 72,
+  "all_skeletons_match": true,
+  "audit_date": "2026-10-13",
+  "repository_head_at_inspection": "fa79cc60d1fa53528cf13c4406b792ed5088ca94",
+  "source_root_description": "Windows Downloads folder; paths are relative to C:\\Users\\kbkno\\Downloads on the audited machine.",
+  "distinct_motion_candidates": 71,
+  "distinct_unarmed_candidates": 68,
+  "proof_boundary": "Background Blender FBX import; matching bone names/parents; immutable pose matrices sampled at first/middle/last frames. Hip samples are rig-local Blender units, not Unity metres or certified root motion. No Unity asset import or gameplay tests."
+}

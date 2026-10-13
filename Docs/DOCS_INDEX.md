@@ -90,6 +90,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [Camp Loop animation playground audit](./Design/Gameplay/CAMP_LOOP_ANIMATION_PLAYGROUND_AUDIT_2026-10-13.md)
+  Complete Mixamo download inventory, rig and live-scene findings, unarmed/gap classifications, controller and interaction systems, station props, reset/persistence boundaries and proposed implementation gates. Inventory and proposal only; no Unity import or implementation.
+
 - [Algae canister control brainstorm](./Design/Gameplay/ALGAE_CANISTER_BRAINSTORM.md) and [implementation plan](./Design/Gameplay/ALGAE_CANISTER_IMPLEMENTATION_PLAN.md)
   Implemented session-scoped lower-left shared algae reserve control for D-pad thirst, hunger and health restoration, with audited HUD reuse, dose accounting, input conflict handling and future persistence gates.
 
