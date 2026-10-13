@@ -56,9 +56,15 @@ namespace BooterBigArm.TopDown3D
 
         private void EnsureVisualTree()
         {
-            background = GetComponent<Image>();
-            button = GetComponent<Button>();
+            // These references are transient: reconnect authored children after
+            // reload, and repair destroyed components without repeating layout
+            // and component lookups for every inventory refresh.
+            if (background != null && button != null && icon != null && quantity != null) return;
+            background = GetComponent<Image>() ?? gameObject.AddComponent<Image>();
+            button = GetComponent<Button>() ?? gameObject.AddComponent<Button>();
             button.targetGraphic = background;
+            button.onClick.RemoveListener(HandleActivated);
+            button.onClick.AddListener(HandleActivated);
             var colors = button.colors;
             colors.highlightedColor = new Color32(91, 78, 53, 255);
             colors.selectedColor = new Color32(105, 87, 56, 255);
@@ -78,7 +84,7 @@ namespace BooterBigArm.TopDown3D
             iconTransform.anchorMax = Vector2.one;
             iconTransform.offsetMin = new Vector2(9f, 9f);
             iconTransform.offsetMax = new Vector2(-9f, -9f);
-            icon = iconTransform.GetComponent<Image>();
+            icon = iconTransform.GetComponent<Image>() ?? iconTransform.gameObject.AddComponent<Image>();
             icon.preserveAspect = true;
             icon.raycastTarget = false;
 
@@ -94,7 +100,7 @@ namespace BooterBigArm.TopDown3D
             quantityTransform.anchorMax = new Vector2(1f, 0.45f);
             quantityTransform.offsetMin = new Vector2(4f, 2f);
             quantityTransform.offsetMax = new Vector2(-5f, 0f);
-            quantity = quantityTransform.GetComponent<Text>();
+            quantity = quantityTransform.GetComponent<Text>() ?? quantityTransform.gameObject.AddComponent<Text>();
             quantity.font ??= Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             quantity.alignment = TextAnchor.LowerRight;
             quantity.fontSize = 18;

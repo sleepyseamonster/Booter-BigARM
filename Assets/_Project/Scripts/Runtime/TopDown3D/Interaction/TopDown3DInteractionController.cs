@@ -16,7 +16,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private LayerMask interactionMask = ~0;
         [SerializeField] private LayerMask lineOfSightMask = ~0;
 
-        private readonly Collider[] hits = new Collider[HitCapacity];
+        private Collider[] hits = new Collider[HitCapacity];
 
         public ITopDown3DInteractable CurrentTarget { get; private set; }
         public event Action<ITopDown3DInteractable> TargetChanged;
@@ -69,17 +69,13 @@ namespace BooterBigArm.TopDown3D
 
             var actorPosition = motor.Position;
             var actorFacing = Vector3.ProjectOnPlane(motor.FacingDirection, Vector3.up).normalized;
-            var count = Physics.OverlapSphereNonAlloc(
-                actorPosition,
-                scanRadius,
-                hits,
-                interactionMask,
-                QueryTriggerInteraction.Collide);
-            // A saturated NonAlloc buffer is incomplete and cannot select a deterministic nearest target.
-            var candidates = count == hits.Length
-                ? Physics.OverlapSphere(actorPosition, scanRadius, interactionMask, QueryTriggerInteraction.Collide)
-                : hits;
-            if (candidates != hits) count = candidates.Length;
+            int count;
+            // Keep a complete result set while reusing capacity after a dense encounter.
+            // Never select from a truncated NonAlloc result or cache target eligibility.
+            while ((count = Physics.OverlapSphereNonAlloc(actorPosition, scanRadius, hits,
+                interactionMask, QueryTriggerInteraction.Collide)) == hits.Length)
+                Array.Resize(ref hits, checked(hits.Length * 2));
+            var candidates = hits;
             ITopDown3DInteractable best = null;
             var bestDistance = float.PositiveInfinity;
             var bestFacing = float.NegativeInfinity;
@@ -94,9 +90,9 @@ namespace BooterBigArm.TopDown3D
                 ITopDown3DInteractable candidate = canisterOnly
                     ? collider.GetComponentInParent<TopDown3DHarvesterView>()
                     : collider.GetComponentInParent<TopDown3DIronstoneNode>();
-                candidate ??= collider.GetComponentInParent<TopDown3DHarvesterView>();
                 if (!canisterOnly)
                 {
+                    candidate ??= collider.GetComponentInParent<TopDown3DHarvesterView>();
                     candidate ??= collider.GetComponentInParent<TopDown3DCampView>();
                     candidate ??= collider.GetComponentInParent<TopDown3DResourceCache>();
                 }

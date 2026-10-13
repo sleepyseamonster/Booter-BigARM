@@ -561,6 +561,13 @@ namespace BooterBigArm.TopDown3D
             Subscribe();
         }
 
+        private void Start()
+        {
+            // OnEnable/OnValidate can run before the scene's cargo is discoverable.
+            // Rebuild once after scene loading so actions share the live cargo owner.
+            if (gatherAction == null || !gatherAction.IsActive) RebuildGatherAction();
+        }
+
 #if UNITY_EDITOR
         private void OnValidate()
         {

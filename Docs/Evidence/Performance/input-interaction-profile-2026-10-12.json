@@ -1,0 +1,861 @@
+{
+  "schemaVersion": 1,
+  "evidenceKind": "Warm batched CPU microseconds per operation and calibrated allocation events; not FPS or physical-device latency.",
+  "snapshot": {
+    "candidate": "C:\\BooterBigArmValidation\\InputInteraction20261012-01",
+    "sourceHeadAtCopy": "abe1525bef951b41f36dac836800ca9e022374b8",
+    "selectedFiles": 57455,
+    "selectedBytes": 2949306429,
+    "scenePath": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+    "sceneSha256": "bc0b465de9a1b75b82a20d99c25fa4f10f00377a18f9564f9e8b0516a4c8f93e"
+  },
+  "startupWiringBefore": {
+    "inventoryCargoAccessible": true,
+    "actionCargoAccessible": false,
+    "actionCargoAssigned": false,
+    "actionCargoMatchesSceneCargo": false,
+    "hudInputMatchesRouter": true,
+    "gathering": false,
+    "placement": false,
+    "inputMode": "Gameplay",
+    "actorMatchesAction": true,
+    "actorCargoDistance": 2.4838748
+  },
+  "baseline": {
+    "unityVersion": "6000.4.0f1",
+    "scene": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+    "label": "baseline-wired",
+    "persistentDataPath": "C:/Users/kbkno/AppData/LocalLow/DefaultCompany/InputInteraction20261012-01-baseline-wired",
+    "evidenceKind": "Warmed synchronous main-thread CPU/allocation probes in the complete native production scene. No rendering or physical-device latency/FPS proof.",
+    "residentTerrains": 9216,
+    "terrainColliders": 9216,
+    "ironstoneNodes": 12,
+    "focused": false,
+    "headless": true,
+    "cargoProxyClear": true,
+    "cargoProxyBlocked": true,
+    "byteCounterAvailable": false,
+    "inventoryCargoAccessible": true,
+    "actionCargoAccessible": true,
+    "proxyPosition": {
+      "x": -1849.01171875,
+      "y": -47.814613342285156,
+      "z": -1499.2335205078125
+    },
+    "ignoredChildRayHits": 128,
+    "denseOverlapHitCount": 67,
+    "actorCargoDistance": 2.469836950302124,
+    "positiveControlEvents": 64,
+    "negativeControlEvents": 0,
+    "rows": [
+      {
+        "name": "observer.empty_delegate",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 0.00625,
+        "p95Us": 0.00625,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "input.neutral_end_update",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 0.575,
+        "p95Us": 0.58125,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "interaction.current_target_scan",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 5.4875,
+        "p95Us": 5.53125,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "interaction.canister_scan",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 3.95,
+        "p95Us": 4.18125,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "cargo.los_near",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 1.75625,
+        "p95Us": 1.81875,
+        "allocationEventsPerOperation": 1.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "hud.unchanged_prompt",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 14.1625,
+        "p95Us": 14.89375,
+        "allocationEventsPerOperation": 4.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "inventory.open_access_poll_near",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 2.3375,
+        "p95Us": 2.525,
+        "allocationEventsPerOperation": 1.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "input.inventory_mode_roundtrip",
+        "repeat": 0,
+        "samples": 32,
+        "operationsPerSample": 1,
+        "medianUs": 34.1,
+        "p95Us": 34.9,
+        "allocationEventsPerOperation": 3.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "ui.inventory_open_close",
+        "repeat": 0,
+        "samples": 32,
+        "operationsPerSample": 1,
+        "medianUs": 1584.6,
+        "p95Us": 2077.6,
+        "allocationEventsPerOperation": 87.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "ui.menu_navigation_rebuild",
+        "repeat": 0,
+        "samples": 32,
+        "operationsPerSample": 1,
+        "medianUs": 1.8,
+        "p95Us": 1.9,
+        "allocationEventsPerOperation": 1.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "interaction.dense_64_hit_scan",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 52.9,
+        "p95Us": 70.2125,
+        "allocationEventsPerOperation": 1.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "cargo.los_64_ignored_children",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 32.05625,
+        "p95Us": 37.25,
+        "allocationEventsPerOperation": 1.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "cargo.los_dense_with_wall",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 32.86875,
+        "p95Us": 40.23125,
+        "allocationEventsPerOperation": 1.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "observer.empty_delegate",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 0.00625,
+        "p95Us": 0.00625,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "input.neutral_end_update",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 0.575,
+        "p95Us": 0.575,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "interaction.current_target_scan",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 5.56875,
+        "p95Us": 5.625,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "interaction.canister_scan",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 3.9125,
+        "p95Us": 4.23125,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "cargo.los_near",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 1.78125,
+        "p95Us": 1.9125,
+        "allocationEventsPerOperation": 1.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "hud.unchanged_prompt",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 14.16875,
+        "p95Us": 21.94375,
+        "allocationEventsPerOperation": 4.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "inventory.open_access_poll_near",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 2.3375,
+        "p95Us": 2.51875,
+        "allocationEventsPerOperation": 1.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "input.inventory_mode_roundtrip",
+        "repeat": 1,
+        "samples": 32,
+        "operationsPerSample": 1,
+        "medianUs": 34.1,
+        "p95Us": 34.9,
+        "allocationEventsPerOperation": 3.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "ui.inventory_open_close",
+        "repeat": 1,
+        "samples": 32,
+        "operationsPerSample": 1,
+        "medianUs": 1676.7,
+        "p95Us": 2122.9,
+        "allocationEventsPerOperation": 87.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "ui.menu_navigation_rebuild",
+        "repeat": 1,
+        "samples": 32,
+        "operationsPerSample": 1,
+        "medianUs": 1.8,
+        "p95Us": 2.0,
+        "allocationEventsPerOperation": 1.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "interaction.dense_64_hit_scan",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 53.21875,
+        "p95Us": 71.09375,
+        "allocationEventsPerOperation": 1.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "cargo.los_64_ignored_children",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 32.66875,
+        "p95Us": 35.2,
+        "allocationEventsPerOperation": 1.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "cargo.los_dense_with_wall",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 33.025,
+        "p95Us": 42.6875,
+        "allocationEventsPerOperation": 1.0,
+        "allocationObserverValid": true
+      }
+    ]
+  },
+  "optimized": {
+    "unityVersion": "6000.4.0f1",
+    "scene": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+    "label": "optimized-wired",
+    "persistentDataPath": "C:/Users/kbkno/AppData/LocalLow/DefaultCompany/InputInteraction20261012-01-optimized-wired",
+    "evidenceKind": "Warmed synchronous main-thread CPU/allocation probes in the complete native production scene. No rendering or physical-device latency/FPS proof.",
+    "residentTerrains": 9216,
+    "terrainColliders": 9216,
+    "ironstoneNodes": 12,
+    "focused": false,
+    "headless": true,
+    "cargoProxyClear": true,
+    "cargoProxyBlocked": true,
+    "byteCounterAvailable": false,
+    "inventoryCargoAccessible": true,
+    "actionCargoAccessible": true,
+    "proxyPosition": {
+      "x": -1849.01171875,
+      "y": -47.814613342285156,
+      "z": -1499.2335205078125
+    },
+    "ignoredChildRayHits": 128,
+    "denseOverlapHitCount": 67,
+    "actorCargoDistance": 2.468829870223999,
+    "positiveControlEvents": 64,
+    "negativeControlEvents": 0,
+    "rows": [
+      {
+        "name": "observer.empty_delegate",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 0.0,
+        "p95Us": 0.00625,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "input.neutral_end_update",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 0.575,
+        "p95Us": 0.58125,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "interaction.current_target_scan",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 5.58125,
+        "p95Us": 5.79375,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "interaction.canister_scan",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 3.14375,
+        "p95Us": 3.36875,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "cargo.los_near",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 1.44375,
+        "p95Us": 1.61875,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "hud.unchanged_prompt",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 2.14375,
+        "p95Us": 2.48125,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "inventory.open_access_poll_near",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 1.91875,
+        "p95Us": 2.23125,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "input.inventory_mode_roundtrip",
+        "repeat": 0,
+        "samples": 32,
+        "operationsPerSample": 1,
+        "medianUs": 19.9,
+        "p95Us": 25.7,
+        "allocationEventsPerOperation": 2.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "ui.inventory_open_close",
+        "repeat": 0,
+        "samples": 32,
+        "operationsPerSample": 1,
+        "medianUs": 1371.8,
+        "p95Us": 1445.2,
+        "allocationEventsPerOperation": 80.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "ui.menu_navigation_rebuild",
+        "repeat": 0,
+        "samples": 32,
+        "operationsPerSample": 1,
+        "medianUs": 1.8,
+        "p95Us": 1.9,
+        "allocationEventsPerOperation": 1.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "interaction.dense_64_hit_scan",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 47.11875,
+        "p95Us": 49.35,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "cargo.los_64_ignored_children",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 29.80625,
+        "p95Us": 33.2,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "cargo.los_dense_with_wall",
+        "repeat": 0,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 30.71875,
+        "p95Us": 32.925,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "observer.empty_delegate",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 0.0,
+        "p95Us": 0.00625,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "input.neutral_end_update",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 0.575,
+        "p95Us": 0.58125,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "interaction.current_target_scan",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 5.5875,
+        "p95Us": 5.61875,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "interaction.canister_scan",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 3.16875,
+        "p95Us": 3.1875,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "cargo.los_near",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 1.43125,
+        "p95Us": 1.4375,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "hud.unchanged_prompt",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 2.1625,
+        "p95Us": 2.25,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "inventory.open_access_poll_near",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 1.93125,
+        "p95Us": 1.9375,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "input.inventory_mode_roundtrip",
+        "repeat": 1,
+        "samples": 32,
+        "operationsPerSample": 1,
+        "medianUs": 20.0,
+        "p95Us": 21.2,
+        "allocationEventsPerOperation": 2.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "ui.inventory_open_close",
+        "repeat": 1,
+        "samples": 32,
+        "operationsPerSample": 1,
+        "medianUs": 1426.4,
+        "p95Us": 1649.7,
+        "allocationEventsPerOperation": 80.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "ui.menu_navigation_rebuild",
+        "repeat": 1,
+        "samples": 32,
+        "operationsPerSample": 1,
+        "medianUs": 1.8,
+        "p95Us": 2.4,
+        "allocationEventsPerOperation": 1.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "interaction.dense_64_hit_scan",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 47.1625,
+        "p95Us": 54.325,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "cargo.los_64_ignored_children",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 29.46875,
+        "p95Us": 31.79375,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      },
+      {
+        "name": "cargo.los_dense_with_wall",
+        "repeat": 1,
+        "samples": 64,
+        "operationsPerSample": 16,
+        "medianUs": 29.425,
+        "p95Us": 30.8125,
+        "allocationEventsPerOperation": 0.0,
+        "allocationObserverValid": true
+      }
+    ]
+  },
+  "comparison": {
+    "before": "C:\\BooterBigArmValidation\\InputInteraction20261012-01\\Logs\\InputAudit\\baseline-wired.json",
+    "after": "C:\\BooterBigArmValidation\\InputInteraction20261012-01\\Logs\\InputAudit\\optimized-wired.json",
+    "evidenceKind": "Warm batched CPU microseconds per operation and calibrated allocation events; not FPS or physical-device latency.",
+    "sameInventoryAccessPosture": true,
+    "unmatchedBefore": [],
+    "unmatchedAfter": [],
+    "rows": [
+      {
+        "name": "cargo.los_64_ignored_children",
+        "beforeMedianUsMean": 32.3625,
+        "afterMedianUsMean": 29.6375,
+        "medianPercentChange": -8.420239474700653,
+        "beforeP95UsMean": 36.225,
+        "afterP95UsMean": 32.496875,
+        "beforeAllocationEventsPerOp": 1.0,
+        "afterAllocationEventsPerOp": 0.0,
+        "medianRepeatRangesSeparated": true
+      },
+      {
+        "name": "cargo.los_dense_with_wall",
+        "beforeMedianUsMean": 32.946875,
+        "afterMedianUsMean": 30.071875,
+        "medianPercentChange": -8.726169022099972,
+        "beforeP95UsMean": 41.459375,
+        "afterP95UsMean": 31.86875,
+        "beforeAllocationEventsPerOp": 1.0,
+        "afterAllocationEventsPerOp": 0.0,
+        "medianRepeatRangesSeparated": true
+      },
+      {
+        "name": "cargo.los_near",
+        "beforeMedianUsMean": 1.76875,
+        "afterMedianUsMean": 1.4375,
+        "medianPercentChange": -18.727915194346288,
+        "beforeP95UsMean": 1.865625,
+        "afterP95UsMean": 1.528125,
+        "beforeAllocationEventsPerOp": 1.0,
+        "afterAllocationEventsPerOp": 0.0,
+        "medianRepeatRangesSeparated": true
+      },
+      {
+        "name": "hud.unchanged_prompt",
+        "beforeMedianUsMean": 14.165624999999999,
+        "afterMedianUsMean": 2.153125,
+        "medianPercentChange": -84.80035296712994,
+        "beforeP95UsMean": 18.418750000000003,
+        "afterP95UsMean": 2.365625,
+        "beforeAllocationEventsPerOp": 4.0,
+        "afterAllocationEventsPerOp": 0.0,
+        "medianRepeatRangesSeparated": true
+      },
+      {
+        "name": "input.inventory_mode_roundtrip",
+        "beforeMedianUsMean": 34.1,
+        "afterMedianUsMean": 19.95,
+        "medianPercentChange": -41.49560117302053,
+        "beforeP95UsMean": 34.9,
+        "afterP95UsMean": 23.45,
+        "beforeAllocationEventsPerOp": 3.0,
+        "afterAllocationEventsPerOp": 2.0,
+        "medianRepeatRangesSeparated": true
+      },
+      {
+        "name": "input.neutral_end_update",
+        "beforeMedianUsMean": 0.575,
+        "afterMedianUsMean": 0.575,
+        "medianPercentChange": 0.0,
+        "beforeP95UsMean": 0.578125,
+        "afterP95UsMean": 0.58125,
+        "beforeAllocationEventsPerOp": 0.0,
+        "afterAllocationEventsPerOp": 0.0,
+        "medianRepeatRangesSeparated": false
+      },
+      {
+        "name": "interaction.canister_scan",
+        "beforeMedianUsMean": 3.9312500000000004,
+        "afterMedianUsMean": 3.15625,
+        "medianPercentChange": -19.71383147853737,
+        "beforeP95UsMean": 4.206250000000001,
+        "afterP95UsMean": 3.278125,
+        "beforeAllocationEventsPerOp": 0.0,
+        "afterAllocationEventsPerOp": 0.0,
+        "medianRepeatRangesSeparated": true
+      },
+      {
+        "name": "interaction.current_target_scan",
+        "beforeMedianUsMean": 5.528124999999999,
+        "afterMedianUsMean": 5.584375,
+        "medianPercentChange": 1.0175240248728068,
+        "beforeP95UsMean": 5.578125,
+        "afterP95UsMean": 5.706250000000001,
+        "beforeAllocationEventsPerOp": 0.0,
+        "afterAllocationEventsPerOp": 0.0,
+        "medianRepeatRangesSeparated": false
+      },
+      {
+        "name": "interaction.dense_64_hit_scan",
+        "beforeMedianUsMean": 53.059375,
+        "afterMedianUsMean": 47.140625,
+        "medianPercentChange": -11.15495612226869,
+        "beforeP95UsMean": 70.653125,
+        "afterP95UsMean": 51.837500000000006,
+        "beforeAllocationEventsPerOp": 1.0,
+        "afterAllocationEventsPerOp": 0.0,
+        "medianRepeatRangesSeparated": true
+      },
+      {
+        "name": "inventory.open_access_poll_near",
+        "beforeMedianUsMean": 2.3375,
+        "afterMedianUsMean": 1.9249999999999998,
+        "medianPercentChange": -17.647058823529417,
+        "beforeP95UsMean": 2.5218749999999996,
+        "afterP95UsMean": 2.084375,
+        "beforeAllocationEventsPerOp": 1.0,
+        "afterAllocationEventsPerOp": 0.0,
+        "medianRepeatRangesSeparated": true
+      },
+      {
+        "name": "observer.empty_delegate",
+        "beforeMedianUsMean": 0.00625,
+        "afterMedianUsMean": 0.0,
+        "medianPercentChange": -100.0,
+        "beforeP95UsMean": 0.00625,
+        "afterP95UsMean": 0.00625,
+        "beforeAllocationEventsPerOp": 0.0,
+        "afterAllocationEventsPerOp": 0.0,
+        "medianRepeatRangesSeparated": true
+      },
+      {
+        "name": "ui.inventory_open_close",
+        "beforeMedianUsMean": 1630.65,
+        "afterMedianUsMean": 1399.1,
+        "medianPercentChange": -14.199858951951683,
+        "beforeP95UsMean": 2100.25,
+        "afterP95UsMean": 1547.45,
+        "beforeAllocationEventsPerOp": 87.0,
+        "afterAllocationEventsPerOp": 80.0,
+        "medianRepeatRangesSeparated": true
+      },
+      {
+        "name": "ui.menu_navigation_rebuild",
+        "beforeMedianUsMean": 1.8,
+        "afterMedianUsMean": 1.8,
+        "medianPercentChange": 0.0,
+        "beforeP95UsMean": 1.95,
+        "afterP95UsMean": 2.15,
+        "beforeAllocationEventsPerOp": 1.0,
+        "afterAllocationEventsPerOp": 1.0,
+        "medianRepeatRangesSeparated": false
+      }
+    ]
+  },
+  "processWatches": {
+    "baseline-wired": {
+      "pid": 32504,
+      "exit_code": 0,
+      "stopped_for_budget": null,
+      "observed_seconds": 72.67200000002049,
+      "peak_private_bytes": 11098673152,
+      "peak_working_bytes": 9989578752,
+      "minimum_free_bytes": 16508321792,
+      "limits": {
+        "minimum_free_GiB": 12,
+        "maximum_owned_process_GiB": 20,
+        "deadline_seconds": 600
+      }
+    },
+    "optimized-wired": {
+      "pid": 21640,
+      "exit_code": 0,
+      "stopped_for_budget": null,
+      "observed_seconds": 190.46899999998277,
+      "peak_private_bytes": 11061317632,
+      "peak_working_bytes": 9937813504,
+      "minimum_free_bytes": 30225948672,
+      "limits": {
+        "minimum_free_GiB": 12,
+        "maximum_owned_process_GiB": 20,
+        "deadline_seconds": 600
+      }
+    }
+  },
+  "tests": {
+    "passed": 173,
+    "failed": 0,
+    "skipped": 0,
+    "path": "C:\\BooterBigArmValidation\\InputInteraction20261012-01\\Logs\\input-performance-complete-tests.xml",
+    "sha256": "73295d880ad2f91a69e870bf0da547719f6e9905f1a0b5cce696adf1ed514f69"
+  },
+  "finalSources": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DCargoAccess.cs",
+      "sha256": "326d9a560ffef536dc9ec0ea390fdcc7dbac99f2f213bd6a037673ec5b6242fc"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DInteractionController.cs",
+      "sha256": "459fe5a4ea9f7a57be37f5394ddd6a00886b57729cb34aed5c34011a0eb12eb9"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DPlayerActionController.cs",
+      "sha256": "6188a7fcbf63a3f4496d351435ddabd2ddf3e0cb8b5c9459392fe712ca5f08e3"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventorySlotView.cs",
+      "sha256": "4a434f2387805b75fe2267587b14ae04fe44a609178abb014c58532534929b9d"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInteractionFeedbackHud.cs",
+      "sha256": "89a7ae223808821f17a809acfcdab35f498fa0868d0956935777882d2e9f51e4"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DInventoryUiTests.cs",
+      "sha256": "50da93abea7e37ff420f450906fc1e54bfbb2192f380f163d751f6d1308ed96b"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DInteractionQueryTests.cs",
+      "sha256": "5d56f1789d0acfcd0da9a6f5a43cba0bc73d2d4705185fffa468f39282cf6749"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DInteractionFeedbackHudTests.cs",
+      "sha256": "5b5ccd32b367b26a75a9fbb4528a4986b8a213a6db5561065914439929cfaf16"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DInteractionTests.cs",
+      "sha256": "c9a29b0595df9cba933fc1ef2cf402f0f2d66bdc611fc366c90140e1119f2fc3"
+    }
+  ],
+  "queryPresentationBaselineOverlay": {
+    "baselineSourceHead": "abe1525bef951b41f36dac836800ca9e022374b8",
+    "startupRepairSharedByBothConditions": true,
+    "files": [
+      {
+        "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DCargoAccess.cs",
+        "baselineSha256": "1dadaba5fa852aa980df317f54dbaedfa069f8e4ddf1ddcfdcbadbe48c6ed60b",
+        "optimizedSha256": "326d9a560ffef536dc9ec0ea390fdcc7dbac99f2f213bd6a037673ec5b6242fc"
+      },
+      {
+        "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DInteractionController.cs",
+        "baselineSha256": "43e4e34276bb12f0c3077abb1b9583f947887895670625329fcd24a0a9c204a4",
+        "optimizedSha256": "459fe5a4ea9f7a57be37f5394ddd6a00886b57729cb34aed5c34011a0eb12eb9"
+      },
+      {
+        "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInventorySlotView.cs",
+        "baselineSha256": "d169c7adeb9076a0f6ed12df597d1eb8c3157c6c45184421ab5b4202672b8193",
+        "optimizedSha256": "4a434f2387805b75fe2267587b14ae04fe44a609178abb014c58532534929b9d"
+      },
+      {
+        "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInteractionFeedbackHud.cs",
+        "baselineSha256": "31015d72499159c3af5b0d12ef13ed8dfdb0dd9a9b724d9f9f2d33ef38e3d2d3",
+        "optimizedSha256": "89a7ae223808821f17a809acfcdab35f498fa0868d0956935777882d2e9f51e4"
+      }
+    ]
+  },
+  "startupGuardBoundary": "Both captures resolve startup cargo. The final candidate additionally preserves an already-active pre-Start gather; the replay injects no gather input and this cold lifecycle guard is outside all warmed probes. Its correctness is covered by the final tests.",
+  "retainedDiagnostics": {
+    "root": "C:\\BooterBigArmValidation\\InputInteraction20261012-01\\Logs",
+    "excluded": "Wrong-origin initial dense fixture, pre-wiring HUD comparisons and memory-stopped partial launch are retained but excluded from final headline proof."
+  }
+}

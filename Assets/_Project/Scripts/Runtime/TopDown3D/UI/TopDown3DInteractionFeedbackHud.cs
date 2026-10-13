@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 namespace BooterBigArm.TopDown3D
 {
@@ -19,6 +20,11 @@ namespace BooterBigArm.TopDown3D
         private string feedbackMessage;
         private float promptRefreshRemaining;
         private bool subscribed;
+        private bool promptDirty = true;
+        private ITopDown3DInteractable cachedTarget;
+        private string cachedTargetPrompt, cachedFeedback, interactBinding, cargoBinding;
+        private bool cachedCargoAvailable;
+        private int cachedHoldPercent = -1;
 
         public string DisplayedText => label != null ? label.text : string.Empty;
 
@@ -31,6 +37,7 @@ namespace BooterBigArm.TopDown3D
             interaction = interactionController;
             actionController = playerActionController;
             input = inputRouter;
+            InvalidateBindings();
             EnsureVisualTree();
             Subscribe();
             RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
@@ -84,6 +91,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnEnable()
         {
+            InvalidateBindings();
             Subscribe();
         }
 
@@ -111,32 +119,51 @@ namespace BooterBigArm.TopDown3D
             EnsureVisualTree();
             if (input != null && input.Mode != TopDown3DInputMode.Gameplay)
             {
-                label.text = string.Empty; label.enabled = false; return;
+                promptDirty = true; SetLabel(string.Empty); return;
             }
+            string text;
             if (actionController != null && actionController.IsPlacingHarvester)
             {
-                label.text = actionController.PlacementPrompt;
+                promptDirty = true; text = actionController.PlacementPrompt;
             }
             else if (actionController != null && actionController.IsGathering)
-                label.text = actionController.BusyPrompt;
+            { promptDirty = true; text = actionController.BusyPrompt; }
             else
             {
-                var binding = input != null ? input.GetBindingDisplayName("Gameplay/Interact", "E") : "E";
-                label.text = target != null && target.IsAvailable ? $"[Tap {binding}] {target.Prompt}" : string.Empty;
-                if (actionController != null && actionController.CanOpenCargo)
+                var targetPrompt = target != null && target.IsAvailable ? target.Prompt : null;
+                var cargoAvailable = actionController != null && actionController.CanOpenCargo;
+                var holdPercent = cargoAvailable && input != null && input.IsCargoHoldActive ? Mathf.RoundToInt(input.CargoHoldProgress * 100f) : -1;
+                var feedback = feedbackRemaining > 0f ? feedbackMessage : null;
+                // Availability and LOS stay fresh; only unchanged presentation is reused.
+                if (!promptDirty && ReferenceEquals(cachedTarget, target) && cachedTargetPrompt == targetPrompt
+                    && cachedCargoAvailable == cargoAvailable && cachedHoldPercent == holdPercent && cachedFeedback == feedback) return;
+                cachedTarget = target; cachedTargetPrompt = targetPrompt; cachedCargoAvailable = cargoAvailable;
+                cachedHoldPercent = holdPercent; cachedFeedback = feedback; promptDirty = false;
+                interactBinding ??= input != null ? input.GetBindingDisplayName("Gameplay/Interact", "E") : "E";
+                cargoBinding ??= input != null ? input.GetBindingDisplayName("Gameplay/OpenCargo", "E") : "E";
+                text = targetPrompt != null ? $"[Tap {interactBinding}] {targetPrompt}" : string.Empty;
+                if (cargoAvailable)
                 {
-                    var cargoBinding = input.GetBindingDisplayName("Gameplay/OpenCargo", "E");
-                    var progress = input.IsCargoHoldActive ? $" · {Mathf.RoundToInt(input.CargoHoldProgress * 100f)}%" : string.Empty;
-                    label.text += (label.text.Length > 0 ? "\n" : string.Empty) + $"[Hold {cargoBinding}] Open Legger cargo{progress}";
+                    var progress = holdPercent >= 0 ? $" · {holdPercent}%" : string.Empty;
+                    text += (text.Length > 0 ? "\n" : string.Empty) + $"[Hold {cargoBinding}] Open Legger cargo{progress}";
                 }
             }
             if (feedbackRemaining > 0f && !string.IsNullOrEmpty(feedbackMessage))
-                label.text = feedbackMessage + (label.text.Length > 0 ? "\n" + label.text : string.Empty);
-            label.enabled = !string.IsNullOrEmpty(label.text);
+                text = feedbackMessage + (text.Length > 0 ? "\n" + text : string.Empty);
+            SetLabel(text);
         }
+
+        private void SetLabel(string text)
+        {
+            if (label.text != text) label.text = text;
+            label.enabled = !string.IsNullOrEmpty(text);
+        }
+        private void InvalidateBindings() { interactBinding = cargoBinding = null; promptDirty = true; }
 
         private void EnsureVisualTree()
         {
+            if (label != null) return;
+            promptDirty = true;
             var rect = (RectTransform)transform;
             rect.anchorMin = new Vector2(0.5f, 0f);
             rect.anchorMax = new Vector2(0.5f, 0f);
@@ -190,6 +217,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             subscribed = true;
+            InputSystem.onDeviceChange += HandleDeviceChange;
         }
 
         private void Unsubscribe()
@@ -217,13 +245,20 @@ namespace BooterBigArm.TopDown3D
             }
 
             subscribed = false;
+            InputSystem.onDeviceChange -= HandleDeviceChange;
         }
 
         private void HandlePromptDeviceChanged(TopDown3DPromptDevice _)
         {
+            InvalidateBindings();
             RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
         }
-        private void HandleModeChanged(TopDown3DInputMode _) => RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
+        private void HandleModeChanged(TopDown3DInputMode _) { promptDirty = true; RefreshPrompt(interaction != null ? interaction.CurrentTarget : null); }
+        private void HandleDeviceChange(InputDevice device, InputDeviceChange change)
+        {
+            if (this == null) { Unsubscribe(); return; }
+            if (device is Gamepad || device is Keyboard) InvalidateBindings();
+        }
 
         private void HandlePlacementChanged()
         {

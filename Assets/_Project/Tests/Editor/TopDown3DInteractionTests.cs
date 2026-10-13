@@ -82,6 +82,35 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
+        public void PlayerActionStartup_PreservesEarlyActiveGatherAndCanReleaseItsMotorConstraint()
+        {
+            var player = new GameObject("Early active gather player");
+            player.SetActive(false);
+            try
+            {
+                var inventory = player.AddComponent<TopDown3DPlayerInventory>(); inventory.Configure(catalog, 2);
+                player.AddComponent<Rigidbody>().useGravity = false;
+                var motor = player.AddComponent<TopDown3DPlayerMotor>();
+                var controller = player.AddComponent<TopDown3DPlayerActionController>();
+                controller.Configure(null, null, inventory, motor, null);
+                player.SetActive(true);
+                var state = new TopDown3DGatherActionState(inventory.State);
+                using var target = new FakeTarget(item.ItemId, Vector3.forward, true);
+                Assert.That(state.TryBegin(target, Vector3.zero), Is.EqualTo(TopDown3DGatherActionResult.Started));
+                var field = typeof(TopDown3DPlayerActionController).GetField("gatherAction", BindingFlags.Instance | BindingFlags.NonPublic);
+                field.SetValue(controller, state);
+                Assert.That(motor.TryBeginActionConstraint(controller), Is.True);
+                typeof(TopDown3DPlayerActionController).GetMethod("Start", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(controller, null);
+                Assert.That(field.GetValue(controller), Is.SameAs(state));
+                Assert.That(controller.IsGathering, Is.True);
+                controller.CancelGather();
+                Assert.That(state.IsActive, Is.False);
+                Assert.That(motor.IsActionConstrained, Is.False);
+            }
+            finally { Object.DestroyImmediate(player); }
+        }
+
+        [Test]
         public void ValidCompletion_AwardsAndConsumesExactlyOnce()
         {
             var inventory = new TopDown3DInventoryState(catalog, 2);

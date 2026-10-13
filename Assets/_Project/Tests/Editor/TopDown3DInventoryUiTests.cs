@@ -17,6 +17,105 @@ namespace BooterBigArm.Tests
         private const string InputPath = "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions";
 
         [Test]
+        public void SlotView_ReconnectsClonedAuthoredChildrenAndRetainsNavigation()
+        {
+            var authored = new GameObject("Authored slot", typeof(RectTransform), typeof(Image), typeof(Button));
+            GameObject clone = null;
+            try
+            {
+                var authoredIcon = new GameObject("Icon", typeof(RectTransform), typeof(Image));
+                authoredIcon.transform.SetParent(authored.transform, false);
+                var authoredQuantity = new GameObject("Quantity", typeof(RectTransform), typeof(Text));
+                authoredQuantity.transform.SetParent(authored.transform, false);
+                authored.AddComponent<TopDown3DInventorySlotView>();
+                var navigation = authored.GetComponent<Button>().navigation;
+                navigation.mode = Navigation.Mode.Explicit;
+                authored.GetComponent<Button>().navigation = navigation;
+                clone = Object.Instantiate(authored);
+                var icon = clone.transform.Find("Icon").GetComponent<Image>();
+                var quantity = clone.transform.Find("Quantity").GetComponent<Text>();
+                var view = clone.GetComponent<TopDown3DInventorySlotView>();
+                var activated = -1;
+                view.Initialize(7, index => activated = index, null);
+                var definition = SlotTestDefinition();
+                var slot = new TopDown3DInventorySlot(); slot.Set(definition.ItemId, 3);
+                view.Refresh(slot, definition, true);
+                view.Refresh(slot, definition, true);
+
+                Assert.That(clone.transform.childCount, Is.EqualTo(2));
+                Assert.That(clone.transform.Find("Icon").GetComponent<Image>(), Is.SameAs(icon));
+                Assert.That(clone.transform.Find("Quantity").GetComponent<Text>(), Is.SameAs(quantity));
+                Assert.That(icon.enabled, Is.True);
+                Assert.That(icon.sprite, Is.SameAs(definition.Icon));
+                Assert.That(icon.raycastTarget, Is.False);
+                Assert.That(quantity.text, Is.EqualTo("3"));
+                Assert.That(quantity.raycastTarget, Is.False);
+                Assert.That(view.Button.targetGraphic, Is.SameAs(clone.GetComponent<Image>()));
+                Assert.That(view.Button.navigation.mode, Is.EqualTo(Navigation.Mode.Explicit));
+                Assert.That((Color32)clone.GetComponent<Image>().color, Is.EqualTo(new Color32(146, 111, 53, 255)));
+                view.Button.onClick.Invoke();
+                Assert.That(activated, Is.EqualTo(7));
+            }
+            finally
+            {
+                if (clone != null) Object.DestroyImmediate(clone);
+                Object.DestroyImmediate(authored);
+            }
+        }
+
+        [TestCase("Icon", false)]
+        [TestCase("Quantity", false)]
+        [TestCase("Icon", true)]
+        [TestCase("Quantity", true)]
+        public void SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks(string childName, bool componentOnly)
+        {
+            var owner = new GameObject("Repair slot", typeof(RectTransform), typeof(Image), typeof(Button));
+            try
+            {
+                var view = owner.AddComponent<TopDown3DInventorySlotView>();
+                var oldCalls = 0; var newCalls = 0; var externalCalls = 0; var selected = -1;
+                view.Initialize(1, _ => oldCalls++, _ => oldCalls++);
+                view.Button.onClick.AddListener(() => externalCalls++);
+                view.Initialize(4, index => { Assert.That(index, Is.EqualTo(4)); newCalls++; }, index => selected = index);
+                view.Initialize(4, index => { Assert.That(index, Is.EqualTo(4)); newCalls++; }, index => selected = index);
+                var destroyedChild = owner.transform.Find(childName);
+                var siblingName = childName == "Icon" ? "Quantity" : "Icon";
+                var sibling = owner.transform.Find(siblingName);
+                if (componentOnly)
+                    Object.DestroyImmediate(childName == "Icon"
+                        ? (Object)destroyedChild.GetComponent<Image>() : destroyedChild.GetComponent<Text>());
+                else Object.DestroyImmediate(destroyedChild.gameObject);
+                var definition = SlotTestDefinition();
+                var slot = new TopDown3DInventorySlot(); slot.Set(definition.ItemId, 3);
+                view.Refresh(slot, definition, false);
+                view.Refresh(slot, definition, false);
+
+                Assert.That(owner.transform.childCount, Is.EqualTo(2));
+                Assert.That(owner.transform.Find(siblingName), Is.SameAs(sibling));
+                if (componentOnly) Assert.That(owner.transform.Find(childName), Is.SameAs(destroyedChild));
+                Assert.That(owner.transform.Find("Icon").GetComponent<Image>().enabled, Is.True);
+                Assert.That(owner.transform.Find("Icon").GetComponent<Image>().sprite, Is.SameAs(definition.Icon));
+                Assert.That(owner.transform.Find("Quantity").GetComponent<Text>().text, Is.EqualTo("3"));
+                view.Button.onClick.Invoke();
+                view.OnSelect(null);
+                Assert.That(oldCalls, Is.Zero);
+                Assert.That(newCalls, Is.EqualTo(1), "Repeated initialization/repair must not duplicate listeners.");
+                Assert.That(externalCalls, Is.EqualTo(1), "Other button listeners remain attached.");
+                Assert.That(selected, Is.EqualTo(4));
+            }
+            finally { Object.DestroyImmediate(owner); }
+        }
+
+        private static TopDown3DItemDefinition SlotTestDefinition()
+        {
+            var catalog = AssetDatabase.LoadAssetAtPath<TopDown3DItemCatalog>(
+                "Assets/_Project/Settings/Items/TopDown3DItemCatalog.asset");
+            Assert.That(catalog, Is.Not.Null);
+            Assert.That(catalog.TryGetDefinition("resource.ironstone_ore", out var definition), Is.True);
+            return definition;
+        }
+
+        [Test]
         public void InputModes_KeepSystemLiveAndSuppressGameplayDuringInventory()
         {
             var actions = AssetDatabase.LoadAssetAtPath<InputActionAsset>(InputPath);
