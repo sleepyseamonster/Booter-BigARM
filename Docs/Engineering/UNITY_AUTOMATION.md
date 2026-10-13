@@ -157,6 +157,16 @@ Focused non-smoke EditMode filters are `BooterBigArm.Tests.TopDown3DRadialTests`
 
 ## Camp prototype validation
 
+### Nine-tile camp-loop testing scene — 2026-10-13
+
+`Assets/_Project/Scenes/Reference/CampLoopTesting.unity` is the bounded copy of Greater Wasteland's starting-camp playtesting slice. Open this scene and use the existing Play Mode controls. It contains nine native 256 m terrain tiles, Booter, Legger, the seven authored camp rocks, twelve ironstone deposits and the resource cache, plus the copied camera, HUD, atmosphere and lighting. Starting Camp, compass, inventory, radial and system menus install through the existing runtime UI path.
+
+`BooterBigArm.Editor.CampLoopTestingSceneBuilder.ValidateFromCli` opens and validates the testing scene without saving it. `CampLoopTestingSceneTests` checks its saved terrain/content, camp/UI installation and idempotency, and isolated checkpoint path in EditMode. The testing scene is outside enabled Build Settings; Greater Wasteland remains production.
+
+`BuildFromCli` is a one-time mutating extraction command that refuses to replace an existing testing scene. `CompleteFromCli` is a mutating background-only completion command: it installs missing linked ironstone/cache prefabs into the extracted scene, validates, and saves that scene. Neither writes the production scene or TerrainData. TerrainData and authored content assets remain shared; sculpting those shared terrain assets affects both scenes. The testing checkpoint is separate at `Application.persistentDataPath/CampLoopTesting/inventory-v1.json`.
+
+See the [camp-loop testing receipt](../Evidence/Gameplay/CAMP_LOOP_TESTING_SCENE_2026-10-13.md) for the retained grid and verification boundary.
+
 `BooterBigArm.Editor.TopDown3DCampProductionValidator.ValidateAllFromCli` runs the existing production radial/menu validators and the camp wiring check without saving scenes. Run it with the pinned Editor in an unowned isolated candidate, never against a checkout already open in Unity. The terrain-seam audit in the existing validators can take several minutes.
 
 Focused fixtures are `TopDown3DCampTests`, `TopDown3DCampInputTests`, `TopDown3DCampIntegrationTests`, and `TopDown3DSleepTests`. The integration fixture opens disposable/reference scenes, so it must run in an isolated candidate. Regress affected survival, radial, menu, inventory UI, harvester, locomotion, and traversal fixtures when their shared owners change.

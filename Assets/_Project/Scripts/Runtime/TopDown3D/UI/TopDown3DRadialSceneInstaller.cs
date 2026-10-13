@@ -15,7 +15,7 @@ namespace BooterBigArm.TopDown3D
             var follower = TopDown3DGameHudCanvas.FindInScene<TopDown3DBigArmFollower>(scene);
             var cargo = TopDown3DGameHudCanvas.FindInScene<TopDown3DBigArmCargo>(scene);
             // Authored world identity is the preserved Greater Wasteland asset GUID, not its mutable path.
-            if (action != null && (scene.name == "GreaterWasteland" || scene.name == "GameplaySetup"))
+            if (action != null && (scene.name == "GreaterWasteland" || scene.name == "GameplaySetup" || GreaterWastelandSceneScope.IsCampLoop(scene)))
             {
                 var state = TopDown3DGameHudCanvas.FindInScene<TopDown3DPlacedHarvesterState>(scene);
                 if (state == null)

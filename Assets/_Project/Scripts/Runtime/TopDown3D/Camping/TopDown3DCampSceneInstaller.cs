@@ -8,13 +8,13 @@ namespace BooterBigArm.TopDown3D
     {
         public static TopDown3DCampController TryInstall(Scene scene, TopDown3DInputRouter input, TopDown3DPlayerInventory inventory, EventSystem system)
         {
-            if (scene.path != "Assets/_Project/Scenes/Production/GreaterWasteland.unity"
+            if (!GreaterWastelandSceneScope.SupportsAuthoredLoop(scene)
                 && scene.path != "Assets/_Project/Scenes/Reference/CampSleepStudy.unity") return null;
             var settings = TopDown3DCampSettings.Load();
             if (!settings || !settings.TryValidate(out _) || inventory == null || !inventory.ItemCatalog.TryGetDefinition(TopDown3DCampSettings.ItemId, out _)) return null;
             var controller = inventory.GetComponent<TopDown3DCampController>() ?? inventory.gameObject.AddComponent<TopDown3DCampController>();
             controller.Configure(settings, input, system);
-            if (scene.path == TopDown3DWaypointCampSettings.ProductionScene)
+            if (GreaterWastelandSceneScope.SupportsAuthoredLoop(scene))
                 TopDown3DWaypointCampController.TryInstall(scene, input, inventory, system, controller);
             return controller;
         }

@@ -40,7 +40,7 @@ namespace BooterBigArm.TopDown3D
             TopDown3DPlayerInventory inventory, EventSystem system, TopDown3DCampController recovery)
         {
             var definition = TopDown3DWaypointCampSettings.Load();
-            if (definition == null || !definition.TryValidate(out _) || scene.path != TopDown3DWaypointCampSettings.ProductionScene) return null;
+            if (definition == null || !definition.TryValidate(out _) || !GreaterWastelandSceneScope.SupportsAuthoredLoop(scene)) return null;
             var owner = inventory.GetComponent<TopDown3DWaypointCampController>() ?? inventory.gameObject.AddComponent<TopDown3DWaypointCampController>();
             owner.Configure(definition, router, system, recovery);
             return owner;

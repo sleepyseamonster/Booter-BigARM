@@ -17,7 +17,7 @@ namespace BooterBigArm.TopDown3D
 
         public static TopDown3DCompassHud TryInstallForScene(Scene scene)
         {
-            if (scene.path != TopDown3DWaypointCampSettings.ProductionScene) return null;
+            if (!GreaterWastelandSceneScope.SupportsAuthoredLoop(scene)) return null;
             var pad = TopDown3DActionDpadHud.TryInstallForScene(scene);
             return pad != null ? Install(pad) : null;
         }

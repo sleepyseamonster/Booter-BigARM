@@ -10,7 +10,6 @@ namespace BooterBigArm.TopDown3D
     [DefaultExecutionOrder(1000), DisallowMultipleComponent]
     public sealed class GreaterWastelandInventorySaveService : MonoBehaviour
     {
-        private const string ProductionScene = "Assets/_Project/Scenes/Production/GreaterWasteland.unity";
         private TopDown3DPlayerInventory kit;
         private TopDown3DBigArmCargo cargo;
         private TopDown3DResourceCache cache;
@@ -34,7 +33,7 @@ namespace BooterBigArm.TopDown3D
         public long CompletedCacheRevision => cacheRevision;
         public long CompletedPopulationRevision => completedPopulationRevision;
         public bool RecoveryRequired => recoveryRequired;
-        public string SavePath => Path.Combine(Application.persistentDataPath, "GreaterWasteland", "inventory-v1.json");
+        public string SavePath => Path.Combine(Application.persistentDataPath, GreaterWastelandSceneScope.CheckpointFolder(gameObject.scene), "inventory-v1.json");
 
         // Bind explicitly before startup. No seed inference or silent version-1 population migration.
         public void ConfigurePopulation(FixedTerrainPopulationState state)
@@ -250,7 +249,7 @@ namespace BooterBigArm.TopDown3D
         private static void Loaded(Scene scene, LoadSceneMode _) => Install(scene);
         private static void Install(Scene scene)
         {
-            if (!scene.IsValid() || !scene.isLoaded || scene.path != ProductionScene
+            if (!scene.IsValid() || !scene.isLoaded || !GreaterWastelandSceneScope.SupportsAuthoredLoop(scene)
                 || TopDown3DGameHudCanvas.FindInScene<GreaterWastelandInventorySaveService>(scene) != null) return;
             GreaterWastelandIronstoneInstaller.TryInstall(scene); TopDown3DResourceCache.TryInstall(scene);
             var owner = new GameObject("Greater Wasteland inventory checkpoint");

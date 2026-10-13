@@ -1,0 +1,41 @@
+# Camp-loop testing scene — October 13, 2026
+
+The author requested the current Greater Wasteland camp playtesting slice in a smaller scene containing the camp's terrain tile and its eight neighbors. The result is [CampLoopTesting.unity](../../../Assets/_Project/Scenes/Reference/CampLoopTesting.unity), a separate reference/testing scene. Greater Wasteland remains the sole enabled production build scene.
+
+## Retained content
+
+- Nine original native Terrain/TerrainCollider pairs, each 256 × 256 m: a complete 3 × 3 grid covering x = -2304 to -1536 and z = -1792 to -1024.
+- Center tile: `Badwater_2m_r13_c00`, containing Starting Camp at (-1842, -48.08643, -1498). All authored return-route points remain supported.
+- Original Booter and Legger actors, their positions, cargo mounts, player input, movement/traversal components, survival systems and camera.
+- Original authored arrangement of seven camp rocks, preserving prefab links, transforms and placement IDs.
+- Twelve ironstone nodes and the starting resource cache, explicitly saved as linked instances of the existing production overlay prefabs.
+- Original scene lighting/RenderSettings, dust atmosphere, HUD and EventSystem.
+- Existing runtime camp/sleep, waypoint return/regroup, compass, inventory, radial, system-menu and harvester controls, enabled for this exact testing-scene path.
+
+The extracted tiles are `Badwater_2m_r12_c00`, `Badwater_1m_r12_c01`, `Terrain_west_2m_r12_c15`, `Badwater_2m_r13_c00`, `Badwater_1m_r13_c01`, `Terrain_west_2m_r13_c15`, `Badwater_2m_r14_c00`, `Badwater_2m_r14_c01`, and `Terrain_west_2m_r14_c15`.
+
+## Identity, lifecycle and persistence
+
+The terrain remains fixed, authored and always loaded. No terrain generation, terrain streaming or generated-world save service is added. Only nine tiles render in this scene; the production terrain render-residency controller is unnecessary for this bounded grid.
+
+World coordinates, camp identity, authored rock placement IDs, ironstone IDs, cache ID and harvester world identity are retained. There are no newly generated objects or dressing cells, so chunk-stream unload/reload and generated-object identity do not apply. Scene reload uses the existing authored installers and checkpoint restoration; the ironstone/cache installers detect the saved instances rather than duplicating them.
+
+Runtime deltas use the existing authored checkpoint format and writer, routed to `Application.persistentDataPath/CampLoopTesting/inventory-v1.json`. Production keeps `GreaterWasteland/inventory-v1.json`. This separates testing inventory, depletion, survival, actor positions, harvesters and deployed camp changes from the production profile. No saved production checkpoint is imported into the test slice.
+
+TerrainData and other authored assets remain shared references. Terrain sculpting or editing shared materials/prefabs affects both scenes. This task creates a separate scene, not independent source-art or terrain-asset copies. The test footprint has natural terrain edges; no new boundary walls or gameplay constraints were introduced.
+
+## Current-machine verification
+
+Unity 6000.4.0f1 ran in hidden background batchmode against this checkout with no other target-project Editor running. No app was focused and no Play Mode or gameplay smoke test was run.
+
+- Unity import and compilation passed.
+- `CampLoopTestingSceneBuilder.Validate` passed against the completed scene, checking the native grid/collision, camp/route and actor coverage, seven rock identities, twelve ironstone identities, cache, controls, camera, lighting, missing scripts, prohibited generated services and build routing.
+- 52 focused EditMode checks passed, zero failures/skips: `CampLoopTestingSceneTests`, `TopDown3DWaypointRouteTests`, `TopDown3DCampTests`, `TopDown3DCampInputTests`, `TopDown3DCompassNavigationTests`, and `TopDown3DRadialTests`.
+- The new fixture checks native TerrainData references against production, camp-route height support, runtime UI/camp/compass/harvester installation, installer idempotency and a separate checkpoint path. It never writes checkpoint files; UI preferences use a disposable temporary directory.
+- Serialized scene audit found nine terrains and zero dangling local fileID references. RenderSettings are identical to production.
+- Production scene remained byte-identical to the starting revision: SHA-256 `bc0b465de9a1b75b82a20d99c25fa4f10f00377a18f9564f9e8b0516a4c8f93e`.
+- Existing untracked `Art/Environment/Rocks/Fused` work stayed outside this task and its commit. No package, project setting, production scene, native terrain asset or build-routing changes were made.
+
+Ignored diagnostics: `Logs/camp-loop-complete.log`, `Logs/camp-loop-tests.log`, `Logs/camp-loop-tests.xml`, and `Logs/camp-loop-structure.json`. An initial extraction validator inspected uninitialized runtime node IDs in Edit Mode; completion corrected the validator to inspect the serialized authored ironstone identities and saved linked prefab instances. Final import, validation and all tests passed.
+
+Hands-on visual, controller-feel, camp-loop acceptance, disk-checkpoint round trips and Player-build performance are not claimed by these structural/EditMode checks. Open CampLoopTesting and use the existing controls for the author-owned playtest.

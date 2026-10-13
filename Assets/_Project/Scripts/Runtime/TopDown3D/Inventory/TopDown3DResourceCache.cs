@@ -52,7 +52,7 @@ namespace BooterBigArm.TopDown3D
 
         public static TopDown3DResourceCache TryInstall(Scene scene)
         {
-            if (!scene.IsValid() || !scene.isLoaded || scene.name != "GreaterWasteland") return null;
+            if (!scene.IsValid() || !scene.isLoaded || (scene.name != "GreaterWasteland" && !GreaterWastelandSceneScope.IsCampLoop(scene))) return null;
             var existing = TopDown3DGameHudCanvas.FindInScene<TopDown3DResourceCache>(scene);
             if (existing != null) return existing;
             var prefab = Resources.Load<GameObject>(ResourceName);

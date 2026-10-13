@@ -11,7 +11,7 @@ namespace BooterBigArm.TopDown3D
 
         public static GameObject TryInstall(Scene scene)
         {
-            if (!scene.IsValid() || !scene.isLoaded || scene.name != "GreaterWasteland") return null;
+            if (!scene.IsValid() || !scene.isLoaded || (scene.name != "GreaterWasteland" && !GreaterWastelandSceneScope.IsCampLoop(scene))) return null;
             foreach (var root in scene.GetRootGameObjects())
                 if (root.name == RootName) return root;
             var prefab = Resources.Load<GameObject>(ResourceName);
