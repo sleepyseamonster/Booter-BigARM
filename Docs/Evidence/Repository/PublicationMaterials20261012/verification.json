@@ -1,0 +1,53 @@
+{
+  "source_head": "17be1e4a72e868534ec3720e8cb22d72158cd258",
+  "editor": "6000.4.0f1",
+  "package_lock_sha256": "d2adab2cb95c215760c616ac81950f6eab23ae18aeed23d69b9c58fe63c8f473",
+  "canonical_validator": "BooterBigArm.Editor.BadwaterPlayableSceneBuilder.ValidateFromCli",
+  "canonical_exit": 0,
+  "terrains": 9216,
+  "test_filter": [
+    "BooterBigArm.Tests.TopDown3DCampTests.AuthoredCampAssetsAndHumanoidClipsAreComplete",
+    "BooterBigArm.Tests.TopDown3DFoundationTests.PerspectiveCharacterMaterials_UseSwappedIdentityColors"
+  ],
+  "tests_passed": 2,
+  "tests_failed": 0,
+  "files": [
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/PackCanvas.mat",
+      "preserved_original_sha256": "f80fbdb40efeb98da82f9e28c378aecb37d3cedd5f509567bfb2310210f2139a",
+      "accepted_sha256": "d6039fb40b253bdc117668d1f3125abcc8d089c8eb43d3aa33db18a64c1faa07",
+      "meta_sha256": "c4945204d40db573d3d10641fec11d2bb06686eb9e5eae510c449d45166b6c77",
+      "guid": "f1362dfca45c0b848b940b802756c687",
+      "old_legacy_color": "- _Color: {r: 1, g: 1, b: 1, a: 1}",
+      "new_legacy_color": "- _Color: {r: 0.31999996, g: 0.22499996, b: 0.12999997, a: 1}"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/PackFrame.mat",
+      "preserved_original_sha256": "8915f7d962a72d8717ddb86424d6daadaffc070abd10e92154ff2bc89a6f098f",
+      "accepted_sha256": "20de085bdcc7a61bee09d45f1eefce9816bafe54490582e0a1ca839b818fb061",
+      "meta_sha256": "27f756a841e4e08be98a82d51dcb1708afdc01fccd5e8369d82c9151c359737f",
+      "guid": "270ff1fddb1cccb44a841b1229e6f7dc",
+      "old_legacy_color": "- _Color: {r: 1, g: 1, b: 1, a: 1}",
+      "new_legacy_color": "- _Color: {r: 0.23999995, g: 0.22999996, b: 0.19999996, a: 1}"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/PackWebbing.mat",
+      "preserved_original_sha256": "1c63e68219d5d59e7a9487e53a89e0efa2a42e422004772817e204875c26e0d8",
+      "accepted_sha256": "8c73f809c54054761719dee68ff91e32ddbd11ab3108da170b817dbc4abf2a6b",
+      "meta_sha256": "ad36c43ef1cd72b64617a0865b0fbb04cff43398c7ef5ff8d80c09305909ca58",
+      "guid": "5b2a7531ac65c0f40b397b2159ae9819",
+      "old_legacy_color": "- _Color: {r: 1, g: 1, b: 1, a: 1}",
+      "new_legacy_color": "- _Color: {r: 0.09499996, g: 0.07499998, b: 0.05199997, a: 1}"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Greybox_BigARM.mat",
+      "preserved_original_sha256": "56f82308963bcf4c6f7b1ed37eb79cec697cab41a8de69b95aea0014d65ec8f9",
+      "accepted_sha256": "e268c88d5d1ad91b5e1314707cd8d83de64f0d09c63988f7203ccedf7b6cede6",
+      "meta_sha256": "7cef9e5c6a7890d2e4f187fe0436f9bf23e09f68603e7614d68ed8937f03707a",
+      "guid": "a06e1b3ae51ea416c8d8fd6018cc8f29",
+      "old_legacy_color": "- _Color: {r: 0.07999996, g: 0.74, b: 0.76, a: 1}",
+      "new_legacy_color": "- _Color: {r: 0.079999976, g: 0.74, b: 0.76, a: 1}"
+    }
+  ],
+  "boundary": "Isolated background import/shader/structural validation. No gameplay smoke or new visual acceptance. Fused unit remains outside this batch."
+}
