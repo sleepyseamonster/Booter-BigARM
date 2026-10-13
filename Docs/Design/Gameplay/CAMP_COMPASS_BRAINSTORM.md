@@ -1,5 +1,7 @@
 # Camp compass audit and proposal
 
+**October 13, 2026 supersession:** the author now requires the darkward/north and lightward/south markers to rotate with the camera's horizontal heading. The Starting Camp arrow retains its existing Booter-facing bearing and arrival behavior. The single-heading proposal below is retained design history; see the [implementation receipt](../../Evidence/Gameplay/CAMP_COMPASS_IMPLEMENTATION_2026-10-12.md) for the accepted update.
+
 2026-10-12. Exploration only; this document does not install a Unity feature. The user confirmed that **Booter's facing direction** drives the compass. Camera yaw does not drive it.
 
 The author subsequently approved implementation. See the [implementation receipt](../../Evidence/Gameplay/CAMP_COMPASS_IMPLEMENTATION_2026-10-12.md) for the resulting simple UI, verified contracts, and acceptance limits. The proposed dimensions below remain design history; the receipt records final first-pass values.

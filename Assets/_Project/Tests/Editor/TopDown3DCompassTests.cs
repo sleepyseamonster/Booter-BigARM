@@ -68,9 +68,12 @@ namespace BooterBigArm.Tests
         private TopDown3DWaypointCampController waypoint;
         private TopDown3DCampView site;
         private TopDown3DWaypointCampSettings definition;
+        private Camera camera;
         [SetUp] public void Setup()
         {
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            camera = new GameObject("Gameplay camera").AddComponent<Camera>(); camera.tag = "MainCamera";
+            camera.transform.rotation = Quaternion.Euler(60, 0, 0);
             var actor = new GameObject("Booter"); actor.SetActive(false); SceneManager.MoveGameObjectToScene(actor, scene);
             player = actor.AddComponent<TopDown3DPlayerMotor>();
             waypoint = actor.AddComponent<TopDown3DWaypointCampController>();
@@ -116,13 +119,42 @@ namespace BooterBigArm.Tests
             hud.Bind(player, null); Assert.That(hud.Graphic.HasDestination, Is.False);
             hud.Bind(player, waypoint); Assert.That(hud.Graphic.HasDestination, Is.True);
         }
-        [Test] public void HeadingChangesButCameraOrbitDoesNot()
+        [Test] public void CameraOrbitRotatesCardinalsWhileArrowStillFollowsPlayerFacing()
         {
-            var camera = new GameObject("Orbit camera").AddComponent<Camera>();
             camera.transform.rotation = Quaternion.Euler(60, 235, 0); hud.RefreshPresentation();
+            Assert.That(hud.Graphic.Heading, Is.EqualTo(235).Within(.001));
             Assert.That(hud.Graphic.CampBearing, Is.EqualTo(90).Within(.001));
             Facing(Vector3.right); hud.RefreshPresentation(); Assert.That(hud.Graphic.CampBearing, Is.EqualTo(0).Within(.001));
-            Facing(Vector3.zero); hud.RefreshPresentation(); Assert.That(hud.Graphic.Heading, Is.EqualTo(90).Within(.001));
+            Assert.That(hud.Graphic.Heading, Is.EqualTo(235).Within(.001));
+            camera.transform.rotation = Quaternion.Euler(35, 90, 0); hud.RefreshPresentation();
+            Assert.That(hud.Graphic.Heading, Is.EqualTo(90).Within(.001));
+            Assert.That(hud.Graphic.CampBearing, Is.EqualTo(0).Within(.001));
+            Facing(Vector3.zero); hud.RefreshPresentation(); Assert.That(hud.Graphic.CampBearing, Is.EqualTo(0).Within(.001));
+        }
+        [Test] public void CameraPitchDoesNotRotateCardinalsAndVerticalViewRetainsLastHeading()
+        {
+            camera.transform.rotation = Quaternion.Euler(30, 125, 0); hud.RefreshPresentation();
+            Assert.That(hud.Graphic.Heading, Is.EqualTo(125).Within(.001));
+            camera.transform.rotation = Quaternion.Euler(75, 125, 0); hud.RefreshPresentation();
+            Assert.That(hud.Graphic.Heading, Is.EqualTo(125).Within(.001));
+            camera.transform.rotation = Quaternion.Euler(90, 125, 0); hud.RefreshPresentation();
+            Assert.That(hud.Graphic.Heading, Is.EqualTo(125).Within(.001));
+            Assert.That(hud.Graphic.CampBearing, Is.EqualTo(90).Within(.001));
+        }
+        [Test] public void MissingCameraDoesNotSuppressThePlayerRelativeArrow()
+        {
+            Object.DestroyImmediate(camera.gameObject); hud.RefreshPresentation();
+            Assert.That(hud.Graphic.HasDestination, Is.True);
+            Assert.That(hud.Graphic.CampBearing, Is.EqualTo(90).Within(.001));
+            var mesh = new VertexHelper();
+            try
+            {
+                typeof(TopDown3DCompassGraphic).GetMethod("OnPopulateMesh", BindingFlags.Instance | BindingFlags.NonPublic,
+                    null, new[] {typeof(VertexHelper)}, null).Invoke(hud.Graphic, new object[] {mesh});
+                // Ring (576) + top tick (6) + the unchanged two arrow triangles (6).
+                Assert.That(mesh.currentVertCount, Is.EqualTo(588));
+            }
+            finally { mesh.Dispose(); }
         }
         [Test] public void ArrivalAndDepartureUpdateImmediately()
         {

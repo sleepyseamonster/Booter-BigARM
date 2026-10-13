@@ -19,11 +19,11 @@ namespace BooterBigArm.TopDown3D
         public bool HasDestination => hasDestination;
         public bool Arrived => arrived;
 
-        public void SetState(float facing, bool validHeading, float campBearing, bool validDestination, bool atCamp)
+        public void SetState(float cameraHeading, bool validHeading, float campBearing, bool validDestination, bool atCamp)
         {
-            if (Mathf.Approximately(heading, facing) && hasHeading == validHeading
+            if (Mathf.Approximately(heading, cameraHeading) && hasHeading == validHeading
                 && Mathf.Approximately(bearing, campBearing) && hasDestination == validDestination && arrived == atCamp) return;
-            heading = facing; hasHeading = validHeading; bearing = campBearing; hasDestination = validDestination; arrived = atCamp;
+            heading = cameraHeading; hasHeading = validHeading; bearing = campBearing; hasDestination = validDestination; arrived = atCamp;
             SetVerticesDirty();
         }
 
@@ -36,18 +36,20 @@ namespace BooterBigArm.TopDown3D
             var center = rectTransform.rect.center;
             Ring(mesh, center, orbit, 1.5f * scale, Track);
             Quad(mesh, center + Vector2.up * 126 * scale, new Vector2(2, 6) * scale, Rim);
-            if (!hasHeading) return;
-            var north = center + TopDown3DCompassNavigation.OnRing(-heading, orbit);
-            var south = center + TopDown3DCompassNavigation.OnRing(180 - heading, orbit);
-            Circle(mesh, north, 10 * scale, Rim); Circle(mesh, north, 8.5f * scale, Dark);
-            // Rays distinguish the sun from both the dark sphere and the triangular destination marker.
-            for (var i = 0; i < 4; i++)
+            if (hasHeading)
             {
-                var ray = TopDown3DCompassNavigation.OnRing(i * 90, 12 * scale);
-                Quad(mesh, south + ray, (i % 2 == 0 ? new Vector2(2, 4) : new Vector2(4, 2)) * scale, Dark);
-                Quad(mesh, south + ray, (i % 2 == 0 ? new Vector2(1, 3) : new Vector2(3, 1)) * scale, Sun);
+                var north = center + TopDown3DCompassNavigation.OnRing(-heading, orbit);
+                var south = center + TopDown3DCompassNavigation.OnRing(180 - heading, orbit);
+                Circle(mesh, north, 10 * scale, Rim); Circle(mesh, north, 8.5f * scale, Dark);
+                // Rays distinguish the sun from both the dark sphere and the triangular destination marker.
+                for (var i = 0; i < 4; i++)
+                {
+                    var ray = TopDown3DCompassNavigation.OnRing(i * 90, 12 * scale);
+                    Quad(mesh, south + ray, (i % 2 == 0 ? new Vector2(2, 4) : new Vector2(4, 2)) * scale, Dark);
+                    Quad(mesh, south + ray, (i % 2 == 0 ? new Vector2(1, 3) : new Vector2(3, 1)) * scale, Sun);
+                }
+                Circle(mesh, south, 10 * scale, Dark); Circle(mesh, south, 8.5f * scale, Sun);
             }
-            Circle(mesh, south, 10 * scale, Dark); Circle(mesh, south, 8.5f * scale, Sun);
             if (!hasDestination) return;
             if (arrived)
             {

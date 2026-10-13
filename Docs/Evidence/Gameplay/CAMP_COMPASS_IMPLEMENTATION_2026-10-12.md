@@ -1,5 +1,7 @@
 # Simple camp compass implementation
 
+**October 13 update:** the north/south markers now use the scene's gameplay camera heading. The camp arrow still uses Booter's physical facing. This supersedes the original single-heading behavior recorded below; see the camera-heading update at the end of this receipt.
+
 2026-10-12. Implements the user's approved [compass proposal](../../Design/Gameplay/CAMP_COMPASS_BRAINSTORM.md) in the active Greater Wasteland HUD.
 
 ## Result
@@ -37,3 +39,13 @@ The first test attempt passed 94/95; the sole failure assumed runtime MonoBehavi
 ## Acceptance limits
 
 This is deliberately simple procedural UI geometry, with immediate updates and no new art dependency. Hands-on readability, turning feel, and real-terrain contrast remain user-owned acceptance. No gameplay smoke test, PlayMode run, player build, persistence test, push, or release was performed.
+
+## Camera-heading update — October 13, 2026
+
+The author requested camera-relative darkward/north and lightward/south markers while preserving the camp arrow. The presenter now resolves the active MainCamera inside its own scene and projects its forward direction onto X/Z. The two cardinal markers use that heading; the camp arrow continues to use Booter's physical facing, the established camp identity and the existing arrival/departure hysteresis. Pitch does not change horizontal heading; a vertical camera retains its last valid heading. Missing cameras suppress only the cardinal markers, allowing the valid player-relative arrow to remain drawn. Compass LateUpdate runs after the camera rig's default-order LateUpdate.
+
+There are no world-coordinate, authored-constraint, object-identity, terrain-streaming, generated-object or persisted-delta changes. This is an existing HUD presentation change shared by Greater Wasteland and CampLoopTesting. No scene, prefab, metadata, package or project setting was changed.
+
+Current-machine proof: the production checkout compiled the updated scripts through its existing background Unity 6000.4.0f1 connection. The author was in Play Mode; it was stopped for the script recompile. CampLoopTesting remained open, clean and structurally valid afterward. No app was focused, no scene was saved, and no gameplay smoke test was run.
+
+All **27/27** focused EditMode cases passed in a fresh bounded dependency candidate at `D:\BooterBigArmValidation\CompassCamera20261013-01`: `TopDown3DCompassNavigationTests` and `TopDown3DCompassHudTests`. Tests cover camera/player heading independence, pitch and vertical-view handling, missing-camera arrow geometry, original bearing math, arrival hysteresis, passive/idempotent installation, camp identity/availability, actor replacement, compass lifecycle and algae/dust layout. The initial run passed 26/27; its only failure was an ambiguous reflection lookup of Unity's overloaded `OnPopulateMesh` in the new mesh check. Selecting the VertexHelper overload corrected the harness; the final run has zero failures or skips. Logs and XML remain at `Logs/compass-camera-final-tests.log` and `Logs/compass-camera-final-tests.xml` in the production checkout. Hands-on visual acceptance remains with the author.
