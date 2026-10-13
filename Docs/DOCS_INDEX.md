@@ -39,6 +39,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Agent Operations
 
+- [Project publication and storage closeout plan](./Operations/Repository/PUBLICATION_CLOSEOUT_PLAN_2026-10-12.md)
+  Executable batches for independent local recovery, dirty asset decisions, verified commits, Git/LFS publication and remote restoration.
+
 - [Publication and storage readiness reassessment](./Operations/Repository/PUBLICATION_READINESS_REASSESSMENT_2026-10-12.md)
   Live remote and LFS dry-run checks, pack-size estimate, local backup coverage, dirty ownership and ordered publication gates.
 
