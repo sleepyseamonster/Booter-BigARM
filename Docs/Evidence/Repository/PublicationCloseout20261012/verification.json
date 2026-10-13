@@ -1,0 +1,43 @@
+{
+  "published_content_sha": "b89e8bcef23268fd2956b014e259645a8c3ce1d7",
+  "previous_remote_sha": "2c522e4ed50d692aa6ce6e581cf56e3ee4406d8a",
+  "published_commits": 172,
+  "supplemental_author_documentation_commit": "822c014b92ee27eb634c5fac8638f9cc23dcc5ee",
+  "github_server_lfs_objects_sampled": 10000,
+  "lfs_payloads": 18210,
+  "lfs_bytes": 3267022905,
+  "remote_metadata_files_verified": 82631,
+  "remote_restore_clean": true,
+  "production_alternates": false,
+  "source_exclusion_gate": "Entire unpublished range; case-insensitive Blender files/backups and SourceData/Terrain excluded",
+  "recovery_files": 78373,
+  "recovery_objects": 39207,
+  "current_recovery_objects": 39208,
+  "saved_source_update": {
+    "path": "SourceArt/Blender/Studies/BooterGroundSetup/BooterGroundSetup.blend",
+    "sha256": "c1e79d1fc6612fdcf269d4c881a772a5c5e87eb14628654da3253fc02734b486",
+    "bytes": 627977626,
+    "old_version_retained": true
+  },
+  "recovery_logical_bytes": 78694982581,
+  "recovery_manifest_sha256": "a3e53ec53b8b1fd44a0a0fa22311a96d3ecdb1c09761fb2833b474cc83728dc4",
+  "recovery_git_revision": "b89e8bcef23268fd2956b014e259645a8c3ce1d7",
+  "recovery_proofs": [
+    "all stored object hashes and sizes",
+    "independent Git connectivity",
+    "Blender unit reopened",
+    "terrain checkpoint equality",
+    "network-disabled cache-only LFS restoration"
+  ],
+  "current_candidate_tests": {
+    "passed": 100,
+    "failed": 0,
+    "skipped": 0
+  },
+  "test_xml_sha256": "0ae22e32f50fd483b9e44e8bcbe98f7983fd9aeac0e191d26b800fda4a74eb04",
+  "fused_files_preserved_untracked": 7,
+  "billing_settings_changed": false,
+  "original_sources_deleted_or_relocated": false,
+  "lfs_pruned": false,
+  "boundary": "Fresh remote sparse clone restores all approved LFS terrain payloads at their existing paths, all tracked metadata and selected validated dependencies. Other ordinary Git content remains sparse/promised. Prior Unity proof is reused by identical dependencies and payload/meta hashes; no repeated cold terrain import. Read-only proof clone, not an authoring checkout."
+}
