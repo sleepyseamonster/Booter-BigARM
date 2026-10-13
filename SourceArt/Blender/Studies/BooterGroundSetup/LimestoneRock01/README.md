@@ -1,5 +1,7 @@
 # Limestone rock 01
 
+The current material is the author-approved [white limestone set](ApprovedWhiteV2/README.md), applied to the rock in the original `../BooterGroundSetup.blend`. Its exact approved preview and matching maps replace the earlier workbench-derived material described below. The mesh reduction and scene integration remain unchanged.
+
 October 12, 2026. The author requested the rock sculpt in the Booter ground scene be reduced as far as practical while preserving its shape and detail, and textured with a new light limestone derivative of the dark workbench rock texture.
 
 The author clarified that the rock belongs in the original scene. Open the existing local `../BooterGroundSetup.blend`: `LimestoneRock01_LOD0` is selected and textured there, with the original `Icosphere` hidden. Booter, ground and all pre-existing objects retain their geometry, transforms and material bindings, and the file still contains one scene. The untouched artist save is preserved locally as `../BooterGroundSetup_ArtistSource_2026-10-12.blend`.
@@ -22,7 +24,7 @@ The [preparation tool](../../../../../Tools/Art/Blender/prepare_limestone_rock.p
 
 Selection gates were closed manifold geometry, 95th-percentile sampled bidirectional surface error at most 8 mm, maximum sampled error at most 20 mm, and minimum silhouette intersection-over-union of 99.4%. The selected mesh measured 6.95 mm, 19.37 mm and 99.416%, respectively. Silhouettes were tested along eight directions on a 192-pixel orthographic grid. Surface comparison included all source vertices plus 10,000 area-weighted triangle samples in each direction. Front, back, top, underside, and high-source comparison renders were visually reviewed. Small surface differences are transferred into the tangent normal bake; silhouette changes cannot be recovered by a normal map.
 
-## Texture set and export
+## Retained workbench-derived texture set and export
 
 The source is the workbench material's [dark side albedo](../../../../../Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Albedo.png) and matching [surface map](../../../../../Assets/_Project/Art/Environment/Rocks/Workbench/Layered/RockWorkbenchSide_Surface.png). The surface channels are R occlusion, G roughness, B height. A limestone palette is applied in the Blender material, retaining the original source pattern rather than generating unrelated cracks or grain. A 1.1 m projection scale matches the workbench's side texture scale. The original source textures remain unchanged.
 

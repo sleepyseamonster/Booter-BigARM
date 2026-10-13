@@ -1,0 +1,95 @@
+{
+  "original_scene_reopened": true,
+  "scene_count": 1,
+  "all_geometry_uvs_transforms_and_unrelated_materials_unchanged": true,
+  "approved_source_hash_matches": true,
+  "meshes": {
+    "LimestoneRock01_LOD0": {
+      "triangles": 712,
+      "vertices": 358,
+      "dimensions": [
+        2.002058744430542,
+        1.9748988151550293,
+        1.324190616607666
+      ]
+    },
+    "LimestoneRock01_LOD1": {
+      "triangles": 356,
+      "vertices": 180,
+      "dimensions": [
+        2.0059242248535156,
+        1.9661840200424194,
+        1.3250705003738403
+      ]
+    },
+    "LimestoneRock01_LOD2": {
+      "triangles": 178,
+      "vertices": 91,
+      "dimensions": [
+        1.997793197631836,
+        1.960211157798767,
+        1.308674693107605
+      ]
+    },
+    "LimestoneRock01_Collision": {
+      "triangles": 220,
+      "vertices": 112,
+      "dimensions": [
+        2.0001938343048096,
+        1.9763407707214355,
+        1.3253248929977417
+      ]
+    }
+  },
+  "maps": {
+    "BaseColor": {
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "valid_samples": 2848
+    },
+    "Roughness": {
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "valid_samples": 2848
+    },
+    "Occlusion": {
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "valid_samples": 2848
+    },
+    "Height": {
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "valid_samples": 2848
+    },
+    "Normal": {
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "valid_samples": 2848
+    },
+    "MetallicSmoothness": {
+      "size": [
+        2048,
+        2048
+      ],
+      "packed": true,
+      "valid_samples": 2848
+    }
+  },
+  "fbx_roundtrip_passed": true
+}

@@ -1,0 +1,22 @@
+{
+  "approved_preview": "C:\\Users\\kbkno\\.codex\\generated_images\\01a131da-f9f9-78a3-84fd-8d7b9c89e540\\exec-d71b21ae-5147-4ba1-b63a-b004ef15d70e.png",
+  "copied_albedo_sha256": "80d7020df1193183283479ebf64da1f431421bf41915d50e9441802d6967bae4",
+  "original_preview_sha256": "80d7020df1193183283479ebf64da1f431421bf41915d50e9441802d6967bae4",
+  "source_dimensions": [
+    1254,
+    1254
+  ],
+  "method": "Approved albedo retained exactly; small-scale luminance deviation supplies interpreted shallow grit and pore relief, not scan measurements.",
+  "roughness_range": [
+    0.7733697891235352,
+    0.8400000333786011
+  ],
+  "occlusion_range": [
+    0.9039999842643738,
+    1.0
+  ],
+  "height_amplitude_metres": 0.0006,
+  "projection_metres_per_tile": 1.1,
+  "generated_with": "Built-in image_gen, approved in this chat on October 12, 2026",
+  "prompt": "Use case: photorealistic-natural. Asset type: preview-only game material texture swatch, single square image. Generate a fresh white limestone surface texture, seen perfectly straight-on, filling the entire frame edge to edge. The user's direction is 'gritty, gritty yet smooth limestone white': dense very fine mineral grit and tiny shallow pores give tactile sandy microtexture, while the larger surface remains smooth, softly weather-worn, gently rounded and calm. Chalky limestone white and very pale warm gray, predominantly white with restrained subtle ivory mineral variation. The grit must be visible up close and irregular, not a uniform dotted pattern; the broad surface should feel smooth, matte and solid stone. Natural realistic limestone, not concrete, stucco or plaster. Only sparse hairline mineral traces; no prominent cracks, no deep holes, no chunky fragments, no pronounced strata, no rippled or heavily wrinkled rock pattern. Flat, even diffuse neutral illumination suitable for an albedo concept; no directional shading, no glossy highlights, no vignette or perspective. Keep brightness and texture density consistent across the image; make edges visually compatible for eventual tiling. Produce only this one high-resolution texture preview, not a PBR map set, not a rendered rock, not a texture sheet montage. No objects, lettering, border or watermark."
+}

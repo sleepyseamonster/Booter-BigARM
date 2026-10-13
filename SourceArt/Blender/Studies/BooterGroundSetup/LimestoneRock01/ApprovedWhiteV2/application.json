@@ -1,0 +1,46 @@
+{
+  "scene": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\BooterGroundSetup\\BooterGroundSetup.blend",
+  "backup": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\BooterGroundSetup\\BooterGroundSetup_BeforeWhiteLimestone_2026-10-12.blend",
+  "before_scene_sha256": "093c8ddf33be7153eec447b1655476d6c427374c1d7b125c329848028bfc61cb",
+  "after_scene_sha256": "5a417b4d1151bef49426e9caaa88f9294f3a5f07ea62de0585ec1f6c5ea53960",
+  "unchanged_object_signatures": {
+    "Ground - resize with Dimensions X and Y": "e37e5924e1a3cb2f4a7ed2c62f21d84c8003853d1b4fabb7203864f15a7066bf",
+    "Icosphere": "bb97a2fb0500b404d019c15756c87bff51771e4a645affa50ba4b7f174055093",
+    "Booter - move character here": "c3df998d54a41c7068ba9044558a1370898ff7b5ff3ed7fc039cf55bf14e0bf3",
+    "Booter_Body": "b1a24378b8b459182b9a27cbbcf48b34b6e4d2494d3f19f1c939601e84e1f589",
+    "Booter_ShoulderYoke": "78a0fe9d31b68fd49efc1b7ee04e4518f2e926024e76ae42cc9f22be9d5ed924",
+    "Booter_SplitHemCloak": "d774341cfeccf85cbaae6076044ddeb6641891b7812d03f601f69684c688542c",
+    "Booter_BooterFramedBackpack(Clone)": "10a86fbc5ed7e5c2f5ad14c993a6f9a5b485e11c1a8b944780803b8847019725",
+    "Preview Camera": "db10087856cbc7e78bc9dd07db6079f621673430c4e9b4fc33eea17fe323e294",
+    "Key": "ffaa8bd1a3d30aae519f9e514dfe1d122215f30ca10fb0652b4046d32f64aeaf",
+    "Fill": "92b5592f96edffac14f75dc9ac88e01f0cc2fc1acba828993b80ac96c479fa3c",
+    "Rim": "e59e916713254f4ac6b9877cea84268ec92115592883407ab766d756812860e3",
+    "LimestoneRock01_LOD0": "a66ce8dedc2e1e87e9f5c1495abbf6e8d323e999dc0e3686a01f561b99a1949e",
+    "LimestoneRock01_LOD1": "87e842f27fcd703b914ff795a0f91053edbbce56ab836ab85133377197a3579b",
+    "LimestoneRock01_LOD2": "fec19a898b53835754e6d9b70a7628d38a7616f86ff9901d94df8b1899d21037",
+    "LimestoneRock01_Collision": "b8c00bb8fefbcb156080170a887bffbbe6418c81a725ad553c8e985979d328fa"
+  },
+  "approved_albedo_sha256": "80d7020df1193183283479ebf64da1f431421bf41915d50e9441802d6967bae4",
+  "material": "LimestoneRock01 - approved white limestone",
+  "scene_count": 1,
+  "texture_size": 2048,
+  "meshes": [
+    "LimestoneRock01_LOD0",
+    "LimestoneRock01_LOD1",
+    "LimestoneRock01_LOD2",
+    "LimestoneRock01_Collision"
+  ],
+  "source": "Approved generated preview; prior workbench-derived surface replaced",
+  "geometry_changed": false,
+  "projection_tile_metres": 1.1,
+  "microrelief_amplitude_metres": 0.0006,
+  "exported_files": {
+    "LimestoneRock01_WhiteV2.fbx": "2bd519ed95942757f36d962e51b22dc5b56266733014db7e49eb86737ff982e5",
+    "LimestoneRock01_WhiteV2_BaseColor.png": "ce6be47352cc8314fdf7702a9d6bf264653122a03c0bc2e91da59962ca430f22",
+    "LimestoneRock01_WhiteV2_Height.png": "7b26c89ff06b3adb999d4d77f0a3beebc8bb05523ecf80ccce2dbc1d03276174",
+    "LimestoneRock01_WhiteV2_MetallicSmoothness.png": "c8c97fed2dc7394ff5bb1e478d1699c120591283bafa79ff2825b66e019c7617",
+    "LimestoneRock01_WhiteV2_Normal.png": "9a00b088a45c634374b7b09cedbf6f3c1ff486a8f0d51eb00e069b4a5a885c4f",
+    "LimestoneRock01_WhiteV2_Occlusion.png": "40aa1e047ce445c3a874be976ca3261eaf51a57fbea456c5c7d36952a1a3cc6a",
+    "LimestoneRock01_WhiteV2_Roughness.png": "5955d718ca3f35326265b19a41f9e4b55ff51d0fcae83f9af728f5dfd2b449aa"
+  }
+}
