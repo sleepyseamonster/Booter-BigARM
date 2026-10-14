@@ -4,6 +4,8 @@ October 14, 2026. Planning-only deliverable for the author's requested Legger ri
 
 Audited against the live repository after `be34a4c4c`. The [plan audit](CAMP_LOOP_LEGGER_RIDING_PLAN_AUDIT_2026-10-14.md) found execution gaps in ordering, target selection, transitions, scene data and proof. The audited integration contracts below are mandatory and supersede any less specific wording in the original batches.
 
+Execution checkpoint: the author subsequently authorized implementation. The animation-free CampLoopTesting slice is installed and its focused automatic proof is recorded in the [implementation receipt](../../Evidence/Gameplay/LeggerRiding20261014/README.md). Hands-on steering/terrain acceptance and representative performance capture remain pending; production integration and mounting clips remain outside this slice.
+
 ## Observable result and authority
 
 Booter can select the nearby companion Legger, mount through a checked local attachment, ride with camera-relative analog control, travel faster, maneuver around camp and cross supported difficult terrain, then dismount safely. A blocked exit retains the mounted relationship and explains the failure. Menus, device/focus loss, reset and scene teardown leave neither competing movement writers nor a stranded passive player.
@@ -186,4 +188,4 @@ Add `TopDown3DInteractionTests`, `TopDown3DInventoryLoopUiTests`, `TopDown3DCont
 
 The 256-query/eight-substep limits are provisional safety ceilings, not established performance acceptance. Count all riding physics calls, including mount/exit, terrain, sliding, rotation and recovery, against a shared tick budget. Reject before the next query when exhausted. Record worst-case counters and actual timings; a performance acceptance claim requires separately authorized representative capture. A scene with counters below the ceiling is not automatically fast.
 
-Implementation is ready to execute after the author requests it and Batch 0 resolves live ownership, with these audit amendments included. The first handoff can truthfully say the animation-free camp riding slice is implemented and automatically verified when Batches 1–7 pass; fluidity and terrain acceptance remain pending until the author plays it. Stop at this reference-scene boundary. Production, persistence, mounting clips and additional riding mechanics require their own scope.
+Implementation was authorized and the shared-file owners sealed their sequential handoffs. See the implementation receipt for the installed source/scene manifest, automatic checks and independently reproduced baseline failures. Fluidity and terrain acceptance remain pending until the author plays it. Stop at this reference-scene boundary. Production, persistence, mounting clips and additional riding mechanics require their own scope.

@@ -1,0 +1,150 @@
+{
+  "editor": "6000.4.0f1",
+  "candidate": "D:\\BooterBigArmValidation\\LeggerRiding20261014-01",
+  "baselineCommit": "d91cd4b8755f7ad6e63dbefb0868f6a44d4fa88e",
+  "focused": {
+    "total": 47,
+    "passed": 47,
+    "afterPublicationNormalization": true
+  },
+  "integrated": {
+    "total": 191,
+    "passed": 186,
+    "baselineFailures": 5,
+    "riding": {
+      "total": 37,
+      "passed": 37
+    },
+    "camera": {
+      "total": 10,
+      "passed": 10
+    }
+  },
+  "baseline": {
+    "total": 154,
+    "passed": 149
+  },
+  "reproducedBaselineFailures": {
+    "BooterBigArm.Tests.TopDown3DFoundationTests.GameplayActions_ContainRequiredGamepadAndKeyboardBindings": "  RecallBigArm is missing <Gamepad>/leftShoulder for Gamepad.\n  Expected: True\n  But was:  False\n",
+    "BooterBigArm.Tests.TopDown3DFoundationTests.LandscapeCameraPullback_HasMatchingWorldCoverage": "  Expected: 3\n  But was:  4\n",
+    "BooterBigArm.Tests.TopDown3DFoundationTests.PerspectivePrototypeValidator_ReportsNoErrors": "  Ironstone item catalog is invalid or non-canonical: \n  Expected: <empty>\n  But was:  < \"Ironstone item catalog is invalid or non-canonical: \" >\n",
+    "BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.CacheViewUnloadsLocallyAndClosingRestoresThePersonalKit": "  Expected: 3\n  But was:  0\n",
+    "BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.QuickTransferAndPanelSwitchKeepTheCorrectOwnerAndNeverMoveOreIntoKit": "  Expected: 0\n  But was:  1\n"
+  },
+  "taskFiles": {
+    "Assets/_Project/Scenes/Reference/CampLoopTesting.unity": "e729011a2a03d91c0eeb16f5c805646d05dcaea8f74d959d193da99279a5e89a",
+    "Assets/_Project/Scripts/Editor/TopDown3D/CampLoopLeggerRidingAuthoring.cs": "96d2616c608defe19f0b107a1e52da1cff835b45416de79a99f1798b202ff5c2",
+    "Assets/_Project/Scripts/Editor/TopDown3D/CampLoopLeggerRidingAuthoring.cs.meta": "f1b554b8286d91ff3ce76dbf11b449aff01b90791d7c6910ee3c6bb0b1ef048e",
+    "Assets/_Project/Scripts/Editor/TopDown3D/CampLoopLeggerRidingValidator.cs": "17d156932fc59d19f720a4b19d803035c0a876445b494419abcc1f0a4ee64e6d",
+    "Assets/_Project/Scripts/Editor/TopDown3D/CampLoopLeggerRidingValidator.cs.meta": "987bf506d8ab9a17c7b6910c8830049627cfa97e7f9f865614f066e6b37190f0",
+    "Assets/_Project/Scripts/Editor/TopDown3D/LeggerRidingInspector.cs": "31155f712bdb36cf6bfd04372be7756033246a4758d1b5409d4dbbe0a15b9dc7",
+    "Assets/_Project/Scripts/Editor/TopDown3D/LeggerRidingInspector.cs.meta": "670b1a2a68458d8550d9d6af11c7b21a10146c7ce443d9ba281fcd9cc163cd7a",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DInteractionController.cs": "3f71b8da967877acf4cc1f38239f7d810ff7759b86a6af5d888efa546ec1ba18",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DPlayerActionController.Riding.cs": "3e7a3d5139a10a586309ca8745b3ffbf644c3c87c1324ba29f8ecddd96187295",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DPlayerActionController.Riding.cs.meta": "38e931c1e41cbf7d7602d03a8cb864ad9f40790169a87d548437baf8b21d2079",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DPlayerActionController.cs": "8ad58a8f4b4c8c46384fb0b559c3f816597c3f7a1e11e775e3ec2067ecba34f9",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Riding.meta": "37f7b7a6f6907049bc9ac21aeb5a3de6438ae773c9ae66f05d3b6a2974d5f115",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/LeggerGroundMotion.cs": "73d960e6f2e8d77614980e55265e8d8b1082ac4bc546d17f128de15d5f1f7613",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/LeggerGroundMotion.cs.meta": "4d782b9ed148b2f74cdc0d40cc0188a86a04629f996620ace5a326f330d45765",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/LeggerRideState.cs": "e86b008e30c079dd15dbed68f0fdd377ad7272c415ed69c102d679c23133a94c",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/LeggerRideState.cs.meta": "0cb805d9c5aeecbf2a020e2bae807c0b003c72a7738e95a795daafffe8db6ba2",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/TopDown3DLeggerMountTarget.cs": "05dca8a82a42f4be44181168d93ecf68b151a7d411139058d8b69a4dc002f61a",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/TopDown3DLeggerMountTarget.cs.meta": "b7a7db068215b4a100b2bca318963cb7049ea05050a89499f5458af42d0dc87e",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/TopDown3DLeggerRideProfile.cs": "831030c23a45e76db54288a9d37bee6594a8ec2ac5dfbb9e6077051e186a90f1",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/TopDown3DLeggerRideProfile.cs.meta": "4096c48e200095578e311b2b867aa10d236b74a4e3c0a7c161d6fff8b66da2fd",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/TopDown3DLeggerRidingController.cs": "7070f78436063ecafa04ecb0a8842e7422d8f4c584034978dcefbdd8f888b614",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/TopDown3DLeggerRidingController.cs.meta": "4921673e88551176e151cdc9fa247f43dfd28a2aa24bc0f69d6c841a31d7a897",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.Riding.cs": "be46e3a7c830be099ed43854dc8d08bb4cf14f554cc8296692acc5398742814e",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.Riding.cs.meta": "7ac3d158adc085e8673ba47d616025bf081353be6848c34380df53f345ec6e90",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.cs": "18fac906a35a606b2d589250f1eb7324112363f0fd8646821793c58ca62ed86a",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraRig.cs": "a51c298868e75944ec4c01cfba0e7f8606a950b235b01fc8e11e2c7f0888126d",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.Riding.cs": "10e1bd8cd8db7fe7ee444125df0dfad2457947554ba5bf78639d529159af97bf",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.Riding.cs.meta": "091eba3c1dcdc5c8d55d7b8c169a1d139d294ecdfc52659c2de1f8044ffc5e95",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.cs": "e15dc9aba1e06b0ecd4a15f0dc7c90f511085b64fc35607f9577bbc71167df90",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.Riding.cs": "544fb182935756902bb4dde62943fc24c9bce1d5736f9caa48c15dd7fee214d4",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.Riding.cs.meta": "fe46261601054fa5be7d551f5d17fd0814c3dc35251b7e71e3a7e89a7d452776",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs": "b120d08a9a72eedb36c38eaf0ca531728008150d6538432bd30dcf97bf85620a",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.Riding.cs": "68e7f690645dfb9ab691a640223a8e4670fec1fc6d8318dbeafda4fdd30c5639",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.Riding.cs.meta": "6dc0c31747885270fc07a11f2a12a39b263a15c804b01987fb8b28ee6b56e763",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs": "012bce4763c0caede5d46205a0023890d0cac8f0128dc396c401720ff1135375",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DInteractionFeedbackHud.cs": "6cb05d3e02887ac7a790c1696edcd0683e3d619348f6e32d41056ac2c1f231c2",
+    "Assets/_Project/Settings/Studies/LeggerRiding.meta": "04ebfed13c678192cd9b2327148c9ae25965c80188a75206e133d015715741f8",
+    "Assets/_Project/Settings/Studies/LeggerRiding/CampLoopLeggerRideProfile.asset": "b20a083c03348f55536514aab5821620d1a92aca726980077e57e3b045cf55f3",
+    "Assets/_Project/Settings/Studies/LeggerRiding/CampLoopLeggerRideProfile.asset.meta": "add0955b42aa425f2faf6c170435bcb6de1660b0f8120a968363b37bc4a0920b",
+    "Assets/_Project/Tests/Editor/CampLoopLeggerRidingSceneTests.cs": "b560ec76f80725c08a0e6e037b7c9c3deec294ec49e08509c5905e51161d1084",
+    "Assets/_Project/Tests/Editor/CampLoopLeggerRidingSceneTests.cs.meta": "ddfba282ea53df8fe4125e11307643f59876c6628d544c533613ed06ba1652b3",
+    "Assets/_Project/Tests/Editor/LeggerGroundMotionTests.cs": "152277703f1a232407e559a08f4a8f8af5f73bbab4b015248d27a21e4b94a020",
+    "Assets/_Project/Tests/Editor/LeggerGroundMotionTests.cs.meta": "68852e32f7cee89f17e310f4c39cba99913b5a4f672a5bb3916a7cdc04f56459",
+    "Assets/_Project/Tests/Editor/LeggerRideStateTests.cs": "c17f555cd7fd95ed30168b8264e9a0cf76b553f1a3b9b23f5aac6716c537910c",
+    "Assets/_Project/Tests/Editor/LeggerRideStateTests.cs.meta": "4ceb26e83ee16487a75a657ad255f3725af380addb6046e2632da93a1c169ea4",
+    "Assets/_Project/Tests/Editor/LeggerRidingInputTests.cs": "928ba7fca4b7eb608619d5beec77c3d7d7b7706e52ed491defd086861de0d644",
+    "Assets/_Project/Tests/Editor/LeggerRidingInputTests.cs.meta": "2dea8fef69815778567fecad72583c56da0a2b490e1308a735f6b30b464772c3",
+    "Assets/_Project/Tests/Editor/LeggerRidingLifecycleTests.cs": "5eeb617534ab476a99012f90b9a9cc0a4e1a37dd2d667b93b8e31bd7be5b876e",
+    "Assets/_Project/Tests/Editor/LeggerRidingLifecycleTests.cs.meta": "12fe443f574281c93b4cfbf0ea54fd37a72651183d6d2df4a4feef386fb1d988",
+    "Assets/_Project/Tests/Editor/LeggerRidingOwnershipTests.cs": "24a31811fdb1212d8eaa0218d5920edd5bdf8888c766946f913cd07f8c2bd6b6",
+    "Assets/_Project/Tests/Editor/LeggerRidingOwnershipTests.cs.meta": "09b47a505412a6a18f3fc337bb0570703563de3c231941dd21c24ee77bd0ff9b"
+  },
+  "metadataGUIDUniqueness": {
+    "owned": 22,
+    "activeAssetsMatches": 22
+  },
+  "protectedFiles": [
+    {
+      "Algorithm": "SHA256",
+      "Hash": "BC0B465DE9A1B75B82A20D99C25FA4F10F00377A18F9564F9E8B0516A4C8F93E",
+      "Path": "D:\\Arc & Dust\\Project\\Assets\\_Project\\Scenes\\Production\\GreaterWasteland.unity"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "A9B4F332893EFFBB67F87B48508240992D76968B8B78F870F8F05F12A436F409",
+      "Path": "D:\\Arc & Dust\\Project\\Packages\\manifest.json"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "D2ADAB2CB95C215760C616AC81950F6EAB23AE18AEED23D69B9C58FE63C8F473",
+      "Path": "D:\\Arc & Dust\\Project\\Packages\\packages-lock.json"
+    },
+    {
+      "Algorithm": "SHA256",
+      "Hash": "8468D7ADD4C1613C42224053CB9C889688CCF141875F44065A40E6D133BC3EA7",
+      "Path": "D:\\Arc & Dust\\Project\\ProjectSettings\\ProjectVersion.txt"
+    }
+  ],
+  "finalSerializedValidator": "Publication validator passed after metadata whitespace normalization; exit 0",
+  "publicationNormalization": {
+    "kind": "LF line endings only; metadata GUIDs and code tokens unchanged",
+    "paths": [
+      "Assets/_Project/Scripts/Editor/TopDown3D/CampLoopLeggerRidingAuthoring.cs.meta",
+      "Assets/_Project/Scripts/Editor/TopDown3D/CampLoopLeggerRidingValidator.cs.meta",
+      "Assets/_Project/Scripts/Editor/TopDown3D/LeggerRidingInspector.cs.meta",
+      "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DPlayerActionController.Riding.cs.meta",
+      "Assets/_Project/Scripts/Runtime/TopDown3D/Riding.meta",
+      "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/LeggerGroundMotion.cs.meta",
+      "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/LeggerRideState.cs.meta",
+      "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/TopDown3DLeggerMountTarget.cs.meta",
+      "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/TopDown3DLeggerRideProfile.cs.meta",
+      "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/TopDown3DLeggerRidingController.cs",
+      "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/TopDown3DLeggerRidingController.cs.meta",
+      "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DBigArmFollower.Riding.cs.meta",
+      "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.Riding.cs.meta",
+      "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.Riding.cs.meta",
+      "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.Riding.cs.meta",
+      "Assets/_Project/Tests/Editor/CampLoopLeggerRidingSceneTests.cs.meta",
+      "Assets/_Project/Tests/Editor/LeggerGroundMotionTests.cs.meta",
+      "Assets/_Project/Tests/Editor/LeggerRideStateTests.cs.meta",
+      "Assets/_Project/Tests/Editor/LeggerRidingInputTests.cs.meta",
+      "Assets/_Project/Tests/Editor/LeggerRidingLifecycleTests.cs.meta",
+      "Assets/_Project/Tests/Editor/LeggerRidingOwnershipTests.cs.meta"
+    ],
+    "testXml": "LF normalized, parsed test results unchanged",
+    "unityMetadataEmptyFields": [
+      "Assets/_Project/Settings/Studies/LeggerRiding.meta",
+      "Assets/_Project/Settings/Studies/LeggerRiding/CampLoopLeggerRideProfile.asset.meta"
+    ],
+    "retainedXmlWhitespace": "Verbatim matching assertion CDATA contains one trailing space in the historical prototype catalog failure in each integrated/baseline XML."
+  },
+  "implementationCommits": {
+    "runtime": "a19ec4ab9",
+    "sceneAndVerification": "b200e6a80"
+  }
+}

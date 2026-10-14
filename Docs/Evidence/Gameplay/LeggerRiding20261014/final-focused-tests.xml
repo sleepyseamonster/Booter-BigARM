@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="47" result="Passed" total="47" passed="47" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-14 19:32:17Z" end-time="2026-10-14 19:32:26Z" duration="9.0226618">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="1353" result="Passed" start-time="2026-10-14 19:32:17Z" end-time="2026-10-14 19:32:26Z" duration="9.022662" total="47" passed="47" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2611" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/LeggerRiding20261014-01/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="1353" result="Passed" start-time="2026-10-14 19:32:17Z" end-time="2026-10-14 19:32:26Z" duration="9.008302" total="47" passed="47" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="22840" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2612" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="1353" result="Passed" start-time="2026-10-14 19:32:17Z" end-time="2026-10-14 19:32:26Z" duration="9.002101" total="47" passed="47" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2613" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="1353" result="Passed" start-time="2026-10-14 19:32:17Z" end-time="2026-10-14 19:32:26Z" duration="8.995452" total="47" passed="47" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1407" name="CampLoopLeggerRidingSceneTests" fullname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests" classname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-14 19:32:17Z" end-time="2026-10-14 19:32:25Z" duration="7.999329" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1409" name="ActualSceneSupportsRepeatedAnimationFreeMountAndDismount" fullname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests.ActualSceneSupportsRepeatedAnimationFreeMountAndDismount" methodname="ActualSceneSupportsRepeatedAnimationFreeMountAndDismount" classname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests" runstate="Runnable" seed="1061741016" result="Passed" start-time="2026-10-14 19:32:17Z" end-time="2026-10-14 19:32:20Z" duration="2.490231" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1414" name="AllBlockedNativeExitsKeepTheRiderPassiveAndMounted" fullname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests.AllBlockedNativeExitsKeepTheRiderPassiveAndMounted" methodname="AllBlockedNativeExitsKeepTheRiderPassiveAndMounted" classname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests" runstate="Runnable" seed="1283764808" result="Passed" start-time="2026-10-14 19:32:20Z" end-time="2026-10-14 19:32:21Z" duration="0.738899" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1412" name="DisabledOnFootRidingControllerRestoresLegacyCargoTarget" fullname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests.DisabledOnFootRidingControllerRestoresLegacyCargoTarget" methodname="DisabledOnFootRidingControllerRestoresLegacyCargoTarget" classname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests" runstate="Runnable" seed="1937081598" result="Passed" start-time="2026-10-14 19:32:21Z" end-time="2026-10-14 19:32:22Z" duration="0.848419" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1410" name="InstalledTargetWinsOverCargoAndPreservesCapturedIdentity" fullname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests.InstalledTargetWinsOverCargoAndPreservesCapturedIdentity" methodname="InstalledTargetWinsOverCargoAndPreservesCapturedIdentity" classname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests" runstate="Runnable" seed="169874044" result="Passed" start-time="2026-10-14 19:32:22Z" end-time="2026-10-14 19:32:22Z" duration="0.782247" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1415" name="NativeMountedMovementUsesOneResolvedPoseRegardlessOfCallbackOrder" fullname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests.NativeMountedMovementUsesOneResolvedPoseRegardlessOfCallbackOrder" methodname="NativeMountedMovementUsesOneResolvedPoseRegardlessOfCallbackOrder" classname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests" runstate="Runnable" seed="312031708" result="Passed" start-time="2026-10-14 19:32:22Z" end-time="2026-10-14 19:32:23Z" duration="0.805012" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1413" name="NativeSceneResetRestoresStandingRiderAndRetainsCompanionCoordinate" fullname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests.NativeSceneResetRestoresStandingRiderAndRetainsCompanionCoordinate" methodname="NativeSceneResetRestoresStandingRiderAndRetainsCompanionCoordinate" classname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests" runstate="Runnable" seed="2126855549" result="Passed" start-time="2026-10-14 19:32:23Z" end-time="2026-10-14 19:32:24Z" duration="0.801075" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1408" name="SerializedInstallationRetainsNativeTerrainAndSingleOwners" fullname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests.SerializedInstallationRetainsNativeTerrainAndSingleOwners" methodname="SerializedInstallationRetainsNativeTerrainAndSingleOwners" classname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests" runstate="Runnable" seed="1812211454" result="Passed" start-time="2026-10-14 19:32:24Z" end-time="2026-10-14 19:32:25Z" duration="0.744582" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[CAMP_LOOP_VALIDATION_PASS: complete native grid, camp route, actors, seven rocks, twelve ironstone nodes, cache, controls and lighting.
+LEGGER_RIDING_VALIDATION_PASS: single owner, native grid, private profile, exact scene bindings and session-only policy.
+]]></output>
+            </test-case>
+            <test-case id="1411" name="SharedDispatcherReservesMountAndCargoKeepsOtherActivityGates" fullname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests.SharedDispatcherReservesMountAndCargoKeepsOtherActivityGates" methodname="SharedDispatcherReservesMountAndCargoKeepsOtherActivityGates" classname="BooterBigArm.Tests.CampLoopLeggerRidingSceneTests" runstate="Runnable" seed="554571281" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.770309" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1640" name="LeggerGroundMotionTests" fullname="BooterBigArm.Tests.LeggerGroundMotionTests" classname="BooterBigArm.Tests.LeggerGroundMotionTests" runstate="Runnable" testcasecount="11" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.030905" total="11" passed="11" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1651" name="ChangedLandingCannotContinueAnAirborneStep" fullname="BooterBigArm.Tests.LeggerGroundMotionTests.ChangedLandingCannotContinueAnAirborneStep" methodname="ChangedLandingCannotContinueAnAirborneStep" classname="BooterBigArm.Tests.LeggerGroundMotionTests" runstate="Runnable" seed="1372131403" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.004186" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1646" name="ExitRequiresClearDescentAndStandingSpace" fullname="BooterBigArm.Tests.LeggerGroundMotionTests.ExitRequiresClearDescentAndStandingSpace" methodname="ExitRequiresClearDescentAndStandingSpace" classname="BooterBigArm.Tests.LeggerGroundMotionTests" runstate="Runnable" seed="1638776320" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.000920" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1641" name="FlatGroundSupportsBoundedMovementAndTracksActualQueries" fullname="BooterBigArm.Tests.LeggerGroundMotionTests.FlatGroundSupportsBoundedMovementAndTracksActualQueries" methodname="FlatGroundSupportsBoundedMovementAndTracksActualQueries" classname="BooterBigArm.Tests.LeggerGroundMotionTests" runstate="Runnable" seed="1736799419" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.001646" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1652" name="MountPreparationCannotRelocateAnUnsupportedFloatingActor" fullname="BooterBigArm.Tests.LeggerGroundMotionTests.MountPreparationCannotRelocateAnUnsupportedFloatingActor" methodname="MountPreparationCannotRelocateAnUnsupportedFloatingActor" classname="BooterBigArm.Tests.LeggerGroundMotionTests" runstate="Runnable" seed="1812538092" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.000503" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1645" name="NoSupportAndBudgetExhaustionCannotCommitMotion" fullname="BooterBigArm.Tests.LeggerGroundMotionTests.NoSupportAndBudgetExhaustionCannotCommitMotion" methodname="NoSupportAndBudgetExhaustionCannotCommitMotion" classname="BooterBigArm.Tests.LeggerGroundMotionTests" runstate="Runnable" seed="579674348" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.000825" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1644" name="RiderHeadroomBlocksTravelEvenWhenMountFits" fullname="BooterBigArm.Tests.LeggerGroundMotionTests.RiderHeadroomBlocksTravelEvenWhenMountFits" methodname="RiderHeadroomBlocksTravelEvenWhenMountFits" classname="BooterBigArm.Tests.LeggerGroundMotionTests" runstate="Runnable" seed="225240617" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.000658" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1649" name="RoughSlopeAboveOldLimitsUsesFullBodySupport" fullname="BooterBigArm.Tests.LeggerGroundMotionTests.RoughSlopeAboveOldLimitsUsesFullBodySupport" classname="BooterBigArm.Tests.LeggerGroundMotionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.002851" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1647" name="RoughSlopeAboveOldLimitsUsesFullBodySupport(52.0f,True)" fullname="BooterBigArm.Tests.LeggerGroundMotionTests.RoughSlopeAboveOldLimitsUsesFullBodySupport(52.0f,True)" methodname="RoughSlopeAboveOldLimitsUsesFullBodySupport" classname="BooterBigArm.Tests.LeggerGroundMotionTests" runstate="Runnable" seed="1126787894" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.001521" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1648" name="RoughSlopeAboveOldLimitsUsesFullBodySupport(55.5f,False)" fullname="BooterBigArm.Tests.LeggerGroundMotionTests.RoughSlopeAboveOldLimitsUsesFullBodySupport(55.5f,False)" methodname="RoughSlopeAboveOldLimitsUsesFullBodySupport" classname="BooterBigArm.Tests.LeggerGroundMotionTests" runstate="Runnable" seed="933281915" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.000433" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1650" name="StepAboveOldLimitContinuesAcrossMultipleTicksAndSettles" fullname="BooterBigArm.Tests.LeggerGroundMotionTests.StepAboveOldLimitContinuesAcrossMultipleTicksAndSettles" methodname="StepAboveOldLimitContinuesAcrossMultipleTicksAndSettles" classname="BooterBigArm.Tests.LeggerGroundMotionTests" runstate="Runnable" seed="557198176" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.002483" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1642" name="SupportedNativeTerrainDoesNotExemptItsBlockingBank" fullname="BooterBigArm.Tests.LeggerGroundMotionTests.SupportedNativeTerrainDoesNotExemptItsBlockingBank" methodname="SupportedNativeTerrainDoesNotExemptItsBlockingBank" classname="BooterBigArm.Tests.LeggerGroundMotionTests" runstate="Runnable" seed="1006334357" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.008717" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1643" name="ThinWallBlocksWholePathEvenWithClearEndpoint" fullname="BooterBigArm.Tests.LeggerGroundMotionTests.ThinWallBlocksWholePathEvenWithClearEndpoint" methodname="ThinWallBlocksWholePathEvenWithClearEndpoint" classname="BooterBigArm.Tests.LeggerGroundMotionTests" runstate="Runnable" seed="1123612357" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.001039" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1653" name="LeggerRideStateTests" fullname="BooterBigArm.Tests.LeggerRideStateTests" classname="BooterBigArm.Tests.LeggerRideStateTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.002711" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1656" name="EntryTimeoutReleasesReservationAndInvalidatesOldCommit" fullname="BooterBigArm.Tests.LeggerRideStateTests.EntryTimeoutReleasesReservationAndInvalidatesOldCommit" methodname="EntryTimeoutReleasesReservationAndInvalidatesOldCommit" classname="BooterBigArm.Tests.LeggerRideStateTests" runstate="Runnable" seed="825291921" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.000542" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1655" name="HeldSteeringCannotImmediatelyCancelDismount" fullname="BooterBigArm.Tests.LeggerRideStateTests.HeldSteeringCannotImmediatelyCancelDismount" methodname="HeldSteeringCannotImmediatelyCancelDismount" classname="BooterBigArm.Tests.LeggerRideStateTests" runstate="Runnable" seed="777275185" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.000311" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1657" name="ProfileRejectsNonFiniteAndUnsafeWorkCaps" fullname="BooterBigArm.Tests.LeggerRideStateTests.ProfileRejectsNonFiniteAndUnsafeWorkCaps" methodname="ProfileRejectsNonFiniteAndUnsafeWorkCaps" classname="BooterBigArm.Tests.LeggerRideStateTests" runstate="Runnable" seed="222466655" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.000348" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1654" name="RelationshipRejectsDuplicateAndStaleTransitions" fullname="BooterBigArm.Tests.LeggerRideStateTests.RelationshipRejectsDuplicateAndStaleTransitions" methodname="RelationshipRejectsDuplicateAndStaleTransitions" classname="BooterBigArm.Tests.LeggerRideStateTests" runstate="Runnable" seed="798114790" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:25Z" duration="0.000250" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1658" name="LeggerRidingInputTests" fullname="BooterBigArm.Tests.LeggerRidingInputTests" classname="BooterBigArm.Tests.LeggerRidingInputTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:26Z" duration="0.621110" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1659" name="GamepadTapIsConsumedOnceAndCannotTriggerWorldInteraction" fullname="BooterBigArm.Tests.LeggerRidingInputTests.GamepadTapIsConsumedOnceAndCannotTriggerWorldInteraction" methodname="GamepadTapIsConsumedOnceAndCannotTriggerWorldInteraction" classname="BooterBigArm.Tests.LeggerRidingInputTests" runstate="Runnable" seed="1734463735" result="Passed" start-time="2026-10-14 19:32:25Z" end-time="2026-10-14 19:32:26Z" duration="0.071560" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1662" name="HeldInteractAcrossModalReturnRequiresReleaseBeforeDismount" fullname="BooterBigArm.Tests.LeggerRidingInputTests.HeldInteractAcrossModalReturnRequiresReleaseBeforeDismount" methodname="HeldInteractAcrossModalReturnRequiresReleaseBeforeDismount" classname="BooterBigArm.Tests.LeggerRidingInputTests" runstate="Runnable" seed="1837141311" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.015478" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1661" name="JumpCannotRunAnOnFootLabActionWhileMounted" fullname="BooterBigArm.Tests.LeggerRidingInputTests.JumpCannotRunAnOnFootLabActionWhileMounted" methodname="JumpCannotRunAnOnFootLabActionWhileMounted" classname="BooterBigArm.Tests.LeggerRidingInputTests" runstate="Runnable" seed="880276289" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.012140" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1660" name="ModalContextSuppressesDismountAndHeldMovementMustRearm" fullname="BooterBigArm.Tests.LeggerRidingInputTests.ModalContextSuppressesDismountAndHeldMovementMustRearm" methodname="ModalContextSuppressesDismountAndHeldMovementMustRearm" classname="BooterBigArm.Tests.LeggerRidingInputTests" runstate="Runnable" seed="1632647988" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.015175" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1663" name="ReboundKeyboardHoldCannotAlsoDismountAndTapStillWorks" fullname="BooterBigArm.Tests.LeggerRidingInputTests.ReboundKeyboardHoldCannotAlsoDismountAndTapStillWorks" methodname="ReboundKeyboardHoldCannotAlsoDismountAndTapStillWorks" classname="BooterBigArm.Tests.LeggerRidingInputTests" runstate="Runnable" seed="1026397636" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.504649" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1664" name="LeggerRidingLifecycleTests" fullname="BooterBigArm.Tests.LeggerRidingLifecycleTests" classname="BooterBigArm.Tests.LeggerRidingLifecycleTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.012461" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1666" name="BlockedResetKeepsElevatedRiderPassiveAndInputBlocked" fullname="BooterBigArm.Tests.LeggerRidingLifecycleTests.BlockedResetKeepsElevatedRiderPassiveAndInputBlocked" methodname="BlockedResetKeepsElevatedRiderPassiveAndInputBlocked" classname="BooterBigArm.Tests.LeggerRidingLifecycleTests" runstate="Runnable" seed="585287491" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.004002" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1667" name="ManagedResetLeaseCanRecoverAfterNativeControllerRemoval" fullname="BooterBigArm.Tests.LeggerRidingLifecycleTests.ManagedResetLeaseCanRecoverAfterNativeControllerRemoval" methodname="ManagedResetLeaseCanRecoverAfterNativeControllerRemoval" classname="BooterBigArm.Tests.LeggerRidingLifecycleTests" runstate="Runnable" seed="325377329" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.001478" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1668" name="VerifiedResetCanRecoverPostureLeaseClearedByMotorDisable" fullname="BooterBigArm.Tests.LeggerRidingLifecycleTests.VerifiedResetCanRecoverPostureLeaseClearedByMotorDisable" methodname="VerifiedResetCanRecoverPostureLeaseClearedByMotorDisable" classname="BooterBigArm.Tests.LeggerRidingLifecycleTests" runstate="Runnable" seed="207256654" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.002322" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1665" name="VerifiedResetReturnsBooterBeforeRestoringGravityAndDoesNotMoveLegger" fullname="BooterBigArm.Tests.LeggerRidingLifecycleTests.VerifiedResetReturnsBooterBeforeRestoringGravityAndDoesNotMoveLegger" methodname="VerifiedResetReturnsBooterBeforeRestoringGravityAndDoesNotMoveLegger" classname="BooterBigArm.Tests.LeggerRidingLifecycleTests" runstate="Runnable" seed="392465984" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.001467" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1669" name="LeggerRidingOwnershipTests" fullname="BooterBigArm.Tests.LeggerRidingOwnershipTests" classname="BooterBigArm.Tests.LeggerRidingOwnershipTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.007020" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1671" name="ActualMotorCallbackYieldsBeforePopulationAndOtherMotionWriters" fullname="BooterBigArm.Tests.LeggerRidingOwnershipTests.ActualMotorCallbackYieldsBeforePopulationAndOtherMotionWriters" methodname="ActualMotorCallbackYieldsBeforePopulationAndOtherMotionWriters" classname="BooterBigArm.Tests.LeggerRidingOwnershipTests" runstate="Runnable" seed="1550531577" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.001926" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1674" name="DestroyedControllerCannotReenableNormalMotorWrites" fullname="BooterBigArm.Tests.LeggerRidingOwnershipTests.DestroyedControllerCannotReenableNormalMotorWrites" methodname="DestroyedControllerCannotReenableNormalMotorWrites" classname="BooterBigArm.Tests.LeggerRidingOwnershipTests" runstate="Runnable" seed="1803496584" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.000800" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1670" name="ExclusiveLeaseSuppressesGravityAndRestoresCapturedBodyState" fullname="BooterBigArm.Tests.LeggerRidingOwnershipTests.ExclusiveLeaseSuppressesGravityAndRestoresCapturedBodyState" methodname="ExclusiveLeaseSuppressesGravityAndRestoresCapturedBodyState" classname="BooterBigArm.Tests.LeggerRidingOwnershipTests" runstate="Runnable" seed="1480074828" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.000854" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1673" name="ResetWithoutVerifiedLabOwnerAndEpochCannotReleaseRider" fullname="BooterBigArm.Tests.LeggerRidingOwnershipTests.ResetWithoutVerifiedLabOwnerAndEpochCannotReleaseRider" methodname="ResetWithoutVerifiedLabOwnerAndEpochCannotReleaseRider" classname="BooterBigArm.Tests.LeggerRidingOwnershipTests" runstate="Runnable" seed="2140066479" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.000512" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1672" name="UnsupportedOrBlockedReleaseLeavesRiderPassive" fullname="BooterBigArm.Tests.LeggerRidingOwnershipTests.UnsupportedOrBlockedReleaseLeavesRiderPassive" methodname="UnsupportedOrBlockedReleaseLeavesRiderPassive" classname="BooterBigArm.Tests.LeggerRidingOwnershipTests" runstate="Runnable" seed="281057061" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.000930" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1825" name="TopDown3DCameraClearanceTests" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.022514" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1826" name="ClearBoom_PreservesAuthoredDistance" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.ClearBoom_PreservesAuthoredDistance" methodname="ClearBoom_PreservesAuthoredDistance" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="611152939" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.001948" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1827" name="CloseBlocker_OverridesMinimumDistanceWithoutPenetration" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.CloseBlocker_OverridesMinimumDistanceWithoutPenetration" methodname="CloseBlocker_OverridesMinimumDistanceWithoutPenetration" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="867380052" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.001257" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1828" name="ConfigureAndViewReset_ResolveClearanceImmediately" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.ConfigureAndViewReset_ResolveClearanceImmediately" methodname="ConfigureAndViewReset_ResolveClearanceImmediately" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1876083760" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.001096" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1829" name="FollowUpdate_UsesSameClearanceAsSnap" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.FollowUpdate_UsesSameClearanceAsSnap" methodname="FollowUpdate_UsesSameClearanceAsSnap" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1908528252" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.004848" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1834" name="FullyEnclosedBoom_ReportsFailureAndDoesNotAcceptUnsafePose" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.FullyEnclosedBoom_ReportsFailureAndDoesNotAcceptUnsafePose" methodname="FullyEnclosedBoom_ReportsFailureAndDoesNotAcceptUnsafePose" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="900568121" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.000897" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1835" name="FullyEnclosedNewTarget_RetainsRecheckedSafePreviousPosition" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.FullyEnclosedNewTarget_RetainsRecheckedSafePreviousPosition" methodname="FullyEnclosedNewTarget_RetainsRecheckedSafePreviousPosition" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1328387801" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.000688" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1830" name="OriginInsideBlocker_RecoversToClearPointOnAuthoredBoom" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.OriginInsideBlocker_RecoversToClearPointOnAuthoredBoom" methodname="OriginInsideBlocker_RecoversToClearPointOnAuthoredBoom" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1979902971" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.000818" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1831" name="SaturatedCast_FindsNearestBlocker" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.SaturatedCast_FindsNearestBlocker" methodname="SaturatedCast_FindsNearestBlocker" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1910432013" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.002576" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1832" name="SaturatedOriginOverlap_StillExcludesTargetAndFindsExternalBlocker" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.SaturatedOriginOverlap_StillExcludesTargetAndFindsExternalBlocker" methodname="SaturatedOriginOverlap_StillExcludesTargetAndFindsExternalBlocker" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="331277615" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.002065" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1833" name="TargetHierarchyAndTriggers_AreIgnoredInBothQueries" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.TargetHierarchyAndTriggers_AreIgnoredInBothQueries" methodname="TargetHierarchyAndTriggers_AreIgnoredInBothQueries" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="826919275" result="Passed" start-time="2026-10-14 19:32:26Z" end-time="2026-10-14 19:32:26Z" duration="0.001191" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
