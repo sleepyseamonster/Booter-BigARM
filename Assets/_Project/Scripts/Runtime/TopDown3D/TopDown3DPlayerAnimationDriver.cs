@@ -45,7 +45,7 @@ namespace BooterBigArm.TopDown3D
 
     [DisallowMultipleComponent]
     [RequireComponent(typeof(TopDown3DPlayerMotor))]
-    public sealed class TopDown3DPlayerAnimationDriver : MonoBehaviour
+    public sealed partial class TopDown3DPlayerAnimationDriver : MonoBehaviour
     {
         public const float PrototypeVisualScale = 1.4f;
         public const float PrototypeVisualGroundOffset = -1.24f;
@@ -67,7 +67,7 @@ namespace BooterBigArm.TopDown3D
         private const int VaultIndex = 14;
         private const int GatherIndex = 15;
         private const int ClimbPlaceholderIndex = 16;
-        private const int ClipCount = 21;
+        private const int ClipCount = 22;
         private int campIndex = -1;
         private float campDuration = 1;
         private bool campLying;
@@ -419,6 +419,8 @@ namespace BooterBigArm.TopDown3D
             {
                 return;
             }
+
+            if (PresentAnimationAction()) return;
 
             var snapshot = motor.LocomotionSnapshot;
             if (visualInstance != null)
@@ -934,11 +936,11 @@ namespace BooterBigArm.TopDown3D
             }
         }
 
-        private void EmitFootContact(TopDown3DFootSide side, Transform foot, float planarSpeed)
+        private bool EmitFootContact(TopDown3DFootSide side, Transform foot, float planarSpeed)
         {
             if (foot == null || !TryResolveFootGround(foot.position, out var position))
             {
-                return;
+                return false;
             }
 
             FootContact?.Invoke(new TopDown3DFootContact(
@@ -949,6 +951,7 @@ namespace BooterBigArm.TopDown3D
                     TopDown3DFootstepDust.MinimumMovementSpeed,
                     locomotionEntries[(int)TopDown3DLocomotionClipRole.Sprint].NominalForwardSpeed,
                     planarSpeed)));
+            return true;
         }
 
         private bool TryResolveFootGround(
@@ -1004,6 +1007,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDisable()
         {
+            ReleaseAnimationPresentation();
             EndGather();
             ResetTransitionState(TopDown3DLocomotionState.Idle);
             lastActionIndex = -1;

@@ -25,6 +25,7 @@ namespace BooterBigArm.TopDown3D
         public bool IsLab => MatchesLabIdentity(gameObject.scene.path, true);
         public string ControlsDirectory => Path.Combine(Application.persistentDataPath, "AnimationPlayground");
         public event Action ReadinessChanged;
+        public AnimationPlaygroundResetRegistry ResetRegistry { get; } = new();
 
         public void Configure(TopDown3DAnimationPlaygroundBindings value)
         {
@@ -61,6 +62,7 @@ namespace BooterBigArm.TopDown3D
         }
         private void OnDisable()
         {
+            ResetRegistry.CancelAll();
             SetReadiness(AnimationPlaygroundReadiness.Uninitialized, null);
         }
         private void OnDestroy()

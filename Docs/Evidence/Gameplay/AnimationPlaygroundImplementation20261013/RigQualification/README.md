@@ -1,0 +1,23 @@
+# Initial private rig and motion qualification
+
+Date: 2026-10-13. ART1 preliminary slice. Eight private payload/metadata pairs are imported: the canonical Mixamo source character, two original target alternatives and five representative motion sources. All original Downloads and archived bytes remain intact. [imports.json](./imports.json), [rigs.json](./rigs.json) and [motions.json](./motions.json) record hashes, GUIDs, clip IDs and measured state.
+
+| Candidate | Unity result | Current role |
+| --- | --- | --- |
+| Mixamo 33-bone character | Valid Humanoid; six mapped index-finger slots | Matching source Avatar for motion imports; limited target alternative |
+| Original 74-bone deform rig | Valid Humanoid; 30 mapped finger slots | Preferred target candidate pending grip/contact/complete motion qualification |
+| Blender 102-bone re-export | Generic Avatar after attempted deform mapping | Rejected Humanoid candidate, retained privately |
+
+The source and original target each have one skinned renderer and 63,134 triangles. Unity splits some vertices at mesh seams, so Unity vertex counts differ from Blender's source counts. Imported weights have zero unweighted vertices and invalid bone indices; weights are finite, positive and normalized. These structural checks do not prove every deformation. The original's head-tip was incorrectly auto-mapped as an eye; optional eye/jaw mappings were removed. Target alternatives retain their own Avatar definitions.
+
+Calibrate from actual deformed vertices rather than the importer's broad renderer bounds. `BakeMesh(..., true)` compensates for renderer scale before transforming vertices to world coordinates; the default would apply the imported scale twice in this measurement. See [Unity's BakeMesh scale contract](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/SkinnedMeshRenderer.BakeMesh.html). The original's imported body height is 20.0223618 units. Scale 0.123861514 and offset Y -1.232292414 fit its feet and head to the existing 2.48-metre capsule, whose bottom is Y -1.24 relative to Booter. No actor physics dimensions or scene transforms were changed.
+
+**Superseding scale choice:** the author subsequently selected a 1.80-metre standing body height in **Review Unity character scale**. The 2.48-metre values above describe the inherited baseline only. [rigs-1m8-candidate.json](./rigs-1m8-candidate.json) records a separate neutral standing body fixture with prospective feet plane Y -0.90; that feet plane is not a change to the current collider. The original's corresponding visual scale is 0.0898994803 and offset Y -0.894405782. The shared [scale contract](../../../../Engineering/UNITY_PROJECT_STANDARDS.md) is reconciled: animation work may now calibrate lab collider clearance/radius, root height, stride and station/contact offsets against 1.80 metres. Choose radius from torso/hips and record its clearance margin. Physics-root scale stays one, terrain is not rescaled and production awaits coordinated qualification/cutover.
+
+Five Humanoid sources—StandardWalk, CrouchEnter, LadderClimb, PunchJab and SleepingIdleSleepingDeeply—copy the matched source Avatar, use compression Off and preserve the full imported frame range. Preliminary imports leave looping disabled and retain the default root settings. Their GUIDs and clip subasset IDs are recorded. These settings are not final family policies.
+
+Neutral-material previews were generated in a separate Editor preview scene at `D:\BooterBigArmValidation\AnimationPlayground20261013\RigQualification\`. The original target accepts all five body poses. The preview's one-metre gauge and calibrated scale are explicit; animated framing follows deformed geometry. Rendered previews and paired imports are local evidence, not public source payloads. The author's loaded Camp Loop scene stayed clean and unchanged.
+
+The eight imported pairs are preserved under `D:\BooterBigArmPrivateAssets\Mixamo\2026-10-13\ImportCheckpoints\ART1\`; this is an immutable partial checkpoint, not the final hydration bundle. Final capture waits for all canonical imports, calibrated metadata and bindings. The restoration tool now supports explicit planned first-import subsets and scans incoming GUID ownership with native rg; global collision checks remain in place. Its 12 file/Git fixture assertions pass.
+
+Final target selection remains gated by hand/grip presentation, source root/contact qualification, the full twelve-role locomotion profile and author acceptance. Five imported motions do not establish ladder, mining, sleep, throwing or combat systems. There are 66 canonical motions still to import; no station or player visual cutover is claimed by this receipt.

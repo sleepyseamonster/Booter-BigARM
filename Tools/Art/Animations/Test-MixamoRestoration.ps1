@@ -25,10 +25,13 @@ try {
     & $restore @parameters -Mode StageSources | Out-Null
     Require ((Get-FileHash -LiteralPath $source).Hash -eq (Get-FileHash -LiteralPath $alias).Hash) 'Source aliases changed.'
     Reject { & $restore @parameters -Mode Restore } 'Unsealed restoration must require explicit first import.'
-    & $restore @parameters -Mode Restore -AllowFirstImport | Out-Null
+    Reject { & $restore @parameters -Mode Restore -AllowFirstImport -FirstImportPaths 'Assets/foreign.fbx' } 'Unplanned first-import selections must be rejected.'
+    Require (-not (Test-Path -LiteralPath (Join-Path $repo $relative))) 'Rejected selection wrote a file.'
+    & $restore @parameters -Mode Restore -AllowFirstImport -FirstImportPaths $relative | Out-Null
     $payload=Join-Path $repo $relative; $metadata=$payload+'.meta'; $guid=[Guid]::NewGuid().ToString('N')
     [IO.File]::WriteAllText($metadata,"fileFormatVersion: 2`r`nguid: $guid`r`n")
     & $restore @parameters -Mode Capture | Out-Null
+    Reject { & $restore @parameters -Mode Restore -AllowFirstImport -FirstImportPaths $relative } 'A sealed bundle cannot use the first-import path.'
     Remove-Item -LiteralPath $payload,$metadata
     & $restore @parameters -Mode Restore | Out-Null
     Require ((Get-FileHash -LiteralPath $payload -Algorithm SHA256).Hash.ToLowerInvariant() -eq $hash) 'Restored bytes differ.'

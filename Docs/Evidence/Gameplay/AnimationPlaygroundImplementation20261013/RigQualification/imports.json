@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "stage": "ART1-preliminary",
+  "pairs": [
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/MaleBaseMeshMixamo.fbx",
+      "sha256": "df84725e3654fc8221e110404c3fc921daabec368d4f29f70fb9a7a97dc20ef4",
+      "bytes": 2251184,
+      "guid": "4d4a61f9b538be342a6378a061d3c988",
+      "meta_sha256": "0cda600560a0264db35048660f7cc9a2928fdc65d8a0aea566957e15a38b14bc",
+      "meta_bytes": 2861
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshOriginalRig.fbx",
+      "sha256": "1563823a3d90a8024cccde2ce195215a42747aee127f2190725a709a3fad9536",
+      "bytes": 2266332,
+      "guid": "8d60dce4243ccf341a8e4e755abc2d29",
+      "meta_sha256": "84f652afa3d2658059a41eb596150dea5784a73103ef1cfeb3c412bfae06184c",
+      "meta_bytes": 34392
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshBlenderRig.fbx",
+      "sha256": "211be186439087232f783a64f1ccc398aab055355bfbfe95517cd1b26fbd6745",
+      "bytes": 6999404,
+      "guid": "3b99a98a94b881c468bda2a186a0492b",
+      "meta_sha256": "9aa8215214ade276875716e7c6f58d8d4c4b1c261b0b609701cdb96145ee31f1",
+      "meta_bytes": 52691
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/StandardWalk.fbx",
+      "sha256": "76d67f23891d0cba86be6385d435e6e8769314f6cc7df4a0ab021a5768f79814",
+      "bytes": 217952,
+      "guid": "a4a626e132daf8f4c91209dc9804e6d7",
+      "meta_sha256": "9e5d745fbd97032e3c643a2bc85ab6ef93f241f720e54dd4e7893f783b8bf49d",
+      "meta_bytes": 18132
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchEnter.fbx",
+      "sha256": "034ef9847cf890836644a5ccd34b46eb0df7fe44c6ccfe72b5a7a3432a5d2baf",
+      "bytes": 387696,
+      "guid": "40934aca09751744faf857861057a4c2",
+      "meta_sha256": "3125c412db14ac163c4da261b3d7c6573aefa9260091f6c25b44a153d271fbbe",
+      "meta_bytes": 18132
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderClimb.fbx",
+      "sha256": "238e36087a8c0b3f754e9965dc50d58efd936a5be81e1d049682d32fdfa79922",
+      "bytes": 191680,
+      "guid": "7e6a7ea0733fc094896ff9ef9ae7368c",
+      "meta_sha256": "8b43e6a789f75cf56857ffa4af9371115c646fab4a76a1076a406edb92347ac5",
+      "meta_bytes": 18131
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Punch/PunchJab.fbx",
+      "sha256": "6079eb74349e3854f3cf2c85b664271cdc5bf891a613da3666f1a19f1f1f397d",
+      "bytes": 201936,
+      "guid": "4b284c2780fee524ca56380bb088700f",
+      "meta_sha256": "0a08cd760d493164eda72412ae5f71025ca6e61777862b902907ea946165f3c1",
+      "meta_bytes": 18128
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sleep/SleepingIdleSleepingDeeply.fbx",
+      "sha256": "fb348c038f93937914bd835fc1d9a11336531ed21047edcc5e7489eeffdf46e2",
+      "bytes": 472224,
+      "guid": "81182bde0c2eeeb4f84720d161ccc8ed",
+      "meta_sha256": "0689295a19e2bbaac251deaf5554ed2916328962052654e933182025d4f75bc9",
+      "meta_bytes": 18147
+    }
+  ],
+  "canonical_motion_imports": 5,
+  "canonical_motions_remaining": 66,
+  "source_avatar_guid": "4d4a61f9b538be342a6378a061d3c988",
+  "preferred_target_candidate_guid": "8d60dce4243ccf341a8e4e755abc2d29",
+  "target_selection_final": false,
+  "physical_motion_readiness": false,
+  "private_checkpoint": "D:/BooterBigArmPrivateAssets/Mixamo/2026-10-13/ImportCheckpoints/ART1",
+  "final_bundle_sealed": false,
+  "original_bytes_preserved": true
+}

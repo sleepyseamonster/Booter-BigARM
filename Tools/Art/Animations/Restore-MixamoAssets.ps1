@@ -5,6 +5,7 @@ param(
     [string]$PrivateRoot = 'D:\BooterBigArmPrivateAssets\Mixamo\2026-10-13',
     [string]$PlanPath = 'Docs/Design/Gameplay/AnimationPlayground20261013/asset-import-plan.json',
     [string[]]$AdditionalPrivatePaths = @(),
+    [string[]]$FirstImportPaths = @(),
     [switch]$AllowFirstImport,
     [switch]$Apply
 )
@@ -92,14 +93,49 @@ foreach ($rig in $plan.target_rig_candidates | Where-Object { -not $_.reuses_can
     $items.Add([pscustomobject]@{ id = 'rig.' + $rig.bone_count; destination = $rig.planned_qualification_destination; hash = $rig.source_sha256; bytes = $null; sources = @([pscustomobject]@{path=$rig.source_file}); isUnity=$true })
 }
 $bundleManifest = Resolve-Within $PrivateRoot 'bundle-manifest.json'
+if($FirstImportPaths.Count -gt 0 -and ($Mode -ne 'Restore' -or -not $AllowFirstImport -or (Test-Path -LiteralPath $bundleManifest))) {
+    throw 'FirstImportPaths applies only to an explicitly authorized unsealed first import.'
+}
+$firstImportItems = @($items | Where-Object isUnity)
+if($FirstImportPaths.Count -gt 0) {
+    foreach($selected in $FirstImportPaths) {
+        if(@($firstImportItems | Where-Object { $_.destination -ceq $selected }).Count -ne 1) { throw 'First-import selection is not a unique planned Unity destination.' }
+    }
+    $firstImportItems = @($firstImportItems | Where-Object { $FirstImportPaths -ccontains $_.destination })
+}
 $operations = [Collections.Generic.List[object]]::new()
 $guidIndex = @{}
-if ($Mode -ne 'StageSources') {
-    foreach ($metadata in Get-ChildItem -LiteralPath (Join-Path $RepositoryRoot 'Assets') -Filter '*.meta' -Recurse -File) {
-        $guid = Read-Guid $metadata.FullName
-        $relative = $metadata.FullName.Substring($RepositoryRoot.Length + 1, $metadata.FullName.Length - $RepositoryRoot.Length - 6).Replace('\', '/')
-        if (-not $guidIndex.ContainsKey($guid)) { $guidIndex[$guid] = [Collections.Generic.List[string]]::new() }
-        $guidIndex[$guid].Add($relative)
+if ($Mode -eq 'Capture' -or ($Mode -eq 'Restore' -and (Test-Path -LiteralPath $bundleManifest))) {
+    $neededGuids = if($Mode -eq 'Restore') {
+        @((Get-Content -Raw -LiteralPath $bundleManifest | ConvertFrom-Json).files | ForEach-Object guid)
+    } else {
+        @((@($items | Where-Object isUnity | ForEach-Object destination) + $AdditionalPrivatePaths) | Sort-Object -Unique | ForEach-Object {
+            Read-Guid ((Resolve-Within $RepositoryRoot $_) + '.meta')
+        })
+    }
+    foreach($guid in $neededGuids) { if($guid -cnotmatch '^[0-9a-f]{32}$'){throw 'Invalid incoming dependency GUID.'} }
+    $rg = Get-Command rg -CommandType Application -ErrorAction SilentlyContinue
+    if($null -ne $rg -and $neededGuids.Count -gt 0) {
+        # Scan every metadata path natively, but retain only owners of the incoming GUIDs.
+        $pattern='^guid: ('+(($neededGuids | Sort-Object -Unique) -join '|')+')\r?$'
+        $matches=@(& $rg.Source -n --no-heading --no-ignore --hidden --glob '*.meta' -- $pattern (Join-Path $RepositoryRoot 'Assets'))
+        if($LASTEXITCODE -gt 1){throw 'Global metadata GUID scan failed.'}
+        foreach($line in $matches) {
+            $match=[regex]::Match($line,'^(.+)\.meta:\d+:guid: ([0-9a-f]{32})\r?$')
+            if(-not $match.Success){throw 'Unexpected metadata GUID scan output.'}
+            $guid=$match.Groups[2].Value
+            $relative=$match.Groups[1].Value.Substring($RepositoryRoot.Length+1).Replace('\','/')
+            if(-not $guidIndex.ContainsKey($guid)){$guidIndex[$guid]=[Collections.Generic.List[string]]::new()}
+            $guidIndex[$guid].Add($relative)
+        }
+    } else {
+        foreach ($metadata in Get-ChildItem -LiteralPath (Join-Path $RepositoryRoot 'Assets') -Filter '*.meta' -Recurse -File) {
+            $guid = Read-Guid $metadata.FullName
+            if($neededGuids -cnotcontains $guid){continue}
+            $relative = $metadata.FullName.Substring($RepositoryRoot.Length + 1, $metadata.FullName.Length - $RepositoryRoot.Length - 6).Replace('\', '/')
+            if (-not $guidIndex.ContainsKey($guid)) { $guidIndex[$guid] = [Collections.Generic.List[string]]::new() }
+            $guidIndex[$guid].Add($relative)
+        }
     }
 }
 
@@ -148,7 +184,7 @@ if ($Mode -eq 'StageSources') {
         }
     } else {
         if (-not $AllowFirstImport) { throw 'No sealed metadata bundle exists. First import requires -AllowFirstImport.' }
-        foreach ($item in $items | Where-Object isUnity) {
+        foreach ($item in $firstImportItems) {
             Assert-Ignored $item.destination; Assert-Ignored ($item.destination + '.meta')
             $original = Resolve-Within $PrivateRoot ('Originals/' + $item.destination)
             Assert-File $original $item.hash (Get-Item -LiteralPath $original).Length
@@ -156,7 +192,7 @@ if ($Mode -eq 'StageSources') {
             if (Test-Path -LiteralPath ($destination + '.meta')) { throw 'First import cannot adopt existing metadata; use sealed restoration.' }
             if ((Test-Path -LiteralPath $destination) -and (Hash-File $destination) -cne $item.hash) { throw 'First import destination differs.' }
         }
-        foreach ($item in $items | Where-Object isUnity) {
+        foreach ($item in $firstImportItems) {
             Copy-Verified (Resolve-Within $PrivateRoot ('Originals/' + $item.destination)) (Resolve-Within $RepositoryRoot $item.destination) $item.hash
             $operations.Add([pscustomobject]@{path=$item.destination;sha256=$item.hash;metadata='pending-first-import'})
         }

@@ -270,6 +270,7 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
+            if(ReferenceEquals(animationMotionOwner,owner))ReleaseAnimationMotionCore();
             actionConstraintOwner = null;
             campApproaching = false;
             waypointTravelActive = false;
@@ -324,6 +325,7 @@ namespace BooterBigArm.TopDown3D
             traversalCooldownRemaining = Mathf.Max(0f, traversalCooldownRemaining - Time.fixedDeltaTime);
             if (IsActionConstrained)
             {
+                if(AdvanceAnimationMotion())return;
                 if (waypointTravelActive) { AdvanceWaypointTravel(); return; }
                 if (campApproaching) { AdvanceCampApproach(); return; }
                 PlanarAcceleration = Vector3.zero;
@@ -364,7 +366,7 @@ namespace BooterBigArm.TopDown3D
                 input.MoveValue,
                 cameraBasis.forward,
                 cameraBasis.right);
-            if (TryAdvanceClimb(desiredDirection))
+            if (AnimationPosture==AnimationPlaygroundPosture.Standing && TryAdvanceClimb(desiredDirection))
             {
                 return;
             }
@@ -415,6 +417,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             SprintActive = input.SprintHeld
+                && AnimationPosture==AnimationPlaygroundPosture.Standing && !input.AnimationSlowWalkHeld
                 && desiredDirection.sqrMagnitude > 0.0001f
                 && traversalCooldownRemaining <= 0f;
             if (SprintActive && TryBeginTraversal(desiredDirection))
@@ -422,7 +425,7 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
-            var targetVelocity = desiredDirection * (SprintActive ? sprintSpeed : walkSpeed);
+            var targetVelocity = desiredDirection * AnimationLocomotionSpeed(SprintActive ? sprintSpeed : walkSpeed);
             var currentVelocity = body.linearVelocity;
             var currentPlanar = new Vector3(currentVelocity.x, 0f, currentVelocity.z);
             var targetPlanar = new Vector3(targetVelocity.x, 0f, targetVelocity.z);
@@ -1326,6 +1329,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDisable()
         {
+            DisableAnimationCapability();
             CancelTraversal();
             EndClimb();
             actionConstraintOwner = null;

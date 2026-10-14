@@ -1,0 +1,13 @@
+# Owned animation action foundations
+
+Date: 2026-10-13. FND4 contract slice; the full implementation goal remains active.
+
+The existing motor remains the movement writer. Its constrained branch advances controlled motion, sweeps for obstructions, publishes actual displacement/support/facing and restores lease-owned gravity. Crouch/prone shape changes preserve the feet plane; standing and reset returns require clearance. Pause preserves airborne vertical velocity for resume or cancellation. Automatic sprint traversal and steep-climb entry respect posture.
+
+The existing animation driver's optional input 21 supplies one owned clip with speed zero. The physical coordinator supplies time from the motor boundary; preview supplies its own time and allows backwards seek. Owned playback bypasses legacy gait/contact updates. Physical effects are claimed by action/epoch/marker/cycle and committed after the motor publishes its snapshot. Target invalidation, cancellation, reset and disable clear pending work and release only acquired ownership.
+
+Reset registration is explicit and rejects duplicate IDs. Every participant invalidates first, including when another cancellation fails. Restoration proceeds through registered props, station state, actor and input. Failure stops restoration before input can rearm. No global body deletion or companion teleport is part of this contract.
+
+Validation uses primitive and synthetic fixtures in `D:\BooterBigArmValidation\AnimationPlayground20261013`, with hidden batchmode and the pinned Unity 6000.4.0f1 executable. `action-coordinator-final-tests.xml` passes 42 cases. `action-presentation-contact-final-tests.xml` passes all five presentation/coordinator cases, including the extra grounded physical-contact case. `action-motor-posture-final-tests.xml` passes eight motor cases, adding the guard against labelling compact geometry as standing or using an unknown mode. Together these establish 44 distinct passing cases. Earlier contact runs exposed fixture setup errors: Unity's newly added capsule defaults to height one, the visual was parented while preserving world position, and the fixture initially inherited the production visual offset. Those setup errors were corrected; no runtime workaround was added. [verification.json](./verification.json) records the passing receipts.
+
+The live bootstrap, actual family effects/anchors, full actor/vitals/input reset participants and real imported clip contacts remain pending. These tests are not a claim of station behavior, full corpse collision, gameplay feel or author acceptance. No Play Mode or gameplay smoke test was started.

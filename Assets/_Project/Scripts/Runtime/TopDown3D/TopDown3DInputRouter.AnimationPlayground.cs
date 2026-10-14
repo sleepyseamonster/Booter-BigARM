@@ -69,6 +69,7 @@ namespace BooterBigArm.TopDown3D
             return false;
         }
         private void DisarmAnimationCommands(){animationRequests=0;animationAwaitNeutral=true;AnimationSlowWalkHeld=false;}
+        public void ClearAnimationCommandEdges()=>DisarmAnimationCommands();
         private void ReleaseAnimationAsset()
         {
             if(ownedAnimationActions==null) return;

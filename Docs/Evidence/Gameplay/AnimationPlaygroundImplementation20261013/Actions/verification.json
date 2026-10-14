@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "stage": "FND4-contracts",
+  "baseline_tests": 42,
+  "baseline_passed": 42,
+  "baseline_xml": "D:\\BooterBigArmValidation\\AnimationPlayground20261013\\Logs\\action-coordinator-final-tests.xml",
+  "baseline_xml_sha256": "b9246215d3a9d0e75d8c00246345d7d15247afcec1b2b8b6599afbe5138bcffe",
+  "contact_extension": "five passing presentation/coordinator cases, including the new grounded contact case",
+  "physical_station_installation": false,
+  "character_cutover": false,
+  "play_mode_started_by_agent": false,
+  "native_terrain_changed": false,
+  "note": "Motor/action/presentation/reset APIs are implemented; station/bootstrap integration, full actor/vitals/input reset participants and real clip contacts remain pending.",
+  "contact_xml": "D:\\BooterBigArmValidation\\AnimationPlayground20261013\\Logs\\action-presentation-contact-final-tests.xml",
+  "contact_xml_sha256": "4be942bcb1d7ea6d82cde0ff0981f328f3604f7afc1b10d5aa72e8abd319ee21",
+  "distinct_passing_cases": 44,
+  "motor_xml": "D:\\BooterBigArmValidation\\AnimationPlayground20261013\\Logs\\action-motor-posture-final-tests.xml",
+  "motor_xml_sha256": "57404fcc5cfb35ab21e6c64bf52430987bb7385e826ab49d208f825d373d66c9",
+  "final_motor_cases": 8
+}
