@@ -1,0 +1,72 @@
+{
+  "packageChanges": false,
+  "playModeRun": false,
+  "gameplaySmokeTestRun": false,
+  "candidateProject": "D:\\BooterBigArmValidation\\AnimationPlayground20261013",
+  "authorSceneSha256": "d892a31615284db7d396e91a21bcf0a1f635ed29845b3ee1ab5fb2072d8ab865",
+  "state": "prop-foundation-and-contact-draft-actions-not-enabled",
+  "privateTimelineDirectory": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-13\\ContactEvidence\\PHY2PropSourceDraft3298",
+  "privateTimelineFiles": [
+    {
+      "sha256": "a0c952ed1fcbafa9ae32b466f545ff1b87e29e71848c58ab4053116fdb971b33",
+      "bytes": 992651,
+      "name": "ButtonPress.json"
+    },
+    {
+      "sha256": "098dc90218d451ba4ced398e17e7123f8f4efa38e6dd84cfc5692e27cd9f5ebc",
+      "bytes": 2195713,
+      "name": "PickupAndExamine.json"
+    },
+    {
+      "sha256": "b828357cbbf21edbe2ac4433f53e42afa0deaab5fa5bb333e0657f6c78133f09",
+      "bytes": 1049779,
+      "name": "PickupOneHand.json"
+    },
+    {
+      "sha256": "1d67d5ff409fcd1354db273b2c1e46caa2b8c2fdfc2c41cc05b05510faba2374",
+      "bytes": 815281,
+      "name": "PushCycle.json"
+    },
+    {
+      "sha256": "65ea41951e9eed547da216dacf013f193943d2d7aeaebc4014872b8b8882019f",
+      "bytes": 1445715,
+      "name": "PushStart.json"
+    },
+    {
+      "sha256": "7ec0d8b01f386380b20b81e3ba739c44bc45bcbbc5f1b28d6ebcd1ceafd98966",
+      "bytes": 797992,
+      "name": "PushStop.json"
+    },
+    {
+      "sha256": "e3090a5f8f2c0068c9180152782b5078c392f060ece9584525263f13955d35a9",
+      "bytes": 11760,
+      "name": "summary.json"
+    },
+    {
+      "sha256": "f4a448a1a0d4b9ca7fd5fe102a1d99b6e02ebadfbbcefcace792d4d64d560d54",
+      "bytes": 1698586,
+      "name": "ThrowAlternate.json"
+    },
+    {
+      "sha256": "b3e9c5eca4dc1b8ec74eda39f641733702bd39cf0fb0d60b130891f08dda5689",
+      "bytes": 1483003,
+      "name": "ThrowPickupAndThrow.json"
+    },
+    {
+      "sha256": "0823eefef7754dd02f69db1faff868f0424ba34e6d3923c2316ec3a0f3c66c71",
+      "bytes": 673047,
+      "name": "ThrowStandard.json"
+    }
+  ],
+  "poseSamples": 3298,
+  "sourceClipsMeasured": 9,
+  "candidateSceneSha256": "94566c148d7f81b495968a7b92dc20fe2ed32fac88cfaf3d9a82841926c564b8",
+  "testsPassed": 171,
+  "authorSceneWritten": false,
+  "mainHead": "5c29500758eabc219aae1849a38c838d5f5bb97d",
+  "newHeldPropChecks": 14,
+  "privateAssetPairsUnchanged": 127,
+  "foregroundActivation": false,
+  "physicalActionsEnabled": false,
+  "schemaVersion": 1
+}

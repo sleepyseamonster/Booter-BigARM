@@ -133,6 +133,14 @@ All 143 focused Edit Mode checks pass across the original and fitted collider pr
 
 Appearance/feel acceptance, remaining locomotion gaps and the other physical families and requested motions remain in the active goal. Validation uses the isolated saved-scene fixture and sealed shared runtime; concurrent work remains preserved.
 
+## Held prop foundation and contact draft — October 14
+
+The existing station prop now supports owned hand attachment and exactly-once release, without parenting or scaling physics through the rig. It restores authored body/collider settings, guards self-collision until separation, handles lost owners/anchors and preserves the original reset snapshot across rebinds. Both session and prop epochs reject stale effects.
+
+All 171 focused Edit Mode checks pass, including fourteen new prop fixtures and the existing movement/session regressions. Nine canonical pickup/throw/button/push sources have 3,298 sampled poses on the accepted calibration; complete timelines remain local, and all 127 prior private asset pairs remain byte-identical. Raw PushStop sole penetration exceeds the existing projection ceiling, so it needs fitting before enablement. See [held prop foundation evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/HeldPropFoundation/README.md).
+
+AP05/AP06 physical actions stay unavailable pending qualified hold/place/release poses, owned effect-boundary pose evaluation, rigged grip/contact/trajectory and obstruction checks, and player dispatch. Moving carry remains gated by its own locomotion family. The full implementation goal remains active, including the later interaction families and requested motion gaps. The author scene and private player binding were not written by this batch.
+
 ## Validation and source boundaries
 
 File restoration fixtures pass twelve checks. The isolated Unity candidate at `D:\BooterBigArmValidation\AnimationPlayground20261013` contains the Camp Loop dependency closure and active scripts/settings/UI/character/test assets; it is a validation copy, not a Git worktree. Initial session and targeting regressions pass 44 tests. All 25 menu regressions pass after the candidate's missing SystemMenu prefab dependency was restored. Installed-session checks are repeated against the saved scene. See the [foundation evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Foundations/README.md).

@@ -1,0 +1,258 @@
+{
+    "state": "contact-candidates-only-not-physical-qualified",
+    "modelPath": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshOriginalRig.fbx",
+    "modelSha256": "1563823a3d90a8024cccde2ce195215a42747aee127f2190725a709a3fad9536",
+    "modelMetaSha256": "84f652afa3d2658059a41eb596150dea5784a73103ef1cfeb3c412bfae06184c",
+    "feetPlane": -0.9100000262260437,
+    "visualScale": 0.08989948034286499,
+    "visualOffset": {
+        "x": 0.0,
+        "y": -0.9044058322906494,
+        "z": 0.0
+    },
+    "candidates": [
+        {
+            "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Pickup/PickupOneHand.fbx",
+            "sha256": "d864539798595cc242faef5e4fe56fced90a3f8b42d7b0a55e969fcfdd73f736",
+            "metaSha256": "d4dc574eb4046197ced5ae65e7afa0ce6fbf204d8fb3343adaad55ef25e952f6",
+            "samples": 310,
+            "duration": 3.433333396911621,
+            "lowestLeftHandSeconds": 1.2666666507720948,
+            "lowestRightHandSeconds": 0.0555555559694767,
+            "lowestLeftHand": {
+                "x": -0.26956358551979067,
+                "y": -0.12125438451766968,
+                "z": -0.0600099191069603
+            },
+            "lowestRightHand": {
+                "x": 0.2617136240005493,
+                "y": -0.06924200057983399,
+                "z": 0.04234623163938522
+            },
+            "fastestLeftHandSeconds": 2.944444417953491,
+            "fastestRightHandSeconds": 0.35555556416511538,
+            "fastestLeftHandSpeed": 0.4796898365020752,
+            "fastestRightHandSpeed": 1.6348857879638672,
+            "minimumSole": -0.9428894519805908,
+            "maximumBodyHeight": 1.7465600967407227,
+            "rootDrift": 0.0,
+            "hipsPlanarDrift": 0.004953540395945311
+        },
+        {
+            "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Pickup/PickupAndExamine.fbx",
+            "sha256": "2f9482b994ca8af8e7b9706a946932939c8b82a8c7efd0bd08d7dbf273b39c09",
+            "metaSha256": "fc6e600458cc686e019294d4e1d5ca339bb1740720a66c551463a8c8c0ee10c8",
+            "samples": 649,
+            "duration": 7.200000286102295,
+            "lowestLeftHandSeconds": 3.4000000953674318,
+            "lowestRightHandSeconds": 1.4555555582046509,
+            "lowestLeftHand": {
+                "x": -0.28457018733024599,
+                "y": -0.1131056547164917,
+                "z": 0.10586836189031601
+            },
+            "lowestRightHand": {
+                "x": 0.28836575150489809,
+                "y": -0.5299583077430725,
+                "z": 0.178521066904068
+            },
+            "fastestLeftHandSeconds": 1.9888889789581299,
+            "fastestRightHandSeconds": 2.0888888835906984,
+            "fastestLeftHandSpeed": 0.776957094669342,
+            "fastestRightHandSpeed": 1.1752952337265015,
+            "minimumSole": -0.9461225271224976,
+            "maximumBodyHeight": 1.7296805381774903,
+            "rootDrift": 0.0,
+            "hipsPlanarDrift": 2.598657147245831e-7
+        },
+        {
+            "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowStandard.fbx",
+            "sha256": "e1b7f72323527b0425c5f9549acc38d0e4167fa14fbe53aab00da55669f90a44",
+            "metaSha256": "ba61db4a8b4bd2cd33ed7f89438d3610b787473adf14a00e629ea5dbdded2f18",
+            "samples": 199,
+            "duration": 2.200000047683716,
+            "lowestLeftHandSeconds": 1.1666667461395264,
+            "lowestRightHandSeconds": 0.18888889253139497,
+            "lowestLeftHand": {
+                "x": -0.3008697032928467,
+                "y": -0.10573995113372803,
+                "z": 0.11618372052907944
+            },
+            "lowestRightHand": {
+                "x": 0.2795300781726837,
+                "y": -0.12252926826477051,
+                "z": 0.1083659902215004
+            },
+            "fastestLeftHandSeconds": 0.7222222089767456,
+            "fastestRightHandSeconds": 0.8777778148651123,
+            "fastestLeftHandSpeed": 3.568655490875244,
+            "fastestRightHandSpeed": 9.179282188415528,
+            "minimumSole": -0.9716463088989258,
+            "maximumBodyHeight": 2.0558066368103029,
+            "rootDrift": 0.0,
+            "hipsPlanarDrift": 1.7136335372924806e-7
+        },
+        {
+            "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowAlternate.fbx",
+            "sha256": "414f890f63209bf2f9a601557f6d9c5419a9fc3e1a4924fbcf3bc34c9be6b450",
+            "metaSha256": "4b87ef599dd7ec066070feb70eb5cec04467179d4f1cef1f9cafd1fc96582062",
+            "samples": 503,
+            "duration": 5.566667079925537,
+            "lowestLeftHandSeconds": 5.012217998504639,
+            "lowestRightHandSeconds": 2.716799736022949,
+            "lowestLeftHand": {
+                "x": -0.29371583461761477,
+                "y": -0.1373591423034668,
+                "z": 0.14527277648448945
+            },
+            "lowestRightHand": {
+                "x": 0.25290659070014956,
+                "y": -0.20650190114974976,
+                "z": 0.21869702637195588
+            },
+            "fastestLeftHandSeconds": 1.785325527191162,
+            "fastestRightHandSeconds": 1.6189907789230347,
+            "fastestLeftHandSpeed": 1.4733178615570069,
+            "fastestRightHandSpeed": 4.683021545410156,
+            "minimumSole": -0.9940645694732666,
+            "maximumBodyHeight": 1.6643478870391846,
+            "rootDrift": 0.0,
+            "hipsPlanarDrift": 0.021680058911442758
+        },
+        {
+            "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowPickupAndThrow.fbx",
+            "sha256": "247703d55173e0617b23090c91db0d9ba6baf584cbe5fda7c31b701bcdb83ddf",
+            "metaSha256": "441f2ff878b81a59cc36158968eaf324abf52a1ad5dedace3e2fed2f27b82ad4",
+            "samples": 439,
+            "duration": 4.866666793823242,
+            "lowestLeftHandSeconds": 1.1777777671813965,
+            "lowestRightHandSeconds": 0.9888889193534851,
+            "lowestLeftHand": {
+                "x": -0.3803994059562683,
+                "y": -0.23350614309310914,
+                "z": -0.122001513838768
+            },
+            "lowestRightHand": {
+                "x": 0.23641492426395417,
+                "y": -0.49119633436203005,
+                "z": 0.3548020124435425
+            },
+            "fastestLeftHandSeconds": 2.1111111640930177,
+            "fastestRightHandSeconds": 2.511111259460449,
+            "fastestLeftHandSpeed": 4.827325820922852,
+            "fastestRightHandSpeed": 8.841653823852539,
+            "minimumSole": -0.9355087280273438,
+            "maximumBodyHeight": 1.8710711002349854,
+            "rootDrift": 0.0,
+            "hipsPlanarDrift": 0.000004369976977613987
+        },
+        {
+            "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Button/ButtonPress.fbx",
+            "sha256": "e307c8719363c117b0faf33dff3090d34819815b0be36e9c0103838fbb94fd61",
+            "metaSha256": "98c891fbdc637f96b11cba5c6c018d55832a7890e607594cac4c724fdff61de8",
+            "samples": 293,
+            "duration": 3.2333335876464845,
+            "lowestLeftHandSeconds": 1.350913405418396,
+            "lowestRightHandSeconds": 0.38755711913108828,
+            "lowestLeftHand": {
+                "x": -0.22860243916511537,
+                "y": -0.027075767517089845,
+                "z": 0.0209950003772974
+            },
+            "lowestRightHand": {
+                "x": 0.2401420921087265,
+                "y": -0.009606540203094483,
+                "z": 0.053779568523168567
+            },
+            "fastestLeftHandSeconds": 1.2180366516113282,
+            "fastestRightHandSeconds": 0.6865297555923462,
+            "fastestLeftHandSpeed": 0.09597380459308624,
+            "fastestRightHandSpeed": 1.158258080482483,
+            "minimumSole": -0.9405097961425781,
+            "maximumBodyHeight": 1.7797508239746094,
+            "rootDrift": 0.0,
+            "hipsPlanarDrift": 0.0
+        },
+        {
+            "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushStart.fbx",
+            "sha256": "ef740a93c86c3f34400b7b7717d2efe5bce5a505311035349f72444c0d4912b7",
+            "metaSha256": "971321909d92284d3f11dda2914f80963f7a14651801a6dce5cab04bcd78803a",
+            "samples": 428,
+            "duration": 4.733333587646484,
+            "lowestLeftHandSeconds": 0.2327868938446045,
+            "lowestRightHandSeconds": 0.2992974519729614,
+            "lowestLeftHand": {
+                "x": -0.3724437355995178,
+                "y": -0.07840651273727417,
+                "z": 0.13052557408809663
+            },
+            "lowestRightHand": {
+                "x": 0.32898375391960146,
+                "y": -0.07972586154937744,
+                "z": 0.06960133463144303
+            },
+            "fastestLeftHandSeconds": 0.35472288727760317,
+            "fastestRightHandSeconds": 0.4212334454059601,
+            "fastestLeftHandSpeed": 1.8472354412078858,
+            "fastestRightHandSpeed": 2.6764302253723146,
+            "minimumSole": -0.9784225821495056,
+            "maximumBodyHeight": 1.6732399463653565,
+            "rootDrift": 0.0,
+            "hipsPlanarDrift": 0.133589506149292
+        },
+        {
+            "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushCycle.fbx",
+            "sha256": "da0240bb73dce3dd975ac2dab243e9004524de114a47678996981afa07049735",
+            "metaSha256": "b49f00e99d5af1073727ef2c436cc797cda63c2bcf4b6c6e7359881add308374",
+            "samples": 241,
+            "duration": 2.6666667461395265,
+            "lowestLeftHandSeconds": 1.5777778625488282,
+            "lowestRightHandSeconds": 1.600000023841858,
+            "lowestLeftHand": {
+                "x": -0.15832343697547913,
+                "y": -0.0786747932434082,
+                "z": 0.7183690071105957
+            },
+            "lowestRightHand": {
+                "x": 0.2744707465171814,
+                "y": -0.07930886745452881,
+                "z": 0.7230501174926758
+            },
+            "fastestLeftHandSeconds": 0.011111111380159855,
+            "fastestRightHandSeconds": 2.6555557250976564,
+            "fastestLeftHandSpeed": 0.3529566526412964,
+            "fastestRightHandSpeed": 0.32495173811912539,
+            "minimumSole": -0.9066304564476013,
+            "maximumBodyHeight": 1.3654992580413819,
+            "rootDrift": 0.0,
+            "hipsPlanarDrift": 1.30385160446167e-8
+        },
+        {
+            "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushStop.fbx",
+            "sha256": "6bfeb9598e294389eae5049261e80f3a5011cf2eb7ee044bd8bccb2174b25928",
+            "metaSha256": "43e06f5b0b7f59888e2d79b6d0bba73cc34cddbd8bfa9c3f1ea132b940716202",
+            "samples": 236,
+            "duration": 2.6000001430511476,
+            "lowestLeftHandSeconds": 2.312340497970581,
+            "lowestRightHandSeconds": 2.113191604614258,
+            "lowestLeftHand": {
+                "x": -0.3241174817085266,
+                "y": -0.2892008423805237,
+                "z": 0.06132783368229866
+            },
+            "lowestRightHand": {
+                "x": 0.2420668751001358,
+                "y": -0.301996111869812,
+                "z": 0.12845052778720857
+            },
+            "fastestLeftHandSeconds": 2.0578725337982179,
+            "fastestRightHandSeconds": 2.0468087196350099,
+            "fastestLeftHandSpeed": 2.7271463871002199,
+            "fastestRightHandSpeed": 3.1955618858337404,
+            "minimumSole": -1.1314786672592164,
+            "maximumBodyHeight": 1.4896202087402344,
+            "rootDrift": 0.0,
+            "hipsPlanarDrift": 0.13358907401561738
+        }
+    ]
+}
