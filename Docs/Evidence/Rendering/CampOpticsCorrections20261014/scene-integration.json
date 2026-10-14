@@ -1,0 +1,93 @@
+{
+  "sourceSceneHash": "d892a31615284db7d396e91a21bcf0a1f635ed29845b3ee1ab5fb2072d8ab865",
+  "candidateSceneHash": "7073f53a88a70b2c9c74a453b9a5c99f58a28a8afd832cc0e3e384afc101b52d",
+  "files": [
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampOpticsAuthoring.cs",
+      "sha256": "83b973296053c5a84279420e5a578dc1824998d5d7cd050bab7f92cf96bb2ac7"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/CampOpticsBuildHarness.cs",
+      "sha256": "02dbe58cc26c9795ff6d6ab1cf48cb657ffa833badecf910bbfecb675364ba81"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/CampOpticsCapture.cs",
+      "sha256": "fabd14e3695217de89dec3d36f8120459c7a3b9a48e193fadee215bab60869b7"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/CampOpticsLensFixture.cs",
+      "sha256": "c29c75c39431020be0e9e66d121457c912c85b707eb8d97647d6354e87565a1b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DAnamorphicStreakFeature.cs",
+      "sha256": "02ce5585b6beb300804577c0a3af88aae650231142945272114714a8bd8084fe"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampOpticsPerformanceFixture.cs",
+      "sha256": "232241190bbdbadfab5cc1cc5c3f90a7537298183999e058964c9502a32eb01c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampOpticsProfile.cs",
+      "sha256": "945369a365f447224f8d4cfc127b12348fab6cfbd71dfba2ed5afff73f99ba9f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampOpticsStack.cs",
+      "sha256": "10f3c7d1133c802fe7dbba1cadb20d2f921c333ea9ff13854d3af4352f0b0963"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DRoundLensFlareFeature.cs",
+      "sha256": "5aae40ff6f37c46da9dad8c6d2a4682434f89f8f64dd1bcf82291d7b47ce22e0"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSceneRenderingOverride.cs",
+      "sha256": "3487ec62b62e5b94413ea1b97150c2d04a9510ba8d5b469220891dbb761beca5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSunBloomFeature.cs",
+      "sha256": "e3ef26c855eeea2c6277062ab63c8713d11afe9b158542f2fa14cff64c9c0c8b"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DCampOpticsStackTests.cs",
+      "sha256": "f3dcb70ed2d496f598c61d85c31373b4d2b116daaed4808f15376e4db6aa9bb3"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampGaussianPass.cs",
+      "sha256": "cfe6a359716bc96be9dab2ce961af4f61b372ad8c1efb8584820cf3c120c6f75"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampGaussianPass.cs.meta",
+      "sha256": "4162ebc58f20ccecbd56ea2520bf81b2dfb7dfefd8099f638f8b3b898ea2b92f"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/CombinedOptics.asset",
+      "sha256": "4c214717463af84bd468bfd2d8fd60f85e658e9c2a31d0c29f070c1b71d910a1"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/CombinedOptics.asset.meta",
+      "sha256": "297238e2a968df5193f8c8dd996a7e6911d7054f154f8d8bef10108cc1fcfb67"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/CombinedTwilight.asset",
+      "sha256": "efb3543e2e618ffcd0f56d27cab4b43b84b17555d33d5226235fddab6879bf7a"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/CombinedTwilight.asset.meta",
+      "sha256": "e6077c6c5704f8ea38061c85a9992c8609672f10368e352c0b9df75010774729"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/CampOpticsPrerequisiteTests.cs",
+      "sha256": "a723c0e11c033e1998ff44b8d3d2b430121df4dd227cb407ca9e3b0d1d5c2811"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/CampOpticsPrerequisiteTests.cs.meta",
+      "sha256": "18830d863b4a0c9ccfc55cf080c40318de44d8cc5052591d5dc1f602df78d5cc"
+    }
+  ],
+  "integratedSceneHash": "b11761a9f88b7e52db03bb3acd1e3b8f4a332472edd6efdfbb92da6673cd3594",
+  "recordCount": 1352,
+  "changedRecordIDs": [
+    "2126727615"
+  ],
+  "preservedRecords": 1351,
+  "lineEnding": "LF preserved"
+}

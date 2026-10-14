@@ -4,6 +4,8 @@ October 14, 2026. The optics candidates have a coherent bloom and lens-dust path
 
 The [approved plan](CAMP_LOOP_EFFECTS_PROCESSING_OVERHAUL_PLAN_2026-10-14.md) and [implementation evidence](../../Evidence/Rendering/CampOptics20261014/README.md) control scope. Preserving Clearer twilight until selection was intentional; it is not a failed installation.
 
+The subsequent authorized [correction implementation](../../Evidence/Rendering/CampOpticsCorrections20261014/README.md) fixes the focus/lifecycle/control defects and installs the combined Gaussian/flare/bloom/dust profile in camp. The findings below preserve the audited starting state. GPU qualification and author appearance/feel acceptance remain open.
+
 ## Saved scene and effect ordering
 
 The current [CampLoopTesting scene](../../../Assets/_Project/Scenes/Reference/CampLoopTesting.unity) selects `CampAtmosphere20261014/Clear.asset` at line 28158. Its base camera uses renderer 0, postprocessing enabled and antialiasing None. The required Sun Bloom renderer feature is currently active. Clear has custom warm bloom at 0.1 and synthetic aureole at 0.12, with tilt shift, streak and flare disabled and no native optics profile. Thus the new bloom-lit dirt and native DOF are available candidates, rather than the saved camp default.

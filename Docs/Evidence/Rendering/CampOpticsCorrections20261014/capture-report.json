@@ -1,0 +1,22 @@
+{
+    "proof": "Static matched Editor captures; no Player or GPU frame budget claim",
+    "gpu": "NVIDIA GeForce RTX 3060 Ti",
+    "api": "Direct3D11",
+    "width": 1536,
+    "height": 864,
+    "stackRestored": true,
+    "sourceSceneUnchanged": true,
+    "pngEncoding": "Linear HDR target readback, converted to sRGB for PNG display",
+    "variants": [
+        "Clear",
+        "Off",
+        "Low",
+        "Standard",
+        "High",
+        "Band",
+        "Flare",
+        "Aces",
+        "Fxaa",
+        "Combined"
+    ]
+}

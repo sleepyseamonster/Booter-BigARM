@@ -1,0 +1,95 @@
+{
+    "proof": "Actual URP camera readbacks; combined Gaussian/flare/native bloom/dirt, lens invariance and opaque solar visibility",
+    "limitations": "No GPU timing, continuous-motion/translucent occlusion, native data-driven flare, or gameplay acceptance proof",
+    "gpu": "NVIDIA GeForce RTX 3060 Ti",
+    "api": "Direct3D11",
+    "failure": "",
+    "width": 512,
+    "height": 512,
+    "dirtAsset": "Assets/_Project/VFX/Textures/CampOptics/LensDustFine.png",
+    "linearDirtImport": true,
+    "initializedAtEntry": true,
+    "stackRestored": true,
+    "sunRestored": true,
+    "targetsRestored": true,
+    "activeSceneRestored": true,
+    "dirtRespondsToBloom": true,
+    "dirtAbsentWithoutBloom": true,
+    "clearSunProducesFlare": true,
+    "blockedSunHasNoFlare": true,
+    "combinedDofActive": true,
+    "combinedDirtActive": true,
+    "combinedFlareActive": true,
+    "lensUnaffectedByDof": true,
+    "combinedBlockedSun": true,
+    "combinedPartialSun": true,
+    "combinedOffscreenSun": true,
+    "comparisons": [
+        {
+            "comparison": "Bloom enabled: dirt 0 versus 3",
+            "meanAbsoluteRgb": 0.0046957796439528469,
+            "maxAbsoluteRgb": 0.3076171875,
+            "changedPixels": 176349
+        },
+        {
+            "comparison": "Bloom disabled: dirt 0 versus 3",
+            "meanAbsoluteRgb": 0.0,
+            "maxAbsoluteRgb": 0.0,
+            "changedPixels": 0
+        },
+        {
+            "comparison": "Clear directional sun: flare off versus on",
+            "meanAbsoluteRgb": 0.000025646417270763777,
+            "maxAbsoluteRgb": 0.142822265625,
+            "changedPixels": 1764
+        },
+        {
+            "comparison": "Fully blocked sun: first enabled frame versus disabled",
+            "meanAbsoluteRgb": 0.0,
+            "maxAbsoluteRgb": 0.0,
+            "changedPixels": 0
+        },
+        {
+            "comparison": "Lens artifacts: world DOF on versus off, black scene",
+            "meanAbsoluteRgb": 0.0,
+            "maxAbsoluteRgb": 0.0,
+            "changedPixels": 0
+        },
+        {
+            "comparison": "Combined: Gaussian versus no world DOF",
+            "meanAbsoluteRgb": 0.0009860048303380609,
+            "maxAbsoluteRgb": 0.4501953125,
+            "changedPixels": 243605
+        },
+        {
+            "comparison": "Combined: dirt 0.3 versus zero",
+            "meanAbsoluteRgb": 0.0001909120474010706,
+            "maxAbsoluteRgb": 0.033203125,
+            "changedPixels": 113694
+        },
+        {
+            "comparison": "Combined: lens flare on versus off",
+            "meanAbsoluteRgb": 0.000025733641450642608,
+            "maxAbsoluteRgb": 0.140411376953125,
+            "changedPixels": 1940
+        },
+        {
+            "comparison": "Combined: opaque blocking first frame versus flare off",
+            "meanAbsoluteRgb": 0.0,
+            "maxAbsoluteRgb": 0.0,
+            "changedPixels": 0
+        },
+        {
+            "comparison": "Combined: half-disc opaque occlusion",
+            "meanAbsoluteRgb": 0.0000070148525992408399,
+            "maxAbsoluteRgb": 0.039337158203125,
+            "changedPixels": 1528
+        },
+        {
+            "comparison": "Combined: behind-camera source versus flare off",
+            "meanAbsoluteRgb": 0.0,
+            "maxAbsoluteRgb": 0.0,
+            "changedPixels": 0
+        }
+    ]
+}
