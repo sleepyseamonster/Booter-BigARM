@@ -2,6 +2,8 @@
 
 October 14, 2026. Continues the [riding audit](CAMP_LOOP_LEGGER_RIDING_AUDIT_2026-10-14.md) for [CampLoopTesting](../../../Assets/_Project/Scenes/Reference/CampLoopTesting.unity). The author permits ignoring mounting animation for now. The proposed first slice is local mount attachment, direct riding control, useful rough-terrain traversal and safe dismounting. Values and behavioral choices here are candidates for implementation and acceptance, not shipped mechanics.
 
+The [implementation plan](CAMP_LOOP_LEGGER_RIDING_IMPLEMENTATION_PLAN_2026-10-14.md) selects the first-slice architecture, source boundaries, ordered batches and proof gates from this exploration.
+
 Recommend controlling the Legger as an agile extension of Booter's movement: point the stick where you want to go, accelerate into a fast gait, slow precisely near camp, and step across terrain that currently obstructs the pair. Preserve weight through acceleration, braking and terrain contact. The first slice does not need a vehicle transmission, new animation downloads, stamina economy or jumping system.
 
 ## Animation free mounting

@@ -1,0 +1,145 @@
+# Camp loop Legger riding implementation plan
+
+October 14, 2026. Planning-only deliverable for the author's requested Legger riding feature in [CampLoopTesting](../../../Assets/_Project/Scenes/Reference/CampLoopTesting.unity). Based on the [riding audit](CAMP_LOOP_LEGGER_RIDING_AUDIT_2026-10-14.md) and [design exploration](CAMP_LOOP_LEGGER_RIDING_BRAINSTORM_2026-10-14.md). Mounting animation is explicitly deferred. This plan selects an executable first slice; it does not install riding.
+
+## Observable result and authority
+
+Booter can select the nearby companion Legger, mount through a checked local attachment, ride with camera-relative analog control, travel faster, maneuver around camp and cross supported difficult terrain, then dismount safely. A blocked exit retains the mounted relationship and explains the failure. Menus, device/focus loss, reset and scene teardown leave neither competing movement writers nor a stranded passive player.
+
+The user owns creative direction and hands-on feel acceptance. Gottspan owns scope, source ownership and integration; Babineaux owns background Unity authoring/verification; Gear Ball owns verified task-only local commits. These are role responsibilities, not instructions to spawn agents. No specialist art or external narrative retrieval is required for this greybox slice.
+
+Current authority covers this plan. Implementation begins with a later instruction to execute it. The proposed tuning, contextual controls and conservative traversal defaults below resolve routine choices for that implementation; they do not claim final balance acceptance. No additional creative decision blocks the animation-free first slice.
+
+Controlling sources are the current user request, root AGENTS.md, [World Basis](../../WORLD_BASIS.md), [companion standard](BIGARM_COMPANION_STANDARD.md), [local workspace guide](../../LOCAL_WORKSPACE.md), current riding audit/exploration, then live assets/code. Fixed always-loaded terrain overrides older procedural-streaming templates. Riding preserves companion identity, real position, physical follow and cargo ownership.
+
+## Baseline and protected scope
+
+Plan inspection begins at `840c3670b` on `main`, tracking `origin/main`. Runtime assembly is `BooterBigArm.TopDown3D.Runtime`; editor and focused test assemblies are `BooterBigArm.Editor` and `BooterBigArm.Editor.Tests`. Unity is pinned to 6000.4.0f1. Do not change package pins, project settings or enabled build scenes.
+
+The current lab applies 1.4/2.7/3.8 m/s slow/run/sprint speeds at startup and blocks unqualified legacy traversal. It creates a private input asset and operates without world checkpoint reads/writes. The companion is a kinematic box with autonomous route-follow movement. Mount/dismount and mounted ownership are absent.
+
+The worktree has active inventory, camp workstation, crouch, enemy and camera-clearance changes. Camera source now contains initial-overlap recovery and `TryResolveDistance`; preserve that repair rather than copying the earlier audited version. `Temp/UnityLockfile` was absent at inspection, which does not prove no Editor owns the project. Recheck processes and exact checkout connection before any Unity command. Save no other owner's unsaved scene and never focus an app.
+
+Include mounting without a clip, two riding gaits, analog creep and responsive turns, explicit supported slope/step/drop handling, safe dismount, rider placeholder, camera blend, input/activity arbitration and lab reset. Exclude production opt-in, mounted saves, jumping/free falls, mounted combat, rider mass accounting, stamina, cargo redesign, new creature anatomy, terrain edits, NPC framework migration and external publication. Preserve existing cargo quantities, survival, mining, camp, salvage, stations and player controls when on foot.
+
+## Architecture choice
+
+| Approach | Source boundary and benefits | Risks and proof cost | Selection |
+| --- | --- | --- | --- |
+| Extend existing follower with a riding lease and query helper | Existing Legger Rigidbody and FixedUpdate remain the sole movement owner. Existing fields/GUIDs and production wiring survive. | Requires a clear preemption branch, rider handoff API and query solver. Prove ordinary follow parity and no route writes during riding. | Select. |
+| Extract a new common Legger motor and convert follow/riding into intent producers | Clean common motion service and future autonomy/traversal reuse. | Migrates all current follower physics, startup and persistence callers, affecting production as well as lab. Larger parity gate. | Viable later when a shared autonomous traversal upgrade is requested. |
+| Replace movement with CharacterController | Built-in sliding, slopes and steps reduce some custom motor work. | Changes body shape/physics semantics and serialized dependencies; still needs rider clearance and exit rules. | Viable alternative if bounded custom solver fails, requiring a revised plan before cutover. |
+
+Keep the first approach narrow. Add a partial follower riding surface and a non-MonoBehaviour ground-motion helper. No second FixedUpdate component writes the Legger body. Without a valid riding lease, the existing autonomous branch remains authoritative with its current tuning and route limits. Improved riding does not silently upgrade production following. After a dismount on terrain beyond autonomous capability, WaitingForRoute is honest; do not force a path or teleport. If Booter cannot safely stand on that terrain, dismount remains blocked until the player returns to legal support.
+
+### Single authority map
+
+| Concern | Canonical owner |
+| --- | --- |
+| Mount relationship, epoch, pending entry/exit and settings restoration | New `TopDown3DLeggerRidingController` bound explicitly to this Booter and Legger. |
+| Legger body position/rotation and actual motion result | Existing follower FixedUpdate, including its new lease branch. |
+| Collision, support, step and exit queries | New `LeggerGroundMotion` helper; returns decisions, never writes a Transform. |
+| Passive Booter body and mounted pose | Existing player motor through owner-checked ride APIs, invoked by the riding tick; ordinary motor drive yields. |
+| Input maps, command ordering and device rearm | Existing input router, extended through a riding partial. |
+| Inventory/camp/station eligibility | Existing activity/action owners consult the relationship; no duplicate inventory state. |
+| Rider visual, footstep suppression and restoration | Existing animation driver through a mounted presentation owner. |
+| Smooth framing and actor obstruction exclusions | Existing camera rig, extending current clearance recovery. |
+| Scene installation and lab reset | New additive camp authoring tool and existing reset registry. |
+
+The riding controller has no independent movement FixedUpdate. The follower's lease branch invokes a single `TickRiding(deltaTime)` path before applying the allowed Legger pose and publishing companion position. That tick coordinates passive rider pose and transitions. Acquire/release/submit APIs verify owner, epoch, actor lifetime and same scene. A render-only attachment adapter may align rider visuals to the interpolated seat; it never corrects gameplay coordinates in LateUpdate.
+
+## State input and transition contract
+
+Use OnFoot, Mounting, Mounted, Dismounting and Suspended/Faulted handling with explicit reasons. Mounted is a locomotion relationship beneath existing input modes, not a new map replacing Gameplay. Profile and scene references are authored; no first-object/name/tag lookup or companion respawn fallback.
+
+On-foot tap Interact mounts only when the selected interaction target is the Legger's new mount target and the press-time capture remains valid. While mounted, tap Interact requests dismount before any world interaction. Preserve keyboard E tap versus cargo hold, gamepad West tap, existing rebindings and gamepad cargo-shortcut policy. Completed cargo hold must not emit mount/dismount. Reset/system commands beat riding; riding dispatch precedes lab animation and item action dispatch where those could steal the same event. UI transitions consume pending commands and use existing neutral/rearm behavior.
+
+Mount eligibility requires same-scene live actors, physical range and visibility, standing Booter, no gathering/placement/camp/waypoint/station/preview/climb/vault/reset ownership, legal support, reserved Legger, and seat/entry clearance. Mounting brakes the Legger and validates an authored local entry corridor. Ignore the selected mount's own collider only where the seat transfer deliberately requires it; surrounding obstacles remain blocking. The initial transfer is a checked local attachment, not a summon. Commit exactly once; failure releases the reservation and leaves Booter on foot with captured settings intact.
+
+At commit capture Booter's body kinematic/gravity/interpolation/collision settings, collider state, presentation parent/local pose and relevant ownership. Clear velocities, acquire passive motor ownership, suppress normal collider/ground locomotion, activate the combined clearance profile and attach the placeholder presentation. Keep Booter's root/inventory identity. Do not parent a dynamic Rigidbody beneath the Legger or disable the whole player motor. No mounting clip or animation event is required.
+
+Dismount first brakes. Threshold proposal: measured speed at most 0.15 m/s. New directional input cancels the pending exit and resumes riding. Select indicated side then left/right/rear in stable authored order. Validate the full seat-to-exit corridor, downward transfer, Booter's standing capsule, slope and separation. Recheck immediately before commit. A clear endpoint behind a blocked route is invalid. If every exit fails, stay mounted, report No safe exit and restore steering; do not retry endlessly. Release at rest without inherited launch velocity. Hold Legger locally until Booter clears his body, then rebuild follow trail/route from actual poses.
+
+Menu/inventory/radial suppress movement and brake while retaining attachment. System menu suspends entry/exit commits; current menu changes input mode without globally pausing physics. Focus/device loss clears pending commands and safe-stops; rearm before movement resumes. Jump, crouch, attack, camp and waypoint actions require dismount. Recall/call-over while mounted is a harmless Already riding rejection. Cargo remains local and uses existing policy; no free transfers or rider item.
+
+On reset invalidate epochs and pending entry/exit before actor restoration. Release transient ride ownership at the last valid pose, then let the existing registry resolve Booter's safe return; keep the Legger at his real coordinate. If restoration fails, input stays blocked. Scene unload releases transient references; isolated component disable/destroy requires bounded local safe detach or Faulted input-blocked handling at the last valid pose. Never restore at world origin, camp, or a newly spawned companion. Restoration is idempotent and only restores settings captured by this owner.
+
+## Riding motion profile and safety rules
+
+Initial profile candidates: normal gait 6 m/s, fast gait 10 m/s, acceleration 16 m/s squared, braking/reversal 24 m/s squared, turn rate 500 degrees/s at low speed blending toward 360 at fast gait. Preserve analog magnitude through the existing movement basis; no additional deadzone. Reversals decelerate before acceleration into the opposite heading. Report actual achieved displacement/speed, separately from intent and blocked reason. Keep cargo's existing speed/acceleration factors; braking remains effective independently of load. Heavy fast gait computes to 8.2 m/s, above production's saved 7.4 m/s sprint; acceptance is still measured in this lab.
+
+Traversal candidates: 55-degree continuous slope, step up at most 1 m, controlled step down at most 1.25 m. Step movement caps at 2.5 m/s, with full landing support and clearance. Validate finite ordered settings and hard query caps; Inspector tuning cannot disable safety. Without a valid profile, leave ride unavailable with feedback, not an unbounded fallback.
+
+Resolve movement in this order: prepare collision corridor; verify starting support/overlap; compute desired velocity and facing; classify slope versus discrete ledge; resolve step path if eligible; sweep body and rider over translation and rotation; resolve at most two safe wall-slide contacts; verify final support; commit allowed pose. Terrain vetoes stop unsafe components immediately, not through an acceleration ramp. Candidate pose and root motion are never committed before validation.
+
+Use center plus footprint support samples. Choose support near prior surface height within local bounds; do not sample from a high ray origin and switch floors. A useful initial support rule requires the center and at least three perimeter samples on legal support with bounded spread, plus forward-edge support during advance. Reject narrow perches, missing forward support and discontinuous landings. Confirm this rule on rough terrain in Batch 3; loosen only with evidence that it remains cliff-safe. Terrain and explicitly marked ride-support solids are allowed; wreck roofs, camp props and unqualified rocks remain obstacles.
+
+Continuous incline speed is measured along the surface; step caps apply to discrete discontinuities rather than every grid-cell height delta. Step-up uses a checked lift/across/settle path, not a diagonal cut through the ledge face. Step-down verifies descent and landing. Stop before larger unsupported drops; no unrequested free-fall mechanic. Keep physics upright; optional restrained presentation lean does not change clearance.
+
+Validate translation with full shape casts and initial/final overlaps. For yaw rotation, use conservative swept envelopes across bounded orientation increments; a fixed-orientation box cast alone is insufficient. Initial hard limits: at most eight motion substeps per tick, 0.15 m linear/corner-travel target per substep, two slide resolutions, five support samples per required support pass, and at most 256 physics queries per tick. Track usage before each query; insufficient budget reduces motion or reports unavailable. Saturated fixed buffers reject conservatively. These are ceilings, not targets; no allocating fallback or hidden work after exhaustion. Profile validation derives maximum supported speed/turn displacement from these ceilings at the live fixed timestep.
+
+At approximately 0.02 s fixed timestep, 10 m/s advances 0.20 m per tick and constant 24 m/s squared braking needs about 2.08 m. Collision preparation must cover stopping distance, body/rider footprint, skin and readiness latency, independently of dressing visibility. Reuse current PopulationPreparation seam if bound; absence does not create a generator. Keep seat, rider and camera in one interpolated presentation frame, preserving orbit/look-ahead. Blend framing over a candidate 0.2 s; do not call Configure/SnapToTarget on ordinary mount changes. Extend obstruction exclusions to both actors and preserve current initial-overlap recovery.
+
+## Planned source and asset boundary
+
+New runtime files under `Assets/_Project/Scripts/Runtime/TopDown3D/Riding/`: `TopDown3DLeggerRidingController.cs`, `TopDown3DLeggerRideProfile.cs`, `LeggerRideState.cs`, `LeggerGroundMotion.cs`, and `TopDown3DLeggerMountTarget.cs`. All remain in the existing runtime assembly. Use the profile ScriptableObject for tuning and authored support/exits; runtime state/epochs never live in that asset.
+
+Extend existing runtime owners through `TopDown3DBigArmFollower.Riding.cs`, `TopDown3DPlayerMotor.Riding.cs`, `TopDown3DInputRouter.Riding.cs`, and `TopDown3DPlayerAnimationDriver.Riding.cs` alongside their current partial files. Small dispatch changes are needed in follower, motor, input router, animation driver, `Interaction/TopDown3DPlayerActionController.cs`, `Interaction/TopDown3DInteractionTarget.cs`, and `TopDown3DCameraRig.cs`. Update call-over entry points to honor riding reservation. Extend `AnimationPlayground/TopDown3DAnimationPlaygroundSession.Player.cs` only where reset/activity hooks cannot be registered by the new adapter; preserve pending crouch ownership changes.
+
+New editor files under `Assets/_Project/Scripts/Editor/TopDown3D/`: `CampLoopLeggerRidingAuthoring.cs` and `CampLoopLeggerRidingValidator.cs`. Author `Assets/_Project/Settings/Studies/LeggerRiding/CampLoopLeggerRideProfile.asset`, optional reusable fixture prefab under `Assets/_Project/Prefabs/TopDown3D/Studies/LeggerRiding/`, and additive seat/exit/corridor objects in CampLoopTesting only. Preserve all original scene object IDs, terrain references, GUIDs and unrelated content. New imported assets get intentional paired `.meta` files; existing ones are never regenerated.
+
+New focused tests under `Assets/_Project/Tests/Editor/`: `LeggerRideStateTests.cs`, `LeggerRidingOwnershipTests.cs`, `LeggerRidingInputTests.cs`, `LeggerGroundMotionTests.cs`, `LeggerRidingLifecycleTests.cs`, and `CampLoopLeggerRidingSceneTests.cs`. Group test cases by real contract; do not create one test per internal method. Evidence belongs under `Docs/Evidence/Gameplay/LeggerRiding20261014/`; update this plan and Unity automation only for newly delivered commands. Link the plan from a clean owned routing surface; do not overwrite a dirty DOCS_INDEX.
+
+## Implementation batches and gates
+
+| Batch | Work and owner | API or asset contract | Required proof and stop gate |
+| --- | --- | --- | --- |
+| 0 Revalidate | Gottspan inspects HEAD/status/diffs, scene/session/input/camera owners, test inventory, exact editor and processes/lock. Identify handoff boundaries for coupled dirty files. | Freeze a task manifest, production scene hash, terrain GUID/reference baseline, original Legger/Booter components and pins. | Stop writes to any shared source/scene while another owner is editing it. Resolve through current ownership; do not stage their changes. No Unity launch based solely on absent lockfile. |
+| 1 State and profile | Runtime riding folder plus pure state tests. | Explicit state transitions, owner/epoch, reasons, entry timeout 2 s, dismount speed threshold, valid profile and bounded budgets. | Tests reject duplicate acquire/release, stale epochs, invalid tuning and conflicting activity. Timeout returns OnFoot with no mutation. No scene installation yet. |
+| 2 Ownership and attachment | Follower/player-motor riding partials and minimal dispatch; mounted presentation override. | One Legger writer, passive Booter owner, captured settings, placeholder seat frame and idempotent restoration. | Focused ownership tests cover commit/rollback/disable and unchanged no-lease follower behavior. Current import/compile passes. Stop if ownership can be acquired before both actors are eligible. |
+| 3 Terrain and direct control | Ground-motion helper, follower riding tick and motion tests. | Camera-relative analog intent, actual motion result, support identity, combined sweeps, slope/step/drop classification and query limits. | Disposable colliders test diagonal speed, reversals, thin walls, rotation corners, low ceilings, steps both sides of threshold, roofs, cliffs, buffers and budget exhaustion. Prove clear landing cannot bypass blocked travel. Stop if faster motion requires unchecked transforms or unsafe support snapping. |
+| 4 Interaction and exits | Mount target, input partial/dispatch, action/activity gating and exit solver in controller/helper. | Press-time stable target/epoch, contextual mount, mounted dismount precedence, cargo hold parity and atomic safe exit. | Tests cover multiple targets, changed range/visibility, rebinding, held button, simultaneous modal/lab/item commands, moving mount, blocked exits and changed geometry before commit. Stop if a rejected ride request falls through to a world action. |
+| 5 Camera and lifecycle | Existing camera and lab reset adapter; controller interruption handling. | Smooth framing/exclusions without losing current clearance repairs; no gait/footsteps while attached; focus/device/modal/reset behavior. | Camera clearance regressions, lifecycle tests and repeated reset/disable cover captured setting restoration, no duplicated visuals and preserved Legger pose/cargo. Stop if reset teleports Legger or input resumes after failed release. |
+| 6 Additive camp authoring | Babineaux uses task-owned background candidate and exact authoring source/profile/fixtures. | Idempotent installation with explicit references; existing camp scene preserved, production remains uninstalled. | Scene validator/tests verify one riding owner, same companion/cargo, private profile, seat/exits, trial corridor, session-only save policy and unchanged production/terrain baseline. Re-run authoring does not erase hand edits or duplicate objects. Stop before authoring into an owner-dirty live scene. |
+| 7 Verification and handoff | Gottspan reconciles proof; Gear Ball commits exact verified batches. | Record candidate revision, focused results, diagnostic budgets, known feel limits and complete task manifest. | All directly affected tests/import/validator pass; user receives the ready camp scene and concise hands-on criteria. No production promotion, push, PR or build claim. Automated completion and user feel acceptance are recorded separately. |
+
+Every batch is independently reviewable and restores the last valid relationship on failure. Do not weaken tests to continue. No-lease production behavior uses the retained canonical autonomous branch, not a temporary second motor. Finish a batch's gate before writing its downstream serialized consumers.
+
+## Verification matrix and commands
+
+| Claim | Minimum proof | Limit |
+| --- | --- | --- |
+| Correct source/assembly/asset boundary | Diff, links, GUID/meta pairing, serialized reference and production/terrain hash review. | Does not prove physics or control feel. |
+| Valid code against pinned packages | Background Unity import/compile of the exact candidate. | Does not prove tests ran. |
+| Ownership, commands and rollback | New state/ownership/input/lifecycle EditMode fixtures with simulated router input and disposable actors. | Does not replace a physical controller trial. |
+| Safe collision/support and bounded motion | New ground-motion fixtures using real temporary Physics colliders and deterministic tick invocation. | Does not prove every native terrain route. |
+| Scene isolation and current camp integration | New scene fixture/validator plus existing CampLoopTestingSceneTests and directly affected station/salvage/camp contracts. | Tests that open scenes run in an isolated candidate. |
+| Existing behavior preserved | Affected foundation/non-relocation, locomotion, grid route, interaction, control-preference, menu and camera-clearance fixtures selected from the live test inventory. | Broaden only for actual shared changes/failures; do not run unrelated terrain suites. |
+| Smoothness and mobility benefit | Author tests analog creep, turns/reversal, camera orbit, speed/load comparison, rough corridor, headroom and blocked exits. | Hands-on acceptance remains user-owned. |
+| Bounded runtime cost | Query/substep counters and timing for open fast travel, blocked slalom and repeated steps in a task-owned candidate. | Authorize any PlayMode/performance replay separately; EditMode counters establish work bounds only. |
+| Checkpoint isolation | Session-only service contract and temporary-directory sentinel checks for no read/write at startup/reset/unload. | No production mounted save continuity is claimed. |
+
+Use [Unity automation](../../Engineering/UNITY_AUTOMATION.md) for exact installed CLI discovery. Before connected inspection, run `unity editors running --json` and `unity status --project-path <absolute candidate or checkout> --json`. Discover `run_tests` schema, then use the documented `unity command run_tests --mode editor --filter LeggerRidingOwnershipTests --filter_type testName --project-path <absolute isolated candidate> --json` form, selecting each new or affected fixture. Capture executed counts and logs, not just command success. Never use a mutating builder as validation.
+
+For a candidate with no Editor owner, use the pinned executable with `-batchmode -nographics -projectPath <candidate> -runTests -testPlatform EditMode -testFilter <fixture list> -testResults <ignored XML> -logFile <ignored log>`, using safely quoted PowerShell argument arrays and hidden process launch. Follow current automation guidance for completion rather than assuming `-quit` is compatible with asynchronous test execution. Recheck executable and live lock/process ownership before launch. Tests that open/rebuild scenes or write files must not run in the author's live scene/profile.
+
+Planned validator entry point is `BooterBigArm.Editor.CampLoopLeggerRidingValidator.ValidateFromCli`; it must validate without saving, repairing or creating assets. Opening CampLoopTesting is a scene-management side effect, so run it in the isolated candidate. Planned authoring `InstallFromCli` is explicitly mutating and permitted only during Batch 6 execution. Do not run either nonexistent command during planning. No gameplay smoke tests are created or run, and no player build is required for this reference-scene slice.
+
+## World persistence and recovery contract
+
+Deterministic world identity and generation version remain unchanged: no terrain generation, random riding spawn or terrain edits. The fixed terrain is always loaded, so chunk streaming is not applicable. Dressing cells retain their own stable identity and collision readiness; the ride corridor must be prepared before actor advance and cannot depend on visibility. No new region/chunk service is introduced.
+
+Retain `legger.primary`, Booter's existing owner and original cargo state. Seat/exit anchors are authored constraints, not generated object IDs. Runtime relationship epoch and route/query samples are transient. Scene unload invalidates ownership; re-entry starts the authored lab session without restoring a relationship from world save. Reset preserves native terrain and the Legger's true coordinate. No checkpoint version changes occur in this slice. Future production integration must version riding relationship and coordinated pose restoration separately; old generated-world save services remain inactive.
+
+| Risk | Containment and stop condition |
+| --- | --- |
+| Concurrent source/scene edits | Batch 0 ownership handoff, exact diff manifest and additive authoring. Stop coupled writes until stable; never restore another owner's file. |
+| Rider falls or overlaps during handoff | Acquire both owners before commit; query seat/exit and restore captured state atomically. Failed release remains input-blocked. |
+| Fast thin-wall or rotation tunneling | Full translation sweeps, conservative rotation envelopes, budget-aware substeps and real-collider tests. Stop motion on exhausted budget. |
+| Rough ground mistaken for cliff/roof | Prior-support continuity, perimeter/forward probes, explicit surface permission and threshold fixtures. Unsafe floor switching fails closed. |
+| On-foot animation or menu command leaks | Mounted presentation and activity state participate in existing arbitration; test runtime lab clone and held input. |
+| Production regression through shared partials | No-lease parity tests, unchanged production scene/configuration and default follower path. Missing lease never enables riding accidentally. |
+| Camera repair overwritten | Integrate against current TryResolveDistance implementation and run its clearance fixtures. Preserve current recovery semantics. |
+| Poor steering feel despite green tests | User acceptance gate before considering riding finished or promoting it. Tune profile within safe bounds; retain evidence of changed values. |
+
+Implementation is ready to execute after the author requests it and Batch 0 resolves live ownership. The first handoff can truthfully say the animation-free camp riding slice is implemented and automatically verified when Batches 1–7 pass; fluidity and terrain acceptance remain pending until the author plays it. Stop at this reference-scene boundary. Production, persistence, mounting clips and additional riding mechanics require their own scope.
