@@ -1,0 +1,371 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 019f92a0bf2d2ce4cb67b768dd240241, type: 3}
+  m_Name: AnimationCatalog
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.AnimationPlaygroundCatalog
+  schemaVersion: 1
+  entries:
+  - sourceId: death.death.falling.backward
+    title: Falling Back Death
+    category: Death
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: death.death.falling.forward
+    title: Falling Forward Death
+    category: Death
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: death.death.standing.backward
+    title: Standing React Death Backward
+    category: Death
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: hurt.hit.body
+    title: Hit Reaction
+    category: Hurt
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: hurt.hit.large.back
+    title: Standing React Large From Back
+    category: Hurt
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: hurt.hit.large.front
+    title: Standing React Large From Front
+    category: Hurt
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: hurt.hit.large.left
+    title: Standing React Large From Left
+    category: Hurt
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: hurt.hit.large.right
+    title: Standing React Large From Right
+    category: Hurt
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: hurt.hit.small.back
+    title: Standing React Small From Back
+    category: Hurt
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: hurt.hit.small.front
+    title: Standing React Small From Front
+    category: Hurt
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: hurt.hit.small.left
+    title: Standing React Small From Left
+    category: Hurt
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: hurt.hit.small.right
+    title: Standing React Small From Right
+    category: Hurt
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: kick.kick.front.snap
+    title: Kicking
+    category: Kick
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: kick.kick.mma.low
+    title: Mma Kick
+    category: Kick
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: kick.kick.side
+    title: Side Kick
+    category: Kick
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: kick.kick.thrust
+    title: Kicking
+    category: Kick
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: punch.punch.cross
+    title: Cross Punch
+    category: Punch
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: punch.punch.hook
+    title: Hook Punch
+    category: Punch
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: punch.punch.jab
+    title: Punching
+    category: Punch
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: button.button.press
+    title: Button Pushing
+    category: Button
+    stationId: AP05
+    restrictedReference: 0
+  - sourceId: pickup.pickup.and.examine
+    title: Lifting
+    category: Pickup
+    stationId: AP05
+    restrictedReference: 0
+  - sourceId: pickup.pickup.one.hand
+    title: Picking Up Object (one hand)
+    category: Pickup
+    stationId: AP05
+    restrictedReference: 0
+  - sourceId: push.push.cycle
+    title: Pushing A Heavy Object
+    category: Push
+    stationId: AP06
+    restrictedReference: 0
+  - sourceId: push.push.start
+    title: Push Start
+    category: Push
+    stationId: AP06
+    restrictedReference: 0
+  - sourceId: push.push.stop
+    title: Push Stop
+    category: Push
+    stationId: AP06
+    restrictedReference: 0
+  - sourceId: sit.sit.down.chair
+    title: Sitting Down (Arms Outside Armrests)
+    category: Sit
+    stationId: AP11
+    restrictedReference: 0
+  - sourceId: sit.sitting.idle.chair
+    title: Sitting Idle (Sitting Still In A Chair)
+    category: Sit
+    stationId: AP11
+    restrictedReference: 0
+  - sourceId: sit.sitting.idle.ground
+    title: Sitting Idle (Sitting On Floor)
+    category: Sit
+    stationId: AP11
+    restrictedReference: 0
+  - sourceId: sleep.sleeping.idle.sleeping.deeply
+    title: Sleeping Idle (Sleeping Deeply)
+    category: Sleep
+    stationId: AP11
+    restrictedReference: 0
+  - sourceId: throw.throw.alternate
+    title: Throwing
+    category: Throw
+    stationId: AP05
+    restrictedReference: 0
+  - sourceId: throw.throw.pickup.and.throw
+    title: Throw Object
+    category: Throw
+    stationId: AP05
+    restrictedReference: 0
+  - sourceId: throw.throw.standard
+    title: Throw
+    category: Throw
+    stationId: AP05
+    restrictedReference: 0
+  - sourceId: locomotion.breathing.idle
+    title: Breathing Idle
+    category: Locomotion
+    stationId: AP02
+    restrictedReference: 0
+  - sourceId: crouch.crouch.enter
+    title: Crouching
+    category: Crouch
+    stationId: AP03
+    restrictedReference: 0
+  - sourceId: crouch.crouch.exit
+    title: Crouch To Stand
+    category: Crouch
+    stationId: AP03
+    restrictedReference: 0
+  - sourceId: crouch.crouch.idle
+    title: Crouch Idle
+    category: Crouch
+    stationId: AP03
+    restrictedReference: 0
+  - sourceId: crouch.crouch.walk.backward
+    title: Crouch Walk Back
+    category: Crouch
+    stationId: AP03
+    restrictedReference: 0
+  - sourceId: crouch.crouch.walk.forward
+    title: Crouch Walk Forward
+    category: Crouch
+    stationId: AP03
+    restrictedReference: 0
+  - sourceId: crouch.crouch.walk.left
+    title: Crouch Walk Left
+    category: Crouch
+    stationId: AP03
+    restrictedReference: 0
+  - sourceId: crouch.crouch.walk.right
+    title: Crouch Walk Right
+    category: Crouch
+    stationId: AP03
+    restrictedReference: 0
+  - sourceId: locomotion.standard.run
+    title: Standard Run
+    category: Locomotion
+    stationId: AP02
+    restrictedReference: 0
+  - sourceId: locomotion.standard.walk
+    title: Standard Walk
+    category: Locomotion
+    stationId: AP02
+    restrictedReference: 0
+  - sourceId: strafe.strafe.run.left
+    title: Left Strafe
+    category: Strafe
+    stationId: AP02
+    restrictedReference: 0
+  - sourceId: strafe.strafe.run.right
+    title: Right Strafe
+    category: Strafe
+    stationId: AP02
+    restrictedReference: 0
+  - sourceId: strafe.strafe.walk.left
+    title: Walk Strafe Left
+    category: Strafe
+    stationId: AP02
+    restrictedReference: 0
+  - sourceId: strafe.strafe.walk.right
+    title: Walk Strafe Right
+    category: Strafe
+    stationId: AP02
+    restrictedReference: 0
+  - sourceId: locomotion.two.cycle.sprint
+    title: Two Cycle Sprint
+    category: Locomotion
+    stationId: AP02
+    restrictedReference: 0
+  - sourceId: death.reference.only.crouched.death.weapon.pose
+    title: Crouch Death
+    category: Death
+    stationId: AP12
+    restrictedReference: 1
+  - sourceId: locomotion.sprint.forward.travel.alternative
+    title: Sprint
+    category: Locomotion
+    stationId: AP02
+    restrictedReference: 1
+  - sourceId: mining.mining.reference.downward.tool.swing
+    title: Standing Melee Attack Downward
+    category: Mining
+    stationId: AP07
+    restrictedReference: 1
+  - sourceId: cover.cover.idle
+    title: Cover Idle (Crouched For Cover Against Object)
+    category: Cover
+    stationId: AP08
+    restrictedReference: 0
+  - sourceId: cover.left.cover.sneak
+    title: Left Cover Sneak
+    category: Cover
+    stationId: AP08
+    restrictedReference: 0
+  - sourceId: cover.right.cover.sneak
+    title: Right Cover Sneak
+    category: Cover
+    stationId: AP08
+    restrictedReference: 0
+  - sourceId: cover.stand.to.cover
+    title: Stand To Cover
+    category: Cover
+    stationId: AP08
+    restrictedReference: 0
+  - sourceId: evade.dodge.backward
+    title: Dodging Back
+    category: Evade
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: evade.dodge.right
+    title: Dodging Right
+    category: Evade
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: evade.duck.from.standing
+    title: Ducking
+    category: Evade
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: fall.fall.airborne.idle
+    title: Falling Idle
+    category: Fall
+    stationId: AP04
+    restrictedReference: 0
+  - sourceId: fall.fall.landing
+    title: Falling To Landing
+    category: Fall
+    stationId: AP04
+    restrictedReference: 0
+  - sourceId: fall.fall.roll.landing
+    title: Falling To Roll
+    category: Fall
+    stationId: AP04
+    restrictedReference: 0
+  - sourceId: jump.jump.running
+    title: Running Jump
+    category: Jump
+    stationId: AP04
+    restrictedReference: 0
+  - sourceId: jump.jump.standing
+    title: Standing Jump
+    category: Jump
+    stationId: AP04
+    restrictedReference: 0
+  - sourceId: jump.jump.unarmed
+    title: Unarmed Jump
+    category: Jump
+    stationId: AP04
+    restrictedReference: 0
+  - sourceId: climb.ladder.climb
+    title: Climbing Ladder
+    category: Climb
+    stationId: AP10
+    restrictedReference: 0
+  - sourceId: climb.ladder.one.step
+    title: Climbing
+    category: Climb
+    stationId: AP10
+    restrictedReference: 0
+  - sourceId: climb.ladder.start
+    title: Start Climbing Ladder
+    category: Climb
+    stationId: AP10
+    restrictedReference: 0
+  - sourceId: climb.ladder.top.exit
+    title: Climbing To Top
+    category: Climb
+    stationId: AP10
+    restrictedReference: 0
+  - sourceId: climb.ladder.two.steps
+    title: Climbing
+    category: Climb
+    stationId: AP10
+    restrictedReference: 0
+  - sourceId: recovery.get.up.back
+    title: Getting Up (back)
+    category: Recovery
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: recovery.get.up.stomach
+    title: Getting Up (stomach)
+    category: Recovery
+    stationId: AP12
+    restrictedReference: 0
+  - sourceId: slide.running.slide
+    title: Running Slide
+    category: Slide
+    stationId: AP03
+    restrictedReference: 0

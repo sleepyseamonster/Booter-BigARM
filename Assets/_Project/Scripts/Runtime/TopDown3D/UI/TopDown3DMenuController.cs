@@ -40,6 +40,7 @@ namespace BooterBigArm.TopDown3D
             cameraRange = range;
             cameraRange?.SetPreset(settings.Accepted.viewDistancePreset);
             view.Initialize(kit.EventSystem); view.ApplySettings(settings.Accepted);
+            ConfigureAnimationPalette();
             view.Command += OnCommand; view.Rename += Rename;
             input.MenuToggleRequested += Toggle; input.UiCancelRequested += Back;
             input.PromptDeviceChanged += PromptChanged;
@@ -97,6 +98,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (IsRebindingControls) { CancelControlRebind(); return; }
             if (!IsOpen) return;
+            if(panel == "AnimationPalette"){Close();return;}
             if (view.IsEditingText) { view.EndTextEdit(); return; }
             if (panel == "Dialog")
             {
@@ -154,6 +156,7 @@ namespace BooterBigArm.TopDown3D
         private void OnCommand(string command)
         {
             if (waitingRelease || !IsOpen) return;
+            if (HandleAnimationPaletteCommand(command)) return;
             if (HandleControlCommand(command)) return;
             if (command == "DialogCancel") { Back(); return; }
             if (command == "DialogAccept") { var action = confirmed; confirmed = null; Show(dialogParent, dialogFocus); action?.Invoke(); return; }
@@ -290,6 +293,7 @@ namespace BooterBigArm.TopDown3D
         private void OnDisable() { if (configured) Close(); }
         private void OnDestroy()
         {
+            DisposeAnimationPalette();
             InputSystem.onDeviceChange -= ControlDeviceChanged;
             if (!configured) return;
             if (input != null) { input.MenuToggleRequested -= Toggle; input.UiCancelRequested -= Back; input.PromptDeviceChanged -= PromptChanged; input.ModeChanged -= InputModeChanged; }

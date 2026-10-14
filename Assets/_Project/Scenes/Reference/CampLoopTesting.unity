@@ -1816,6 +1816,8 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DAnimationPlaygroundSession
   bindings: {fileID: 0}
+  catalog: {fileID: 11400000, guid: 5a6d7845bea4d844ca9b2ed6ce1f24d5, type: 2}
+  palettePrefab: {fileID: 3837550995056048614, guid: 7182e29350166c24eb3ed221f1d1a4a4, type: 3}
 --- !u!4 &451293423
 Transform:
   m_ObjectHideFlags: 0

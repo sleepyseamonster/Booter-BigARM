@@ -24,8 +24,18 @@ namespace BooterBigArm.TopDown3D
         {
             InputSystem.onDeviceChange += ControlDeviceChanged;
             controls = new TopDown3DControlPreferencesService(directory);
+            var inheritedNotice=string.Empty;
+            if(AnimationPlaygroundInputFactory.IsLabAsset(input.InputActions)
+                && !System.IO.File.Exists(System.IO.Path.Combine(directory,"controls-v1.json"))
+                && directory != Application.persistentDataPath
+                && System.IO.File.Exists(System.IO.Path.Combine(Application.persistentDataPath,"controls-v1.json")))
+            {
+                var production=new TopDown3DControlPreferencesService(Application.persistentDataPath);
+                if(!production.CanSave || !controls.TryAdoptInitial(production.Accepted,input.InputActions,out var inheritError))
+                    inheritedNotice="Existing controls need separate lab rebinding; the original file is preserved. "+(production.Notice ?? "A binding conflicts with a lab action.");
+            }
             controlsCompatible = controls.ValidateForAsset(input.InputActions);
-            controlNotice = controls.Notice;
+            controlNotice = string.IsNullOrEmpty(inheritedNotice) ? controls.Notice : inheritedNotice;
             if (controlsCompatible)
             {
                 TopDown3DControlPreferencesService.Apply(input.InputActions, controls.Accepted);
@@ -35,7 +45,9 @@ namespace BooterBigArm.TopDown3D
         private List<(InputAction action, int index)> ControlChoices()
         {
             var choices = new List<(InputAction, int)>();
-            foreach (var path in ControlActions)
+            var paths=new List<string>(ControlActions);
+            if(AnimationPlaygroundInputFactory.IsLabAsset(input.InputActions)) paths.AddRange(TopDown3DControlPreferencesService.LabActions);
+            foreach (var path in paths)
             {
                 var action = input.InputActions.FindAction(path, false);
                 if (action == null) continue;

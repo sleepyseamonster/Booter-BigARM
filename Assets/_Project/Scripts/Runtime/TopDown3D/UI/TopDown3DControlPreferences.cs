@@ -39,6 +39,10 @@ namespace BooterBigArm.TopDown3D
         };
         private static readonly HashSet<string> PadButtons = new(StringComparer.OrdinalIgnoreCase)
         { "buttonWest", "buttonEast", "buttonNorth", "leftShoulder", "rightShoulder", "leftTrigger", "rightTrigger", "dpad/up", "dpad/down", "dpad/left", "dpad/right" };
+        public static readonly string[] LabActions = { "Gameplay/Jump", "Gameplay/Attack", "Gameplay/Crouch",
+            "Gameplay/AnimationSlowWalk", "Gameplay/AnimationCancel", AnimationPlaygroundInputFactory.PalettePath };
+        private static bool IsActive(InputActionAsset asset,string path) => Active.Contains(path)
+            || AnimationPlaygroundInputFactory.IsLabAsset(asset) && Array.IndexOf(LabActions,path)>=0;
         private static readonly HashSet<string> CardinalActions = new(StringComparer.Ordinal)
         { "Gameplay/DeployCanister", "Gameplay/DrinkAlgae", "Gameplay/EatAlgae", "Gameplay/TreatWithAlgae" };
         private static readonly HashSet<string> Keys = new(StringComparer.OrdinalIgnoreCase)
@@ -104,6 +108,13 @@ namespace BooterBigArm.TopDown3D
         public void RetainForRecovery(string notice)
         { CanSave = false; Notice = notice; }
 
+        public bool TryAdoptInitial(TopDown3DControlPreferences source,InputActionAsset asset,out string error)
+        {
+            if(File.Exists(filePath) || !CanSave){error="Preserve the existing lab controls file.";return false;}
+            if(!TryValidate(source,asset,out error)) return false;
+            accepted=Normalize(source,asset);return true;
+        }
+
         public static string ActionDisplayName(string path) => path switch
         {
             "Gameplay/Interact" or "Gameplay/OpenCargo" => "Interaction / cargo",
@@ -119,6 +130,12 @@ namespace BooterBigArm.TopDown3D
             "System/OpenRadial" => "Open radial",
             "Gameplay/Move" => "Movement",
             "Gameplay/CameraLookAhead" => "Camera look-ahead",
+            "Gameplay/Jump" => "Jump",
+            "Gameplay/Attack" => "Selected animation action",
+            "Gameplay/Crouch" => "Crouch / slide",
+            "Gameplay/AnimationSlowWalk" => "Slow walk",
+            "Gameplay/AnimationCancel" => "Cancel animation action",
+            "System/AnimationPalette" => "Animation palette",
             _ => "another action"
         };
 
@@ -131,11 +148,16 @@ namespace BooterBigArm.TopDown3D
             {
                 var action = asset.FindAction(entry.actionPath, false);
                 int index = FindBinding(action, entry.bindingId);
-                if (!Active.Contains(entry.actionPath) || index < 0 || !Editable(action.bindings[index]))
+                if (!IsActive(asset,entry.actionPath) || index < 0 || !Editable(action.bindings[index]))
                 { error = "This control cannot be edited."; return false; }
                 if (!ids.Add(entry.bindingId)) { error = "A control was edited more than once."; return false; }
                 var binding = action.bindings[index];
-                if (!AllowedPath(entry.path, Group(binding))) { error = "Choose a supported button or keyboard key. Menu and movement controls are reserved."; return false; }
+                bool labPath=AnimationPlaygroundInputFactory.IsLabAsset(asset) &&
+                    (Group(binding)=="Keyboard&Mouse" && entry.path == "<Keyboard>/space"
+                    || Group(binding)=="Gamepad" && (entry.path == "<Gamepad>/buttonSouth"
+                    || entry.actionPath == AnimationPlaygroundInputFactory.PalettePath && entry.path == "<Gamepad>/select"
+                    || entry.actionPath == "Gameplay/Crouch" && entry.path == "<Gamepad>/leftStickPress"));
+                if (!AllowedPath(entry.path, Group(binding)) && !labPath) { error = "Choose a supported button or keyboard key. Menu and movement controls are reserved."; return false; }
                 if (entry.path.StartsWith("<Gamepad>/dpad/", StringComparison.OrdinalIgnoreCase) && !CardinalActions.Contains(entry.actionPath))
                 { error = "D-pad directions are reserved for algae and canister placement."; return false; }
                 // System inventory remains enabled while UI is active; its opener cannot
@@ -171,7 +193,7 @@ namespace BooterBigArm.TopDown3D
             {
                 string actionPath = map.name + "/" + action.name;
                 bool reservation = actionPath == "Gameplay/Move" || actionPath == "Gameplay/CameraLookAhead";
-                if (!Active.Contains(actionPath) && !reservation) continue;
+                if (!IsActive(asset,actionPath) && !reservation) continue;
                 foreach (var binding in action.bindings)
                 {
                     if (binding.isComposite || string.IsNullOrEmpty(Group(binding))) continue;
@@ -179,8 +201,16 @@ namespace BooterBigArm.TopDown3D
                     foreach (var entry in normalized.bindings) if (entry.bindingId == binding.id.ToString()) path = entry.path;
                     string key = Group(binding) + ":" + path;
                     string canonicalAction = actionPath == "Gameplay/OpenCargo" ? "Gameplay/Interact" : actionPath;
+                    if(actionPath == "Gameplay/AnimationCancel")
+                        canonicalAction = path == "<Gamepad>/buttonEast" ? "Gameplay/PickupCanister"
+                            : path == "<Keyboard>/backspace" ? "Gameplay/CancelItemAction" : actionPath;
                     if (used.TryGetValue(key, out string previous) && previous != canonicalAction)
-                    { error = "That button is already used by " + ActionDisplayName(previous) + "."; return false; }
+                    {
+                        // Report the other action when the earlier entry is the control being edited.
+                        var conflict=previous;
+                        foreach(var entry in normalized.bindings) if(entry.actionPath == previous){conflict=canonicalAction;break;}
+                        error = "That button is already used by " + ActionDisplayName(conflict) + "."; return false;
+                    }
                     used[key] = canonicalAction;
                 }
             }
@@ -194,7 +224,7 @@ namespace BooterBigArm.TopDown3D
             foreach (var map in asset.actionMaps)
             foreach (var action in map.actions)
             {
-                if (!Active.Contains(map.name + "/" + action.name)) continue;
+                if (!IsActive(asset,map.name + "/" + action.name)) continue;
                 for (int i = 0; i < action.bindings.Count; i++)
                 {
                     if (!Editable(action.bindings[i])) continue;

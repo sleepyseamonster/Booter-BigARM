@@ -106,6 +106,7 @@ namespace BooterBigArm.TopDown3D
         public void Configure(InputActionAsset actions)
         {
             UnbindActions();
+            ReleaseAnimationAsset();
             inputActions = actions;
             if (isActiveAndEnabled)
             {
@@ -132,6 +133,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnApplicationFocus(bool focused)
         {
+            DisarmAnimationCommands();
             if (!focused) DisarmAlgae();
             if (focused && Mode == TopDown3DInputMode.Gameplay)
             {
@@ -141,6 +143,7 @@ namespace BooterBigArm.TopDown3D
 
         private void BindActions()
         {
+            PrepareAnimationInput();
             if (actionsBound || !TryResolveActions())
             {
                 return;
@@ -173,6 +176,7 @@ namespace BooterBigArm.TopDown3D
             actionsBound = true;
             BindAlgaeActions();
             BindInventoryActions();
+            BindAnimationCommands();
             SetPromptDevice(FindAvailableGamepad() != null
                 ? TopDown3DPromptDevice.Gamepad
                 : TopDown3DPromptDevice.KeyboardMouse);
@@ -181,6 +185,7 @@ namespace BooterBigArm.TopDown3D
 
         private void UnbindActions()
         {
+            UnbindAnimationCommands();
             UnbindAlgaeActions();
             UnbindInventoryActions();
             if (menuAction != null) menuAction.performed -= HandleMenu;
@@ -440,9 +445,10 @@ namespace BooterBigArm.TopDown3D
             menuRequested = menuBackRequested = false;
             if (toggle) MenuToggleRequested?.Invoke();
             else if (back) UiCancelRequested?.Invoke();
-            var itemCommand = ResolveGameplayItemInput(toggle || back);
-            ResolveAlgaeInput(toggle || back || itemCommand);
-            ResolveCargoInput(toggle || back || itemCommand);
+            var animationCommand=ResolveAnimationCommands(toggle || back);
+            var itemCommand = ResolveGameplayItemInput(toggle || back || animationCommand);
+            ResolveAlgaeInput(toggle || back || itemCommand || animationCommand);
+            ResolveCargoInput(toggle || back || itemCommand || animationCommand);
         }
 
         public void EnterSystemMenuMode() => SetMode(TopDown3DInputMode.SystemMenu);
@@ -484,6 +490,7 @@ namespace BooterBigArm.TopDown3D
 
             // System remains enabled across modal transitions so a held opener is not canceled.
             var previousMode = Mode;
+            DisarmAnimationCommands();
             DisarmAlgae();
             if (mode == TopDown3DInputMode.CampPlacement)
             {
@@ -619,6 +626,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleDeviceChange(InputDevice device, InputDeviceChange change)
         {
+            DisarmAnimationCommands();
             DisarmAlgae();
             if (!(device is Gamepad))
             {

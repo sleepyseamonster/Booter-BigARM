@@ -64,6 +64,21 @@ namespace BooterBigArm.TopDown3D
             RefreshNavigation();
         }
 
+        public void RegisterExtraPanel(string key,GameObject panel)
+        {
+            if(safe == null || panel == null || panels.ContainsKey(key)) throw new InvalidOperationException("Register one authored panel after menu initialization.");
+            foreach(var button in panel.GetComponentsInChildren<Button>(true))
+                if(buttons.ContainsKey(button.name)) throw new InvalidOperationException("Extra menu controls need unique names.");
+            panel.transform.SetParent(safe,false);panels.Add(key,panel);panel.SetActive(false);
+            foreach(var button in panel.GetComponentsInChildren<Button>(true))
+            {
+                buttons.Add(button.name,button);var command=button.name;button.onClick.AddListener(()=>Command?.Invoke(command));
+            }
+            foreach(var label in panel.GetComponentsInChildren<Text>(true))
+            {if(!texts.ContainsKey(label.name))texts.Add(label.name,label);fontSizes[label]=label.fontSize;}
+            ApplySettings(new TopDown3DMenuSettings{largeText=large,reducedMotion=reducedMotion});
+        }
+
         public void SetInputReady(bool ready) => group.interactable = ready && activePanel != null;
         public void SetText(string key, string value)
         {

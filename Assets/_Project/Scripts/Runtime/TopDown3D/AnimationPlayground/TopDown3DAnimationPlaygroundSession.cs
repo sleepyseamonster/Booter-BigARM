@@ -14,7 +14,12 @@ namespace BooterBigArm.TopDown3D
         public const string ScenePath = "Assets/_Project/Scenes/Reference/CampLoopTesting.unity";
         private static readonly Dictionary<int, TopDown3DAnimationPlaygroundSession> Sessions = new();
         [SerializeField] private TopDown3DAnimationPlaygroundBindings bindings;
+        [SerializeField] private AnimationPlaygroundCatalog catalog;
+        [SerializeField] private GameObject palettePrefab;
         public TopDown3DAnimationPlaygroundBindings Bindings => bindings;
+        public AnimationPlaygroundCatalog Catalog => catalog;
+        public GameObject PalettePrefab => palettePrefab;
+        public void ConfigurePresentation(AnimationPlaygroundCatalog value,GameObject prefab){catalog=value;palettePrefab=prefab;}
         public AnimationPlaygroundReadiness Readiness { get; private set; }
         public string UnavailableReason { get; private set; }
         public bool IsLab => MatchesLabIdentity(gameObject.scene.path, true);
