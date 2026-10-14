@@ -454,6 +454,7 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
+            AdvanceCrouchRecovery();
             if (PresentAnimationAction()) return;
             if (PresentCrouchPose()) return;
 

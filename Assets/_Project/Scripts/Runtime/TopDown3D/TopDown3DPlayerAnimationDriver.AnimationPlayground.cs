@@ -18,7 +18,7 @@ namespace BooterBigArm.TopDown3D
         public bool TryBeginAnimationPresentation(object owner, AnimationClip clip, bool preview = false)
         {
             if (owner == null || clip == null || animationPresentationOwner != null || !playableGraph.IsValid()
-                || IsGathering || campIndex >= 0) return false;
+                || IsGathering || campIndex >= 0 || crouchRecoveryOwned) return false;
             animationActionPlayable = AnimationClipPlayable.Create(playableGraph, clip);
             animationActionPlayable.SetApplyFootIK(false);
             animationActionPlayable.SetApplyPlayableIK(false);

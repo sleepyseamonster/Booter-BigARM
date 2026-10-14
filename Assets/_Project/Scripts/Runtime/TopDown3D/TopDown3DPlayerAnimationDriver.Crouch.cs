@@ -14,6 +14,8 @@ namespace BooterBigArm.TopDown3D
         private readonly AnimationClipPlayable[] crouchClips=new AnimationClipPlayable[5];
         private readonly float[] crouchWeights=new float[5];
         private AnimationPlaygroundCrouchPose crouchPose;
+        private bool crouchRecoveryOwned;
+        public bool CrouchRecoveryOwned=>crouchRecoveryOwned;
         public bool CrouchPresentationOwned=>crouchPresentationOwner!=null;
         public bool TryBeginCrouchPresentation(object owner,AnimationPlaygroundCrouchProfile profile)
         {
@@ -41,6 +43,23 @@ namespace BooterBigArm.TopDown3D
         }
         public bool EndCrouchPresentation(object owner)
         {if(owner==null || !ReferenceEquals(owner,crouchPresentationOwner))return false;ReleaseCrouchPresentation();return true;}
+        public bool TryAdoptCrouchRecovery(object previousOwner,object postureOwner)
+        {
+            if(previousOwner==null || !ReferenceEquals(previousOwner,crouchPresentationOwner) || motor==null
+                || !motor.TransferAnimationPostureOwner(postureOwner,this))return false;
+            crouchPresentationOwner=this;crouchRecoveryOwned=true;motor.SetLaboratoryPostureSuspended(this,true);return true;
+        }
+        private void AdvanceCrouchRecovery()
+        {
+            if(!crouchRecoveryOwned || motor==null)return;
+            if(!motor.IsAnimationPostureOwner(this))
+            {
+                try{motor.BindAnimationPostureOwner(this);motor.SetLaboratoryPostureSuspended(this,true);}
+                catch(InvalidOperationException){return;}
+            }
+            if(!motor.TryRestoreAnimationPosture(this))return;
+            motor.ReleaseAnimationPostureOwner(this);ReleaseCrouchPresentation();
+        }
         private bool PresentCrouchPose()
         {
             if(crouchPresentationOwner==null || animationPresentationOwner!=null || IsGathering || campIndex>=0 || motor.AnimationPosture!=AnimationPlaygroundPosture.Crouched)
@@ -78,7 +97,7 @@ namespace BooterBigArm.TopDown3D
                 for(var i=0;i<crouchClips.Length;i++)if(crouchClips[i].IsValid())playableGraph.DestroyPlayable(crouchClips[i]);
                 playableGraph.DestroyPlayable(crouchMixer);
             }
-            Array.Clear(crouchClips,0,crouchClips.Length);crouchMixer=default;crouchPresentationOwner=null;crouchProfile=null;
+            Array.Clear(crouchClips,0,crouchClips.Length);crouchMixer=default;crouchPresentationOwner=null;crouchProfile=null;crouchRecoveryOwned=false;
             if(mixer.IsValid())mixer.SetInputWeight(IdleIndex,1);
             if(visualInstance!=null)visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition,Quaternion.Euler(visualLocalEulerAngles));
             ResetTransitionState(TopDown3DLocomotionState.Idle);locomotionPhase=0;smoothedPlanarSpeed=0;lastActionIndex=-1;oneShotContactEmitted=false;

@@ -172,5 +172,36 @@ namespace BooterBigArm.Tests
             Assert.That(Call(driver,"PresentCrouchPose"),Is.EqualTo(true));var nested=(AnimationMixerPlayable)mixer.GetInput(22);
             Assert.That(nested.GetInputWeight(0),Is.EqualTo(1));Assert.That(nested.GetInputWeight(1),Is.Zero);
         }
+        [Test] public void DisposalBelowACeilingTransfersTheSafePoseUntilStandingIsClear()
+        {
+            Enter();PutRoof();var position=actor.transform.position;
+            crouch.DisposeOwnedServices();coordinator.DisposeOwnedServices();
+            Assert.That(driver.CrouchRecoveryOwned,Is.True);Assert.That(driver.CrouchPresentationOwned,Is.True);
+            Assert.That(motor.IsAnimationPostureOwner(driver),Is.True);Assert.That(motor.LaboratoryStandingActionsAllowed,Is.False);
+            Assert.That(driver.TryBeginAnimationPresentation(new object(),profile.Get(AnimationPlaygroundCrouchRole.Exit).clip),Is.False);
+            Call(driver,"AdvanceCrouchRecovery");Assert.That(driver.CrouchRecoveryOwned,Is.True);
+            Assert.That(actor.transform.position,Is.EqualTo(position));
+            Object.DestroyImmediate(roof);Physics.SyncTransforms();Call(driver,"AdvanceCrouchRecovery");
+            Assert.That(driver.CrouchRecoveryOwned,Is.False);Assert.That(driver.CrouchPresentationOwned,Is.False);
+            Assert.That(motor.AnimationPosture,Is.EqualTo(AnimationPlaygroundPosture.Standing));
+            Assert.That(motor.IsAnimationPostureOwner(driver),Is.False);Assert.That(actor.transform.position,Is.EqualTo(position));
+        }
+        [Test] public void DisableBelowACeilingSuspendsPostureUntilTheControllerResumes()
+        {
+            Enter();PutRoof();Call(crouch,"OnDisable");
+            Assert.That(driver.CrouchPresentationOwned,Is.True);Assert.That(crouch.TryToggle(),Is.False);
+            Call(crouch,"OnEnable");Assert.That(crouch.State,Is.EqualTo(AnimationPlaygroundCrouchState.Crouched));
+            Assert.That(crouch.TryToggle(),Is.False);Assert.That(crouch.LastFailure,Does.Contain("obstruction"));
+            Object.DestroyImmediate(roof);Physics.SyncTransforms();Assert.That(crouch.TryToggle(),Is.True);FinishTransition();
+            Assert.That(crouch.State,Is.EqualTo(AnimationPlaygroundCrouchState.Standing));
+        }
+        [Test] public void DisableInClearSpaceRestoresStandingAndKeepsOrdinaryMovementAvailable()
+        {
+            var input=actor.AddComponent<TopDown3DInputRouter>();var camera=new GameObject("Clear movement basis");
+            camera.transform.SetParent(actor.transform,false);motor.Configure(input,camera.transform);motor.BlockUnqualifiedLaboratoryTraversal(coordinator);
+            Enter();Call(crouch,"OnDisable");Assert.That(crouch.State,Is.EqualTo(AnimationPlaygroundCrouchState.Standing));
+            Assert.That(driver.CrouchPresentationOwned,Is.False);Assert.That(crouch.TryCancel(),Is.False);
+            Set(input,"<MoveValue>k__BackingField",Vector2.right);Call(motor,"FixedUpdate");Assert.That(motor.Velocity.x,Is.GreaterThan(0));
+        }
     }
 }

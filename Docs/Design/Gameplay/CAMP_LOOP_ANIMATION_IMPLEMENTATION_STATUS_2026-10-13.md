@@ -67,6 +67,12 @@ The final 259-pose intermediate-grid check clears the reference floor within 0.3
 
 Physical crouch input remains gated while transition boundaries, interruption/disposal behavior, equipment and terrain contact acceptance are unfinished. Other physical families and requested motion gaps remain in scope. All twelve stations are now installed in the author scene; see [grounding and installation evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/CrouchGrounding/README.md).
 
+## Crouch interruption and boundaries — October 14
+
+Blocked controller disposal now transfers the safe pose and posture lease to the existing driver until standing clearance returns, without teleporting Booter. Controller disable/re-enable preserves a blocked crouch and allows ordinary movement when standing is clear. The private physical gate remains closed.
+
+Sixteen measured boundaries expose hard-cut jumps of about 12–15cm at the feet and up to 82cm at a hand. Owned transition blending and its floor/body envelope qualification are the next dependency before enabling the family. See [lifecycle and boundary evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/CrouchLifecycle/README.md).
+
 ## Validation and source boundaries
 
 File restoration fixtures pass twelve checks. The isolated Unity candidate at `D:\BooterBigArmValidation\AnimationPlayground20261013` contains the Camp Loop dependency closure and active scripts/settings/UI/character/test assets; it is a validation copy, not a Git worktree. Initial session and targeting regressions pass 44 tests. All 25 menu regressions pass after the candidate's missing SystemMenu prefab dependency was restored. Installed-session checks are repeated against the saved scene. See the [foundation evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Foundations/README.md).

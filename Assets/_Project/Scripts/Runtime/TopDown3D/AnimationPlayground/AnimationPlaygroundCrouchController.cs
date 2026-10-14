@@ -16,7 +16,7 @@ namespace BooterBigArm.TopDown3D
         private Func<bool> paused,otherActivity;
         private readonly AnimationPlaygroundCrouchClock clock=new();
         private Vector3 facing;
-        private bool exitRequested,disposed,resetPending;
+        private bool exitRequested,disposed,resetPending,suspended;
         private float contactSpeed;
         public AnimationPlaygroundCrouchState State {get;private set;}
         public bool Active=>State!=AnimationPlaygroundCrouchState.Standing;
@@ -38,7 +38,7 @@ namespace BooterBigArm.TopDown3D
         public bool TryToggle()
         {
             LastFailure=null;
-            if(disposed || resetPending || !isActiveAndEnabled || motor==null || paused?.Invoke()==true)return Fail("Crouch input is unavailable.");
+            if(disposed || suspended || resetPending || !isActiveAndEnabled || motor==null || paused?.Invoke()==true)return Fail("Crouch input is unavailable.");
             if(!profile.Validate(out var qualification))return Fail(qualification);
             if(Transitioning)return Fail("Finish the posture transition first.");
             if(coordinator.IsBusy || otherActivity?.Invoke()==true)return Fail("Finish the current activity first.");
@@ -52,6 +52,7 @@ namespace BooterBigArm.TopDown3D
 
         public bool TryCancel()
         {
+            if(disposed || suspended || !isActiveAndEnabled)return Fail("Crouch input is unavailable.");
             if(resetPending)return Fail("Finish the safe actor reset first.");
             if(State==AnimationPlaygroundCrouchState.Entering){exitRequested=true;return true;}
             if(State==AnimationPlaygroundCrouchState.Exiting)return true;
@@ -116,7 +117,7 @@ namespace BooterBigArm.TopDown3D
 
         private void AdvanceLocomotion()
         {
-            if(resetPending)return;
+            if(resetPending || suspended || !isActiveAndEnabled)return;
             if(Transitioning && !coordinator.IsBusy){LastFailure=coordinator.LastFailure;HoldCrouch();}
             if(State!=AnimationPlaygroundCrouchState.Crouched || coordinator.IsBusy)return;
             var velocity=motor.LaboratoryMeasuredVelocity;contactSpeed=Vector3.ProjectOnPlane(velocity,Vector3.up).magnitude;
@@ -158,12 +159,32 @@ namespace BooterBigArm.TopDown3D
             if(motor!=null)
             {
                 if(Transitioning)coordinator.Cancel();
-                driver.EndCrouchPresentation(this);motor.SetLaboratoryCrouchFacing(coordinator,facing,false);
+                if(Active && !motor.TryRestoreAnimationPosture(coordinator))
+                {
+                    HoldCrouch();
+                    if(!driver.TryAdoptCrouchRecovery(this,coordinator))
+                        throw new InvalidOperationException("The interrupted crouch pose could not transfer its safe recovery ownership.");
+                }
+                else {driver.EndCrouchPresentation(this);motor.SetLaboratoryCrouchFacing(coordinator,facing,false);motor.SetLaboratoryPostureSuspended(coordinator,false);}
                 clock.Reset();State=AnimationPlaygroundCrouchState.Standing;
             }
             if(motor!=null){motor.AnimationLocomotionAdvanced-=AdvanceLocomotion;motor.TryRestoreAnimationPosture(coordinator);}
             if(coordinator!=null)coordinator.ActionCompleted-=CompleteTransition;
             clock.Contact-=Contact;registry?.Unregister(this);motor=null;driver=null;coordinator=null;
+        }
+        private void OnDisable()
+        {
+            if(motor==null || disposed || !Active)return;
+            if(Transitioning)coordinator.Cancel();
+            if(motor.TryRestoreAnimationPosture(coordinator))
+            {driver.EndCrouchPresentation(this);State=AnimationPlaygroundCrouchState.Standing;motor.SetLaboratoryCrouchFacing(coordinator,facing,false);}
+            else HoldCrouch();
+            suspended=true;motor.SetLaboratoryPostureSuspended(coordinator,Active);clock.Reset();
+        }
+        private void OnEnable()
+        {
+            if(motor==null || disposed || !suspended)return;
+            suspended=false;motor.SetLaboratoryPostureSuspended(coordinator,false);clock.Reset();
         }
         private void OnDestroy()=>DisposeOwnedServices();
     }

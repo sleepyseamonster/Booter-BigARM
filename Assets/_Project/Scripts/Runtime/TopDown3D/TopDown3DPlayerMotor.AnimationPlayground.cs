@@ -42,7 +42,16 @@ namespace BooterBigArm.TopDown3D
         private bool laboratoryCrouchFacingLocked;
         private Vector3 laboratoryCrouchFacing;
         private Vector3 laboratoryPreviousPosition;
+        private bool laboratoryPostureSuspended;
         public Vector3 LaboratoryMeasuredVelocity {get;private set;}
+        public bool IsAnimationPostureOwner(object owner)=>owner!=null && ReferenceEquals(owner,animationPostureOwner);
+        public bool TransferAnimationPostureOwner(object owner,object successor)
+        {
+            if(!IsAnimationPostureOwner(owner) || successor==null || animationMotionOwner!=null)return false;
+            animationPostureOwner=successor;return true;
+        }
+        public bool SetLaboratoryPostureSuspended(object owner,bool value)
+        {if(!IsAnimationPostureOwner(owner))return false;laboratoryPostureSuspended=value;return true;}
         public AnimationPlaygroundMotionMode AnimationMotionMode {get;private set;}
         public AnimationPlaygroundPosture AnimationPosture {get;private set;}
         public AnimationPlaygroundMotorSnapshot AnimationSnapshot {get;private set;}
@@ -101,10 +110,12 @@ namespace BooterBigArm.TopDown3D
         public bool ReleaseAnimationPostureOwner(object owner)
         {
             if(owner==null || !ReferenceEquals(owner,animationPostureOwner))return false;
-            TryRestoreAnimationPosture(owner);animationPostureOwner=null;laboratoryBlocksLegacyTraversal=false;laboratoryCrouchFacingLocked=false;return true;
+            if(!TryRestoreAnimationPosture(owner))return false;
+            animationPostureOwner=null;laboratoryBlocksLegacyTraversal=false;laboratoryCrouchFacingLocked=false;laboratoryPostureSuspended=false;return true;
         }
         private float AnimationLocomotionSpeed(float normalSpeed)
         {
+            if(laboratoryPostureSuspended)return 0;
             if(AnimationPosture==AnimationPlaygroundPosture.Prone)return 0;
             if(AnimationPosture==AnimationPlaygroundPosture.Crouched)return animationCrouchSpeed;
             if(animationPostureOwner==null)return normalSpeed;
@@ -194,6 +205,7 @@ namespace BooterBigArm.TopDown3D
             capsule.height=animationOriginalHeight;capsule.radius=animationOriginalRadius;capsule.center=animationOriginalCenter;
             AnimationPosture=AnimationPlaygroundPosture.Standing;
             laboratoryCrouchFacingLocked=false;
+            laboratoryPostureSuspended=false;
             FacePlanarDirection(facing);
             return true;
         }
@@ -278,6 +290,7 @@ namespace BooterBigArm.TopDown3D
             {capsule.height=animationOriginalHeight;capsule.radius=animationOriginalRadius;capsule.center=animationOriginalCenter;AnimationPosture=AnimationPlaygroundPosture.Standing;}
             animationPostureOwner=null;
             laboratoryCrouchFacingLocked=false;
+            laboratoryPostureSuspended=false;
         }
         private static bool Finite(Vector3 value)=>float.IsFinite(value.x) && float.IsFinite(value.y) && float.IsFinite(value.z);
     }
