@@ -14,6 +14,9 @@ namespace BooterBigArm.TopDown3D
         private readonly List<AnimationClipPlayable> poseBlendClips=new();
         private double poseBlendElapsed;
         private float poseBlendDuration,poseBlendSourceHeight;
+        private AnimationPlaygroundFootProjection laboratoryFootProjection;
+        private AnimationPlaygroundFootProjection.Sampler footProjectionSampler;
+        public float LastPoseBlendGroundCorrection {get;private set;}
         public bool PoseBlendOwned=>poseBlendOwner!=null;
         private readonly struct PoseSource
         {
@@ -81,6 +84,16 @@ namespace BooterBigArm.TopDown3D
             mixer.SetInputWeight(PoseBlendInputIndex,1-amount);
             var height=Mathf.Lerp(poseBlendSourceHeight,visualInstance.transform.localPosition.y-visualLocalPosition.y,amount);
             visualInstance.transform.localPosition=visualLocalPosition+Vector3.up*height;
+            LastPoseBlendGroundCorrection=0;
+            if(footProjectionSampler!=null)
+            {
+                playableGraph.Evaluate(0);
+                var minimum=footProjectionSampler.MinimumWorldY();
+                var plane=transform.TransformPoint(Vector3.up*laboratoryFeetPlane).y;
+                var correction=Mathf.Max(0,plane-minimum);
+                if(!float.IsFinite(correction) || correction>.18f)throw new InvalidOperationException("The transition ground correction exceeds its qualified envelope.");
+                visualInstance.transform.localPosition+=Vector3.up*correction;LastPoseBlendGroundCorrection=correction;
+            }
             if(amount>=1)ReleasePoseBlend();
         }
         private bool PresentStandingPoseBlend()

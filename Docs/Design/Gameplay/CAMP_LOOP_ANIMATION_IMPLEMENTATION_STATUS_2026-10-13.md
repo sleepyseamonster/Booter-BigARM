@@ -79,6 +79,14 @@ The existing graph now freezes its active weighted clip sources and blends them 
 
 The actual runtime blend fixture retains protected capsule clearance but exposes up to 14.3mm of foot penetration. Transition-specific grounding remains required before enabling physical crouching; the private qualification flags remain false. See [pose transition evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/PoseTransitions/README.md). Remaining families and requested motion gaps stay in the active goal.
 
+## Transition foot projection — October 14
+
+A private paired foot cache now corrects arbitrary outgoing pose snapshots in the existing graph. Matching the renderer's skin-weight quality resolves the earlier CPU prediction error without changing project settings. Across 124 measured transitions, soles clear the reference floor within 0.001mm and the cache agrees with CPU skinning within one micrometre. The 98-pair private checkpoint captures and dry-restores the projection/binding without changing original source files or metadata.
+
+The author clarified that the visible capsule is a placeholder. The actual CapsuleCollider remains an adjustable collision approximation; the driver already hides the placeholder renderer when the character initializes. A roughly 3cm upper-body extension in two standing stop snapshots is recorded for fitting and visual review, rather than adding an input gate. Real overhead/wall clearance still controls posture changes.
+
+The equipped-pose check and physical family handoff continue. See [projection evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/FootProjection/README.md). Other physical families and requested motion gaps remain in the active goal.
+
 ## Validation and source boundaries
 
 File restoration fixtures pass twelve checks. The isolated Unity candidate at `D:\BooterBigArmValidation\AnimationPlayground20261013` contains the Camp Loop dependency closure and active scripts/settings/UI/character/test assets; it is a validation copy, not a Git worktree. Initial session and targeting regressions pass 44 tests. All 25 menu regressions pass after the candidate's missing SystemMenu prefab dependency was restored. Installed-session checks are repeated against the saved scene. See the [foundation evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Foundations/README.md).

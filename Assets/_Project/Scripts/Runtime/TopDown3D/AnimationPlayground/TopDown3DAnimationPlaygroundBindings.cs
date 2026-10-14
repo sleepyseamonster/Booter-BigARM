@@ -25,6 +25,7 @@ namespace BooterBigArm.TopDown3D
         public Avatar sourceAvatar, targetAvatar;
         public TopDown3DLocomotionClipProfile locomotion;
         public AnimationPlaygroundCrouchProfile crouch;
+        public AnimationPlaygroundFootProjection footProjection;
         public float visualScale = 1f;
         public Vector3 visualOffset;
         public Material bodyMaterial;
@@ -68,6 +69,9 @@ namespace BooterBigArm.TopDown3D
             else if (!float.IsFinite(slowWalkSpeed) || !float.IsFinite(runSpeed) || !float.IsFinite(sprintSpeed)
                 || slowWalkSpeed <= 0 || runSpeed < slowWalkSpeed || sprintSpeed < runSpeed)
                 reason = "Laboratory locomotion speeds must be finite and ordered.";
+            else if(footProjection!=null && !footProjection.Validate(targetModel,out reason))return false;
+            else if(crouch!=null && (crouch.contactsQualified || crouch.groundingQualified) && footProjection==null)
+                reason="A qualified crouch family requires its paired transition foot projection.";
             return reason == null;
         }
     }

@@ -1,0 +1,997 @@
+{
+    "state": "runtime-blend-envelope-not-physical-qualified",
+    "blends": [
+        {
+            "name": "Boundary0Phase0",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.7915257215499879,
+            "maximumCapsuleGap": -0.19902761280536652,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.0021294355392456056
+        },
+        {
+            "name": "Boundary1Phase0",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.2355587482452393,
+            "maximumCapsuleGap": -0.07921403646469116,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.01430809497833252
+        },
+        {
+            "name": "Boundary2Phase0",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.2355587482452393,
+            "maximumCapsuleGap": -0.07921403646469116,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.010347306728363037
+        },
+        {
+            "name": "Boundary3Phase0",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.7938940525054932,
+            "maximumCapsuleGap": -0.012205660343170166,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.00024771690368652344
+        },
+        {
+            "name": "Boundary0Phase1",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.791408896446228,
+            "maximumCapsuleGap": -0.19902761280536652,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.0009081363677978516
+        },
+        {
+            "name": "Boundary1Phase1",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.2355587482452393,
+            "maximumCapsuleGap": -0.07921403646469116,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.01430809497833252
+        },
+        {
+            "name": "Boundary2Phase1",
+            "minimumSole": -0.9100002646446228,
+            "maximumBodyHeight": 1.2728276252746583,
+            "maximumCapsuleGap": -0.08098956942558289,
+            "maximumProjectionError": 7.748603820800781e-7,
+            "maximumGroundCorrection": 0.011725902557373047
+        },
+        {
+            "name": "Boundary3Phase1",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.7938940525054932,
+            "maximumCapsuleGap": -0.012205660343170166,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.00024771690368652344
+        },
+        {
+            "name": "Boundary0Phase2",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.7916969060897828,
+            "maximumCapsuleGap": -0.19902761280536652,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.001220107078552246
+        },
+        {
+            "name": "Boundary1Phase2",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.2355587482452393,
+            "maximumCapsuleGap": -0.07921403646469116,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.01430809497833252
+        },
+        {
+            "name": "Boundary2Phase2",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.2732588052749634,
+            "maximumCapsuleGap": -0.08162248134613037,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.013340294361114502
+        },
+        {
+            "name": "Boundary3Phase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.7938940525054932,
+            "maximumCapsuleGap": -0.012205660343170166,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.00024771690368652344
+        },
+        {
+            "name": "Boundary0Phase3",
+            "minimumSole": -0.9100003242492676,
+            "maximumBodyHeight": 1.7912564277648926,
+            "maximumCapsuleGap": -0.19902761280536652,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.0007782578468322754
+        },
+        {
+            "name": "Boundary1Phase3",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.2355587482452393,
+            "maximumCapsuleGap": -0.07921403646469116,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.01430809497833252
+        },
+        {
+            "name": "Boundary2Phase3",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.2409083843231202,
+            "maximumCapsuleGap": -0.0788615345954895,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.011655151844024659
+        },
+        {
+            "name": "Boundary3Phase3",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.7938940525054932,
+            "maximumCapsuleGap": -0.012205660343170166,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.00024771690368652344
+        },
+        {
+            "name": "WalkToEnterPhase0",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.7913339138031006,
+            "maximumCapsuleGap": -0.19902761280536652,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.0001900792121887207
+        },
+        {
+            "name": "WalkToEnterPhase1",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.7918180227279664,
+            "maximumCapsuleGap": -0.1973433941602707,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.0035905838012695314
+        },
+        {
+            "name": "WalkToEnterPhase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.7913339138031006,
+            "maximumCapsuleGap": -0.19902761280536652,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.0002015829086303711
+        },
+        {
+            "name": "WalkToEnterPhase3",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.7918177843093873,
+            "maximumCapsuleGap": -0.19734792411327363,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.0035920143127441408
+        },
+        {
+            "name": "RunToEnterPhase0",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.8172295093536378,
+            "maximumCapsuleGap": -0.12838798761367799,
+            "maximumProjectionError": 7.748603820800781e-7,
+            "maximumGroundCorrection": 0.06205636262893677
+        },
+        {
+            "name": "RunToEnterPhase1",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.7932391166687012,
+            "maximumCapsuleGap": -0.1474948525428772,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.028235793113708497
+        },
+        {
+            "name": "RunToEnterPhase2",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.8172295093536378,
+            "maximumCapsuleGap": -0.12838786840438844,
+            "maximumProjectionError": 7.152557373046875e-7,
+            "maximumGroundCorrection": 0.06205642223358154
+        },
+        {
+            "name": "RunToEnterPhase3",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.7932391166687012,
+            "maximumCapsuleGap": -0.1474948525428772,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.028235793113708497
+        },
+        {
+            "name": "SprintToEnterPhase0",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.7909798622131348,
+            "maximumCapsuleGap": -0.1039239764213562,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.019276738166809083
+        },
+        {
+            "name": "SprintToEnterPhase1",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.796930193901062,
+            "maximumCapsuleGap": -0.11210542917251587,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.04675734043121338
+        },
+        {
+            "name": "SprintToEnterPhase2",
+            "minimumSole": -0.9100000262260437,
+            "maximumBodyHeight": 1.7909777164459229,
+            "maximumCapsuleGap": -0.1047528088092804,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.03428173065185547
+        },
+        {
+            "name": "SprintToEnterPhase3",
+            "minimumSole": -0.9100000262260437,
+            "maximumBodyHeight": 1.7909696102142335,
+            "maximumCapsuleGap": -0.1166122555732727,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.02455747127532959
+        },
+        {
+            "name": "DirectionalLeftToEnterPhase0",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.8168632984161378,
+            "maximumCapsuleGap": -0.16605551540851594,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.04511141777038574
+        },
+        {
+            "name": "DirectionalLeftToEnterPhase1",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.7924747467041016,
+            "maximumCapsuleGap": -0.14242401719093324,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.021871507167816163
+        },
+        {
+            "name": "DirectionalLeftToEnterPhase2",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.8168632984161378,
+            "maximumCapsuleGap": -0.16605551540851594,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.04511141777038574
+        },
+        {
+            "name": "DirectionalLeftToEnterPhase3",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.7924747467041016,
+            "maximumCapsuleGap": -0.14242401719093324,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.021871507167816163
+        },
+        {
+            "name": "DirectionalRightToEnterPhase0",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.7910654544830323,
+            "maximumCapsuleGap": -0.17198437452316285,
+            "maximumProjectionError": 7.152557373046875e-7,
+            "maximumGroundCorrection": 0.002862691879272461
+        },
+        {
+            "name": "DirectionalRightToEnterPhase1",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.791003704071045,
+            "maximumCapsuleGap": -0.1798030287027359,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.011704742908477784
+        },
+        {
+            "name": "DirectionalRightToEnterPhase2",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.7910654544830323,
+            "maximumCapsuleGap": -0.17198438942432404,
+            "maximumProjectionError": 7.152557373046875e-7,
+            "maximumGroundCorrection": 0.0028626322746276857
+        },
+        {
+            "name": "DirectionalRightToEnterPhase3",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.791003704071045,
+            "maximumCapsuleGap": -0.17980308830738069,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.011705279350280762
+        },
+        {
+            "name": "StartLeftToEnterPhase0",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.8032796382904053,
+            "maximumCapsuleGap": -0.1889772117137909,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.0006418824195861816
+        },
+        {
+            "name": "StartLeftToEnterPhase1",
+            "minimumSole": -0.9100000262260437,
+            "maximumBodyHeight": 1.8027288913726807,
+            "maximumCapsuleGap": -0.1393205225467682,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.022594153881072999
+        },
+        {
+            "name": "StartLeftToEnterPhase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.7968339920043946,
+            "maximumCapsuleGap": -0.09977760910987854,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.016093432903289796
+        },
+        {
+            "name": "StartLeftToEnterPhase3",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.8066353797912598,
+            "maximumCapsuleGap": -0.15546661615371705,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.02693808078765869
+        },
+        {
+            "name": "StartRightToEnterPhase0",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.8032901287078858,
+            "maximumCapsuleGap": -0.18874359130859376,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.0023751258850097658
+        },
+        {
+            "name": "StartRightToEnterPhase1",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.791818618774414,
+            "maximumCapsuleGap": -0.1408349573612213,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.007756829261779785
+        },
+        {
+            "name": "StartRightToEnterPhase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.816760778427124,
+            "maximumCapsuleGap": -0.09878093004226685,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.03691953420639038
+        },
+        {
+            "name": "StartRightToEnterPhase3",
+            "minimumSole": -0.9100003242492676,
+            "maximumBodyHeight": 1.7942922115325928,
+            "maximumCapsuleGap": -0.15583810210227967,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.01366502046585083
+        },
+        {
+            "name": "StopLeftToEnterPhase0",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.7910020351409913,
+            "maximumCapsuleGap": -0.16155581176280976,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.005718886852264404
+        },
+        {
+            "name": "StopLeftToEnterPhase1",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.7961933612823487,
+            "maximumCapsuleGap": -0.1895279735326767,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.012782812118530274
+        },
+        {
+            "name": "StopLeftToEnterPhase2",
+            "minimumSole": -0.9100000262260437,
+            "maximumBodyHeight": 1.7917814254760743,
+            "maximumCapsuleGap": 0.02945101261138916,
+            "maximumProjectionError": 7.152557373046875e-7,
+            "maximumGroundCorrection": 0.0075876712799072269
+        },
+        {
+            "name": "StopLeftToEnterPhase3",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.8003630638122559,
+            "maximumCapsuleGap": -0.19316136837005616,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.0017910003662109376
+        },
+        {
+            "name": "StopRightToEnterPhase0",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.791917324066162,
+            "maximumCapsuleGap": -0.16306571662425996,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.008475542068481446
+        },
+        {
+            "name": "StopRightToEnterPhase1",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.800832986831665,
+            "maximumCapsuleGap": -0.18815355002880097,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.016712963581085206
+        },
+        {
+            "name": "StopRightToEnterPhase2",
+            "minimumSole": -0.9100000262260437,
+            "maximumBodyHeight": 1.7911150455474854,
+            "maximumCapsuleGap": 0.03452366590499878,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.0004265308380126953
+        },
+        {
+            "name": "StopRightToEnterPhase3",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.8022332191467286,
+            "maximumCapsuleGap": -0.19209952652454377,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.0035690665245056154
+        },
+        {
+            "name": "PivotLeftToEnterPhase0",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.7910020351409913,
+            "maximumCapsuleGap": -0.1615557074546814,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.005717873573303223
+        },
+        {
+            "name": "PivotLeftToEnterPhase1",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.7912989854812623,
+            "maximumCapsuleGap": -0.1563105583190918,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.03862571716308594
+        },
+        {
+            "name": "PivotLeftToEnterPhase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.79103422164917,
+            "maximumCapsuleGap": -0.14064249396324159,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.0026590824127197267
+        },
+        {
+            "name": "PivotLeftToEnterPhase3",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.7910428047180176,
+            "maximumCapsuleGap": -0.19902761280536652,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.0028846263885498049
+        },
+        {
+            "name": "PivotRightToEnterPhase0",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.7919164896011353,
+            "maximumCapsuleGap": -0.1630655974149704,
+            "maximumProjectionError": 4.76837158203125e-7,
+            "maximumGroundCorrection": 0.008472919464111328
+        },
+        {
+            "name": "PivotRightToEnterPhase1",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.791001558303833,
+            "maximumCapsuleGap": -0.15715928375720979,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.020541846752166749
+        },
+        {
+            "name": "PivotRightToEnterPhase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.791169285774231,
+            "maximumCapsuleGap": -0.14251279830932618,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.007543087005615234
+        },
+        {
+            "name": "PivotRightToEnterPhase3",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.7920602560043336,
+            "maximumCapsuleGap": -0.19902761280536652,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.006909966468811035
+        },
+        {
+            "name": "CrouchDirection0Weight1ToExitPhase0",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.3369101285934449,
+            "maximumCapsuleGap": -0.05649450421333313,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.025329768657684327
+        },
+        {
+            "name": "CrouchDirection0Weight1ToExitPhase1",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.359263300895691,
+            "maximumCapsuleGap": -0.05895024538040161,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.013939619064331055
+        },
+        {
+            "name": "CrouchDirection0Weight1ToExitPhase2",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.3558614253997803,
+            "maximumCapsuleGap": -0.05789253115653992,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.026652157306671144
+        },
+        {
+            "name": "CrouchDirection0Weight1ToExitPhase3",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.3453929424285889,
+            "maximumCapsuleGap": -0.05752238631248474,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.016407907009124757
+        },
+        {
+            "name": "CrouchDirection0Weight2ToExitPhase0",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.4053623676300049,
+            "maximumCapsuleGap": -0.03637272119522095,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.047631919384002689
+        },
+        {
+            "name": "CrouchDirection0Weight2ToExitPhase1",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.4048690795898438,
+            "maximumCapsuleGap": -0.043458133935928348,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.026810765266418458
+        },
+        {
+            "name": "CrouchDirection0Weight2ToExitPhase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.4053065776824952,
+            "maximumCapsuleGap": -0.0363292396068573,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.04753410816192627
+        },
+        {
+            "name": "CrouchDirection0Weight2ToExitPhase3",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.4064929485321046,
+            "maximumCapsuleGap": -0.04368102550506592,
+            "maximumProjectionError": 4.76837158203125e-7,
+            "maximumGroundCorrection": 0.032806336879730228
+        },
+        {
+            "name": "CrouchDirection1Weight1ToExitPhase0",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.3446176052093506,
+            "maximumCapsuleGap": -0.05564671754837036,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.027080416679382325
+        },
+        {
+            "name": "CrouchDirection1Weight1ToExitPhase1",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.3586361408233643,
+            "maximumCapsuleGap": -0.05731990933418274,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.014055073261260987
+        },
+        {
+            "name": "CrouchDirection1Weight1ToExitPhase2",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.3632699251174927,
+            "maximumCapsuleGap": -0.057072460651397708,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.028353393077850343
+        },
+        {
+            "name": "CrouchDirection1Weight1ToExitPhase3",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.343658208847046,
+            "maximumCapsuleGap": -0.055871397256851199,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.015200972557067871
+        },
+        {
+            "name": "CrouchDirection1Weight2ToExitPhase0",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.4100749492645264,
+            "maximumCapsuleGap": -0.03559225797653198,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.053971946239471439
+        },
+        {
+            "name": "CrouchDirection1Weight2ToExitPhase1",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.407557487487793,
+            "maximumCapsuleGap": -0.04094472527503967,
+            "maximumProjectionError": 4.76837158203125e-7,
+            "maximumGroundCorrection": 0.026290059089660646
+        },
+        {
+            "name": "CrouchDirection1Weight2ToExitPhase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.4096941947937012,
+            "maximumCapsuleGap": -0.03546750545501709,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.05402189493179321
+        },
+        {
+            "name": "CrouchDirection1Weight2ToExitPhase3",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.4084618091583253,
+            "maximumCapsuleGap": -0.04096028208732605,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.029431045055389406
+        },
+        {
+            "name": "CrouchDirection2Weight1ToExitPhase0",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.3516526222229005,
+            "maximumCapsuleGap": -0.054913222789764407,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.028966426849365236
+        },
+        {
+            "name": "CrouchDirection2Weight1ToExitPhase1",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.3543317317962647,
+            "maximumCapsuleGap": -0.056097209453582767,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.01410365104675293
+        },
+        {
+            "name": "CrouchDirection2Weight1ToExitPhase2",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.3700664043426514,
+            "maximumCapsuleGap": -0.05634143948554993,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.03018486499786377
+        },
+        {
+            "name": "CrouchDirection2Weight1ToExitPhase3",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.3380635976791382,
+            "maximumCapsuleGap": -0.05475163459777832,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.013933718204498291
+        },
+        {
+            "name": "CrouchDirection2Weight2ToExitPhase0",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.413848638534546,
+            "maximumCapsuleGap": -0.03527459502220154,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.059770286083221439
+        },
+        {
+            "name": "CrouchDirection2Weight2ToExitPhase1",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.4074070453643799,
+            "maximumCapsuleGap": -0.03937986493110657,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.021269142627716066
+        },
+        {
+            "name": "CrouchDirection2Weight2ToExitPhase2",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.413280963897705,
+            "maximumCapsuleGap": -0.034986674785614017,
+            "maximumProjectionError": 4.76837158203125e-7,
+            "maximumGroundCorrection": 0.06002044677734375
+        },
+        {
+            "name": "CrouchDirection2Weight2ToExitPhase3",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.4074070453643799,
+            "maximumCapsuleGap": -0.03936570882797241,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.021161794662475587
+        },
+        {
+            "name": "CrouchDirection3Weight1ToExitPhase0",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.346696376800537,
+            "maximumCapsuleGap": -0.05519029498100281,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.028349995613098146
+        },
+        {
+            "name": "CrouchDirection3Weight1ToExitPhase1",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.3667051792144776,
+            "maximumCapsuleGap": -0.06057515740394592,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.0056948065757751469
+        },
+        {
+            "name": "CrouchDirection3Weight1ToExitPhase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.3653886318206788,
+            "maximumCapsuleGap": -0.05664226412773132,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.029536008834838868
+        },
+        {
+            "name": "CrouchDirection3Weight1ToExitPhase3",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.3504623174667359,
+            "maximumCapsuleGap": -0.05904853343963623,
+            "maximumProjectionError": 7.152557373046875e-7,
+            "maximumGroundCorrection": 0.005710005760192871
+        },
+        {
+            "name": "CrouchDirection3Weight2ToExitPhase0",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.4107961654663087,
+            "maximumCapsuleGap": -0.03517037630081177,
+            "maximumProjectionError": 4.76837158203125e-7,
+            "maximumGroundCorrection": 0.05710643529891968
+        },
+        {
+            "name": "CrouchDirection3Weight2ToExitPhase1",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.4144864082336426,
+            "maximumCapsuleGap": -0.04943540692329407,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.012268662452697754
+        },
+        {
+            "name": "CrouchDirection3Weight2ToExitPhase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.4103604555130005,
+            "maximumCapsuleGap": -0.035054951906204227,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.05724787712097168
+        },
+        {
+            "name": "CrouchDirection3Weight2ToExitPhase3",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.4144775867462159,
+            "maximumCapsuleGap": -0.04942810535430908,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.01222604513168335
+        },
+        {
+            "name": "CrouchDirection4Weight1ToExitPhase0",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.341381549835205,
+            "maximumCapsuleGap": -0.055545300245285037,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.02778106927871704
+        },
+        {
+            "name": "CrouchDirection4Weight1ToExitPhase1",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.3771121501922608,
+            "maximumCapsuleGap": -0.06510904431343079,
+            "maximumProjectionError": 4.76837158203125e-7,
+            "maximumGroundCorrection": 0.0007161498069763184
+        },
+        {
+            "name": "CrouchDirection4Weight1ToExitPhase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.3604211807250977,
+            "maximumCapsuleGap": -0.05700090527534485,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.0289304256439209
+        },
+        {
+            "name": "CrouchDirection4Weight1ToExitPhase3",
+            "minimumSole": -0.9100000262260437,
+            "maximumBodyHeight": 1.3609012365341187,
+            "maximumCapsuleGap": -0.06348708271980286,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.0008421540260314941
+        },
+        {
+            "name": "CrouchDirection4Weight2ToExitPhase0",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.4061353206634522,
+            "maximumCapsuleGap": -0.03534254431724548,
+            "maximumProjectionError": 7.748603820800781e-7,
+            "maximumGroundCorrection": 0.05467146635055542
+        },
+        {
+            "name": "CrouchDirection4Weight2ToExitPhase1",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.4110047817230225,
+            "maximumCapsuleGap": -0.05998590588569641,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.022926509380340577
+        },
+        {
+            "name": "CrouchDirection4Weight2ToExitPhase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.4061355590820313,
+            "maximumCapsuleGap": -0.03534254431724548,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.054671406745910647
+        },
+        {
+            "name": "CrouchDirection4Weight2ToExitPhase3",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.4110045433044434,
+            "maximumCapsuleGap": -0.05998590588569641,
+            "maximumProjectionError": 4.76837158203125e-7,
+            "maximumGroundCorrection": 0.0229264497756958
+        },
+        {
+            "name": "CrouchDirection5Weight1ToExitPhase0",
+            "minimumSole": -0.9100002646446228,
+            "maximumBodyHeight": 1.3479880094528199,
+            "maximumCapsuleGap": -0.05667981505393982,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.02698063850402832
+        },
+        {
+            "name": "CrouchDirection5Weight1ToExitPhase1",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.367307186126709,
+            "maximumCapsuleGap": -0.06554436683654785,
+            "maximumProjectionError": 6.556510925292969e-7,
+            "maximumGroundCorrection": 0.004466116428375244
+        },
+        {
+            "name": "CrouchDirection5Weight1ToExitPhase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.3679277896881104,
+            "maximumCapsuleGap": -0.05836471915245056,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.02800816297531128
+        },
+        {
+            "name": "CrouchDirection5Weight1ToExitPhase3",
+            "minimumSole": -0.9100000262260437,
+            "maximumBodyHeight": 1.3510209321975709,
+            "maximumCapsuleGap": -0.06399831175804138,
+            "maximumProjectionError": 4.76837158203125e-7,
+            "maximumGroundCorrection": 0.004507660865783691
+        },
+        {
+            "name": "CrouchDirection5Weight2ToExitPhase0",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.4183642864227296,
+            "maximumCapsuleGap": -0.037935107946395877,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.05298936367034912
+        },
+        {
+            "name": "CrouchDirection5Weight2ToExitPhase1",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.3985910415649415,
+            "maximumCapsuleGap": -0.0587766170501709,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.018403291702270509
+        },
+        {
+            "name": "CrouchDirection5Weight2ToExitPhase2",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.4198710918426514,
+            "maximumCapsuleGap": -0.038321465253829959,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.05298566818237305
+        },
+        {
+            "name": "CrouchDirection5Weight2ToExitPhase3",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.3985447883605958,
+            "maximumCapsuleGap": -0.058770060539245608,
+            "maximumProjectionError": 4.76837158203125e-7,
+            "maximumGroundCorrection": 0.018391311168670656
+        },
+        {
+            "name": "CrouchDirection6Weight1ToExitPhase0",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.3543710708618165,
+            "maximumCapsuleGap": -0.05787253379821777,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.026217997074127198
+        },
+        {
+            "name": "CrouchDirection6Weight1ToExitPhase1",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.3557008504867554,
+            "maximumCapsuleGap": -0.06680664420127869,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.00961083173751831
+        },
+        {
+            "name": "CrouchDirection6Weight1ToExitPhase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.375157117843628,
+            "maximumCapsuleGap": -0.0597972571849823,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.027131080627441407
+        },
+        {
+            "name": "CrouchDirection6Weight1ToExitPhase3",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.3393617868423463,
+            "maximumCapsuleGap": -0.06534141302108765,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.009549260139465332
+        },
+        {
+            "name": "CrouchDirection6Weight2ToExitPhase0",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.4295985698699952,
+            "maximumCapsuleGap": -0.040744125843048099,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.051650822162628177
+        },
+        {
+            "name": "CrouchDirection6Weight2ToExitPhase1",
+            "minimumSole": -0.9100002646446228,
+            "maximumBodyHeight": 1.3820085525512696,
+            "maximumCapsuleGap": -0.06112518906593323,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.02017080783843994
+        },
+        {
+            "name": "CrouchDirection6Weight2ToExitPhase2",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.4324195384979249,
+            "maximumCapsuleGap": -0.04156133532524109,
+            "maximumProjectionError": 5.960464477539063e-7,
+            "maximumGroundCorrection": 0.051735520362854007
+        },
+        {
+            "name": "CrouchDirection6Weight2ToExitPhase3",
+            "minimumSole": -0.910000205039978,
+            "maximumBodyHeight": 1.3819165229797364,
+            "maximumCapsuleGap": -0.06112241744995117,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.019976317882537843
+        },
+        {
+            "name": "CrouchDirection7Weight1ToExitPhase0",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.3458443880081177,
+            "maximumCapsuleGap": -0.05714529752731323,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.025735974311828615
+        },
+        {
+            "name": "CrouchDirection7Weight1ToExitPhase1",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.357884168624878,
+            "maximumCapsuleGap": -0.062285423278808597,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.012821733951568604
+        },
+        {
+            "name": "CrouchDirection7Weight1ToExitPhase2",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.365736961364746,
+            "maximumCapsuleGap": -0.058800458908081058,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.026850759983062745
+        },
+        {
+            "name": "CrouchDirection7Weight1ToExitPhase3",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.3427175283432007,
+            "maximumCapsuleGap": -0.06081494688987732,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.013984382152557373
+        },
+        {
+            "name": "CrouchDirection7Weight2ToExitPhase0",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.4176762104034424,
+            "maximumCapsuleGap": -0.038409650325775149,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.04983508586883545
+        },
+        {
+            "name": "CrouchDirection7Weight2ToExitPhase1",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.395514726638794,
+            "maximumCapsuleGap": -0.04983323812484741,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.027790963649749757
+        },
+        {
+            "name": "CrouchDirection7Weight2ToExitPhase2",
+            "minimumSole": -0.9100000858306885,
+            "maximumBodyHeight": 1.4191014766693116,
+            "maximumCapsuleGap": -0.03877079486846924,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.04984861612319946
+        },
+        {
+            "name": "CrouchDirection7Weight2ToExitPhase3",
+            "minimumSole": -0.9100001454353333,
+            "maximumBodyHeight": 1.396366834640503,
+            "maximumCapsuleGap": -0.049806028604507449,
+            "maximumProjectionError": 5.364418029785156e-7,
+            "maximumGroundCorrection": 0.03075885772705078
+        }
+    ]
+}

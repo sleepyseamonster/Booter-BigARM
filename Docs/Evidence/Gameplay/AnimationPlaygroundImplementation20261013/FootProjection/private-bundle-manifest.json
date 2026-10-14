@@ -1,0 +1,791 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Death/DeathFallingBackward.fbx",
+      "sha256": "af48a8c77122829ace96a18062ed3d492d32f01f9623e2f34a90d59f4febf8f4",
+      "bytes": 297776,
+      "guid": "4e5f4e69129d90f44ad8ed65fd81b178",
+      "meta_sha256": "098696df12399dcc38729792fcfedd8858df0ae5592f356ff8d5ada08b3d23b7",
+      "meta_bytes": 18140
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Death/DeathFallingForward.fbx",
+      "sha256": "af3552f7751616a3be873862544ffcf86b03057318482786ef73d3ef7823eba2",
+      "bytes": 295824,
+      "guid": "b28532ff7b2528a46a7c06333cb710e4",
+      "meta_sha256": "fafcab9b4f6e2f00dce76a09ef312794619b698fb1c20af7ec1eeb2655361f69",
+      "meta_bytes": 18139
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Death/DeathStandingBackward.fbx",
+      "sha256": "4bcf5b95bdf255112b036a92c228ef2bde0432b194284b126f8ec3a5b49f491d",
+      "bytes": 369808,
+      "guid": "8eba87226ac82a1499492db75f4d1cf2",
+      "meta_sha256": "897f3e27587bc960625b831bbbb1fa177aa6fdbb2500b9e7549ab92b87112abf",
+      "meta_bytes": 18142
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitBody.fbx",
+      "sha256": "3fa42b5c837657743ac1d2be5eb94c3cd98c09d1fde42593f2f9299147ecae3e",
+      "bytes": 244640,
+      "guid": "69a18981b2add6148ae1160a572c28d2",
+      "meta_sha256": "ba1a14f1ce3ed2c5f2b08ac31d652862bd7645d3a1523ba9e24feed1a89a12bf",
+      "meta_bytes": 18127
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitLargeBack.fbx",
+      "sha256": "e38d45ce2da53ec80d7c24558c6ae82a3ab803e8219937735a84eea4211554c2",
+      "bytes": 248736,
+      "guid": "d52a59587eb20fc48891991fce4277b5",
+      "meta_sha256": "ce94c2abc43c7986b6b133d97ecc26b23b6cc7ba23d738178ce9938e25fcf974",
+      "meta_bytes": 18132
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitLargeFront.fbx",
+      "sha256": "0699b804a44f9f4f91c952d54d3f6c3e0e627ed34e9a4d1340864e806ebcd1cc",
+      "bytes": 230272,
+      "guid": "de49c6f3e5c5fb546a6fb60325fa73e3",
+      "meta_sha256": "1d86d27dbea4892a0f1d3809a8ff422da2369d99c9b0f5778d7c7c55351934ba",
+      "meta_bytes": 18133
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitLargeLeft.fbx",
+      "sha256": "8a36e89574955864f6dd796cb5ae4acbf503d1b55652c390a56e77f2f2f6cc79",
+      "bytes": 242576,
+      "guid": "fee5a6e7a4f5bbe48ae3ab6d3d7e45d5",
+      "meta_sha256": "b12e006537e0c4d9739d9c442f014d3f13a2d5b2dbad5d393e2ccf4decfb10b4",
+      "meta_bytes": 18132
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitLargeRight.fbx",
+      "sha256": "c636b06a2176225ce9d3a2111d29065f47245f3b1e1d0e03149b44323c9868ea",
+      "bytes": 246688,
+      "guid": "e4b69f22573de3a4084c740fd8be2c96",
+      "meta_sha256": "68a271f40be1fe1488b9767bdc7a3fcc60267f1307b393e7c67bbf37b08361cb",
+      "meta_bytes": 18133
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitSmallBack.fbx",
+      "sha256": "43a0327babfe541a4aee711c99ac44971e0f74b66ecad6fc0cf2c82926b5a445",
+      "bytes": 224112,
+      "guid": "6f8cc2c2240317b429fd5d6ab808ed55",
+      "meta_sha256": "501c321b3507f839f8a39d5718839fd7a05219ece7884693622c3dd109f193a7",
+      "meta_bytes": 18132
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitSmallFront.fbx",
+      "sha256": "f2019c33192b3a83e7ab30d41c90989353393d593fd60304e9563dc9d089148d",
+      "bytes": 218720,
+      "guid": "870dc6333f4624e4082a725a205668f6",
+      "meta_sha256": "845224287c3c311511a014246dda3e958b7437b15aa14db0101233b21fb92c9b",
+      "meta_bytes": 18133
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitSmallLeft.fbx",
+      "sha256": "eddf448288b0814817e882c85149febf2e53c6e44390e5f2bdf597c0894e0918",
+      "bytes": 218720,
+      "guid": "404347600c258ac4c97291d433f7b9bb",
+      "meta_sha256": "728a34f9564ad8b7d0a58a309ee41b25aaafbef964d0e5701a6ec67d3cf4b943",
+      "meta_bytes": 18132
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitSmallRight.fbx",
+      "sha256": "e9925c2843ad32bad81b20a0cc0472ea72dccd4db641fe60ccbff61bdeeb2045",
+      "bytes": 205536,
+      "guid": "514168bc8b079f641bcf8c4f6a46fc8f",
+      "meta_sha256": "bcd627fdd31e88cf1ba480d24575bf9ce53a9dea76019ae9d9488cae34aee0a2",
+      "meta_bytes": 18133
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Kick/KickFrontSnap.fbx",
+      "sha256": "e3fe51ae90af770ccac85a3ac89113d871a814375da63a31b8a0847d780a0cb9",
+      "bytes": 234272,
+      "guid": "ce3cc2777f2099340af90b0fc83015f9",
+      "meta_sha256": "98ecd2a24ee913890bd6837bed80fbd11e6abbf87d92178963bb058d162df1fb",
+      "meta_bytes": 18133
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Kick/KickMmaLow.fbx",
+      "sha256": "3d2f8da10378a407299cc5b03a46033f2b91b4b0c748430028f8f00b3eaccff4",
+      "bytes": 238480,
+      "guid": "8b2e82efc7d1f49419caaef1902874e5",
+      "meta_sha256": "102adc2a1226c686ebc279a00f8875d4b3248890b73621793d741bed1841c14c",
+      "meta_bytes": 18130
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Kick/KickSide.fbx",
+      "sha256": "7091a0c808a5e750b2c325d95e98d4c88da8047197b0c7c657ef7ec55935338f",
+      "bytes": 256304,
+      "guid": "1bb22bc56c77b2e4c8931b0ef485666a",
+      "meta_sha256": "acd176db27409090bb2d69a2f5a2155ba5383ca2c507c9324007ba55d6575012",
+      "meta_bytes": 18128
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Kick/KickThrust.fbx",
+      "sha256": "a37fe3ca7bd169c5c5ceb8f536ce3906faa5dac42e7d6f4d7945403d68c5e69f",
+      "bytes": 263136,
+      "guid": "7d27b579e8cc45b4791cd2b9f6d59424",
+      "meta_sha256": "f7533c117e5815e3724faff7ca0bb8f64a9380a5eb83d08a0f05113f8a43b57c",
+      "meta_bytes": 18130
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Punch/PunchCross.fbx",
+      "sha256": "054f8d20f6486934cbc88a70e04c0313f7beee4fbca6f3172ae75a41766860de",
+      "bytes": 256304,
+      "guid": "3e22f4180d9baea48a7ade1428e1be2e",
+      "meta_sha256": "9548b93be2f56cfd1ae34b42a38a12311b38224fe0766d68de508af107550d31",
+      "meta_bytes": 18130
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Punch/PunchHook.fbx",
+      "sha256": "c24db1e020055b3c6f7b63712be6bd23f9a1ddff6a2f3a0c87ea4ef75421f39b",
+      "bytes": 265472,
+      "guid": "10a6189c126febd42a763cba36ca467c",
+      "meta_sha256": "9aee5e142fcc41c6d8855effa54b59bc666194f383e4532363f7e6d4ad807e04",
+      "meta_bytes": 18129
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Punch/PunchJab.fbx",
+      "sha256": "6079eb74349e3854f3cf2c85b664271cdc5bf891a613da3666f1a19f1f1f397d",
+      "bytes": 201936,
+      "guid": "4b284c2780fee524ca56380bb088700f",
+      "meta_sha256": "0a08cd760d493164eda72412ae5f71025ca6e61777862b902907ea946165f3c1",
+      "meta_bytes": 18128
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchBackwardMappedTwoCycles.anim",
+      "sha256": "4741e45aa98b70f85ae15793efe5ae04f9ed778fc60e4c86d9696d03f30c948c",
+      "bytes": 8483222,
+      "guid": "4aedbbb170710494ca3971d97284f6c1",
+      "meta_sha256": "eeb16740578fed5da4cdbbb66ffe458f34044c90b72521f6693d2aa0c87b57bd",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchBackwardOriginalFacingLoop.anim",
+      "sha256": "6ada778afa77708900d22924609da48c2fbb2c52340d0645e4860842c75457d4",
+      "bytes": 8483225,
+      "guid": "751358a159dd84b468bfc31666b45960",
+      "meta_sha256": "8c34f50f580959c2cb25792af8a3fcff3dbb4326e2c8398a500fc6aee2c1628b",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchEnterOriginalFacingRange.anim",
+      "sha256": "7282e1ebd78075609c63965c66d06ea6d4af9d42184a926a59b4cc88134ae5dc",
+      "bytes": 5223555,
+      "guid": "b269f282db85f6046a75742fdfa6be5a",
+      "meta_sha256": "faf37fec238991fe833f907140dfe84f81149e6328b2a3ecc48b283319fe687d",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchEnterQualifiedRange.anim",
+      "sha256": "bc500b35f4d1ae1b8302ebf1c57346ed619a207efae90d8d8154a1175e0e9048",
+      "bytes": 5223550,
+      "guid": "20560bf3dc6d1064fb16c76183918f44",
+      "meta_sha256": "7c75ca1596b48ef5827d488e52f506808cd24bab03398f59464739ea31296fc0",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchExitOriginalFacingRange.anim",
+      "sha256": "e825e46980aeba7956051973ca1f61a579beccecbec1078755d0d429e12b5995",
+      "bytes": 8930240,
+      "guid": "159f2a1512cc93444b716f8b2ce0f1ec",
+      "meta_sha256": "b24d41e2a4813f047270d8d2be55b98a52f8dfd40d9d7643a9e38f254dc67eeb",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchExitQualifiedRange.anim",
+      "sha256": "7571edc8b2b6c28dbc9ba53a6272682c21068ade287d3b93dcf78a2c4ef4d3c3",
+      "bytes": 8930235,
+      "guid": "6ac037465f55b524782be36a894c1c34",
+      "meta_sha256": "cfdca5cebedf14046eba6cb5f352025d8192239ebce7f4a98098f95845b3ddf0",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchForwardMappedTwoCycles.anim",
+      "sha256": "76e7c8ef8672aa1af7bd56adc19986d20d3dd269871ed32fbf564a7925d69200",
+      "bytes": 7910228,
+      "guid": "c5d5a016448cbe94f9f827eea2e42ceb",
+      "meta_sha256": "2640a3afb0aa025c58f767263ea88bdb9ab6e7636f7c86064317b284e16c3a6c",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchForwardOriginalFacingLoop.anim",
+      "sha256": "7e37ab3662f040652828e5df61ab77e1e5b2bc5b7868ba130c4731cd70222342",
+      "bytes": 7910231,
+      "guid": "5eb00078be1d8d044aec7ce9020a5683",
+      "meta_sha256": "34f2f62812a6e1d319e9f0e8da63d77ba75d957a7ded4e907311978635bba8af",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchIdleOriginalFacingLoop.anim",
+      "sha256": "21014a329acfb01829b39b410e63a69194f2bd1f26acf91c49604c3d1e813478",
+      "bytes": 4876463,
+      "guid": "49164916a35d01a4f860a52ee97d332f",
+      "meta_sha256": "174f79cdd456774021586dc9f4c76ce1a369fe9977d8b4467e5fd4cf208f0baa",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchIdleTwoCycles.anim",
+      "sha256": "0a42ea2343570f82d17da5205c6e359c56eb40a2be137171f3c3bc3d7891cfc8",
+      "bytes": 4876454,
+      "guid": "23ecde406ec6bbe4f946d21f9d5f2fed",
+      "meta_sha256": "94878704bd47040c15c696bf3c4c159929289e3388d73702c422ab8b5ac9f666",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchLeftMappedTwoCycles.anim",
+      "sha256": "839f2a7730d912d046bb465cd5f18fb6425cbd509130dd22c9414b648d0da7ab",
+      "bytes": 8138404,
+      "guid": "ca4436512380a9a4682c44d679ca5571",
+      "meta_sha256": "73ca26304b7060a698893641ed2a967977e6c7da6399b166b043b15da981de81",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchLeftOriginalFacingLoop.anim",
+      "sha256": "8978cbdb7fe93af4508ba67dbcdd73960991623b5973b3aa4a1ce4de52749275",
+      "bytes": 8138407,
+      "guid": "6211009ba6d61784385a9099b4f833dc",
+      "meta_sha256": "81915125196039a9e4379eab0ecb1a167f4233a88de84705c1e257df04cd626c",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchRightMappedTwoCycles.anim",
+      "sha256": "2c382accd969d663337fa064420f236cdf6050e3ddaf9030fd751531cd9ea096",
+      "bytes": 8823999,
+      "guid": "eb2ef0bc013f8a74b90177b8e012a4aa",
+      "meta_sha256": "5d44ce1f3490264716582f08d4bd18f154d367fb4c5ace89b6287d8afff284c5",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchRightOriginalFacingLoop.anim",
+      "sha256": "c8fc66a217417612a28adbd9136fdb1b8c43e94ea5742b364ef5ad57fb578ccf",
+      "bytes": 8824002,
+      "guid": "a7090f3a4ed1bdf4d8c93287adc35191",
+      "meta_sha256": "a9d5a7996090b6e626b2dcefeeef055908535cdba022356a38151adebfcc7f68",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/DirectionalStrafeLeftTwoCycles.anim",
+      "sha256": "01b44bf598f913dae5f718e262f24be24ddb23801746e46aa63e59128e8186b9",
+      "bytes": 4643695,
+      "guid": "63685a3a9e1458b46ba16177d62b826d",
+      "meta_sha256": "a909bf79931bab6213e12de7faa9806815ad085a00d08d96c2b3b075b5c2b60e",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/DirectionalStrafeRightTwoCycles.anim",
+      "sha256": "09cceac1da7426f0a902feb4d4a0d334595b046787c9d0f8f84e44b62057f45a",
+      "bytes": 4645378,
+      "guid": "827f0054329eab44491d3e5527a117a4",
+      "meta_sha256": "8c5ab28d0f825431eb48d28673ceb028c07e09cae6277cb6b2a0db28254ae817",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/IdleBreathingLoop.anim",
+      "sha256": "85582e523e764ff48d750151a6dab0855ef19aaf460bd7d43d54cfecc948fe60",
+      "bytes": 33844651,
+      "guid": "0d1201e721d3c7444a5e390e74f4fc31",
+      "meta_sha256": "82f0563a201d1ea9ad92415e72fa12a14b695197e7475d849c6dc0e756b89717",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RunTwoCycles.anim",
+      "sha256": "53808d146f06d40ef94a2cb2353d4b71ae56aca58627679fe4d544edddb7fd81",
+      "bytes": 5091509,
+      "guid": "e85f77828fa8786448d2a3ba37c86193",
+      "meta_sha256": "417454d674555820eb7f75d57c37f90c9fdf4811495edb1d20ebaeb4d530da61",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintTwoCycles.anim",
+      "sha256": "f4d6e43e487290902f0c456334e7c5b6cf8d198243b6544c2d0430918197521d",
+      "bytes": 3753144,
+      "guid": "436bacaedad9bf747918ca7abfe4d325",
+      "meta_sha256": "c0ac904f5a048493383e4debda789d75383da25bfc1fa74d67216fc40422cda9",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/WalkTwoCycles.anim",
+      "sha256": "163a2a9f9177ff6c33dbfc1cdeb365a8d8cd314819f092118fbe199d02f5ef67",
+      "bytes": 8143186,
+      "guid": "c6cd0ec25f35f8f46acfab1675573a04",
+      "meta_sha256": "66ee08ff1572a8033ddf383d58d62da8499b06eb86850b65c6751999709029b2",
+      "meta_bytes": 188
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Button/ButtonPress.fbx",
+      "sha256": "e307c8719363c117b0faf33dff3090d34819815b0be36e9c0103838fbb94fd61",
+      "bytes": 331216,
+      "guid": "61ae6f5264b290c419c463e7f01b2085",
+      "meta_sha256": "827bfa092c20dd32bcaaa727b894e86cee6edf0a346c5e68f8a1ec100bdc874d",
+      "meta_bytes": 18131
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Pickup/PickupAndExamine.fbx",
+      "sha256": "2f9482b994ca8af8e7b9706a946932939c8b82a8c7efd0bd08d7dbf273b39c09",
+      "bytes": 493264,
+      "guid": "58810e685c3f4444584b991218f43603",
+      "meta_sha256": "94c5304f86e78b153d9c7217a09d7b91dc465673660aeb21260feeb9f60b74cf",
+      "meta_bytes": 18137
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Pickup/PickupOneHand.fbx",
+      "sha256": "d864539798595cc242faef5e4fe56fced90a3f8b42d7b0a55e969fcfdd73f736",
+      "bytes": 346368,
+      "guid": "504e90b8a933d47458ebd108dedb2e1f",
+      "meta_sha256": "f868f861a12370a69631051996123ba80b447edeb7c3a720b12784dab3199a04",
+      "meta_bytes": 18134
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushCycle.fbx",
+      "sha256": "da0240bb73dce3dd975ac2dab243e9004524de114a47678996981afa07049735",
+      "bytes": 293024,
+      "guid": "c39dbccd635d0cd4d92959567f63ff0f",
+      "meta_sha256": "64937051af7630a0be06b19d537779195b65f7c38f803cb7b84d0f2609420b4c",
+      "meta_bytes": 18129
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushStart.fbx",
+      "sha256": "ef740a93c86c3f34400b7b7717d2efe5bce5a505311035349f72444c0d4912b7",
+      "bytes": 369712,
+      "guid": "ef837c4ac474ee7489151cba6d26620a",
+      "meta_sha256": "d05fc632a991529a17b2942b036e473b33fcc36799b3a94ded783d8c9523f720",
+      "meta_bytes": 18130
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushStop.fbx",
+      "sha256": "6bfeb9598e294389eae5049261e80f3a5011cf2eb7ee044bd8bccb2174b25928",
+      "bytes": 300576,
+      "guid": "8e013c77c537ffe4c94fe54f8f1475d4",
+      "meta_sha256": "c7cbc5d21af48ceee1729db3f0efa8c8a7947a2313a596c3422c4ccfbb7d48f3",
+      "meta_bytes": 18128
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sit/SitDownChair.fbx",
+      "sha256": "583286fd1821e85ed32ba126eaccfa46ef0874fe68b98a3c3b4e2126c0d77165",
+      "bytes": 363648,
+      "guid": "aabc1959998de6649b54cd05a43ff9b9",
+      "meta_sha256": "616a22873716df9dcb75076ac2640aed23154f0ae8ce46256b2bc8e03f7b302e",
+      "meta_bytes": 18133
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sit/SittingIdleChair.fbx",
+      "sha256": "35bc286dd70953e8ddbed8796baed89a38f19e0039ba8a5396b06e1ef5dfd5fa",
+      "bytes": 322352,
+      "guid": "d164f1f3f51345944a821aa0c72090cf",
+      "meta_sha256": "0402e0e20729d2158bb0f1c4ab0874e4f35813e261013545261ac1f995325acf",
+      "meta_bytes": 18136
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sit/SittingIdleGround.fbx",
+      "sha256": "cc4b616b2cf15aec5da943d6bfdad6299125cf6a26c406a5631d15f591bf6d40",
+      "bytes": 562192,
+      "guid": "8e15708322dacc942b405076acd33c99",
+      "meta_sha256": "e5476223eee47b13f6d63387ebfe631cf55b1ddb47fcf38c67bee74b84a17443",
+      "meta_bytes": 18138
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sleep/SleepingIdleSleepingDeeply.fbx",
+      "sha256": "fb348c038f93937914bd835fc1d9a11336531ed21047edcc5e7489eeffdf46e2",
+      "bytes": 472224,
+      "guid": "81182bde0c2eeeb4f84720d161ccc8ed",
+      "meta_sha256": "0689295a19e2bbaac251deaf5554ed2916328962052654e933182025d4f75bc9",
+      "meta_bytes": 18147
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowAlternate.fbx",
+      "sha256": "414f890f63209bf2f9a601557f6d9c5419a9fc3e1a4924fbcf3bc34c9be6b450",
+      "bytes": 408320,
+      "guid": "0e7cb2cf05f9ebe40a0495e7585e3658",
+      "meta_sha256": "605c3a797d15ec04563d406e7740bb7aebfd42be0af1274ba68a1474def80a00",
+      "meta_bytes": 18135
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowPickupAndThrow.fbx",
+      "sha256": "247703d55173e0617b23090c91db0d9ba6baf584cbe5fda7c31b701bcdb83ddf",
+      "bytes": 385872,
+      "guid": "ae99bc93aaeadf74eb3f93e1e77811e4",
+      "meta_sha256": "b5f007773f9775db32dd0937b93465be288acc644d867b731722f77200905df0",
+      "meta_bytes": 18140
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowStandard.fbx",
+      "sha256": "e1b7f72323527b0425c5f9549acc38d0e4167fa14fbe53aab00da55669f90a44",
+      "bytes": 281568,
+      "guid": "6e426b081678cf84b93c594691495f4d",
+      "meta_sha256": "4752837d7cca6b5d2573c1a4cc0c82aab51fdc7f9fe9abb070e235ad8dd78e7e",
+      "meta_bytes": 18133
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/BreathingIdle.fbx",
+      "sha256": "99f9088d8e88608cb1f2df859d88ad0109ddae80a2f8831d8861d5ad030a8ce6",
+      "bytes": 607248,
+      "guid": "8281a3a173a83d447a97f534ce32cbb5",
+      "meta_sha256": "aa1c3b7048d78c7ba18457720d7777308c0d94b744007a92cc2fa2ff31fcc0d4",
+      "meta_bytes": 18134
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchEnter.fbx",
+      "sha256": "034ef9847cf890836644a5ccd34b46eb0df7fe44c6ccfe72b5a7a3432a5d2baf",
+      "bytes": 387696,
+      "guid": "40934aca09751744faf857861057a4c2",
+      "meta_sha256": "3125c412db14ac163c4da261b3d7c6573aefa9260091f6c25b44a153d271fbbe",
+      "meta_bytes": 18132
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchExit.fbx",
+      "sha256": "4c3053d5cd997114747772f79e8df5b833af42d84827b3095ff96d8d340d0397",
+      "bytes": 287504,
+      "guid": "76c6839fe18b01a49bb299ce6d5b60a9",
+      "meta_sha256": "b27a2a92f6913e31756e7062d562922634833605c687a24df3d3f70825874d8d",
+      "meta_bytes": 18130
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchIdle.fbx",
+      "sha256": "90d5a2ff23f639ed32743efd36c051599cdb6f8d41906bab897990003fe84f65",
+      "bytes": 228800,
+      "guid": "18a219c107184de44a617637403b99f9",
+      "meta_sha256": "a83da17c15093eb84bfa17e622913a65f505e89fd0a27e59753c4b9046670910",
+      "meta_bytes": 18130
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkBackward.fbx",
+      "sha256": "b2f9ff0ec39f794bcac7c076fa9a41ae0ac02d2dbf6a9a53fd9bcb995f358b2e",
+      "bytes": 222064,
+      "guid": "f550ccc1e11714244bcaaf26713f1943",
+      "meta_sha256": "a1cf263f05f0ddfa615d1bd39d2a822d887ae7ca498ce8365ed20e56416082c3",
+      "meta_bytes": 18138
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkForward.fbx",
+      "sha256": "9d67675c52fceb552dd493a8cd3f93bfb1752cafaadbda3c38b1400f84d90aeb",
+      "bytes": 215904,
+      "guid": "076691d08b7a0784a8e816558e5046e6",
+      "meta_sha256": "3c625bd0ddf5be5d5a09ed510fb63ac4f6165bc1f1b83f31e97b07294e69430a",
+      "meta_bytes": 18137
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkLeft.fbx",
+      "sha256": "338ad99ca412d50cd2dc8f5421ccaa68ca20334198a08f12691ef3030d60f2fd",
+      "bytes": 218032,
+      "guid": "e6a767dd075c5214cb8e5df0dd9fccf2",
+      "meta_sha256": "d2408b30581b37931aef1cab7d247c011b42edef23e8714f7f7ae407d04dc40c",
+      "meta_bytes": 18134
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkRight.fbx",
+      "sha256": "0636fbdca9eeed58814c00babf8e951ec5ce2677716a88d1635c129f67ee06eb",
+      "bytes": 224112,
+      "guid": "89ea1ec778eded6439ae6b91e98cabf1",
+      "meta_sha256": "79dc04081533ebd2af29cd1855c68a581f60b20c891604fdb87d569ee54d75a8",
+      "meta_bytes": 18135
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/StandardRun.fbx",
+      "sha256": "06ce6184815280b47e7726aa263dbc491788e4677ac9368ac6cca1bf27d9a734",
+      "bytes": 191280,
+      "guid": "f9b02e8851946e0458fa65ea1b0a7a0b",
+      "meta_sha256": "b9ae3d1477ad9de1477e459dae1b2d4e744aa313e9c30e83946f346a304a8728",
+      "meta_bytes": 18131
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/StandardWalk.fbx",
+      "sha256": "76d67f23891d0cba86be6385d435e6e8769314f6cc7df4a0ab021a5768f79814",
+      "bytes": 217952,
+      "guid": "a4a626e132daf8f4c91209dc9804e6d7",
+      "meta_sha256": "9e5d745fbd97032e3c643a2bc85ab6ef93f241f720e54dd4e7893f783b8bf49d",
+      "meta_bytes": 18132
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunLeft.fbx",
+      "sha256": "d0ebacb98080968155ef8712770764dfd77be0196a77634238e28974aafe06af",
+      "bytes": 187184,
+      "guid": "b9c8752b580bc8f4baca78fe1a7de4a8",
+      "meta_sha256": "3da52c5978a8c6154a8c44a2ec9f2e456ed7556597a217bc6096ed2d861833d2",
+      "meta_bytes": 18133
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunRight.fbx",
+      "sha256": "f2324abd74ab2440c9f6bc4dbe53c96f5ea4f27946c9844fc21536e432448947",
+      "bytes": 187184,
+      "guid": "b6cb0dce7e969dd4a9539f2e015ea11b",
+      "meta_sha256": "9718148c4ec664627c2283d240e8e289d354b39527560ecc44f5e48fe80ab8c6",
+      "meta_bytes": 18134
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkLeft.fbx",
+      "sha256": "957e963aaa528bde8ce8f8cb89b4ce4857fadba693be4a707f4a654198463c65",
+      "bytes": 226928,
+      "guid": "fffbfcd0a9151ba4b806156da36bd468",
+      "meta_sha256": "48abc779dae7ef14fb7c12c99be54a495948d4e205e0e326d18141fa8a203007",
+      "meta_bytes": 18134
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkRight.fbx",
+      "sha256": "5198884d344292a0650afcb00dd13d46963ff84048b230cb0a1389a04beca1d6",
+      "bytes": 226928,
+      "guid": "1adb4b4b00f36e54fb530e82e13281ee",
+      "meta_sha256": "f21dd8b1467b3a04509498bc98d4d25385220fda8a1170ce2ff289f98fe38528",
+      "meta_bytes": 18135
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/TwoCycleSprint.fbx",
+      "sha256": "9f0f7650f92962b82fa25f767b84f3ed32e375dde8c0c8bdd85898b3f8fa9e52",
+      "bytes": 211808,
+      "guid": "021bced0c02c1c04586ba16c393e6f4d",
+      "meta_sha256": "69d2d964089c71e5483bd066facf818dd23e4ce5d68c2b2c18da31f3c8918bc7",
+      "meta_bytes": 18134
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Death/ReferenceOnlyCrouchedDeathWeaponPose.fbx",
+      "sha256": "2a6e16dd367dd4f919934ffa70ecdb48b3fcaa9c922b5d7d12ccaec507b3c541",
+      "bytes": 294560,
+      "guid": "e29d48a6465e01f4fae7bb049e27e991",
+      "meta_sha256": "a5ee6e10219329a03d61764cefb0a1f6324946eeb34b19b1e21cb71e2acc0a60",
+      "meta_bytes": 18156
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Locomotion/SprintForwardTravelAlternative.fbx",
+      "sha256": "a09071f70bdb8887f94ce90a49998a6966b13ab13b3f898aa94fd8fb79e40d99",
+      "bytes": 177824,
+      "guid": "89cafa1e0bc2bb349a3f4b63f0fe5956",
+      "meta_sha256": "5edc2342426c4e939645b6ad39b9d9d9cae40c7c58fd257622a4aa31bac39c9f",
+      "meta_bytes": 18150
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Mining/MiningReferenceDownwardToolSwing.fbx",
+      "sha256": "849423196165ede1e42ad9e402b76232ee0e8142b318ffbd7daf47fc70bb4b1f",
+      "bytes": 280208,
+      "guid": "c0c1a78c8e2c35d448d58569c5a54cab",
+      "meta_sha256": "3dd1a2c28e4ec05a54dd85096e9a4499c27acaf942443bb4edbc1ec1ca06d1fd",
+      "meta_bytes": 18152
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/CoverIdle.fbx",
+      "sha256": "8529de116cd7b93033bf55a791b0170b0fc643b0164b2d1e741bffc2c1eaa136",
+      "bytes": 293056,
+      "guid": "d0fb2c36f0972c6409f30e276441ef4f",
+      "meta_sha256": "97f16f51d66aac10718c633ad1fe209ac252d6f07205c5c3e35a5e5764f772e0",
+      "meta_bytes": 18129
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/LeftCoverSneak.fbx",
+      "sha256": "506b4124b1bba13b24ada0cff03551a5e6252e0604e15154344a9b97d84ef8cd",
+      "bytes": 211008,
+      "guid": "b22e6e24b044a9842be5bb3fd0e62225",
+      "meta_sha256": "c1eb5fc051917550cca56fdd59590027f683240f31a4156009f316d794553bdd",
+      "meta_bytes": 18134
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/RightCoverSneak.fbx",
+      "sha256": "32c577a590f16f57c979e91f1db3658c02dc6bb61f034d78c5b4f0f6525168a9",
+      "bytes": 211008,
+      "guid": "f666149efdc142045a2702f92a8cc621",
+      "meta_sha256": "6a39b09b552d69c9e103d0abbb92bb83d0574875cbe98af2f86978ffed6acbd5",
+      "meta_bytes": 18135
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/StandToCover.fbx",
+      "sha256": "2c46a95f102b99a063e1dac472fda41a0fe5ea2aa1c477f0865faf9a36d59033",
+      "bytes": 221376,
+      "guid": "cf831c493eceacd40ba8700463dc5ee1",
+      "meta_sha256": "1a8f76fc42c39c7b6ec20c2e52499b80f9f4a9c2816f232dfa73bb0525e00066",
+      "meta_bytes": 18132
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Evade/DodgeBackward.fbx",
+      "sha256": "37140647db20ce2c8042cc0e11fe94ccb385247078e75299f9707d3a6092f36c",
+      "bytes": 304544,
+      "guid": "138f9c3c50b16d24ca132823e7fb30e0",
+      "meta_sha256": "4d09192f12aed5bc122913da69f7f442f253119d90845c8b5166127cc4d72327",
+      "meta_bytes": 18133
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Evade/DodgeRight.fbx",
+      "sha256": "230356258ca5d231cc9f0263e654a0ed2bb7233053e261adefe7b6bad589f7f9",
+      "bytes": 225088,
+      "guid": "c96cb1f370d7c6041b008b2ef7a7f48d",
+      "meta_sha256": "26515b5ef979ea700444bb12708584dd131580f9a459ff1afd0f9c16057d738a",
+      "meta_bytes": 18130
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Evade/DuckFromStanding.fbx",
+      "sha256": "f41b40def2b44697f92edc29110fcf46dbabac21daed847924b3fcffa70de7b5",
+      "bytes": 237216,
+      "guid": "dce078f7a21ebb34e88412b7b05e9b2d",
+      "meta_sha256": "51f680d3714095d7aa40964e2406b5d87fc03f4a1191d662aef6fbacb96261aa",
+      "meta_bytes": 18136
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallAirborneIdle.fbx",
+      "sha256": "31f22b4c16cc723cfb284141247b5074e6376822f11c377df367697b58f5d53a",
+      "bytes": 187712,
+      "guid": "ba34d665e6116b84495f624a3ac2a91b",
+      "meta_sha256": "5ca1826ca5846bcd5a43760098ddf99ed0843cf4264309aa91002af7867abf86",
+      "meta_bytes": 18136
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallLanding.fbx",
+      "sha256": "7d697f79133f798eb83f303070b7983ac07cd4fd691a68a109c905bba5a2f9b9",
+      "bytes": 207200,
+      "guid": "1a12ec4dd5f419b42b8664acf4356d9c",
+      "meta_sha256": "e540d67a21d9e739e0ffd3ab8732b66368042003abf7a1d26529f9c089cbe593",
+      "meta_bytes": 18131
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallRollLanding.fbx",
+      "sha256": "cca1253efe8a04a38b3fe7b0d7dc109e29baa703112c4e228030484bb8ce7b37",
+      "bytes": 272864,
+      "guid": "4ddbe24df11314744853def15bd48079",
+      "meta_sha256": "2eaee8c97c35b957312202f225bb50bed62f2eb1c002bc0bf173ce1cbf1a120e",
+      "meta_bytes": 18135
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpRunning.fbx",
+      "sha256": "6993cb9cc44d017fd75d1edb6814d34f9b5ca059d8c0f5448da9e270a5f4392e",
+      "bytes": 201536,
+      "guid": "e32f79d4a1885804a8c0fb5232a5abc1",
+      "meta_sha256": "614d9e5e1770df892bc6a0357065a3d87340adc779d85e620bef89ea590e5afe",
+      "meta_bytes": 18131
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpStanding.fbx",
+      "sha256": "3605b12a8024b214a2db6c86d301c3b5ad05bff500d93445d0e2ddbf4fb1ede7",
+      "bytes": 291824,
+      "guid": "e96459eaf4a7cd54485f67ab233844aa",
+      "meta_sha256": "da771e463dbba1d6d82098a918d81d2f6d262851018e0e92060a381d5c42cd6c",
+      "meta_bytes": 18132
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpUnarmed.fbx",
+      "sha256": "854db1b3db23f109a9df33e0d838cf4143637696d21e868e821bce84a88429ad",
+      "bytes": 289776,
+      "guid": "81b794c6b146a45418aa2687b5bf1df5",
+      "meta_sha256": "2fc203608316d831d83045c9ff2c62c3e6a238f3d7d2b99871f793666e8519b1",
+      "meta_bytes": 18131
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderClimb.fbx",
+      "sha256": "238e36087a8c0b3f754e9965dc50d58efd936a5be81e1d049682d32fdfa79922",
+      "bytes": 191680,
+      "guid": "7e6a7ea0733fc094896ff9ef9ae7368c",
+      "meta_sha256": "8b43e6a789f75cf56857ffa4af9371115c646fab4a76a1076a406edb92347ac5",
+      "meta_bytes": 18131
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderOneStep.fbx",
+      "sha256": "90458be5bf0e252c22579c4fb9e03788cfb6740fcd70c2d49669f9978dbccdd9",
+      "bytes": 230736,
+      "guid": "4b29db330892a1a4a826fd63b5755d74",
+      "meta_sha256": "434f98274867945c7845e295228c3973cac9c736b1d1a9d09005179f6679413b",
+      "meta_bytes": 18133
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderStart.fbx",
+      "sha256": "c0d05f478076ee0dbd12e95f18f0a058013cf10c0a821b7ae36bb5aeab628898",
+      "bytes": 268144,
+      "guid": "51fec770fac16a34babe917f4f2344fc",
+      "meta_sha256": "012f0e54e693f05cf707aa2245940864f98fec0f9f8fb3fea50848c09c7a7f1e",
+      "meta_bytes": 18131
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderTopExit.fbx",
+      "sha256": "2a0df7401f1099610039dc5cedec422d773341b79b6492e723bcd673a079a5b5",
+      "bytes": 383744,
+      "guid": "132645fb2720bf54386fdd5195af6f55",
+      "meta_sha256": "9e4051efa4979d478bd784881e7652d6c378dd0cf99f8eaaf52eae1efad63923",
+      "meta_bytes": 18134
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderTwoSteps.fbx",
+      "sha256": "fd57e66ece0554293cfcf74abf57603cd22a2b4023a0f8e2ba72a9b1c2defd88",
+      "bytes": 306336,
+      "guid": "e49a6664c0e97ef4d932b5781ef95fbd",
+      "meta_sha256": "201ba23d2c54481991cf9fb482ad1db8b746127e01b0e1e2fdb3b6da95f499b8",
+      "meta_bytes": 18134
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Recovery/GetUpBack.fbx",
+      "sha256": "e72bdf1109ad6e2e9a5106e681a8ee3725997fa2d03338134a8574fd9b13632e",
+      "bytes": 545936,
+      "guid": "dbd9cdc5ba3bec649b56f50a30bc715e",
+      "meta_sha256": "25825971c44d4165d65419086bd79ad0e0384c78ca319eb10dd31af55c9327f6",
+      "meta_bytes": 18130
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Recovery/GetUpStomach.fbx",
+      "sha256": "364661559b9b344e2fa8be37c45148b1fa492019d86dbae2454d34fe1199d3d1",
+      "bytes": 539360,
+      "guid": "ab9a0e45be447334cbb9fe2f21e557a4",
+      "meta_sha256": "407bfb65d8dbda8e991cb781ac1a7cf0d2146a3ab5f228d96a870f70803aca30",
+      "meta_bytes": 18133
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Slide/RunningSlide.fbx",
+      "sha256": "2c849d828aad87f6b716e95281a8b1dfa8b292a5082920b2ee55a5d47bd748b7",
+      "bytes": 237216,
+      "guid": "c104b6bfa35ae2248a80f2a9002b87cc",
+      "meta_sha256": "d3571737413c1a451ecc3228442ae46c92bfc4e83b71fe4420b771d7919c2dd0",
+      "meta_bytes": 18132
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/MaleBaseMeshMixamo.fbx",
+      "sha256": "df84725e3654fc8221e110404c3fc921daabec368d4f29f70fb9a7a97dc20ef4",
+      "bytes": 2251184,
+      "guid": "4d4a61f9b538be342a6378a061d3c988",
+      "meta_sha256": "0cda600560a0264db35048660f7cc9a2928fdc65d8a0aea566957e15a38b14bc",
+      "meta_bytes": 2861
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshBlenderRig.fbx",
+      "sha256": "211be186439087232f783a64f1ccc398aab055355bfbfe95517cd1b26fbd6745",
+      "bytes": 6999404,
+      "guid": "3b99a98a94b881c468bda2a186a0492b",
+      "meta_sha256": "9aa8215214ade276875716e7c6f58d8d4c4b1c261b0b609701cdb96145ee31f1",
+      "meta_bytes": 52691
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshOriginalRig.fbx",
+      "sha256": "1563823a3d90a8024cccde2ce195215a42747aee127f2190725a709a3fad9536",
+      "bytes": 2266332,
+      "guid": "8d60dce4243ccf341a8e4e755abc2d29",
+      "meta_sha256": "84f652afa3d2658059a41eb596150dea5784a73103ef1cfeb3c412bfae06184c",
+      "meta_bytes": 34392
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CalibratedLocomotion.asset",
+      "sha256": "f097c37df419bf708550ac8386a5781f66fa121c3c3f8040e5781c9540b55384",
+      "bytes": 398437,
+      "guid": "ca655294881f57f40a2d97a499c776b6",
+      "meta_sha256": "4bfb60b1b0bfe8fca35abb50ab9b2d4c1e9b7b5a0bb0bc324362cb6dcce2ab18",
+      "meta_bytes": 189
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CrouchProfile.asset",
+      "sha256": "7276b0c8cd215a500a178e07b327690d8fc4aa1f6f7936ff37d80796a6c5a404",
+      "bytes": 7856478,
+      "guid": "4e8f2416d598a6749be610c050e09322",
+      "meta_sha256": "5c593821cafb9da18f264f57697e4bcfd4d23f49c4758ffa6d52ce4802a02899",
+      "meta_bytes": 189
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/FootProjection.asset",
+      "sha256": "cc10cb12d372930d0c4a0a4603268c0cc71dc7114b41c5f066f921e3ffdb6fe2",
+      "bytes": 181074,
+      "guid": "082bff2bbb9c825448888f84593f50da",
+      "meta_sha256": "328df6d8ceb5e72c1915810db1285f61bd03eaf825512986260edce913a12854",
+      "meta_bytes": 189
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset",
+      "sha256": "3c203a0af829433c538e85687128e8f2d729dff12b9bec75503adb5e1107170e",
+      "bytes": 17079,
+      "guid": "0b97d0f21a25d864ba6ae82349d29f45",
+      "meta_sha256": "017c05259c6ce9146eb61ed6e901e6e495f59e634c27d07576e171f97af77612",
+      "meta_bytes": 189
+    }
+  ],
+  "pairing": "private-payload-and-metadata",
+  "captured_utc": "2026-10-14T16:03:06.0234799Z"
+}

@@ -28,6 +28,7 @@ namespace BooterBigArm.Tests
 
         [SetUp] public void Setup()
         {
+            paused=false;busy=false;roof=null;
             var source=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundCrouchProfile>(AnimationPlaygroundMobilityAuthoring.CrouchProfilePath);
             Assert.That(source,Is.Not.Null,"Restore the private crouch dependency before running this gate.");
             profile=Object.Instantiate(source);

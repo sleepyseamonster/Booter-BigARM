@@ -1,0 +1,55 @@
+{
+    "state": "equipped-crouch-envelope-measured",
+    "roofUnderside": 1.625,
+    "envelopes": [
+        {
+            "role": "Enter",
+            "minimumSole": -0.9100475311279297,
+            "minimumEquipment": -0.9100475311279297,
+            "maximumHeight": 1.7926925420761109,
+            "maximumBodyCapsuleGap": -0.041689783334732059
+        },
+        {
+            "role": "Idle",
+            "minimumSole": -0.910000741481781,
+            "minimumEquipment": -0.910000741481781,
+            "maximumHeight": 1.3607184886932374,
+            "maximumBodyCapsuleGap": -0.07849037647247315
+        },
+        {
+            "role": "Forward",
+            "minimumSole": -0.9102920889854431,
+            "minimumEquipment": -0.9102920889854431,
+            "maximumHeight": 1.6246452331542969,
+            "maximumBodyCapsuleGap": -0.03348428010940552
+        },
+        {
+            "role": "Backward",
+            "minimumSole": -0.910120964050293,
+            "minimumEquipment": -0.910120964050293,
+            "maximumHeight": 1.6390316486358643,
+            "maximumBodyCapsuleGap": -0.03348684310913086
+        },
+        {
+            "role": "Left",
+            "minimumSole": -0.9104861617088318,
+            "minimumEquipment": -0.9104861617088318,
+            "maximumHeight": 1.6592421531677247,
+            "maximumBodyCapsuleGap": -0.035805344581604007
+        },
+        {
+            "role": "Right",
+            "minimumSole": -0.9112600088119507,
+            "minimumEquipment": -0.9112600088119507,
+            "maximumHeight": 1.6411381959915162,
+            "maximumBodyCapsuleGap": -0.03348737955093384
+        },
+        {
+            "role": "Exit",
+            "minimumSole": -0.9100530743598938,
+            "minimumEquipment": -0.9427208304405212,
+            "maximumHeight": 1.793893814086914,
+            "maximumBodyCapsuleGap": -0.09668833017349243
+        }
+    ]
+}

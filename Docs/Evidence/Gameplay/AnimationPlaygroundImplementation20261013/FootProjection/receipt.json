@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "date": "2026-10-14",
+  "state": "transition-foot-projection-verified-family-acceptance-pending",
+  "parent_commit": "a08c68880aea2bba97dc6da2c605b527daf88471",
+  "private_pairs": 98,
+  "source_fbx_pairs": 74,
+  "foot_vertices": 674,
+  "bone_transforms": 6,
+  "runtime_blend_envelopes": 124,
+  "feet_plane": -0.91,
+  "minimum_sole": -0.9100003242492676,
+  "maximum_projection_error": 7.748603820800781E-07,
+  "maximum_ground_correction": 0.06205642223358154,
+  "protected_capsule_maximum_gap": 0.0345236659049988,
+  "collider_is": "adjustable collision approximation, separate from hidden placeholder renderer",
+  "physical_flags": {
+    "groundingQualified": false,
+    "contactsQualified": false
+  },
+  "original_fbx_and_importer_metadata": "unchanged from previous seal",
+  "mode": "background EditMode and offline runtime graph sampling",
+  "playmode": false,
+  "test_count": 75,
+  "test_failures": 0,
+  "test_skips": 0,
+  "equipped_crouch_max_height": 1.6592421531677246
+}

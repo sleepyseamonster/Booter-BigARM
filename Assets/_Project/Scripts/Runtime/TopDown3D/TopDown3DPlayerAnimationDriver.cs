@@ -228,6 +228,7 @@ namespace BooterBigArm.TopDown3D
             visualScale = value.visualScale; visualLocalPosition = value.visualOffset;
             visualLocalEulerAngles = Vector3.zero;
             laboratoryAvatar = value.targetAvatar; laboratoryBodyMaterial = value.bodyMaterial;
+            laboratoryFootProjection=value.footProjection;
             equipmentScale = value.bodyHeight / value.equipmentModelHeight;
             equipmentPresentationRatio = equipmentScale / PrototypeVisualScale;
             laboratoryFeetPlane = -value.capsuleHeight * .5f;
@@ -371,6 +372,7 @@ namespace BooterBigArm.TopDown3D
 
             DisableGreyboxVisuals();
             CreatePlayableGraph(humanoidAnimator);
+            if(laboratoryFootProjection!=null)footProjectionSampler=laboratoryFootProjection.Bind(visualInstance.transform);
         }
 
         private void DisableGreyboxVisuals()
