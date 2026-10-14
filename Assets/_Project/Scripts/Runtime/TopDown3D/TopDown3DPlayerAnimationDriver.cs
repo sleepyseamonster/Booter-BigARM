@@ -562,6 +562,13 @@ namespace BooterBigArm.TopDown3D
                 return ClimbPlaceholderIndex;
             }
 
+            if (LaboratorySustainedDiagnostic)
+            {
+                ResetTransitionState(planarSpeed <= LocomotionStopSpeed
+                    ? TopDown3DLocomotionState.Idle : TopDown3DLocomotionState.Sustained);
+                return -1;
+            }
+
             var absoluteHeadingError = Mathf.Abs(snapshot.SignedHeadingError);
             var releaseHardTurn = TopDown3DAnimationMath.ShouldReleaseHardTurnLatch(
                 absoluteHeadingError,
@@ -881,6 +888,7 @@ namespace BooterBigArm.TopDown3D
                 turnGaitStartYawRate,
                 turnGaitFullYawRate,
                 maximumTurnGaitWeight);
+            if (LaboratorySustainedDiagnostic) turnWeight = 0;
             var forwardWeight = 1f - turnWeight;
             targetWeights[WalkIndex] = walkWeight * forwardWeight;
             targetWeights[RunIndex] = runWeight * forwardWeight;

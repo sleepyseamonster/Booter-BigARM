@@ -157,6 +157,10 @@ namespace BooterBigArm.Tests
                 var input = player.InputRouter; actions = AnimationPlaygroundInputFactory.Create(input.InputActions);
                 input.Configure(actions); input.Initialize();
                 Invoke(session, "Start"); Assert.That(session.Readiness, Is.EqualTo(AnimationPlaygroundReadiness.VisualReady), session.UnavailableReason);
+                Assert.That(Field<float>(player, "animationWalkSpeed"), Is.EqualTo(1.4f).Within(.0001f));
+                Assert.That(Field<float>(player, "walkSpeed"), Is.EqualTo(2.7f).Within(.0001f));
+                Assert.That(Field<float>(player, "sprintSpeed"), Is.EqualTo(3.8f).Within(.0001f));
+                Assert.That(driver.LaboratorySustainedDiagnostic, Is.False, "Source selection must not opt the author into a diagnostic.");
                 Assert.That(session.Coordinator, Is.Not.Null); Assert.That(input.AnimationActionOwned, Is.Not.Null);
                 var binding = session.Bindings.motions.First(value => value.CanPreview);
                 Assert.That(session.Coordinator.TryBeginPreview(binding), Is.True); Assert.That(input.AnimationActionOwned(), Is.True);

@@ -73,10 +73,14 @@ namespace BooterBigArm.TopDown3D
         public bool TransferAnimationPostureOwner(object owner,object successor)
         {
             if(!IsAnimationPostureOwner(owner) || successor==null || animationMotionOwner!=null)return false;
-            animationPostureOwner=successor;return true;
+            animationPostureOwner=successor;ResetStandingMotionObservation();return true;
         }
         public bool SetLaboratoryPostureSuspended(object owner,bool value)
-        {if(!IsAnimationPostureOwner(owner))return false;laboratoryPostureSuspended=value;return true;}
+        {
+            if(!IsAnimationPostureOwner(owner))return false;
+            if(laboratoryPostureSuspended!=value)ResetStandingMotionObservation();
+            laboratoryPostureSuspended=value;return true;
+        }
         public AnimationPlaygroundMotionMode AnimationMotionMode {get;private set;}
         public AnimationPlaygroundPosture AnimationPosture {get;private set;}
         public AnimationPlaygroundMotorSnapshot AnimationSnapshot {get;private set;}
@@ -107,7 +111,10 @@ namespace BooterBigArm.TopDown3D
             EnsureAnimationShape();animationPostureOwner=owner;ResetLaboratoryMeasurement();
         }
         private void ResetLaboratoryMeasurement()
-        {laboratoryPreviousPosition=Position;LaboratoryMeasuredVelocity=Vector3.zero;}
+        {
+            laboratoryPreviousPosition=Position;LaboratoryMeasuredVelocity=Vector3.zero;
+            ResetStandingMotionObservation();
+        }
         private void MeasureLaboratoryDisplacement()
         {
             var current=Position;
@@ -136,7 +143,8 @@ namespace BooterBigArm.TopDown3D
         {
             if(owner==null || !ReferenceEquals(owner,animationPostureOwner))return false;
             if(!TryRestoreAnimationPosture(owner))return false;
-            animationPostureOwner=null;laboratoryBlocksLegacyTraversal=false;laboratoryCrouchFacingLocked=false;laboratoryPostureSuspended=false;return true;
+            animationPostureOwner=null;laboratoryBlocksLegacyTraversal=false;laboratoryCrouchFacingLocked=false;laboratoryPostureSuspended=false;
+            ResetStandingMotionObservation();return true;
         }
         private float AnimationLocomotionSpeed(float normalSpeed)
         {
@@ -304,6 +312,7 @@ namespace BooterBigArm.TopDown3D
         private void ReleaseAnimationMotionCore()
         {
             if(animationMotionOwner==null)return;
+            ResetStandingMotionObservation();
             if(body!=null){body.useGravity=animationOriginalGravity;body.linearVelocity=Vector3.up*(animationWasPaused ? animationPausedVelocity.y : body.linearVelocity.y);body.angularVelocity=Vector3.zero;}
             if(capsule!=null)capsule.enabled=animationColliderEnabled;
             animationMotionOwner=null;AnimationMotionMode=AnimationPlaygroundMotionMode.None;animationIntent=default;animationSupportReleaseTicks=0;animationWasPaused=false;animationPausedVelocity=default;AnimationSnapshot=default;

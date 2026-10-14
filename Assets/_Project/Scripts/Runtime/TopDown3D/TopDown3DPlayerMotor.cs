@@ -251,6 +251,7 @@ namespace BooterBigArm.TopDown3D
             EnsureBody();
             CancelTraversal();
             EndClimb();
+            if (actionConstraintOwner == null) ResetStandingMotionObservation();
             actionConstraintOwner = owner;
             SprintActive = false;
             PlanarAcceleration = Vector3.zero;
@@ -271,6 +272,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             if(ReferenceEquals(animationMotionOwner,owner))ReleaseAnimationMotionCore();
+            if (actionConstraintOwner != null) ResetStandingMotionObservation();
             actionConstraintOwner = null;
             campApproaching = false;
             waypointTravelActive = false;
@@ -309,6 +311,13 @@ namespace BooterBigArm.TopDown3D
         }
 
         private void FixedUpdate()
+        {
+            laboratoryGroundSupport = null;
+            try { AdvanceMotorFixedTick(); }
+            finally { ObserveCompletedLaboratoryMotion(); }
+        }
+
+        private void AdvanceMotorFixedTick()
         {
             if (YieldMountedMotor()) return;
             WaitingForPopulation = PopulationPreparation != null && !PopulationPreparation(PopulationPreparationBounds());
@@ -1147,7 +1156,9 @@ namespace BooterBigArm.TopDown3D
                 return false;
             }
 
-            return TopDown3DSlopeMath.IsWalkable(normal, maxWalkableSlope);
+            var walkable = TopDown3DSlopeMath.IsWalkable(normal, maxWalkableSlope);
+            if (walkable) laboratoryGroundSupport = proximityCollider;
+            return walkable;
         }
 
         private bool TryReadTrueSurfaceNormal(
