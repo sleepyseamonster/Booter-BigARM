@@ -209,6 +209,16 @@ namespace BooterBigArm.Tests
             }
         }
 
+        [Test] public void GamepadWorldPromptDoesNotAdvertiseTheRetiredCargoHold()
+        {
+            typeof(TopDown3DInputRouter).GetMethod("SetPromptDevice", PrivateInstance)
+                .Invoke(router, new object[] {TopDown3DPromptDevice.Gamepad});
+            Refresh(Target("Mine ironstone"));
+            Assert.That(hud.DisplayedText, Does.Contain("Mine ironstone"));
+            Assert.That(hud.DisplayedText, Does.Not.Contain("Hold"));
+            Assert.That(hud.DisplayedText, Does.Not.Contain("Open Legger cargo"));
+        }
+
         private MutableTarget Target(string prompt) => new(Create("HUD target", origin + Vector3.forward), prompt);
 
         private GameObject Create(string name, Vector3 position, params System.Type[] components)

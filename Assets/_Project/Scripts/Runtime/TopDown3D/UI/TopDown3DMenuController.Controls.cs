@@ -107,7 +107,7 @@ namespace BooterBigArm.TopDown3D
                     : InputControlPath.ToHumanReadableString(displayPath, InputControlPath.HumanReadableStringOptions.OmitDevice);
                 view.SetText("ControlBinding", "Change: " + display);
             }
-            view.SetText("ControlHold", "Cargo hold: " + controlsDraft.cargoHoldSeconds.ToString("0.00") + " seconds");
+            view.SetText("ControlHold", "Keyboard cargo hold: " + controlsDraft.cargoHoldSeconds.ToString("0.00") + " seconds");
             view.SetText("ControlNotice", controlNotice ?? controls.Notice ?? "Choose an action and change its button. Apply saves; Back protects unapplied edits.");
             foreach (var key in new[] { "ControlBinding", "ControlHold", "ControlReset", "ControlsApply" })
                 view.SetButton(key, controls.CanSave && controlsCompatible && !IsRebindingControls);

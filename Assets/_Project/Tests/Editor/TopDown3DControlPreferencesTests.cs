@@ -131,7 +131,8 @@ namespace BooterBigArm.Tests
             Assert.That(TopDown3DControlPreferencesService.TryValidate(draft, asset, out string error), Is.True, error);
             TopDown3DControlPreferencesService.Apply(asset, draft);
             Assert.That(Effective("Gameplay/OpenCargo"), Is.EqualTo("<Keyboard>/h"));
-            Assert.That(Effective("Gameplay/OpenCargo", "Gamepad"), Is.EqualTo("<Gamepad>/rightTrigger"));
+            Assert.That(Effective("Gameplay/Interact", "Gamepad"), Is.EqualTo("<Gamepad>/rightTrigger"));
+            Assert.That(Effective("Gameplay/OpenCargo", "Gamepad"), Is.Empty, "Legacy paired overrides cannot restore gamepad cargo opening.");
         }
         [Test] public void RejectsDuplicateWrongOwnerDormantAndDivergentPairs()
         {

@@ -117,7 +117,7 @@ namespace BooterBigArm.TopDown3D
 
         public static string ActionDisplayName(string path) => path switch
         {
-            "Gameplay/Interact" or "Gameplay/OpenCargo" => "Interaction / cargo",
+            "Gameplay/Interact" or "Gameplay/OpenCargo" => "Interact",
             "Gameplay/Sprint" => "Sprint",
             "Gameplay/RecallBigArm" => "Call Legger over",
             "Gameplay/DeployCanister" => "Deploy canister",
@@ -238,6 +238,17 @@ namespace BooterBigArm.TopDown3D
                 if (action.name == "Interact") action.ApplyParameterOverride("tap:duration", normalized.cargoHoldSeconds);
                 if (action.name == "OpenCargo") action.ApplyParameterOverride("hold:duration", normalized.cargoHoldSeconds);
             }
+            DisableGamepadCargoShortcut(asset);
+        }
+
+        // Preserve existing preference binding IDs and the keyboard gesture while retiring
+        // the gamepad cargo shortcut, including overrides from the old paired control row.
+        public static void DisableGamepadCargoShortcut(InputActionAsset asset)
+        {
+            var cargo = asset?.FindAction("Gameplay/OpenCargo", false);
+            if (cargo == null) return;
+            for (var i = 0; i < cargo.bindings.Count; i++)
+                if (Group(cargo.bindings[i]) == "Gamepad") cargo.ApplyBindingOverride(i, string.Empty);
         }
 
         public static TopDown3DControlPreferences Normalize(TopDown3DControlPreferences draft, InputActionAsset asset)

@@ -296,7 +296,8 @@ namespace BooterBigArm.Tests
             Assert.That(File.Exists(Path.Combine(directory, "controls-v1.json")), Is.False);
             Step(new GamepadState()); Command("ControlsApply");
             Assert.That(actions.FindAction("Gameplay/Interact").bindings[0].effectivePath, Is.EqualTo("<Gamepad>/rightTrigger"));
-            Assert.That(actions.FindAction("Gameplay/OpenCargo").bindings[0].effectivePath, Is.EqualTo("<Gamepad>/rightTrigger"));
+            Assert.That(actions.FindAction("Gameplay/OpenCargo").bindings[0].effectivePath, Is.Empty,
+                "Rebinding interaction must not restore gamepad cargo opening.");
             Assert.That(actions.FindAction("Gameplay/Interact").bindings[1].effectivePath, Is.EqualTo("<Keyboard>/e"));
         }
 

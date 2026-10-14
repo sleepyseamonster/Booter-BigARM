@@ -1,5 +1,7 @@
 # Inventory and Radial Menu System
 
+**October 13, 2026 gamepad update:** Square/West is now an ordinary world-interaction press. Its Legger cargo hold shortcut is removed, including restoration through saved paired control overrides. Triangle/North opens the existing inventory and its Legger pane. The keyboard E tap/hold pair remains available. Earlier Square cargo-target/hold descriptions below are superseded; see the [input audit update](../../Evidence/Gameplay/INPUT_CONTROL_AUDIT_2026-10-12.md).
+
 Status: design and implementation sequence for Greater Wasteland, 2026-10-06. The user confirmed a player-customizable menu hub opened by holding left bumper or a keyboard equivalent: north opens player inventory, south calls the Legger over to sprint toward Booter through pathfinding, and west selects the dust canister for placement. After he arrives, the player targets the Legger and uses the existing Interact control (gamepad West, keyboard E) to open cargo. Other defaults below are proposals; they do not establish new item economy, companion abilities, or world canon.
 
 The radial menu provides entry points into inventory and tool selection. The inventory remains the place to inspect, organize, transfer, and assign items. Both use the same item and command authorities so a shortcut never becomes a second inventory or a way around physical reach, capacity, or action constraints.

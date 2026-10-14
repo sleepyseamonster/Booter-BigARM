@@ -1,5 +1,7 @@
 # Production input and control audit — October 12, 2026
 
+**October 13 supersession:** the author removed gamepad Square/West cargo opening. Square now performs an ordinary world interaction on press; Triangle/North continues to open inventory. The retained findings below describe the earlier tap/hold repair. The control map reflects the current gamepad behavior; the keyboard E pair remains at the shipped 0.35-second default, with its existing customization.
+
 Requested by the author after Legger inventory interfered with ironstone mining and canister pickup. Scope: the production TopDown3D router, input asset, interaction/action controllers, inventory, radial, system menu, camp, movement/camera and algae consumers. Root AGENTS and the input standard control the work. Existing dirty production terrain, materials and terrain receipts remain outside this task.
 
 ## Findings and corrections
@@ -21,8 +23,8 @@ Binding text is illustrative; runtime prompts resolve the connected device and e
 | Sprint; automatic traversal | Right shoulder | Left Shift |
 | Camera orbit | Right stick | Mouse motion |
 | Camera look-ahead | Hold left trigger with right stick | No separate modifier bound |
-| World interaction: mine, canister, camp, cache | Tap West | Tap E |
-| Nearby Legger cargo (idle) | Hold West, 0.45 seconds | Hold E, 0.45 seconds |
+| World interaction: mine, canister, camp, cache | Press Square / West | Tap E |
+| Nearby Legger cargo (idle) | Triangle / North inventory pane; no Square hold | Hold E, 0.35 seconds by default |
 | Personal inventory | North | Tab |
 | Call Legger over | Radial command | F1 or radial command |
 | Canister preview / confirm placement | D-pad down | G |
@@ -57,3 +59,13 @@ Unity 6000.4.0f1 imported and compiled the refreshed source in the stopped, isol
 Added proof covers keyboard/gamepad tap versus timed hold, cargo focus with no opener transfer, fresh transfer after release, distant/blocked access, Legger exclusion while targeting ironstone, keyboard neutral return, and D-pad deploy/diagonal/modal conflicts. Existing mining/resource transaction and dust-capacity tests continue to pass.
 
 This is input/structure/transaction proof. No gameplay smoke test or controller feel test was run. Hands-on acceptance remains author-owned: check the 0.45-second threshold, mining beside Legger, canister pickup with him present, cancellation, and transitions among cargo, inventory, radial and menus.
+
+## Square cargo shortcut removal — October 13, 2026
+
+The author requested removal of Square long-press cargo opening because it still interfered with world interaction, with inventory already accessible on Triangle. Gamepad `Interact` now uses the normal button press. The existing Tap interaction is confined to its keyboard binding so the keyboard E tap/hold behavior remains available. Gamepad cargo bindings are disabled when the input router initializes and after control preferences apply; a device guard also prevents a manually restored gamepad binding from emitting a cargo-open command. This preserves existing action/binding IDs and preference-file compatibility while preventing legacy paired overrides or a gamepad interaction rebind from reviving the shortcut.
+
+The gamepad HUD no longer advertises the cargo hold. The Legger callover feedback now directs players to the existing inventory opener, and the controls hold-time label explicitly describes the keyboard gesture. Triangle inventory opening, the cargo pane, physical cargo-access checks, inventory transfer commands, world-target selection and keyboard cargo opening retain their existing owners. No world identity, terrain, streaming, authored placement or persisted gameplay-delta contract changes.
+
+Unity 6000.4.0f1 imported and compiled the complete candidate in the main checkout. Its input-asset structural check passed directly through the background CLI. All **120/120 focused EditMode tests passed**, zero failures/skips, in the task-owned isolated dependency candidate `D:\BooterBigArmValidation\CargoSquare20261013-01`: `TopDown3DInventoryLoopUiTests`, `TopDown3DInteractionTests`, `TopDown3DInteractionFeedbackHudTests`, `TopDown3DControlPreferencesTests`, `TopDown3DInventoryUiTests` and `TopDown3DMenuTests`. Regression cases prove held Square interacts exactly once without opening cargo, release does not interact again, Triangle still opens inventory, gamepad HUD hints exclude cargo hold, and legacy paired/rebound gamepad preferences cannot restore cargo opening. Existing keyboard timing, access, inventory and menu checks also pass.
+
+The first reduced candidate lacked the existing menu prefab, gather animation and GameplaySetup dependencies; those assets were copied from the source checkout without alteration. The next run passed 119/120, with one menu assertion still expecting the retired gamepad cargo rebind; that assertion now requires cargo to remain disabled. The final full selected run passed 120/120. Current diagnostics remain under ignored `Logs/cargo-square-sealed-tests.log` and `Logs/cargo-square-sealed-tests.xml`. Action-map, action and binding GUIDs are unchanged. No gameplay smoke test, scene save, app focus, package change or external publication was performed; CampLoopTesting remains the open scene.

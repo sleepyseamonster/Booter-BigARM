@@ -131,7 +131,8 @@ namespace BooterBigArm.TopDown3D
             else
             {
                 var targetPrompt = target != null && target.IsAvailable ? target.Prompt : null;
-                var cargoAvailable = actionController != null && actionController.CanOpenCargo;
+                var cargoAvailable = actionController != null && actionController.CanOpenCargo
+                    && (input == null || input.PromptDevice != TopDown3DPromptDevice.Gamepad);
                 var holdPercent = cargoAvailable && input != null && input.IsCargoHoldActive ? Mathf.RoundToInt(input.CargoHoldProgress * 100f) : -1;
                 var feedback = feedbackRemaining > 0f ? feedbackMessage : null;
                 // Availability and LOS stay fresh; only unchanged presentation is reused.
@@ -141,7 +142,8 @@ namespace BooterBigArm.TopDown3D
                 cachedHoldPercent = holdPercent; cachedFeedback = feedback; promptDirty = false;
                 interactBinding ??= input != null ? input.GetBindingDisplayName("Gameplay/Interact", "E") : "E";
                 cargoBinding ??= input != null ? input.GetBindingDisplayName("Gameplay/OpenCargo", "E") : "E";
-                text = targetPrompt != null ? $"[Tap {interactBinding}] {targetPrompt}" : string.Empty;
+                var gesture = input != null && input.PromptDevice == TopDown3DPromptDevice.Gamepad ? string.Empty : "Tap ";
+                text = targetPrompt != null ? $"[{gesture}{interactBinding}] {targetPrompt}" : string.Empty;
                 if (cargoAvailable)
                 {
                     var progress = holdPercent >= 0 ? $" · {holdPercent}%" : string.Empty;

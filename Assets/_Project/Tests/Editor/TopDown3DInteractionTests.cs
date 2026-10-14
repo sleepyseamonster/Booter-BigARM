@@ -39,12 +39,14 @@ namespace BooterBigArm.Tests
         }
 
         [Test]
-        public void InputAsset_InteractionAndCargoHaveExclusiveTapAndHoldBindings()
+        public void InputAsset_GamepadInteractsNormallyAndKeyboardRetainsTapHoldPair()
         {
             var actions = AssetDatabase.LoadAssetAtPath<InputActionAsset>(InputPath);
             var interact = actions.FindAction("Gameplay/Interact", true);
 
-            Assert.That(interact.interactions, Is.EqualTo("Tap(duration=0.35)"));
+            Assert.That(interact.interactions, Is.Empty);
+            Assert.That(interact.bindings.Single(b => b.path == "<Gamepad>/buttonWest").interactions, Is.Empty);
+            Assert.That(interact.bindings.Single(b => b.path == "<Keyboard>/e").interactions, Is.EqualTo("Tap(duration=0.35)"));
             Assert.That(interact.bindings.Select(binding => binding.effectivePath),
                 Is.EquivalentTo(new[] { "<Gamepad>/buttonWest", "<Keyboard>/e" }));
             var cargo = actions.FindAction("Gameplay/OpenCargo", true);

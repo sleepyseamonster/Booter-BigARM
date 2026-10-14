@@ -11,7 +11,7 @@ namespace BooterBigArm.TopDown3D
         private bool interactRequested, pickupRequested, itemCancelRequested;
         public event Action InteractionPressStarted;
         public bool IsCargoHoldActive => Mode == TopDown3DInputMode.Gameplay
-            && openCargoAction?.phase == InputActionPhase.Started;
+            && openCargoAction?.phase == InputActionPhase.Started && !(openCargoAction.activeControl?.device is Gamepad);
         public float CargoHoldProgress => IsCargoHoldActive ? openCargoAction.GetTimeoutCompletionPercentage() : 0f;
         public void RefreshControlPrompts() => PromptDeviceChanged?.Invoke(PromptDevice);
         public event Action CargoOpenRequested;
@@ -21,6 +21,7 @@ namespace BooterBigArm.TopDown3D
             cancelItemAction = gameplayMap?.FindAction("CancelItemAction", false);
             if (cancelItemAction != null) cancelItemAction.performed += HandleItemCancel;
             openCargoAction = gameplayMap?.FindAction("OpenCargo", false);
+            TopDown3DControlPreferencesService.DisableGamepadCargoShortcut(inputActions);
             if (openCargoAction != null) openCargoAction.performed += HandleCargoOpen;
         }
         private void UnbindInventoryActions()
@@ -56,6 +57,7 @@ namespace BooterBigArm.TopDown3D
         }
         private void HandleCargoOpen(InputAction.CallbackContext context)
         {
+            if (context.control?.device is Gamepad) return;
             if (Mode == TopDown3DInputMode.Gameplay && inputUpdateMode == TopDown3DInputMode.Gameplay
                 && (!UnityEngine.Application.isPlaying || UnityEngine.Application.isFocused)) cargoRequested = true;
         }

@@ -87,8 +87,8 @@ namespace BooterBigArm.TopDown3D
                 { reportedBlocked = true; action?.ReportFeedback("Legger cannot reach you from here"); }
                 else if (cargo != null && cargo.IsInAccessRange(inventory.transform.position)
                     && legger.State == TopDown3DBigArmFollower.FollowState.Idle)
-                { watchCallOver = false; action?.ReportFeedback("Legger ready — hold "
-                    + router.GetBindingDisplayName("Gameplay/OpenCargo", "E") + " to open cargo"); }
+                { watchCallOver = false; action?.ReportFeedback("Legger ready — "
+                    + router.GetBindingDisplayName("System/ToggleInventory", "Triangle") + " to open inventory"); }
             }
             if (waitRelease && (openingButton == null || !openingButton.isPressed)) waitRelease = false;
             if (!open) return;

@@ -77,7 +77,6 @@ namespace BooterBigArm.Tests
             Assert.That(canvas.CargoSlotViews[0].Button.navigation.mode, Is.EqualTo(Navigation.Mode.Explicit));
         }
 
-        [TestCase(false)]
         [TestCase(true)]
         public void TapInteractsButHoldOpensNearbyCargoWithoutTransfer(bool keyboardInput)
         {
@@ -293,24 +292,49 @@ namespace BooterBigArm.Tests
         [Test]
         public void CustomizedHoldTimingKeepsTapAndHoldExclusiveAtTheSavedThreshold()
         {
-            var pad = InputSystem.AddDevice<Gamepad>();
+            var pad = InputSystem.AddDevice<Keyboard>();
             try
             {
                 TopDown3DControlPreferencesService.Apply(actions, new TopDown3DControlPreferences { cargoHoldSeconds = .65f });
                 var taps = 0; var holds = 0;
                 router.InteractRequested += () => taps++; router.CargoOpenRequested += () => holds++;
-                InputSystem.QueueStateEvent(pad, new GamepadState().WithButton(GamepadButton.West)); InputSystem.Update();
+                InputSystem.QueueStateEvent(pad, new KeyboardState(Key.E)); InputSystem.Update();
                 System.Threading.Thread.Sleep(400); InputSystem.Update();
                 Assert.That(holds, Is.Zero, "The shipped .35-second threshold must be replaced.");
-                InputSystem.QueueStateEvent(pad, new GamepadState()); InputSystem.Update();
+                InputSystem.QueueStateEvent(pad, new KeyboardState()); InputSystem.Update();
                 Assert.That(taps, Is.EqualTo(1));
-                InputSystem.QueueStateEvent(pad, new GamepadState().WithButton(GamepadButton.West)); InputSystem.Update();
+                InputSystem.QueueStateEvent(pad, new KeyboardState(Key.E)); InputSystem.Update();
                 System.Threading.Thread.Sleep(700); InputSystem.Update();
                 Assert.That(holds, Is.EqualTo(1)); Assert.That(taps, Is.EqualTo(1));
-                InputSystem.QueueStateEvent(pad, new GamepadState()); InputSystem.Update();
+                InputSystem.QueueStateEvent(pad, new KeyboardState()); InputSystem.Update();
                 Assert.That(taps, Is.EqualTo(1), "The completed hold cannot also tap.");
             }
             finally { InputSystem.RemoveDevice(pad); }
+        }
+
+        [Test] public void HeldSquareInteractsOnceWithoutOpeningCargoAndTriangleStillOpensInventory()
+        {
+            var pad = InputSystem.AddDevice<Gamepad>();
+            var controller = actor.AddComponent<TopDown3DPlayerActionController>();
+            try
+            {
+                controller.Configure(router, null, kit, null, null); controller.ConfigureCargo(cargo);
+                ui.Configure(router, kit, controller, canvas, ui.EventSystem);
+                // A saved pairing and hold duration must not revive the retired gamepad shortcut.
+                TopDown3DControlPreferencesService.Apply(actions, new TopDown3DControlPreferences {cargoHoldSeconds = .65f});
+                var interactions = 0; var cargoRequests = 0;
+                router.InteractRequested += () => interactions++; router.CargoOpenRequested += () => cargoRequests++;
+                InputSystem.QueueStateEvent(pad, new GamepadState().WithButton(GamepadButton.West)); InputSystem.Update();
+                Assert.That(interactions, Is.EqualTo(1));
+                System.Threading.Thread.Sleep(700); InputSystem.Update();
+                Assert.That(router.IsCargoHoldActive, Is.False);
+                Assert.That(cargoRequests, Is.Zero); Assert.That(ui.IsOpen, Is.False);
+                InputSystem.QueueStateEvent(pad, new GamepadState()); InputSystem.Update();
+                Assert.That(interactions, Is.EqualTo(1), "Release must not trigger a second world interaction.");
+                InputSystem.QueueStateEvent(pad, new GamepadState().WithButton(GamepadButton.North)); InputSystem.Update();
+                Assert.That(ui.IsOpen, Is.True); Assert.That(cargoRequests, Is.Zero);
+            }
+            finally { InputSystem.RemoveDevice(pad); Object.DestroyImmediate(controller); }
         }
 
         [Test] public void ExistingAuthoredGridsReconnectWithoutCreatingDuplicateSlots()
