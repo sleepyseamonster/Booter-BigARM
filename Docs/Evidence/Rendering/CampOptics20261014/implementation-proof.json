@@ -1,0 +1,287 @@
+{
+  "date": "2026-10-14",
+  "candidate": "D:/BooterBigArmValidation/CampOptics20261014-01",
+  "sourceCommits": [
+    "b90e7562c",
+    "9099124ce"
+  ],
+  "tests": 73,
+  "skipped": 0,
+  "actualCameraBlurPassed": true,
+  "actualCameraLensPassed": true,
+  "matchedCaptures": 45,
+  "standaloneMeasuredRenders": 10800,
+  "gpuBudgetQualified": false,
+  "gpuLimitation": "No valid GPU frame timing in graphics-enabled background offscreen Player",
+  "activeSceneBaseline": "Clearer twilight unchanged",
+  "mainSceneWritten": false,
+  "packagesChanged": false,
+  "foregroundActivated": false,
+  "gameplaySmokeTestRun": false,
+  "sourceFiles": [
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampOpticsAuthoring.cs",
+      "sha256": "6a458f053e9a5a1919b15edc951a162ae60f2383110ba4acd4ac995a0bdc9363"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampOpticsAuthoring.cs.meta",
+      "sha256": "9bf05c9f1eaf4d5d78f75af16221b5dc0d86e6946d637604103ec505588d09ec"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/CampOpticsBlurFixture.cs",
+      "sha256": "e4cd2bed9fe4732b2682385f4b51af9bd71eadb44fe80db460a4c82e0883e40e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/CampOpticsBlurFixture.cs.meta",
+      "sha256": "44c1a74beb39fbab3ba0701197a4605d2a2dfab604a6df81cbe21f699ae31886"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/CampOpticsBuildHarness.cs",
+      "sha256": "9b432ea8f9fc7abc84adc59c656409e5800297ab0802bd8e41a5ea5a614a840b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/CampOpticsBuildHarness.cs.meta",
+      "sha256": "10096cf27fc5b39082fd773424b5632ec18a6ae813a213e4ea0e5e4408310213"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/CampOpticsCapture.cs",
+      "sha256": "d4096bbe33eb2163252e76d4efe5bb7f800381358c11fe59085e82347e1d56f5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/CampOpticsCapture.cs.meta",
+      "sha256": "7469489e2152203fba1ed6a999339ebd02fb760ea88f078bfc61149f2db7e900"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/CampOpticsLensFixture.cs",
+      "sha256": "3d39736fb17eda8e15a431d851a6ec01815b6b41bcc143f545317a980ea2f1af"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/Validation/CampOpticsLensFixture.cs.meta",
+      "sha256": "1ae0a29aff9a82f8fc48aebc05452966f5d4e528c7c4a69859dcbd83f154f84e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/PerpetualTwilightSun.cs",
+      "sha256": "18c380973615fbe7d58fc0d3b7c1469c5a361d469a642d51f6aba3afe620e463"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DAtmosphereStudyProfile.cs",
+      "sha256": "22a5384d5a68917356a3a3c0710e7aa61bdce892fcd6b924b4e0785c161cf901"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampOpticsPerformanceFixture.cs",
+      "sha256": "81fcdd79c2092620b373b24f3b3da86c0438cb56ceed47e739caff236b352b76"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampOpticsPerformanceFixture.cs.meta",
+      "sha256": "192b05e8eb7034bfecccf30d4bd957ff840ea4b2c612a9837158b9a19485a632"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampOpticsProfile.cs",
+      "sha256": "c9c96fc36f48f4eee55f745595a93b6f63d92db5c8bab28f28eb5245aa3f8d64"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampOpticsProfile.cs.meta",
+      "sha256": "294682449e535ee35ba627c2637298e080dea48eb5e5647c9f7e223b375b58aa"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampOpticsStack.cs",
+      "sha256": "372165500913b83950413d8ffa5f9d8a78f0f8ee5cdecfa51c17c2e323ae923b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampOpticsStack.cs.meta",
+      "sha256": "c927725ab27641eac8030d8110fc3030fe69bc6147ce0301b607b044b5b6bde9"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DRoundLensFlareFeature.cs",
+      "sha256": "ee49b012351703627cd88b0727f18543fb8f44b224be815e636e6a7673d4cbd0"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSceneRenderingOverride.cs",
+      "sha256": "a728a30b430588e2f7941724278db2f02d09b6d629dedba67ba02e197d7beaf4"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSunBloomFeature.cs",
+      "sha256": "47816bbc24c35663b73074cb9c46d21a92637e8e4febbe8816dcd7b8314a3c05"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DTiltShiftFeature.cs",
+      "sha256": "d2ce618b66d1a2f45c496d20c16c35902235f072d496c72f83ab30d2109d0212"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014.meta",
+      "sha256": "cfbc317eeacbdaa7fd226adf029b03d7e61af5772b1b28266d8195224e377004"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/AcesOptics.asset",
+      "sha256": "3aa2852d216f0265d394cdada3a3e4ae440fa85c0bd61774bcdb249e86826c38"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/AcesOptics.asset.meta",
+      "sha256": "b45520d41e02e32e4181908a4f76d63ce00dc997705c8e93dc66a85c0a5b9b1e"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/AcesTwilight.asset",
+      "sha256": "76cbde1d032baffac6f78b51bbce50db6fdd42ef381492e7dd1df8cc69ae40e8"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/AcesTwilight.asset.meta",
+      "sha256": "54f25c4e9f163363b1a2c84e8e78e475a3e8c7d260d104d59843db23f978aec3"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/BandOptics.asset",
+      "sha256": "856c05e498bdcc97e25a9543ff575e1daa5ac98df0fa053176aef745f22984ee"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/BandOptics.asset.meta",
+      "sha256": "8cfa5ba4f7e89f05a1f7035010c8848e2d0892ae48a1f901d6e76399a72f33b9"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/BandTwilight.asset",
+      "sha256": "cbbf4fc27a4097ee9d663521a7a731ad5f895a38936409444dd517260add3677"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/BandTwilight.asset.meta",
+      "sha256": "8118034893716556a81088bba20a0d8e6bee88a2ae07e036386d0a96ca1a028d"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/FlareOptics.asset",
+      "sha256": "35e6948ef205409c73434d3d72db553f31b23faec6716f91c53325104deb7ccc"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/FlareOptics.asset.meta",
+      "sha256": "e5ba4a09e63e4b0b6d0171712f8bfb9b39a3efb31a0ff7ef1d100ac87bf2e7f2"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/FlareTwilight.asset",
+      "sha256": "f9e8921a9f2f45a974c5232fceb24f778a97ac7cb575778bfa79fe7d59e0cfa0"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/FlareTwilight.asset.meta",
+      "sha256": "2c3f33fefaf8a75d8c89990124ebcf4a46314292af89228830561e3066b9fa2c"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/HighOptics.asset",
+      "sha256": "a3d9e92d97f4a9015e2fd274d992a584113fac940ed81732708dd6e57b7724ca"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/HighOptics.asset.meta",
+      "sha256": "b1e7a5502b1b3fc2c5e4199651605b6ed0ea8ed821547daa8cd886563ac25437"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/HighTwilight.asset",
+      "sha256": "9676bdaf25c0264d1d48511d52dffa0cc4e8cbdd8ba5a14496d880e13ab01ff5"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/HighTwilight.asset.meta",
+      "sha256": "34b2b8d04a3e774c41a38f2d4584bb43e819f2347126de453f45cee42d017979"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/LowOptics.asset",
+      "sha256": "ce05fbc8d4e56c9fb9993d965a955d8c5078efa0ba72fd21037fb36f610e75de"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/LowOptics.asset.meta",
+      "sha256": "a2c59096bc65e7e9233d0c0f7a09d3ce781216d37e03b9260caa992c517af055"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/LowTwilight.asset",
+      "sha256": "84d77e3428e7825ad480c39bb2fa28d9701ec7bc6a84105443501c3266e9963a"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/LowTwilight.asset.meta",
+      "sha256": "70817fc7a9cbf509c25d2def724f2c43a3f267edfaa28fc71b8d4835991679e8"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/OffOptics.asset",
+      "sha256": "ab9b879206c65aec4ce120d4ef13b35adb06c421f122df900f6cb9edc5af1c7f"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/OffOptics.asset.meta",
+      "sha256": "8454ba2f40c9c2d9f1b6f188ae5bbebdc160707f5161484cf4d7d5fb1b7474a9"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/OffTwilight.asset",
+      "sha256": "600dcc1cbfed8729048e7613c738e95700074e7ece4d0e7025baf3cd15f142e3"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/OffTwilight.asset.meta",
+      "sha256": "fb737ff9c529cdb6e79d518a0136394672faca56e9d55aed4231cb6efff1a34d"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/StandardOptics.asset",
+      "sha256": "4344e728d3057e820a29be467035e4ad586c87b8b62d1f9c04402f26e80e5640"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/StandardOptics.asset.meta",
+      "sha256": "4efb9d6d0dfa56b64534f68c33415a83dfdb53c83db9c13eb36d1c2f24931579"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/StandardTwilight.asset",
+      "sha256": "c5b06f5941e644900f124cbed4571dbb06a6d559c2904f0b478a4823ded47156"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/StandardTwilight.asset.meta",
+      "sha256": "040035d3b0a0eefa8b6da1bd153f6f5038eecf65a3756a162ed366191a5141ef"
+    },
+    {
+      "path": "Assets/_Project/Shaders/TopDown3D/BrokenWorldRoundLensFlare.shader",
+      "sha256": "d6cfda28be8677be59787cd139eb7bf1363a4520ada8f8c33980d22f909f3c9c"
+    },
+    {
+      "path": "Assets/_Project/Shaders/TopDown3D/BrokenWorldTiltShift.shader",
+      "sha256": "59cb427833c9ade2d25eabddaf58e006befcb53cb7a763cd3cb8c83de1b7d67f"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DCampOpticsStackTests.cs",
+      "sha256": "9b2edf6248f42936c20df3ef1aa32c4d11b5ec174f73b7dfb7dd697e06e04526"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DCampOpticsStackTests.cs.meta",
+      "sha256": "b2fce5660ae532574840755fb3445a86c4a5702567e246115c2525cfbd331e01"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DConservativeFlareTests.cs",
+      "sha256": "b5c20b6f6d2fd598f153e9d5a3daef0d7b62a4e4b72d825e0af157a16733b59c"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DConservativeFlareTests.cs.meta",
+      "sha256": "f77d802637e1ec6e5f94f5bc11e3902eee29ffef72935bd4adaa86e1b0b7a5dd"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DReferenceTiltShiftTests.cs",
+      "sha256": "3bd038e630321257115e6783b630022fd78dd62d7bba413fa53dea706bafbc7c"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DReferenceTiltShiftTests.cs.meta",
+      "sha256": "16e0d66e95ec96c767978790a5171957a4f07182b8185accaec450f75f7b7a52"
+    },
+    {
+      "path": "Assets/_Project/VFX/Textures/CampOptics.meta",
+      "sha256": "0be011a5ad4a959273e75afe254b647383196bb7eb0b2796f9ecd545a3015aa7"
+    },
+    {
+      "path": "Assets/_Project/VFX/Textures/CampOptics/LensDustFine.png",
+      "sha256": "7016992a2efc6a1d4131d6b6073c394d63eb25f3b3f8e2c8b2016d4daea92fb7"
+    },
+    {
+      "path": "Assets/_Project/VFX/Textures/CampOptics/LensDustFine.png.meta",
+      "sha256": "11f6153df4592144a6587524e7feb4a2b959b8eaabd7a307de643d7889e7a4a1"
+    },
+    {
+      "path": "Assets/_Project/VFX/Textures/CampOptics/LensDustSoft.png",
+      "sha256": "5588264a19a43c8c49c79483f626f00dd3bf036d9ce08486a4ddb46e48fd4b89"
+    },
+    {
+      "path": "Assets/_Project/VFX/Textures/CampOptics/LensDustSoft.png.meta",
+      "sha256": "c1651d054bb51115e29363537314f6f3e52953ee294b547a0a5923307c96f8fe"
+    },
+    {
+      "path": "SourceArt/Rendering/CampOptics/LensDustFine-master.png",
+      "sha256": "20e1da41dacd5d4d6fa038a6b390a3833f7e6d41f70d8d0a38e07ade3fae707d"
+    },
+    {
+      "path": "SourceArt/Rendering/CampOptics/LensDustSoft-master.png",
+      "sha256": "89c2445beb80089ef3ded8c0fb2f20e495937623f78a382fbfd4f34c800b0206"
+    }
+  ]
+}

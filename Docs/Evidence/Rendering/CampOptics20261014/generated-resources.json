@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-14",
+  "generator": "Built-in imagegen",
+  "inputSemantics": "Generated grayscale artist scattering data, not calibrated radiance",
+  "derivation": "Unity linear Texture2D numeric luminance 0.2126R + 0.7152G + 0.0722B, bilinear resample to 1024, RGB replicated, opaque alpha",
+  "runtimeImport": "sRGB false, Clamp, Bilinear, mipmaps true, uncompressed",
+  "sourceDimensions": [
+    1254,
+    1254
+  ],
+  "runtimeDimensions": [
+    1024,
+    1024
+  ],
+  "resources": [
+    {
+      "master": "SourceArt/Rendering/CampOptics/LensDustFine-master.png",
+      "masterSHA256": "20e1da41dacd5d4d6fa038a6b390a3833f7e6d41f70d8d0a38e07ade3fae707d",
+      "runtime": "Assets/_Project/VFX/Textures/CampOptics/LensDustFine.png",
+      "runtimeSHA256": "7016992a2efc6a1d4131d6b6073c394d63eb25f3b3f8e2c8b2016d4daea92fb7"
+    },
+    {
+      "master": "SourceArt/Rendering/CampOptics/LensDustSoft-master.png",
+      "masterSHA256": "89c2445beb80089ef3ded8c0fb2f20e495937623f78a382fbfd4f34c800b0206",
+      "runtime": "Assets/_Project/VFX/Textures/CampOptics/LensDustSoft.png",
+      "runtimeSHA256": "5588264a19a43c8c49c79483f626f00dd3bf036d9ce08486a4ddb46e48fd4b89"
+    }
+  ]
+}

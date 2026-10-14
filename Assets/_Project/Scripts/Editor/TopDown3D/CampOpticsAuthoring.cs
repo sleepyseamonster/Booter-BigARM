@@ -81,6 +81,35 @@ namespace BooterBigArm.Editor
             Debug.Log("CAMP_OPTICS_EXPOSURE_COMPARISON_READY: +1 EV fixed post exposure, Neutral versus ACES");
         }
 
+        public static void ValidateFromCli()
+        {
+            foreach (var tier in new[] { "Low", "Standard", "High", "Band", "Flare", "Off", "Aces" })
+            {
+                var atmosphere = AssetDatabase.LoadAssetAtPath<TopDown3DAtmosphereStudyProfile>(Settings + "/" + tier + "Twilight.asset");
+                if (atmosphere == null || !atmosphere.IsValid || atmosphere.nativeOptics == null || !atmosphere.nativeOptics.IsValid)
+                    throw new InvalidOperationException("Invalid optics selection " + tier);
+                if (atmosphere.bloomEnabled || atmosphere.streakEnabled) throw new InvalidOperationException("Duplicate bloom/streak producer " + tier);
+                if (atmosphere.tiltShiftEnabled && atmosphere.nativeOptics.depthMode != DepthOfFieldMode.Off)
+                    throw new InvalidOperationException("Stacked world blur " + tier);
+                if (atmosphere.flareEnabled && atmosphere.nativeOptics.depthMode != DepthOfFieldMode.Off)
+                    throw new InvalidOperationException("Custom flare would enter native DOF " + tier);
+                var texture = atmosphere.nativeOptics.dirtTexture;
+                var importer = (TextureImporter)AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(texture));
+                if (importer == null || importer.sRGBTexture || texture.width != 1024 || texture.height != 1024)
+                    throw new InvalidOperationException("Invalid lens data texture " + tier);
+            }
+            var clear = AssetDatabase.LoadAssetAtPath<TopDown3DAtmosphereStudyProfile>(CampAtmosphereAuthoring.Settings + "/Clear.asset");
+            if (clear.nativeOptics != null || clear.tiltShiftEnabled) throw new InvalidOperationException("Clear baseline changed");
+            foreach (var name in new[] { "BooterBigArm/TopDown3D/Broken World Tilt Shift", "BooterBigArm/TopDown3D/Broken World Round Lens Flare" })
+            {
+                var shader = Shader.Find(name);
+                if (shader == null) throw new InvalidOperationException("Missing " + name);
+                foreach (var message in ShaderUtil.GetShaderMessages(shader))
+                    if (message.severity.ToString() == "Error") throw new InvalidOperationException(message.message);
+            }
+            Debug.Log("CAMP_OPTICS_VALIDATION_OK: seven candidate selections, linear masks, blur exclusivity, baseline and shader diagnostics");
+        }
+
         private static Texture2D Derive(string name)
         {
             var sourcePath = "SourceArt/Rendering/CampOptics/" + name + "-master.png";

@@ -1,0 +1,47 @@
+{
+    "proof": "Actual URP camera impulse readback; no gameplay or frame-budget claim",
+    "gpu": "NVIDIA GeForce RTX 3060 Ti",
+    "api": "Direct3D11",
+    "width": 512,
+    "height": 512,
+    "referenceHeight": 1080.0,
+    "tapStepPixels": 7.0,
+    "stackRestored": true,
+    "targetsRestored": true,
+    "symmetryPassed": true,
+    "blurActive": true,
+    "downsampleConsistencyPassed": true,
+    "volumeManagerInitializedAtEntry": true,
+    "measurements": [
+        {
+            "variant": "Off",
+            "downsample": 0,
+            "energy": 15.8671875,
+            "centerX": 255.5,
+            "centerY": 409.5,
+            "rmsX": 1.1180340051651,
+            "rmsY": 1.1180340051651,
+            "symmetryRatio": 1.0
+        },
+        {
+            "variant": "Band-downsample2",
+            "downsample": 2,
+            "energy": 15.5589599609375,
+            "centerX": 255.5,
+            "centerY": 409.5,
+            "rmsX": 5.795736789703369,
+            "rmsY": 5.752591609954834,
+            "symmetryRatio": 1.007500171661377
+        },
+        {
+            "variant": "Band-downsample4",
+            "downsample": 4,
+            "energy": 15.613922119140625,
+            "centerX": 255.5,
+            "centerY": 409.5,
+            "rmsX": 5.571493148803711,
+            "rmsY": 5.832982063293457,
+            "symmetryRatio": 0.9551706314086914
+        }
+    ]
+}
