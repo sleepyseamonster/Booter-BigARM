@@ -90,6 +90,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [Camp Loop inventory audit and redesign brainstorm](./Design/Gameplay/CAMP_LOOP_INVENTORY_REDESIGN_BRAINSTORM_2026-10-14.md)
+  Proposed six-slot Booter equipment loadout, separate supply pockets and Legger cargo, with current inventory findings, deployed-equipment ownership and session-only trial boundaries. Audit and brainstorming only.
+
 - [Camp Loop ghost machine salvage implementation plan](./Design/Gameplay/CAMP_LOOP_GHOST_MACHINE_SALVAGE_PLAN_2026-10-14.md)
   Proposed three-part scavenging wreck in the existing session-only playground, with private trial items, safe reward reset, fixed-terrain placement and implementation gates.
 
