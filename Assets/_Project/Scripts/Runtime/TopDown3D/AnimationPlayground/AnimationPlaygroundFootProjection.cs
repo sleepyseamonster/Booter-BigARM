@@ -55,8 +55,10 @@ namespace BooterBigArm.TopDown3D
                     if(bones[i]==null)throw new ArgumentException("The foot projection bone is absent: "+source.bonePaths[i]);
                 }
             }
-            public float MinimumWorldY()
+            public float MinimumWorldY()=>MinimumWorldY(out _);
+            public float MinimumWorldY(out int minimumVertex)
             {
+                minimumVertex=-1;
                 var influenceLimit=int.MaxValue;
                 foreach(var renderer in renderers)
                 {
@@ -71,8 +73,9 @@ namespace BooterBigArm.TopDown3D
                     matrices[i]=bones[i].localToWorldMatrix;
                 }
                 var minimum=float.PositiveInfinity;
-                foreach(var vertex in data.vertices)
+                for(var vertexIndex=0;vertexIndex<data.vertices.Length;vertexIndex++)
                 {
+                    var vertex=data.vertices[vertexIndex];
                     var point=Vector3.zero;var total=0f;
                     for(var index=0;index<vertex.points.Length;index++)
                     {
@@ -85,7 +88,7 @@ namespace BooterBigArm.TopDown3D
                     }
                     point/=total;
                     if(!float.IsFinite(point.y))throw new InvalidOperationException("The active foot projection is not finite.");
-                    minimum=Mathf.Min(minimum,point.y);
+                    if(point.y<minimum){minimum=point.y;minimumVertex=vertexIndex;}
                 }
                 return minimum;
             }

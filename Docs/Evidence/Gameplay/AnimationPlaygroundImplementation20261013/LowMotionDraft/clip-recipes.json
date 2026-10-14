@@ -1,0 +1,73 @@
+{
+    "state": "low-motion-draft-not-physical-qualified",
+    "projectionVertices": 36188,
+    "projectionBones": 73,
+    "clips": [
+        {
+            "role": "SlideEnter",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideEnterBodyGrounded.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/RunningSlideOriginalHeightBaked.fbx",
+            "start": 0.0,
+            "end": 0.366666704416275,
+            "minimumBody": -0.9079999923706055,
+            "maximumHeight": 1.6708483695983887,
+            "maximumAdjustment": 0.10665082931518555,
+            "horizontal": false
+        },
+        {
+            "role": "SlideActive",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideActiveBodyGrounded.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/RunningSlideOriginalHeightBaked.fbx",
+            "start": 0.366666704416275,
+            "end": 0.75,
+            "minimumBody": -0.9079999923706055,
+            "maximumHeight": 0.8473051190376282,
+            "maximumAdjustment": 0.11018097400665283,
+            "horizontal": true
+        },
+        {
+            "role": "SlideRecover",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideRecoverBodyGrounded.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/RunningSlideOriginalHeightBaked.fbx",
+            "start": 0.75,
+            "end": 1.5333333015441895,
+            "minimumBody": -0.9079999923706055,
+            "maximumHeight": 1.6518371105194092,
+            "maximumAdjustment": 0.03230029344558716,
+            "horizontal": false
+        },
+        {
+            "role": "RollContact",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollContactBodyGrounded.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/FallRollLandingOriginalHeightBaked.fbx",
+            "start": 0.46666669845581057,
+            "end": 0.699999988079071,
+            "minimumBody": -0.9079999923706055,
+            "maximumHeight": 1.5642471313476563,
+            "maximumAdjustment": 0.03840959072113037,
+            "horizontal": false
+        },
+        {
+            "role": "RollActive",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollActiveBodyGrounded.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/FallRollLandingOriginalHeightBaked.fbx",
+            "start": 0.699999988079071,
+            "end": 1.2999999523162842,
+            "minimumBody": -0.9079999923706055,
+            "maximumHeight": 1.0141992568969727,
+            "maximumAdjustment": 0.07930183410644531,
+            "horizontal": true
+        },
+        {
+            "role": "RollRecover",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollRecoverBodyGrounded.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/FallRollLandingOriginalHeightBaked.fbx",
+            "start": 1.2999999523162842,
+            "end": 2.133333206176758,
+            "minimumBody": -0.9079999923706055,
+            "maximumHeight": 1.6970083713531495,
+            "maximumAdjustment": 0.06237691640853882,
+            "horizontal": false
+        }
+    ]
+}

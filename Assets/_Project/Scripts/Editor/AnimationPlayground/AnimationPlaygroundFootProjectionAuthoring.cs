@@ -11,9 +11,15 @@ namespace BooterBigArm.Editor
     public static class AnimationPlaygroundFootProjectionAuthoring
     {
         public const string Path="Assets/_Project/Settings/AnimationPlayground/PrivateBindings/FootProjection.asset";
-        public static AnimationPlaygroundFootProjection Build(GameObject asset)
+        public static AnimationPlaygroundFootProjection Build(GameObject asset,bool wholeBody=false)
         {
             var scene=EditorSceneManager.NewPreviewScene();var model=(GameObject)PrefabUtility.InstantiatePrefab(asset,scene);
+            try{return BuildFixture(asset,model,wholeBody);}
+            finally{Object.DestroyImmediate(model);EditorSceneManager.ClosePreviewScene(scene);}
+        }
+        public static AnimationPlaygroundFootProjection BuildFixture(GameObject asset,GameObject model,bool wholeBody)
+        {
+            if(asset==null || model==null)throw new ArgumentException("A paired model fixture is required.");
             var result=ScriptableObject.CreateInstance<AnimationPlaygroundFootProjection>();
             try
             {
@@ -32,7 +38,7 @@ namespace BooterBigArm.Editor
                             if(bone.IsChildOf(left))leftWeight+=influence.weight;
                             if(bone.IsChildOf(right))rightWeight+=influence.weight;
                         }
-                        if(leftWeight>=.6f || rightWeight>=.6f)
+                        if(wholeBody || leftWeight>=.6f || rightWeight>=.6f)
                         {
                             var points=new List<AnimationPlaygroundSkinPoint>();
                             for(var j=0;j<counts[i];j++)
@@ -52,7 +58,6 @@ namespace BooterBigArm.Editor
                 if(!result.Validate(asset,out var reason))throw new InvalidDataException(reason);return result;
             }
             catch{Object.DestroyImmediate(result);throw;}
-            finally{Object.DestroyImmediate(model);EditorSceneManager.ClosePreviewScene(scene);}
         }
         public static void BuildFromCli()
         {

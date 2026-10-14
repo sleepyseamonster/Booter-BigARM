@@ -1,0 +1,764 @@
+{
+    "state": "equipped-low-motion-draft-review",
+    "requiresEquipmentFit": true,
+    "fullVertices": 45483,
+    "reducedVertices": 103,
+    "envelopes": [
+        {
+            "name": "OneBone.SlideEnter",
+            "minimumBody": -1.3947674036026,
+            "maximumHeight": 1.6796705722808838,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.4847673773765564,
+            "maximumBareCorrection": 0.0006890296936035156,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "OneBone.SlideActive",
+            "minimumBody": -1.2998712062835694,
+            "maximumHeight": 1.1704058647155762,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.38987094163894656,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "OneBone.SlideRecover",
+            "minimumBody": -1.1480457782745362,
+            "maximumHeight": 1.6831612586975098,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.23804575204849244,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 6.556510925292969e-7
+        },
+        {
+            "name": "OneBone.RollContact",
+            "minimumBody": -0.9091915488243103,
+            "maximumHeight": 1.7596418857574463,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.0,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 6.556510925292969e-7
+        },
+        {
+            "name": "OneBone.RollActive",
+            "minimumBody": -1.4428927898406983,
+            "maximumHeight": 1.3345553874969483,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.5328927636146545,
+            "maximumBareCorrection": 0.00012892484664916992,
+            "maximumPredictionError": 4.76837158203125e-7
+        },
+        {
+            "name": "OneBone.RollRecover",
+            "minimumBody": -1.3553359508514405,
+            "maximumHeight": 1.6970086097717286,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.4453358054161072,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 5.960464477539063e-7
+        },
+        {
+            "name": "OneBone.Slide.EntryToActive",
+            "minimumBody": -1.2998712062835694,
+            "maximumHeight": 1.1405823230743409,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.38987094163894656,
+            "maximumBareCorrection": 0.005774199962615967,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "OneBone.Slide.ActiveToRecover",
+            "minimumBody": -1.1480457782745362,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.23804575204849244,
+            "maximumBareCorrection": 0.0030979514122009279,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "OneBone.Slide.RecoverToIdle",
+            "minimumBody": -0.9325585961341858,
+            "maximumHeight": 1.7499301433563233,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.02255880832672119,
+            "maximumBareCorrection": 0.02255880832672119,
+            "maximumPredictionError": 6.556510925292969e-7
+        },
+        {
+            "name": "OneBone.Slide.Cancel0",
+            "minimumBody": -1.2998712062835694,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.38987094163894656,
+            "maximumBareCorrection": 0.08369326591491699,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "OneBone.Slide.Cancel1",
+            "minimumBody": -1.1520006656646729,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.24200063943862916,
+            "maximumBareCorrection": 0.03028559684753418,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "OneBone.Slide.Cancel2",
+            "minimumBody": -1.166015863418579,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.25601571798324587,
+            "maximumBareCorrection": 0.005655407905578613,
+            "maximumPredictionError": 1.1920928955078126e-7
+        },
+        {
+            "name": "OneBone.Slide.Cancel3",
+            "minimumBody": -1.1736165285110474,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.2636166214942932,
+            "maximumBareCorrection": 0.006362855434417725,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "OneBone.Roll.EntryToActive",
+            "minimumBody": -0.9194525480270386,
+            "maximumHeight": 1.328805685043335,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.009452342987060547,
+            "maximumBareCorrection": 0.006526589393615723,
+            "maximumPredictionError": 4.76837158203125e-7
+        },
+        {
+            "name": "OneBone.Roll.ActiveToRecover",
+            "minimumBody": -1.350304365158081,
+            "maximumHeight": 1.1832621097564698,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.4403044581413269,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "OneBone.Roll.RecoverToIdle",
+            "minimumBody": -0.9325645565986633,
+            "maximumHeight": 1.7499301433563233,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.02256476879119873,
+            "maximumBareCorrection": 0.02256476879119873,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "OneBone.Roll.Cancel0",
+            "minimumBody": -1.2757549285888672,
+            "maximumHeight": 1.3156728744506837,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.3657549023628235,
+            "maximumBareCorrection": 0.2260180115699768,
+            "maximumPredictionError": 5.960464477539063e-7
+        },
+        {
+            "name": "OneBone.Roll.Cancel1",
+            "minimumBody": -1.313391089439392,
+            "maximumHeight": 1.3409309387207032,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.4033915400505066,
+            "maximumBareCorrection": 0.4033915400505066,
+            "maximumPredictionError": 5.960464477539063e-7
+        },
+        {
+            "name": "OneBone.Roll.Cancel2",
+            "minimumBody": -1.4194226264953614,
+            "maximumHeight": 1.1832621097564698,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.5094227194786072,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "OneBone.Roll.Cancel3",
+            "minimumBody": -1.4489047527313233,
+            "maximumHeight": 1.1832621097564698,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.5389047265052795,
+            "maximumBareCorrection": 0.020541846752166749,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "OneBone.SprintToSlide0",
+            "minimumBody": -0.9507746696472168,
+            "maximumHeight": 1.7161686420440674,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.0407751202583313,
+            "maximumBareCorrection": 0.0407751202583313,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "OneBone.LandingToRoll0",
+            "minimumBody": -1.2206188440322877,
+            "maximumHeight": 1.4979965686798096,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.31061869859695437,
+            "maximumBareCorrection": 0.07964497804641724,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "OneBone.SprintToSlide1",
+            "minimumBody": -0.9539746046066284,
+            "maximumHeight": 1.7050442695617676,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.043974876403808597,
+            "maximumBareCorrection": 0.043974876403808597,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "OneBone.LandingToRoll1",
+            "minimumBody": -1.1709080934524537,
+            "maximumHeight": 1.5075769424438477,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.2609080672264099,
+            "maximumBareCorrection": 0.07508975267410279,
+            "maximumPredictionError": 5.960464477539063e-7
+        },
+        {
+            "name": "OneBone.SprintToSlide2",
+            "minimumBody": -0.9275580048561096,
+            "maximumHeight": 1.7041611671447755,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.01755821704864502,
+            "maximumBareCorrection": 0.01755821704864502,
+            "maximumPredictionError": 5.960464477539063e-7
+        },
+        {
+            "name": "OneBone.LandingToRoll2",
+            "minimumBody": -1.0102983713150025,
+            "maximumHeight": 1.5505428314208985,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.10029834508895874,
+            "maximumBareCorrection": 0.05533444881439209,
+            "maximumPredictionError": 4.76837158203125e-7
+        },
+        {
+            "name": "OneBone.SprintToSlide3",
+            "minimumBody": -0.9179266691207886,
+            "maximumHeight": 1.7034337520599366,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.007926642894744873,
+            "maximumBareCorrection": 0.003169238567352295,
+            "maximumPredictionError": 4.76837158203125e-7
+        },
+        {
+            "name": "OneBone.LandingToRoll3",
+            "minimumBody": -0.9289590716362,
+            "maximumHeight": 1.689237356185913,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.018959462642669679,
+            "maximumBareCorrection": 0.018959462642669679,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "TwoBones.SlideEnter",
+            "minimumBody": -1.3947674036026,
+            "maximumHeight": 1.6796705722808838,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.4847673773765564,
+            "maximumBareCorrection": 0.0013758540153503419,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "TwoBones.SlideActive",
+            "minimumBody": -1.2998712062835694,
+            "maximumHeight": 1.1704058647155762,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.38987094163894656,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "TwoBones.SlideRecover",
+            "minimumBody": -1.1480457782745362,
+            "maximumHeight": 1.6831612586975098,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.23804575204849244,
+            "maximumBareCorrection": 0.0003298521041870117,
+            "maximumPredictionError": 6.556510925292969e-7
+        },
+        {
+            "name": "TwoBones.RollContact",
+            "minimumBody": -0.9089568257331848,
+            "maximumHeight": 1.7596418857574463,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.0,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 7.152557373046875e-7
+        },
+        {
+            "name": "TwoBones.RollActive",
+            "minimumBody": -1.4428927898406983,
+            "maximumHeight": 1.3345553874969483,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.5328927636146545,
+            "maximumBareCorrection": 0.0013366341590881348,
+            "maximumPredictionError": 4.76837158203125e-7
+        },
+        {
+            "name": "TwoBones.RollRecover",
+            "minimumBody": -1.3553359508514405,
+            "maximumHeight": 1.6970086097717286,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.4453358054161072,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "TwoBones.Slide.EntryToActive",
+            "minimumBody": -1.2998712062835694,
+            "maximumHeight": 1.1405823230743409,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.38987094163894656,
+            "maximumBareCorrection": 0.005774199962615967,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "TwoBones.Slide.ActiveToRecover",
+            "minimumBody": -1.1480457782745362,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.23804575204849244,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "TwoBones.Slide.RecoverToIdle",
+            "minimumBody": -0.9323102831840515,
+            "maximumHeight": 1.7499301433563233,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.022310614585876466,
+            "maximumBareCorrection": 0.022310614585876466,
+            "maximumPredictionError": 5.960464477539063e-7
+        },
+        {
+            "name": "TwoBones.Slide.Cancel0",
+            "minimumBody": -1.2998712062835694,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.38987094163894656,
+            "maximumBareCorrection": 0.08369326591491699,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "TwoBones.Slide.Cancel1",
+            "minimumBody": -1.1520006656646729,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.24200063943862916,
+            "maximumBareCorrection": 0.03028559684753418,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "TwoBones.Slide.Cancel2",
+            "minimumBody": -1.166015863418579,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.25601571798324587,
+            "maximumBareCorrection": 0.004408717155456543,
+            "maximumPredictionError": 1.1920928955078126e-7
+        },
+        {
+            "name": "TwoBones.Slide.Cancel3",
+            "minimumBody": -1.1736165285110474,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.2636166214942932,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "TwoBones.Roll.EntryToActive",
+            "minimumBody": -0.9194525480270386,
+            "maximumHeight": 1.328805685043335,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.009452342987060547,
+            "maximumBareCorrection": 0.007113516330718994,
+            "maximumPredictionError": 4.76837158203125e-7
+        },
+        {
+            "name": "TwoBones.Roll.ActiveToRecover",
+            "minimumBody": -1.350304365158081,
+            "maximumHeight": 1.1832621097564698,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.4403044581413269,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "TwoBones.Roll.RecoverToIdle",
+            "minimumBody": -0.9322929978370667,
+            "maximumHeight": 1.7499301433563233,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.022293150424957277,
+            "maximumBareCorrection": 0.022293150424957277,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "TwoBones.Roll.Cancel0",
+            "minimumBody": -1.2757549285888672,
+            "maximumHeight": 1.3156728744506837,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.3657549023628235,
+            "maximumBareCorrection": 0.22607296705245973,
+            "maximumPredictionError": 5.960464477539063e-7
+        },
+        {
+            "name": "TwoBones.Roll.Cancel1",
+            "minimumBody": -1.313398838043213,
+            "maximumHeight": 1.3409309387207032,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.40339893102645876,
+            "maximumBareCorrection": 0.40339893102645876,
+            "maximumPredictionError": 7.152557373046875e-7
+        },
+        {
+            "name": "TwoBones.Roll.Cancel2",
+            "minimumBody": -1.4194226264953614,
+            "maximumHeight": 1.1832621097564698,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.5094227194786072,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "TwoBones.Roll.Cancel3",
+            "minimumBody": -1.4489047527313233,
+            "maximumHeight": 1.1832621097564698,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.5389047265052795,
+            "maximumBareCorrection": 0.020595788955688478,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "TwoBones.SprintToSlide0",
+            "minimumBody": -0.9508490562438965,
+            "maximumHeight": 1.7161686420440674,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.040849506855010989,
+            "maximumBareCorrection": 0.040849506855010989,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "TwoBones.LandingToRoll0",
+            "minimumBody": -1.2206188440322877,
+            "maximumHeight": 1.4979965686798096,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.31061869859695437,
+            "maximumBareCorrection": 0.07962363958358765,
+            "maximumPredictionError": 4.76837158203125e-7
+        },
+        {
+            "name": "TwoBones.SprintToSlide1",
+            "minimumBody": -0.954526424407959,
+            "maximumHeight": 1.7050442695617676,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.04452669620513916,
+            "maximumBareCorrection": 0.04452669620513916,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "TwoBones.LandingToRoll1",
+            "minimumBody": -1.1709080934524537,
+            "maximumHeight": 1.5075769424438477,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.2609080672264099,
+            "maximumBareCorrection": 0.07507002353668213,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "TwoBones.SprintToSlide2",
+            "minimumBody": -0.9275574684143066,
+            "maximumHeight": 1.7041611671447755,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.017557799816131593,
+            "maximumBareCorrection": 0.017557799816131593,
+            "maximumPredictionError": 5.960464477539063e-7
+        },
+        {
+            "name": "TwoBones.LandingToRoll2",
+            "minimumBody": -1.0102983713150025,
+            "maximumHeight": 1.5505428314208985,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.10029834508895874,
+            "maximumBareCorrection": 0.05531275272369385,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "TwoBones.SprintToSlide3",
+            "minimumBody": -0.9179266691207886,
+            "maximumHeight": 1.7034337520599366,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.007926642894744873,
+            "maximumBareCorrection": 0.003811776638031006,
+            "maximumPredictionError": 4.76837158203125e-7
+        },
+        {
+            "name": "TwoBones.LandingToRoll3",
+            "minimumBody": -0.9289453625679016,
+            "maximumHeight": 1.689237356185913,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.018945813179016115,
+            "maximumBareCorrection": 0.018945813179016115,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "FourBones.SlideEnter",
+            "minimumBody": -1.3947674036026,
+            "maximumHeight": 1.6796705722808838,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.4847673773765564,
+            "maximumBareCorrection": 0.0013758540153503419,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "FourBones.SlideActive",
+            "minimumBody": -1.2998712062835694,
+            "maximumHeight": 1.1704058647155762,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.38987094163894656,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "FourBones.SlideRecover",
+            "minimumBody": -1.1480457782745362,
+            "maximumHeight": 1.6831612586975098,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.23804575204849244,
+            "maximumBareCorrection": 0.0003298521041870117,
+            "maximumPredictionError": 6.556510925292969e-7
+        },
+        {
+            "name": "FourBones.RollContact",
+            "minimumBody": -0.9089568257331848,
+            "maximumHeight": 1.7596418857574463,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.0,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 5.960464477539063e-7
+        },
+        {
+            "name": "FourBones.RollActive",
+            "minimumBody": -1.4428927898406983,
+            "maximumHeight": 1.3345553874969483,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.5328927636146545,
+            "maximumBareCorrection": 0.002709329128265381,
+            "maximumPredictionError": 4.76837158203125e-7
+        },
+        {
+            "name": "FourBones.RollRecover",
+            "minimumBody": -1.3553359508514405,
+            "maximumHeight": 1.6970086097717286,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.4453358054161072,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 7.152557373046875e-7
+        },
+        {
+            "name": "FourBones.Slide.EntryToActive",
+            "minimumBody": -1.2998712062835694,
+            "maximumHeight": 1.1405823230743409,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.38987094163894656,
+            "maximumBareCorrection": 0.005774199962615967,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "FourBones.Slide.ActiveToRecover",
+            "minimumBody": -1.1480457782745362,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.23804575204849244,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "FourBones.Slide.RecoverToIdle",
+            "minimumBody": -0.93231201171875,
+            "maximumHeight": 1.7499301433563233,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.022312164306640626,
+            "maximumBareCorrection": 0.022312164306640626,
+            "maximumPredictionError": 4.76837158203125e-7
+        },
+        {
+            "name": "FourBones.Slide.Cancel0",
+            "minimumBody": -1.2998712062835694,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.38987094163894656,
+            "maximumBareCorrection": 0.08369326591491699,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "FourBones.Slide.Cancel1",
+            "minimumBody": -1.1520006656646729,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.24200063943862916,
+            "maximumBareCorrection": 0.03028559684753418,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "FourBones.Slide.Cancel2",
+            "minimumBody": -1.166015863418579,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.25601571798324587,
+            "maximumBareCorrection": 0.004408717155456543,
+            "maximumPredictionError": 1.1920928955078126e-7
+        },
+        {
+            "name": "FourBones.Slide.Cancel3",
+            "minimumBody": -1.1736165285110474,
+            "maximumHeight": 1.325591802597046,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.2636166214942932,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "FourBones.Roll.EntryToActive",
+            "minimumBody": -0.9194525480270386,
+            "maximumHeight": 1.328805685043335,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.009452342987060547,
+            "maximumBareCorrection": 0.007113516330718994,
+            "maximumPredictionError": 4.76837158203125e-7
+        },
+        {
+            "name": "FourBones.Roll.ActiveToRecover",
+            "minimumBody": -1.350304365158081,
+            "maximumHeight": 1.1832621097564698,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.4403044581413269,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "FourBones.Roll.RecoverToIdle",
+            "minimumBody": -0.9323185086250305,
+            "maximumHeight": 1.7499301433563233,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.022318780422210695,
+            "maximumBareCorrection": 0.022318780422210695,
+            "maximumPredictionError": 5.960464477539063e-7
+        },
+        {
+            "name": "FourBones.Roll.Cancel0",
+            "minimumBody": -1.2757549285888672,
+            "maximumHeight": 1.3156728744506837,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.3657549023628235,
+            "maximumBareCorrection": 0.22607165575027467,
+            "maximumPredictionError": 5.960464477539063e-7
+        },
+        {
+            "name": "FourBones.Roll.Cancel1",
+            "minimumBody": -1.313398838043213,
+            "maximumHeight": 1.3409309387207032,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.40339893102645876,
+            "maximumBareCorrection": 0.40339893102645876,
+            "maximumPredictionError": 7.152557373046875e-7
+        },
+        {
+            "name": "FourBones.Roll.Cancel2",
+            "minimumBody": -1.4194226264953614,
+            "maximumHeight": 1.1832621097564698,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.5094227194786072,
+            "maximumBareCorrection": 0.0,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "FourBones.Roll.Cancel3",
+            "minimumBody": -1.4489047527313233,
+            "maximumHeight": 1.1832621097564698,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.5389047265052795,
+            "maximumBareCorrection": 0.020595788955688478,
+            "maximumPredictionError": 2.384185791015625e-7
+        },
+        {
+            "name": "FourBones.SprintToSlide0",
+            "minimumBody": -0.9508490562438965,
+            "maximumHeight": 1.7161686420440674,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.040849506855010989,
+            "maximumBareCorrection": 0.040849506855010989,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "FourBones.LandingToRoll0",
+            "minimumBody": -1.2206188440322877,
+            "maximumHeight": 1.4979965686798096,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.31061869859695437,
+            "maximumBareCorrection": 0.07962363958358765,
+            "maximumPredictionError": 4.76837158203125e-7
+        },
+        {
+            "name": "FourBones.SprintToSlide1",
+            "minimumBody": -0.954526424407959,
+            "maximumHeight": 1.7050442695617676,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.04452669620513916,
+            "maximumBareCorrection": 0.04452669620513916,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "FourBones.LandingToRoll1",
+            "minimumBody": -1.1709080934524537,
+            "maximumHeight": 1.5075769424438477,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.2609080672264099,
+            "maximumBareCorrection": 0.07507002353668213,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "FourBones.SprintToSlide2",
+            "minimumBody": -0.9275574684143066,
+            "maximumHeight": 1.7041611671447755,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.017557799816131593,
+            "maximumBareCorrection": 0.017557799816131593,
+            "maximumPredictionError": 5.960464477539063e-7
+        },
+        {
+            "name": "FourBones.LandingToRoll2",
+            "minimumBody": -1.0102983713150025,
+            "maximumHeight": 1.5505428314208985,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.10029834508895874,
+            "maximumBareCorrection": 0.05531275272369385,
+            "maximumPredictionError": 5.364418029785156e-7
+        },
+        {
+            "name": "FourBones.SprintToSlide3",
+            "minimumBody": -0.9179266691207886,
+            "maximumHeight": 1.7034337520599366,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.007926642894744873,
+            "maximumBareCorrection": 0.003811776638031006,
+            "maximumPredictionError": 4.76837158203125e-7
+        },
+        {
+            "name": "FourBones.LandingToRoll3",
+            "minimumBody": -0.9289453625679016,
+            "maximumHeight": 1.689237356185913,
+            "maximumCorrection": 0.0,
+            "maximumRequiredCorrection": 0.018945813179016115,
+            "maximumBareCorrection": 0.018945813179016115,
+            "maximumPredictionError": 5.364418029785156e-7
+        }
+    ]
+}

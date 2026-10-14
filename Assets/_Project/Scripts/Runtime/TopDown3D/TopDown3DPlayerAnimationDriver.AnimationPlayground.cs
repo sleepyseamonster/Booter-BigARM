@@ -14,6 +14,7 @@ namespace BooterBigArm.TopDown3D
         private bool animationPreview;
         private float animationHeightCorrection;
         private bool animationFootProjection;
+        private bool animationBodyProjection;
         public bool AnimationPresentationOwned => animationPresentationOwner != null;
 
         public bool TryBeginAnimationPresentation(object owner, AnimationClip clip, bool preview = false)
@@ -45,7 +46,7 @@ namespace BooterBigArm.TopDown3D
             replacement.SetApplyFootIK(false);replacement.SetApplyPlayableIK(false);replacement.SetSpeed(0);replacement.SetTime(0);
             playableGraph.Disconnect(mixer,AnimationActionIndex);playableGraph.Connect(replacement,0,mixer,AnimationActionIndex);
             playableGraph.DestroyPlayable(animationActionPlayable);animationActionPlayable=replacement;
-            animationPresentationTime=0;animationHeightCorrection=0;animationFootProjection=false;return true;
+            animationPresentationTime=0;animationHeightCorrection=0;animationFootProjection=false;animationBodyProjection=false;return true;
         }
 
         public bool SetAnimationHeightCorrection(object owner,float correction)
@@ -65,6 +66,16 @@ namespace BooterBigArm.TopDown3D
             if(owner==null || !ReferenceEquals(owner,animationPresentationOwner) || animationPreview)return false;
             animationFootProjection=enabled;return true;
         }
+        public bool SetAnimationBodyProjection(object owner,AnimationPlaygroundFootProjection data)
+        {
+            if(owner==null || !ReferenceEquals(owner,animationPresentationOwner) || animationPreview)return false;
+            if(data==null){animationBodyProjection=false;return true;}
+            if(laboratoryFootProjection==null || !data.Validate(laboratoryFootProjection.model,out _))return false;
+            NormalizeCampSkinWeights();
+            if(laboratoryBodyProjection!=data)
+            {bodyProjectionSampler=data.Bind(visualInstance.transform);laboratoryBodyProjection=data;}
+            animationBodyProjection=true;return true;
+        }
 
         private bool PresentAnimationAction()
         {
@@ -77,7 +88,7 @@ namespace BooterBigArm.TopDown3D
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition+Vector3.up*animationHeightCorrection, Quaternion.Euler(visualLocalEulerAngles));
             CurrentLocomotionState = TopDown3DLocomotionState.ConstrainedAction;
             var blending=PoseBlendOwned;ApplyPoseBlend();
-            if(animationFootProjection && !blending)ProjectLaboratoryFootPlane();
+            if((animationFootProjection || animationBodyProjection) && !blending)ProjectLaboratoryFootPlane();
             else if(!blending)LastPoseBlendGroundCorrection=0;
             // No legacy locomotion/contact clock advances while this branch owns the pose.
             return true;
@@ -108,6 +119,7 @@ namespace BooterBigArm.TopDown3D
             animationPreview = false;
             animationHeightCorrection=0;
             animationFootProjection=false;
+            animationBodyProjection=false;
             ResetTransitionState(TopDown3DLocomotionState.Idle);
             locomotionPhase = 0;
             smoothedPlanarSpeed = 0;

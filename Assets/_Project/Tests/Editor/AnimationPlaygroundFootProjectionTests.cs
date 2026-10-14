@@ -9,6 +9,23 @@ namespace BooterBigArm.Tests
 {
     public sealed class AnimationPlaygroundFootProjectionTests
     {
+        [Test] public void ProjectionReturnsTheLowestBodyPointWhenItsSupportingBoneChanges()
+        {
+            var model=new GameObject("Whole-body projection fixture");var upper=new GameObject("Upper");var lower=new GameObject("Lower");
+            upper.transform.SetParent(model.transform,false);lower.transform.SetParent(model.transform,false);
+            var data=ScriptableObject.CreateInstance<AnimationPlaygroundFootProjection>();
+            try
+            {
+                data.model=model;data.bonePaths=new[]{"Upper","Lower"};data.vertices=new[]{
+                    new AnimationPlaygroundFootVertex{points=new[]{new AnimationPlaygroundSkinPoint{bone=0,position=Vector3.zero,weight=1}}},
+                    new AnimationPlaygroundFootVertex{points=new[]{new AnimationPlaygroundSkinPoint{bone=1,position=Vector3.zero,weight=1}}}};
+                upper.transform.localPosition=Vector3.up;lower.transform.localPosition=Vector3.down;
+                var sampler=data.Bind(model.transform);Assert.That(sampler.MinimumWorldY(out var index),Is.EqualTo(-1));Assert.That(index,Is.EqualTo(1));
+                upper.transform.localPosition=Vector3.down*2;
+                Assert.That(sampler.MinimumWorldY(out index),Is.EqualTo(-2));Assert.That(index,Is.Zero);
+            }
+            finally{Object.DestroyImmediate(data);Object.DestroyImmediate(model);}
+        }
         [Test] public void ProjectionPreservesWeightedBoneMotionAndVisualScale()
         {
             var model=new GameObject("Projection model");var a=new GameObject("A");var b=new GameObject("B");

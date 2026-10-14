@@ -16,6 +16,9 @@ namespace BooterBigArm.TopDown3D
         private float poseBlendDuration,poseBlendSourceHeight;
         private AnimationPlaygroundFootProjection laboratoryFootProjection;
         private AnimationPlaygroundFootProjection.Sampler footProjectionSampler;
+        private AnimationPlaygroundFootProjection laboratoryBodyProjection;
+        private AnimationPlaygroundFootProjection.Sampler bodyProjectionSampler;
+        private bool poseBlendBodyProjection;
         public float LastPoseBlendGroundCorrection {get;private set;}
         public bool PoseBlendOwned=>poseBlendOwner!=null;
         private readonly struct PoseSource
@@ -35,7 +38,9 @@ namespace BooterBigArm.TopDown3D
             var sources=new List<PoseSource>();
             if(!CollectPoseSources(mixer,1,sources,0) || sources.Count==0)return false;
             var height=visualInstance.transform.localPosition.y-visualLocalPosition.y;
+            var bodyProjection=animationBodyProjection || poseBlendBodyProjection;
             ReleasePoseBlend();
+            poseBlendBodyProjection=bodyProjection;
             if(mixer.GetInputCount()<=PoseBlendInputIndex)mixer.SetInputCount(PoseBlendInputIndex+1);
             poseBlendSnapshot=AnimationMixerPlayable.Create(playableGraph,sources.Count);
             try
@@ -90,9 +95,10 @@ namespace BooterBigArm.TopDown3D
         private void ProjectLaboratoryFootPlane()
         {
             LastPoseBlendGroundCorrection=0;
-            if(footProjectionSampler==null)return;
+            var sampler=animationBodyProjection || poseBlendBodyProjection ? bodyProjectionSampler : footProjectionSampler;
+            if(sampler==null)return;
             playableGraph.Evaluate(0);
-            var minimum=footProjectionSampler.MinimumWorldY();
+            var minimum=sampler.MinimumWorldY();
             var plane=transform.TransformPoint(Vector3.up*laboratoryFeetPlane).y;
             var correction=Mathf.Max(0,plane-minimum);
             if(!float.IsFinite(correction) || correction>.18f)throw new InvalidOperationException("The posture ground correction exceeds its qualified envelope.");
@@ -117,6 +123,7 @@ namespace BooterBigArm.TopDown3D
                 if(poseBlendSnapshot.IsValid())playableGraph.DestroyPlayable(poseBlendSnapshot);
             }
             poseBlendClips.Clear();poseBlendSnapshot=default;poseBlendOwner=null;poseBlendElapsed=0;
+            poseBlendBodyProjection=false;
         }
     }
 }

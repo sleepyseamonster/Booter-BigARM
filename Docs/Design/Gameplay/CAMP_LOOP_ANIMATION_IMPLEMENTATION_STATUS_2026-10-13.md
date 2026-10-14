@@ -113,6 +113,12 @@ The rigged check covers 171 envelopes across one, two and four global skin weigh
 
 The saved-scene fixture is an isolated frozen snapshot with its matching salvage dependencies. Concurrent riding, NPC, inventory, atmosphere and later scene revisions remain outside this task's validation and commit. Slide/roll and the rest of the physical families and requested motion gaps remain in the active implementation goal. Hurt/death presentation and author appearance/feel acceptance are still pending.
 
+## Slide and roll preparation — October 14
+
+The existing motor now supports a longitudinal low capsule with anchored feet, full-volume clearance/sweeps, posture-aware support, obstruction-safe conversion and standing geometry restoration. Six private derivatives split slide and roll into physical entry/contact, active and recovery roles. An owned whole-body projection is available through the existing animation output and retains its correction limit.
+
+All 112 focused checks pass. The 84 raw equipped graph envelopes expose cloak fitting and direct folded-roll interruption gaps while the normalized equipment cache predicts skinning within one micrometre. The 119-pair private draft checkpoint preserves the prior 111 pairs and adds six derivatives, the profile and the body cache. The low-motion profile stays unqualified and is not bound to player input. Final recovery routing, reduced-cache accuracy, blocked-exit handling and physical controller integration remain required. See [low-motion draft evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/LowMotionDraft/README.md). Existing crouch and jump/fall controls remain enabled; the full remaining-family goal stays active.
+
 ## Validation and source boundaries
 
 File restoration fixtures pass twelve checks. The isolated Unity candidate at `D:\BooterBigArmValidation\AnimationPlayground20261013` contains the Camp Loop dependency closure and active scripts/settings/UI/character/test assets; it is a validation copy, not a Git worktree. Initial session and targeting regressions pass 44 tests. All 25 menu regressions pass after the candidate's missing SystemMenu prefab dependency was restored. Installed-session checks are repeated against the saved scene. See the [foundation evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Foundations/README.md).

@@ -52,7 +52,7 @@ namespace BooterBigArm.TopDown3D
         {
             distance=maximum;
             if(!IsAnimationMotionOwner(owner) && !IsAnimationPostureOwner(owner) || !float.IsFinite(maximum) || maximum<=0)return false;
-            EnsureAnimationShape();var foot=Position+Vector3.up*(capsule.center.y-capsule.height*.5f);int count;
+            EnsureAnimationShape();var foot=AnimationCurrentFootPoint();int count;
             while(true)
             {
                 count=Physics.RaycastNonAlloc(foot+Vector3.up*.1f,Vector3.down,animationReturnHits,maximum+.1f,groundMask,QueryTriggerInteraction.Ignore);
@@ -184,16 +184,16 @@ namespace BooterBigArm.TopDown3D
                     && TryRestoreAnimationPosture(owner);
             var radius=reviewedRadius>0 ? reviewedRadius : posture==AnimationPlaygroundPosture.Prone ? Mathf.Min(animationOriginalRadius,height*.5f) : animationOriginalRadius;
             if(!float.IsFinite(height) || height<=.1f || height<2*radius || height>animationOriginalHeight)return false;
-            var center=capsule.center+Vector3.up*(height-capsule.height)*.5f;
-            if((height>capsule.height || radius>capsule.radius) && !AnimationShapeClear(height,center,Position,radius))return false;
-            capsule.height=height;capsule.radius=radius;capsule.center=center;AnimationPosture=posture;return true;
+            var center=animationOriginalCenter+Vector3.up*(height-animationOriginalHeight)*.5f;
+            if((capsule.direction!=1 || height>capsule.height || radius>capsule.radius) && !AnimationShapeClear(height,center,Position,radius))return false;
+            capsule.direction=1;capsule.height=height;capsule.radius=radius;capsule.center=center;AnimationPosture=posture;return true;
         }
         public bool TryRestoreAnimationPosture(object owner)
         {
             if(owner==null || !ReferenceEquals(owner,animationPostureOwner) && !ReferenceEquals(owner,animationMotionOwner))return false;
             EnsureAnimationShape();
             if(!AnimationShapeClear(animationOriginalHeight,animationOriginalCenter,Position,animationOriginalRadius))return false;
-            capsule.height=animationOriginalHeight;capsule.radius=animationOriginalRadius;capsule.center=animationOriginalCenter;AnimationPosture=AnimationPlaygroundPosture.Standing;
+            capsule.direction=1;capsule.height=animationOriginalHeight;capsule.radius=animationOriginalRadius;capsule.center=animationOriginalCenter;AnimationPosture=AnimationPlaygroundPosture.Standing;
             return true;
         }
         public bool IsAnimationReturnClear(Vector3 position)
@@ -227,7 +227,7 @@ namespace BooterBigArm.TopDown3D
             ReleaseAnimationMotion(owner);
             EndActionConstraint(owner);
             Teleport(position);
-            capsule.height=animationOriginalHeight;capsule.radius=animationOriginalRadius;capsule.center=animationOriginalCenter;
+            capsule.direction=1;capsule.height=animationOriginalHeight;capsule.radius=animationOriginalRadius;capsule.center=animationOriginalCenter;
             AnimationPosture=AnimationPlaygroundPosture.Standing;
             laboratoryCrouchFacingLocked=false;
             laboratoryPostureSuspended=false;
@@ -243,8 +243,8 @@ namespace BooterBigArm.TopDown3D
         private void EnsureAnimationShape()
         {
             EnsureBody();if(capsule==null)capsule=GetComponent<CapsuleCollider>();
-            if(capsule.direction!=1)throw new InvalidOperationException("Animation posture requires a vertical capsule.");
             if(animationShapeCaptured)return;
+            if(capsule.direction!=1)throw new InvalidOperationException("Animation posture starts from a vertical capsule.");
             animationOriginalHeight=capsule.height;animationOriginalRadius=capsule.radius;animationOriginalCenter=capsule.center;animationShapeCaptured=true;
         }
         private bool AnimationShapeClear(float height,Vector3 center,Vector3 position,float shapeRadius)
@@ -291,7 +291,7 @@ namespace BooterBigArm.TopDown3D
             }
             if(animationIntent.Facing.sqrMagnitude>.0001f)FacePlanarDirection(animationIntent.Facing);
             body.linearVelocity=desired;body.angularVelocity=Vector3.zero;SprintActive=false;PlanarAcceleration=Vector3.zero;
-            var supported=TryGetGroundNormal(out var normal);
+            var supported=AnimationLowShapeActive ? TryGetAnimationLowGroundNormal(out var normal) : TryGetGroundNormal(out normal);
             if(animationSupportReleaseTicks>0){if(!animationIntent.Paused)animationSupportReleaseTicks--;supported=false;}
             IsGrounded=supported && body.linearVelocity.y<=.1f;
             if(IsGrounded){stableGroundNormal=normal;hasStableGroundNormal=true;}
@@ -312,7 +312,7 @@ namespace BooterBigArm.TopDown3D
         {
             ReleaseAnimationMotionCore();
             if(animationShapeCaptured && capsule!=null && AnimationShapeClear(animationOriginalHeight,animationOriginalCenter,Position,animationOriginalRadius))
-            {capsule.height=animationOriginalHeight;capsule.radius=animationOriginalRadius;capsule.center=animationOriginalCenter;AnimationPosture=AnimationPlaygroundPosture.Standing;}
+            {capsule.direction=1;capsule.height=animationOriginalHeight;capsule.radius=animationOriginalRadius;capsule.center=animationOriginalCenter;AnimationPosture=AnimationPlaygroundPosture.Standing;}
             animationPostureOwner=null;
             laboratoryCrouchFacingLocked=false;
             laboratoryPostureSuspended=false;

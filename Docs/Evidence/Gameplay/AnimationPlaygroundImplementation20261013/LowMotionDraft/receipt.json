@@ -1,0 +1,133 @@
+{
+  "maximum_prediction_error": 7.152557373046875E-07,
+  "new_private_pairs": 8,
+  "raw_envelopes": 84,
+  "private_pairs": 119,
+  "failures": 0,
+  "date": "2026-10-14",
+  "source_checkpoint": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-13\\ImportCheckpoints\\PHY1LowMotionDraft",
+  "state": "low-motion-collision-and-asset-draft",
+  "input_bound": false,
+  "test_count": 112,
+  "maximum_required_correction": 0.5389047265052795,
+  "files": [
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundFootProjectionAuthoring.cs",
+      "sha256": "9ab05ec24942b9b82ac4623cd0fc8ab2b3502b9d3f37efd762962e2308f88944"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundFootProjectionAuthoring.cs.meta",
+      "sha256": "32794af1c6984bf9ac4fcecc7d640c8fbba81b8e95b7ef5a2e4e3176bb944280"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundLowMotionAuthoring.cs",
+      "sha256": "95283eaea33f7efef8a3449b24bc443785213e41e9e26b0d10180b411a80a9ac"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundLowMotionAuthoring.cs.meta",
+      "sha256": "ebc5c260d2d622817337bd5d7a449b82f4f629d69cb4220c43aa329ef37601f2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundLowMotionPoseQualification.cs",
+      "sha256": "3cdec96c68a59aad9e156bc720973688f21a29f9aa0098d9f9707dbf78b42b44"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundLowMotionPoseQualification.cs.meta",
+      "sha256": "cdb6b4c2a68f2cbca081bc8f3da518ba480dc611b126ff4277e5e022d8b6a139"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundFootProjection.cs",
+      "sha256": "c81bed6f9b1acfde5f4d95d09458910ec3dcd12fad0e669e98d9131cb71b9a50"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundFootProjection.cs.meta",
+      "sha256": "92459e6c8bee5c9562e472d8f910b2a855c119ba5fc1bc1ae13166f0a6ee654b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundLowMotionProfile.cs",
+      "sha256": "a2bd8042e9adaa335a13342cd644c62def7a95c2718a7b1b64e3327958afa54a"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundLowMotionProfile.cs.meta",
+      "sha256": "3d45403c6d8a95899cf4a3a55b400977279849cb675d99671a485fd525da3881"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.AnimationPlayground.cs",
+      "sha256": "64ba4ec0dfa1430b470ac86d186cf6eb55c2dc9c4a3aff239dc6aa6ce4e004de"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.AnimationPlayground.cs.meta",
+      "sha256": "4e6dfb81c4a013127663ebd3ddca0657b8064d063a7efa8332b3f0fed5af7053"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.LowPosture.cs",
+      "sha256": "f35526cd745b6323b8a29cd1883db25cfd2934f864632f6a2c314625b8a434fa"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.LowPosture.cs.meta",
+      "sha256": "28d257898450cdf4d4f4b30912e89d9f7c1d3d365201832ad1b675424599a9b1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.AnimationPlayground.cs",
+      "sha256": "2ed98d7ae99b6e1a9418cdd85ace8d3f4be993ddc7ffa54ffb22a01baf5a529f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.AnimationPlayground.cs.meta",
+      "sha256": "ec7ac5e68e3986d7ec5ba2615d6616f8476d63bc649f851f7880de500edef3ad"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.PoseBlend.cs",
+      "sha256": "775311ae3c23779374e61497a829280cdde320e8069b9dc2685b747e2bd122f2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.PoseBlend.cs.meta",
+      "sha256": "75594bf517b82fb01f2b33c84e1f61ae9bee2485436e877eeeb6f08e41dc6fea"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.BodyProjection.cs",
+      "sha256": "28aed8ed108613343306c4a265272f0b3b67a2d8e3407840fc9856925258d5db"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.BodyProjection.cs.meta",
+      "sha256": "fa9ef32399a82ba8e2a93c90af82b0a7ef6f054b51e52ea59adf8bb652af142f"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundFootProjectionTests.cs",
+      "sha256": "bd27614552cda3e390043fdbfb5fe3d249404c41f78bc3c5c532f1c9b1b28ec5"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundFootProjectionTests.cs.meta",
+      "sha256": "4825c4343bd9b001c37396128555f7d44b91e70e4fcd306c876cf703942c0ed4"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundLowPostureTests.cs",
+      "sha256": "d0b32a9479a996083d5db6a0831c86e7951f25b7dea67ec309c0c222e6f5958f"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundLowPostureTests.cs.meta",
+      "sha256": "b96d0bcd7cc8e2f21ecd72c51f777b5eb84cbd7825f58abbdb92ab323cda91bd"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundLowMotionProfileTests.cs",
+      "sha256": "12f3dc0649cb3e93b96e98cf0a58f2da7e2751252727423c81774be743cd1701"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundLowMotionProfileTests.cs.meta",
+      "sha256": "2cb63f606efd47b5f1b54a9a22a7f7451e2ee2d966eb717977e1a0699e003182"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundBodyProjectionTests.cs",
+      "sha256": "ccf36f4c1f34a1b61be8a6c60ccaed92fb05dc31e735e08a7c20289b61a3507f"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundBodyProjectionTests.cs.meta",
+      "sha256": "966db09edb693c394ab0708247468ae35cec380e5c76ea5b9fd653a31518119f"
+    }
+  ],
+  "schema": 1,
+  "reduced_projection_vertices": 103,
+  "profile_qualified": false,
+  "skips": 0,
+  "playmode": false,
+  "maximum_bare_correction": 0.40339893102645874
+}
