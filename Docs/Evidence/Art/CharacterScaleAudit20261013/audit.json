@@ -1,7 +1,7 @@
 {
   "date_local": "2026-10-13",
   "scope": "Unity units, Booter body dimensions and dependent animation/authoring calibration",
-  "audit_status": "measured; exporter corrected; coordinated resizing remains in progress",
+  "audit_status": "Audit complete; exporter corrected and local Blender setup corrected; animation calibration and production cutover remain in progress",
   "approved_target": {
     "authority": "User selected 1.80 metres in Review Unity character scale",
     "metres_per_unity_unit": 1,
@@ -63,7 +63,14 @@
     "audit_ownership": "Measurement tooling, exporter bug fix, standard and audit evidence",
     "animation_ownership": "Rig/import/profile/contact/station/lab wiring; dimension-independent work continues",
     "blender_ownership": "Local character modeling setup correction and native reopen verification",
-    "integration_gate": "Production cutover follows calibrated rig/profile readiness; do not partially shrink production while animation calibration is in flight"
+    "integration_gate": "Production cutover follows calibrated rig/profile readiness; do not partially shrink production while animation calibration is in flight",
+    "blender_closeout": {
+      "output": "D:/Arc & Dust/CharacterAssets/MaleBaseMesh/MaleBaseMesh_UnityModeling.blend",
+      "result": "Corrected in place per user authority; reopened native file at1.800000947m, feet at floating-point zero, Metric/unitScale1 and10x10m ground",
+      "preservation": "Mesh, rig and pose signature checks against Working source passed; Working source unchanged; open session and its unsaved edits were not captured",
+      "local_proof": "D:/Arc & Dust/CharacterAssets/MaleBaseMesh/UnityScaleSetup/Height180_v2_20261013/verification.json",
+      "handoff": "Reload saved file to see new dimensions; open-session content was not replaced"
+    }
   },
   "world_system_contract": {
     "world_identity": "No world seed, topology or authored position changes",
