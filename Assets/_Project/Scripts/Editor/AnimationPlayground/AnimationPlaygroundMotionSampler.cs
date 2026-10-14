@@ -16,6 +16,7 @@ namespace BooterBigArm.Editor
         {
             public float seconds;
             public Vector3 root,hips,head,leftFoot,rightFoot,leftToes,rightToes,leftHand,rightHand,leftSole,rightSole;
+            public Vector3 bodyMinimum,bodyMaximum;
             public Quaternion rootRotation,hipsRotation,leftFootRotation,rightFootRotation;
         }
         [Serializable] public sealed class ContactWindow
@@ -67,9 +68,9 @@ namespace BooterBigArm.Editor
                         hips=bones[0].position,head=bones[1].position,leftFoot=bones[2].position,rightFoot=bones[3].position,
                         leftToes=bones[4].position,rightToes=bones[5].position,leftHand=bones[6].position,rightHand=bones[7].position,
                         hipsRotation=bones[0].rotation,leftFootRotation=bones[2].rotation,rightFootRotation=bones[3].rotation};
-                    soles.Measure(out frame.leftSole,out frame.rightSole);
+                    soles.Measure(out frame.leftSole,out frame.rightSole,out frame.bodyMinimum,out frame.bodyMaximum);
                     foreach(var bone in bones)if(!Finite(bone.position) || !Finite(bone.rotation))result.finite=false;
-                    if(!Finite(frame.root) || !Finite(frame.rootRotation))result.finite=false;
+                    if(!Finite(frame.root) || !Finite(frame.rootRotation) || !Finite(frame.bodyMinimum) || !Finite(frame.bodyMaximum))result.finite=false;
                     frames[i]=frame;
                 }
                 var first=frames[0];var last=frames[^1];
@@ -149,12 +150,18 @@ namespace BooterBigArm.Editor
                     if(left.Count>0 || right.Count>0)regions.Add(new Region{renderer=renderer,left=left.ToArray(),right=right.ToArray()});
                 }
             }
-            public void Measure(out Vector3 left,out Vector3 right)
+            public void Measure(out Vector3 left,out Vector3 right,out Vector3 bodyMinimum,out Vector3 bodyMaximum)
             {
                 left=right=new Vector3(0,float.PositiveInfinity,0);
+                bodyMinimum=Vector3.one*float.PositiveInfinity;bodyMaximum=Vector3.one*float.NegativeInfinity;
                 foreach(var region in regions)
                 {
                     region.renderer.BakeMesh(baked,true);baked.GetVertices(vertices);
+                    foreach(var vertex in vertices)
+                    {
+                        var world=region.renderer.transform.TransformPoint(vertex);
+                        bodyMinimum=Vector3.Min(bodyMinimum,world);bodyMaximum=Vector3.Max(bodyMaximum,world);
+                    }
                     foreach(var index in region.left){var world=region.renderer.transform.TransformPoint(vertices[index]);if(world.y<left.y)left=world;}
                     foreach(var index in region.right){var world=region.renderer.transform.TransformPoint(vertices[index]);if(world.y<right.y)right=world;}
                 }

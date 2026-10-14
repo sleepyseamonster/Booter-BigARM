@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "state": "calibrated-draft-not-physical-qualified",
+  "standing_capsule_height": 1.82,
+  "provisional_crouch_capsule_height": 1.52,
+  "enter_range_seconds": [
+    0,
+    1.5
+  ],
+  "exit_range_seconds": [
+    0,
+    2.5666668
+  ],
+  "transition_root_policy": "Y baked into pose, original height reference; source FBX metadata preserved",
+  "idle_repetitions": 1,
+  "directional_repetitions": 2,
+  "nominal_directional_speed_provisional": 1.0,
+  "contacts_qualified": false,
+  "assets": [
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchBackwardMappedTwoCycles.anim",
+      "sha256": "4741e45aa98b70f85ae15793efe5ae04f9ed778fc60e4c86d9696d03f30c948c",
+      "meta_sha256": "eeb16740578fed5da4cdbbb66ffe458f34044c90b72521f6693d2aa0c87b57bd",
+      "guid": "4aedbbb170710494ca3971d97284f6c1"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchEnterQualifiedRange.anim",
+      "sha256": "bc500b35f4d1ae1b8302ebf1c57346ed619a207efae90d8d8154a1175e0e9048",
+      "meta_sha256": "7c75ca1596b48ef5827d488e52f506808cd24bab03398f59464739ea31296fc0",
+      "guid": "20560bf3dc6d1064fb16c76183918f44"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchExitQualifiedRange.anim",
+      "sha256": "7571edc8b2b6c28dbc9ba53a6272682c21068ade287d3b93dcf78a2c4ef4d3c3",
+      "meta_sha256": "cfdca5cebedf14046eba6cb5f352025d8192239ebce7f4a98098f95845b3ddf0",
+      "guid": "6ac037465f55b524782be36a894c1c34"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchForwardMappedTwoCycles.anim",
+      "sha256": "76e7c8ef8672aa1af7bd56adc19986d20d3dd269871ed32fbf564a7925d69200",
+      "meta_sha256": "2640a3afb0aa025c58f767263ea88bdb9ab6e7636f7c86064317b284e16c3a6c",
+      "guid": "c5d5a016448cbe94f9f827eea2e42ceb"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchIdleTwoCycles.anim",
+      "sha256": "0a42ea2343570f82d17da5205c6e359c56eb40a2be137171f3c3bc3d7891cfc8",
+      "meta_sha256": "94878704bd47040c15c696bf3c4c159929289e3388d73702c422ab8b5ac9f666",
+      "guid": "23ecde406ec6bbe4f946d21f9d5f2fed"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchLeftMappedTwoCycles.anim",
+      "sha256": "839f2a7730d912d046bb465cd5f18fb6425cbd509130dd22c9414b648d0da7ab",
+      "meta_sha256": "73ca26304b7060a698893641ed2a967977e6c7da6399b166b043b15da981de81",
+      "guid": "ca4436512380a9a4682c44d679ca5571"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchRightMappedTwoCycles.anim",
+      "sha256": "2c382accd969d663337fa064420f236cdf6050e3ddaf9030fd751531cd9ea096",
+      "meta_sha256": "5d44ce1f3490264716582f08d4bd18f154d367fb4c5ace89b6287d8afff284c5",
+      "guid": "eb2ef0bc013f8a74b90177b8e012a4aa"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CrouchProfile.asset",
+      "sha256": "5086bc7ac55b34686b343e0ba3107fd2112d21216daae1c9402032e552ac0043",
+      "meta_sha256": "5c593821cafb9da18f264f57697e4bcfd4d23f49c4758ffa6d52ce4802a02899",
+      "guid": "4e8f2416d598a6749be610c050e09322"
+    }
+  ]
+}

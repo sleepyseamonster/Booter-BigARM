@@ -47,6 +47,16 @@ The initial station/player contract run passes 49 Edit Mode cases, and existing 
 
 ## Validation and source boundaries
 
+## Mobility source qualification â€” October 14
+
+The canonical private dependency set is rehydrated byte-for-byte in the validation copy. It had missing motion files and different locally generated derivative metadata; cached references did not establish on-disk hydration. A new gate verifies all 71 original motion payloads, their paired metadata and source hashes. Prior different candidate bytes remain privately preserved.
+
+All fourteen crouch/slide/jump/fall candidates now have continuous 60Hz sole and full-body envelope measurements. Root-height policy comparisons identified original-height baking for crouch transitions; landing/roll sources require a separate arc/contact policy. Seven private crouch derivatives and a calibrated profile are prepared, with clear sole envelopes and finite body poses. The provisional capsule is 1.52m, which requires revising the earlier tunnel fixture height during controller integration. Contacts, speeds, blend transitions, radial fit and physical controls remain pending; contactsQualified stays false.
+
+The fully hydrated qualification regression passes 36 cases without skips. The 90-pair PHY1CrouchDraft checkpoint captures the seven derivatives/profile and updated binding while preserving source FBX bytes, original importer metadata and binding GUID. Capture/restoration dry-run pass. The author scene remains at the player-integration checkpoint because current background editor state is unavailable. See [mobility evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/MobilityQualification/README.md). The full goal remains active.
+
+## Validation and source boundaries
+
 File restoration fixtures pass twelve checks. The isolated Unity candidate at `D:\BooterBigArmValidation\AnimationPlayground20261013` contains the Camp Loop dependency closure and active scripts/settings/UI/character/test assets; it is a validation copy, not a Git worktree. Initial session and targeting regressions pass 44 tests. All 25 menu regressions pass after the candidate's missing SystemMenu prefab dependency was restored. Installed-session checks are repeated against the saved scene. See the [foundation evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Foundations/README.md).
 
 No Play Mode, gameplay smoke test, production scene/terrain modification, package change, build or publication is part of this batch. Appearance/contact/feel acceptance remains author-owned. Scene-opening tests run only in the isolated candidate. Future local commits record bounded verified stages while the larger goal continues.

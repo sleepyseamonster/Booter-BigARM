@@ -55,6 +55,33 @@ namespace BooterBigArm.Editor
                 {if(clip!=null)throw new InvalidDataException("Expected a single motion clip.");clip=candidate;}
             return clip ?? throw new FileNotFoundException("Imported source clip is absent.",path);
         }
+        public static AnimationClip CreateRange(string sourcePath,string name,float start,float end,bool loop=false)
+        {
+            if(EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling)throw new InvalidOperationException("Author clip ranges in Edit Mode.");
+            var source=LoadClip(sourcePath);
+            if(!source.isHumanMotion || !float.IsFinite(start) || !float.IsFinite(end) || start<0 || end<=start || end>source.length+.0001f
+                || name!=Path.GetFileName(name) || string.IsNullOrWhiteSpace(name))throw new ArgumentException("A bounded Humanoid source range is required.");
+            var destination=Folder+"/"+name+".anim";
+            if(File.Exists(destination) || File.Exists(destination+".meta"))throw new IOException("Preserve an existing derivative and GUID.");
+            var derivative=Object.Instantiate(source);derivative.name=name;derivative.hideFlags=HideFlags.None;
+            try
+            {
+                var seconds=end-start;var count=Mathf.CeilToInt(seconds*Mathf.Max(60,source.frameRate*2));
+                foreach(var binding in AnimationUtility.GetCurveBindings(source))
+                {
+                    var curve=AnimationUtility.GetEditorCurve(source,binding);if(curve==null)continue;
+                    var keys=new Keyframe[count+1];
+                    for(var i=0;i<=count;i++)keys[i]=new Keyframe(seconds*i/count,curve.Evaluate(start+seconds*i/count));
+                    var result=new AnimationCurve(keys);
+                    for(var i=0;i<=count;i++){AnimationUtility.SetKeyLeftTangentMode(result,i,AnimationUtility.TangentMode.Linear);AnimationUtility.SetKeyRightTangentMode(result,i,AnimationUtility.TangentMode.Linear);}
+                    AnimationUtility.SetEditorCurve(derivative,binding,result);
+                }
+                var settings=AnimationUtility.GetAnimationClipSettings(derivative);settings.startTime=0;settings.stopTime=seconds;settings.loopTime=loop;settings.loopBlend=false;
+                AnimationUtility.SetAnimationClipSettings(derivative,settings);derivative.frameRate=Mathf.Max(60,source.frameRate*2);
+                AssetDatabase.CreateAsset(derivative,destination);AssetDatabase.SaveAssetIfDirty(derivative);return derivative;
+            }
+            catch{if(!AssetDatabase.Contains(derivative))Object.DestroyImmediate(derivative);throw;}
+        }
         public static AnimationCurve GroundCorrection(AnimationPlaygroundMotionSampler.MotionMeasurement measured,float feetPlane)
         {
             if(measured==null || !measured.finite || measured.frames.Length<2 || !float.IsFinite(feetPlane))

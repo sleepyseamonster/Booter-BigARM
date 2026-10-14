@@ -1,0 +1,131 @@
+{
+  "state": "measured-not-physical-qualified",
+  "clips": [
+    {
+      "clip": "CrouchEnter",
+      "finite": true,
+      "seconds": 4.066667079925537,
+      "minimumSole": -0.9341767430305481,
+      "maximumBodyTop": 0.8589131832122803,
+      "minimumBodyTop": 0.5676206350326538,
+      "seamFootGap": 0.7060096859931946
+    },
+    {
+      "clip": "CrouchExit",
+      "finite": true,
+      "seconds": 2.566666841506958,
+      "minimumSole": -1.3532108068466187,
+      "maximumBodyTop": 0.4406825304031372,
+      "minimumBodyTop": 0.260162353515625,
+      "seamFootGap": 0.5363637804985046
+    },
+    {
+      "clip": "CrouchIdle",
+      "finite": true,
+      "seconds": 1.3666667938232422,
+      "minimumSole": -0.9473591446876526,
+      "maximumBodyTop": 0.334987998008728,
+      "minimumBodyTop": 0.3240731954574585,
+      "seamFootGap": 9.365697906105197e-07
+    },
+    {
+      "clip": "CrouchWalkForward",
+      "finite": true,
+      "seconds": 1.133333444595337,
+      "minimumSole": -0.914588212966919,
+      "maximumBodyTop": 0.531670331954956,
+      "minimumBodyTop": 0.49065399169921875,
+      "seamFootGap": 0.0002962179423775524
+    },
+    {
+      "clip": "CrouchWalkBackward",
+      "finite": true,
+      "seconds": 1.2333333492279053,
+      "minimumSole": -0.9177010655403137,
+      "maximumBodyTop": 0.5288163423538208,
+      "minimumBodyTop": 0.4906423091888428,
+      "seamFootGap": 0.00011368186096660793
+    },
+    {
+      "clip": "CrouchWalkLeft",
+      "finite": true,
+      "seconds": 1.1666667461395264,
+      "minimumSole": -0.9397464394569397,
+      "maximumBodyTop": 0.534182071685791,
+      "minimumBodyTop": 0.48735499382019043,
+      "seamFootGap": 5.711171525035752e-06
+    },
+    {
+      "clip": "CrouchWalkRight",
+      "finite": true,
+      "seconds": 1.2666667699813843,
+      "minimumSole": -0.915165901184082,
+      "maximumBodyTop": 0.528949499130249,
+      "minimumBodyTop": 0.4887772798538208,
+      "seamFootGap": 6.793664942961186e-05
+    },
+    {
+      "clip": "RunningSlide",
+      "finite": true,
+      "seconds": 1.533333420753479,
+      "minimumSole": -0.9420518279075623,
+      "maximumBodyTop": 0.727562427520752,
+      "minimumBodyTop": 0.25706911087036133,
+      "seamFootGap": 2.150628461095039e-06
+    },
+    {
+      "clip": "JumpStanding",
+      "finite": true,
+      "seconds": 2.366666793823242,
+      "minimumSole": -1.1298061609268188,
+      "maximumBodyTop": 0.7388513088226318,
+      "minimumBodyTop": 0.5328487157821655,
+      "seamFootGap": 2.6599720968079055e-06
+    },
+    {
+      "clip": "JumpRunning",
+      "finite": true,
+      "seconds": 0.9000000357627869,
+      "minimumSole": -1.1499990224838257,
+      "maximumBodyTop": 0.805530309677124,
+      "minimumBodyTop": 0.578026294708252,
+      "seamFootGap": 0.010123959742486477
+    },
+    {
+      "clip": "JumpUnarmed",
+      "finite": true,
+      "seconds": 2.3333334922790527,
+      "minimumSole": -1.0490243434906006,
+      "maximumBodyTop": 0.8233038187026978,
+      "minimumBodyTop": 0.6111770868301392,
+      "seamFootGap": 6.664001972467304e-08
+    },
+    {
+      "clip": "FallAirborneIdle",
+      "finite": true,
+      "seconds": 0.7000000476837158,
+      "minimumSole": -0.6249256134033203,
+      "maximumBodyTop": 0.7356772422790527,
+      "minimumBodyTop": 0.6729040145874023,
+      "seamFootGap": 3.491007305456151e-07
+    },
+    {
+      "clip": "FallLanding",
+      "finite": true,
+      "seconds": 1.0666667222976685,
+      "minimumSole": -0.3705296516418457,
+      "maximumBodyTop": 1.4018123149871826,
+      "minimumBodyTop": 1.134645938873291,
+      "seamFootGap": 0.4839428663253784
+    },
+    {
+      "clip": "FallRollLanding",
+      "finite": true,
+      "seconds": 2.133333444595337,
+      "minimumSole": 0.3170219659805298,
+      "maximumBodyTop": 2.129450559616089,
+      "minimumBodyTop": 1.6317028999328613,
+      "seamFootGap": 0.4749375879764557
+    }
+  ]
+}

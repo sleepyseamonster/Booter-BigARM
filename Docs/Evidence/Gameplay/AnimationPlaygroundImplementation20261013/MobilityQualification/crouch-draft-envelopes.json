@@ -1,0 +1,68 @@
+{
+  "state": "measured-not-physical-qualified",
+  "clips": [
+    {
+      "clip": "Enter",
+      "finite": true,
+      "seconds": 1.5,
+      "minimumSole": -0.9100003838539124,
+      "maximumBodyTop": 0.8826925754547119,
+      "minimumBodyTop": 0.2372416853904724,
+      "seamFootGap": 0.2763919532299042
+    },
+    {
+      "clip": "Idle",
+      "finite": true,
+      "seconds": 1.3666667938232422,
+      "minimumSole": -0.9100003838539124,
+      "maximumBodyTop": 0.3722025156021118,
+      "minimumBodyTop": 0.3240731954574585,
+      "seamFootGap": 0.0
+    },
+    {
+      "clip": "Forward",
+      "finite": true,
+      "seconds": 2.266666889190674,
+      "minimumSole": -0.9100000262260437,
+      "maximumBodyTop": 0.5316520929336548,
+      "minimumBodyTop": 0.4917067289352417,
+      "seamFootGap": 0.0
+    },
+    {
+      "clip": "Backward",
+      "finite": true,
+      "seconds": 2.4666666984558105,
+      "minimumSole": -0.9100003838539124,
+      "maximumBodyTop": 0.5317819118499756,
+      "minimumBodyTop": 0.4931865334510803,
+      "seamFootGap": 0.0
+    },
+    {
+      "clip": "Left",
+      "finite": true,
+      "seconds": 2.3333334922790527,
+      "minimumSole": -0.910000205039978,
+      "maximumBodyTop": 0.55951988697052,
+      "minimumBodyTop": 0.4895275831222534,
+      "seamFootGap": 0.0
+    },
+    {
+      "clip": "Right",
+      "finite": true,
+      "seconds": 2.5333335399627686,
+      "minimumSole": -0.9100003838539124,
+      "maximumBodyTop": 0.5289700031280518,
+      "minimumBodyTop": 0.49228066205978394,
+      "seamFootGap": 0.0
+    },
+    {
+      "clip": "Exit",
+      "finite": true,
+      "seconds": 2.566666841506958,
+      "minimumSole": -0.9100003838539124,
+      "maximumBodyTop": 0.8838931322097778,
+      "minimumBodyTop": 0.26363253593444824,
+      "seamFootGap": 0.267894983291626
+    }
+  ]
+}

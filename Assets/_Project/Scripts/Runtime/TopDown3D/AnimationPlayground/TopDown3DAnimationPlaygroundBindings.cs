@@ -24,6 +24,7 @@ namespace BooterBigArm.TopDown3D
         public GameObject targetModel;
         public Avatar sourceAvatar, targetAvatar;
         public TopDown3DLocomotionClipProfile locomotion;
+        public AnimationPlaygroundCrouchProfile crouch;
         public float visualScale = 1f;
         public Vector3 visualOffset;
         public Material bodyMaterial;

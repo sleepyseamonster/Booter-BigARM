@@ -1,0 +1,548 @@
+{
+  "schema": 1,
+  "canonical_pairs": 82,
+  "repaired_or_missing_files": 108,
+  "prior_different_bytes_preserved_privately": true,
+  "changes": [
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/IdleBreathingLoop.anim.meta",
+      "before": "731a6d1e99dbef5823466b0cb3ec3377c17d7db41c96321ac40960301fe448af",
+      "canonical": "82f0563a201d1ea9ad92415e72fa12a14b695197e7475d849c6dc0e756b89717"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RunTwoCycles.anim.meta",
+      "before": "fcd34c66b6b81a935cc8023855bd091504d459a80adeb26651f00c6606b40d98",
+      "canonical": "417454d674555820eb7f75d57c37f90c9fdf4811495edb1d20ebaeb4d530da61"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintTwoCycles.anim.meta",
+      "before": "b8c1fce03b3e85868289c1d74f92acbc2b1405055f169d0c0d71099d6f56f3ab",
+      "canonical": "c0ac904f5a048493383e4debda789d75383da25bfc1fa74d67216fc40422cda9"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/WalkTwoCycles.anim.meta",
+      "before": "3132032441dc1c0af8eb0e3ea1ce350b10ba5fe67d1a1fbe564b8bd98acbe306",
+      "canonical": "66ee08ff1572a8033ddf383d58d62da8499b06eb86850b65c6751999709029b2"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Button/ButtonPress.fbx",
+      "before": null,
+      "canonical": "e307c8719363c117b0faf33dff3090d34819815b0be36e9c0103838fbb94fd61"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Button/ButtonPress.fbx.meta",
+      "before": null,
+      "canonical": "827bfa092c20dd32bcaaa727b894e86cee6edf0a346c5e68f8a1ec100bdc874d"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Pickup/PickupAndExamine.fbx",
+      "before": null,
+      "canonical": "2f9482b994ca8af8e7b9706a946932939c8b82a8c7efd0bd08d7dbf273b39c09"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Pickup/PickupAndExamine.fbx.meta",
+      "before": null,
+      "canonical": "94c5304f86e78b153d9c7217a09d7b91dc465673660aeb21260feeb9f60b74cf"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Pickup/PickupOneHand.fbx",
+      "before": null,
+      "canonical": "d864539798595cc242faef5e4fe56fced90a3f8b42d7b0a55e969fcfdd73f736"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Pickup/PickupOneHand.fbx.meta",
+      "before": null,
+      "canonical": "f868f861a12370a69631051996123ba80b447edeb7c3a720b12784dab3199a04"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushCycle.fbx",
+      "before": null,
+      "canonical": "da0240bb73dce3dd975ac2dab243e9004524de114a47678996981afa07049735"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushCycle.fbx.meta",
+      "before": null,
+      "canonical": "64937051af7630a0be06b19d537779195b65f7c38f803cb7b84d0f2609420b4c"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushStart.fbx",
+      "before": null,
+      "canonical": "ef740a93c86c3f34400b7b7717d2efe5bce5a505311035349f72444c0d4912b7"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushStart.fbx.meta",
+      "before": null,
+      "canonical": "d05fc632a991529a17b2942b036e473b33fcc36799b3a94ded783d8c9523f720"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushStop.fbx",
+      "before": null,
+      "canonical": "6bfeb9598e294389eae5049261e80f3a5011cf2eb7ee044bd8bccb2174b25928"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushStop.fbx.meta",
+      "before": null,
+      "canonical": "c7cbc5d21af48ceee1729db3f0efa8c8a7947a2313a596c3422c4ccfbb7d48f3"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sit/SitDownChair.fbx",
+      "before": null,
+      "canonical": "583286fd1821e85ed32ba126eaccfa46ef0874fe68b98a3c3b4e2126c0d77165"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sit/SitDownChair.fbx.meta",
+      "before": null,
+      "canonical": "616a22873716df9dcb75076ac2640aed23154f0ae8ce46256b2bc8e03f7b302e"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sit/SittingIdleChair.fbx",
+      "before": null,
+      "canonical": "35bc286dd70953e8ddbed8796baed89a38f19e0039ba8a5396b06e1ef5dfd5fa"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sit/SittingIdleChair.fbx.meta",
+      "before": null,
+      "canonical": "0402e0e20729d2158bb0f1c4ab0874e4f35813e261013545261ac1f995325acf"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sit/SittingIdleGround.fbx",
+      "before": null,
+      "canonical": "cc4b616b2cf15aec5da943d6bfdad6299125cf6a26c406a5631d15f591bf6d40"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sit/SittingIdleGround.fbx.meta",
+      "before": null,
+      "canonical": "e5476223eee47b13f6d63387ebfe631cf55b1ddb47fcf38c67bee74b84a17443"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sleep/SleepingIdleSleepingDeeply.fbx",
+      "before": null,
+      "canonical": "fb348c038f93937914bd835fc1d9a11336531ed21047edcc5e7489eeffdf46e2"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sleep/SleepingIdleSleepingDeeply.fbx.meta",
+      "before": null,
+      "canonical": "0689295a19e2bbaac251deaf5554ed2916328962052654e933182025d4f75bc9"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowAlternate.fbx",
+      "before": null,
+      "canonical": "414f890f63209bf2f9a601557f6d9c5419a9fc3e1a4924fbcf3bc34c9be6b450"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowAlternate.fbx.meta",
+      "before": null,
+      "canonical": "605c3a797d15ec04563d406e7740bb7aebfd42be0af1274ba68a1474def80a00"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowPickupAndThrow.fbx",
+      "before": null,
+      "canonical": "247703d55173e0617b23090c91db0d9ba6baf584cbe5fda7c31b701bcdb83ddf"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowPickupAndThrow.fbx.meta",
+      "before": null,
+      "canonical": "b5f007773f9775db32dd0937b93465be288acc644d867b731722f77200905df0"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowStandard.fbx",
+      "before": null,
+      "canonical": "e1b7f72323527b0425c5f9549acc38d0e4167fa14fbe53aab00da55669f90a44"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowStandard.fbx.meta",
+      "before": null,
+      "canonical": "4752837d7cca6b5d2573c1a4cc0c82aab51fdc7f9fe9abb070e235ad8dd78e7e"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/BreathingIdle.fbx",
+      "before": null,
+      "canonical": "99f9088d8e88608cb1f2df859d88ad0109ddae80a2f8831d8861d5ad030a8ce6"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/BreathingIdle.fbx.meta",
+      "before": null,
+      "canonical": "aa1c3b7048d78c7ba18457720d7777308c0d94b744007a92cc2fa2ff31fcc0d4"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchEnter.fbx",
+      "before": null,
+      "canonical": "034ef9847cf890836644a5ccd34b46eb0df7fe44c6ccfe72b5a7a3432a5d2baf"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchEnter.fbx.meta",
+      "before": null,
+      "canonical": "3125c412db14ac163c4da261b3d7c6573aefa9260091f6c25b44a153d271fbbe"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchExit.fbx",
+      "before": null,
+      "canonical": "4c3053d5cd997114747772f79e8df5b833af42d84827b3095ff96d8d340d0397"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchExit.fbx.meta",
+      "before": null,
+      "canonical": "b27a2a92f6913e31756e7062d562922634833605c687a24df3d3f70825874d8d"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchIdle.fbx",
+      "before": null,
+      "canonical": "90d5a2ff23f639ed32743efd36c051599cdb6f8d41906bab897990003fe84f65"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchIdle.fbx.meta",
+      "before": null,
+      "canonical": "a83da17c15093eb84bfa17e622913a65f505e89fd0a27e59753c4b9046670910"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkBackward.fbx",
+      "before": null,
+      "canonical": "b2f9ff0ec39f794bcac7c076fa9a41ae0ac02d2dbf6a9a53fd9bcb995f358b2e"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkBackward.fbx.meta",
+      "before": null,
+      "canonical": "a1cf263f05f0ddfa615d1bd39d2a822d887ae7ca498ce8365ed20e56416082c3"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkForward.fbx",
+      "before": null,
+      "canonical": "9d67675c52fceb552dd493a8cd3f93bfb1752cafaadbda3c38b1400f84d90aeb"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkForward.fbx.meta",
+      "before": null,
+      "canonical": "3c625bd0ddf5be5d5a09ed510fb63ac4f6165bc1f1b83f31e97b07294e69430a"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkLeft.fbx",
+      "before": null,
+      "canonical": "338ad99ca412d50cd2dc8f5421ccaa68ca20334198a08f12691ef3030d60f2fd"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkLeft.fbx.meta",
+      "before": null,
+      "canonical": "d2408b30581b37931aef1cab7d247c011b42edef23e8714f7f7ae407d04dc40c"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkRight.fbx",
+      "before": null,
+      "canonical": "0636fbdca9eeed58814c00babf8e951ec5ce2677716a88d1635c129f67ee06eb"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkRight.fbx.meta",
+      "before": null,
+      "canonical": "79dc04081533ebd2af29cd1855c68a581f60b20c891604fdb87d569ee54d75a8"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/StandardRun.fbx",
+      "before": null,
+      "canonical": "06ce6184815280b47e7726aa263dbc491788e4677ac9368ac6cca1bf27d9a734"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/StandardRun.fbx.meta",
+      "before": null,
+      "canonical": "b9ae3d1477ad9de1477e459dae1b2d4e744aa313e9c30e83946f346a304a8728"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/StandardWalk.fbx",
+      "before": null,
+      "canonical": "76d67f23891d0cba86be6385d435e6e8769314f6cc7df4a0ab021a5768f79814"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/StandardWalk.fbx.meta",
+      "before": null,
+      "canonical": "9e5d745fbd97032e3c643a2bc85ab6ef93f241f720e54dd4e7893f783b8bf49d"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunLeft.fbx",
+      "before": null,
+      "canonical": "d0ebacb98080968155ef8712770764dfd77be0196a77634238e28974aafe06af"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunLeft.fbx.meta",
+      "before": null,
+      "canonical": "3da52c5978a8c6154a8c44a2ec9f2e456ed7556597a217bc6096ed2d861833d2"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunRight.fbx",
+      "before": null,
+      "canonical": "f2324abd74ab2440c9f6bc4dbe53c96f5ea4f27946c9844fc21536e432448947"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunRight.fbx.meta",
+      "before": null,
+      "canonical": "9718148c4ec664627c2283d240e8e289d354b39527560ecc44f5e48fe80ab8c6"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkLeft.fbx",
+      "before": null,
+      "canonical": "957e963aaa528bde8ce8f8cb89b4ce4857fadba693be4a707f4a654198463c65"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkLeft.fbx.meta",
+      "before": null,
+      "canonical": "48abc779dae7ef14fb7c12c99be54a495948d4e205e0e326d18141fa8a203007"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkRight.fbx",
+      "before": null,
+      "canonical": "5198884d344292a0650afcb00dd13d46963ff84048b230cb0a1389a04beca1d6"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkRight.fbx.meta",
+      "before": null,
+      "canonical": "f21dd8b1467b3a04509498bc98d4d25385220fda8a1170ce2ff289f98fe38528"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/TwoCycleSprint.fbx",
+      "before": null,
+      "canonical": "9f0f7650f92962b82fa25f767b84f3ed32e375dde8c0c8bdd85898b3f8fa9e52"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/TwoCycleSprint.fbx.meta",
+      "before": null,
+      "canonical": "69d2d964089c71e5483bd066facf818dd23e4ce5d68c2b2c18da31f3c8918bc7"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Death/ReferenceOnlyCrouchedDeathWeaponPose.fbx",
+      "before": null,
+      "canonical": "2a6e16dd367dd4f919934ffa70ecdb48b3fcaa9c922b5d7d12ccaec507b3c541"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Death/ReferenceOnlyCrouchedDeathWeaponPose.fbx.meta",
+      "before": null,
+      "canonical": "a5ee6e10219329a03d61764cefb0a1f6324946eeb34b19b1e21cb71e2acc0a60"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Locomotion/SprintForwardTravelAlternative.fbx",
+      "before": null,
+      "canonical": "a09071f70bdb8887f94ce90a49998a6966b13ab13b3f898aa94fd8fb79e40d99"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Locomotion/SprintForwardTravelAlternative.fbx.meta",
+      "before": null,
+      "canonical": "5edc2342426c4e939645b6ad39b9d9d9cae40c7c58fd257622a4aa31bac39c9f"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Mining/MiningReferenceDownwardToolSwing.fbx",
+      "before": null,
+      "canonical": "849423196165ede1e42ad9e402b76232ee0e8142b318ffbd7daf47fc70bb4b1f"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Mining/MiningReferenceDownwardToolSwing.fbx.meta",
+      "before": null,
+      "canonical": "3dd1a2c28e4ec05a54dd85096e9a4499c27acaf942443bb4edbc1ec1ca06d1fd"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/CoverIdle.fbx",
+      "before": null,
+      "canonical": "8529de116cd7b93033bf55a791b0170b0fc643b0164b2d1e741bffc2c1eaa136"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/CoverIdle.fbx.meta",
+      "before": null,
+      "canonical": "97f16f51d66aac10718c633ad1fe209ac252d6f07205c5c3e35a5e5764f772e0"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/LeftCoverSneak.fbx",
+      "before": null,
+      "canonical": "506b4124b1bba13b24ada0cff03551a5e6252e0604e15154344a9b97d84ef8cd"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/LeftCoverSneak.fbx.meta",
+      "before": null,
+      "canonical": "c1eb5fc051917550cca56fdd59590027f683240f31a4156009f316d794553bdd"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/RightCoverSneak.fbx",
+      "before": null,
+      "canonical": "32c577a590f16f57c979e91f1db3658c02dc6bb61f034d78c5b4f0f6525168a9"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/RightCoverSneak.fbx.meta",
+      "before": null,
+      "canonical": "6a39b09b552d69c9e103d0abbb92bb83d0574875cbe98af2f86978ffed6acbd5"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/StandToCover.fbx",
+      "before": null,
+      "canonical": "2c46a95f102b99a063e1dac472fda41a0fe5ea2aa1c477f0865faf9a36d59033"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/StandToCover.fbx.meta",
+      "before": null,
+      "canonical": "1a8f76fc42c39c7b6ec20c2e52499b80f9f4a9c2816f232dfa73bb0525e00066"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Evade/DodgeBackward.fbx",
+      "before": null,
+      "canonical": "37140647db20ce2c8042cc0e11fe94ccb385247078e75299f9707d3a6092f36c"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Evade/DodgeBackward.fbx.meta",
+      "before": null,
+      "canonical": "4d09192f12aed5bc122913da69f7f442f253119d90845c8b5166127cc4d72327"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Evade/DodgeRight.fbx",
+      "before": null,
+      "canonical": "230356258ca5d231cc9f0263e654a0ed2bb7233053e261adefe7b6bad589f7f9"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Evade/DodgeRight.fbx.meta",
+      "before": null,
+      "canonical": "26515b5ef979ea700444bb12708584dd131580f9a459ff1afd0f9c16057d738a"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Evade/DuckFromStanding.fbx",
+      "before": null,
+      "canonical": "f41b40def2b44697f92edc29110fcf46dbabac21daed847924b3fcffa70de7b5"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Evade/DuckFromStanding.fbx.meta",
+      "before": null,
+      "canonical": "51f680d3714095d7aa40964e2406b5d87fc03f4a1191d662aef6fbacb96261aa"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallAirborneIdle.fbx",
+      "before": null,
+      "canonical": "31f22b4c16cc723cfb284141247b5074e6376822f11c377df367697b58f5d53a"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallAirborneIdle.fbx.meta",
+      "before": null,
+      "canonical": "5ca1826ca5846bcd5a43760098ddf99ed0843cf4264309aa91002af7867abf86"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallLanding.fbx",
+      "before": null,
+      "canonical": "7d697f79133f798eb83f303070b7983ac07cd4fd691a68a109c905bba5a2f9b9"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallLanding.fbx.meta",
+      "before": null,
+      "canonical": "e540d67a21d9e739e0ffd3ab8732b66368042003abf7a1d26529f9c089cbe593"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallRollLanding.fbx",
+      "before": null,
+      "canonical": "cca1253efe8a04a38b3fe7b0d7dc109e29baa703112c4e228030484bb8ce7b37"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallRollLanding.fbx.meta",
+      "before": null,
+      "canonical": "2eaee8c97c35b957312202f225bb50bed62f2eb1c002bc0bf173ce1cbf1a120e"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpRunning.fbx",
+      "before": null,
+      "canonical": "6993cb9cc44d017fd75d1edb6814d34f9b5ca059d8c0f5448da9e270a5f4392e"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpRunning.fbx.meta",
+      "before": null,
+      "canonical": "614d9e5e1770df892bc6a0357065a3d87340adc779d85e620bef89ea590e5afe"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpStanding.fbx",
+      "before": null,
+      "canonical": "3605b12a8024b214a2db6c86d301c3b5ad05bff500d93445d0e2ddbf4fb1ede7"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpStanding.fbx.meta",
+      "before": null,
+      "canonical": "da771e463dbba1d6d82098a918d81d2f6d262851018e0e92060a381d5c42cd6c"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpUnarmed.fbx",
+      "before": null,
+      "canonical": "854db1b3db23f109a9df33e0d838cf4143637696d21e868e821bce84a88429ad"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpUnarmed.fbx.meta",
+      "before": null,
+      "canonical": "2fc203608316d831d83045c9ff2c62c3e6a238f3d7d2b99871f793666e8519b1"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderClimb.fbx",
+      "before": null,
+      "canonical": "238e36087a8c0b3f754e9965dc50d58efd936a5be81e1d049682d32fdfa79922"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderClimb.fbx.meta",
+      "before": null,
+      "canonical": "8b43e6a789f75cf56857ffa4af9371115c646fab4a76a1076a406edb92347ac5"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderOneStep.fbx",
+      "before": null,
+      "canonical": "90458be5bf0e252c22579c4fb9e03788cfb6740fcd70c2d49669f9978dbccdd9"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderOneStep.fbx.meta",
+      "before": null,
+      "canonical": "434f98274867945c7845e295228c3973cac9c736b1d1a9d09005179f6679413b"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderStart.fbx",
+      "before": null,
+      "canonical": "c0d05f478076ee0dbd12e95f18f0a058013cf10c0a821b7ae36bb5aeab628898"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderStart.fbx.meta",
+      "before": null,
+      "canonical": "012f0e54e693f05cf707aa2245940864f98fec0f9f8fb3fea50848c09c7a7f1e"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderTopExit.fbx",
+      "before": null,
+      "canonical": "2a0df7401f1099610039dc5cedec422d773341b79b6492e723bcd673a079a5b5"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderTopExit.fbx.meta",
+      "before": null,
+      "canonical": "9e4051efa4979d478bd784881e7652d6c378dd0cf99f8eaaf52eae1efad63923"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderTwoSteps.fbx",
+      "before": null,
+      "canonical": "fd57e66ece0554293cfcf74abf57603cd22a2b4023a0f8e2ba72a9b1c2defd88"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderTwoSteps.fbx.meta",
+      "before": null,
+      "canonical": "201ba23d2c54481991cf9fb482ad1db8b746127e01b0e1e2fdb3b6da95f499b8"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Recovery/GetUpBack.fbx",
+      "before": null,
+      "canonical": "e72bdf1109ad6e2e9a5106e681a8ee3725997fa2d03338134a8574fd9b13632e"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Recovery/GetUpBack.fbx.meta",
+      "before": null,
+      "canonical": "25825971c44d4165d65419086bd79ad0e0384c78ca319eb10dd31af55c9327f6"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Recovery/GetUpStomach.fbx",
+      "before": null,
+      "canonical": "364661559b9b344e2fa8be37c45148b1fa492019d86dbae2454d34fe1199d3d1"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Recovery/GetUpStomach.fbx.meta",
+      "before": null,
+      "canonical": "407bfb65d8dbda8e991cb781ac1a7cf0d2146a3ab5f228d96a870f70803aca30"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Slide/RunningSlide.fbx",
+      "before": null,
+      "canonical": "2c849d828aad87f6b716e95281a8b1dfa8b292a5082920b2ee55a5d47bd748b7"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Slide/RunningSlide.fbx.meta",
+      "before": null,
+      "canonical": "d3571737413c1a451ecc3228442ae46c92bfc4e83b71fe4420b771d7919c2dd0"
+    }
+  ]
+}
