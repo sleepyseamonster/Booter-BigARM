@@ -1,0 +1,54 @@
+{
+  "scope": "Author-requested two-leg bipedal Lager correction",
+  "candidate": "D:\\BooterBigArmValidation\\CampNpc20261014",
+  "tests": {
+    "total": 7,
+    "passed": 7
+  },
+  "prefabGuidPreserved": true,
+  "removedLegSubtreeRecords": [
+    "1358525781828117938",
+    "1555847524157128663",
+    "2410442445399858275",
+    "2415633958182869768",
+    "2645889940701381829",
+    "2728997829499841210",
+    "2995115662835575458",
+    "4636103377992735929",
+    "4673926736476349884",
+    "5097502205168573854",
+    "5470588589177467180",
+    "564253358983502686",
+    "6044397096431348537",
+    "6177972031300475473",
+    "6344549116389337246",
+    "6555190281847427108",
+    "6933882651728939676",
+    "7960619136128580474",
+    "8828742575314392625",
+    "8926994318065072257"
+  ],
+  "retainedChangedRecords": [
+    "7532348890618843788",
+    "7125929998431733587",
+    "6484855105183551950",
+    "8903849035337303543",
+    "2934949412161946068"
+  ],
+  "newRecords": 0,
+  "authorSceneEdited": false,
+  "candidateEquality": [
+    "Assets/_Project/Prefabs/TopDown3D/NPC/LagerSkittish.prefab",
+    "Assets/_Project/Scripts/Editor/NPC/CampLoopNpcAuthoring.cs",
+    "Assets/_Project/Tests/Editor/CampLoopNpcSceneTests.cs"
+  ],
+  "sha256": {
+    "Assets/_Project/Prefabs/TopDown3D/NPC/LagerSkittish.prefab": "c4e00efbdc87ca63aa122f90fa7c16e603539bf735bbffaec62706301030c41e",
+    "Assets/_Project/Scripts/Editor/NPC/CampLoopNpcAuthoring.cs": "b87fa67701f5c0c1a60edc653f8641503c4b9289c02b38a3327f433e956e02a7",
+    "Assets/_Project/Tests/Editor/CampLoopNpcSceneTests.cs": "c49738b795ecec6bae8b48bca9df749cb6cd6f541279ba9525b51d96269a27a7",
+    "Docs/Design/Gameplay/CAMP_LOOP_LAGER_ENEMY_IMPLEMENTATION_PLAN_2026-10-14.md": "4b0c769f2991c8bc21045c3811fe3d7df2d0dc1fdb67e3e1522a6af7d84b5e4d",
+    "Docs/Evidence/Gameplay/CampLoopNpc20261014/README.md": "be45be9c1f17a83395a5d916aab775f3720e2e3d6e5ef2484b7b19c20869424b",
+    "Docs/Evidence/Gameplay/CampLoopNpc20261014/biped-tests.xml": "3a25a6a4ef117b23e8c66cde3fb5516346f8b28dd26b44561b7d42ad5c454865",
+    "Docs/Evidence/Gameplay/CampLoopNpc20261014/lager-blockout.png": "6eaae2f34f026139e62a5d06a3f244e72084e034e1ee5b8daef32ecc56939ba9"
+  }
+}

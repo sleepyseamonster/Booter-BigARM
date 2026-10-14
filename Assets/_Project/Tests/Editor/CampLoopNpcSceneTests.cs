@@ -27,6 +27,20 @@ namespace BooterBigArm.Tests
             Assert.That(actor.ThreatTarget, Is.Null); var tuning = actor.Definition.Profile.Snapshot();
             tuning.comfort = 9; Assert.That(actor.Definition.Profile.Snapshot().comfort, Is.EqualTo(10));
         }
+        [Test] public void LagerPrefabHasTwoBipedalLegsAndNoDecorativeColliders()
+        {
+            var prefab = AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(CampLoopNpcAuthoring.PrefabPath);
+            var visual = prefab.transform.Find("Visual");
+            var pivots = new SerializedObject(prefab.GetComponent<NpcBlockoutView>()).FindProperty("legPivots");
+            Assert.That(pivots.arraySize, Is.EqualTo(2));
+            var left = (UnityEngine.Transform)pivots.GetArrayElementAtIndex(0).objectReferenceValue;
+            var right = (UnityEngine.Transform)pivots.GetArrayElementAtIndex(1).objectReferenceValue;
+            Assert.That(left.parent, Is.EqualTo(visual)); Assert.That(right.parent, Is.EqualTo(visual));
+            Assert.That(left.localPosition.x, Is.LessThan(0)); Assert.That(right.localPosition.x, Is.GreaterThan(0));
+            Assert.That(left.localPosition.z, Is.EqualTo(0)); Assert.That(right.localPosition.z, Is.EqualTo(0));
+            Assert.That(visual.Cast<UnityEngine.Transform>().Count(t => t.name.StartsWith("Leg ")), Is.EqualTo(2));
+            Assert.That(visual.GetComponentsInChildren<UnityEngine.Collider>(true), Is.Empty);
+        }
         [TestCase("CampLoop.Aaa")] [TestCase("CampLoop.Zzz")]
         public void FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry(string failureId)
         {

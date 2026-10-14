@@ -4,7 +4,7 @@ October 14, 2026. The first Lager is installed in the saved CampLoopTesting scen
 
 ## NPC and tuning
 
-One four-legged primitive blockout uses a separate NPC definition, authored identity and yaw-invariant capsule motor. Its candidate anchor is approximately (-1842, -45.416, -1470), 28 m north of camp, selected by native-ground and clearance queries with at least two supported escape directions. The companion's follower, cargo and identity remain separate.
+One bipedal primitive blockout uses a separate NPC definition, authored identity and yaw-invariant capsule motor. Its candidate anchor is approximately (-1842, -45.416, -1470), 28 m north of camp, selected by native-ground and clearance queries with at least two supported escape directions. The companion's follower, cargo and identity remain separate.
 
 The Lager senses Booter in all horizontal directions within 20 m when line of sight is clear and vertical separation is within 4 m. It enters wary alert, retreats inside 10 m, flees inside 5 m, releases panic at 7 m and seeks 16 m calm separation. Hidden Booter leaves only a last observed position, expiring after two simulation seconds. Calm recovery lasts three seconds. These are trial settings, not final balance or species canon.
 
@@ -33,5 +33,7 @@ Static prefab rendering ran in a background candidate without Play Mode, scene s
 `prepare_camp_npc_delta.py` prepared and validated the task-owned payload while leaving the author scene untouched. It remapped four local IDs, verified three existing external bindings, and preserved 1,280 existing documents exactly; only the scene root list received one added entry. `Install-CampNpcDelta.ps1` applied it after the scene-writer handoff, with an exclusive file lock, exact source-hash guard and verified readback. The [scene receipt](scene-delta.json) records before/after hashes and IDs. Native terrain data, existing actor/station records and scene metadata were not rewritten.
 
 Repeated candidate installation exits successfully and preserves the exact saved scene hash. The [verified manifest](verified-manifest.json) seals task-owned file hashes, candidate code/asset equality, unique GUIDs and valid documentation links. It excludes its own hash to avoid a circular receipt.
+
+The author subsequently specified two legs and bipedal anatomy. The prefab correction retains the original left/right leg records, centers them beneath the body and removes the extra pair. The existing displacement gait now alternates those two pivots. Prefab GUID, actor identity, capsule, tuning and scene bindings are preserved; the shared author scene was not edited. The authoring recipe also creates two legs for future installs. Background Unity compilation/import and all seven focused scene/prefab checks passed, including an explicit two-leg anatomy and decorative-collider check. [Biped results](biped-tests.xml) and [correction receipt](biped-manifest.json) cover this later asset revision; the original manifest and test files remain historical implementation proof. The preview now shows the corrected biped.
 
 No gameplay smoke test, production build, production scene change, package change or external publication is part of this implementation. Hands-on feel and appearance acceptance remain author-owned.

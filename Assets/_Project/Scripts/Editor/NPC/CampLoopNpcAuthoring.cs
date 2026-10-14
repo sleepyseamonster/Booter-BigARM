@@ -37,12 +37,12 @@ namespace BooterBigArm.Editor
             var visual = new GameObject("Visual"); visual.transform.SetParent(root.transform, false);
             Block(visual.transform, "Body", new Vector3(0, .75f, 0), new Vector3(.75f, .45f, 1.05f), metal);
             Block(visual.transform, "Front sensor", new Vector3(0, .84f, .57f), new Vector3(.3f, .16f, .1f), sensor);
-            var pivots = new Transform[4];
-            for (var n = 0; n < 4; n++)
+            var pivots = new Transform[2];
+            for (var n = 0; n < 2; n++)
             {
-                var side = n < 2 ? -1 : 1; var z = n % 2 == 0 ? -.35f : .35f;
+                var side = n == 0 ? -1 : 1;
                 var pivot = new GameObject("Leg " + (n + 1)); pivot.transform.SetParent(visual.transform, false);
-                pivot.transform.localPosition = new Vector3(side * .3f, .7f, z); pivots[n] = pivot.transform;
+                pivot.transform.localPosition = new Vector3(side * .3f, .7f, 0); pivots[n] = pivot.transform;
                 var upper = Block(pivot.transform, "Upper", new Vector3(side * .12f, -.17f, 0), new Vector3(.1f, .4f, .1f), metal);
                 upper.transform.localRotation = Quaternion.Euler(0, 0, side * 25);
                 Block(pivot.transform, "Lower", new Vector3(side * .2f, -.5f, 0), new Vector3(.08f, .3f, .08f), metal);
@@ -71,6 +71,28 @@ namespace BooterBigArm.Editor
             if (!EditorSceneManager.SaveScene(scene)) throw new IOException("NPC candidate scene save failed.");
             Physics.SyncTransforms(); CampLoopNpcValidator.Validate(scene);
             Debug.Log("CAMP_NPC_INSTALLED: one separate Lager, omnidirectional perception, tunable skittish policy and safe reset.");
+        }
+        public static void MakeBipedFromCli()
+        {
+            if (!Application.isBatchMode || Application.isPlaying) throw new InvalidOperationException("Use isolated background Edit Mode authoring.");
+            var root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                var visual = root.transform.Find("Visual");
+                var left = visual.Find("Leg 1");
+                var right = visual.Find("Leg 3");
+                if (left == null || right == null || visual.Find("Leg 2") == null || visual.Find("Leg 4") == null)
+                    throw new InvalidOperationException("Expected original four-leg blockout; preserve unexpected asset.");
+                UnityEngine.Object.DestroyImmediate(visual.Find("Leg 2").gameObject);
+                UnityEngine.Object.DestroyImmediate(visual.Find("Leg 4").gameObject);
+                left.localPosition = new Vector3(-.3f, .7f, 0);
+                right.localPosition = new Vector3(.3f, .7f, 0);
+                right.name = "Leg 2";
+                root.GetComponent<NpcBlockoutView>().Configure(new[] { left, right });
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
+            }
+            finally { PrefabUtility.UnloadPrefabContents(root); }
+            Debug.Log("CAMP_NPC_BIPED_AUTHORED: two opposing leg pivots, existing alternating displacement gait.");
         }
         private static Vector3 FindPlacement(Scene scene, NpcGroundMotor motor, Vector3 camp, Vector3 player, NpcTuning t)
         {

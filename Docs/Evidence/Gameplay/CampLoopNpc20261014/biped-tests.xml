@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-14 17:51:11Z" end-time="2026-10-14 17:51:14Z" duration="3.2013351">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="1294" result="Passed" start-time="2026-10-14 17:51:11Z" end-time="2026-10-14 17:51:14Z" duration="3.201335" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2542" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/CampNpc20261014/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="1294" result="Passed" start-time="2026-10-14 17:51:11Z" end-time="2026-10-14 17:51:14Z" duration="3.189737" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="2968" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2543" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="1294" result="Passed" start-time="2026-10-14 17:51:11Z" end-time="2026-10-14 17:51:14Z" duration="3.184747" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2544" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="1294" result="Passed" start-time="2026-10-14 17:51:11Z" end-time="2026-10-14 17:51:14Z" duration="3.180097" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1397" name="CampLoopNpcSceneTests" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-14 17:51:11Z" end-time="2026-10-14 17:51:14Z" duration="3.147179" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1405" name="ActorLifetimeChangeRechecksSupportBeforeRearming" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.ActorLifetimeChangeRechecksSupportBeforeRearming" methodname="ActorLifetimeChangeRechecksSupportBeforeRearming" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" seed="1108202995" result="Passed" start-time="2026-10-14 17:51:11Z" end-time="2026-10-14 17:51:13Z" duration="1.749746" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1404" name="DisabledOptionalAdapterCannotRearmByDirectRefresh" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.DisabledOptionalAdapterCannotRearmByDirectRefresh" methodname="DisabledOptionalAdapterCannotRearmByDirectRefresh" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" seed="1685358809" result="Passed" start-time="2026-10-14 17:51:13Z" end-time="2026-10-14 17:51:13Z" duration="0.323161" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1403" name="FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 17:51:13Z" end-time="2026-10-14 17:51:14Z" duration="0.694434" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1401" name="FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry(&quot;CampLoop.Aaa&quot;)" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry(&quot;CampLoop.Aaa&quot;)" methodname="FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" seed="549754631" result="Passed" start-time="2026-10-14 17:51:13Z" end-time="2026-10-14 17:51:14Z" duration="0.334129" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1402" name="FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry(&quot;CampLoop.Zzz&quot;)" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry(&quot;CampLoop.Zzz&quot;)" methodname="FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" seed="1288511367" result="Passed" start-time="2026-10-14 17:51:14Z" end-time="2026-10-14 17:51:14Z" duration="0.332734" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1400" name="LagerPrefabHasTwoBipedalLegsAndNoDecorativeColliders" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.LagerPrefabHasTwoBipedalLegsAndNoDecorativeColliders" methodname="LagerPrefabHasTwoBipedalLegsAndNoDecorativeColliders" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" seed="38221105" result="Passed" start-time="2026-10-14 17:51:14Z" end-time="2026-10-14 17:51:14Z" duration="0.007056" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1399" name="PrefabHasNoSceneTargetAndProfileIsImmutableAtRuntime" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.PrefabHasNoSceneTargetAndProfileIsImmutableAtRuntime" methodname="PrefabHasNoSceneTargetAndProfileIsImmutableAtRuntime" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" seed="1953864406" result="Passed" start-time="2026-10-14 17:51:14Z" end-time="2026-10-14 17:51:14Z" duration="0.001799" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1398" name="SavedTrialHasIndependentIdentityAndNoCompanionFollower" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.SavedTrialHasIndependentIdentityAndNoCompanionFollower" methodname="SavedTrialHasIndependentIdentityAndNoCompanionFollower" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" seed="1811793405" result="Passed" start-time="2026-10-14 17:51:14Z" end-time="2026-10-14 17:51:14Z" duration="0.357282" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[CAMP_LOOP_VALIDATION_PASS: complete native grid, camp route, actors, seven rocks, twelve ironstone nodes, cache, controls and lighting.
+CAMP_NPC_VALIDATED: one grounded Lager, distinct companion, immutable profile and explicit laboratory binding.
+Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

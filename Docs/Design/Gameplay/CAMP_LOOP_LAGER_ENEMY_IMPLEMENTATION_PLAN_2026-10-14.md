@@ -84,7 +84,7 @@ The kinematic Rigidbody is the sole movement authority. Fixed-step movement swee
 
 ## Model and scene boundary
 
-Author a primitive body, front sensor and four segmented visual legs beneath a `Visual` child. Four legs and an approximately 1.3 by 0.9 by 1.1 m envelope are disposable study choices. Use an unscaled root and a conservative yaw-invariant capsule of radius 0.67 m and height 1.40 m, with no decorative leg colliders. The gait reads actual displacement; any future rig replaces only the visual subtree. Keep the art readable relative to 1.80 m Booter without claiming the placeholder is final design.
+Author a primitive body, front sensor and two segmented visual legs beneath a `Visual` child. The author specified bipedal anatomy on October 14; the earlier four-leg proposal is superseded. Use an unscaled root and a conservative yaw-invariant capsule of radius 0.67 m and height 1.40 m, with no decorative leg colliders. The two legs alternate using actual displacement; any future rig replaces only the visual subtree. Keep the art readable relative to 1.80 m Booter without claiming the placeholder is final design.
 
 Survey a side excursion around 20 to 35 m from camp, with two verified escape directions. Author one grounded initial anchor and a bounded activity area within retained terrain. Exclude camp/rest/return spaces, station approaches and the current salvage/workstation footprints. The exact transform, collider and region boundaries are outputs of the survey, not guessed coordinates in this plan. Do not flatten terrain or regenerate dressing for placement.
 
