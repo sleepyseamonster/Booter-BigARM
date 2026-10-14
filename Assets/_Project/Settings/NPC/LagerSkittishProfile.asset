@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d74fd8439378aa14d991dcdd243b99ae, type: 3}
+  m_Name: LagerSkittishProfile
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.SkittishNpcProfile
+  tuning:
+    detection: 20
+    calmDistance: 16
+    comfort: 10
+    panicRelease: 7
+    panic: 5
+    alertSeconds: 0.35
+    memorySeconds: 2
+    calmSeconds: 3
+    maximumVerticalDistance: 4
+    retreatSpeed: 4.5
+    fleeSpeed: 7.5
+    acceleration: 12
+    braking: 18
+    turnDegrees: 300
+    perceptionSeconds: 0.2
+    decisionSeconds: 0.1
+    replanSeconds: 0.5
+    commitmentSeconds: 0.6
+    slopeDegrees: 35
+    stepUp: 0.35
+    stepDown: 0.45
+    stuckSeconds: 1.25
+    progressMetres: 0.15
+    switchMargin: 0.1

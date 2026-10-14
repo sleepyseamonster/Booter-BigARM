@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="41" result="Passed" total="41" passed="41" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-14 17:19:20Z" end-time="2026-10-14 17:19:24Z" duration="4.0816087">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="1293" result="Passed" start-time="2026-10-14 17:19:20Z" end-time="2026-10-14 17:19:24Z" duration="4.081609" total="41" passed="41" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2541" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/CampNpc20261014/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="1293" result="Passed" start-time="2026-10-14 17:19:20Z" end-time="2026-10-14 17:19:24Z" duration="4.070069" total="41" passed="41" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="25524" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2542" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="1293" result="Passed" start-time="2026-10-14 17:19:20Z" end-time="2026-10-14 17:19:24Z" duration="4.065516" total="41" passed="41" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2543" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="1293" result="Passed" start-time="2026-10-14 17:19:20Z" end-time="2026-10-14 17:19:24Z" duration="4.060888" total="41" passed="41" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1397" name="CampLoopNpcSceneTests" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-14 17:19:20Z" end-time="2026-10-14 17:19:23Z" duration="3.201442" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1404" name="ActorLifetimeChangeRechecksSupportBeforeRearming" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.ActorLifetimeChangeRechecksSupportBeforeRearming" methodname="ActorLifetimeChangeRechecksSupportBeforeRearming" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" seed="1073084666" result="Passed" start-time="2026-10-14 17:19:20Z" end-time="2026-10-14 17:19:22Z" duration="1.714050" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1403" name="DisabledOptionalAdapterCannotRearmByDirectRefresh" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.DisabledOptionalAdapterCannotRearmByDirectRefresh" methodname="DisabledOptionalAdapterCannotRearmByDirectRefresh" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" seed="1954708419" result="Passed" start-time="2026-10-14 17:19:22Z" end-time="2026-10-14 17:19:22Z" duration="0.349720" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1402" name="FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 17:19:22Z" end-time="2026-10-14 17:19:23Z" duration="0.721770" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1400" name="FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry(&quot;CampLoop.Aaa&quot;)" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry(&quot;CampLoop.Aaa&quot;)" methodname="FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" seed="1018299988" result="Passed" start-time="2026-10-14 17:19:22Z" end-time="2026-10-14 17:19:22Z" duration="0.347855" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1401" name="FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry(&quot;CampLoop.Zzz&quot;)" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry(&quot;CampLoop.Zzz&quot;)" methodname="FailedResetBeforeOrAfterNpcCannotRearmUntilSuccessfulRetry" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" seed="1391936745" result="Passed" start-time="2026-10-14 17:19:22Z" end-time="2026-10-14 17:19:23Z" duration="0.346743" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1399" name="PrefabHasNoSceneTargetAndProfileIsImmutableAtRuntime" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.PrefabHasNoSceneTargetAndProfileIsImmutableAtRuntime" methodname="PrefabHasNoSceneTargetAndProfileIsImmutableAtRuntime" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" seed="1023217569" result="Passed" start-time="2026-10-14 17:19:23Z" end-time="2026-10-14 17:19:23Z" duration="0.002343" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1398" name="SavedTrialHasIndependentIdentityAndNoCompanionFollower" fullname="BooterBigArm.Tests.CampLoopNpcSceneTests.SavedTrialHasIndependentIdentityAndNoCompanionFollower" methodname="SavedTrialHasIndependentIdentityAndNoCompanionFollower" classname="BooterBigArm.Tests.CampLoopNpcSceneTests" runstate="Runnable" seed="2009989972" result="Passed" start-time="2026-10-14 17:19:23Z" end-time="2026-10-14 17:19:23Z" duration="0.399735" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[CAMP_LOOP_VALIDATION_PASS: complete native grid, camp route, actors, seven rocks, twelve ironstone nodes, cache, controls and lighting.
+CAMP_NPC_VALIDATED: one grounded Lager, distinct companion, immutable profile and explicit laboratory binding.
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1405" name="CampLoopSalvageTests" fullname="BooterBigArm.Tests.CampLoopSalvageTests" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-14 17:19:23Z" end-time="2026-10-14 17:19:24Z" duration="0.457692" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1409" name="BlockedReachAndExplicitCancelLeavePartIntact" fullname="BooterBigArm.Tests.CampLoopSalvageTests.BlockedReachAndExplicitCancelLeavePartIntact" methodname="BlockedReachAndExplicitCancelLeavePartIntact" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="226300146" result="Passed" start-time="2026-10-14 17:19:23Z" end-time="2026-10-14 17:19:23Z" duration="0.007180" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1407" name="CargoLeavingAtCompletionDoesNotConsumeOrFallback" fullname="BooterBigArm.Tests.CampLoopSalvageTests.CargoLeavingAtCompletionDoesNotConsumeOrFallback" methodname="CargoLeavingAtCompletionDoesNotConsumeOrFallback" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="2020575035" result="Passed" start-time="2026-10-14 17:19:23Z" end-time="2026-10-14 17:19:23Z" duration="0.000942" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1408" name="EpochChangeCancelsEvenWhenRestoredTargetIsAvailable" fullname="BooterBigArm.Tests.CampLoopSalvageTests.EpochChangeCancelsEvenWhenRestoredTargetIsAvailable" methodname="EpochChangeCancelsEvenWhenRestoredTargetIsAvailable" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="1065174089" result="Passed" start-time="2026-10-14 17:19:23Z" end-time="2026-10-14 17:19:23Z" duration="0.000493" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1410" name="HeavyCargoRejectsBeforeExtraction" fullname="BooterBigArm.Tests.CampLoopSalvageTests.HeavyCargoRejectsBeforeExtraction" methodname="HeavyCargoRejectsBeforeExtraction" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="1470090136" result="Passed" start-time="2026-10-14 17:19:23Z" end-time="2026-10-14 17:19:23Z" duration="0.000507" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1412" name="MissingResetStorageNeverReplenishesWreck" fullname="BooterBigArm.Tests.CampLoopSalvageTests.MissingResetStorageNeverReplenishesWreck" methodname="MissingResetStorageNeverReplenishesWreck" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="1353394210" result="Passed" start-time="2026-10-14 17:19:23Z" end-time="2026-10-14 17:19:23Z" duration="0.003908" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1411" name="ResetClearsTransferredRewardsAndPreservesOtherItems" fullname="BooterBigArm.Tests.CampLoopSalvageTests.ResetClearsTransferredRewardsAndPreservesOtherItems" methodname="ResetClearsTransferredRewardsAndPreservesOtherItems" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="495713033" result="Passed" start-time="2026-10-14 17:19:23Z" end-time="2026-10-14 17:19:23Z" duration="0.004723" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1414" name="SceneHasPrivateBindingsAndCheckpointIsSuppressed" fullname="BooterBigArm.Tests.CampLoopSalvageTests.SceneHasPrivateBindingsAndCheckpointIsSuppressed" methodname="SceneHasPrivateBindingsAndCheckpointIsSuppressed" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="632331086" result="Passed" start-time="2026-10-14 17:19:23Z" end-time="2026-10-14 17:19:24Z" duration="0.428851" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[CAMP_LOOP_VALIDATION_PASS: complete native grid, camp route, actors, seven rocks, twelve ironstone nodes, cache, controls and lighting.
+CAMP_SALVAGE_VALIDATED: one dead wreck, three unique points, private inventory catalog, native support, lab marker.
+]]></output>
+            </test-case>
+            <test-case id="1413" name="SerializedDepletionAndInventoryReconstructTogether" fullname="BooterBigArm.Tests.CampLoopSalvageTests.SerializedDepletionAndInventoryReconstructTogether" methodname="SerializedDepletionAndInventoryReconstructTogether" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="1587628596" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.001068" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1406" name="ThreeIndependentPartsAwardExactlyOnceAndRespectCargoOnlyPolicy" fullname="BooterBigArm.Tests.CampLoopSalvageTests.ThreeIndependentPartsAwardExactlyOnceAndRespectCargoOnlyPolicy" methodname="ThreeIndependentPartsAwardExactlyOnceAndRespectCargoOnlyPolicy" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="119818190" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.000711" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestSuite" id="2545" name="Editor" fullname="BooterBigArm.Tests.Editor" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.006574" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="2538" name="TopDown3DLocalGridPathfinderTests" fullname="BooterBigArm.Tests.Editor.TopDown3DLocalGridPathfinderTests" classname="BooterBigArm.Tests.Editor.TopDown3DLocalGridPathfinderTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.005351" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2540" name="RejectsUnloadedBarrierAndUnreachableSteepStep" fullname="BooterBigArm.Tests.Editor.TopDown3DLocalGridPathfinderTests.RejectsUnloadedBarrierAndUnreachableSteepStep" methodname="RejectsUnloadedBarrierAndUnreachableSteepStep" classname="BooterBigArm.Tests.Editor.TopDown3DLocalGridPathfinderTests" runstate="Runnable" seed="239992702" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.002515" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2539" name="RoutesAroundBlockedGroundWithoutCuttingCorner" fullname="BooterBigArm.Tests.Editor.TopDown3DLocalGridPathfinderTests.RoutesAroundBlockedGroundWithoutCuttingCorner" methodname="RoutesAroundBlockedGroundWithoutCuttingCorner" classname="BooterBigArm.Tests.Editor.TopDown3DLocalGridPathfinderTests" runstate="Runnable" seed="1285205122" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.001788" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1609" name="NpcGroundNavigationTests" fullname="BooterBigArm.Tests.NpcGroundNavigationTests" classname="BooterBigArm.Tests.NpcGroundNavigationTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.305799" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1612" name="CapsuleYawCannotChangeCollisionEnvelope" fullname="BooterBigArm.Tests.NpcGroundNavigationTests.CapsuleYawCannotChangeCollisionEnvelope" methodname="CapsuleYawCannotChangeCollisionEnvelope" classname="BooterBigArm.Tests.NpcGroundNavigationTests" runstate="Runnable" seed="891277321" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.029804" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1616" name="EnclosureAndAuthoredReservationsCannotBecomeEscapeSuccess" fullname="BooterBigArm.Tests.NpcGroundNavigationTests.EnclosureAndAuthoredReservationsCannotBecomeEscapeSuccess" methodname="EnclosureAndAuthoredReservationsCannotBecomeEscapeSuccess" classname="BooterBigArm.Tests.NpcGroundNavigationTests" runstate="Runnable" seed="1147889120" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.032954" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1615" name="EscapePlanningIsBoundedAndImprovesActualEndpoint" fullname="BooterBigArm.Tests.NpcGroundNavigationTests.EscapePlanningIsBoundedAndImprovesActualEndpoint" methodname="EscapePlanningIsBoundedAndImprovesActualEndpoint" classname="BooterBigArm.Tests.NpcGroundNavigationTests" runstate="Runnable" seed="1131935365" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.045239" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1610" name="FlatSupportAndThinWallSweepAreDifferentQueries" fullname="BooterBigArm.Tests.NpcGroundNavigationTests.FlatSupportAndThinWallSweepAreDifferentQueries" methodname="FlatSupportAndThinWallSweepAreDifferentQueries" classname="BooterBigArm.Tests.NpcGroundNavigationTests" runstate="Runnable" seed="1956090901" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.027448" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1619" name="PartialPathCanEscapeAnObstructedDestination" fullname="BooterBigArm.Tests.NpcGroundNavigationTests.PartialPathCanEscapeAnObstructedDestination" methodname="PartialPathCanEscapeAnObstructedDestination" classname="BooterBigArm.Tests.NpcGroundNavigationTests" runstate="Runnable" seed="1905545507" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.038075" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1611" name="PartialSupportAtEdgeAndDistantLowerGroundAreRejected" fullname="BooterBigArm.Tests.NpcGroundNavigationTests.PartialSupportAtEdgeAndDistantLowerGroundAreRejected" methodname="PartialSupportAtEdgeAndDistantLowerGroundAreRejected" classname="BooterBigArm.Tests.NpcGroundNavigationTests" runstate="Runnable" seed="1720868533" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.026668" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1613" name="SightBehindFleeingBodyRefreshesButWallKeepsLastKnownPosition" fullname="BooterBigArm.Tests.NpcGroundNavigationTests.SightBehindFleeingBodyRefreshesButWallKeepsLastKnownPosition" methodname="SightBehindFleeingBodyRefreshesButWallKeepsLastKnownPosition" classname="BooterBigArm.Tests.NpcGroundNavigationTests" runstate="Runnable" seed="1389015522" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.026128" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1617" name="StackedUnreachableSurfaceDoesNotRelocateFixture" fullname="BooterBigArm.Tests.NpcGroundNavigationTests.StackedUnreachableSurfaceDoesNotRelocateFixture" methodname="StackedUnreachableSurfaceDoesNotRelocateFixture" classname="BooterBigArm.Tests.NpcGroundNavigationTests" runstate="Runnable" seed="605695935" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.025956" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1618" name="SupportedEndpointsCannotCrossUnsupportedGap" fullname="BooterBigArm.Tests.NpcGroundNavigationTests.SupportedEndpointsCannotCrossUnsupportedGap" methodname="SupportedEndpointsCannotCrossUnsupportedGap" classname="BooterBigArm.Tests.NpcGroundNavigationTests" runstate="Runnable" seed="899820069" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.025732" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1614" name="VisiblePursuerUpdatesForLongerThanMemory" fullname="BooterBigArm.Tests.NpcGroundNavigationTests.VisiblePursuerUpdatesForLongerThanMemory" methodname="VisiblePursuerUpdatesForLongerThanMemory" classname="BooterBigArm.Tests.NpcGroundNavigationTests" runstate="Runnable" seed="1854552788" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.024861" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1620" name="NpcLifecycleAndTuningTests" fullname="BooterBigArm.Tests.NpcLifecycleAndTuningTests" classname="BooterBigArm.Tests.NpcLifecycleAndTuningTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.004730" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1622" name="FailedTuningIsAtomicAndCannotRearmActor" fullname="BooterBigArm.Tests.NpcLifecycleAndTuningTests.FailedTuningIsAtomicAndCannotRearmActor" methodname="FailedTuningIsAtomicAndCannotRearmActor" classname="BooterBigArm.Tests.NpcLifecycleAndTuningTests" runstate="Runnable" seed="1581494656" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.001356" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1623" name="ObservationFutureTimestampsAndExpiredKnowledgeAreInvalid" fullname="BooterBigArm.Tests.NpcLifecycleAndTuningTests.ObservationFutureTimestampsAndExpiredKnowledgeAreInvalid" methodname="ObservationFutureTimestampsAndExpiredKnowledgeAreInvalid" classname="BooterBigArm.Tests.NpcLifecycleAndTuningTests" runstate="Runnable" seed="751916174" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.000439" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1621" name="RearmRequiresFullResetSuccessAndCurrentEpoch" fullname="BooterBigArm.Tests.NpcLifecycleAndTuningTests.RearmRequiresFullResetSuccessAndCurrentEpoch" methodname="RearmRequiresFullResetSuccessAndCurrentEpoch" classname="BooterBigArm.Tests.NpcLifecycleAndTuningTests" runstate="Runnable" seed="262254941" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.000413" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1624" name="ReservationAndExposureChecksIncludeSegmentInterior" fullname="BooterBigArm.Tests.NpcLifecycleAndTuningTests.ReservationAndExposureChecksIncludeSegmentInterior" methodname="ReservationAndExposureChecksIncludeSegmentInterior" classname="BooterBigArm.Tests.NpcLifecycleAndTuningTests" runstate="Runnable" seed="519576805" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.000764" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1625" name="NpcSkittishBrainTests" fullname="BooterBigArm.Tests.NpcSkittishBrainTests" classname="BooterBigArm.Tests.NpcSkittishBrainTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.005540" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1626" name="ApproachWaitsForAlertThenRetreats" fullname="BooterBigArm.Tests.NpcSkittishBrainTests.ApproachWaitsForAlertThenRetreats" methodname="ApproachWaitsForAlertThenRetreats" classname="BooterBigArm.Tests.NpcSkittishBrainTests" runstate="Runnable" seed="1000480565" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.001113" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1634" name="ExactMemoryExpiryStopsEscape" fullname="BooterBigArm.Tests.NpcSkittishBrainTests.ExactMemoryExpiryStopsEscape" methodname="ExactMemoryExpiryStopsEscape" classname="BooterBigArm.Tests.NpcSkittishBrainTests" runstate="Runnable" seed="804968181" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.000281" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1635" name="InvalidProfileRejectsNanThresholdOrderAndUnboundedWork" fullname="BooterBigArm.Tests.NpcSkittishBrainTests.InvalidProfileRejectsNanThresholdOrderAndUnboundedWork" methodname="InvalidProfileRejectsNanThresholdOrderAndUnboundedWork" classname="BooterBigArm.Tests.NpcSkittishBrainTests" runstate="Runnable" seed="635251841" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.000261" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1629" name="PanicEntryHasExactInclusiveBoundary" fullname="BooterBigArm.Tests.NpcSkittishBrainTests.PanicEntryHasExactInclusiveBoundary" classname="BooterBigArm.Tests.NpcSkittishBrainTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.000896" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1627" name="PanicEntryHasExactInclusiveBoundary(5,Flee)" fullname="BooterBigArm.Tests.NpcSkittishBrainTests.PanicEntryHasExactInclusiveBoundary(5,Flee)" methodname="PanicEntryHasExactInclusiveBoundary" classname="BooterBigArm.Tests.NpcSkittishBrainTests" runstate="Runnable" seed="1448353977" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.000282" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1628" name="PanicEntryHasExactInclusiveBoundary(5.001f,Alert)" fullname="BooterBigArm.Tests.NpcSkittishBrainTests.PanicEntryHasExactInclusiveBoundary(5.001f,Alert)" methodname="PanicEntryHasExactInclusiveBoundary" classname="BooterBigArm.Tests.NpcSkittishBrainTests" runstate="Runnable" seed="435810635" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.000129" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1630" name="PanicReleaseRetainsThreatResponse" fullname="BooterBigArm.Tests.NpcSkittishBrainTests.PanicReleaseRetainsThreatResponse" methodname="PanicReleaseRetainsThreatResponse" classname="BooterBigArm.Tests.NpcSkittishBrainTests" runstate="Runnable" seed="281209395" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.000229" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1632" name="RecoveryStopsMovementAndRequiresContinuousCalm" fullname="BooterBigArm.Tests.NpcSkittishBrainTests.RecoveryStopsMovementAndRequiresContinuousCalm" methodname="RecoveryStopsMovementAndRequiresContinuousCalm" classname="BooterBigArm.Tests.NpcSkittishBrainTests" runstate="Runnable" seed="1273852041" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.000237" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1633" name="RenewedPressurePreemptsCalmHold" fullname="BooterBigArm.Tests.NpcSkittishBrainTests.RenewedPressurePreemptsCalmHold" methodname="RenewedPressurePreemptsCalmHold" classname="BooterBigArm.Tests.NpcSkittishBrainTests" runstate="Runnable" seed="73655306" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.000208" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1636" name="SnapshotDoesNotMutateAuthoredProfile" fullname="BooterBigArm.Tests.NpcSkittishBrainTests.SnapshotDoesNotMutateAuthoredProfile" methodname="SnapshotDoesNotMutateAuthoredProfile" classname="BooterBigArm.Tests.NpcSkittishBrainTests" runstate="Runnable" seed="140887268" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.000322" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1631" name="SustainedVisiblePursuitDoesNotExpireMemory" fullname="BooterBigArm.Tests.NpcSkittishBrainTests.SustainedVisiblePursuitDoesNotExpireMemory" methodname="SustainedVisiblePursuitDoesNotExpireMemory" classname="BooterBigArm.Tests.NpcSkittishBrainTests" runstate="Runnable" seed="1920548795" result="Passed" start-time="2026-10-14 17:19:24Z" end-time="2026-10-14 17:19:24Z" duration="0.000194" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -90,6 +90,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [First Lager enemy implementation](./Design/Gameplay/CAMP_LOOP_LAGER_ENEMY_IMPLEMENTATION_PLAN_2026-10-14.md) and [evidence](./Evidence/Gameplay/CampLoopNpc20261014/README.md)
+  One tunable skittish NPC in Camp Loop, with isolated perception/behavior/movement ownership, bounded safe escape routes, temporary session tuning and coordinated lab reset. Final model design and hands-on feel remain open.
+
 - [Camp Loop inventory audit and redesign brainstorm](./Design/Gameplay/CAMP_LOOP_INVENTORY_REDESIGN_BRAINSTORM_2026-10-14.md)
   Proposed six-slot Booter equipment loadout, separate supply pockets and Legger cargo, with current inventory findings, deployed-equipment ownership and session-only trial boundaries. Audit and brainstorming only.
 

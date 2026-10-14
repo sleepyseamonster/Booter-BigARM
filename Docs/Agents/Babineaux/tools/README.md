@@ -2,6 +2,14 @@
 
 This directory holds Babineaux-owned, agent-local helpers and the inventory for Unity-facing automation created through Babineaux.
 
+## Camp Loop Lager NPC authoring
+
+- **Owner:** `Assets/_Project/Scripts/Editor/NPC/CampLoopNpcAuthoring.cs`; `InstallFromCli()` authors the primitive prefab/profile and one additive trial root in a background candidate. Existing installed identity is validated without rebuilding or saving.
+- **Validation:** `CampLoopNpcValidator.ValidateFromCli()` opens the reference scene and validates ownership/support without saving content. Scene opening is a side effect; use an isolated candidate.
+- **Static art:** `NpcBlockoutPreview.CaptureFromCli()` creates an unsaved preview scene and writes `Logs/lager-blockout.png`, without Play Mode or foreground activation. Use a background graphics-capable candidate.
+- **Guarded integration:** `Tools/Repository/prepare_camp_npc_delta.py` prepares a payload without writing the author scene; `Install-CampNpcDelta.ps1` applies it only after explicit scene-writer coordination, exact hash comparison and exclusive file locking. Both derive source paths from this checkout. Existing records and metadata are preserved.
+- **Prerequisites and proof:** pinned Unity, the marked Camp Loop and its current dependency closure. [The implementation receipt](../../../Evidence/Gameplay/CampLoopNpc20261014/README.md) records focused tests and the user-owned gameplay acceptance boundary.
+
 ## Greater Wasteland ironstone authoring
 
 - **Owner:** `Assets/_Project/Scripts/Editor/TopDown3D/GreaterWastelandIronstoneAuthoring.cs`.

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51df806dad32ac4fba6b4635dfd2f86, type: 3}
+  m_Name: LagerDefinition
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.NpcDefinition
+  typeId: lab.npc.legger.skittish
+  displayName: Lager
+  profile: {fileID: 11400000, guid: e08b11e81ee11a44eacc618e5741bd20, type: 2}
