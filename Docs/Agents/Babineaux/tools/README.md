@@ -55,6 +55,8 @@ Before adding a helper or automation entry point, confirm that it:
 
 ### `launch-unity.sh`
 
+For the Camp Loop playground, `AnimationPlaygroundSceneInstaller.InstallSession()` adds an owned session root to the already-loaded clean lab scene; it never opens/rebuilds a scene. `AnimationPlaygroundAssetImporter.CreateFolderScaffolding()` creates project-owned folders/metadata/placeholders from the transfer map without importing FBXs. Both live under `Assets/_Project/Scripts/Editor/AnimationPlayground/` and require Edit Mode. Source restoration and GUID sealing use `Tools/Art/Animations/Restore-MixamoAssets.ps1`; focused scene-opening fixtures run in the isolated candidate described by [the foundation receipt](../../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Foundations/README.md).
+
 - **Purpose:** Open this project in its pinned Unity editor without activating it, avoid a duplicate target-project session, and wait for the real editor window while preserving the user's foreground application.
 - **Path:** `Docs/Agents/Babineaux/tools/launch-unity.sh`
 - **Invocation:** `Docs/Agents/Babineaux/tools/launch-unity.sh`

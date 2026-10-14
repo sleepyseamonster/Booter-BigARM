@@ -90,6 +90,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [Camp Loop animation implementation status](./Design/Gameplay/CAMP_LOOP_ANIMATION_IMPLEMENTATION_STATUS_2026-10-13.md)
+  Verified source/session/targeting foundations and current dependency gates for the active animation playground implementation goal.
+
 - [Camp Loop animation plan audit](./Design/Gameplay/CAMP_LOOP_ANIMATION_PLAN_AUDIT_2026-10-13.md)
   Twenty-two integration/dependency findings, expanded download and rig accounting, corrected prerequisite order and rewritten plans; links to the foundation plan and prioritized motion-role backlog.
 

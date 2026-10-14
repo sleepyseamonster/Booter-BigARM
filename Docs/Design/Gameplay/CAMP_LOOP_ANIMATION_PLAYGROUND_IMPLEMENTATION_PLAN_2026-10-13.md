@@ -1,6 +1,6 @@
 # Camp Loop animation playground implementation plan
 
-Date: 2026-10-13. Revision 2, following the [plan audit](./CAMP_LOOP_ANIMATION_PLAN_AUDIT_2026-10-13.md). Target: `Assets/_Project/Scenes/Reference/CampLoopTesting.unity`. Status: audit and plan rewrite complete; implementation pending. This revision replaces the earlier batch order and storage/input/contact assumptions.
+Date: 2026-10-13. Revision 2, following the [plan audit](./CAMP_LOOP_ANIMATION_PLAN_AUDIT_2026-10-13.md). Target: `Assets/_Project/Scenes/Reference/CampLoopTesting.unity`. Status: implementation active; verified slices are recorded in the [implementation status](./CAMP_LOOP_ANIMATION_IMPLEMENTATION_STATUS_2026-10-13.md). This revision replaces the earlier batch order and storage/input/contact assumptions.
 
 Build a playground where the author controls the existing Booter actor, interacts with real objects, compares accepted animation variants, and resets experiments. Source download, Unity import, preview, physical integration and hands-on acceptance are separate readiness levels. A functioning clip viewer does not establish a functioning ladder, throw or mining action.
 

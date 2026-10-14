@@ -27,7 +27,9 @@ namespace BooterBigArm.TopDown3D
         private float harvesterActionElapsed;
         private const float HarvesterActionDuration = 0.75f;
         private ITopDown3DInteractable pendingResource;
-        private ITopDown3DInteractable pressedTarget;
+        private TopDown3DInteractionTarget pressedTarget;
+        private ITopDown3DStationActionReceiver stationReceiver;
+        private TopDown3DCampController activityCamp;
         private bool hasPressedTarget;
         private float approachSeconds;
         public bool IsAwaitingCargo => pendingResource != null;
@@ -35,8 +37,25 @@ namespace BooterBigArm.TopDown3D
         public bool IsGathering => gatherAction != null && gatherAction.IsActive
             || placingHarvester || pickupHarvesterId != null || IsAwaitingCargo;
         public bool IsPlacingHarvester => placementPreview != null;
+        public TopDown3DActivitySnapshot Activity
+        {
+            get
+            {
+                if(activityCamp == null) activityCamp=GetComponent<TopDown3DCampController>();
+                return new TopDown3DActivitySnapshot(IsGathering,IsPlacingHarvester,motor != null && motor.IsActionConstrained,
+                    activityCamp != null && activityCamp.Phase != TopDown3DCampPhase.Idle,
+                    stationReceiver != null && (!(stationReceiver is UnityEngine.Object owner) || owner != null) && stationReceiver.IsBusy);
+            }
+        }
+        public bool IsBusy => Activity.IsBusy;
+        public void ConfigureStationActions(ITopDown3DStationActionReceiver receiver)
+        {
+            if(stationReceiver != null && stationReceiver.IsBusy && !ReferenceEquals(stationReceiver,receiver))
+                throw new InvalidOperationException("Release the station action before replacing its owner.");
+            stationReceiver=receiver;
+        }
         public bool CanOpenCargo => input != null && input.Mode == TopDown3DInputMode.Gameplay
-            && !IsGathering && !IsPlacingHarvester && TopDown3DCargoAccess.CanAccess(bigArmCargo, transform);
+            && !IsBusy && TopDown3DCargoAccess.CanAccess(bigArmCargo, transform);
         public string BusyPrompt => IsGathering && input != null
             ? (IsAwaitingCargo ? "Waiting for Legger" : "Working")
                 + $"  [{input.GetBindingDisplayName("Gameplay/PickupCanister", "C")}] cancel"
@@ -53,7 +72,7 @@ namespace BooterBigArm.TopDown3D
         public void ReportFeedback(string message) => FeedbackRequested?.Invoke(message);
 
         public bool CanSelectCanister => harvesterState != null && harvesterState.Settings != null
-            && inventory != null && !IsGathering && HasCanister();
+            && inventory != null && !Activity.LegacyWork && !Activity.MotorOwned && !Activity.CampActive && !Activity.StationActive && HasCanister();
 
         private bool HasCanister()
         {
@@ -105,6 +124,9 @@ namespace BooterBigArm.TopDown3D
         {
             if (pendingResource != null) return TopDown3DGatherActionResult.AwaitingCargo;
             if (placementPreview != null) CancelPlacementPreview();
+            if(IsBusy) return TopDown3DGatherActionResult.Rejected;
+            var selection=interaction != null ? interaction.CaptureTarget() : default;
+            if(selection.Target is ITopDown3DStationInteraction) return TryBeginStation(selection);
             EnsureGatherAction();
             if (gatherAction == null || interaction == null || motor == null || animationDriver == null)
             {
@@ -183,9 +205,19 @@ namespace BooterBigArm.TopDown3D
             return result;
         }
 
+        private TopDown3DGatherActionResult TryBeginStation(TopDown3DInteractionTarget target)
+        {
+            if(IsBusy || !target.IsValid || interaction == null || !interaction.CanReachTarget(target.Target))
+                return TopDown3DGatherActionResult.Rejected;
+            if(stationReceiver != null && (!(stationReceiver is UnityEngine.Object owner) || owner != null) && stationReceiver.TryBegin(target))
+                return TopDown3DGatherActionResult.Completed;
+            ReportFeedback("This station's action is not qualified or available yet.");
+            return TopDown3DGatherActionResult.Rejected;
+        }
+
         public void CancelGather()
         {
-            pressedTarget = null; hasPressedTarget = false;
+            pressedTarget = default; hasPressedTarget = false;
             pendingResource = null;
             CancelPlacementPreview();
             if (placingHarvester || pickupHarvesterId != null)
@@ -272,21 +304,23 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleInteractRequested()
         {
-            if (input == null || input.Mode != TopDown3DInputMode.Gameplay || IsGathering) return;
+            if (input == null || input.Mode != TopDown3DInputMode.Gameplay) return;
             var target = pressedTarget;
             var captured = hasPressedTarget;
-            pressedTarget = null; hasPressedTarget = false;
+            pressedTarget = default; hasPressedTarget = false;
+            if(placementPreview != null) CancelPlacementPreview();
+            if(IsBusy) return;
             if (!captured) { interaction?.RefreshTarget(); TryBeginCurrentTarget(); return; }
-            if (target == null || interaction == null || !interaction.CanReachTarget(target)) return;
-            if (placementPreview != null) CancelPlacementPreview();
+            if (!target.IsValid || interaction == null || !interaction.CanReachTarget(target.Target)) return;
+            if(target.Target is ITopDown3DStationInteraction){TryBeginStation(target);return;}
             EnsureGatherAction();
-            if (gatherAction != null && motor != null && animationDriver != null) TryBeginTarget(target);
+            if (gatherAction != null && motor != null && animationDriver != null && target.Target is ITopDown3DInteractable resource) TryBeginTarget(resource);
         }
 
         private void HandleInteractionPressStarted()
         {
             interaction?.RefreshTarget();
-            pressedTarget = interaction?.CurrentTarget;
+            pressedTarget = interaction != null ? interaction.CaptureTarget() : default;
             hasPressedTarget = true;
         }
 
@@ -299,7 +333,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (input == null || input.Mode != TopDown3DInputMode.Gameplay
                 || inventory == null || harvesterState == null || (proceduralWorld == null && !harvesterState.IsAuthored)
-                || IsGathering) return;
+                || IsGathering || Activity.StationActive || Activity.CampActive || Activity.MotorOwned) return;
             if (placementPreview == null)
             {
                 var hasCanister = false;
@@ -347,6 +381,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (input == null || input.Mode != TopDown3DInputMode.Gameplay) return;
             if (IsGathering) { CancelGather(); return; }
+            if(Activity.StationActive || Activity.CampActive || Activity.MotorOwned) return;
             if (placementPreview != null)
             {
                 CancelPlacementPreview();
@@ -362,7 +397,7 @@ namespace BooterBigArm.TopDown3D
         private TopDown3DGatherActionResult TryBeginHarvesterPickup(TopDown3DHarvesterView view)
         {
             if (view == null || harvesterState == null || inventory == null
-                || motor == null || animationDriver == null || IsGathering
+                || motor == null || animationDriver == null || IsBusy
                 || !view.IsAvailable
                 || Vector3.Distance(motor.Position, view.InteractionPoint) > view.InteractionRange
                 || interaction == null || !interaction.CanReachTarget(view))
@@ -587,7 +622,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (mode != TopDown3DInputMode.Gameplay)
             {
-                pressedTarget = null; hasPressedTarget = false;
+                pressedTarget = default; hasPressedTarget = false;
                 CancelGather();
             }
         }

@@ -33,6 +33,7 @@ namespace BooterBigArm.TopDown3D
         public long CompletedCacheRevision => cacheRevision;
         public long CompletedPopulationRevision => completedPopulationRevision;
         public bool RecoveryRequired => recoveryRequired;
+        public bool IsSessionOnly => TopDown3DAnimationPlaygroundSession.IsSessionOnly(gameObject.scene);
         public string SavePath => Path.Combine(Application.persistentDataPath, GreaterWastelandSceneScope.CheckpointFolder(gameObject.scene), "inventory-v1.json");
 
         // Bind explicitly before startup. No seed inference or silent version-1 population migration.
@@ -45,6 +46,8 @@ namespace BooterBigArm.TopDown3D
 
         private void Start()
         {
+            // Authored lab policy is resolved before any file read, restoration or writer allocation.
+            if (IsSessionOnly) return;
             var scene = gameObject.scene;
             kit = TopDown3DGameHudCanvas.FindInScene<TopDown3DPlayerInventory>(scene);
             cargo = TopDown3DGameHudCanvas.FindInScene<TopDown3DBigArmCargo>(scene);
@@ -72,7 +75,7 @@ namespace BooterBigArm.TopDown3D
             writer = new GreaterWastelandCheckpointWriter(SavePath);
         }
 
-        private bool SafeCheckpoint => ready && !applying && !recoveryRequired
+        private bool SafeCheckpoint => !IsSessionOnly && ready && !applying && !recoveryRequired
             && !kit.State.IsCommitting && !cargo.State.IsCommitting && !cache.State.IsCommitting
             && camp.Phase == TopDown3DCampPhase.Idle
             && motor.IsGrounded
@@ -164,6 +167,7 @@ namespace BooterBigArm.TopDown3D
 
         internal bool Restore(GreaterWastelandInventorySnapshot snapshot)
         {
+            if (IsSessionOnly) return false;
             if (snapshot == null || !snapshot.HasValidHeader(cache.StableId) || !snapshot.TryReadPopulation(out var savedPopulation)
                 || !resources.CanApplySnapshot(snapshot.resources)
                 || (population == null ? savedPopulation != null : !population.CanApplySnapshot(savedPopulation))

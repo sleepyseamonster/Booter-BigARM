@@ -52,7 +52,7 @@ namespace BooterBigArm.TopDown3D
             }
         }
         public bool CanUseCamp => IsConfigured && input != null && input.HasCampActions && Phase == TopDown3DCampPhase.Idle
-            && vitals.Health > 0 && motor.CanBeginCampAction && animation.HasCampAnimationSet && !action.IsGathering && !action.IsPlacingHarvester
+            && vitals.Health > 0 && motor.CanBeginCampAction && animation.HasCampAnimationSet && !action.IsBusy
             && vitals.Activity == TopDown3DSurvivalActivity.Ordinary;
         private TopDown3DCampView NearbyCamp
         {

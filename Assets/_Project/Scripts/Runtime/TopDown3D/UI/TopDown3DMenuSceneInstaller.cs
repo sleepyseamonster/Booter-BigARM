@@ -21,7 +21,8 @@ namespace BooterBigArm.TopDown3D
             var view = instance.GetComponent<TopDown3DMenuView>();
             var controller = instance.AddComponent<TopDown3DMenuController>();
             var range = TopDown3DGameHudCanvas.FindInScene<BadwaterCameraRange>(scene);
-            controller.Configure(input, inventory, radial, view, eventSystem.GetComponent<InputSystemUIInputModule>(), preferenceDirectory, range);
+            controller.Configure(input, inventory, radial, view, eventSystem.GetComponent<InputSystemUIInputModule>(), preferenceDirectory, range,
+                TopDown3DAnimationPlaygroundSession.ResolveControlsDirectory(scene, preferenceDirectory));
             instance.SetActive(true);
             return controller;
         }

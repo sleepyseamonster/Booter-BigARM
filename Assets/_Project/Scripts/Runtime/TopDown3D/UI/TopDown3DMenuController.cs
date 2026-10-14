@@ -31,11 +31,12 @@ namespace BooterBigArm.TopDown3D
 
         public void Configure(TopDown3DInputRouter router, TopDown3DInventoryUiController kit,
             TopDown3DRadialMenuController wheel, TopDown3DMenuView menuView,
-            InputSystemUIInputModule uiModule, string preferenceDirectory = null, BadwaterCameraRange range = null)
+            InputSystemUIInputModule uiModule, string preferenceDirectory = null, BadwaterCameraRange range = null,
+            string controlsPreferenceDirectory = null)
         {
             input = router; inventory = kit; radial = wheel; view = menuView; module = uiModule;
             settings = new TopDown3DMenuSettingsService(preferenceDirectory ?? Application.persistentDataPath);
-            ConfigureControls(preferenceDirectory ?? Application.persistentDataPath);
+            ConfigureControls(controlsPreferenceDirectory ?? preferenceDirectory ?? Application.persistentDataPath);
             cameraRange = range;
             cameraRange?.SetPreset(settings.Accepted.viewDistancePreset);
             view.Initialize(kit.EventSystem); view.ApplySettings(settings.Accepted);

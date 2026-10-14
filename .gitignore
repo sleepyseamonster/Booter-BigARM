@@ -60,3 +60,15 @@ __pycache__/
 
 # Terrain acquisition, preparation and source archives are local-only.
 /SourceData/Terrain/
+
+# Mixamo playground dependencies remain private, including paired file metadata.
+# Folder metadata, recipes and project-authored props/scripts remain publishable.
+/Assets/_Project/Art/Animations/Mixamo/**/*.fbx
+/Assets/_Project/Art/Animations/Mixamo/**/*.fbx.meta
+/Assets/_Project/Art/Animations/Mixamo/**/*.anim
+/Assets/_Project/Art/Animations/Mixamo/**/*.anim.meta
+/Assets/_Project/Art/Characters/AnimationPlayground/**/*.fbx
+/Assets/_Project/Art/Characters/AnimationPlayground/**/*.fbx.meta
+/Assets/_Project/Settings/AnimationPlayground/PrivateBindings/*.asset
+/Assets/_Project/Settings/AnimationPlayground/PrivateBindings/*.asset.meta
+/SourceArt/Animation/Mixamo/Reference/*.fbx

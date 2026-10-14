@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace BooterBigArm.TopDown3D
@@ -17,9 +18,14 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private LayerMask lineOfSightMask = ~0;
 
         private Collider[] hits = new Collider[HitCapacity];
+        private readonly List<MonoBehaviour> targetComponents = new();
+        private readonly HashSet<UnityEngine.Object> seenTargets = new();
 
-        public ITopDown3DInteractable CurrentTarget { get; private set; }
+        public ITopDown3DInteractionTarget SelectedTarget { get; private set; }
+        public ITopDown3DInteractable CurrentTarget => SelectedTarget as ITopDown3DInteractable;
+        public TopDown3DInteractionTarget CaptureTarget() => new(SelectedTarget);
         public event Action<ITopDown3DInteractable> TargetChanged;
+        public event Action<ITopDown3DInteractionTarget> SelectionChanged;
 
         public void Configure(TopDown3DPlayerMotor playerMotor)
         {
@@ -29,13 +35,14 @@ namespace BooterBigArm.TopDown3D
         public void RefreshTarget()
         {
             var next = FindBestTarget(false, true);
-            if (ReferenceEquals(next, CurrentTarget))
+            if (ReferenceEquals(next, SelectedTarget))
             {
                 return;
             }
 
-            CurrentTarget = next;
+            SelectedTarget = next;
             TargetChanged?.Invoke(CurrentTarget);
+            SelectionChanged?.Invoke(SelectedTarget);
         }
 
         // Dedicated pickup commands must not compete with ironstone, camp, or cache prompts.
@@ -44,7 +51,7 @@ namespace BooterBigArm.TopDown3D
             return FindBestTarget(true, false) as TopDown3DHarvesterView;
         }
 
-        public bool CanReachTarget(ITopDown3DInteractable target)
+        public bool CanReachTarget(ITopDown3DInteractionTarget target)
         {
             if (motor == null || target == null || target.UnityObject == null || !target.IsAvailable
                 || (target.UnityObject is Behaviour behaviour && !behaviour.isActiveAndEnabled)
@@ -60,7 +67,7 @@ namespace BooterBigArm.TopDown3D
             RefreshTarget();
         }
 
-        private ITopDown3DInteractable FindBestTarget(bool canisterOnly, bool retainCurrent)
+        private ITopDown3DInteractionTarget FindBestTarget(bool canisterOnly, bool retainCurrent)
         {
             if (motor == null)
             {
@@ -76,7 +83,8 @@ namespace BooterBigArm.TopDown3D
                 interactionMask, QueryTriggerInteraction.Collide)) == hits.Length)
                 Array.Resize(ref hits, checked(hits.Length * 2));
             var candidates = hits;
-            ITopDown3DInteractable best = null;
+            ITopDown3DInteractionTarget best = null;
+            seenTargets.Clear();
             var bestDistance = float.PositiveInfinity;
             var bestFacing = float.NegativeInfinity;
             var currentDistance = float.PositiveInfinity;
@@ -87,14 +95,14 @@ namespace BooterBigArm.TopDown3D
                 var collider = candidates[i];
                 // Cargo has its own hold command and must never steal a world interaction.
                 if (collider == null) continue;
-                ITopDown3DInteractable candidate = canisterOnly
-                    ? collider.GetComponentInParent<TopDown3DHarvesterView>()
-                    : collider.GetComponentInParent<TopDown3DIronstoneNode>();
-                if (!canisterOnly)
+                ITopDown3DInteractionTarget candidate = null;
+                if(canisterOnly) candidate=collider.GetComponentInParent<TopDown3DHarvesterView>();
+                else
                 {
-                    candidate ??= collider.GetComponentInParent<TopDown3DHarvesterView>();
-                    candidate ??= collider.GetComponentInParent<TopDown3DCampView>();
-                    candidate ??= collider.GetComponentInParent<TopDown3DResourceCache>();
+                    targetComponents.Clear(); collider.GetComponentsInParent(false,targetComponents);
+                    foreach(var component in targetComponents)
+                        if(component is ITopDown3DInteractionTarget target && TopDown3DInteractionTarget.OwnsCollider(target,collider))
+                        { candidate=target;break; }
                 }
                 if (candidate == null || candidate.UnityObject == null || !candidate.IsAvailable
                     || (candidate.UnityObject is Behaviour behaviour && !behaviour.isActiveAndEnabled))
@@ -102,6 +110,7 @@ namespace BooterBigArm.TopDown3D
                     continue;
                 }
 
+                if(!seenTargets.Add(candidate.UnityObject)) continue;
                 var delta = candidate.InteractionPoint - actorPosition;
                 var distance = delta.magnitude;
                 var planarDirection = Vector3.ProjectOnPlane(delta, Vector3.up);
@@ -114,7 +123,7 @@ namespace BooterBigArm.TopDown3D
                     continue;
                 }
 
-                if (retainCurrent && ReferenceEquals(candidate, CurrentTarget))
+                if (retainCurrent && ReferenceEquals(candidate, SelectedTarget))
                 {
                     currentIsValid = true;
                     currentDistance = distance;
@@ -136,18 +145,18 @@ namespace BooterBigArm.TopDown3D
 
             // Revalidate through this scan before retaining: unavailable, blocked, behind,
             // out-of-range, and unloaded targets must drop immediately.
-            if (currentIsValid && !ReferenceEquals(best, CurrentTarget)
+            if (currentIsValid && !ReferenceEquals(best, SelectedTarget)
                 && bestDistance > currentDistance - targetSwitchDistance
                 && bestFacing < currentFacing + targetSwitchFacing)
             {
-                return CurrentTarget;
+                return SelectedTarget;
             }
 
             return best;
         }
 
         private bool HasLineOfSight(
-            ITopDown3DInteractable target,
+            ITopDown3DInteractionTarget target,
             Collider targetCollider,
             Vector3 actorPosition)
         {
@@ -170,20 +179,16 @@ namespace BooterBigArm.TopDown3D
                 return true;
             }
 
-            return hit.collider == targetCollider
-                || hit.collider.GetComponentInParent<MonoBehaviour>() == target.UnityObject
-                || hit.collider.GetComponentInParent<TopDown3DIronstoneNode>() == target.UnityObject
-                || hit.collider.GetComponentInParent<TopDown3DHarvesterView>() == target.UnityObject
-                || hit.collider.GetComponentInParent<TopDown3DCampView>() == target.UnityObject
-                || hit.collider.GetComponentInParent<TopDown3DResourceCache>() == target.UnityObject;
+            return TopDown3DInteractionTarget.OwnsCollider(target,hit.collider);
         }
 
         private void OnDisable()
         {
-            if (CurrentTarget != null)
+            if (SelectedTarget != null)
             {
-                CurrentTarget = null;
+                SelectedTarget = null;
                 TargetChanged?.Invoke(null);
+                SelectionChanged?.Invoke(null);
             }
         }
     }

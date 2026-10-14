@@ -34,7 +34,7 @@ namespace BooterBigArm.TopDown3D
             if (vitals.Health <= 0) return "Cannot treat after death";
             if (vitals.Activity != TopDown3DSurvivalActivity.Ordinary || motor != null && (motor.IsActionConstrained
                 || motor.ClimbMode != TopDown3DClimbMode.None || motor.ActiveTraversal != TopDown3DTraversalMove.None)
-                || actions != null && (actions.IsGathering || actions.IsPlacingHarvester)) return "Finish current action";
+                || actions != null && actions.IsBusy) return "Finish current action";
             if (state.Remaining <= 0) return "Canister empty";
             var vital = use == TopDown3DAlgaeUse.Drink ? TopDown3DSurvivalVital.Thirst
                 : use == TopDown3DAlgaeUse.Eat ? TopDown3DSurvivalVital.Hunger : TopDown3DSurvivalVital.Health;

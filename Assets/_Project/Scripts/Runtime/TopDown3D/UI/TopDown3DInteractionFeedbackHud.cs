@@ -21,7 +21,7 @@ namespace BooterBigArm.TopDown3D
         private float promptRefreshRemaining;
         private bool subscribed;
         private bool promptDirty = true;
-        private ITopDown3DInteractable cachedTarget;
+        private ITopDown3DInteractionTarget cachedTarget;
         private string cachedTargetPrompt, cachedFeedback, interactBinding, cargoBinding;
         private bool cachedCargoAvailable;
         private int cachedHoldPercent = -1;
@@ -40,7 +40,7 @@ namespace BooterBigArm.TopDown3D
             InvalidateBindings();
             EnsureVisualTree();
             Subscribe();
-            RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
+            RefreshPrompt(interaction != null ? interaction.SelectedTarget : null);
         }
 
         public void ShowFeedback(string message)
@@ -49,7 +49,7 @@ namespace BooterBigArm.TopDown3D
             EnsureVisualTree();
             feedbackRemaining = FeedbackDuration;
             feedbackMessage = message ?? string.Empty;
-            RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
+            RefreshPrompt(interaction != null ? interaction.SelectedTarget : null);
         }
 
         public static TopDown3DInteractionFeedbackHud TryInstallForScene(Scene scene)
@@ -108,11 +108,11 @@ namespace BooterBigArm.TopDown3D
             if (promptRefreshRemaining <= 0f)
             {
                 promptRefreshRemaining = input != null && input.IsCargoHoldActive ? 0.05f : 0.1f;
-                RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
+                RefreshPrompt(interaction != null ? interaction.SelectedTarget : null);
             }
         }
 
-        private void RefreshPrompt(ITopDown3DInteractable target)
+        private void RefreshPrompt(ITopDown3DInteractionTarget target)
         {
             // A manually configured edit-mode view can outlive native teardown callbacks.
             if (this == null) { Unsubscribe(); return; }
@@ -201,7 +201,7 @@ namespace BooterBigArm.TopDown3D
 
             if (interaction != null)
             {
-                interaction.TargetChanged += RefreshPrompt;
+                interaction.SelectionChanged += RefreshPrompt;
             }
 
             if (actionController != null)
@@ -229,7 +229,7 @@ namespace BooterBigArm.TopDown3D
 
             if (!ReferenceEquals(interaction, null))
             {
-                interaction.TargetChanged -= RefreshPrompt;
+                interaction.SelectionChanged -= RefreshPrompt;
             }
 
             if (!ReferenceEquals(actionController, null))
@@ -251,9 +251,9 @@ namespace BooterBigArm.TopDown3D
         private void HandlePromptDeviceChanged(TopDown3DPromptDevice _)
         {
             InvalidateBindings();
-            RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
+            RefreshPrompt(interaction != null ? interaction.SelectedTarget : null);
         }
-        private void HandleModeChanged(TopDown3DInputMode _) { promptDirty = true; RefreshPrompt(interaction != null ? interaction.CurrentTarget : null); }
+        private void HandleModeChanged(TopDown3DInputMode _) { promptDirty = true; RefreshPrompt(interaction != null ? interaction.SelectedTarget : null); }
         private void HandleDeviceChange(InputDevice device, InputDeviceChange change)
         {
             if (this == null) { Unsubscribe(); return; }
@@ -262,7 +262,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandlePlacementChanged()
         {
-            RefreshPrompt(interaction != null ? interaction.CurrentTarget : null);
+            RefreshPrompt(interaction != null ? interaction.SelectedTarget : null);
         }
     }
 }

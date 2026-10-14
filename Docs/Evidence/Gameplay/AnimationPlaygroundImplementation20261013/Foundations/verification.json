@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-13",
+  "scope": "PRE0 DEP1 FND1 FND2 initial foundation slices",
+  "status": "passed-with-named-proof-limits",
+  "implementation_start_head": "e5a6e8b9d",
+  "source": {
+    "collection_payloads": 74,
+    "additional_original_rigs": 2,
+    "archived_payloads": 76,
+    "verified_aliases": 150.0,
+    "originals_preserved": true,
+    "private_bundle": "D:/BooterBigArmPrivateAssets/Mixamo/2026-10-13",
+    "unity_fbx_imports": 0,
+    "sealed_metadata_bundle_pending": true
+  },
+  "tests": {
+    "restoration_file_checks": 9,
+    "session_target_and_legacy_interaction_tests": 44,
+    "menu_tests": 25,
+    "installed_session_tests": 4,
+    "unique_current_cases": 69,
+    "candidate": "D:/BooterBigArmValidation/AnimationPlayground20261013",
+    "first_menu_failure": "Missing canonical SystemMenu prefab in bounded candidate",
+    "correction": "Copied exact existing prefab and paired metadata; all 25 menu cases passed",
+    "gameplay_smoke_tests_run": false
+  },
+  "scene": {
+    "path": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "original_yaml_blocks": 599,
+    "original_nonroot_blocks_preserved": 598,
+    "root_list_only_appended": true,
+    "new_session_records": 3,
+    "native_terrains": 9,
+    "scene_opened_or_rebuilt": false,
+    "unrelated_cargo_serializer_change_restored": true
+  },
+  "scaffolding": {
+    "canonical_leaf_folders": 24,
+    "paired_metadata_and_gitkeep_verified": true,
+    "private_payload_and_file_metadata_ignored": true
+  },
+  "proof_limits": [
+    "No Humanoid/contact qualification or source animation import yet",
+    "No physical station coordinator or furnished station behavior yet",
+    "Input extension and owned runtime asset pending FND3",
+    "Author appearance/feel acceptance pending",
+    "No production scene or TerrainData change",
+    "No package change build or publication"
+  ]
+}
