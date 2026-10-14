@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81605b79f6bb48b18dcdb159136018fe, type: 3}
+  m_Name: Part0
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DItemDefinition
+  itemId: lab.salvage.metal_plate
+  displayName: Metal Plate
+  description: Trial salvage from the dead camp-loop machine.
+  category: Resource
+  icon: {fileID: -1742984738417061967, guid: 299a2058d84424c41add4522ca8fe1a0, type: 3}
+  maxStack: 20
+  mass: 2
+  carryPreference: 4
+  packingPreference: 0

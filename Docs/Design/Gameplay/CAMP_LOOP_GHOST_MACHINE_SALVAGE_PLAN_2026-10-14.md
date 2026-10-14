@@ -1,6 +1,6 @@
 # Camp Loop ghost machine salvage implementation plan
 
-Status: proposed implementation plan, October 14, 2026. The user requested a plan for the existing test camp loop playground; this document does not install the feature or promote its ghost-machine lore to canon.
+Status: implemented as a bounded playground blockout October 14, 2026; see the [implementation receipt](../../Evidence/Gameplay/CampLoopSalvage20261014/README.md). The audit corrections below govern the build. Its ghost-machine lore remains provisional.
 
 Build one dead, collapsed six-legged machine in `Assets/_Project/Scenes/Reference/CampLoopTesting.unity`. Booter can remove visible metal plates, wiring and a drive assembly into the physically accessible Legger cargo. Three independent salvage points leave visible empty housings after use. The existing playground reset restores the wreck and clears its trial rewards together, allowing repeated testing without accumulating free salvage.
 
@@ -55,7 +55,7 @@ Create three private lab item assets with stable IDs such as `lab.salvage.metal_
 
 The complete wreck yields 10.5 kg. These are test values, not accepted economy tuning. Use distinct plate, loop and joint icons with the existing inventory presentation. Every item must pass the current required-icon, finite-mass and Resource carry-preference validation.
 
-Author one lab item catalog containing the existing four item definitions plus these three. Bind it consistently to the scene's Booter inventory, Legger cargo and cache, including any runtime installer that configures those owners. Preserve capacities, packing mounts, starting contents and cache identity. Clone a cache prefab for the lab if needed rather than changing its shared production catalog reference. UI and transfer destinations must resolve the same definitions before their storage states are initialized. Runtime reconfiguration must not clear inventory to swap catalogs.
+Author one lab item catalog containing the current production definitions plus these three. Assign it through scene-local serialized overrides on Booter inventory, Legger cargo and cache before their storage states initialize. Preserve capacities, packing mounts, starting contents and cache identity. The runtime session validates these assignments; it never calls inventory `Configure`, which recreates storage. UI and transfer destinations must resolve the same definitions. A cache catalog override is sufficient; retain its original prefab link.
 
 Do not edit the production item catalog or add salvage to production starting inventories. Validate final catalog bindings after all lab service initialization, since serialized assignments alone cannot prove installers preserve them.
 
@@ -65,15 +65,15 @@ Add small salvage components inside `BooterBigArm.TopDown3D.Runtime`, under `Run
 
 - `TopDown3DSalvagePoint`: implements `ITopDown3DInteractable`, explicit collider ownership and target epoch. Holds a serialized point ID, one reward, duration and reachable interaction anchor.
 - `TopDown3DSalvageWreckState`: owns the three finite part states and restores presentation from that state. State remains independent of renderer visibility or point view reconstruction.
-- `CampLoopSalvageSession`: validates the exact scene and lab marker, binds the private item catalog and reset participant, and enables the wreck only after dependencies are ready.
+- `CampLoopSalvageSession`: validates the exact scene, active lab readiness and private catalog assignments, registers the reset participant, and enables the wreck only after dependencies are ready.
 
 Names are proposed; keep the responsibilities even if the final file names differ. Avoid extending the natural-rock resource definition or registering a machine as an Ironstone node. The existing world resource registry is typed to Ironstone; this lab slice needs no production registry or save-format migration.
 
-Reuse `TopDown3DGatherActionState` and the existing player action route for one-item-type rewards. A consume callback changes a point only once; hide the part and publish audiovisual feedback after successful award. Keep presentation callbacks from throwing through the consume transaction. Capture/check target epoch around action completion so a reset cannot award against a newly restored point.
+Reuse `TopDown3DGatherActionState` and the existing player action route for one-item-type rewards. The shared gather state captures `TopDown3DInteractionTarget` at begin and checks identity/epoch during advancement and commit; authoring epochs on a point alone is insufficient. A consume callback changes only the retained part bit, with no Unity or observer calls. Presentation reconciles after the transaction through the point's update. Quantity and item appear in the supplied prompt, such as `Strip wiring — 1 Wire Bundle`.
 
 The player's automatic call-over preflight currently recognizes Ironstone specifically. For this first slice, use the existing call/regroup command to bring the Legger close; inaccessible cargo produces the existing destination message without silently giving Booter the reward. Automatic approach for salvage is a later enhancement unless a narrow generic resource preflight can be integrated and regression-tested without changing current mining behavior.
 
-Start with the current in-place gather motion through the existing animation driver. Its use here is a functional placeholder, not an accepted extraction animation. The longer durations must be checked against the active animation-playground presentation bridge for early clip endings and action release. Inventory mutation timing remains gameplay-owned. If the bridge cannot keep a stable pose for these durations, use a bounded compatible duration for the first build and record that limitation rather than retiming unrelated animation assets.
+Start with the current in-place gather motion through the existing animation driver. It already scales clip speed to the requested action duration. Its use here is a functional placeholder; author evaluation must assess the stretched motion before approving dedicated extraction animation. Inventory mutation timing remains gameplay-owned.
 
 Keep the original mining station and its reward loop. This wreck is a separate gameplay test object, not a duplicate station demonstration. Dedicated pry, wire-pull and joint-extraction clips follow only after the loop works. No animation download, package change or edit of user-owned crouch/foot-projection files belongs to the initial salvage batch.
 
@@ -81,7 +81,7 @@ Keep the original mining station and its reward loop. This wreck is a separate g
 
 The test scene retains its fixed-world content coordinates and identity; the new wreck belongs to a lab-only feature namespace such as `camp-loop:salvage:v1:authored:01`. Append immutable socket keys such as `armour`, `wiring` and `drive`. Do not derive identity from transform, hierarchy order, Unity instance ID or load order. Reject duplicate wreck/point IDs before enabling interaction.
 
-Terrain streaming is not applicable because the nine native tiles stay loaded. There is no procedural placement in this slice. If a point view is disabled or reconstructed, it reads the retained session owner and cannot replenish its reward. Domain reload must retain paired lab inventory and wreck state, or deliberately invalidate the complete trial; restoring only the wreck would enable reward farming.
+Terrain streaming is not applicable because the nine native tiles stay loaded. There is no procedural placement in this slice. If a point view is disabled or reconstructed, it reads the retained session owner and cannot replenish its reward. The wreck retains a version, stable ID, removed-part bitmask and epoch as serialized runtime fields across domain reload, alongside existing inventory snapshots. Before rearming, check that aggregate trial quantities in all three inventories match the removed bits. An incompatible record or mismatch disables extraction and preserves storage; it does not silently replenish the machine.
 
 Native terrain, materials and many prefabs are shared with production. Preserve TerrainData bytes and shared asset settings. Ground the wreck through native terrain/collision authority without sculpting the surface. Reserve reachable work positions at all three points and a usable Legger approach outside the hull, camp footprint, return route, rocks, Ironstone and existing station access volumes. Collision must prevent gathering through the opposite hull while allowing each intended exposed approach.
 
@@ -91,9 +91,9 @@ Persisted runtime deltas are intentionally session-only here because the marked 
 
 Extend the existing playground reset through explicit registration; do not create a second competing reset menu. Cancel pending gather actions and invalidate point epochs before restoring any state. Release movement/animation ownership and suppress input until restoration completes.
 
-Use one salvage reset participant at the station-state stage to prevalidate and transactionally remove all three lab-only item IDs from every accessible session inventory owner, including the cache and all Legger cargo storage. Preserve other items, slot capacity, packing configuration, Ironstone depletion and unrelated station state. Scan all inventories these items can reach; do not rely only on an award counter because the player can move, merge or transfer them.
+Use one salvage reset participant at the station-state stage to prevalidate and transactionally remove all three lab-only item IDs from the explicitly bound kit, cargo and cache, regardless of physical distance or access. Missing or duplicate storage owners block reset. Preserve other items, slot capacity, packing configuration, Ironstone depletion and unrelated station state. Scan actual contents because the player can move, merge or transfer the rewards.
 
-Commit inventory cleanup and resetting the three part states as one coordinated operation. Restore visible parts only after that commit. If cleanup or restoration fails, keep input blocked with a clear reason; never rearm a full wreck while earlier rewards remain. Cancellation during reset yields nothing. Repeated reset, transfer-to-cache then reset, view reconstruction and scene unload must not duplicate rewards or leave action constraints active.
+Prepare inventory drafts and validate every owner before commit. The commit condition assigns the pristine bitmask without callbacks or fallible presentation; the existing transaction installs every inventory draft before publishing observers. It does not offer arbitrary world-state rollback. Restore visible parts only after successful commit; a later presentation retry must never replay inventory cleanup or rewards. Failure keeps input blocked with a clear reason. Cancellation during reset yields nothing. Repeated reset, transfer-to-cache then reset, view reconstruction and scene unload must not duplicate rewards or leave action constraints active.
 
 Use the reset registry's existing safe actor-return behavior. The salvage participant never teleports the Legger or globally deletes props. Disposal only unregisters its own participants and subscriptions. Do not write, delete, rename or import any checkpoint file to reset this lab.
 

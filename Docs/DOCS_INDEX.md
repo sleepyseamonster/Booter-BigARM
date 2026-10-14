@@ -94,7 +94,7 @@ These should be treated as the source of truth unless they are intentionally rev
   Proposed six-slot Booter equipment loadout, separate supply pockets and Legger cargo, with current inventory findings, deployed-equipment ownership and session-only trial boundaries. Audit and brainstorming only.
 
 - [Camp Loop ghost machine salvage implementation plan](./Design/Gameplay/CAMP_LOOP_GHOST_MACHINE_SALVAGE_PLAN_2026-10-14.md)
-  Proposed three-part scavenging wreck in the existing session-only playground, with private trial items, safe reward reset, fixed-terrain placement and implementation gates.
+  Implemented three-part scavenging wreck in the session-only playground, with private trial items, safe reward reset and fixed-terrain placement. [Implementation proof](./Evidence/Gameplay/CampLoopSalvage20261014/README.md) records 44 passing focused checks and an isolated blockout capture.
 
 - [Camp Loop animation implementation status](./Design/Gameplay/CAMP_LOOP_ANIMATION_IMPLEMENTATION_STATUS_2026-10-13.md)
   Verified source/session/targeting foundations and current dependency gates for the active animation playground implementation goal.

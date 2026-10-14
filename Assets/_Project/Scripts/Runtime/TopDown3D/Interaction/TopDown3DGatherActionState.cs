@@ -22,6 +22,7 @@ namespace BooterBigArm.TopDown3D
         private readonly TopDown3DItemDestinationService destinations;
         private readonly Func<ITopDown3DInteractable, bool> canReachTarget;
         private ITopDown3DInteractable target;
+        private TopDown3DInteractionTarget capturedTarget;
         private TopDown3DInventoryState destinationInventory;
         private float elapsed;
         private bool committed;
@@ -64,6 +65,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             target = candidate;
+            capturedTarget = new TopDown3DInteractionTarget(candidate);
             elapsed = 0f;
             committed = false;
             LastCompletionWasBigArm = false;
@@ -77,7 +79,7 @@ namespace BooterBigArm.TopDown3D
                 return TopDown3DGatherActionResult.Rejected;
             }
 
-            if (!IsValidTarget(target, actorPosition))
+            if (!capturedTarget.IsValid || !IsValidTarget(target, actorPosition))
             {
                 Reset();
                 return TopDown3DGatherActionResult.Cancelled;
@@ -112,7 +114,7 @@ namespace BooterBigArm.TopDown3D
             var reward = target.Reward;
             var addResult = destinationInventory.TryAdd(
                 new[] { reward },
-                () => target.TryConsume(out _));
+                () => capturedTarget.IsValid && IsValidTarget(target, actorPosition) && target.TryConsume(out _));
             if (!addResult.Succeeded)
             {
                 Reset();
@@ -152,6 +154,7 @@ namespace BooterBigArm.TopDown3D
         private void Reset()
         {
             target = null;
+            capturedTarget = default;
             destinationInventory = null;
             elapsed = 0f;
             committed = false;

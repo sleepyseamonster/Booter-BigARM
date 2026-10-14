@@ -1,0 +1,343 @@
+{
+  "date": "2026-10-14",
+  "editor": "6000.4.0f1",
+  "tests": {
+    "total": 44,
+    "passed": 44,
+    "failed": 0,
+    "skipped": 0
+  },
+  "candidate": "D:/BooterBigArmValidation/CampSalvage20261014-02",
+  "protected_files": [
+    {
+      "path": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+      "sha256": "bc0b465de9a1b75b82a20d99c25fa4f10f00377a18f9564f9e8b0516a4c8f93e"
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/TopDown3DItemCatalog.asset",
+      "sha256": "193be51a41bb47c556917d0e4ec6e8e0a9e9a59267f88e8b968be0ee72fea712"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Resources/GreaterWastelandResourceCache.prefab",
+      "sha256": "a8fcec6c70e28aa2a1d3c224a26b1c31a9144439f5d9af794e64077cea96e8b3"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Resources/GreaterWastelandIronstone.prefab",
+      "sha256": "65bd75b70e006c49b56ba939b8623020d9a5353eaf68079c36d262d1de7898c1"
+    },
+    {
+      "path": "Packages/manifest.json",
+      "sha256": "a9b4f332893effbb67f87b48508240992d76968b8b78f870f8f05f12a436f409"
+    },
+    {
+      "path": "Packages/packages-lock.json",
+      "sha256": "d2adab2cb95c215760c616ac81950f6eab23ae18aeed23d69b9c58fe63c8f473"
+    },
+    {
+      "path": "ProjectSettings/EditorBuildSettings.asset",
+      "sha256": "5c19423dd7754b8e3708eec956b964282d38554b1f48e06ca2838e7c24e853d5"
+    }
+  ],
+  "native_terrain": [
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c00.asset",
+      "sha256": "4a90a8cf6f8f4cb44e7b7e5aa5299214ef3e730af10a51a6640525f2ba10bd96",
+      "guid": "999bfb827415a4d2f9a5de7c19097dc1"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c01.asset",
+      "sha256": "e06f8d2802f3535984430026c41692722b42b3a316651b5a78e969168dd0e45e",
+      "guid": "5a68d2243324442e0a38b0601359d5e4"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/WestNorthNorthwest2026-10-07/TerrainData/west/r14_c15.asset",
+      "sha256": "9307f748bff61dafcd17683f8a141df56bedcf2e7899fd6c898eaca516c1b9d8",
+      "guid": "a815a794cfa81f7468eb25b330590d76"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c00.asset",
+      "sha256": "62ef403f8676b990163b0c5c40b016542b00b70e71ceccb03da16104720fa2c2",
+      "guid": "60515153188334e6f9791bf15a3adb02"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/WestNorthNorthwest2026-10-07/TerrainData/west/r12_c15.asset",
+      "sha256": "9149b971c75e0d586460b0817900a4ccb74811171d4ca114ab3f015776ba88e1",
+      "guid": "2c905a91a0b74694f8065f3335a9f140"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c01.asset",
+      "sha256": "ff43f761a5720b9558e927db2fd69c94420908e1c2fcaf29774dfd393b097db3",
+      "guid": "2c3e00ee8fe4f4b11a1572b25e8f24bc"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c01.asset",
+      "sha256": "3ed97d19a82c33688e6b9414cc4e7b85c75e5f5931b0d61353b6cff64d5ae8ee",
+      "guid": "2d035b52c30804cfcac7e8a71fa9bb91"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c00.asset",
+      "sha256": "82421aa53b3223dcd2112ad368db0069e01bd0ab036aab6a4cb6c822eb54a31b",
+      "guid": "2e7f61817ea2345c9bf1ccfcebec52a9"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/WestNorthNorthwest2026-10-07/TerrainData/west/r13_c15.asset",
+      "sha256": "5c23777b27ee12e0559bfddf6b9b33cb74c1e42e21f3990989255f69b6b46196",
+      "guid": "42315f87035ce03409f824685365265f"
+    }
+  ],
+  "task_paths": [
+    "Assets/_Project/Art/Environment/Machines.meta",
+    "Assets/_Project/Art/Environment/Machines/Studies.meta",
+    "Assets/_Project/Art/Environment/Machines/Studies/CampLoopSalvage.meta",
+    "Assets/_Project/Art/Environment/Machines/Studies/CampLoopSalvage/Ceramic.mat",
+    "Assets/_Project/Art/Environment/Machines/Studies/CampLoopSalvage/Ceramic.mat.meta",
+    "Assets/_Project/Art/Environment/Machines/Studies/CampLoopSalvage/ExposedMetal.mat",
+    "Assets/_Project/Art/Environment/Machines/Studies/CampLoopSalvage/ExposedMetal.mat.meta",
+    "Assets/_Project/Art/Environment/Machines/Studies/CampLoopSalvage/WornMetal.mat",
+    "Assets/_Project/Art/Environment/Machines/Studies/CampLoopSalvage/WornMetal.mat.meta",
+    "Assets/_Project/Prefabs/TopDown3D/Studies.meta",
+    "Assets/_Project/Prefabs/TopDown3D/Studies/CampLoopSalvage.meta",
+    "Assets/_Project/Prefabs/TopDown3D/Studies/CampLoopSalvage/DeadGhostMachine.prefab",
+    "Assets/_Project/Prefabs/TopDown3D/Studies/CampLoopSalvage/DeadGhostMachine.prefab.meta",
+    "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "Assets/_Project/Scripts/Editor/TopDown3D/CampLoopSalvageAuthoring.cs",
+    "Assets/_Project/Scripts/Editor/TopDown3D/CampLoopSalvageAuthoring.cs.meta",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DGatherActionState.cs",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Salvage.meta",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Salvage/CampLoopSalvageSession.cs",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Salvage/CampLoopSalvageSession.cs.meta",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Salvage/TopDown3DSalvagePoint.cs",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Salvage/TopDown3DSalvagePoint.cs.meta",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Salvage/TopDown3DSalvageWreckState.cs",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Salvage/TopDown3DSalvageWreckState.cs.meta",
+    "Assets/_Project/Settings/Studies.meta",
+    "Assets/_Project/Settings/Studies/CampLoopSalvage.meta",
+    "Assets/_Project/Settings/Studies/CampLoopSalvage/LabItemCatalog.asset",
+    "Assets/_Project/Settings/Studies/CampLoopSalvage/LabItemCatalog.asset.meta",
+    "Assets/_Project/Settings/Studies/CampLoopSalvage/Part0.asset",
+    "Assets/_Project/Settings/Studies/CampLoopSalvage/Part0.asset.meta",
+    "Assets/_Project/Settings/Studies/CampLoopSalvage/Part1.asset",
+    "Assets/_Project/Settings/Studies/CampLoopSalvage/Part1.asset.meta",
+    "Assets/_Project/Settings/Studies/CampLoopSalvage/Part2.asset",
+    "Assets/_Project/Settings/Studies/CampLoopSalvage/Part2.asset.meta",
+    "Assets/_Project/Tests/Editor/CampLoopSalvageTests.cs",
+    "Assets/_Project/Tests/Editor/CampLoopSalvageTests.cs.meta",
+    "Assets/_Project/UI/Items/Studies.meta",
+    "Assets/_Project/UI/Items/Studies/CampLoopSalvage.meta",
+    "Assets/_Project/UI/Items/Studies/CampLoopSalvage/Part0.png",
+    "Assets/_Project/UI/Items/Studies/CampLoopSalvage/Part0.png.meta",
+    "Assets/_Project/UI/Items/Studies/CampLoopSalvage/Part1.png",
+    "Assets/_Project/UI/Items/Studies/CampLoopSalvage/Part1.png.meta",
+    "Assets/_Project/UI/Items/Studies/CampLoopSalvage/Part2.png",
+    "Assets/_Project/UI/Items/Studies/CampLoopSalvage/Part2.png.meta",
+    "Docs/DOCS_INDEX.md",
+    "Docs/Design/Gameplay/CAMP_LOOP_GHOST_MACHINE_SALVAGE_PLAN_2026-10-14.md",
+    "Docs/Engineering/UNITY_AUTOMATION.md",
+    "Docs/Evidence/Gameplay/CampLoopSalvage20261014/README.md",
+    "Docs/Evidence/Gameplay/CampLoopSalvage20261014/salvage-blockout.png",
+    "Docs/Evidence/Gameplay/CampLoopSalvage20261014/tests-verified.xml",
+    "Docs/Evidence/Gameplay/CampLoopSalvage20261014/verification.json"
+  ],
+  "feature_hashes": [
+    {
+      "path": "Assets/_Project/Art/Environment/Machines.meta",
+      "sha256": "291e2de17424c9312a5d006346812d4d94c34e909b3767dcea410f05ffb8ca57"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Machines/Studies.meta",
+      "sha256": "d86790b3102a9463b4f042530022493a51dc752e7a9caac0249b24501760aab8"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Machines/Studies/CampLoopSalvage.meta",
+      "sha256": "5e09a29439cfa4432dc83b8855915b7d243ad801916f2488b932e5e94ac9451c"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Machines/Studies/CampLoopSalvage/Ceramic.mat",
+      "sha256": "9e6ea8f37b1acf595b09ba2a393c0737ab906b4eacce3697e3b294ac3cc238d0"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Machines/Studies/CampLoopSalvage/Ceramic.mat.meta",
+      "sha256": "3b711288623115989fa0f7bc3a412b699ff216298cc4cbce672e2cdaa6356faf"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Machines/Studies/CampLoopSalvage/ExposedMetal.mat",
+      "sha256": "d7c3bdf59ebc253cafdacb85bbac50a828734d3019ad71795d84f3462248da36"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Machines/Studies/CampLoopSalvage/ExposedMetal.mat.meta",
+      "sha256": "352aa0c846014b63a59fa278444562b7819295d4bce988ada6d4426ce1b09f80"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Machines/Studies/CampLoopSalvage/WornMetal.mat",
+      "sha256": "2b40c47ea2e959ce9f113a4956ed5997dc83b2080b5de18941d2a753c93d231a"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Machines/Studies/CampLoopSalvage/WornMetal.mat.meta",
+      "sha256": "1dd39967df6747e576294503a8918f2f145a3b757100c3a6bb1b5c1034c7201f"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Studies.meta",
+      "sha256": "905ffd9514efbc966b487660197eb77d700e347b9a1967c90fe87a8c0facc120"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Studies/CampLoopSalvage.meta",
+      "sha256": "4c4aec9690e4e5990e089e1009b7c00c1688bcb459b4d2c0c8e7525be56c9c6a"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Studies/CampLoopSalvage/DeadGhostMachine.prefab",
+      "sha256": "f7fb3e54314c0083ac0093a145ec7a1918d986d4124354671c64d3f07237da71"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Studies/CampLoopSalvage/DeadGhostMachine.prefab.meta",
+      "sha256": "179da890910bf7a97be8c845e7d796f0af55bb0180780882f7ff3efd44e89ce6"
+    },
+    {
+      "path": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+      "sha256": "cd02e89673ce1a83afc72e37a673bd11172d90c8cd24d8770fe7560091ed4882"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampLoopSalvageAuthoring.cs",
+      "sha256": "d1c3315eb2109369071535adb8404de4617e0582e55fa65420faed808a24fa3f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampLoopSalvageAuthoring.cs.meta",
+      "sha256": "0a9ec8a0048a31871097af13fd092183447dbd9ec5beea5053883b99d072c1e4"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DGatherActionState.cs",
+      "sha256": "aea9d45f2bfb8ad3f9249c955902bfb13325972918999084e21e01a70b5af55e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Salvage.meta",
+      "sha256": "48c7099a9497c26eceb082c2fdf1e6956921d70c5f44633fcd51b9e7390a390d"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Salvage/CampLoopSalvageSession.cs",
+      "sha256": "dfff902ae20dc8905a6c46e9145c6deba1b9ea27f1ee681ccb4f1c27d0c92a45"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Salvage/CampLoopSalvageSession.cs.meta",
+      "sha256": "646ce4f454ac927967341bdc2a3ed87a332c38aab931bff4b89d81f957baf912"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Salvage/TopDown3DSalvagePoint.cs",
+      "sha256": "01009026ee29a395539e048a79b3b8d272f5ebfbb531e6e36289d28e1a5e4884"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Salvage/TopDown3DSalvagePoint.cs.meta",
+      "sha256": "fa0bc51412f6ae1ed7eed047e1c7fd4c452c021f1b87c79e2980974437e614e1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Salvage/TopDown3DSalvageWreckState.cs",
+      "sha256": "5112f80c2c1459fdda7d1bbeda77c50c0b5f0e196ef6ef63e4291cef52a3c298"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Salvage/TopDown3DSalvageWreckState.cs.meta",
+      "sha256": "25913cc45932213810f16c43aff0eabef647c9d6c0ef1d20521d89e2dd24022d"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies.meta",
+      "sha256": "5a5e23b4ee040c5c74e41ad7ee78dfe5bd0c25eca20de7b41e5a0c5d4615c3e0"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampLoopSalvage.meta",
+      "sha256": "00b1c633c7ab89bace9fa791cd9256e9a7a1e66ff25139c16940834b4fa8ada4"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampLoopSalvage/LabItemCatalog.asset",
+      "sha256": "0ee3a3608b6a581e5976e17c67875c582b5cef0b0dcb31a5fc717d7791203755"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampLoopSalvage/LabItemCatalog.asset.meta",
+      "sha256": "5b868e9c48c0a2152a6dc5f7fbcdfd712fd2c05e6ad28d4bfc07637ed0296716"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampLoopSalvage/Part0.asset",
+      "sha256": "508f53d2a3177bfc18225829fce8a63b7e167446648614526d303211b8e4f305"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampLoopSalvage/Part0.asset.meta",
+      "sha256": "a188639926f3b8609adb3d9ce6115c8ce4d343f4b8596655cec2f628db0e3ecf"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampLoopSalvage/Part1.asset",
+      "sha256": "9126c50c2c2db628709a37344e42d377dd47d99cdee56008faeebdfa20b98f24"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampLoopSalvage/Part1.asset.meta",
+      "sha256": "10f8bc8776ff2fd2c67e261ae7b9035c0c5fd8ca282936cb995d1e9569858b1b"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampLoopSalvage/Part2.asset",
+      "sha256": "b9fe0c81719a70589983c2f406755b5e62bcb9aa20a9b636b53c5295017d4d11"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampLoopSalvage/Part2.asset.meta",
+      "sha256": "f5861b417d6d2100698f7d55413bf31fdf374c8523938aa6c601cc3b9616dac4"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/CampLoopSalvageTests.cs",
+      "sha256": "320eff02643038f320d6b5290ef981fe412b5c95e5ee6f0e0ce1fa6788a5d423"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/CampLoopSalvageTests.cs.meta",
+      "sha256": "b66915c1247e11c648541c15fba536d98dd618aa22b7d27caa9c4f245699829f"
+    },
+    {
+      "path": "Assets/_Project/UI/Items/Studies.meta",
+      "sha256": "33499a1838aa0e0bdb72fee8c2b72eec8f043dd2dc16e39c290e430520c22c95"
+    },
+    {
+      "path": "Assets/_Project/UI/Items/Studies/CampLoopSalvage.meta",
+      "sha256": "bfa32f4b727f06b081be27d9012f3507a9eed751ef89bbdce694a1861394316c"
+    },
+    {
+      "path": "Assets/_Project/UI/Items/Studies/CampLoopSalvage/Part0.png",
+      "sha256": "28726f25d791d744da1928ba6ab79b50edb35c913f2632081f95fae5d6e4edb6"
+    },
+    {
+      "path": "Assets/_Project/UI/Items/Studies/CampLoopSalvage/Part0.png.meta",
+      "sha256": "f62deeaddb4fb913dad535e78c0ea93a46277f127a694e5d46ea6f64c9a309c3"
+    },
+    {
+      "path": "Assets/_Project/UI/Items/Studies/CampLoopSalvage/Part1.png",
+      "sha256": "d7d9cbfaec625768ac8f5863eff511214f09717a71abac7b8d6a9ec865bce374"
+    },
+    {
+      "path": "Assets/_Project/UI/Items/Studies/CampLoopSalvage/Part1.png.meta",
+      "sha256": "0c32e19e6549beae1aa878c679890f2ab0a1fb3ec0b2eb38070245d29f93b8e2"
+    },
+    {
+      "path": "Assets/_Project/UI/Items/Studies/CampLoopSalvage/Part2.png",
+      "sha256": "7a5cc6deb2be77963b43ebd6e2cb02335a39075bc48ca2ec221cd0c89623f055"
+    },
+    {
+      "path": "Assets/_Project/UI/Items/Studies/CampLoopSalvage/Part2.png.meta",
+      "sha256": "62f1790dee6062084343961b9814b75ac6df32df61ce6ee42ef2b268df231b02"
+    },
+    {
+      "path": "Docs/DOCS_INDEX.md",
+      "sha256": "6b184c77d0ec4c116372203f06e268d9a1a0c1c565721f7b91d0d4133f9520d3"
+    },
+    {
+      "path": "Docs/Design/Gameplay/CAMP_LOOP_GHOST_MACHINE_SALVAGE_PLAN_2026-10-14.md",
+      "sha256": "112e6a3361120b2aa62d7e05e2326589b6c0d51fbeb98ba970b932f773e139ca"
+    },
+    {
+      "path": "Docs/Engineering/UNITY_AUTOMATION.md",
+      "sha256": "c51af6eebad4d52cfda3f80ee026674c7f658cf55ff79f76004c8ea6d27f9b57"
+    },
+    {
+      "path": "Docs/Evidence/Gameplay/CampLoopSalvage20261014/README.md",
+      "sha256": "2c5ddb2537f20bb97c41b2c9608687efd82582f6d07b1182052c0d6d1c7579ea"
+    },
+    {
+      "path": "Docs/Evidence/Gameplay/CampLoopSalvage20261014/salvage-blockout.png",
+      "sha256": "500101ae35ce3b6553410d4bec6411d8245e079761d1a58d6d7a150416280a28"
+    },
+    {
+      "path": "Docs/Evidence/Gameplay/CampLoopSalvage20261014/tests-verified.xml",
+      "sha256": "eac8b859844715f930b2799ca544eeaa5aea1d424adae5c827dbfb82f475e439"
+    }
+  ]
+}

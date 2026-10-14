@@ -1862,11 +1862,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: GreaterWastelandResourceCache
       objectReference: {fileID: 0}
+    - target: {fileID: 6382110182584392946, guid: 3ef35fcc89f98ed4885f933ed316c259, type: 3}
+      propertyPath: itemCatalog
+      value:
+      objectReference: {fileID: 11400000, guid: 9b53a13b5b81f9f4f923c87dacf9661b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ef35fcc89f98ed4885f933ed316c259, type: 3}
+--- !u!114 &149730115 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6382110182584392946, guid: 3ef35fcc89f98ed4885f933ed316c259, type: 3}
+  m_PrefabInstance: {fileID: 149730114}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5486329812cbbdb478011696165f54cb, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DResourceCache
 --- !u!1 &152058970
 GameObject:
   m_ObjectHideFlags: 0
@@ -5725,6 +5740,94 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592478570}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &600140376
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4352630117106483622, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1814
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352630117106483622, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -46.273575
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352630117106483622, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1498
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352630117106483622, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352630117106483622, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352630117106483622, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352630117106483622, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352630117106483622, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352630117106483622, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352630117106483622, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987004472805099081, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: m_Name
+      value: DeadGhostMachine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7132688772035582701, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: kit
+      value:
+      objectReference: {fileID: 690964290}
+    - target: {fileID: 7132688772035582701, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: cache
+      value:
+      objectReference: {fileID: 149730115}
+    - target: {fileID: 7132688772035582701, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: cargo
+      value:
+      objectReference: {fileID: 812448494}
+    - target: {fileID: 7132688772035582701, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: wreck
+      value:
+      objectReference: {fileID: 600140377}
+    - target: {fileID: 7132688772035582701, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+      propertyPath: catalog
+      value:
+      objectReference: {fileID: 11400000, guid: 9b53a13b5b81f9f4f923c87dacf9661b, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+--- !u!114 &600140377 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1652891985556190041, guid: 2c7a73f55bd62bb4e9a94ef5d43c5d13, type: 3}
+  m_PrefabInstance: {fileID: 600140376}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb3d406688514b48a09ea9f778f3fd0, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DSalvageWreckState
 --- !u!1 &621122508
 GameObject:
   m_ObjectHideFlags: 0
@@ -7001,7 +7104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2966ee41ba2f43aaa16a69b18e27cf36, type: 3}
   m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlayerInventory
-  itemCatalog: {fileID: 11400000, guid: e7deba06225b5461689bc97bc37877dc, type: 2}
+  itemCatalog: {fileID: 11400000, guid: 9b53a13b5b81f9f4f923c87dacf9661b, type: 2}
   capacity: 16
   startingItems:
   - itemId: tool.micro_dust_harvester
@@ -9224,7 +9327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa0bc522d97f24f87a9b2a47c675417f, type: 3}
   m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DBigArmCargo
-  itemCatalog: {fileID: 11400000, guid: e7deba06225b5461689bc97bc37877dc, type: 2}
+  itemCatalog: {fileID: 11400000, guid: 9b53a13b5b81f9f4f923c87dacf9661b, type: 2}
   packingSettings: {fileID: 11400000, guid: 5309bf7cec2414dd1b44d36ae18520ac, type: 2}
   accessRange: 3.2
   reloadSnapshot:
@@ -27617,3 +27720,4 @@ SceneRoots:
   - {fileID: 693523662}
   - {fileID: 149730114}
   - {fileID: 451293423}
+  - {fileID: 600140376}

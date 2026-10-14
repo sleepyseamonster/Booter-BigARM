@@ -4,6 +4,12 @@ The Windows checkout uses the Unity CLI and its pinned `com.unity.pipeline` pack
 
 ## Windows CLI connection
 
+### Camp Loop salvage study
+
+`BooterBigArm.Editor.CampLoopSalvageAuthoring.InstallFromCli` authors one dead ghost-machine blockout in the existing marked CampLoopTesting scene, creates private trial items/materials/icons, and assigns scene-local inventory catalog overrides. It requires background batchmode Edit Mode. An already installed study is validated without rebuilding or replacing hand edits. Do not invoke it in an active author-owned Editor session.
+
+`BooterBigArm.Editor.CampLoopSalvageAuthoring.ValidateFromCli` opens and validates that scene in a background candidate, retaining the camp-loop native terrain, actor, rock, Ironstone and cache checks. Opening is a scene-management side effect; use an isolated candidate for tests or captures while the author works. Focused contracts are `CampLoopSalvageTests`; shared gather regressions are `TopDown3DInteractionTests`, `TopDown3DInventoryLoopTests` and `TopDown3DInventoryTests`. The study follows the animation playground's session-only checkpoint policy and existing Reset control.
+
 The CLI is available as `unity` on PATH, with a fallback at `%LOCALAPPDATA%\Unity\bin\unity.exe`. The project pins Pipeline `0.8.0-exp.1`; setup uses CLI `1.0.0-beta.12`. Do not upgrade either automatically. See the [official Pipeline setup](https://docs.unity.com/en-us/unity-cli/unity-pipeline/unity-pipeline-package).
 
 Always derive the target path from this checkout and pass it explicitly. Other Editor instances can belong to isolated validation copies and must not be selected accidentally:

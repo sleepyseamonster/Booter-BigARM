@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81605b79f6bb48b18dcdb159136018fe, type: 3}
+  m_Name: Part1
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DItemDefinition
+  itemId: lab.salvage.wire_bundle
+  displayName: Wire Bundle
+  description: Trial salvage from the dead camp-loop machine.
+  category: Resource
+  icon: {fileID: -1449832451762243566, guid: af06779a63aa9a34a9eefd88bc22a863, type: 3}
+  maxStack: 10
+  mass: 0.5
+  carryPreference: 4
+  packingPreference: 0
