@@ -2,6 +2,8 @@
 
 Date: October 14, 2026. Scope: repository audit and design proposal for a camp workbench, dust refinery and chest in `CampLoopTesting`. The requested outcome is a playable preparation loop: craft an empty battery from chest supplies, harvest Arc Dust, dock the canister at the refinery, and charge the battery with Arc Energy. Implementation and recipe balance remain a subsequent author decision.
 
+The [implementation plan](CAMP_WORKSTATIONS_AND_BATTERY_IMPLEMENTATION_PLAN_2026-10-14.md) defines the proposed prototype defaults, source boundaries, ordered batches and proof gates.
+
 The existing interaction, inventory transactions, camp cache and harvester registry provide useful foundations. The largest gap is the canister handoff: pickup currently returns an empty tool to Booter and awards loose dust to Legger cargo. A refinery that physically accepts a filled canister needs carried contents and ownership preserved across that handoff. Crafting recipes, batteries and a gameplay refinery do not currently exist in the active runtime.
 
 ## Current implementation
