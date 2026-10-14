@@ -23,12 +23,22 @@ Shader "BooterBigArm/TopDown3D/Broken World Tilt Shift"
 
         float4 _TiltShiftBlurTexelSize;
         float4 _TiltShiftParams;
+        float4 _TiltShiftModeParams; // opt-in mode, aspect, cos(angle), sin(angle)
+        float4 _TiltShiftReferenceBlurStep; // UV separation of adjacent taps
 
         float BlurWeight(float screenY)
         {
             float halfBand = _TiltShiftParams.y * 0.5;
             float distanceOutsideBand = max(0.0, abs(screenY - _TiltShiftParams.x) - halfBand);
             return smoothstep(0.0, max(0.0001, _TiltShiftParams.z), distanceOutsideBand);
+        }
+
+        float BandBlurWeight(float2 uv)
+        {
+            if (_TiltShiftModeParams.x < 0.5) return BlurWeight(uv.y);
+            float2 relative = float2((uv.x - 0.5) * _TiltShiftModeParams.y, uv.y - 0.5);
+            float coordinate = dot(relative, float2(-_TiltShiftModeParams.w, _TiltShiftModeParams.z)) + 0.5;
+            return BlurWeight(coordinate);
         }
 
         float4 SampleSource(float2 uv)
@@ -44,8 +54,10 @@ Shader "BooterBigArm/TopDown3D/Broken World Tilt Shift"
         {
             UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
             float2 uv = input.texcoord;
-            float blurWeight = BlurWeight(uv.y);
-            float2 offset = float2(_BlitTexture_TexelSize.x * _TiltShiftParams.w * blurWeight, 0.0);
+            float blurWeight = BandBlurWeight(uv);
+            float step = _TiltShiftModeParams.x > 0.5
+                ? _TiltShiftReferenceBlurStep.x : _BlitTexture_TexelSize.x * _TiltShiftParams.w;
+            float2 offset = float2(step * blurWeight, 0.0);
             float4 color = SampleSource(uv) * 0.22702703;
             color += SampleSource(uv + offset * 1.0) * 0.19459459;
             color += SampleSource(uv - offset * 1.0) * 0.19459459;
@@ -71,8 +83,10 @@ Shader "BooterBigArm/TopDown3D/Broken World Tilt Shift"
         {
             UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
             float2 uv = input.texcoord;
-            float blurWeight = BlurWeight(uv.y);
-            float2 offset = float2(0.0, _TiltShiftBlurTexelSize.y * _TiltShiftParams.w * blurWeight);
+            float blurWeight = BandBlurWeight(uv);
+            float step = _TiltShiftModeParams.x > 0.5
+                ? _TiltShiftReferenceBlurStep.y : _TiltShiftBlurTexelSize.y * _TiltShiftParams.w;
+            float2 offset = float2(0.0, step * blurWeight);
             float4 blurred = SampleHorizontalBlur(uv) * 0.22702703;
             blurred += SampleHorizontalBlur(uv + offset * 1.0) * 0.19459459;
             blurred += SampleHorizontalBlur(uv - offset * 1.0) * 0.19459459;

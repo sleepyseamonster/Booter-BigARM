@@ -43,6 +43,17 @@ namespace BooterBigArm.TopDown3D
         private Material material;
         private SunBloomPass pass;
         private Light fallbackDirectionalSun;
+        private CampDepthRequirement campDepthRequirement;
+
+        private sealed class CampDepthRequirement : ScriptableRenderPass
+        {
+            public CampDepthRequirement()
+            {
+                renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
+                ConfigureInput(ScriptableRenderPassInput.Depth);
+            }
+            public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData) { }
+        }
 
         public Shader BloomShader => bloomShader;
         public bool BloomEnabled => bloomEnabled;
@@ -63,6 +74,7 @@ namespace BooterBigArm.TopDown3D
 
         public override void Create()
         {
+            campDepthRequirement = new CampDepthRequirement();
             if (material != null && material.shader != bloomShader)
             {
                 CoreUtils.Destroy(material);
@@ -101,7 +113,15 @@ namespace BooterBigArm.TopDown3D
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
             var cameraData = renderingData.cameraData;
+            if (TopDown3DCampOpticsStack.TryApply(cameraData.camera))
+            {
+                if (TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var selected)
+                    && selected.nativeOptics.opticsEnabled && selected.nativeOptics.depthMode != DepthOfFieldMode.Off)
+                    renderer.EnqueuePass(campDepthRequirement);
+                return;
+            }
             bool hasStudy = TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var study);
+            if (hasStudy && study.nativeOptics != null) return; // Invalid/native profiles never fall back to a second bloom producer.
             if (hasStudy && !study.bloomEnabled) return;
             var cameraType = cameraData.cameraType;
             if (!bloomEnabled

@@ -81,6 +81,7 @@ namespace BooterBigArm.TopDown3D
                 material = CoreUtils.CreateEngineMaterial(flareShader);
             }
 
+            pass?.ReleaseHistory();
             pass = new RoundLensFlarePass
             {
                 renderPassEvent = CanonicalInjectionPoint,
@@ -119,7 +120,14 @@ namespace BooterBigArm.TopDown3D
         {
             var cameraData = renderingData.cameraData;
             bool hasStudy = TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var study);
-            if (hasStudy && !study.flareEnabled) return;
+            var conservative = hasStudy && study.nativeOptics != null;
+            var optics = conservative ? study.nativeOptics : null;
+            if (hasStudy && (!study.flareEnabled || (conservative
+                && (!optics.IsValid || !optics.opticsEnabled || optics.depthMode != DepthOfFieldMode.Off
+                    || !float.IsFinite(optics.sunAngularDiameterDegrees)
+                    || !float.IsFinite(optics.flareVisibilityAttackSeconds)
+                    || !float.IsFinite(optics.flareVisibilityReleaseSeconds)))))
+            { pass?.ForgetHistory(cameraData.camera); return; }
             var cameraType = cameraData.cameraType;
             if (!flareEnabled
                 || material == null
@@ -128,12 +136,15 @@ namespace BooterBigArm.TopDown3D
                 || (cameraType != CameraType.Game && cameraType != CameraType.SceneView)
                 || (cameraType == CameraType.SceneView && !previewInSceneView))
             {
+                pass?.ForgetHistory(cameraData.camera);
                 return;
             }
 
             var directionToSun = ResolveDirectionToSun(out var sunBrightness);
-            if (directionToSun.sqrMagnitude <= 0.0001f)
+            if (!float.IsFinite(directionToSun.x) || !float.IsFinite(directionToSun.y)
+                || !float.IsFinite(directionToSun.z) || directionToSun.sqrMagnitude <= 0.0001f)
             {
+                pass?.ForgetHistory(cameraData.camera);
                 return;
             }
 
@@ -141,8 +152,10 @@ namespace BooterBigArm.TopDown3D
             var sourcePoint = camera.transform.position
                 + directionToSun.normalized * (camera.farClipPlane * 0.9f);
             var viewportPoint = camera.WorldToViewportPoint(sourcePoint);
-            if (viewportPoint.z <= 0f)
+            if (!float.IsFinite(viewportPoint.x) || !float.IsFinite(viewportPoint.y) || viewportPoint.z <= 0f
+                || (conservative && EvaluateConservativeOffscreenVisibility(new Vector2(viewportPoint.x, viewportPoint.y)) <= 0f))
             {
+                pass?.ForgetHistory(camera);
                 return;
             }
 
@@ -153,22 +166,28 @@ namespace BooterBigArm.TopDown3D
                 new Vector2(viewportPoint.x, viewportPoint.y),
                 camera.aspect,
                 Mathf.Clamp(hasStudy ? study.flareIntensity : intensity, 0f, 2f),
-                Mathf.Clamp(radius, 0.02f, 0.75f),
-                Mathf.Clamp(anisotropy, 0.4f, 2.5f),
+                conservative ? Mathf.Max(.001f, CalculateSolarDiscViewportRadius(optics.sunAngularDiameterDegrees, camera.fieldOfView) * 2f)
+                    : Mathf.Clamp(radius, 0.02f, 0.75f),
+                conservative ? 1f : Mathf.Clamp(anisotropy, 0.4f, 2.5f),
                 Mathf.Clamp(ghostReach, 0f, 3f),
                 Mathf.Clamp01(edgeReach),
                 Mathf.Clamp(haloThickness, 0.03f, 0.5f),
                 Mathf.Clamp(hdrEnergy, 0.5f, 6f),
                 sunBrightness,
-                Mathf.Clamp(occlusionRadius, 0.005f, 0.25f),
-                Mathf.Clamp01(coreOcclusion),
-                Mathf.Clamp01(aureoleOcclusion),
-                Mathf.Clamp01(ghostOcclusion),
+                conservative ? CalculateSolarDiscViewportRadius(optics.sunAngularDiameterDegrees, camera.fieldOfView)
+                    : Mathf.Clamp(occlusionRadius, 0.005f, 0.25f),
+                conservative ? 1f : Mathf.Clamp01(coreOcclusion),
+                conservative ? 1f : Mathf.Clamp01(aureoleOcclusion),
+                conservative ? 1f : Mathf.Clamp01(ghostOcclusion),
                 Mathf.Clamp(occlusionStability, 0f, 0.95f),
-                tint,
+                conservative ? Color.Lerp(study.deepSunColor, study.brightSunColor, Mathf.Clamp01(sunBrightness)) : tint,
                 primaryFlareSprite,
                 ghostRingSprite,
-                apertureGhostSprite);
+                apertureGhostSprite,
+                conservative,
+                conservative ? VisibilityProfileKey(study) : 0,
+                conservative ? optics.flareVisibilityAttackSeconds : .06f,
+                conservative ? optics.flareVisibilityReleaseSeconds : .12f);
             renderer.EnqueuePass(pass);
         }
 
@@ -268,6 +287,50 @@ namespace BooterBigArm.TopDown3D
         public static bool IsCameraCut(Vector3 previousPosition, Vector3 position, Quaternion previousRotation, Quaternion rotation)
             => Vector3.Distance(previousPosition, position) > 2f || Quaternion.Angle(previousRotation, rotation) > 20f;
 
+        public static float EvaluateConservativeOffscreenVisibility(Vector2 source)
+            => float.IsFinite(source.x) && float.IsFinite(source.y)
+                && source.x >= 0f && source.x <= 1f && source.y >= 0f && source.y <= 1f ? 1f : 0f;
+
+        public static float EvaluateBackgroundDepthVisibility(float rawDepth, bool reversedZ, bool depthAvailable)
+            => depthAvailable && float.IsFinite(rawDepth)
+                && rawDepth >= 0f && rawDepth <= 1f
+                && (reversedZ ? rawDepth == 0f : rawDepth == 1f) ? 1f : 0f;
+
+        public static float CalculateSolarDiscViewportRadius(float angularDiameterDegrees, float verticalFieldOfView)
+            => .5f * Mathf.Tan(Mathf.Clamp(angularDiameterDegrees, .05f, 5f) * Mathf.Deg2Rad * .5f)
+                / Mathf.Tan(Mathf.Clamp(verticalFieldOfView, 1f, 179f) * Mathf.Deg2Rad * .5f);
+
+        public static float EvaluateTimedVisibility(float previous, float current, float deltaSeconds,
+            float attackSeconds, float releaseSeconds)
+        {
+            // Fully blocked/unknown light must not linger through an opaque occluder.
+            // Timed release applies to changes between partially visible states.
+            if (current <= 0f) return 0f;
+            var duration = current > previous ? attackSeconds : releaseSeconds;
+            var retention = Mathf.Exp(-Mathf.Max(0f, deltaSeconds) / Mathf.Max(.001f, duration));
+            return Mathf.Lerp(Mathf.Clamp01(current), Mathf.Clamp01(previous), retention);
+        }
+
+        private static int VisibilityProfileKey(TopDown3DAtmosphereStudyProfile study)
+        {
+            unchecked
+            {
+                var optics = study.nativeOptics;
+                var key = study.GetInstanceID();
+                key = key * 397 ^ optics.GetInstanceID();
+                key = key * 397 ^ study.flareIntensity.GetHashCode();
+                key = key * 397 ^ optics.sunAngularDiameterDegrees.GetHashCode();
+                key = key * 397 ^ optics.flareVisibilityAttackSeconds.GetHashCode();
+                return key * 397 ^ optics.flareVisibilityReleaseSeconds.GetHashCode();
+            }
+        }
+
+        public static bool ShouldResetVisibilityHistory(bool valid, int previousProfileKey, int profileKey,
+            Vector2Int previousResolution, Vector2Int resolution,
+            Vector3 previousPosition, Vector3 position, Quaternion previousRotation, Quaternion rotation)
+            => !valid || previousProfileKey != profileKey || previousResolution != resolution
+                || IsCameraCut(previousPosition, position, previousRotation, rotation);
+
         private sealed class RoundLensFlarePass : ScriptableRenderPass
         {
             private const string PassName = "TopDown3D Round Lens Flare";
@@ -283,6 +346,7 @@ namespace BooterBigArm.TopDown3D
             private static readonly int ApertureGhostSpriteId = Shader.PropertyToID("_RoundFlareApertureGhostSprite");
             private static readonly int OcclusionHistoryId = Shader.PropertyToID("_RoundFlareOcclusionHistory");
             private static readonly int TemporalId = Shader.PropertyToID("_RoundFlareTemporal");
+            private static readonly int VisibilityModeId = Shader.PropertyToID("_RoundFlareVisibilityMode");
 
             private Material material;
             private Vector2 source;
@@ -308,6 +372,11 @@ namespace BooterBigArm.TopDown3D
             private readonly Dictionary<int, CameraHistory> histories = new();
             private Vector3 cameraPosition;
             private Quaternion cameraRotation;
+            private bool conservative;
+            private int profileKey;
+            private float attackSeconds, releaseSeconds, deltaSeconds;
+            private Vector2Int resolution;
+            private readonly List<int> deadCameras = new();
 
             public RoundLensFlarePass()
             {
@@ -338,7 +407,11 @@ namespace BooterBigArm.TopDown3D
                 Color flareTint,
                 Texture2D optionalPrimarySprite,
                 Texture2D optionalRingSprite,
-                Texture2D optionalApertureSprite)
+                Texture2D optionalApertureSprite,
+                bool conservativeVisibility,
+                int visibilityProfileKey,
+                float visibilityAttackSeconds,
+                float visibilityReleaseSeconds)
             {
                 material = passMaterial;
                 source = viewportSource;
@@ -360,8 +433,23 @@ namespace BooterBigArm.TopDown3D
                 primarySprite = optionalPrimarySprite;
                 ringSprite = optionalRingSprite;
                 apertureSprite = optionalApertureSprite;
+                conservative = conservativeVisibility;
+                profileKey = visibilityProfileKey;
+                attackSeconds = Mathf.Clamp(visibilityAttackSeconds, .001f, 1f);
+                releaseSeconds = Mathf.Clamp(visibilityReleaseSeconds, .001f, 1f);
+                resolution = new Vector2Int(cameraDescriptor.width, cameraDescriptor.height);
 
                 PrepareHistory(camera, cameraDescriptor, viewportSource);
+            }
+
+            public void ForgetHistory(Camera camera)
+            {
+                if (camera == null) return;
+                var id = camera.GetInstanceID();
+                if (!histories.TryGetValue(id, out var history)) return;
+                history.Release();
+                histories.Remove(id);
+                if (activeHistory == history) activeHistory = null;
             }
 
             private void PrepareHistory(
@@ -369,6 +457,10 @@ namespace BooterBigArm.TopDown3D
                 RenderTextureDescriptor cameraDescriptor,
                 Vector2 viewportSource)
             {
+                deadCameras.Clear();
+                foreach (var entry in histories)
+                    if (entry.Value.camera == null) { entry.Value.Release(); deadCameras.Add(entry.Key); }
+                foreach (var id in deadCameras) histories.Remove(id);
                 if (camera == null)
                 {
                     activeHistory = null;
@@ -378,7 +470,7 @@ namespace BooterBigArm.TopDown3D
                 var cameraId = camera.GetInstanceID();
                 if (!histories.TryGetValue(cameraId, out activeHistory))
                 {
-                    activeHistory = new CameraHistory();
+                    activeHistory = new CameraHistory { camera = camera };
                     histories.Add(cameraId, activeHistory);
                 }
 
@@ -389,8 +481,10 @@ namespace BooterBigArm.TopDown3D
                 cameraDescriptor.graphicsFormat = GraphicsFormat.R16_SFloat;
                 cameraDescriptor.depthStencilFormat = GraphicsFormat.None;
                 activeHistory.EnsureAllocated(cameraDescriptor, cameraId);
+                if (activeHistory.conservative != conservative) activeHistory.valid = false;
 
                 var frameGap = Time.frameCount - activeHistory.lastFrame;
+                deltaSeconds = Mathf.Max(0f, Time.realtimeSinceStartup - activeHistory.lastTime);
                 if (frameGap > 1
                     || Vector2.Distance(activeHistory.lastSource, viewportSource) > 0.12f
                     || (activeHistory.valid && IsCameraCut(activeHistory.lastPosition, camera.transform.position,
@@ -398,6 +492,10 @@ namespace BooterBigArm.TopDown3D
                 {
                     activeHistory.valid = false;
                 }
+                if (conservative && (ShouldResetVisibilityHistory(activeHistory.valid,
+                    activeHistory.profileKey, profileKey, activeHistory.resolution, resolution,
+                    activeHistory.lastPosition, camera.transform.position, activeHistory.lastRotation, camera.transform.rotation)
+                    || deltaSeconds > .5f)) activeHistory.valid = false;
                 cameraPosition = camera.transform.position; cameraRotation = camera.transform.rotation;
             }
 
@@ -424,20 +522,21 @@ namespace BooterBigArm.TopDown3D
                 }
 
                 var sourceColor = resourceData.activeColorTexture;
-                material.SetVector(SourceId, new Vector4(source.x, source.y, aspect, edgeReach));
-                material.SetVector(ParamsId, new Vector4(intensity, radius, anisotropy, ghostReach));
-                material.SetVector(
-                    OpticsId,
-                    new Vector4(
+                var depth = conservative ? resourceData.cameraDepthTexture : resourceData.activeDepthTexture;
+                var parameters = new ShaderParameters
+                {
+                    source = new Vector4(source.x, source.y, aspect, edgeReach),
+                    parameters = new Vector4(intensity, radius, anisotropy, ghostReach),
+                    optics = new Vector4(
                         haloThickness,
-                        primarySprite != null ? 1f : 0f,
-                        ringSprite != null ? 1f : 0f,
-                        apertureSprite != null ? 1f : 0f));
-                material.SetColor(TintId, tint);
-                material.SetVector(EnergyId, new Vector4(hdrEnergy, sunBrightness, 0f, 0f));
-                material.SetVector(
-                    OcclusionId,
-                    new Vector4(occlusionRadius, coreOcclusion, aureoleOcclusion, ghostOcclusion));
+                        !conservative && primarySprite != null ? 1f : 0f,
+                        !conservative && ringSprite != null ? 1f : 0f,
+                        !conservative && apertureSprite != null ? 1f : 0f),
+                    tint = tint,
+                    energy = new Vector4(hdrEnergy, sunBrightness, 0f, 0f),
+                    occlusion = new Vector4(occlusionRadius, coreOcclusion, aureoleOcclusion, ghostOcclusion),
+                    visibilityMode = new Vector4(conservative ? 1f : 0f, depth.IsValid() ? 1f : 0f, 0f, 0f),
+                };
                 material.SetTexture(
                     PrimarySpriteId,
                     primarySprite != null ? primarySprite : Texture2D.whiteTexture);
@@ -452,10 +551,10 @@ namespace BooterBigArm.TopDown3D
                 var currentOcclusion = renderGraph.ImportTexture(activeHistory.write);
                 RecordOcclusionHistory(
                     renderGraph,
-                    resourceData.activeDepthTexture,
+                    depth,
                     previousOcclusion,
                     currentOcclusion,
-                    activeHistory.valid);
+                    activeHistory.valid && (!conservative || depth.IsValid()), parameters);
 
                 var destinationDescriptor = sourceColor.GetDescriptor(renderGraph);
                 destinationDescriptor.name = "_TopDown3DRoundLensFlareCameraColor";
@@ -469,12 +568,14 @@ namespace BooterBigArm.TopDown3D
                 passData.material = material;
                 passData.sourceColor = sourceColor;
                 passData.occlusionHistory = currentOcclusion;
+                passData.parameters = parameters;
                 builder.UseTexture(sourceColor, AccessFlags.Read);
                 builder.UseTexture(currentOcclusion, AccessFlags.Read);
                 builder.SetRenderAttachment(destinationColor, 0, AccessFlags.Write);
                 builder.AllowGlobalStateModification(true);
                 builder.SetRenderFunc(static (PassData data, RasterGraphContext context) =>
                 {
+                    ApplyShaderParameters(context, data.parameters);
                     context.cmd.SetGlobalTexture(OcclusionHistoryId, data.occlusionHistory);
                     Blitter.BlitTexture(
                         context.cmd,
@@ -489,6 +590,10 @@ namespace BooterBigArm.TopDown3D
                 activeHistory.lastFrame = Time.frameCount;
                 activeHistory.lastSource = source;
                 activeHistory.lastPosition = cameraPosition; activeHistory.lastRotation = cameraRotation;
+                activeHistory.profileKey = profileKey;
+                activeHistory.resolution = resolution;
+                activeHistory.lastTime = Time.realtimeSinceStartup;
+                activeHistory.conservative = conservative;
                 activeHistory.Swap();
             }
 
@@ -497,7 +602,8 @@ namespace BooterBigArm.TopDown3D
                 TextureHandle depth,
                 TextureHandle previous,
                 TextureHandle current,
-                bool hasHistory)
+                bool hasHistory,
+                ShaderParameters parameters)
             {
                 using var builder = renderGraph.AddRasterRenderPass<OcclusionPassData>(
                     "TopDown3D Sun Occlusion History",
@@ -507,6 +613,10 @@ namespace BooterBigArm.TopDown3D
                 passData.previous = previous;
                 passData.stability = occlusionStability;
                 passData.hasHistory = hasHistory;
+                passData.parameters = parameters;
+                passData.depth = depth;
+                passData.attackRetention = Mathf.Exp(-deltaSeconds / attackSeconds);
+                passData.releaseRetention = Mathf.Exp(-deltaSeconds / releaseSeconds);
                 builder.UseTexture(previous, AccessFlags.Read);
                 if (depth.IsValid())
                 {
@@ -517,10 +627,13 @@ namespace BooterBigArm.TopDown3D
                 builder.AllowGlobalStateModification(true);
                 builder.SetRenderFunc(static (OcclusionPassData data, RasterGraphContext context) =>
                 {
+                    ApplyShaderParameters(context, data.parameters);
+                    if (data.parameters.visibilityMode.x > .5f && data.depth.IsValid())
+                        context.cmd.SetGlobalTexture(Shader.PropertyToID("_CameraDepthTexture"), data.depth);
                     context.cmd.SetGlobalTexture(OcclusionHistoryId, data.previous);
                     context.cmd.SetGlobalVector(
                         TemporalId,
-                        new Vector4(data.stability, data.hasHistory ? 1f : 0f, 0f, 0f));
+                        new Vector4(data.stability, data.hasHistory ? 1f : 0f, data.attackRetention, data.releaseRetention));
                     Blitter.BlitTexture(
                         context.cmd,
                         data.previous,
@@ -535,6 +648,7 @@ namespace BooterBigArm.TopDown3D
                 public Material material;
                 public TextureHandle sourceColor;
                 public TextureHandle occlusionHistory;
+                public ShaderParameters parameters;
             }
 
             private sealed class OcclusionPassData
@@ -543,6 +657,26 @@ namespace BooterBigArm.TopDown3D
                 public TextureHandle previous;
                 public float stability;
                 public bool hasHistory;
+                public ShaderParameters parameters;
+                public TextureHandle depth;
+                public float attackRetention, releaseRetention;
+            }
+
+            private struct ShaderParameters
+            {
+                public Vector4 source, parameters, optics, energy, occlusion, visibilityMode;
+                public Color tint;
+            }
+
+            private static void ApplyShaderParameters(RasterGraphContext context, ShaderParameters parameters)
+            {
+                context.cmd.SetGlobalVector(SourceId, parameters.source);
+                context.cmd.SetGlobalVector(ParamsId, parameters.parameters);
+                context.cmd.SetGlobalVector(OpticsId, parameters.optics);
+                context.cmd.SetGlobalColor(TintId, parameters.tint);
+                context.cmd.SetGlobalVector(EnergyId, parameters.energy);
+                context.cmd.SetGlobalVector(OcclusionId, parameters.occlusion);
+                context.cmd.SetGlobalVector(VisibilityModeId, parameters.visibilityMode);
             }
 
             private sealed class CameraHistory
@@ -554,6 +688,11 @@ namespace BooterBigArm.TopDown3D
                 public Vector2 lastSource;
                 public Vector3 lastPosition;
                 public Quaternion lastRotation;
+                public Camera camera;
+                public int profileKey;
+                public Vector2Int resolution;
+                public float lastTime;
+                public bool conservative;
 
                 public void EnsureAllocated(RenderTextureDescriptor descriptor, int cameraId)
                 {

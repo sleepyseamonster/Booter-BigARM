@@ -321,6 +321,7 @@ namespace BooterBigArm.TopDown3D
                 {
                     // The painted sun follows the authoritative light, including the twilight cycle.
                     runtimeSkybox.SetVector("_SunDirection", DirectionToSun);
+                    ApplyStudySunSize(runtimeSkybox, profile);
                     if (runtimeSkybox.HasProperty("_TwilightBrightness")) runtimeSkybox.SetFloat("_TwilightBrightness", brightness01);
                     runtimeSkybox.SetFloat("_Exposure", Mathf.Lerp(profile != null ? profile.deepSkyExposure : .65f,
                         profile != null ? profile.brightSkyExposure : 1.05f, brightness01));
@@ -403,6 +404,7 @@ namespace BooterBigArm.TopDown3D
             staticStudyPreview = true;
             SetCycle01(phase);
             sky.SetVector("_SunDirection", DirectionToSun);
+            ApplyStudySunSize(sky, profile);
             if (sky.HasProperty("_TwilightBrightness")) sky.SetFloat("_TwilightBrightness", brightness01);
             sky.SetFloat("_Exposure", Mathf.Lerp(profile.deepSkyExposure, profile.brightSkyExposure, brightness01));
         }
@@ -413,6 +415,15 @@ namespace BooterBigArm.TopDown3D
             ReleaseStudyState();
             studyProfile = null;
             if (Active == this) Active = null;
+        }
+
+        private static void ApplyStudySunSize(Material material, TopDown3DAtmosphereStudyProfile profile)
+        {
+            if (profile == null || !material.HasProperty("_SunAngularRadius")) return;
+            float radius = profile.nativeOptics != null && profile.nativeOptics.IsValid
+                ? Mathf.Clamp(profile.nativeOptics.sunAngularDiameterDegrees, .05f, 5f) * .5f
+                : profile.skyMaterial.GetFloat("_SunAngularRadius");
+            material.SetFloat("_SunAngularRadius", radius);
         }
 
         private void CaptureStudyState()

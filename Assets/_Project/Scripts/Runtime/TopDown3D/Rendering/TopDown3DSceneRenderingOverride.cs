@@ -9,9 +9,22 @@ namespace BooterBigArm.TopDown3D
     {
         [SerializeField] private bool disableTiltShift = true;
         [SerializeField] private TopDown3DAtmosphereStudyProfile atmosphereProfile;
+        [SerializeField] private Transform opticsFocusTarget;
+        [SerializeField] private Vector3 opticsFocusOffset = new Vector3(0f, 1.15f, 0f);
+        public Transform OpticsFocusTarget => opticsFocusTarget;
+        public Vector3 OpticsFocusOffset => opticsFocusOffset;
+        public void ConfigureFocusTarget(Transform target, Vector3 offset)
+        {
+            opticsFocusTarget = target; opticsFocusOffset = offset;
+            TopDown3DCampOpticsStack.Release(GetComponent<Camera>());
+        }
         private static readonly HashSet<TopDown3DSceneRenderingOverride> active = new HashSet<TopDown3DSceneRenderingOverride>();
         private void OnEnable() => active.Add(this);
-        private void OnDisable() => active.Remove(this);
+        private void OnDisable()
+        {
+            active.Remove(this);
+            TopDown3DCampOpticsStack.Release(GetComponent<Camera>());
+        }
         public static bool TiltShiftDisabledIn(Scene scene)
         {
             if (!scene.IsValid()) return false;

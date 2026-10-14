@@ -34,6 +34,7 @@ Shader "BooterBigArm/TopDown3D/Broken World Round Lens Flare"
             float4 _RoundFlareEnergy;
             float4 _RoundFlareOcclusion;
             float4 _RoundFlareTemporal;
+            float4 _RoundFlareVisibilityMode; // conservative mode, valid sampled depth
             half4 _RoundFlareTint;
 
             half4 SampleSource(float2 uv)
@@ -74,10 +75,22 @@ Shader "BooterBigArm/TopDown3D/Broken World Round Lens Flare"
             {
                 if (any(source < 0.0) || any(source > 1.0))
                 {
-                    return 1.0h;
+                    return _RoundFlareVisibilityMode.x > 0.5 ? 0.0h : 1.0h;
                 }
 
+                if (_RoundFlareVisibilityMode.x > 0.5 && _RoundFlareVisibilityMode.y < 0.5) return 0.0h;
+
                 float rawDepth = SampleSceneDepth(saturate(source));
+                if (_RoundFlareVisibilityMode.x > 0.5)
+                {
+                    // Directional sun is at infinity: finite opaque depth is always a blocker.
+                    // Accept only the clear/background value, independent of near/far range.
+                    #if UNITY_REVERSED_Z
+                    return rawDepth == 0.0 ? 1.0h : 0.0h;
+                    #else
+                    return rawDepth == 1.0 ? 1.0h : 0.0h;
+                    #endif
+                }
                 float linearDepth = Linear01Depth(rawDepth, _ZBufferParams);
                 return smoothstep(0.985, 0.9995, linearDepth);
             }
@@ -119,6 +132,12 @@ Shader "BooterBigArm/TopDown3D/Broken World Round Lens Flare"
                     _RoundFlareSource.xy,
                     _RoundFlareOcclusion.x,
                     max(0.01, _RoundFlareSource.z));
+                if (_RoundFlareVisibilityMode.x > 0.5
+                    && (any(_RoundFlareSource.xy < 0.0) || any(_RoundFlareSource.xy > 1.0)))
+                    currentVisibility = 0.0h;
+                // Visibility history cannot keep fully hidden or unknown sources shining.
+                if (_RoundFlareVisibilityMode.x > 0.5 && currentVisibility <= 0.0h)
+                    return half4(0.0h, 0.0h, 0.0h, 1.0h);
                 if (_RoundFlareTemporal.y < 0.5)
                 {
                     return half4(currentVisibility, 0.0h, 0.0h, 1.0h);
@@ -130,6 +149,9 @@ Shader "BooterBigArm/TopDown3D/Broken World Round Lens Flare"
                     float2(0.5, 0.5),
                     0).r;
                 half response = 1.0h - saturate(_RoundFlareTemporal.x);
+                if (_RoundFlareVisibilityMode.x > 0.5)
+                    response = 1.0h - saturate(currentVisibility > previousVisibility
+                        ? _RoundFlareTemporal.z : _RoundFlareTemporal.w);
                 half stableVisibility = lerp(previousVisibility, currentVisibility, response);
                 return half4(stableVisibility, 0.0h, 0.0h, 1.0h);
             }
@@ -145,6 +167,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Round Lens Flare"
                 float haloThickness = _RoundFlareOptics.x;
 
                 half frameVisibility = OffscreenVisibility(sourcePosition, _RoundFlareSource.w);
+                if (_RoundFlareVisibilityMode.x > 0.5
+                    && (any(sourcePosition < 0.0) || any(sourcePosition > 1.0))) frameVisibility = 0.0h;
                 half apertureVisibility = SAMPLE_TEXTURE2D_X_LOD(
                     _RoundFlareOcclusionHistory,
                     sampler_LinearClamp,
@@ -226,6 +250,8 @@ Shader "BooterBigArm/TopDown3D/Broken World Round Lens Flare"
 
                 half3 proceduralGhosts = (ghostA + ghostC) * half3(0.16h, 0.32h, 0.42h)
                     + ghostB * _RoundFlareTint.rgb;
+                if (_RoundFlareVisibilityMode.x > 0.5)
+                    proceduralGhosts = ghostA * _RoundFlareTint.rgb;
                 half3 ringGhost = lerp(proceduralGhosts, texturedRing, _RoundFlareOptics.z);
                 half3 apertureGhost = lerp(0.0h, texturedAperture, _RoundFlareOptics.w);
                 half3 coreFlare = primaryFlare * coreVisibility;

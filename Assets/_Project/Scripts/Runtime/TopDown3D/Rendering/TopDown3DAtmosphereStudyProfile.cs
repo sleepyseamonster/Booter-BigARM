@@ -19,6 +19,7 @@ namespace BooterBigArm.TopDown3D
         [Range(.1f, 2f)] public float deepSkyExposure = .65f;
         [Range(.1f, 2f)] public float brightSkyExposure = 1.05f;
         [Header("Per-camera custom optics; shared renderer assets remain unchanged")]
+        public TopDown3DCampOpticsProfile nativeOptics;
         public bool tiltShiftEnabled;
         public bool streakEnabled;
         public bool flareEnabled;
@@ -29,6 +30,16 @@ namespace BooterBigArm.TopDown3D
         [Range(0f, 2f)] public float flareIntensity = .16f;
         [Range(3, 7)] public int bloomLevels = 4;
         [Range(1, 4)] public int bloomDownsample = 2;
+
+        [Header("Opt-in reference-resolution artistic blur; radius is one tap step")]
+        public bool useReferenceResolutionTiltShift;
+        [Range(1, 4)] public int tiltShiftDownsample = 2;
+        [Range(360f, 4320f)] public float tiltShiftReferenceHeight = 1080f;
+        [Range(0f, 24f)] public float tiltShiftBlurRadiusPixels = 7f;
+        [Range(-90f, 90f)] public float tiltShiftBandAngleDegrees;
+        [Range(0f, 1f)] public float tiltShiftFocusCenter = .5f;
+        [Range(.05f, .8f)] public float tiltShiftSharpBandWidth = .3f;
+        [Range(.01f, .5f)] public float tiltShiftFeatherWidth = .28f;
 
         public bool IsValid => skyMaterial != null && skyMaterial.shader != null && skyMaterial.shader.isSupported && skyMaterial.mainTexture != null
             && skyMaterial.HasProperty("_SunDirection") && skyMaterial.HasProperty("_Exposure");
