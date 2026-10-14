@@ -1,0 +1,56 @@
+{
+  "state": "stage-aligned-candidate-unqualified",
+  "gaits": [
+    {
+      "role": "Walk",
+      "source": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Walk_Fwd_NoRM.FBX",
+      "nominalSpeed": 1.4,
+      "metresPerCycle": 3.2217062189608106,
+      "nativeContacts": [
+        0.24609375339843734,
+        0.47265623417968833,
+        0.7304687447265628,
+        0.9726562588124996
+      ],
+      "pureMinimumEffectiveRate": 0.8151037059912818,
+      "pureMaximumEffectiveRate": 1.158877908838242,
+      "maximumLift": 0.029609050999999997,
+      "maximumLowering": 0.0075009000000000325
+    },
+    {
+      "role": "Run",
+      "source": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_NoRM.FBX",
+      "nominalSpeed": 2.7,
+      "metresPerCycle": 4.366811630457375,
+      "nativeContacts": [
+        0.20930232421849657,
+        0.46511629743645133,
+        0.7034883684424016,
+        0.9593023228231479
+      ],
+      "pureMinimumEffectiveRate": 0.8007014109919922,
+      "pureMaximumEffectiveRate": 0.9651713426795989,
+      "maximumLift": 0.006795899999999966,
+      "maximumLowering": 0.017366264000000013
+    },
+    {
+      "role": "Sprint",
+      "source": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Run_Fwd_NoRM.FBX",
+      "nominalSpeed": 3.8,
+      "metresPerCycle": 5.59202931437771,
+      "nativeContacts": [
+        0.18243242510226448,
+        0.4391891697406869,
+        0.6959459301899198,
+        0.9391891981190646
+      ],
+      "pureMinimumEffectiveRate": 0.7358713383596371,
+      "pureMaximumEffectiveRate": 0.9308614911861257,
+      "maximumLift": 0.05203009999999997,
+      "maximumLowering": 0.023347500000000077
+    }
+  ],
+  "significantWeight": 0.1,
+  "originalSourceAssetsChanged": false,
+  "productionProfileValidationChanged": false
+}

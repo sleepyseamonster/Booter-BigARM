@@ -1,0 +1,90 @@
+{
+  "state": "candidate-bound-forward-draft",
+  "files": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardLocomotionProfile.cs",
+      "sha256": "a509272c87ce742476a76c5c8587c16f8bceda3462420363948e1fca5cef8e83",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardLocomotionProfile.cs.meta",
+      "sha256": "b255476d10d7ac4669ab381a0a163a7c94a4c14b49fbba99aebd22e8eb278173",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundGaitClock.cs",
+      "sha256": "5d7ed66dac4df5c0da78d093bcc35ea7e0d307c3a825737f7a87995ec07d34ad",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundGaitClock.cs.meta",
+      "sha256": "cad8dc47816bd20553a6ab4e43d7ba897fa728d21863efbc59af55ed7b21f227",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundBindings.cs",
+      "sha256": "ac2affd9036c7b86e51bda1372cc3fd78481198afc6154a6f152c804874ebfd9",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundBindings.cs.meta",
+      "sha256": "5aca825e738fb870fab7ae877214280b03e80fd456f26b8c615da7d1e3d2c6ee",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs",
+      "sha256": "9620c06629398bc9423523cce2de4eead3b941489a4218d497c0102b8f4e985f",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs.meta",
+      "sha256": "9d8c82a656c45ff5e62d116246351894cdb599495a1e21bb27a537a70cee73a2",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs",
+      "sha256": "d8a7febe6a9418bb0201ad3354f1b4eb016bc245f7aec4580dcf9b426398a940",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs.meta",
+      "sha256": "125bb846f9a1e8de22b13aef35865640f3d968159853da727013c3ae7a7e9e52",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundForwardLocomotionTests.cs",
+      "sha256": "35ef79ec5a81f7b5f5cd7c3cc1bd8fd2afaf8f3fd816008eab77668829450210",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundForwardLocomotionTests.cs.meta",
+      "sha256": "37006b1d4a55b57807b3eebd0a7862a5332b02ceffbcf55f63f3f8821110f90e",
+      "candidateExact": true
+    },
+    {
+      "path": "Tools/Diagnostics/CampForwardIdleAudit.cs",
+      "sha256": "4437c9336b2b5d1b599a513460365fc2fd7ca0760483d1cebaff94a281a0422b",
+      "surface": "external guarded diagnostic"
+    },
+    {
+      "path": "Tools/Diagnostics/CampForwardLocomotionAuthoring.cs",
+      "sha256": "c6d64408bd17e17b3304c95ae1ee3f8ce8e5e1188592b7253a3118c6f3d8bb51",
+      "surface": "external guarded diagnostic"
+    },
+    {
+      "path": "Tools/Diagnostics/CampForwardLocomotionQualification.cs",
+      "sha256": "ad1f00ff264885a15a60623c7b11e4e514f4cdec529b8f2d4ad95f509a007c31",
+      "surface": "external guarded diagnostic"
+    },
+    {
+      "path": "Tools/Diagnostics/Repair-CampValidationAliases.ps1",
+      "sha256": "40978da69c4a4fedf12c743ff4dee6612881b5e2d7ab55ee30c2b628262d32fe",
+      "surface": "external guarded diagnostic"
+    },
+    {
+      "path": "Tools/Diagnostics/calibrate_forward_gaits.py",
+      "sha256": "b1d24f6a4ad9fbbfa14fb4b05d50d5025167f8662f4a716b1877c6604d687d81",
+      "surface": "external guarded diagnostic"
+    }
+  ]
+}

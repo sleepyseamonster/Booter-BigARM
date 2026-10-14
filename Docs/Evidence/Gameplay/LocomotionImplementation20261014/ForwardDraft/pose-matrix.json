@@ -1,0 +1,4510 @@
+{
+  "state": "coarse-unqualified-forward-draft",
+  "cases": [
+    {
+      "measurement": "ForwardDistancePoseV1",
+      "privateReportSha256": "b5479f4a40ad00497db536516cf41ef6404ba7ce529898a47ebad0e2cbc22897",
+      "globalSkinWeights": "FourBones",
+      "normalizeEquipment": true,
+      "staticPackedKit": null,
+      "rows": [
+        {
+          "speed": 0.2,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.79117036,
+          "maximumLift": 0.0381902866,
+          "minimumLift": 0.0,
+          "maximumNearestSoleGap": 0.00115090609,
+          "poseMicroseconds": 85.89296875000001,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19934466819491337,
+              "maximumTargetGap": 0.0115389824,
+              "supportedTraces": [
+                {
+                  "vertex": 22549,
+                  "rolling": false,
+                  "maximumGap": 0.0116744637,
+                  "anchorExcursion": 0.00274477853,
+                  "cumulativeTravel": 0.00395664759
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.19992942767618735,
+              "maximumTargetGap": 0.0141406655,
+              "supportedTraces": [
+                {
+                  "vertex": 6656,
+                  "rolling": false,
+                  "maximumGap": 0.0116278529,
+                  "anchorExcursion": 0.00150530809,
+                  "cumulativeTravel": 0.00216140272
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.1989398178922262,
+              "maximumTargetGap": 0.0151101947,
+              "supportedTraces": [
+                {
+                  "vertex": 22543,
+                  "rolling": false,
+                  "maximumGap": 0.0115065575,
+                  "anchorExcursion": 0.003550022,
+                  "cumulativeTravel": 0.00395739032
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.1921339925779863,
+              "maximumTargetGap": 0.0161082745,
+              "supportedTraces": [
+                {
+                  "vertex": 6640,
+                  "rolling": false,
+                  "maximumGap": 0.0117985606,
+                  "anchorExcursion": 0.00263928622,
+                  "cumulativeTravel": 0.00372336386
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 0.7,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.790704,
+          "maximumLift": 0.0379590653,
+          "minimumLift": 0.0,
+          "maximumNearestSoleGap": 0.00132864714,
+          "poseMicroseconds": 87.826953125,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19934466564879896,
+              "maximumTargetGap": 0.003929615,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.005355239,
+                  "anchorExcursion": 0.00682550948,
+                  "cumulativeTravel": 0.009750239
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19992942512260414,
+              "maximumTargetGap": 0.009814978,
+              "supportedTraces": [
+                {
+                  "vertex": 6624,
+                  "rolling": false,
+                  "maximumGap": 0.0109780431,
+                  "anchorExcursion": 0.004271594,
+                  "cumulativeTravel": 0.007954791
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19893981535128272,
+              "maximumTargetGap": 0.009713054,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 0.009982228,
+                  "anchorExcursion": 0.008117333,
+                  "cumulativeTravel": 0.009545086
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.19213399012396987,
+              "maximumTargetGap": 0.0132448673,
+              "supportedTraces": [
+                {
+                  "vertex": 6658,
+                  "rolling": false,
+                  "maximumGap": 0.0119808912,
+                  "anchorExcursion": 0.00744570652,
+                  "cumulativeTravel": 0.011276558
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 1.4,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.78344154,
+          "maximumLift": 0.0296086483,
+          "minimumLift": -0.0074557215,
+          "maximumNearestSoleGap": 0.0230121017,
+          "poseMicroseconds": 83.744921875,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19934466564879896,
+              "maximumTargetGap": 1.51991844e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.006023228,
+                  "anchorExcursion": 0.00716312276,
+                  "cumulativeTravel": 0.0154774645
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19992942512260414,
+              "maximumTargetGap": 2.026558e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 6610,
+                  "rolling": false,
+                  "maximumGap": 0.004907012,
+                  "anchorExcursion": 0.008363069,
+                  "cumulativeTravel": 0.012502376
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19893981535128272,
+              "maximumTargetGap": 2.96831131e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 0.000162243843,
+                  "anchorExcursion": 0.00280518713,
+                  "cumulativeTravel": 0.00654089637
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19213399012396987,
+              "maximumTargetGap": 1.07884407e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 6612,
+                  "rolling": false,
+                  "maximumGap": 0.003667295,
+                  "anchorExcursion": 0.00584003469,
+                  "cumulativeTravel": 0.0141173536
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 1.53,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.77704585,
+          "maximumLift": 0.02664569,
+          "minimumLift": -0.00739011541,
+          "maximumNearestSoleGap": 0.0193781257,
+          "poseMicroseconds": 87.712890625,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0993521086563378,
+              "maximumTargetGap": 0.000376582146,
+              "supportedTraces": [
+                {
+                  "vertex": 22521,
+                  "rolling": false,
+                  "maximumGap": 0.001276195,
+                  "anchorExcursion": 0.00424414827,
+                  "cumulativeTravel": 0.00759751443
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.10255183799921126,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.76837158e-07,
+                  "anchorExcursion": 0.003394938,
+                  "cumulativeTravel": 0.00574289262
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.09977154355410216,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 5.364418e-07,
+                  "anchorExcursion": 0.00166496949,
+                  "cumulativeTravel": 0.00233287783
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.10057384544066765,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.172325e-07,
+                  "anchorExcursion": 0.00382470433,
+                  "cumulativeTravel": 0.008848543
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 1.725,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.77336431,
+          "maximumLift": 0.0222047418,
+          "minimumLift": -0.007558869,
+          "maximumNearestSoleGap": 0.0188652873,
+          "poseMicroseconds": 85.930859375,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0926579328110926,
+              "maximumTargetGap": 0.0008780956,
+              "supportedTraces": [
+                {
+                  "vertex": 22521,
+                  "rolling": false,
+                  "maximumGap": 0.000943958759,
+                  "anchorExcursion": 0.00365898828,
+                  "cumulativeTravel": 0.006477659
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.09564206984125052,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.76837158e-07,
+                  "anchorExcursion": 0.00293033756,
+                  "cumulativeTravel": 0.00491294963
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08946195264131629,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 4.172325e-07,
+                  "anchorExcursion": 0.003722502,
+                  "cumulativeTravel": 0.00726792
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.09379735105199657,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.172325e-07,
+                  "anchorExcursion": 0.006049474,
+                  "cumulativeTravel": 0.0107094236
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.05,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.7760942,
+          "maximumLift": 0.016199559,
+          "minimumLift": -0.00877905451,
+          "maximumNearestSoleGap": 0.0354060531,
+          "poseMicroseconds": 86.93007812500001,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08433102525626157,
+              "maximumTargetGap": 0.0004904866,
+              "supportedTraces": [
+                {
+                  "vertex": 22544,
+                  "rolling": false,
+                  "maximumGap": 0.008873701,
+                  "anchorExcursion": 0.00255742134,
+                  "cumulativeTravel": 0.004798973
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0870469862929864,
+              "maximumTargetGap": 5.96046448e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6657,
+                  "rolling": false,
+                  "maximumGap": 0.0111867785,
+                  "anchorExcursion": 0.001956368,
+                  "cumulativeTravel": 0.00332041527
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0767310290689639,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.00107872486,
+                  "anchorExcursion": 0.008512684,
+                  "cumulativeTravel": 0.0166416466
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08536804718774589,
+              "maximumTargetGap": 3.57627869e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6664,
+                  "rolling": false,
+                  "maximumGap": 0.003961861,
+                  "anchorExcursion": 0.009084505,
+                  "cumulativeTravel": 0.0132958125
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.375,
+          "samples": 129,
+          "minimumSole": -0.910000145,
+          "minimumBody": -0.910000145,
+          "maximumHeight": 1.77687764,
+          "maximumLift": 0.0129060494,
+          "minimumLift": -0.0112301856,
+          "maximumNearestSoleGap": 0.0618976355,
+          "poseMicroseconds": 86.609765625,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07828306162076676,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22544,
+                  "rolling": false,
+                  "maximumGap": 0.0100972056,
+                  "anchorExcursion": 0.00146055478,
+                  "cumulativeTravel": 0.003210726
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08080424222483806,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6657,
+                  "rolling": false,
+                  "maximumGap": 0.0117660165,
+                  "anchorExcursion": 0.00206972146,
+                  "cumulativeTravel": 0.00387608749
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06738154134707813,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.00120204687,
+                  "anchorExcursion": 0.01324396,
+                  "cumulativeTravel": 0.0258057211
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07924571150576186,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6654,
+                  "rolling": false,
+                  "maximumGap": 0.008541405,
+                  "anchorExcursion": 0.0117796231,
+                  "cumulativeTravel": 0.0149983866
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.57,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.77584052,
+          "maximumLift": 0.0102292895,
+          "minimumLift": -0.0147903953,
+          "maximumNearestSoleGap": 0.0784726739,
+          "poseMicroseconds": 86.38007812500001,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07538851140835069,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22544,
+                  "rolling": false,
+                  "maximumGap": 0.0108799934,
+                  "anchorExcursion": 0.00125210616,
+                  "cumulativeTravel": 0.00253536529
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0778164702642946,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6624,
+                  "rolling": false,
+                  "maximumGap": 0.0065099,
+                  "anchorExcursion": 0.00324207474,
+                  "cumulativeTravel": 0.00541824754
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06774064076093447,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.01058501,
+                  "anchorExcursion": 0.00775892055,
+                  "cumulativeTravel": 0.025533827
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07631556689563838,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6647,
+                  "rolling": false,
+                  "maximumGap": 0.00967735052,
+                  "anchorExcursion": 0.0132598653,
+                  "cumulativeTravel": 0.0160154253
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.7,
+          "samples": 129,
+          "minimumSole": -0.9099999,
+          "minimumBody": -0.9099999,
+          "maximumHeight": 1.77533436,
+          "maximumLift": 0.00650097337,
+          "minimumLift": -0.0173445325,
+          "maximumNearestSoleGap": 0.09074807,
+          "poseMicroseconds": 85.63984375,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07369108826696454,
+              "maximumTargetGap": 0.00015860796,
+              "supportedTraces": [
+                {
+                  "vertex": 22544,
+                  "rolling": false,
+                  "maximumGap": 0.0114221573,
+                  "anchorExcursion": 0.0017051883,
+                  "cumulativeTravel": 0.00240813871
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0760643799929781,
+              "maximumTargetGap": 0.0002349019,
+              "supportedTraces": [
+                {
+                  "vertex": 6609,
+                  "rolling": false,
+                  "maximumGap": 0.0005186796,
+                  "anchorExcursion": 0.00204082043,
+                  "cumulativeTravel": 0.007886429
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.075412461816375,
+              "maximumTargetGap": 0.000319898129,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.01045984,
+                  "anchorExcursion": 0.007022814,
+                  "cumulativeTravel": 0.0172487032
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07459727047517992,
+              "maximumTargetGap": 0.0001796484,
+              "supportedTraces": [
+                {
+                  "vertex": 6641,
+                  "rolling": false,
+                  "maximumGap": 0.0111390948,
+                  "anchorExcursion": 0.0023515427,
+                  "cumulativeTravel": 0.00775883347
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.81,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.77701259,
+          "maximumLift": 0.007979263,
+          "minimumLift": -0.0164181683,
+          "maximumNearestSoleGap": 0.08988321,
+          "poseMicroseconds": 89.881640625,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07279303400215639,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22543,
+                  "rolling": false,
+                  "maximumGap": 0.0113673806,
+                  "anchorExcursion": 0.004280474,
+                  "cumulativeTravel": 0.0110981157
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07513740303471667,
+              "maximumTargetGap": 0.000677228,
+              "supportedTraces": [
+                {
+                  "vertex": 6619,
+                  "rolling": false,
+                  "maximumGap": 0.004436612,
+                  "anchorExcursion": 0.00458730059,
+                  "cumulativeTravel": 0.0117602609
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07449342961659904,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.00963890553,
+                  "anchorExcursion": 0.008217352,
+                  "cumulativeTravel": 0.0169819184
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07368817280178719,
+              "maximumTargetGap": 0.00215095282,
+              "supportedTraces": [
+                {
+                  "vertex": 6638,
+                  "rolling": false,
+                  "maximumGap": 0.0119678378,
+                  "anchorExcursion": 0.00293714716,
+                  "cumulativeTravel": 0.0100446539
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.975,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.7796247,
+          "maximumLift": 0.0147000765,
+          "minimumLift": -0.015946947,
+          "maximumNearestSoleGap": 0.090880096,
+          "poseMicroseconds": 86.438671875,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07157047167434576,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22524,
+                  "rolling": false,
+                  "maximumGap": 0.001982689,
+                  "anchorExcursion": 0.00884274,
+                  "cumulativeTravel": 0.023371255
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07387546692202426,
+              "maximumTargetGap": 0.00150680542,
+              "supportedTraces": [
+                {
+                  "vertex": 6615,
+                  "rolling": false,
+                  "maximumGap": 0.002096653,
+                  "anchorExcursion": 0.008178772,
+                  "cumulativeTravel": 0.0193900522
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07324230906685013,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.008380771,
+                  "anchorExcursion": 0.0100606317,
+                  "cumulativeTravel": 0.0194660649
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07245057657698904,
+              "maximumTargetGap": 0.0031888485,
+              "supportedTraces": [
+                {
+                  "vertex": 6637,
+                  "rolling": false,
+                  "maximumGap": 0.00696647167,
+                  "anchorExcursion": 0.005750257,
+                  "cumulativeTravel": 0.0154947666
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.25,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.786248,
+          "maximumLift": 0.0297935214,
+          "minimumLift": -0.01602257,
+          "maximumNearestSoleGap": 0.09719843,
+          "poseMicroseconds": 86.45625,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06980872513631503,
+              "maximumTargetGap": 6.5267086e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 22524,
+                  "rolling": false,
+                  "maximumGap": 0.00222665071,
+                  "anchorExcursion": 0.0115080466,
+                  "cumulativeTravel": 0.03162183
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07205698165777343,
+              "maximumTargetGap": 0.00195002556,
+              "supportedTraces": [
+                {
+                  "vertex": 6635,
+                  "rolling": false,
+                  "maximumGap": 0.00634157658,
+                  "anchorExcursion": 0.0112329861,
+                  "cumulativeTravel": 0.02545825
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0714394093315651,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22529,
+                  "rolling": false,
+                  "maximumGap": 0.0112153292,
+                  "anchorExcursion": 0.0120579237,
+                  "cumulativeTravel": 0.0207662527
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07066716577254986,
+              "maximumTargetGap": 0.00348949432,
+              "supportedTraces": [
+                {
+                  "vertex": 6638,
+                  "rolling": false,
+                  "maximumGap": 0.00606769323,
+                  "anchorExcursion": 0.009568731,
+                  "cumulativeTravel": 0.02411309
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.525,
+          "samples": 129,
+          "minimumSole": -0.909999967,
+          "minimumBody": -0.909999967,
+          "maximumHeight": 1.79836726,
+          "maximumLift": 0.04228546,
+          "minimumLift": -0.0184335224,
+          "maximumNearestSoleGap": 0.10779196,
+          "poseMicroseconds": 86.95,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06832186220180397,
+              "maximumTargetGap": 0.0005825162,
+              "supportedTraces": [
+                {
+                  "vertex": 22529,
+                  "rolling": false,
+                  "maximumGap": 0.00755870342,
+                  "anchorExcursion": 0.0118869077,
+                  "cumulativeTravel": 0.0252830628
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07052223288546056,
+              "maximumTargetGap": 0.00226026773,
+              "supportedTraces": [
+                {
+                  "vertex": 6635,
+                  "rolling": false,
+                  "maximumGap": 0.003779292,
+                  "anchorExcursion": 0.0101972669,
+                  "cumulativeTravel": 0.023913445
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06991781429325072,
+              "maximumTargetGap": 0.00028938055,
+              "supportedTraces": [
+                {
+                  "vertex": 22561,
+                  "rolling": false,
+                  "maximumGap": 0.0113218427,
+                  "anchorExcursion": 0.0139245857,
+                  "cumulativeTravel": 0.020512376
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06916201882610457,
+              "maximumTargetGap": 0.00172692537,
+              "supportedTraces": [
+                {
+                  "vertex": 6674,
+                  "rolling": false,
+                  "maximumGap": 0.008598208,
+                  "anchorExcursion": 0.0116267782,
+                  "cumulativeTravel": 0.0265869685
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.69,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.806083,
+          "maximumLift": 0.0485398434,
+          "minimumLift": -0.0198800918,
+          "maximumNearestSoleGap": 0.121243954,
+          "poseMicroseconds": 86.20351562500001,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06753612196182394,
+              "maximumTargetGap": 0.001061976,
+              "supportedTraces": [
+                {
+                  "vertex": 22566,
+                  "rolling": false,
+                  "maximumGap": 0.0111312866,
+                  "anchorExcursion": 0.0116831223,
+                  "cumulativeTravel": 0.0161011461
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06971118713223334,
+              "maximumTargetGap": 0.00101464987,
+              "supportedTraces": [
+                {
+                  "vertex": 6637,
+                  "rolling": false,
+                  "maximumGap": 0.0014898181,
+                  "anchorExcursion": 0.007372403,
+                  "cumulativeTravel": 0.0182658117
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06911371969730154,
+              "maximumTargetGap": 0.000117063522,
+              "supportedTraces": [
+                {
+                  "vertex": 22561,
+                  "rolling": false,
+                  "maximumGap": 0.009841919,
+                  "anchorExcursion": 0.0159232747,
+                  "cumulativeTravel": 0.02482133
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06836661630751699,
+              "maximumTargetGap": 0.0008315444,
+              "supportedTraces": [
+                {
+                  "vertex": 6674,
+                  "rolling": false,
+                  "maximumGap": 0.006890595,
+                  "anchorExcursion": 0.012463117,
+                  "cumulativeTravel": 0.02692777
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.8,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.81071925,
+          "maximumLift": 0.05219663,
+          "minimumLift": -0.02087186,
+          "maximumNearestSoleGap": 0.132106364,
+          "poseMicroseconds": 83.060546875,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07709428312538741,
+              "maximumTargetGap": 0.00159138441,
+              "supportedTraces": [
+                {
+                  "vertex": 22566,
+                  "rolling": false,
+                  "maximumGap": 0.0112791657,
+                  "anchorExcursion": 0.01360452,
+                  "cumulativeTravel": 0.0200635958
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07687819154381133,
+              "maximumTargetGap": 0.000254809856,
+              "supportedTraces": [
+                {
+                  "vertex": 6638,
+                  "rolling": false,
+                  "maximumGap": 0.00303924084,
+                  "anchorExcursion": 0.004450019,
+                  "cumulativeTravel": 0.02015248
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08082379953675747,
+              "maximumTargetGap": 0.000248253345,
+              "supportedTraces": [
+                {
+                  "vertex": 22561,
+                  "rolling": false,
+                  "maximumGap": 0.009308815,
+                  "anchorExcursion": 0.0188000761,
+                  "cumulativeTravel": 0.0308557283
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08259298731956469,
+              "maximumTargetGap": 0.0004543662,
+              "supportedTraces": [
+                {
+                  "vertex": 6674,
+                  "rolling": false,
+                  "maximumGap": 0.006439686,
+                  "anchorExcursion": 0.009672608,
+                  "cumulativeTravel": 0.033952605
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "measurement": "ForwardDistancePoseOneV1",
+      "privateReportSha256": "e6fd78ce7a7642569eeec2bed7d08c54e92d1771abc698c39d45abdda504d12f",
+      "globalSkinWeights": "OneBone",
+      "normalizeEquipment": true,
+      "staticPackedKit": {
+        "vertices": 532,
+        "minimum": -0.471566558,
+        "maximumHeight": 0.881706
+      },
+      "rows": [
+        {
+          "speed": 0.2,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.79115486,
+          "maximumLift": 0.03817479,
+          "minimumLift": 0.0,
+          "maximumNearestSoleGap": 0.00120180845,
+          "poseMicroseconds": 74.308984375,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19934466819491337,
+              "maximumTargetGap": 0.0113492012,
+              "supportedTraces": [
+                {
+                  "vertex": 22546,
+                  "rolling": false,
+                  "maximumGap": 0.0113492012,
+                  "anchorExcursion": 0.00260690646,
+                  "cumulativeTravel": 0.003895176
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.19992942767618735,
+              "maximumTargetGap": 0.0141365528,
+              "supportedTraces": [
+                {
+                  "vertex": 6640,
+                  "rolling": false,
+                  "maximumGap": 0.0119303465,
+                  "anchorExcursion": 0.00144859916,
+                  "cumulativeTravel": 0.00200215657
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.1989398178922262,
+              "maximumTargetGap": 0.0150570273,
+              "supportedTraces": [
+                {
+                  "vertex": 22521,
+                  "rolling": false,
+                  "maximumGap": 0.0119879246,
+                  "anchorExcursion": 0.003471381,
+                  "cumulativeTravel": 0.00402840134
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.1921339925779863,
+              "maximumTargetGap": 0.016102612,
+              "supportedTraces": [
+                {
+                  "vertex": 6641,
+                  "rolling": false,
+                  "maximumGap": 0.0118607879,
+                  "anchorExcursion": 0.002532591,
+                  "cumulativeTravel": 0.00366763119
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 0.7,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.79090071,
+          "maximumLift": 0.0381159447,
+          "minimumLift": 0.0,
+          "maximumNearestSoleGap": 0.00134116411,
+          "poseMicroseconds": 71.596484375,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19934466564879896,
+              "maximumTargetGap": 0.00348192453,
+              "supportedTraces": [
+                {
+                  "vertex": 22543,
+                  "rolling": false,
+                  "maximumGap": 0.00581842661,
+                  "anchorExcursion": 0.00694062561,
+                  "cumulativeTravel": 0.009748408
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19992942512260414,
+              "maximumTargetGap": 0.00983339548,
+              "supportedTraces": [
+                {
+                  "vertex": 6624,
+                  "rolling": false,
+                  "maximumGap": 0.0109081268,
+                  "anchorExcursion": 0.00428251224,
+                  "cumulativeTravel": 0.007862297
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19893981535128272,
+              "maximumTargetGap": 0.00960302353,
+              "supportedTraces": [
+                {
+                  "vertex": 22521,
+                  "rolling": false,
+                  "maximumGap": 0.00960302353,
+                  "anchorExcursion": 0.008165076,
+                  "cumulativeTravel": 0.009600015
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.19213399012396987,
+              "maximumTargetGap": 0.01331681,
+              "supportedTraces": [
+                {
+                  "vertex": 6659,
+                  "rolling": false,
+                  "maximumGap": 0.0108984709,
+                  "anchorExcursion": 0.007143991,
+                  "cumulativeTravel": 0.0107742911
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 1.4,
+          "samples": 129,
+          "minimumSole": -0.9100002,
+          "minimumBody": -0.9100002,
+          "maximumHeight": 1.783432,
+          "maximumLift": 0.0296063237,
+          "minimumLift": -0.007376924,
+          "maximumNearestSoleGap": 0.0236850977,
+          "poseMicroseconds": 72.62734375000001,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19934466564879896,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.00668203831,
+                  "anchorExcursion": 0.007164936,
+                  "cumulativeTravel": 0.0154759549
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19992942512260414,
+              "maximumTargetGap": 6.03795052e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 6610,
+                  "rolling": false,
+                  "maximumGap": 0.00492453575,
+                  "anchorExcursion": 0.008364286,
+                  "cumulativeTravel": 0.0125091048
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19893981535128272,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 0.000321686268,
+                  "anchorExcursion": 0.002803329,
+                  "cumulativeTravel": 0.00654454669
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19213399012396987,
+              "maximumTargetGap": 0.000148534775,
+              "supportedTraces": [
+                {
+                  "vertex": 6612,
+                  "rolling": false,
+                  "maximumGap": 0.00374919176,
+                  "anchorExcursion": 0.00584023446,
+                  "cumulativeTravel": 0.0141165471
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 1.53,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.77704585,
+          "maximumLift": 0.02664569,
+          "minimumLift": -0.00725666061,
+          "maximumNearestSoleGap": 0.0193798542,
+          "poseMicroseconds": 72.4484375,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0993521086563378,
+              "maximumTargetGap": 6.556511e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22521,
+                  "rolling": false,
+                  "maximumGap": 0.00169897079,
+                  "anchorExcursion": 0.00424817,
+                  "cumulativeTravel": 0.007595684
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.10255183799921126,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.172325e-07,
+                  "anchorExcursion": 0.00339525775,
+                  "cumulativeTravel": 0.005743894
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.09977154355410216,
+              "maximumTargetGap": 5.96046448e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 5.96046448e-07,
+                  "anchorExcursion": 0.00166542723,
+                  "cumulativeTravel": 0.00233354862
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.10057384544066765,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.76837158e-07,
+                  "anchorExcursion": 0.003824917,
+                  "cumulativeTravel": 0.008849157
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 1.725,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.77336431,
+          "maximumLift": 0.0222047418,
+          "minimumLift": -0.007442938,
+          "maximumNearestSoleGap": 0.0187630653,
+          "poseMicroseconds": 73.61171875,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0926579328110926,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22521,
+                  "rolling": false,
+                  "maximumGap": 0.000920593739,
+                  "anchorExcursion": 0.003663603,
+                  "cumulativeTravel": 0.006473954
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.09564206984125052,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 5.364418e-07,
+                  "anchorExcursion": 0.00293064537,
+                  "cumulativeTravel": 0.00491491565
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08946195264131629,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 5.364418e-07,
+                  "anchorExcursion": 0.00372240134,
+                  "cumulativeTravel": 0.007269871
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.09379735105199657,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.76837158e-07,
+                  "anchorExcursion": 0.006049261,
+                  "cumulativeTravel": 0.010709459
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.05,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.7760942,
+          "maximumLift": 0.0162872374,
+          "minimumLift": -0.008692389,
+          "maximumNearestSoleGap": 0.03760296,
+          "poseMicroseconds": 73.445703125,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08433102525626157,
+              "maximumTargetGap": 0.000457525253,
+              "supportedTraces": [
+                {
+                  "vertex": 22545,
+                  "rolling": false,
+                  "maximumGap": 0.008068204,
+                  "anchorExcursion": 0.00201277575,
+                  "cumulativeTravel": 0.00452570431
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0870469862929864,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6657,
+                  "rolling": false,
+                  "maximumGap": 0.0113487244,
+                  "anchorExcursion": 0.00240096357,
+                  "cumulativeTravel": 0.00358019513
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0767310290689639,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.00108283758,
+                  "anchorExcursion": 0.008512624,
+                  "cumulativeTravel": 0.0166440029
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08536804718774589,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6660,
+                  "rolling": false,
+                  "maximumGap": 0.00565618277,
+                  "anchorExcursion": 0.009194845,
+                  "cumulativeTravel": 0.0130998595
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.375,
+          "samples": 129,
+          "minimumSole": -0.910000265,
+          "minimumBody": -0.910000265,
+          "maximumHeight": 1.77687764,
+          "maximumLift": 0.0132544981,
+          "minimumLift": -0.01132156,
+          "maximumNearestSoleGap": 0.06175995,
+          "poseMicroseconds": 72.246875,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07828306162076676,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22547,
+                  "rolling": false,
+                  "maximumGap": 0.0109295845,
+                  "anchorExcursion": 0.001681853,
+                  "cumulativeTravel": 0.003225333
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08080424222483806,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6657,
+                  "rolling": false,
+                  "maximumGap": 0.0118665695,
+                  "anchorExcursion": 0.00265760254,
+                  "cumulativeTravel": 0.004108175
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06738154134707813,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.00120472908,
+                  "anchorExcursion": 0.0132435877,
+                  "cumulativeTravel": 0.0258088224
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07924571150576186,
+              "maximumTargetGap": 6.556511e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6660,
+                  "rolling": false,
+                  "maximumGap": 0.00589156151,
+                  "anchorExcursion": 0.0122838821,
+                  "cumulativeTravel": 0.01595473
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.57,
+          "samples": 129,
+          "minimumSole": -0.910000145,
+          "minimumBody": -0.910000145,
+          "maximumHeight": 1.77584052,
+          "maximumLift": 0.0106759667,
+          "minimumLift": -0.0148837958,
+          "maximumNearestSoleGap": 0.07749599,
+          "poseMicroseconds": 73.22656250000001,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07538851140835069,
+              "maximumTargetGap": 6.556511e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22547,
+                  "rolling": false,
+                  "maximumGap": 0.0118331313,
+                  "anchorExcursion": 0.00261285459,
+                  "cumulativeTravel": 0.00328645087
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0778164702642946,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6624,
+                  "rolling": false,
+                  "maximumGap": 0.00663512945,
+                  "anchorExcursion": 0.002989814,
+                  "cumulativeTravel": 0.00519732432
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06774064076093447,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.0105630159,
+                  "anchorExcursion": 0.007818346,
+                  "cumulativeTravel": 0.0255828016
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07631556689563838,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6660,
+                  "rolling": false,
+                  "maximumGap": 0.00663781166,
+                  "anchorExcursion": 0.0140585713,
+                  "cumulativeTravel": 0.0174205285
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.7,
+          "samples": 129,
+          "minimumSole": -0.910000145,
+          "minimumBody": -0.910000145,
+          "maximumHeight": 1.77533436,
+          "maximumLift": 0.006955995,
+          "minimumLift": -0.0173445325,
+          "maximumNearestSoleGap": 0.09007418,
+          "poseMicroseconds": 69.951953125,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07369108826696454,
+              "maximumTargetGap": 0.000161349773,
+              "supportedTraces": [
+                {
+                  "vertex": 22545,
+                  "rolling": false,
+                  "maximumGap": 0.0105747581,
+                  "anchorExcursion": 0.003394095,
+                  "cumulativeTravel": 0.00381813128
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0760643799929781,
+              "maximumTargetGap": 0.000289261341,
+              "supportedTraces": [
+                {
+                  "vertex": 6609,
+                  "rolling": false,
+                  "maximumGap": 0.0005683899,
+                  "anchorExcursion": 0.00202847761,
+                  "cumulativeTravel": 0.007860774
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.075412461816375,
+              "maximumTargetGap": 0.000320374966,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.0104061961,
+                  "anchorExcursion": 0.006965965,
+                  "cumulativeTravel": 0.0172004923
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07459727047517992,
+              "maximumTargetGap": 0.000340998173,
+              "supportedTraces": [
+                {
+                  "vertex": 6642,
+                  "rolling": false,
+                  "maximumGap": 0.0109187961,
+                  "anchorExcursion": 0.00234988914,
+                  "cumulativeTravel": 0.008099981
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.81,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.77701259,
+          "maximumLift": 0.008426536,
+          "minimumLift": -0.0163714383,
+          "maximumNearestSoleGap": 0.08894026,
+          "poseMicroseconds": 76.0828125,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07279303400215639,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22545,
+                  "rolling": false,
+                  "maximumGap": 0.0110863447,
+                  "anchorExcursion": 0.00449667266,
+                  "cumulativeTravel": 0.0127415871
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07513740303471667,
+              "maximumTargetGap": 0.0006790757,
+              "supportedTraces": [
+                {
+                  "vertex": 6619,
+                  "rolling": false,
+                  "maximumGap": 0.004351437,
+                  "anchorExcursion": 0.00458651,
+                  "cumulativeTravel": 0.0115806125
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07449342961659904,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.009614944,
+                  "anchorExcursion": 0.008198776,
+                  "cumulativeTravel": 0.01696608
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07368817280178719,
+              "maximumTargetGap": 0.002044797,
+              "supportedTraces": [
+                {
+                  "vertex": 6642,
+                  "rolling": false,
+                  "maximumGap": 0.009011388,
+                  "anchorExcursion": 0.003765247,
+                  "cumulativeTravel": 0.0110290321
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.975,
+          "samples": 129,
+          "minimumSole": -0.909999967,
+          "minimumBody": -0.909999967,
+          "maximumHeight": 1.7796247,
+          "maximumLift": 0.01490303,
+          "minimumLift": -0.0158766732,
+          "maximumNearestSoleGap": 0.08994734,
+          "poseMicroseconds": 72.205078125,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07157047167434576,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22524,
+                  "rolling": false,
+                  "maximumGap": 0.00198203325,
+                  "anchorExcursion": 0.008844389,
+                  "cumulativeTravel": 0.023341421
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07387546692202426,
+              "maximumTargetGap": 0.00100773573,
+              "supportedTraces": [
+                {
+                  "vertex": 6615,
+                  "rolling": false,
+                  "maximumGap": 0.00196886063,
+                  "anchorExcursion": 0.008184152,
+                  "cumulativeTravel": 0.0193291
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07324230906685013,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.008403063,
+                  "anchorExcursion": 0.0100901127,
+                  "cumulativeTravel": 0.0195066687
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07245057657698904,
+              "maximumTargetGap": 0.00220894814,
+              "supportedTraces": [
+                {
+                  "vertex": 6677,
+                  "rolling": false,
+                  "maximumGap": 0.01065594,
+                  "anchorExcursion": 0.005566394,
+                  "cumulativeTravel": 0.0162523519
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.25,
+          "samples": 129,
+          "minimumSole": -0.909999967,
+          "minimumBody": -0.909999967,
+          "maximumHeight": 1.786248,
+          "maximumLift": 0.0299411621,
+          "minimumLift": -0.01602257,
+          "maximumNearestSoleGap": 0.09651065,
+          "poseMicroseconds": 73.14375000000001,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06980872513631503,
+              "maximumTargetGap": 6.818771e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 22524,
+                  "rolling": false,
+                  "maximumGap": 0.00221699476,
+                  "anchorExcursion": 0.0115241352,
+                  "cumulativeTravel": 0.0316057242
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07205698165777343,
+              "maximumTargetGap": 0.00140804052,
+              "supportedTraces": [
+                {
+                  "vertex": 6636,
+                  "rolling": false,
+                  "maximumGap": 0.004638195,
+                  "anchorExcursion": 0.0105087729,
+                  "cumulativeTravel": 0.0257051121
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0714394093315651,
+              "maximumTargetGap": 1.11460686e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 22529,
+                  "rolling": false,
+                  "maximumGap": 0.0112385154,
+                  "anchorExcursion": 0.01197746,
+                  "cumulativeTravel": 0.0207603537
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07066716577254986,
+              "maximumTargetGap": 0.0008409023,
+              "supportedTraces": [
+                {
+                  "vertex": 6680,
+                  "rolling": false,
+                  "maximumGap": 0.0053807497,
+                  "anchorExcursion": 0.009015616,
+                  "cumulativeTravel": 0.02509546
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.525,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.79836726,
+          "maximumLift": 0.0423997827,
+          "minimumLift": -0.0184335224,
+          "maximumNearestSoleGap": 0.10784,
+          "poseMicroseconds": 77.005078125,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06832186220180397,
+              "maximumTargetGap": 0.00059980154,
+              "supportedTraces": [
+                {
+                  "vertex": 22529,
+                  "rolling": false,
+                  "maximumGap": 0.00749748945,
+                  "anchorExcursion": 0.011977572,
+                  "cumulativeTravel": 0.0252187755
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07052223288546056,
+              "maximumTargetGap": 0.000392198563,
+              "supportedTraces": [
+                {
+                  "vertex": 6638,
+                  "rolling": false,
+                  "maximumGap": 0.00151735544,
+                  "anchorExcursion": 0.00910023,
+                  "cumulativeTravel": 0.0236395635
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06991781429325072,
+              "maximumTargetGap": 0.000322818756,
+              "supportedTraces": [
+                {
+                  "vertex": 22561,
+                  "rolling": false,
+                  "maximumGap": 0.011900425,
+                  "anchorExcursion": 0.0139215533,
+                  "cumulativeTravel": 0.02055136
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06916201882610457,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6674,
+                  "rolling": false,
+                  "maximumGap": 0.00569707155,
+                  "anchorExcursion": 0.0115096541,
+                  "cumulativeTravel": 0.0276532751
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.69,
+          "samples": 129,
+          "minimumSole": -0.910000145,
+          "minimumBody": -0.910000145,
+          "maximumHeight": 1.806083,
+          "maximumLift": 0.0486449264,
+          "minimumLift": -0.0198800918,
+          "maximumNearestSoleGap": 0.120489836,
+          "poseMicroseconds": 79.361328125,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06753612196182394,
+              "maximumTargetGap": 0.001088202,
+              "supportedTraces": [
+                {
+                  "vertex": 22566,
+                  "rolling": false,
+                  "maximumGap": 0.0114269257,
+                  "anchorExcursion": 0.0122819254,
+                  "cumulativeTravel": 0.01647951
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06971118713223334,
+              "maximumTargetGap": 6.556511e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6639,
+                  "rolling": false,
+                  "maximumGap": 0.0007264018,
+                  "anchorExcursion": 0.005693392,
+                  "cumulativeTravel": 0.0186103731
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06911371969730154,
+              "maximumTargetGap": 0.000234603882,
+              "supportedTraces": [
+                {
+                  "vertex": 22561,
+                  "rolling": false,
+                  "maximumGap": 0.0105205774,
+                  "anchorExcursion": 0.0158987362,
+                  "cumulativeTravel": 0.0248405375
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06836661630751699,
+              "maximumTargetGap": 5.96046448e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6674,
+                  "rolling": false,
+                  "maximumGap": 0.00558912754,
+                  "anchorExcursion": 0.0130148968,
+                  "cumulativeTravel": 0.0280092154
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.8,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.81071925,
+          "maximumLift": 0.052300103,
+          "minimumLift": -0.02087186,
+          "maximumNearestSoleGap": 0.131299078,
+          "poseMicroseconds": 69.598046875,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07709428312538741,
+              "maximumTargetGap": 0.00155347586,
+              "supportedTraces": [
+                {
+                  "vertex": 22566,
+                  "rolling": false,
+                  "maximumGap": 0.0117899179,
+                  "anchorExcursion": 0.01421209,
+                  "cumulativeTravel": 0.0205546636
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07687819154381133,
+              "maximumTargetGap": 5.96046448e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6650,
+                  "rolling": false,
+                  "maximumGap": 0.00278890133,
+                  "anchorExcursion": 0.00523585,
+                  "cumulativeTravel": 0.020837022
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08082379953675747,
+              "maximumTargetGap": 0.0003299117,
+              "supportedTraces": [
+                {
+                  "vertex": 22561,
+                  "rolling": false,
+                  "maximumGap": 0.01041317,
+                  "anchorExcursion": 0.0187639631,
+                  "cumulativeTravel": 0.030991178
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08259298731956469,
+              "maximumTargetGap": 5.96046448e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6674,
+                  "rolling": false,
+                  "maximumGap": 0.005660534,
+                  "anchorExcursion": 0.0106662167,
+                  "cumulativeTravel": 0.0348737538
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "measurement": "ForwardDistancePoseTwoV1",
+      "privateReportSha256": "c9e66a05c3bcf875329d11d1de15df1cda86c4bd42ec489a322b91384c943c0d",
+      "globalSkinWeights": "TwoBones",
+      "normalizeEquipment": true,
+      "staticPackedKit": {
+        "vertices": 532,
+        "minimum": -0.471566558,
+        "maximumHeight": 0.881706
+      },
+      "rows": [
+        {
+          "speed": 0.2,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.79117036,
+          "maximumLift": 0.0381902866,
+          "minimumLift": 0.0,
+          "maximumNearestSoleGap": 0.00115090609,
+          "poseMicroseconds": 84.115625,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19934466819491337,
+              "maximumTargetGap": 0.0115154982,
+              "supportedTraces": [
+                {
+                  "vertex": 22549,
+                  "rolling": false,
+                  "maximumGap": 0.0116461515,
+                  "anchorExcursion": 0.00274938,
+                  "cumulativeTravel": 0.00395952
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.19992942767618735,
+              "maximumTargetGap": 0.0141568184,
+              "supportedTraces": [
+                {
+                  "vertex": 6656,
+                  "rolling": false,
+                  "maximumGap": 0.0116895437,
+                  "anchorExcursion": 0.00149836752,
+                  "cumulativeTravel": 0.00215845113
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.1989398178922262,
+              "maximumTargetGap": 0.0151101947,
+              "supportedTraces": [
+                {
+                  "vertex": 22543,
+                  "rolling": false,
+                  "maximumGap": 0.0114907622,
+                  "anchorExcursion": 0.00355254649,
+                  "cumulativeTravel": 0.00395911746
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.1921339925779863,
+              "maximumTargetGap": 0.0161245465,
+              "supportedTraces": [
+                {
+                  "vertex": 6640,
+                  "rolling": false,
+                  "maximumGap": 0.0118288994,
+                  "anchorExcursion": 0.00264096539,
+                  "cumulativeTravel": 0.00372405024
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 0.7,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.79069841,
+          "maximumLift": 0.0379534625,
+          "minimumLift": 0.0,
+          "maximumNearestSoleGap": 0.00132864714,
+          "poseMicroseconds": 88.07265625000001,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19934466564879896,
+              "maximumTargetGap": 0.00390267372,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.005355239,
+                  "anchorExcursion": 0.00682550948,
+                  "cumulativeTravel": 0.009750239
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19992942512260414,
+              "maximumTargetGap": 0.009814978,
+              "supportedTraces": [
+                {
+                  "vertex": 6624,
+                  "rolling": false,
+                  "maximumGap": 0.0109837055,
+                  "anchorExcursion": 0.004282189,
+                  "cumulativeTravel": 0.007960518
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19893981535128272,
+              "maximumTargetGap": 0.009713054,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 0.009982228,
+                  "anchorExcursion": 0.008117333,
+                  "cumulativeTravel": 0.009545086
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.19213399012396987,
+              "maximumTargetGap": 0.0132448673,
+              "supportedTraces": [
+                {
+                  "vertex": 6658,
+                  "rolling": false,
+                  "maximumGap": 0.0119808912,
+                  "anchorExcursion": 0.00744570652,
+                  "cumulativeTravel": 0.011276558
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 1.4,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.78344154,
+          "maximumLift": 0.0296063237,
+          "minimumLift": -0.0074557215,
+          "maximumNearestSoleGap": 0.0230121017,
+          "poseMicroseconds": 82.70234375,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19934466564879896,
+              "maximumTargetGap": 1.51991844e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.006078303,
+                  "anchorExcursion": 0.00716312276,
+                  "cumulativeTravel": 0.0154774645
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19992942512260414,
+              "maximumTargetGap": 2.026558e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 6610,
+                  "rolling": false,
+                  "maximumGap": 0.004907012,
+                  "anchorExcursion": 0.008363069,
+                  "cumulativeTravel": 0.012502376
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19893981535128272,
+              "maximumTargetGap": 2.96831131e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 0.000162243843,
+                  "anchorExcursion": 0.00280518713,
+                  "cumulativeTravel": 0.00654089637
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19213399012396987,
+              "maximumTargetGap": 1.07884407e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 6612,
+                  "rolling": false,
+                  "maximumGap": 0.003667295,
+                  "anchorExcursion": 0.00584003469,
+                  "cumulativeTravel": 0.0141173536
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 1.53,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.77704585,
+          "maximumLift": 0.02664569,
+          "minimumLift": -0.00739011541,
+          "maximumNearestSoleGap": 0.0193652511,
+          "poseMicroseconds": 84.11484375,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0993521086563378,
+              "maximumTargetGap": 0.0003297925,
+              "supportedTraces": [
+                {
+                  "vertex": 22521,
+                  "rolling": false,
+                  "maximumGap": 0.001276195,
+                  "anchorExcursion": 0.00424414827,
+                  "cumulativeTravel": 0.00759751443
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.10255183799921126,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.76837158e-07,
+                  "anchorExcursion": 0.003394938,
+                  "cumulativeTravel": 0.00574289262
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.09977154355410216,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 5.364418e-07,
+                  "anchorExcursion": 0.00166496949,
+                  "cumulativeTravel": 0.00233287783
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.10057384544066765,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.172325e-07,
+                  "anchorExcursion": 0.00382470433,
+                  "cumulativeTravel": 0.008848543
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 1.725,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.77336431,
+          "maximumLift": 0.0222047418,
+          "minimumLift": -0.007558869,
+          "maximumNearestSoleGap": 0.0188472271,
+          "poseMicroseconds": 84.546484375,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0926579328110926,
+              "maximumTargetGap": 0.00082719326,
+              "supportedTraces": [
+                {
+                  "vertex": 22521,
+                  "rolling": false,
+                  "maximumGap": 0.000943958759,
+                  "anchorExcursion": 0.00365898828,
+                  "cumulativeTravel": 0.006477659
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.09564206984125052,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.76837158e-07,
+                  "anchorExcursion": 0.00293033756,
+                  "cumulativeTravel": 0.00491294963
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08946195264131629,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 4.172325e-07,
+                  "anchorExcursion": 0.003722502,
+                  "cumulativeTravel": 0.00726792
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.09379735105199657,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.172325e-07,
+                  "anchorExcursion": 0.006049474,
+                  "cumulativeTravel": 0.0107094236
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.05,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.7760942,
+          "maximumLift": 0.0161936581,
+          "minimumLift": -0.00877905451,
+          "maximumNearestSoleGap": 0.0354060531,
+          "poseMicroseconds": 87.09296875,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08433102525626157,
+              "maximumTargetGap": 0.0004904866,
+              "supportedTraces": [
+                {
+                  "vertex": 22544,
+                  "rolling": false,
+                  "maximumGap": 0.008813143,
+                  "anchorExcursion": 0.00256828545,
+                  "cumulativeTravel": 0.00480485242
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0870469862929864,
+              "maximumTargetGap": 5.96046448e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6657,
+                  "rolling": false,
+                  "maximumGap": 0.0113415718,
+                  "anchorExcursion": 0.00233728229,
+                  "cumulativeTravel": 0.00357207353
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0767310290689639,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.00107872486,
+                  "anchorExcursion": 0.008512684,
+                  "cumulativeTravel": 0.0166416466
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08536804718774589,
+              "maximumTargetGap": 3.57627869e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6664,
+                  "rolling": false,
+                  "maximumGap": 0.00399512053,
+                  "anchorExcursion": 0.009103498,
+                  "cumulativeTravel": 0.0133046256
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.375,
+          "samples": 129,
+          "minimumSole": -0.910000145,
+          "minimumBody": -0.910000145,
+          "maximumHeight": 1.77687764,
+          "maximumLift": 0.0129005061,
+          "minimumLift": -0.0112301856,
+          "maximumNearestSoleGap": 0.0618943572,
+          "poseMicroseconds": 84.895703125,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07828306162076676,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22544,
+                  "rolling": false,
+                  "maximumGap": 0.0100703239,
+                  "anchorExcursion": 0.00146490743,
+                  "cumulativeTravel": 0.00321214669
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08080424222483806,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6657,
+                  "rolling": false,
+                  "maximumGap": 0.0119416118,
+                  "anchorExcursion": 0.00257158163,
+                  "cumulativeTravel": 0.004041796
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06738154134707813,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.00120204687,
+                  "anchorExcursion": 0.01324396,
+                  "cumulativeTravel": 0.0258057211
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07924571150576186,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6651,
+                  "rolling": false,
+                  "maximumGap": 0.0107500553,
+                  "anchorExcursion": 0.0114230094,
+                  "cumulativeTravel": 0.0144718681
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.57,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.77584052,
+          "maximumLift": 0.0102242231,
+          "minimumLift": -0.0147903953,
+          "maximumNearestSoleGap": 0.07847321,
+          "poseMicroseconds": 84.21992187500001,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07538851140835069,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22544,
+                  "rolling": false,
+                  "maximumGap": 0.0108733177,
+                  "anchorExcursion": 0.00123966415,
+                  "cumulativeTravel": 0.00252934
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0778164702642946,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6624,
+                  "rolling": false,
+                  "maximumGap": 0.006538868,
+                  "anchorExcursion": 0.00328699755,
+                  "cumulativeTravel": 0.0054342635
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06774064076093447,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.01058501,
+                  "anchorExcursion": 0.00775892055,
+                  "cumulativeTravel": 0.025533827
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07631556689563838,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6647,
+                  "rolling": false,
+                  "maximumGap": 0.00977730751,
+                  "anchorExcursion": 0.0132323951,
+                  "cumulativeTravel": 0.0159889683
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.7,
+          "samples": 129,
+          "minimumSole": -0.9099999,
+          "minimumBody": -0.9099999,
+          "maximumHeight": 1.77533436,
+          "maximumLift": 0.006496384,
+          "minimumLift": -0.0173445325,
+          "maximumNearestSoleGap": 0.0907504559,
+          "poseMicroseconds": 83.03828125,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07369108826696454,
+              "maximumTargetGap": 0.00015860796,
+              "supportedTraces": [
+                {
+                  "vertex": 22544,
+                  "rolling": false,
+                  "maximumGap": 0.0114290118,
+                  "anchorExcursion": 0.00168103992,
+                  "cumulativeTravel": 0.00239363755
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0760643799929781,
+              "maximumTargetGap": 0.0002349019,
+              "supportedTraces": [
+                {
+                  "vertex": 6609,
+                  "rolling": false,
+                  "maximumGap": 0.0005186796,
+                  "anchorExcursion": 0.00204082043,
+                  "cumulativeTravel": 0.007886429
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.075412461816375,
+              "maximumTargetGap": 0.000319898129,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.01045984,
+                  "anchorExcursion": 0.007022814,
+                  "cumulativeTravel": 0.0172487032
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07459727047517992,
+              "maximumTargetGap": 0.0001796484,
+              "supportedTraces": [
+                {
+                  "vertex": 6641,
+                  "rolling": false,
+                  "maximumGap": 0.0111795068,
+                  "anchorExcursion": 0.0023558822,
+                  "cumulativeTravel": 0.00775681948
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.81,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.77701259,
+          "maximumLift": 0.007977892,
+          "minimumLift": -0.0164181683,
+          "maximumNearestSoleGap": 0.08988577,
+          "poseMicroseconds": 85.48828125,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07279303400215639,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22543,
+                  "rolling": false,
+                  "maximumGap": 0.0113794208,
+                  "anchorExcursion": 0.00428168848,
+                  "cumulativeTravel": 0.0110715888
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07513740303471667,
+              "maximumTargetGap": 0.000677228,
+              "supportedTraces": [
+                {
+                  "vertex": 6619,
+                  "rolling": false,
+                  "maximumGap": 0.004436612,
+                  "anchorExcursion": 0.00458730059,
+                  "cumulativeTravel": 0.0117602609
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07449342961659904,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.00963890553,
+                  "anchorExcursion": 0.008217352,
+                  "cumulativeTravel": 0.0169819184
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07368817280178719,
+              "maximumTargetGap": 0.00216245651,
+              "supportedTraces": [
+                {
+                  "vertex": 6638,
+                  "rolling": false,
+                  "maximumGap": 0.0119678378,
+                  "anchorExcursion": 0.00293714716,
+                  "cumulativeTravel": 0.0100446539
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.975,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.7796247,
+          "maximumLift": 0.0147159314,
+          "minimumLift": -0.015946947,
+          "maximumNearestSoleGap": 0.09088248,
+          "poseMicroseconds": 84.881640625,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07157047167434576,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22524,
+                  "rolling": false,
+                  "maximumGap": 0.001982689,
+                  "anchorExcursion": 0.00884274,
+                  "cumulativeTravel": 0.023371255
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07387546692202426,
+              "maximumTargetGap": 0.00150680542,
+              "supportedTraces": [
+                {
+                  "vertex": 6615,
+                  "rolling": false,
+                  "maximumGap": 0.002096653,
+                  "anchorExcursion": 0.008178772,
+                  "cumulativeTravel": 0.0193900522
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07324230906685013,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.008380771,
+                  "anchorExcursion": 0.0100606317,
+                  "cumulativeTravel": 0.0194660649
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07245057657698904,
+              "maximumTargetGap": 0.00309294462,
+              "supportedTraces": [
+                {
+                  "vertex": 6637,
+                  "rolling": false,
+                  "maximumGap": 0.006947577,
+                  "anchorExcursion": 0.005758044,
+                  "cumulativeTravel": 0.0154916691
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.25,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.786248,
+          "maximumLift": 0.0298362579,
+          "minimumLift": -0.01602257,
+          "maximumNearestSoleGap": 0.09719139,
+          "poseMicroseconds": 88.11015625,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06980872513631503,
+              "maximumTargetGap": 6.5267086e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 22524,
+                  "rolling": false,
+                  "maximumGap": 0.00222665071,
+                  "anchorExcursion": 0.0115080466,
+                  "cumulativeTravel": 0.03162183
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07205698165777343,
+              "maximumTargetGap": 0.00188070536,
+              "supportedTraces": [
+                {
+                  "vertex": 6635,
+                  "rolling": false,
+                  "maximumGap": 0.00626456738,
+                  "anchorExcursion": 0.01124606,
+                  "cumulativeTravel": 0.0254550111
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0714394093315651,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22529,
+                  "rolling": false,
+                  "maximumGap": 0.0112269521,
+                  "anchorExcursion": 0.0120914532,
+                  "cumulativeTravel": 0.0207847729
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07066716577254986,
+              "maximumTargetGap": 0.00338798761,
+              "supportedTraces": [
+                {
+                  "vertex": 6638,
+                  "rolling": false,
+                  "maximumGap": 0.00606769323,
+                  "anchorExcursion": 0.009568731,
+                  "cumulativeTravel": 0.02411309
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.525,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.79836726,
+          "maximumLift": 0.04235478,
+          "minimumLift": -0.0184335224,
+          "maximumNearestSoleGap": 0.10779196,
+          "poseMicroseconds": 84.591796875,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06832186220180397,
+              "maximumTargetGap": 0.0005953312,
+              "supportedTraces": [
+                {
+                  "vertex": 22529,
+                  "rolling": false,
+                  "maximumGap": 0.00757312775,
+                  "anchorExcursion": 0.0119360322,
+                  "cumulativeTravel": 0.0252867863
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07052223288546056,
+              "maximumTargetGap": 0.0020993948,
+              "supportedTraces": [
+                {
+                  "vertex": 6635,
+                  "rolling": false,
+                  "maximumGap": 0.00367552042,
+                  "anchorExcursion": 0.0102185421,
+                  "cumulativeTravel": 0.0239142422
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06991781429325072,
+              "maximumTargetGap": 0.00028938055,
+              "supportedTraces": [
+                {
+                  "vertex": 22561,
+                  "rolling": false,
+                  "maximumGap": 0.0113837719,
+                  "anchorExcursion": 0.0139952507,
+                  "cumulativeTravel": 0.0205492862
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06916201882610457,
+              "maximumTargetGap": 0.0016041398,
+              "supportedTraces": [
+                {
+                  "vertex": 6674,
+                  "rolling": false,
+                  "maximumGap": 0.008598208,
+                  "anchorExcursion": 0.0116267782,
+                  "cumulativeTravel": 0.0265869685
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.69,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.806083,
+          "maximumLift": 0.04862496,
+          "minimumLift": -0.0198800918,
+          "maximumNearestSoleGap": 0.121226609,
+          "poseMicroseconds": 84.921484375,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06753612196182394,
+              "maximumTargetGap": 0.00108754635,
+              "supportedTraces": [
+                {
+                  "vertex": 22566,
+                  "rolling": false,
+                  "maximumGap": 0.0112934709,
+                  "anchorExcursion": 0.0122837285,
+                  "cumulativeTravel": 0.0164528228
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06971118713223334,
+              "maximumTargetGap": 0.000841140747,
+              "supportedTraces": [
+                {
+                  "vertex": 6637,
+                  "rolling": false,
+                  "maximumGap": 0.00143939257,
+                  "anchorExcursion": 0.00738468,
+                  "cumulativeTravel": 0.0182653945
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06911371969730154,
+              "maximumTargetGap": 0.000117063522,
+              "supportedTraces": [
+                {
+                  "vertex": 22561,
+                  "rolling": false,
+                  "maximumGap": 0.009904981,
+                  "anchorExcursion": 0.0159629863,
+                  "cumulativeTravel": 0.0248467177
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06836661630751699,
+              "maximumTargetGap": 0.0006674528,
+              "supportedTraces": [
+                {
+                  "vertex": 6674,
+                  "rolling": false,
+                  "maximumGap": 0.006890595,
+                  "anchorExcursion": 0.012463117,
+                  "cumulativeTravel": 0.02692777
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.8,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.81071925,
+          "maximumLift": 0.0522922948,
+          "minimumLift": -0.02087186,
+          "maximumNearestSoleGap": 0.1320867,
+          "poseMicroseconds": 82.50898437500001,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07709428312538741,
+              "maximumTargetGap": 0.00159603357,
+              "supportedTraces": [
+                {
+                  "vertex": 22566,
+                  "rolling": false,
+                  "maximumGap": 0.0114166737,
+                  "anchorExcursion": 0.0142397461,
+                  "cumulativeTravel": 0.0204738751
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07687819154381133,
+              "maximumTargetGap": 0.000177502632,
+              "supportedTraces": [
+                {
+                  "vertex": 6638,
+                  "rolling": false,
+                  "maximumGap": 0.00307625532,
+                  "anchorExcursion": 0.004450019,
+                  "cumulativeTravel": 0.0201523378
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08082379953675747,
+              "maximumTargetGap": 0.000248253345,
+              "supportedTraces": [
+                {
+                  "vertex": 22561,
+                  "rolling": false,
+                  "maximumGap": 0.009360433,
+                  "anchorExcursion": 0.0188310836,
+                  "cumulativeTravel": 0.0308852233
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08259298731956469,
+              "maximumTargetGap": 0.0004042983,
+              "supportedTraces": [
+                {
+                  "vertex": 6674,
+                  "rolling": false,
+                  "maximumGap": 0.00660359859,
+                  "anchorExcursion": 0.009672608,
+                  "cumulativeTravel": 0.0339526758
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "measurement": "ForwardDistancePoseColdV1",
+      "privateReportSha256": "b4462cd38b5278f9ff7b545b8e1dd59fd5645929bcfaa294c749006c24b65067",
+      "globalSkinWeights": "FourBones",
+      "normalizeEquipment": false,
+      "staticPackedKit": {
+        "vertices": 532,
+        "minimum": -0.471566558,
+        "maximumHeight": 0.881706
+      },
+      "rows": [
+        {
+          "speed": 0.2,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.79117036,
+          "maximumLift": 0.0381902866,
+          "minimumLift": 0.0,
+          "maximumNearestSoleGap": 0.00115090609,
+          "poseMicroseconds": 86.30507812500001,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19934466819491337,
+              "maximumTargetGap": 0.0115389824,
+              "supportedTraces": [
+                {
+                  "vertex": 22549,
+                  "rolling": false,
+                  "maximumGap": 0.0116744637,
+                  "anchorExcursion": 0.00274477853,
+                  "cumulativeTravel": 0.00395664759
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.19992942767618735,
+              "maximumTargetGap": 0.0141406655,
+              "supportedTraces": [
+                {
+                  "vertex": 6656,
+                  "rolling": false,
+                  "maximumGap": 0.0116278529,
+                  "anchorExcursion": 0.00150530809,
+                  "cumulativeTravel": 0.00216140272
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.1989398178922262,
+              "maximumTargetGap": 0.0151101947,
+              "supportedTraces": [
+                {
+                  "vertex": 22543,
+                  "rolling": false,
+                  "maximumGap": 0.0115065575,
+                  "anchorExcursion": 0.003550022,
+                  "cumulativeTravel": 0.00395739032
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.1921339925779863,
+              "maximumTargetGap": 0.0161082745,
+              "supportedTraces": [
+                {
+                  "vertex": 6640,
+                  "rolling": false,
+                  "maximumGap": 0.0117985606,
+                  "anchorExcursion": 0.00263928622,
+                  "cumulativeTravel": 0.00372336386
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 0.7,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.790704,
+          "maximumLift": 0.0379590653,
+          "minimumLift": 0.0,
+          "maximumNearestSoleGap": 0.00132864714,
+          "poseMicroseconds": 86.756640625,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19934466564879896,
+              "maximumTargetGap": 0.003929615,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.005355239,
+                  "anchorExcursion": 0.00682550948,
+                  "cumulativeTravel": 0.009750239
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19992942512260414,
+              "maximumTargetGap": 0.009814978,
+              "supportedTraces": [
+                {
+                  "vertex": 6624,
+                  "rolling": false,
+                  "maximumGap": 0.0109780431,
+                  "anchorExcursion": 0.004271594,
+                  "cumulativeTravel": 0.007954791
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19893981535128272,
+              "maximumTargetGap": 0.009713054,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 0.009982228,
+                  "anchorExcursion": 0.008117333,
+                  "cumulativeTravel": 0.009545086
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": false,
+              "sourceWindowSeconds": 0.19213399012396987,
+              "maximumTargetGap": 0.0132448673,
+              "supportedTraces": [
+                {
+                  "vertex": 6658,
+                  "rolling": false,
+                  "maximumGap": 0.0119808912,
+                  "anchorExcursion": 0.00744570652,
+                  "cumulativeTravel": 0.011276558
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 1.4,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.78344154,
+          "maximumLift": 0.0296086483,
+          "minimumLift": -0.0074557215,
+          "maximumNearestSoleGap": 0.0230121017,
+          "poseMicroseconds": 83.131640625,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19934466564879896,
+              "maximumTargetGap": 1.51991844e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.006023228,
+                  "anchorExcursion": 0.00716312276,
+                  "cumulativeTravel": 0.0154774645
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19992942512260414,
+              "maximumTargetGap": 2.026558e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 6610,
+                  "rolling": false,
+                  "maximumGap": 0.004907012,
+                  "anchorExcursion": 0.008363069,
+                  "cumulativeTravel": 0.012502376
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19893981535128272,
+              "maximumTargetGap": 2.96831131e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 0.000162243843,
+                  "anchorExcursion": 0.00280518713,
+                  "cumulativeTravel": 0.00654089637
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.19213399012396987,
+              "maximumTargetGap": 1.07884407e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 6612,
+                  "rolling": false,
+                  "maximumGap": 0.003667295,
+                  "anchorExcursion": 0.00584003469,
+                  "cumulativeTravel": 0.0141173536
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 1.53,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.77704585,
+          "maximumLift": 0.02664569,
+          "minimumLift": -0.00739011541,
+          "maximumNearestSoleGap": 0.0193781257,
+          "poseMicroseconds": 86.463671875,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0993521086563378,
+              "maximumTargetGap": 0.000376582146,
+              "supportedTraces": [
+                {
+                  "vertex": 22521,
+                  "rolling": false,
+                  "maximumGap": 0.001276195,
+                  "anchorExcursion": 0.00424414827,
+                  "cumulativeTravel": 0.00759751443
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.10255183799921126,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.76837158e-07,
+                  "anchorExcursion": 0.003394938,
+                  "cumulativeTravel": 0.00574289262
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.09977154355410216,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 5.364418e-07,
+                  "anchorExcursion": 0.00166496949,
+                  "cumulativeTravel": 0.00233287783
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.10057384544066765,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.172325e-07,
+                  "anchorExcursion": 0.00382470433,
+                  "cumulativeTravel": 0.008848543
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 1.725,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.77336431,
+          "maximumLift": 0.0222047418,
+          "minimumLift": -0.007558869,
+          "maximumNearestSoleGap": 0.0188652873,
+          "poseMicroseconds": 87.748046875,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0926579328110926,
+              "maximumTargetGap": 0.0008780956,
+              "supportedTraces": [
+                {
+                  "vertex": 22521,
+                  "rolling": false,
+                  "maximumGap": 0.000943958759,
+                  "anchorExcursion": 0.00365898828,
+                  "cumulativeTravel": 0.006477659
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.09564206984125052,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.76837158e-07,
+                  "anchorExcursion": 0.00293033756,
+                  "cumulativeTravel": 0.00491294963
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08946195264131629,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22523,
+                  "rolling": false,
+                  "maximumGap": 4.172325e-07,
+                  "anchorExcursion": 0.003722502,
+                  "cumulativeTravel": 0.00726792
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.09379735105199657,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6618,
+                  "rolling": false,
+                  "maximumGap": 4.172325e-07,
+                  "anchorExcursion": 0.006049474,
+                  "cumulativeTravel": 0.0107094236
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.05,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.7760942,
+          "maximumLift": 0.016199559,
+          "minimumLift": -0.00877905451,
+          "maximumNearestSoleGap": 0.0354060531,
+          "poseMicroseconds": 86.75234375000001,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08433102525626157,
+              "maximumTargetGap": 0.0004904866,
+              "supportedTraces": [
+                {
+                  "vertex": 22544,
+                  "rolling": false,
+                  "maximumGap": 0.008873701,
+                  "anchorExcursion": 0.00255742134,
+                  "cumulativeTravel": 0.004798973
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0870469862929864,
+              "maximumTargetGap": 5.96046448e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6657,
+                  "rolling": false,
+                  "maximumGap": 0.0111867785,
+                  "anchorExcursion": 0.001956368,
+                  "cumulativeTravel": 0.00332041527
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0767310290689639,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.00107872486,
+                  "anchorExcursion": 0.008512684,
+                  "cumulativeTravel": 0.0166416466
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08536804718774589,
+              "maximumTargetGap": 3.57627869e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6664,
+                  "rolling": false,
+                  "maximumGap": 0.003961861,
+                  "anchorExcursion": 0.009084505,
+                  "cumulativeTravel": 0.0132958125
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.375,
+          "samples": 129,
+          "minimumSole": -0.910000145,
+          "minimumBody": -0.910000145,
+          "maximumHeight": 1.77687764,
+          "maximumLift": 0.0129060494,
+          "minimumLift": -0.0112301856,
+          "maximumNearestSoleGap": 0.0618976355,
+          "poseMicroseconds": 87.045703125,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07828306162076676,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22544,
+                  "rolling": false,
+                  "maximumGap": 0.0100972056,
+                  "anchorExcursion": 0.00146055478,
+                  "cumulativeTravel": 0.003210726
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08080424222483806,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6657,
+                  "rolling": false,
+                  "maximumGap": 0.0117660165,
+                  "anchorExcursion": 0.00206972146,
+                  "cumulativeTravel": 0.00387608749
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06738154134707813,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22527,
+                  "rolling": false,
+                  "maximumGap": 0.00120204687,
+                  "anchorExcursion": 0.01324396,
+                  "cumulativeTravel": 0.0258057211
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07924571150576186,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6654,
+                  "rolling": false,
+                  "maximumGap": 0.008541405,
+                  "anchorExcursion": 0.0117796231,
+                  "cumulativeTravel": 0.0149983866
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.57,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.77584052,
+          "maximumLift": 0.0102292895,
+          "minimumLift": -0.0147903953,
+          "maximumNearestSoleGap": 0.0784726739,
+          "poseMicroseconds": 86.482421875,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07538851140835069,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22544,
+                  "rolling": false,
+                  "maximumGap": 0.0108799934,
+                  "anchorExcursion": 0.00125210616,
+                  "cumulativeTravel": 0.00253536529
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0778164702642946,
+              "maximumTargetGap": 4.172325e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6624,
+                  "rolling": false,
+                  "maximumGap": 0.0065099,
+                  "anchorExcursion": 0.00324207474,
+                  "cumulativeTravel": 0.00541824754
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06774064076093447,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.01058501,
+                  "anchorExcursion": 0.00775892055,
+                  "cumulativeTravel": 0.025533827
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07631556689563838,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 6647,
+                  "rolling": false,
+                  "maximumGap": 0.00967735052,
+                  "anchorExcursion": 0.0132598653,
+                  "cumulativeTravel": 0.0160154253
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.7,
+          "samples": 129,
+          "minimumSole": -0.9099999,
+          "minimumBody": -0.9099999,
+          "maximumHeight": 1.77533436,
+          "maximumLift": 0.00650097337,
+          "minimumLift": -0.0173445325,
+          "maximumNearestSoleGap": 0.09074807,
+          "poseMicroseconds": 86.1703125,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07369108826696454,
+              "maximumTargetGap": 0.00015860796,
+              "supportedTraces": [
+                {
+                  "vertex": 22544,
+                  "rolling": false,
+                  "maximumGap": 0.0114221573,
+                  "anchorExcursion": 0.0017051883,
+                  "cumulativeTravel": 0.00240813871
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0760643799929781,
+              "maximumTargetGap": 0.0002349019,
+              "supportedTraces": [
+                {
+                  "vertex": 6609,
+                  "rolling": false,
+                  "maximumGap": 0.0005186796,
+                  "anchorExcursion": 0.00204082043,
+                  "cumulativeTravel": 0.007886429
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.075412461816375,
+              "maximumTargetGap": 0.000319898129,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.01045984,
+                  "anchorExcursion": 0.007022814,
+                  "cumulativeTravel": 0.0172487032
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07459727047517992,
+              "maximumTargetGap": 0.0001796484,
+              "supportedTraces": [
+                {
+                  "vertex": 6641,
+                  "rolling": false,
+                  "maximumGap": 0.0111390948,
+                  "anchorExcursion": 0.0023515427,
+                  "cumulativeTravel": 0.00775883347
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.81,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.77701259,
+          "maximumLift": 0.007979263,
+          "minimumLift": -0.0164181683,
+          "maximumNearestSoleGap": 0.08988321,
+          "poseMicroseconds": 90.03203125,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07279303400215639,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22543,
+                  "rolling": false,
+                  "maximumGap": 0.0113673806,
+                  "anchorExcursion": 0.004280474,
+                  "cumulativeTravel": 0.0110981157
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07513740303471667,
+              "maximumTargetGap": 0.000677228,
+              "supportedTraces": [
+                {
+                  "vertex": 6619,
+                  "rolling": false,
+                  "maximumGap": 0.004436612,
+                  "anchorExcursion": 0.00458730059,
+                  "cumulativeTravel": 0.0117602609
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07449342961659904,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.00963890553,
+                  "anchorExcursion": 0.008217352,
+                  "cumulativeTravel": 0.0169819184
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07368817280178719,
+              "maximumTargetGap": 0.00215095282,
+              "supportedTraces": [
+                {
+                  "vertex": 6638,
+                  "rolling": false,
+                  "maximumGap": 0.0119678378,
+                  "anchorExcursion": 0.00293714716,
+                  "cumulativeTravel": 0.0100446539
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 2.975,
+          "samples": 129,
+          "minimumSole": -0.91,
+          "minimumBody": -0.91,
+          "maximumHeight": 1.7796247,
+          "maximumLift": 0.0147000765,
+          "minimumLift": -0.015946947,
+          "maximumNearestSoleGap": 0.090880096,
+          "poseMicroseconds": 86.57109375,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07157047167434576,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22524,
+                  "rolling": false,
+                  "maximumGap": 0.001982689,
+                  "anchorExcursion": 0.00884274,
+                  "cumulativeTravel": 0.023371255
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07387546692202426,
+              "maximumTargetGap": 0.00150680542,
+              "supportedTraces": [
+                {
+                  "vertex": 6615,
+                  "rolling": false,
+                  "maximumGap": 0.002096653,
+                  "anchorExcursion": 0.008178772,
+                  "cumulativeTravel": 0.0193900522
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07324230906685013,
+              "maximumTargetGap": 4.76837158e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22528,
+                  "rolling": false,
+                  "maximumGap": 0.008380771,
+                  "anchorExcursion": 0.0100606317,
+                  "cumulativeTravel": 0.0194660649
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07245057657698904,
+              "maximumTargetGap": 0.0031888485,
+              "supportedTraces": [
+                {
+                  "vertex": 6637,
+                  "rolling": false,
+                  "maximumGap": 0.00696647167,
+                  "anchorExcursion": 0.005750257,
+                  "cumulativeTravel": 0.0154947666
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.25,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.786248,
+          "maximumLift": 0.0297935214,
+          "minimumLift": -0.01602257,
+          "maximumNearestSoleGap": 0.09719843,
+          "poseMicroseconds": 87.313671875,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06980872513631503,
+              "maximumTargetGap": 6.5267086e-05,
+              "supportedTraces": [
+                {
+                  "vertex": 22524,
+                  "rolling": false,
+                  "maximumGap": 0.00222665071,
+                  "anchorExcursion": 0.0115080466,
+                  "cumulativeTravel": 0.03162183
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07205698165777343,
+              "maximumTargetGap": 0.00195002556,
+              "supportedTraces": [
+                {
+                  "vertex": 6635,
+                  "rolling": false,
+                  "maximumGap": 0.00634157658,
+                  "anchorExcursion": 0.0112329861,
+                  "cumulativeTravel": 0.02545825
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.0714394093315651,
+              "maximumTargetGap": 5.364418e-07,
+              "supportedTraces": [
+                {
+                  "vertex": 22529,
+                  "rolling": false,
+                  "maximumGap": 0.0112153292,
+                  "anchorExcursion": 0.0120579237,
+                  "cumulativeTravel": 0.0207662527
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07066716577254986,
+              "maximumTargetGap": 0.00348949432,
+              "supportedTraces": [
+                {
+                  "vertex": 6638,
+                  "rolling": false,
+                  "maximumGap": 0.00606769323,
+                  "anchorExcursion": 0.009568731,
+                  "cumulativeTravel": 0.02411309
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.525,
+          "samples": 129,
+          "minimumSole": -0.909999967,
+          "minimumBody": -0.909999967,
+          "maximumHeight": 1.79836726,
+          "maximumLift": 0.04228546,
+          "minimumLift": -0.0184335224,
+          "maximumNearestSoleGap": 0.10779196,
+          "poseMicroseconds": 88.15468750000001,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06832186220180397,
+              "maximumTargetGap": 0.0005825162,
+              "supportedTraces": [
+                {
+                  "vertex": 22529,
+                  "rolling": false,
+                  "maximumGap": 0.00755870342,
+                  "anchorExcursion": 0.0118869077,
+                  "cumulativeTravel": 0.0252830628
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07052223288546056,
+              "maximumTargetGap": 0.00226026773,
+              "supportedTraces": [
+                {
+                  "vertex": 6635,
+                  "rolling": false,
+                  "maximumGap": 0.003779292,
+                  "anchorExcursion": 0.0101972669,
+                  "cumulativeTravel": 0.023913445
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06991781429325072,
+              "maximumTargetGap": 0.00028938055,
+              "supportedTraces": [
+                {
+                  "vertex": 22561,
+                  "rolling": false,
+                  "maximumGap": 0.0113218427,
+                  "anchorExcursion": 0.0139245857,
+                  "cumulativeTravel": 0.020512376
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06916201882610457,
+              "maximumTargetGap": 0.00172692537,
+              "supportedTraces": [
+                {
+                  "vertex": 6674,
+                  "rolling": false,
+                  "maximumGap": 0.008598208,
+                  "anchorExcursion": 0.0116267782,
+                  "cumulativeTravel": 0.0265869685
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.69,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.806083,
+          "maximumLift": 0.0485398434,
+          "minimumLift": -0.0198800918,
+          "maximumNearestSoleGap": 0.121243954,
+          "poseMicroseconds": 87.1046875,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06753612196182394,
+              "maximumTargetGap": 0.001061976,
+              "supportedTraces": [
+                {
+                  "vertex": 22566,
+                  "rolling": false,
+                  "maximumGap": 0.0111312866,
+                  "anchorExcursion": 0.0116831223,
+                  "cumulativeTravel": 0.0161011461
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06971118713223334,
+              "maximumTargetGap": 0.00101464987,
+              "supportedTraces": [
+                {
+                  "vertex": 6637,
+                  "rolling": false,
+                  "maximumGap": 0.0014898181,
+                  "anchorExcursion": 0.007372403,
+                  "cumulativeTravel": 0.0182658117
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06911371969730154,
+              "maximumTargetGap": 0.000117063522,
+              "supportedTraces": [
+                {
+                  "vertex": 22561,
+                  "rolling": false,
+                  "maximumGap": 0.009841919,
+                  "anchorExcursion": 0.0159232747,
+                  "cumulativeTravel": 0.02482133
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.06836661630751699,
+              "maximumTargetGap": 0.0008315444,
+              "supportedTraces": [
+                {
+                  "vertex": 6674,
+                  "rolling": false,
+                  "maximumGap": 0.006890595,
+                  "anchorExcursion": 0.012463117,
+                  "cumulativeTravel": 0.02692777
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "speed": 3.8,
+          "samples": 129,
+          "minimumSole": -0.9100001,
+          "minimumBody": -0.9100001,
+          "maximumHeight": 1.81071925,
+          "maximumLift": 0.05219663,
+          "minimumLift": -0.02087186,
+          "maximumNearestSoleGap": 0.132106364,
+          "poseMicroseconds": 87.520703125,
+          "poseAllocatedBytes": 0.0,
+          "patches": [
+            {
+              "plant": 0,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07709428312538741,
+              "maximumTargetGap": 0.00159138441,
+              "supportedTraces": [
+                {
+                  "vertex": 22566,
+                  "rolling": false,
+                  "maximumGap": 0.0112791657,
+                  "anchorExcursion": 0.01360452,
+                  "cumulativeTravel": 0.0200635958
+                }
+              ]
+            },
+            {
+              "plant": 1,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.07687819154381133,
+              "maximumTargetGap": 0.000254809856,
+              "supportedTraces": [
+                {
+                  "vertex": 6638,
+                  "rolling": false,
+                  "maximumGap": 0.00303924084,
+                  "anchorExcursion": 0.004450019,
+                  "cumulativeTravel": 0.02015248
+                }
+              ]
+            },
+            {
+              "plant": 2,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08082379953675747,
+              "maximumTargetGap": 0.000248253345,
+              "supportedTraces": [
+                {
+                  "vertex": 22561,
+                  "rolling": false,
+                  "maximumGap": 0.009308815,
+                  "anchorExcursion": 0.0188000761,
+                  "cumulativeTravel": 0.0308557283
+                }
+              ]
+            },
+            {
+              "plant": 3,
+              "fullSourceWindowQualified": true,
+              "sourceWindowSeconds": 0.08259298731956469,
+              "maximumTargetGap": 0.0004543662,
+              "supportedTraces": [
+                {
+                  "vertex": 6674,
+                  "rolling": false,
+                  "maximumGap": 0.006439686,
+                  "anchorExcursion": 0.009672608,
+                  "cumulativeTravel": 0.033952605
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "gaitSpeedCases": 60,
+    "uniformGeometryPoses": 7740,
+    "patchWindows": 240
+  },
+  "limits": {
+    "floorPenetration": 0.001,
+    "anchorExcursionTarget": 0.02,
+    "maximumLift": 0.08,
+    "maximumLowering": 0.03
+  },
+  "limitations": [
+    "Fixed supported patches are trimmed to the actual connected <=12mm support window. Some low analog full-source windows include unsupported portions.",
+    "Cumulative tangent travel reaches about 34mm despite <20mm anchor excursion. Motion-review gate remains open.",
+    "Dense key/break geometry, skin cold/return permutations, slope, steering, transitions and current author scene integration remain open.",
+    "Full-loop nearest-sole height includes intended native flight and is not a contact clearance failure."
+  ]
+}

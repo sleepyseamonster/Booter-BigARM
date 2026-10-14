@@ -1,6 +1,6 @@
 # Focused locomotion implementation checkpoint
 
-October 14, 2026. Implements the [audited walking/running/sprinting plan](../../../Design/Gameplay/CAMP_LOOP_LOCOMOTION_IMPLEMENTATION_PLAN_2026-10-14.md). The goal is active. This is a foundation and source-selection checkpoint, not a repaired/accepted player or an author playtest handoff.
+October 14, 2026. Implements the [audited walking/running/sprinting plan](../../../Design/Gameplay/CAMP_LOOP_LOCOMOTION_IMPLEMENTATION_PLAN_2026-10-14.md). The goal is active. The latest [forward locomotion draft](ForwardDraft/README.md) adds measured native source mapping, mixed-stance distance calibration and the gated driver path. It passes 227 distinct relevant Edit Mode checks and the initial equipped geometry matrix. The policy remains unqualified and unbound to the author player. Transitions, steering, dense qualification, current-scene integration and author acceptance remain open. The foundation/source-selection sections below record the preceding checkpoint.
 
 ## Implemented foundation
 

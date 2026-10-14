@@ -1,0 +1,13 @@
+{
+  "state": "canonical-guid-resolution-verified-after-background-reimport",
+  "aliasesQuarantined": 103,
+  "restoredMetadata": 104,
+  "exactPayloadAliases": 75,
+  "aliasPayloadAndMetadataByteMismatches": 0,
+  "canonicalPairsVerified": 127,
+  "canonicalGuidPathMatches": 127,
+  "authorRootChanged": false,
+  "recovery": "D:\\BooterBigArmValidation\\AnimationPlayground20261013\\AssetAliasRecovery20261014",
+  "receiptSha256": "002bcc4ec4d8df103e45c5b2f91a6b4446824d9843392c2e12fbda66a9a4615a",
+  "tool": "Tools/Diagnostics/Repair-CampValidationAliases.ps1"
+}
