@@ -105,6 +105,14 @@ Twelve private clips provide three jump variants, a falling loop, contact approa
 
 All 85 focused Edit Mode checks pass without failures or skips. The airborne profile stays unqualified and unbound to author input until the rigged transition/contact, equipment and session handoff gates pass. Roll collision/recovery/damage policy remains required. Crouch stays enabled, and the full remaining-family/motion-gap goal remains active. See [airborne draft evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/AirborneDraft/README.md).
 
+## Qualified jump and fall controls — October 14
+
+Jump input and AP04 now acquire the airborne controller. Standing, moving and selected unarmed takeoffs lead into velocity-driven flight, measured ground approach, physical landing and recovery. Walking off a ledge starts falling automatically. Cancellation retains gravity until contact; pause, failed presentation, surface loss, disable/disposal and reset preserve ownership rules. The existing vitals owner applies the session landing-damage policy, and reset restores captured health.
+
+The rigged check covers 171 envelopes across one, two and four global skin weights, including moving takeoff phases and interrupted landing snapshots. Soles clear the reference floor within 0.001mm; maximum correction is 74.223mm. All 87 focused Edit Mode checks pass without failures or skips. The 111-pair PHY1AirborneQualified private checkpoint captures and dry-restores the enabled profile, preserving source/import bytes and GUIDs. See [qualified airborne evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/AirborneQualified/README.md).
+
+The saved-scene fixture is an isolated frozen snapshot with its matching salvage dependencies. Concurrent riding, NPC, inventory, atmosphere and later scene revisions remain outside this task's validation and commit. Slide/roll and the rest of the physical families and requested motion gaps remain in the active implementation goal. Hurt/death presentation and author appearance/feel acceptance are still pending.
+
 ## Validation and source boundaries
 
 File restoration fixtures pass twelve checks. The isolated Unity candidate at `D:\BooterBigArmValidation\AnimationPlayground20261013` contains the Camp Loop dependency closure and active scripts/settings/UI/character/test assets; it is a validation copy, not a Git worktree. Initial session and targeting regressions pass 44 tests. All 25 menu regressions pass after the candidate's missing SystemMenu prefab dependency was restored. Installed-session checks are repeated against the saved scene. See the [foundation evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Foundations/README.md).

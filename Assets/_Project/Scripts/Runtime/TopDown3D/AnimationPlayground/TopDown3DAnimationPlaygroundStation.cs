@@ -83,6 +83,7 @@ namespace BooterBigArm.TopDown3D
                     if (binding?.CanPreview == true && session.PreviewReady) preview++;
                 }
             var physical=stationId=="AP03" && session?.CrouchReady==true ? "Crouch ready | slide qualification pending" : missingGate;
+            if(stationId=="AP04" && session?.JumpReady==true)physical="Jump, fall and landing ready | roll recovery pending";
             Status = session?.Readiness == AnimationPlaygroundReadiness.Failed ? session.UnavailableReason
                 : $"Imported {imported} | Preview {preview} | Restricted {restricted}\nPhysical: {physical}";
             var text = stationId + "  " + title + "\n" + Status + "\nInspect terminal: variants | Reset terminal: session";
@@ -90,12 +91,16 @@ namespace BooterBigArm.TopDown3D
         }
         private void RefreshActionAvailability()
         {
-            if(stationId!="AP03")return;
             foreach(var target in targets)
-                if(target!=null && target.ActionKind==AnimationPlaygroundActionKind.Crouch)
+                if(stationId=="AP03" && target!=null && target.ActionKind==AnimationPlaygroundActionKind.Crouch)
                 {
                     var ready=session?.CrouchReady==true;target.SetAvailable(ready);
                     target.SetPrompt(ready ? "Crouch or stand" : "Crouch unavailable");
+                }
+                else if(stationId=="AP04" && target!=null && (target.ActionKind==AnimationPlaygroundActionKind.Jump || target.ActionKind==AnimationPlaygroundActionKind.Fall))
+                {
+                    var ready=session?.JumpReady==true;target.SetAvailable(ready);
+                    target.SetPrompt(ready ? target.ActionKind==AnimationPlaygroundActionKind.Jump ? "Jump" : "Falling test instructions" : "Jump and fall unavailable");
                 }
         }
         public void InvalidateForReset(uint epoch)

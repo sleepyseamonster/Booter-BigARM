@@ -91,16 +91,31 @@ namespace BooterBigArm.Tests
             Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Falling));
             Assert.That(coordinator.IsSequenceOwner(airborne),Is.True);
         }
+        [Test] public void ADisappearingSurfaceReturnsApproachToFallingWithoutReleasingGravity()
+        {
+            Launch();body.linearVelocity=Vector3.down*3;Tick();
+            body.position=new Vector3(68000,1.21f,68000);Physics.SyncTransforms();Tick();
+            Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Approach));
+            Object.DestroyImmediate(floor);Physics.SyncTransforms();Tick();
+            Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Falling));
+            Assert.That(coordinator.IsSequenceOwner(airborne),Is.True);Assert.That(body.useGravity,Is.True);
+        }
+        [Test] public void AFailedPresentationStageReleasesOnlyItsOwnSequence()
+        {
+            Launch();Call(driver,"OnDestroy");body.linearVelocity=Vector3.down*2;Tick();
+            Assert.That(coordinator.IsBusy,Is.False);Assert.That(motor.IsActionConstrained,Is.False);
+            Assert.That(airborne.Active,Is.False);Assert.That(body.useGravity,Is.True);
+        }
         [Test] public void UnqualifiedAirborneProfileAndCrouchedPostureCannotLaunch()
         {
             profile.qualified=false;Assert.That(airborne.TryJump(),Is.False);profile.qualified=true;
             Assert.That(motor.TrySetAnimationPosture(coordinator,AnimationPlaygroundPosture.Crouched,1.57f,.4f),Is.True);
             Assert.That(airborne.TryJump(),Is.False);Assert.That(coordinator.IsBusy,Is.False);Assert.That(body.linearVelocity.y,Is.Zero);
         }
-        [Test] public void DraftRolesRetainHumanoidDataAndAirPosesHaveNoAnimatedVerticalArc()
+        [Test] public void QualifiedRolesRetainHumanoidDataAndAirPosesHaveNoAnimatedVerticalArc()
         {
             var source=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundAirborneProfile>(AnimationPlaygroundAirborneAuthoring.ProfilePath);
-            Assert.That(source.qualified,Is.False);
+            Assert.That(source.qualified,Is.True);
             var bindings=AssetDatabase.LoadAssetAtPath<TopDown3DAnimationPlaygroundBindings>(AnimationPlaygroundPlayerAuthoring.BindingPath);
             foreach(var variant in new[]{source.standing,source.running,source.unarmed})
             {

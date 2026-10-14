@@ -17,13 +17,16 @@ namespace BooterBigArm.TopDown3D
         public AnimationClip falling,approach,hardLanding;
         public float runningThreshold=.6f,airControlAcceleration=3,maximumPlanarSpeed=3.8f;
         public float anticipationDistance=.65f,contactDistance=.03f,hardLandingSpeed=6.5f;
+        public float landingDamagePerSpeed=10f;
+        public float LandingDamage(float downwardSpeed)=>float.IsFinite(downwardSpeed)
+            ? Mathf.Max(0,downwardSpeed-hardLandingSpeed)*landingDamagePerSpeed : 0;
         public bool Validate(out string reason,bool requireQualified=true)
         {
             reason=null;
             if(schema!=1 || !Valid(standing) || !Valid(running) || !Valid(unarmed)
                 || !Human(falling) || !falling.isLooping || !Human(approach) || !Human(hardLanding))
             {reason="A complete paired airborne profile is required.";return false;}
-            foreach(var value in new[]{runningThreshold,airControlAcceleration,maximumPlanarSpeed,anticipationDistance,contactDistance,hardLandingSpeed})
+            foreach(var value in new[]{runningThreshold,airControlAcceleration,maximumPlanarSpeed,anticipationDistance,contactDistance,hardLandingSpeed,landingDamagePerSpeed})
                 if(!float.IsFinite(value) || value<=0){reason="Airborne calibration must be finite and positive.";return false;}
             if(contactDistance>=anticipationDistance || maximumPlanarSpeed>12 || airControlAcceleration>20)
             {reason="Airborne movement or contact calibration exceeds its reviewed range.";return false;}

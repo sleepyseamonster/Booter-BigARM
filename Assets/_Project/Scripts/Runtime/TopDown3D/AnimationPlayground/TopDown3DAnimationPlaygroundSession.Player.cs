@@ -17,7 +17,7 @@ namespace BooterBigArm.TopDown3D
         private Func<bool> ownsInput;
         private string selectedSource;
         private DelegateResetParticipant legacyReset, vitalsReset, inputReset;
-        public bool IsBusy => coordinator != null && coordinator.IsBusy || crouch!=null && crouch.Transitioning;
+        public bool IsBusy => coordinator != null && coordinator.IsBusy || crouch!=null && crouch.Transitioning || airborne!=null && airborne.Active;
         public TopDown3DPlayerMotor Player => player;
         public AnimationPlaygroundActionCoordinator Coordinator => coordinator;
         public bool CrouchReady=>servicesBound && isActiveAndEnabled && PreviewReady && crouch!=null && bindings!=null
@@ -86,10 +86,11 @@ namespace BooterBigArm.TopDown3D
                         () => !Application.isFocused || playerInput.Mode != TopDown3DInputMode.Gameplay,() => playerAction.IsBusy);
                     playerInput.AnimationCrouchRequested+=ToggleCrouch;
                 }
+                BindAirborne();
                 ownsInput = () => IsBusy || crouch!=null && crouch.Active;
                 playerInput.AnimationActionOwned = ownsInput;
                 playerInput.AnimationCancelRequested += CancelOwnedAction;
-                playerInput.AnimationJumpRequested += UnavailableJump;
+                playerInput.AnimationJumpRequested += RequestJump;
                 playerInput.AnimationActionRequested += UnavailableAction;
                 menu.AnimationSelectionChanged += SelectMotion;
                 menu.AnimationPreviewRequested += PreviewMotion;
@@ -129,10 +130,10 @@ namespace BooterBigArm.TopDown3D
             if(!crouch.Active && player.SprintActive){playerAction.ReportFeedback("Sliding awaits motion and collision qualification.");return;}
             if(!crouch.TryToggle())playerAction.ReportFeedback(crouch.LastFailure);
         }
-        private void UnavailableJump()=>playerAction?.ReportFeedback("Jump and landing qualification is still pending.");
         private void UnavailableAction()=>playerAction?.ReportFeedback("This action needs a qualified interaction at a test station.");
         private void CancelOwnedAction()
         {
+            if(airborne!=null && airborne.Active){airborne.TryCancel();return;}
             if(crouch!=null && crouch.Active)
             {if(!crouch.TryCancel())playerAction.ReportFeedback(crouch.LastFailure);return;}
             coordinator?.Cancel();
@@ -171,6 +172,7 @@ namespace BooterBigArm.TopDown3D
         private void DetachPlayerServices()
         {
             coordinator?.Cancel();
+            DetachAirborne();
             if(crouch!=null)
             {
                 crouch.DisposeOwnedServices();
@@ -182,7 +184,7 @@ namespace BooterBigArm.TopDown3D
             {
                 playerInput.AnimationCancelRequested -= CancelOwnedAction;
                 playerInput.AnimationCrouchRequested -= ToggleCrouch;
-                playerInput.AnimationJumpRequested -= UnavailableJump;
+                playerInput.AnimationJumpRequested -= RequestJump;
                 playerInput.AnimationActionRequested -= UnavailableAction;
                 if (ReferenceEquals(playerInput.AnimationActionOwned, ownsInput)) playerInput.AnimationActionOwned = null;
             }

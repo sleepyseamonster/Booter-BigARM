@@ -56,14 +56,19 @@ namespace BooterBigArm.TopDown3D
         private bool Begin(AnimationClip clip,AnimationPlaygroundMotionMode mode,AnimationPlaygroundAirborneState next,
             bool loop,AnimationPlaygroundMarker[] markers=null,Func<AnimationPlaygroundEffectKey,bool> effect=null,Func<double,double> pose=null)
         {
-            if(!driver.TryCapturePoseBlend(this,BlendSeconds))return false;
+            if(!driver.TryCapturePoseBlend(this,BlendSeconds)){AbandonSequence("The airborne snapshot is unavailable.");return false;}
             var success=coordinator.IsSequenceOwner(this)
                 ? coordinator.TrySwitchPhysicalSequence(this,Binding(clip),mode,markers,Intent,effect,pose,loop)
                 : coordinator.TryBeginPhysicalSequence(this,Binding(clip),mode,markers,Intent,effect,pose,loop);
-            if(!success){driver.EndPoseBlend(this);return false;}
+            if(!success){driver.EndPoseBlend(this);AbandonSequence("The airborne stage lost its owner.");return false;}
             State=next;driver.SetAnimationFootProjection(coordinator,next==AnimationPlaygroundAirborneState.Takeoff
                 || next==AnimationPlaygroundAirborneState.Approach || next==AnimationPlaygroundAirborneState.Landing);
             return true;
+        }
+        private void AbandonSequence(string reason)
+        {
+            coordinator.CancelPhysicalSequence(this);driver.EndPoseBlend(this);
+            State=AnimationPlaygroundAirborneState.Standing;landingContactPending=false;LastFailure=reason;
         }
         private AnimationPlaygroundMotorIntent Intent(double seconds)
         {
@@ -113,6 +118,9 @@ namespace BooterBigArm.TopDown3D
                 Begin(profile.approach,AnimationPlaygroundMotionMode.Fall,AnimationPlaygroundAirborneState.Approach,true,
                     pose:time=>motor.TryAnimationGroundDistance(coordinator,profile.anticipationDistance,out var gap)
                         ? Mathf.Clamp01(1-gap/profile.anticipationDistance)*profile.approach.length : 0);
+            else if(State==AnimationPlaygroundAirborneState.Approach
+                && !motor.TryAnimationGroundDistance(coordinator,profile.anticipationDistance,out _))
+                Begin(profile.falling,AnimationPlaygroundMotionMode.Fall,AnimationPlaygroundAirborneState.Falling,true);
         }
         private void ObserveLocomotion()
         {

@@ -73,6 +73,9 @@ namespace BooterBigArm.TopDown3D
             else if(footProjection!=null && !footProjection.Validate(targetModel,out reason))return false;
             else if(crouch!=null && (crouch.contactsQualified || crouch.groundingQualified) && footProjection==null)
                 reason="A qualified crouch family requires its paired transition foot projection.";
+            else if(airborne!=null && !airborne.Validate(out reason,false))return false;
+            else if(airborne!=null && airborne.qualified && footProjection==null)
+                reason="A qualified airborne family requires its paired transition foot projection.";
             return reason == null;
         }
     }

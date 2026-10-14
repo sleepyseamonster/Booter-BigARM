@@ -78,6 +78,7 @@ namespace BooterBigArm.TopDown3D
             CurrentLocomotionState = TopDown3DLocomotionState.ConstrainedAction;
             var blending=PoseBlendOwned;ApplyPoseBlend();
             if(animationFootProjection && !blending)ProjectLaboratoryFootPlane();
+            else if(!blending)LastPoseBlendGroundCorrection=0;
             // No legacy locomotion/contact clock advances while this branch owns the pose.
             return true;
         }

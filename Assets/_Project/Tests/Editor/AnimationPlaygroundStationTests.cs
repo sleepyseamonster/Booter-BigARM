@@ -101,6 +101,11 @@ namespace BooterBigArm.Tests
                 Invoke(session,"Start");Assert.That(session.Readiness,Is.EqualTo(AnimationPlaygroundReadiness.VisualReady),session.UnavailableReason);
                 var menu=TopDown3DGameHudCanvas.FindInScene<TopDown3DMenuController>(scene);
                 var station=session.Stations.Single(value=>value.StationId=="AP03");
+                Assert.That(session.JumpReady,Is.True);
+                var jumpStation=session.Stations.Single(value=>value.StationId=="AP04");
+                Assert.That(jumpStation.Targets.Single(value=>value.ActionKind==AnimationPlaygroundActionKind.Jump).IsAvailable,Is.True);
+                Assert.That(jumpStation.Targets.Single(value=>value.ActionKind==AnimationPlaygroundActionKind.Fall).IsAvailable,Is.True);
+                Assert.That(jumpStation.Status,Does.Contain("roll recovery pending"));
                 Assert.That(session.CrouchReady,Is.True);
                 var physical=station.Targets.Single(value=>value.ActionKind==AnimationPlaygroundActionKind.Crouch);
                 Assert.That(physical.IsAvailable,Is.True);Assert.That(physical.Prompt,Is.EqualTo("Crouch or stand"));

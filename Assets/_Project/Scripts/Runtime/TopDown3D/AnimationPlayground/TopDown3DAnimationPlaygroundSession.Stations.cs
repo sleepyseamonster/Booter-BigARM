@@ -45,6 +45,16 @@ namespace BooterBigArm.TopDown3D
                 if(crouch.TryToggle())return true;
                 playerAction.ReportFeedback(crouch.LastFailure);return false;
             }
+            if(station.StationId=="AP04" && JumpReady)
+            {
+                if(target.ActionKind==AnimationPlaygroundActionKind.Jump)
+                {
+                    if(airborne.TryJump())return true;
+                    playerAction.ReportFeedback(airborne.LastFailure);return false;
+                }
+                if(target.ActionKind==AnimationPlaygroundActionKind.Fall)
+                {playerAction.ReportFeedback("Walk off the drop platform to test falling and landing. Use the reset terminal to return.");return true;}
+            }
             playerAction.ReportFeedback(station.Title + " unavailable: " + station.MissingGate);
             return false;
         }

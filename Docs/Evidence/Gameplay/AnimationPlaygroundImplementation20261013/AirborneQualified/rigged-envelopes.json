@@ -1,0 +1,1031 @@
+{
+    "state": "airborne-rigged-pose-review",
+    "envelopes": [
+        {
+            "name": "OneBone.JumpStandingTakeoffGrounded",
+            "minimumSole": -0.9099999070167542,
+            "maximumHeight": 1.7784714698791505,
+            "maximumProjection": 0.000030100345611572266
+        },
+        {
+            "name": "OneBone.JumpStandingRisingPose",
+            "minimumSole": -0.9078129529953003,
+            "maximumHeight": 1.92323899269104,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.JumpStandingLandingGrounded",
+            "minimumSole": -0.908551812171936,
+            "maximumHeight": 1.7426481246948243,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.JumpStanding.IdleToTakeoff",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.774223804473877,
+            "maximumProjection": 0.0189286470413208
+        },
+        {
+            "name": "OneBone.JumpStanding.TakeoffToRising",
+            "minimumSole": -0.9079998135566711,
+            "maximumHeight": 1.8759496212005616,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.JumpStanding.RisingToFall",
+            "minimumSole": -0.4961214065551758,
+            "maximumHeight": 1.92323899269104,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.JumpStanding.LandingToIdle",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.773005485534668,
+            "maximumProjection": 0.024256527423858644
+        },
+        {
+            "name": "OneBone.JumpRunningTakeoffGrounded",
+            "minimumSole": -0.9099999070167542,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0009992718696594239
+        },
+        {
+            "name": "OneBone.JumpRunningRisingPose",
+            "minimumSole": -0.9079481959342957,
+            "maximumHeight": 1.8337559700012208,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.JumpRunningLandingGrounded",
+            "minimumSole": -0.9099999666213989,
+            "maximumHeight": 1.6992623805999756,
+            "maximumProjection": 0.0012311935424804688
+        },
+        {
+            "name": "OneBone.JumpRunning.IdleToTakeoff",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.801088571548462,
+            "maximumProjection": 0.0270574688911438
+        },
+        {
+            "name": "OneBone.JumpRunning.TakeoffToRising",
+            "minimumSole": -0.9090278148651123,
+            "maximumHeight": 1.8078811168670655,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.JumpRunning.RisingToFall",
+            "minimumSole": -0.5355137586593628,
+            "maximumHeight": 1.8452894687652588,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.JumpRunning.LandingToIdle",
+            "minimumSole": -0.910000205039978,
+            "maximumHeight": 1.7747740745544434,
+            "maximumProjection": 0.039320945739746097
+        },
+        {
+            "name": "OneBone.JumpUnarmedTakeoffGrounded",
+            "minimumSole": -0.9099998474121094,
+            "maximumHeight": 1.8071479797363282,
+            "maximumProjection": 0.0008052587509155273
+        },
+        {
+            "name": "OneBone.JumpUnarmedRisingPose",
+            "minimumSole": -0.9079285264015198,
+            "maximumHeight": 1.9143517017364503,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.JumpUnarmedLandingGrounded",
+            "minimumSole": -0.9089446067810059,
+            "maximumHeight": 1.783482313156128,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.JumpUnarmed.IdleToTakeoff",
+            "minimumSole": -0.910000205039978,
+            "maximumHeight": 1.774223804473877,
+            "maximumProjection": 0.004544854164123535
+        },
+        {
+            "name": "OneBone.JumpUnarmed.TakeoffToRising",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.869377613067627,
+            "maximumProjection": 0.004989504814147949
+        },
+        {
+            "name": "OneBone.JumpUnarmed.RisingToFall",
+            "minimumSole": -0.5036630034446716,
+            "maximumHeight": 1.9132990837097169,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.JumpUnarmed.LandingToIdle",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.772754192352295,
+            "maximumProjection": 0.02255880832672119
+        },
+        {
+            "name": "OneBone.Walk.ToRunningTakeoff0",
+            "minimumSole": -0.910000205039978,
+            "maximumHeight": 1.797501802444458,
+            "maximumProjection": 0.0256730318069458
+        },
+        {
+            "name": "OneBone.Walk.ToRunningTakeoff1",
+            "minimumSole": -0.9099999666213989,
+            "maximumHeight": 1.7970447540283204,
+            "maximumProjection": 0.01679176092147827
+        },
+        {
+            "name": "OneBone.Walk.ToRunningTakeoff2",
+            "minimumSole": -0.9100002646446228,
+            "maximumHeight": 1.7974879741668702,
+            "maximumProjection": 0.02564704418182373
+        },
+        {
+            "name": "OneBone.Walk.ToRunningTakeoff3",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7970374822616578,
+            "maximumProjection": 0.016785740852355958
+        },
+        {
+            "name": "OneBone.Run.ToRunningTakeoff0",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7982826232910157,
+            "maximumProjection": 0.056315839290618899
+        },
+        {
+            "name": "OneBone.Run.ToRunningTakeoff1",
+            "minimumSole": -0.9094479084014893,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.Run.ToRunningTakeoff2",
+            "minimumSole": -0.9099999666213989,
+            "maximumHeight": 1.7982826232910157,
+            "maximumProjection": 0.05631613731384277
+        },
+        {
+            "name": "OneBone.Run.ToRunningTakeoff3",
+            "minimumSole": -0.9094479084014893,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.Sprint.ToRunningTakeoff0",
+            "minimumSole": -0.9099999666213989,
+            "maximumHeight": 1.7838835716247559,
+            "maximumProjection": 0.01381152868270874
+        },
+        {
+            "name": "OneBone.Sprint.ToRunningTakeoff1",
+            "minimumSole": -0.9099997878074646,
+            "maximumHeight": 1.7846521139144898,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.Sprint.ToRunningTakeoff2",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.006723582744598389
+        },
+        {
+            "name": "OneBone.Sprint.ToRunningTakeoff3",
+            "minimumSole": -0.9087016582489014,
+            "maximumHeight": 1.7846267223358155,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.DirectionalLeft.ToRunningTakeoff0",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.8141539096832276,
+            "maximumProjection": 0.07293778657913208
+        },
+        {
+            "name": "OneBone.DirectionalLeft.ToRunningTakeoff1",
+            "minimumSole": -0.9079999923706055,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.DirectionalLeft.ToRunningTakeoff2",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.8141539096832276,
+            "maximumProjection": 0.07293778657913208
+        },
+        {
+            "name": "OneBone.DirectionalLeft.ToRunningTakeoff3",
+            "minimumSole": -0.9079999923706055,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.DirectionalRight.ToRunningTakeoff0",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7849249839782715,
+            "maximumProjection": 0.01539522409439087
+        },
+        {
+            "name": "OneBone.DirectionalRight.ToRunningTakeoff1",
+            "minimumSole": -0.9099998474121094,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 5.960464477539063e-8
+        },
+        {
+            "name": "OneBone.DirectionalRight.ToRunningTakeoff2",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7849249839782715,
+            "maximumProjection": 0.01539534330368042
+        },
+        {
+            "name": "OneBone.DirectionalRight.ToRunningTakeoff3",
+            "minimumSole": -0.9099997878074646,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.FallAirborneIdlePhysicsLoop",
+            "minimumSole": -0.49863970279693606,
+            "maximumHeight": 1.8316650390625,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.FallLandingContactApproach",
+            "minimumSole": -0.9093493223190308,
+            "maximumHeight": 1.7470433712005616,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.FallLandingContactRecovery",
+            "minimumSole": -0.9089236855506897,
+            "maximumHeight": 1.7219288349151612,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.FallToApproach0",
+            "minimumSole": -0.907662034034729,
+            "maximumHeight": 1.8283815383911133,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.FallToHardLanding0",
+            "minimumSole": -0.9075656533241272,
+            "maximumHeight": 1.8283815383911133,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.NestedApproachToLanding0",
+            "minimumSole": -0.9076316952705383,
+            "maximumHeight": 1.744889497756958,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.FallToApproach1",
+            "minimumSole": -0.907662034034729,
+            "maximumHeight": 1.8303544521331788,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.FallToHardLanding1",
+            "minimumSole": -0.9075667262077332,
+            "maximumHeight": 1.8303544521331788,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.NestedApproachToLanding1",
+            "minimumSole": -0.9076347947120667,
+            "maximumHeight": 1.746703863143921,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.FallToApproach2",
+            "minimumSole": -0.907662034034729,
+            "maximumHeight": 1.831641674041748,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.FallToHardLanding2",
+            "minimumSole": -0.9075656533241272,
+            "maximumHeight": 1.831641674041748,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.NestedApproachToLanding2",
+            "minimumSole": -0.9076258540153503,
+            "maximumHeight": 1.7478976249694825,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.FallToApproach3",
+            "minimumSole": -0.907662034034729,
+            "maximumHeight": 1.8300538063049317,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.FallToHardLanding3",
+            "minimumSole": -0.9075656533241272,
+            "maximumHeight": 1.8300538063049317,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.NestedApproachToLanding3",
+            "minimumSole": -0.9076181650161743,
+            "maximumHeight": 1.7463903427124024,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "OneBone.ApproachToHardLanding",
+            "minimumSole": -0.9099999666213989,
+            "maximumHeight": 1.7082288265228272,
+            "maximumProjection": 0.002048015594482422
+        },
+        {
+            "name": "TwoBones.JumpStandingTakeoffGrounded",
+            "minimumSole": -0.909850001335144,
+            "maximumHeight": 1.7784714698791505,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.JumpStandingRisingPose",
+            "minimumSole": -0.9078134298324585,
+            "maximumHeight": 1.92323899269104,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.JumpStandingLandingGrounded",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7426481246948243,
+            "maximumProjection": 0.0005207061767578125
+        },
+        {
+            "name": "TwoBones.JumpStanding.IdleToTakeoff",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.7739719152450562,
+            "maximumProjection": 0.019020020961761476
+        },
+        {
+            "name": "TwoBones.JumpStanding.TakeoffToRising",
+            "minimumSole": -0.9092304706573486,
+            "maximumHeight": 1.8759496212005616,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.JumpStanding.RisingToFall",
+            "minimumSole": -0.49612751603126528,
+            "maximumHeight": 1.92323899269104,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.JumpStanding.LandingToIdle",
+            "minimumSole": -0.910000205039978,
+            "maximumHeight": 1.7726223468780518,
+            "maximumProjection": 0.023735344409942628
+        },
+        {
+            "name": "TwoBones.JumpRunningTakeoffGrounded",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0020719170570373537
+        },
+        {
+            "name": "TwoBones.JumpRunningRisingPose",
+            "minimumSole": -0.9079551100730896,
+            "maximumHeight": 1.8337559700012208,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.JumpRunningLandingGrounded",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.6992623805999756,
+            "maximumProjection": 0.0028124451637268068
+        },
+        {
+            "name": "TwoBones.JumpRunning.IdleToTakeoff",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.8011164665222169,
+            "maximumProjection": 0.027182817459106447
+        },
+        {
+            "name": "TwoBones.JumpRunning.TakeoffToRising",
+            "minimumSole": -0.9090375900268555,
+            "maximumHeight": 1.8078811168670655,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.JumpRunning.RisingToFall",
+            "minimumSole": -0.5355134010314941,
+            "maximumHeight": 1.8452894687652588,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.JumpRunning.LandingToIdle",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.7747702598571778,
+            "maximumProjection": 0.039425551891326907
+        },
+        {
+            "name": "TwoBones.JumpUnarmedTakeoffGrounded",
+            "minimumSole": -0.9095243811607361,
+            "maximumHeight": 1.8071479797363282,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.JumpUnarmedRisingPose",
+            "minimumSole": -0.907900869846344,
+            "maximumHeight": 1.9143517017364503,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.JumpUnarmedLandingGrounded",
+            "minimumSole": -0.909049928188324,
+            "maximumHeight": 1.783482313156128,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.JumpUnarmed.IdleToTakeoff",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7739719152450562,
+            "maximumProjection": 0.004718959331512451
+        },
+        {
+            "name": "TwoBones.JumpUnarmed.TakeoffToRising",
+            "minimumSole": -0.9099999666213989,
+            "maximumHeight": 1.869377613067627,
+            "maximumProjection": 0.004982054233551025
+        },
+        {
+            "name": "TwoBones.JumpUnarmed.RisingToFall",
+            "minimumSole": -0.5036473870277405,
+            "maximumHeight": 1.9132990837097169,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.JumpUnarmed.LandingToIdle",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7725111246109009,
+            "maximumProjection": 0.02228701114654541
+        },
+        {
+            "name": "TwoBones.Walk.ToRunningTakeoff0",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7975311279296876,
+            "maximumProjection": 0.025904715061187745
+        },
+        {
+            "name": "TwoBones.Walk.ToRunningTakeoff1",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7970737218856812,
+            "maximumProjection": 0.016894876956939698
+        },
+        {
+            "name": "TwoBones.Walk.ToRunningTakeoff2",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7975170612335206,
+            "maximumProjection": 0.0258786678314209
+        },
+        {
+            "name": "TwoBones.Walk.ToRunningTakeoff3",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7970666885375977,
+            "maximumProjection": 0.016888916492462159
+        },
+        {
+            "name": "TwoBones.Run.ToRunningTakeoff0",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7983028888702393,
+            "maximumProjection": 0.05652707815170288
+        },
+        {
+            "name": "TwoBones.Run.ToRunningTakeoff1",
+            "minimumSole": -0.909271776676178,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.Run.ToRunningTakeoff2",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.7983027696609498,
+            "maximumProjection": 0.05652743577957153
+        },
+        {
+            "name": "TwoBones.Run.ToRunningTakeoff3",
+            "minimumSole": -0.909271776676178,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.Sprint.ToRunningTakeoff0",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7839033603668213,
+            "maximumProjection": 0.013895690441131592
+        },
+        {
+            "name": "TwoBones.Sprint.ToRunningTakeoff1",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7847650051116944,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.Sprint.ToRunningTakeoff2",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.006774485111236572
+        },
+        {
+            "name": "TwoBones.Sprint.ToRunningTakeoff3",
+            "minimumSole": -0.9087162613868713,
+            "maximumHeight": 1.7846267223358155,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.DirectionalLeft.ToRunningTakeoff0",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.8141844272613526,
+            "maximumProjection": 0.07422268390655518
+        },
+        {
+            "name": "TwoBones.DirectionalLeft.ToRunningTakeoff1",
+            "minimumSole": -0.9080150723457336,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.DirectionalLeft.ToRunningTakeoff2",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.8141844272613526,
+            "maximumProjection": 0.07422268390655518
+        },
+        {
+            "name": "TwoBones.DirectionalLeft.ToRunningTakeoff3",
+            "minimumSole": -0.9080150723457336,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.DirectionalRight.ToRunningTakeoff0",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.784942388534546,
+            "maximumProjection": 0.016223907470703126
+        },
+        {
+            "name": "TwoBones.DirectionalRight.ToRunningTakeoff1",
+            "minimumSole": -0.9099999070167542,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 5.960464477539063e-8
+        },
+        {
+            "name": "TwoBones.DirectionalRight.ToRunningTakeoff2",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.784942388534546,
+            "maximumProjection": 0.016224026679992677
+        },
+        {
+            "name": "TwoBones.DirectionalRight.ToRunningTakeoff3",
+            "minimumSole": -0.9099997282028198,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.FallAirborneIdlePhysicsLoop",
+            "minimumSole": -0.49864596128463747,
+            "maximumHeight": 1.8316650390625,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.FallLandingContactApproach",
+            "minimumSole": -0.90934157371521,
+            "maximumHeight": 1.7470433712005616,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.FallLandingContactRecovery",
+            "minimumSole": -0.9095752835273743,
+            "maximumHeight": 1.7219288349151612,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.FallToApproach0",
+            "minimumSole": -0.9076622128486633,
+            "maximumHeight": 1.8283815383911133,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.FallToHardLanding0",
+            "minimumSole": -0.907893180847168,
+            "maximumHeight": 1.8283815383911133,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.NestedApproachToLanding0",
+            "minimumSole": -0.9079616069793701,
+            "maximumHeight": 1.744889497756958,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.FallToApproach1",
+            "minimumSole": -0.9076622128486633,
+            "maximumHeight": 1.8303544521331788,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.FallToHardLanding1",
+            "minimumSole": -0.9078969359397888,
+            "maximumHeight": 1.8303544521331788,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.NestedApproachToLanding1",
+            "minimumSole": -0.9079650044441223,
+            "maximumHeight": 1.746703863143921,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.FallToApproach2",
+            "minimumSole": -0.9076622128486633,
+            "maximumHeight": 1.831641674041748,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.FallToHardLanding2",
+            "minimumSole": -0.9078916311264038,
+            "maximumHeight": 1.831641674041748,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.NestedApproachToLanding2",
+            "minimumSole": -0.9079559445381165,
+            "maximumHeight": 1.7478976249694825,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.FallToApproach3",
+            "minimumSole": -0.9076622128486633,
+            "maximumHeight": 1.8300538063049317,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.FallToHardLanding3",
+            "minimumSole": -0.9078916311264038,
+            "maximumHeight": 1.8300538063049317,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.NestedApproachToLanding3",
+            "minimumSole": -0.90794837474823,
+            "maximumHeight": 1.7463903427124024,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "TwoBones.ApproachToHardLanding",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7082288265228272,
+            "maximumProjection": 0.0022205114364624025
+        },
+        {
+            "name": "FourBones.JumpStandingTakeoffGrounded",
+            "minimumSole": -0.9098374843597412,
+            "maximumHeight": 1.7784714698791505,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.JumpStandingRisingPose",
+            "minimumSole": -0.9078134298324585,
+            "maximumHeight": 1.92323899269104,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.JumpStandingLandingGrounded",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7426481246948243,
+            "maximumProjection": 0.0005207061767578125
+        },
+        {
+            "name": "FourBones.JumpStanding.IdleToTakeoff",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7739970684051514,
+            "maximumProjection": 0.019026756286621095
+        },
+        {
+            "name": "FourBones.JumpStanding.TakeoffToRising",
+            "minimumSole": -0.9092304706573486,
+            "maximumHeight": 1.8759496212005616,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.JumpStanding.RisingToFall",
+            "minimumSole": -0.49612751603126528,
+            "maximumHeight": 1.92323899269104,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.JumpStanding.LandingToIdle",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.772629976272583,
+            "maximumProjection": 0.023740768432617189
+        },
+        {
+            "name": "FourBones.JumpRunningTakeoffGrounded",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0020719170570373537
+        },
+        {
+            "name": "FourBones.JumpRunningRisingPose",
+            "minimumSole": -0.9079551100730896,
+            "maximumHeight": 1.8337559700012208,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.JumpRunningLandingGrounded",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.6992623805999756,
+            "maximumProjection": 0.0028124451637268068
+        },
+        {
+            "name": "FourBones.JumpRunning.IdleToTakeoff",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.8011163473129273,
+            "maximumProjection": 0.027173340320587159
+        },
+        {
+            "name": "FourBones.JumpRunning.TakeoffToRising",
+            "minimumSole": -0.9090375900268555,
+            "maximumHeight": 1.8078811168670655,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.JumpRunning.RisingToFall",
+            "minimumSole": -0.5355134010314941,
+            "maximumHeight": 1.8452894687652588,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.JumpRunning.LandingToIdle",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.7747702598571778,
+            "maximumProjection": 0.039425551891326907
+        },
+        {
+            "name": "FourBones.JumpUnarmedTakeoffGrounded",
+            "minimumSole": -0.9095058441162109,
+            "maximumHeight": 1.8071479797363282,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.JumpUnarmedRisingPose",
+            "minimumSole": -0.907900869846344,
+            "maximumHeight": 1.9143517017364503,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.JumpUnarmedLandingGrounded",
+            "minimumSole": -0.909049928188324,
+            "maximumHeight": 1.783482313156128,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.JumpUnarmed.IdleToTakeoff",
+            "minimumSole": -0.910000205039978,
+            "maximumHeight": 1.7739970684051514,
+            "maximumProjection": 0.004712462425231934
+        },
+        {
+            "name": "FourBones.JumpUnarmed.TakeoffToRising",
+            "minimumSole": -0.9099999666213989,
+            "maximumHeight": 1.869377613067627,
+            "maximumProjection": 0.004982054233551025
+        },
+        {
+            "name": "FourBones.JumpUnarmed.RisingToFall",
+            "minimumSole": -0.5036473870277405,
+            "maximumHeight": 1.9132990837097169,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.JumpUnarmed.LandingToIdle",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7725454568862916,
+            "maximumProjection": 0.022312641143798829
+        },
+        {
+            "name": "FourBones.Walk.ToRunningTakeoff0",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7975311279296876,
+            "maximumProjection": 0.025847673416137697
+        },
+        {
+            "name": "FourBones.Walk.ToRunningTakeoff1",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7970737218856812,
+            "maximumProjection": 0.016892671585083009
+        },
+        {
+            "name": "FourBones.Walk.ToRunningTakeoff2",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7975170612335206,
+            "maximumProjection": 0.025821268558502198
+        },
+        {
+            "name": "FourBones.Walk.ToRunningTakeoff3",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7970664501190186,
+            "maximumProjection": 0.016886651515960695
+        },
+        {
+            "name": "FourBones.Run.ToRunningTakeoff0",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7983028888702393,
+            "maximumProjection": 0.05652707815170288
+        },
+        {
+            "name": "FourBones.Run.ToRunningTakeoff1",
+            "minimumSole": -0.9092791676521301,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.Run.ToRunningTakeoff2",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.7983027696609498,
+            "maximumProjection": 0.05652743577957153
+        },
+        {
+            "name": "FourBones.Run.ToRunningTakeoff3",
+            "minimumSole": -0.9092791676521301,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.Sprint.ToRunningTakeoff0",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7839033603668213,
+            "maximumProjection": 0.013895690441131592
+        },
+        {
+            "name": "FourBones.Sprint.ToRunningTakeoff1",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7847650051116944,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.Sprint.ToRunningTakeoff2",
+            "minimumSole": -0.9100000858306885,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.006774485111236572
+        },
+        {
+            "name": "FourBones.Sprint.ToRunningTakeoff3",
+            "minimumSole": -0.9087162613868713,
+            "maximumHeight": 1.7846267223358155,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.DirectionalLeft.ToRunningTakeoff0",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.8141844272613526,
+            "maximumProjection": 0.07418626546859741
+        },
+        {
+            "name": "FourBones.DirectionalLeft.ToRunningTakeoff1",
+            "minimumSole": -0.9080150723457336,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.DirectionalLeft.ToRunningTakeoff2",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.8141844272613526,
+            "maximumProjection": 0.07418626546859741
+        },
+        {
+            "name": "FourBones.DirectionalLeft.ToRunningTakeoff3",
+            "minimumSole": -0.9080150723457336,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.DirectionalRight.ToRunningTakeoff0",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.784942388534546,
+            "maximumProjection": 0.016199231147766115
+        },
+        {
+            "name": "FourBones.DirectionalRight.ToRunningTakeoff1",
+            "minimumSole": -0.9099999070167542,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 5.960464477539063e-8
+        },
+        {
+            "name": "FourBones.DirectionalRight.ToRunningTakeoff2",
+            "minimumSole": -0.9100001454353333,
+            "maximumHeight": 1.784942388534546,
+            "maximumProjection": 0.016199350357055665
+        },
+        {
+            "name": "FourBones.DirectionalRight.ToRunningTakeoff3",
+            "minimumSole": -0.9099997282028198,
+            "maximumHeight": 1.7794115543365479,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.FallAirborneIdlePhysicsLoop",
+            "minimumSole": -0.49864596128463747,
+            "maximumHeight": 1.8316650390625,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.FallLandingContactApproach",
+            "minimumSole": -0.90934157371521,
+            "maximumHeight": 1.7470433712005616,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.FallLandingContactRecovery",
+            "minimumSole": -0.9095903635025024,
+            "maximumHeight": 1.7219288349151612,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.FallToApproach0",
+            "minimumSole": -0.9076622128486633,
+            "maximumHeight": 1.8283815383911133,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.FallToHardLanding0",
+            "minimumSole": -0.9078772068023682,
+            "maximumHeight": 1.8283815383911133,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.NestedApproachToLanding0",
+            "minimumSole": -0.9079458117485046,
+            "maximumHeight": 1.744889497756958,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.FallToApproach1",
+            "minimumSole": -0.9076622128486633,
+            "maximumHeight": 1.8303544521331788,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.FallToHardLanding1",
+            "minimumSole": -0.9078810214996338,
+            "maximumHeight": 1.8303544521331788,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.NestedApproachToLanding1",
+            "minimumSole": -0.9079490900039673,
+            "maximumHeight": 1.746703863143921,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.FallToApproach2",
+            "minimumSole": -0.9076622128486633,
+            "maximumHeight": 1.831641674041748,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.FallToHardLanding2",
+            "minimumSole": -0.9078744649887085,
+            "maximumHeight": 1.831641674041748,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.NestedApproachToLanding2",
+            "minimumSole": -0.907940149307251,
+            "maximumHeight": 1.7478976249694825,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.FallToApproach3",
+            "minimumSole": -0.9076622128486633,
+            "maximumHeight": 1.8300538063049317,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.FallToHardLanding3",
+            "minimumSole": -0.9078744649887085,
+            "maximumHeight": 1.8300538063049317,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.NestedApproachToLanding3",
+            "minimumSole": -0.9079326391220093,
+            "maximumHeight": 1.7463903427124024,
+            "maximumProjection": 0.0
+        },
+        {
+            "name": "FourBones.ApproachToHardLanding",
+            "minimumSole": -0.9100000262260437,
+            "maximumHeight": 1.7082288265228272,
+            "maximumProjection": 0.002221345901489258
+        }
+    ]
+}
