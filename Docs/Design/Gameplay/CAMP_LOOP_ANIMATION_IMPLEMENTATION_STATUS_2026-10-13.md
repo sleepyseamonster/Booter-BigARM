@@ -13,6 +13,8 @@ FND3 is implemented: a runtime-owned lab input clone preserves original binding 
 
 The timed physical coordinator, rig/profile/contact qualification, animation imports, player cutover, station construction and motion-gap closure follow next. Private binding readiness remains unavailable until imports qualify; no physical action is promoted from preview alone.
 
+FND4 has begun with the bounded action clock and marker/effect ledger. Three isolated clock tests pass for long-frame multi-cycle markers, exactly-once claiming/commit, pause, cancellation before/after commit, epoch checks, boundary markers and invalid inputs. Motor/posture modes, presentation/contact routing, the physical coordinator and reset are still pending. This helper does not enable station behavior by itself.
+
 ## Validation and source boundaries
 
 File restoration fixtures pass nine checks. The isolated Unity candidate at `D:\BooterBigArmValidation\AnimationPlayground20261013` contains the Camp Loop dependency closure and active scripts/settings/UI/character/test assets; it is a validation copy, not a Git worktree. Initial session and targeting regressions pass 44 tests. All 25 menu regressions pass after the candidate's missing SystemMenu prefab dependency was restored. Installed-session checks are repeated against the saved scene. See the [foundation evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Foundations/README.md).
