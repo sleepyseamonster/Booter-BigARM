@@ -1,0 +1,28 @@
+{
+  "proof": "Pinned Unity 6000.4.0f1 isolated EditMode structural/collider fixtures; no gameplay smoke or feel acceptance",
+  "tests": [
+    "BooterBigArm.Tests.TopDown3DCameraClearanceTests.ClearBoom_PreservesAuthoredDistance",
+    "BooterBigArm.Tests.TopDown3DCameraClearanceTests.CloseBlocker_OverridesMinimumDistanceWithoutPenetration",
+    "BooterBigArm.Tests.TopDown3DCameraClearanceTests.ConfigureAndViewReset_ResolveClearanceImmediately",
+    "BooterBigArm.Tests.TopDown3DCameraClearanceTests.FollowUpdate_UsesSameClearanceAsSnap",
+    "BooterBigArm.Tests.TopDown3DCameraClearanceTests.FullyEnclosedBoom_ReportsFailureAndDoesNotAcceptUnsafePose",
+    "BooterBigArm.Tests.TopDown3DCameraClearanceTests.FullyEnclosedNewTarget_RetainsRecheckedSafePreviousPosition",
+    "BooterBigArm.Tests.TopDown3DCameraClearanceTests.OriginInsideBlocker_RecoversToClearPointOnAuthoredBoom",
+    "BooterBigArm.Tests.TopDown3DCameraClearanceTests.SaturatedCast_FindsNearestBlocker",
+    "BooterBigArm.Tests.TopDown3DCameraClearanceTests.SaturatedOriginOverlap_StillExcludesTargetAndFindsExternalBlocker",
+    "BooterBigArm.Tests.TopDown3DCameraClearanceTests.TargetHierarchyAndTriggers_AreIgnoredInBothQueries",
+    "BooterBigArm.Tests.TopDown3DFoundationTests.CameraLookAhead_IsFrameRateIndependentRangeLimitedAndQuicklyRecenters",
+    "BooterBigArm.Tests.TopDown3DFoundationTests.CameraOrbit_IsFrameRateIndependentAndPitchClamped"
+  ],
+  "passed": 12,
+  "candidate": "D:\\BooterBigArmValidation\\CampAtmosphere20261014-01",
+  "source_sha256": {
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraRig.cs": "6f8f29ee1db8a3a4ae8fbfb4c00d240bdd42eec28a76dc6d8760e0ef85b40625",
+    "Assets/_Project/Tests/Editor/TopDown3DCameraClearanceTests.cs": "b0ebf511ee0b83ae81e1c075e3da4242542f1e7f866b410661211f37360164e9",
+    "Assets/_Project/Tests/Editor/TopDown3DCameraClearanceTests.cs.meta": "f290825a31321882fd38eb0ba5e932de2ecd5e7f3ddbaa720c24684a22a4a91b"
+  },
+  "limits": [
+    "Fully enclosed boom may remain unresolved and hold prior pose",
+    "128 coarse recovery probes may miss narrow clear pockets; no off-axis framing"
+  ]
+}
