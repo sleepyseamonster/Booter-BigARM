@@ -75,6 +75,7 @@ namespace BooterBigArm.TopDown3D
                 coordinator.Configure(player, presentation, ResetRegistry, returns,
                     () => !Application.isFocused || playerInput.Mode != TopDown3DInputMode.Gameplay);
                 player.ConfigureLaboratorySpeeds(coordinator, bindings.slowWalkSpeed, bindings.runSpeed, bindings.sprintSpeed);
+                player.BlockUnqualifiedLaboratoryTraversal(coordinator);
                 ownsInput = () => IsBusy;
                 playerInput.AnimationActionOwned = ownsInput;
                 playerInput.AnimationCancelRequested += CancelOwnedAction;
@@ -82,7 +83,7 @@ namespace BooterBigArm.TopDown3D
                 menu.AnimationPreviewRequested += PreviewMotion;
                 menu.AnimationResetRequested += ResetSession;
                 playerAction.ConfigureStationActions(this);
-                RegisterPlayerReset(); servicesBound = true;
+                RegisterPlayerReset(); BindStations(); servicesBound = true;
                 Advance(AnimationPlaygroundReadiness.ServicesBound);
                 Advance(AnimationPlaygroundReadiness.VisualReady);
                 // Physical station coverage and author acceptance gate PlayableReady separately.
@@ -112,6 +113,7 @@ namespace BooterBigArm.TopDown3D
         private void CancelOwnedAction() => coordinator?.Cancel();
         public bool TryBegin(TopDown3DInteractionTarget target)
         {
+            if(TryDispatchStation(target)) return true;
             playerAction?.ReportFeedback(string.IsNullOrEmpty(selectedSource)
                 ? "Choose an animation variant in the lab palette."
                 : "This station's physical action is awaiting contact and movement qualification.");
@@ -142,6 +144,7 @@ namespace BooterBigArm.TopDown3D
         private void DetachPlayerServices()
         {
             coordinator?.Cancel();
+            UnbindStations();
             if (playerInput != null)
             {
                 playerInput.AnimationCancelRequested -= CancelOwnedAction;

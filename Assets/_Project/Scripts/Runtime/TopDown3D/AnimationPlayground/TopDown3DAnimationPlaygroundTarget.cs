@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BooterBigArm.TopDown3D
 {
     public enum AnimationPlaygroundActionKind
-    { Preview, Mining, Crouch, Slide, Strafe, Ladder, Throw, Punch, Kick, Jump, Fall, Hurt, Death, Pickup, Push, Button, Chair, GroundRest, Sleep, Mount, Corridor }
+    { Preview, Mining, Crouch, Slide, Strafe, Ladder, Throw, Punch, Kick, Jump, Fall, Hurt, Death, Pickup, Push, Button, Chair, GroundRest, Sleep, Mount, Corridor, Reset }
 
     [DisallowMultipleComponent]
     public sealed class TopDown3DAnimationPlaygroundTarget : MonoBehaviour, ITopDown3DStationInteraction, ITopDown3DTargetEpoch, ITopDown3DTargetColliderOwner
@@ -15,7 +15,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private Transform interactionPoint;
         [SerializeField, Min(.1f)] private float interactionRange=3f;
         [SerializeField] private Collider[] ownedColliders=Array.Empty<Collider>();
-        private bool available=true;
+        [SerializeField] private bool available=true;
         public UnityEngine.Object UnityObject => this;
         public string StableId => stableId;
         public AnimationPlaygroundActionKind ActionKind => kind;

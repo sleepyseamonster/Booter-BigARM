@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="52" result="Passed" total="52" passed="52" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-14 06:09:28Z" end-time="2026-10-14 06:09:30Z" duration="1.4400034">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="1155" result="Passed" start-time="2026-10-14 06:09:28Z" end-time="2026-10-14 06:09:30Z" duration="1.440003" total="52" passed="52" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2377" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/AnimationPlayground20261013/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="1155" result="Passed" start-time="2026-10-14 06:09:28Z" end-time="2026-10-14 06:09:30Z" duration="1.300495" total="52" passed="52" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="21100" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2378" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="1155" result="Passed" start-time="2026-10-14 06:09:28Z" end-time="2026-10-14 06:09:30Z" duration="1.296437" total="52" passed="52" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2379" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="1155" result="Passed" start-time="2026-10-14 06:09:28Z" end-time="2026-10-14 06:09:30Z" duration="1.291169" total="52" passed="52" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1009" name="AnimationPlaygroundInputTests" fullname="BooterBigArm.Tests.AnimationPlaygroundInputTests" classname="BooterBigArm.Tests.AnimationPlaygroundInputTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-14 06:09:12Z" end-time="2026-10-14 06:09:13Z" duration="0.683894" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1011" name="CompatibleOverridesAreCopiedWithoutMutatingTheSource" fullname="BooterBigArm.Tests.AnimationPlaygroundInputTests.CompatibleOverridesAreCopiedWithoutMutatingTheSource" methodname="CompatibleOverridesAreCopiedWithoutMutatingTheSource" classname="BooterBigArm.Tests.AnimationPlaygroundInputTests" runstate="Runnable" seed="1657378727" result="Passed" start-time="2026-10-14 06:09:12Z" end-time="2026-10-14 06:09:12Z" duration="0.121592" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1013" name="HeldJumpCannotLeakThroughModalReturnAndEastCancelWinsPickup" fullname="BooterBigArm.Tests.AnimationPlaygroundInputTests.HeldJumpCannotLeakThroughModalReturnAndEastCancelWinsPickup" methodname="HeldJumpCannotLeakThroughModalReturnAndEastCancelWinsPickup" classname="BooterBigArm.Tests.AnimationPlaygroundInputTests" runstate="Runnable" seed="53561480" result="Passed" start-time="2026-10-14 06:09:12Z" end-time="2026-10-14 06:09:13Z" duration="0.342259" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1014" name="InitialPreferenceInheritanceDoesNotWriteEitherFileAndExistingLabDataWins" fullname="BooterBigArm.Tests.AnimationPlaygroundInputTests.InitialPreferenceInheritanceDoesNotWriteEitherFileAndExistingLabDataWins" methodname="InitialPreferenceInheritanceDoesNotWriteEitherFileAndExistingLabDataWins" classname="BooterBigArm.Tests.AnimationPlaygroundInputTests" runstate="Runnable" seed="888741945" result="Passed" start-time="2026-10-14 06:09:13Z" end-time="2026-10-14 06:09:13Z" duration="0.098301" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1012" name="LabCoactiveBindingsRejectNewActionConflictsWithoutChangingProductionPolicy" fullname="BooterBigArm.Tests.AnimationPlaygroundInputTests.LabCoactiveBindingsRejectNewActionConflictsWithoutChangingProductionPolicy" methodname="LabCoactiveBindingsRejectNewActionConflictsWithoutChangingProductionPolicy" classname="BooterBigArm.Tests.AnimationPlaygroundInputTests" runstate="Runnable" seed="770086930" result="Passed" start-time="2026-10-14 06:09:13Z" end-time="2026-10-14 06:09:13Z" duration="0.028815" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1010" name="OwnedAssetPreservesShippedIdsAndDeterministicLabBindings" fullname="BooterBigArm.Tests.AnimationPlaygroundInputTests.OwnedAssetPreservesShippedIdsAndDeterministicLabBindings" methodname="OwnedAssetPreservesShippedIdsAndDeterministicLabBindings" classname="BooterBigArm.Tests.AnimationPlaygroundInputTests" runstate="Runnable" seed="1343236115" result="Passed" start-time="2026-10-14 06:09:13Z" end-time="2026-10-14 06:09:13Z" duration="0.050338" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1323" name="CampLoopTestingSceneTests" fullname="BooterBigArm.Tests.CampLoopTestingSceneTests" classname="BooterBigArm.Tests.CampLoopTestingSceneTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-14 06:09:13Z" end-time="2026-10-14 06:09:19Z" duration="6.442781" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1325" name="RuntimeInstallersProvideCampCompassHarvesterAndMenusOnce" fullname="BooterBigArm.Tests.CampLoopTestingSceneTests.RuntimeInstallersProvideCampCompassHarvesterAndMenusOnce" methodname="RuntimeInstallersProvideCampCompassHarvesterAndMenusOnce" classname="BooterBigArm.Tests.CampLoopTestingSceneTests" runstate="Runnable" seed="266244969" result="Passed" start-time="2026-10-14 06:09:13Z" end-time="2026-10-14 06:09:16Z" duration="3.629703" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1324" name="SavedSliceRetainsCompleteCampContentAndNativeCollision" fullname="BooterBigArm.Tests.CampLoopTestingSceneTests.SavedSliceRetainsCompleteCampContentAndNativeCollision" methodname="SavedSliceRetainsCompleteCampContentAndNativeCollision" classname="BooterBigArm.Tests.CampLoopTestingSceneTests" runstate="Runnable" seed="1956824147" result="Passed" start-time="2026-10-14 06:09:16Z" end-time="2026-10-14 06:09:18Z" duration="1.401507" asserts="0">
+              <properties />
+              <output><![CDATA[CAMP_LOOP_VALIDATION_PASS: complete native grid, camp route, actors, seven rocks, twelve ironstone nodes, cache, controls and lighting.
+]]></output>
+            </test-case>
+            <test-case id="1326" name="TestingCheckpointCannotUseProductionSaveFolder" fullname="BooterBigArm.Tests.CampLoopTestingSceneTests.TestingCheckpointCannotUseProductionSaveFolder" methodname="TestingCheckpointCannotUseProductionSaveFolder" classname="BooterBigArm.Tests.CampLoopTestingSceneTests" runstate="Runnable" seed="1989984853" result="Passed" start-time="2026-10-14 06:09:18Z" end-time="2026-10-14 06:09:19Z" duration="1.405413" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1870" name="TopDown3DMenuTests" fullname="BooterBigArm.Tests.TopDown3DMenuTests" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" testcasecount="25" result="Passed" start-time="2026-10-14 06:09:19Z" end-time="2026-10-14 06:09:23Z" duration="3.356342" total="25" passed="25" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1892" name="ControlsDeviceDisconnectCancelsListeningAndPreservesTheDraft" fullname="BooterBigArm.Tests.TopDown3DMenuTests.ControlsDeviceDisconnectCancelsListeningAndPreservesTheDraft" methodname="ControlsDeviceDisconnectCancelsListeningAndPreservesTheDraft" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="1168140870" result="Passed" start-time="2026-10-14 06:09:19Z" end-time="2026-10-14 06:09:20Z" duration="0.212313" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1894" name="ControlsFailedSaveKeepsDraftAndRuntimeBindingsUnchanged" fullname="BooterBigArm.Tests.TopDown3DMenuTests.ControlsFailedSaveKeepsDraftAndRuntimeBindingsUnchanged" methodname="ControlsFailedSaveKeepsDraftAndRuntimeBindingsUnchanged" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="282393855" result="Passed" start-time="2026-10-14 06:09:20Z" end-time="2026-10-14 06:09:20Z" duration="0.100244" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1889" name="ControlsHoldApplyPersistsAndBackProtectsUnappliedDraft" fullname="BooterBigArm.Tests.TopDown3DMenuTests.ControlsHoldApplyPersistsAndBackProtectsUnappliedDraft" methodname="ControlsHoldApplyPersistsAndBackProtectsUnappliedDraft" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="984982982" result="Passed" start-time="2026-10-14 06:09:20Z" end-time="2026-10-14 06:09:20Z" duration="0.186163" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1890" name="ControlsListenFiltersDeviceAndDefersRuntimeMutationUntilApply" fullname="BooterBigArm.Tests.TopDown3DMenuTests.ControlsListenFiltersDeviceAndDefersRuntimeMutationUntilApply" methodname="ControlsListenFiltersDeviceAndDefersRuntimeMutationUntilApply" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="553804015" result="Passed" start-time="2026-10-14 06:09:20Z" end-time="2026-10-14 06:09:20Z" duration="0.138977" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1891" name="ControlsListenRejectsConflictAndBackCancelsWithoutLeavingPanel" fullname="BooterBigArm.Tests.TopDown3DMenuTests.ControlsListenRejectsConflictAndBackCancelsWithoutLeavingPanel" methodname="ControlsListenRejectsConflictAndBackCancelsWithoutLeavingPanel" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="1657360882" result="Passed" start-time="2026-10-14 06:09:20Z" end-time="2026-10-14 06:09:20Z" duration="0.083183" asserts="0">
+              <properties />
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1898" name="ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership" fullname="BooterBigArm.Tests.TopDown3DMenuTests.ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 06:09:20Z" end-time="2026-10-14 06:09:20Z" duration="0.425893" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1896" name="ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership(False)" fullname="BooterBigArm.Tests.TopDown3DMenuTests.ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership(False)" methodname="ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="427691429" result="Passed" start-time="2026-10-14 06:09:20Z" end-time="2026-10-14 06:09:20Z" duration="0.208246" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1897" name="ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership(True)" fullname="BooterBigArm.Tests.TopDown3DMenuTests.ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership(True)" methodname="ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="2127590418" result="Passed" start-time="2026-10-14 06:09:20Z" end-time="2026-10-14 06:09:20Z" duration="0.210300" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-case id="1895" name="ControlsResetRequiresConfirmationAndApplyBeforeReplacingSavedPreferences" fullname="BooterBigArm.Tests.TopDown3DMenuTests.ControlsResetRequiresConfirmationAndApplyBeforeReplacingSavedPreferences" methodname="ControlsResetRequiresConfirmationAndApplyBeforeReplacingSavedPreferences" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="365606907" result="Passed" start-time="2026-10-14 06:09:20Z" end-time="2026-10-14 06:09:21Z" duration="0.183112" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1878" name="DeletingEarlierPage_RetainsDefaultByStableIdentity" fullname="BooterBigArm.Tests.TopDown3DMenuTests.DeletingEarlierPage_RetainsDefaultByStableIdentity" methodname="DeletingEarlierPage_RetainsDefaultByStableIdentity" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="476344717" result="Passed" start-time="2026-10-14 06:09:21Z" end-time="2026-10-14 06:09:21Z" duration="0.173748" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1879" name="DisabledInput_ClosesCoveredMenuWithoutReenablingGameplay" fullname="BooterBigArm.Tests.TopDown3DMenuTests.DisabledInput_ClosesCoveredMenuWithoutReenablingGameplay" methodname="DisabledInput_ClosesCoveredMenuWithoutReenablingGameplay" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="1437725092" result="Passed" start-time="2026-10-14 06:09:21Z" end-time="2026-10-14 06:09:21Z" duration="0.101172" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1872" name="Escape_OpensOnceThenBacksOutWithoutDoubleTransition" fullname="BooterBigArm.Tests.TopDown3DMenuTests.Escape_OpensOnceThenBacksOutWithoutDoubleTransition" methodname="Escape_OpensOnceThenBacksOutWithoutDoubleTransition" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="265633427" result="Passed" start-time="2026-10-14 06:09:21Z" end-time="2026-10-14 06:09:21Z" duration="0.142767" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1877" name="Exit_RequiresExplicitConfirmAndCannotBeAcceptedByStart" fullname="BooterBigArm.Tests.TopDown3DMenuTests.Exit_RequiresExplicitConfirmAndCannotBeAcceptedByStart" methodname="Exit_RequiresExplicitConfirmAndCannotBeAcceptedByStart" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="882233334" result="Passed" start-time="2026-10-14 06:09:21Z" end-time="2026-10-14 06:09:21Z" duration="0.094188" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1873" name="Inventory_IsSuspendedAndSystemToggleCannotCloseIt" fullname="BooterBigArm.Tests.TopDown3DMenuTests.Inventory_IsSuspendedAndSystemToggleCannotCloseIt" methodname="Inventory_IsSuspendedAndSystemToggleCannotCloseIt" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="889720426" result="Passed" start-time="2026-10-14 06:09:21Z" end-time="2026-10-14 06:09:21Z" duration="0.095137" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1893" name="InventoryOpenerCannotRebindToAUiTransferButton" fullname="BooterBigArm.Tests.TopDown3DMenuTests.InventoryOpenerCannotRebindToAUiTransferButton" methodname="InventoryOpenerCannotRebindToAUiTransferButton" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="2103516486" result="Passed" start-time="2026-10-14 06:09:21Z" end-time="2026-10-14 06:09:21Z" duration="0.086017" asserts="0">
+              <properties />
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1887" name="Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum" fullname="BooterBigArm.Tests.TopDown3DMenuTests.Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 06:09:21Z" end-time="2026-10-14 06:09:22Z" duration="0.265650" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1885" name="Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum(null)" fullname="BooterBigArm.Tests.TopDown3DMenuTests.Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum(null)" methodname="Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="107075572" result="Passed" start-time="2026-10-14 06:09:21Z" end-time="2026-10-14 06:09:21Z" duration="0.167174" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1886" name="Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum(&quot;Unknown&quot;)" fullname="BooterBigArm.Tests.TopDown3DMenuTests.Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum(&quot;Unknown&quot;)" methodname="Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="918157728" result="Passed" start-time="2026-10-14 06:09:21Z" end-time="2026-10-14 06:09:22Z" duration="0.089260" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-case id="1888" name="Settings_UnknownVersionIsPreservedAndFailedWritesRetainAcceptedState" fullname="BooterBigArm.Tests.TopDown3DMenuTests.Settings_UnknownVersionIsPreservedAndFailedWritesRetainAcceptedState" methodname="Settings_UnknownVersionIsPreservedAndFailedWritesRetainAcceptedState" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="301041071" result="Passed" start-time="2026-10-14 06:09:22Z" end-time="2026-10-14 06:09:22Z" duration="0.081139" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1875" name="Setup_DirtyBackProtectsPreferencesAndExplicitDiscardReturnsRoot" fullname="BooterBigArm.Tests.TopDown3DMenuTests.Setup_DirtyBackProtectsPreferencesAndExplicitDiscardReturnsRoot" methodname="Setup_DirtyBackProtectsPreferencesAndExplicitDiscardReturnsRoot" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="1428912903" result="Passed" start-time="2026-10-14 06:09:22Z" end-time="2026-10-14 06:09:22Z" duration="0.093735" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1876" name="SetupApply_PersistsExistingSchemaAndReturnsToInvokingInventory" fullname="BooterBigArm.Tests.TopDown3DMenuTests.SetupApply_PersistsExistingSchemaAndReturnsToInvokingInventory" methodname="SetupApply_PersistsExistingSchemaAndReturnsToInvokingInventory" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="471249685" result="Passed" start-time="2026-10-14 06:09:22Z" end-time="2026-10-14 06:09:22Z" duration="0.087401" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1871" name="Start_OpensOnceAndDoesNotChangeSimulationTime" fullname="BooterBigArm.Tests.TopDown3DMenuTests.Start_OpensOnceAndDoesNotChangeSimulationTime" methodname="Start_OpensOnceAndDoesNotChangeSimulationTime" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="352627275" result="Passed" start-time="2026-10-14 06:09:22Z" end-time="2026-10-14 06:09:22Z" duration="0.113168" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1874" name="Start_WinsOverWheelStickReleaseWithoutCommand" fullname="BooterBigArm.Tests.TopDown3DMenuTests.Start_WinsOverWheelStickReleaseWithoutCommand" methodname="Start_WinsOverWheelStickReleaseWithoutCommand" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="2049200332" result="Passed" start-time="2026-10-14 06:09:22Z" end-time="2026-10-14 06:09:22Z" duration="0.112791" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1884" name="ViewDistance_FailedApplyKeepsCameraAndRetainsDraft" fullname="BooterBigArm.Tests.TopDown3DMenuTests.ViewDistance_FailedApplyKeepsCameraAndRetainsDraft" methodname="ViewDistance_FailedApplyKeepsCameraAndRetainsDraft" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="1306110025" result="Passed" start-time="2026-10-14 06:09:22Z" end-time="2026-10-14 06:09:22Z" duration="0.105986" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="1880" name="ViewDistance_InitializesAcceptedStateAndAppliesOnlyAfterSaving" fullname="BooterBigArm.Tests.TopDown3DMenuTests.ViewDistance_InitializesAcceptedStateAndAppliesOnlyAfterSaving" methodname="ViewDistance_InitializesAcceptedStateAndAppliesOnlyAfterSaving" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="282675227" result="Passed" start-time="2026-10-14 06:09:22Z" end-time="2026-10-14 06:09:22Z" duration="0.125220" asserts="0">
+              <properties />
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1883" name="ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation" fullname="BooterBigArm.Tests.TopDown3DMenuTests.ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 06:09:22Z" end-time="2026-10-14 06:09:23Z" duration="0.274134" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1881" name="ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation(False)" fullname="BooterBigArm.Tests.TopDown3DMenuTests.ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation(False)" methodname="ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="92174514" result="Passed" start-time="2026-10-14 06:09:22Z" end-time="2026-10-14 06:09:22Z" duration="0.128179" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="1882" name="ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation(True)" fullname="BooterBigArm.Tests.TopDown3DMenuTests.ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation(True)" methodname="ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation" classname="BooterBigArm.Tests.TopDown3DMenuTests" runstate="Runnable" seed="1400912552" result="Passed" start-time="2026-10-14 06:09:22Z" end-time="2026-10-14 06:09:23Z" duration="0.129977" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1899" name="TopDown3DMenuUiIntegrationTests" fullname="BooterBigArm.Tests.TopDown3DMenuUiIntegrationTests" classname="BooterBigArm.Tests.TopDown3DMenuUiIntegrationTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-14 06:09:29Z" end-time="2026-10-14 06:09:30Z" duration="1.127207" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1900" name="UiModule_HeldSubmitIsBlocked_FreshSubmitAndBackWork_WorldClockContinues" fullname="BooterBigArm.Tests.TopDown3DMenuUiIntegrationTests.UiModule_HeldSubmitIsBlocked_FreshSubmitAndBackWork_WorldClockContinues" methodname="UiModule_HeldSubmitIsBlocked_FreshSubmitAndBackWork_WorldClockContinues" classname="BooterBigArm.Tests.TopDown3DMenuUiIntegrationTests" runstate="Runnable" seed="730034980" result="Passed" start-time="2026-10-14 06:09:23Z" end-time="2026-10-14 06:09:30Z" duration="7.092302" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1939" name="TopDown3DPlayerLocomotionTests" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" testcasecount="18" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.059313" total="18" passed="18" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1940" name="AccelerationProfile_UsesDistinctStartStopAndDirectionChangeRates" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.AccelerationProfile_UsesDistinctStartStopAndDirectionChangeRates" methodname="AccelerationProfile_UsesDistinctStartStopAndDirectionChangeRates" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="2099463121" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.003932" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1957" name="AnimationSpeedSmoothing_IsIndependentOfPhysicsStepSubdivision" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.AnimationSpeedSmoothing_IsIndependentOfPhysicsStepSubdivision" methodname="AnimationSpeedSmoothing_IsIndependentOfPhysicsStepSubdivision" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="1130884528" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.001013" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1950" name="DirectionalGait_UsesLocalTrajectoryAndMeasuredYawSymmetrically" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.DirectionalGait_UsesLocalTrajectoryAndMeasuredYawSymmetrically" methodname="DirectionalGait_UsesLocalTrajectoryAndMeasuredYawSymmetrically" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="1974949321" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.003416" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1946" name="GaitCadence_RemainsContinuousAtNominalRunSpeed" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.GaitCadence_RemainsContinuousAtNominalRunSpeed" methodname="GaitCadence_RemainsContinuousAtNominalRunSpeed" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="1360574796" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.000959" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1947" name="GaitPhaseContact_DetectsOrdinaryAndWrappedCrossingsOnce" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.GaitPhaseContact_DetectsOrdinaryAndWrappedCrossingsOnce" methodname="GaitPhaseContact_DetectsOrdinaryAndWrappedCrossingsOnce" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="1335256734" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.000747" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1945" name="GaitWeights_AreContinuousAndNormalizedAcrossRunAndSprintBoundaries" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.GaitWeights_AreContinuousAndNormalizedAcrossRunAndSprintBoundaries" methodname="GaitWeights_AreContinuousAndNormalizedAcrossRunAndSprintBoundaries" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="13862072" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.000431" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1951" name="GroundedTravelState_HoldsStartAndStopUntilTheirReleaseThresholds" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.GroundedTravelState_HoldsStartAndStopUntilTheirReleaseThresholds" methodname="GroundedTravelState_HoldsStartAndStopUntilTheirReleaseThresholds" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="1591605754" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.001313" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1953" name="HardTurnClassification_IsDirectionalLatchedAndTraversalSafe" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.HardTurnClassification_IsDirectionalLatchedAndTraversalSafe" methodname="HardTurnClassification_IsDirectionalLatchedAndTraversalSafe" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="301533956" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.000466" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1954" name="LocomotionProfile_OwnsOneCompleteHumanoidNoRootMotionSet" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.LocomotionProfile_OwnsOneCompleteHumanoidNoRootMotionSet" methodname="LocomotionProfile_OwnsOneCompleteHumanoidNoRootMotionSet" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="1180654618" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.033274" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1943" name="LocomotionSnapshot_PreservesAnimationFacingInputsWithoutOwningMotion" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.LocomotionSnapshot_PreservesAnimationFacingInputsWithoutOwningMotion" methodname="LocomotionSnapshot_PreservesAnimationFacingInputsWithoutOwningMotion" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="2013297080" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.001470" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1941" name="MovementInput_UsesOneDeadzoneAuthorityAndOnlyClampsMagnitude" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.MovementInput_UsesOneDeadzoneAuthorityAndOnlyClampsMagnitude" methodname="MovementInput_UsesOneDeadzoneAuthorityAndOnlyClampsMagnitude" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="1007237380" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.000595" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1956" name="OneShotSideSelection_UsesTheNextMeasuredPlant" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.OneShotSideSelection_UsesTheNextMeasuredPlant" methodname="OneShotSideSelection_UsesTheNextMeasuredPlant" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="1263973619" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.000620" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1955" name="ProfilePhaseRemap_AlignsBothMeasuredContactsAcrossTwoStrideLoops" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.ProfilePhaseRemap_AlignsBothMeasuredContactsAcrossTwoStrideLoops" methodname="ProfilePhaseRemap_AlignsBothMeasuredContactsAcrossTwoStrideLoops" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="1558772208" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.000259" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1942" name="ResponseTiming_DefaultRatesStayInsideWeightyPlanBounds" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.ResponseTiming_DefaultRatesStayInsideWeightyPlanBounds" methodname="ResponseTiming_DefaultRatesStayInsideWeightyPlanBounds" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="927395394" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.000827" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1948" name="StopCadenceAlignment_IsBoundedAndMovesTowardTheNextPlant" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.StopCadenceAlignment_IsBoundedAndMovesTowardTheNextPlant" methodname="StopCadenceAlignment_IsBoundedAndMovesTowardTheNextPlant" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="1846701217" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.000348" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1952" name="SustainedCadence_ClampsTheDominantClipToProfilePlaybackBounds" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.SustainedCadence_ClampsTheDominantClipToProfilePlaybackBounds" methodname="SustainedCadence_ClampsTheDominantClipToProfilePlaybackBounds" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="1688937459" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.000293" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1949" name="TurnGaitWeight_IsSignedDirectionIndependentAndBounded" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.TurnGaitWeight_IsSignedDirectionIndependentAndBounded" methodname="TurnGaitWeight_IsSignedDirectionIndependentAndBounded" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="295024298" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.000299" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1944" name="TurnProfile_ReducesTurnRateOnlyAboveNormalRunSpeed" fullname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.TurnProfile_ReducesTurnRateOnlyAboveNormalRunSpeed" methodname="TurnProfile_ReducesTurnRateOnlyAboveNormalRunSpeed" classname="BooterBigArm.Tests.TopDown3DPlayerLocomotionTests" runstate="Runnable" seed="85475405" result="Passed" start-time="2026-10-14 06:09:30Z" end-time="2026-10-14 06:09:30Z" duration="0.001812" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

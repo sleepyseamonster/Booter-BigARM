@@ -366,7 +366,7 @@ namespace BooterBigArm.TopDown3D
                 input.MoveValue,
                 cameraBasis.forward,
                 cameraBasis.right);
-            if (AnimationPosture==AnimationPlaygroundPosture.Standing && TryAdvanceClimb(desiredDirection))
+            if (!laboratoryBlocksLegacyTraversal && AnimationPosture==AnimationPlaygroundPosture.Standing && TryAdvanceClimb(desiredDirection))
             {
                 return;
             }
@@ -420,7 +420,7 @@ namespace BooterBigArm.TopDown3D
                 && AnimationPosture==AnimationPlaygroundPosture.Standing && !input.AnimationSlowWalkHeld
                 && desiredDirection.sqrMagnitude > 0.0001f
                 && traversalCooldownRemaining <= 0f;
-            if (SprintActive && TryBeginTraversal(desiredDirection))
+            if (!laboratoryBlocksLegacyTraversal && SprintActive && TryBeginTraversal(desiredDirection))
             {
                 return;
             }

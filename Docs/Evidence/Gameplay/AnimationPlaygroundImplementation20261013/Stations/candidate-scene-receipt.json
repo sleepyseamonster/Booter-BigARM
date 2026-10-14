@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "state": "validated-in-candidate-not-applied-to-author-scene",
+  "author_scene_sha256": "91df493660fcf6e4aa1ce735d9a8927189813da670ea2d0f6fdac829440b8ae4",
+  "candidate_scene_sha256": "ef54bca188b15e0dce5db33eac2234fc92130de91260adfc306a3a01946f7e3d",
+  "before_records": 604,
+  "candidate_records": 1278,
+  "changed_existing_ids": [
+    "2126727608",
+    "451293422",
+    "451293423"
+  ],
+  "changed_record_roles": [
+    "camera transform follows calibrated actor down 0.33m",
+    "session station and return references",
+    "session hierarchy"
+  ],
+  "added_records": 674,
+  "removed_ids": [],
+  "all_nine_terrain_records_unchanged": true,
+  "original_actor_and_companion_records_unchanged": true,
+  "main_install_blocker": "Live editor main-thread IPC times out; current scene dirty state cannot be confirmed."
+}

@@ -10,6 +10,7 @@ namespace BooterBigArm.TopDown3D
         private GameObject animationPanel;
         private readonly List<AnimationPlaygroundCatalogEntry> animationChoices=new();
         private int animationPage;
+        private string animationStationFilter;
         public string SelectedAnimationId {get;private set;}
         public event Action<string> AnimationSelectionChanged;
         public event Action<string> AnimationPreviewRequested;
@@ -21,21 +22,30 @@ namespace BooterBigArm.TopDown3D
             if(animationSession == null || animationSession.Catalog == null || animationSession.PalettePrefab == null || !input.HasAnimationCommands) return;
             animationPanel=Instantiate(animationSession.PalettePrefab);animationPanel.name="AnimationPalette";
             view.RegisterExtraPanel("AnimationPalette",animationPanel);
-            foreach(var entry in animationSession.Catalog.entries)
-                if(entry != null && !entry.restrictedReference) animationChoices.Add(entry);
+            FilterAnimationChoices(null);
             input.AnimationPaletteRequested+=OpenAnimationPalette;
         }
         public void OpenAnimationPalette()
+            => OpenAnimationPaletteForStation(null);
+        public void OpenAnimationPaletteForStation(string stationId)
         {
             if(!configured || animationPanel == null || input.Mode != TopDown3DInputMode.Gameplay) return;
+            if(animationStationFilter != stationId) animationPage=0;
+            FilterAnimationChoices(stationId);
             if(!IsOpen) Open();
-            DrawAnimationPage();Show("AnimationPalette","LabSelect0");
+            DrawAnimationPage();Show("AnimationPalette",animationChoices.Count==0 ? "LabPaletteBack" : "LabSelect0");
+        }
+        private void FilterAnimationChoices(string stationId)
+        {
+            animationStationFilter=stationId; animationChoices.Clear();
+            foreach(var entry in animationSession.Catalog.entries)
+                if(entry != null && !entry.restrictedReference && (stationId==null || entry.stationId==stationId)) animationChoices.Add(entry);
         }
         private void DrawAnimationPage()
         {
             var pages=Mathf.Max(1,Mathf.CeilToInt(animationChoices.Count/(float)AnimationRows));
             animationPage=Mathf.Clamp(animationPage,0,pages-1);
-            view.SetText("LabPaletteTitle","Animation playground  "+(animationPage+1)+" / "+pages);
+            view.SetText("LabPaletteTitle",(animationStationFilter ?? "Animation playground")+"  "+(animationPage+1)+" / "+pages);
             for(var row=0;row<AnimationRows;row++)
             {
                 var index=animationPage*AnimationRows+row;var exists=index<animationChoices.Count;
@@ -47,10 +57,11 @@ namespace BooterBigArm.TopDown3D
             }
             view.SetButton("LabPrevious",animationPage>0);view.SetButton("LabNext",animationPage+1<pages);
             var selected=animationSession.Bindings?.Find(SelectedAnimationId);
-            view.SetButton("LabPreview",animationSession.PreviewReady && selected?.CanPreview==true);
+            var selectedInStation=animationChoices.Exists(value=>value.sourceId==SelectedAnimationId);
+            view.SetButton("LabPreview",selectedInStation && animationSession.PreviewReady && selected?.CanPreview==true);
             view.SetText("LabPaletteStatus",animationSession.Readiness == AnimationPlaygroundReadiness.Failed
                 ? "Unavailable: " + animationSession.UnavailableReason : string.IsNullOrEmpty(SelectedAnimationId)
-                ? "Select a variant. A fresh gameplay press performs an available action."
+                ? animationChoices.Count==0 ? "This station has no unarmed variants yet. F9 opens the full library." : "Select a variant. Physical actions require contact qualification."
                 : "Selected: "+SelectedAnimationId+". Preview has no gameplay effects.");
         }
         private bool HandleAnimationPaletteCommand(string command)
@@ -62,7 +73,7 @@ namespace BooterBigArm.TopDown3D
             if(command == "LabReset"){Close();AnimationResetRequested?.Invoke();return true;}
             if(command == "LabPreview")
             {
-                if(animationSession.PreviewReady && animationSession.Bindings?.Find(SelectedAnimationId)?.CanPreview==true)
+                if(animationChoices.Exists(value=>value.sourceId==SelectedAnimationId) && animationSession.PreviewReady && animationSession.Bindings?.Find(SelectedAnimationId)?.CanPreview==true)
                 {var selected=SelectedAnimationId;Close();AnimationPreviewRequested?.Invoke(selected);}
                 return true;
             }

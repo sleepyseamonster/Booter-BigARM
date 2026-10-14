@@ -38,6 +38,7 @@ namespace BooterBigArm.TopDown3D
         private RaycastHit[] animationReturnHits=new RaycastHit[16];
         private int animationSupportReleaseTicks;
         private float animationWalkSpeed=1.5f,animationCrouchSpeed=1.2f;
+        private bool laboratoryBlocksLegacyTraversal;
         public AnimationPlaygroundMotionMode AnimationMotionMode {get;private set;}
         public AnimationPlaygroundPosture AnimationPosture {get;private set;}
         public AnimationPlaygroundMotorSnapshot AnimationSnapshot {get;private set;}
@@ -62,10 +63,15 @@ namespace BooterBigArm.TopDown3D
                 throw new ArgumentException("The laboratory posture owner and finite ordered speeds are required.");
             walkSpeed=run;sprintSpeed=sprint;animationWalkSpeed=slowWalk;
         }
+        public void BlockUnqualifiedLaboratoryTraversal(object owner)
+        {
+            if(!ReferenceEquals(owner,animationPostureOwner))throw new ArgumentException("Only the laboratory posture owner configures traversal qualification.");
+            laboratoryBlocksLegacyTraversal=true;
+        }
         public bool ReleaseAnimationPostureOwner(object owner)
         {
             if(owner==null || !ReferenceEquals(owner,animationPostureOwner))return false;
-            TryRestoreAnimationPosture(owner);animationPostureOwner=null;return true;
+            TryRestoreAnimationPosture(owner);animationPostureOwner=null;laboratoryBlocksLegacyTraversal=false;return true;
         }
         private float AnimationLocomotionSpeed(float normalSpeed)
         {

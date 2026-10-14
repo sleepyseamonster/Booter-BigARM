@@ -1,0 +1,439 @@
+{
+  "schema": 1,
+  "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+  "state": "prepared-for-author-scene",
+  "sourceSceneHash": "91df493660fcf6e4aa1ce735d9a8927189813da670ea2d0f6fdac829440b8ae4",
+  "campOrigin": {
+    "x": -1848.0,
+    "y": -47.386043548583984,
+    "z": -1498.0
+  },
+  "translation": {
+    "x": -300.0,
+    "y": 0.0,
+    "z": -300.0
+  },
+  "stations": [
+    {
+      "id": "AP01",
+      "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP01.prefab",
+      "supportGuid": "60515153188334e6f9791bf15a3adb02",
+      "position": {
+        "x": -2018.0,
+        "y": -66.9688720703125,
+        "z": -1638.0
+      },
+      "minimumGround": -70.11536407470703,
+      "maximumGround": -67.14887237548828,
+      "maximumSlope": 7.9728217124938965,
+      "rampLength": 4.0,
+      "rampRise": 0.6518813967704773,
+      "rampYaw": -90.0,
+      "rampToe": {
+        "x": 18.0,
+        "y": -0.6518813967704773,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "AP02",
+      "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP02.prefab",
+      "supportGuid": "a815a794cfa81f7468eb25b330590d76",
+      "position": {
+        "x": -2058.0,
+        "y": -72.46237182617188,
+        "z": -1718.0
+      },
+      "minimumGround": -75.77366638183594,
+      "maximumGround": -72.64237213134766,
+      "maximumSlope": 14.845718383789062,
+      "rampLength": 4.0,
+      "rampRise": 0.514544665813446,
+      "rampYaw": -90.0,
+      "rampToe": {
+        "x": 18.0,
+        "y": -0.514544665813446,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "AP03",
+      "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP03.prefab",
+      "supportGuid": "60515153188334e6f9791bf15a3adb02",
+      "position": {
+        "x": -2018.0,
+        "y": -70.48471069335938,
+        "z": -1718.0
+      },
+      "minimumGround": -73.35652923583984,
+      "maximumGround": -70.66471099853516,
+      "maximumSlope": 17.334272384643555,
+      "rampLength": 4.0,
+      "rampRise": 0.5969497561454773,
+      "rampYaw": -90.0,
+      "rampToe": {
+        "x": 18.0,
+        "y": -0.5969497561454773,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "AP04",
+      "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP04.prefab",
+      "supportGuid": "60515153188334e6f9791bf15a3adb02",
+      "position": {
+        "x": -1978.0,
+        "y": -68.946533203125,
+        "z": -1718.0
+      },
+      "minimumGround": -71.81834411621094,
+      "maximumGround": -69.12653350830078,
+      "maximumSlope": 8.729425430297852,
+      "rampLength": 4.0,
+      "rampRise": 0.7617523074150085,
+      "rampYaw": -90.0,
+      "rampToe": {
+        "x": 18.0,
+        "y": -0.7617523074150085,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "AP05",
+      "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP05.prefab",
+      "supportGuid": "a815a794cfa81f7468eb25b330590d76",
+      "position": {
+        "x": -2058.0,
+        "y": -71.19886779785156,
+        "z": -1678.0
+      },
+      "minimumGround": -74.83977508544922,
+      "maximumGround": -71.37886810302734,
+      "maximumSlope": 24.25159454345703,
+      "rampLength": 4.0,
+      "rampRise": 0.569476306438446,
+      "rampYaw": -90.0,
+      "rampToe": {
+        "x": 18.0,
+        "y": -0.569476306438446,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "AP06",
+      "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP06.prefab",
+      "supportGuid": "60515153188334e6f9791bf15a3adb02",
+      "position": {
+        "x": -2018.0,
+        "y": -68.89159393310547,
+        "z": -1678.0
+      },
+      "minimumGround": -71.81834411621094,
+      "maximumGround": -69.07159423828125,
+      "maximumSlope": 7.703165054321289,
+      "rampLength": 4.0,
+      "rampRise": -0.00732879713177681,
+      "rampYaw": -90.0,
+      "rampToe": {
+        "x": 18.0,
+        "y": 0.00732879713177681,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "AP07",
+      "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP07.prefab",
+      "supportGuid": "a815a794cfa81f7468eb25b330590d76",
+      "position": {
+        "x": -2058.0,
+        "y": -69.22120666503906,
+        "z": -1638.0
+      },
+      "minimumGround": -72.3676986694336,
+      "maximumGround": -69.40120697021484,
+      "maximumSlope": 10.678183555603027,
+      "rampLength": 4.0,
+      "rampRise": 0.3222762942314148,
+      "rampYaw": -90.0,
+      "rampToe": {
+        "x": 18.0,
+        "y": -0.3222762942314148,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "AP08",
+      "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP08.prefab",
+      "supportGuid": "a815a794cfa81f7468eb25b330590d76",
+      "position": {
+        "x": -2058.0,
+        "y": -67.57315826416016,
+        "z": -1598.0
+      },
+      "minimumGround": -70.55484008789062,
+      "maximumGround": -67.75315856933594,
+      "maximumSlope": 8.287946701049805,
+      "rampLength": 4.0,
+      "rampRise": 0.3772079348564148,
+      "rampYaw": -90.0,
+      "rampToe": {
+        "x": 18.0,
+        "y": -0.3772079348564148,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "AP09",
+      "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP09.prefab",
+      "supportGuid": "60515153188334e6f9791bf15a3adb02",
+      "position": {
+        "x": -2018.0,
+        "y": -64.66160583496094,
+        "z": -1598.0
+      },
+      "minimumGround": -68.19264221191406,
+      "maximumGround": -64.84160614013672,
+      "maximumSlope": 8.449640274047852,
+      "rampLength": 4.0,
+      "rampRise": 0.6518813967704773,
+      "rampYaw": -90.0,
+      "rampToe": {
+        "x": 18.0,
+        "y": -0.6518813967704773,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "AP10",
+      "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP10.prefab",
+      "supportGuid": "60515153188334e6f9791bf15a3adb02",
+      "position": {
+        "x": -1978.0,
+        "y": -62.24446487426758,
+        "z": -1598.0
+      },
+      "minimumGround": -65.44589233398438,
+      "maximumGround": -62.42446517944336,
+      "maximumSlope": 9.374524116516113,
+      "rampLength": 4.0,
+      "rampRise": 0.514544665813446,
+      "rampYaw": -90.0,
+      "rampToe": {
+        "x": 18.0,
+        "y": -0.514544665813446,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "AP11",
+      "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP11.prefab",
+      "supportGuid": "60515153188334e6f9791bf15a3adb02",
+      "position": {
+        "x": -1978.0,
+        "y": -64.00238800048828,
+        "z": -1638.0
+      },
+      "minimumGround": -67.58834838867188,
+      "maximumGround": -64.18238830566406,
+      "maximumSlope": 8.899626731872559,
+      "rampLength": 4.0,
+      "rampRise": 0.4046737551689148,
+      "rampYaw": -90.0,
+      "rampToe": {
+        "x": 18.0,
+        "y": -0.4046737551689148,
+        "z": 0.0
+      }
+    },
+    {
+      "id": "AP12",
+      "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP12.prefab",
+      "supportGuid": "60515153188334e6f9791bf15a3adb02",
+      "position": {
+        "x": -1978.0,
+        "y": -66.41952514648438,
+        "z": -1678.0
+      },
+      "minimumGround": -69.18147277832031,
+      "maximumGround": -66.59952545166016,
+      "maximumSlope": 8.048130989074707,
+      "rampLength": 4.0,
+      "rampRise": 0.4321395754814148,
+      "rampYaw": -90.0,
+      "rampToe": {
+        "x": 18.0,
+        "y": -0.4321395754814148,
+        "z": 0.0
+      }
+    }
+  ],
+  "rejectedCandidates": [
+    "(0.00, 0.00, 0.00): AP02 relief 4.120m exceeds the bounded support-leg height.",
+    "(20.00, 0.00, 0.00): AP02 relief 3.845m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, 20.00): AP02 relief 4.175m exceeds the bounded support-leg height.",
+    "(-20.00, 0.00, 0.00): AP02 relief 4.120m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -20.00): AP02 relief 4.120m exceeds the bounded support-leg height.",
+    "(20.00, 0.00, 20.00): AP02 relief 3.845m exceeds the bounded support-leg height.",
+    "(-20.00, 0.00, 20.00): AP02 relief 3.736m exceeds the bounded support-leg height.",
+    "(20.00, 0.00, -20.00): AP04 relief 3.900m exceeds the bounded support-leg height.",
+    "(-20.00, 0.00, -20.00): AP02 relief 3.900m exceeds the bounded support-leg height.",
+    "(40.00, 0.00, 0.00): AP02 relief 3.900m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, 40.00): AP02 relief 4.175m exceeds the bounded support-leg height.",
+    "(-40.00, 0.00, 0.00): AP02 relief 4.120m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -40.00): AP02 relief 3.900m exceeds the bounded support-leg height.",
+    "(40.00, 0.00, 40.00): AP02 relief 3.955m exceeds the bounded support-leg height.",
+    "(-40.00, 0.00, 40.00): AP02 relief 4.340m exceeds the bounded support-leg height.",
+    "(40.00, 0.00, -40.00): AP02 relief 3.900m exceeds the bounded support-leg height.",
+    "(-40.00, 0.00, -40.00): AP03 relief 3.900m exceeds the bounded support-leg height.",
+    "(60.00, 0.00, 0.00): AP02 relief 3.681m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, 60.00): AP02 relief 3.955m exceeds the bounded support-leg height.",
+    "(-60.00, 0.00, 0.00): AP02 relief 3.900m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -60.00): AP02 relief 3.791m exceeds the bounded support-leg height.",
+    "(60.00, 0.00, 60.00): AP02 relief 3.845m exceeds the bounded support-leg height.",
+    "(-60.00, 0.00, 60.00): AP02 relief 3.736m exceeds the bounded support-leg height.",
+    "(60.00, 0.00, -60.00): AP02 relief 3.736m exceeds the bounded support-leg height.",
+    "(-60.00, 0.00, -60.00): AP02 relief 3.571m exceeds the bounded support-leg height.",
+    "(80.00, 0.00, 0.00): AP02 relief 4.230m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, 80.00): AP02 relief 3.900m exceeds the bounded support-leg height.",
+    "(-80.00, 0.00, 0.00): AP02 relief 4.395m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -80.00): AP04 relief 3.955m exceeds the bounded support-leg height.",
+    "(80.00, 0.00, 80.00): AP02 relief 4.340m exceeds the bounded support-leg height.",
+    "(-80.00, 0.00, 80.00): AP02 relief 3.516m exceeds the bounded support-leg height.",
+    "(80.00, 0.00, -80.00): AP02 relief 3.955m exceeds the bounded support-leg height.",
+    "(-80.00, 0.00, -80.00): AP02 relief 3.626m exceeds the bounded support-leg height.",
+    "(100.00, 0.00, 0.00): AP02 relief 3.900m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, 100.00): AP02 relief 4.395m exceeds the bounded support-leg height.",
+    "(-100.00, 0.00, 0.00): AP02 relief 3.571m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -100.00): AP02 relief 4.010m exceeds the bounded support-leg height.",
+    "(100.00, 0.00, 100.00): AP02 relief 4.230m exceeds the bounded support-leg height.",
+    "(-100.00, 0.00, 100.00): AP02 relief 4.285m exceeds the bounded support-leg height.",
+    "(100.00, 0.00, -100.00): AP02 relief 3.626m exceeds the bounded support-leg height.",
+    "(-100.00, 0.00, -100.00): AP02 conflicts with Collision",
+    "(120.00, 0.00, 0.00): AP02 relief 3.571m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, 120.00): AP02 relief 4.010m exceeds the bounded support-leg height.",
+    "(-120.00, 0.00, 0.00): AP02 relief 4.450m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -120.00): AP02 relief 3.791m exceeds the bounded support-leg height.",
+    "(120.00, 0.00, 120.00): AP02 relief 6.263m exceeds the bounded support-leg height.",
+    "(-120.00, 0.00, 120.00): AP02 relief 3.955m exceeds the bounded support-leg height.",
+    "(120.00, 0.00, -120.00): AP03 relief 8.240m exceeds the bounded support-leg height.",
+    "(-120.00, 0.00, -120.00): AP03 relief 3.516m exceeds the bounded support-leg height.",
+    "(140.00, 0.00, 0.00): AP02 relief 6.153m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, 140.00): AP02 relief 4.505m exceeds the bounded support-leg height.",
+    "(-140.00, 0.00, 0.00): AP02 relief 3.626m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -140.00): AP03 relief 3.845m exceeds the bounded support-leg height.",
+    "(140.00, 0.00, 140.00): AP02 relief 5.219m exceeds the bounded support-leg height.",
+    "(-140.00, 0.00, 140.00): AP02 relief 3.845m exceeds the bounded support-leg height.",
+    "(140.00, 0.00, -140.00): AP02 relief 7.032m exceeds the bounded support-leg height.",
+    "(-140.00, 0.00, -140.00): AP02 relief 3.626m exceeds the bounded support-leg height.",
+    "(160.00, 0.00, 0.00): AP02 relief 5.603m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, 160.00): AP02 relief 4.065m exceeds the bounded support-leg height.",
+    "(-160.00, 0.00, 0.00): AP02 relief 4.065m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -160.00): AP02 relief 3.516m exceeds the bounded support-leg height.",
+    "(160.00, 0.00, 160.00): AP02 relief 5.548m exceeds the bounded support-leg height.",
+    "(-160.00, 0.00, 160.00): AP02 relief 4.340m exceeds the bounded support-leg height.",
+    "(160.00, 0.00, -160.00): AP02 relief 15.656m exceeds the bounded support-leg height.",
+    "(-160.00, 0.00, -160.00): AP02 relief 3.791m exceeds the bounded support-leg height.",
+    "(180.00, 0.00, 0.00): AP02 relief 7.361m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, 180.00): AP02 relief 3.845m exceeds the bounded support-leg height.",
+    "(-180.00, 0.00, 0.00): AP03 relief 3.626m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -180.00): AP02 relief 3.681m exceeds the bounded support-leg height.",
+    "(180.00, 0.00, 180.00): AP02 relief 6.098m exceeds the bounded support-leg height.",
+    "(-180.00, 0.00, 180.00): AP02 relief 3.736m exceeds the bounded support-leg height.",
+    "(180.00, 0.00, -180.00): AP02 relief 19.886m exceeds the bounded support-leg height.",
+    "(-180.00, 0.00, -180.00): AP05 relief 3.845m exceeds the bounded support-leg height.",
+    "(200.00, 0.00, 0.00): AP02 relief 17.140m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, 200.00): AP02 relief 3.571m exceeds the bounded support-leg height.",
+    "(-200.00, 0.00, 0.00): AP02 relief 3.900m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -200.00): AP02 relief 3.516m exceeds the bounded support-leg height.",
+    "(200.00, 0.00, 200.00): AP02 relief 4.230m exceeds the bounded support-leg height.",
+    "(-200.00, 0.00, 200.00): AP02 relief 4.010m exceeds the bounded support-leg height.",
+    "(200.00, 0.00, -200.00): AP02 relief 24.336m exceeds the bounded support-leg height.",
+    "(-200.00, 0.00, -200.00): AP03 relief 3.571m exceeds the bounded support-leg height.",
+    "(220.00, 0.00, 0.00): The authored footprint leaves the nine-tile boundary.",
+    "(0.00, 0.00, 220.00): AP02 relief 3.955m exceeds the bounded support-leg height.",
+    "(-220.00, 0.00, 0.00): AP02 relief 4.010m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -220.00): AP03 relief 3.516m exceeds the bounded support-leg height.",
+    "(220.00, 0.00, 220.00): The authored footprint leaves the nine-tile boundary.",
+    "(-220.00, 0.00, 220.00): AP02 relief 3.736m exceeds the bounded support-leg height.",
+    "(220.00, 0.00, -220.00): The authored footprint leaves the nine-tile boundary.",
+    "(-220.00, 0.00, -220.00): AP01 relief 3.845m exceeds the bounded support-leg height.",
+    "(240.00, 0.00, 0.00): The authored footprint leaves the nine-tile boundary.",
+    "(0.00, 0.00, 240.00): AP02 relief 4.285m exceeds the bounded support-leg height.",
+    "(-240.00, 0.00, 0.00): AP02 relief 3.736m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -240.00): AP02 relief 3.626m exceeds the bounded support-leg height.",
+    "(240.00, 0.00, 240.00): The authored footprint leaves the nine-tile boundary.",
+    "(-240.00, 0.00, 240.00): AP02 relief 3.955m exceeds the bounded support-leg height.",
+    "(240.00, 0.00, -240.00): The authored footprint leaves the nine-tile boundary.",
+    "(-240.00, 0.00, -240.00): AP12 relief 3.571m exceeds the bounded support-leg height.",
+    "(260.00, 0.00, 0.00): The authored footprint leaves the nine-tile boundary.",
+    "(0.00, 0.00, 260.00): AP02 relief 4.834m exceeds the bounded support-leg height.",
+    "(-260.00, 0.00, 0.00): AP02 relief 3.626m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -260.00): AP03 relief 3.571m exceeds the bounded support-leg height.",
+    "(260.00, 0.00, 260.00): The authored footprint leaves the nine-tile boundary.",
+    "(-260.00, 0.00, 260.00): AP02 relief 3.626m exceeds the bounded support-leg height.",
+    "(260.00, 0.00, -260.00): The authored footprint leaves the nine-tile boundary.",
+    "(-260.00, 0.00, -260.00): AP10 relief 3.845m exceeds the bounded support-leg height.",
+    "(280.00, 0.00, 0.00): The authored footprint leaves the nine-tile boundary.",
+    "(0.00, 0.00, 280.00): AP02 relief 3.845m exceeds the bounded support-leg height.",
+    "(-280.00, 0.00, 0.00): AP02 relief 3.845m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -280.00): AP05 relief 3.626m exceeds the bounded support-leg height.",
+    "(280.00, 0.00, 280.00): The authored footprint leaves the nine-tile boundary.",
+    "(-280.00, 0.00, 280.00): AP02 relief 4.340m exceeds the bounded support-leg height.",
+    "(280.00, 0.00, -280.00): The authored footprint leaves the nine-tile boundary.",
+    "(-280.00, 0.00, -280.00): AP10 relief 3.681m exceeds the bounded support-leg height.",
+    "(300.00, 0.00, 0.00): The authored footprint leaves the nine-tile boundary.",
+    "(0.00, 0.00, 300.00): AP02 relief 4.175m exceeds the bounded support-leg height.",
+    "(-300.00, 0.00, 0.00): AP02 relief 3.955m exceeds the bounded support-leg height.",
+    "(0.00, 0.00, -300.00): AP02 relief 3.571m exceeds the bounded support-leg height.",
+    "(300.00, 0.00, 300.00): The authored footprint leaves the nine-tile boundary.",
+    "(-300.00, 0.00, 300.00): AP02 relief 4.120m exceeds the bounded support-leg height.",
+    "(300.00, 0.00, -300.00): The authored footprint leaves the nine-tile boundary."
+  ],
+  "terrains": [
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c00.asset",
+      "guid": "999bfb827415a4d2f9a5de7c19097dc1",
+      "sha256": "4a90a8cf6f8f4cb44e7b7e5aa5299214ef3e730af10a51a6640525f2ba10bd96"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r12_c01.asset",
+      "guid": "2d035b52c30804cfcac7e8a71fa9bb91",
+      "sha256": "3ed97d19a82c33688e6b9414cc4e7b85c75e5f5931b0d61353b6cff64d5ae8ee"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c00.asset",
+      "guid": "2e7f61817ea2345c9bf1ccfcebec52a9",
+      "sha256": "82421aa53b3223dcd2112ad368db0069e01bd0ab036aab6a4cb6c822eb54a31b"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r13_c01.asset",
+      "guid": "2c3e00ee8fe4f4b11a1572b25e8f24bc",
+      "sha256": "ff43f761a5720b9558e927db2fd69c94420908e1c2fcaf29774dfd393b097db3"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c00.asset",
+      "guid": "60515153188334e6f9791bf15a3adb02",
+      "sha256": "62ef403f8676b990163b0c5c40b016542b00b70e71ceccb03da16104720fa2c2"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/BadwaterFourSlices/TerrainData/r14_c01.asset",
+      "guid": "5a68d2243324442e0a38b0601359d5e4",
+      "sha256": "e06f8d2802f3535984430026c41692722b42b3a316651b5a78e969168dd0e45e"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/WestNorthNorthwest2026-10-07/TerrainData/west/r12_c15.asset",
+      "guid": "2c905a91a0b74694f8065f3335a9f140",
+      "sha256": "9149b971c75e0d586460b0817900a4ccb74811171d4ca114ab3f015776ba88e1"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/WestNorthNorthwest2026-10-07/TerrainData/west/r13_c15.asset",
+      "guid": "42315f87035ce03409f824685365265f",
+      "sha256": "5c23777b27ee12e0559bfddf6b9b33cb74c1e42e21f3990989255f69b6b46196"
+    },
+    {
+      "path": "Assets/_Project/Art/Terrain/WestNorthNorthwest2026-10-07/TerrainData/west/r14_c15.asset",
+      "guid": "a815a794cfa81f7468eb25b330590d76",
+      "sha256": "9307f748bff61dafcd17683f8a141df56bedcf2e7899fd6c898eaca516c1b9d8"
+    }
+  ]
+}

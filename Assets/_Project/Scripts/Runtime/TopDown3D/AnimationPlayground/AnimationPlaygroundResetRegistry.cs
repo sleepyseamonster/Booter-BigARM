@@ -56,10 +56,13 @@ namespace BooterBigArm.TopDown3D
                     var order = a.ResetStage.CompareTo(b.ResetStage);
                     return order != 0 ? order : string.CompareOrdinal(a.ResetId, b.ResetId);
                 });
+                var physicsRestored = false;
                 foreach (var value in ordered)
                 {
                     try
                     {
+                        if (!physicsRestored && value.ResetStage >= AnimationPlaygroundResetStage.Actor)
+                        { Physics.SyncTransforms(); physicsRestored = true; }
                         if (value.TryRestoreForReset(out var reason)) continue;
                         LastFailure = value.ResetId + ": " + (reason ?? "Reset is blocked.");
                     }
