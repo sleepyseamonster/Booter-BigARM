@@ -1,0 +1,35 @@
+[
+  {
+    "role": "Walk",
+    "samples": 212,
+    "finite": true,
+    "halfPeriodFeetGap": 0.005522865,
+    "halfPeriodRelativeFeetGap": 0.00630465755,
+    "halfPeriodHipsGap": 0.000867553,
+    "nativePlaybackMedianStanceDrift": 0.12704432,
+    "stanceSamples": 165,
+    "minimumSole": -0.9101087
+  },
+  {
+    "role": "Run",
+    "samples": 133,
+    "finite": true,
+    "halfPeriodFeetGap": 2.20139128E-07,
+    "halfPeriodRelativeFeetGap": 2.06476543E-07,
+    "halfPeriodHipsGap": 2.04890966E-08,
+    "nativePlaybackMedianStanceDrift": 1.97098672,
+    "stanceSamples": 67,
+    "minimumSole": -0.912290752
+  },
+  {
+    "role": "Sprint",
+    "samples": 98,
+    "finite": true,
+    "halfPeriodFeetGap": 0.18070595,
+    "halfPeriodRelativeFeetGap": 0.189726219,
+    "halfPeriodHipsGap": 0.0176278315,
+    "nativePlaybackMedianStanceDrift": 1.90357161,
+    "stanceSamples": 30,
+    "minimumSole": -0.9151161
+  }
+]

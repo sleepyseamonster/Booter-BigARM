@@ -1,0 +1,383 @@
+[
+  {
+    "role": "Walk",
+    "curves": 130,
+    "maximumKeys": 142,
+    "length": 2.33333349,
+    "worstHalfPeriodCurveDifference": 0.008361489,
+    "changes": []
+  },
+  {
+    "role": "Run",
+    "curves": 130,
+    "maximumKeys": 89,
+    "length": 1.4666667,
+    "worstHalfPeriodCurveDifference": 0.0,
+    "changes": []
+  },
+  {
+    "role": "Sprint",
+    "curves": 130,
+    "maximumKeys": 65,
+    "length": 1.06666672,
+    "worstHalfPeriodCurveDifference": 0.9565686,
+    "changes": [
+      {
+        "name": "RootT.y",
+        "delta": 0.0334717035
+      },
+      {
+        "name": "RootT.z",
+        "delta": 0.0340981036
+      },
+      {
+        "name": "RootQ.x",
+        "delta": 0.0209757686
+      },
+      {
+        "name": "RootQ.y",
+        "delta": 0.03669522
+      },
+      {
+        "name": "RootQ.z",
+        "delta": 0.0243889689
+      },
+      {
+        "name": "LeftFootT.x",
+        "delta": 0.05068245
+      },
+      {
+        "name": "LeftFootT.y",
+        "delta": 0.16462341
+      },
+      {
+        "name": "LeftFootT.z",
+        "delta": 0.143848181
+      },
+      {
+        "name": "LeftFootQ.x",
+        "delta": 0.05014074
+      },
+      {
+        "name": "LeftFootQ.y",
+        "delta": 0.04935634
+      },
+      {
+        "name": "LeftFootQ.z",
+        "delta": 0.0273941755
+      },
+      {
+        "name": "LeftFootQ.w",
+        "delta": 0.0630479455
+      },
+      {
+        "name": "RightFootT.x",
+        "delta": 0.0794945955
+      },
+      {
+        "name": "RightFootT.y",
+        "delta": 0.09437287
+      },
+      {
+        "name": "RightFootT.z",
+        "delta": 0.0865608156
+      },
+      {
+        "name": "RightFootQ.x",
+        "delta": 0.07995553
+      },
+      {
+        "name": "RightFootQ.y",
+        "delta": 0.0483928323
+      },
+      {
+        "name": "RightFootQ.z",
+        "delta": 0.112878248
+      },
+      {
+        "name": "RightFootQ.w",
+        "delta": 0.07539058
+      },
+      {
+        "name": "LeftHandT.x",
+        "delta": 0.111482345
+      },
+      {
+        "name": "LeftHandT.y",
+        "delta": 0.07590803
+      },
+      {
+        "name": "LeftHandT.z",
+        "delta": 0.0187853277
+      },
+      {
+        "name": "LeftHandQ.x",
+        "delta": 0.183145881
+      },
+      {
+        "name": "LeftHandQ.y",
+        "delta": 0.149272472
+      },
+      {
+        "name": "LeftHandQ.z",
+        "delta": 0.124510735
+      },
+      {
+        "name": "LeftHandQ.w",
+        "delta": 0.14757134
+      },
+      {
+        "name": "RightHandT.x",
+        "delta": 0.0675317347
+      },
+      {
+        "name": "RightHandT.y",
+        "delta": 0.0304776281
+      },
+      {
+        "name": "RightHandT.z",
+        "delta": 0.04222036
+      },
+      {
+        "name": "RightHandQ.x",
+        "delta": 0.125513434
+      },
+      {
+        "name": "RightHandQ.y",
+        "delta": 0.177249908
+      },
+      {
+        "name": "RightHandQ.z",
+        "delta": 0.28106606
+      },
+      {
+        "name": "RightHandQ.w",
+        "delta": 0.0213050246
+      },
+      {
+        "name": "Spine Front-Back",
+        "delta": 0.246304929
+      },
+      {
+        "name": "Spine Left-Right",
+        "delta": 0.2456148
+      },
+      {
+        "name": "Spine Twist Left-Right",
+        "delta": 0.271008253
+      },
+      {
+        "name": "Chest Front-Back",
+        "delta": 0.162388444
+      },
+      {
+        "name": "Chest Left-Right",
+        "delta": 0.0398338065
+      },
+      {
+        "name": "Chest Twist Left-Right",
+        "delta": 0.0328654349
+      },
+      {
+        "name": "UpperChest Front-Back",
+        "delta": 0.317147851
+      },
+      {
+        "name": "UpperChest Left-Right",
+        "delta": 0.08133927
+      },
+      {
+        "name": "UpperChest Twist Left-Right",
+        "delta": 0.0715184957
+      },
+      {
+        "name": "Neck Nod Down-Up",
+        "delta": 0.0190076828
+      },
+      {
+        "name": "Neck Tilt Left-Right",
+        "delta": 0.100079387
+      },
+      {
+        "name": "Neck Turn Left-Right",
+        "delta": 0.0206673052
+      },
+      {
+        "name": "Head Nod Down-Up",
+        "delta": 0.2227636
+      },
+      {
+        "name": "Head Tilt Left-Right",
+        "delta": 0.07344706
+      },
+      {
+        "name": "Head Turn Left-Right",
+        "delta": 0.0109528452
+      },
+      {
+        "name": "Left Upper Leg Front-Back",
+        "delta": 0.101585135
+      },
+      {
+        "name": "Left Upper Leg In-Out",
+        "delta": 0.208394319
+      },
+      {
+        "name": "Left Upper Leg Twist In-Out",
+        "delta": 0.0295237452
+      },
+      {
+        "name": "Left Lower Leg Stretch",
+        "delta": 0.100961804
+      },
+      {
+        "name": "Left Lower Leg Twist In-Out",
+        "delta": 0.0111020058
+      },
+      {
+        "name": "Left Foot Up-Down",
+        "delta": 0.3900841
+      },
+      {
+        "name": "Left Foot Twist In-Out",
+        "delta": 0.218148813
+      },
+      {
+        "name": "Right Upper Leg Front-Back",
+        "delta": 0.1391159
+      },
+      {
+        "name": "Right Upper Leg In-Out",
+        "delta": 0.0437523574
+      },
+      {
+        "name": "Right Upper Leg Twist In-Out",
+        "delta": 0.338509083
+      },
+      {
+        "name": "Right Lower Leg Stretch",
+        "delta": 0.198073372
+      },
+      {
+        "name": "Right Lower Leg Twist In-Out",
+        "delta": 0.225474417
+      },
+      {
+        "name": "Right Foot Up-Down",
+        "delta": 0.462067246
+      },
+      {
+        "name": "Right Foot Twist In-Out",
+        "delta": 0.08012661
+      },
+      {
+        "name": "Right Toes Up-Down",
+        "delta": 0.696822
+      },
+      {
+        "name": "Left Shoulder Down-Up",
+        "delta": 0.328415871
+      },
+      {
+        "name": "Left Shoulder Front-Back",
+        "delta": 0.1020959
+      },
+      {
+        "name": "Left Arm Down-Up",
+        "delta": 0.174279541
+      },
+      {
+        "name": "Left Arm Front-Back",
+        "delta": 0.0463974327
+      },
+      {
+        "name": "Left Arm Twist In-Out",
+        "delta": 0.263734221
+      },
+      {
+        "name": "Left Forearm Stretch",
+        "delta": 0.2722866
+      },
+      {
+        "name": "Left Forearm Twist In-Out",
+        "delta": 0.11838343
+      },
+      {
+        "name": "Left Hand Down-Up",
+        "delta": 0.507920742
+      },
+      {
+        "name": "Left Hand In-Out",
+        "delta": 0.018032074
+      },
+      {
+        "name": "Right Shoulder Down-Up",
+        "delta": 0.310849
+      },
+      {
+        "name": "Right Shoulder Front-Back",
+        "delta": 0.9565686
+      },
+      {
+        "name": "Right Arm Down-Up",
+        "delta": 0.163142711
+      },
+      {
+        "name": "Right Arm Front-Back",
+        "delta": 0.06763117
+      },
+      {
+        "name": "Right Arm Twist In-Out",
+        "delta": 0.20500493
+      },
+      {
+        "name": "Right Forearm Stretch",
+        "delta": 0.0151924491
+      },
+      {
+        "name": "Right Forearm Twist In-Out",
+        "delta": 0.418109834
+      },
+      {
+        "name": "Right Hand Down-Up",
+        "delta": 0.138253063
+      },
+      {
+        "name": "Right Hand In-Out",
+        "delta": 0.608831465
+      },
+      {
+        "name": "LeftHand.Index.1 Stretched",
+        "delta": 0.334658325
+      },
+      {
+        "name": "LeftHand.Index.Spread",
+        "delta": 0.134581625
+      },
+      {
+        "name": "LeftHand.Index.2 Stretched",
+        "delta": 0.06184417
+      },
+      {
+        "name": "LeftHand.Index.3 Stretched",
+        "delta": 0.0524934828
+      },
+      {
+        "name": "RightHand.Index.1 Stretched",
+        "delta": 0.04826972
+      },
+      {
+        "name": "RightHand.Index.Spread",
+        "delta": 0.103657305
+      },
+      {
+        "name": "RightHand.Index.2 Stretched",
+        "delta": 0.150933862
+      },
+      {
+        "name": "RightHand.Index.3 Stretched",
+        "delta": 0.09618378
+      }
+    ]
+  }
+]

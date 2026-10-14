@@ -1,0 +1,295 @@
+{
+  "state": "audit-only-offline-steady-blends-no-gameplay",
+  "feetPlane": -0.91,
+  "cadence": [
+    {
+      "speed": 0.15,
+      "requested": 0.0459183678,
+      "clamped": 0.0459183678,
+      "nativeMinimum": 0.1056338,
+      "nativeMaximum": 0.108651929,
+      "dominant": "Walk"
+    },
+    {
+      "speed": 0.35,
+      "requested": 0.107142851,
+      "clamped": 0.107142851,
+      "nativeMinimum": 0.246478856,
+      "nativeMaximum": 0.253521144,
+      "dominant": "Walk"
+    },
+    {
+      "speed": 1.2,
+      "requested": 0.367346942,
+      "clamped": 0.367346942,
+      "nativeMinimum": 0.8450704,
+      "nativeMaximum": 0.8692154,
+      "dominant": "Walk"
+    },
+    {
+      "speed": 1.4,
+      "requested": 0.4285714,
+      "clamped": 0.4285714,
+      "nativeMinimum": 0.9859154,
+      "nativeMaximum": 1.01408458,
+      "dominant": "Walk"
+    },
+    {
+      "speed": 2.0499,
+      "requested": 0.5725944,
+      "clamped": 0.471428543,
+      "nativeMinimum": 1.084507,
+      "nativeMaximum": 1.115493,
+      "dominant": "Walk"
+    },
+    {
+      "speed": 2.05,
+      "requested": 0.572613835,
+      "clamped": 0.471428543,
+      "nativeMinimum": 1.084507,
+      "nativeMaximum": 1.115493,
+      "dominant": "Walk"
+    },
+    {
+      "speed": 2.0501,
+      "requested": 0.5726334,
+      "clamped": 0.5726334,
+      "nativeMinimum": 0.839862347,
+      "nativeMaximum": 0.839862347,
+      "dominant": "Run"
+    },
+    {
+      "speed": 2.7,
+      "requested": 0.6818182,
+      "clamped": 0.6818182,
+      "nativeMinimum": 1.0,
+      "nativeMaximum": 1.0,
+      "dominant": "Run"
+    },
+    {
+      "speed": 3.2499,
+      "requested": 0.8112349,
+      "clamped": 0.75,
+      "nativeMinimum": 1.1,
+      "nativeMaximum": 1.1,
+      "dominant": "Run"
+    },
+    {
+      "speed": 3.25,
+      "requested": 0.8112581,
+      "clamped": 0.75,
+      "nativeMinimum": 1.1,
+      "nativeMaximum": 1.1,
+      "dominant": "Run"
+    },
+    {
+      "speed": 3.2501,
+      "requested": 0.8112813,
+      "clamped": 0.8112813,
+      "nativeMinimum": 0.4326834,
+      "nativeMaximum": 1.24396479,
+      "dominant": "Sprint"
+    },
+    {
+      "speed": 3.8,
+      "requested": 0.93749994,
+      "clamped": 0.93749994,
+      "nativeMinimum": 0.5,
+      "nativeMaximum": 1.4375,
+      "dominant": "Sprint"
+    }
+  ],
+  "envelopes": [
+    {
+      "name": "walk",
+      "speed": 1.4,
+      "minimumSole": -0.910129547,
+      "maximumContactHeight": 0.0,
+      "medianStanceSlip": 0.119743004,
+      "maximumStanceSlip": 0.457182318,
+      "maximumStep": 0.0293853655,
+      "stanceSamples": 187
+    },
+    {
+      "name": "run",
+      "speed": 2.7,
+      "minimumSole": -0.9125797,
+      "maximumContactHeight": 0.0109965205,
+      "medianStanceSlip": 1.87008357,
+      "maximumStanceSlip": 2.53532767,
+      "maximumStep": 0.0383489244,
+      "stanceSamples": 117
+    },
+    {
+      "name": "sprint",
+      "speed": 3.8,
+      "minimumSole": -0.9149996,
+      "maximumContactHeight": 0.0146150589,
+      "medianStanceSlip": 2.91342068,
+      "maximumStanceSlip": 4.192844,
+      "maximumStep": 0.0489613265,
+      "stanceSamples": 91
+    },
+    {
+      "name": "walk-run-half",
+      "speed": 2.05,
+      "minimumSole": -0.948143244,
+      "maximumContactHeight": 0.0,
+      "medianStanceSlip": 0.5003943,
+      "maximumStanceSlip": 2.00863981,
+      "maximumStep": 0.0310151912,
+      "stanceSamples": 205
+    },
+    {
+      "name": "run-sprint-half",
+      "speed": 3.25,
+      "minimumSole": -0.955598831,
+      "maximumContactHeight": 0.0,
+      "medianStanceSlip": 1.3962189,
+      "maximumStanceSlip": 4.009607,
+      "maximumStep": 0.0407476462,
+      "stanceSamples": 132
+    },
+    {
+      "name": "walk-left-turn",
+      "speed": 1.4,
+      "minimumSole": -0.946742833,
+      "maximumContactHeight": 0.0,
+      "medianStanceSlip": 0.7303846,
+      "maximumStanceSlip": 1.81354225,
+      "maximumStep": 0.0408896357,
+      "stanceSamples": 223
+    },
+    {
+      "name": "walk-right-turn",
+      "speed": 1.4,
+      "minimumSole": -0.919202745,
+      "maximumContactHeight": 0.0,
+      "medianStanceSlip": 0.670716166,
+      "maximumStanceSlip": 1.28629422,
+      "maximumStep": 0.0383106656,
+      "stanceSamples": 233
+    },
+    {
+      "name": "run-left-turn",
+      "speed": 2.7,
+      "minimumSole": -0.9523624,
+      "maximumContactHeight": 0.0,
+      "medianStanceSlip": 1.569656,
+      "maximumStanceSlip": 5.678093,
+      "maximumStep": 0.0529127121,
+      "stanceSamples": 147
+    },
+    {
+      "name": "run-right-turn",
+      "speed": 2.7,
+      "minimumSole": -0.9406284,
+      "maximumContactHeight": 0.0,
+      "medianStanceSlip": 1.64624965,
+      "maximumStanceSlip": 3.91806269,
+      "maximumStep": 0.0447857752,
+      "stanceSamples": 209
+    }
+  ],
+  "plants": [
+    {
+      "role": "Walk",
+      "side": "Left",
+      "phase": 0.246478871,
+      "soleHeight": -2.99215317E-05
+    },
+    {
+      "role": "Walk",
+      "side": "Left",
+      "phase": 0.746478856,
+      "soleHeight": -3.02195549E-05
+    },
+    {
+      "role": "Walk",
+      "side": "Right",
+      "phase": 0.0,
+      "soleHeight": 0.0
+    },
+    {
+      "role": "Walk",
+      "side": "Right",
+      "phase": 0.5,
+      "soleHeight": -2.03847885E-05
+    },
+    {
+      "role": "Run",
+      "side": "Left",
+      "phase": 0.25,
+      "soleHeight": 0.0005521178
+    },
+    {
+      "role": "Run",
+      "side": "Left",
+      "phase": 0.75,
+      "soleHeight": 0.0005521178
+    },
+    {
+      "role": "Run",
+      "side": "Right",
+      "phase": 0.0,
+      "soleHeight": 0.0109965205
+    },
+    {
+      "role": "Run",
+      "side": "Right",
+      "phase": 0.5,
+      "soleHeight": 0.0109961629
+    },
+    {
+      "role": "Sprint",
+      "side": "Left",
+      "phase": 0.125,
+      "soleHeight": 0.000757694244
+    },
+    {
+      "role": "Sprint",
+      "side": "Left",
+      "phase": 0.75,
+      "soleHeight": 0.0146150589
+    },
+    {
+      "role": "Sprint",
+      "side": "Right",
+      "phase": 0.0,
+      "soleHeight": 0.0
+    },
+    {
+      "role": "Sprint",
+      "side": "Right",
+      "phase": 0.484375,
+      "soleHeight": 0.009907842
+    }
+  ],
+  "handoffs": [
+    {
+      "name": "StartLeft-to-sustained",
+      "minimumFeetGap": 0.229364172,
+      "maximumFeetGap": 0.823718548,
+      "hipsGap": 0.1694415
+    },
+    {
+      "name": "StartRight-to-sustained",
+      "minimumFeetGap": 0.157251239,
+      "maximumFeetGap": 0.8334157,
+      "hipsGap": 0.16546607
+    },
+    {
+      "name": "StopLeft-to-idle",
+      "minimumFeetGap": 0.06273561,
+      "maximumFeetGap": 0.06273561,
+      "hipsGap": 0.0550993457
+    },
+    {
+      "name": "StopRight-to-idle",
+      "minimumFeetGap": 0.05512264,
+      "maximumFeetGap": 0.05512264,
+      "hipsGap": 0.0548810661
+    }
+  ],
+  "sprintHalfPeriodError": 0.198433787
+}

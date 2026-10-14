@@ -1,0 +1,181 @@
+{
+  "playing": false,
+  "paused": false,
+  "compiling": false,
+  "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+  "dirty": false,
+  "drivers": [
+    {
+      "name": "Booter Perspective 3D Controller",
+      "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+      "active": true,
+      "state": "Idle",
+      "phase": 0.0,
+      "smoothedSpeed": 0.0,
+      "visualScale": 0.08989948,
+      "profile": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CalibratedLocomotion.asset",
+      "animator": null,
+      "speed": 0.0,
+      "roles": [
+        {
+          "role": "Idle",
+          "clip": "IdleBreathingLoop",
+          "length": 9.933333,
+          "nominal": 0.0,
+          "left": [],
+          "right": [],
+          "minRate": 0.9,
+          "maxRate": 1.1
+        },
+        {
+          "role": "Walk",
+          "clip": "WalkTwoCycles",
+          "length": 2.33333349,
+          "nominal": 1.4,
+          "left": [
+            0.246478871,
+            0.746478856
+          ],
+          "right": [
+            0.0,
+            0.5
+          ],
+          "minRate": 0.9,
+          "maxRate": 1.1
+        },
+        {
+          "role": "Run",
+          "clip": "RunTwoCycles",
+          "length": 1.4666667,
+          "nominal": 2.7,
+          "left": [
+            0.25,
+            0.75
+          ],
+          "right": [
+            0.0,
+            0.5
+          ],
+          "minRate": 0.9,
+          "maxRate": 1.1
+        },
+        {
+          "role": "Sprint",
+          "clip": "SprintTwoCycles",
+          "length": 1.06666672,
+          "nominal": 3.8,
+          "left": [
+            0.125,
+            0.75
+          ],
+          "right": [
+            0.0,
+            0.484375
+          ],
+          "minRate": 0.9,
+          "maxRate": 1.1
+        },
+        {
+          "role": "DirectionalLeft",
+          "clip": "DirectionalStrafeLeftTwoCycles",
+          "length": 1.33333337,
+          "nominal": 2.7,
+          "left": [
+            0.3625,
+            0.8625
+          ],
+          "right": [
+            0.0,
+            0.5
+          ],
+          "minRate": 0.9,
+          "maxRate": 1.1
+        },
+        {
+          "role": "DirectionalRight",
+          "clip": "DirectionalStrafeRightTwoCycles",
+          "length": 1.33333337,
+          "nominal": 2.7,
+          "left": [
+            0.1375,
+            0.6375
+          ],
+          "right": [
+            0.0,
+            0.5
+          ],
+          "minRate": 0.9,
+          "maxRate": 1.1
+        },
+        {
+          "role": "StartLeft",
+          "clip": "MCU_am_Loco_Jog_Fwd_Start_NoRM",
+          "length": 1.76666677,
+          "nominal": 4.2,
+          "left": [],
+          "right": [],
+          "minRate": 0.9,
+          "maxRate": 1.1
+        },
+        {
+          "role": "StartRight",
+          "clip": "MCU_am_Loco_Jog_Fwd_Start_NoRM_Mirror",
+          "length": 1.76666677,
+          "nominal": 4.2,
+          "left": [],
+          "right": [],
+          "minRate": 0.9,
+          "maxRate": 1.1
+        },
+        {
+          "role": "StopLeft",
+          "clip": "MCU_am_Loco_Jog_Fwd_Stop_NoRM",
+          "length": 1.80000007,
+          "nominal": 4.2,
+          "left": [],
+          "right": [],
+          "minRate": 0.9,
+          "maxRate": 1.1
+        },
+        {
+          "role": "StopRight",
+          "clip": "MCU_am_Loco_Jog_Fwd_Stop_NoRM_Mirror",
+          "length": 1.80000007,
+          "nominal": 4.2,
+          "left": [],
+          "right": [],
+          "minRate": 0.9,
+          "maxRate": 1.1
+        },
+        {
+          "role": "PivotLeft",
+          "clip": "MCU_am_Loco_Jog_Fwd_Pivot_NoRM",
+          "length": 2.7,
+          "nominal": 4.2,
+          "left": [],
+          "right": [],
+          "minRate": 0.9,
+          "maxRate": 1.1
+        },
+        {
+          "role": "PivotRight",
+          "clip": "MCU_am_Loco_Jog_Fwd_Pivot_NoRM_Mirror",
+          "length": 2.7,
+          "nominal": 4.2,
+          "left": [],
+          "right": [],
+          "minRate": 0.9,
+          "maxRate": 1.1
+        }
+      ]
+    }
+  ],
+  "sessions": [
+    {
+      "name": "Animation Playground",
+      "readiness": "Uninitialized",
+      "reason": null,
+      "binding": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset"
+    }
+  ]
+}

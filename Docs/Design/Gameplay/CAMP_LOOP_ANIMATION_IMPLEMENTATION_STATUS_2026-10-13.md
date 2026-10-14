@@ -1,6 +1,6 @@
 # Camp Loop animation playground implementation
 
-Started 2026-10-13 from `e5a6e8b9d`, following the [revised plan](./CAMP_LOOP_ANIMATION_PLAYGROUND_IMPLEMENTATION_PLAN_2026-10-13.md). The implementation goal remains active. This document records completed slices and current dependencies, not full playground acceptance.
+Started 2026-10-13 from `e5a6e8b9d`, following the [revised plan](./CAMP_LOOP_ANIMATION_PLAYGROUND_IMPLEMENTATION_PLAN_2026-10-13.md). On October 14 the author stopped broader implementation to prioritize an audit of walking, running and sprinting after playtesting. The [locomotion audit and revised priorities](./CAMP_LOOP_LOCOMOTION_AUDIT_2026-10-14.md) control the next slice. Historical active-goal statements below describe their original checkpoints; they do not authorize continued feature expansion. This document records completed slices and current dependencies, not full playground acceptance.
 
 ## Initial foundation batch
 
