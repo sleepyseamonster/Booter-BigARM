@@ -1,0 +1,198 @@
+{
+  "schema": 1,
+  "audit_date": "2026-10-14",
+  "captured_utc": "2026-10-14T16:38:43.250433+00:00",
+  "head_at_capture": "dfb2219dd74758e81c59b69c89b867aa04d7ba9b",
+  "proof": "Read-only saved-file and source inspection; no Unity render, Play Mode, GPU measurement, compile or gameplay smoke test. Scene contains pre-existing uncommitted edits.",
+  "source_sha256": {
+    "Assets/_Project/Scenes/Reference/CampLoopTesting.unity": "cd02e89673ce1a83afc72e37a673bd11172d90c8cd24d8770fe7560091ed4882",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraRig.cs": "aa42d853f9a6c6e5393a1894056d54625d39d422e7191cae24fda9d63d6e53a4",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/PerpetualTwilightSun.cs": "4011d0e284f901e642ff19a04ce087826db8439135fc8e7c1b7897c09a05be20",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/BadwaterCameraRange.cs": "bef426a41de11b4bc0b59c222f857b61876fbdbf76324edd33d69d35f7803648",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DDustAtmosphere.cs": "63023df89d81f20bd305bc09dc084b6498780fdbb080e6b7948482ded2756e80",
+    "Assets/_Project/Settings/Rendering/URP/Renderer3D.asset": "5631a1877831185cbf061a94996d7207b8018c60b1947dbdc734b8e552c17c17",
+    "Assets/_Project/Settings/Rendering/URP/UniversalRP.asset": "bc811f85d37698b0bfd8efe0454d26d5da4e496928fdf1d18a841b61692b8ce4",
+    "Assets/_Project/Settings/Rendering/URP/UniversalRenderPipelineGlobalSettings.asset": "e9600fccd2f645423e8994af16bc7ff236179b3442e9f961611afc44438ca58a",
+    "Assets/_Project/Settings/Profiles/DefaultVolumeProfile.asset": "40f7e48a8869bb1412662feb900305a621400096399373769be25f38ffcee1fb",
+    "Assets/_Project/Resources/TopDown3D/MartianPanoramaSky.mat": "694517c5299cc14f7ebe4c585d51c26d0a3409b5be59eb3675df4ccab271d657",
+    "Assets/_Project/Shaders/TopDown3D/MartianPanoramaSky.shader": "fc185f4dbba542be6eddf003daea37117efc8f489f9ec0b6e69862684a727ad7",
+    "Assets/_Project/Art/Environment/Sky/MartianSunsetBasin.png": "a6e36819282b239e474efccdf2f39303b99164b25cf95a1762d9a2f5857ac381",
+    "Assets/_Project/Art/Environment/Sky/MartianSunsetBasin.png.meta": "0db4dabb1ff2463b2301ab1460be2f68d6217ce3532756e241262a4f97bf9ffe",
+    "ProjectSettings/QualitySettings.asset": "7ec339d3e5e2b8cc73548e69256f6151782bb68a4afb64f865fd94704dbf0de3",
+    "Packages/manifest.json": "a9b4f332893effbb67f87b48508240992d76968b8b78f870f8f05f12a436f409",
+    "ProjectSettings/ProjectVersion.txt": "8468d7add4c1613c42224053cb9c889688ccf141875f44065a40e6d133bc3ea7",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DAnamorphicStreakFeature.cs": "cc2edbdca8f87af4815e886d643756059d14dc3b70a820fed0ae56649b9ab033",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DRoundLensFlareFeature.cs": "33d76e5b3614692c4e2573770366756453dc673eeb538118520647d9ed878c45",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSunBloomFeature.cs": "d7610bc1f541960b33d11ce8f553980ea020aea87fcd92b2efc30c509daaa5c2",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DTiltShiftFeature.cs": "977588ee03bc55b398717a7d0031dd4c6c8460731ee27787e144f5bab9d2edbd",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DVolumetricDustFeature.cs": "d717546dededa13312e42f7867f5a69ae5190e39bd75f76e6b8d17abb63e6d25"
+  },
+  "scene_type_counts": {
+    "29": 1,
+    "104": 1,
+    "157": 1,
+    "196": 1,
+    "114": 185,
+    "1": 274,
+    "4": 206,
+    "23": 135,
+    "65": 121,
+    "33": 135,
+    "224": 92,
+    "222": 86,
+    "1001": 16,
+    "154": 9,
+    "218": 9,
+    "54": 2,
+    "136": 1,
+    "223": 2,
+    "108": 1,
+    "20": 1,
+    "81": 1,
+    "1660057539": 1
+  },
+  "scene_components": [
+    {
+      "file_id": "2",
+      "type_id": 104,
+      "object": null,
+      "script": "",
+      "serialized_block": "--- !u!104 &2\nRenderSettings:\n  m_ObjectHideFlags: 0\n  serializedVersion: 10\n  m_Fog: 0\n  m_FogColor: {r: 0.42, g: 0.19, b: 0.1, a: 1}\n  m_FogMode: 3\n  m_FogDensity: 0.0295\n  m_LinearFogStart: 0\n  m_LinearFogEnd: 300\n  m_AmbientSkyColor: {r: 0.3079263, g: 0.33095473, b: 0.3954263, a: 1}\n  m_AmbientEquatorColor: {r: 0.44889024, g: 0.2672181, b: 0.2066469, a: 1}\n  m_AmbientGroundColor: {r: 0.16225578, g: 0.09435347, b: 0.07776821, a: 1}\n  m_AmbientIntensity: 1\n  m_AmbientMode: 1\n  m_SubtractiveShadowColor: {r: 0.055, g: 0.025, b: 0.05, a: 1}\n  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}\n  m_HaloStrength: 0.5\n  m_FlareStrength: 1\n  m_FlareFadeSpeed: 3\n  m_HaloTexture: {fileID: 0}\n  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}\n  m_DefaultReflectionMode: 0\n  m_DefaultReflectionResolution: 128\n  m_ReflectionBounces: 1\n  m_ReflectionIntensity: 1\n  m_CustomReflection: {fileID: 0}\n  m_Sun: {fileID: 1325570786}\n  m_UseRadianceAmbientProbe: 0"
+    },
+    {
+      "file_id": "1325570785",
+      "type_id": 114,
+      "object": "Directional Key Light",
+      "script": "Assets/_Project/Scripts/Runtime/TopDown3D/PerpetualTwilightSun.cs",
+      "serialized_block": "--- !u!114 &1325570785\nMonoBehaviour:\n  m_ObjectHideFlags: 0\n  m_CorrespondingSourceObject: {fileID: 0}\n  m_PrefabInstance: {fileID: 0}\n  m_PrefabAsset: {fileID: 0}\n  m_GameObject: {fileID: 1325570783}\n  m_Enabled: 1\n  m_EditorHideFlags: 0\n  m_Script: {fileID: 11500000, guid: 6f3c10c876ef4ee4bd4fc0a9d7aa54a1, type: 3}\n  m_Name:\n  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.PerpetualTwilightSun\n  cycleEnabled: 1\n  cycleDurationSeconds: 1200\n  cycle01: 0.12\n  centerElevationDegrees: 19\n  elevationAmplitudeDegrees: 7\n  centerAzimuthDegrees: 18\n  azimuthAmplitudeDegrees: 14\n  deepTwilightSunColor: {r: 1, g: 0.38, b: 0.16, a: 1}\n  brightTwilightSunColor: {r: 1, g: 0.79, b: 0.52, a: 1}\n  deepTwilightIntensity: 0.68\n  brightTwilightIntensity: 1.18\n  shadowStrength: 0.82\n  shadowBias: 0.2\n  shadowNormalBias: 0.35\n  deepTwilightAmbient: {r: 0.208, g: 0.0975, b: 0.13, a: 1}\n  brightTwilightAmbient: {r: 0.494, g: 0.299, b: 0.221, a: 1}\n  deepTwilightSkyFill: {r: 0.15, g: 0.1625, b: 0.2375, a: 1}\n  brightTwilightSkyFill: {r: 0.3375, g: 0.3625, b: 0.425, a: 1}\n  deepTwilightGroundFill: {r: 0.0675, g: 0.0375, b: 0.0525, a: 1}\n  brightTwilightGroundFill: {r: 0.18, g: 0.105, b: 0.0825, a: 1}\n  deepTwilightSkyTint: {r: 0.36, g: 0.1, b: 0.12, a: 1}\n  brightTwilightSkyTint: {r: 0.86, g: 0.34, b: 0.16, a: 1}\n  skyGroundColor: {r: 0.11, g: 0.045, b: 0.035, a: 1}\n  sun: {fileID: 1325570786}"
+    },
+    {
+      "file_id": "1325570786",
+      "type_id": 108,
+      "object": "Directional Key Light",
+      "script": "",
+      "serialized_block": "--- !u!108 &1325570786\nLight:\n  m_ObjectHideFlags: 0\n  m_CorrespondingSourceObject: {fileID: 0}\n  m_PrefabInstance: {fileID: 0}\n  m_PrefabAsset: {fileID: 0}\n  m_GameObject: {fileID: 1325570783}\n  m_Enabled: 1\n  serializedVersion: 13\n  m_Type: 1\n  m_Color: {r: 1, g: 0.7253322, b: 0.46321848, a: 1}\n  m_Intensity: 1.1011368\n  m_Range: 10\n  m_SpotAngle: 30\n  m_InnerSpotAngle: 21.80208\n  m_CookieSize2D: {x: 0.5, y: 0.5}\n  m_Shadows:\n    m_Type: 2\n    m_Resolution: -1\n    m_CustomResolution: -1\n    m_Strength: 0.82\n    m_Bias: 0.2\n    m_NormalBias: 0.35\n    m_NearPlane: 0.1\n    m_CullingMatrixOverride:\n      e00: 1\n      e01: 0\n      e02: 0\n      e03: 0\n      e10: 0\n      e11: 1\n      e12: 0\n      e13: 0\n      e20: 0\n      e21: 0\n      e22: 1\n      e23: 0\n      e30: 0\n      e31: 0\n      e32: 0\n      e33: 1\n    m_UseCullingMatrixOverride: 0\n  m_Cookie: {fileID: 0}\n  m_DrawHalo: 0\n  m_Flare: {fileID: 0}\n  m_RenderMode: 0\n  m_CullingMask:\n    serializedVersion: 2\n    m_Bits: 4294967295\n  m_RenderingLayerMask: 1\n  m_Lightmapping: 4\n  m_LightShadowCasterMode: 0\n  m_AreaSize: {x: 1, y: 1}\n  m_BounceIntensity: 0.2\n  m_ColorTemperature: 6570\n  m_UseColorTemperature: 0\n  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}\n  m_UseBoundingSphereOverride: 0\n  m_UseViewFrustumForShadowCasterCull: 1\n  m_ForceVisible: 0\n  m_ShapeRadius: 0.025\n  m_ShadowAngle: 0\n  m_LightUnit: 1\n  m_LuxAtDistance: 1\n  m_EnableSpotReflector: 1"
+    },
+    {
+      "file_id": "2080807208",
+      "type_id": 114,
+      "object": "Dust Atmosphere",
+      "script": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DDustAtmosphere.cs",
+      "serialized_block": "--- !u!114 &2080807208\nMonoBehaviour:\n  m_ObjectHideFlags: 0\n  m_CorrespondingSourceObject: {fileID: 0}\n  m_PrefabInstance: {fileID: 0}\n  m_PrefabAsset: {fileID: 0}\n  m_GameObject: {fileID: 2080807207}\n  m_Enabled: 1\n  m_EditorHideFlags: 0\n  m_Script: {fileID: 11500000, guid: 9b3164091c8544b780f7925566eecf41, type: 3}\n  m_Name:\n  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DDustAtmosphere\n  globalHazeEnabled: 0\n  subject: {fileID: 690964292}\n  outputCamera: {fileID: 2126727610}\n  worldSeed: 24681357\n  pocketCellSize: 144\n  pocketSpawnChance: 0.72\n  minimumPocketRadius: 54\n  maximumPocketRadius: 72\n  pocketEdgeBlend: 18\n  pocketCenterJitter: 0.2\n  minimumRegionalIntensity: 1.08\n  maximumRegionalIntensity: 1.58\n  regionalFrequency: 0.0065\n  clumpFrequency: 0.038\n  clumpStrength: 0.58\n  responseSeconds: 1.8\n  fogDensityAtIntensityOne: 0.0295\n  deepTwilightDust: {r: 0.38, g: 0.11, b: 0.055, a: 1}\n  brightTwilightDust: {r: 0.68, g: 0.24, b: 0.09, a: 1}\n  zoneTintStrength: 0.42\n  scatteringAlbedo: 0.86\n  scatteringAnisotropy: 0.5\n  maximumForwardPhase: 1.65\n  ambientScattering: 0.18\n  maximumMarchDistance: 60\n  chromaticAberrationIntensity: 0.12\n  moteEmissionAtIntensityOne: 56\n  veilEmissionAtIntensityOne: 6.5\n  prevailingWind: {x: 0.14, y: 0.015, z: 0.05}"
+    },
+    {
+      "file_id": "2126727609",
+      "type_id": 114,
+      "object": "Main Camera",
+      "script": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraRig.cs",
+      "serialized_block": "--- !u!114 &2126727609\nMonoBehaviour:\n  m_ObjectHideFlags: 0\n  m_CorrespondingSourceObject: {fileID: 0}\n  m_PrefabInstance: {fileID: 0}\n  m_PrefabAsset: {fileID: 0}\n  m_GameObject: {fileID: 2126727607}\n  m_Enabled: 1\n  m_EditorHideFlags: 0\n  m_Script: {fileID: 11500000, guid: bc9f535c6a27140ce8d26aea9db17e93, type: 3}\n  m_Name:\n  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DCameraRig\n  target: {fileID: 690964292}\n  input: {fileID: 412165501}\n  targetOffset: {x: 0, y: 1.15, z: 0}\n  pitchDegrees: 50\n  yawDegrees: 40\n  minimumPitchDegrees: 26\n  maximumPitchDegrees: 65\n  yawSpeedDegrees: 120\n  pitchSpeedDegrees: 70\n  mouseSensitivityDegreesPerPixel: 0.3\n  distance: 25\n  fieldOfView: 48\n  followSmoothTime: 0.14\n  maximumLookAheadDistance: 12\n  lookAheadSpeed: 12.6\n  lookAheadReturnSpeed: 37.8\n  obstructionRadius: 0.35\n  minimumDistance: 4\n  obstructionMask:\n    serializedVersion: 2\n    m_Bits: 4294967295"
+    },
+    {
+      "file_id": "2126727610",
+      "type_id": 20,
+      "object": "Main Camera",
+      "script": "",
+      "serialized_block": "--- !u!20 &2126727610\nCamera:\n  m_ObjectHideFlags: 0\n  m_CorrespondingSourceObject: {fileID: 0}\n  m_PrefabInstance: {fileID: 0}\n  m_PrefabAsset: {fileID: 0}\n  m_GameObject: {fileID: 2126727607}\n  m_Enabled: 1\n  serializedVersion: 2\n  m_ClearFlags: 1\n  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}\n  m_projectionMatrixMode: 1\n  m_GateFitMode: 2\n  m_FOVAxisMode: 0\n  m_Iso: 200\n  m_ShutterSpeed: 0.005\n  m_Aperture: 16\n  m_FocusDistance: 10\n  m_FocalLength: 50\n  m_BladeCount: 5\n  m_Curvature: {x: 2, y: 11}\n  m_BarrelClipping: 0.25\n  m_Anamorphism: 0\n  m_SensorSize: {x: 36, y: 24}\n  m_LensShift: {x: 0, y: 0}\n  m_NormalizedViewPortRect:\n    serializedVersion: 2\n    x: 0\n    y: 0\n    width: 1\n    height: 1\n  near clip plane: 0.1\n  far clip plane: 8000\n  field of view: 48\n  orthographic: 0\n  orthographic size: 5\n  m_Depth: 0\n  m_CullingMask:\n    serializedVersion: 2\n    m_Bits: 4294967295\n  m_RenderingPath: -1\n  m_TargetTexture: {fileID: 0}\n  m_TargetDisplay: 0\n  m_TargetEye: 3\n  m_HDR: 1\n  m_AllowMSAA: 1\n  m_AllowDynamicResolution: 0\n  m_ForceIntoRT: 0\n  m_OcclusionCulling: 1\n  m_StereoConvergence: 10\n  m_StereoSeparation: 0.022"
+    },
+    {
+      "file_id": "2126727613",
+      "type_id": 114,
+      "object": "Main Camera",
+      "script": "Assets/_Project/Scripts/Runtime/TopDown3D/BadwaterCameraRange.cs",
+      "serialized_block": "--- !u!114 &2126727613\nMonoBehaviour:\n  m_ObjectHideFlags: 0\n  m_CorrespondingSourceObject: {fileID: 0}\n  m_PrefabInstance: {fileID: 0}\n  m_PrefabAsset: {fileID: 0}\n  m_GameObject: {fileID: 2126727607}\n  m_Enabled: 1\n  m_EditorHideFlags: 0\n  m_Script: {fileID: 11500000, guid: fec63e4e976e04c209c0804629eb8931, type: 3}\n  m_Name:\n  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.BadwaterCameraRange\n  farClipPlane: 8000"
+    }
+  ],
+  "terrains": [
+    {
+      "object": "Badwater_1m_r13_c01",
+      "position": "{x: -1792, y: -100, z: -1536}",
+      "parent_transform": "1845837271",
+      "data": "{fileID: 15600000, guid: 2c3e00ee8fe4f4b11a1572b25e8f24bc, type: 2}"
+    },
+    {
+      "object": "Badwater_2m_r13_c00",
+      "position": "{x: -2048, y: -100, z: -1536}",
+      "parent_transform": "1845837271",
+      "data": "{fileID: 15600000, guid: 2e7f61817ea2345c9bf1ccfcebec52a9, type: 2}"
+    },
+    {
+      "object": "Badwater_2m_r14_c01",
+      "position": "{x: -1792, y: -100, z: -1792}",
+      "parent_transform": "1845837271",
+      "data": "{fileID: 15600000, guid: 5a68d2243324442e0a38b0601359d5e4, type: 2}"
+    },
+    {
+      "object": "Badwater_2m_r12_c00",
+      "position": "{x: -2048, y: -100, z: -1280}",
+      "parent_transform": "1845837271",
+      "data": "{fileID: 15600000, guid: 999bfb827415a4d2f9a5de7c19097dc1, type: 2}"
+    },
+    {
+      "object": "Badwater_2m_r14_c00",
+      "position": "{x: -2048, y: -100, z: -1792}",
+      "parent_transform": "1845837271",
+      "data": "{fileID: 15600000, guid: 60515153188334e6f9791bf15a3adb02, type: 2}"
+    },
+    {
+      "object": "Badwater_1m_r12_c01",
+      "position": "{x: -1792, y: -100, z: -1280}",
+      "parent_transform": "1845837271",
+      "data": "{fileID: 15600000, guid: 2d035b52c30804cfcac7e8a71fa9bb91, type: 2}"
+    },
+    {
+      "object": "Terrain_west_2m_r12_c15",
+      "position": "{x: -2304, y: -100, z: -1280}",
+      "parent_transform": "641577820",
+      "data": "{fileID: 15600000, guid: 2c905a91a0b74694f8065f3335a9f140, type: 2}"
+    },
+    {
+      "object": "Terrain_west_2m_r14_c15",
+      "position": "{x: -2304, y: -100, z: -1792}",
+      "parent_transform": "641577820",
+      "data": "{fileID: 15600000, guid: a815a794cfa81f7468eb25b330590d76, type: 2}"
+    },
+    {
+      "object": "Terrain_west_2m_r13_c15",
+      "position": "{x: -2304, y: -100, z: -1536}",
+      "parent_transform": "641577820",
+      "data": "{fileID: 15600000, guid: 42315f87035ce03409f824685365265f, type: 2}"
+    }
+  ],
+  "geometry_assumptions": "Perspective vertical FOV 48 degrees, unobstructed camera distance 25m, target offset 1.15m, flat plane through player ground; actual terrain changes intersections.",
+  "camera_geometry": [
+    {
+      "pitch_degrees": 26,
+      "top_center_ray_elevation_degrees": -2,
+      "camera_height_above_flat_player_ground_m": 12.109278669726935,
+      "top_center_flat_ground_intersection_distance_m": 346.9757393051218,
+      "top_center_flat_ground_horizontal_distance_m": 346.76437105970786
+    },
+    {
+      "pitch_degrees": 50,
+      "top_center_ray_elevation_degrees": -26,
+      "camera_height_above_flat_player_ground_m": 20.30111107797445,
+      "top_center_flat_ground_intersection_distance_m": 46.31032682391012,
+      "top_center_flat_ground_horizontal_distance_m": 41.62344603149902
+    },
+    {
+      "pitch_degrees": 65,
+      "top_center_ray_elevation_degrees": -41,
+      "camera_height_above_flat_player_ground_m": 23.807694675916245,
+      "top_center_flat_ground_intersection_distance_m": 36.288952097114915,
+      "top_center_flat_ground_horizontal_distance_m": 27.387619803937884
+    }
+  ],
+  "initial_sun": {
+    "cycle01": 0.12,
+    "elevation_degrees": 23.79182974150082,
+    "light_transform_yaw_degrees": 28.205560783899763,
+    "direction_to_sun_horizontal_azimuth_degrees": 208.20556078389976,
+    "brightness01": 0.8422735529643444
+  },
+  "shadow_length_per_vertical_height": {
+    "12": 4.704630109478455,
+    "19": 2.9042108776758226,
+    "26": 2.050303841579296
+  },
+  "concurrent_change_note": "Scene changed during audit. Final lighting/camera/atmosphere blocks differ only by trailing whitespace; refreshed blocks, scene hash and type counts."
+}
