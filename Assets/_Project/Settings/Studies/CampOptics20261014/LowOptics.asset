@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25a4e4d1923f4f24bae72f8dba786734, type: 3}
+  m_Name: LowOptics
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DCampOpticsProfile
+  version: 1
+  opticsEnabled: 1
+  collectDiagnostics: 0
+  postExposure: 1
+  tonemapping: 1
+  bloomEnabled: 1
+  bloomIntensity: 0.18
+  bloomThreshold: 1
+  bloomScatter: 0.65
+  highQualityBloom: 0
+  dirtTexture: {fileID: 2800000, guid: 101878730e4abe94d9602e301709c572, type: 3}
+  dirtIntensity: 0.15
+  depthMode: 0
+  focusDistance: 20
+  followPlayerFocus: 0
+  focusSmoothingSeconds: 0.25
+  readableFarPadding: 5
+  farBlurTransition: 45
+  farStart: 25
+  farEnd: 70
+  aperture: 8
+  focalLength: 50
+  gaussianRadius: 0.6
+  sunAngularDiameterDegrees: 0.7
+  flareVisibilityAttackSeconds: 0.06
+  flareVisibilityReleaseSeconds: 0.12

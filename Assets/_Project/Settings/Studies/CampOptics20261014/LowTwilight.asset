@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da3c6d33dec4431ba70bdcc77eb1ee6, type: 3}
+  m_Name: LowTwilight
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DAtmosphereStudyProfile
+  skyMaterial: {fileID: 2100000, guid: cd90d65865a9d044ba7d14016a370e3d, type: 2}
+  sunlessReflection: {fileID: 8900000, guid: f505de2ea84ba344ea5f9dfb8cbe29fb, type: 2}
+  deepSunColor: {r: 1, g: 0.48, b: 0.1, a: 1}
+  brightSunColor: {r: 1, g: 0.72, b: 0.2, a: 1}
+  deepSkyFill: {r: 0.18, g: 0.085, b: 0.04, a: 1}
+  brightSkyFill: {r: 0.34, g: 0.22, b: 0.12, a: 1}
+  deepEquatorFill: {r: 0.15, g: 0.075, b: 0.045, a: 1}
+  brightEquatorFill: {r: 0.4, g: 0.23, b: 0.12, a: 1}
+  deepGroundFill: {r: 0.055, g: 0.03, b: 0.02, a: 1}
+  brightGroundFill: {r: 0.15, g: 0.085, b: 0.045, a: 1}
+  deepSkyExposure: 0.65
+  brightSkyExposure: 1.05
+  nativeOptics: {fileID: 11400000, guid: 3bd432888b56a944fadb718a76c9ae8e, type: 2}
+  tiltShiftEnabled: 0
+  streakEnabled: 0
+  flareEnabled: 0
+  bloomEnabled: 0
+  bloomIntensity: 0.1
+  sunAureoleIntensity: 0.12
+  bloomTint: {r: 1, g: 0.72, b: 0.2, a: 1}
+  flareIntensity: 0.05
+  bloomLevels: 4
+  bloomDownsample: 2
+  useReferenceResolutionTiltShift: 0
+  tiltShiftDownsample: 2
+  tiltShiftReferenceHeight: 1080
+  tiltShiftBlurRadiusPixels: 2
+  tiltShiftBandAngleDegrees: 0
+  tiltShiftFocusCenter: 0.5
+  tiltShiftSharpBandWidth: 0.3
+  tiltShiftFeatherWidth: 0.3
