@@ -10,6 +10,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private string cacheId = "greater-wasteland:cache:starter:v1";
         [SerializeField] private TopDown3DItemCatalog itemCatalog;
         [SerializeField, Min(1)] private int capacity = 24;
+        [SerializeField] private bool campStorage;
         [System.NonSerialized] private TopDown3DInventoryState state;
         [SerializeField, HideInInspector] private TopDown3DInventorySnapshot reloadSnapshot;
         public TopDown3DInventoryState State
@@ -17,7 +18,9 @@ namespace BooterBigArm.TopDown3D
             get
             {
                 if (state != null && state.IsInitialized) return state;
-                state = new TopDown3DInventoryState(ItemCatalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.ResourceCache, capacity));
+                var labStorage = campStorage && TopDown3DAnimationPlaygroundSession.IsSessionOnly(gameObject.scene);
+                state = new TopDown3DInventoryState(ItemCatalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.ResourceCache, capacity,
+                    campStorage: labStorage, canisterContents: labStorage));
                 if (reloadSnapshot != null && reloadSnapshot.Version > 0 && !state.ApplySnapshot(reloadSnapshot).Succeeded)
                 {
                     state.RetainForRecovery();
@@ -29,7 +32,7 @@ namespace BooterBigArm.TopDown3D
         public TopDown3DItemCatalog ItemCatalog => TopDown3DCampLoopLoadoutProfile.Resolve(gameObject.scene, itemCatalog);
         public string StableId => cacheId;
         public Object UnityObject => this;
-        public string Prompt => "Open Resource Cache";
+        public string Prompt => campStorage && TopDown3DAnimationPlaygroundSession.IsSessionOnly(gameObject.scene) ? "Open Camp Chest" : "Open Resource Cache";
         public Vector3 InteractionPoint => transform.position;
         public float InteractionRange => 2.8f;
         public float ActionDuration => 0.01f;

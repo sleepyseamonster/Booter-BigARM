@@ -10,6 +10,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private TopDown3DItemCatalog itemCatalog;
         [SerializeField] private TopDown3DPackingSettings packingSettings;
         [SerializeField, Min(0.1f)] private float accessRange = 3.2f;
+        [SerializeField] private bool campCanisterContents;
         [NonSerialized] private TopDown3DInventoryState state;
         [SerializeField, HideInInspector] private TopDown3DInventorySnapshot reloadSnapshot;
         private TopDown3DBigArmLoadProfile loadProfile;
@@ -64,7 +65,8 @@ namespace BooterBigArm.TopDown3D
         {
             if (state != null && state.IsInitialized) return state;
             if (itemCatalog == null || packingSettings == null) throw new InvalidOperationException("BigARM cargo requires an item catalog and packing settings.");
-            SetState(new TopDown3DInventoryState(ItemCatalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, DefaultCapacity, packingSettings.HardMass)));
+            SetState(new TopDown3DInventoryState(ItemCatalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, DefaultCapacity, packingSettings.HardMass,
+                canisterContents: campCanisterContents && TopDown3DAnimationPlaygroundSession.IsSessionOnly(gameObject.scene))));
             if (reloadSnapshot != null && reloadSnapshot.Version > 0 && !state.ApplySnapshot(reloadSnapshot).Succeeded)
             {
                 state.RetainForRecovery();
@@ -106,7 +108,7 @@ namespace BooterBigArm.TopDown3D
             for (var i = 0; i < state.Slots.Count && i < packingSettings.Mounts.Count; i++)
             {
                 var slot = state.Slots[i]; if (slot.IsEmpty) continue;
-                var mass = itemCatalog.GetRequiredDefinition(slot.ItemId).Mass * slot.Quantity;
+                var mass = state.CalculateSlotMass(i);
                 if (packingSettings.Mounts[i].Side == TopDown3DMountSide.Left) left += mass; else right += mass;
             }
             loadProfile = new TopDown3DBigArmLoadProfile(state.CalculateMass(), left, right, packingSettings.RecommendedMass, packingSettings.HardMass);

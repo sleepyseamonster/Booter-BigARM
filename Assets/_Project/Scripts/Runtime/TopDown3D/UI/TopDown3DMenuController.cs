@@ -65,6 +65,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (IsOpen || input.Mode == TopDown3DInputMode.Disabled) return;
             inventory.GetComponent<TopDown3DCampController>()?.InterruptForSystemMenu();
+            SuspendCampWorkstation();
             returnInventory = inventory.IsOpen;
             if (returnInventory) inventory.SuspendForMenu();
             radial.CancelForSystemMenu();
@@ -142,7 +143,8 @@ namespace BooterBigArm.TopDown3D
             panel = null; confirmed = null;
             if (view != null) view.Show(null);
             if (module != null) { module.cancel = cancelReference; module.submit = submitReference; module.leftClick = clickReference; }
-            if (returnInventory && inventory != null && inventory.IsSuspended) inventory.ResumeFromMenu();
+            if (ResumeCampWorkstation()) { }
+            else if (returnInventory && inventory != null && inventory.IsSuspended) inventory.ResumeFromMenu();
             else if (input != null && input.Mode == TopDown3DInputMode.SystemMenu) input.EnterGameplayMode();
             directSetup = false;
         }
@@ -163,6 +165,7 @@ namespace BooterBigArm.TopDown3D
             if (command == "Resume") { Close(); return; }
             if (command == "Camps")
             {
+                EndCampWorkstation();
                 Close(); inventory.Close();
                 TopDown3DGameHudCanvas.FindInScene<TopDown3DWaypointCampController>(gameObject.scene)?.Open();
                 return;
@@ -287,10 +290,11 @@ namespace BooterBigArm.TopDown3D
         {
             if (mode != TopDown3DInputMode.Disabled || !IsOpen) return;
             returnInventory = false;
+            EndCampWorkstation();
             if (inventory != null) inventory.EndSuspensionWithoutResume();
             Close();
         }
-        private void OnDisable() { if (configured) Close(); }
+        private void OnDisable() { EndCampWorkstation(); if (configured) Close(); }
         private void OnDestroy()
         {
             DisposeAnimationPalette();

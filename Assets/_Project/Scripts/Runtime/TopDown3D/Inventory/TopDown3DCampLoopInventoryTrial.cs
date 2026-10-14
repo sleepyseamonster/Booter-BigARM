@@ -35,6 +35,19 @@ namespace BooterBigArm.TopDown3D
         // A later station owner must install this before enabling socket commands.
         // It prevents restoring starter equipment while that equipment is owned by an external socket.
         public Func<string> ExternalResetBlockReason { get; set; }
+        internal Func<TopDown3DPreparedWorldMutation> ExternalResetMutation { get; set; }
+        private TopDown3DInventorySnapshot[] economyBaseline;
+        internal void AdoptEconomyBaseline(TopDown3DInventorySnapshot player, TopDown3DInventorySnapshot carrier, TopDown3DInventorySnapshot storage)
+        {
+            economyBaseline = new[] { player, carrier, storage };
+            if (baseline != null) ApplyEconomyBaseline();
+        }
+        private void ApplyEconomyBaseline()
+        {
+            if (economyBaseline == null || baseline == null) return;
+            baseline.kit = economyBaseline[0]; baseline.cargo = economyBaseline[1]; baseline.cache = economyBaseline[2];
+            baselineJson = JsonUtility.ToJson(baseline); economyBaseline = null;
+        }
 
         public void Configure(TopDown3DPlayerInventory player, TopDown3DBigArmCargo carrier)
         {
@@ -71,7 +84,7 @@ namespace BooterBigArm.TopDown3D
                     resources = resources.CaptureSnapshot(), devices = devices.CaptureSnapshot(), algae = algae.CaptureSnapshot(), salvageMask = wreck != null ? wreck.RemovedMask : 0 };
                 baselineJson = JsonUtility.ToJson(baseline);
             }
-            captured = baseline != null; Changed?.Invoke();
+            ApplyEconomyBaseline(); captured = baseline != null; Changed?.Invoke();
         }
         public bool CancelConfirmation()
         { if (!ConfirmationPending) return false; ConfirmationPending = false; Changed?.Invoke(); return true; }
@@ -105,9 +118,11 @@ namespace BooterBigArm.TopDown3D
                 var world = new List<TopDown3DPreparedWorldMutation> { resources.PrepareTrialRestore(baseline.resources),
                     devices.PrepareTrialRestore(baseline.devices), algae.PrepareTrialRestore(baseline.algae), camp.PrepareTrialRestore(null, false) };
                 if (wreck != null) world.Add(wreck.PrepareTrialRestore(baseline.salvageMask));
+                if (ExternalResetMutation != null) world.Add(ExternalResetMutation());
                 if (world.Exists(mutation => mutation == null)) return "World state cannot be restored; reset cancelled without changes.";
                 var result = TopDown3DInventoryTransaction.Commit(mutations,
-                    () => kit.UsesLoadout && input.Mode == TopDown3DInputMode.Inventory && lab.PreviewReady, world);
+                    () => kit.UsesLoadout && input.Mode == TopDown3DInputMode.Inventory && lab.PreviewReady
+                        && string.IsNullOrEmpty(ExternalResetBlockReason?.Invoke()), world);
                 return result.Succeeded ? "Inventory trial restored. Actors and vitals were preserved." : result.Message;
             }
             finally { resetting = false; Changed?.Invoke(); }

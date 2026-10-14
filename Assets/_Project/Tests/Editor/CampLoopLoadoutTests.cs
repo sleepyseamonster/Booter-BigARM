@@ -176,11 +176,15 @@ namespace BooterBigArm.Tests
                 Assert.That(kit.State.Policy.IsLoadout, Is.True); Assert.That(kit.Capacity, Is.EqualTo(10));
                 Assert.That(kit.State.CreateDraft().OccupiedSlotCount, Is.EqualTo(7));
                 var lab = TopDown3DAnimationPlaygroundSession.Find(scene);
+                kit.GetComponent<TopDown3DPlayerMotor>().Configure(TopDown3DGameHudCanvas.FindInScene<TopDown3DInputRouter>(scene),
+                    TopDown3DGameHudCanvas.FindInScene<Camera>(scene).transform);
                 Assert.That(lab.CheckDependencies(), Is.True);
                 Assert.That(TopDown3DInventoryUiSceneInstaller.TryInstallForScene(scene,
                     System.IO.Path.Combine(System.IO.Path.GetTempPath(), "CampLoadoutFixture-" + Guid.NewGuid().ToString("N"))), Is.Not.Null);
                 Assert.That(lab.Advance(AnimationPlaygroundReadiness.ServicesBound), Is.True);
                 Assert.That(lab.Advance(AnimationPlaygroundReadiness.VisualReady), Is.True);
+                var economy = scene.GetRootGameObjects().SelectMany(root => root.GetComponentsInChildren<TopDown3DCampLoopEconomySession>(true)).Single();
+                Assert.That(economy.Initialize(), Is.True, economy.FailureReason);
                 Assert.That(kit.State.CreateDraft().OccupiedSlotCount, Is.EqualTo(7));
                 var trial = kit.GetComponent<TopDown3DCampLoopInventoryTrial>();
                 Assert.That(trial, Is.Not.Null); Assert.That(trial.Ready, Is.True, trial.FailureReason);
@@ -194,16 +198,18 @@ namespace BooterBigArm.Tests
                 Assert.That(devices.CaptureSnapshot().Version, Is.EqualTo(2));
                 var placed = devices.CaptureSnapshot().Records.Single();
                 Assert.That(placed.EquipmentInstanceId, Is.EqualTo(canisterIdentity));
-                cargo.State.TryAdd(new TopDown3DItemAmount(DustTool, 1));
+                cargo.State.TryAdd(new TopDown3DItemAmount(DustTool, 1, Guid.NewGuid().ToString("N"), TopDown3DCanisterContents.Create()));
                 var spareIndex = Enumerable.Range(0, cargo.State.Capacity).Single(i => cargo.State.Slots[i].ItemId == DustTool);
                 Assert.That(TopDown3DInventoryTransferService.EquipSlot(cargo.State, kit.State, spareIndex, () => true).Succeeded, Is.False);
                 var collected = TopDown3DPlacedHarvesterRecord.Create(placement, placed.PlacementSequence, placed.Position, 2, 0, 20, canisterIdentity);
                 var capture = devices.CaptureSnapshot();
                 Assert.That(devices.ApplySnapshot(TopDown3DPlacedHarvesterSnapshot.Create(0, 20, capture.NextSequence, new[] { collected }, capture.AuthoredWorldId)), Is.True);
                 Assert.That(devices.TryPickup(placement, kit.State, cargo.State, out var dust, () => true), Is.True);
-                Assert.That(dust, Is.EqualTo(2)); Assert.That(kit.State.Slots[0].InstanceId, Is.EqualTo(canisterIdentity));
+                Assert.That(dust, Is.EqualTo(2)); Assert.That(kit.State.Slots[0].IsEmpty, Is.True);
+                var returnedIndex = Enumerable.Range(0, cargo.State.Capacity).Single(i => cargo.State.Slots[i].InstanceId == canisterIdentity);
+                Assert.That(cargo.State.Slots[returnedIndex].CanisterContents.dust, Is.EqualTo(2));
                 Assert.That(kit.State.Slots.Any(slot => slot.ItemId == "resource.airborne_dust"), Is.False);
-                Assert.That(devices.TryPlace(kit.transform.position, kit.State, out _), Is.True);
+                Assert.That(devices.TryPlaceCanister(kit.transform.position, cargo.State, returnedIndex, () => true, out _), Is.True);
                 var sequenceBeforeReset = devices.CaptureSnapshot().NextSequence;
                 var initialIdentity = kit.State.Slots[5].InstanceId;
                 Assert.That(TopDown3DInventoryTransferService.TransferSlot(kit.State, cargo.State, 5, () => true).Succeeded, Is.True);

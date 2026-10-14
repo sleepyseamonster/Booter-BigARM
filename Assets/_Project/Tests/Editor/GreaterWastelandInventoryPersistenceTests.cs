@@ -214,7 +214,7 @@ namespace BooterBigArm.Tests
             Assert.That(harvesters.ApplySnapshot(JsonUtility.FromJson<TopDown3DPlacedHarvesterSnapshot>(json)), Is.True);
             Assert.That(harvesters.TryPickup(id, kit.State, cargo.State, out _, () => false), Is.False);
             Assert.That(harvesters.DeployedCount, Is.EqualTo(1));
-            Assert.That(harvesters.TryPickup(id, kit.State, cargo.State, out var dust, () => true), Is.True);
+            Assert.That(harvesters.TryPickup(id, kit.State, cargo.State, out var dust, () => true), Is.True, harvesters.LastPickupFailure);
             Assert.That(dust, Is.EqualTo(4)); Assert.That(kit.State.Slots[0].ItemId, Is.EqualTo("tool.micro_dust_harvester"));
             Assert.That(cargo.State.Slots[1].ItemId, Is.EqualTo("resource.airborne_dust"));
             Assert.That(harvesters.TryPickup(id, kit.State, cargo.State, out _, () => true), Is.False);

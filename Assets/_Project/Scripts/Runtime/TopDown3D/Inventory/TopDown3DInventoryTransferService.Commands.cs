@@ -25,10 +25,10 @@ namespace BooterBigArm.TopDown3D
             {
                 result = b.Draft.RemoveFromSlot(targetIndex, 1);
                 if (!result.Succeeded) return new TopDown3DTransferResult(result.Code, 0, result.Message);
-                result = a.Draft.TryAdd(new TopDown3DItemAmount(outgoing.ItemId, 1, outgoing.InstanceId));
+                result = a.Draft.TryAdd(new TopDown3DItemAmount(outgoing.ItemId, 1, outgoing.InstanceId, outgoing.CanisterContents));
                 if (!result.Succeeded) return new TopDown3DTransferResult(result.Code, 0, result.Message);
             }
-            result = b.Draft.TryAdd(new TopDown3DItemAmount(selected.ItemId, 1, selected.InstanceId));
+            result = b.Draft.TryAdd(new TopDown3DItemAmount(selected.ItemId, 1, selected.InstanceId, selected.CanisterContents));
             if (!result.Succeeded) return new TopDown3DTransferResult(result.Code, 0, result.Message);
             result = TopDown3DInventoryTransaction.Commit(new[] { a, b }, access);
             return new TopDown3DTransferResult(result.Code, result.Succeeded ? 1 : 0,
@@ -46,13 +46,15 @@ namespace BooterBigArm.TopDown3D
             var b = new TopDown3DInventoryTransaction.Mutation(destination);
             var slot = a.Draft.Slots[sourceIndex];
             var id = slot.ItemId;
-            var quantity = b.Draft.GetMaxAddable(id, slot.Quantity);
+            var selectedAmount = new TopDown3DItemAmount(id, slot.Quantity, slot.InstanceId, slot.CanisterContents);
+            var quantity = source.ItemCatalog.GetRequiredDefinition(id).IsEquipment
+                ? (b.Draft.CheckAdd(selectedAmount).Succeeded ? 1 : 0) : b.Draft.GetMaxAddable(id, slot.Quantity);
             if (quantity <= 0)
             {
-                var check = b.Draft.CheckAdd(new TopDown3DItemAmount(id, 1));
+                var check = b.Draft.CheckAdd(new TopDown3DItemAmount(id, 1, slot.InstanceId, slot.CanisterContents));
                 return new TopDown3DTransferResult(check.Code, 0, check.Message);
             }
-            var result = b.Draft.TryAdd(new TopDown3DItemAmount(id, quantity, slot.InstanceId));
+            var result = b.Draft.TryAdd(new TopDown3DItemAmount(id, quantity, slot.InstanceId, slot.CanisterContents));
             if (!result.Succeeded) return new TopDown3DTransferResult(result.Code, 0, result.Message);
             result = a.Draft.RemoveFromSlot(sourceIndex, quantity);
             if (!result.Succeeded) return new TopDown3DTransferResult(result.Code, 0, result.Message);

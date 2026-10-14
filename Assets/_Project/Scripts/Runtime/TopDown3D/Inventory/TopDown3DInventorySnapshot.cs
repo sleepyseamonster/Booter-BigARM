@@ -10,18 +10,21 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private string itemId;
         [SerializeField] private int quantity;
         [SerializeField] private string instanceId;
+        [SerializeField] private TopDown3DCanisterContents canisterContents;
 
         public string ItemId => itemId;
         public int Quantity => quantity;
         public string InstanceId => instanceId;
+        public TopDown3DCanisterContents CanisterContents => canisterContents;
 
-        internal static TopDown3DInventorySlotSnapshot Create(string id, int amount, string instance = null)
+        internal static TopDown3DInventorySlotSnapshot Create(string id, int amount, string instance = null, TopDown3DCanisterContents contents = default)
         {
             return new TopDown3DInventorySlotSnapshot
             {
                 itemId = amount > 0 ? id : null,
                 quantity = amount > 0 ? amount : 0,
-                instanceId = amount > 0 ? instance : null
+                instanceId = amount > 0 ? instance : null,
+                canisterContents = amount > 0 ? contents : default
             };
         }
     }
@@ -52,7 +55,7 @@ namespace BooterBigArm.TopDown3D
             {
                 snapshot.slots.Add(TopDown3DInventorySlotSnapshot.Create(
                     source[i].ItemId,
-                    source[i].Quantity, source[i].InstanceId));
+                    source[i].Quantity, source[i].InstanceId, source[i].CanisterContents));
             }
 
             return snapshot;

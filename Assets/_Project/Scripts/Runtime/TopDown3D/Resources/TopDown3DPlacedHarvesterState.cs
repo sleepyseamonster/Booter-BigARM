@@ -126,7 +126,7 @@ namespace BooterBigArm.TopDown3D
     }
 
     [DisallowMultipleComponent]
-    public sealed class TopDown3DPlacedHarvesterState : MonoBehaviour, ISerializationCallbackReceiver
+    public sealed partial class TopDown3DPlacedHarvesterState : MonoBehaviour, ISerializationCallbackReceiver
     {
         private static readonly WorldSeedNamespace PlacementNamespace =
             new WorldSeedNamespace(WorldVersionDomain.Site, "player-micro-dust-harvester");
@@ -136,6 +136,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private string authoredWorldId;
         [SerializeField, HideInInspector] private TopDown3DPlacedHarvesterSnapshot reloadSnapshot;
         private bool needsReload;
+        public bool HasRetainedRecovery { get; private set; }
 
         private Dictionary<string, TopDown3DPlacedHarvesterRecord> records =
             new Dictionary<string, TopDown3DPlacedHarvesterRecord>(StringComparer.Ordinal);
@@ -149,7 +150,7 @@ namespace BooterBigArm.TopDown3D
 
         internal TopDown3DPreparedWorldMutation PrepareTrialRestore(TopDown3DPlacedHarvesterSnapshot snapshot)
         {
-            if (!CanApplySnapshot(snapshot)) return null;
+            if (HasRetainedRecovery || !CanApplySnapshot(snapshot)) return null;
             var next = new Dictionary<string, TopDown3DPlacedHarvesterRecord>(StringComparer.Ordinal);
             var ids = new List<string>();
             foreach (var record in snapshot.Records)
@@ -168,7 +169,7 @@ namespace BooterBigArm.TopDown3D
 
         public void OnBeforeSerialize()
         {
-            if (Application.isPlaying && IsAuthored)
+            if (Application.isPlaying && IsAuthored && !HasRetainedRecovery && !resetLocked)
                 reloadSnapshot = TopDown3DPlacedHarvesterSnapshot.Create(0, simulationSeconds, nextSequence, records.Values, authoredWorldId);
         }
         public void OnAfterDeserialize() => needsReload = true;
@@ -177,7 +178,7 @@ namespace BooterBigArm.TopDown3D
         {
             needsReload = false;
             if (reloadSnapshot == null || string.IsNullOrEmpty(reloadSnapshot.AuthoredWorldId)) return true;
-            if (!CanApplySnapshot(reloadSnapshot)) return false;
+            if (!CanApplySnapshot(reloadSnapshot)) { HasRetainedRecovery = true; return false; }
             foreach (var oldView in GetComponentsInChildren<TopDown3DHarvesterView>(true))
             {
                 oldView.gameObject.SetActive(false);
@@ -209,7 +210,7 @@ namespace BooterBigArm.TopDown3D
 
         private void Update()
         {
-            if (settings == null || (world == null && !IsAuthored)) return;
+            if (resetLocked || HasRetainedRecovery || settings == null || (world == null && !IsAuthored)) return;
             simulationSeconds += Mathf.Max(0f, Time.deltaTime);
             viewRefreshElapsed += Time.deltaTime;
             if (viewRefreshElapsed < 0.2f) return;
@@ -222,6 +223,14 @@ namespace BooterBigArm.TopDown3D
         {
             stableId = null;
             if (resetLocked) return false;
+            if (RetainsCanisterContents)
+            {
+                if (inventory == null || inventory.Policy.Owner != TopDown3DInventoryOwner.Booter) return false;
+                for (var i = 0; i < inventory.Capacity; i++)
+                    if (inventory.Slots[i].ItemId == TopDown3DHarvesterSettings.CanisterItemId)
+                        return TryPlaceCanister(localPosition, inventory, i, () => true, out stableId);
+                return false;
+            }
             if (IsAuthored) return TryPlaceAuthored(localPosition, inventory, out stableId);
             if (settings == null || world == null || inventory == null
                 || records.Count >= settings.MaximumDeployed
@@ -264,13 +273,17 @@ namespace BooterBigArm.TopDown3D
         public bool TryPickup(string stableId, TopDown3DInventoryState inventory,
             TopDown3DInventoryState resourceInventory, out int collectedDust, Func<bool> cargoAccess = null)
         {
+            if (RetainsCanisterContents) return TryPickupContents(stableId, inventory, resourceInventory, out collectedDust, cargoAccess);
             LastPickupFailure = null;
             collectedDust = 0;
             if (resetLocked) return false;
             if (settings == null || inventory == null
                 || !records.TryGetValue(stableId ?? string.Empty, out var record)) return false;
             record.Advance(simulationSeconds, settings);
-            var tools = new[] { new TopDown3DItemAmount(TopDown3DHarvesterSettings.CanisterItemId, 1, record.EquipmentInstanceId) };
+            // Legacy JsonUtility restores null strings as empty. Ordinary stacked tools have no equipment identity.
+            var toolInstance = inventory.ItemCatalog.GetRequiredDefinition(TopDown3DHarvesterSettings.CanisterItemId).IsEquipment
+                ? record.EquipmentInstanceId : null;
+            var tools = new[] { new TopDown3DItemAmount(TopDown3DHarvesterSettings.CanisterItemId, 1, toolInstance) };
             var resources = record.Dust > 0
                 ? new[] { new TopDown3DItemAmount(TopDown3DHarvesterSettings.DustItemId, record.Dust) }
                 : null;
@@ -287,7 +300,7 @@ namespace BooterBigArm.TopDown3D
         public bool TryGet(string stableId, out TopDown3DPlacedHarvesterRecord record)
         {
             if (!records.TryGetValue(stableId ?? string.Empty, out record)) return false;
-            if (settings != null) record.Advance(simulationSeconds, settings);
+            if (!resetLocked && settings != null) record.Advance(simulationSeconds, settings);
             return true;
         }
 

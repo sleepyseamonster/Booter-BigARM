@@ -226,7 +226,7 @@ namespace BooterBigArm.TopDown3D
             var slot = cargo.State.Slots[slotIndex];
             var definition = !slot.IsEmpty && cargo.ItemCatalog.TryGetDefinition(slot.ItemId, out var found) ? found : null;
             canvas.SetDetails(definition != null ? definition.DisplayName : "Empty mount",
-                definition != null ? $"{definition.Description}\n{slot.Quantity} units · {slot.Quantity * definition.Mass:0.0} mass" : "Choose a cargo stack.",
+                definition != null ? $"{definition.Description}\n{slot.Quantity} units · {cargo.State.CalculateSlotMass(slotIndex):0.0} mass" + ContentsDescription(slot) : "Choose a cargo stack.",
                 CargoAccessible ? "LEGGER CARGO" : "LEGGER CARGO — READ ONLY");
         }
 
@@ -253,6 +253,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleToggleRequested()
         {
+            if (CloseCampWorkstationOnToggle()) return;
             if (this == null || canvas == null || input == null) return;
             if (suspended || input.Mode == TopDown3DInputMode.SystemMenu) return;
             var radial = TopDown3DGameHudCanvas.FindInScene<TopDown3DRadialMenuController>(gameObject.scene);
@@ -393,6 +394,7 @@ namespace BooterBigArm.TopDown3D
                     var algae = inventory.GetComponent<TopDown3DAlgaeCanisterState>();
                     description += algae != null ? $"\nAlgae {algae.Remaining:0.0} / {algae.Settings.capacity:0.0}. Eat / Drink / Treat use the gameplay controls." : "\nAlgae service unavailable.";
                 }
+                description += ContentsDescription(equipment);
                 canvas.SetDetails(TopDown3DLoadoutLayout.Label(slotIndex), description,
                     $"{LeftState.Slots.Take(6).Count(s => !s.IsEmpty)} / 6 EQUIPPED · {LeftState.Slots.Skip(6).Count(s => !s.IsEmpty)} / 4 SUPPLIES");
                 return;
@@ -403,7 +405,7 @@ namespace BooterBigArm.TopDown3D
             {
                 canvas.SetDetails(
                     definition.DisplayName,
-                    $"{definition.Description}\n{slot.Quantity} units · {slot.Quantity * definition.Mass:0.0} mass",
+                    $"{definition.Description}\n{slot.Quantity} units · {state.CalculateSlotMass(Mathf.Clamp(slotIndex, 0, state.Capacity - 1)):0.0} mass" + ContentsDescription(slot),
                     $"{state.OccupiedSlotCount} / {state.Capacity} SLOTS");
             }
             else
@@ -414,6 +416,8 @@ namespace BooterBigArm.TopDown3D
                     $"{state.OccupiedSlotCount} / {state.Capacity} SLOTS");
             }
         }
+        private static string ContentsDescription(TopDown3DInventorySlot slot) => slot.CanisterContents.IsPresent
+            ? $"\nArc Dust: {slot.CanisterContents.dust}/100. Collection pauses while carried or docked." : string.Empty;
 
         private void RestoreSelection()
         {

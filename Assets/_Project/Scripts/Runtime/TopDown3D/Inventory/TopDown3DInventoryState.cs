@@ -173,6 +173,8 @@ namespace BooterBigArm.TopDown3D
                 return Failure(TopDown3DInventoryResultCode.UnknownItem, $"Unknown item '{itemId}'.");
             }
 
+            if (policy.SupportsCanisterContents && itemId == TopDown3DHarvesterSettings.CanisterItemId)
+                return Failure(TopDown3DInventoryResultCode.InvalidRequest, "Select the exact canister instance.");
             for (var i = 0; i < slots.Count; i++)
                 if (slots[i].ItemId == itemId && !CanRelease(i))
                     return Failure(TopDown3DInventoryResultCode.CommitConditionRejected, "Equipment is attached or in use.");
@@ -201,7 +203,7 @@ namespace BooterBigArm.TopDown3D
                 }
 
                 var removed = Math.Min(slot.Quantity, remaining);
-                slot.Set(itemId, slot.Quantity - removed, slot.InstanceId);
+                slot.Set(itemId, slot.Quantity - removed, slot.InstanceId, slot.CanisterContents);
                 remaining -= removed;
             }
 
@@ -241,11 +243,12 @@ namespace BooterBigArm.TopDown3D
                 || !Accepts(destinationIndex, catalog.GetRequiredDefinition(source.ItemId), source.InstanceId)
                 || !destination.IsEmpty && !Accepts(sourceIndex, catalog.GetRequiredDefinition(destination.ItemId), destination.InstanceId))
                 return Failure(TopDown3DInventoryResultCode.IncompatibleSlots, "Equipment only fits its named slot; attached or in-use gear cannot move.");
+            var sourceContents = source.CanisterContents;
             var sourceInstance = source.InstanceId;
             var sourceId = source.ItemId;
             var sourceQuantity = source.Quantity;
-            source.Set(destination.ItemId, destination.Quantity, destination.InstanceId);
-            destination.Set(sourceId, sourceQuantity, sourceInstance);
+            source.Set(destination.ItemId, destination.Quantity, destination.InstanceId, destination.CanisterContents);
+            destination.Set(sourceId, sourceQuantity, sourceInstance, sourceContents);
             Revision++;
             PublishDraft();
             return Success();
@@ -286,14 +289,14 @@ namespace BooterBigArm.TopDown3D
 
         public TopDown3DInventorySnapshot CaptureSnapshot()
         {
-            return TopDown3DInventorySnapshot.Create(policy.IsLoadout || catalog.HasEquipmentDefinitions ? 2 : CurrentSnapshotVersion, slots);
+            return TopDown3DInventorySnapshot.Create(policy.SupportsCanisterContents ? 3 : policy.IsLoadout || catalog.HasEquipmentDefinitions ? 2 : CurrentSnapshotVersion, slots);
         }
 
         public TopDown3DInventoryResult ApplySnapshot(TopDown3DInventorySnapshot snapshot)
         {
             if (transactionLocked) return Failure(TopDown3DInventoryResultCode.MutationBusy, "Inventory is committing another operation.");
             if (snapshot == null
-                || (snapshot.Version != CurrentSnapshotVersion && snapshot.Version != 2)
+                || (snapshot.Version != CurrentSnapshotVersion && snapshot.Version != 2 && !(snapshot.Version == 3 && policy.SupportsCanisterContents))
                 || snapshot.Version == 2 && !policy.IsLoadout && !catalog.HasEquipmentDefinitions
                 || snapshot.Capacity != slots.Count
                 || snapshot.Slots == null
@@ -313,7 +316,7 @@ namespace BooterBigArm.TopDown3D
                 }
 
                 var next = new TopDown3DInventorySlot();
-                if (record.Quantity == 0 && string.IsNullOrEmpty(record.ItemId) && string.IsNullOrEmpty(record.InstanceId))
+                if (record.Quantity == 0 && string.IsNullOrEmpty(record.ItemId) && string.IsNullOrEmpty(record.InstanceId) && !record.CanisterContents.IsPresent && record.CanisterContents.dust == 0 && record.CanisterContents.fractionalSeconds == 0)
                 {
                     nextSlots.Add(next);
                     continue;
@@ -328,9 +331,16 @@ namespace BooterBigArm.TopDown3D
                     return Failure(TopDown3DInventoryResultCode.InvalidSnapshot, $"Snapshot slot {i} is invalid.");
                 }
 
-                if (definition.IsEquipment ? snapshot.Version != 2 || record.Quantity != 1 || !Guid.TryParseExact(record.InstanceId, "N", out _) || !instances.Add(record.InstanceId) : !string.IsNullOrEmpty(record.InstanceId))
+                if (definition.IsEquipment ? (snapshot.Version != 2 && snapshot.Version != 3) || record.Quantity != 1 || !Guid.TryParseExact(record.InstanceId, "N", out _) || !instances.Add(record.InstanceId) : !string.IsNullOrEmpty(record.InstanceId))
                     return Failure(TopDown3DInventoryResultCode.InvalidSnapshot, $"Invalid or duplicated equipment identity in slot {i}: {record.ItemId}, instance '{record.InstanceId}', version {snapshot.Version}.");
-                next.Set(record.ItemId, record.Quantity, record.InstanceId);
+                var contents = record.CanisterContents;
+                if (snapshot.Version < 3 && (contents.IsPresent || contents.dust != 0 || contents.fractionalSeconds != 0))
+                    return Failure(TopDown3DInventoryResultCode.InvalidSnapshot, "Legacy snapshots cannot contain canister payloads.");
+                if (snapshot.Version < 3 && policy.SupportsCanisterContents && record.ItemId == TopDown3DHarvesterSettings.CanisterItemId)
+                    contents = TopDown3DCanisterContents.Create();
+                if (!ValidContents(record.ItemId, record.InstanceId, record.Quantity, contents))
+                    return Failure(TopDown3DInventoryResultCode.InvalidSnapshot, "Canister contents or carrier are invalid.");
+                next.Set(record.ItemId, record.Quantity, record.InstanceId, contents);
                 nextSlots.Add(next);
             }
 
@@ -380,6 +390,8 @@ namespace BooterBigArm.TopDown3D
                 if (amount.InstanceId != null && (!definition.IsEquipment || amount.Quantity != 1 || !Guid.TryParseExact(amount.InstanceId, "N", out _)
                     || simulated.Exists(s => s.InstanceId == amount.InstanceId)))
                 { failure = Failure(TopDown3DInventoryResultCode.InvalidRequest, "Invalid or duplicated equipment instance."); return false; }
+                if (!ValidContents(amount.ItemId, amount.InstanceId, amount.Quantity, amount.CanisterContents))
+                { failure = Failure(TopDown3DInventoryResultCode.CarrierRestricted, "Filled canisters stay in Legger cargo or camp storage; select the exact canister."); return false; }
                 var remaining = amount.Quantity;
                 for (var i = 0; i < simulated.Count && remaining > 0; i++)
                 {
@@ -404,7 +416,7 @@ namespace BooterBigArm.TopDown3D
                     }
 
                     var added = Math.Min(definition.MaxStack, remaining);
-                    slot.Set(amount.ItemId, added, definition.IsEquipment ? amount.InstanceId ?? Guid.NewGuid().ToString("N") : null);
+                    slot.Set(amount.ItemId, added, definition.IsEquipment ? amount.InstanceId ?? Guid.NewGuid().ToString("N") : null, amount.CanisterContents);
                     remaining -= added;
                 }
 
@@ -437,7 +449,7 @@ namespace BooterBigArm.TopDown3D
             for (var i = 0; i < source.Count; i++)
             {
                 if (!source[i].IsEmpty && catalog.TryGetDefinition(source[i].ItemId, out var definition))
-                    total += definition.Mass * source[i].Quantity;
+                    total += SlotMass(source[i]);
             }
             return total;
         }
@@ -457,7 +469,7 @@ namespace BooterBigArm.TopDown3D
         {
             for (var i = 0; i < slots.Count; i++)
             {
-                slots[i].Set(nextSlots[i].ItemId, nextSlots[i].Quantity, nextSlots[i].InstanceId);
+                slots[i].Set(nextSlots[i].ItemId, nextSlots[i].Quantity, nextSlots[i].InstanceId, nextSlots[i].CanisterContents);
             }
 
             Revision++;

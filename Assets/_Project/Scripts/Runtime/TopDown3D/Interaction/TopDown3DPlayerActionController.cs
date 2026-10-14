@@ -4,7 +4,7 @@ using UnityEngine;
 namespace BooterBigArm.TopDown3D
 {
     [DisallowMultipleComponent]
-    public sealed class TopDown3DPlayerActionController : MonoBehaviour
+    public sealed partial class TopDown3DPlayerActionController : MonoBehaviour
     {
         [SerializeField] private TopDown3DInputRouter input;
         [SerializeField] private TopDown3DInteractionController interaction;
@@ -45,7 +45,7 @@ namespace BooterBigArm.TopDown3D
                 if(activityCamp == null) activityCamp=GetComponent<TopDown3DCampController>();
                 return new TopDown3DActivitySnapshot(IsGathering,IsPlacingHarvester,motor != null && motor.IsActionConstrained,
                     activityCamp != null && activityCamp.Phase != TopDown3DCampPhase.Idle,
-                    stationReceiver != null && (!(stationReceiver is UnityEngine.Object owner) || owner != null) && stationReceiver.IsBusy);
+                    campModalOpen || stationReceiver != null && (!(stationReceiver is UnityEngine.Object owner) || owner != null) && stationReceiver.IsBusy);
             }
         }
         public bool IsBusy => Activity.IsBusy;
@@ -80,7 +80,7 @@ namespace BooterBigArm.TopDown3D
         {
             foreach (var slot in inventory.State.Slots)
                 if (slot.ItemId == TopDown3DHarvesterSettings.CanisterItemId && slot.Quantity > 0) return true;
-            return false;
+            return harvesterState != null && harvesterState.RetainsCanisterContents && AccessibleCargoCanister?.Invoke() == true;
         }
 
         public bool SelectCanister()
@@ -144,6 +144,7 @@ namespace BooterBigArm.TopDown3D
         private TopDown3DGatherActionResult TryBeginTarget(ITopDown3DInteractable target)
         {
             if (target == null || !target.IsAvailable) return TopDown3DGatherActionResult.Rejected;
+            if (TryOpenCampTarget(target)) return TopDown3DGatherActionResult.Completed;
             if (target is TopDown3DCampView camp)
                 return camp.Interact() ? TopDown3DGatherActionResult.Completed : TopDown3DGatherActionResult.Rejected;
             if (target is TopDown3DHarvesterView harvester)
@@ -341,9 +342,10 @@ namespace BooterBigArm.TopDown3D
                 || inventory == null || harvesterState == null || (proceduralWorld == null && !harvesterState.IsAuthored)
                 || motor==null || !motor.LaboratoryStandingActionsAllowed
                 || IsGathering || Activity.StationActive || Activity.CampActive || Activity.MotorOwned) return;
+            if (harvesterState.RetainsCanisterContents && placementPreview == null && !SelectStarterForPreview()) return;
             if (placementPreview == null)
             {
-                var hasCanister = false;
+                var hasCanister = harvesterState.RetainsCanisterContents && SelectedCanisterValid();
                 foreach (var slot in inventory.State.Slots)
                     hasCanister |= slot.ItemId == TopDown3DHarvesterSettings.CanisterItemId
                         && slot.Quantity > 0;
@@ -411,13 +413,19 @@ namespace BooterBigArm.TopDown3D
                 || interaction == null || !interaction.CanReachTarget(view))
                 return TopDown3DGatherActionResult.Rejected;
             if (!harvesterState.TryGet(view.StableId, out var record)) return TopDown3DGatherActionResult.Rejected;
-            var toolSpace = inventory.State.CheckAdd(new TopDown3DItemAmount(TopDown3DHarvesterSettings.CanisterItemId, 1, record.EquipmentInstanceId));
+            var toolId = inventory.ItemCatalog.GetRequiredDefinition(TopDown3DHarvesterSettings.CanisterItemId).IsEquipment ? record.EquipmentInstanceId : null;
+            var canisterAmount = new TopDown3DItemAmount(TopDown3DHarvesterSettings.CanisterItemId, 1, toolId,
+                harvesterState.RetainsCanisterContents ? TopDown3DCanisterContents.Create(record.Dust, record.FractionalSeconds) : default);
+            var kitSpace = inventory.State.CheckAdd(canisterAmount);
+            var toolSpace = harvesterState.RetainsCanisterContents ? new TopDown3DInventoryResult(TopDown3DInventoryResultCode.Success) : kitSpace;
             if (!toolSpace.Succeeded) { ReportFeedback(toolSpace.Message); return TopDown3DGatherActionResult.InventoryFull; }
-            if (record.Dust > 0)
+            if (record.Dust > 0 || harvesterState.RetainsCanisterContents && !kitSpace.Succeeded)
             {
                 if (bigArmCargo == null || !bigArmCargo.isActiveAndEnabled)
                 { ReportFeedback("Legger cargo is unavailable; the canister keeps its dust."); return TopDown3DGatherActionResult.DestinationUnavailable; }
-                var space = bigArmCargo.State.CheckAdd(new TopDown3DItemAmount(TopDown3DHarvesterSettings.DustItemId, record.Dust));
+                var space = bigArmCargo.State.CheckAdd(harvesterState.RetainsCanisterContents
+                    ? canisterAmount
+                    : new TopDown3DItemAmount(TopDown3DHarvesterSettings.DustItemId, record.Dust));
                 if (!space.Succeeded) { ReportFeedback(space.Message); return TopDown3DGatherActionResult.InventoryFull; }
                 if (!TopDown3DCargoAccess.CanAccess(bigArmCargo, transform))
                 {
@@ -452,7 +460,7 @@ namespace BooterBigArm.TopDown3D
                 placingHarvester = false;
                 if (TryFindPlacement(out var current)
                     && Vector3.Distance(current, proposedPlacement) < 0.35f
-                    && harvesterState.TryPlace(current, inventory.State, out _))
+                    && (harvesterState.RetainsCanisterContents ? CommitSelectedCanister(current) : harvesterState.TryPlace(current, inventory.State, out _)))
                     FeedbackRequested?.Invoke("Dust canister deployed");
                 else
                     FeedbackRequested?.Invoke("Could not place dust canister");
@@ -478,6 +486,8 @@ namespace BooterBigArm.TopDown3D
         private void RefreshPlacementPreview()
         {
             if (placementPreview == null || motor == null) return;
+            if (harvesterState.RetainsCanisterContents && !SelectedCanisterValid())
+            { CancelPlacementPreview(); ReportFeedback("Canister selection changed or its owner moved out of reach."); return; }
             placementValid = TryFindPlacement(out proposedPlacement);
             placementPreview.transform.position = placementValid
                 ? proposedPlacement + Vector3.up * 0.26f
@@ -529,6 +539,7 @@ namespace BooterBigArm.TopDown3D
             placementPreview = null;
             placementPreviewMaterial = null;
             placementValid = false;
+            if (!placingHarvester) ClearSelectedCanister();
             PlacementChanged?.Invoke();
         }
 
@@ -560,6 +571,7 @@ namespace BooterBigArm.TopDown3D
 
         private void EndPresentation()
         {
+            ClearSelectedCanister();
             animationDriver?.EndGather();
             motor?.EndActionConstraint(this);
             GatheringChanged?.Invoke(false);

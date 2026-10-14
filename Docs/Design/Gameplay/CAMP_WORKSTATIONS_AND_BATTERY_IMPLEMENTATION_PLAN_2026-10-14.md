@@ -39,7 +39,7 @@ The Animation Playground reset registry is sequential and applies to registered 
 | Starter chest | One recipe batch: exactly 4 Ironstone Ore. Seed from the recipe reference, not a duplicated quantity list. |
 | Refining | 10 dust from the docked canister + 1 empty battery -> 1 `equipment.arc_battery_charged`. |
 | Timing | Explicit instant batch commit, followed by brief feedback. No job queue, fuel or processing timer. |
-| Battery carry/stack | Equipment; Either carry preference; maximum stack 1 for empty and charged states. Provisional mass 0.8 for both. |
+| Battery carry/stack | Quantity-one field supply; Either carry preference; maximum stack 1 for empty and charged states. Provisional mass 0.8 for both. It occupies a supply pocket, not a seventh equipment slot. |
 | Canister carry | Empty canister may travel in Booter's kit, cargo or chest. Nonempty canister travels in Legger cargo, chest or refinery; Booter's kit rejects it. |
 | Canister mass | Existing 0.8 tool mass plus 0.05 per dust unit. Fractional collection time adds no mass. |
 | Collection | Preserve capacity 100, rate 10 simulation seconds/unit, cap 32 placements and no offline progress. Carried/docked canisters do not collect. |
@@ -190,6 +190,14 @@ Production promotion requires a new approved slice. Expand old stacked empty can
 
 ## Completion and next authorized move
 
-This plan is ready for review and subsequent implementation with the stated prototype defaults. The next implementation starts at Batch 0; creating this plan does not begin those batches. A lab implementation is complete only after exact ingredient seeding, crafting, preserved canister transport, docking, refinement, retrieval and deliberate reset pass focused state/UI/scene tests while production contracts and protected assets remain intact. Author visual/feel acceptance must be reported separately.
+### Implementation closeout — October 14, 2026
+
+The user subsequently authorized implementation. The marked Camp Loop lab now contains the workbench, one stocked existing chest, refinery sockets and exact filled-canister lifecycle described by this plan. All seven plan-audit findings have been resolved against the sealed loadout API. The [implementation receipt](../../Evidence/Gameplay/CampWorkstations20261014/README.md) records the installed behavior, focused EditMode proof, additive scene/production protection hashes, six reviewed UI captures and validation limits.
+
+The implementation uses hidden background batchmode authoring in an isolated copy, followed by a guarded additive source-scene delta. Its CLI installer may open that isolated lab; it does not discard an author-owned Editor scene. The original four-Ironstone/ten-dust defaults remain provisional asset data. Production promotion and hands-on acceptance remain separate.
+
+### Original planning boundary — retained
+
+At the planning checkpoint, creating this plan did not begin implementation. Lab completion required exact ingredient seeding, crafting, preserved canister transport, docking, refinement, retrieval and deliberate reset to pass focused state/UI/scene checks while production contracts and protected assets remained intact. The implementation receipt above now supplies that evidence; author visual/feel acceptance remains separate.
 
 The planning task establishes source inspection and a reviewed dependency sequence only. It makes no fresh Unity compilation, EditMode, gameplay, performance, production persistence, Player-build or publication claim.

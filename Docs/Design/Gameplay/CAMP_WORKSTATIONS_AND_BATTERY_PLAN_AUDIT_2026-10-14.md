@@ -101,4 +101,8 @@ The plan is ready for revision, not autonomous implementation as written. These 
 
 ## Evidence boundary
 
+### Subsequent implementation resolution — October 14
+
+The author subsequently authorized implementation. F1–F7 are resolved in the [implementation receipt](../../Evidence/Gameplay/CampWorkstations20261014/README.md): sealed canonical loadout identity, separate station dispatch, typed modal/menu handoff, exact carried-canister selection, explicit payload validation, collection-clock rebasing and ordered atomic startup/reset. The original findings remain a record of the planning checkpoint, not current blockers.
+
 This audit inspected source, plan text and working diffs. It did not run Unity, compile, execute tests, alter gameplay, edit the reviewed plan or focus an application. Live inventory and animation work changed during inspection; the new loadout/identity details are integration dependencies, not accepted final behavior. The report's documentation links and whitespace are checked separately from implementation proof. Only this report belongs to the audit commit.

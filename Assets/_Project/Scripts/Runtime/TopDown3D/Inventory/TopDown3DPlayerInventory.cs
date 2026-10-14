@@ -28,6 +28,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private TopDown3DItemCatalog itemCatalog;
         [SerializeField, Min(1)] private int capacity = DefaultCapacity;
         [SerializeField] private bool campLoopLoadout;
+        [SerializeField] private bool campCanisterContents;
         [SerializeField] private TopDown3DStartingInventoryItem[] startingItems =
             Array.Empty<TopDown3DStartingInventoryItem>();
 
@@ -102,7 +103,9 @@ namespace BooterBigArm.TopDown3D
                     var prepared = CreateInitialState();
                     foreach (var slot in state.Slots)
                         if (!string.IsNullOrEmpty(slot.InstanceId) && prepared.ItemCatalog.GetRequiredDefinition(slot.ItemId).IsEquipment)
-                            prepared.Slots[(int)prepared.ItemCatalog.GetRequiredDefinition(slot.ItemId).EquipmentSlot - 1].Set(slot.ItemId, slot.Quantity, slot.InstanceId);
+                            prepared.Slots[(int)prepared.ItemCatalog.GetRequiredDefinition(slot.ItemId).EquipmentSlot - 1].Set(slot.ItemId, slot.Quantity, slot.InstanceId,
+                                slot.ItemId == TopDown3DHarvesterSettings.CanisterItemId && prepared.Policy.SupportsCanisterContents && !slot.CanisterContents.IsPresent
+                                    ? TopDown3DCanisterContents.Create() : slot.CanisterContents);
                     if (!state.AdoptStartupLoadout(prepared))
                         throw new InvalidOperationException("Loadout activation cannot replace used/retained inventory; contents were preserved.");
                 }
@@ -136,7 +139,8 @@ namespace BooterBigArm.TopDown3D
             var profile = TopDown3DCampLoopLoadoutProfile.For(gameObject.scene, itemCatalog);
             var loadout = profile != null || campLoopLoadout && TopDown3DAnimationPlaygroundSession.IsSessionOnly(gameObject.scene);
             var initialState = new TopDown3DInventoryState(catalog,
-                new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.Booter, loadout ? TopDown3DLoadoutLayout.Capacity : capacity, 0f, loadout));
+                new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.Booter, loadout ? TopDown3DLoadoutLayout.Capacity : capacity, 0f, loadout,
+                    canisterContents: campCanisterContents && TopDown3DAnimationPlaygroundSession.IsSessionOnly(gameObject.scene)));
             initialState.ReleaseAllowed = id => !UsesLoadout || GetComponent<TopDown3DCampController>() == null
                 || GetComponent<TopDown3DCampController>().Phase == TopDown3DCampPhase.Idle;
             var amounts = new List<TopDown3DItemAmount>();
@@ -145,6 +149,10 @@ namespace BooterBigArm.TopDown3D
             if (profile != null)
                 foreach (var item in profile.startingEquipment)
                     amounts.Add(new TopDown3DItemAmount(item.ItemId, item.Quantity));
+            if (initialState.Policy.SupportsCanisterContents)
+                for (var i = 0; i < amounts.Count; i++)
+                    if (amounts[i].ItemId == TopDown3DHarvesterSettings.CanisterItemId)
+                        amounts[i] = new TopDown3DItemAmount(amounts[i].ItemId, 1, Guid.NewGuid().ToString("N"), TopDown3DCanisterContents.Create());
             if (amounts.Count == 0) return initialState;
             var result = initialState.TryAdd(amounts);
             if (!result.Succeeded)

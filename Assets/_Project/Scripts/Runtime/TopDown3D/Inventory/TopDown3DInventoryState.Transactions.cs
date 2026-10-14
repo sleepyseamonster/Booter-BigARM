@@ -38,7 +38,7 @@ namespace BooterBigArm.TopDown3D
 
         internal void InstallDraft(TopDown3DInventoryState draft)
         {
-            for (var i = 0; i < slots.Count; i++) slots[i].Set(draft.slots[i].ItemId, draft.slots[i].Quantity, draft.slots[i].InstanceId);
+            for (var i = 0; i < slots.Count; i++) slots[i].Set(draft.slots[i].ItemId, draft.slots[i].Quantity, draft.slots[i].InstanceId, draft.slots[i].CanisterContents);
             Revision++;
         }
 
@@ -65,7 +65,7 @@ namespace BooterBigArm.TopDown3D
             if (index < 0 || index >= slots.Count || quantity <= 0 || slots[index].Quantity < quantity)
                 return new TopDown3DInventoryResult(TopDown3DInventoryResultCode.InvalidSlot, "Selected stack changed.");
             if (!CanRelease(index)) return new TopDown3DInventoryResult(TopDown3DInventoryResultCode.CommitConditionRejected, "Equipment is attached or in use.");
-            slots[index].Set(slots[index].ItemId, slots[index].Quantity - quantity, slots[index].InstanceId);
+            slots[index].Set(slots[index].ItemId, slots[index].Quantity - quantity, slots[index].InstanceId, slots[index].CanisterContents);
             Revision++;
             return Success();
         }

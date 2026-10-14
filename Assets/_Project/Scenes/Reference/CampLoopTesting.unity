@@ -1818,6 +1818,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6382110182584392946, guid: 3ef35fcc89f98ed4885f933ed316c259, type: 3}
+      propertyPath: campStorage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5132826017326578498, guid: 3ef35fcc89f98ed4885f933ed316c259, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1834
@@ -7106,6 +7110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlayerInventory
   itemCatalog: {fileID: 11400000, guid: 9b53a13b5b81f9f4f923c87dacf9661b, type: 2}
   capacity: 16
+  campCanisterContents: 1
   startingItems:
   - itemId: tool.micro_dust_harvester
     quantity: 1
@@ -9330,6 +9335,7 @@ MonoBehaviour:
   itemCatalog: {fileID: 11400000, guid: 9b53a13b5b81f9f4f923c87dacf9661b, type: 2}
   packingSettings: {fileID: 11400000, guid: 5309bf7cec2414dd1b44d36ae18520ac, type: 2}
   accessRange: 3.2
+  campCanisterContents: 1
   reloadSnapshot:
     version: 0
     capacity: 0
@@ -28062,6 +28068,7 @@ SceneRoots:
   - {fileID: 600140376}
   - {fileID: 9001410000000}
   - {fileID: 1496457184}
+  - {fileID: 201830966}
 --- !u!1001 &1496457184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28142,3 +28149,263 @@ MonoBehaviour:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DSceneRenderingOverride
   disableTiltShift: 1
   atmosphereProfile: {fileID: 11400000, guid: aedf3be74d4f5724fa98020176c100d5, type: 2}
+--- !u!1 &201830964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 201830966}
+  - component: {fileID: 201830965}
+  m_Layer: 0
+  m_Name: Camp Workstations
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &201830965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201830964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b544f293cf644b047aff2ddfed5cb0c0, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DCampLoopEconomySession
+  kit: {fileID: 690964290}
+  cargo: {fileID: 812448494}
+  cache: {fileID: 149730115}
+  workbench: {fileID: 214363086}
+  refinery: {fileID: 1467156895}
+  initialized: 0
+  epoch: 0
+  starterCanisterId:
+--- !u!4 &201830966
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201830964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 214363087}
+  - {fileID: 1467156896}
+  - {fileID: 1985768596}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &214363085
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 201830966}
+    m_Modifications:
+    - target: {fileID: 321184599131355119, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+      propertyPath: m_Name
+      value: CampWorkbench
+      objectReference: {fileID: 0}
+    - target: {fileID: 722374889150998789, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1835.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 722374889150998789, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -47.63596
+      objectReference: {fileID: 0}
+    - target: {fileID: 722374889150998789, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1497.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 722374889150998789, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 722374889150998789, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722374889150998789, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722374889150998789, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722374889150998789, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722374889150998789, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 722374889150998789, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387887310218148814, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+      propertyPath: chest
+      value:
+      objectReference: {fileID: 149730115}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+--- !u!114 &214363086 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5387887310218148814, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+  m_PrefabInstance: {fileID: 214363085}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27e21197b11a4809bab1c667a788ee6d, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DCampWorkbench
+--- !u!4 &214363087 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 722374889150998789, guid: 77e41ee6809b04a4abb8db3fce5d7c35, type: 3}
+  m_PrefabInstance: {fileID: 214363085}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1467156894
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 201830966}
+    m_Modifications:
+    - target: {fileID: 366872110681236136, guid: 6335ec8c7a2ecc5478b562ab5c1417dd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1832.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 366872110681236136, guid: 6335ec8c7a2ecc5478b562ab5c1417dd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -47.361294
+      objectReference: {fileID: 0}
+    - target: {fileID: 366872110681236136, guid: 6335ec8c7a2ecc5478b562ab5c1417dd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1497.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 366872110681236136, guid: 6335ec8c7a2ecc5478b562ab5c1417dd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 366872110681236136, guid: 6335ec8c7a2ecc5478b562ab5c1417dd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 366872110681236136, guid: 6335ec8c7a2ecc5478b562ab5c1417dd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 366872110681236136, guid: 6335ec8c7a2ecc5478b562ab5c1417dd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 366872110681236136, guid: 6335ec8c7a2ecc5478b562ab5c1417dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 366872110681236136, guid: 6335ec8c7a2ecc5478b562ab5c1417dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 366872110681236136, guid: 6335ec8c7a2ecc5478b562ab5c1417dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2708384213994087014, guid: 6335ec8c7a2ecc5478b562ab5c1417dd, type: 3}
+      propertyPath: m_Name
+      value: DustRefinery
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6335ec8c7a2ecc5478b562ab5c1417dd, type: 3}
+--- !u!114 &1467156895 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4489222955931278915, guid: 6335ec8c7a2ecc5478b562ab5c1417dd, type: 3}
+  m_PrefabInstance: {fileID: 1467156894}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c96adae0c234d4db2f1330b9ce33e92, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DDustRefinery
+--- !u!4 &1467156896 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 366872110681236136, guid: 6335ec8c7a2ecc5478b562ab5c1417dd, type: 3}
+  m_PrefabInstance: {fileID: 1467156894}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1985768595
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1985768596}
+  - component: {fileID: 1985768597}
+  m_Layer: 0
+  m_Name: Camp Canister Registry
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1985768596
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985768595}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 201830966}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1985768597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985768595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e41f4b36a7be4ed080466fdea1ead488, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DPlacedHarvesterState
+  retainCanisterContents: 1
+  world: {fileID: 0}
+  settings: {fileID: 11400000, guid: 42334e1f3d5d4f3c87768a3691d33eed, type: 2}
+  authoredWorldId: 4de5dd018ee194314a00fd369e2d3eeb
+  reloadSnapshot:
+    version: 1
+    worldSeed: 0
+    authoredWorldId:
+    simulationSeconds: 0
+    nextSequence: 0
+    records: []
