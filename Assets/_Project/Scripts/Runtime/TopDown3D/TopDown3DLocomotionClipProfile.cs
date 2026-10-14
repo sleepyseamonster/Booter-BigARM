@@ -39,6 +39,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private TopDown3DLocomotionClipRole[] preferredExitRoles =
             Array.Empty<TopDown3DLocomotionClipRole>();
         [SerializeField] private bool intentionalMirror;
+        [SerializeField] private AnimationCurve visualHeightCorrection;
 
         public TopDown3DLocomotionClipRole Role => role;
         public AnimationClip Clip => clip;
@@ -57,6 +58,16 @@ namespace BooterBigArm.TopDown3D
         public TopDown3DLocomotionClipRole[] PreferredExitRoles =>
             preferredExitRoles ?? Array.Empty<TopDown3DLocomotionClipRole>();
         public bool IntentionalMirror => intentionalMirror;
+        public bool HasVisualHeightCorrection => visualHeightCorrection != null && visualHeightCorrection.length > 0;
+        public float HeightCorrection(float phase) => HasVisualHeightCorrection ? visualHeightCorrection.Evaluate(Mathf.Clamp01(phase)) : 0;
+        public bool HasValidHeightCorrection()
+        {
+            if(!HasVisualHeightCorrection)return true;
+            foreach(var key in visualHeightCorrection.keys)
+                if(!float.IsFinite(key.time) || !float.IsFinite(key.value) || key.time<0 || key.time>1 || key.value<0 || key.value>.18f)return false;
+            var keys=visualHeightCorrection.keys;
+            return !looping || Mathf.Abs(keys[0].value-keys[^1].value)<=.002f;
+        }
 
         public bool HasOrderedContacts()
         {
@@ -181,6 +192,8 @@ namespace BooterBigArm.TopDown3D
                     error = $"Role '{role}' loop metadata disagrees with its imported clip.";
                     return false;
                 }
+                if(!entry.HasValidHeightCorrection())
+                {error=$"Role '{role}' has an invalid calibrated height correction.";return false;}
 
                 if (!entry.HasOrderedContacts())
                 {

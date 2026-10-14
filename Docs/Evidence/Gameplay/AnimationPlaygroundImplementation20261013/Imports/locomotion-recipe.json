@@ -1,0 +1,204 @@
+{
+    "state": "fixture-qualified-draft",
+    "standingHeight": 1.7999999523162842,
+    "roles": [
+        {
+            "role": "Idle",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/IdleBreathingLoop.anim",
+            "guid": "0d1201e721d3c7444a5e390e74f4fc31",
+            "clipLocalId": 7400000,
+            "nominalForward": 0.0,
+            "nominalLateral": 0.0,
+            "maximumHeightCorrection": 0.032416727393865588,
+            "plantTime": 0.0,
+            "releaseTime": 1.0,
+            "looping": true,
+            "leftContacts": [],
+            "rightContacts": []
+        },
+        {
+            "role": "Walk",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/WalkTwoCycles.anim",
+            "guid": "c6cd0ec25f35f8f46acfab1675573a04",
+            "clipLocalId": 7400000,
+            "nominalForward": 1.399999976158142,
+            "nominalLateral": 0.0,
+            "maximumHeightCorrection": 0.022726168856024743,
+            "plantTime": 0.0,
+            "releaseTime": 1.0,
+            "looping": true,
+            "leftContacts": [
+                0.246478870511055,
+                0.7464788556098938
+            ],
+            "rightContacts": [
+                0.0,
+                0.5
+            ]
+        },
+        {
+            "role": "Run",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RunTwoCycles.anim",
+            "guid": "e85f77828fa8786448d2a3ba37c86193",
+            "clipLocalId": 7400000,
+            "nominalForward": 2.700000047683716,
+            "nominalLateral": 0.0,
+            "maximumHeightCorrection": 0.04995280131697655,
+            "plantTime": 0.0,
+            "releaseTime": 1.0,
+            "looping": true,
+            "leftContacts": [
+                0.25,
+                0.75
+            ],
+            "rightContacts": [
+                0.0,
+                0.5
+            ]
+        },
+        {
+            "role": "Sprint",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintTwoCycles.anim",
+            "guid": "436bacaedad9bf747918ca7abfe4d325",
+            "clipLocalId": 7400000,
+            "nominalForward": 3.799999952316284,
+            "nominalLateral": 0.0,
+            "maximumHeightCorrection": 0.06974990665912628,
+            "plantTime": 0.0,
+            "releaseTime": 1.0,
+            "looping": true,
+            "leftContacts": [
+                0.125,
+                0.75
+            ],
+            "rightContacts": [
+                0.0,
+                0.484375
+            ]
+        },
+        {
+            "role": "DirectionalLeft",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/DirectionalStrafeLeftTwoCycles.anim",
+            "guid": "63685a3a9e1458b46ba16177d62b826d",
+            "clipLocalId": 7400000,
+            "nominalForward": 2.700000047683716,
+            "nominalLateral": -1.5399999618530274,
+            "maximumHeightCorrection": 0.04777473211288452,
+            "plantTime": 0.0,
+            "releaseTime": 1.0,
+            "looping": true,
+            "leftContacts": [
+                0.36250001192092898,
+                0.862500011920929
+            ],
+            "rightContacts": [
+                0.0,
+                0.5
+            ]
+        },
+        {
+            "role": "DirectionalRight",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/DirectionalStrafeRightTwoCycles.anim",
+            "guid": "827f0054329eab44491d3e5527a117a4",
+            "clipLocalId": 7400000,
+            "nominalForward": 2.700000047683716,
+            "nominalLateral": 1.5399999618530274,
+            "maximumHeightCorrection": 0.06120610237121582,
+            "plantTime": 0.0,
+            "releaseTime": 1.0,
+            "looping": true,
+            "leftContacts": [
+                0.13750000298023225,
+                0.637499988079071
+            ],
+            "rightContacts": [
+                0.0,
+                0.5
+            ]
+        },
+        {
+            "role": "StartLeft",
+            "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Start_NoRM.FBX",
+            "guid": "aa01997cbf74e2847b241da93f96a442",
+            "clipLocalId": 8993902097722301239,
+            "nominalForward": 4.199999809265137,
+            "nominalLateral": 0.0,
+            "maximumHeightCorrection": 0.006451382767409086,
+            "plantTime": 0.0,
+            "releaseTime": 0.47999998927116396,
+            "looping": false,
+            "leftContacts": [],
+            "rightContacts": []
+        },
+        {
+            "role": "StartRight",
+            "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Start_NoRM_Mirror.FBX",
+            "guid": "7261b90646054a439e40427262a97829",
+            "clipLocalId": 8993902097722301239,
+            "nominalForward": 4.199999809265137,
+            "nominalLateral": 0.0,
+            "maximumHeightCorrection": 0.00717433076351881,
+            "plantTime": 0.0,
+            "releaseTime": 0.47999998927116396,
+            "looping": false,
+            "leftContacts": [],
+            "rightContacts": []
+        },
+        {
+            "role": "StopLeft",
+            "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Stop_NoRM.FBX",
+            "guid": "22c7cc50a72e2014bb566ed67fd973ce",
+            "clipLocalId": 8993902097722301239,
+            "nominalForward": 4.199999809265137,
+            "nominalLateral": 0.0,
+            "maximumHeightCorrection": 0.01931372471153736,
+            "plantTime": 0.6200000047683716,
+            "releaseTime": 1.0,
+            "looping": false,
+            "leftContacts": [],
+            "rightContacts": []
+        },
+        {
+            "role": "StopRight",
+            "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Stop_NoRM_Mirror.FBX",
+            "guid": "b702e3b332aa4b9289cccf58e5499aff",
+            "clipLocalId": 8993902097722301239,
+            "nominalForward": 4.199999809265137,
+            "nominalLateral": 0.0,
+            "maximumHeightCorrection": 0.019391756504774095,
+            "plantTime": 0.6200000047683716,
+            "releaseTime": 1.0,
+            "looping": false,
+            "leftContacts": [],
+            "rightContacts": []
+        },
+        {
+            "role": "PivotLeft",
+            "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM.FBX",
+            "guid": "6ab308534cf6f1248aeeabd718abb99f",
+            "clipLocalId": 8993902097722301239,
+            "nominalForward": 4.199999809265137,
+            "nominalLateral": 0.0,
+            "maximumHeightCorrection": 0.03365633264183998,
+            "plantTime": 0.47999998927116396,
+            "releaseTime": 0.8199999928474426,
+            "looping": false,
+            "leftContacts": [],
+            "rightContacts": []
+        },
+        {
+            "role": "PivotRight",
+            "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM_Mirror.FBX",
+            "guid": "4bc239a2dc044f3a89814c7811f16d3b",
+            "clipLocalId": 8993902097722301239,
+            "nominalForward": 4.199999809265137,
+            "nominalLateral": 0.0,
+            "maximumHeightCorrection": 0.033940818160772327,
+            "plantTime": 0.47999998927116396,
+            "releaseTime": 0.8199999928474426,
+            "looping": false,
+            "leftContacts": [],
+            "rightContacts": []
+        }
+    ]
+}

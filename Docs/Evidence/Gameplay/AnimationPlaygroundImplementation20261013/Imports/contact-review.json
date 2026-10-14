@@ -1,0 +1,100 @@
+{
+    "roles": [
+        {
+            "role": "Idle",
+            "finite": true,
+            "groundClear": true,
+            "minimumSole": -0.9000003337860107,
+            "maximumContactGap": 0.0,
+            "seamGap": 0.0
+        },
+        {
+            "role": "Walk",
+            "finite": true,
+            "groundClear": true,
+            "minimumSole": -0.9000001549720764,
+            "maximumContactGap": 0.0,
+            "seamGap": 0.0
+        },
+        {
+            "role": "Run",
+            "finite": true,
+            "groundClear": true,
+            "minimumSole": -0.9000002145767212,
+            "maximumContactGap": 0.01099616289138794,
+            "seamGap": 0.0
+        },
+        {
+            "role": "Sprint",
+            "finite": true,
+            "groundClear": true,
+            "minimumSole": -0.9000000953674316,
+            "maximumContactGap": 0.014614880084991455,
+            "seamGap": 0.0
+        },
+        {
+            "role": "DirectionalLeft",
+            "finite": true,
+            "groundClear": true,
+            "minimumSole": -0.9000000953674316,
+            "maximumContactGap": 5.960464477539063e-8,
+            "seamGap": 0.0
+        },
+        {
+            "role": "DirectionalRight",
+            "finite": true,
+            "groundClear": true,
+            "minimumSole": -0.9000002145767212,
+            "maximumContactGap": 1.7881393432617188e-7,
+            "seamGap": 0.0
+        },
+        {
+            "role": "StartLeft",
+            "finite": true,
+            "groundClear": true,
+            "minimumSole": -0.8999999761581421,
+            "maximumContactGap": 0.00593113899230957,
+            "seamGap": 0.2920277714729309
+        },
+        {
+            "role": "StartRight",
+            "finite": true,
+            "groundClear": true,
+            "minimumSole": -0.9000000953674316,
+            "maximumContactGap": 0.005942106246948242,
+            "seamGap": 0.29217782616615298
+        },
+        {
+            "role": "StopLeft",
+            "finite": true,
+            "groundClear": true,
+            "minimumSole": -0.9000003337860107,
+            "maximumContactGap": 0.0026917457580566408,
+            "seamGap": 0.2951110303401947
+        },
+        {
+            "role": "StopRight",
+            "finite": true,
+            "groundClear": true,
+            "minimumSole": -0.9000001549720764,
+            "maximumContactGap": 0.0026922225952148439,
+            "seamGap": 0.295247882604599
+        },
+        {
+            "role": "PivotLeft",
+            "finite": true,
+            "groundClear": true,
+            "minimumSole": -0.9000001549720764,
+            "maximumContactGap": 0.0,
+            "seamGap": 0.1538124829530716
+        },
+        {
+            "role": "PivotRight",
+            "finite": true,
+            "groundClear": true,
+            "minimumSole": -0.900000274181366,
+            "maximumContactGap": 0.0,
+            "seamGap": 0.15433892607688905
+        }
+    ]
+}

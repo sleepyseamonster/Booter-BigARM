@@ -467,6 +467,26 @@ namespace BooterBigArm.TopDown3D
                     ? locomotionProfile.OneShotBlendDuration
                     : locomotionProfile.SustainedBlendDuration;
             BlendToTargetWeights(blendDuration);
+            ApplyProfileHeightCorrection(actionIndex);
+        }
+
+        private void ApplyProfileHeightCorrection(int actionIndex)
+        {
+            if(visualInstance==null)return;
+            var configured=false;var correction=0f;
+            for(var i=0;i<locomotionEntries.Length;i++)
+            {
+                var entry=locomotionEntries[i];if(entry==null || !entry.HasVisualHeightCorrection)continue;
+                configured=true;
+                if(actionIndex>=SideStepLeftIndex)continue;
+                var phase=(float)(clipPlayables[i].GetTime()/Mathf.Max(.001f,entry.Clip.length));
+                phase=entry.Looping ? Mathf.Repeat(phase,1) : Mathf.Clamp01(phase);
+                correction+=entry.HeightCorrection(phase)*mixer.GetInputWeight(i);
+            }
+            if(!configured)return;
+            var position=visualInstance.transform.localPosition;
+            position.y=visualLocalPosition.y+(campLying ? .35f : 0)+correction;
+            visualInstance.transform.localPosition=position;
         }
 
         private int ResolveActionIndex(TopDown3DLocomotionSnapshot snapshot, float planarSpeed)
