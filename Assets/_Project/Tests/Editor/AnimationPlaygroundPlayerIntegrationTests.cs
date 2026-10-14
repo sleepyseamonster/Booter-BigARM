@@ -19,6 +19,14 @@ namespace BooterBigArm.Tests
     {
         private static void Invoke(object value, string method) => value.GetType().GetMethod(method, BindingFlags.Instance | BindingFlags.NonPublic).Invoke(value, null);
         private static T Field<T>(object value, string name) => (T)value.GetType().GetField(name, BindingFlags.Instance | BindingFlags.NonPublic).GetValue(value);
+        internal static void CloseFixtureScene(Scene scene)
+        {
+            // These fixtures call Awake manually in Edit Mode; Unity does not own their runtime graph lifecycle.
+            foreach(var root in scene.GetRootGameObjects())
+                foreach(var driver in root.GetComponentsInChildren<TopDown3DPlayerAnimationDriver>(true))
+                    if(Field<PlayableGraph>(driver,"playableGraph").IsValid())Invoke(driver,"OnDestroy");
+            EditorSceneManager.CloseScene(scene,true);
+        }
         private static TopDown3DAnimationPlaygroundBindings PrivateBindings()
         {
             var result = AssetDatabase.LoadAssetAtPath<TopDown3DAnimationPlaygroundBindings>(AnimationPlaygroundPlayerAuthoring.BindingPath);
@@ -136,7 +144,7 @@ namespace BooterBigArm.Tests
                 Assert.That(player.transform.lossyScale, Is.EqualTo(Vector3.one));
                 Assert.That(player.GetComponent<CapsuleCollider>().height, Is.EqualTo(bindings.capsuleHeight));
             }
-            finally { EditorSceneManager.CloseScene(scene, true); }
+            finally { CloseFixtureScene(scene); }
         }
 
         [Test, Category("PrivateAnimationQualification")] public void SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset()
@@ -167,7 +175,7 @@ namespace BooterBigArm.Tests
                 Assert.That(panel.GetComponentsInChildren<UnityEngine.UI.Text>(true).Single(value=>value.name=="LabPaletteStatus").text,
                     Does.Contain("Fixture dependency is absent."));
             }
-            finally { EditorSceneManager.CloseScene(scene, true); if (actions != null) Object.DestroyImmediate(actions); }
+            finally { CloseFixtureScene(scene); if (actions != null) Object.DestroyImmediate(actions); }
         }
     }
 }

@@ -11,6 +11,7 @@ namespace BooterBigArm.TopDown3D
         public AnimationClip clip;
         public bool looping;
         public float nominalSpeed;
+        public float sourcePhaseOffset;
         public AnimationCurve heightCorrection;
         public AnimationCurve capsuleHeight;
         public float[] leftContacts=Array.Empty<float>(),rightContacts=Array.Empty<float>();
@@ -41,7 +42,8 @@ namespace BooterBigArm.TopDown3D
                 {reason="Crouch calibration curves exceed their measured envelope.";return false;}
                 if(entry.role>=AnimationPlaygroundCrouchRole.Forward && entry.role<=AnimationPlaygroundCrouchRole.Right)
                 {
-                    if(!float.IsFinite(entry.nominalSpeed) || entry.nominalSpeed<=0){reason="Each directional crouch gait needs a measured speed.";return false;}
+                    if(!float.IsFinite(entry.nominalSpeed) || entry.nominalSpeed<=0 || !float.IsFinite(entry.sourcePhaseOffset)
+                        || entry.sourcePhaseOffset<0 || entry.sourcePhaseOffset>=1){reason="Each directional crouch gait needs a measured speed and phase origin.";return false;}
                     if(requirePhysical && !OrderedContacts(entry.rightContacts,entry.leftContacts)){reason="Crouch contacts require cyclic R-L-R-L order.";return false;}
                 }
             }

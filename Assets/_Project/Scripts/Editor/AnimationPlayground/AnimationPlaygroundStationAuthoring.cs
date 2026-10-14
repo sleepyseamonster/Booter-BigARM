@@ -27,6 +27,26 @@ namespace BooterBigArm.Editor
         private static Font font;
 
         public static string StationPath(int number) => StationFolder + "/AP" + number.ToString("00") + ".prefab";
+        public static void RepairCrouchClearanceFromCli()
+        {
+            if(!Application.isBatchMode || Directory.Exists(".git") || !File.Exists(AnimationPlaygroundLayoutAuthoring.CandidateMarker))
+                throw new InvalidOperationException("Repair the fixture in the marked candidate before transferring its verified prefab.");
+            var root=PrefabUtility.LoadPrefabContents(StationPath(3));
+            try
+            {
+                foreach(var name in new[]{"Tunnel left","Tunnel right"})
+                {
+                    var item=root.transform.Find(name);if(item==null)throw new InvalidDataException("Crouch fixture wall is missing.");
+                    var position=item.localPosition;position.y=.825f;item.localPosition=position;
+                    var scale=item.localScale;scale.y=1.65f;item.localScale=scale;
+                }
+                var ceiling=root.transform.Find("Tunnel ceiling");if(ceiling==null)throw new InvalidDataException("Crouch fixture roof is missing.");
+                var height=ceiling.localPosition;height.y=1.65f;ceiling.localPosition=height;
+                PrefabUtility.SaveAsPrefabAsset(root,StationPath(3));AssetDatabase.SaveAssets();
+            }
+            finally{PrefabUtility.UnloadPrefabContents(root);}
+            EditorApplication.Exit(0);
+        }
         public static void RepairPreparedActionMarkers()
         {
             for(var number=1;number<=12;number++)
@@ -112,9 +132,9 @@ namespace BooterBigArm.Editor
                     break;
                 case 3:
                     Lane(root, "16 metre slide lane", -5, 16);
-                    Cube(root, "Tunnel left", new Vector3(2.8f, .65f, 0), new Vector3(.2f, 1.3f, 8), wall);
-                    Cube(root, "Tunnel right", new Vector3(5.2f, .65f, 0), new Vector3(.2f, 1.3f, 8), wall);
-                    Cube(root, "Tunnel ceiling", new Vector3(4, 1.3f, 0), new Vector3(2.6f, .15f, 8), wall);
+                    Cube(root, "Tunnel left", new Vector3(2.8f, .825f, 0), new Vector3(.2f, 1.65f, 8), wall);
+                    Cube(root, "Tunnel right", new Vector3(5.2f, .825f, 0), new Vector3(.2f, 1.65f, 8), wall);
+                    Cube(root, "Tunnel ceiling", new Vector3(4, 1.65f, 0), new Vector3(2.6f, .15f, 8), wall);
                     Anchor(root, "Blocked stand clearance", new Vector3(4, .93f, 0));
                     DisabledAction(root, id, "Crouch entry", new Vector3(4, 1, -5), AnimationPlaygroundActionKind.Crouch, targets);
                     DisabledAction(root, id, "Slide entry", new Vector3(-5, 1, -7), AnimationPlaygroundActionKind.Slide, targets);

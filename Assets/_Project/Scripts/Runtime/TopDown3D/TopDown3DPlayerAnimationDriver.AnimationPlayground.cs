@@ -12,6 +12,7 @@ namespace BooterBigArm.TopDown3D
         private AnimationClipPlayable animationActionPlayable;
         private double animationPresentationTime;
         private bool animationPreview;
+        private float animationHeightCorrection;
         public bool AnimationPresentationOwned => animationPresentationOwner != null;
 
         public bool TryBeginAnimationPresentation(object owner, AnimationClip clip, bool preview = false)
@@ -36,6 +37,12 @@ namespace BooterBigArm.TopDown3D
             return true;
         }
 
+        public bool SetAnimationHeightCorrection(object owner,float correction)
+        {
+            if(owner==null || !ReferenceEquals(owner,animationPresentationOwner) || !float.IsFinite(correction) || correction<0 || correction>.18f)return false;
+            animationHeightCorrection=correction;return true;
+        }
+
         public bool EndAnimationPresentation(object owner)
         {
             if (owner == null || !ReferenceEquals(owner, animationPresentationOwner)) return false;
@@ -49,8 +56,9 @@ namespace BooterBigArm.TopDown3D
             if (animationPresentationOwner is UnityEngine.Object owner && owner == null)
             { ReleaseAnimationPresentation(); return false; }
             animationActionPlayable.SetTime(animationPresentationTime);
+            if(mixer.GetInputCount()>CrouchInputIndex)mixer.SetInputWeight(CrouchInputIndex,0);
             for (var i = 0; i < ClipCount; i++) mixer.SetInputWeight(i, i == AnimationActionIndex ? 1 : 0);
-            visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition, Quaternion.Euler(visualLocalEulerAngles));
+            visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition+Vector3.up*animationHeightCorrection, Quaternion.Euler(visualLocalEulerAngles));
             CurrentLocomotionState = TopDown3DLocomotionState.ConstrainedAction;
             // No legacy locomotion/contact clock advances while this branch owns the pose.
             return true;
@@ -79,6 +87,7 @@ namespace BooterBigArm.TopDown3D
             animationActionPlayable = default;
             animationPresentationTime = 0;
             animationPreview = false;
+            animationHeightCorrection=0;
             ResetTransitionState(TopDown3DLocomotionState.Idle);
             locomotionPhase = 0;
             smoothedPlanarSpeed = 0;

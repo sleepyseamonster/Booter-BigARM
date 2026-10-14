@@ -11,7 +11,7 @@ Started 2026-10-13 from `e5a6e8b9d`, following the [revised plan](./CAMP_LOOP_AN
 
 FND3 is implemented: a runtime-owned lab input clone preserves original binding IDs, adds deterministic lab bindings, routes commands through release/focus/device/modal gates, and gives owned-action cancel priority over idle pickup. Controls include new actions in coactive conflict checks and expose them in Settings. Compatible production preferences can seed a new lab preference set without writing either file; existing lab data wins. The authored 71-motion public catalog retains three restricted sources and offers 68 candidates through an eight-row paged panel inside the existing menu owner. Selection remains separate from physical execution; preview stays unavailable until private imports qualify. See the [input/palette evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Input/README.md).
 
-The calibrated player cutover and live preview/bootstrap wiring are installed. Final controller/contact qualification, station construction and motion-gap closure remain. No physical action is promoted from preview alone.
+The calibrated player cutover and preview/bootstrap wiring are installed in saved scene data. Final controller/contact qualification, author-scene station installation and motion-gap closure remain. The background author editor's current refresh is unconfirmed. No physical action is promoted from preview alone.
 
 ## Calibrated player integration
 
@@ -31,7 +31,7 @@ A private twelve-role locomotion draft now uses six loop derivatives (idle, walk
 
 FND4 now includes the bounded clock/marker ledger, owned motion modes inside the existing motor, posture-aware capsule clearance, gravity/support and airborne pause recovery, one optional presentation branch in the existing Playables driver, a physical coordinator driven by motor callbacks, and an explicit reset registry. Cancellation invalidates all registered owners before restoring props/stations/actor/input; a blocked actor return does not rearm input. Preview supports seeking without effects, and inactive legacy gait cannot emit contacts through the owned branch. The 42-test foundation run passed; all five presentation/coordinator cases passed after correcting fixture setup, and all eight motor cases passed with the added standing-shape/unknown-mode guard. That establishes 44 distinct passing cases across the focused runs. See the [action evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Actions/README.md).
 
-Bootstrap wiring and actor/vitals/input reset participants are installed for the calibrated player integration above. Actual prop/station reset participants, real motion contacts and complete physical families remain pending. Compact prone geometry is a foundation shape, not a qualified corpse/recovery implementation.
+Bootstrap wiring and actor/vitals/input reset participants are installed for the calibrated player integration above. Prop/station reset participants are implemented and bound in the installed candidate layout. Real motion contacts and complete physical families remain pending. Compact prone geometry is a foundation shape, not a qualified corpse/recovery implementation.
 
 ART1 has imported three private character candidates and five representative motions. The original 74-bone rig and matched 33-bone Mixamo source both expose valid Humanoid Avatars. The original maps all 30 human finger slots; the source maps six index slots. The 102-bone re-export remains unsuitable as a Humanoid after deform mapping and is retained as a rejected qualification candidate. Imported weights have no unweighted vertices, invalid indices or non-finite/unnormalized weights. Initial measurements and five body-pose renders used the inherited 2.48-metre capsule baseline; that size is now superseded by the author's 1.80-metre standing-height choice. Grip poses, contact/root policies, complete locomotion and author acceptance still gate physical-family acceptance. See the [rig evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/RigQualification/README.md).
 
@@ -45,8 +45,6 @@ The author scene installation remains pending because the background editor brid
 
 The initial station/player contract run passes 49 Edit Mode cases, and existing scene/menu/input/locomotion regressions pass 52 cases, with no skips. No gameplay smoke test, production scene change, terrain edit, package change or external publication occurred. Full physical families and requested motion-gap closure remain in scope.
 
-## Validation and source boundaries
-
 ## Mobility source qualification â€” October 14
 
 The canonical private dependency set is rehydrated byte-for-byte in the validation copy. It had missing motion files and different locally generated derivative metadata; cached references did not establish on-disk hydration. A new gate verifies all 71 original motion payloads, their paired metadata and source hashes. Prior different candidate bytes remain privately preserved.
@@ -54,6 +52,12 @@ The canonical private dependency set is rehydrated byte-for-byte in the validati
 All fourteen crouch/slide/jump/fall candidates now have continuous 60Hz sole and full-body envelope measurements. Root-height policy comparisons identified original-height baking for crouch transitions; landing/roll sources require a separate arc/contact policy. Seven private crouch derivatives and a calibrated profile are prepared, with clear sole envelopes and finite body poses. The provisional capsule is 1.52m, which requires revising the earlier tunnel fixture height during controller integration. Contacts, speeds, blend transitions, radial fit and physical controls remain pending; contactsQualified stays false.
 
 The fully hydrated qualification regression passes 36 cases without skips. The 90-pair PHY1CrouchDraft checkpoint captures the seven derivatives/profile and updated binding while preserving source FBX bytes, original importer metadata and binding GUID. Capture/restoration dry-run pass. The author scene remains at the player-integration checkpoint because current background editor state is unavailable. See [mobility evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/MobilityQualification/README.md). The full goal remains active.
+
+## Sustained crouch runtime — October 14
+
+The player input now routes crouch to a seven-role controller, with coordinated entry/exit, an indefinite fixed-step directional pose clock, fixed entry facing, existing motor collision/movement and one Animator output. Capsule transitions preserve the foot plane; blocked stand-up and failed safe-return reset retain a crouch pose and shape. Standing-only legacy work cannot compete with the posture, and previews require standing first.
+
+AP03's roof underside is revised to 1.575m for the provisional 1.52m capsule. The prefab retains its GUID/file IDs and exact metadata. The factory matches the dimensions. Fifty-seven focused Edit Mode tests pass without failures or skips, including the hydrated source/station regressions. Real source contact maps, nominal speeds, radial fit and transition/blend qualification remain pending; contactsQualified stays false and physical input stays gated. See [crouch runtime evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/CrouchRuntime/README.md). The author scene and full remaining-family goal are unchanged.
 
 ## Validation and source boundaries
 

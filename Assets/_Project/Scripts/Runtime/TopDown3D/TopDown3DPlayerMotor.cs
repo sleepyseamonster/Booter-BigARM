@@ -155,7 +155,7 @@ namespace BooterBigArm.TopDown3D
         private float campApproachRemaining;
         public event Action<bool> CampApproachFinished;
 
-        public bool CanBeginCampAction => IsGrounded && !IsActionConstrained && climbMode == TopDown3DClimbMode.None
+        public bool CanBeginCampAction => LaboratoryStandingActionsAllowed && IsGrounded && !IsActionConstrained && climbMode == TopDown3DClimbMode.None
             && ActiveTraversal == TopDown3DTraversalMove.None;
 
         public bool TryBeginCampApproach(object owner, Vector3 target, float timeout)
@@ -466,6 +466,7 @@ namespace BooterBigArm.TopDown3D
             body.linearVelocity = new Vector3(nextPlanar.x, verticalVelocity, nextPlanar.z);
 
             var planarFacing = nextPlanar;
+            if(laboratoryCrouchFacingLocked && AnimationPosture==AnimationPlaygroundPosture.Crouched)planarFacing=laboratoryCrouchFacing;
             if (planarFacing.sqrMagnitude <= 0.01f)
             {
                 planarFacing = new Vector3(desiredDirection.x, 0f, desiredDirection.z);
@@ -1307,6 +1308,7 @@ namespace BooterBigArm.TopDown3D
                 directionAlignment,
                 signedHeadingError,
                 presentationClimbMode);
+            if(animationPostureOwner!=null && animationMotionOwner==null)AnimationLocomotionAdvanced?.Invoke();
         }
 
         private void ResetPresentationSnapshot()

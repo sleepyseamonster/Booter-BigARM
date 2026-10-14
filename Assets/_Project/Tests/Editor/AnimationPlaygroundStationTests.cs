@@ -115,7 +115,7 @@ namespace BooterBigArm.Tests
                 Assert.That(session.Stations.All(value=>value.Epoch>0),Is.True);
                 Assert.That(scene.GetRootGameObjects().SelectMany(root=>root.GetComponentsInChildren<TopDown3DAuthoredIronstoneNode>(true)).Count(),Is.EqualTo(12));
             }
-            finally{EditorSceneManager.CloseScene(scene,true);if(actions!=null)Object.DestroyImmediate(actions);}
+            finally{AnimationPlaygroundPlayerIntegrationTests.CloseFixtureScene(scene);if(actions!=null)Object.DestroyImmediate(actions);}
         }
         private static void Invoke(object value,string method)=>value.GetType().GetMethod(method,BindingFlags.Instance|BindingFlags.NonPublic).Invoke(value,null);
     }

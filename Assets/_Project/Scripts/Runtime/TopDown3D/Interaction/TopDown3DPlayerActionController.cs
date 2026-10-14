@@ -72,6 +72,7 @@ namespace BooterBigArm.TopDown3D
         public void ReportFeedback(string message) => FeedbackRequested?.Invoke(message);
 
         public bool CanSelectCanister => harvesterState != null && harvesterState.Settings != null
+            && (motor==null || motor.LaboratoryStandingActionsAllowed)
             && inventory != null && !Activity.LegacyWork && !Activity.MotorOwned && !Activity.CampActive && !Activity.StationActive && HasCanister();
 
         private bool HasCanister()
@@ -149,6 +150,8 @@ namespace BooterBigArm.TopDown3D
                 CacheAccessRequested?.Invoke(cache);
                 return TopDown3DGatherActionResult.Completed;
             }
+            if(motor!=null && !motor.LaboratoryStandingActionsAllowed)
+            {ReportFeedback("Stand before starting this activity.");return TopDown3DGatherActionResult.Rejected;}
             if (target is TopDown3DIronstoneNode ironstone && ironstone.Definition.YieldedItem.IsResource)
             {
                 if (bigArmCargo == null || !bigArmCargo.isActiveAndEnabled)
@@ -333,6 +336,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (input == null || input.Mode != TopDown3DInputMode.Gameplay
                 || inventory == null || harvesterState == null || (proceduralWorld == null && !harvesterState.IsAuthored)
+                || motor==null || !motor.LaboratoryStandingActionsAllowed
                 || IsGathering || Activity.StationActive || Activity.CampActive || Activity.MotorOwned) return;
             if (placementPreview == null)
             {
@@ -397,6 +401,7 @@ namespace BooterBigArm.TopDown3D
         private TopDown3DGatherActionResult TryBeginHarvesterPickup(TopDown3DHarvesterView view)
         {
             if (view == null || harvesterState == null || inventory == null
+                || motor!=null && !motor.LaboratoryStandingActionsAllowed
                 || motor == null || animationDriver == null || IsBusy
                 || !view.IsAvailable
                 || Vector3.Distance(motor.Position, view.InteractionPoint) > view.InteractionRange

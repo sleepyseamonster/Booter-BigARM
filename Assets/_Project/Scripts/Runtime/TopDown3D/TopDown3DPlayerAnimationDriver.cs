@@ -455,6 +455,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             if (PresentAnimationAction()) return;
+            if (PresentCrouchPose()) return;
 
             var snapshot = motor.LocomotionSnapshot;
             if (visualInstance != null)
@@ -1050,6 +1051,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDestroy()
         {
+            ReleaseCrouchPresentation();
             foreach (var mesh in cloakMeshes)
                 if (mesh != null) { if (Application.isPlaying) Destroy(mesh); else DestroyImmediate(mesh); }
             cloakMeshes.Clear();

@@ -12,6 +12,7 @@ namespace BooterBigArm.TopDown3D
         private TopDown3DPlayerActionController playerAction;
         private TopDown3DMenuController menu;
         private AnimationPlaygroundActionCoordinator coordinator;
+        private AnimationPlaygroundCrouchController crouch;
         private bool servicesBound;
         private Func<bool> ownsInput;
         private string selectedSource;
@@ -76,7 +77,14 @@ namespace BooterBigArm.TopDown3D
                     () => !Application.isFocused || playerInput.Mode != TopDown3DInputMode.Gameplay);
                 player.ConfigureLaboratorySpeeds(coordinator, bindings.slowWalkSpeed, bindings.runSpeed, bindings.sprintSpeed);
                 player.BlockUnqualifiedLaboratoryTraversal(coordinator);
-                ownsInput = () => IsBusy;
+                if(bindings.crouch!=null)
+                {
+                    crouch=player.gameObject.AddComponent<AnimationPlaygroundCrouchController>();
+                    crouch.Configure(player,presentation,coordinator,bindings.crouch,ResetRegistry,
+                        () => !Application.isFocused || playerInput.Mode != TopDown3DInputMode.Gameplay,() => playerAction.IsBusy);
+                    playerInput.AnimationCrouchRequested+=ToggleCrouch;
+                }
+                ownsInput = () => IsBusy || crouch!=null && crouch.Active;
                 playerInput.AnimationActionOwned = ownsInput;
                 playerInput.AnimationCancelRequested += CancelOwnedAction;
                 menu.AnimationSelectionChanged += SelectMotion;
@@ -104,13 +112,21 @@ namespace BooterBigArm.TopDown3D
             if (!isActiveAndEnabled || !servicesBound || !PreviewReady || playerInput.Mode != TopDown3DInputMode.Gameplay)
             { playerAction?.ReportFeedback("The laboratory is unavailable for preview."); return; }
             var binding = bindings.Find(id);
+            if(crouch!=null && crouch.Active){playerAction.ReportFeedback("Stand before previewing another motion.");return;}
             if(binding?.CanPreview != true) { playerAction.ReportFeedback("This motion is unavailable for preview."); return; }
             if(coordinator.IsPreview) coordinator.Cancel();
             if (playerAction.IsBusy)
             { playerAction?.ReportFeedback("Finish the current activity before previewing."); return; }
             if (!coordinator.TryBeginPreview(binding)) playerAction.ReportFeedback("This motion is unavailable for preview.");
         }
-        private void CancelOwnedAction() => coordinator?.Cancel();
+        private void ToggleCrouch()
+        {if(crouch!=null && !crouch.TryToggle())playerAction.ReportFeedback(crouch.LastFailure);}
+        private void CancelOwnedAction()
+        {
+            if(crouch!=null && crouch.Active)
+            {if(!crouch.TryCancel())playerAction.ReportFeedback(crouch.LastFailure);return;}
+            coordinator?.Cancel();
+        }
         public bool TryBegin(TopDown3DInteractionTarget target)
         {
             if(TryDispatchStation(target)) return true;
@@ -144,10 +160,17 @@ namespace BooterBigArm.TopDown3D
         private void DetachPlayerServices()
         {
             coordinator?.Cancel();
+            if(crouch!=null)
+            {
+                crouch.DisposeOwnedServices();
+                if(Application.isPlaying)Destroy(crouch);else DestroyImmediate(crouch);
+                crouch=null;
+            }
             UnbindStations();
             if (playerInput != null)
             {
                 playerInput.AnimationCancelRequested -= CancelOwnedAction;
+                playerInput.AnimationCrouchRequested -= ToggleCrouch;
                 if (ReferenceEquals(playerInput.AnimationActionOwned, ownsInput)) playerInput.AnimationActionOwned = null;
             }
             if (menu != null)
