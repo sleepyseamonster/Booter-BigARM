@@ -37,6 +37,7 @@ namespace BooterBigArm.TopDown3D
         public bool IsGathering => gatherAction != null && gatherAction.IsActive
             || placingHarvester || pickupHarvesterId != null || IsAwaitingCargo;
         public bool IsPlacingHarvester => placementPreview != null;
+        public TopDown3DPlacedHarvesterState HarvesterState => harvesterState;
         public TopDown3DActivitySnapshot Activity
         {
             get
@@ -118,6 +119,8 @@ namespace BooterBigArm.TopDown3D
             TopDown3DProceduralWorld world)
         {
             harvesterState = placedState;
+            if (inventory != null && inventory.UsesLoadout && placedState != null)
+                inventory.State.EquipmentAdmission = placedState.AllowsEquipmentReturn;
             proceduralWorld = world;
         }
 
@@ -407,9 +410,9 @@ namespace BooterBigArm.TopDown3D
                 || Vector3.Distance(motor.Position, view.InteractionPoint) > view.InteractionRange
                 || interaction == null || !interaction.CanReachTarget(view))
                 return TopDown3DGatherActionResult.Rejected;
-            var toolSpace = inventory.State.CheckAdd(new TopDown3DItemAmount(TopDown3DHarvesterSettings.CanisterItemId, 1));
-            if (!toolSpace.Succeeded) { ReportFeedback(toolSpace.Message); return TopDown3DGatherActionResult.InventoryFull; }
             if (!harvesterState.TryGet(view.StableId, out var record)) return TopDown3DGatherActionResult.Rejected;
+            var toolSpace = inventory.State.CheckAdd(new TopDown3DItemAmount(TopDown3DHarvesterSettings.CanisterItemId, 1, record.EquipmentInstanceId));
+            if (!toolSpace.Succeeded) { ReportFeedback(toolSpace.Message); return TopDown3DGatherActionResult.InventoryFull; }
             if (record.Dust > 0)
             {
                 if (bigArmCargo == null || !bigArmCargo.isActiveAndEnabled)

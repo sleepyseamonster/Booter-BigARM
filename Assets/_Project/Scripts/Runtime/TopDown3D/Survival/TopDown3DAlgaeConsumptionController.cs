@@ -30,6 +30,9 @@ namespace BooterBigArm.TopDown3D
         public string UnavailableReason(TopDown3DAlgaeUse use)
         {
             if (state == null || vitals == null || input == null || !input.HasAlgaeActions) return "Canister unavailable";
+            var inventory = GetComponent<TopDown3DPlayerInventory>();
+            if (inventory != null && inventory.UsesLoadout && inventory.State.IsCommitting) return "Inventory unavailable";
+            if (inventory != null && inventory.UsesLoadout && inventory.State.Slots[1].IsEmpty) return "Algae canister missing";
             if (input.Mode != TopDown3DInputMode.Gameplay) return "Unavailable in menus or camp";
             if (vitals.Health <= 0) return "Cannot treat after death";
             if (vitals.Activity != TopDown3DSurvivalActivity.Ordinary || motor != null && (motor.IsActionConstrained

@@ -6,16 +6,21 @@ namespace BooterBigArm.TopDown3D
 
     public readonly struct TopDown3DInventoryPolicy
     {
-        public TopDown3DInventoryPolicy(TopDown3DInventoryOwner owner, int capacity, float maximumMass = 0f)
+        public TopDown3DInventoryPolicy(TopDown3DInventoryOwner owner, int capacity, float maximumMass = 0f, bool loadout = false)
         {
             Owner = owner;
             Capacity = Math.Max(1, capacity);
             MaximumMass = Math.Max(0f, maximumMass);
+            IsLoadout = loadout;
+            if (loadout && (owner != TopDown3DInventoryOwner.Booter || capacity != TopDown3DLoadoutLayout.Capacity))
+                throw new ArgumentException("Loadout requires exactly six equipment slots and four supply pockets on Booter.");
         }
 
         public TopDown3DInventoryOwner Owner { get; }
         public int Capacity { get; }
         public float MaximumMass { get; }
+        public bool IsLoadout { get; }
+        public bool AllowsSlot(int index, TopDown3DItemDefinition item) => Allows(item) && (!IsLoadout || TopDown3DLoadoutLayout.Accepts(index, item));
 
         public bool Allows(TopDown3DItemDefinition definition)
         {

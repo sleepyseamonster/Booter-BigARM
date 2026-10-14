@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81605b79f6bb48b18dcdb159136018fe, type: 3}
+  m_Name: PopupCamp
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DItemDefinition
+  itemId: tool.popup_camp
+  displayName: Pop-up camp
+  description: Reusable packed camp bundle. Uses one field-supply pocket.
+  category: Camp
+  icon: {fileID: 5472901207989039225, guid: a747cc4085833194b930a54d3ec1d7dd, type: 3}
+  maxStack: 1
+  mass: 2.5
+  carryPreference: 0
+  packingPreference: 1
+  equipmentSlot: 0
+  fieldSupply: 1

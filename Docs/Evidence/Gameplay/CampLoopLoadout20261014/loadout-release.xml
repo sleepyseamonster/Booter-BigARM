@@ -1,0 +1,783 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="113" result="Passed" total="113" passed="113" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:28Z" duration="8.9434794">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="1270" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:28Z" duration="8.943479" total="113" passed="113" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2513" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/CampLoadout20261014/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="1270" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:28Z" duration="8.902946" total="113" passed="113" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="22904" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2514" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="1270" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:28Z" duration="8.897233" total="113" passed="113" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2515" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="1270" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:28Z" duration="8.891738" total="113" passed="113" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1368" name="CampLoopLoadoutTests" fullname="BooterBigArm.Tests.CampLoopLoadoutTests" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" testcasecount="16" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:22Z" duration="2.215921" total="16" passed="16" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1376" name="AccessLossAndExcessMassPreserveBothEquipmentOwners" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.AccessLossAndExcessMassPreserveBothEquipmentOwners" methodname="AccessLossAndExcessMassPreserveBothEquipmentOwners" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="545883222" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:19Z" duration="0.045829" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1377" name="AttachedAlgaeCannotBeTransferredOrRemoved" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.AttachedAlgaeCannotBeTransferredOrRemoved" methodname="AttachedAlgaeCannotBeTransferredOrRemoved" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="1327625427" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:19Z" duration="0.001166" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1378" name="DeployedReservationRejectsReplacementButAcceptsSameInstance" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.DeployedReservationRejectsReplacementButAcceptsSameInstance" methodname="DeployedReservationRejectsReplacementButAcceptsSameInstance" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="479852349" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:19Z" duration="0.000687" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1379" name="DuplicateInstanceSnapshotIsRejectedWithoutMutation" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.DuplicateInstanceSnapshotIsRejectedWithoutMutation" methodname="DuplicateInstanceSnapshotIsRejectedWithoutMutation" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="626629832" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:19Z" duration="0.002755" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1374" name="EquipmentIdentitySurvivesTransferPackingAndSnapshot" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.EquipmentIdentitySurvivesTransferPackingAndSnapshot" methodname="EquipmentIdentitySurvivesTransferPackingAndSnapshot" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="845071278" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:19Z" duration="0.003774" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1375" name="EquipSwapIsCoherentBeforeEitherObserverRuns" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.EquipSwapIsCoherentBeforeEitherObserverRuns" methodname="EquipSwapIsCoherentBeforeEitherObserverRuns" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="1341851573" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:19Z" duration="0.001135" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1369" name="EveryEquipmentFitsOnlyItsNamedSlot" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.EveryEquipmentFitsOnlyItsNamedSlot" methodname="EveryEquipmentFitsOnlyItsNamedSlot" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="669498639" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:19Z" duration="0.001014" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1380" name="LegacyProductionKeepsOriginalCapacityAndVersionOne" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.LegacyProductionKeepsOriginalCapacityAndVersionOne" methodname="LegacyProductionKeepsOriginalCapacityAndVersionOne" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="2142028583" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:19Z" duration="0.000949" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1383" name="LoadoutNavigationConnectsEquipmentSuppliesAndFooter" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.LoadoutNavigationConnectsEquipmentSuppliesAndFooter" methodname="LoadoutNavigationConnectsEquipmentSuppliesAndFooter" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="777783775" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:19Z" duration="0.059709" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1373" name="PopupCampUsesSupplyPocketAndWrongSlotMovePreservesIdentity" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.PopupCampUsesSupplyPocketAndWrongSlotMovePreservesIdentity" methodname="PopupCampUsesSupplyPocketAndWrongSlotMovePreservesIdentity" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="207830456" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:19Z" duration="0.001212" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1385" name="ReconstructionReconnectsBothSlotRegionsWithoutDuplicates" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.ReconstructionReconnectsBothSlotRegionsWithoutDuplicates" methodname="ReconstructionReconnectsBothSlotRegionsWithoutDuplicates" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="2086788129" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:19Z" duration="0.014799" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1372" name="ResourcesNeverEnterEquipmentOrSupplies" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.ResourcesNeverEnterEquipmentOrSupplies" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:19Z" duration="0.005309" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1370" name="ResourcesNeverEnterEquipmentOrSupplies(&quot;resource.ironstone_ore&quot;)" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.ResourcesNeverEnterEquipmentOrSupplies(&quot;resource.ironstone_ore&quot;)" methodname="ResourcesNeverEnterEquipmentOrSupplies" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="1813596386" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:19Z" duration="0.000681" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1371" name="ResourcesNeverEnterEquipmentOrSupplies(&quot;resource.airborne_dust&quot;)" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.ResourcesNeverEnterEquipmentOrSupplies(&quot;resource.airborne_dust&quot;)" methodname="ResourcesNeverEnterEquipmentOrSupplies" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="2145197561" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:19Z" duration="0.000247" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1384" name="SavedCampLoopUsesTypedStateBeforeAndAfterServiceInstallation" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.SavedCampLoopUsesTypedStateBeforeAndAfterServiceInstallation" methodname="SavedCampLoopUsesTypedStateBeforeAndAfterServiceInstallation" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="691584742" result="Passed" start-time="2026-10-14 17:50:19Z" end-time="2026-10-14 17:50:22Z" duration="2.058382" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1382" name="StaleWorldResetRejectsWithoutChangingInventoryOrAlgae" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.StaleWorldResetRejectsWithoutChangingInventoryOrAlgae" methodname="StaleWorldResetRejectsWithoutChangingInventoryOrAlgae" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="1416647165" result="Passed" start-time="2026-10-14 17:50:22Z" end-time="2026-10-14 17:50:22Z" duration="0.003044" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1381" name="WorldAndInventoryResetInstallBeforeNotificationsAndBlockReentry" fullname="BooterBigArm.Tests.CampLoopLoadoutTests.WorldAndInventoryResetInstallBeforeNotificationsAndBlockReentry" methodname="WorldAndInventoryResetInstallBeforeNotificationsAndBlockReentry" classname="BooterBigArm.Tests.CampLoopLoadoutTests" runstate="Runnable" seed="2006607279" result="Passed" start-time="2026-10-14 17:50:22Z" end-time="2026-10-14 17:50:22Z" duration="0.001608" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1394" name="CampLoopSalvageTests" fullname="BooterBigArm.Tests.CampLoopSalvageTests" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-14 17:50:22Z" end-time="2026-10-14 17:50:22Z" duration="0.513415" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1398" name="BlockedReachAndExplicitCancelLeavePartIntact" fullname="BooterBigArm.Tests.CampLoopSalvageTests.BlockedReachAndExplicitCancelLeavePartIntact" methodname="BlockedReachAndExplicitCancelLeavePartIntact" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="1462032730" result="Passed" start-time="2026-10-14 17:50:22Z" end-time="2026-10-14 17:50:22Z" duration="0.003536" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1396" name="CargoLeavingAtCompletionDoesNotConsumeOrFallback" fullname="BooterBigArm.Tests.CampLoopSalvageTests.CargoLeavingAtCompletionDoesNotConsumeOrFallback" methodname="CargoLeavingAtCompletionDoesNotConsumeOrFallback" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="2001234566" result="Passed" start-time="2026-10-14 17:50:22Z" end-time="2026-10-14 17:50:22Z" duration="0.000795" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1397" name="EpochChangeCancelsEvenWhenRestoredTargetIsAvailable" fullname="BooterBigArm.Tests.CampLoopSalvageTests.EpochChangeCancelsEvenWhenRestoredTargetIsAvailable" methodname="EpochChangeCancelsEvenWhenRestoredTargetIsAvailable" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="2114769098" result="Passed" start-time="2026-10-14 17:50:22Z" end-time="2026-10-14 17:50:22Z" duration="0.000576" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1399" name="HeavyCargoRejectsBeforeExtraction" fullname="BooterBigArm.Tests.CampLoopSalvageTests.HeavyCargoRejectsBeforeExtraction" methodname="HeavyCargoRejectsBeforeExtraction" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="1747704192" result="Passed" start-time="2026-10-14 17:50:22Z" end-time="2026-10-14 17:50:22Z" duration="0.000501" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1401" name="MissingResetStorageNeverReplenishesWreck" fullname="BooterBigArm.Tests.CampLoopSalvageTests.MissingResetStorageNeverReplenishesWreck" methodname="MissingResetStorageNeverReplenishesWreck" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="1782531034" result="Passed" start-time="2026-10-14 17:50:22Z" end-time="2026-10-14 17:50:22Z" duration="0.002338" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1400" name="ResetClearsTransferredRewardsAndPreservesOtherItems" fullname="BooterBigArm.Tests.CampLoopSalvageTests.ResetClearsTransferredRewardsAndPreservesOtherItems" methodname="ResetClearsTransferredRewardsAndPreservesOtherItems" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="120687199" result="Passed" start-time="2026-10-14 17:50:22Z" end-time="2026-10-14 17:50:22Z" duration="0.003427" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1403" name="SceneHasPrivateBindingsAndCheckpointIsSuppressed" fullname="BooterBigArm.Tests.CampLoopSalvageTests.SceneHasPrivateBindingsAndCheckpointIsSuppressed" methodname="SceneHasPrivateBindingsAndCheckpointIsSuppressed" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="1940707031" result="Passed" start-time="2026-10-14 17:50:22Z" end-time="2026-10-14 17:50:22Z" duration="0.491735" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[CAMP_LOOP_VALIDATION_PASS: complete native grid, camp route, actors, seven rocks, twelve ironstone nodes, cache, controls and lighting.
+CAMP_SALVAGE_VALIDATED: one dead wreck, three unique points, private inventory catalog, native support, lab marker.
+]]></output>
+            </test-case>
+            <test-case id="1402" name="SerializedDepletionAndInventoryReconstructTogether" fullname="BooterBigArm.Tests.CampLoopSalvageTests.SerializedDepletionAndInventoryReconstructTogether" methodname="SerializedDepletionAndInventoryReconstructTogether" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="801153452" result="Passed" start-time="2026-10-14 17:50:22Z" end-time="2026-10-14 17:50:22Z" duration="0.001108" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1395" name="ThreeIndependentPartsAwardExactlyOnceAndRespectCargoOnlyPolicy" fullname="BooterBigArm.Tests.CampLoopSalvageTests.ThreeIndependentPartsAwardExactlyOnceAndRespectCargoOnlyPolicy" methodname="ThreeIndependentPartsAwardExactlyOnceAndRespectCargoOnlyPolicy" classname="BooterBigArm.Tests.CampLoopSalvageTests" runstate="Runnable" seed="1203141555" result="Passed" start-time="2026-10-14 17:50:22Z" end-time="2026-10-14 17:50:22Z" duration="0.000938" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1404" name="CampLoopTestingSceneTests" fullname="BooterBigArm.Tests.CampLoopTestingSceneTests" classname="BooterBigArm.Tests.CampLoopTestingSceneTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-14 17:50:22Z" end-time="2026-10-14 17:50:24Z" duration="2.302764" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1406" name="RuntimeInstallersProvideCampCompassHarvesterAndMenusOnce" fullname="BooterBigArm.Tests.CampLoopTestingSceneTests.RuntimeInstallersProvideCampCompassHarvesterAndMenusOnce" methodname="RuntimeInstallersProvideCampCompassHarvesterAndMenusOnce" classname="BooterBigArm.Tests.CampLoopTestingSceneTests" runstate="Runnable" seed="366373020" result="Passed" start-time="2026-10-14 17:50:22Z" end-time="2026-10-14 17:50:23Z" duration="0.767233" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1405" name="SavedSliceRetainsCompleteCampContentAndNativeCollision" fullname="BooterBigArm.Tests.CampLoopTestingSceneTests.SavedSliceRetainsCompleteCampContentAndNativeCollision" methodname="SavedSliceRetainsCompleteCampContentAndNativeCollision" classname="BooterBigArm.Tests.CampLoopTestingSceneTests" runstate="Runnable" seed="84007523" result="Passed" start-time="2026-10-14 17:50:23Z" end-time="2026-10-14 17:50:24Z" duration="0.782825" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[CAMP_LOOP_VALIDATION_PASS: complete native grid, camp route, actors, seven rocks, twelve ironstone nodes, cache, controls and lighting.
+]]></output>
+            </test-case>
+            <test-case id="1407" name="TestingCheckpointCannotUseProductionSaveFolder" fullname="BooterBigArm.Tests.CampLoopTestingSceneTests.TestingCheckpointCannotUseProductionSaveFolder" methodname="TestingCheckpointCannotUseProductionSaveFolder" classname="BooterBigArm.Tests.CampLoopTestingSceneTests" runstate="Runnable" seed="500724851" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.749082" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1665" name="TopDown3DAlgaeCanisterTests" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" testcasecount="15" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.027853" total="15" passed="15" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1677" name="ClockReconcilesOnceAndDosePreservesFractionalDepletion" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.ClockReconcilesOnceAndDosePreservesFractionalDepletion" methodname="ClockReconcilesOnceAndDosePreservesFractionalDepletion" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="2062144541" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.003118" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1673" name="DoseChangesOnlyTargetAndChargesUsefulGain" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.DoseChangesOnlyTargetAndChargesUsefulGain" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.004333" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1670" name="DoseChangesOnlyTargetAndChargesUsefulGain(Drink,Thirst,20,5)" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.DoseChangesOnlyTargetAndChargesUsefulGain(Drink,Thirst,20,5)" methodname="DoseChangesOnlyTargetAndChargesUsefulGain" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="1807384939" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.001195" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1671" name="DoseChangesOnlyTargetAndChargesUsefulGain(Eat,Hunger,20,5)" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.DoseChangesOnlyTargetAndChargesUsefulGain(Eat,Hunger,20,5)" methodname="DoseChangesOnlyTargetAndChargesUsefulGain" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="1873948667" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000436" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1672" name="DoseChangesOnlyTargetAndChargesUsefulGain(Treat,Health,10,10)" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.DoseChangesOnlyTargetAndChargesUsefulGain(Treat,Health,10,10)" methodname="DoseChangesOnlyTargetAndChargesUsefulGain" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="1835094160" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000363" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1675" name="FullDeadAndSubVisibleTargetsSpendNothing" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.FullDeadAndSubVisibleTargetsSpendNothing" methodname="FullDeadAndSubVisibleTargetsSpendNothing" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="895589525" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000747" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1669" name="GrowthDoesNotReenterTransactionsAndZeroRateCanDisableIt" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.GrowthDoesNotReenterTransactionsAndZeroRateCanDisableIt" methodname="GrowthDoesNotReenterTransactionsAndZeroRateCanDisableIt" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="2050738709" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000911" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1667" name="GrowthUsesElapsedSimulationTimeAndRejectsInvalidIntervals" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.GrowthUsesElapsedSimulationTimeAndRejectsInvalidIntervals" methodname="GrowthUsesElapsedSimulationTimeAndRejectsInvalidIntervals" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="761070643" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.001081" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1679" name="InvalidSettingsRejectWithoutStateMutation" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.InvalidSettingsRejectWithoutStateMutation" methodname="InvalidSettingsRejectWithoutStateMutation" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="1580905211" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.001550" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1676" name="NotificationsSeeBothCommittedValuesAndRejectReentrantUse" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.NotificationsSeeBothCommittedValuesAndRejectReentrantUse" methodname="NotificationsSeeBothCommittedValuesAndRejectReentrantUse" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="1429864650" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000979" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1668" name="OrdinarySurvivalIsSustainableWithModestSurplus" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.OrdinarySurvivalIsSustainableWithModestSurplus" methodname="OrdinarySurvivalIsSustainableWithModestSurplus" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="1489034705" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.001449" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1674" name="PartialDosesDoNotWasteOrOverdraw" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.PartialDosesDoNotWasteOrOverdraw" methodname="PartialDosesDoNotWasteOrOverdraw" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="289388392" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000888" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1666" name="PassiveGrowthRecoversFromEmptyAndClampsAtCapacity" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.PassiveGrowthRecoversFromEmptyAndClampsAtCapacity" methodname="PassiveGrowthRecoversFromEmptyAndClampsAtCapacity" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="560009224" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000725" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1680" name="RepeatedPartialDosesConserveContentsAtNonstandardCapacities" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.RepeatedPartialDosesConserveContentsAtNonstandardCapacities" methodname="RepeatedPartialDosesConserveContentsAtNonstandardCapacities" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="877661180" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.001878" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1678" name="SnapshotsValidateAndReinstallationDoesNotRefill" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.SnapshotsValidateAndReinstallationDoesNotRefill" methodname="SnapshotsValidateAndReinstallationDoesNotRefill" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="431181039" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.001018" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1681" name="UnrepresentableCostCannotCreateFreeRestoration" fullname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests.UnrepresentableCostCannotCreateFreeRestoration" methodname="UnrepresentableCostCannotCreateFreeRestoration" classname="BooterBigArm.Tests.TopDown3DAlgaeCanisterTests" runstate="Runnable" seed="289651306" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000618" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1756" name="TopDown3DCampTests" fullname="BooterBigArm.Tests.TopDown3DCampTests" classname="BooterBigArm.Tests.TopDown3DCampTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.019419" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1761" name="AuthoredCampAssetsAndHumanoidClipsAreComplete" fullname="BooterBigArm.Tests.TopDown3DCampTests.AuthoredCampAssetsAndHumanoidClipsAreComplete" methodname="AuthoredCampAssetsAndHumanoidClipsAreComplete" classname="BooterBigArm.Tests.TopDown3DCampTests" runstate="Runnable" seed="957647866" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.003909" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1759" name="CampRecordIdentityDoesNotDependOnPosition" fullname="BooterBigArm.Tests.TopDown3DCampTests.CampRecordIdentityDoesNotDependOnPosition" methodname="CampRecordIdentityDoesNotDependOnPosition" classname="BooterBigArm.Tests.TopDown3DCampTests" runstate="Runnable" seed="1253563427" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000695" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1758" name="FullInventoryRejectsCampReturnBeforeOwnershipCallback" fullname="BooterBigArm.Tests.TopDown3DCampTests.FullInventoryRejectsCampReturnBeforeOwnershipCallback" methodname="FullInventoryRejectsCampReturnBeforeOwnershipCallback" classname="BooterBigArm.Tests.TopDown3DCampTests" runstate="Runnable" seed="1439713678" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000462" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1757" name="KitTransferConditionRejectionAndNotificationFailurePreserveOwnership" fullname="BooterBigArm.Tests.TopDown3DCampTests.KitTransferConditionRejectionAndNotificationFailurePreserveOwnership" methodname="KitTransferConditionRejectionAndNotificationFailurePreserveOwnership" classname="BooterBigArm.Tests.TopDown3DCampTests" runstate="Runnable" seed="1178227050" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.008354" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[InvalidOperationException: Observer failed after commit
+BooterBigArm.Tests.TopDown3DCampTests+<>c__DisplayClass0_0.<KitTransferConditionRejectionAndNotificationFailurePreserveOwnership>b__2 () (at Assets/_Project/Tests/Editor/TopDown3DCampTests.cs:22)
+BooterBigArm.TopDown3D.TopDown3DInventoryState.PublishDraft () (at Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryState.Transactions.cs:56)
+UnityEngine.Debug:LogException(Exception)
+BooterBigArm.TopDown3D.TopDown3DInventoryState:PublishDraft() (at Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryState.Transactions.cs:57)
+BooterBigArm.TopDown3D.TopDown3DInventoryState:Commit(IReadOnlyList`1) (at Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryState.cs:464)
+BooterBigArm.TopDown3D.TopDown3DInventoryState:TryRemove(String, Int32, Func`1) (at Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryState.cs:213)
+BooterBigArm.Tests.TopDown3DCampTests:KitTransferConditionRejectionAndNotificationFailurePreserveOwnership() (at Assets/_Project/Tests/Editor/TopDown3DCampTests.cs:26)
+System.Reflection.MethodBase:Invoke(Object, Object[])
+NUnit.Framework.Internal.Reflect:InvokeMethod(MethodInfo, Object, Object[])
+NUnit.Framework.Internal.MethodWrapper:Invoke(Object, Object[])
+NUnit.Framework.Internal.Commands.TestMethodCommand:RunNonAsyncTestMethod(ITestExecutionContext)
+NUnit.Framework.Internal.Commands.TestMethodCommand:RunTestMethod(ITestExecutionContext)
+NUnit.Framework.Internal.Commands.TestMethodCommand:Execute(ITestExecutionContext)
+UnityEditor.EditorApplication:Internal_CallUpdateFunctions()
+
+]]></output>
+            </test-case>
+            <test-case id="1760" name="PlacementRejectsNewObstructionAndUnsupportedGround" fullname="BooterBigArm.Tests.TopDown3DCampTests.PlacementRejectsNewObstructionAndUnsupportedGround" methodname="PlacementRejectsNewObstructionAndUnsupportedGround" classname="BooterBigArm.Tests.TopDown3DCampTests" runstate="Runnable" seed="1691758905" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.001380" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1941" name="TopDown3DInventoryLoopTests" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopTests" classname="BooterBigArm.Tests.TopDown3DInventoryLoopTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.013940" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1950" name="BulkUnloadKeepsEveryRemainderWhenCacheOnlyPartlyFits" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopTests.BulkUnloadKeepsEveryRemainderWhenCacheOnlyPartlyFits" methodname="BulkUnloadKeepsEveryRemainderWhenCacheOnlyPartlyFits" classname="BooterBigArm.Tests.TopDown3DInventoryLoopTests" runstate="Runnable" seed="1655403104" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.001839" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1947" name="CapacityQueriesRespectBothWeightAndSlots" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopTests.CapacityQueriesRespectBothWeightAndSlots" methodname="CapacityQueriesRespectBothWeightAndSlots" classname="BooterBigArm.Tests.TopDown3DInventoryLoopTests" runstate="Runnable" seed="501491024" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000691" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1942" name="HarvestHelperRechecksAccessAtCommitWithoutFallback" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopTests.HarvestHelperRechecksAccessAtCommitWithoutFallback" methodname="HarvestHelperRechecksAccessAtCommitWithoutFallback" classname="BooterBigArm.Tests.TopDown3DInventoryLoopTests" runstate="Runnable" seed="1744391736" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000852" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1948" name="JointTransferPublishesOnlyCompleteStateAndRejectsReentrantWrites" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopTests.JointTransferPublishesOnlyCompleteStateAndRejectsReentrantWrites" methodname="JointTransferPublishesOnlyCompleteStateAndRejectsReentrantWrites" classname="BooterBigArm.Tests.TopDown3DInventoryLoopTests" runstate="Runnable" seed="1899203209" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.001057" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1951" name="MixedPickupCommitsToolResourceAndWorldConditionTogether" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopTests.MixedPickupCommitsToolResourceAndWorldConditionTogether" methodname="MixedPickupCommitsToolResourceAndWorldConditionTogether" classname="BooterBigArm.Tests.TopDown3DInventoryLoopTests" runstate="Runnable" seed="1946731851" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.001218" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1949" name="QuickTransferRemovesTheSelectedStackAndAccessLossLeavesBothUntouched" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopTests.QuickTransferRemovesTheSelectedStackAndAccessLossLeavesBothUntouched" methodname="QuickTransferRemovesTheSelectedStackAndAccessLossLeavesBothUntouched" classname="BooterBigArm.Tests.TopDown3DInventoryLoopTests" runstate="Runnable" seed="110224763" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.001108" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1946" name="ResourceDeliveryNeverFallsBackAndChangesOnlyLegger" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopTests.ResourceDeliveryNeverFallsBackAndChangesOnlyLegger" methodname="ResourceDeliveryNeverFallsBackAndChangesOnlyLegger" classname="BooterBigArm.Tests.TopDown3DInventoryLoopTests" runstate="Runnable" seed="1263178590" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000729" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1952" name="SnapshotCannotReintroduceResourcesIntoBooter" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopTests.SnapshotCannotReintroduceResourcesIntoBooter" methodname="SnapshotCannotReintroduceResourcesIntoBooter" classname="BooterBigArm.Tests.TopDown3DInventoryLoopTests" runstate="Runnable" seed="1933909944" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000428" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1945" name="StockResourcesAreForbiddenInBooterAndPermittedInCargoAndCache" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopTests.StockResourcesAreForbiddenInBooterAndPermittedInCargoAndCache" classname="BooterBigArm.Tests.TopDown3DInventoryLoopTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.002178" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1943" name="StockResourcesAreForbiddenInBooterAndPermittedInCargoAndCache(&quot;resource.ironstone_ore&quot;)" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopTests.StockResourcesAreForbiddenInBooterAndPermittedInCargoAndCache(&quot;resource.ironstone_ore&quot;)" methodname="StockResourcesAreForbiddenInBooterAndPermittedInCargoAndCache" classname="BooterBigArm.Tests.TopDown3DInventoryLoopTests" runstate="Runnable" seed="358209577" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000834" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1944" name="StockResourcesAreForbiddenInBooterAndPermittedInCargoAndCache(&quot;resource.airborne_dust&quot;)" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopTests.StockResourcesAreForbiddenInBooterAndPermittedInCargoAndCache(&quot;resource.airborne_dust&quot;)" methodname="StockResourcesAreForbiddenInBooterAndPermittedInCargoAndCache" classname="BooterBigArm.Tests.TopDown3DInventoryLoopTests" runstate="Runnable" seed="97694121" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.000283" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1953" name="TopDown3DInventoryLoopUiTests" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" testcasecount="19" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:27Z" duration="2.956241" total="19" passed="19" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1975" name="CacheViewUnloadsLocallyAndClosingRestoresThePersonalKit" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.CacheViewUnloadsLocallyAndClosingRestoresThePersonalKit" methodname="CacheViewUnloadsLocallyAndClosingRestoresThePersonalKit" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="1040517448" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:24Z" duration="0.052761" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1962" name="CancelWinsAgainstTapAndDeploymentWithinTheSameInputUpdate" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.CancelWinsAgainstTapAndDeploymentWithinTheSameInputUpdate" methodname="CancelWinsAgainstTapAndDeploymentWithinTheSameInputUpdate" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="1461223836" result="Passed" start-time="2026-10-14 17:50:24Z" end-time="2026-10-14 17:50:25Z" duration="0.110358" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1974" name="CargoGoingOutOfReachIsInspectableAndCannotMutate" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.CargoGoingOutOfReachIsInspectableAndCannotMutate" methodname="CargoGoingOutOfReachIsInspectableAndCannotMutate" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="1322104432" result="Passed" start-time="2026-10-14 17:50:25Z" end-time="2026-10-14 17:50:25Z" duration="0.026747" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1959" name="CargoHoldRejectsDistanceAndBlockedAccess" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.CargoHoldRejectsDistanceAndBlockedAccess" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 17:50:25Z" end-time="2026-10-14 17:50:25Z" duration="0.043653" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1957" name="CargoHoldRejectsDistanceAndBlockedAccess(20.0f,False)" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.CargoHoldRejectsDistanceAndBlockedAccess(20.0f,False)" methodname="CargoHoldRejectsDistanceAndBlockedAccess" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="1923197012" result="Passed" start-time="2026-10-14 17:50:25Z" end-time="2026-10-14 17:50:25Z" duration="0.020812" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1958" name="CargoHoldRejectsDistanceAndBlockedAccess(1.5f,True)" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.CargoHoldRejectsDistanceAndBlockedAccess(1.5f,True)" methodname="CargoHoldRejectsDistanceAndBlockedAccess" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="1556478389" result="Passed" start-time="2026-10-14 17:50:25Z" end-time="2026-10-14 17:50:25Z" duration="0.020472" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1968" name="CustomizedHoldTimingKeepsTapAndHoldExclusiveAtTheSavedThreshold" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.CustomizedHoldTimingKeepsTapAndHoldExclusiveAtTheSavedThreshold" methodname="CustomizedHoldTimingKeepsTapAndHoldExclusiveAtTheSavedThreshold" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="1983742387" result="Passed" start-time="2026-10-14 17:50:25Z" end-time="2026-10-14 17:50:26Z" duration="1.180499" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1970" name="ExistingAuthoredGridsReconnectWithoutCreatingDuplicateSlots" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.ExistingAuthoredGridsReconnectWithoutCreatingDuplicateSlots" methodname="ExistingAuthoredGridsReconnectWithoutCreatingDuplicateSlots" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="1024307599" result="Passed" start-time="2026-10-14 17:50:26Z" end-time="2026-10-14 17:50:26Z" duration="0.041719" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1967" name="FeedbackKeepsCargoPromptVisibleAndHidesImmediatelyInModalUi" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.FeedbackKeepsCargoPromptVisibleAndHidesImmediatelyInModalUi" methodname="FeedbackKeepsCargoPromptVisibleAndHidesImmediatelyInModalUi" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="456874337" result="Passed" start-time="2026-10-14 17:50:26Z" end-time="2026-10-14 17:50:26Z" duration="0.026251" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1971" name="GamepadBackCancelsSelectedStackBeforeClosing" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.GamepadBackCancelsSelectedStackBeforeClosing" methodname="GamepadBackCancelsSelectedStackBeforeClosing" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="1136099931" result="Passed" start-time="2026-10-14 17:50:26Z" end-time="2026-10-14 17:50:26Z" duration="0.053319" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1972" name="GameplayBackHasOneContextActionAndNoCompetingCancelBinding" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.GameplayBackHasOneContextActionAndNoCompetingCancelBinding" methodname="GameplayBackHasOneContextActionAndNoCompetingCancelBinding" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="69390342" result="Passed" start-time="2026-10-14 17:50:26Z" end-time="2026-10-14 17:50:26Z" duration="0.024463" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1960" name="HeldKeyboardNavigationMustReleaseBeforeGameplayMovementResumes" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.HeldKeyboardNavigationMustReleaseBeforeGameplayMovementResumes" methodname="HeldKeyboardNavigationMustReleaseBeforeGameplayMovementResumes" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="1011561284" result="Passed" start-time="2026-10-14 17:50:26Z" end-time="2026-10-14 17:50:26Z" duration="0.029766" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1969" name="HeldSquareInteractsOnceWithoutOpeningCargoAndTriangleStillOpensInventory" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.HeldSquareInteractsOnceWithoutOpeningCargoAndTriangleStillOpensInventory" methodname="HeldSquareInteractsOnceWithoutOpeningCargoAndTriangleStillOpensInventory" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="177503021" result="Passed" start-time="2026-10-14 17:50:26Z" end-time="2026-10-14 17:50:27Z" duration="0.747712" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1961" name="InventoryShouldersSelectPredictablePanelsWithoutTogglingBack" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.InventoryShouldersSelectPredictablePanelsWithoutTogglingBack" methodname="InventoryShouldersSelectPredictablePanelsWithoutTogglingBack" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="1130215522" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.028641" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1963" name="ModalBoundaryDiscardsTapAndPickupRequests" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.ModalBoundaryDiscardsTapAndPickupRequests" methodname="ModalBoundaryDiscardsTapAndPickupRequests" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="8193399" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.025620" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1954" name="PanelsShowRealOwnersAndHardCapacityWithoutBalanceScore" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.PanelsShowRealOwnersAndHardCapacityWithoutBalanceScore" methodname="PanelsShowRealOwnersAndHardCapacityWithoutBalanceScore" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="624517058" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.023348" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1973" name="QuickTransferAndPanelSwitchKeepTheCorrectOwnerAndNeverMoveOreIntoKit" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.QuickTransferAndPanelSwitchKeepTheCorrectOwnerAndNeverMoveOreIntoKit" methodname="QuickTransferAndPanelSwitchKeepTheCorrectOwnerAndNeverMoveOreIntoKit" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="1985865093" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.028725" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1956" name="TapInteractsButHoldOpensNearbyCargoWithoutTransfer" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.TapInteractsButHoldOpensNearbyCargoWithoutTransfer" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.440465" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1955" name="TapInteractsButHoldOpensNearbyCargoWithoutTransfer(True)" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.TapInteractsButHoldOpensNearbyCargoWithoutTransfer(True)" methodname="TapInteractsButHoldOpensNearbyCargoWithoutTransfer" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="946031238" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.437062" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="ParameterizedMethod" id="1966" name="TapUsesPressedTargetAndNeverRedirectsToAnotherObject" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.TapUsesPressedTargetAndNeverRedirectsToAnotherObject" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.064378" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1964" name="TapUsesPressedTargetAndNeverRedirectsToAnotherObject(False)" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.TapUsesPressedTargetAndNeverRedirectsToAnotherObject(False)" methodname="TapUsesPressedTargetAndNeverRedirectsToAnotherObject" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="890683078" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.033479" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1965" name="TapUsesPressedTargetAndNeverRedirectsToAnotherObject(True)" fullname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests.TapUsesPressedTargetAndNeverRedirectsToAnotherObject(True)" methodname="TapUsesPressedTargetAndNeverRedirectsToAnotherObject" classname="BooterBigArm.Tests.TopDown3DInventoryLoopUiTests" runstate="Runnable" seed="2018102799" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.027689" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1976" name="TopDown3DInventoryTests" fullname="BooterBigArm.Tests.TopDown3DInventoryTests" classname="BooterBigArm.Tests.TopDown3DInventoryTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.015117" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1982" name="ApplySnapshot_RejectsMalformedPayloadsWithoutPartialMutation" fullname="BooterBigArm.Tests.TopDown3DInventoryTests.ApplySnapshot_RejectsMalformedPayloadsWithoutPartialMutation" methodname="ApplySnapshot_RejectsMalformedPayloadsWithoutPartialMutation" classname="BooterBigArm.Tests.TopDown3DInventoryTests" runstate="Runnable" seed="1148895387" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.003911" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1984" name="Catalog_RejectsDuplicateIdsInsteadOfLastWriteWins" fullname="BooterBigArm.Tests.TopDown3DInventoryTests.Catalog_RejectsDuplicateIdsInsteadOfLastWriteWins" methodname="Catalog_RejectsDuplicateIdsInsteadOfLastWriteWins" classname="BooterBigArm.Tests.TopDown3DInventoryTests" runstate="Runnable" seed="1525277309" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.001174" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1980" name="MoveSwapAndMerge_KeepFixedCapacityAndExactQuantities" fullname="BooterBigArm.Tests.TopDown3DInventoryTests.MoveSwapAndMerge_KeepFixedCapacityAndExactQuantities" methodname="MoveSwapAndMerge_KeepFixedCapacityAndExactQuantities" classname="BooterBigArm.Tests.TopDown3DInventoryTests" runstate="Runnable" seed="269454187" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.001313" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1979" name="Mutations_RejectInvalidRequestsWithoutChangingState" fullname="BooterBigArm.Tests.TopDown3DInventoryTests.Mutations_RejectInvalidRequestsWithoutChangingState" methodname="Mutations_RejectInvalidRequestsWithoutChangingState" classname="BooterBigArm.Tests.TopDown3DInventoryTests" runstate="Runnable" seed="901800452" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.000768" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1983" name="Remove_IsAllOrNothingAndEmitsOneChange" fullname="BooterBigArm.Tests.TopDown3DInventoryTests.Remove_IsAllOrNothingAndEmitsOneChange" methodname="Remove_IsAllOrNothingAndEmitsOneChange" classname="BooterBigArm.Tests.TopDown3DInventoryTests" runstate="Runnable" seed="456906911" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.000860" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1981" name="Snapshot_RoundTripsExactSlotOrderAndEmitsOnce" fullname="BooterBigArm.Tests.TopDown3DInventoryTests.Snapshot_RoundTripsExactSlotOrderAndEmitsOnce" methodname="Snapshot_RoundTripsExactSlotOrderAndEmitsOnce" classname="BooterBigArm.Tests.TopDown3DInventoryTests" runstate="Runnable" seed="77291905" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.000891" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1977" name="TryAdd_FillsExistingStacksBeforeEmptySlots" fullname="BooterBigArm.Tests.TopDown3DInventoryTests.TryAdd_FillsExistingStacksBeforeEmptySlots" methodname="TryAdd_FillsExistingStacksBeforeEmptySlots" classname="BooterBigArm.Tests.TopDown3DInventoryTests" runstate="Runnable" seed="2059046160" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.000792" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1978" name="TryAdd_IsAtomicWhenBatchCannotFit" fullname="BooterBigArm.Tests.TopDown3DInventoryTests.TryAdd_IsAtomicWhenBatchCannotFit" methodname="TryAdd_IsAtomicWhenBatchCannotFit" classname="BooterBigArm.Tests.TopDown3DInventoryTests" runstate="Runnable" seed="2100652415" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.001148" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1985" name="TopDown3DInventoryUiTests" fullname="BooterBigArm.Tests.TopDown3DInventoryUiTests" classname="BooterBigArm.Tests.TopDown3DInventoryUiTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:28Z" duration="0.522109" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1993" name="InputAsset_HasCanonicalToggleAndPreservesLegacyOpenInventory" fullname="BooterBigArm.Tests.TopDown3DInventoryUiTests.InputAsset_HasCanonicalToggleAndPreservesLegacyOpenInventory" methodname="InputAsset_HasCanonicalToggleAndPreservesLegacyOpenInventory" classname="BooterBigArm.Tests.TopDown3DInventoryUiTests" runstate="Runnable" seed="152248750" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.004226" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1992" name="InputModes_KeepSystemLiveAndSuppressGameplayDuringInventory" fullname="BooterBigArm.Tests.TopDown3DInventoryUiTests.InputModes_KeepSystemLiveAndSuppressGameplayDuringInventory" methodname="InputModes_KeepSystemLiveAndSuppressGameplayDuringInventory" classname="BooterBigArm.Tests.TopDown3DInventoryUiTests" runstate="Runnable" seed="1717420684" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:27Z" duration="0.002855" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1995" name="InventoryUi_IsSeparateNavigableAndMovesStacksThroughStateCommands" fullname="BooterBigArm.Tests.TopDown3DInventoryUiTests.InventoryUi_IsSeparateNavigableAndMovesStacksThroughStateCommands" methodname="InventoryUi_IsSeparateNavigableAndMovesStacksThroughStateCommands" classname="BooterBigArm.Tests.TopDown3DInventoryUiTests" runstate="Runnable" seed="834626809" result="Passed" start-time="2026-10-14 17:50:27Z" end-time="2026-10-14 17:50:28Z" duration="0.469693" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Creating missing CanvasRenderer component for TopDown3DActionDpadGraphic in D-Pad Indicator.
+]]></output>
+            </test-case>
+            <test-case id="1994" name="PromptFormatter_UsesCanonicalKeyboardAndGamepadBindingGroups" fullname="BooterBigArm.Tests.TopDown3DInventoryUiTests.PromptFormatter_UsesCanonicalKeyboardAndGamepadBindingGroups" methodname="PromptFormatter_UsesCanonicalKeyboardAndGamepadBindingGroups" classname="BooterBigArm.Tests.TopDown3DInventoryUiTests" runstate="Runnable" seed="1991506753" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.003644" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1986" name="SlotView_ReconnectsClonedAuthoredChildrenAndRetainsNavigation" fullname="BooterBigArm.Tests.TopDown3DInventoryUiTests.SlotView_ReconnectsClonedAuthoredChildrenAndRetainsNavigation" methodname="SlotView_ReconnectsClonedAuthoredChildrenAndRetainsNavigation" classname="BooterBigArm.Tests.TopDown3DInventoryUiTests" runstate="Runnable" seed="48655579" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.003771" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1991" name="SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks" fullname="BooterBigArm.Tests.TopDown3DInventoryUiTests.SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks" classname="BooterBigArm.Tests.TopDown3DInventoryUiTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.034620" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1987" name="SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks(&quot;Icon&quot;,False)" fullname="BooterBigArm.Tests.TopDown3DInventoryUiTests.SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks(&quot;Icon&quot;,False)" methodname="SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks" classname="BooterBigArm.Tests.TopDown3DInventoryUiTests" runstate="Runnable" seed="874033134" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.002637" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1988" name="SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks(&quot;Quantity&quot;,False)" fullname="BooterBigArm.Tests.TopDown3DInventoryUiTests.SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks(&quot;Quantity&quot;,False)" methodname="SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks" classname="BooterBigArm.Tests.TopDown3DInventoryUiTests" runstate="Runnable" seed="332432948" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.000960" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1989" name="SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks(&quot;Icon&quot;,True)" fullname="BooterBigArm.Tests.TopDown3DInventoryUiTests.SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks(&quot;Icon&quot;,True)" methodname="SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks" classname="BooterBigArm.Tests.TopDown3DInventoryUiTests" runstate="Runnable" seed="1835055006" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.000864" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1990" name="SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks(&quot;Quantity&quot;,True)" fullname="BooterBigArm.Tests.TopDown3DInventoryUiTests.SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks(&quot;Quantity&quot;,True)" methodname="SlotView_RepairsDestroyedChildAndUsesReplacementCallbacks" classname="BooterBigArm.Tests.TopDown3DInventoryUiTests" runstate="Runnable" seed="1622981486" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.000922" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="2037" name="TopDown3DMicroDustHarvesterTests" fullname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests" classname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.015602" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2040" name="Accrual_IsFractionalCappedAndIdempotentAtSameTime" fullname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests.Accrual_IsFractionalCappedAndIdempotentAtSameTime" methodname="Accrual_IsFractionalCappedAndIdempotentAtSameTime" classname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests" runstate="Runnable" seed="1310700421" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.001014" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2041" name="ConditionalRemove_RejectionKeepsInventoryUntouched" fullname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests.ConditionalRemove_RejectionKeepsInventoryUntouched" methodname="ConditionalRemove_RejectionKeepsInventoryUntouched" classname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests" runstate="Runnable" seed="1055697242" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.001549" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2038" name="LegacySave_PreservesPlacedCanistersWithoutPresenceFlag" fullname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests.LegacySave_PreservesPlacedCanistersWithoutPresenceFlag" methodname="LegacySave_PreservesPlacedCanistersWithoutPresenceFlag" classname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests" runstate="Runnable" seed="1661951335" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.001434" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2042" name="Pickup_RequiresRoomForCanisterAndEveryDustUnit" fullname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests.Pickup_RequiresRoomForCanisterAndEveryDustUnit" methodname="Pickup_RequiresRoomForCanisterAndEveryDustUnit" classname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests" runstate="Runnable" seed="2044804413" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.003794" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2044" name="Snapshot_RejectsDuplicateIdAndDoesNotChangeLiveState" fullname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests.Snapshot_RejectsDuplicateIdAndDoesNotChangeLiveState" methodname="Snapshot_RejectsDuplicateIdAndDoesNotChangeLiveState" classname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests" runstate="Runnable" seed="1574320325" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.000755" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2043" name="Snapshot_RestoresPartialProgressWithoutSharingMutableRecords" fullname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests.Snapshot_RestoresPartialProgressWithoutSharingMutableRecords" methodname="Snapshot_RestoresPartialProgressWithoutSharingMutableRecords" classname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests" runstate="Runnable" seed="40519447" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.001005" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2039" name="StartingCanister_IsAvailableInGameAndSavedInventoryReplacesIt" fullname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests.StartingCanister_IsAvailableInGameAndSavedInventoryReplacesIt" methodname="StartingCanister_IsAvailableInGameAndSavedInventoryReplacesIt" classname="BooterBigArm.Tests.TopDown3DMicroDustHarvesterTests" runstate="Runnable" seed="638397520" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.001173" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="2117" name="TopDown3DRadialTests" fullname="BooterBigArm.Tests.TopDown3DRadialTests" classname="BooterBigArm.Tests.TopDown3DRadialTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.092397" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2128" name="AuthoredPlacement_ConsumesOnlyOnCommitAndRestoresIdentity" fullname="BooterBigArm.Tests.TopDown3DRadialTests.AuthoredPlacement_ConsumesOnlyOnCommitAndRestoresIdentity" methodname="AuthoredPlacement_ConsumesOnlyOnCommitAndRestoresIdentity" classname="BooterBigArm.Tests.TopDown3DRadialTests" runstate="Runnable" seed="2104077189" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.002051" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2129" name="CallOver_TargetsCloseArrivalWithoutRelocatingCompanion" fullname="BooterBigArm.Tests.TopDown3DRadialTests.CallOver_TargetsCloseArrivalWithoutRelocatingCompanion" methodname="CallOver_TargetsCloseArrivalWithoutRelocatingCompanion" classname="BooterBigArm.Tests.TopDown3DRadialTests" runstate="Runnable" seed="618571866" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.003508" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2124" name="CanvasRebuild_SubmitsOpaqueRingMesh_WithoutSelectionPrompt" fullname="BooterBigArm.Tests.TopDown3DRadialTests.CanvasRebuild_SubmitsOpaqueRingMesh_WithoutSelectionPrompt" methodname="CanvasRebuild_SubmitsOpaqueRingMesh_WithoutSelectionPrompt" classname="BooterBigArm.Tests.TopDown3DRadialTests" runstate="Runnable" seed="1216235477" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.009342" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2125" name="DirectionalSelection_ClearsCenterAndResistsBoundaryJitter" fullname="BooterBigArm.Tests.TopDown3DRadialTests.DirectionalSelection_ClearsCenterAndResistsBoundaryJitter" methodname="DirectionalSelection_ClearsCenterAndResistsBoundaryJitter" classname="BooterBigArm.Tests.TopDown3DRadialTests" runstate="Runnable" seed="1753890789" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.000802" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2130" name="MenuSession_CancelWins_StickReleaseWithHeldBumperOpensInventoryOnce" fullname="BooterBigArm.Tests.TopDown3DRadialTests.MenuSession_CancelWins_StickReleaseWithHeldBumperOpensInventoryOnce" methodname="MenuSession_CancelWins_StickReleaseWithHeldBumperOpensInventoryOnce" classname="BooterBigArm.Tests.TopDown3DRadialTests" runstate="Runnable" seed="550060087" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.042130" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2127" name="ModalTransition_PreservesHeldSystemOpenerAndBlocksInventoryShortcut" fullname="BooterBigArm.Tests.TopDown3DRadialTests.ModalTransition_PreservesHeldSystemOpenerAndBlocksInventoryShortcut" methodname="ModalTransition_PreservesHeldSystemOpenerAndBlocksInventoryShortcut" classname="BooterBigArm.Tests.TopDown3DRadialTests" runstate="Runnable" seed="634374167" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.010717" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2126" name="Preferences_RejectCorruptionAndCloneWithoutSharingAssignments" fullname="BooterBigArm.Tests.TopDown3DRadialTests.Preferences_RejectCorruptionAndCloneWithoutSharingAssignments" methodname="Preferences_RejectCorruptionAndCloneWithoutSharingAssignments" classname="BooterBigArm.Tests.TopDown3DRadialTests" runstate="Runnable" seed="596683226" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.001454" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2123" name="RingMesh_HasNoCenterTrianglesAndFacesCanvas" fullname="BooterBigArm.Tests.TopDown3DRadialTests.RingMesh_HasNoCenterTrianglesAndFacesCanvas" methodname="RingMesh_HasNoCenterTrianglesAndFacesCanvas" classname="BooterBigArm.Tests.TopDown3DRadialTests" runstate="Runnable" seed="560319202" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.006856" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2122" name="SeamEdges_HaveConstantPerpendicularGapAtBothRadii" fullname="BooterBigArm.Tests.TopDown3DRadialTests.SeamEdges_HaveConstantPerpendicularGapAtBothRadii" classname="BooterBigArm.Tests.TopDown3DRadialTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.006858" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2118" name="SeamEdges_HaveConstantPerpendicularGapAtBothRadii(-45.0f)" fullname="BooterBigArm.Tests.TopDown3DRadialTests.SeamEdges_HaveConstantPerpendicularGapAtBothRadii(-45.0f)" methodname="SeamEdges_HaveConstantPerpendicularGapAtBothRadii" classname="BooterBigArm.Tests.TopDown3DRadialTests" runstate="Runnable" seed="1863866889" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.000722" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2119" name="SeamEdges_HaveConstantPerpendicularGapAtBothRadii(45.0f)" fullname="BooterBigArm.Tests.TopDown3DRadialTests.SeamEdges_HaveConstantPerpendicularGapAtBothRadii(45.0f)" methodname="SeamEdges_HaveConstantPerpendicularGapAtBothRadii" classname="BooterBigArm.Tests.TopDown3DRadialTests" runstate="Runnable" seed="140176085" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.000122" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2120" name="SeamEdges_HaveConstantPerpendicularGapAtBothRadii(135.0f)" fullname="BooterBigArm.Tests.TopDown3DRadialTests.SeamEdges_HaveConstantPerpendicularGapAtBothRadii(135.0f)" methodname="SeamEdges_HaveConstantPerpendicularGapAtBothRadii" classname="BooterBigArm.Tests.TopDown3DRadialTests" runstate="Runnable" seed="1397391222" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.000107" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2121" name="SeamEdges_HaveConstantPerpendicularGapAtBothRadii(225.0f)" fullname="BooterBigArm.Tests.TopDown3DRadialTests.SeamEdges_HaveConstantPerpendicularGapAtBothRadii(225.0f)" methodname="SeamEdges_HaveConstantPerpendicularGapAtBothRadii" classname="BooterBigArm.Tests.TopDown3DRadialTests" runstate="Runnable" seed="855536357" result="Passed" start-time="2026-10-14 17:50:28Z" end-time="2026-10-14 17:50:28Z" duration="0.000104" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

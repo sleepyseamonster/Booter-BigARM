@@ -13,8 +13,29 @@ namespace BooterBigArm.TopDown3D
             new List<TopDown3DItemDefinition>();
 
         [NonSerialized] private Dictionary<string, TopDown3DItemDefinition> lookup;
+        [NonSerialized] private List<TopDown3DItemDefinition> loadoutDefinitions;
 
-        public IReadOnlyList<TopDown3DItemDefinition> Definitions => definitions;
+        public IReadOnlyList<TopDown3DItemDefinition> Definitions => loadoutDefinitions ?? definitions;
+        public bool HasEquipmentDefinitions
+        { get { foreach (var item in Definitions) if (item != null && item.IsEquipment) return true; return false; } }
+
+        internal void ApplyLoadoutProfile(TopDown3DCampLoopLoadoutProfile profile)
+        {
+            if (loadoutDefinitions != null) return;
+            var overrides = new Dictionary<string, TopDown3DItemDefinition>(StringComparer.Ordinal);
+            foreach (var item in profile.definitions)
+                if (item == null || !item.TryValidate(out _) || !overrides.TryAdd(item.ItemId, item))
+                    throw new InvalidOperationException("Invalid Camp Loop loadout profile; inventory initialization stopped.");
+            var resolved = new List<TopDown3DItemDefinition>();
+            foreach (var item in definitions)
+            {
+                if (overrides.Remove(item.ItemId, out var replacement)) resolved.Add(replacement);
+                else resolved.Add(item);
+            }
+            resolved.AddRange(overrides.Values);
+            loadoutDefinitions = resolved;
+            lookup = null;
+        }
 
         public bool TryGetDefinition(string itemId, out TopDown3DItemDefinition definition)
         {
@@ -34,7 +55,7 @@ namespace BooterBigArm.TopDown3D
 
         public bool TryValidate(out string error)
         {
-            if (definitions == null || definitions.Count == 0)
+            if (Definitions == null || Definitions.Count == 0)
             {
                 error = "Item catalog must contain at least one definition.";
                 return false;
@@ -42,9 +63,9 @@ namespace BooterBigArm.TopDown3D
 
             var ids = new HashSet<string>(StringComparer.Ordinal);
             var assets = new HashSet<TopDown3DItemDefinition>();
-            for (var i = 0; i < definitions.Count; i++)
+            for (var i = 0; i < Definitions.Count; i++)
             {
-                var definition = definitions[i];
+                var definition = Definitions[i];
                 if (definition == null)
                 {
                     error = $"Item catalog entry {i} is null.";
@@ -79,6 +100,7 @@ namespace BooterBigArm.TopDown3D
                 ? new List<TopDown3DItemDefinition>(authoredDefinitions)
                 : new List<TopDown3DItemDefinition>();
             lookup = null;
+            loadoutDefinitions = null;
         }
 
         private void OnEnable()
@@ -104,11 +126,11 @@ namespace BooterBigArm.TopDown3D
             }
 
             lookup = new Dictionary<string, TopDown3DItemDefinition>(
-                definitions.Count,
+                Definitions.Count,
                 StringComparer.Ordinal);
-            for (var i = 0; i < definitions.Count; i++)
+            for (var i = 0; i < Definitions.Count; i++)
             {
-                var definition = definitions[i];
+                var definition = Definitions[i];
                 lookup.Add(definition.ItemId, definition);
             }
         }

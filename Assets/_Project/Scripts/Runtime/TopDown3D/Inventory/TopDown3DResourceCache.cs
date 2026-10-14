@@ -17,7 +17,7 @@ namespace BooterBigArm.TopDown3D
             get
             {
                 if (state != null && state.IsInitialized) return state;
-                state = new TopDown3DInventoryState(itemCatalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.ResourceCache, capacity));
+                state = new TopDown3DInventoryState(ItemCatalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.ResourceCache, capacity));
                 if (reloadSnapshot != null && reloadSnapshot.Version > 0 && !state.ApplySnapshot(reloadSnapshot).Succeeded)
                 {
                     state.RetainForRecovery();
@@ -26,7 +26,7 @@ namespace BooterBigArm.TopDown3D
                 return state;
             }
         }
-        public TopDown3DItemCatalog ItemCatalog => itemCatalog;
+        public TopDown3DItemCatalog ItemCatalog => TopDown3DCampLoopLoadoutProfile.Resolve(gameObject.scene, itemCatalog);
         public string StableId => cacheId;
         public Object UnityObject => this;
         public string Prompt => "Open Resource Cache";

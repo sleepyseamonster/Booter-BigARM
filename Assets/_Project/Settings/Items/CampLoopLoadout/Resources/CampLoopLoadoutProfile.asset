@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d28436222c4a6692e95b50ebdc5f76, type: 3}
+  m_Name: CampLoopLoadoutProfile
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DCampLoopLoadoutProfile
+  sourceCatalog: {fileID: 11400000, guid: 9b53a13b5b81f9f4f923c87dacf9661b, type: 2}
+  definitions:
+  - {fileID: 11400000, guid: bd4a3ff1934a48b488d00178f2ea5f5b, type: 2}
+  - {fileID: 11400000, guid: fa4af7c1e566472397b27e5d1c631328, type: 2}
+  - {fileID: 11400000, guid: 92b09b6ae45c408a81226d4e4d27e460, type: 2}
+  - {fileID: 11400000, guid: 74792313cdb24854bf9c117032b2f0dc, type: 2}
+  - {fileID: 11400000, guid: e67c8f80513d4e829c8de0f3905ad920, type: 2}
+  - {fileID: 11400000, guid: a8b0a825cc7745ceaaa73598f24f3afd, type: 2}
+  - {fileID: 11400000, guid: e9dadbfe6e894f93a4c07d2c4540217e, type: 2}
+  startingEquipment:
+  - itemId: equipment.algae_canister
+    quantity: 1
+  - itemId: equipment.grappling_hook
+    quantity: 1
+  - itemId: equipment.digging_tool
+    quantity: 1
+  - itemId: equipment.cloak
+    quantity: 1
+  - itemId: equipment.jacket
+    quantity: 1

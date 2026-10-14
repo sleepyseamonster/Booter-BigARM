@@ -9,6 +9,7 @@ namespace BooterBigArm.TopDown3D
     public sealed class TopDown3DPlacedHarvesterRecord
     {
         [SerializeField] private string stableId;
+        [SerializeField] private string equipmentInstanceId;
         [SerializeField] private long placementSequence;
         [SerializeField] private double horizontalA;
         [SerializeField] private double vertical;
@@ -18,6 +19,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private double lastEvaluatedSeconds;
 
         public string StableId => stableId;
+        public string EquipmentInstanceId => equipmentInstanceId;
         public long PlacementSequence => placementSequence;
         public AbsoluteWorldPosition Position => new AbsoluteWorldPosition(horizontalA, vertical, horizontalB);
         public int Dust => dust;
@@ -26,11 +28,12 @@ namespace BooterBigArm.TopDown3D
 
         internal static TopDown3DPlacedHarvesterRecord Create(
             string id, long sequence, AbsoluteWorldPosition position, int amount,
-            double fractional, double evaluatedAt)
+            double fractional, double evaluatedAt, string equipmentInstance = null)
         {
             return new TopDown3DPlacedHarvesterRecord
             {
                 stableId = id,
+                equipmentInstanceId = equipmentInstance,
                 placementSequence = sequence,
                 horizontalA = position.HorizontalA,
                 vertical = position.Vertical,
@@ -64,12 +67,13 @@ namespace BooterBigArm.TopDown3D
         internal TopDown3DPlacedHarvesterRecord Clone()
         {
             return Create(stableId, placementSequence, Position, dust,
-                fractionalSeconds, lastEvaluatedSeconds);
+                fractionalSeconds, lastEvaluatedSeconds, equipmentInstanceId);
         }
 
         internal bool IsValid(TopDown3DHarvesterSettings settings, double clock)
         {
-            return WorldFeatureId.TryParse(stableId, out var parsedId) && !parsedId.IsEmpty
+            return (string.IsNullOrEmpty(equipmentInstanceId) || Guid.TryParseExact(equipmentInstanceId, "N", out _))
+                && WorldFeatureId.TryParse(stableId, out var parsedId) && !parsedId.IsEmpty
                 && placementSequence >= 0
                 && IsFinite(horizontalA) && IsFinite(vertical) && IsFinite(horizontalB)
                 && dust >= 0 && dust <= settings.Capacity
@@ -111,6 +115,7 @@ namespace BooterBigArm.TopDown3D
             ordered.Sort((left, right) => string.CompareOrdinal(left.StableId, right.StableId));
             return new TopDown3DPlacedHarvesterSnapshot
             {
+                version = ordered.Exists(record => !string.IsNullOrEmpty(record.EquipmentInstanceId)) ? 2 : CurrentVersion,
                 worldSeed = seed,
                 authoredWorldId = authoredId,
                 simulationSeconds = seconds,
@@ -132,7 +137,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, HideInInspector] private TopDown3DPlacedHarvesterSnapshot reloadSnapshot;
         private bool needsReload;
 
-        private readonly Dictionary<string, TopDown3DPlacedHarvesterRecord> records =
+        private Dictionary<string, TopDown3DPlacedHarvesterRecord> records =
             new Dictionary<string, TopDown3DPlacedHarvesterRecord>(StringComparer.Ordinal);
         private readonly Dictionary<string, TopDown3DHarvesterView> views =
             new Dictionary<string, TopDown3DHarvesterView>(StringComparer.Ordinal);
@@ -140,6 +145,22 @@ namespace BooterBigArm.TopDown3D
         private double simulationSeconds;
         private long nextSequence;
         private float viewRefreshElapsed;
+        private bool resetLocked;
+
+        internal TopDown3DPreparedWorldMutation PrepareTrialRestore(TopDown3DPlacedHarvesterSnapshot snapshot)
+        {
+            if (!CanApplySnapshot(snapshot)) return null;
+            var next = new Dictionary<string, TopDown3DPlacedHarvesterRecord>(StringComparer.Ordinal);
+            var ids = new List<string>();
+            foreach (var record in snapshot.Records)
+            { next.Add(record.StableId, record.Clone()); ids.Add(record.EquipmentInstanceId); }
+            var before = JsonUtility.ToJson(CaptureSnapshot());
+            var restoredSequence = Math.Max(nextSequence, snapshot.NextSequence);
+            return new TopDown3DPreparedWorldMutation(
+                () => { if (resetLocked || JsonUtility.ToJson(CaptureSnapshot()) != before) return false; resetLocked = true; return true; },
+                () => { records = next; simulationSeconds = snapshot.SimulationSeconds; nextSequence = restoredSequence; },
+                () => { ClearViews(); RefreshViews(); }, () => resetLocked = false, ids);
+        }
 
         public TopDown3DHarvesterSettings Settings => settings;
         public int DeployedCount => records.Count;
@@ -200,6 +221,7 @@ namespace BooterBigArm.TopDown3D
             out string stableId)
         {
             stableId = null;
+            if (resetLocked) return false;
             if (IsAuthored) return TryPlaceAuthored(localPosition, inventory, out stableId);
             if (settings == null || world == null || inventory == null
                 || records.Count >= settings.MaximumDeployed
@@ -218,7 +240,7 @@ namespace BooterBigArm.TopDown3D
             if (records.ContainsKey(id)) return false;
 
             var record = TopDown3DPlacedHarvesterRecord.Create(id, sequence,
-                absolute, 0, 0d, simulationSeconds);
+                absolute, 0, 0d, simulationSeconds, CarriedInstance(inventory));
             var result = inventory.TryRemove(TopDown3DHarvesterSettings.CanisterItemId, 1,
                 () =>
                 {
@@ -244,10 +266,11 @@ namespace BooterBigArm.TopDown3D
         {
             LastPickupFailure = null;
             collectedDust = 0;
+            if (resetLocked) return false;
             if (settings == null || inventory == null
                 || !records.TryGetValue(stableId ?? string.Empty, out var record)) return false;
             record.Advance(simulationSeconds, settings);
-            var tools = new[] { new TopDown3DItemAmount(TopDown3DHarvesterSettings.CanisterItemId, 1) };
+            var tools = new[] { new TopDown3DItemAmount(TopDown3DHarvesterSettings.CanisterItemId, 1, record.EquipmentInstanceId) };
             var resources = record.Dust > 0
                 ? new[] { new TopDown3DItemAmount(TopDown3DHarvesterSettings.DustItemId, record.Dust) }
                 : null;
@@ -279,7 +302,8 @@ namespace BooterBigArm.TopDown3D
         public bool CanApplySnapshot(TopDown3DPlacedHarvesterSnapshot snapshot)
         {
             if (settings == null || (world == null && !IsAuthored) || snapshot == null
-                || snapshot.Version != TopDown3DPlacedHarvesterSnapshot.CurrentVersion
+                || (snapshot.Version != TopDown3DPlacedHarvesterSnapshot.CurrentVersion && snapshot.Version != 2)
+                || snapshot.Version == 2 && !TopDown3DAnimationPlaygroundSession.IsSessionOnly(gameObject.scene)
                 || (IsAuthored ? snapshot.WorldSeed != 0 || snapshot.AuthoredWorldId != authoredWorldId
                     : snapshot.WorldSeed != world.WorldSeed || !string.IsNullOrEmpty(snapshot.AuthoredWorldId))
                 || double.IsNaN(snapshot.SimulationSeconds)
@@ -289,9 +313,11 @@ namespace BooterBigArm.TopDown3D
                 return false;
             var ids = new HashSet<string>(StringComparer.Ordinal);
             var sequences = new HashSet<long>();
+            var equipmentIds = new HashSet<string>(StringComparer.Ordinal);
             foreach (var record in snapshot.Records)
             {
                 if (record == null || !record.IsValid(settings, snapshot.SimulationSeconds)
+                    || (snapshot.Version == 2 ? string.IsNullOrEmpty(record.EquipmentInstanceId) || !equipmentIds.Add(record.EquipmentInstanceId) : !string.IsNullOrEmpty(record.EquipmentInstanceId))
                     || record.PlacementSequence >= snapshot.NextSequence
                     || !ids.Add(record.StableId) || !sequences.Add(record.PlacementSequence))
                     return false;
@@ -319,6 +345,7 @@ namespace BooterBigArm.TopDown3D
 
         public bool ApplySnapshot(TopDown3DPlacedHarvesterSnapshot snapshot)
         {
+            if (resetLocked) return false;
             if (!CanApplySnapshot(snapshot)) return false;
             ClearViews();
             records.Clear();
@@ -381,12 +408,27 @@ namespace BooterBigArm.TopDown3D
             if (view != null)
             {
                 view.gameObject.SetActive(false);
-                Destroy(view.gameObject);
+                if (Application.isPlaying) Destroy(view.gameObject); else DestroyImmediate(view.gameObject);
             }
         }
 
         private string AuthoredPlacementId(long sequence) => Hash128.Compute(
             authoredWorldId + ":micro-dust-canister:" + sequence.ToString(System.Globalization.CultureInfo.InvariantCulture)).ToString();
+
+        private static string CarriedInstance(TopDown3DInventoryState inventory)
+        {
+            foreach (var slot in inventory.Slots)
+                if (slot.ItemId == TopDown3DHarvesterSettings.CanisterItemId) return slot.InstanceId;
+            return null;
+        }
+
+        public bool AllowsEquipmentReturn(string itemId, string instanceId)
+        {
+            if (itemId != TopDown3DHarvesterSettings.CanisterItemId) return true;
+            foreach (var record in records.Values)
+                if (!string.IsNullOrEmpty(record.EquipmentInstanceId) && record.EquipmentInstanceId != instanceId) return false;
+            return true;
+        }
 
         private bool TryPlaceAuthored(Vector3 position, TopDown3DInventoryState inventory, out string id)
         {
@@ -397,7 +439,7 @@ namespace BooterBigArm.TopDown3D
             var sequence = nextSequence;
             var stable = AuthoredPlacementId(sequence);
             var record = TopDown3DPlacedHarvesterRecord.Create(stable, sequence,
-                new AbsoluteWorldPosition(position.x, position.y, position.z), 0, 0d, simulationSeconds);
+                new AbsoluteWorldPosition(position.x, position.y, position.z), 0, 0d, simulationSeconds, CarriedInstance(inventory));
             var result = inventory.TryRemove(TopDown3DHarvesterSettings.CanisterItemId, 1, () =>
             {
                 if (records.ContainsKey(stable) || records.Count >= settings.MaximumDeployed) return false;
@@ -415,7 +457,7 @@ namespace BooterBigArm.TopDown3D
             {
                 if (view == null) continue;
                 view.gameObject.SetActive(false);
-                Destroy(view.gameObject);
+                if (Application.isPlaying) Destroy(view.gameObject); else DestroyImmediate(view.gameObject);
             }
             views.Clear();
         }

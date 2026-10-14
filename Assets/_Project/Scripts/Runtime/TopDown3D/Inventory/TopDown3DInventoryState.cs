@@ -40,7 +40,7 @@ namespace BooterBigArm.TopDown3D
 
         private readonly TopDown3DItemCatalog catalog;
         private readonly List<TopDown3DInventorySlot> slots;
-        private readonly TopDown3DInventoryPolicy policy;
+        private TopDown3DInventoryPolicy policy;
 
         public TopDown3DInventoryState(TopDown3DItemCatalog itemCatalog, int capacity)
             : this(itemCatalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.Booter, capacity))
@@ -95,6 +95,21 @@ namespace BooterBigArm.TopDown3D
         }
 
         public event Action Changed;
+        public Func<string, bool> ReleaseAllowed { get; set; }
+        public Func<string, string, bool> EquipmentAdmission { get; set; }
+        internal bool AdoptStartupLoadout(TopDown3DInventoryState prepared)
+        {
+            if (transactionLocked || policy.IsLoadout || !prepared.Policy.IsLoadout || Revision > 1) return false;
+            // Preserve this authority object and its subscriptions during the scene initialization barrier.
+            policy = prepared.Policy;
+            slots.Clear(); foreach (var slot in prepared.Slots) slots.Add(slot.Clone());
+            Revision++; PublishDraft(); return true;
+        }
+        public bool CanRelease(int index) => index >= 0 && index < slots.Count && !slots[index].IsEmpty
+            && !(policy.IsLoadout && catalog.GetRequiredDefinition(slots[index].ItemId).EquipmentSlot == TopDown3DEquipmentSlot.AlgaeCanister)
+            && (ReleaseAllowed == null || ReleaseAllowed(slots[index].ItemId));
+        private bool Accepts(int index, TopDown3DItemDefinition definition, string instance = null)
+            => policy.AllowsSlot(index, definition) && (!definition.IsEquipment || EquipmentAdmission == null || EquipmentAdmission(definition.ItemId, instance));
 
         public bool CanAdd(TopDown3DItemAmount amount)
         {
@@ -158,6 +173,9 @@ namespace BooterBigArm.TopDown3D
                 return Failure(TopDown3DInventoryResultCode.UnknownItem, $"Unknown item '{itemId}'.");
             }
 
+            for (var i = 0; i < slots.Count; i++)
+                if (slots[i].ItemId == itemId && !CanRelease(i))
+                    return Failure(TopDown3DInventoryResultCode.CommitConditionRejected, "Equipment is attached or in use.");
             var available = 0;
             for (var i = 0; i < slots.Count; i++)
             {
@@ -183,7 +201,7 @@ namespace BooterBigArm.TopDown3D
                 }
 
                 var removed = Math.Min(slot.Quantity, remaining);
-                slot.Set(itemId, slot.Quantity - removed);
+                slot.Set(itemId, slot.Quantity - removed, slot.InstanceId);
                 remaining -= removed;
             }
 
@@ -219,10 +237,15 @@ namespace BooterBigArm.TopDown3D
                 return TryMerge(sourceIndex, destinationIndex);
             }
 
+            if (!CanRelease(sourceIndex) || !destination.IsEmpty && !CanRelease(destinationIndex)
+                || !Accepts(destinationIndex, catalog.GetRequiredDefinition(source.ItemId), source.InstanceId)
+                || !destination.IsEmpty && !Accepts(sourceIndex, catalog.GetRequiredDefinition(destination.ItemId), destination.InstanceId))
+                return Failure(TopDown3DInventoryResultCode.IncompatibleSlots, "Equipment only fits its named slot; attached or in-use gear cannot move.");
+            var sourceInstance = source.InstanceId;
             var sourceId = source.ItemId;
             var sourceQuantity = source.Quantity;
-            source.Set(destination.ItemId, destination.Quantity);
-            destination.Set(sourceId, sourceQuantity);
+            source.Set(destination.ItemId, destination.Quantity, destination.InstanceId);
+            destination.Set(sourceId, sourceQuantity, sourceInstance);
             Revision++;
             PublishDraft();
             return Success();
@@ -245,6 +268,8 @@ namespace BooterBigArm.TopDown3D
             }
 
             var definition = catalog.GetRequiredDefinition(source.ItemId);
+            if (definition.IsEquipment) return Failure(TopDown3DInventoryResultCode.IncompatibleSlots, "Equipment instances do not merge.");
+            if (!CanRelease(sourceIndex) || !Accepts(destinationIndex, definition)) return Failure(TopDown3DInventoryResultCode.IncompatibleSlots, "Item does not fit this slot.");
             var room = definition.MaxStack - destination.Quantity;
             if (room <= 0)
             {
@@ -261,14 +286,15 @@ namespace BooterBigArm.TopDown3D
 
         public TopDown3DInventorySnapshot CaptureSnapshot()
         {
-            return TopDown3DInventorySnapshot.Create(CurrentSnapshotVersion, slots);
+            return TopDown3DInventorySnapshot.Create(policy.IsLoadout || catalog.HasEquipmentDefinitions ? 2 : CurrentSnapshotVersion, slots);
         }
 
         public TopDown3DInventoryResult ApplySnapshot(TopDown3DInventorySnapshot snapshot)
         {
             if (transactionLocked) return Failure(TopDown3DInventoryResultCode.MutationBusy, "Inventory is committing another operation.");
             if (snapshot == null
-                || snapshot.Version != CurrentSnapshotVersion
+                || (snapshot.Version != CurrentSnapshotVersion && snapshot.Version != 2)
+                || snapshot.Version == 2 && !policy.IsLoadout && !catalog.HasEquipmentDefinitions
                 || snapshot.Capacity != slots.Count
                 || snapshot.Slots == null
                 || snapshot.Slots.Count != slots.Count)
@@ -277,6 +303,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             var nextSlots = new List<TopDown3DInventorySlot>(slots.Count);
+            var instances = new HashSet<string>(StringComparer.Ordinal);
             for (var i = 0; i < snapshot.Slots.Count; i++)
             {
                 var record = snapshot.Slots[i];
@@ -286,7 +313,7 @@ namespace BooterBigArm.TopDown3D
                 }
 
                 var next = new TopDown3DInventorySlot();
-                if (record.Quantity == 0 && string.IsNullOrEmpty(record.ItemId))
+                if (record.Quantity == 0 && string.IsNullOrEmpty(record.ItemId) && string.IsNullOrEmpty(record.InstanceId))
                 {
                     nextSlots.Add(next);
                     continue;
@@ -295,13 +322,15 @@ namespace BooterBigArm.TopDown3D
                 if (record.Quantity <= 0
                     || string.IsNullOrWhiteSpace(record.ItemId)
                     || !catalog.TryGetDefinition(record.ItemId, out var definition)
-                    || !policy.Allows(definition)
+                    || !policy.AllowsSlot(i, definition)
                     || record.Quantity > definition.MaxStack)
                 {
                     return Failure(TopDown3DInventoryResultCode.InvalidSnapshot, $"Snapshot slot {i} is invalid.");
                 }
 
-                next.Set(record.ItemId, record.Quantity);
+                if (definition.IsEquipment ? snapshot.Version != 2 || record.Quantity != 1 || !Guid.TryParseExact(record.InstanceId, "N", out _) || !instances.Add(record.InstanceId) : !string.IsNullOrEmpty(record.InstanceId))
+                    return Failure(TopDown3DInventoryResultCode.InvalidSnapshot, $"Invalid or duplicated equipment identity in slot {i}: {record.ItemId}, instance '{record.InstanceId}', version {snapshot.Version}.");
+                next.Set(record.ItemId, record.Quantity, record.InstanceId);
                 nextSlots.Add(next);
             }
 
@@ -348,11 +377,14 @@ namespace BooterBigArm.TopDown3D
                     return false;
                 }
 
+                if (amount.InstanceId != null && (!definition.IsEquipment || amount.Quantity != 1 || !Guid.TryParseExact(amount.InstanceId, "N", out _)
+                    || simulated.Exists(s => s.InstanceId == amount.InstanceId)))
+                { failure = Failure(TopDown3DInventoryResultCode.InvalidRequest, "Invalid or duplicated equipment instance."); return false; }
                 var remaining = amount.Quantity;
                 for (var i = 0; i < simulated.Count && remaining > 0; i++)
                 {
                     var slot = simulated[i];
-                    if (!string.Equals(slot.ItemId, amount.ItemId, StringComparison.Ordinal)
+                    if (definition.IsEquipment || !Accepts(i, definition, amount.InstanceId) || !string.Equals(slot.ItemId, amount.ItemId, StringComparison.Ordinal)
                         || slot.Quantity >= definition.MaxStack)
                     {
                         continue;
@@ -366,13 +398,13 @@ namespace BooterBigArm.TopDown3D
                 for (var i = 0; i < simulated.Count && remaining > 0; i++)
                 {
                     var slot = simulated[i];
-                    if (!slot.IsEmpty)
+                    if (!slot.IsEmpty || !Accepts(i, definition, amount.InstanceId))
                     {
                         continue;
                     }
 
                     var added = Math.Min(definition.MaxStack, remaining);
-                    slot.Set(amount.ItemId, added);
+                    slot.Set(amount.ItemId, added, definition.IsEquipment ? amount.InstanceId ?? Guid.NewGuid().ToString("N") : null);
                     remaining -= added;
                 }
 
@@ -425,7 +457,7 @@ namespace BooterBigArm.TopDown3D
         {
             for (var i = 0; i < slots.Count; i++)
             {
-                slots[i].Set(nextSlots[i].ItemId, nextSlots[i].Quantity);
+                slots[i].Set(nextSlots[i].ItemId, nextSlots[i].Quantity, nextSlots[i].InstanceId);
             }
 
             Revision++;

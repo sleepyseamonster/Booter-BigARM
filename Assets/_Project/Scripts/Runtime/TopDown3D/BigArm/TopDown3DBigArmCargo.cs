@@ -14,7 +14,7 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, HideInInspector] private TopDown3DInventorySnapshot reloadSnapshot;
         private TopDown3DBigArmLoadProfile loadProfile;
 
-        public TopDown3DItemCatalog ItemCatalog => itemCatalog;
+        public TopDown3DItemCatalog ItemCatalog => TopDown3DCampLoopLoadoutProfile.Resolve(gameObject.scene, itemCatalog);
         public TopDown3DPackingSettings PackingSettings => packingSettings;
         public TopDown3DInventoryState State => EnsureState();
         public TopDown3DBigArmLoadProfile LoadProfile => loadProfile;
@@ -58,13 +58,13 @@ namespace BooterBigArm.TopDown3D
             return result;
         }
 
-        private void Awake() { if (itemCatalog != null && packingSettings != null) EnsureState(); }
+        // Initialize through State after the scene-loaded installer resolves its private catalog profile.
 
         private TopDown3DInventoryState EnsureState()
         {
             if (state != null && state.IsInitialized) return state;
             if (itemCatalog == null || packingSettings == null) throw new InvalidOperationException("BigARM cargo requires an item catalog and packing settings.");
-            SetState(new TopDown3DInventoryState(itemCatalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, DefaultCapacity, packingSettings.HardMass)));
+            SetState(new TopDown3DInventoryState(ItemCatalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, DefaultCapacity, packingSettings.HardMass)));
             if (reloadSnapshot != null && reloadSnapshot.Version > 0 && !state.ApplySnapshot(reloadSnapshot).Succeeded)
             {
                 state.RetainForRecovery();

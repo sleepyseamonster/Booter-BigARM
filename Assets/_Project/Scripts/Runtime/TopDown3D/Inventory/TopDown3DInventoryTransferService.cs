@@ -25,9 +25,11 @@ namespace BooterBigArm.TopDown3D
         {
             if (source == null || destination == null || source == destination || string.IsNullOrWhiteSpace(itemId) || requestedQuantity <= 0)
                 return new TopDown3DTransferResult(TopDown3DInventoryResultCode.InvalidRequest, 0, "Transfer requires two inventories, an item, and a positive quantity.");
-            if (!source.ItemCatalog.TryGetDefinition(itemId, out _))
+            if (!source.ItemCatalog.TryGetDefinition(itemId, out var definition))
                 return new TopDown3DTransferResult(TopDown3DInventoryResultCode.UnknownItem, 0, $"Unknown item '{itemId}'.");
 
+            if (definition.IsEquipment)
+                return new TopDown3DTransferResult(TopDown3DInventoryResultCode.InvalidRequest, 0, "Select the exact equipment instance to transfer.");
             var quantity = mode == TopDown3DTransferMode.Exact
                 ? requestedQuantity
                 : FindMaximum(source, destination, itemId, requestedQuantity);

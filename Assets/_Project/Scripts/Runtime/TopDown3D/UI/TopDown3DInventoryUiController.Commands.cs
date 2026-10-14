@@ -98,7 +98,7 @@ namespace BooterBigArm.TopDown3D
         public void QuickTransfer()
         {
             if (!CommandsAllowed || cargo == null) return;
-            if (!CargoAccessible || !CanMutateLeft()) { ShowNotice("Both the Legger and local cache must be within reach."); return; }
+            if (!CargoAccessible || !CanMutateLeft()) { ShowNotice(cacheContext != null ? "Both the Legger and local cache must be within reach." : "Legger cargo is out of reach or obstructed."); return; }
             var source = inspectingCargo ? cargo.State : LeftState;
             var destination = inspectingCargo ? LeftState : cargo.State;
             var index = inspectingCargo ? inspectedCargoSlot : lastSelectedSlot;
@@ -107,10 +107,12 @@ namespace BooterBigArm.TopDown3D
             var before = source.Slots[index].Quantity;
             selectedSource = -1; selectedCargoSource = false;
             mutating = true;
-            var result = TopDown3DInventoryTransferService.TransferSlot(source, destination, index,
-                () => CargoAccessible && CanMutateLeft());
+            var equipping = inspectingCargo && destination.Policy.IsLoadout && definition.IsEquipment;
+            var result = equipping
+                ? TopDown3DInventoryTransferService.EquipSlot(source, destination, index, () => CargoAccessible && CanMutateLeft())
+                : TopDown3DInventoryTransferService.TransferSlot(source, destination, index, () => CargoAccessible && CanMutateLeft());
             mutating = false;
-            ShowNotice(result.Succeeded ? $"Moved {result.Quantity} {definition.DisplayName}; {before - result.Quantity} remain."
+            ShowNotice(result.Succeeded ? equipping ? result.Message : $"Moved {result.Quantity} {definition.DisplayName}; {before - result.Quantity} remain."
                 : definition.IsResource && cacheContext == null && inspectingCargo
                     ? "Resources stay with the Legger. Use a local resource cache to unload."
                     : result.Message);
@@ -127,6 +129,7 @@ namespace BooterBigArm.TopDown3D
                 ActivateSlot, SelectSlot, ActivateCargoSlot, SelectCargoSlot, HandleAutoPack);
             canvas.SetLeftTitle("RESOURCE CACHE");
             canvas.ConfigureCache(true, UnloadCargo);
+            canvas.ConfigureLoadout(false);
             Open(true);
         }
 
@@ -153,6 +156,7 @@ namespace BooterBigArm.TopDown3D
                 ActivateSlot, SelectSlot, ActivateCargoSlot, SelectCargoSlot, HandleAutoPack);
             canvas.SetLeftTitle("BOOTER KIT");
             canvas.ConfigureCache(false, null);
+            canvas.ConfigureLoadout(inventory.UsesLoadout);
         }
         private void RequestCargoApproach()
         {

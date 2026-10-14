@@ -5,6 +5,16 @@ namespace BooterBigArm.TopDown3D
 {
     public sealed partial class TopDown3DCampController
     {
+        internal TopDown3DPreparedWorldMutation PrepareTrialRestore(TopDown3DCampRecord record, bool deployed)
+        {
+            // Loadout trials begin with the portable kit packed. Authored Starting Camp is a different owner.
+            if (deployed || !CanRestoreCamp(record, false)) return null;
+            var previous = Camp; var previousRecord = Record;
+            return new TopDown3DPreparedWorldMutation(
+                () => { if (committing || Phase != TopDown3DCampPhase.Idle || Camp != previous || Record != previousRecord) return false; committing = true; return true; },
+                () => { Record = null; Camp = null; },
+                () => { if (previous != null) DestroyOwned(previous.gameObject); }, () => committing = false);
+        }
         public void OnBeforeSerialize() { }
         public void OnAfterDeserialize()
         { if (Record != null && string.IsNullOrEmpty(Record.id)) Record = null; }

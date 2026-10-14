@@ -23,6 +23,17 @@ namespace BooterBigArm.TopDown3D
         public event Action Changed;
         public event Action Restored;
 
+        internal TopDown3DPreparedWorldMutation PrepareTrialRestore(TopDown3DAlgaeCanisterSnapshot snapshot)
+        {
+            if (snapshot == null || settings == null || snapshot.version != 1 || snapshot.capacity != settings.capacity
+                || !double.IsFinite(snapshot.remaining) || snapshot.remaining < 0 || snapshot.remaining > settings.capacity) return null;
+            var value = snapshot.remaining; var before = remaining;
+            return new TopDown3DPreparedWorldMutation(
+                () => { if (transactionActive || remaining != before) return false; transactionActive = true; return true; },
+                () => { remaining = value; initialized = true; },
+                () => { Restored?.Invoke(); Changed?.Invoke(); }, () => transactionActive = false);
+        }
+
         private void Update() => Advance(Time.deltaTime);
 
         /// <summary>Grow on the survival simulation timeline, including accelerated sleep; no offline catch-up.</summary>

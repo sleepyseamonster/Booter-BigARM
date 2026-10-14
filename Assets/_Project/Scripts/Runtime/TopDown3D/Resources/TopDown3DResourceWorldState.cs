@@ -59,13 +59,24 @@ namespace BooterBigArm.TopDown3D
 
         [SerializeField, Min(1)] private int resourceGenerationVersion = 1;
         [SerializeField, HideInInspector] private TopDown3DResourceWorldSnapshot reloadSnapshot;
-        private readonly Dictionary<string, int> deltas = new Dictionary<string, int>(StringComparer.Ordinal);
+        private Dictionary<string, int> deltas = new Dictionary<string, int>(StringComparer.Ordinal);
         private readonly Dictionary<string, TopDown3DIronstoneNode> nodes =
             new Dictionary<string, TopDown3DIronstoneNode>(StringComparer.Ordinal);
 
         public int ResourceGenerationVersion => resourceGenerationVersion;
         public event Action<string, int> Changed;
         public event Action Restored;
+        private bool resetLocked;
+
+        internal TopDown3DPreparedWorldMutation PrepareTrialRestore(TopDown3DResourceWorldSnapshot snapshot)
+        {
+            if (!TryBuildSnapshotState(snapshot, out var next)) return null;
+            var before = JsonUtility.ToJson(CaptureSnapshot());
+            return new TopDown3DPreparedWorldMutation(
+                () => { if (resetLocked || JsonUtility.ToJson(CaptureSnapshot()) != before) return false; resetLocked = true; return true; },
+                () => deltas = next,
+                () => Restored?.Invoke(), () => resetLocked = false);
+        }
 
         public void OnBeforeSerialize()
         { if (Application.isPlaying) reloadSnapshot = CaptureSnapshot(); }
@@ -116,6 +127,7 @@ namespace BooterBigArm.TopDown3D
         public bool TryConsume(string stableId, int pristineUses, out int remainingUses)
         {
             remainingUses = GetRemainingUses(stableId, pristineUses);
+            if (resetLocked) return false;
             if (remainingUses <= 0)
             {
                 return false;
@@ -137,6 +149,7 @@ namespace BooterBigArm.TopDown3D
 
         public bool ApplySnapshot(TopDown3DResourceWorldSnapshot snapshot)
         {
+            if (resetLocked) return false;
             if (!TryBuildSnapshotState(snapshot, out var next)) return false;
 
             deltas.Clear();

@@ -19,6 +19,8 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, Min(0f)] private float mass;
         [SerializeField] private TopDown3DCarryPreference carryPreference;
         [SerializeField] private TopDown3DPackingPreference packingPreference;
+        [SerializeField] private TopDown3DEquipmentSlot equipmentSlot;
+        [SerializeField] private bool fieldSupply;
 
         public string ItemId => itemId;
         public string DisplayName => displayName;
@@ -29,6 +31,9 @@ namespace BooterBigArm.TopDown3D
         public float Mass => mass;
         public TopDown3DCarryPreference CarryPreference => carryPreference;
         public TopDown3DPackingPreference PackingPreference => packingPreference;
+        public TopDown3DEquipmentSlot EquipmentSlot => equipmentSlot;
+        public bool IsEquipment => equipmentSlot != TopDown3DEquipmentSlot.None;
+        public bool IsFieldSupply => fieldSupply;
         public bool IsResource => string.Equals(category, "Resource", System.StringComparison.Ordinal);
 
         public bool TryValidate(out string error)
@@ -68,6 +73,9 @@ namespace BooterBigArm.TopDown3D
                 error = $"Resource '{itemId}' must be authored for Legger cargo only.";
                 return false;
             }
+            if (!System.Enum.IsDefined(typeof(TopDown3DEquipmentSlot), equipmentSlot)
+                || IsEquipment && (maxStack != 1 || IsResource || fieldSupply) || fieldSupply && IsResource)
+            { error = $"Item '{itemId}' has incompatible equipment/supply metadata."; return false; }
             error = null;
             return true;
         }
@@ -93,5 +101,8 @@ namespace BooterBigArm.TopDown3D
             carryPreference = IsResource ? TopDown3DCarryPreference.BigArmOnly : authoredCarryPreference;
             packingPreference = authoredPackingPreference;
         }
+
+        internal void ConfigureLoadout(TopDown3DEquipmentSlot slot, bool supply = false)
+        { equipmentSlot = slot; fieldSupply = supply; if (slot != TopDown3DEquipmentSlot.None) maxStack = 1; }
     }
 }

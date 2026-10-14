@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -6,6 +8,8 @@ namespace BooterBigArm.TopDown3D
     [DisallowMultipleComponent]
     public sealed partial class TopDown3DInventoryUiController : MonoBehaviour
     {
+        private TopDown3DCampLoopInventoryTrial inventoryTrial;
+        private double lastDisplayedAlgae = double.NaN;
         [SerializeField] private TopDown3DInputRouter input;
         [SerializeField] private TopDown3DPlayerInventory inventory;
         [SerializeField] private TopDown3DPlayerActionController actionController;
@@ -49,6 +53,16 @@ namespace BooterBigArm.TopDown3D
             else
                 canvas.Initialize(inventory.Capacity, ActivateSlot, SelectSlot);
             canvas.SetVisible(false);
+            canvas.ConfigureLoadout(inventory.UsesLoadout);
+            if (inventory.UsesLoadout)
+            {
+                inventoryTrial = inventory.GetComponent<TopDown3DCampLoopInventoryTrial>();
+                if (inventoryTrial == null) inventoryTrial = inventory.gameObject.AddComponent<TopDown3DCampLoopInventoryTrial>();
+                inventoryTrial.Configure(inventory, cargo);
+                var presentation = inventory.GetComponent<TopDown3DLoadoutPresentation>();
+                if (presentation == null) presentation = inventory.gameObject.AddComponent<TopDown3DLoadoutPresentation>();
+                presentation.Configure(inventory);
+            }
             Subscribe();
             Refresh();
             RefreshControlHints();
@@ -58,6 +72,7 @@ namespace BooterBigArm.TopDown3D
 
         public void SuspendForMenu()
         {
+            inventoryTrial?.CancelConfirmation();
             if (!IsOpen || suspended) return;
             var selected = eventSystem != null ? eventSystem.currentSelectedGameObject : null;
             var cargoIndex = selected != null ? System.Linq.Enumerable.ToList(canvas.CargoSlotViews)
@@ -114,6 +129,7 @@ namespace BooterBigArm.TopDown3D
 
         public void Close()
         {
+            inventoryTrial?.CancelConfirmation();
             if (!IsOpen)
             {
                 return;
@@ -138,6 +154,15 @@ namespace BooterBigArm.TopDown3D
             }
 
             var slot = LeftState.Slots[slotIndex];
+            if (LeftState.Policy.IsLoadout && slotIndex < TopDown3DLoadoutLayout.EquipmentCount)
+            {
+                selectedSource = -1;
+                SelectSlot(slotIndex);
+                Refresh();
+                ShowNotice(slotIndex == 1 ? "Attached algae reserve: Eat, Drink and Treat use the existing gameplay controls."
+                    : "Equipment has a fixed slot. Quick Transfer stores it with the nearby Legger; choose cargo equipment to fit a replacement.");
+                return;
+            }
             if (selectedSource < 0)
             {
                 if (!slot.IsEmpty)
@@ -244,6 +269,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleCancelRequested()
         {
+            if (IsOpen && inventoryTrial != null && inventoryTrial.CancelConfirmation()) { Refresh(); RefreshControlHints(); return; }
             if (IsOpen && !suspended && input.Mode != TopDown3DInputMode.SystemMenu)
             {
                 if (selectedSource >= 0) { selectedSource = -1; selectedCargoSource = false; Refresh(); }
@@ -285,6 +311,34 @@ namespace BooterBigArm.TopDown3D
 
             if (inspectingCargo && cargo != null) SelectCargoSlot(inspectedCargoSlot);
             else RefreshDetails(Mathf.Clamp(lastSelectedSlot, 0, state.Capacity - 1));
+            if (state.Policy.IsLoadout)
+            {
+                for (var i = 0; i < 6; i++)
+                {
+                    var status = state.Slots[i].IsEmpty ? i == 0 && actionController?.HarvesterState?.DeployedCount > 0 ? "Deployed" : "Missing" : "Equipped";
+                    if (i == 1 && !state.Slots[i].IsEmpty)
+                    {
+                        var algae = inventory.GetComponent<TopDown3DAlgaeCanisterState>();
+                        if (algae != null) status = $"{algae.Remaining:0.0} / {algae.Settings.capacity:0} algae";
+                    }
+                    canvas.SlotViews[i].SetLoadoutCaption(TopDown3DLoadoutLayout.Label(i) + "\n" + status);
+                }
+                var selected = inspectingCargo && cargo != null ? cargo.State : state;
+                var index = inspectingCargo ? inspectedCargoSlot : lastSelectedSlot;
+                var canTransfer = CargoAccessible && index >= 0 && index < selected.Capacity && selected.CanRelease(index);
+                if (canTransfer)
+                {
+                    var item = selected.ItemCatalog.GetRequiredDefinition(selected.Slots[index].ItemId);
+                    canTransfer = inspectingCargo ? !item.IsResource && (item.IsEquipment || item.IsFieldSupply)
+                        : cargo.State.Policy.Allows(item);
+                }
+                canvas.ConfigureTrialControls(() => ShowNotice(inventoryTrial.RequestReset()), inventoryTrial != null && inventoryTrial.Ready,
+                    inventoryTrial != null && inventoryTrial.ConfirmationPending, QuickTransfer, canTransfer,
+                    inspectingCargo ? "FIT / TAKE SELECTED ITEM" : "STORE SELECTED ITEM",
+                    () => { Close(); if (!actionController.SelectCanister()) actionController.ReportFeedback("Canister deployment is unavailable."); },
+                    !state.Slots[0].IsEmpty && actionController?.CanSelectCanister == true);
+            }
+            else canvas.ConfigureTrialControls(null, false, false, null, false, "", null, false);
         }
 
         private void RefreshCargoAccess()
@@ -297,7 +351,14 @@ namespace BooterBigArm.TopDown3D
 
         private void Update()
         {
-            if (!IsOpen || cargo == null || inventory == null) return;
+            if (!IsOpen || inventory == null) return;
+            if (inventory.UsesLoadout)
+            {
+                var algae = inventory.GetComponent<TopDown3DAlgaeCanisterState>();
+                var displayed = algae != null ? Math.Floor(algae.Remaining * 10) : -1;
+                if (displayed != lastDisplayedAlgae) { lastDisplayedAlgae = displayed; Refresh(); }
+            }
+            if (cargo == null) return;
             if (lastCargoAccess != CargoAccessible) { RefreshCargoAccess(); Refresh(); }
         }
 
@@ -320,6 +381,22 @@ namespace BooterBigArm.TopDown3D
 
         private void RefreshDetails(int slotIndex)
         {
+            if (LeftState.Policy.IsLoadout && slotIndex < 6)
+            {
+                var equipment = LeftState.Slots[slotIndex];
+                var description = equipment.IsEmpty ? "Missing equipment. Fit a compatible piece from physically accessible Legger cargo."
+                    : LeftState.ItemCatalog.GetRequiredDefinition(equipment.ItemId).Description;
+                if (slotIndex == 0 && equipment.IsEmpty && actionController?.HarvesterState?.DeployedCount > 0)
+                    description = "Deployed: this slot is reserved. Recover the same canister; collected dust goes to accessible Legger cargo.";
+                if (slotIndex == 1)
+                {
+                    var algae = inventory.GetComponent<TopDown3DAlgaeCanisterState>();
+                    description += algae != null ? $"\nAlgae {algae.Remaining:0.0} / {algae.Settings.capacity:0.0}. Eat / Drink / Treat use the gameplay controls." : "\nAlgae service unavailable.";
+                }
+                canvas.SetDetails(TopDown3DLoadoutLayout.Label(slotIndex), description,
+                    $"{LeftState.Slots.Take(6).Count(s => !s.IsEmpty)} / 6 EQUIPPED · {LeftState.Slots.Skip(6).Count(s => !s.IsEmpty)} / 4 SUPPLIES");
+                return;
+            }
             var state = LeftState;
             var slot = state.Slots[Mathf.Clamp(slotIndex, 0, state.Capacity - 1)];
             if (!slot.IsEmpty && state.ItemCatalog.TryGetDefinition(slot.ItemId, out var definition))
@@ -376,6 +453,7 @@ namespace BooterBigArm.TopDown3D
             input.UiCancelRequested += HandleCancelRequested;
             input.PromptDeviceChanged += HandlePromptDeviceChanged;
             inventory.State.Changed += Refresh;
+            if (inventoryTrial != null) inventoryTrial.Changed += Refresh;
             if (cargo != null) cargo.State.Changed += Refresh;
             if (actionController != null) actionController.CargoAccessRequested += HandleCargoAccessRequested;
             if (actionController != null) actionController.CacheAccessRequested += OpenCache;
@@ -399,6 +477,7 @@ namespace BooterBigArm.TopDown3D
             if (inventory != null)
             {
                 inventory.State.Changed -= Refresh;
+                if (inventoryTrial != null) inventoryTrial.Changed -= Refresh;
             }
             if (cargo != null) cargo.State.Changed -= Refresh;
             if (actionController != null) actionController.CargoAccessRequested -= HandleCargoAccessRequested;
@@ -422,8 +501,9 @@ namespace BooterBigArm.TopDown3D
 
         private void OnEnable()
         {
+            if (!configured) return;
             Subscribe();
-            if (configured) BindCommands();
+            BindCommands();
         }
 
         private void OnDisable()

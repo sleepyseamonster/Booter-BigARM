@@ -2,6 +2,8 @@
 
 Date: October 14, 2026. Owner: Gottspan. Status: design proposal only. Target: `Assets/_Project/Scenes/Reference/CampLoopTesting.unity`.
 
+Implementation continuation: the author subsequently authorized the bounded Camp Loop slice. See the [implementation receipt](../../Evidence/Gameplay/CampLoopLoadout20261014/README.md) for installed behavior, prototype defaults and current verification. This audit remains the earlier design snapshot.
+
 Booter's inventory should show the equipment he has fitted and the supplies he can carry. The Legger, Booter's physically present companion, carries gathered resources and the expedition's larger cargo. Replace Booter's generic backpack presentation with six dedicated equipment slots and a small supply area; keep cargo capacity, access and transfer rules distinct.
 
 The author clarified that “Lager” meant the Legger, not a new camp-wide store. This audit changes no Unity assets, gameplay, survival tuning or accepted canon. The six slot purposes and resource prohibition below come from the author's direction; pocket counts, layout and handling rules remain proposals.

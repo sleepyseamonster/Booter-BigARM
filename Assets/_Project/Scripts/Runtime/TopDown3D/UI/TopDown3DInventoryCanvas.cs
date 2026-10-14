@@ -34,8 +34,48 @@ namespace BooterBigArm.TopDown3D
         public IReadOnlyList<TopDown3DInventorySlotView> CargoSlotViews => cargoSlotViews;
         public bool IsVisible => inventoryCanvas != null && inventoryCanvas.enabled;
         private bool suspended;
+        private bool loadoutLayout;
+        private Button trialResetButton, equipmentActionButton, deployButton;
         public RectTransform SafeAreaRoot => safeAreaRoot;
         public string ControlHints => controls != null ? controls.text : string.Empty;
+
+        public void ConfigureTrialControls(Action reset, bool ready, bool pending, Action equipmentAction, bool canTransfer, string actionLabel, Action deploy, bool canDeploy)
+        {
+            trialResetButton = EnsureButton("Reset Inventory Trial", panel, pending ? "CONFIRM TRIAL RESET" : "RESET INVENTORY TRIAL", reset);
+            Place(trialResetButton.GetComponent<RectTransform>(), new Vector2(32, -570), new Vector2(240, 42));
+            trialResetButton.gameObject.SetActive(loadoutLayout); trialResetButton.interactable = ready;
+            equipmentActionButton = EnsureButton("Equipment Action", panel, actionLabel, equipmentAction);
+            Place(equipmentActionButton.GetComponent<RectTransform>(), new Vector2(32, -634), new Vector2(240, 42));
+            equipmentActionButton.gameObject.SetActive(loadoutLayout); equipmentActionButton.interactable = canTransfer;
+            deployButton = EnsureButton("Deploy Equipment", panel, "DEPLOY CANISTER", deploy);
+            Place(deployButton.GetComponent<RectTransform>(), new Vector2(280, -570), new Vector2(156, 42));
+            deployButton.gameObject.SetActive(loadoutLayout); deployButton.interactable = canDeploy;
+            RebuildNavigation();
+        }
+
+        public void ConfigureLoadout(bool enabled)
+        {
+            loadoutLayout = enabled;
+            var grid = panel.Find("Slot Grid") as RectTransform;
+            var supplies = EnsureRect("Supply Pockets", panel);
+            var supplyTitle = EnsureText("Supply Title", panel);
+            supplies.gameObject.SetActive(enabled); supplyTitle.gameObject.SetActive(enabled);
+            supplyTitle.text = "FIELD SUPPLIES"; supplyTitle.fontSize = 19;
+            Place(supplyTitle.rectTransform, new Vector2(32, -408), new Vector2(404, 28));
+            Place(supplies, new Vector2(32, -444), new Vector2(404, 92));
+            var supplyLayout = supplies.GetComponent<GridLayoutGroup>() ?? supplies.gameObject.AddComponent<GridLayoutGroup>();
+            supplyLayout.cellSize = new Vector2(92, 92); supplyLayout.spacing = new Vector2(12, 12);
+            supplyLayout.constraint = GridLayoutGroup.Constraint.FixedColumnCount; supplyLayout.constraintCount = 4;
+            var equipmentLayout = grid.GetComponent<GridLayoutGroup>();
+            equipmentLayout.constraintCount = enabled ? 2 : 4;
+            equipmentLayout.cellSize = enabled ? new Vector2(196, 92) : new Vector2(92, slotViews.FindAll(view => view.gameObject.activeSelf).Count > 16 ? 70 : 92);
+            for (var i = 0; i < slotViews.Count; i++)
+            {
+                slotViews[i].transform.SetParent(enabled && i >= TopDown3DLoadoutLayout.EquipmentCount && i < TopDown3DLoadoutLayout.Capacity ? supplies : grid, false);
+                slotViews[i].SetLoadoutCaption(enabled && i < TopDown3DLoadoutLayout.EquipmentCount ? TopDown3DLoadoutLayout.Label(i) : null);
+            }
+            RebuildNavigation();
+        }
 
         public void ConfigureRadialCustomization(Action customize)
         {
@@ -123,9 +163,26 @@ namespace BooterBigArm.TopDown3D
             bool Enabled(Button button) => button != null && button.gameObject.activeSelf && button.interactable;
             var leftBottom = Enabled(unloadButton) ? unloadButton : Enabled(radialSetupButton) ? radialSetupButton
                 : Enabled(autoPackButton) ? autoPackButton : slotViews[0].Button;
+            if (loadoutLayout && Enabled(trialResetButton)) leftBottom = trialResetButton;
             Grid(slotViews, leftBottom);
+            if (loadoutLayout)
+            {
+                for (var i = 0; i < TopDown3DLoadoutLayout.Capacity && i < slotViews.Count; i++)
+                {
+                    var equipment = i < 6; var columns = equipment ? 2 : 4; var start = equipment ? 0 : 6;
+                    var nav = new Navigation { mode = Navigation.Mode.Explicit };
+                    nav.selectOnLeft = slotViews[i > start && (i - start) % columns > 0 ? i - 1 : i].Button;
+                    nav.selectOnRight = slotViews[(i - start) % columns < columns - 1 ? i + 1 : i].Button;
+                    nav.selectOnUp = slotViews[equipment ? i >= 2 ? i - 2 : i : 4 + (i - 6) / 2].Button;
+                    nav.selectOnDown = equipment ? slotViews[i < 4 ? i + 2 : 6 + (i - 4) * 2].Button : leftBottom;
+                    slotViews[i].Button.navigation = nav;
+                }
+            }
             Grid(cargoSlotViews, Enabled(autoPackButton) ? autoPackButton : leftBottom);
             var buttons = new List<Button>();
+            if (Enabled(trialResetButton)) buttons.Add(trialResetButton);
+            if (Enabled(deployButton)) buttons.Add(deployButton);
+            if (Enabled(equipmentActionButton)) buttons.Add(equipmentActionButton);
             if (Enabled(unloadButton)) buttons.Add(unloadButton);
             if (Enabled(autoPackButton)) buttons.Add(autoPackButton);
             if (Enabled(radialSetupButton)) buttons.Add(radialSetupButton);
@@ -274,7 +331,13 @@ namespace BooterBigArm.TopDown3D
             layout.startCorner = GridLayoutGroup.Corner.UpperLeft;
             layout.startAxis = GridLayoutGroup.Axis.Horizontal;
 
-            if (slotViews.Count == 0) slotViews.AddRange(grid.GetComponentsInChildren<TopDown3DInventorySlotView>(true));
+            if (slotViews.Count == 0)
+            {
+                slotViews.AddRange(grid.GetComponentsInChildren<TopDown3DInventorySlotView>(true));
+                var supplyGrid = panel.Find("Supply Pockets");
+                if (supplyGrid != null) slotViews.AddRange(supplyGrid.GetComponentsInChildren<TopDown3DInventorySlotView>(true));
+                slotViews.Sort((a, b) => ParseSlot(a.name).CompareTo(ParseSlot(b.name)));
+            }
 
             while (slotViews.Count < capacity)
             {
@@ -362,6 +425,8 @@ namespace BooterBigArm.TopDown3D
             return rect;
         }
 
+        private static int ParseSlot(string name) => int.TryParse(name.Replace("Slot ", ""), out var value) ? value : int.MaxValue;
+
         private static Image EnsureImage(string name, Transform parent, Color color)
         {
             var rect = EnsureRect(name, parent);
@@ -393,6 +458,8 @@ namespace BooterBigArm.TopDown3D
             var rect = EnsureRect(name, parent); var button = rect.GetComponent<Button>() ?? rect.gameObject.AddComponent<Button>();
             var image = rect.GetComponent<Image>() ?? rect.gameObject.AddComponent<Image>(); image.color = new Color32(92, 70, 36, 255); button.targetGraphic = image; button.onClick.RemoveAllListeners(); if (clicked != null) button.onClick.AddListener(() => clicked());
             var text = EnsureText("Label", rect); text.text = label; text.alignment = TextAnchor.MiddleCenter; Place(text.rectTransform, Vector2.zero, new Vector2(190f, 42f));
+            text.rectTransform.anchorMin = Vector2.zero; text.rectTransform.anchorMax = Vector2.one;
+            text.rectTransform.offsetMin = new Vector2(4, 0); text.rectTransform.offsetMax = new Vector2(-4, 0);
             return button;
         }
 

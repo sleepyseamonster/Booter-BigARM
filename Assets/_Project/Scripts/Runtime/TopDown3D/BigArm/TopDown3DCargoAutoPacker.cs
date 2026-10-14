@@ -5,7 +5,7 @@ namespace BooterBigArm.TopDown3D
 {
     public static class TopDown3DCargoAutoPacker
     {
-        private sealed class StackRecord { public string Id; public int Quantity; public float Mass; public TopDown3DPackingPreference Preference; public int Source; }
+        private sealed class StackRecord { public string Id; public string Instance; public int Quantity; public float Mass; public TopDown3DPackingPreference Preference; public int Source; }
 
         public static bool TryPack(TopDown3DInventoryState state, TopDown3DPackingSettings settings, out TopDown3DInventorySnapshot snapshot)
         {
@@ -16,7 +16,7 @@ namespace BooterBigArm.TopDown3D
             {
                 var slot = state.Slots[i]; if (slot.IsEmpty) continue;
                 var definition = state.ItemCatalog.GetRequiredDefinition(slot.ItemId);
-                stacks.Add(new StackRecord { Id = slot.ItemId, Quantity = slot.Quantity, Mass = definition.Mass * slot.Quantity, Preference = definition.PackingPreference, Source = i });
+                stacks.Add(new StackRecord { Id = slot.ItemId, Instance = slot.InstanceId, Quantity = slot.Quantity, Mass = definition.Mass * slot.Quantity, Preference = definition.PackingPreference, Source = i });
             }
             stacks.Sort((a, b) => { var c = b.Mass.CompareTo(a.Mass); if (c != 0) return c; c = PreferenceRank(a.Preference).CompareTo(PreferenceRank(b.Preference)); if (c != 0) return c; c = string.CompareOrdinal(a.Id, b.Id); return c != 0 ? c : a.Source.CompareTo(b.Source); });
             var records = new List<TopDown3DInventorySlotSnapshot>();
@@ -38,10 +38,10 @@ namespace BooterBigArm.TopDown3D
                     if (score < bestScore - 0.0001f) { bestScore = score; best = i; }
                 }
                 if (best < 0) return false;
-                records[best] = TopDown3DInventorySlotSnapshot.Create(stack.Id, stack.Quantity);
+                records[best] = TopDown3DInventorySlotSnapshot.Create(stack.Id, stack.Quantity, stack.Instance);
                 if (settings.Mounts[best].Side == TopDown3DMountSide.Left) left += stack.Mass; else right += stack.Mass;
             }
-            snapshot = TopDown3DInventorySnapshot.Create(TopDown3DInventoryState.CurrentSnapshotVersion, records);
+            snapshot = TopDown3DInventorySnapshot.Create(state.CaptureSnapshot().Version, records);
             return true;
         }
 

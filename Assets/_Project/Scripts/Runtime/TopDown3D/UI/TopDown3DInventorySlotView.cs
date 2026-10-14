@@ -19,6 +19,8 @@ namespace BooterBigArm.TopDown3D
         private Button button;
         private Action<int> activated;
         private Action<int> selected;
+        private TopDown3DEquipmentSlot equipmentRole;
+        private bool itemOccupied;
 
         public int SlotIndex { get; private set; }
         public Button Button => button;
@@ -42,11 +44,59 @@ namespace BooterBigArm.TopDown3D
             icon.sprite = occupied ? definition.Icon : null;
             quantity.text = occupied && slot.Quantity > 1 ? slot.Quantity.ToString() : string.Empty;
             button.interactable = true;
+            itemOccupied = occupied; equipmentRole = occupied ? definition.EquipmentSlot : TopDown3DEquipmentSlot.None;
+            ShowEquipmentGlyph(equipmentRole, occupied);
         }
 
         public void OnSelect(BaseEventData eventData)
         {
             selected?.Invoke(SlotIndex);
+        }
+
+        public void SetLoadoutCaption(string caption)
+        {
+            EnsureVisualTree();
+            var child = transform.Find("Equipment Label") as RectTransform;
+            if (child == null)
+            {
+                child = new GameObject("Equipment Label", typeof(RectTransform), typeof(Text)).GetComponent<RectTransform>();
+                child.SetParent(transform, false);
+            }
+            child.gameObject.SetActive(!string.IsNullOrEmpty(caption));
+            if (string.IsNullOrEmpty(caption))
+            {
+                ShowEquipmentGlyph(equipmentRole, itemOccupied);
+                icon.rectTransform.anchorMin = Vector2.zero; icon.rectTransform.anchorMax = Vector2.one;
+                icon.rectTransform.offsetMin = new Vector2(9, 9); icon.rectTransform.offsetMax = new Vector2(-9, -9);
+                return;
+            }
+            child.anchorMin = Vector2.zero; child.anchorMax = Vector2.one;
+            child.offsetMin = new Vector2(62, 5); child.offsetMax = new Vector2(-4, -5);
+            var label = child.GetComponent<Text>(); label.text = caption;
+            label.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"); label.fontSize = 14;
+            label.alignment = TextAnchor.MiddleLeft; label.color = Color.white; label.raycastTarget = false;
+            icon.rectTransform.anchorMin = new Vector2(0, .5f); icon.rectTransform.anchorMax = new Vector2(0, .5f);
+            icon.rectTransform.pivot = new Vector2(0, .5f); icon.rectTransform.anchoredPosition = new Vector2(8, 0);
+            icon.rectTransform.sizeDelta = new Vector2(46, 46);
+            ShowEquipmentGlyph((TopDown3DEquipmentSlot)(SlotIndex + 1), itemOccupied);
+        }
+
+        private void ShowEquipmentGlyph(TopDown3DEquipmentSlot role, bool occupied)
+        {
+            var child = transform.Find("Equipment Silhouette") as RectTransform;
+            if (child == null && role == TopDown3DEquipmentSlot.None) return;
+            if (child == null)
+            {
+                child = new GameObject("Equipment Silhouette", typeof(RectTransform), typeof(CanvasRenderer), typeof(TopDown3DEquipmentSilhouette)).GetComponent<RectTransform>();
+                child.SetParent(transform, false);
+            }
+            child.gameObject.SetActive(role != TopDown3DEquipmentSlot.None);
+            if (role == TopDown3DEquipmentSlot.None) { icon.enabled = occupied; return; }
+            icon.enabled = false;
+            child.anchorMin = child.anchorMax = new Vector2(.5f, .5f); child.pivot = new Vector2(.5f, .5f);
+            child.anchoredPosition = transform.Find("Equipment Label")?.gameObject.activeSelf == true ? new Vector2(-72, 0) : Vector2.zero;
+            child.sizeDelta = new Vector2(46, 46);
+            child.GetComponent<TopDown3DEquipmentSilhouette>().Show(role, occupied);
         }
 
         private void HandleActivated()
