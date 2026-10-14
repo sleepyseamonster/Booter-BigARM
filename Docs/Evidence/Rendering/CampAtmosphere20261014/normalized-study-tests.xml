@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Passed" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-14 17:48:55Z" end-time="2026-10-14 17:48:58Z" duration="2.6501657">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="1251" result="Passed" start-time="2026-10-14 17:48:55Z" end-time="2026-10-14 17:48:58Z" duration="2.650166" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2488" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/CampAtmosphere20261014-01/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="1251" result="Passed" start-time="2026-10-14 17:48:55Z" end-time="2026-10-14 17:48:58Z" duration="2.638937" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="24080" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2489" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="1251" result="Passed" start-time="2026-10-14 17:48:55Z" end-time="2026-10-14 17:48:58Z" duration="2.635016" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2490" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="1251" result="Passed" start-time="2026-10-14 17:48:55Z" end-time="2026-10-14 17:48:58Z" duration="2.631258" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1364" name="CampAtmosphereStudyTests" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-14 17:48:55Z" end-time="2026-10-14 17:48:58Z" duration="2.611552" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1376" name="AuthoredProfilesAndContextPreserveProductionBoundary" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.AuthoredProfilesAndContextPreserveProductionBoundary" methodname="AuthoredProfilesAndContextPreserveProductionBoundary" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="688729604" result="Passed" start-time="2026-10-14 17:48:55Z" end-time="2026-10-14 17:48:56Z" duration="0.468161" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1374" name="DeferredEnvironmentRestoreRunsOnlyForItsScene" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.DeferredEnvironmentRestoreRunsOnlyForItsScene" methodname="DeferredEnvironmentRestoreRunsOnlyForItsScene" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="817225362" result="Passed" start-time="2026-10-14 17:48:56Z" end-time="2026-10-14 17:48:56Z" duration="0.200482" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1366" name="DuplicateBindingsRejectSelectionAndRejectedPreviewDoesNotChangePhase" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.DuplicateBindingsRejectSelectionAndRejectedPreviewDoesNotChangePhase" methodname="DuplicateBindingsRejectSelectionAndRejectedPreviewDoesNotChangePhase" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="1380861643" result="Passed" start-time="2026-10-14 17:48:56Z" end-time="2026-10-14 17:48:56Z" duration="0.202197" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1368" name="ExistingDisabledCameraSkyboxIsRestoredAfterRepeatedPreview" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.ExistingDisabledCameraSkyboxIsRestoredAfterRepeatedPreview" methodname="ExistingDisabledCameraSkyboxIsRestoredAfterRepeatedPreview" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="570058966" result="Passed" start-time="2026-10-14 17:48:56Z" end-time="2026-10-14 17:48:56Z" duration="0.203947" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1370" name="InactiveDefaultSunCannotOverwriteStudyEnvironment" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.InactiveDefaultSunCannotOverwriteStudyEnvironment" methodname="InactiveDefaultSunCannotOverwriteStudyEnvironment" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="1050165666" result="Passed" start-time="2026-10-14 17:48:56Z" end-time="2026-10-14 17:48:56Z" duration="0.204780" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Foreign sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1372" name="InactivePreviewRejectsBeforeMutation" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.InactivePreviewRejectsBeforeMutation" methodname="InactivePreviewRejectsBeforeMutation" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="190524369" result="Passed" start-time="2026-10-14 17:48:56Z" end-time="2026-10-14 17:48:57Z" duration="0.212959" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1367" name="MissingTextureAndNonCameraBindingsAreInvalid" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.MissingTextureAndNonCameraBindingsAreInvalid" methodname="MissingTextureAndNonCameraBindingsAreInvalid" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="1299479269" result="Passed" start-time="2026-10-14 17:48:57Z" end-time="2026-10-14 17:48:57Z" duration="0.177211" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1375" name="PositionalCameraCutInvalidatesFlareEvenWithoutChangedDirection" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.PositionalCameraCutInvalidatesFlareEvenWithoutChangedDirection" methodname="PositionalCameraCutInvalidatesFlareEvenWithoutChangedDirection" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="781985172" result="Passed" start-time="2026-10-14 17:48:57Z" end-time="2026-10-14 17:48:57Z" duration="0.176471" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1369" name="PreviewOwnsLocalSkyAndRestoresAmbientAndLight" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.PreviewOwnsLocalSkyAndRestoresAmbientAndLight" methodname="PreviewOwnsLocalSkyAndRestoresAmbientAndLight" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="1163035854" result="Passed" start-time="2026-10-14 17:48:57Z" end-time="2026-10-14 17:48:57Z" duration="0.183833" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1373" name="ProfileSwapReplacesCloneAndBindingDisableRestoresCamera" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.ProfileSwapReplacesCloneAndBindingDisableRestoresCamera" methodname="ProfileSwapReplacesCloneAndBindingDisableRestoresCamera" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="499019078" result="Passed" start-time="2026-10-14 17:48:57Z" end-time="2026-10-14 17:48:57Z" duration="0.183858" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1371" name="ReflectionOwnershipRestoresPriorEnvironment" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.ReflectionOwnershipRestoresPriorEnvironment" methodname="ReflectionOwnershipRestoresPriorEnvironment" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="610733165" result="Passed" start-time="2026-10-14 17:48:57Z" end-time="2026-10-14 17:48:58Z" duration="0.188651" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1365" name="SelectionIsCameraLocalAndDoesNotAffectOtherScene" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.SelectionIsCameraLocalAndDoesNotAffectOtherScene" methodname="SelectionIsCameraLocalAndDoesNotAffectOtherScene" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="1514033134" result="Passed" start-time="2026-10-14 17:48:58Z" end-time="2026-10-14 17:48:58Z" duration="0.191717" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

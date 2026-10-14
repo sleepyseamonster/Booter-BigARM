@@ -101,6 +101,8 @@ namespace BooterBigArm.TopDown3D
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
             var cameraData = renderingData.cameraData;
+            bool hasStudy = TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var study);
+            if (hasStudy && !study.bloomEnabled) return;
             var cameraType = cameraData.cameraType;
             if (!bloomEnabled
                 || material == null
@@ -118,9 +120,9 @@ namespace BooterBigArm.TopDown3D
                 out var sunBrightness);
             pass.Setup(
                 material,
-                Mathf.Clamp(downsample, 1, 4),
-                Mathf.Clamp(pyramidLevels, 3, 7),
-                Mathf.Clamp(intensity, 0f, 2f),
+                Mathf.Clamp(hasStudy ? study.bloomDownsample : downsample, 1, 4),
+                Mathf.Clamp(hasStudy ? study.bloomLevels : pyramidLevels, 3, 7),
+                Mathf.Clamp(hasStudy ? study.bloomIntensity : intensity, 0f, 2f),
                 Mathf.Max(0f, threshold),
                 Mathf.Clamp01(softKnee),
                 Mathf.Clamp01(scatter),
@@ -128,9 +130,9 @@ namespace BooterBigArm.TopDown3D
                 Mathf.Clamp(tightWeight, 0f, 2f),
                 Mathf.Clamp(mediumWeight, 0f, 2f),
                 Mathf.Clamp(broadWeight, 0f, 2f),
-                Mathf.Clamp(sunAureoleIntensity, 0f, 2f),
+                Mathf.Clamp(hasStudy ? study.sunAureoleIntensity : sunAureoleIntensity, 0f, 2f),
                 Mathf.Clamp(sunAureoleRadius, 0.02f, 0.5f),
-                tint,
+                hasStudy ? study.bloomTint : tint,
                 hasSun ? sunPosition : new Vector2(-10f, -10f),
                 cameraData.camera.aspect,
                 hasSun ? sunBrightness : 0f);

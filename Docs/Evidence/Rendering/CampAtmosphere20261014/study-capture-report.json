@@ -1,0 +1,53 @@
+{
+    "proof": "Static offscreen Editor camera render; excludes gameplay CPU, presentation and readback",
+    "gpu": "NVIDIA GeForce RTX 3060 Ti",
+    "graphics": "Direct3D11",
+    "editor": "6000.4.0f1",
+    "supportsGpuRecorder": true,
+    "width": 1536,
+    "height": 864,
+    "captures": [
+        "Logs/CampAtmosphere/Moderate-diagnostic-sun.png",
+        "Logs/CampAtmosphere/Moderate-camp-pitch26.png",
+        "Logs/CampAtmosphere/Moderate-camp-pitch50.png",
+        "Logs/CampAtmosphere/Moderate-camp-pitch65.png",
+        "Logs/CampAtmosphere/Clear-diagnostic-sun.png",
+        "Logs/CampAtmosphere/Clear-sky-seam.png",
+        "Logs/CampAtmosphere/Clear-sky-zenith.png",
+        "Logs/CampAtmosphere/Clear-sky-nadir.png",
+        "Logs/CampAtmosphere/Clear-camp-pitch26.png",
+        "Logs/CampAtmosphere/Clear-camp-pitch50.png",
+        "Logs/CampAtmosphere/Clear-camp-pitch65.png",
+        "Logs/CampAtmosphere/Clear-context-offset12_0.png",
+        "Logs/CampAtmosphere/Clear-context-offset-12_0.png",
+        "Logs/CampAtmosphere/Clear-context-offset0_-150.png",
+        "Logs/CampAtmosphere/Clear-south-phase0.25.png",
+        "Logs/CampAtmosphere/Clear-south-phase0.75.png",
+        "Logs/CampAtmosphere/Clear-distance-Low.png",
+        "Logs/CampAtmosphere/Clear-distance-Medium.png",
+        "Logs/CampAtmosphere/Clear-distance-High.png",
+        "Logs/CampAtmosphere/Clear-distance-Maximum.png",
+        "Logs/CampAtmosphere/Deep-diagnostic-sun.png",
+        "Logs/CampAtmosphere/Deep-camp-pitch26.png",
+        "Logs/CampAtmosphere/Deep-camp-pitch50.png",
+        "Logs/CampAtmosphere/Deep-camp-pitch65.png"
+    ],
+    "timings": [
+        {
+            "mode": "Shared baseline optics",
+            "averageCpuRenderMs": 2.755786666666666,
+            "maximumCpuRenderMs": 5.125900000000001,
+            "averageBloomGpuMs": 0.0,
+            "bloomGpuSamplesAvailable": false,
+            "measuredFrames": 60
+        },
+        {
+            "mode": "Clear study optics",
+            "averageCpuRenderMs": 2.178918333333334,
+            "maximumCpuRenderMs": 3.1554,
+            "averageBloomGpuMs": 0.0,
+            "bloomGpuSamplesAvailable": false,
+            "measuredFrames": 60
+        }
+    ]
+}

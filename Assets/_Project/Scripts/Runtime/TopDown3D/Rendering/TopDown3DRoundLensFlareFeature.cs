@@ -118,6 +118,8 @@ namespace BooterBigArm.TopDown3D
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
             var cameraData = renderingData.cameraData;
+            bool hasStudy = TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var study);
+            if (hasStudy && !study.flareEnabled) return;
             var cameraType = cameraData.cameraType;
             if (!flareEnabled
                 || material == null
@@ -150,7 +152,7 @@ namespace BooterBigArm.TopDown3D
                 cameraData.cameraTargetDescriptor,
                 new Vector2(viewportPoint.x, viewportPoint.y),
                 camera.aspect,
-                Mathf.Clamp(intensity, 0f, 2f),
+                Mathf.Clamp(hasStudy ? study.flareIntensity : intensity, 0f, 2f),
                 Mathf.Clamp(radius, 0.02f, 0.75f),
                 Mathf.Clamp(anisotropy, 0.4f, 2.5f),
                 Mathf.Clamp(ghostReach, 0f, 3f),
@@ -263,6 +265,9 @@ namespace BooterBigArm.TopDown3D
                 1f - Mathf.Clamp(stability, 0f, 0.95f));
         }
 
+        public static bool IsCameraCut(Vector3 previousPosition, Vector3 position, Quaternion previousRotation, Quaternion rotation)
+            => Vector3.Distance(previousPosition, position) > 2f || Quaternion.Angle(previousRotation, rotation) > 20f;
+
         private sealed class RoundLensFlarePass : ScriptableRenderPass
         {
             private const string PassName = "TopDown3D Round Lens Flare";
@@ -301,6 +306,8 @@ namespace BooterBigArm.TopDown3D
             private Texture2D apertureSprite;
             private CameraHistory activeHistory;
             private readonly Dictionary<int, CameraHistory> histories = new();
+            private Vector3 cameraPosition;
+            private Quaternion cameraRotation;
 
             public RoundLensFlarePass()
             {
@@ -385,10 +392,13 @@ namespace BooterBigArm.TopDown3D
 
                 var frameGap = Time.frameCount - activeHistory.lastFrame;
                 if (frameGap > 1
-                    || Vector2.Distance(activeHistory.lastSource, viewportSource) > 0.12f)
+                    || Vector2.Distance(activeHistory.lastSource, viewportSource) > 0.12f
+                    || (activeHistory.valid && IsCameraCut(activeHistory.lastPosition, camera.transform.position,
+                        activeHistory.lastRotation, camera.transform.rotation)))
                 {
                     activeHistory.valid = false;
                 }
+                cameraPosition = camera.transform.position; cameraRotation = camera.transform.rotation;
             }
 
             public void ReleaseHistory()
@@ -478,6 +488,7 @@ namespace BooterBigArm.TopDown3D
                 activeHistory.valid = true;
                 activeHistory.lastFrame = Time.frameCount;
                 activeHistory.lastSource = source;
+                activeHistory.lastPosition = cameraPosition; activeHistory.lastRotation = cameraRotation;
                 activeHistory.Swap();
             }
 
@@ -541,6 +552,8 @@ namespace BooterBigArm.TopDown3D
                 public bool valid;
                 public int lastFrame = -1;
                 public Vector2 lastSource;
+                public Vector3 lastPosition;
+                public Quaternion lastRotation;
 
                 public void EnsureAllocated(RenderTextureDescriptor descriptor, int cameraId)
                 {

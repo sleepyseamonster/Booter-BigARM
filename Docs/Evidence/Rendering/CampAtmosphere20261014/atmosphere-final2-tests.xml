@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="43" result="Passed" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-14 17:40:07Z" end-time="2026-10-14 17:40:10Z" duration="2.9715507">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="1221" result="Passed" start-time="2026-10-14 17:40:07Z" end-time="2026-10-14 17:40:10Z" duration="2.971551" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2452" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/CampAtmosphere20261014-01/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="1221" result="Passed" start-time="2026-10-14 17:40:07Z" end-time="2026-10-14 17:40:10Z" duration="2.957637" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28264" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2453" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="1221" result="Passed" start-time="2026-10-14 17:40:07Z" end-time="2026-10-14 17:40:10Z" duration="2.953061" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2454" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="1221" result="Passed" start-time="2026-10-14 17:40:07Z" end-time="2026-10-14 17:40:10Z" duration="2.949019" total="43" passed="43" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1364" name="CampAtmosphereStudyTests" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-14 17:40:07Z" end-time="2026-10-14 17:40:10Z" duration="2.727999" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1376" name="AuthoredProfilesAndContextPreserveProductionBoundary" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.AuthoredProfilesAndContextPreserveProductionBoundary" methodname="AuthoredProfilesAndContextPreserveProductionBoundary" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="737174740" result="Passed" start-time="2026-10-14 17:40:07Z" end-time="2026-10-14 17:40:08Z" duration="0.539117" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1374" name="DeferredEnvironmentRestoreRunsOnlyForItsScene" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.DeferredEnvironmentRestoreRunsOnlyForItsScene" methodname="DeferredEnvironmentRestoreRunsOnlyForItsScene" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="1196326103" result="Passed" start-time="2026-10-14 17:40:08Z" end-time="2026-10-14 17:40:08Z" duration="0.204534" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1366" name="DuplicateBindingsRejectSelectionAndRejectedPreviewDoesNotChangePhase" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.DuplicateBindingsRejectSelectionAndRejectedPreviewDoesNotChangePhase" methodname="DuplicateBindingsRejectSelectionAndRejectedPreviewDoesNotChangePhase" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="2090239431" result="Passed" start-time="2026-10-14 17:40:08Z" end-time="2026-10-14 17:40:08Z" duration="0.194845" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1368" name="ExistingDisabledCameraSkyboxIsRestoredAfterRepeatedPreview" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.ExistingDisabledCameraSkyboxIsRestoredAfterRepeatedPreview" methodname="ExistingDisabledCameraSkyboxIsRestoredAfterRepeatedPreview" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="1804040389" result="Passed" start-time="2026-10-14 17:40:08Z" end-time="2026-10-14 17:40:08Z" duration="0.192754" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1370" name="InactiveDefaultSunCannotOverwriteStudyEnvironment" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.InactiveDefaultSunCannotOverwriteStudyEnvironment" methodname="InactiveDefaultSunCannotOverwriteStudyEnvironment" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="1498560690" result="Passed" start-time="2026-10-14 17:40:08Z" end-time="2026-10-14 17:40:08Z" duration="0.204096" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Foreign sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1372" name="InactivePreviewRejectsBeforeMutation" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.InactivePreviewRejectsBeforeMutation" methodname="InactivePreviewRejectsBeforeMutation" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="359426481" result="Passed" start-time="2026-10-14 17:40:08Z" end-time="2026-10-14 17:40:09Z" duration="0.201893" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1367" name="MissingTextureAndNonCameraBindingsAreInvalid" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.MissingTextureAndNonCameraBindingsAreInvalid" methodname="MissingTextureAndNonCameraBindingsAreInvalid" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="2082544292" result="Passed" start-time="2026-10-14 17:40:09Z" end-time="2026-10-14 17:40:09Z" duration="0.198496" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1375" name="PositionalCameraCutInvalidatesFlareEvenWithoutChangedDirection" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.PositionalCameraCutInvalidatesFlareEvenWithoutChangedDirection" methodname="PositionalCameraCutInvalidatesFlareEvenWithoutChangedDirection" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="376954585" result="Passed" start-time="2026-10-14 17:40:09Z" end-time="2026-10-14 17:40:09Z" duration="0.224981" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1369" name="PreviewOwnsLocalSkyAndRestoresAmbientAndLight" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.PreviewOwnsLocalSkyAndRestoresAmbientAndLight" methodname="PreviewOwnsLocalSkyAndRestoresAmbientAndLight" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="1107708961" result="Passed" start-time="2026-10-14 17:40:09Z" end-time="2026-10-14 17:40:09Z" duration="0.187440" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1373" name="ProfileSwapReplacesCloneAndBindingDisableRestoresCamera" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.ProfileSwapReplacesCloneAndBindingDisableRestoresCamera" methodname="ProfileSwapReplacesCloneAndBindingDisableRestoresCamera" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="573858272" result="Passed" start-time="2026-10-14 17:40:09Z" end-time="2026-10-14 17:40:09Z" duration="0.186293" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1371" name="ReflectionOwnershipRestoresPriorEnvironment" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.ReflectionOwnershipRestoresPriorEnvironment" methodname="ReflectionOwnershipRestoresPriorEnvironment" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="1729646826" result="Passed" start-time="2026-10-14 17:40:09Z" end-time="2026-10-14 17:40:10Z" duration="0.188806" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+            <test-case id="1365" name="SelectionIsCameraLocalAndDoesNotAffectOtherScene" fullname="BooterBigArm.Tests.CampAtmosphereStudyTests.SelectionIsCameraLocalAndDoesNotAffectOtherScene" methodname="SelectionIsCameraLocalAndDoesNotAffectOtherScene" classname="BooterBigArm.Tests.CampAtmosphereStudyTests" runstate="Runnable" seed="1586399987" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.187030" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Study sun: OnDidAddComponent)
+Unloading the last loaded scene (build index: -1), is not supported. Please use SceneManager.LoadScene()/EditorSceneManager.OpenScene() to switch to another scene.
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1548" name="PerpetualTwilightSunTests" fullname="BooterBigArm.Tests.PerpetualTwilightSunTests" classname="BooterBigArm.Tests.PerpetualTwilightSunTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.022161" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1552" name="Cycle_HasDistinctBrightAndDeepTwilightPhases" fullname="BooterBigArm.Tests.PerpetualTwilightSunTests.Cycle_HasDistinctBrightAndDeepTwilightPhases" methodname="Cycle_HasDistinctBrightAndDeepTwilightPhases" classname="BooterBigArm.Tests.PerpetualTwilightSunTests" runstate="Runnable" seed="1397915038" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000469" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1550" name="Cycle_StaysInsidePerpetualTwilightElevationBand" fullname="BooterBigArm.Tests.PerpetualTwilightSunTests.Cycle_StaysInsidePerpetualTwilightElevationBand" methodname="Cycle_StaysInsidePerpetualTwilightElevationBand" classname="BooterBigArm.Tests.PerpetualTwilightSunTests" runstate="Runnable" seed="1794766096" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000549" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1551" name="Cycle_WrapsWithoutAJump" fullname="BooterBigArm.Tests.PerpetualTwilightSunTests.Cycle_WrapsWithoutAJump" methodname="Cycle_WrapsWithoutAJump" classname="BooterBigArm.Tests.PerpetualTwilightSunTests" runstate="Runnable" seed="332780969" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000252" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1549" name="PanoramaSky_HasImportableMaterialAndSkyOnlyMapping" fullname="BooterBigArm.Tests.PerpetualTwilightSunTests.PanoramaSky_HasImportableMaterialAndSkyOnlyMapping" methodname="PanoramaSky_HasImportableMaterialAndSkyOnlyMapping" classname="BooterBigArm.Tests.PerpetualTwilightSunTests" runstate="Runnable" seed="161066415" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.016067" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1553" name="Pipeline_SupportsReadableMainLightShadows" fullname="BooterBigArm.Tests.PerpetualTwilightSunTests.Pipeline_SupportsReadableMainLightShadows" methodname="Pipeline_SupportsReadableMainLightShadows" classname="BooterBigArm.Tests.PerpetualTwilightSunTests" runstate="Runnable" seed="589579609" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.001850" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1558" name="SceneRenderingOverrideTests" fullname="BooterBigArm.Tests.SceneRenderingOverrideTests" classname="BooterBigArm.Tests.SceneRenderingOverrideTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.019154" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1559" name="SavedStudyCameraOwnsTheEnabledOverride" fullname="BooterBigArm.Tests.SceneRenderingOverrideTests.SavedStudyCameraOwnsTheEnabledOverride" methodname="SavedStudyCameraOwnsTheEnabledOverride" classname="BooterBigArm.Tests.SceneRenderingOverrideTests" runstate="Runnable" seed="1855650084" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.017071" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1560" name="TiltShiftSuppressionAppliesOnlyToItsSceneAndCanBeDisabled" fullname="BooterBigArm.Tests.SceneRenderingOverrideTests.TiltShiftSuppressionAppliesOnlyToItsSceneAndCanBeDisabled" methodname="TiltShiftSuppressionAppliesOnlyToItsSceneAndCanBeDisabled" classname="BooterBigArm.Tests.SceneRenderingOverrideTests" runstate="Runnable" seed="841912379" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.001063" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1666" name="TopDown3DCameraClearanceTests" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.021165" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1667" name="ClearBoom_PreservesAuthoredDistance" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.ClearBoom_PreservesAuthoredDistance" methodname="ClearBoom_PreservesAuthoredDistance" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1968049983" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.006343" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1668" name="CloseBlocker_OverridesMinimumDistanceWithoutPenetration" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.CloseBlocker_OverridesMinimumDistanceWithoutPenetration" methodname="CloseBlocker_OverridesMinimumDistanceWithoutPenetration" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="604350844" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.001518" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1669" name="ConfigureAndViewReset_ResolveClearanceImmediately" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.ConfigureAndViewReset_ResolveClearanceImmediately" methodname="ConfigureAndViewReset_ResolveClearanceImmediately" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="2091126343" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000782" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1670" name="FollowUpdate_UsesSameClearanceAsSnap" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.FollowUpdate_UsesSameClearanceAsSnap" methodname="FollowUpdate_UsesSameClearanceAsSnap" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1426894454" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.002691" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1675" name="FullyEnclosedBoom_ReportsFailureAndDoesNotAcceptUnsafePose" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.FullyEnclosedBoom_ReportsFailureAndDoesNotAcceptUnsafePose" methodname="FullyEnclosedBoom_ReportsFailureAndDoesNotAcceptUnsafePose" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="497715280" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000928" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1676" name="FullyEnclosedNewTarget_RetainsRecheckedSafePreviousPosition" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.FullyEnclosedNewTarget_RetainsRecheckedSafePreviousPosition" methodname="FullyEnclosedNewTarget_RetainsRecheckedSafePreviousPosition" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1783425391" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000709" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1671" name="OriginInsideBlocker_RecoversToClearPointOnAuthoredBoom" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.OriginInsideBlocker_RecoversToClearPointOnAuthoredBoom" methodname="OriginInsideBlocker_RecoversToClearPointOnAuthoredBoom" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="2012100989" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000608" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1672" name="SaturatedCast_FindsNearestBlocker" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.SaturatedCast_FindsNearestBlocker" methodname="SaturatedCast_FindsNearestBlocker" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1101001050" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.001662" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1673" name="SaturatedOriginOverlap_StillExcludesTargetAndFindsExternalBlocker" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.SaturatedOriginOverlap_StillExcludesTargetAndFindsExternalBlocker" methodname="SaturatedOriginOverlap_StillExcludesTargetAndFindsExternalBlocker" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1378318762" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.001653" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1674" name="TargetHierarchyAndTriggers_AreIgnoredInBothQueries" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.TargetHierarchyAndTriggers_AreIgnoredInBothQueries" methodname="TargetHierarchyAndTriggers_AreIgnoredInBothQueries" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1835490204" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.001522" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="2195" name="TopDown3DRoundLensFlareTests" fullname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests" classname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.013205" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="2203" name="FlareTexture_PreservesSmoothTransparentEdges" fullname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests.FlareTexture_PreservesSmoothTransparentEdges" classname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.006458" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2200" name="FlareTexture_PreservesSmoothTransparentEdges(&quot;Assets/_Project/VFX/Camera/LensFlares/BrokenWorld_Flare_Primary.png&quot;)" fullname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests.FlareTexture_PreservesSmoothTransparentEdges(&quot;Assets/_Project/VFX/Camera/LensFlares/BrokenWorld_Flare_Primary.png&quot;)" methodname="FlareTexture_PreservesSmoothTransparentEdges" classname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests" runstate="Runnable" seed="857171779" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.004510" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2201" name="FlareTexture_PreservesSmoothTransparentEdges(&quot;Assets/_Project/VFX/Camera/LensFlares/BrokenWorld_Flare_GhostRing.png&quot;)" fullname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests.FlareTexture_PreservesSmoothTransparentEdges(&quot;Assets/_Project/VFX/Camera/LensFlares/BrokenWorld_Flare_GhostRing.png&quot;)" methodname="FlareTexture_PreservesSmoothTransparentEdges" classname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests" runstate="Runnable" seed="1048679522" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000290" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="2202" name="FlareTexture_PreservesSmoothTransparentEdges(&quot;Assets/_Project/VFX/Camera/LensFlares/BrokenWorld_Flare_ApertureGhost.png&quot;)" fullname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests.FlareTexture_PreservesSmoothTransparentEdges(&quot;Assets/_Project/VFX/Camera/LensFlares/BrokenWorld_Flare_ApertureGhost.png&quot;)" methodname="FlareTexture_PreservesSmoothTransparentEdges" classname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests" runstate="Runnable" seed="546232775" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000233" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="2197" name="OcclusionResponse_CanHideTheCoreWithoutSwitchingOffTheAureole" fullname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests.OcclusionResponse_CanHideTheCoreWithoutSwitchingOffTheAureole" methodname="OcclusionResponse_CanHideTheCoreWithoutSwitchingOffTheAureole" classname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests" runstate="Runnable" seed="1176381200" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000256" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2196" name="OffscreenVisibility_ReachesPastTheFrameThenFades" fullname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests.OffscreenVisibility_ReachesPastTheFrameThenFades" methodname="OffscreenVisibility_ReachesPastTheFrameThenFades" classname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests" runstate="Runnable" seed="1619191247" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000368" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2199" name="PerspectiveRenderer_HasOneAdjustableSceneViewRoundLensFlareFeature" fullname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests.PerspectiveRenderer_HasOneAdjustableSceneViewRoundLensFlareFeature" methodname="PerspectiveRenderer_HasOneAdjustableSceneViewRoundLensFlareFeature" classname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests" runstate="Runnable" seed="1946033124" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.003054" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2198" name="TemporalOcclusion_SmoothsAbruptVisibilityChanges" fullname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests.TemporalOcclusion_SmoothsAbruptVisibilityChanges" methodname="TemporalOcclusion_SmoothsAbruptVisibilityChanges" classname="BooterBigArm.Tests.TopDown3DRoundLensFlareTests" runstate="Runnable" seed="168372079" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000265" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="2236" name="TopDown3DSunBloomTests" fullname="BooterBigArm.Tests.TopDown3DSunBloomTests" classname="BooterBigArm.Tests.TopDown3DSunBloomTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.009272" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2239" name="DustAtmosphere_DoesNotAddACompetingStockBloom" fullname="BooterBigArm.Tests.TopDown3DSunBloomTests.DustAtmosphere_DoesNotAddACompetingStockBloom" methodname="DustAtmosphere_DoesNotAddACompetingStockBloom" classname="BooterBigArm.Tests.TopDown3DSunBloomTests" runstate="Runnable" seed="2044174974" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.005031" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2237" name="HighlightWeight_FeathersThresholdAndPreservesHdrEnergy" fullname="BooterBigArm.Tests.TopDown3DSunBloomTests.HighlightWeight_FeathersThresholdAndPreservesHdrEnergy" methodname="HighlightWeight_FeathersThresholdAndPreservesHdrEnergy" classname="BooterBigArm.Tests.TopDown3DSunBloomTests" runstate="Runnable" seed="1968422516" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000362" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2240" name="PerspectiveRenderer_HasBloomAfterRoundFlare" fullname="BooterBigArm.Tests.TopDown3DSunBloomTests.PerspectiveRenderer_HasBloomAfterRoundFlare" methodname="PerspectiveRenderer_HasBloomAfterRoundFlare" classname="BooterBigArm.Tests.TopDown3DSunBloomTests" runstate="Runnable" seed="778376164" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.001163" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2238" name="ScaleWeight_SeparatesTightMediumAndBroadBloom" fullname="BooterBigArm.Tests.TopDown3DSunBloomTests.ScaleWeight_SeparatesTightMediumAndBroadBloom" methodname="ScaleWeight_SeparatesTightMediumAndBroadBloom" classname="BooterBigArm.Tests.TopDown3DSunBloomTests" runstate="Runnable" seed="1831827763" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000359" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="2252" name="TopDown3DTiltShiftTests" fullname="BooterBigArm.Tests.TopDown3DTiltShiftTests" classname="BooterBigArm.Tests.TopDown3DTiltShiftTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.004194" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2253" name="BlurWeight_KeepsThePlayBandSharpAndBlursTheFrameEdges" fullname="BooterBigArm.Tests.TopDown3DTiltShiftTests.BlurWeight_KeepsThePlayBandSharpAndBlursTheFrameEdges" methodname="BlurWeight_KeepsThePlayBandSharpAndBlursTheFrameEdges" classname="BooterBigArm.Tests.TopDown3DTiltShiftTests" runstate="Runnable" seed="1270912755" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000378" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2254" name="BlurWeight_WiderFeatherCreatesASofterGradient" fullname="BooterBigArm.Tests.TopDown3DTiltShiftTests.BlurWeight_WiderFeatherCreatesASofterGradient" methodname="BlurWeight_WiderFeatherCreatesASofterGradient" classname="BooterBigArm.Tests.TopDown3DTiltShiftTests" runstate="Runnable" seed="502924427" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000224" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="2255" name="PerspectiveRenderer_HasOneAdjustableSceneViewTiltShiftFeature" fullname="BooterBigArm.Tests.TopDown3DTiltShiftTests.PerspectiveRenderer_HasOneAdjustableSceneViewTiltShiftFeature" methodname="PerspectiveRenderer_HasOneAdjustableSceneViewTiltShiftFeature" classname="BooterBigArm.Tests.TopDown3DTiltShiftTests" runstate="Runnable" seed="1388822780" result="Passed" start-time="2026-10-14 17:40:10Z" end-time="2026-10-14 17:40:10Z" duration="0.000871" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

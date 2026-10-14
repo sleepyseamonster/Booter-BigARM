@@ -1,0 +1,18 @@
+{
+    "proof": "Static coarse native-height reconstruction, not gameplay or GPU profiling",
+    "graphics": "Direct3D11",
+    "tiles": 1374,
+    "resolution": 17,
+    "images": [
+        "Logs/CampAtmosphere/context-yaw0.png",
+        "Logs/CampAtmosphere/context-yaw90.png",
+        "Logs/CampAtmosphere/context-yaw180.png",
+        "Logs/CampAtmosphere/context-yaw270.png"
+    ],
+    "referencePosition": {
+        "x": -1848.0,
+        "y": -27.084930419921876,
+        "z": -1498.0
+    },
+    "southernTerrainBoundary": -2048.0
+}

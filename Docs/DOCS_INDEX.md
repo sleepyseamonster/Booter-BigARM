@@ -90,6 +90,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [Camp Loop atmosphere implementation](./Design/Gameplay/CAMP_LOOP_ATMOSPHERE_IMPLEMENTATION_PLAN_2026-10-14.md) and [evidence](./Evidence/Rendering/CampAtmosphere20261014/README.md)
+  Author-selected Clearer twilight study, separate yellow sun, camera-local optics and render-only native-height surroundings. Includes ownership/clearance proof and static capture limits.
+
 - [First Lager enemy implementation](./Design/Gameplay/CAMP_LOOP_LAGER_ENEMY_IMPLEMENTATION_PLAN_2026-10-14.md) and [evidence](./Evidence/Gameplay/CampLoopNpc20261014/README.md)
   One tunable skittish NPC in Camp Loop, with isolated perception/behavior/movement ownership, bounded safe escape routes, temporary session tuning and coordinated lab reset. Final model design and hands-on feel remain open.
 

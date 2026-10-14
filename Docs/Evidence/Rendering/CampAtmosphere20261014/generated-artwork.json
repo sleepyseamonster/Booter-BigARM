@@ -1,0 +1,25 @@
+{
+  "generator": "Built-in image_gen; moderate generation plus two lighting/weather edits preserving composition",
+  "proof": "8-bit concept/display artwork, not calibrated HDRI or surveyed 360-degree geography",
+  "variants": [
+    {
+      "variant": "Moderate",
+      "path": "Assets/_Project/Art/Environment/Sky/CampAtmosphere20261014/OchreSkyModerate.png",
+      "sha256": "0e323aaeee4f9a58243a6c43443d87cb524017a86d470f4dadf38623b755d46c",
+      "guid": "8253ed8247ef41a6b3fe5bfc7ad605e5"
+    },
+    {
+      "variant": "Clear",
+      "path": "Assets/_Project/Art/Environment/Sky/CampAtmosphere20261014/OchreSkyClear.png",
+      "sha256": "54db6595c72939e4bf6a3646f6a2ad7c7c0a9954fcf3477f5dc2839875c02364",
+      "guid": "4723e7f813b8404387b974b5ae8ffec7"
+    },
+    {
+      "variant": "Deep",
+      "path": "Assets/_Project/Art/Environment/Sky/CampAtmosphere20261014/OchreSkyDeep.png",
+      "sha256": "923cfc0c1b59c312fec741a1d9aab97b49b0a9b0598a31f15741014e5a5f01b0",
+      "guid": "79c127aa315d48118d311f80c6012480"
+    }
+  ],
+  "prompt": "Sunless full-sphere 2:1 ochre dust sky; actual native-height basin references; red ochre upper sky, copper-orange horizon, subdued distant ridges, low-detail rusty lower hemisphere; no blue/cyan/white sun/water/plants/stars/lens effects. Clear/deep variants change atmosphere only."
+}

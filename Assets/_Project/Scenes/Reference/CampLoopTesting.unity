@@ -26985,6 +26985,8 @@ GameObject:
   - component: {fileID: 2126727611}
   - component: {fileID: 2126727609}
   - component: {fileID: 2126727613}
+  - component: {fileID: 2126727615}
+  - component: {fileID: 2126727614}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -28059,3 +28061,84 @@ SceneRoots:
   - {fileID: 451293423}
   - {fileID: 600140376}
   - {fileID: 9001410000000}
+  - {fileID: 1496457184}
+--- !u!1001 &1496457184
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5363861356928967606, guid: 9f369fe3061efa14b9328d2062e2d1f4, type: 3}
+      propertyPath: m_Name
+      value: Camp Atmosphere Terrain Context
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144281745275972480, guid: 9f369fe3061efa14b9328d2062e2d1f4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144281745275972480, guid: 9f369fe3061efa14b9328d2062e2d1f4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144281745275972480, guid: 9f369fe3061efa14b9328d2062e2d1f4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144281745275972480, guid: 9f369fe3061efa14b9328d2062e2d1f4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144281745275972480, guid: 9f369fe3061efa14b9328d2062e2d1f4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144281745275972480, guid: 9f369fe3061efa14b9328d2062e2d1f4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144281745275972480, guid: 9f369fe3061efa14b9328d2062e2d1f4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144281745275972480, guid: 9f369fe3061efa14b9328d2062e2d1f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144281745275972480, guid: 9f369fe3061efa14b9328d2062e2d1f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7144281745275972480, guid: 9f369fe3061efa14b9328d2062e2d1f4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9f369fe3061efa14b9328d2062e2d1f4, type: 3}
+--- !u!45 &2126727614
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126727607}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: cd90d65865a9d044ba7d14016a370e3d, type: 2}
+--- !u!114 &2126727615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126727607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a4b5ef66d7d6e449fc67eda3da4e1c, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DSceneRenderingOverride
+  disableTiltShift: 1
+  atmosphereProfile: {fileID: 11400000, guid: aedf3be74d4f5724fa98020176c100d5, type: 2}
