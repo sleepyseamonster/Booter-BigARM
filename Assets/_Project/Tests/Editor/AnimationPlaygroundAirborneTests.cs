@@ -112,6 +112,38 @@ namespace BooterBigArm.Tests
             Assert.That(motor.TrySetAnimationPosture(coordinator,AnimationPlaygroundPosture.Crouched,1.57f,.4f),Is.True);
             Assert.That(airborne.TryJump(),Is.False);Assert.That(coordinator.IsBusy,Is.False);Assert.That(body.linearVelocity.y,Is.Zero);
         }
+        [Test] public void UnavailableLandingDelegatePreservesDefaultRecoveryAndEmitsDamageOnce()
+        {
+            var requests=0;var landings=0;
+            airborne.LandingRecovery=speed=>{requests++;return false;};airborne.Landed+=speed=>landings++;
+            Launch();body.linearVelocity=Vector3.down*3;Tick();
+            body.position=new Vector3(68000,.91f,68000);body.linearVelocity=Vector3.down*.1f;Physics.SyncTransforms();Tick();
+            Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Landing));Assert.That(requests,Is.EqualTo(1));Assert.That(landings,Is.EqualTo(1));
+            Tick(100);Assert.That(landings,Is.EqualTo(1));Assert.That(airborne.Active,Is.False);
+        }
+        [Test] public void PhysicalContactCanTransferToRollWithoutLosingTheMotorOrRepeatingLanding()
+        {
+            var lowProfile=Object.Instantiate(AssetDatabase.LoadAssetAtPath<AnimationPlaygroundLowMotionProfile>(AnimationPlaygroundLowMotionAuthoring.ProfilePath));
+            var projection=ScriptableObject.CreateInstance<AnimationPlaygroundFootProjection>();var low=actor.AddComponent<AnimationPlaygroundLowMotionController>();
+            try
+            {
+                var visual=(GameObject)driver.GetType().GetField("visualInstance",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(driver);
+                projection.model=lowProfile.targetModel;projection.bonePaths=new[]{""};projection.vertices=new[]{new AnimationPlaygroundFootVertex{points=new[]{
+                    new AnimationPlaygroundSkinPoint{bone=0,position=Vector3.zero,weight=1}}}};
+                lowProfile.bodyProjection=projection;lowProfile.qualified=true;Set(driver,"laboratoryFootProjection",projection);
+                low.Configure(motor,driver,coordinator,lowProfile,registry,()=>paused,()=>false);
+                var landings=0;airborne.Landed+=speed=>landings++;airborne.LandingRecovery=speed=>low.TryTakeLandingSequence(airborne,speed);
+                Launch();body.linearVelocity=Vector3.down*3;Tick();
+                body.position=new Vector3(68000,.91f,68000);body.linearVelocity=Vector3.down*.1f;Physics.SyncTransforms();Tick();
+                Assert.That(airborne.Active,Is.False);Assert.That(low.Active,Is.True);Assert.That(coordinator.IsSequenceOwner(low),Is.True);
+                Assert.That(motor.IsAnimationMotionOwner(coordinator),Is.True);Assert.That(landings,Is.EqualTo(1));
+                Tick(180);Assert.That(low.Active,Is.False);Assert.That(landings,Is.EqualTo(1));Assert.That(graph.GetOutputCount(),Is.EqualTo(1));
+            }
+            finally
+            {
+                airborne.LandingRecovery=null;low.DisposeOwnedServices();Object.DestroyImmediate(low);Object.DestroyImmediate(lowProfile);Object.DestroyImmediate(projection);
+            }
+        }
         [Test] public void QualifiedRolesRetainHumanoidDataAndAirPosesHaveNoAnimatedVerticalArc()
         {
             var source=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundAirborneProfile>(AnimationPlaygroundAirborneAuthoring.ProfilePath);

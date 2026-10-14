@@ -62,6 +62,20 @@ namespace BooterBigArm.TopDown3D
             if(State==AnimationPlaygroundCrouchState.Exiting || State==AnimationPlaygroundCrouchState.SettlingStanding)return true;
             return State==AnimationPlaygroundCrouchState.Crouched && TryExit();
         }
+        public bool TryReceiveLowRecovery(object previousSequenceOwner)
+        {
+            if(disposed || suspended || resetPending || !isActiveAndEnabled || Active || paused?.Invoke()==true
+                || !profile.Validate(out _) || !coordinator.IsSequenceOwner(previousSequenceOwner)
+                || !motor.IsGrounded || !motor.IsAnimationPostureShapeClear(profile.crouchHeight,profile.crouchRadius))return false;
+            if(!driver.TransferPoseBlendOwner(previousSequenceOwner,this))return false;
+            if(!driver.TryCapturePoseBlend(this,BlendSeconds))
+            {driver.TransferPoseBlendOwner(this,previousSequenceOwner);return false;}
+            if(!motor.TrySetAnimationPosture(coordinator,AnimationPlaygroundPosture.Crouched,profile.crouchHeight,profile.crouchRadius))
+            {driver.TransferPoseBlendOwner(this,previousSequenceOwner);return false;}
+            facing=motor.FacingDirection;exitRequested=false;
+            coordinator.CancelPhysicalSequence(previousSequenceOwner);HoldCrouch();
+            State=AnimationPlaygroundCrouchState.SettlingCrouch;BeginSettle();return true;
+        }
 
         private bool TryExit()
         {

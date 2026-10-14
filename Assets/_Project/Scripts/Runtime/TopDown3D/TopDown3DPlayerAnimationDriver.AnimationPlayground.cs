@@ -16,6 +16,7 @@ namespace BooterBigArm.TopDown3D
         private bool animationFootProjection;
         private bool animationBodyProjection;
         public bool AnimationPresentationOwned => animationPresentationOwner != null;
+        public bool IsAnimationPresentationOwner(object owner)=>owner!=null && ReferenceEquals(owner,animationPresentationOwner);
 
         public bool TryBeginAnimationPresentation(object owner, AnimationClip clip, bool preview = false)
         {

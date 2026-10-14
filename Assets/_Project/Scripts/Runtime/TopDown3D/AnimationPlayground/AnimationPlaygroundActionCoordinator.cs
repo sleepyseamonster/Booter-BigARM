@@ -87,6 +87,11 @@ namespace BooterBigArm.TopDown3D
         }
         public bool CancelPhysicalSequence(object owner)
         {if(!IsSequenceOwner(owner))return false;Cancel();return true;}
+        public bool TransferPhysicalSequenceOwner(object owner,object successor)
+        {
+            if(!IsSequenceOwner(owner) || successor==null || clock.Epoch!=registry.Epoch || !motor.IsAnimationMotionOwner(this))return false;
+            sequenceOwner=successor;return true;
+        }
 
         public bool TryBeginPreview(AnimationPlaygroundMotionBinding binding)
         {

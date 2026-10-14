@@ -21,6 +21,13 @@ namespace BooterBigArm.TopDown3D
         private bool poseBlendBodyProjection;
         public float LastPoseBlendGroundCorrection {get;private set;}
         public bool PoseBlendOwned=>poseBlendOwner!=null;
+        public bool TransferPoseBlendOwner(object owner,object successor)
+        {
+            if(owner==null || successor==null)return false;
+            if(poseBlendOwner==null)return true;
+            if(!ReferenceEquals(owner,poseBlendOwner))return false;
+            poseBlendOwner=successor;return true;
+        }
         private readonly struct PoseSource
         {
             public readonly AnimationClip Clip;

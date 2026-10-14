@@ -22,6 +22,7 @@ namespace BooterBigArm.TopDown3D
         public bool Active=>State!=AnimationPlaygroundAirborneState.Standing;
         public string LastFailure {get;private set;}
         public event Action<float> Landed;
+        public Func<float,bool> LandingRecovery {get;set;}
         public string ResetId=>"CampLoop.Booter.Jump";
         public AnimationPlaygroundResetStage ResetStage=>AnimationPlaygroundResetStage.Actor;
         public void Configure(TopDown3DPlayerMotor value,TopDown3DPlayerAnimationDriver presentation,
@@ -106,6 +107,11 @@ namespace BooterBigArm.TopDown3D
             if(leftGround && sample.Supported && motor.TryAnimationGroundDistance(coordinator,profile.anticipationDistance,out var contact)
                 && contact<=profile.contactDistance)
             {
+                if(LandingRecovery?.Invoke(impactSpeed)==true)
+                {
+                    State=AnimationPlaygroundAirborneState.Standing;landingContactPending=false;
+                    driver.EndPoseBlend(this);Landed?.Invoke(impactSpeed);return;
+                }
                 var clip=variant==null || impactSpeed>=profile.hardLandingSpeed ? profile.hardLanding : variant.landing;
                 if(Begin(clip,AnimationPlaygroundMotionMode.Recovery,AnimationPlaygroundAirborneState.Landing,false))
                 {landingContactPending=true;Landed?.Invoke(impactSpeed);}
@@ -166,6 +172,7 @@ namespace BooterBigArm.TopDown3D
             if(coordinator!=null)coordinator.ActionCompleted-=StageCompleted;
             if(motor!=null){motor.AnimationMotionAdvanced-=ObserveMotion;motor.AnimationLocomotionAdvanced-=ObserveLocomotion;}
             registry?.Unregister(this);motor=null;driver=null;coordinator=null;
+            LandingRecovery=null;
         }
         private void OnDestroy()=>DisposeOwnedServices();
     }

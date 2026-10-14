@@ -27,6 +27,7 @@ namespace BooterBigArm.TopDown3D
         public AnimationPlaygroundCrouchProfile crouch;
         public AnimationPlaygroundFootProjection footProjection;
         public AnimationPlaygroundAirborneProfile airborne;
+        public AnimationPlaygroundLowMotionProfile lowMotion;
         public float visualScale = 1f;
         public Vector3 visualOffset;
         public Material bodyMaterial;
@@ -76,6 +77,8 @@ namespace BooterBigArm.TopDown3D
             else if(airborne!=null && !airborne.Validate(out reason,false))return false;
             else if(airborne!=null && airborne.qualified && footProjection==null)
                 reason="A qualified airborne family requires its paired transition foot projection.";
+            else if(lowMotion!=null && (!lowMotion.Validate(out reason,false) || lowMotion.targetModel!=targetModel))
+            {reason=reason ?? "The low-motion family must pair with the selected actor.";return false;}
             return reason == null;
         }
     }

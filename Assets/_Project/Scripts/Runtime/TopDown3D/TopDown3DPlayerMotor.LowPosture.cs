@@ -6,6 +6,7 @@ namespace BooterBigArm.TopDown3D
     public sealed partial class TopDown3DPlayerMotor
     {
         public bool AnimationLowShapeActive=>animationShapeCaptured && capsule!=null && capsule.direction==2;
+        public bool LaboratoryModalPaused=>input!=null && input.Mode!=TopDown3DInputMode.Gameplay;
 
         // A longitudinal capsule retains the authored foot plane and follows the motor's facing.
         public bool TrySetAnimationLowShape(object owner,float length,float radius,float forwardOffset)

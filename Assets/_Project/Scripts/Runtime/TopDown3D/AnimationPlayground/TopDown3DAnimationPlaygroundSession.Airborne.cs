@@ -13,7 +13,8 @@ namespace BooterBigArm.TopDown3D
             airborne=player.gameObject.AddComponent<AnimationPlaygroundAirborneController>();
             airborne.Configure(player,presentation,coordinator,bindings.airborne,ResetRegistry,
                 ()=>!isActiveAndEnabled || !servicesBound || !PreviewReady || !Application.isFocused
-                    || playerInput.Mode!=TopDown3DInputMode.Gameplay,()=>playerAction.IsBusy || crouch!=null && crouch.Active);
+                    || playerInput.Mode!=TopDown3DInputMode.Gameplay,()=>playerAction.IsBusy || crouch!=null && crouch.Active || lowMotion!=null && lowMotion.Active);
+            airborne.LandingRecovery=TrySelectedRollLanding;
             airborne.Landed+=CommitLandingDamage;
         }
         private void CommitLandingDamage(float speed)

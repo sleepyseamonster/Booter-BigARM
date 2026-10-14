@@ -169,6 +169,10 @@ namespace BooterBigArm.Tests
                 Assert.That(session.Coordinator.IsBusy, Is.False); Assert.That(driver.AnimationPresentationOwned, Is.False);
                 Assert.That(vitals.Health, Is.EqualTo(initial));
                 Assert.That(session.JumpReady,Is.True);
+                Assert.That(session.Bindings.lowMotion,Is.Not.Null);Assert.That(session.SlideReady,Is.False);
+                Assert.That(player.GetComponent<AnimationPlaygroundLowMotionController>(),Is.Not.Null);
+                typeof(TopDown3DAnimationPlaygroundSession).GetMethod("RequestSlide",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(session,null);
+                Assert.That(session.Coordinator.IsBusy,Is.False);
                 var airborne=player.GetComponent<AnimationPlaygroundAirborneController>();
                 typeof(AnimationPlaygroundAirborneController).GetField("paused",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(airborne,(Func<bool>)(()=>false));
                 typeof(TopDown3DPlayerMotor).GetField("<IsGrounded>k__BackingField",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(player,true);

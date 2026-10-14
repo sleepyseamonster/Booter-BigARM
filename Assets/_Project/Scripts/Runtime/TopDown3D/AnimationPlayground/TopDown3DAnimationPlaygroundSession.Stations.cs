@@ -45,6 +45,11 @@ namespace BooterBigArm.TopDown3D
                 if(crouch.TryToggle())return true;
                 playerAction.ReportFeedback(crouch.LastFailure);return false;
             }
+            if(station.StationId=="AP03" && target.ActionKind==AnimationPlaygroundActionKind.Slide && SlideReady)
+            {
+                if(lowMotion.TrySlide())return true;
+                playerAction.ReportFeedback(lowMotion.LastFailure);return false;
+            }
             if(station.StationId=="AP04" && JumpReady)
             {
                 if(target.ActionKind==AnimationPlaygroundActionKind.Jump)
