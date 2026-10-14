@@ -231,6 +231,34 @@ namespace BooterBigArm.Editor
             }
             catch (Exception error) { File.WriteAllText(Path.Combine(evidence, "failure.txt"), error.ToString()); Debug.LogException(error); EditorApplication.Exit(1); }
         }
+
+        public static void InstallPreparedAuthorSceneFromCli()
+        {
+            if(!Application.isBatchMode || !Directory.Exists(".git") || File.Exists(CandidateMarker)
+                || File.ReadAllText(".git/HEAD").Trim()!="ref: refs/heads/main")
+                throw new InvalidOperationException("Install the prepared author scene only through background batchmode on repository main.");
+            var evidence=Path.GetFullPath("Logs/animation-station-main-install-20261014");Directory.CreateDirectory(evidence);
+            try
+            {
+                var recipePath="Docs/Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Stations/layout.json";
+                var layout=JsonUtility.FromJson<Layout>(File.ReadAllText(recipePath));
+                if(layout==null || layout.sourceSceneHash!=Hash(TopDown3DAnimationPlaygroundSession.ScenePath) || !TerrainIdentitiesMatch(layout))
+                    throw new InvalidDataException("The sealed author scene or terrain baseline changed.");
+                var scene=EditorSceneManager.OpenScene(TopDown3DAnimationPlaygroundSession.ScenePath,OpenSceneMode.Single);
+                Install(layout);
+                var report=AnimationPlaygroundSceneValidator.Validate(scene);
+                File.WriteAllText(Path.Combine(evidence,"validation.json"),JsonUtility.ToJson(report,true)+"\n");
+                if(!report.valid)throw new InvalidDataException(string.Join("; ",report.errors));
+                var action=TopDown3DGameHudCanvas.FindInScene<TopDown3DPlayerActionController>(scene);
+                var serialized=new SerializedObject(action);
+                serialized.FindProperty("bigArmCargo").objectReferenceValue=null;serialized.ApplyModifiedPropertiesWithoutUndo();
+                if(!EditorSceneManager.SaveScene(scene))throw new IOException("The author scene save failed.");
+                if(!TerrainIdentitiesMatch(layout))throw new InvalidDataException("A native terrain changed during installation.");
+                File.WriteAllText(Path.Combine(evidence,"completed.json"),"{\"state\":\"twelve-author-scene-stations-installed\",\"sceneSha256\":\""+Hash(scene.path)+"\"}\n");
+                EditorApplication.Exit(0);
+            }
+            catch(Exception error){File.WriteAllText(Path.Combine(evidence,"failure.txt"),error.ToString());Debug.LogException(error);EditorApplication.Exit(1);}
+        }
         public static string Hash(string path) { using var stream = File.OpenRead(path); using var hash = SHA256.Create(); return BitConverter.ToString(hash.ComputeHash(stream)).Replace("-", "").ToLowerInvariant(); }
         [Serializable] private sealed class Survey { public Placement[] candidates; }
         public static void SurveyCandidateFromCli()

@@ -45,5 +45,11 @@ namespace BooterBigArm.Tests
             Assert.Throws<ArgumentException>(()=>clock.Advance(.02f,Vector3.zero,Vector3.zero,1,1,true,false));
             Assert.Throws<ArgumentException>(()=>clock.Advance(.02f,Vector3.zero,Vector3.forward,1,.001f,true,false));
         }
+        [Test] public void SlowActualMotionDoesNotForceHalfSpeedFootsteps()
+        {
+            var clock=new AnimationPlaygroundCrouchClock();var contacts=0;clock.Contact+=_=>contacts++;
+            clock.Advance(.5f,Vector3.forward*.1f,Vector3.forward,1,1,true,false);
+            Assert.That(clock.Pose.Phase,Is.EqualTo(.05f).Within(.00001f));Assert.That(contacts,Is.Zero);
+        }
     }
 }

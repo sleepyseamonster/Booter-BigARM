@@ -33,6 +33,8 @@ namespace BooterBigArm.Tests
             profile=Object.Instantiate(source);
             // Synthetic contacts isolate ownership/clearance. They do not qualify the source motion.
             profile.contactsQualified=true;
+            profile.groundingQualified=true;
+            if(profile.grounding==null || profile.grounding.Length==0)profile.grounding=AnimationPlaygroundCrouchPoseQualification.ZeroGrounding();
             foreach(var entry in profile.entries)
             {entry.leftContacts=new[]{.25f,.75f};entry.rightContacts=new[]{0f,.5f};}
             actor=new GameObject("Crouch controller fixture");actor.SetActive(false);actor.transform.position=new Vector3(71000,.91f,71000);
@@ -86,7 +88,8 @@ namespace BooterBigArm.Tests
             Enter();Assert.That(crouch.State,Is.EqualTo(AnimationPlaygroundCrouchState.Crouched));
             Assert.That(motor.IsActionConstrained,Is.False);Assert.That(driver.CrouchPresentationOwned,Is.True);
             Assert.That(motor.LaboratoryStandingActionsAllowed,Is.False);
-            Assert.That(actor.GetComponent<CapsuleCollider>().height,Is.EqualTo(1.52f));
+            Assert.That(actor.GetComponent<CapsuleCollider>().height,Is.EqualTo(profile.crouchHeight));
+            Assert.That(actor.GetComponent<CapsuleCollider>().radius,Is.EqualTo(profile.crouchRadius));
             driver.SetCrouchPose(crouch,new AnimationPlaygroundCrouchPose(new Vector2(1,1).normalized,1,.3f,0,true));
             Assert.That(Call(driver,"PresentCrouchPose"),Is.EqualTo(true));Assert.That(graph.GetOutputCount(),Is.EqualTo(1));
             for(var i=0;i<22;i++)Assert.That(mixer.GetInputWeight(i),Is.Zero);
@@ -97,13 +100,14 @@ namespace BooterBigArm.Tests
             Assert.That(crouch.State,Is.EqualTo(AnimationPlaygroundCrouchState.Standing));
             Assert.That(driver.CrouchPresentationOwned,Is.False);Assert.That(motor.LaboratoryStandingActionsAllowed,Is.True);
             Assert.That(actor.GetComponent<CapsuleCollider>().height,Is.EqualTo(1.82f));
+            Assert.That(actor.GetComponent<CapsuleCollider>().radius,Is.EqualTo(.2f));
         }
         [Test] public void CeilingBlocksExitWithoutGrowingTheCapsuleOrLosingThePose()
         {
             Enter();PutRoof();var bottom=actor.GetComponent<CapsuleCollider>().center.y-actor.GetComponent<CapsuleCollider>().height*.5f;
             Assert.That(crouch.TryToggle(),Is.False);Assert.That(crouch.LastFailure,Does.Contain("obstruction"));
             Assert.That(crouch.TryCancel(),Is.False);Assert.That(driver.CrouchPresentationOwned,Is.True);
-            var shape=actor.GetComponent<CapsuleCollider>();Assert.That(shape.height,Is.EqualTo(1.52f));
+            var shape=actor.GetComponent<CapsuleCollider>();Assert.That(shape.height,Is.EqualTo(profile.crouchHeight));
             Assert.That(shape.center.y-shape.height*.5f,Is.EqualTo(bottom).Within(.00001f));
             Object.DestroyImmediate(roof);Physics.SyncTransforms();Assert.That(crouch.TryCancel(),Is.True);FinishTransition();
         }
@@ -130,6 +134,7 @@ namespace BooterBigArm.Tests
             var camera=new GameObject("Movement basis");camera.transform.SetParent(actor.transform,false);
             motor.Configure(input,camera.transform);motor.BlockUnqualifiedLaboratoryTraversal(coordinator);
             Enter();Set(input,"<MoveValue>k__BackingField",Vector2.right);
+            actor.GetComponent<Rigidbody>().position+=Vector3.right*.01f;Physics.SyncTransforms();
             Call(motor,"FixedUpdate");
             Assert.That(motor.Velocity.x,Is.GreaterThan(0));Assert.That(motor.FacingDirection,Is.EqualTo(Vector3.forward));
             Assert.That(motor.IsGrounded,Is.True);Assert.That(motor.IsActionConstrained,Is.False);
@@ -147,6 +152,25 @@ namespace BooterBigArm.Tests
             Object.DestroyImmediate(roof);Physics.SyncTransforms();
             Assert.That(registry.TryReset(),Is.True,registry.LastFailure);Assert.That(crouch.Active,Is.False);
             Assert.That(driver.CrouchPresentationOwned,Is.False);
+        }
+        [Test] public void ACloseWallPreventsExpandingIntoTheWiderCrouchEnvelope()
+        {
+            roof=GameObject.CreatePrimitive(PrimitiveType.Cube);roof.transform.position=actor.transform.position+Vector3.right*.4f;
+            roof.transform.localScale=new Vector3(.1f,3,3);Physics.SyncTransforms();
+            Assert.That(motor.IsStandingAnimationShapeClear(),Is.True);
+            Assert.That(crouch.TryToggle(),Is.False);Assert.That(crouch.LastFailure,Does.Contain("more space"));
+            Assert.That(coordinator.IsBusy,Is.False);Assert.That(driver.CrouchPresentationOwned,Is.False);
+            Assert.That(actor.GetComponent<CapsuleCollider>().radius,Is.EqualTo(.2f));
+        }
+        [Test] public void CommandedVelocityWithoutDisplacementCannotAdvanceCrouchSteps()
+        {
+            var input=actor.AddComponent<TopDown3DInputRouter>();var camera=new GameObject("Blocked movement basis");
+            camera.transform.SetParent(actor.transform,false);motor.Configure(input,camera.transform);motor.BlockUnqualifiedLaboratoryTraversal(coordinator);
+            Enter();Set(input,"<MoveValue>k__BackingField",Vector2.up);
+            for(var i=0;i<20;i++)Call(motor,"FixedUpdate");
+            Assert.That(motor.Velocity.z,Is.GreaterThan(0));Assert.That(motor.LaboratoryMeasuredVelocity,Is.EqualTo(Vector3.zero));
+            Assert.That(Call(driver,"PresentCrouchPose"),Is.EqualTo(true));var nested=(AnimationMixerPlayable)mixer.GetInput(22);
+            Assert.That(nested.GetInputWeight(0),Is.EqualTo(1));Assert.That(nested.GetInputWeight(1),Is.Zero);
         }
     }
 }

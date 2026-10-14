@@ -61,6 +61,7 @@ namespace BooterBigArm.TopDown3D
                     : Mathf.Repeat(TopDown3DAnimationMath.MapSemanticPhaseToSource(crouchPose.Phase,entry.leftContacts,entry.rightContacts)+entry.sourcePhaseOffset,1);
                 crouchClips[i].SetTime(phase*entry.clip.length);crouchMixer.SetInputWeight(i,weight);correction+=entry.Correction(phase)*weight;
             }
+            correction+=crouchProfile.GroundCorrection(crouchPose.Direction,crouchPose.MovingWeight,crouchPose.Phase);
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition+Vector3.up*correction,Quaternion.Euler(visualLocalEulerAngles));
             CurrentLocomotionState=TopDown3DLocomotionState.Sustained;return true;
         }

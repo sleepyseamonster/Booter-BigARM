@@ -1,0 +1,252 @@
+{
+    "state": "actual-runtime-pose-envelope-not-physical-qualified",
+    "poses": [
+        {
+            "role": "Direction0Weight0.5",
+            "direction": {
+                "x": 0.0,
+                "y": 1.0
+            },
+            "movingWeight": 0.5,
+            "minimumSole": -0.9083999991416931,
+            "maximumBodyHeight": 1.4651315212249756,
+            "maximumCapsuleGap": -0.054340243339538577,
+            "maximumTorsoRadius": 0.3456597626209259,
+            "finite": true
+        },
+        {
+            "role": "Direction0Weight1",
+            "direction": {
+                "x": 0.0,
+                "y": 1.0
+            },
+            "movingWeight": 1.0,
+            "minimumSole": -0.9051513075828552,
+            "maximumBodyHeight": 1.4343680143356324,
+            "maximumCapsuleGap": -0.03385928273200989,
+            "maximumTorsoRadius": 0.3661407232284546,
+            "finite": true
+        },
+        {
+            "role": "Direction1Weight0.5",
+            "direction": {
+                "x": 0.7071067690849304,
+                "y": 0.7071067690849304
+            },
+            "movingWeight": 0.5,
+            "minimumSole": -0.9077838063240051,
+            "maximumBodyHeight": 1.425114631652832,
+            "maximumCapsuleGap": -0.05424463748931885,
+            "maximumTorsoRadius": 0.34575536847114565,
+            "finite": true
+        },
+        {
+            "role": "Direction1Weight1",
+            "direction": {
+                "x": 0.7071067690849304,
+                "y": 0.7071067690849304
+            },
+            "movingWeight": 1.0,
+            "minimumSole": -0.9080576300621033,
+            "maximumBodyHeight": 1.505462646484375,
+            "maximumCapsuleGap": -0.033815085887908939,
+            "maximumTorsoRadius": 0.36618492007255556,
+            "finite": true
+        },
+        {
+            "role": "Direction2Weight0.5",
+            "direction": {
+                "x": 1.0,
+                "y": -4.371138828673793e-8
+            },
+            "movingWeight": 0.5,
+            "minimumSole": -0.9075513482093811,
+            "maximumBodyHeight": 1.4563789367675782,
+            "maximumCapsuleGap": -0.05414927005767822,
+            "maximumTorsoRadius": 0.34585073590278628,
+            "finite": true
+        },
+        {
+            "role": "Direction2Weight1",
+            "direction": {
+                "x": 1.0,
+                "y": -4.371138828673793e-8
+            },
+            "movingWeight": 1.0,
+            "minimumSole": -0.9057015180587769,
+            "maximumBodyHeight": 1.440161943435669,
+            "maximumCapsuleGap": -0.0335712730884552,
+            "maximumTorsoRadius": 0.3664287328720093,
+            "finite": true
+        },
+        {
+            "role": "Direction3Weight0.5",
+            "direction": {
+                "x": 0.7071067690849304,
+                "y": -0.7071067690849304
+            },
+            "movingWeight": 0.5,
+            "minimumSole": -0.9078202843666077,
+            "maximumBodyHeight": 1.4521218538284302,
+            "maximumCapsuleGap": -0.05455556511878967,
+            "maximumTorsoRadius": 0.3454444408416748,
+            "finite": true
+        },
+        {
+            "role": "Direction3Weight1",
+            "direction": {
+                "x": 0.7071067690849304,
+                "y": -0.7071067690849304
+            },
+            "movingWeight": 1.0,
+            "minimumSole": -0.9058994650840759,
+            "maximumBodyHeight": 1.5305935144424439,
+            "maximumCapsuleGap": -0.034824252128601077,
+            "maximumTorsoRadius": 0.3651757538318634,
+            "finite": true
+        },
+        {
+            "role": "Direction4Weight0.5",
+            "direction": {
+                "x": -8.742277657347586e-8,
+                "y": -1.0
+            },
+            "movingWeight": 0.5,
+            "minimumSole": -0.9076308012008667,
+            "maximumBodyHeight": 1.4803186655044556,
+            "maximumCapsuleGap": -0.054229021072387698,
+            "maximumTorsoRadius": 0.3457709848880768,
+            "finite": true
+        },
+        {
+            "role": "Direction4Weight1",
+            "direction": {
+                "x": -8.742277657347586e-8,
+                "y": -1.0
+            },
+            "movingWeight": 1.0,
+            "minimumSole": -0.9050990343093872,
+            "maximumBodyHeight": 1.4468231201171876,
+            "maximumCapsuleGap": -0.03367894887924194,
+            "maximumTorsoRadius": 0.36632105708122256,
+            "finite": true
+        },
+        {
+            "role": "Direction5Weight0.5",
+            "direction": {
+                "x": -0.70710688829422,
+                "y": -0.7071066498756409
+            },
+            "movingWeight": 0.5,
+            "minimumSole": -0.9076253175735474,
+            "maximumBodyHeight": 1.4606924057006837,
+            "maximumCapsuleGap": -0.05543464422225952,
+            "maximumTorsoRadius": 0.34456536173820498,
+            "finite": true
+        },
+        {
+            "role": "Direction5Weight1",
+            "direction": {
+                "x": -0.70710688829422,
+                "y": -0.7071066498756409
+            },
+            "movingWeight": 1.0,
+            "minimumSole": -0.9055960774421692,
+            "maximumBodyHeight": 1.5216987133026124,
+            "maximumCapsuleGap": -0.03575214743614197,
+            "maximumTorsoRadius": 0.3642478585243225,
+            "finite": true
+        },
+        {
+            "role": "Direction6Weight0.5",
+            "direction": {
+                "x": -1.0,
+                "y": 1.1924880638503055e-8
+            },
+            "movingWeight": 0.5,
+            "minimumSole": -0.9077575206756592,
+            "maximumBodyHeight": 1.440195918083191,
+            "maximumCapsuleGap": -0.055294305086135867,
+            "maximumTorsoRadius": 0.3447057008743286,
+            "finite": true
+        },
+        {
+            "role": "Direction6Weight1",
+            "direction": {
+                "x": -1.0,
+                "y": 1.1924880638503055e-8
+            },
+            "movingWeight": 1.0,
+            "minimumSole": -0.9052703976631165,
+            "maximumBodyHeight": 1.474557876586914,
+            "maximumCapsuleGap": -0.03580161929130554,
+            "maximumTorsoRadius": 0.36419838666915896,
+            "finite": true
+        },
+        {
+            "role": "Direction7Weight0.5",
+            "direction": {
+                "x": -0.7071065306663513,
+                "y": 0.7071070075035095
+            },
+            "movingWeight": 0.5,
+            "minimumSole": -0.9078917503356934,
+            "maximumBodyHeight": 1.4413855075836182,
+            "maximumCapsuleGap": -0.05692929029464722,
+            "maximumTorsoRadius": 0.34307071566581728,
+            "finite": true
+        },
+        {
+            "role": "Direction7Weight1",
+            "direction": {
+                "x": -0.7071065306663513,
+                "y": 0.7071070075035095
+            },
+            "movingWeight": 1.0,
+            "minimumSole": -0.9058704972267151,
+            "maximumBodyHeight": 1.498900294303894,
+            "maximumCapsuleGap": -0.038409650325775149,
+            "maximumTorsoRadius": 0.36159035563468935,
+            "finite": true
+        },
+        {
+            "role": "Idle",
+            "direction": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "movingWeight": 0.0,
+            "minimumSole": -0.9100005030632019,
+            "maximumBodyHeight": 1.2821986675262452,
+            "maximumCapsuleGap": -0.0784904956817627,
+            "maximumTorsoRadius": 0.3215095102787018,
+            "finite": true
+        },
+        {
+            "role": "Enter",
+            "direction": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "movingWeight": 0.0,
+            "minimumSole": -0.9100478291511536,
+            "maximumBodyHeight": 1.7926925420761109,
+            "maximumCapsuleGap": -0.041068971157073978,
+            "maximumTorsoRadius": 0.29943811893463137,
+            "finite": true
+        },
+        {
+            "role": "Exit",
+            "direction": {
+                "x": 0.0,
+                "y": 0.0
+            },
+            "movingWeight": 0.0,
+            "minimumSole": -0.9100291132926941,
+            "maximumBodyHeight": 1.793893814086914,
+            "maximumCapsuleGap": -0.09668749570846558,
+            "maximumTorsoRadius": 0.3033125102519989,
+            "finite": true
+        }
+    ]
+}

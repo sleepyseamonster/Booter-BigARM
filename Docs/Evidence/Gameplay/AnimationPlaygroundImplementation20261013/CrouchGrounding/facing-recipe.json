@@ -1,0 +1,135 @@
+{
+    "state": "authored-facing-contact-draft-not-physical-qualified",
+    "crouchRadius": 0.4000000059604645,
+    "roles": [
+        {
+            "role": "Enter",
+            "clipPath": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchEnterOriginalFacingRange.anim",
+            "clipGuid": "b269f282db85f6046a75742fdfa6be5a",
+            "sourcePath": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchEnter.fbx",
+            "sourceSha256": "034ef9847cf890836644a5ccd34b46eb0df7fe44c6ccfe72b5a7a3432a5d2baf",
+            "sourcePhaseOffset": 0.0,
+            "nominalSpeed": 0.0,
+            "maximumTorsoRadius": 0.29943811893463137,
+            "maximumBodyHeight": 1.7926925420761109,
+            "minimumSole": -0.9100003838539124,
+            "maximumCorrection": 0.02416747808456421,
+            "rightContacts": [],
+            "leftContacts": []
+        },
+        {
+            "role": "Idle",
+            "clipPath": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchIdleOriginalFacingLoop.anim",
+            "clipGuid": "49164916a35d01a4f860a52ee97d332f",
+            "sourcePath": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchIdle.fbx",
+            "sourceSha256": "90d5a2ff23f639ed32743efd36c051599cdb6f8d41906bab897990003fe84f65",
+            "sourcePhaseOffset": 0.0,
+            "nominalSpeed": 0.0,
+            "maximumTorsoRadius": 0.3215097486972809,
+            "maximumBodyHeight": 1.2822024822235108,
+            "minimumSole": -0.9100003838539124,
+            "maximumCorrection": 0.0008088350296020508,
+            "rightContacts": [],
+            "leftContacts": []
+        },
+        {
+            "role": "Forward",
+            "clipPath": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchForwardOriginalFacingLoop.anim",
+            "clipGuid": "5eb00078be1d8d044aec7ce9020a5683",
+            "sourcePath": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkForward.fbx",
+            "sourceSha256": "9d67675c52fceb552dd493a8cd3f93bfb1752cafaadbda3c38b1400f84d90aeb",
+            "sourcePhaseOffset": 0.01824820041656494,
+            "nominalSpeed": 1.3703644275665284,
+            "maximumTorsoRadius": 0.36651572585105898,
+            "maximumBodyHeight": 1.429558515548706,
+            "minimumSole": -0.910000205039978,
+            "maximumCorrection": 0.00884866714477539,
+            "rightContacts": [
+                0.0,
+                0.5
+            ],
+            "leftContacts": [
+                0.24452552199363709,
+                0.7481752038002014
+            ]
+        },
+        {
+            "role": "Backward",
+            "clipPath": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchBackwardOriginalFacingLoop.anim",
+            "clipGuid": "751358a159dd84b468bfc31666b45960",
+            "sourcePath": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkBackward.fbx",
+            "sourceSha256": "b2f9ff0ec39f794bcac7c076fa9a41ae0ac02d2dbf6a9a53fd9bcb995f358b2e",
+            "sourcePhaseOffset": 0.4864864945411682,
+            "nominalSpeed": 1.0046017169952393,
+            "maximumTorsoRadius": 0.3665131628513336,
+            "maximumBodyHeight": 1.441781997680664,
+            "minimumSole": -0.9100003838539124,
+            "maximumCorrection": 0.009827792644500733,
+            "rightContacts": [
+                0.0,
+                0.5
+            ],
+            "leftContacts": [
+                0.26689189672470095,
+                0.7668918967247009
+            ]
+        },
+        {
+            "role": "Left",
+            "clipPath": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchLeftOriginalFacingLoop.anim",
+            "clipGuid": "6211009ba6d61784385a9099b4f833dc",
+            "sourcePath": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkLeft.fbx",
+            "sourceSha256": "338ad99ca412d50cd2dc8f5421ccaa68ca20334198a08f12691ef3030d60f2fd",
+            "sourcePhaseOffset": 0.478723406791687,
+            "nominalSpeed": 1.21857750415802,
+            "maximumTorsoRadius": 0.36420199275016787,
+            "maximumBodyHeight": 1.469519853591919,
+            "minimumSole": -0.910000205039978,
+            "maximumCorrection": 0.02487337589263916,
+            "rightContacts": [
+                0.0,
+                0.4964538812637329
+            ],
+            "leftContacts": [
+                0.23404252529144288,
+                0.7340425252914429
+            ]
+        },
+        {
+            "role": "Right",
+            "clipPath": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchRightOriginalFacingLoop.anim",
+            "clipGuid": "a7090f3a4ed1bdf4d8c93287adc35191",
+            "sourcePath": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkRight.fbx",
+            "sourceSha256": "0636fbdca9eeed58814c00babf8e951ec5ce2677716a88d1635c129f67ee06eb",
+            "sourcePhaseOffset": 0.02287578582763672,
+            "nominalSpeed": 1.0763766765594483,
+            "maximumTorsoRadius": 0.36651262640953066,
+            "maximumBodyHeight": 1.4363155364990235,
+            "minimumSole": -0.910000205039978,
+            "maximumCorrection": 0.02499598264694214,
+            "rightContacts": [
+                0.0,
+                0.49673205614089968
+            ],
+            "leftContacts": [
+                0.2679738700389862,
+                0.7679738998413086
+            ]
+        },
+        {
+            "role": "Exit",
+            "clipPath": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchExitOriginalFacingRange.anim",
+            "clipGuid": "159f2a1512cc93444b716f8b2ce0f1ec",
+            "sourcePath": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchExit.fbx",
+            "sourceSha256": "4c3053d5cd997114747772f79e8df5b833af42d84827b3095ff96d8d340d0397",
+            "sourcePhaseOffset": 0.0,
+            "nominalSpeed": 0.0,
+            "maximumTorsoRadius": 0.30331480503082278,
+            "maximumBodyHeight": 1.793893814086914,
+            "minimumSole": -0.910000205039978,
+            "maximumCorrection": 0.029828190803527833,
+            "rightContacts": [],
+            "leftContacts": []
+        }
+    ]
+}

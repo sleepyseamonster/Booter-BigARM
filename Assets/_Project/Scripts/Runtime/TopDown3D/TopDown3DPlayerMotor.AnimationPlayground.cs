@@ -41,6 +41,8 @@ namespace BooterBigArm.TopDown3D
         private bool laboratoryBlocksLegacyTraversal;
         private bool laboratoryCrouchFacingLocked;
         private Vector3 laboratoryCrouchFacing;
+        private Vector3 laboratoryPreviousPosition;
+        public Vector3 LaboratoryMeasuredVelocity {get;private set;}
         public AnimationPlaygroundMotionMode AnimationMotionMode {get;private set;}
         public AnimationPlaygroundPosture AnimationPosture {get;private set;}
         public AnimationPlaygroundMotorSnapshot AnimationSnapshot {get;private set;}
@@ -57,12 +59,26 @@ namespace BooterBigArm.TopDown3D
         }
         public bool IsStandingAnimationShapeClear()
         {EnsureAnimationShape();return AnimationShapeClear(animationOriginalHeight,animationOriginalCenter,Position,animationOriginalRadius);}
+        public bool IsAnimationPostureShapeClear(float height,float radius)
+        {
+            EnsureAnimationShape();
+            if(!float.IsFinite(height) || !float.IsFinite(radius) || radius<=0 || height<2*radius || height>animationOriginalHeight)return false;
+            return AnimationShapeClear(height,animationOriginalCenter+Vector3.up*(height-animationOriginalHeight)*.5f,Position,radius);
+        }
 
         public void BindAnimationPostureOwner(object owner)
         {
             if(owner == null || animationPostureOwner != null && !ReferenceEquals(animationPostureOwner,owner))
                 throw new InvalidOperationException("Bind one animation posture owner.");
-            EnsureAnimationShape();animationPostureOwner=owner;
+            EnsureAnimationShape();animationPostureOwner=owner;ResetLaboratoryMeasurement();
+        }
+        private void ResetLaboratoryMeasurement()
+        {laboratoryPreviousPosition=Position;LaboratoryMeasuredVelocity=Vector3.zero;}
+        private void MeasureLaboratoryDisplacement()
+        {
+            var current=Position;
+            LaboratoryMeasuredVelocity=(current-laboratoryPreviousPosition)/Mathf.Max(.0001f,Time.fixedDeltaTime);
+            laboratoryPreviousPosition=current;
         }
         public void ConfigureAnimationLocomotionSpeeds(object owner,float slowWalk,float crouch)
         {
@@ -121,14 +137,16 @@ namespace BooterBigArm.TopDown3D
             if(owner==null || !ReferenceEquals(owner,animationMotionOwner))return false;
             ReleaseAnimationMotionCore();EndActionConstraint(owner);return true;
         }
-        public bool TrySetAnimationPosture(object owner,AnimationPlaygroundPosture posture,float height)
+        public bool TrySetAnimationPosture(object owner,AnimationPlaygroundPosture posture,float height,float reviewedRadius=-1)
         {
             if(owner==null || !ReferenceEquals(owner,animationPostureOwner) && !ReferenceEquals(owner,animationMotionOwner))return false;
             EnsureAnimationShape();
             if(!Enum.IsDefined(typeof(AnimationPlaygroundPosture),posture))return false;
+            if(!float.IsFinite(reviewedRadius) || reviewedRadius!=-1 && reviewedRadius<=0)return false;
             if(posture==AnimationPlaygroundPosture.Standing)
-                return Mathf.Approximately(height,animationOriginalHeight) && TryRestoreAnimationPosture(owner);
-            var radius=posture==AnimationPlaygroundPosture.Prone ? Mathf.Min(animationOriginalRadius,height*.5f) : animationOriginalRadius;
+                return Mathf.Approximately(height,animationOriginalHeight) && (reviewedRadius==-1 || Mathf.Approximately(reviewedRadius,animationOriginalRadius))
+                    && TryRestoreAnimationPosture(owner);
+            var radius=reviewedRadius>0 ? reviewedRadius : posture==AnimationPlaygroundPosture.Prone ? Mathf.Min(animationOriginalRadius,height*.5f) : animationOriginalRadius;
             if(!float.IsFinite(height) || height<=.1f || height<2*radius || height>animationOriginalHeight)return false;
             var center=capsule.center+Vector3.up*(height-capsule.height)*.5f;
             if((height>capsule.height || radius>capsule.radius) && !AnimationShapeClear(height,center,Position,radius))return false;

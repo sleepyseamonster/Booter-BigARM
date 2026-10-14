@@ -84,9 +84,12 @@ namespace BooterBigArm.Tests
                         if(derived.frames[index].seconds>=frame.seconds){before=derived.frames[index-1];after=derived.frames[index];break;}
                     var t=Mathf.InverseLerp(before.seconds,after.seconds,frame.seconds);
                     var hips=Vector3.Lerp(before.hips,after.hips,t);
-                    Assert.That(Vector3.Distance(frame.leftFoot-frame.hips,Vector3.Lerp(before.leftFoot,after.leftFoot,t)-hips),Is.LessThan(.007f),role+" left foot");
-                    Assert.That(Vector3.Distance(frame.rightFoot-frame.hips,Vector3.Lerp(before.rightFoot,after.rightFoot,t)-hips),Is.LessThan(.007f),role+" right foot");
-                    Assert.That(Vector3.Distance(frame.head-frame.hips,Vector3.Lerp(before.head,after.head,t)-hips),Is.LessThan(.007f),role+" head");
+                    // Root policy intentionally preserves authored facing; compare limb motion in the hip frame.
+                    var originalBasis=Quaternion.Inverse(frame.hipsRotation);
+                    var derivedBasis=Quaternion.Inverse(Quaternion.Slerp(before.hipsRotation,after.hipsRotation,t));
+                    Assert.That(Vector3.Distance(originalBasis*(frame.leftFoot-frame.hips),derivedBasis*(Vector3.Lerp(before.leftFoot,after.leftFoot,t)-hips)),Is.LessThan(.007f),role+" left foot");
+                    Assert.That(Vector3.Distance(originalBasis*(frame.rightFoot-frame.hips),derivedBasis*(Vector3.Lerp(before.rightFoot,after.rightFoot,t)-hips)),Is.LessThan(.007f),role+" right foot");
+                    Assert.That(Vector3.Distance(originalBasis*(frame.head-frame.hips),derivedBasis*(Vector3.Lerp(before.head,after.head,t)-hips)),Is.LessThan(.007f),role+" head");
                 }
             }
         }

@@ -44,6 +44,8 @@ namespace BooterBigArm.TopDown3D
             if(coordinator.IsBusy || otherActivity?.Invoke()==true)return Fail("Finish the current activity first.");
             if(State==AnimationPlaygroundCrouchState.Crouched)return TryExit();
             if(!motor.IsGrounded)return Fail("Crouching requires ground support.");
+            if(!motor.IsAnimationPostureShapeClear(profile.standingHeight,profile.crouchRadius))
+                return Fail("The crouch pose needs more space around the character.");
             facing=motor.FacingDirection;exitRequested=false;
             return BeginTransition(AnimationPlaygroundCrouchRole.Enter);
         }
@@ -81,7 +83,7 @@ namespace BooterBigArm.TopDown3D
         private AnimationPlaygroundMotorIntent TransitionIntent(AnimationPlaygroundCrouchEntry entry,float phase)
         {
             phase=Mathf.Clamp01(phase);
-            if(!motor.TrySetAnimationPosture(coordinator,AnimationPlaygroundPosture.Crouched,entry.capsuleHeight.Evaluate(phase)))
+            if(!motor.TrySetAnimationPosture(coordinator,AnimationPlaygroundPosture.Crouched,entry.capsuleHeight.Evaluate(phase),profile.crouchRadius))
                 throw new InvalidOperationException("The posture transition was obstructed.");
             if(!driver.SetAnimationHeightCorrection(coordinator,entry.Correction(phase)))
                 throw new InvalidOperationException("The posture presentation lost its owner.");
@@ -103,7 +105,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HoldCrouch()
         {
-            if(!motor.TrySetAnimationPosture(coordinator,AnimationPlaygroundPosture.Crouched,profile.crouchHeight))
+            if(!motor.TrySetAnimationPosture(coordinator,AnimationPlaygroundPosture.Crouched,profile.crouchHeight,profile.crouchRadius))
                 throw new InvalidOperationException("The calibrated crouch shape could not be retained.");
             if(!driver.CrouchPresentationOwned && !driver.TryBeginCrouchPresentation(this,profile))
                 throw new InvalidOperationException("The sustained crouch pose could not acquire its branch.");
@@ -117,7 +119,7 @@ namespace BooterBigArm.TopDown3D
             if(resetPending)return;
             if(Transitioning && !coordinator.IsBusy){LastFailure=coordinator.LastFailure;HoldCrouch();}
             if(State!=AnimationPlaygroundCrouchState.Crouched || coordinator.IsBusy)return;
-            var velocity=motor.Velocity;contactSpeed=Vector3.ProjectOnPlane(velocity,Vector3.up).magnitude;
+            var velocity=motor.LaboratoryMeasuredVelocity;contactSpeed=Vector3.ProjectOnPlane(velocity,Vector3.up).magnitude;
             var local=new Vector2(Vector3.Dot(velocity,Vector3.Cross(Vector3.up,facing)),Vector3.Dot(velocity,facing));
             var sum=Mathf.Abs(local.x)+Mathf.Abs(local.y);
             var seconds=0f;var speed=0f;

@@ -1,0 +1,133 @@
+{
+    "valid": true,
+    "terrains": 9,
+    "stations": 12,
+    "rigidbodies": 5,
+    "renderers": 364,
+    "skinnedActors": 0,
+    "legacyResources": 12,
+    "caches": 1,
+    "stationReports": [
+        {
+            "id": "AP01",
+            "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP01.prefab",
+            "targets": 2,
+            "props": 0,
+            "bodies": 0,
+            "colliders": 16,
+            "returnClear": true,
+            "returnSupported": true
+        },
+        {
+            "id": "AP02",
+            "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP02.prefab",
+            "targets": 2,
+            "props": 0,
+            "bodies": 0,
+            "colliders": 16,
+            "returnClear": true,
+            "returnSupported": true
+        },
+        {
+            "id": "AP03",
+            "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP03.prefab",
+            "targets": 4,
+            "props": 0,
+            "bodies": 0,
+            "colliders": 20,
+            "returnClear": true,
+            "returnSupported": true
+        },
+        {
+            "id": "AP04",
+            "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP04.prefab",
+            "targets": 4,
+            "props": 0,
+            "bodies": 0,
+            "colliders": 38,
+            "returnClear": true,
+            "returnSupported": true
+        },
+        {
+            "id": "AP05",
+            "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP05.prefab",
+            "targets": 5,
+            "props": 4,
+            "bodies": 3,
+            "colliders": 29,
+            "returnClear": true,
+            "returnSupported": true
+        },
+        {
+            "id": "AP06",
+            "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP06.prefab",
+            "targets": 3,
+            "props": 1,
+            "bodies": 1,
+            "colliders": 18,
+            "returnClear": true,
+            "returnSupported": true
+        },
+        {
+            "id": "AP07",
+            "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP07.prefab",
+            "targets": 3,
+            "props": 2,
+            "bodies": 1,
+            "colliders": 19,
+            "returnClear": true,
+            "returnSupported": true
+        },
+        {
+            "id": "AP08",
+            "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP08.prefab",
+            "targets": 3,
+            "props": 0,
+            "bodies": 0,
+            "colliders": 19,
+            "returnClear": true,
+            "returnSupported": true
+        },
+        {
+            "id": "AP09",
+            "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP09.prefab",
+            "targets": 3,
+            "props": 6,
+            "bodies": 0,
+            "colliders": 24,
+            "returnClear": true,
+            "returnSupported": true
+        },
+        {
+            "id": "AP10",
+            "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP10.prefab",
+            "targets": 3,
+            "props": 1,
+            "bodies": 0,
+            "colliders": 49,
+            "returnClear": true,
+            "returnSupported": true
+        },
+        {
+            "id": "AP11",
+            "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP11.prefab",
+            "targets": 6,
+            "props": 1,
+            "bodies": 0,
+            "colliders": 30,
+            "returnClear": true,
+            "returnSupported": true
+        },
+        {
+            "id": "AP12",
+            "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP12.prefab",
+            "targets": 6,
+            "props": 1,
+            "bodies": 0,
+            "colliders": 20,
+            "returnClear": true,
+            "returnSupported": true
+        }
+    ],
+    "errors": []
+}

@@ -17,6 +17,8 @@ namespace BooterBigArm.Editor
             public float seconds;
             public Vector3 root,hips,head,leftFoot,rightFoot,leftToes,rightToes,leftHand,rightHand,leftSole,rightSole;
             public Vector3 bodyMinimum,bodyMaximum;
+            public Vector3 torsoMinimum,torsoMaximum;
+            public float torsoMaximumRadius;
             public Quaternion rootRotation,hipsRotation,leftFootRotation,rightFootRotation;
         }
         [Serializable] public sealed class ContactWindow
@@ -69,6 +71,7 @@ namespace BooterBigArm.Editor
                         leftToes=bones[4].position,rightToes=bones[5].position,leftHand=bones[6].position,rightHand=bones[7].position,
                         hipsRotation=bones[0].rotation,leftFootRotation=bones[2].rotation,rightFootRotation=bones[3].rotation};
                     soles.Measure(out frame.leftSole,out frame.rightSole,out frame.bodyMinimum,out frame.bodyMaximum);
+                    frame.torsoMinimum=soles.TorsoMinimum;frame.torsoMaximum=soles.TorsoMaximum;frame.torsoMaximumRadius=soles.TorsoMaximumRadius;
                     foreach(var bone in bones)if(!Finite(bone.position) || !Finite(bone.rotation))result.finite=false;
                     if(!Finite(frame.root) || !Finite(frame.rootRotation) || !Finite(frame.bodyMinimum) || !Finite(frame.bodyMaximum))result.finite=false;
                     frames[i]=frame;
@@ -124,36 +127,52 @@ namespace BooterBigArm.Editor
         private static bool Finite(Vector3 value)=>float.IsFinite(value.x) && float.IsFinite(value.y) && float.IsFinite(value.z);
         private static bool Finite(Quaternion value)=>float.IsFinite(value.x) && float.IsFinite(value.y) && float.IsFinite(value.z) && float.IsFinite(value.w);
 
-        private sealed class SoleProbe : IDisposable
+        public sealed class SoleProbe : IDisposable
         {
-            private sealed class Region{public SkinnedMeshRenderer renderer;public int[] left,right;}
+            private sealed class Region{public SkinnedMeshRenderer renderer;public int[] left,right,torso,protectedBody;}
             private readonly List<Region> regions=new();
             private readonly Mesh baked=new();
             private readonly List<Vector3> vertices=new();
+            private readonly Transform root;
+            public Vector3 TorsoMinimum {get;private set;}
+            public Vector3 TorsoMaximum {get;private set;}
+            public float TorsoMaximumRadius {get;private set;}
             public SoleProbe(GameObject model,Transform leftFoot,Transform rightFoot)
             {
+                root=model.transform;
+                var torsoBones=new HashSet<Transform>();var animator=model.GetComponentInChildren<Animator>();
+                foreach(var role in new[]{HumanBodyBones.Hips,HumanBodyBones.Spine,HumanBodyBones.Chest,HumanBodyBones.UpperChest})
+                    if(animator.GetBoneTransform(role)!=null)torsoBones.Add(animator.GetBoneTransform(role));
+                var protectedBones=new HashSet<Transform>(torsoBones);
+                foreach(var role in new[]{HumanBodyBones.Neck,HumanBodyBones.Head})
+                    if(animator.GetBoneTransform(role)!=null)protectedBones.Add(animator.GetBoneTransform(role));
                 foreach(var renderer in model.GetComponentsInChildren<SkinnedMeshRenderer>(true))
                 {
                     using var counts=renderer.sharedMesh.GetBonesPerVertex();using var weights=renderer.sharedMesh.GetAllBoneWeights();
-                    var left=new List<int>();var right=new List<int>();var cursor=0;
+                    var left=new List<int>();var right=new List<int>();var torso=new List<int>();var protectedBody=new List<int>();var cursor=0;
                     for(var vertex=0;vertex<counts.Length;vertex++)
                     {
-                        var leftWeight=0f;var rightWeight=0f;
+                        var leftWeight=0f;var rightWeight=0f;var torsoWeight=0f;var protectedWeight=0f;
                         for(var i=0;i<counts[vertex];i++)
                         {
                             var weight=weights[cursor++];var bone=renderer.bones[weight.boneIndex];
                             if(bone.IsChildOf(leftFoot))leftWeight+=weight.weight;
                             if(bone.IsChildOf(rightFoot))rightWeight+=weight.weight;
+                            if(torsoBones.Contains(bone))torsoWeight+=weight.weight;
+                            if(protectedBones.Contains(bone))protectedWeight+=weight.weight;
                         }
                         if(leftWeight>=.6f)left.Add(vertex);if(rightWeight>=.6f)right.Add(vertex);
+                        if(torsoWeight>=.5f)torso.Add(vertex);
+                        if(protectedWeight>=.5f)protectedBody.Add(vertex);
                     }
-                    if(left.Count>0 || right.Count>0)regions.Add(new Region{renderer=renderer,left=left.ToArray(),right=right.ToArray()});
+                    regions.Add(new Region{renderer=renderer,left=left.ToArray(),right=right.ToArray(),torso=torso.ToArray(),protectedBody=protectedBody.ToArray()});
                 }
             }
             public void Measure(out Vector3 left,out Vector3 right,out Vector3 bodyMinimum,out Vector3 bodyMaximum)
             {
                 left=right=new Vector3(0,float.PositiveInfinity,0);
                 bodyMinimum=Vector3.one*float.PositiveInfinity;bodyMaximum=Vector3.one*float.NegativeInfinity;
+                TorsoMinimum=bodyMinimum;TorsoMaximum=bodyMaximum;TorsoMaximumRadius=0;
                 foreach(var region in regions)
                 {
                     region.renderer.BakeMesh(baked,true);baked.GetVertices(vertices);
@@ -164,8 +183,44 @@ namespace BooterBigArm.Editor
                     }
                     foreach(var index in region.left){var world=region.renderer.transform.TransformPoint(vertices[index]);if(world.y<left.y)left=world;}
                     foreach(var index in region.right){var world=region.renderer.transform.TransformPoint(vertices[index]);if(world.y<right.y)right=world;}
+                    foreach(var index in region.torso)
+                    {
+                        var world=region.renderer.transform.TransformPoint(vertices[index])-root.position;
+                        TorsoMinimum=Vector3.Min(TorsoMinimum,world);TorsoMaximum=Vector3.Max(TorsoMaximum,world);
+                        TorsoMaximumRadius=Mathf.Max(TorsoMaximumRadius,new Vector2(world.x,world.z).magnitude);
+                    }
                 }
                 if(!Finite(left) || !Finite(right))throw new InvalidDataException("Target has no finite deformed foot regions.");
+                if(!Finite(TorsoMinimum) || !Finite(TorsoMaximum))throw new InvalidDataException("Target has no finite weighted torso region.");
+            }
+            public float MeasureCapsuleGap(float height,Vector3 center,float radius)
+            {
+                if(!float.IsFinite(height) || !Finite(center) || !float.IsFinite(radius) || radius<=0 || height<2*radius)
+                    throw new ArgumentException("A finite vertical capsule is required.");
+                var half=Mathf.Max(0,height*.5f-radius);var gap=float.NegativeInfinity;
+                foreach(var region in regions)
+                {
+                    region.renderer.BakeMesh(baked,true);baked.GetVertices(vertices);
+                    foreach(var index in region.protectedBody)
+                    {
+                        var point=region.renderer.transform.TransformPoint(vertices[index]);
+                        var closest=new Vector3(center.x,Mathf.Clamp(point.y,center.y-half,center.y+half),center.z);
+                        gap=Mathf.Max(gap,Vector3.Distance(point,closest)-radius);
+                    }
+                }
+                if(!float.IsFinite(gap))throw new InvalidDataException("The target has no protected body capsule sample.");
+                return gap;
+            }
+            public void MeasureSoles(out Vector3 left,out Vector3 right)
+            {
+                left=right=new Vector3(0,float.PositiveInfinity,0);
+                foreach(var region in regions)
+                {
+                    region.renderer.BakeMesh(baked,true);baked.GetVertices(vertices);
+                    foreach(var index in region.left){var point=region.renderer.transform.TransformPoint(vertices[index]);if(point.y<left.y)left=point;}
+                    foreach(var index in region.right){var point=region.renderer.transform.TransformPoint(vertices[index]);if(point.y<right.y)right=point;}
+                }
+                if(!Finite(left) || !Finite(right))throw new InvalidDataException("The active target has no finite sole samples.");
             }
             public void Dispose()=>Object.DestroyImmediate(baked);
         }

@@ -118,5 +118,9 @@ namespace BooterBigArm.Tests
             finally{AnimationPlaygroundPlayerIntegrationTests.CloseFixtureScene(scene);if(actions!=null)Object.DestroyImmediate(actions);}
         }
         private static void Invoke(object value,string method)=>value.GetType().GetMethod(method,BindingFlags.Instance|BindingFlags.NonPublic).Invoke(value,null);
+        [Test] public void AuthorInstallerCannotRunInsideTheValidationCopyOrInteractiveEditor()
+        {
+            Assert.Throws<System.InvalidOperationException>(()=>AnimationPlaygroundLayoutAuthoring.InstallPreparedAuthorSceneFromCli());
+        }
     }
 }

@@ -111,5 +111,18 @@ namespace BooterBigArm.Tests
             Assert.That(motor.TrySetAnimationPosture(owner,AnimationPlaygroundPosture.Standing,2),Is.True);
             Assert.That(shape.height,Is.EqualTo(2));
         }
+        [Test] public void ReviewedRadiusExpansionRequiresClearanceAndPreservesTheFootPlane()
+        {
+            obstacle=GameObject.CreatePrimitive(PrimitiveType.Cube);obstacle.transform.position=actor.transform.position+Vector3.right*.65f;
+            obstacle.transform.localScale=new Vector3(.1f,3,3);Physics.SyncTransforms();
+            Assert.That(motor.IsAnimationPostureShapeClear(1.6f,.7f),Is.False);
+            Assert.That(motor.TrySetAnimationPosture(owner,AnimationPlaygroundPosture.Crouched,1.6f,.7f),Is.False);
+            Assert.That(shape.radius,Is.EqualTo(.5f));Assert.That(shape.height,Is.EqualTo(2));
+            Object.DestroyImmediate(obstacle);Physics.SyncTransforms();
+            Assert.That(motor.TrySetAnimationPosture(owner,AnimationPlaygroundPosture.Crouched,1.6f,.7f),Is.True);
+            Assert.That(shape.center.y-shape.height*.5f,Is.EqualTo(-1).Within(.00001f));
+            Assert.That(motor.TrySetAnimationPosture(owner,AnimationPlaygroundPosture.Standing,2,float.NaN),Is.False);
+            Assert.That(motor.TryRestoreAnimationPosture(owner),Is.True);Assert.That(shape.radius,Is.EqualTo(.5f));
+        }
     }
 }

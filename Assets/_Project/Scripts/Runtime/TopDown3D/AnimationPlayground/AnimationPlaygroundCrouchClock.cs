@@ -31,7 +31,7 @@ namespace BooterBigArm.TopDown3D
             idleSeconds+=seconds;
             if(supported && speed>.08f)
             {
-                var before=cycles;cycles+=seconds/nominalCycleSeconds*Mathf.Clamp(speed/nominalSpeed,.5f,1.5f);
+                var before=cycles;cycles+=seconds/nominalCycleSeconds*Mathf.Clamp(speed/nominalSpeed,0,1.5f);
                 var first=(long)Math.Floor(before*4)+1;var last=(long)Math.Floor(cycles*4);
                 for(var marker=first;marker<=last;marker++)
                 {

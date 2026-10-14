@@ -1,0 +1,177 @@
+{
+  "schema": 1,
+  "date": "2026-10-14",
+  "state": "crouch-facing-and-grounding-fixture-qualified-physical-family-pending",
+  "parent_commit": "0b833a3e656e5f336dd6c96032988b24c6726daf",
+  "test_count": 67,
+  "failures": 0,
+  "skips": 0,
+  "mode": "isolated-EditMode-and-actual-runtime-graph-sampling",
+  "private_pairs": 97,
+  "grounding_samples": 257,
+  "direction_samples": 32,
+  "moving_weight_samples": 8,
+  "idle_phase_samples": 4,
+  "semantic_phase_samples": 129,
+  "intermediate_envelopes": 259,
+  "minimum_sole": -0.9103021621704102,
+  "feet_plane": -0.91,
+  "maximum_crouch_body_height": 1.5300449132919312,
+  "protected_capsule_margin": 0.03598380088806152,
+  "maximum_semantic_contact_gap": 0.011432170867919922,
+  "crouch_height": 1.57,
+  "crouch_radius": 0.4,
+  "standing_height": 1.82,
+  "roof_underside": 1.625,
+  "author_scene": {
+    "installed_stations": 12,
+    "source_sha256": "91df493660fcf6e4aa1ce735d9a8927189813da670ea2d0f6fdac829440b8ae4",
+    "saved_sha256": "cbf32a29aed75c475b23ff5d0fd8e6dca4711725853ca4512b01a3badc66fc44",
+    "existing_records": 604,
+    "after_records": 1278,
+    "added_records": 674,
+    "removed_records": 0,
+    "changed_record_ids": [
+      "451293423",
+      "451293422",
+      "2126727608"
+    ],
+    "camera_y_delta": -0.33,
+    "existing_booter_legger_terrain_records": "unchanged",
+    "terrain_bytes": "all-nine-match-sealed-layout",
+    "recovery_backup": "private-preserved-older-than-source-save",
+    "launch": "background-batchmode-after-no-author-process-and-free-lock"
+  },
+  "flags": {
+    "contactsQualified": false,
+    "groundingQualified": false
+  },
+  "remaining": [
+    "posture transition boundaries and interruption/disposal",
+    "equipment and terrain contact acceptance",
+    "other physical families and requested motion gaps",
+    "author-owned visual/contact/feel acceptance"
+  ],
+  "files": [
+    {
+      "path": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP03.prefab",
+      "sha256": "8b8c868b86b72d95048a0402dafed2ca6d89ef629cd830bfd37b1ad9fff56459",
+      "candidate_sha256": "8b8c868b86b72d95048a0402dafed2ca6d89ef629cd830bfd37b1ad9fff56459"
+    },
+    {
+      "path": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+      "sha256": "cbf32a29aed75c475b23ff5d0fd8e6dca4711725853ca4512b01a3badc66fc44",
+      "candidate_sha256": "cbf32a29aed75c475b23ff5d0fd8e6dca4711725853ca4512b01a3badc66fc44"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundCrouchFacingAuthoring.cs",
+      "sha256": "cc2a92780c8a90cb92ecf61a3a1d9350744f7ccc5f5e5d460717acef35a7a638",
+      "candidate_sha256": "cc2a92780c8a90cb92ecf61a3a1d9350744f7ccc5f5e5d460717acef35a7a638"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundCrouchFacingAuthoring.cs.meta",
+      "sha256": "b7eb9f12a62034c722ea28a2326d6dbf0f4ecb82e6862e7a2b53947d8aa96af5",
+      "candidate_sha256": "b7eb9f12a62034c722ea28a2326d6dbf0f4ecb82e6862e7a2b53947d8aa96af5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundCrouchPoseQualification.cs",
+      "sha256": "adf33cc25ddd1bac04b4be797269a1d94cff68ef0cdcf1297fe7781a61dcfba4",
+      "candidate_sha256": "adf33cc25ddd1bac04b4be797269a1d94cff68ef0cdcf1297fe7781a61dcfba4"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundCrouchPoseQualification.cs.meta",
+      "sha256": "a1e8bf200ee5682c9265ff1eef93ed84c2beb29f3d0c5066c3742360f42f01d7",
+      "candidate_sha256": "a1e8bf200ee5682c9265ff1eef93ed84c2beb29f3d0c5066c3742360f42f01d7"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundLayoutAuthoring.cs",
+      "sha256": "026ecfe61873786b674473bed72c9fd92fd8046ab85f3bcf90db1293398b910b",
+      "candidate_sha256": "026ecfe61873786b674473bed72c9fd92fd8046ab85f3bcf90db1293398b910b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundMotionSampler.cs",
+      "sha256": "eec5bff4bed550449ed20a532c4ab12d4027cc1f7f033ad37864f46ea2b19b79",
+      "candidate_sha256": "eec5bff4bed550449ed20a532c4ab12d4027cc1f7f033ad37864f46ea2b19b79"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundStationAuthoring.cs",
+      "sha256": "046c949a27eed32136b9721f0a6a8aaa46647b45d5806d4c3bacc7a3d64c75a3",
+      "candidate_sha256": "046c949a27eed32136b9721f0a6a8aaa46647b45d5806d4c3bacc7a3d64c75a3"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundCrouchClock.cs",
+      "sha256": "e3593472772654810ab470206ff31ddc803dcc10d17e7046baf1c6c7c4126831",
+      "candidate_sha256": "e3593472772654810ab470206ff31ddc803dcc10d17e7046baf1c6c7c4126831"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundCrouchController.cs",
+      "sha256": "c0b3c8519b680be3c0b6c8d2cd1b71c074a8e7ac23c754e47a675a00ab4683ee",
+      "candidate_sha256": "c0b3c8519b680be3c0b6c8d2cd1b71c074a8e7ac23c754e47a675a00ab4683ee"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundCrouchProfile.cs",
+      "sha256": "ed34b7dc281a94730f26647a43e7b8526d6d103b5c2ada5a8ac4783d9a979300",
+      "candidate_sha256": "ed34b7dc281a94730f26647a43e7b8526d6d103b5c2ada5a8ac4783d9a979300"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.Crouch.cs",
+      "sha256": "e636813be055f6427e9bd1bfa0cabcba5ce4f8ea5880fbe14f8ed838dbc69137",
+      "candidate_sha256": "e636813be055f6427e9bd1bfa0cabcba5ce4f8ea5880fbe14f8ed838dbc69137"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.AnimationPlayground.cs",
+      "sha256": "270d6a3723ef1f82d23e469bba11ec0fd672578583b5a5da770690a262d6505c",
+      "candidate_sha256": "270d6a3723ef1f82d23e469bba11ec0fd672578583b5a5da770690a262d6505c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs",
+      "sha256": "70999d49c2c7c6e4ab47cc6f02bae7e112937e75d9c070ddaf849748ee7c39d7",
+      "candidate_sha256": "70999d49c2c7c6e4ab47cc6f02bae7e112937e75d9c070ddaf849748ee7c39d7"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundCrouchClockTests.cs",
+      "sha256": "489b48b7d908da986c5fb27ad0c861696525a24da4487d1c2041e73bb7cbb5f2",
+      "candidate_sha256": "489b48b7d908da986c5fb27ad0c861696525a24da4487d1c2041e73bb7cbb5f2"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundCrouchControllerTests.cs",
+      "sha256": "77495aa04c4f9e96c13066260c5a3c9f15da6660107671d72e193efb8c6cf2a2",
+      "candidate_sha256": "77495aa04c4f9e96c13066260c5a3c9f15da6660107671d72e193efb8c6cf2a2"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundCrouchFacingTests.cs",
+      "sha256": "3d7c4d60a3d47209b585fee9d389fda81b590753a8dc2953de115b7433fe54c4",
+      "candidate_sha256": "3d7c4d60a3d47209b585fee9d389fda81b590753a8dc2953de115b7433fe54c4"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundCrouchFacingTests.cs.meta",
+      "sha256": "05e1df06b0a5e21e3b3bdc6c6ee7aad71a297477068f8d1515740c3ecd8bfbea",
+      "candidate_sha256": "05e1df06b0a5e21e3b3bdc6c6ee7aad71a297477068f8d1515740c3ecd8bfbea"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundCrouchGroundingTests.cs",
+      "sha256": "67dde548d502ec516fd84487ad30205264572891a4a1b1c829a2b620875964c8",
+      "candidate_sha256": "67dde548d502ec516fd84487ad30205264572891a4a1b1c829a2b620875964c8"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundCrouchGroundingTests.cs.meta",
+      "sha256": "85684c1531624a2c8083e49f1ee3768d8afb599099c824fcbc2b15b5c4745d38",
+      "candidate_sha256": "85684c1531624a2c8083e49f1ee3768d8afb599099c824fcbc2b15b5c4745d38"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundCrouchQualificationTests.cs",
+      "sha256": "4529e07f38c8dc99d3e6009517b286f5ecace3cac663169d478043d7e546dafa",
+      "candidate_sha256": "4529e07f38c8dc99d3e6009517b286f5ecace3cac663169d478043d7e546dafa"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundMotorTests.cs",
+      "sha256": "8cbc453603745e1ef91fc8be727331ae9e3159db0b1dc59296b30631cf7dae65",
+      "candidate_sha256": "8cbc453603745e1ef91fc8be727331ae9e3159db0b1dc59296b30631cf7dae65"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundStationTests.cs",
+      "sha256": "942ec6f0a373edd2f4a2f9a4023d1f78fea73efa041ba83d3e75d140cbf226f6",
+      "candidate_sha256": "942ec6f0a373edd2f4a2f9a4023d1f78fea73efa041ba83d3e75d140cbf226f6"
+    }
+  ]
+}

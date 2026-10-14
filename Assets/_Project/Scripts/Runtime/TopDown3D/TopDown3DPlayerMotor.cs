@@ -1258,6 +1258,7 @@ namespace BooterBigArm.TopDown3D
             Vector3 desiredPlanarVelocity,
             bool traversalOwnsMotion)
         {
+            if(animationPostureOwner!=null)MeasureLaboratoryDisplacement();
             var actualFacing = body != null
                 ? Vector3.ProjectOnPlane(body.rotation * Vector3.forward, Vector3.up).normalized
                 : facingDirection;
@@ -1313,6 +1314,7 @@ namespace BooterBigArm.TopDown3D
 
         private void ResetPresentationSnapshot()
         {
+            ResetLaboratoryMeasurement();
             LocomotionSnapshot = new TopDown3DLocomotionSnapshot(
                 Vector3.zero,
                 Vector3.zero,
