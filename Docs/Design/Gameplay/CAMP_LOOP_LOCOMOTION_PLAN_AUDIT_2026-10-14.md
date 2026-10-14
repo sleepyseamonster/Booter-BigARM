@@ -1,0 +1,24 @@
+# Walking, running and sprinting plan audit
+
+Date: 2026-10-14. Reviewed revision 1 at commit 36fe8610f against current runtime contracts, the locomotion audit, input standards and repository rules. This is a plan audit, with no new gameplay implementation, animation measurement or Play Mode run. Findings are incorporated into [implementation plan revision 2](./CAMP_LOOP_LOCOMOTION_IMPLEMENTATION_PLAN_2026-10-14.md).
+
+The work order is appropriate: qualify sources, repair sustained timing/grounding, then finish transitions and integrate. Revision 1 nevertheless left important contracts unresolved before coding. Revision 2 makes those decisions and evidence gates explicit.
+
+| Priority | Gap in revision 1 | Evidence / why it matters | Revision 2 correction |
+| --- | --- | --- | --- |
+| P1 | A three-gait profile or omitted transitions could conflict with mandatory roles; reviewed wider rates could be rejected by the existing validator. | TopDown3DLocomotionClipProfile requires every enum role and rejects rates outside 0.90–1.10. The driver constructs all twelve locomotion inputs. | Preserve valid serialized roles; gate unresolved dispatch via optional lab policy. Define a versioned/scoped timing extension without weakening production validation. Record full original-to-derived retiming. |
+| P1 | Simulation/render pose and contact timing was underspecified. | The driver uses GameTime, advances one-shots automatically, advances sustained phase in Update and emits contacts before the normal graph evaluation. Projection can manually evaluate the graph. | Completed physics samples own cadence; rendering does not advance contact state. Define timestamp/evaluation order and cycle-counted wrap/hitch handling, including bounded cosmetic catch-up. |
+| P1 | Stopping cadence under obstruction could freeze a raised foot; tiny travel could repeatedly enter starts. | Revision 1 required no blocked sustained steps but did not define the resulting pose/state. Current motor measurements and next-command snapshots differ. | Add blocked/low-motion settling, state hysteresis and restart suppression. Separate supported weight-transfer plants from sustained footsteps. |
+| P1 | Actual distance and acceptance measurements were ambiguous. | World/render displacement includes settlement, interpolation and ownership discontinuities. Net stance displacement can hide skating. A finite phase grid and bone drift proxy do not establish contact locking. | Use completed support-tangent motion; define patch/window excursion and cumulative drift, effective rate budgets, adaptive sampling/error limits and meaningful cadence continuity checks. |
+| P2 | Equipment was late and its initialization/quality history was not covered. | Existing driver equipment normalization is invoked through action projection paths. The prior audit used the bare rig; one/two/four influence settings can change evaluated geometry. | Screen equipment early, then run equipped matrices, cold startup and return-from-action cases. Verify body/pack clearance as well as sole height. |
+| P2 | Runtime cost, early visual feedback and promotion/rollback proof were incomplete. | Full native mesh baking is appropriate offline, not an assumed runtime solution. The prior audit used an older frozen scene. Waiting until the last step for motion feedback risks polishing an unsuitable family. | Add a bounded runtime sampling/performance gate, an explicitly limited early author review, current-scene dependency validation and scoped rollback preserving concurrent work. |
+
+Revision 2 also states keyboard modifier precedence, continuous analog handling, prompt/rebind/neutral ownership and camera-relative steering checks. It keeps the author responsible for Play Mode/feel acceptance, preserves fixed native terrain and the existing actor/graph, and does not resume other animation families.
+
+## Implementation decisions still required
+
+L0 must record the schema/dispatch, clock/evaluation, support-motion and idle/blocked contracts. L1 must select the motion family and seal rate/drift/geometry budgets using measured source behavior. The exact retiming solution and performance budget remain engineering decisions supported by those measurements; the plan does not invent accepted values in advance.
+
+The existing 21 passing locomotion/gait tests remain historical structural evidence. They do not validate these plan revisions or repair the measured defects. Implementation must add the stated behavioral checks and obtain the author's visual acceptance.
+
+Verification for this audit consists of source/plan review, document routing/link checks and a scoped whitespace/diff audit. No runtime, profile, private payload, scene, package or user preference was changed. Broader implementation remains stopped until the author requests the locomotion slice.
