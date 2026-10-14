@@ -84,17 +84,19 @@ namespace BooterBigArm.TopDown3D
             mixer.SetInputWeight(PoseBlendInputIndex,1-amount);
             var height=Mathf.Lerp(poseBlendSourceHeight,visualInstance.transform.localPosition.y-visualLocalPosition.y,amount);
             visualInstance.transform.localPosition=visualLocalPosition+Vector3.up*height;
-            LastPoseBlendGroundCorrection=0;
-            if(footProjectionSampler!=null)
-            {
-                playableGraph.Evaluate(0);
-                var minimum=footProjectionSampler.MinimumWorldY();
-                var plane=transform.TransformPoint(Vector3.up*laboratoryFeetPlane).y;
-                var correction=Mathf.Max(0,plane-minimum);
-                if(!float.IsFinite(correction) || correction>.18f)throw new InvalidOperationException("The transition ground correction exceeds its qualified envelope.");
-                visualInstance.transform.localPosition+=Vector3.up*correction;LastPoseBlendGroundCorrection=correction;
-            }
+            ProjectLaboratoryFootPlane();
             if(amount>=1)ReleasePoseBlend();
+        }
+        private void ProjectLaboratoryFootPlane()
+        {
+            LastPoseBlendGroundCorrection=0;
+            if(footProjectionSampler==null)return;
+            playableGraph.Evaluate(0);
+            var minimum=footProjectionSampler.MinimumWorldY();
+            var plane=transform.TransformPoint(Vector3.up*laboratoryFeetPlane).y;
+            var correction=Mathf.Max(0,plane-minimum);
+            if(!float.IsFinite(correction) || correction>.18f)throw new InvalidOperationException("The posture ground correction exceeds its qualified envelope.");
+            visualInstance.transform.localPosition+=Vector3.up*correction;LastPoseBlendGroundCorrection=correction;
         }
         private bool PresentStandingPoseBlend()
         {

@@ -101,6 +101,23 @@ namespace BooterBigArm.Tests
                 Invoke(session,"Start");Assert.That(session.Readiness,Is.EqualTo(AnimationPlaygroundReadiness.VisualReady),session.UnavailableReason);
                 var menu=TopDown3DGameHudCanvas.FindInScene<TopDown3DMenuController>(scene);
                 var station=session.Stations.Single(value=>value.StationId=="AP03");
+                Assert.That(session.CrouchReady,Is.True);
+                var physical=station.Targets.Single(value=>value.ActionKind==AnimationPlaygroundActionKind.Crouch);
+                Assert.That(physical.IsAvailable,Is.True);Assert.That(physical.Prompt,Is.EqualTo("Crouch or stand"));
+                Assert.That(station.Status,Does.Contain("Crouch ready"));
+                Assert.That(station.Targets.Single(value=>value.ActionKind==AnimationPlaygroundActionKind.Slide).IsAvailable,Is.False);
+                Assert.That(session.Stations.Single(value=>value.StationId=="AP08").Targets.Single(value=>value.ActionKind==AnimationPlaygroundActionKind.Crouch).IsAvailable,Is.False);
+                string feedback=null;player.GetComponent<TopDown3DPlayerActionController>().FeedbackRequested+=message=>feedback=message;
+                typeof(TopDown3DPlayerMotor).GetField("<SprintActive>k__BackingField",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(player,true);
+                Invoke(session,"ToggleCrouch");Assert.That(feedback,Does.Contain("Sliding"));Assert.That(session.Coordinator.IsBusy,Is.False);
+                Assert.That(player.AnimationPosture,Is.EqualTo(AnimationPlaygroundPosture.Standing));
+                typeof(TopDown3DPlayerMotor).GetField("<SprintActive>k__BackingField",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(player,false);
+                foreach(var command in new[]{"AnimationJumpRequested","AnimationActionRequested"})
+                {
+                    feedback=null;
+                    ((Action)typeof(TopDown3DInputRouter).GetField(command,BindingFlags.Instance|BindingFlags.NonPublic).GetValue(input)).Invoke();
+                    Assert.That(feedback,Is.Not.Null);Assert.That(session.Coordinator.IsBusy,Is.False);
+                }
                 var inspect=station.Targets.Single(value=>value.ActionKind==AnimationPlaygroundActionKind.Preview);var old=new TopDown3DInteractionTarget(inspect);
                 Assert.That(session.TryBegin(old),Is.True);Assert.That(menu.IsOpen,Is.True);
                 var choices=(System.Collections.Generic.List<AnimationPlaygroundCatalogEntry>)typeof(TopDown3DMenuController).GetField("animationChoices",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(menu);
@@ -114,6 +131,8 @@ namespace BooterBigArm.Tests
                 Assert.That(prop.transform.position,Is.EqualTo(initial));Assert.That(input.LaboratoryResetBlocked,Is.False);
                 Assert.That(session.Stations.All(value=>value.Epoch>0),Is.True);
                 Assert.That(scene.GetRootGameObjects().SelectMany(root=>root.GetComponentsInChildren<TopDown3DAuthoredIronstoneNode>(true)).Count(),Is.EqualTo(12));
+                var physicalCapture=new TopDown3DInteractionTarget(physical);station.Unbind();
+                Assert.That(physicalCapture.IsValid,Is.False);Assert.That(physical.IsAvailable,Is.False);
             }
             finally{AnimationPlaygroundPlayerIntegrationTests.CloseFixtureScene(scene);if(actions!=null)Object.DestroyImmediate(actions);}
         }

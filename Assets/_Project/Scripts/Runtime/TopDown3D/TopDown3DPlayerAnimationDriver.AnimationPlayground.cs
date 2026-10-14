@@ -13,6 +13,7 @@ namespace BooterBigArm.TopDown3D
         private double animationPresentationTime;
         private bool animationPreview;
         private float animationHeightCorrection;
+        private bool animationFootProjection;
         public bool AnimationPresentationOwned => animationPresentationOwner != null;
 
         public bool TryBeginAnimationPresentation(object owner, AnimationClip clip, bool preview = false)
@@ -49,6 +50,11 @@ namespace BooterBigArm.TopDown3D
             ReleaseAnimationPresentation();
             return true;
         }
+        public bool SetAnimationFootProjection(object owner,bool enabled)
+        {
+            if(owner==null || !ReferenceEquals(owner,animationPresentationOwner) || animationPreview)return false;
+            animationFootProjection=enabled;return true;
+        }
 
         private bool PresentAnimationAction()
         {
@@ -60,7 +66,8 @@ namespace BooterBigArm.TopDown3D
             for (var i = 0; i < ClipCount; i++) mixer.SetInputWeight(i, i == AnimationActionIndex ? 1 : 0);
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition+Vector3.up*animationHeightCorrection, Quaternion.Euler(visualLocalEulerAngles));
             CurrentLocomotionState = TopDown3DLocomotionState.ConstrainedAction;
-            ApplyPoseBlend();
+            var blending=PoseBlendOwned;ApplyPoseBlend();
+            if(animationFootProjection && !blending)ProjectLaboratoryFootPlane();
             // No legacy locomotion/contact clock advances while this branch owns the pose.
             return true;
         }
@@ -89,6 +96,7 @@ namespace BooterBigArm.TopDown3D
             animationPresentationTime = 0;
             animationPreview = false;
             animationHeightCorrection=0;
+            animationFootProjection=false;
             ResetTransitionState(TopDown3DLocomotionState.Idle);
             locomotionPhase = 0;
             smoothedPlanarSpeed = 0;

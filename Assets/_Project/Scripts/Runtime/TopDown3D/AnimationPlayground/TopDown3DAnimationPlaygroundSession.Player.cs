@@ -20,6 +20,8 @@ namespace BooterBigArm.TopDown3D
         public bool IsBusy => coordinator != null && coordinator.IsBusy || crouch!=null && crouch.Transitioning;
         public TopDown3DPlayerMotor Player => player;
         public AnimationPlaygroundActionCoordinator Coordinator => coordinator;
+        public bool CrouchReady=>servicesBound && isActiveAndEnabled && PreviewReady && crouch!=null && bindings!=null
+            && bindings.crouch!=null && bindings.crouch.contactsQualified && bindings.crouch.groundingQualified && bindings.footProjection!=null;
 
         public void ConfigurePlayer(TopDown3DPlayerMotor value, Transform[] returns)
         {
@@ -87,6 +89,8 @@ namespace BooterBigArm.TopDown3D
                 ownsInput = () => IsBusy || crouch!=null && crouch.Active;
                 playerInput.AnimationActionOwned = ownsInput;
                 playerInput.AnimationCancelRequested += CancelOwnedAction;
+                playerInput.AnimationJumpRequested += UnavailableJump;
+                playerInput.AnimationActionRequested += UnavailableAction;
                 menu.AnimationSelectionChanged += SelectMotion;
                 menu.AnimationPreviewRequested += PreviewMotion;
                 menu.AnimationResetRequested += ResetSession;
@@ -120,7 +124,13 @@ namespace BooterBigArm.TopDown3D
             if (!coordinator.TryBeginPreview(binding)) playerAction.ReportFeedback("This motion is unavailable for preview.");
         }
         private void ToggleCrouch()
-        {if(crouch!=null && !crouch.TryToggle())playerAction.ReportFeedback(crouch.LastFailure);}
+        {
+            if(!CrouchReady){playerAction?.ReportFeedback("Qualified crouch dependencies are unavailable.");return;}
+            if(!crouch.Active && player.SprintActive){playerAction.ReportFeedback("Sliding awaits motion and collision qualification.");return;}
+            if(!crouch.TryToggle())playerAction.ReportFeedback(crouch.LastFailure);
+        }
+        private void UnavailableJump()=>playerAction?.ReportFeedback("Jump and landing qualification is still pending.");
+        private void UnavailableAction()=>playerAction?.ReportFeedback("This action needs a qualified interaction at a test station.");
         private void CancelOwnedAction()
         {
             if(crouch!=null && crouch.Active)
@@ -129,7 +139,8 @@ namespace BooterBigArm.TopDown3D
         }
         public bool TryBegin(TopDown3DInteractionTarget target)
         {
-            if(TryDispatchStation(target)) return true;
+            if(TryDispatchStation(target,out var handled)) return true;
+            if(handled)return false;
             playerAction?.ReportFeedback(string.IsNullOrEmpty(selectedSource)
                 ? "Choose an animation variant in the lab palette."
                 : "This station's physical action is awaiting contact and movement qualification.");
@@ -171,6 +182,8 @@ namespace BooterBigArm.TopDown3D
             {
                 playerInput.AnimationCancelRequested -= CancelOwnedAction;
                 playerInput.AnimationCrouchRequested -= ToggleCrouch;
+                playerInput.AnimationJumpRequested -= UnavailableJump;
+                playerInput.AnimationActionRequested -= UnavailableAction;
                 if (ReferenceEquals(playerInput.AnimationActionOwned, ownsInput)) playerInput.AnimationActionOwned = null;
             }
             if (menu != null)

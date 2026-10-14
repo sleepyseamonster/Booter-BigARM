@@ -82,7 +82,9 @@ namespace BooterBigArm.TopDown3D
             }
             correction+=crouchProfile.GroundCorrection(crouchPose.Direction,crouchPose.MovingWeight,crouchPose.Phase);
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition+Vector3.up*correction,Quaternion.Euler(visualLocalEulerAngles));
-            ApplyPoseBlend();CurrentLocomotionState=TopDown3DLocomotionState.Sustained;return true;
+            var blending=PoseBlendOwned;ApplyPoseBlend();
+            if(!blending)ProjectLaboratoryFootPlane();
+            CurrentLocomotionState=TopDown3DLocomotionState.Sustained;return true;
         }
         public bool TryEmitCrouchFootContact(object owner,TopDown3DFootSide side,float speed)
         {

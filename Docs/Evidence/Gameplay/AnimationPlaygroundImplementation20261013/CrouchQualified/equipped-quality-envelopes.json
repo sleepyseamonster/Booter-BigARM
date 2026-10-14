@@ -1,0 +1,405 @@
+{
+    "state": "qualified-equipped-crouch-poses",
+    "roofUnderside": 1.7799999713897706,
+    "envelopes": [
+        {
+            "role": "Bone1.Enter",
+            "minimumSole": -0.9100000858306885,
+            "minimumEquipment": -0.9100000858306885,
+            "maximumHeight": 1.7926931381225587,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone1.Exit",
+            "minimumSole": -0.9100000858306885,
+            "minimumEquipment": -0.9427090287208557,
+            "maximumHeight": 1.7938940525054932,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone1.Idle",
+            "minimumSole": -0.9100000262260437,
+            "minimumEquipment": -0.9100000262260437,
+            "maximumHeight": 1.3607189655303956,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone1.Direction0.Weight1",
+            "minimumSole": -0.9077768325805664,
+            "minimumEquipment": -0.9077768325805664,
+            "maximumHeight": 1.608604907989502,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone1.Direction0.Weight2",
+            "minimumSole": -0.9050002098083496,
+            "minimumEquipment": -0.9050002098083496,
+            "maximumHeight": 1.6295921802520753,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone1.Direction1.Weight1",
+            "minimumSole": -0.9077107310295105,
+            "minimumEquipment": -0.9077107310295105,
+            "maximumHeight": 1.581230878829956,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone1.Direction1.Weight2",
+            "minimumSole": -0.9050003290176392,
+            "minimumEquipment": -0.9050003290176392,
+            "maximumHeight": 1.7087613344192505,
+            "maximumProjectionError": 7.152557373046875e-7
+        },
+        {
+            "role": "Bone1.Direction2.Weight1",
+            "minimumSole": -0.9077014327049255,
+            "minimumEquipment": -0.9077014327049255,
+            "maximumHeight": 1.5860651731491089,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone1.Direction2.Weight2",
+            "minimumSole": -0.9050002098083496,
+            "minimumEquipment": -0.9050002098083496,
+            "maximumHeight": 1.6461195945739747,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone1.Direction3.Weight1",
+            "minimumSole": -0.9075809121131897,
+            "minimumEquipment": -0.9075809121131897,
+            "maximumHeight": 1.5853965282440186,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone1.Direction3.Weight2",
+            "minimumSole": -0.9050003290176392,
+            "minimumEquipment": -0.9050003290176392,
+            "maximumHeight": 1.7222559452056885,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone1.Direction4.Weight1",
+            "minimumSole": -0.9076307415962219,
+            "minimumEquipment": -0.9076307415962219,
+            "maximumHeight": 1.6154111623764039,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone1.Direction4.Weight2",
+            "minimumSole": -0.9050003886222839,
+            "minimumEquipment": -0.9050003886222839,
+            "maximumHeight": 1.6440465450286866,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone1.Direction5.Weight1",
+            "minimumSole": -0.9075813293457031,
+            "minimumEquipment": -0.9075813293457031,
+            "maximumHeight": 1.60451078414917,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone1.Direction5.Weight2",
+            "minimumSole": -0.9050003886222839,
+            "minimumEquipment": -0.9050003886222839,
+            "maximumHeight": 1.7333335876464844,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone1.Direction6.Weight1",
+            "minimumSole": -0.9078040719032288,
+            "minimumEquipment": -0.9078040719032288,
+            "maximumHeight": 1.592452049255371,
+            "maximumProjectionError": 4.76837158203125e-7
+        },
+        {
+            "role": "Bone1.Direction6.Weight2",
+            "minimumSole": -0.9050003290176392,
+            "minimumEquipment": -0.9050003290176392,
+            "maximumHeight": 1.6643311977386475,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone1.Direction7.Weight1",
+            "minimumSole": -0.9077506065368652,
+            "minimumEquipment": -0.9077506065368652,
+            "maximumHeight": 1.5878249406814576,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone1.Direction7.Weight2",
+            "minimumSole": -0.9050002098083496,
+            "minimumEquipment": -0.9050002098083496,
+            "maximumHeight": 1.6905949115753174,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone2.Enter",
+            "minimumSole": -0.9100000858306885,
+            "minimumEquipment": -1.0498614311218262,
+            "maximumHeight": 1.7926925420761109,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone2.Exit",
+            "minimumSole": -0.9100000858306885,
+            "minimumEquipment": -1.1187858581542969,
+            "maximumHeight": 1.7938939332962037,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone2.Idle",
+            "minimumSole": -0.9089633822441101,
+            "minimumEquipment": -0.9909762740135193,
+            "maximumHeight": 1.3607184886932374,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone2.Direction0.Weight1",
+            "minimumSole": -0.909614622592926,
+            "minimumEquipment": -0.909614622592926,
+            "maximumHeight": 1.608604907989502,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone2.Direction0.Weight2",
+            "minimumSole": -0.9066010117530823,
+            "minimumEquipment": -0.9066010117530823,
+            "maximumHeight": 1.6295921802520753,
+            "maximumProjectionError": 8.344650268554688e-7
+        },
+        {
+            "role": "Bone2.Direction1.Weight1",
+            "minimumSole": -0.9091275930404663,
+            "minimumEquipment": -0.9091275930404663,
+            "maximumHeight": 1.581230878829956,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone2.Direction1.Weight2",
+            "minimumSole": -0.9069734811782837,
+            "minimumEquipment": -0.9069734811782837,
+            "maximumHeight": 1.7087613344192505,
+            "maximumProjectionError": 7.152557373046875e-7
+        },
+        {
+            "role": "Bone2.Direction2.Weight1",
+            "minimumSole": -0.90799480676651,
+            "minimumEquipment": -0.90799480676651,
+            "maximumHeight": 1.5860651731491089,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone2.Direction2.Weight2",
+            "minimumSole": -0.9056627750396729,
+            "minimumEquipment": -0.9056627750396729,
+            "maximumHeight": 1.6461195945739747,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone2.Direction3.Weight1",
+            "minimumSole": -0.909241795539856,
+            "minimumEquipment": -0.909241795539856,
+            "maximumHeight": 1.5853965282440186,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone2.Direction3.Weight2",
+            "minimumSole": -0.9062615036964417,
+            "minimumEquipment": -0.9062615036964417,
+            "maximumHeight": 1.7222559452056885,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone2.Direction4.Weight1",
+            "minimumSole": -0.9093831181526184,
+            "minimumEquipment": -0.9093831181526184,
+            "maximumHeight": 1.6154111623764039,
+            "maximumProjectionError": 4.76837158203125e-7
+        },
+        {
+            "role": "Bone2.Direction4.Weight2",
+            "minimumSole": -0.9070909023284912,
+            "minimumEquipment": -0.9070909023284912,
+            "maximumHeight": 1.6440465450286866,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone2.Direction5.Weight1",
+            "minimumSole": -0.9089779257774353,
+            "minimumEquipment": -0.9089779257774353,
+            "maximumHeight": 1.60451078414917,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone2.Direction5.Weight2",
+            "minimumSole": -0.9065042734146118,
+            "minimumEquipment": -0.9065042734146118,
+            "maximumHeight": 1.7333335876464844,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone2.Direction6.Weight1",
+            "minimumSole": -0.9093711376190186,
+            "minimumEquipment": -0.9093711376190186,
+            "maximumHeight": 1.592452049255371,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone2.Direction6.Weight2",
+            "minimumSole": -0.9059228897094727,
+            "minimumEquipment": -0.9059228897094727,
+            "maximumHeight": 1.6643311977386475,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone2.Direction7.Weight1",
+            "minimumSole": -0.9092028141021729,
+            "minimumEquipment": -0.9092028141021729,
+            "maximumHeight": 1.5878249406814576,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone2.Direction7.Weight2",
+            "minimumSole": -0.9070883393287659,
+            "minimumEquipment": -0.9070883393287659,
+            "maximumHeight": 1.6905949115753174,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone4.Enter",
+            "minimumSole": -0.9100000858306885,
+            "minimumEquipment": -1.0498614311218262,
+            "maximumHeight": 1.7926925420761109,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone4.Exit",
+            "minimumSole": -0.9100000858306885,
+            "minimumEquipment": -1.1187858581542969,
+            "maximumHeight": 1.7938939332962037,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone4.Idle",
+            "minimumSole": -0.9089748859405518,
+            "minimumEquipment": -0.9909762740135193,
+            "maximumHeight": 1.3607184886932374,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone4.Direction0.Weight1",
+            "minimumSole": -0.909614622592926,
+            "minimumEquipment": -0.909614622592926,
+            "maximumHeight": 1.608604907989502,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone4.Direction0.Weight2",
+            "minimumSole": -0.9066010117530823,
+            "minimumEquipment": -0.9066010117530823,
+            "maximumHeight": 1.6295921802520753,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone4.Direction1.Weight1",
+            "minimumSole": -0.9091275930404663,
+            "minimumEquipment": -0.9091275930404663,
+            "maximumHeight": 1.581230878829956,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone4.Direction1.Weight2",
+            "minimumSole": -0.9069734811782837,
+            "minimumEquipment": -0.9069734811782837,
+            "maximumHeight": 1.7087613344192505,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone4.Direction2.Weight1",
+            "minimumSole": -0.90799480676651,
+            "minimumEquipment": -0.90799480676651,
+            "maximumHeight": 1.5860651731491089,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone4.Direction2.Weight2",
+            "minimumSole": -0.9056627750396729,
+            "minimumEquipment": -0.9056627750396729,
+            "maximumHeight": 1.6461195945739747,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone4.Direction3.Weight1",
+            "minimumSole": -0.909241795539856,
+            "minimumEquipment": -0.909241795539856,
+            "maximumHeight": 1.5853965282440186,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone4.Direction3.Weight2",
+            "minimumSole": -0.9062615036964417,
+            "minimumEquipment": -0.9062615036964417,
+            "maximumHeight": 1.7222559452056885,
+            "maximumProjectionError": 6.556510925292969e-7
+        },
+        {
+            "role": "Bone4.Direction4.Weight1",
+            "minimumSole": -0.9093831181526184,
+            "minimumEquipment": -0.9093831181526184,
+            "maximumHeight": 1.6154111623764039,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone4.Direction4.Weight2",
+            "minimumSole": -0.9070909023284912,
+            "minimumEquipment": -0.9070909023284912,
+            "maximumHeight": 1.6440465450286866,
+            "maximumProjectionError": 4.76837158203125e-7
+        },
+        {
+            "role": "Bone4.Direction5.Weight1",
+            "minimumSole": -0.9089779257774353,
+            "minimumEquipment": -0.9089779257774353,
+            "maximumHeight": 1.60451078414917,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone4.Direction5.Weight2",
+            "minimumSole": -0.9065042734146118,
+            "minimumEquipment": -0.9065042734146118,
+            "maximumHeight": 1.7333335876464844,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone4.Direction6.Weight1",
+            "minimumSole": -0.9093711376190186,
+            "minimumEquipment": -0.9093711376190186,
+            "maximumHeight": 1.592452049255371,
+            "maximumProjectionError": 5.364418029785156e-7
+        },
+        {
+            "role": "Bone4.Direction6.Weight2",
+            "minimumSole": -0.9059228897094727,
+            "minimumEquipment": -0.9059228897094727,
+            "maximumHeight": 1.6643311977386475,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone4.Direction7.Weight1",
+            "minimumSole": -0.9092028141021729,
+            "minimumEquipment": -0.9092028141021729,
+            "maximumHeight": 1.5878249406814576,
+            "maximumProjectionError": 5.960464477539063e-7
+        },
+        {
+            "role": "Bone4.Direction7.Weight2",
+            "minimumSole": -0.9070883393287659,
+            "minimumEquipment": -0.9070883393287659,
+            "maximumHeight": 1.6905949115753174,
+            "maximumProjectionError": 5.960464477539063e-7
+        }
+    ]
+}

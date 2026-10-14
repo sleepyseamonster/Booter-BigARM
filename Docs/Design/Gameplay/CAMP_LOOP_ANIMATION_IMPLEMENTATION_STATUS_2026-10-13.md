@@ -11,7 +11,7 @@ Started 2026-10-13 from `e5a6e8b9d`, following the [revised plan](./CAMP_LOOP_AN
 
 FND3 is implemented: a runtime-owned lab input clone preserves original binding IDs, adds deterministic lab bindings, routes commands through release/focus/device/modal gates, and gives owned-action cancel priority over idle pickup. Controls include new actions in coactive conflict checks and expose them in Settings. Compatible production preferences can seed a new lab preference set without writing either file; existing lab data wins. The authored 71-motion public catalog retains three restricted sources and offers 68 candidates through an eight-row paged panel inside the existing menu owner. Selection remains separate from physical execution; preview stays unavailable until private imports qualify. See the [input/palette evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Input/README.md).
 
-The calibrated player cutover and preview/bootstrap wiring are installed in saved scene data. Final controller/contact qualification, author-scene station installation and motion-gap closure remain. The background author editor's current refresh is unconfirmed. No physical action is promoted from preview alone.
+The calibrated player cutover, preview/bootstrap wiring and twelve station areas are installed. The crouch family is now enabled through its qualified private profile and AP03 interaction. Other physical families, motion-gap closure and author acceptance remain. Physical readiness is established separately from preview.
 
 ## Calibrated player integration
 
@@ -86,6 +86,16 @@ A private paired foot cache now corrects arbitrary outgoing pose snapshots in th
 The author clarified that the visible capsule is a placeholder. The actual CapsuleCollider remains an adjustable collision approximation; the driver already hides the placeholder renderer when the character initializes. A roughly 3cm upper-body extension in two standing stop snapshots is recorded for fitting and visual review, rather than adding an input gate. Real overhead/wall clearance still controls posture changes.
 
 The equipped-pose check and physical family handoff continue. See [projection evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/FootProjection/README.md). Other physical families and requested motion gaps remain in the active goal.
+
+## Qualified crouch controls — October 14
+
+Crouching is enabled through V/gamepad left-stick press and AP03's interaction. The existing motor, displacement clock and single animation output retain their ownership. Real clearance, blocked standing, pause/cancel and ordered reset/recovery remain enforced. AP03 reports crouch readiness and leaves slide unavailable; AP08 does not claim cover readiness. Pending slide, jump and action commands provide feedback.
+
+The paired foot projection now covers whole crouch transitions and sustained poses. Fifty-seven equipped envelopes contain 7,353 samples across one, two and four global skin weights, with no change to the saved quality settings. The measured backpack maximum is 1.73334m; AP03's roof underside is 1.78m, with over 46mm of measured clearance and standing blocked by the 1.82m capsule.
+
+All 75 focused Edit Mode checks pass against the isolated scene with its concurrent salvage dependencies restored. The new 98-pair PHY1CrouchQualified checkpoint captures and dry-restores the enabled private flags, preserving source/import bytes and GUIDs. Concurrent scene, inventory, salvage and other work remains outside this task's commit. See [qualified crouch evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/CrouchQualified/README.md).
+
+The full implementation goal remains active: remaining PHY1 actions, other physical families, requested motion gaps and author appearance/feel acceptance are unfinished. Terrain contact and crouch start/stop/cloak fitting remain visual review items.
 
 ## Validation and source boundaries
 

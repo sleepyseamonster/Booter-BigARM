@@ -53,6 +53,7 @@ namespace BooterBigArm.TopDown3D
             initialParent = transform.parent; initialPosition = transform.localPosition; initialRotation = transform.localRotation; initialScale = transform.localScale;
             try
             {
+                RefreshActionAvailability();
                 foreach (var prop in props) prop.Bind(registry);
                 registry.Register(this); owner.ReadinessChanged += RefreshStatus; RefreshStatus();
             }
@@ -70,6 +71,7 @@ namespace BooterBigArm.TopDown3D
         }
         public void RefreshStatus()
         {
+            RefreshActionAvailability();
             var preview = 0; var imported = 0; var restricted = 0;
             if (session != null && session.Catalog != null)
                 foreach (var entry in session.Catalog.entries)
@@ -80,10 +82,21 @@ namespace BooterBigArm.TopDown3D
                     if (binding != null && binding.readiness >= AnimationPlaygroundMotionReadiness.ImportQualified) imported++;
                     if (binding?.CanPreview == true && session.PreviewReady) preview++;
                 }
+            var physical=stationId=="AP03" && session?.CrouchReady==true ? "Crouch ready | slide qualification pending" : missingGate;
             Status = session?.Readiness == AnimationPlaygroundReadiness.Failed ? session.UnavailableReason
-                : $"Imported {imported} | Preview {preview} | Restricted {restricted}\nPhysical: {missingGate}";
+                : $"Imported {imported} | Preview {preview} | Restricted {restricted}\nPhysical: {physical}";
             var text = stationId + "  " + title + "\n" + Status + "\nInspect terminal: variants | Reset terminal: session";
             if (sign != null && sign.text != text) sign.text = text;
+        }
+        private void RefreshActionAvailability()
+        {
+            if(stationId!="AP03")return;
+            foreach(var target in targets)
+                if(target!=null && target.ActionKind==AnimationPlaygroundActionKind.Crouch)
+                {
+                    var ready=session?.CrouchReady==true;target.SetAvailable(ready);
+                    target.SetPrompt(ready ? "Crouch or stand" : "Crouch unavailable");
+                }
         }
         public void InvalidateForReset(uint epoch)
         {
@@ -103,6 +116,7 @@ namespace BooterBigArm.TopDown3D
             if (session != null) session.ReadinessChanged -= RefreshStatus;
             foreach (var prop in props) if (prop != null) prop.Unbind();
             registry?.Unregister(this); registry = null; session = null; viewCamera = null;
+            RefreshActionAvailability();
         }
         private void OnDisable() => InvalidateForReset(0);
         private void OnDestroy() => Unbind();

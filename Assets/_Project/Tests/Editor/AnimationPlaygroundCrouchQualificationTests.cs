@@ -32,13 +32,14 @@ namespace BooterBigArm.Tests
             Assert.That(AnimationPlaygroundCrouchProfile.OrderedContacts(new[]{0f,float.NaN},new[]{.25f,.75f}),Is.False);
             Assert.That(AnimationPlaygroundCrouchProfile.OrderedContacts(new[]{0f},new[]{.25f,.75f}),Is.False);
         }
-        [Test,Category("PrivateAnimationQualification")] public void HydratedDraftHasSevenHumanoidRolesButCannotPerformPhysicalActions()
+        [Test,Category("PrivateAnimationQualification")] public void HydratedCrouchHasSevenQualifiedHumanoidRoles()
         {
             var profile=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundCrouchProfile>(AnimationPlaygroundMobilityAuthoring.CrouchProfilePath);
             Assert.That(profile,Is.Not.Null,"Restore all private pairs before running this gate.");
             Assert.That(profile.Validate(out var error,false),Is.True,error);
-            Assert.That(profile.Validate(out _,true),Is.False);
-            Assert.That(profile.contactsQualified,Is.False);
+            Assert.That(profile.Validate(out error,true),Is.True,error);
+            Assert.That(profile.contactsQualified,Is.True);
+            Assert.That(profile.groundingQualified,Is.True);
             foreach(AnimationPlaygroundCrouchRole role in Enum.GetValues(typeof(AnimationPlaygroundCrouchRole)))
             {
                 var entry=profile.Get(role);Assert.That(entry,Is.Not.Null);Assert.That(entry.clip.isHumanMotion,Is.True);

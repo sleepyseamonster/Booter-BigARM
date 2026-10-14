@@ -35,6 +35,8 @@ namespace BooterBigArm.TopDown3D
             return false;
         }
         public void SetAvailable(bool value) { if(available != value){Invalidate();available=value;} }
+        public void SetPrompt(string value)
+        {if(string.IsNullOrWhiteSpace(value))throw new ArgumentException("A target prompt is required.");prompt=value;}
         public void Invalidate() => Epoch=unchecked(Epoch+1);
         private void OnDisable() => Invalidate();
     }

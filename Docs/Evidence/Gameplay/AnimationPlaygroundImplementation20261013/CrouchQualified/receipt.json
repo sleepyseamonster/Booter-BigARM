@@ -1,0 +1,95 @@
+{
+  "schema": 1,
+  "date": "2026-10-14",
+  "state": "crouch-enabled-full-playground-pending",
+  "test_count": 75,
+  "test_failures": 0,
+  "test_skips": 0,
+  "private_pairs": 98,
+  "physical_flags": {
+    "contactsQualified": true,
+    "groundingQualified": true
+  },
+  "envelopes": 57,
+  "pose_samples": 7353,
+  "skin_weight_counts": [
+    1,
+    2,
+    4
+  ],
+  "source_renderer_quality": "Auto",
+  "feet_plane": -0.91,
+  "minimum_sole": -0.9100000858306885,
+  "maximum_projection_error": 8.344650268554688E-07,
+  "maximum_equipped_crouch_height": 1.7333335876464844,
+  "roof_underside": 1.78,
+  "standing_capsule_height": 1.82,
+  "crouch_capsule_height": 1.57,
+  "crouch_capsule_radius": 0.4,
+  "quality_settings_sha256": "7ec339d3e5e2b8cc73548e69256f6151782bb68a4afb64f865fd94704dbf0de3",
+  "scene_snapshot_sha256": "94566c148d7f81b495968a7b92dc20fe2ed32fac88cfaf3d9a82841926c564b8",
+  "main_scene": "concurrent changes preserved, not edited or staged by this slice",
+  "source_metadata": "unchanged",
+  "mode": "isolated EditMode and offline animation graph sampling",
+  "playmode": false,
+  "remaining": [
+    "full PHY1 and remaining physical families",
+    "requested motion-gap closure",
+    "appearance/feel, starts/stops, slope and cloak fitting review"
+  ],
+  "files": [
+    {
+      "path": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP03.prefab",
+      "sha256": "10a182d478872bc2ad323d381cd9fcd227a79b8bee54c5d5a6e970e5b82f32d8"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundCrouchBoundaryAuthoring.cs",
+      "sha256": "b669c69fdd3f2c4e8bc13be1c8d6fdd29f8e4373b8252a090073545b58f28040"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundStationAuthoring.cs",
+      "sha256": "40b0ad185b674e4e891604b3b7ca51131c83163a5d08560833bcc8ab87dca799"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundCrouchController.cs",
+      "sha256": "b89be44066998e48d2f6f94aa885a927c5ee3084f42e5648ad1af536604c1af6"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.Player.cs",
+      "sha256": "161c689daadfe5b407edda7d2f904ee10ce400e96668ecf860e003f62f1142aa"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.Stations.cs",
+      "sha256": "a7e1ab98b05bf7b6c68fad2b0243668ce8a14ce1150fb34f6ec3dd1450f45733"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundStation.cs",
+      "sha256": "dce46625385d52d375c88f518bed0d55372b88d90495f7c2bd2257bb6fb769fe"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundTarget.cs",
+      "sha256": "1191e9f248cbe32ed412b1d7100e7b6864e56b493d19a8c6ed47d6d50b708539"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.AnimationPlayground.cs",
+      "sha256": "e47f66e09d761d1680044a26681915d90b12bf3d3d27ab05f56f7b09be45d9bf"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.Crouch.cs",
+      "sha256": "d6865dfbaa32101f6be727c16bb523ae5cc3fd3a845cd7f1d43d10c1fb5dafe4"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.PoseBlend.cs",
+      "sha256": "1309852b48fa40747860f712ccd18c907008c1f55de01d5d5775436b6be81f23"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundCrouchQualificationTests.cs",
+      "sha256": "4e5487b68a2d19fdbf7c3d40b623a802dcf98e34afab0a7b206ef030666506ad"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundStationTests.cs",
+      "sha256": "63a97eb81a1d956c0168685112bf081cdfb999a1f117796789072883ec69241d"
+    }
+  ],
+  "main_scene_observed_sha256": "cd02e89673ce1a83afc72e37a673bd11172d90c8cd24d8770fe7560091ed4882"
+}

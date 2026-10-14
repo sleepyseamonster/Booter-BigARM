@@ -93,6 +93,8 @@ namespace BooterBigArm.TopDown3D
                 throw new InvalidOperationException("The posture transition was obstructed.");
             if(!driver.SetAnimationHeightCorrection(coordinator,entry.Correction(phase)))
                 throw new InvalidOperationException("The posture presentation lost its owner.");
+            if(!driver.SetAnimationFootProjection(coordinator,true))
+                throw new InvalidOperationException("The posture foot projection lost its owner.");
             driver.SetPoseBlendElapsed(this,phase*entry.clip.length);
             return new AnimationPlaygroundMotorIntent(Vector3.zero,facing,phase:phase);
         }

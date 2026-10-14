@@ -126,9 +126,94 @@ namespace BooterBigArm.Editor
         private static T Get<T>(object value,string name)=>(T)value.GetType().GetField(name,BindingFlags.Instance|BindingFlags.NonPublic).GetValue(value);
         private static object Call(object value,string name)=>value.GetType().GetMethod(name,BindingFlags.Instance|BindingFlags.NonPublic).Invoke(value,null);
         [Serializable] public sealed class EquipmentEnvelope
-        {public string role;public float minimumSole=float.PositiveInfinity,minimumEquipment=float.PositiveInfinity,maximumHeight,maximumBodyCapsuleGap=float.NegativeInfinity;}
+        {public string role;public float minimumSole=float.PositiveInfinity,minimumEquipment=float.PositiveInfinity,maximumHeight,maximumBodyCapsuleGap=float.NegativeInfinity,maximumProjectionError;}
         [Serializable] private sealed class EquipmentReport
         {public string state="equipped-crouch-envelope-measured";public float roofUnderside;public EquipmentEnvelope[] envelopes;}
+        [Serializable] private sealed class QualifiedEnvelope
+        {public string role;public float minimumSole=float.PositiveInfinity,minimumEquipment=float.PositiveInfinity,maximumHeight,maximumProjectionError;}
+        [Serializable] private sealed class QualifiedReport
+        {public string state="qualified-equipped-crouch-poses";public float roofUnderside;public QualifiedEnvelope[] envelopes;}
+        public static void MeasureQualifiedCrouchFromCli()
+        {
+            if(!Application.isBatchMode || Directory.Exists(".git") || !File.Exists(AnimationPlaygroundLayoutAuthoring.CandidateMarker))
+                throw new InvalidOperationException("Measure qualified poses only in the marked candidate.");
+            var directory=Path.GetFullPath("MobilityQualification/QualifiedCrouch");Directory.CreateDirectory(directory);
+            var sourceScene=EditorSceneManager.OpenScene(TopDown3DAnimationPlaygroundSession.ScenePath,OpenSceneMode.Additive);
+            var preview=EditorSceneManager.NewPreviewScene();GameObject actor=null;TopDown3DPlayerAnimationDriver driver=null;var exitCode=0;
+            var savedSkinWeights=QualitySettings.skinWeights;
+            try
+            {
+                var session=TopDown3DAnimationPlaygroundSession.Find(sourceScene);var bindings=session.Bindings;var profile=bindings.crouch;
+                if(!profile.Validate(out var reason))throw new InvalidDataException(reason);
+                actor=new GameObject("Qualified equipped crouch fixture");actor.SetActive(false);SceneManager.MoveGameObjectToScene(actor,preview);
+                var motor=actor.AddComponent<TopDown3DPlayerMotor>();driver=actor.AddComponent<TopDown3DPlayerAnimationDriver>();
+                var shape=actor.GetComponent<CapsuleCollider>();shape.height=bindings.capsuleHeight;shape.radius=bindings.capsuleRadius;shape.center=Vector3.zero;
+                EditorUtility.CopySerialized(session.Player.GetComponent<TopDown3DPlayerAnimationDriver>(),driver);
+                driver.ConfigureLaboratory(bindings);Call(driver,"Awake");actor.SetActive(true);
+                var graph=Get<PlayableGraph>(driver,"playableGraph");graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
+                var visual=Get<GameObject>(driver,"visualInstance");var animator=driver.HumanoidAnimator;animator.cullingMode=AnimatorCullingMode.AlwaysAnimate;
+                var owner=new object();motor.BindAnimationPostureOwner(owner);
+                var standing=bindings.locomotion.GetRequiredEntry(TopDown3DLocomotionClipRole.Idle);
+                driver.TryBeginAnimationPresentation(owner,standing.Clip);driver.SetAnimationPresentationTime(owner,0);
+                driver.SetAnimationHeightCorrection(owner,standing.HeightCorrection(0));Call(driver,"PresentAnimationAction");graph.Evaluate(0);
+                if(!driver.ConfigureCamp(TopDown3DCampSettings.Load()))throw new InvalidDataException("Equipped qualification requires the existing camp asset closure.");
+                driver.SetCampPresentation(-1,1,false,true);Call(driver,"LateUpdate");driver.EndAnimationPresentation(owner);
+                using var probe=new AnimationPlaygroundMotionSampler.SoleProbe(visual,animator.GetBoneTransform(HumanBodyBones.LeftFoot),animator.GetBoneTransform(HumanBodyBones.RightFoot));
+                var projection=bindings.footProjection.Bind(visual.transform);
+                var rows=new List<QualifiedEnvelope>();
+                QualifiedEnvelope Sample(string name,Action<float> pose)
+                {
+                    var row=new QualifiedEnvelope{role=name};
+                    for(var i=0;i<=128;i++)
+                    {
+                        pose(i/128f);graph.Evaluate(0);probe.Measure(out var l,out var r,out var minimum,out var maximum);
+                        row.minimumSole=Mathf.Min(row.minimumSole,Mathf.Min(l.y,r.y));row.minimumEquipment=Mathf.Min(row.minimumEquipment,minimum.y);
+                        row.maximumHeight=Mathf.Max(row.maximumHeight,maximum.y+bindings.capsuleHeight*.5f);
+                        row.maximumProjectionError=Mathf.Max(row.maximumProjectionError,Mathf.Abs(projection.MinimumWorldY()-Mathf.Min(l.y,r.y)));
+                    }
+                    rows.Add(row);
+                    File.WriteAllText(Path.Combine(directory,"progress.json"),JsonUtility.ToJson(new QualifiedReport{envelopes=rows.ToArray()},true)+"\n");
+                    if(row.minimumSole < -bindings.capsuleHeight*.5f-.000002f)throw new InvalidDataException("Qualified soles penetrate the fixture: "+name+" at "+row.minimumSole+", projection error "+row.maximumProjectionError);
+                    return row;
+                }
+                foreach(var quality in new[]{SkinQuality.Bone1,SkinQuality.Bone2,SkinQuality.Bone4})
+                {
+                    QualitySettings.skinWeights=(SkinWeights)(int)quality;
+                    foreach(var skin in visual.GetComponentsInChildren<SkinnedMeshRenderer>(true))skin.quality=SkinQuality.Auto;
+                    foreach(var role in new[]{AnimationPlaygroundCrouchRole.Enter,AnimationPlaygroundCrouchRole.Exit})
+                    {
+                        var entry=profile.Get(role);driver.TryBeginAnimationPresentation(owner,entry.clip);driver.SetAnimationFootProjection(owner,true);
+                        Sample(quality+"."+role,phase=>{
+                            if(!motor.TrySetAnimationPosture(owner,AnimationPlaygroundPosture.Crouched,entry.capsuleHeight.Evaluate(phase),profile.crouchRadius))
+                                throw new InvalidDataException("The qualified fixture posture could not apply.");
+                            driver.SetAnimationPresentationTime(owner,entry.clip.length*phase);driver.SetAnimationHeightCorrection(owner,entry.Correction(phase));Call(driver,"PresentAnimationAction");
+                        });driver.EndAnimationPresentation(owner);
+                    }
+                    if(!motor.TrySetAnimationPosture(owner,AnimationPlaygroundPosture.Crouched,profile.crouchHeight,profile.crouchRadius))
+                        throw new InvalidDataException("The sustained fixture posture could not apply.");
+                    if(!driver.TryBeginCrouchPresentation(owner,profile))throw new InvalidDataException("Qualified sustained posture could not initialize.");
+                    Sample(quality+".Idle",phase=>{
+                        driver.SetCrouchPose(owner,new AnimationPlaygroundCrouchPose(Vector2.zero,0,phase,profile.Get(AnimationPlaygroundCrouchRole.Idle).clip.length*phase,true));Call(driver,"PresentCrouchPose");
+                    });
+                    for(var direction=0;direction<8;direction++)
+                        for(var weight=1;weight<=2;weight++)
+                        {
+                            var vector=AnimationPlaygroundCrouchProfile.GroundDirection(direction*4);var moving=weight*.5f;
+                            Sample(quality+".Direction"+direction+".Weight"+weight,phase=>{
+                                driver.SetCrouchPose(owner,new AnimationPlaygroundCrouchPose(vector,moving,phase,profile.Get(AnimationPlaygroundCrouchRole.Idle).clip.length*phase,true));Call(driver,"PresentCrouchPose");
+                            });
+                        }
+                    driver.EndCrouchPresentation(owner);
+                }
+                var roof=AssetDatabase.LoadAssetAtPath<GameObject>(AnimationPlaygroundStationAuthoring.StationPath(3)).transform.Find("Tunnel ceiling");
+                File.WriteAllText(Path.Combine(directory,"summary.json"),JsonUtility.ToJson(new QualifiedReport{
+                    roofUnderside=roof.localPosition.y-roof.localScale.y*.5f,envelopes=rows.ToArray()},true)+"\n");
+            }
+            catch(Exception error){File.WriteAllText(Path.Combine(directory,"failure.txt"),error.ToString());Debug.LogException(error);exitCode=1;}
+            finally
+            {QualitySettings.skinWeights=savedSkinWeights;if(driver!=null)Call(driver,"OnDestroy");if(actor!=null)Object.DestroyImmediate(actor);EditorSceneManager.ClosePreviewScene(preview);EditorSceneManager.CloseScene(sourceScene,true);}
+            EditorApplication.Exit(exitCode);
+        }
         public static void MeasureEquipmentFromCli()
         {
             if(!Application.isBatchMode || Directory.Exists(".git") || !File.Exists(AnimationPlaygroundLayoutAuthoring.CandidateMarker))
@@ -159,6 +244,7 @@ namespace BooterBigArm.Editor
                 {
                     var entry=profile.Get(role);var row=new EquipmentEnvelope{role=role.ToString()};
                     if(!driver.TryBeginAnimationPresentation(owner,entry.clip))throw new InvalidDataException("Equipped pose ownership failed.");
+                    if(!driver.SetAnimationFootProjection(owner,true))throw new InvalidDataException("Equipped posture projection failed.");
                     for(var i=0;i<=128;i++)
                     {
                         var phase=i/128f;motor.TrySetAnimationPosture(owner,AnimationPlaygroundPosture.Crouched,entry.capsuleHeight.Evaluate(phase),profile.crouchRadius);

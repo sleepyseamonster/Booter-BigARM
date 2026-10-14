@@ -29,15 +29,22 @@ namespace BooterBigArm.TopDown3D
             foreach (var station in stations) station.Bind(this, camera);
         }
         private void UnbindStations() { foreach (var station in stations) if (station != null) station.Unbind(); }
-        private bool TryDispatchStation(TopDown3DInteractionTarget capture)
+        private bool TryDispatchStation(TopDown3DInteractionTarget capture,out bool handled)
         {
+            handled=false;
             if (!servicesBound || !PreviewReady || !capture.IsValid || capture.Object is not TopDown3DAnimationPlaygroundTarget target) return false;
             TopDown3DAnimationPlaygroundStation station = null;
             foreach (var value in stations) if (value != null && value.Owns(target)) { station = value; break; }
             if (station == null) return false;
+            handled=true;
             if (target.ActionKind == AnimationPlaygroundActionKind.Preview)
             { menu.OpenAnimationPaletteForStation(station.StationId == "AP01" ? null : station.StationId); return menu.IsOpen; }
             if (target.ActionKind == AnimationPlaygroundActionKind.Reset) { ResetSession(); return ResetRegistry.LastFailure == null; }
+            if(station.StationId=="AP03" && target.ActionKind==AnimationPlaygroundActionKind.Crouch && CrouchReady)
+            {
+                if(crouch.TryToggle())return true;
+                playerAction.ReportFeedback(crouch.LastFailure);return false;
+            }
             playerAction.ReportFeedback(station.Title + " unavailable: " + station.MissingGate);
             return false;
         }

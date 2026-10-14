@@ -37,11 +37,11 @@ namespace BooterBigArm.Editor
                 foreach(var name in new[]{"Tunnel left","Tunnel right"})
                 {
                     var item=root.transform.Find(name);if(item==null)throw new InvalidDataException("Crouch fixture wall is missing.");
-                    var position=item.localPosition;position.y=.85f;item.localPosition=position;
-                    var scale=item.localScale;scale.y=1.7f;item.localScale=scale;
+                    var position=item.localPosition;position.y=.9275f;item.localPosition=position;
+                    var scale=item.localScale;scale.y=1.855f;item.localScale=scale;
                 }
                 var ceiling=root.transform.Find("Tunnel ceiling");if(ceiling==null)throw new InvalidDataException("Crouch fixture roof is missing.");
-                var height=ceiling.localPosition;height.y=1.7f;ceiling.localPosition=height;
+                var height=ceiling.localPosition;height.y=1.855f;ceiling.localPosition=height;
                 PrefabUtility.SaveAsPrefabAsset(root,StationPath(3));AssetDatabase.SaveAssets();
             }
             finally{PrefabUtility.UnloadPrefabContents(root);}
@@ -132,9 +132,9 @@ namespace BooterBigArm.Editor
                     break;
                 case 3:
                     Lane(root, "16 metre slide lane", -5, 16);
-                    Cube(root, "Tunnel left", new Vector3(2.8f, .85f, 0), new Vector3(.2f, 1.7f, 8), wall);
-                    Cube(root, "Tunnel right", new Vector3(5.2f, .85f, 0), new Vector3(.2f, 1.7f, 8), wall);
-                    Cube(root, "Tunnel ceiling", new Vector3(4, 1.7f, 0), new Vector3(2.6f, .15f, 8), wall);
+                    Cube(root, "Tunnel left", new Vector3(2.8f, .9275f, 0), new Vector3(.2f, 1.855f, 8), wall);
+                    Cube(root, "Tunnel right", new Vector3(5.2f, .9275f, 0), new Vector3(.2f, 1.855f, 8), wall);
+                    Cube(root, "Tunnel ceiling", new Vector3(4, 1.855f, 0), new Vector3(2.6f, .15f, 8), wall);
                     Anchor(root, "Blocked stand clearance", new Vector3(4, .93f, 0));
                     DisabledAction(root, id, "Crouch entry", new Vector3(4, 1, -5), AnimationPlaygroundActionKind.Crouch, targets);
                     DisabledAction(root, id, "Slide entry", new Vector3(-5, 1, -7), AnimationPlaygroundActionKind.Slide, targets);
