@@ -90,6 +90,9 @@ These should be treated as the source of truth unless they are intentionally rev
 
 ## Program Plans
 
+- [Camp Loop ghost machine salvage implementation plan](./Design/Gameplay/CAMP_LOOP_GHOST_MACHINE_SALVAGE_PLAN_2026-10-14.md)
+  Proposed three-part scavenging wreck in the existing session-only playground, with private trial items, safe reward reset, fixed-terrain placement and implementation gates.
+
 - [Camp Loop animation implementation status](./Design/Gameplay/CAMP_LOOP_ANIMATION_IMPLEMENTATION_STATUS_2026-10-13.md)
   Verified source/session/targeting foundations and current dependency gates for the active animation playground implementation goal.
 
