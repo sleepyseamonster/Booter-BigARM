@@ -11,6 +11,10 @@ from mathutils.bvhtree import BVHTree
 root=Path(sys.argv[sys.argv.index('--')+1]).resolve(); mode=sys.argv[-1]
 asset='FlatStoneGroundPatch01'; proof=root/'Logs'/asset
 docs=root/'SourceArt/Blender/Studies/BooterGroundSetup'/asset
+if mode=='applied' and (docs/'repair01.json').exists():
+    verifier=Path(__file__).with_name('verify_flat_stone_support.py')
+    exec(compile(verifier.read_text(),str(verifier),'exec'))
+    sys.exit(0)
 report=json.loads(((docs/'application.json') if mode=='applied' else (proof/'preparation.json')).read_text())
 exports=root/'Assets/_Project/Art/Environment/Ground'/asset if mode=='applied' else proof/'PreparedExports'
 def signature(obj):

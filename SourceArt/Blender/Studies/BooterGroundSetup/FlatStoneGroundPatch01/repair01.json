@@ -1,0 +1,744 @@
+{
+  "input_scene_sha256": "41690499b78222bc631ca5f89eb9df5f31d818de6b3d437fe7a42f8eac393921",
+  "old": {
+    "vertices": 2752,
+    "triangles": 5500,
+    "boundary": 0,
+    "nonmanifold": 0,
+    "components": 1,
+    "degenerate": 0,
+    "volume": 4.833572066512301
+  },
+  "repaired": {
+    "vertices": 4002,
+    "triangles": 8000,
+    "boundary": 0,
+    "nonmanifold": 0,
+    "components": 1,
+    "degenerate": 0,
+    "volume": 4.925345060268289
+  },
+  "columns": [
+    {
+      "source": "LimestoneRock01_LOD0.005",
+      "vertices": 572,
+      "triangles": 1140,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.1214444545321651
+    },
+    {
+      "source": "LimestoneRock01_LOD0.016",
+      "vertices": 431,
+      "triangles": 858,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.490246406428287
+    },
+    {
+      "source": "LimestoneRock01_LOD0.017",
+      "vertices": 251,
+      "triangles": 498,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.03218562257390204
+    },
+    {
+      "source": "LimestoneRock01_LOD0.020",
+      "vertices": 431,
+      "triangles": 858,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.2178036566337328
+    },
+    {
+      "source": "LimestoneRock01_LOD0.021",
+      "vertices": 236,
+      "triangles": 468,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.04800249543855795
+    },
+    {
+      "source": "LimestoneRock01_LOD0.022",
+      "vertices": 251,
+      "triangles": 498,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.03218561983121364
+    },
+    {
+      "source": "LimestoneRock01_LOD0.024",
+      "vertices": 300,
+      "triangles": 596,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.16375606219847647
+    },
+    {
+      "source": "LimestoneRock01_LOD0.025",
+      "vertices": 129,
+      "triangles": 254,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.05793266090759197
+    },
+    {
+      "source": "LimestoneRock01_LOD0.026",
+      "vertices": 429,
+      "triangles": 854,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.3521071818172166
+    },
+    {
+      "source": "LimestoneRock01_LOD0.027",
+      "vertices": 482,
+      "triangles": 960,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.2727171726152873
+    },
+    {
+      "source": "LimestoneRock01_LOD0.028",
+      "vertices": 370,
+      "triangles": 736,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.27410890917246555
+    },
+    {
+      "source": "LimestoneRock01_LOD0.030",
+      "vertices": 412,
+      "triangles": 820,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.09682311489005022
+    },
+    {
+      "source": "LimestoneRock01_LOD0.031",
+      "vertices": 238,
+      "triangles": 472,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.158419205242289
+    },
+    {
+      "source": "LimestoneRock01_LOD0.032",
+      "vertices": 407,
+      "triangles": 810,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.41805795698347004
+    },
+    {
+      "source": "LimestoneRock01_LOD0.034",
+      "vertices": 236,
+      "triangles": 468,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.04800250435183595
+    },
+    {
+      "source": "LimestoneRock01_LOD0.035",
+      "vertices": 238,
+      "triangles": 472,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.023546171554540432
+    },
+    {
+      "source": "LimestoneRock01_LOD0.037",
+      "vertices": 300,
+      "triangles": 596,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.16375603792736776
+    },
+    {
+      "source": "LimestoneRock01_LOD0.038",
+      "vertices": 129,
+      "triangles": 254,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.05793267111344175
+    },
+    {
+      "source": "LimestoneRock01_LOD0.040",
+      "vertices": 246,
+      "triangles": 488,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.06142977256152865
+    },
+    {
+      "source": "LimestoneRock01_LOD0.042",
+      "vertices": 572,
+      "triangles": 1140,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.12144447845784538
+    },
+    {
+      "source": "LimestoneRock01_LOD0.043",
+      "vertices": 412,
+      "triangles": 820,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.09682311398786211
+    },
+    {
+      "source": "LimestoneRock01_LOD0.044",
+      "vertices": 238,
+      "triangles": 472,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.1584191941528507
+    },
+    {
+      "source": "LimestoneRock01_LOD0.045",
+      "vertices": 241,
+      "triangles": 478,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 0.1724333587714245
+    }
+  ],
+  "materials": [
+    "Neutral Ground.001",
+    "FlatStoneGroundPatch01 - supported limestone sides"
+  ],
+  "original_object_signatures": {
+    "Ground - resize with Dimensions X and Y": "b7aa739314c48fc09eb0e9635393b259f501f414e698ced0a925c95934f4ab39",
+    "Icosphere": "bb97a2fb0500b404d019c15756c87bff51771e4a645affa50ba4b7f174055093",
+    "Cube": "8e111f6ff572793ad57d4c4f7787ff424e3d539c9a505d4e4947bd2e60f42a6d",
+    "ArtistVolcanicRock06_LOD0": "d421ba58097bec7644b66d26457ba7159b6af725e0f9104ca575750416a35482",
+    "LimestoneRock01_LOD0.001": "6d81ce293b35f39ac5eddc8218362cae4f0351c761c6b10236aa1603c493bf21",
+    "LimestoneRock01_LOD0.002": "38ccfa2e54d71e3e44d9359633785540ebfcc930f50d2e5e15e25b307eaa86be",
+    "LimestoneRock01_LOD0.003": "1a01c1a2bbd3ac024dd3105dcebcba6625e9af81a9da241e8ec7788c7dc80f50",
+    "LimestoneRock01_LOD0.004": "ed469b7de7a3728657c89d58bb520ca82cf7109496171b02d8dfd228faa4b167",
+    "LimestoneRock01_LOD0.005": "298ae921d328e68ff6492d0e73283a97b4431676bb240146e9c389e4d2fdfbd1",
+    "LimestoneRock01_LOD0.006": "711bdff21910659c08d113fcf24ca483112dcab656609be1137e9e0074bd6c6d",
+    "LimestoneRock01_LOD0.007": "400875430f21fc9cba381bd04f2d13f1ffa72dd0f16d80785c3c9b81c1d1bd99",
+    "Ground - resize with Dimensions X and Y.001": "2663b6285d52cedadbe16b8997a18eeb96ad2f74c8d68e0026001b9e86bc4566",
+    "ArtistVolcanicRock06_LOD0.001": "11c05c34ab3f4ff3fe27265a597b4700a7e34821b8f238744e014e54ec1bb960",
+    "ArtistVolcanicRock01_LOD0": "2916a802e776bbceebfe0d09e7d309ce349fe3852d78ca086f7c429b16d9c665",
+    "ArtistVolcanicRock01_LOD0.001": "57dca81fc6dfb1a78308659e02038f01e82bd7326df0fcfb834715337b76f6df",
+    "LimestoneRock01_LOD0.008": "b4e968040a98695006f33d560889f8e4f04e8406a037c9b0645bdf961297b56c",
+    "LimestoneRock01_LOD0.009": "bd22bb966451c4bc84d21116e2785f4dba3b923f2b53eee2531d8bbf2bfc6b64",
+    "LimestoneRock01_LOD0.010": "c47e2687d4f9f9ff35ea0f0a6214a10a807f8714325ed434885bd3d4245c554b",
+    "LimestoneRock01_LOD0.011": "1bc7c00a6c3bebdeef03e0184bc7248db8910bc6271a9842f16f6d375827673c",
+    "LimestoneRock01_LOD0.012": "01057a56ed66008e99919efbaf4f2142f3cd3f7efc1942551ad46e52c56e8122",
+    "LimestoneRock01_LOD0.013": "f647d67eefc61b138cc088ad5ee3e9a8a87a6b143667e8d0632b7c8c4c8b99ab",
+    "LimestoneRock01_LOD0.014": "b98bb7c25fd0082a2fae046ed95973fb8a2b1f0677f75c5b244b3c3733d870cd",
+    "LimestoneRock01_LOD0.015": "c14abe9726a814676e9a6bef680183efb94e5e9ad58fca606ce7a8719ad38e23",
+    "LimestoneRock01_LOD0.016": "b809c7b7d19f4ecfdc1a9bebae4d334979cf8b3996135b461605aa7be2143fc8",
+    "LimestoneRock01_LOD0.017": "0d10ae26160d23d816f504e21a9e8f1ec1b6bf02452e27c76f240ce549132d73",
+    "LimestoneRock01_LOD0.018": "dfd765efcbd482e655fcb717e79cb274e73009a995289ce9491e4471c4479bc4",
+    "LimestoneRock01_LOD0.019": "b478f46ac2eba372919dad45099bab851ab8f1e92837e075f1b8df158c72b630",
+    "LimestoneRock01_LOD0.020": "59a1711146a7412d7bc2333f8f67e7359b2849e5098285a17efb0935d14626e1",
+    "LimestoneRock01_LOD0.021": "3149d617b2fb7ee16912a18cdfbd54e48577b93ace9939fd801d183341cb770b",
+    "LimestoneRock01_LOD0.022": "c18d3ba8848fa5d4801e4860a678e0555e722a171b379af83b7ec1db76905899",
+    "LimestoneRock01_LOD0.023": "7b9bcfd9c163c4088e01f27af45cd7c61025ff6a439589399361d10ec4c2895b",
+    "LimestoneRock01_LOD0.024": "dc9b5d6caf66ea12c67c3ca327eef9ce06ca78ce73e953951c9a1f7032f366c5",
+    "LimestoneRock01_LOD0.025": "fc60b6eb72595937dcf10356936fa46b12169fa79b560231b03df03e4528124c",
+    "LimestoneRock01_LOD0.026": "07f9da9598b91c1e5efc9e264d19b9e61b1abbb975cc28ec066b2b21fc044961",
+    "LimestoneRock01_LOD0.027": "af1563fdfad31e1eceb050565e5a058f40fd56d84cd75ba535ee7770ff9e8f15",
+    "LimestoneRock01_LOD0.028": "d30b5684857269d0889659c576c86f847d1205cd27a156a51b9a443326e653ce",
+    "LimestoneRock01_LOD0.029": "54389cef3f31d9a18c626d864a4b8b42798f1e8130390f2ac4b806498f9ccaef",
+    "LimestoneRock01_LOD0.030": "9de9dc3b067211819b30b36cf5853918f7b185fb09a266930f3f7f8d7915d536",
+    "LimestoneRock01_LOD0.031": "e4f2d10cc8b358f667576f08e9faec9febed4c6dca7f3c99d409b29b8aacc762",
+    "LimestoneRock01_LOD0.032": "cbb3b57473f938e2d8ae50a9388f080e43604844f5cf82c56b7d71594fa23e8e",
+    "Ground - resize with Dimensions X and Y.002": "cc211458e6ed9eb62cc740c425cdf2a2025ff3f1309cf4811fc393f762db89f7",
+    "LimestoneRock01_LOD0.033": "379bd93feb61c5bc139e62e2c5f2db3b46c6fb13608b854c5185cc1f66fcaa8f",
+    "LimestoneRock01_LOD0.034": "17c43c6181120b895a29bdac4f128e31089ff1a8b7500f553f113f9499b326dc",
+    "LimestoneRock01_LOD0.035": "a22d6497cb6f675e6f81bed598e9f2a9ff77a1f34e8069cd34dec782ebbbe24f",
+    "LimestoneRock01_LOD0.036": "52fa167afe668c659b1e5800c6fa7b2d294ec0470455e6d8279d90de2b42a991",
+    "LimestoneRock01_LOD0.037": "fd089e287a94f6b3ded02b8b9d208031603329488035a752421a4d29d6dd734b",
+    "LimestoneRock01_LOD0.038": "88d63adf713b340d7748ed7a54b8bfea8354634921e51075033599bc7752903c",
+    "LimestoneRock01_LOD0.039": "077748617e4766bdd04274356cdd67d816100e9e850b15a6d12feb813d17214a",
+    "LimestoneRock01_LOD0.040": "62f843d79c26664848d43e7536b7bcff00d2d498359b20e3bfdb67da781f74f4",
+    "LimestoneRock01_LOD0.041": "1c9d0e526d41307c19a54c58c38c9b718bf73f49856e0a4eb39a673646eba5c8",
+    "LimestoneRock01_LOD0.042": "35111493f08b29e80b76b8c143fb6423611e3bd0774d9151cf273bb657124286",
+    "LimestoneRock01_LOD0.043": "c0c1d50e2961c9f19c41156e01b571fa80d71fa620583776ca6d104e62ebd2d6",
+    "LimestoneRock01_LOD0.044": "640e77c74eae045f2108c9c69cd4fcf0bf31b783597b8eec6a1683d8b2fe9853",
+    "LimestoneRock01_LOD0.045": "700fd3bfe77349ab3d9c5178381ab6d5f20cd933ad8c0e82e8dd0c00ec413844",
+    "Booter - move character here": "c3df998d54a41c7068ba9044558a1370898ff7b5ff3ed7fc039cf55bf14e0bf3",
+    "Booter_Body": "b1a24378b8b459182b9a27cbbcf48b34b6e4d2494d3f19f1c939601e84e1f589",
+    "Booter_ShoulderYoke": "78a0fe9d31b68fd49efc1b7ee04e4518f2e926024e76ae42cc9f22be9d5ed924",
+    "Booter_SplitHemCloak": "d774341cfeccf85cbaae6076044ddeb6641891b7812d03f601f69684c688542c",
+    "Booter_BooterFramedBackpack(Clone)": "10a86fbc5ed7e5c2f5ad14c993a6f9a5b485e11c1a8b944780803b8847019725",
+    "Preview Camera": "db10087856cbc7e78bc9dd07db6079f621673430c4e9b4fc33eea17fe323e294",
+    "Key": "ffaa8bd1a3d30aae519f9e514dfe1d122215f30ca10fb0652b4046d32f64aeaf",
+    "Fill": "92b5592f96edffac14f75dc9ac88e01f0cc2fc1acba828993b80ac96c479fa3c",
+    "Rim": "e59e916713254f4ac6b9877cea84268ec92115592883407ab766d756812860e3",
+    "LimestoneRock01_LOD0": "e4ef7ffdc67e4bdb80fada565507ffeffe6d1795686f0f648b34b069b5e9707e",
+    "LimestoneRock01_LOD1": "b0e6f3ac772f957974a7d2858817b8961b86a207b1ab8680533d2bff95f5a2e0",
+    "LimestoneRock01_LOD2": "9ebc1858223122577cf8a01d2b4d66df63de46aaebccc8d4e649d59bd5a044e7",
+    "LimestoneRock01_Collision": "b8c00bb8fefbcb156080170a887bffbbe6418c81a725ad553c8e985979d328fa"
+  },
+  "pose": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      -23.63469886779785
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      6.460783004760742
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      0.002485614502802491
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "source_selection": [
+    "LimestoneRock01_LOD0.005",
+    "Ground - resize with Dimensions X and Y.001",
+    "LimestoneRock01_LOD0.016",
+    "LimestoneRock01_LOD0.017",
+    "LimestoneRock01_LOD0.020",
+    "LimestoneRock01_LOD0.021",
+    "LimestoneRock01_LOD0.022",
+    "LimestoneRock01_LOD0.024",
+    "LimestoneRock01_LOD0.025",
+    "LimestoneRock01_LOD0.026",
+    "LimestoneRock01_LOD0.027",
+    "LimestoneRock01_LOD0.028",
+    "LimestoneRock01_LOD0.030",
+    "LimestoneRock01_LOD0.031",
+    "LimestoneRock01_LOD0.032",
+    "LimestoneRock01_LOD0.034",
+    "LimestoneRock01_LOD0.035",
+    "LimestoneRock01_LOD0.037",
+    "LimestoneRock01_LOD0.038",
+    "LimestoneRock01_LOD0.040",
+    "LimestoneRock01_LOD0.042",
+    "LimestoneRock01_LOD0.043",
+    "LimestoneRock01_LOD0.044",
+    "LimestoneRock01_LOD0.045"
+  ],
+  "protected_reduction": [
+    {
+      "vertices": 3252,
+      "triangles": 6500,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 4.918013254162442,
+      "budget": 6500,
+      "max_surface_error": 0.008185968734323978,
+      "p95_surface_error": 0.001692052697762847,
+      "unsupported_faces": 12
+    },
+    {
+      "vertices": 4002,
+      "triangles": 8000,
+      "boundary": 0,
+      "nonmanifold": 0,
+      "components": 1,
+      "degenerate": 0,
+      "volume": 4.925345060268289,
+      "budget": 8000,
+      "max_surface_error": 0.0032457078341394663,
+      "p95_surface_error": 7.176189171786973e-07,
+      "unsupported_faces": 0
+    }
+  ],
+  "ground_color_linear": [
+    0.21425262093544006,
+    0.2293812334537506,
+    0.24450144171714783,
+    1.0
+  ],
+  "ground_roughness": 0.8999999761581421,
+  "scene": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\BooterGroundSetup\\BooterGroundSetup.blend",
+  "backup": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\BooterGroundSetup\\BooterGroundSetup_BeforeFlatStoneRepair01_2026-10-13.blend",
+  "artist_autosave_backup": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\BooterGroundSetup\\BooterGroundSetup_ArtistAutosaveBeforeRepair01_2026-10-13.blend",
+  "preserved_pose": [
+    [
+      1.0,
+      0.0,
+      0.0,
+      -23.63469886779785
+    ],
+    [
+      0.0,
+      1.0,
+      0.0,
+      6.460783004760742
+    ],
+    [
+      0.0,
+      0.0,
+      1.0,
+      2.6802103519439697
+    ],
+    [
+      0.0,
+      0.0,
+      0.0,
+      1.0
+    ]
+  ],
+  "after_scene_sha256": "957f86101db31ed6ac9dac87df1d3f892243ed72e7c611a5f552ca961912599b",
+  "fbx_sha256": "a4550dccbe0e3542a82a0b0155f644aaf171fd02509f8e974ec6fce584510a27",
+  "runtime_texture_sha256": {
+    "FlatStoneGroundPatch01_Limestone_BaseColor.png": "80d7020df1193183283479ebf64da1f431421bf41915d50e9441802d6967bae4",
+    "FlatStoneGroundPatch01_Limestone_Normal.png": "a1e4329a74194ffd18e307ae8bed7dbf539a6f07f49b1adbb35e3978b5de0ff5",
+    "FlatStoneGroundPatch01_Limestone_MetallicSmoothness.png": "6788f6909e3b3368e13eedffc9d18f1d539648f1a783c6f6130461d3cf10b337"
+  },
+  "verification": {
+    "Logs/FlatStoneGroundPatch01/Repair01/applied-support-verification.json": {
+      "repaired": {
+        "vertices": 4002,
+        "triangles": 8000,
+        "boundary": 0,
+        "nonmanifold": 0,
+        "degenerate": 0,
+        "downward_surface_faces": 0,
+        "volume": 4.925345060268289,
+        "vertical_samples": 81920,
+        "cavity_columns": 0,
+        "missing_columns": 0,
+        "examples": []
+      },
+      "originals_and_latest_pose_preserved": true
+    },
+    "Logs/FlatStoneGroundPatch01/Repair01/unity-verification.json": {
+      "triangles": 8000,
+      "nativeVertices": 4002,
+      "runtimeVertices": 9977,
+      "materials": 2,
+      "colliderSamples": 768,
+      "colliderMisses": 0,
+      "prefabGuid": "31bbd4ca1edca0347abcda68670c0bd4",
+      "meshGuid": "9d880fa03e73ac84f98e9214ef5903cc",
+      "originalPrefabGuidPreserved": true,
+      "rootNormalized": true,
+      "shaderErrors": 0,
+      "gameplaySmokeTest": false
+    }
+  },
+  "artist_shape_comparison": {
+    "sample_grid_per_stone": 128,
+    "threshold_above_base_metres": 0.003,
+    "rows": [
+      {
+        "stone": "LimestoneRock01_LOD0.005",
+        "surface_footprint_iou": 0.9978866624921728,
+        "footprint_union_samples": 12776,
+        "footprint_intersection_samples": 12749,
+        "p95_vertical_error_metres": 0.0011525630950927727,
+        "max_vertical_error_metres": 0.10499387979507446,
+        "silhouette_transition_samples": 27,
+        "p95_nearest_surface_error_metres": 0.0012152233161032194,
+        "max_nearest_surface_error_metres": 0.028169874101877213
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.016",
+        "surface_footprint_iou": 0.9994169096209913,
+        "footprint_union_samples": 13720,
+        "footprint_intersection_samples": 13712,
+        "p95_vertical_error_metres": 0.0014734178781509381,
+        "max_vertical_error_metres": 0.11817699670791626,
+        "silhouette_transition_samples": 8,
+        "p95_nearest_surface_error_metres": 0.0015301742358133192,
+        "max_nearest_surface_error_metres": 0.024686982855200768
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.017",
+        "surface_footprint_iou": 0.9960536051960865,
+        "footprint_union_samples": 12163,
+        "footprint_intersection_samples": 12115,
+        "p95_vertical_error_metres": 0.001162827014923094,
+        "max_vertical_error_metres": 0.04093724489212036,
+        "silhouette_transition_samples": 48,
+        "p95_nearest_surface_error_metres": 0.0012327665812335903,
+        "max_nearest_surface_error_metres": 0.009226059541106224
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.020",
+        "surface_footprint_iou": 0.9991545615248636,
+        "footprint_union_samples": 13011,
+        "footprint_intersection_samples": 13000,
+        "p95_vertical_error_metres": 0.0010415375232696528,
+        "max_vertical_error_metres": 0.10288804769515991,
+        "silhouette_transition_samples": 11,
+        "p95_nearest_surface_error_metres": 0.0011119210976175964,
+        "max_nearest_surface_error_metres": 0.015076682902872562
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.021",
+        "surface_footprint_iou": 0.9959573091849935,
+        "footprint_union_samples": 12368,
+        "footprint_intersection_samples": 12318,
+        "p95_vertical_error_metres": 0.0013014405965805051,
+        "max_vertical_error_metres": 0.043243587017059326,
+        "silhouette_transition_samples": 50,
+        "p95_nearest_surface_error_metres": 0.001370788348140195,
+        "max_nearest_surface_error_metres": 0.011036005802452564
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.022",
+        "surface_footprint_iou": 0.9960350239550636,
+        "footprint_union_samples": 12106,
+        "footprint_intersection_samples": 12058,
+        "p95_vertical_error_metres": 0.001142314076423645,
+        "max_vertical_error_metres": 0.040937185287475586,
+        "silhouette_transition_samples": 48,
+        "p95_nearest_surface_error_metres": 0.0012065084069035946,
+        "max_nearest_surface_error_metres": 0.009226218797266483
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.024",
+        "surface_footprint_iou": 0.9974683544303797,
+        "footprint_union_samples": 11060,
+        "footprint_intersection_samples": 11032,
+        "p95_vertical_error_metres": 0.0026340872049331657,
+        "max_vertical_error_metres": 0.08933031558990479,
+        "silhouette_transition_samples": 28,
+        "p95_nearest_surface_error_metres": 0.0028378132032230497,
+        "max_nearest_surface_error_metres": 0.021250488236546516
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.025",
+        "surface_footprint_iou": 0.9938097917839055,
+        "footprint_union_samples": 12439,
+        "footprint_intersection_samples": 12362,
+        "p95_vertical_error_metres": 0.00182456076145172,
+        "max_vertical_error_metres": 0.03782856464385986,
+        "silhouette_transition_samples": 77,
+        "p95_nearest_surface_error_metres": 0.0019137824419885874,
+        "max_nearest_surface_error_metres": 0.009500873275101185
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.026",
+        "surface_footprint_iou": 0.9998467667790377,
+        "footprint_union_samples": 13052,
+        "footprint_intersection_samples": 13050,
+        "p95_vertical_error_metres": 0.001008501648902893,
+        "max_vertical_error_metres": 0.0899152159690857,
+        "silhouette_transition_samples": 2,
+        "p95_nearest_surface_error_metres": 0.0010700358485337346,
+        "max_nearest_surface_error_metres": 0.023366201668977737
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.027",
+        "surface_footprint_iou": 0.998536773199846,
+        "footprint_union_samples": 12985,
+        "footprint_intersection_samples": 12966,
+        "p95_vertical_error_metres": 0.0010834157466888426,
+        "max_vertical_error_metres": 0.10843837261199951,
+        "silhouette_transition_samples": 19,
+        "p95_nearest_surface_error_metres": 0.0011474124621599913,
+        "max_nearest_surface_error_metres": 0.025276875123381615
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.028",
+        "surface_footprint_iou": 0.999449728794906,
+        "footprint_union_samples": 12721,
+        "footprint_intersection_samples": 12714,
+        "p95_vertical_error_metres": 0.0004063636064529411,
+        "max_vertical_error_metres": 0.06794756650924683,
+        "silhouette_transition_samples": 7,
+        "p95_nearest_surface_error_metres": 0.0005291015084367238,
+        "max_nearest_surface_error_metres": 0.01283327303826809
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.030",
+        "surface_footprint_iou": 0.999334995843724,
+        "footprint_union_samples": 12030,
+        "footprint_intersection_samples": 12022,
+        "p95_vertical_error_metres": 0.00024830400943756095,
+        "max_vertical_error_metres": 0.03648698329925537,
+        "silhouette_transition_samples": 8,
+        "p95_nearest_surface_error_metres": 0.0002817362517816947,
+        "max_nearest_surface_error_metres": 0.012417751364409924
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.031",
+        "surface_footprint_iou": 0.9986022674328312,
+        "footprint_union_samples": 12878,
+        "footprint_intersection_samples": 12860,
+        "p95_vertical_error_metres": 0.0018082559108734122,
+        "max_vertical_error_metres": 0.10248041152954102,
+        "silhouette_transition_samples": 18,
+        "p95_nearest_surface_error_metres": 0.0018990370037499798,
+        "max_nearest_surface_error_metres": 0.0044424706138670444
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.032",
+        "surface_footprint_iou": 0.9998503554059109,
+        "footprint_union_samples": 13365,
+        "footprint_intersection_samples": 13363,
+        "p95_vertical_error_metres": 0.0010731130838394164,
+        "max_vertical_error_metres": 0.016414403915405273,
+        "silhouette_transition_samples": 2,
+        "p95_nearest_surface_error_metres": 0.0011451738479081536,
+        "max_nearest_surface_error_metres": 0.003496322548016906
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.034",
+        "surface_footprint_iou": 0.9962977867203219,
+        "footprint_union_samples": 12425,
+        "footprint_intersection_samples": 12379,
+        "p95_vertical_error_metres": 0.0013062089681625364,
+        "max_vertical_error_metres": 0.043212294578552246,
+        "silhouette_transition_samples": 46,
+        "p95_nearest_surface_error_metres": 0.00137124658212997,
+        "max_nearest_surface_error_metres": 0.010322734713554382
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.035",
+        "surface_footprint_iou": 0.9954087797019734,
+        "footprint_union_samples": 12415,
+        "footprint_intersection_samples": 12358,
+        "p95_vertical_error_metres": 0.0010181248188018783,
+        "max_vertical_error_metres": 0.0426904559135437,
+        "silhouette_transition_samples": 57,
+        "p95_nearest_surface_error_metres": 0.001039343466982244,
+        "max_nearest_surface_error_metres": 0.008002285845577717
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.037",
+        "surface_footprint_iou": 0.9974642126789366,
+        "footprint_union_samples": 12225,
+        "footprint_intersection_samples": 12194,
+        "p95_vertical_error_metres": 0.0027293533086776727,
+        "max_vertical_error_metres": 0.09777665138244629,
+        "silhouette_transition_samples": 31,
+        "p95_nearest_surface_error_metres": 0.002834534831345081,
+        "max_nearest_surface_error_metres": 0.016879284754395485
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.038",
+        "surface_footprint_iou": 0.9929868308267747,
+        "footprint_union_samples": 12833,
+        "footprint_intersection_samples": 12743,
+        "p95_vertical_error_metres": 0.0018715590238571164,
+        "max_vertical_error_metres": 0.03694164752960205,
+        "silhouette_transition_samples": 90,
+        "p95_nearest_surface_error_metres": 0.001901104609714821,
+        "max_nearest_surface_error_metres": 0.00938692782074213
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.040",
+        "surface_footprint_iou": 0.9966148142177803,
+        "footprint_union_samples": 12407,
+        "footprint_intersection_samples": 12365,
+        "p95_vertical_error_metres": 0.0029357761144638045,
+        "max_vertical_error_metres": 0.07103675603866577,
+        "silhouette_transition_samples": 42,
+        "p95_nearest_surface_error_metres": 0.00293000761885195,
+        "max_nearest_surface_error_metres": 0.012825013138353825
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.042",
+        "surface_footprint_iou": 0.998365504358655,
+        "footprint_union_samples": 12848,
+        "footprint_intersection_samples": 12827,
+        "p95_vertical_error_metres": 0.0011503934860229489,
+        "max_vertical_error_metres": 0.08818966150283813,
+        "silhouette_transition_samples": 21,
+        "p95_nearest_surface_error_metres": 0.0012186793843284248,
+        "max_nearest_surface_error_metres": 0.030889349058270454
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.043",
+        "surface_footprint_iou": 0.9984128243790176,
+        "footprint_union_samples": 12601,
+        "footprint_intersection_samples": 12581,
+        "p95_vertical_error_metres": 0.0003414481878280637,
+        "max_vertical_error_metres": 0.04156261682510376,
+        "silhouette_transition_samples": 20,
+        "p95_nearest_surface_error_metres": 0.0003907238686224445,
+        "max_nearest_surface_error_metres": 0.013220890425145626
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.044",
+        "surface_footprint_iou": 0.9989021329987453,
+        "footprint_union_samples": 12752,
+        "footprint_intersection_samples": 12738,
+        "p95_vertical_error_metres": 0.001817679405212401,
+        "max_vertical_error_metres": 0.05680423974990845,
+        "silhouette_transition_samples": 14,
+        "p95_nearest_surface_error_metres": 0.0019115140836220232,
+        "max_nearest_surface_error_metres": 0.00438880268484354
+      },
+      {
+        "stone": "LimestoneRock01_LOD0.045",
+        "surface_footprint_iou": 0.999245112100853,
+        "footprint_union_samples": 13247,
+        "footprint_intersection_samples": 13237,
+        "p95_vertical_error_metres": 0.0020658940076827997,
+        "max_vertical_error_metres": 0.05758631229400635,
+        "silhouette_transition_samples": 10,
+        "p95_nearest_surface_error_metres": 0.0021564344060607246,
+        "max_nearest_surface_error_metres": 0.0046542794443666935
+      }
+    ],
+    "minimum_footprint_iou": 0.9929868308267747,
+    "maximum_vertical_error_metres": 0.11817699670791626,
+    "maximum_nearest_surface_error_metres": 0.030889349058270454,
+    "vertical_metric_note": "A vertical ray may switch from a steep stone edge to the base after a small horizontal outline shift; nearest-surface distance measures actual geometric displacement"
+  }
+}

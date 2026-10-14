@@ -1,5 +1,7 @@
 # Flat stone ground patch
 
+**Current revision:** [supported stone repair](REPAIR01.md), with 8,000 triangles, filled stone/base undercuts and two materials. Its current receipt is repair01.json. The initial 5,500-triangle atlas process and measurements below are retained historical evidence, superseded by that repair.
+
 The author selected 23 existing white-limestone stones and the rectangular plane beneath them. This asset consolidates that arrangement into one reusable static ground patch. Its approximately 9.05 × 7.37 metre footprint retains the authored arrangement and the existing white limestone and gray base colors.
 
 The authoring destination is the existing local `../BooterGroundSetup.blend`, with one new selected object named `FlatStoneGroundPatch01`. The original selected stones and plane are retained hidden and editable. Geometry, UVs, material assignments and transforms of every original object are checked by signature before saving. A local `BooterGroundSetup_BeforeFlatStonePatch_2026-10-13.blend` preserves the untouched author save. Blender files and backups remain local-only.

@@ -1,0 +1,21 @@
+# Supported stone repair — October 13, 2026
+
+This is the current revision of FlatStoneGroundPatch01. It replaces the initial 5,500-triangle atlas version after the author identified broken-looking gaps at several stone/base joins.
+
+The original mesh had closed edges but retained exterior undercuts: a vertical column could intersect the stone, an empty pocket underneath it, and then the ground base. The earlier boundary and manifold checks did not test this condition. A new 320 × 256 vertical-solid check found 2,988 such pocket samples in the old mesh. The repaired mesh has zero pocket samples and zero missing columns across all 81,920 tests.
+
+The repair reconstructs each retained stone's upper surface with constrained projected triangulation and extends its outer contour vertically into the solid base. An exact union creates one closed connected mesh. Only interior roof vertices may collapse; zero-weight base, contact and UV-seam vertices are excluded. The 6,500-triangle trial reintroduced 12 downward-facing roof facets and was rejected. The accepted version has **8,000 triangles and 4,002 native vertices**, with a maximum sampled simplification distance of 3.25 mm from the supported reconstruction. It has no open/non-manifold edges, zero-area faces or downward-facing stone undersides.
+
+Against the retained artist stones, the worst sampled top footprint intersection-over-union is 99.298683%, using 128 × 128 rays per stone at 3 mm above the base. The 99.3% target is quantized to this grid with less than one union sample of rounding tolerance. The worst per-stone 95th-percentile nearest-surface distance is 2.93 mm; the maximum is 30.89 mm at changed edges/support. Filling an underside deliberately changes its shape, so the 3.25 mm reduction bound above measures the supported reconstruction rather than the original undercut sculpt. Comparison uses the recorded construction pivot independently of the author's lifted inspection pose.
+
+The approved white-limestone source is reused directly with metre-scaled UVs and 0.6 mm microrelief. This removes torn cage-atlas seams. The patch now has two material slots: unchanged neutral ground and white limestone. Original hidden source stones, their plane, and every unrelated object signature remain unchanged. The author's latest autosaved lifted inspection pose at Z=2.680210 m is preserved in the original scene. The source and artist-autosave backups remain local-only.
+
+Runtime keeps the existing prefab and Runtime mesh asset GUIDs. The normalized Unity root stays at identity rotation/unit scale, with one renderer, two materials and a static non-convex MeshCollider. Unity import has 9,977 vertices after UV, shading and lightmap splits and 8,000 triangles. All 768 direct collider coverage samples hit; material references and URP shader checks pass. No Unity scene placement or gameplay smoke testing occurred. Deterministic identity, fixed terrain, streaming, placement rules and gameplay saves are unaffected.
+
+The former atlas images remain retained for the previous revision; they are no longer referenced by the repaired prefab materials. Three limestone runtime images derive from the already-approved source: exact BaseColor copy, a normal channel computed from the existing height data, and zero-metallic/smoothness-alpha data from its roughness. Texture import expands the source to 2K with repeat sampling and mipmaps.
+
+Repair tools live under Tools/Art/Blender: inspect_flat_stone_repair.py, repair_flat_stone_patch.py, apply_flat_stone_repair.py, create_flat_stone_repair_maps.py, update_flat_stone_repair.cs, verify_flat_stone_support.py and verify_flat_stone_repair.cs. The current receipt is repair01.json; application.json records the superseded initial revision. Proof and before/after closeups are in ignored Logs/FlatStoneGroundPatch01/Repair01. The approved preview was inspected from above and at the repaired joins; tests are finite samples, not a guarantee about every possible placement or camera.
+
+The vertex-weight protection follows the [Blender implementation](https://github.com/blender/blender/blob/main/source/blender/bmesh/tools/bmesh_decimate_collapse.cc), which excludes edges touching zero-weight vertices from collapse.
+
+Load the completed changes in the existing Blender window with **File > Revert before saving again**.
