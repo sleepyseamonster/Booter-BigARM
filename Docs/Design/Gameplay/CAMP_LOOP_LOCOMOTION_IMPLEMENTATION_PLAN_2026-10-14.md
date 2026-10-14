@@ -1,6 +1,6 @@
 # Walking, running and sprinting implementation plan
 
-Date: 2026-10-14. Revision 2, following the [plan audit](./CAMP_LOOP_LOCOMOTION_PLAN_AUDIT_2026-10-14.md). Status: planned; neither planning nor this audit starts implementation. Target: the existing Booter character in CampLoopTesting. Source of truth: the [locomotion audit](./CAMP_LOOP_LOCOMOTION_AUDIT_2026-10-14.md) and its [measured evidence](../../Evidence/Gameplay/LocomotionAudit20261014/README.md).
+Date: 2026-10-14. Revision 2, following the [plan audit](./CAMP_LOOP_LOCOMOTION_PLAN_AUDIT_2026-10-14.md). Status: implementation active by the author's subsequent instruction. Target: the existing Booter character in CampLoopTesting. Source of truth: the [locomotion audit](./CAMP_LOOP_LOCOMOTION_AUDIT_2026-10-14.md) and its [measured evidence](../../Evidence/Gameplay/LocomotionAudit20261014/README.md). Follow the [implementation checkpoint](../../Evidence/Gameplay/LocomotionImplementation20261014/README.md) for current gates; the broader playground expansion remains deferred.
 
 ## Outcome and scope
 

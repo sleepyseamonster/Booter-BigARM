@@ -1,0 +1,1101 @@
+{
+  "state": "source-selection-proposals-not-acceptance",
+  "definition": {
+    "sampleRate": 120,
+    "influenceLimit": 4,
+    "supportedHeightAllowance": 0.03,
+    "verticalSpeedLimit": 0.35,
+    "minimumPatchDuration": 0.06,
+    "selection": "longest nonoverlapping fixed vertex patches per side",
+    "rolling": "patch gaps and replacement identities remain distinct; supported vertical velocity includes proposed plane projection",
+    "targetMaximumAnchorExcursion": 0.02,
+    "limitations": "Finite samples, no equipment, vertical classification projection only."
+  },
+  "sources": [
+    {
+      "name": "MCU_am_Loco_Jog_Fwd_NoRM",
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_NoRM.FBX",
+      "duration": 1.4333334,
+      "samples": 173,
+      "vertices": 674,
+      "floor": -0.91,
+      "rawMinimum": -0.917293131,
+      "maximumProposedProjection": 0.007293130999999953,
+      "measurementMilliseconds": 242.2151,
+      "nominalSpeed": 2.7,
+      "fittedContactSpeed": 3.051465737498929,
+      "contactPatches": [
+        {
+          "vertex": 306,
+          "side": 1,
+          "first": 30,
+          "stop": 46,
+          "start": 0.25,
+          "end": 0.383333355,
+          "duration": 0.133333355,
+          "fitSpeed": 3.0428025486780665,
+          "nominal": {
+            "maximumAnchorExcursion": 0.05461746662074342,
+            "cumulativeTravel": 0.056097509342035355,
+            "peakDriftSpeed": 1.1628207140843163,
+            "medianDriftSpeed": 0.3297834885697224
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.010750538896828655,
+            "cumulativeTravel": 0.02643666131385496,
+            "peakDriftSpeed": 0.8221297182682334,
+            "medianDriftSpeed": 0.1345856026062462
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22533,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.030670736000000032
+        },
+        {
+          "vertex": 77,
+          "side": 0,
+          "first": 67,
+          "stop": 83,
+          "start": 0.558333337,
+          "end": 0.6916667,
+          "duration": 0.13333336299999998,
+          "fitSpeed": 3.0896888151781066,
+          "nominal": {
+            "maximumAnchorExcursion": 0.04520908599845258,
+            "cumulativeTravel": 0.05800293221266842,
+            "peakDriftSpeed": 0.984889003898875,
+            "medianDriftSpeed": 0.37509780562662176
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.013854509002308581,
+            "cumulativeTravel": 0.03740495687668701,
+            "peakDriftSpeed": 0.8551427877390461,
+            "medianDriftSpeed": 0.2556610477056763
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6686,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.030178099999999985
+        },
+        {
+          "vertex": 309,
+          "side": 1,
+          "first": 117,
+          "stop": 131,
+          "start": 0.975,
+          "end": 1.0916667,
+          "duration": 0.11666670000000001,
+          "fitSpeed": 3.0601289263197917,
+          "nominal": {
+            "maximumAnchorExcursion": 0.04412535031635053,
+            "cumulativeTravel": 0.04850477534461692,
+            "peakDriftSpeed": 0.8808376134774479,
+            "medianDriftSpeed": 0.4158219885443929
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.008006156133266672,
+            "cumulativeTravel": 0.029233471451582515,
+            "peakDriftSpeed": 0.5354758617736544,
+            "medianDriftSpeed": 0.20943282851326644
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22536,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.02746460000000006
+        },
+        {
+          "vertex": 0,
+          "side": 0,
+          "first": 163,
+          "stop": 172,
+          "start": 1.35833335,
+          "end": 1.4333334,
+          "duration": 0.07500004999999987,
+          "fitSpeed": 3.0344944251419825,
+          "nominal": {
+            "maximumAnchorExcursion": 0.026770227115764433,
+            "cumulativeTravel": 0.03178596632747194,
+            "peakDriftSpeed": 0.5877210527577807,
+            "medianDriftSpeed": 0.426367810771744
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.007873390997130303,
+            "cumulativeTravel": 0.017499731093848777,
+            "peakDriftSpeed": 0.9295922784220869,
+            "medianDriftSpeed": 0.1214294795733409
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6609,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.020741436000000002
+        }
+      ],
+      "maximumNominalPatchExcursion": 0.05461746662074342,
+      "maximumFittedPatchExcursion": 0.013854509002308581,
+      "seamFootGap": 0.0,
+      "seamHipsGap": 0.0
+    },
+    {
+      "name": "MCU_am_Loco_Run_Fwd_NoRM",
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Run_Fwd_NoRM.FBX",
+      "duration": 1.23333335,
+      "samples": 149,
+      "vertices": 674,
+      "floor": -0.91,
+      "rawMinimum": -0.9620918,
+      "maximumProposedProjection": 0.05209180000000002,
+      "measurementMilliseconds": 178.1216,
+      "nominalSpeed": 3.8,
+      "fittedContactSpeed": 4.35568224579438,
+      "contactPatches": [
+        {
+          "vertex": 316,
+          "side": 1,
+          "first": 21,
+          "stop": 29,
+          "start": 0.175,
+          "end": 0.241666675,
+          "duration": 0.06666667500000001,
+          "fitSpeed": 4.2583892154596,
+          "nominal": {
+            "maximumAnchorExcursion": 0.03268141608142608,
+            "cumulativeTravel": 0.034488479126920685,
+            "peakDriftSpeed": 0.953868600561558,
+            "medianDriftSpeed": 0.4973807545047677
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.014378387138228279,
+            "cumulativeTravel": 0.024618544202985072,
+            "peakDriftSpeed": 0.6032879522711324,
+            "medianDriftSpeed": 0.38080030239344553
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22543,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.02197686200000004
+        },
+        {
+          "vertex": 30,
+          "side": 0,
+          "first": 56,
+          "stop": 66,
+          "start": 0.466666669,
+          "end": 0.55,
+          "duration": 0.08333333100000007,
+          "fitSpeed": 4.35297660067666,
+          "nominal": {
+            "maximumAnchorExcursion": 0.04708960819187468,
+            "cumulativeTravel": 0.04944616198482576,
+            "peakDriftSpeed": 1.3981526170680976,
+            "medianDriftSpeed": 0.6157189363893333
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.011159454210709354,
+            "cumulativeTravel": 0.03221781508093104,
+            "peakDriftSpeed": 0.8424787557682397,
+            "medianDriftSpeed": 0.2948078790801736
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6639,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.009425500000000087
+        },
+        {
+          "vertex": 291,
+          "side": 1,
+          "first": 97,
+          "stop": 105,
+          "start": 0.808333337,
+          "end": 0.875,
+          "duration": 0.06666666300000001,
+          "fitSpeed": 4.562440379145347,
+          "nominal": {
+            "maximumAnchorExcursion": 0.05440097785912213,
+            "cumulativeTravel": 0.05493193008086428,
+            "peakDriftSpeed": 1.5053627079954566,
+            "medianDriftSpeed": 0.8021862258437691
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.028865919328403628,
+            "cumulativeTravel": 0.0329253878845215,
+            "peakDriftSpeed": 0.9873204012309257,
+            "medianDriftSpeed": 0.48579554696429134
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22518,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.015959200000000062
+        },
+        {
+          "vertex": 27,
+          "side": 0,
+          "first": 128,
+          "stop": 143,
+          "start": 1.06666672,
+          "end": 1.19166672,
+          "duration": 0.125,
+          "fitSpeed": 4.3583878909121,
+          "nominal": {
+            "maximumAnchorExcursion": 0.06169400082974517,
+            "cumulativeTravel": 0.10109822437261859,
+            "peakDriftSpeed": 1.9816345104167692,
+            "medianDriftSpeed": 0.754909751029119
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.034398106090926125,
+            "cumulativeTravel": 0.07813068783804608,
+            "peakDriftSpeed": 1.7266937135218587,
+            "medianDriftSpeed": 0.5354541847693625
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6636,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.02208713699999998
+        }
+      ],
+      "maximumNominalPatchExcursion": 0.06169400082974517,
+      "maximumFittedPatchExcursion": 0.034398106090926125,
+      "seamFootGap": 0.0,
+      "seamHipsGap": 0.0
+    },
+    {
+      "name": "MCU_am_Loco_Walk_Fwd_NoRM",
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Walk_Fwd_NoRM.FBX",
+      "duration": 2.13333344,
+      "samples": 257,
+      "vertices": 674,
+      "floor": -0.91,
+      "rawMinimum": -0.9392862,
+      "maximumProposedProjection": 0.02928619999999993,
+      "measurementMilliseconds": 160.8587,
+      "nominalSpeed": 1.4,
+      "fittedContactSpeed": 1.4867935057671986,
+      "contactPatches": [
+        {
+          "vertex": 12,
+          "side": 0,
+          "first": 0,
+          "stop": 26,
+          "start": 0.0,
+          "end": 0.216666684,
+          "duration": 0.216666684,
+          "fitSpeed": 1.4316001712312862,
+          "nominal": {
+            "maximumAnchorExcursion": 0.010961211589093245,
+            "cumulativeTravel": 0.018480131152718415,
+            "peakDriftSpeed": 0.19617776638810958,
+            "medianDriftSpeed": 0.07320972150045624
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.016160775494794142,
+            "cumulativeTravel": 0.022725600517997067,
+            "peakDriftSpeed": 0.2244433999023952,
+            "medianDriftSpeed": 0.09586109981331643
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6621,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.031199900000000058
+        },
+        {
+          "vertex": 316,
+          "side": 1,
+          "first": 29,
+          "stop": 85,
+          "start": 0.241666675,
+          "end": 0.7083334,
+          "duration": 0.466666725,
+          "fitSpeed": 1.5264430455333997,
+          "nominal": {
+            "maximumAnchorExcursion": 0.06269452435841091,
+            "cumulativeTravel": 0.08364968672741664,
+            "peakDriftSpeed": 1.0239553974627287,
+            "medianDriftSpeed": 0.12160986783213729
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.03658570903905246,
+            "cumulativeTravel": 0.06028351480617645,
+            "peakDriftSpeed": 0.9980650768320376,
+            "medianDriftSpeed": 0.06098946136276587
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22543,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.028859700000000044
+        },
+        {
+          "vertex": 45,
+          "side": 0,
+          "first": 88,
+          "stop": 143,
+          "start": 0.733333349,
+          "end": 1.19166672,
+          "duration": 0.45833337099999993,
+          "fitSpeed": 1.4867935057671986,
+          "nominal": {
+            "maximumAnchorExcursion": 0.027286711802309883,
+            "cumulativeTravel": 0.0780968587656471,
+            "peakDriftSpeed": 1.1201115231948742,
+            "medianDriftSpeed": 0.10757578740770699
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.03281929362895855,
+            "cumulativeTravel": 0.06581525878917371,
+            "peakDriftSpeed": 1.2053327063792596,
+            "medianDriftSpeed": 0.07643302403056526
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6654,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.03125253700000008
+        },
+        {
+          "vertex": 317,
+          "side": 1,
+          "first": 153,
+          "stop": 207,
+          "start": 1.2750001,
+          "end": 1.72500014,
+          "duration": 0.45000003999999993,
+          "fitSpeed": 1.5382699169794132,
+          "nominal": {
+            "maximumAnchorExcursion": 0.05694876974549578,
+            "cumulativeTravel": 0.08009444747614287,
+            "peakDriftSpeed": 0.6453064994559574,
+            "medianDriftSpeed": 0.13788308866123128
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.027200913538767725,
+            "cumulativeTravel": 0.054568115997365274,
+            "peakDriftSpeed": 0.6962573118512657,
+            "medianDriftSpeed": 0.07916952444322697
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22544,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.030465799999999987
+        },
+        {
+          "vertex": 25,
+          "side": 0,
+          "first": 217,
+          "stop": 256,
+          "start": 1.8083334,
+          "end": 2.13333344,
+          "duration": 0.32500003999999993,
+          "fitSpeed": 1.4825641521382849,
+          "nominal": {
+            "maximumAnchorExcursion": 0.02996580035445688,
+            "cumulativeTravel": 0.043245549915797855,
+            "peakDriftSpeed": 0.38208380064619546,
+            "medianDriftSpeed": 0.1224778877952229
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.020585750889771045,
+            "cumulativeTravel": 0.034787961394884825,
+            "peakDriftSpeed": 0.4578425482207347,
+            "medianDriftSpeed": 0.0659954930441799
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6634,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.019043360000000065
+        }
+      ],
+      "maximumNominalPatchExcursion": 0.06269452435841091,
+      "maximumFittedPatchExcursion": 0.03658570903905246,
+      "seamFootGap": 0.0,
+      "seamHipsGap": 0.0
+    },
+    {
+      "name": "RunTwoCycles",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RunTwoCycles.anim",
+      "duration": 1.4666667,
+      "samples": 177,
+      "vertices": 674,
+      "floor": -0.91,
+      "rawMinimum": -0.960809052,
+      "maximumProposedProjection": 0.050809051999999966,
+      "measurementMilliseconds": 157.7929,
+      "nominalSpeed": 2.7,
+      "fittedContactSpeed": 3.8277908304748625,
+      "contactPatches": [
+        {
+          "vertex": 2,
+          "side": 0,
+          "first": 67,
+          "stop": 76,
+          "start": 0.558333337,
+          "end": 0.6333333,
+          "duration": 0.074999963,
+          "fitSpeed": 3.827788773189615,
+          "nominal": {
+            "maximumAnchorExcursion": 0.22185072133378061,
+            "cumulativeTravel": 0.22433674332637593,
+            "peakDriftSpeed": 3.9568540161065324,
+            "medianDriftSpeed": 3.1922674013478654
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.20645447693926602,
+            "cumulativeTravel": 0.21259241144772661,
+            "peakDriftSpeed": 3.632996364429096,
+            "medianDriftSpeed": 2.6482705266360127
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6611,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.009672239999999999
+        },
+        {
+          "vertex": 2,
+          "side": 0,
+          "first": 155,
+          "stop": 164,
+          "start": 1.29166675,
+          "end": 1.36666667,
+          "duration": 0.07499992,
+          "fitSpeed": 3.82779288776011,
+          "nominal": {
+            "maximumAnchorExcursion": 0.2218503313198427,
+            "cumulativeTravel": 0.22433651463101142,
+            "peakDriftSpeed": 3.956825655882284,
+            "medianDriftSpeed": 3.192284119172936
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.2064540053991373,
+            "cumulativeTravel": 0.21259228701202035,
+            "peakDriftSpeed": 3.632948293854963,
+            "medianDriftSpeed": 2.6482816315398465
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6611,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.009672242000000053
+        }
+      ],
+      "maximumNominalPatchExcursion": 0.22185072133378061,
+      "maximumFittedPatchExcursion": 0.20645447693926602,
+      "seamFootGap": 0.0,
+      "seamHipsGap": 0.0
+    },
+    {
+      "name": "SprintForwardTravelAlternative",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Locomotion/SprintForwardTravelAlternative.fbx",
+      "duration": 0.533333361,
+      "samples": 65,
+      "vertices": 674,
+      "floor": -0.91,
+      "rawMinimum": -1.00471425,
+      "maximumProposedProjection": 0.09471424999999989,
+      "measurementMilliseconds": 46.1575,
+      "nominalSpeed": 3.8,
+      "fittedContactSpeed": 5.405809589371486,
+      "contactPatches": [
+        {
+          "vertex": 15,
+          "side": 0,
+          "first": 20,
+          "stop": 35,
+          "start": 0.166666672,
+          "end": 0.2916667,
+          "duration": 0.125000028,
+          "fitSpeed": 5.8336530532842445,
+          "nominal": {
+            "maximumAnchorExcursion": 0.2792199064743116,
+            "cumulativeTravel": 0.32672597836345996,
+            "peakDriftSpeed": 5.4862186265060995,
+            "medianDriftSpeed": 2.253647434522141
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.16183397142600756,
+            "cumulativeTravel": 0.22738979161114337,
+            "peakDriftSpeed": 4.1301148695052445,
+            "medianDriftSpeed": 1.8204107147944888
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6624,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.010784542000000008
+        },
+        {
+          "vertex": 318,
+          "side": 1,
+          "first": 48,
+          "stop": 62,
+          "start": 0.400000036,
+          "end": 0.5166667,
+          "duration": 0.11666666400000003,
+          "fitSpeed": 4.977966125458727,
+          "nominal": {
+            "maximumAnchorExcursion": 0.16983837829499865,
+            "cumulativeTravel": 0.2477000949331897,
+            "peakDriftSpeed": 3.1356518554143964,
+            "medianDriftSpeed": 2.0238963354596793
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.15440036419512973,
+            "cumulativeTravel": 0.2079035059135907,
+            "peakDriftSpeed": 3.5210268859442095,
+            "medianDriftSpeed": 1.6875787829888798
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22545,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.006020135999999954
+        }
+      ],
+      "maximumNominalPatchExcursion": 0.2792199064743116,
+      "maximumFittedPatchExcursion": 0.16183397142600756,
+      "seamFootGap": 1.1908453342038537e-06,
+      "seamHipsGap": 1.641493222617588e-07
+    },
+    {
+      "name": "SprintTwoCycles",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintTwoCycles.anim",
+      "duration": 1.06666672,
+      "samples": 129,
+      "vertices": 674,
+      "floor": -0.91,
+      "rawMinimum": -0.980572462,
+      "maximumProposedProjection": 0.070572462,
+      "measurementMilliseconds": 109.88430000000001,
+      "nominalSpeed": 3.8,
+      "fittedContactSpeed": null,
+      "contactPatches": [],
+      "maximumNominalPatchExcursion": null,
+      "maximumFittedPatchExcursion": null,
+      "seamFootGap": 0.0,
+      "seamHipsGap": 0.0
+    },
+    {
+      "name": "StandardRun",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/StandardRun.fbx",
+      "duration": 0.733333349,
+      "samples": 89,
+      "vertices": 674,
+      "floor": -0.91,
+      "rawMinimum": -1.00736475,
+      "maximumProposedProjection": 0.09736475,
+      "measurementMilliseconds": 51.157500000000006,
+      "nominalSpeed": 2.7,
+      "fittedContactSpeed": 3.282397745952281,
+      "contactPatches": [
+        {
+          "vertex": 298,
+          "side": 1,
+          "first": 0,
+          "stop": 8,
+          "start": 0.0,
+          "end": 0.06666667,
+          "duration": 0.06666667,
+          "fitSpeed": 4.421021138862627,
+          "nominal": {
+            "maximumAnchorExcursion": 0.16380606679686496,
+            "cumulativeTravel": 0.16885676560163448,
+            "peakDriftSpeed": 2.9981846479163226,
+            "medianDriftSpeed": 2.56978394783136
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.13981725676394255,
+            "cumulativeTravel": 0.1442702505339415,
+            "peakDriftSpeed": 2.742459323315241,
+            "medianDriftSpeed": 2.20899483631839
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22525,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.003769400000000034
+        },
+        {
+          "vertex": 292,
+          "side": 1,
+          "first": 9,
+          "stop": 17,
+          "start": 0.075,
+          "end": 0.141666666,
+          "duration": 0.066666666,
+          "fitSpeed": 2.901943296083733,
+          "nominal": {
+            "maximumAnchorExcursion": 0.18866858963094146,
+            "cumulativeTravel": 0.20406566080237745,
+            "peakDriftSpeed": 3.5505911543176714,
+            "medianDriftSpeed": 3.0845453272107717
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.18942858379198532,
+            "cumulativeTravel": 0.20568328149021664,
+            "peakDriftSpeed": 3.3865967718151895,
+            "medianDriftSpeed": 3.178926757910257
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22519,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.010996299999999959
+        },
+        {
+          "vertex": 27,
+          "side": 0,
+          "first": 21,
+          "stop": 43,
+          "start": 0.175,
+          "end": 0.358333349,
+          "duration": 0.18333334900000003,
+          "fitSpeed": 3.2898212434983,
+          "nominal": {
+            "maximumAnchorExcursion": 0.17769461263187253,
+            "cumulativeTravel": 0.292567737993419,
+            "peakDriftSpeed": 2.595397138844311,
+            "medianDriftSpeed": 1.5161090417753549
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.1699001774477366,
+            "cumulativeTravel": 0.2702034515568604,
+            "peakDriftSpeed": 3.1775596418093945,
+            "medianDriftSpeed": 1.323787592070775
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6636,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.014878747999999997
+        },
+        {
+          "vertex": 4,
+          "side": 0,
+          "first": 43,
+          "stop": 52,
+          "start": 0.358333349,
+          "end": 0.433333337,
+          "duration": 0.07499998799999996,
+          "fitSpeed": 4.828365336737937,
+          "nominal": {
+            "maximumAnchorExcursion": 0.194587978529325,
+            "cumulativeTravel": 0.205017843108459,
+            "peakDriftSpeed": 4.062620880727384,
+            "medianDriftSpeed": 2.86804072854701
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.15904878059074914,
+            "cumulativeTravel": 0.17097844173615406,
+            "peakDriftSpeed": 3.4934942503402264,
+            "medianDriftSpeed": 2.2875850899815435
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6613,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.004467759000000071
+        },
+        {
+          "vertex": 2,
+          "side": 0,
+          "first": 52,
+          "stop": 63,
+          "start": 0.433333337,
+          "end": 0.525000036,
+          "duration": 0.09166669900000002,
+          "fitSpeed": 3.274974248406261,
+          "nominal": {
+            "maximumAnchorExcursion": 0.21407196886083132,
+            "cumulativeTravel": 0.230601161075916,
+            "peakDriftSpeed": 4.112854199561398,
+            "medianDriftSpeed": 2.2941267792834887
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.2094740809317847,
+            "cumulativeTravel": 0.23344591337947537,
+            "peakDriftSpeed": 3.927639243471999,
+            "medianDriftSpeed": 2.1903769459085023
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6611,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.012761899999999993
+        },
+        {
+          "vertex": 319,
+          "side": 1,
+          "first": 65,
+          "stop": 75,
+          "start": 0.5416667,
+          "end": 0.625,
+          "duration": 0.08333330000000005,
+          "fitSpeed": 3.0925180138058272,
+          "nominal": {
+            "maximumAnchorExcursion": 0.10984961297154006,
+            "cumulativeTravel": 0.16930800457775821,
+            "peakDriftSpeed": 2.6677336400557237,
+            "medianDriftSpeed": 2.1190598425542664
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.11101967897429581,
+            "cumulativeTravel": 0.16791553971394987,
+            "peakDriftSpeed": 3.238211829339333,
+            "medianDriftSpeed": 1.840818588235549
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22546,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.009482632999999963
+        }
+      ],
+      "maximumNominalPatchExcursion": 0.21407196886083132,
+      "maximumFittedPatchExcursion": 0.2094740809317847,
+      "seamFootGap": 7.13992997134972e-07,
+      "seamHipsGap": 7.217999999998073e-08
+    },
+    {
+      "name": "StandardWalk",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/StandardWalk.fbx",
+      "duration": 1.16666675,
+      "samples": 142,
+      "vertices": 674,
+      "floor": -0.91,
+      "rawMinimum": -0.9333743,
+      "maximumProposedProjection": 0.02337429999999996,
+      "measurementMilliseconds": 129.2529,
+      "nominalSpeed": 1.4,
+      "fittedContactSpeed": 1.4021135231079527,
+      "contactPatches": [
+        {
+          "vertex": 340,
+          "side": 1,
+          "first": 0,
+          "stop": 31,
+          "start": 0.0,
+          "end": 0.2565012,
+          "duration": 0.2565012,
+          "fitSpeed": 1.5730291918041586,
+          "nominal": {
+            "maximumAnchorExcursion": 0.04326982963887499,
+            "cumulativeTravel": 0.04418002635884979,
+            "peakDriftSpeed": 0.27861410954884297,
+            "medianDriftSpeed": 0.1730853348636235
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.042742940996597235,
+            "cumulativeTravel": 0.043662270405852875,
+            "peakDriftSpeed": 0.2768205623991806,
+            "medianDriftSpeed": 0.17106680570238827
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22567,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.030617400000000017
+        },
+        {
+          "vertex": 15,
+          "side": 0,
+          "first": 42,
+          "stop": 105,
+          "start": 0.347517759,
+          "end": 0.8687944,
+          "duration": 0.521276641,
+          "fitSpeed": 1.4021135231079527,
+          "nominal": {
+            "maximumAnchorExcursion": 0.05473028782659041,
+            "cumulativeTravel": 0.07903021033761318,
+            "peakDriftSpeed": 0.37204949270831417,
+            "medianDriftSpeed": 0.13899891372100714
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.05436743592879569,
+            "cumulativeTravel": 0.07890149406939127,
+            "peakDriftSpeed": 0.3699374386435894,
+            "medianDriftSpeed": 0.13986070800128045
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6624,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.030041132000000026
+        },
+        {
+          "vertex": 324,
+          "side": 1,
+          "first": 104,
+          "stop": 141,
+          "start": 0.8605201,
+          "end": 1.16666675,
+          "duration": 0.3061466500000001,
+          "fitSpeed": 1.4006054127071874,
+          "nominal": {
+            "maximumAnchorExcursion": 0.021916844083571623,
+            "cumulativeTravel": 0.04488505478757578,
+            "peakDriftSpeed": 0.3243528256759394,
+            "medianDriftSpeed": 0.1244460010044495
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.021658649958965215,
+            "cumulativeTravel": 0.04503672945478372,
+            "peakDriftSpeed": 0.32224140699005205,
+            "medianDriftSpeed": 0.12632131993266787
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22551,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.03078700000000001
+        }
+      ],
+      "maximumNominalPatchExcursion": 0.05473028782659041,
+      "maximumFittedPatchExcursion": 0.05436743592879569,
+      "seamFootGap": 7.361428190272744e-07,
+      "seamHipsGap": 1.9236640455519352e-07
+    },
+    {
+      "name": "TwoCycleSprint",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/TwoCycleSprint.fbx",
+      "duration": 1.06666672,
+      "samples": 129,
+      "vertices": 674,
+      "floor": -0.91,
+      "rawMinimum": -1.02221882,
+      "maximumProposedProjection": 0.11221881999999994,
+      "measurementMilliseconds": 87.6305,
+      "nominalSpeed": 3.8,
+      "fittedContactSpeed": 3.609629284834722,
+      "contactPatches": [
+        {
+          "vertex": 30,
+          "side": 0,
+          "first": 15,
+          "stop": 24,
+          "start": 0.125,
+          "end": 0.200000018,
+          "duration": 0.075000018,
+          "fitSpeed": 3.609629284834722,
+          "nominal": {
+            "maximumAnchorExcursion": 0.07539670306875716,
+            "cumulativeTravel": 0.13292208799632685,
+            "peakDriftSpeed": 3.683543543630253,
+            "medianDriftSpeed": 1.6329693721999903
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.06802933516644882,
+            "cumulativeTravel": 0.13338433597781646,
+            "peakDriftSpeed": 3.4935421199440486,
+            "medianDriftSpeed": 1.7805240646873073
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6639,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.008236766000000006
+        }
+      ],
+      "maximumNominalPatchExcursion": 0.07539670306875716,
+      "maximumFittedPatchExcursion": 0.06802933516644882,
+      "seamFootGap": 8.406533173737237e-07,
+      "seamHipsGap": 1.7463859826777091e-07
+    },
+    {
+      "name": "WalkTwoCycles",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/WalkTwoCycles.anim",
+      "duration": 2.33333349,
+      "samples": 282,
+      "vertices": 674,
+      "floor": -0.91,
+      "rawMinimum": -0.9326951,
+      "maximumProposedProjection": 0.022695099999999968,
+      "measurementMilliseconds": 295.95050000000003,
+      "nominalSpeed": 1.4,
+      "fittedContactSpeed": 1.4035002776799121,
+      "contactPatches": [
+        {
+          "vertex": 306,
+          "side": 1,
+          "first": 0,
+          "stop": 29,
+          "start": 0.0,
+          "end": 0.240806654,
+          "duration": 0.240806654,
+          "fitSpeed": 1.5592780148036747,
+          "nominal": {
+            "maximumAnchorExcursion": 0.03642924917507463,
+            "cumulativeTravel": 0.03743434272760043,
+            "peakDriftSpeed": 0.25876756169702375,
+            "medianDriftSpeed": 0.1588130278012599
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.035614561090804485,
+            "cumulativeTravel": 0.036638913786751603,
+            "peakDriftSpeed": 0.255712949654023,
+            "medianDriftSpeed": 0.1554964305805822
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22533,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.02987906699999998
+        },
+        {
+          "vertex": 15,
+          "side": 0,
+          "first": 40,
+          "stop": 103,
+          "start": 0.332147121,
+          "end": 0.85527885,
+          "duration": 0.523131729,
+          "fitSpeed": 1.4021173453521318,
+          "nominal": {
+            "maximumAnchorExcursion": 0.054274197366531836,
+            "cumulativeTravel": 0.07827601214615482,
+            "peakDriftSpeed": 0.3521595781830379,
+            "medianDriftSpeed": 0.14299400055621722
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.053716858498897846,
+            "cumulativeTravel": 0.07805495354803103,
+            "peakDriftSpeed": 0.3486642534210796,
+            "medianDriftSpeed": 0.141505119259209
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6624,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.03045830000000005
+        },
+        {
+          "vertex": 306,
+          "side": 1,
+          "first": 110,
+          "stop": 170,
+          "start": 0.9134046,
+          "end": 1.41162527,
+          "duration": 0.49822067000000003,
+          "fitSpeed": 1.4469437072380056,
+          "nominal": {
+            "maximumAnchorExcursion": 0.03210905931398145,
+            "cumulativeTravel": 0.07475414815600726,
+            "peakDriftSpeed": 0.26513412929520697,
+            "medianDriftSpeed": 0.14648409749317984
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.030579606594158825,
+            "cumulativeTravel": 0.07415854606870687,
+            "peakDriftSpeed": 0.2621243951081705,
+            "medianDriftSpeed": 0.14811588865261344
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22533,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.03078154100000008
+        },
+        {
+          "vertex": 15,
+          "side": 0,
+          "first": 181,
+          "stop": 243,
+          "start": 1.50296569,
+          "end": 2.01779366,
+          "duration": 0.5148279700000002,
+          "fitSpeed": 1.4002734131010197,
+          "nominal": {
+            "maximumAnchorExcursion": 0.05372794797150077,
+            "cumulativeTravel": 0.07573654289645253,
+            "peakDriftSpeed": 0.31741888665365403,
+            "medianDriftSpeed": 0.14148429711863497
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.05323984839082165,
+            "cumulativeTravel": 0.07555087760682601,
+            "peakDriftSpeed": 0.3139404184747663,
+            "medianDriftSpeed": 0.140072296629105
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 6624,
+            "side": 0
+          },
+          "maximumProjectedGroundGap": 0.029646200000000067
+        },
+        {
+          "vertex": 332,
+          "side": 1,
+          "first": 242,
+          "stop": 281,
+          "start": 2.00949,
+          "end": 2.33333349,
+          "duration": 0.3238434899999998,
+          "fitSpeed": 1.4035002776799121,
+          "nominal": {
+            "maximumAnchorExcursion": 0.022926898837861493,
+            "cumulativeTravel": 0.047998920341165985,
+            "peakDriftSpeed": 0.35247155033714456,
+            "medianDriftSpeed": 0.11859609271752584
+          },
+          "fitted": {
+            "maximumAnchorExcursion": 0.022588635748235282,
+            "cumulativeTravel": 0.0481858493837874,
+            "peakDriftSpeed": 0.34939454281823834,
+            "medianDriftSpeed": 0.12155560946187245
+          },
+          "identity": {
+            "renderer": "skull",
+            "vertex": 22559,
+            "side": 1
+          },
+          "maximumProjectedGroundGap": 0.03078666699999999
+        }
+      ],
+      "maximumNominalPatchExcursion": 0.054274197366531836,
+      "maximumFittedPatchExcursion": 0.053716858498897846,
+      "seamFootGap": 0.0,
+      "seamHipsGap": 0.0
+    }
+  ]
+}

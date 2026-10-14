@@ -1,0 +1,84 @@
+{
+  "success": true,
+  "command": "command run_tests",
+  "data": {
+    "command": "run_tests",
+    "parameters": {
+      "mode": "editor",
+      "filter": "AnimationPlaygroundPlayerIntegrationTests"
+    },
+    "result": {
+      "Summary": {
+        "Total": 7,
+        "Passed": 7,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.AuthoredPlayerUsesOneGraphAndEquipmentHasIndependentMetreScale",
+          "Status": "Passed",
+          "Duration": 4.1801104,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.BindingRejectsBrokenColliderProfileAndSpeedContracts",
+          "Status": "Passed",
+          "Duration": 0.0032122,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.FailedResetBlocksMovementAndActionsWhilePaletteRemainsAvailable",
+          "Status": "Passed",
+          "Duration": 0.3449712,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.PhysicsHierarchyRejectsScaledAncestorsAndMirrors",
+          "Status": "Passed",
+          "Duration": 0.0017024,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.PrivateBindingCoversEverySourceWithoutPromotingPhysicalReadiness",
+          "Status": "Passed",
+          "Duration": 1.0226071,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.ReturnAnchorsRequireNearbyWalkableSupport",
+          "Status": "Passed",
+          "Duration": 0.0077045,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset",
+          "Status": "Passed",
+          "Duration": 0.5629276,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 8.6,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: AnimationPlaygroundPlayerIntegrationTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

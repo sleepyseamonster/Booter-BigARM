@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "return Newtonsoft.Json.JsonConvert.SerializeObject(new { playing=UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode, skinWeights=UnityEngine.QualitySettings.skinWeights.ToString(), previewScenes=UnityEditor.SceneManagement.EditorSceneManager.previewSceneCount, drivers=System.Linq.Enumerable.Count(UnityEngine.Resources.FindObjectsOfTypeAll<BooterBigArm.TopDown3D.TopDown3DPlayerAnimationDriver>(), d => d.gameObject.scene.IsValid()) });"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": "{\"playing\":false,\"skinWeights\":\"OneBone\",\"previewScenes\":0,\"drivers\":0}"
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

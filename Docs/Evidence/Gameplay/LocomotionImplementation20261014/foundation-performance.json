@@ -1,0 +1,17 @@
+{
+  "state": "offline-pure-foundation-microbenchmark-not-player-profile",
+  "samples": 100000,
+  "milliseconds": 41.4474,
+  "microsecondsPerStep": 0.414474,
+  "recurringManagedBytes": 0,
+  "graphEvaluations": 0,
+  "addedPhysicsQueries": 0,
+  "budgets": {
+    "fixedObservationAndClockMilliseconds": 0.2,
+    "recurringManagedBytes": 0,
+    "projectionAndExplicitGraphMilliseconds": 0.5,
+    "projectionStatus": "awaiting-qualified-family-measurement"
+  },
+  "clockCycles": 978.8968026822788,
+  "countedContacts": 3915
+}

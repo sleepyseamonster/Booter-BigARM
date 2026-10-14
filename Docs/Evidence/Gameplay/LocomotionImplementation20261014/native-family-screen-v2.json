@@ -1,0 +1,550 @@
+{
+  "state": "native-family-screen-not-qualification",
+  "floor": -0.91,
+  "sourceProfile": "Assets/_Project/Settings/Player/TopDown3DLocomotionClipProfile.asset",
+  "envelopes": [
+    {
+      "name": "Bone1.cold.(1.00, 0.00, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9100001,
+      "minimumEquippedBody": -0.9100001,
+      "maximumHeight": 1.78281748,
+      "maximumCorrection": 0.0280664563,
+      "maximumPredictionError": 4.172325E-07,
+      "meanProjectionGraphMicroseconds": 381.19696969696975
+    },
+    {
+      "name": "Bone1.cold.(0.00, 1.00, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9099997,
+      "minimumEquippedBody": -0.9099997,
+      "maximumHeight": 1.77444363,
+      "maximumCorrection": 0.00673222542,
+      "maximumPredictionError": 5.364418E-07,
+      "meanProjectionGraphMicroseconds": 296.46666666666664
+    },
+    {
+      "name": "Bone1.cold.(0.00, 0.00, 1.00)",
+      "samples": 33,
+      "minimumSole": -0.91,
+      "minimumEquippedBody": -0.91,
+      "maximumHeight": 1.79172182,
+      "maximumCorrection": 0.0429333448,
+      "maximumPredictionError": 5.364418E-07,
+      "meanProjectionGraphMicroseconds": 281.4939393939394
+    },
+    {
+      "name": "Bone1.cold.(0.75, 0.25, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9100001,
+      "minimumEquippedBody": -0.9100001,
+      "maximumHeight": 1.77291965,
+      "maximumCorrection": 0.0248882771,
+      "maximumPredictionError": 5.96046448E-07,
+      "meanProjectionGraphMicroseconds": 490.57878787878786
+    },
+    {
+      "name": "Bone1.cold.(0.50, 0.50, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.909999967,
+      "minimumEquippedBody": -0.909999967,
+      "maximumHeight": 1.77107525,
+      "maximumCorrection": 0.0207540989,
+      "maximumPredictionError": 5.364418E-07,
+      "meanProjectionGraphMicroseconds": 564.31515151515157
+    },
+    {
+      "name": "Bone1.cold.(0.25, 0.75, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.909999847,
+      "minimumEquippedBody": -0.909999847,
+      "maximumHeight": 1.77339625,
+      "maximumCorrection": 0.0154401064,
+      "maximumPredictionError": 5.364418E-07,
+      "meanProjectionGraphMicroseconds": 361.10606060606068
+    },
+    {
+      "name": "Bone1.cold.(0.00, 0.75, 0.25)",
+      "samples": 33,
+      "minimumSole": -0.909999967,
+      "minimumEquippedBody": -0.909999967,
+      "maximumHeight": 1.758172,
+      "maximumCorrection": 0.0102844238,
+      "maximumPredictionError": 5.96046448E-07,
+      "meanProjectionGraphMicroseconds": 538.43030303030309
+    },
+    {
+      "name": "Bone1.cold.(0.00, 0.50, 0.50)",
+      "samples": 33,
+      "minimumSole": -0.9099999,
+      "minimumEquippedBody": -0.9099999,
+      "maximumHeight": 1.75516891,
+      "maximumCorrection": 0.02330625,
+      "maximumPredictionError": 5.364418E-07,
+      "meanProjectionGraphMicroseconds": 360.92121212121219
+    },
+    {
+      "name": "Bone1.cold.(0.00, 0.25, 0.75)",
+      "samples": 33,
+      "minimumSole": -0.909999967,
+      "minimumEquippedBody": -0.909999967,
+      "maximumHeight": 1.77395582,
+      "maximumCorrection": 0.0347211361,
+      "maximumPredictionError": 4.76837158E-07,
+      "meanProjectionGraphMicroseconds": 509.83030303030307
+    },
+    {
+      "name": "Bone1.warm.(1.00, 0.00, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9100001,
+      "minimumEquippedBody": -0.9100001,
+      "maximumHeight": 1.78281748,
+      "maximumCorrection": 0.0280664563,
+      "maximumPredictionError": 4.172325E-07,
+      "meanProjectionGraphMicroseconds": 389.79696969696971
+    },
+    {
+      "name": "Bone1.warm.(0.00, 1.00, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9099997,
+      "minimumEquippedBody": -0.9099997,
+      "maximumHeight": 1.77444363,
+      "maximumCorrection": 0.00673222542,
+      "maximumPredictionError": 5.364418E-07,
+      "meanProjectionGraphMicroseconds": 310.82727272727277
+    },
+    {
+      "name": "Bone1.warm.(0.00, 0.00, 1.00)",
+      "samples": 33,
+      "minimumSole": -0.91,
+      "minimumEquippedBody": -0.91,
+      "maximumHeight": 1.79172182,
+      "maximumCorrection": 0.0429333448,
+      "maximumPredictionError": 5.364418E-07,
+      "meanProjectionGraphMicroseconds": 357.4757575757576
+    },
+    {
+      "name": "Bone1.warm.(0.75, 0.25, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9100001,
+      "minimumEquippedBody": -0.9100001,
+      "maximumHeight": 1.77291965,
+      "maximumCorrection": 0.0248882771,
+      "maximumPredictionError": 5.96046448E-07,
+      "meanProjectionGraphMicroseconds": 402.62424242424242
+    },
+    {
+      "name": "Bone1.warm.(0.50, 0.50, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.909999967,
+      "minimumEquippedBody": -0.909999967,
+      "maximumHeight": 1.77107525,
+      "maximumCorrection": 0.0207540989,
+      "maximumPredictionError": 5.364418E-07,
+      "meanProjectionGraphMicroseconds": 272.2272727272728
+    },
+    {
+      "name": "Bone1.warm.(0.25, 0.75, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.909999847,
+      "minimumEquippedBody": -0.909999847,
+      "maximumHeight": 1.77339625,
+      "maximumCorrection": 0.0154401064,
+      "maximumPredictionError": 5.364418E-07,
+      "meanProjectionGraphMicroseconds": 354.61818181818188
+    },
+    {
+      "name": "Bone1.warm.(0.00, 0.75, 0.25)",
+      "samples": 33,
+      "minimumSole": -0.909999967,
+      "minimumEquippedBody": -0.909999967,
+      "maximumHeight": 1.758172,
+      "maximumCorrection": 0.0102844238,
+      "maximumPredictionError": 5.96046448E-07,
+      "meanProjectionGraphMicroseconds": 340.69393939393944
+    },
+    {
+      "name": "Bone1.warm.(0.00, 0.50, 0.50)",
+      "samples": 33,
+      "minimumSole": -0.9099999,
+      "minimumEquippedBody": -0.9099999,
+      "maximumHeight": 1.75516891,
+      "maximumCorrection": 0.02330625,
+      "maximumPredictionError": 5.364418E-07,
+      "meanProjectionGraphMicroseconds": 361.31818181818181
+    },
+    {
+      "name": "Bone1.warm.(0.00, 0.25, 0.75)",
+      "samples": 33,
+      "minimumSole": -0.909999967,
+      "minimumEquippedBody": -0.909999967,
+      "maximumHeight": 1.77395582,
+      "maximumCorrection": 0.0347211361,
+      "maximumPredictionError": 4.76837158E-07,
+      "meanProjectionGraphMicroseconds": 233.58484848484849
+    },
+    {
+      "name": "Bone2.cold.(1.00, 0.00, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.910437942,
+      "minimumEquippedBody": -0.910437942,
+      "maximumHeight": 1.78283274,
+      "maximumCorrection": 0.0286666751,
+      "maximumPredictionError": 0.000841021538,
+      "meanProjectionGraphMicroseconds": 303.86363636363637
+    },
+    {
+      "name": "Bone2.cold.(0.00, 1.00, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9105093,
+      "minimumEquippedBody": -0.9105093,
+      "maximumHeight": 1.77444363,
+      "maximumCorrection": 0.00622266531,
+      "maximumPredictionError": 0.00181251764,
+      "meanProjectionGraphMicroseconds": 328.530303030303
+    },
+    {
+      "name": "Bone2.cold.(0.00, 0.00, 1.00)",
+      "samples": 33,
+      "minimumSole": -0.91438365,
+      "minimumEquippedBody": -0.91438365,
+      "maximumHeight": 1.79172182,
+      "maximumCorrection": 0.042968154,
+      "maximumPredictionError": 0.0043836236,
+      "meanProjectionGraphMicroseconds": 355.93333333333339
+    },
+    {
+      "name": "Bone2.cold.(0.75, 0.25, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.910492361,
+      "minimumEquippedBody": -0.910492361,
+      "maximumHeight": 1.77291965,
+      "maximumCorrection": 0.0252366066,
+      "maximumPredictionError": 0.0009034872,
+      "meanProjectionGraphMicroseconds": 382.530303030303
+    },
+    {
+      "name": "Bone2.cold.(0.50, 0.50, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.910276353,
+      "minimumEquippedBody": -0.910276353,
+      "maximumHeight": 1.77107525,
+      "maximumCorrection": 0.02082491,
+      "maximumPredictionError": 0.00157755613,
+      "meanProjectionGraphMicroseconds": 458.939393939394
+    },
+    {
+      "name": "Bone2.cold.(0.25, 0.75, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9103311,
+      "minimumEquippedBody": -0.9103311,
+      "maximumHeight": 1.77339625,
+      "maximumCorrection": 0.0152080059,
+      "maximumPredictionError": 0.00204521418,
+      "meanProjectionGraphMicroseconds": 466.17575757575759
+    },
+    {
+      "name": "Bone2.cold.(0.00, 0.75, 0.25)",
+      "samples": 33,
+      "minimumSole": -0.910558343,
+      "minimumEquippedBody": -0.910558343,
+      "maximumHeight": 1.758172,
+      "maximumCorrection": 0.009882867,
+      "maximumPredictionError": 0.0026717782,
+      "meanProjectionGraphMicroseconds": 536.01818181818192
+    },
+    {
+      "name": "Bone2.cold.(0.00, 0.50, 0.50)",
+      "samples": 33,
+      "minimumSole": -0.911414146,
+      "minimumEquippedBody": -0.911414146,
+      "maximumHeight": 1.75516891,
+      "maximumCorrection": 0.023211062,
+      "maximumPredictionError": 0.00267237425,
+      "meanProjectionGraphMicroseconds": 395.26060606060611
+    },
+    {
+      "name": "Bone2.cold.(0.00, 0.25, 0.75)",
+      "samples": 33,
+      "minimumSole": -0.911892354,
+      "minimumEquippedBody": -0.911892354,
+      "maximumHeight": 1.77395582,
+      "maximumCorrection": 0.034724772,
+      "maximumPredictionError": 0.00335633755,
+      "meanProjectionGraphMicroseconds": 312.35151515151517
+    },
+    {
+      "name": "Bone2.warm.(1.00, 0.00, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.910437942,
+      "minimumEquippedBody": -0.910437942,
+      "maximumHeight": 1.78283274,
+      "maximumCorrection": 0.0286666751,
+      "maximumPredictionError": 0.000841021538,
+      "meanProjectionGraphMicroseconds": 402.0151515151515
+    },
+    {
+      "name": "Bone2.warm.(0.00, 1.00, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9105093,
+      "minimumEquippedBody": -0.9105093,
+      "maximumHeight": 1.77444363,
+      "maximumCorrection": 0.00622266531,
+      "maximumPredictionError": 0.00181251764,
+      "meanProjectionGraphMicroseconds": 426.52424242424246
+    },
+    {
+      "name": "Bone2.warm.(0.00, 0.00, 1.00)",
+      "samples": 33,
+      "minimumSole": -0.91438365,
+      "minimumEquippedBody": -0.91438365,
+      "maximumHeight": 1.79172182,
+      "maximumCorrection": 0.042968154,
+      "maximumPredictionError": 0.0043836236,
+      "meanProjectionGraphMicroseconds": 427.05454545454546
+    },
+    {
+      "name": "Bone2.warm.(0.75, 0.25, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.910492361,
+      "minimumEquippedBody": -0.910492361,
+      "maximumHeight": 1.77291965,
+      "maximumCorrection": 0.0252366066,
+      "maximumPredictionError": 0.0009034872,
+      "meanProjectionGraphMicroseconds": 664.85757575757577
+    },
+    {
+      "name": "Bone2.warm.(0.50, 0.50, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.910276353,
+      "minimumEquippedBody": -0.910276353,
+      "maximumHeight": 1.77107525,
+      "maximumCorrection": 0.02082491,
+      "maximumPredictionError": 0.00157755613,
+      "meanProjectionGraphMicroseconds": 560.33636363636356
+    },
+    {
+      "name": "Bone2.warm.(0.25, 0.75, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9103311,
+      "minimumEquippedBody": -0.9103311,
+      "maximumHeight": 1.77339625,
+      "maximumCorrection": 0.0152080059,
+      "maximumPredictionError": 0.00204521418,
+      "meanProjectionGraphMicroseconds": 402.33333333333337
+    },
+    {
+      "name": "Bone2.warm.(0.00, 0.75, 0.25)",
+      "samples": 33,
+      "minimumSole": -0.910558343,
+      "minimumEquippedBody": -0.910558343,
+      "maximumHeight": 1.758172,
+      "maximumCorrection": 0.009882867,
+      "maximumPredictionError": 0.0026717782,
+      "meanProjectionGraphMicroseconds": 443.89393939393938
+    },
+    {
+      "name": "Bone2.warm.(0.00, 0.50, 0.50)",
+      "samples": 33,
+      "minimumSole": -0.911414146,
+      "minimumEquippedBody": -0.911414146,
+      "maximumHeight": 1.75516891,
+      "maximumCorrection": 0.023211062,
+      "maximumPredictionError": 0.00267237425,
+      "meanProjectionGraphMicroseconds": 824.53030303030312
+    },
+    {
+      "name": "Bone2.warm.(0.00, 0.25, 0.75)",
+      "samples": 33,
+      "minimumSole": -0.911892354,
+      "minimumEquippedBody": -0.911892354,
+      "maximumHeight": 1.77395582,
+      "maximumCorrection": 0.034724772,
+      "maximumPredictionError": 0.00335633755,
+      "meanProjectionGraphMicroseconds": 532.48181818181808
+    },
+    {
+      "name": "Bone4.cold.(1.00, 0.00, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9104945,
+      "minimumEquippedBody": -0.9104945,
+      "maximumHeight": 1.78283274,
+      "maximumCorrection": 0.02867335,
+      "maximumPredictionError": 0.0008947849,
+      "meanProjectionGraphMicroseconds": 406.75151515151521
+    },
+    {
+      "name": "Bone4.cold.(0.00, 1.00, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9105042,
+      "minimumEquippedBody": -0.9105042,
+      "maximumHeight": 1.77444363,
+      "maximumCorrection": 0.0062277317,
+      "maximumPredictionError": 0.00181251764,
+      "meanProjectionGraphMicroseconds": 463.5
+    },
+    {
+      "name": "Bone4.cold.(0.00, 0.00, 1.00)",
+      "samples": 33,
+      "minimumSole": -0.9145637,
+      "minimumEquippedBody": -0.9145637,
+      "maximumHeight": 1.79172182,
+      "maximumCorrection": 0.04287672,
+      "maximumPredictionError": 0.004563689,
+      "meanProjectionGraphMicroseconds": 407.61818181818188
+    },
+    {
+      "name": "Bone4.cold.(0.75, 0.25, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.910547256,
+      "minimumEquippedBody": -0.910547256,
+      "maximumHeight": 1.77291965,
+      "maximumCorrection": 0.0252428055,
+      "maximumPredictionError": 0.0009034872,
+      "meanProjectionGraphMicroseconds": 339.90909090909093
+    },
+    {
+      "name": "Bone4.cold.(0.50, 0.50, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9102674,
+      "minimumEquippedBody": -0.9102674,
+      "maximumHeight": 1.77107525,
+      "maximumCorrection": 0.02083069,
+      "maximumPredictionError": 0.00157755613,
+      "meanProjectionGraphMicroseconds": 962.409090909091
+    },
+    {
+      "name": "Bone4.cold.(0.25, 0.75, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.910320759,
+      "minimumEquippedBody": -0.910320759,
+      "maximumHeight": 1.77339625,
+      "maximumCorrection": 0.01521343,
+      "maximumPredictionError": 0.00204521418,
+      "meanProjectionGraphMicroseconds": 589.88484848484848
+    },
+    {
+      "name": "Bone4.cold.(0.00, 0.75, 0.25)",
+      "samples": 33,
+      "minimumSole": -0.910574138,
+      "minimumEquippedBody": -0.910574138,
+      "maximumHeight": 1.758172,
+      "maximumCorrection": 0.009878218,
+      "maximumPredictionError": 0.0026717782,
+      "meanProjectionGraphMicroseconds": 1346.9484848484849
+    },
+    {
+      "name": "Bone4.cold.(0.00, 0.50, 0.50)",
+      "samples": 33,
+      "minimumSole": -0.911414146,
+      "minimumEquippedBody": -0.911414146,
+      "maximumHeight": 1.75516891,
+      "maximumCorrection": 0.0231712461,
+      "maximumPredictionError": 0.0027499795,
+      "meanProjectionGraphMicroseconds": 409.41515151515154
+    },
+    {
+      "name": "Bone4.cold.(0.00, 0.25, 0.75)",
+      "samples": 33,
+      "minimumSole": -0.911892354,
+      "minimumEquippedBody": -0.911892354,
+      "maximumHeight": 1.77395582,
+      "maximumCorrection": 0.0346592069,
+      "maximumPredictionError": 0.003485322,
+      "meanProjectionGraphMicroseconds": 282.84545454545452
+    },
+    {
+      "name": "Bone4.warm.(1.00, 0.00, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9104945,
+      "minimumEquippedBody": -0.9104945,
+      "maximumHeight": 1.78283274,
+      "maximumCorrection": 0.02867335,
+      "maximumPredictionError": 0.0008947849,
+      "meanProjectionGraphMicroseconds": 328.35454545454547
+    },
+    {
+      "name": "Bone4.warm.(0.00, 1.00, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9105042,
+      "minimumEquippedBody": -0.9105042,
+      "maximumHeight": 1.77444363,
+      "maximumCorrection": 0.0062277317,
+      "maximumPredictionError": 0.00181251764,
+      "meanProjectionGraphMicroseconds": 382.90606060606063
+    },
+    {
+      "name": "Bone4.warm.(0.00, 0.00, 1.00)",
+      "samples": 33,
+      "minimumSole": -0.9145637,
+      "minimumEquippedBody": -0.9145637,
+      "maximumHeight": 1.79172182,
+      "maximumCorrection": 0.04287672,
+      "maximumPredictionError": 0.004563689,
+      "meanProjectionGraphMicroseconds": 300.09090909090907
+    },
+    {
+      "name": "Bone4.warm.(0.75, 0.25, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.910547256,
+      "minimumEquippedBody": -0.910547256,
+      "maximumHeight": 1.77291965,
+      "maximumCorrection": 0.0252428055,
+      "maximumPredictionError": 0.0009034872,
+      "meanProjectionGraphMicroseconds": 320.43333333333339
+    },
+    {
+      "name": "Bone4.warm.(0.50, 0.50, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.9102674,
+      "minimumEquippedBody": -0.9102674,
+      "maximumHeight": 1.77107525,
+      "maximumCorrection": 0.02083069,
+      "maximumPredictionError": 0.00157755613,
+      "meanProjectionGraphMicroseconds": 528.85151515151517
+    },
+    {
+      "name": "Bone4.warm.(0.25, 0.75, 0.00)",
+      "samples": 33,
+      "minimumSole": -0.910320759,
+      "minimumEquippedBody": -0.910320759,
+      "maximumHeight": 1.77339625,
+      "maximumCorrection": 0.01521343,
+      "maximumPredictionError": 0.00204521418,
+      "meanProjectionGraphMicroseconds": 321.89696969696973
+    },
+    {
+      "name": "Bone4.warm.(0.00, 0.75, 0.25)",
+      "samples": 33,
+      "minimumSole": -0.910574138,
+      "minimumEquippedBody": -0.910574138,
+      "maximumHeight": 1.758172,
+      "maximumCorrection": 0.009878218,
+      "maximumPredictionError": 0.0026717782,
+      "meanProjectionGraphMicroseconds": 303.5393939393939
+    },
+    {
+      "name": "Bone4.warm.(0.00, 0.50, 0.50)",
+      "samples": 33,
+      "minimumSole": -0.911414146,
+      "minimumEquippedBody": -0.911414146,
+      "maximumHeight": 1.75516891,
+      "maximumCorrection": 0.0231712461,
+      "maximumPredictionError": 0.0027499795,
+      "meanProjectionGraphMicroseconds": 553.5060606060606
+    },
+    {
+      "name": "Bone4.warm.(0.00, 0.25, 0.75)",
+      "samples": 33,
+      "minimumSole": -0.911892354,
+      "minimumEquippedBody": -0.911892354,
+      "maximumHeight": 1.77395582,
+      "maximumCorrection": 0.0346592069,
+      "maximumPredictionError": 0.003485322,
+      "meanProjectionGraphMicroseconds": 359.9575757575758
+    }
+  ],
+  "equipment": "existing cloak/backpack/packed kit; boots have no separate renderer in current loadout owner",
+  "graphOrder": "one zero-delta pose evaluation, then visual-host projection, no second time/pose evaluation",
+  "limitations": "33 phases x nine weights; refine keys/time-map breaks, stance drift and handoffs before acceptance"
+}

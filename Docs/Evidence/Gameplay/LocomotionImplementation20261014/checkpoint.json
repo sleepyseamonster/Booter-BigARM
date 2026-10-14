@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "foundationCommit": "44918fb6b733c8a693664e10b317c3dd85d82d00",
+  "goalStatus": "active",
+  "authorPlayerClockEnabled": false,
+  "privateAssetsChanged": false,
+  "playModeRun": false,
+  "focusedTests": {
+    "legacyLocomotion": 18,
+    "playground": 199,
+    "startupSubsetRerun": 7,
+    "failed": 0,
+    "skipped": 0
+  },
+  "sourceFrames": 1592,
+  "equippedScreenPoses": 1782,
+  "sourceCalibrationQualified": false,
+  "currentSavedSceneIntegrationQualified": false,
+  "preservedForeignPaths": [
+    "Assets/_Project/Art/Environment/Rocks/Fused.meta",
+    "Assets/_Project/Art/Environment/Rocks/Fused/",
+    "Assets/_Project/VFX/Textures.meta"
+  ],
+  "nextGate": "Bilateral native contact/rolling classification, effective source retiming and source-family selection before player-clock integration"
+}
