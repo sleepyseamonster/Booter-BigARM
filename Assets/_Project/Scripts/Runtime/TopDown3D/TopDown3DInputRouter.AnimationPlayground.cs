@@ -12,6 +12,9 @@ namespace BooterBigArm.TopDown3D
         private bool animationAwaitNeutral=true;
         public bool AnimationSlowWalkHeld {get;private set;}
         public bool HasAnimationCommands => animationPalette != null;
+        public bool LaboratoryResetBlocked { get; private set; }
+        private bool CanCaptureAnimationPalette => Mode == TopDown3DInputMode.Gameplay
+            && inputUpdateMode == TopDown3DInputMode.Gameplay && (!Application.isPlaying || Application.isFocused);
         public Func<bool> AnimationActionOwned;
         public event Action AnimationJumpRequested, AnimationCrouchRequested, AnimationActionRequested,
             AnimationCancelRequested, AnimationPaletteRequested;
@@ -44,7 +47,7 @@ namespace BooterBigArm.TopDown3D
         }
         private void CaptureAnimationCommand(InputAction.CallbackContext context)
         {
-            if(animationAwaitNeutral || !CanCaptureGameplayCommand) return;
+            if(animationAwaitNeutral || !(context.action == animationPalette ? CanCaptureAnimationPalette : CanCaptureGameplayCommand)) return;
             animationRequests|=context.action == animationCancel ? 1 : context.action == animationPalette ? 2
                 : context.action == animationCrouch ? 4 : context.action == animationJump ? 8 : 16;
         }
@@ -52,7 +55,7 @@ namespace BooterBigArm.TopDown3D
         {
             var requests=animationRequests;animationRequests=0;
             if(!HasAnimationCommands) return false;
-            if(modalRequested || !CanCaptureGameplayCommand)
+            if(modalRequested || !CanCaptureAnimationPalette)
             {DisarmAnimationCommands();return false;}
             if(animationAwaitNeutral)
             {
@@ -63,6 +66,7 @@ namespace BooterBigArm.TopDown3D
             AnimationSlowWalkHeld=animationWalk.IsPressed();
             if((requests&1)!=0 && AnimationActionOwned?.Invoke()==true){AnimationCancelRequested?.Invoke();return true;}
             if((requests&2)!=0){AnimationPaletteRequested?.Invoke();return true;}
+            if(LaboratoryResetBlocked) return true;
             if((requests&4)!=0){AnimationCrouchRequested?.Invoke();return true;}
             if((requests&8)!=0){AnimationJumpRequested?.Invoke();return true;}
             if((requests&16)!=0){AnimationActionRequested?.Invoke();return true;}
@@ -70,6 +74,14 @@ namespace BooterBigArm.TopDown3D
         }
         private void DisarmAnimationCommands(){animationRequests=0;animationAwaitNeutral=true;AnimationSlowWalkHeld=false;}
         public void ClearAnimationCommandEdges()=>DisarmAnimationCommands();
+        public void ClearLaboratoryIntent()
+        {
+            ClearGameplayIntent(); DisarmAnimationCommands();
+            awaitMoveNeutral=moveAction != null && moveAction.ReadValue<Vector2>().sqrMagnitude > .0484f;
+            awaitLookNeutral=lookAction != null && lookAction.ReadValue<Vector2>().sqrMagnitude > .0484f;
+        }
+        public void SetLaboratoryResetBlocked(bool blocked)
+        { LaboratoryResetBlocked=blocked; ClearLaboratoryIntent(); }
         private void ReleaseAnimationAsset()
         {
             if(ownedAnimationActions==null) return;

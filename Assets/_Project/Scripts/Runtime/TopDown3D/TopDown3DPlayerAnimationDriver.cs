@@ -74,6 +74,10 @@ namespace BooterBigArm.TopDown3D
         private GameObject wornCloak, sleepingBlanket, packedCamp;
         private readonly System.Collections.Generic.List<Mesh> cloakMeshes = new();
         private bool cloakBound;
+        private Material laboratoryBodyMaterial;
+        private Avatar laboratoryAvatar;
+        private float equipmentScale = PrototypeVisualScale, equipmentPresentationRatio = 1f;
+        private float laboratoryFeetPlane;
         public bool HasCampAnimationSet { get; private set; }
         public Animator HumanoidAnimator => humanoidAnimator;
 
@@ -81,6 +85,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (HasCampAnimationSet) return true;
             if (!settings || !settings.HasAssets || !playableGraph.IsValid() || visualInstance == null) return false;
+            if (laboratoryAvatar == null) equipmentScale = visualScale;
             foreach (var filter in settings.wornCloakPrefab.GetComponentsInChildren<MeshFilter>())
                 if (filter.sharedMesh == null || !filter.sharedMesh.isReadable) return false;
             var clips = new[] { settings.sleepClip, settings.restClip, settings.setupClip, settings.wakeClip };
@@ -91,14 +96,20 @@ namespace BooterBigArm.TopDown3D
                 playableGraph.Connect(playable, 0, mixer, 17 + i); clipPlayables[17 + i] = playable;
             }
             wornCloak = Instantiate(settings.wornCloakPrefab, visualInstance.transform, false);
+            if (laboratoryAvatar != null)
+            {
+                wornCloak.transform.localScale = Vector3.one * (equipmentScale / visualScale);
+                wornCloak.transform.localPosition = Vector3.up * ((laboratoryFeetPlane - visualLocalPosition.y) / visualScale);
+            }
             sleepingBlanket = Instantiate(settings.blanketPrefab, transform, false);
-            sleepingBlanket.transform.localPosition = new Vector3(0, visualLocalPosition.y + .2f, 0);
+            sleepingBlanket.transform.localPosition = new Vector3(0, laboratoryAvatar == null
+                ? visualLocalPosition.y + .2f : laboratoryFeetPlane + .2f * equipmentPresentationRatio, 0);
             sleepingBlanket.transform.localRotation = Quaternion.Euler(0, 90, 0);
-            sleepingBlanket.transform.localScale = Vector3.one * visualScale;
+            sleepingBlanket.transform.localScale = Vector3.one * equipmentScale;
             sleepingBlanket.SetActive(false);
             packedCamp = Instantiate(settings.packedPrefab, transform, false);
-            packedCamp.transform.localPosition = new Vector3(.55f, -.65f, -.05f);
-            packedCamp.transform.localScale = Vector3.one * .65f;
+            packedCamp.transform.localPosition = new Vector3(.55f, -.65f, -.05f) * equipmentPresentationRatio;
+            packedCamp.transform.localScale = Vector3.one * (.65f * equipmentPresentationRatio);
             HasCampAnimationSet = true; return true;
         }
 
@@ -205,6 +216,22 @@ namespace BooterBigArm.TopDown3D
         public Vector3 VisualLocalPosition => visualLocalPosition;
         public float VisualScale => visualScale;
         public event Action<TopDown3DFootContact> FootContact;
+
+        // The session runs before this driver's Awake; the graph remains the sole pose authority.
+        public void ConfigureLaboratory(TopDown3DAnimationPlaygroundBindings value)
+        {
+            if (playableGraph.IsValid() || visualInstance != null)
+                throw new InvalidOperationException("Configure the laboratory character before visual initialization.");
+            if (value == null) throw new ArgumentException("Laboratory bindings are missing.");
+            if (!value.ValidatePlayer(out var reason)) throw new ArgumentException(reason);
+            humanoidPrefab = value.targetModel; locomotionProfile = value.locomotion;
+            visualScale = value.visualScale; visualLocalPosition = value.visualOffset;
+            visualLocalEulerAngles = Vector3.zero;
+            laboratoryAvatar = value.targetAvatar; laboratoryBodyMaterial = value.bodyMaterial;
+            equipmentScale = value.bodyHeight / value.equipmentModelHeight;
+            equipmentPresentationRatio = equipmentScale / PrototypeVisualScale;
+            laboratoryFeetPlane = -value.capsuleHeight * .5f;
+        }
 
         public void Configure(
             GameObject modelPrefab,
@@ -313,6 +340,7 @@ namespace BooterBigArm.TopDown3D
             visualInstance.transform.localScale = Vector3.one * visualScale;
 
             humanoidAnimator = visualInstance.GetComponentInChildren<Animator>();
+            if (humanoidAnimator != null && laboratoryAvatar != null) humanoidAnimator.avatar = laboratoryAvatar;
             if (humanoidAnimator == null || !humanoidAnimator.isHuman)
             {
                 Debug.LogError("Booter's prototype visual requires a valid Humanoid Animator.", this);
@@ -325,6 +353,12 @@ namespace BooterBigArm.TopDown3D
             humanoidAnimator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
             humanoidAnimator.updateMode = AnimatorUpdateMode.Normal;
             humanoidAnimator.stabilizeFeet = false;
+            if (laboratoryBodyMaterial != null)
+                foreach (var renderer in visualInstance.GetComponentsInChildren<SkinnedMeshRenderer>(true))
+                {
+                    var materials = new Material[Mathf.Max(1, renderer.sharedMaterials.Length)];
+                    Array.Fill(materials, laboratoryBodyMaterial); renderer.sharedMaterials = materials;
+                }
             leftFoot = humanoidAnimator.GetBoneTransform(HumanBodyBones.LeftFoot);
             rightFoot = humanoidAnimator.GetBoneTransform(HumanBodyBones.RightFoot);
             if (leftFoot == null || rightFoot == null)
@@ -433,7 +467,7 @@ namespace BooterBigArm.TopDown3D
                     visualInstance.transform.localRotation,
                     Quaternion.Euler(visualLocalEulerAngles + (campLying ? Vector3.forward * -90 : Vector3.right * lean)),
                     1f - Mathf.Exp(-10f * Time.deltaTime));
-                var campOffset = campLying ? new Vector3(-1.05f, .35f, 0) : Vector3.zero;
+                var campOffset = campLying ? new Vector3(-1.05f, .35f, 0) * equipmentPresentationRatio : Vector3.zero;
                 visualInstance.transform.localPosition = Vector3.Lerp(visualInstance.transform.localPosition,
                     visualLocalPosition + campOffset, 1f - Mathf.Exp(-12f * Time.deltaTime));
             }
@@ -485,7 +519,7 @@ namespace BooterBigArm.TopDown3D
             }
             if(!configured)return;
             var position=visualInstance.transform.localPosition;
-            position.y=visualLocalPosition.y+(campLying ? .35f : 0)+correction;
+            position.y=visualLocalPosition.y+(campLying ? .35f * equipmentPresentationRatio : 0)+correction;
             visualInstance.transform.localPosition=position;
         }
 

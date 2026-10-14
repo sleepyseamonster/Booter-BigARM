@@ -1,0 +1,179 @@
+using System;
+using UnityEngine;
+
+namespace BooterBigArm.TopDown3D
+{
+    public sealed partial class TopDown3DAnimationPlaygroundSession : ITopDown3DStationActionReceiver
+    {
+        [SerializeField] private TopDown3DPlayerMotor player;
+        [SerializeField] private Transform[] safeReturns = Array.Empty<Transform>();
+        private TopDown3DInputRouter playerInput;
+        private TopDown3DPlayerAnimationDriver presentation;
+        private TopDown3DPlayerActionController playerAction;
+        private TopDown3DMenuController menu;
+        private AnimationPlaygroundActionCoordinator coordinator;
+        private bool servicesBound;
+        private Func<bool> ownsInput;
+        private string selectedSource;
+        private DelegateResetParticipant legacyReset, vitalsReset, inputReset;
+        public bool IsBusy => coordinator != null && coordinator.IsBusy;
+        public TopDown3DPlayerMotor Player => player;
+        public AnimationPlaygroundActionCoordinator Coordinator => coordinator;
+
+        public void ConfigurePlayer(TopDown3DPlayerMotor value, Transform[] returns)
+        {
+            if (servicesBound) throw new InvalidOperationException("Author the player and safe returns before startup.");
+            player = value; safeReturns = returns == null ? Array.Empty<Transform>() : (Transform[])returns.Clone();
+        }
+
+        private void PreparePlayer()
+        {
+            if (player == null) { Fail("The authored playground player is missing."); return; }
+            if (!bindings.ValidatePlayer(out var reason)) { Fail(reason); return; }
+            var capsule = player.GetComponent<CapsuleCollider>();
+            if (!HasUnitPhysicsHierarchy(player.transform) || capsule == null || capsule.direction != 1
+                || (capsule.center - Vector3.zero).sqrMagnitude > .000001f
+                || Mathf.Abs(capsule.height - bindings.capsuleHeight) > .0001f
+                || Mathf.Abs(capsule.radius - bindings.capsuleRadius) > .0001f)
+            { Fail("Restore the authored collider calibration with an unscaled physics hierarchy."); return; }
+            presentation = player.GetComponent<TopDown3DPlayerAnimationDriver>();
+            playerInput = player.InputRouter;
+            playerAction = player.GetComponent<TopDown3DPlayerActionController>();
+            if (presentation == null || playerInput == null || playerAction == null)
+            { Fail("The existing player motor, animation, input and action services are required."); return; }
+            if (safeReturns.Length == 0)
+            { Fail("The lab requires an authored safe return anchor."); return; }
+            foreach (var anchor in safeReturns)
+                if (anchor == null || anchor.gameObject.scene != gameObject.scene)
+                { Fail("Safe returns must be authored in the laboratory scene."); return; }
+            try { presentation.ConfigureLaboratory(bindings); }
+            catch (Exception error) { Fail(error.Message); }
+        }
+
+        public static bool HasUnitPhysicsHierarchy(Transform actor)
+        {
+            for (var item = actor; item != null; item = item.parent)
+                if ((item.localScale - Vector3.one).sqrMagnitude > .000001f) return false;
+            return actor != null;
+        }
+
+        private void Start()
+        {
+            if (Readiness != AnimationPlaygroundReadiness.DependenciesChecked) return;
+            if (presentation.HumanoidAnimator == null || !presentation.HumanoidAnimator.isHuman)
+            { Fail("The calibrated visual did not initialize its Humanoid graph."); return; }
+            try
+            {
+                TopDown3DInventoryUiSceneInstaller.TryInstallForScene(gameObject.scene);
+                menu = TopDown3DGameHudCanvas.FindInScene<TopDown3DMenuController>(gameObject.scene);
+                if (menu == null || !menu.IsConfigured || !playerInput.HasAnimationCommands)
+                { Fail("The existing menu and owned animation input must initialize first."); return; }
+                if(playerInput.AnimationActionOwned != null) throw new InvalidOperationException("Animation input already has an owner.");
+                var returns = new Vector3[safeReturns.Length];
+                for (var i = 0; i < returns.Length; i++) returns[i] = safeReturns[i].position;
+                coordinator = player.gameObject.AddComponent<AnimationPlaygroundActionCoordinator>();
+                coordinator.Configure(player, presentation, ResetRegistry, returns,
+                    () => !Application.isFocused || playerInput.Mode != TopDown3DInputMode.Gameplay);
+                player.ConfigureLaboratorySpeeds(coordinator, bindings.slowWalkSpeed, bindings.runSpeed, bindings.sprintSpeed);
+                ownsInput = () => IsBusy;
+                playerInput.AnimationActionOwned = ownsInput;
+                playerInput.AnimationCancelRequested += CancelOwnedAction;
+                menu.AnimationSelectionChanged += SelectMotion;
+                menu.AnimationPreviewRequested += PreviewMotion;
+                menu.AnimationResetRequested += ResetSession;
+                playerAction.ConfigureStationActions(this);
+                RegisterPlayerReset(); servicesBound = true;
+                Advance(AnimationPlaygroundReadiness.ServicesBound);
+                Advance(AnimationPlaygroundReadiness.VisualReady);
+                // Physical station coverage and author acceptance gate PlayableReady separately.
+            }
+            catch (Exception error) { Fail("Player service binding failed: " + error.Message); DetachPlayerServices(); }
+        }
+
+        private void OnEnable()
+        {
+            if (!servicesBound) return;
+            if (CheckDependencies())
+            { Advance(AnimationPlaygroundReadiness.ServicesBound); Advance(AnimationPlaygroundReadiness.VisualReady); }
+        }
+
+        private void SelectMotion(string id) => selectedSource = id;
+        private void PreviewMotion(string id)
+        {
+            if (!isActiveAndEnabled || !servicesBound || !PreviewReady || playerInput.Mode != TopDown3DInputMode.Gameplay)
+            { playerAction?.ReportFeedback("The laboratory is unavailable for preview."); return; }
+            var binding = bindings.Find(id);
+            if(binding?.CanPreview != true) { playerAction.ReportFeedback("This motion is unavailable for preview."); return; }
+            if(coordinator.IsPreview) coordinator.Cancel();
+            if (playerAction.IsBusy)
+            { playerAction?.ReportFeedback("Finish the current activity before previewing."); return; }
+            if (!coordinator.TryBeginPreview(binding)) playerAction.ReportFeedback("This motion is unavailable for preview.");
+        }
+        private void CancelOwnedAction() => coordinator?.Cancel();
+        public bool TryBegin(TopDown3DInteractionTarget target)
+        {
+            playerAction?.ReportFeedback(string.IsNullOrEmpty(selectedSource)
+                ? "Choose an animation variant in the lab palette."
+                : "This station's physical action is awaiting contact and movement qualification.");
+            return false;
+        }
+        public void ResetSession()
+        {
+            if (!isActiveAndEnabled || !servicesBound) return;
+            playerInput.SetLaboratoryResetBlocked(true);
+            if (!ResetRegistry.TryReset()) playerAction.ReportFeedback(ResetRegistry.LastFailure);
+            else { playerInput.SetLaboratoryResetBlocked(false); playerAction.ReportFeedback("Lab player and registered station state reset."); }
+        }
+
+        private void RegisterPlayerReset()
+        {
+            var vitals = player.GetComponent<TopDown3DSurvivalVitals>();
+            if (vitals == null) throw new InvalidOperationException("The existing survival vitals are required for lab reset.");
+            var initialVitals = vitals.CaptureSnapshot();
+            legacyReset = new DelegateResetParticipant("CampLoop.Booter.LegacyActions", AnimationPlaygroundResetStage.HeldAndSpawnedProps,
+                () => { playerAction.CancelGather(); player.GetComponent<TopDown3DCampController>()?.InterruptForSystemMenu(); }, () => true);
+            vitalsReset = new DelegateResetParticipant("CampLoop.Booter.Vitals", AnimationPlaygroundResetStage.Actor,
+                () => { }, () => vitals.ApplySnapshot(initialVitals));
+            inputReset = new DelegateResetParticipant("CampLoop.Booter.Input", AnimationPlaygroundResetStage.Input,
+                () => playerInput.ClearLaboratoryIntent(),
+                () => { playerInput.ClearLaboratoryIntent(); playerInput.EnterGameplayMode(); return true; });
+            ResetRegistry.Register(legacyReset); ResetRegistry.Register(vitalsReset); ResetRegistry.Register(inputReset);
+        }
+        private void DetachPlayerServices()
+        {
+            coordinator?.Cancel();
+            if (playerInput != null)
+            {
+                playerInput.AnimationCancelRequested -= CancelOwnedAction;
+                if (ReferenceEquals(playerInput.AnimationActionOwned, ownsInput)) playerInput.AnimationActionOwned = null;
+            }
+            if (menu != null)
+            {
+                menu.AnimationSelectionChanged -= SelectMotion; menu.AnimationPreviewRequested -= PreviewMotion;
+                menu.AnimationResetRequested -= ResetSession;
+            }
+            if (playerAction != null) playerAction.ConfigureStationActions(null);
+            foreach (var participant in new[] { legacyReset, vitalsReset, inputReset })
+                if (participant != null) ResetRegistry.Unregister(participant);
+            if(coordinator != null)
+            {
+                coordinator.DisposeOwnedServices();
+                if(Application.isPlaying) Destroy(coordinator); else DestroyImmediate(coordinator);
+                coordinator=null;
+            }
+            servicesBound = false;
+        }
+        private sealed class DelegateResetParticipant : IAnimationPlaygroundResetParticipant
+        {
+            private readonly Action invalidate;
+            private readonly Func<bool> restore;
+            public string ResetId { get; }
+            public AnimationPlaygroundResetStage ResetStage { get; }
+            public DelegateResetParticipant(string id, AnimationPlaygroundResetStage stage, Action cancel, Func<bool> reset)
+            { ResetId = id; ResetStage = stage; invalidate = cancel; restore = reset; }
+            public void InvalidateForReset(uint epoch) => invalidate();
+            public bool TryRestoreForReset(out string reason)
+            { var restored = restore(); reason = restored ? null : "The player service could not restore its initial state."; return restored; }
+        }
+    }
+}

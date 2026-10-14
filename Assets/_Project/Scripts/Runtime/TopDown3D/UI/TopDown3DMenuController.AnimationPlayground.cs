@@ -13,6 +13,7 @@ namespace BooterBigArm.TopDown3D
         public string SelectedAnimationId {get;private set;}
         public event Action<string> AnimationSelectionChanged;
         public event Action<string> AnimationPreviewRequested;
+        public event Action AnimationResetRequested;
         private const int AnimationRows=8;
         private void ConfigureAnimationPalette()
         {
@@ -46,8 +47,9 @@ namespace BooterBigArm.TopDown3D
             }
             view.SetButton("LabPrevious",animationPage>0);view.SetButton("LabNext",animationPage+1<pages);
             var selected=animationSession.Bindings?.Find(SelectedAnimationId);
-            view.SetButton("LabPreview",selected?.CanPreview==true);
-            view.SetText("LabPaletteStatus",string.IsNullOrEmpty(SelectedAnimationId)
+            view.SetButton("LabPreview",animationSession.PreviewReady && selected?.CanPreview==true);
+            view.SetText("LabPaletteStatus",animationSession.Readiness == AnimationPlaygroundReadiness.Failed
+                ? "Unavailable: " + animationSession.UnavailableReason : string.IsNullOrEmpty(SelectedAnimationId)
                 ? "Select a variant. A fresh gameplay press performs an available action."
                 : "Selected: "+SelectedAnimationId+". Preview has no gameplay effects.");
         }
@@ -57,9 +59,10 @@ namespace BooterBigArm.TopDown3D
             if(command == "LabPrevious" || command == "LabNext")
             {animationPage+=command == "LabNext" ? 1 : -1;DrawAnimationPage();view.RefreshNavigation();return true;}
             if(command == "LabPaletteBack"){Close();return true;}
+            if(command == "LabReset"){Close();AnimationResetRequested?.Invoke();return true;}
             if(command == "LabPreview")
             {
-                if(animationSession.Bindings?.Find(SelectedAnimationId)?.CanPreview==true)
+                if(animationSession.PreviewReady && animationSession.Bindings?.Find(SelectedAnimationId)?.CanPreview==true)
                 {var selected=SelectedAnimationId;Close();AnimationPreviewRequested?.Invoke(selected);}
                 return true;
             }

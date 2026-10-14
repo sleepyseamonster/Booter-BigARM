@@ -65,7 +65,7 @@ namespace BooterBigArm.TopDown3D
 
         public Vector2 MoveValue { get; private set; }
         public Vector2 CameraLookValue { get; private set; }
-        public Vector2 MouseLookDelta => (Mode == TopDown3DInputMode.Gameplay || Mode == TopDown3DInputMode.CampPlacement) && Application.isFocused
+        public Vector2 MouseLookDelta => !LaboratoryResetBlocked && (Mode == TopDown3DInputMode.Gameplay || Mode == TopDown3DInputMode.CampPlacement) && Application.isFocused
             && Time.frameCount > ignoreMouseLookUntilFrame && Mouse.current != null
             ? Mouse.current.delta.ReadValue()
             : Vector2.zero;
@@ -334,6 +334,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleMove(InputAction.CallbackContext context)
         {
+            if (LaboratoryResetBlocked) { MoveValue = Vector2.zero; return; }
             if (awaitMoveNeutral)
             {
                 if (context.ReadValue<Vector2>().sqrMagnitude < 0.0484f) awaitMoveNeutral = false;
@@ -345,16 +346,17 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleSprint(InputAction.CallbackContext context)
         {
-            SprintHeld = context.ReadValueAsButton();
+            SprintHeld = !LaboratoryResetBlocked && context.ReadValueAsButton();
         }
 
         private void HandleCameraLookAhead(InputAction.CallbackContext context)
         {
-            CameraLookAheadHeld = context.ReadValueAsButton();
+            CameraLookAheadHeld = !LaboratoryResetBlocked && context.ReadValueAsButton();
         }
 
         private void HandleLook(InputAction.CallbackContext context)
         {
+            if (LaboratoryResetBlocked) { CameraLookValue = Vector2.zero; return; }
             // Pointer delta is read separately so its pixel units are not treated as a stick rate.
             if (!(context.control?.device is Gamepad))
             {
@@ -375,7 +377,7 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleRecall(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Performed)
+            if (context.phase == InputActionPhase.Performed && !LaboratoryResetBlocked)
             {
                 RecallRequested?.Invoke();
             }

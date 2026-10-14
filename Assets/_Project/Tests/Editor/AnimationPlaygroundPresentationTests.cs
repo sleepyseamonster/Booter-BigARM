@@ -67,6 +67,8 @@ namespace BooterBigArm.Tests
         [Test] public void MotorBoundaryOwnsTheClockEffectsPauseAndResetCancellation()
         {
             coordinator=actor.AddComponent<AnimationPlaygroundActionCoordinator>();var registry=new AnimationPlaygroundResetRegistry();var motor=actor.GetComponent<TopDown3DPlayerMotor>();
+            targetObject=GameObject.CreatePrimitive(PrimitiveType.Cube);targetObject.name="Authored return support fixture";
+            targetObject.transform.position=new Vector3(27000,-.1f,27000);targetObject.transform.localScale=new Vector3(4,.2f,4);Physics.SyncTransforms();
             var paused=true;coordinator.Configure(motor,driver,registry,new[]{new Vector3(27000,1,27000)},()=>paused);
             var binding=new AnimationPlaygroundMotionBinding{clip=clip,readiness=AnimationPlaygroundMotionReadiness.PhysicalQualified};
             var count=0;var dt=Time.fixedDeltaTime;

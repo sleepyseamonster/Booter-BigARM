@@ -136,15 +136,17 @@ namespace BooterBigArm.TopDown3D
         public bool TryRestoreForReset(out string reason)
         {
             foreach(var position in returnPositions)
-                if(motor.TryResetAnimationActor(this,position,initialFacing)){reason=null;return true;}
-            reason="No authored return position has standing clearance.";return false;
+                if(motor.IsAnimationReturnSupported(position) && motor.TryResetAnimationActor(this,position,initialFacing)){reason=null;return true;}
+            reason="No authored return position has ground support and standing clearance.";return false;
         }
         private void OnDisable()=>Cancel();
-        private void OnDestroy()
+        public void DisposeOwnedServices()
         {
             Cancel();
             if(motor!=null){motor.AnimationMotionPreparing-=PrepareMotion;motor.AnimationMotionAdvanced-=CommitEffects;motor.ReleaseAnimationPostureOwner(this);}
             registry?.Unregister(this);
+            motor=null;presentation=null;registry=null;
         }
+        private void OnDestroy()=>DisposeOwnedServices();
     }
 }

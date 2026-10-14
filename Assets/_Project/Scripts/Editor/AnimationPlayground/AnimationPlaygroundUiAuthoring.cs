@@ -43,6 +43,7 @@ namespace BooterBigArm.Editor
                 footer.GetComponent<HorizontalLayoutGroup>().spacing=8;
                 Button(footer.transform,"LabPrevious","Previous",21,48);Button(footer.transform,"LabNext","Next",21,48);
                 Button(footer.transform,"LabPreview","Preview",21,48);Button(footer.transform,"LabPaletteBack","Back",21,48);
+                Button(footer.transform,"LabReset","Reset lab",21,48);
                 var prefab=PrefabUtility.SaveAsPrefabAsset(root,PalettePath);
                 Undo.RecordObject(session,"Bind authored animation palette");session.ConfigurePresentation(catalog,prefab);
                 EditorUtility.SetDirty(session);EditorSceneManager.MarkSceneDirty(scene);AssetDatabase.SaveAssets();
@@ -53,6 +54,19 @@ namespace BooterBigArm.Editor
         {
             if(AssetDatabase.IsValidFolder(path)) return;
             var parent=Path.GetDirectoryName(path).Replace('\\','/');EnsureFolder(parent);AssetDatabase.CreateFolder(parent,Path.GetFileName(path));
+        }
+        public static void AddResetControl()
+        {
+            var root = PrefabUtility.LoadPrefabContents(PalettePath);
+            try
+            {
+                var footer=root.transform.Find("LabFooter");
+                if(footer==null)throw new InvalidDataException("Preserve the authored palette footer.");
+                if(footer.Find("LabReset")!=null)return;
+                Button(footer,"LabReset","Reset lab",21,48);
+                PrefabUtility.SaveAsPrefabAsset(root,PalettePath);
+            }
+            finally{PrefabUtility.UnloadPrefabContents(root);}
         }
         private static Text Label(Transform parent,string name,string text,int size,float height)
         {

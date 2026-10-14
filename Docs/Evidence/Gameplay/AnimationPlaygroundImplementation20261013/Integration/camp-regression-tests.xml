@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="10" result="Passed" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-14 04:57:49Z" end-time="2026-10-14 04:57:53Z" duration="3.6727594">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="1135" result="Passed" start-time="2026-10-14 04:57:49Z" end-time="2026-10-14 04:57:53Z" duration="3.672759" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2354" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/AnimationPlayground20261013/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="1135" result="Passed" start-time="2026-10-14 04:57:49Z" end-time="2026-10-14 04:57:53Z" duration="3.661531" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="41572" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2355" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="1135" result="Passed" start-time="2026-10-14 04:57:49Z" end-time="2026-10-14 04:57:53Z" duration="3.651804" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2356" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="1135" result="Passed" start-time="2026-10-14 04:57:49Z" end-time="2026-10-14 04:57:53Z" duration="3.646778" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1577" name="TopDown3DBackpackTests" fullname="BooterBigArm.Tests.TopDown3DBackpackTests" classname="BooterBigArm.Tests.TopDown3DBackpackTests" runstate="Runnable" testcasecount="1" result="Passed" start-time="2026-10-14 04:57:49Z" end-time="2026-10-14 04:57:49Z" duration="0.203211" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1578" name="PackIsRigidThroughChestAndHipMotionAndUsesWornPresentation" fullname="BooterBigArm.Tests.TopDown3DBackpackTests.PackIsRigidThroughChestAndHipMotionAndUsesWornPresentation" methodname="PackIsRigidThroughChestAndHipMotionAndUsesWornPresentation" classname="BooterBigArm.Tests.TopDown3DBackpackTests" runstate="Runnable" seed="2065818164" result="Passed" start-time="2026-10-14 04:57:49Z" end-time="2026-10-14 04:57:49Z" duration="0.190279" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Creating missing CanvasRenderer component for TopDown3DActionDpadGraphic in D-Pad Indicator.
+]]></output>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1586" name="TopDown3DCampIntegrationTests" fullname="BooterBigArm.Tests.TopDown3DCampIntegrationTests" classname="BooterBigArm.Tests.TopDown3DCampIntegrationTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-14 04:57:49Z" end-time="2026-10-14 04:57:53Z" duration="3.417282" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1596" name="CloakBindsToExistingHumanoidBonesWithRuntimeOwnedMeshes" fullname="BooterBigArm.Tests.TopDown3DCampIntegrationTests.CloakBindsToExistingHumanoidBonesWithRuntimeOwnedMeshes" methodname="CloakBindsToExistingHumanoidBonesWithRuntimeOwnedMeshes" classname="BooterBigArm.Tests.TopDown3DCampIntegrationTests" runstate="Runnable" seed="22725251" result="Passed" start-time="2026-10-14 04:57:49Z" end-time="2026-10-14 04:57:50Z" duration="0.526703" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Creating missing CanvasRenderer component for TopDown3DActionDpadGraphic in D-Pad Indicator.
+]]></output>
+            </test-case>
+            <test-case id="1589" name="DepletedHealthCannotStartAnotherCampAction" fullname="BooterBigArm.Tests.TopDown3DCampIntegrationTests.DepletedHealthCannotStartAnotherCampAction" methodname="DepletedHealthCannotStartAnotherCampAction" classname="BooterBigArm.Tests.TopDown3DCampIntegrationTests" runstate="Runnable" seed="1862746053" result="Passed" start-time="2026-10-14 04:57:50Z" end-time="2026-10-14 04:57:50Z" duration="0.351945" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Creating missing CanvasRenderer component for TopDown3DActionDpadGraphic in D-Pad Indicator.
+]]></output>
+            </test-case>
+            <test-case id="1595" name="FocusLossCancelsPreviewAndDoesNotConsumeOrRetrieveKit" fullname="BooterBigArm.Tests.TopDown3DCampIntegrationTests.FocusLossCancelsPreviewAndDoesNotConsumeOrRetrieveKit" methodname="FocusLossCancelsPreviewAndDoesNotConsumeOrRetrieveKit" classname="BooterBigArm.Tests.TopDown3DCampIntegrationTests" runstate="Runnable" seed="966592381" result="Passed" start-time="2026-10-14 04:57:50Z" end-time="2026-10-14 04:57:51Z" duration="0.382523" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Creating missing CanvasRenderer component for TopDown3DActionDpadGraphic in D-Pad Indicator.
+]]></output>
+            </test-case>
+            <test-case id="1587" name="FreshConfirmDeploysOneCampAndPackingReturnsSameKit" fullname="BooterBigArm.Tests.TopDown3DCampIntegrationTests.FreshConfirmDeploysOneCampAndPackingReturnsSameKit" methodname="FreshConfirmDeploysOneCampAndPackingReturnsSameKit" classname="BooterBigArm.Tests.TopDown3DCampIntegrationTests" runstate="Runnable" seed="1056167832" result="Passed" start-time="2026-10-14 04:57:51Z" end-time="2026-10-14 04:57:51Z" duration="0.355397" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Creating missing CanvasRenderer component for TopDown3DActionDpadGraphic in D-Pad Indicator.
+]]></output>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1592" name="FullReserveCanStartAndRemainInCampActivity" fullname="BooterBigArm.Tests.TopDown3DCampIntegrationTests.FullReserveCanStartAndRemainInCampActivity" classname="BooterBigArm.Tests.TopDown3DCampIntegrationTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 04:57:51Z" end-time="2026-10-14 04:57:52Z" duration="0.716915" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1590" name="FullReserveCanStartAndRemainInCampActivity(True)" fullname="BooterBigArm.Tests.TopDown3DCampIntegrationTests.FullReserveCanStartAndRemainInCampActivity(True)" methodname="FullReserveCanStartAndRemainInCampActivity" classname="BooterBigArm.Tests.TopDown3DCampIntegrationTests" runstate="Runnable" seed="404890982" result="Passed" start-time="2026-10-14 04:57:51Z" end-time="2026-10-14 04:57:51Z" duration="0.359755" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Creating missing CanvasRenderer component for TopDown3DActionDpadGraphic in D-Pad Indicator.
+]]></output>
+              </test-case>
+              <test-case id="1591" name="FullReserveCanStartAndRemainInCampActivity(False)" fullname="BooterBigArm.Tests.TopDown3DCampIntegrationTests.FullReserveCanStartAndRemainInCampActivity(False)" methodname="FullReserveCanStartAndRemainInCampActivity" classname="BooterBigArm.Tests.TopDown3DCampIntegrationTests" runstate="Runnable" seed="773930127" result="Passed" start-time="2026-10-14 04:57:51Z" end-time="2026-10-14 04:57:52Z" duration="0.355669" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Creating missing CanvasRenderer component for TopDown3DActionDpadGraphic in D-Pad Indicator.
+]]></output>
+              </test-case>
+            </test-suite>
+            <test-case id="1593" name="HealthLossWakesAndReleasesSpeedWithoutDeletingCamp" fullname="BooterBigArm.Tests.TopDown3DCampIntegrationTests.HealthLossWakesAndReleasesSpeedWithoutDeletingCamp" methodname="HealthLossWakesAndReleasesSpeedWithoutDeletingCamp" classname="BooterBigArm.Tests.TopDown3DCampIntegrationTests" runstate="Runnable" seed="724557406" result="Passed" start-time="2026-10-14 04:57:52Z" end-time="2026-10-14 04:57:52Z" duration="0.360853" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Creating missing CanvasRenderer component for TopDown3DActionDpadGraphic in D-Pad Indicator.
+]]></output>
+            </test-case>
+            <test-case id="1588" name="PreviewCancellationConsumesNothingAndReleasesMotor" fullname="BooterBigArm.Tests.TopDown3DCampIntegrationTests.PreviewCancellationConsumesNothingAndReleasesMotor" methodname="PreviewCancellationConsumesNothingAndReleasesMotor" classname="BooterBigArm.Tests.TopDown3DCampIntegrationTests" runstate="Runnable" seed="1210064626" result="Passed" start-time="2026-10-14 04:57:52Z" end-time="2026-10-14 04:57:52Z" duration="0.361040" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Creating missing CanvasRenderer component for TopDown3DActionDpadGraphic in D-Pad Indicator.
+]]></output>
+            </test-case>
+            <test-case id="1594" name="RepeatedInstallerDoesNotResetKitOrDuplicateWorldOwner" fullname="BooterBigArm.Tests.TopDown3DCampIntegrationTests.RepeatedInstallerDoesNotResetKitOrDuplicateWorldOwner" methodname="RepeatedInstallerDoesNotResetKitOrDuplicateWorldOwner" classname="BooterBigArm.Tests.TopDown3DCampIntegrationTests" runstate="Runnable" seed="1296867689" result="Passed" start-time="2026-10-14 04:57:52Z" end-time="2026-10-14 04:57:53Z" duration="0.357405" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Creating missing CanvasRenderer component for TopDown3DActionDpadGraphic in D-Pad Indicator.
+Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

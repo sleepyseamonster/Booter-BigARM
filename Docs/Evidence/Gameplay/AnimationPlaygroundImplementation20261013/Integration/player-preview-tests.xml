@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="7" result="Passed" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-14 05:05:10Z" end-time="2026-10-14 05:05:12Z" duration="1.7497128">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="1135" result="Passed" start-time="2026-10-14 05:05:10Z" end-time="2026-10-14 05:05:12Z" duration="1.749713" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2354" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/AnimationPlayground20261013/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="1135" result="Passed" start-time="2026-10-14 05:05:10Z" end-time="2026-10-14 05:05:12Z" duration="1.742616" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="12012" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2355" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="1135" result="Passed" start-time="2026-10-14 05:05:10Z" end-time="2026-10-14 05:05:12Z" duration="1.741902" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2356" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="1135" result="Passed" start-time="2026-10-14 05:05:10Z" end-time="2026-10-14 05:05:12Z" duration="1.741377" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1029" name="AnimationPlaygroundPlayerIntegrationTests" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-14 05:05:10Z" end-time="2026-10-14 05:05:12Z" duration="1.721607" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1035" name="AuthoredPlayerUsesOneGraphAndEquipmentHasIndependentMetreScale" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.AuthoredPlayerUsesOneGraphAndEquipmentHasIndependentMetreScale" methodname="AuthoredPlayerUsesOneGraphAndEquipmentHasIndependentMetreScale" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" seed="336892788" result="Passed" start-time="2026-10-14 05:05:10Z" end-time="2026-10-14 05:05:11Z" duration="0.949937" asserts="0">
+              <properties>
+                <property name="Category" value="PrivateAnimationQualification" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1032" name="BindingRejectsBrokenColliderProfileAndSpeedContracts" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.BindingRejectsBrokenColliderProfileAndSpeedContracts" methodname="BindingRejectsBrokenColliderProfileAndSpeedContracts" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" seed="324667480" result="Passed" start-time="2026-10-14 05:05:11Z" end-time="2026-10-14 05:05:11Z" duration="0.001359" asserts="0">
+              <properties>
+                <property name="Category" value="PrivateAnimationQualification" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1034" name="FailedResetBlocksMovementAndActionsWhilePaletteRemainsAvailable" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.FailedResetBlocksMovementAndActionsWhilePaletteRemainsAvailable" methodname="FailedResetBlocksMovementAndActionsWhilePaletteRemainsAvailable" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" seed="732063616" result="Passed" start-time="2026-10-14 05:05:11Z" end-time="2026-10-14 05:05:12Z" duration="0.114564" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1030" name="PhysicsHierarchyRejectsScaledAncestorsAndMirrors" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.PhysicsHierarchyRejectsScaledAncestorsAndMirrors" methodname="PhysicsHierarchyRejectsScaledAncestorsAndMirrors" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" seed="247073357" result="Passed" start-time="2026-10-14 05:05:12Z" end-time="2026-10-14 05:05:12Z" duration="0.001057" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1031" name="PrivateBindingCoversEverySourceWithoutPromotingPhysicalReadiness" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.PrivateBindingCoversEverySourceWithoutPromotingPhysicalReadiness" methodname="PrivateBindingCoversEverySourceWithoutPromotingPhysicalReadiness" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" seed="488122057" result="Passed" start-time="2026-10-14 05:05:12Z" end-time="2026-10-14 05:05:12Z" duration="0.446226" asserts="0">
+              <properties>
+                <property name="Category" value="PrivateAnimationQualification" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="ReturnAnchorsRequireNearbyWalkableSupport" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.ReturnAnchorsRequireNearbyWalkableSupport" methodname="ReturnAnchorsRequireNearbyWalkableSupport" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" seed="422972664" result="Passed" start-time="2026-10-14 05:05:12Z" end-time="2026-10-14 05:05:12Z" duration="0.003759" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1036" name="SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset" methodname="SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" seed="1037236525" result="Passed" start-time="2026-10-14 05:05:12Z" end-time="2026-10-14 05:05:12Z" duration="0.190738" asserts="0">
+              <properties>
+                <property name="Category" value="PrivateAnimationQualification" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

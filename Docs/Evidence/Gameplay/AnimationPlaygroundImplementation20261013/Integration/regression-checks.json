@@ -1,0 +1,504 @@
+{
+  "schema": 1,
+  "method": "Latest completed result per distinct case; missing candidate CampSleepStudy was restored before the final camping run.",
+  "distinct_cases": 92,
+  "passed": 92,
+  "failed": 0,
+  "skipped": 0,
+  "runs": [
+    {
+      "evidence": "legacy-regression-initial-tests.xml",
+      "result": "Failed(Child)",
+      "total": 54,
+      "passed": 44,
+      "failed": 10,
+      "skipped": 0
+    },
+    {
+      "evidence": "player-integration-tests.xml",
+      "result": "Passed",
+      "total": 38,
+      "passed": 38,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "evidence": "camp-regression-tests.xml",
+      "result": "Passed",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "evidence": "player-preview-tests.xml",
+      "result": "Passed",
+      "total": 7,
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "cases": [
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundGaitTests.HeightCorrectionPreservesFlightAndRejectsBrokenRetargeting",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundGaitTests.HydratedProfileHasTwelveRolesAndActualTwoCycleSources",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundGaitTests.LegacyEntryHasNoCorrectionAndInvalidLoopSeamsAreRejected",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundInputTests.CompatibleOverridesAreCopiedWithoutMutatingTheSource",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundInputTests.HeldJumpCannotLeakThroughModalReturnAndEastCancelWinsPickup",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundInputTests.InitialPreferenceInheritanceDoesNotWriteEitherFileAndExistingLabDataWins",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundInputTests.LabCoactiveBindingsRejectNewActionConflictsWithoutChangingProductionPolicy",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundInputTests.OwnedAssetPreservesShippedIdsAndDeterministicLabBindings",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.AirbornePauseRestoresVerticalVelocityOnResumeOrCancellation",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.CompactShapeCannotBeLabelledStandingOrAnUnknownMode",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.ControlledMotionAdvancesInsideTheExistingConstraintAndCannotBeStolen",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.DisableReleasesOnlyOwnedStateAndPreservesTheOriginalGravitySetting",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.FloorSupportDoesNotBlockPlanarMotionAndTakeoffReleasesSupport",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.PostureAnchorsFeetAndRefusesStandingThroughACeiling",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.ResetRefusesOccupiedReturnAndNeverTakesAForeignLease",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.SweepAndPauseConstrainMotionAndReleaseRestoresGravity",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPaletteTests.AuthoredCatalogRetainsRestrictedSourcesWithoutOfferingThemAsActions",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPaletteTests.PaletteRegistersInExistingViewWithOneEventSystemAndNavigation(False)",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPaletteTests.PaletteRegistersInExistingViewWithOneEventSystemAndNavigation(True)",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.AuthoredPlayerUsesOneGraphAndEquipmentHasIndependentMetreScale",
+      "result": "Passed",
+      "source_run": "player-preview-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.BindingRejectsBrokenColliderProfileAndSpeedContracts",
+      "result": "Passed",
+      "source_run": "player-preview-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.FailedResetBlocksMovementAndActionsWhilePaletteRemainsAvailable",
+      "result": "Passed",
+      "source_run": "player-preview-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.PhysicsHierarchyRejectsScaledAncestorsAndMirrors",
+      "result": "Passed",
+      "source_run": "player-preview-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.PrivateBindingCoversEverySourceWithoutPromotingPhysicalReadiness",
+      "result": "Passed",
+      "source_run": "player-preview-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.ReturnAnchorsRequireNearbyWalkableSupport",
+      "result": "Passed",
+      "source_run": "player-preview-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset",
+      "result": "Passed",
+      "source_run": "player-preview-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.MotorBoundaryOwnsTheClockEffectsPauseAndResetCancellation",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.NullOwnersCannotClaimStateAndDisableReleasesTheDynamicPlayable",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.OnlyTheOwnedPhysicalBranchEmitsAContactAtTheMotorBoundary",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.OwnedClockSupportsPreviewSeekAndSuppressesAllLegacyMixerInputs",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.StaleTargetCancelsBeforeEffectAndPreviewCannotPromoteAnImportToPhysical",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundResetTests.BlockedActorReturnLeavesInputDisarmedAndCanRetryWithANewEpoch",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundResetTests.DuplicateIdsAreRejectedAndCancellationFailureStillInvalidatesEveryOwner",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundResetTests.EveryEpochInvalidatesBeforePropsStationsActorAndInputRestore",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.AuthoredLabBlocksRestoreAndAllCheckpointEntryPointsBeforeStartup",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.ImportAndPreviewAreInsufficientForPhysicalEffects",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.PolicyRequiresTheExactAuthoredSceneAndMarker",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.SessionOutsideLabCannotAdvanceToPlayable",
+      "result": "Passed",
+      "source_run": "player-integration-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DBackpackTests.PackIsRigidThroughChestAndHipMotionAndUsesWornPresentation",
+      "result": "Passed",
+      "source_run": "camp-regression-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DCampIntegrationTests.CloakBindsToExistingHumanoidBonesWithRuntimeOwnedMeshes",
+      "result": "Passed",
+      "source_run": "camp-regression-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DCampIntegrationTests.DepletedHealthCannotStartAnotherCampAction",
+      "result": "Passed",
+      "source_run": "camp-regression-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DCampIntegrationTests.FocusLossCancelsPreviewAndDoesNotConsumeOrRetrieveKit",
+      "result": "Passed",
+      "source_run": "camp-regression-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DCampIntegrationTests.FreshConfirmDeploysOneCampAndPackingReturnsSameKit",
+      "result": "Passed",
+      "source_run": "camp-regression-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DCampIntegrationTests.FullReserveCanStartAndRemainInCampActivity(False)",
+      "result": "Passed",
+      "source_run": "camp-regression-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DCampIntegrationTests.FullReserveCanStartAndRemainInCampActivity(True)",
+      "result": "Passed",
+      "source_run": "camp-regression-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DCampIntegrationTests.HealthLossWakesAndReleasesSpeedWithoutDeletingCamp",
+      "result": "Passed",
+      "source_run": "camp-regression-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DCampIntegrationTests.PreviewCancellationConsumesNothingAndReleasesMotor",
+      "result": "Passed",
+      "source_run": "camp-regression-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DCampIntegrationTests.RepeatedInstallerDoesNotResetKitOrDuplicateWorldOwner",
+      "result": "Passed",
+      "source_run": "camp-regression-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsDeviceDisconnectCancelsListeningAndPreservesTheDraft",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsFailedSaveKeepsDraftAndRuntimeBindingsUnchanged",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsHoldApplyPersistsAndBackProtectsUnappliedDraft",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsListenFiltersDeviceAndDefersRuntimeMutationUntilApply",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsListenRejectsConflictAndBackCancelsWithoutLeavingPanel",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership(False)",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership(True)",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsResetRequiresConfirmationAndApplyBeforeReplacingSavedPreferences",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.DeletingEarlierPage_RetainsDefaultByStableIdentity",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.DisabledInput_ClosesCoveredMenuWithoutReenablingGameplay",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.Escape_OpensOnceThenBacksOutWithoutDoubleTransition",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.Exit_RequiresExplicitConfirmAndCannotBeAcceptedByStart",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.InventoryOpenerCannotRebindToAUiTransferButton",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.Inventory_IsSuspendedAndSystemToggleCannotCloseIt",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum(\"Unknown\")",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum(null)",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.Settings_UnknownVersionIsPreservedAndFailedWritesRetainAcceptedState",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.SetupApply_PersistsExistingSchemaAndReturnsToInvokingInventory",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.Setup_DirtyBackProtectsPreferencesAndExplicitDiscardReturnsRoot",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.Start_OpensOnceAndDoesNotChangeSimulationTime",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.Start_WinsOverWheelStickReleaseWithoutCommand",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.ViewDistance_FailedApplyKeepsCameraAndRetainsDraft",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.ViewDistance_InitializesAcceptedStateAndAppliesOnlyAfterSaving",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation(False)",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuTests.ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation(True)",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DMenuUiIntegrationTests.UiModule_HeldSubmitIsBlocked_FreshSubmitAndBackWork_WorldClockContinues",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.AccelerationProfile_UsesDistinctStartStopAndDirectionChangeRates",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.AnimationSpeedSmoothing_IsIndependentOfPhysicsStepSubdivision",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.DirectionalGait_UsesLocalTrajectoryAndMeasuredYawSymmetrically",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.GaitCadence_RemainsContinuousAtNominalRunSpeed",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.GaitPhaseContact_DetectsOrdinaryAndWrappedCrossingsOnce",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.GaitWeights_AreContinuousAndNormalizedAcrossRunAndSprintBoundaries",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.GroundedTravelState_HoldsStartAndStopUntilTheirReleaseThresholds",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.HardTurnClassification_IsDirectionalLatchedAndTraversalSafe",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.LocomotionProfile_OwnsOneCompleteHumanoidNoRootMotionSet",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.LocomotionSnapshot_PreservesAnimationFacingInputsWithoutOwningMotion",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.MovementInput_UsesOneDeadzoneAuthorityAndOnlyClampsMagnitude",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.OneShotSideSelection_UsesTheNextMeasuredPlant",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.ProfilePhaseRemap_AlignsBothMeasuredContactsAcrossTwoStrideLoops",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.ResponseTiming_DefaultRatesStayInsideWeightyPlanBounds",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.StopCadenceAlignment_IsBoundedAndMovesTowardTheNextPlant",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.SustainedCadence_ClampsTheDominantClipToProfilePlaybackBounds",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.TurnGaitWeight_IsSignedDirectionIndependentAndBounded",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    },
+    {
+      "case": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.TurnProfile_ReducesTurnRateOnlyAboveNormalRunSpeed",
+      "result": "Passed",
+      "source_run": "legacy-regression-initial-tests.xml"
+    }
+  ]
+}

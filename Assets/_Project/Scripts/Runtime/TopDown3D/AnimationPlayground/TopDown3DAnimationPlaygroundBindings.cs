@@ -26,6 +26,10 @@ namespace BooterBigArm.TopDown3D
         public TopDown3DLocomotionClipProfile locomotion;
         public float visualScale = 1f;
         public Vector3 visualOffset;
+        public Material bodyMaterial;
+        public float bodyHeight = 1.8f, capsuleHeight = 1.82f, capsuleRadius = .2f;
+        public float equipmentModelHeight = 1.77220833f;
+        public float slowWalkSpeed = 1.4f, runSpeed = 2.7f, sprintSpeed = 3.8f;
         public AnimationPlaygroundMotionBinding[] motions = Array.Empty<AnimationPlaygroundMotionBinding>();
         public bool ValidateImport(out string reason)
         {
@@ -48,6 +52,22 @@ namespace BooterBigArm.TopDown3D
             foreach (var motion in motions ?? Array.Empty<AnimationPlaygroundMotionBinding>())
                 if (motion != null && motion.sourceId == id) return motion;
             return null;
+        }
+        public bool ValidatePlayer(out string reason)
+        {
+            if (!ValidateImport(out reason)) return false;
+            if (locomotion == null || !locomotion.TryValidate(out reason))
+            { reason = "A valid private locomotion profile is required: " + reason; return false; }
+            reason = null;
+            if (bodyMaterial == null) reason = "The calibrated character requires a body material.";
+            else if (!float.IsFinite(bodyHeight) || bodyHeight <= 0 || !float.IsFinite(capsuleHeight)
+                || !float.IsFinite(capsuleRadius) || capsuleRadius <= 0 || capsuleHeight < bodyHeight
+                || capsuleHeight < capsuleRadius * 2 || !float.IsFinite(equipmentModelHeight) || equipmentModelHeight <= 0)
+                reason = "Body, collider or equipment dimensions are invalid.";
+            else if (!float.IsFinite(slowWalkSpeed) || !float.IsFinite(runSpeed) || !float.IsFinite(sprintSpeed)
+                || slowWalkSpeed <= 0 || runSpeed < slowWalkSpeed || sprintSpeed < runSpeed)
+                reason = "Laboratory locomotion speeds must be finite and ordered.";
+            return reason == null;
         }
     }
 }

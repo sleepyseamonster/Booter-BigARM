@@ -38,6 +38,7 @@ namespace BooterBigArm.TopDown3D
             if (CanCaptureGameplayCommand) itemCancelRequested = true;
         }
         private bool CanCaptureGameplayCommand => Mode == TopDown3DInputMode.Gameplay
+            && !LaboratoryResetBlocked
             && inputUpdateMode == TopDown3DInputMode.Gameplay
             && (!UnityEngine.Application.isPlaying || UnityEngine.Application.isFocused);
         private void HandleInteractionStarted(InputAction.CallbackContext context)

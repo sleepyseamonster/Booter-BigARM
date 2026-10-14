@@ -35,6 +35,7 @@ namespace BooterBigArm.TopDown3D
         private Vector3 animationOriginalCenter,animationPreviousPosition;
         private bool animationShapeCaptured;
         private Collider[] animationShapeHits=new Collider[16];
+        private RaycastHit[] animationReturnHits=new RaycastHit[16];
         private int animationSupportReleaseTicks;
         private float animationWalkSpeed=1.5f,animationCrouchSpeed=1.2f;
         public AnimationPlaygroundMotionMode AnimationMotionMode {get;private set;}
@@ -53,6 +54,13 @@ namespace BooterBigArm.TopDown3D
             if(!ReferenceEquals(owner,animationPostureOwner) || !float.IsFinite(slowWalk) || !float.IsFinite(crouch)
                 || slowWalk<=0 || crouch<=0 || slowWalk>walkSpeed || crouch>walkSpeed)throw new ArgumentException("Qualified lab speeds and the posture owner are required.");
             animationWalkSpeed=slowWalk;animationCrouchSpeed=crouch;
+        }
+        public void ConfigureLaboratorySpeeds(object owner,float slowWalk,float run,float sprint)
+        {
+            if(!ReferenceEquals(owner,animationPostureOwner) || !float.IsFinite(run) || !float.IsFinite(sprint)
+                || !float.IsFinite(slowWalk) || slowWalk<=0 || run<slowWalk || sprint<run)
+                throw new ArgumentException("The laboratory posture owner and finite ordered speeds are required.");
+            walkSpeed=run;sprintSpeed=sprint;animationWalkSpeed=slowWalk;
         }
         public bool ReleaseAnimationPostureOwner(object owner)
         {
@@ -116,6 +124,27 @@ namespace BooterBigArm.TopDown3D
         }
         public bool IsAnimationReturnClear(Vector3 position)
         {EnsureAnimationShape();return Finite(position) && AnimationShapeClear(animationOriginalHeight,animationOriginalCenter,position,animationOriginalRadius);}
+        public bool IsAnimationReturnSupported(Vector3 position)
+        {
+            EnsureAnimationShape();
+            if(!Finite(position))return false;
+            var foot=position+Vector3.up*(animationOriginalCenter.y-animationOriginalHeight*.5f);
+            int count;
+            while(true)
+            {
+                count=Physics.RaycastNonAlloc(foot+Vector3.up*.1f,Vector3.down,animationReturnHits,.22f,groundMask,QueryTriggerInteraction.Ignore);
+                if(count<animationReturnHits.Length)break;
+                if(animationReturnHits.Length>=4096)return false;
+                Array.Resize(ref animationReturnHits,animationReturnHits.Length*2);
+            }
+            for(var i=0;i<count;i++)
+            {
+                var hit=animationReturnHits[i];
+                if(hit.collider!=null && !hit.collider.transform.IsChildOf(transform) && Vector3.Angle(hit.normal,Vector3.up)<=maxWalkableSlope)
+                    return true;
+            }
+            return false;
+        }
         public bool TryResetAnimationActor(object owner,Vector3 position,Vector3 facing)
         {
             if(owner==null || !ReferenceEquals(owner,animationPostureOwner) || !Finite(facing)

@@ -9,7 +9,7 @@ namespace BooterBigArm.TopDown3D
     public enum AnimationPlaygroundReadiness { Uninitialized, DependenciesChecked, ServicesBound, VisualReady, PlayableReady, Failed }
 
     [DefaultExecutionOrder(-10000), DisallowMultipleComponent]
-    public sealed class TopDown3DAnimationPlaygroundSession : MonoBehaviour
+    public sealed partial class TopDown3DAnimationPlaygroundSession : MonoBehaviour
     {
         public const string ScenePath = "Assets/_Project/Scenes/Reference/CampLoopTesting.unity";
         private static readonly Dictionary<int, TopDown3DAnimationPlaygroundSession> Sessions = new();
@@ -21,6 +21,7 @@ namespace BooterBigArm.TopDown3D
         public GameObject PalettePrefab => palettePrefab;
         public void ConfigurePresentation(AnimationPlaygroundCatalog value,GameObject prefab){catalog=value;palettePrefab=prefab;}
         public AnimationPlaygroundReadiness Readiness { get; private set; }
+        public bool PreviewReady => Readiness >= AnimationPlaygroundReadiness.VisualReady && Readiness <= AnimationPlaygroundReadiness.PlayableReady;
         public string UnavailableReason { get; private set; }
         public bool IsLab => MatchesLabIdentity(gameObject.scene.path, true);
         public string ControlsDirectory => Path.Combine(Application.persistentDataPath, "AnimationPlayground");
@@ -34,7 +35,10 @@ namespace BooterBigArm.TopDown3D
             bindings = value;
         }
 
-        private void Awake() => CheckDependencies();
+        private void Awake()
+        {
+            if (CheckDependencies()) PreparePlayer();
+        }
         public bool CheckDependencies()
         {
             if (!IsLab) return Fail("Animation playground configuration is only valid in Camp Loop Testing.");
@@ -67,6 +71,7 @@ namespace BooterBigArm.TopDown3D
         }
         private void OnDestroy()
         {
+            DetachPlayerServices();
             if (Sessions.TryGetValue(gameObject.scene.handle, out var owner) && owner == this)
                 Sessions.Remove(gameObject.scene.handle);
         }
