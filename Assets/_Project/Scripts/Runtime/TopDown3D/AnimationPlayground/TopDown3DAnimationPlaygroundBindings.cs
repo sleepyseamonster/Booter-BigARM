@@ -24,6 +24,7 @@ namespace BooterBigArm.TopDown3D
         public GameObject targetModel;
         public Avatar sourceAvatar, targetAvatar;
         public TopDown3DLocomotionClipProfile locomotion;
+        public AnimationPlaygroundForwardLocomotionProfile forwardLocomotion;
         public AnimationPlaygroundCrouchProfile crouch;
         public AnimationPlaygroundFootProjection footProjection;
         public AnimationPlaygroundAirborneProfile airborne;
@@ -79,6 +80,13 @@ namespace BooterBigArm.TopDown3D
                 reason="A qualified airborne family requires its paired transition foot projection.";
             else if(lowMotion!=null && (!lowMotion.Validate(out reason,false) || lowMotion.targetModel!=targetModel))
             {reason=reason ?? "The low-motion family must pair with the selected actor.";return false;}
+            else if(forwardLocomotion!=null && (!forwardLocomotion.Validate(targetModel,locomotion,out reason)
+                || forwardLocomotion.footProjection!=footProjection))
+            {reason=reason ?? "Forward locomotion requires the selected actor/profile/projection pair.";return false;}
+            else if(forwardLocomotion!=null && (Mathf.Abs(forwardLocomotion.gaits[0].nominalSpeed-slowWalkSpeed)>.0001f
+                || Mathf.Abs(forwardLocomotion.gaits[1].nominalSpeed-runSpeed)>.0001f
+                || Mathf.Abs(forwardLocomotion.gaits[2].nominalSpeed-sprintSpeed)>.0001f))
+                reason="Forward locomotion calibration and laboratory motor speeds disagree.";
             return reason == null;
         }
     }

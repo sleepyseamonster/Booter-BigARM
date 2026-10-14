@@ -123,6 +123,7 @@ namespace BooterBigArm.TopDown3D
 
         private void LateUpdate()
         {
+            EmitForwardFootEffectsForRenderedPose();
             if (!HasCampAnimationSet || cloakBound || humanoidAnimator == null) return;
             var chest = humanoidAnimator.GetBoneTransform(HumanBodyBones.Chest);
             var hips = humanoidAnimator.GetBoneTransform(HumanBodyBones.Hips);
@@ -229,6 +230,7 @@ namespace BooterBigArm.TopDown3D
             visualLocalEulerAngles = Vector3.zero;
             laboratoryAvatar = value.targetAvatar; laboratoryBodyMaterial = value.bodyMaterial;
             laboratoryFootProjection=value.footProjection;
+            laboratoryForwardProfile=value.forwardLocomotion;
             equipmentScale = value.bodyHeight / value.equipmentModelHeight;
             equipmentPresentationRatio = equipmentScale / PrototypeVisualScale;
             laboratoryFeetPlane = -value.capsuleHeight * .5f;
@@ -373,6 +375,7 @@ namespace BooterBigArm.TopDown3D
             DisableGreyboxVisuals();
             CreatePlayableGraph(humanoidAnimator);
             if(laboratoryFootProjection!=null)footProjectionSampler=laboratoryFootProjection.Bind(visualInstance.transform);
+            InitializeForwardLocomotion();
         }
 
         private void DisableGreyboxVisuals()
@@ -451,6 +454,7 @@ namespace BooterBigArm.TopDown3D
 
         private void Update()
         {
+            PrepareForwardGraphUpdate();
             if (PresentMountedPose()) return;
             if (!playableGraph.IsValid() || motor == null)
             {
@@ -461,6 +465,7 @@ namespace BooterBigArm.TopDown3D
             if (PresentAnimationAction()) return;
             if (PresentCrouchPose()) return;
             if (PresentStandingPoseBlend()) return;
+            if (TryPresentForwardLocomotion()) return;
 
             var snapshot = motor.LocomotionSnapshot;
             if (visualInstance != null)
@@ -1064,6 +1069,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDestroy()
         {
+            UnbindForwardMotion();
             ReleasePoseBlend();
             ReleaseCrouchPresentation();
             foreach (var mesh in cloakMeshes)
@@ -1077,6 +1083,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDisable()
         {
+            UnbindForwardMotion();
             ReleasePoseBlend();
             ReleaseAnimationPresentation();
             EndGather();

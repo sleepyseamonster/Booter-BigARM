@@ -40,6 +40,13 @@ namespace BooterBigArm.TopDown3D
         }
 
         public AnimationPlaygroundGaitContacts Advance(AnimationPlaygroundGroundedMotion sample, double metresPerCycle)
+            => Advance(sample, metresPerCycle, null);
+
+        public AnimationPlaygroundGaitContacts Advance(AnimationPlaygroundGroundedMotion sample,
+            AnimationPlaygroundForwardLocomotionProfile profile) => Advance(sample, profile.CycleDistance(sample.Speed), profile);
+
+        private AnimationPlaygroundGaitContacts Advance(AnimationPlaygroundGroundedMotion sample, double metresPerCycle,
+            AnimationPlaygroundForwardLocomotionProfile profile)
         {
             if (!double.IsFinite(metresPerCycle) || metresPerCycle <= 0)
                 throw new ArgumentException("A qualified positive stride distance is required.");
@@ -55,7 +62,8 @@ namespace BooterBigArm.TopDown3D
             Travelling = sample.Speed >= (Travelling ? ExitSpeed : EnterSpeed);
             if (!Travelling) return new AnimationPlaygroundGaitContacts(contactEpoch, 0, 0);
             var before = (long)Math.Floor(Cycles * 4);
-            Cycles += sample.Distance / metresPerCycle;
+            Cycles = profile == null ? Cycles + sample.Distance / metresPerCycle
+                : profile.AdvanceCycles(sample.Speed, Cycles, sample.Distance);
             var after = (long)Math.Floor(Cycles * 4);
             var count = after - before;
             ContactCount += count;
@@ -64,6 +72,13 @@ namespace BooterBigArm.TopDown3D
 
         public double RenderCycles(float fixedInterpolation) =>
             previousCycles + (Cycles - previousCycles) * Mathf.Clamp01(fixedInterpolation);
+
+        public double RenderCycles(float fixedInterpolation, float acceptedSpeed, AnimationPlaygroundForwardLocomotionProfile profile)
+        {
+            var from = profile.DistanceAtCycles(acceptedSpeed, previousCycles);
+            var distance = profile.DistanceAtCycles(acceptedSpeed, Cycles) - from;
+            return profile.AdvanceCycles(acceptedSpeed, previousCycles, distance * Mathf.Clamp01(fixedInterpolation));
+        }
 
         public static double BlendedCycleDistance(float speed, Vector3 nominalSpeeds, Vector3 metresPerCycle)
         {
