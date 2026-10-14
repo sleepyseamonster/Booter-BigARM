@@ -97,6 +97,14 @@ All 75 focused Edit Mode checks pass against the isolated scene with its concurr
 
 The full implementation goal remains active: remaining PHY1 actions, other physical families, requested motion gaps and author appearance/feel acceptance are unfinished. Terrain contact and crouch start/stop/cloak fitting remain visual review items.
 
+## Airborne controller draft — October 14
+
+The shared coordinator now retains a motor lease through owner-checked physical stages, with independent stage/pose timing and an indefinite falling presentation. The airborne controller applies takeoff once, follows physics velocity and measured ground distance, waits for surface contact to land, retains gravity/ownership on flight cancellation and participates in ordered reset.
+
+Twelve private clips provide three jump variants, a falling loop, contact approach and hard recovery. Candidate-only policy/gauge probes remove the source's vertical arc while preserving its limb posing. Rising pelvis height is constant and soles clear the reference foot plane. The 111-pair PHY1AirborneDraft checkpoint captures and dry-restores the new private assets/binding while preserving canonical source/import bytes and GUIDs.
+
+All 85 focused Edit Mode checks pass without failures or skips. The airborne profile stays unqualified and unbound to author input until the rigged transition/contact, equipment and session handoff gates pass. Roll collision/recovery/damage policy remains required. Crouch stays enabled, and the full remaining-family/motion-gap goal remains active. See [airborne draft evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/AirborneDraft/README.md).
+
 ## Validation and source boundaries
 
 File restoration fixtures pass twelve checks. The isolated Unity candidate at `D:\BooterBigArmValidation\AnimationPlayground20261013` contains the Camp Loop dependency closure and active scripts/settings/UI/character/test assets; it is a validation copy, not a Git worktree. Initial session and targeting regressions pass 44 tests. All 25 menu regressions pass after the candidate's missing SystemMenu prefab dependency was restored. Installed-session checks are repeated against the saved scene. See the [foundation evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Foundations/README.md).

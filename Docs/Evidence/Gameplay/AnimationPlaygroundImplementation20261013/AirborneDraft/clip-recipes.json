@@ -1,0 +1,149 @@
+{
+    "state": "airborne-draft-not-physical-qualified",
+    "clips": [
+        {
+            "name": "JumpStandingTakeoffGrounded",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingTakeoffGrounded.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpStandingOriginalHeightBaked.fbx",
+            "start": 0.0,
+            "end": 0.6333333253860474,
+            "minimumSole": -0.9079999923706055,
+            "minimumHip": -0.35043203830718996,
+            "maximumHip": -0.04157537221908569,
+            "maximumBody": 0.8681203126907349,
+            "maximumAdjustment": 0.03949597105383873
+        },
+        {
+            "name": "JumpStandingRisingPose",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingRisingPose.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpStandingOriginalHeightBaked.fbx",
+            "start": 0.6333333253860474,
+            "end": 0.9666666984558106,
+            "minimumSole": -1.0238008499145508,
+            "minimumHip": -0.0664139986038208,
+            "maximumHip": -0.06641381978988648,
+            "maximumBody": 0.8532298803329468,
+            "maximumAdjustment": 0.4356237053871155
+        },
+        {
+            "name": "JumpStandingLandingGrounded",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingLandingGrounded.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpStandingOriginalHeightBaked.fbx",
+            "start": 1.2166666984558106,
+            "end": 2.1666667461395265,
+            "minimumSole": -0.9079999923706055,
+            "minimumHip": -0.40568801760673525,
+            "maximumHip": -0.08649617433547974,
+            "maximumBody": 0.8132113218307495,
+            "maximumAdjustment": 0.0371030829846859
+        },
+        {
+            "name": "JumpRunningTakeoffGrounded",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningTakeoffGrounded.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpRunningOriginalHeightBaked.fbx",
+            "start": 0.0,
+            "end": 0.09799999743700028,
+            "minimumSole": -0.9080001711845398,
+            "minimumHip": -0.21365267038345338,
+            "maximumHip": -0.019032597541809083,
+            "maximumBody": 0.8614271879196167,
+            "maximumAdjustment": 0.01716378703713417
+        },
+        {
+            "name": "JumpRunningRisingPose",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningRisingPose.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpRunningOriginalHeightBaked.fbx",
+            "start": 0.09799999743700028,
+            "end": 0.37599998712539675,
+            "minimumSole": -0.9647559523582459,
+            "minimumHip": -0.0664139986038208,
+            "maximumHip": -0.06641381978988648,
+            "maximumBody": 0.8589376211166382,
+            "maximumAdjustment": 0.273185670375824
+        },
+        {
+            "name": "JumpRunningLandingGrounded",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningLandingGrounded.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpRunningOriginalHeightBaked.fbx",
+            "start": 0.6050000190734863,
+            "end": 0.8999999761581421,
+            "minimumSole": -0.9079999923706055,
+            "minimumHip": -0.2543531060218811,
+            "maximumHip": -0.10749906301498413,
+            "maximumBody": 0.7703672647476196,
+            "maximumAdjustment": 0.038293275982141498
+        },
+        {
+            "name": "JumpUnarmedTakeoffGrounded",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedTakeoffGrounded.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpUnarmedOriginalHeightBaked.fbx",
+            "start": 0.2666667103767395,
+            "end": 0.8333333134651184,
+            "minimumSole": -0.9079998135566711,
+            "minimumHip": -0.2643054127693176,
+            "maximumHip": -0.01453167200088501,
+            "maximumBody": 0.8838300704956055,
+            "maximumAdjustment": 0.0253809355199337
+        },
+        {
+            "name": "JumpUnarmedRisingPose",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedRisingPose.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpUnarmedOriginalHeightBaked.fbx",
+            "start": 0.8333333134651184,
+            "end": 1.1666667461395264,
+            "minimumSole": -1.0106496810913087,
+            "minimumHip": -0.0664139986038208,
+            "maximumHip": -0.06641381978988648,
+            "maximumBody": 0.8319478034973145,
+            "maximumAdjustment": 0.35190147161483767
+        },
+        {
+            "name": "JumpUnarmedLandingGrounded",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedLandingGrounded.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpUnarmedOriginalHeightBaked.fbx",
+            "start": 1.4666666984558106,
+            "end": 2.3333332538604738,
+            "minimumSole": -0.9079995155334473,
+            "minimumHip": -0.3895685076713562,
+            "maximumHip": -0.06496047973632813,
+            "maximumBody": 0.8514634370803833,
+            "maximumAdjustment": 0.028157677501440049
+        },
+        {
+            "name": "FallAirborneIdlePhysicsLoop",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallAirborneIdlePhysicsLoop.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/FallAirborneIdleOriginalHeightBaked.fbx",
+            "start": 0.0,
+            "end": 0.699999988079071,
+            "minimumSole": -0.49863970279693606,
+            "minimumHip": -0.0664139986038208,
+            "maximumHip": -0.0664137601852417,
+            "maximumBody": 0.8596006631851196,
+            "maximumAdjustment": 0.1270831823348999
+        },
+        {
+            "name": "FallLandingContactApproach",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallLandingContactApproach.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/FallLandingOriginalHeightBaked.fbx",
+            "start": 0.0,
+            "end": 0.2666667103767395,
+            "minimumSole": -0.9079999923706055,
+            "minimumHip": -0.556185781955719,
+            "maximumHip": -0.06148505210876465,
+            "maximumBody": 0.7908110618591309,
+            "maximumAdjustment": 0.9377036690711975
+        },
+        {
+            "name": "FallLandingContactRecovery",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallLandingContactRecovery.anim",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/FallLandingOriginalHeightBaked.fbx",
+            "start": 0.2666667103767395,
+            "end": 1.0666667222976685,
+            "minimumSole": -0.9080001711845398,
+            "minimumHip": -0.4451861083507538,
+            "maximumHip": -0.09729909896850586,
+            "maximumBody": 0.8014781475067139,
+            "maximumAdjustment": 0.046129073947668079
+        }
+    ]
+}

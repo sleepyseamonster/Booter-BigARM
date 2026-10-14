@@ -45,6 +45,31 @@ namespace BooterBigArm.TopDown3D
         private bool laboratoryPostureSuspended;
         public Vector3 LaboratoryMeasuredVelocity {get;private set;}
         public bool IsAnimationPostureOwner(object owner)=>owner!=null && ReferenceEquals(owner,animationPostureOwner);
+        public bool IsAnimationMotionOwner(object owner)=>owner!=null && ReferenceEquals(owner,animationMotionOwner);
+        public Vector3 LaboratoryMoveDirection=>input!=null && cameraBasis!=null
+            ? TopDown3DMovementBasis.ToWorldDirection(input.MoveValue,cameraBasis.forward,cameraBasis.right) : Vector3.zero;
+        public bool TryAnimationGroundDistance(object owner,float maximum,out float distance)
+        {
+            distance=maximum;
+            if(!IsAnimationMotionOwner(owner) && !IsAnimationPostureOwner(owner) || !float.IsFinite(maximum) || maximum<=0)return false;
+            EnsureAnimationShape();var foot=Position+Vector3.up*(capsule.center.y-capsule.height*.5f);int count;
+            while(true)
+            {
+                count=Physics.RaycastNonAlloc(foot+Vector3.up*.1f,Vector3.down,animationReturnHits,maximum+.1f,groundMask,QueryTriggerInteraction.Ignore);
+                if(count<animationReturnHits.Length)break;
+                if(animationReturnHits.Length>=4096)return false;
+                Array.Resize(ref animationReturnHits,animationReturnHits.Length*2);
+            }
+            var found=false;
+            for(var i=0;i<count;i++)
+            {
+                var hit=animationReturnHits[i];
+                if(hit.collider==null || hit.collider.transform.IsChildOf(transform) || Vector3.Angle(hit.normal,Vector3.up)>maxWalkableSlope)continue;
+                var gap=Mathf.Max(0,hit.distance-.1f);
+                if(gap<=distance){distance=gap;found=true;}
+            }
+            return found;
+        }
         public bool TransferAnimationPostureOwner(object owner,object successor)
         {
             if(!IsAnimationPostureOwner(owner) || successor==null || animationMotionOwner!=null)return false;

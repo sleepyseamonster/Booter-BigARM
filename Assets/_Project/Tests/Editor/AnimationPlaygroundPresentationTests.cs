@@ -64,6 +64,46 @@ namespace BooterBigArm.Tests
             Assert.That(driver.AnimationPresentationOwned,Is.False);Assert.That(mixer.GetInput(21).IsValid(),Is.False);
             Assert.That(driver.TryBeginAnimationPresentation(owner,clip),Is.True);
         }
+        [Test] public void PhysicalSequenceChangesStageWithoutReleasingPhysicsAndRejectsForeignOwners()
+        {
+            var motor=actor.GetComponent<TopDown3DPlayerMotor>();var registry=new AnimationPlaygroundResetRegistry();
+            coordinator=actor.AddComponent<AnimationPlaygroundActionCoordinator>();coordinator.Configure(motor,driver,registry,new[]{actor.transform.position});
+            var binding=new AnimationPlaygroundMotionBinding{clip=clip,readiness=AnimationPlaygroundMotionReadiness.PhysicalQualified};
+            Assert.That(coordinator.TryBeginPhysicalSequence(owner,binding,AnimationPlaygroundMotionMode.Jump,null,time=>default,null),Is.True);
+            Assert.That(coordinator.TrySwitchPhysicalSequence(new object(),binding,AnimationPlaygroundMotionMode.Fall,null,time=>default,null),Is.False);
+            var before=mixer.GetInput(21);
+            Assert.That(coordinator.TrySwitchPhysicalSequence(owner,binding,AnimationPlaygroundMotionMode.Fall,null,time=>default,null,looping:true),Is.True);
+            Assert.That(before.IsValid(),Is.False);Assert.That(graph.GetOutputCount(),Is.EqualTo(1));
+            Assert.That(motor.IsAnimationMotionOwner(coordinator),Is.True);Assert.That(motor.AnimationMotionMode,Is.EqualTo(AnimationPlaygroundMotionMode.Fall));
+            Assert.That(coordinator.CancelPhysicalSequence(new object()),Is.False);
+            Assert.That(coordinator.CancelPhysicalSequence(owner),Is.True);Assert.That(motor.IsActionConstrained,Is.False);
+        }
+        [Test] public void LoopingPhysicalStageContinuesPastClipEndAndPausesBothClocks()
+        {
+            var motor=actor.GetComponent<TopDown3DPlayerMotor>();var registry=new AnimationPlaygroundResetRegistry();var paused=false;
+            coordinator=actor.AddComponent<AnimationPlaygroundActionCoordinator>();coordinator.Configure(motor,driver,registry,new[]{actor.transform.position},()=>paused);
+            var binding=new AnimationPlaygroundMotionBinding{clip=clip,readiness=AnimationPlaygroundMotionReadiness.PhysicalQualified};
+            var effects=0;var completions=0;coordinator.ActionCompleted+=()=>completions++;
+            Assert.That(coordinator.TryBeginPhysicalSequence(owner,binding,AnimationPlaygroundMotionMode.Fall,new[]{new AnimationPlaygroundMarker(1,.01)},
+                time=>default,key=>{effects++;return true;},looping:true),Is.True);
+            var tick=typeof(TopDown3DPlayerMotor).GetMethod("FixedUpdate",BindingFlags.Instance|BindingFlags.NonPublic);
+            for(var i=0;i<120;i++)tick.Invoke(motor,null);
+            Assert.That(coordinator.IsBusy,Is.True);Assert.That(coordinator.PhysicalStageSeconds,Is.GreaterThan(clip.length));
+            Assert.That(effects,Is.EqualTo(1));Assert.That(completions,Is.EqualTo(1));
+            var before=coordinator.PhysicalStageSeconds;paused=true;for(var i=0;i<20;i++)tick.Invoke(motor,null);
+            Assert.That(coordinator.PhysicalStageSeconds,Is.EqualTo(before));
+            registry.CancelAll();Assert.That(coordinator.IsSequenceOwner(owner),Is.False);
+        }
+        [Test] public void PhysicalPoseMappingCannotCreateAnInvalidStageOrReplaceAPreview()
+        {
+            var motor=actor.GetComponent<TopDown3DPlayerMotor>();var registry=new AnimationPlaygroundResetRegistry();
+            coordinator=actor.AddComponent<AnimationPlaygroundActionCoordinator>();coordinator.Configure(motor,driver,registry,new[]{actor.transform.position});
+            var binding=new AnimationPlaygroundMotionBinding{clip=clip,readiness=AnimationPlaygroundMotionReadiness.PhysicalQualified};
+            Assert.That(coordinator.TryBeginPreview(binding),Is.True);Assert.That(driver.TryReplaceAnimationPresentation(coordinator,clip),Is.False);coordinator.Cancel();
+            Assert.That(coordinator.TryBeginPhysicalSequence(owner,binding,AnimationPlaygroundMotionMode.Fall,null,time=>default,null,time=>double.NaN),Is.True);
+            typeof(TopDown3DPlayerMotor).GetMethod("FixedUpdate",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(motor,null);
+            Assert.That(coordinator.IsBusy,Is.False);Assert.That(coordinator.LastFailure,Does.Contain("invalid pose time"));
+        }
         [Test] public void PoseSnapshotFreezesItsSourcesAndBlendsUnderTheExistingOutput()
         {
             var source=AnimationClipPlayable.Create(graph,clip);source.SetTime(.25);source.SetSpeed(0);

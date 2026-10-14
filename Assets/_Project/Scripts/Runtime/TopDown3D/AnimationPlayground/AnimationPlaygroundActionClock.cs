@@ -37,6 +37,7 @@ namespace BooterBigArm.TopDown3D
         public bool Complete=>Elapsed>=duration*cycles;
         public double ClipTime=>Complete ? duration : Elapsed%duration;
         public int PendingCount=>pending.Count;
+        public double ClipDuration=>duration;
         public AnimationPlaygroundActionClock(ulong actionId,uint epoch,double seconds,int maximumCycles,AnimationPlaygroundMarker[] effectMarkers)
         {
             if(!double.IsFinite(seconds) || seconds<=0 || maximumCycles<1 || maximumCycles>128)throw new ArgumentOutOfRangeException(nameof(seconds));

@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "state": "airborne-controller-and-asset-draft",
+  "date": "2026-10-14",
+  "test_count": 85,
+  "failures": 0,
+  "skips": 0,
+  "private_pairs": 111,
+  "derivatives": 12,
+  "policy_comparisons": 14,
+  "root_gauges": 6,
+  "profile_qualified": false,
+  "input_bound": false,
+  "playmode": false,
+  "files": [
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundAirborneAuthoring.cs",
+      "sha256": "1fd833ac0c533d53518a9ecb7ff32c741ca23d101fcbef87b6ef4eed7b3cf924"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundAirborneAuthoring.cs.meta",
+      "sha256": "b98e3a407e34019e297ece85d6bb3cd09ab3775dd9eff8dcd21cf1f01338cf62"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundAirborneController.cs",
+      "sha256": "1a30420449714a606a924ebfa7380d79c70767e9a5114c0e3cbf83c313d7d054"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundAirborneController.cs.meta",
+      "sha256": "2e24eeb047380ac6b0b82ebaf100075125a8bd6ee3147163cf4f99c1870e1777"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundAirborneProfile.cs",
+      "sha256": "978d4b5ba8e6c93b76793eddf82267ce06d1b14dc40d460ffe4a0463503804a2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundAirborneProfile.cs.meta",
+      "sha256": "1d659c77d54ee5e8d8bc440b5861e0d02bf5a7dc3aeb657c4bc3aa88e8f383af"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundActionClock.cs",
+      "sha256": "eeed9bd6ffc891b6963dc387ed426a62808a60d5546ace1ea492a335f88f3af7"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundActionCoordinator.cs",
+      "sha256": "79bd92a30e8e7bba1367a12a005859307f693dea4a06b948fe557d45462f46e8"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundBindings.cs",
+      "sha256": "2f40c4801c459a2a4376fca19244684a1685d9b49672b31b53e7ed54757ac378"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.AnimationPlayground.cs",
+      "sha256": "84f9fc00fdf15d41a0da1606555aa92810fea8474d699a49f360888ad226d49e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.AnimationPlayground.cs",
+      "sha256": "1d41e1823aef7fdb07a1cc54384360b12e152f0ba0c68be157b12161bff45a25"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundAirborneTests.cs",
+      "sha256": "d87be4920e230f049e4a53c388461e1a0afa1d6fff8584f7938d3c6c6d3ba611"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundAirborneTests.cs.meta",
+      "sha256": "0d11f3a6ca5814f30959b60f727842360993d4d82201441c991734259e7dd002"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundMotorTests.cs",
+      "sha256": "8a9c25f83bb71141a1f8621afe5dd599ffbbaf5dbc16f938907cf1663fe0d894"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundPresentationTests.cs",
+      "sha256": "0edf8e439afcc3857f0bfd052ade6eac2a2df183e9dc59049644067b2cc38c7c"
+    }
+  ]
+}

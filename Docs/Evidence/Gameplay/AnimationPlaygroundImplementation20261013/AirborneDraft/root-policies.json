@@ -1,0 +1,299 @@
+{
+    "state": "airborne-policy-review",
+    "policies": [
+        {
+            "source": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpStanding.fbx",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpStandingPoseOnly.fbx",
+            "bakeHeight": false,
+            "seconds": 2.366666793823242,
+            "hipMinimum": -0.20637065172195435,
+            "hipMaximum": -0.15888577699661256,
+            "soleMinimum": -1.1298061609268189,
+            "soleMaximum": -0.6789932250976563,
+            "bodyMinimum": -1.1298061609268189,
+            "bodyMaximum": 0.7388513088226318,
+            "rootCurves": [
+                "RootT.x",
+                "RootT.y",
+                "RootT.z",
+                "RootQ.x",
+                "RootQ.y",
+                "RootQ.z",
+                "RootQ.w"
+            ]
+        },
+        {
+            "source": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpStanding.fbx",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpStandingOriginalHeightBaked.fbx",
+            "bakeHeight": true,
+            "seconds": 2.366666793823242,
+            "hipMinimum": -0.42875969409942629,
+            "hipMaximum": 0.36894655227661135,
+            "soleMinimum": -0.9475513696670532,
+            "soleMaximum": -0.17006433010101319,
+            "bodyMinimum": -0.9475513696670532,
+            "bodyMaximum": 1.1891205310821534,
+            "rootCurves": [
+                "RootT.x",
+                "RootT.y",
+                "RootT.z",
+                "RootQ.x",
+                "RootQ.y",
+                "RootQ.z",
+                "RootQ.w"
+            ]
+        },
+        {
+            "source": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpRunning.fbx",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpRunningPoseOnly.fbx",
+            "bakeHeight": false,
+            "seconds": 0.9000000357627869,
+            "hipMinimum": -0.2794700860977173,
+            "hipMaximum": -0.2064354419708252,
+            "soleMinimum": -1.1499990224838257,
+            "soleMaximum": -0.7938024401664734,
+            "bodyMinimum": -1.1499990224838257,
+            "bodyMaximum": 0.805530309677124,
+            "rootCurves": [
+                "RootT.x",
+                "RootT.y",
+                "RootT.z",
+                "RootQ.x",
+                "RootQ.y",
+                "RootQ.z",
+                "RootQ.w"
+            ]
+        },
+        {
+            "source": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpRunning.fbx",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpRunningOriginalHeightBaked.fbx",
+            "bakeHeight": true,
+            "seconds": 0.9000000357627869,
+            "hipMinimum": -0.2189275622367859,
+            "hipMaximum": 0.2067810297012329,
+            "soleMinimum": -0.9321156740188599,
+            "soleMaximum": -0.3252444267272949,
+            "bodyMinimum": -0.9321156740188599,
+            "bodyMaximum": 1.187802791595459,
+            "rootCurves": [
+                "RootT.x",
+                "RootT.y",
+                "RootT.z",
+                "RootQ.x",
+                "RootQ.y",
+                "RootQ.z",
+                "RootQ.w"
+            ]
+        },
+        {
+            "source": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpUnarmed.fbx",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpUnarmedPoseOnly.fbx",
+            "bakeHeight": false,
+            "seconds": 2.3333334922790529,
+            "hipMinimum": -0.17019051313400269,
+            "hipMaximum": -0.08298653364181519,
+            "soleMinimum": -1.0490243434906006,
+            "soleMaximum": -0.6334617137908936,
+            "bodyMinimum": -1.0490243434906006,
+            "bodyMaximum": 0.8233038187026978,
+            "rootCurves": [
+                "RootT.x",
+                "RootT.y",
+                "RootT.z",
+                "RootQ.x",
+                "RootQ.y",
+                "RootQ.z",
+                "RootQ.w"
+            ]
+        },
+        {
+            "source": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpUnarmed.fbx",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpUnarmedOriginalHeightBaked.fbx",
+            "bakeHeight": true,
+            "seconds": 2.3333334922790529,
+            "hipMinimum": -0.41116589307785036,
+            "hipMaximum": 0.2854660749435425,
+            "soleMinimum": -0.9366016387939453,
+            "soleMaximum": -0.17852842807769776,
+            "bodyMinimum": -0.9366016387939453,
+            "bodyMaximum": 1.1232802867889405,
+            "rootCurves": [
+                "RootT.x",
+                "RootT.y",
+                "RootT.z",
+                "RootQ.x",
+                "RootQ.y",
+                "RootQ.z",
+                "RootQ.w"
+            ]
+        },
+        {
+            "source": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallAirborneIdle.fbx",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/FallAirborneIdlePoseOnly.fbx",
+            "bakeHeight": false,
+            "seconds": 0.7000000476837158,
+            "hipMinimum": -0.19317930936813355,
+            "hipMaximum": -0.18940764665603639,
+            "soleMinimum": -0.6249257326126099,
+            "soleMaximum": -0.6153597831726074,
+            "bodyMinimum": -0.6249257326126099,
+            "bodyMaximum": 0.7356770038604736,
+            "rootCurves": [
+                "RootT.x",
+                "RootT.y",
+                "RootT.z",
+                "RootQ.x",
+                "RootQ.y",
+                "RootQ.z",
+                "RootQ.w"
+            ]
+        },
+        {
+            "source": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallAirborneIdle.fbx",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/FallAirborneIdleOriginalHeightBaked.fbx",
+            "bakeHeight": true,
+            "seconds": 0.7000000476837158,
+            "hipMinimum": -0.19350051879882813,
+            "hipMaximum": -0.19163256883621217,
+            "soleMinimum": -0.6249271035194397,
+            "soleMaximum": -0.6169732809066773,
+            "bodyMinimum": -0.6249271035194397,
+            "bodyMaximum": 0.7343248128890991,
+            "rootCurves": [
+                "RootT.x",
+                "RootT.y",
+                "RootT.z",
+                "RootQ.x",
+                "RootQ.y",
+                "RootQ.z",
+                "RootQ.w"
+            ]
+        },
+        {
+            "source": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallLanding.fbx",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/FallLandingPoseOnly.fbx",
+            "bakeHeight": false,
+            "seconds": 1.0666667222976685,
+            "hipMinimum": 0.3815178871154785,
+            "hipMaximum": 0.5039523839950562,
+            "soleMinimum": -0.3705301284790039,
+            "soleMaximum": 0.03644305467605591,
+            "bodyMinimum": -0.3705301284790039,
+            "bodyMaximum": 1.4018120765686036,
+            "rootCurves": [
+                "RootT.x",
+                "RootT.y",
+                "RootT.z",
+                "RootQ.x",
+                "RootQ.y",
+                "RootQ.z",
+                "RootQ.w"
+            ]
+        },
+        {
+            "source": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallLanding.fbx",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/FallLandingOriginalHeightBaked.fbx",
+            "bakeHeight": true,
+            "seconds": 1.0666667222976685,
+            "hipMinimum": -0.475366473197937,
+            "hipMaximum": 0.3815178871154785,
+            "soleMinimum": -0.9541290998458862,
+            "soleMaximum": 0.029703617095947267,
+            "bodyMinimum": -0.9541290998458862,
+            "bodyMaximum": 1.134645938873291,
+            "rootCurves": [
+                "RootT.x",
+                "RootT.y",
+                "RootT.z",
+                "RootQ.x",
+                "RootQ.y",
+                "RootQ.z",
+                "RootQ.w"
+            ]
+        },
+        {
+            "source": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallRollLanding.fbx",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/FallRollLandingPoseOnly.fbx",
+            "bakeHeight": false,
+            "seconds": 2.133333444595337,
+            "hipMinimum": 1.112189769744873,
+            "hipMaximum": 1.6013367176055909,
+            "soleMinimum": 0.3170222043991089,
+            "soleMaximum": 1.7072584629058838,
+            "bodyMinimum": 0.3170222043991089,
+            "bodyMaximum": 2.129450559616089,
+            "rootCurves": [
+                "RootT.x",
+                "RootT.y",
+                "RootT.z",
+                "RootQ.x",
+                "RootQ.y",
+                "RootQ.z",
+                "RootQ.w"
+            ]
+        },
+        {
+            "source": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallRollLanding.fbx",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/FallRollLandingOriginalHeightBaked.fbx",
+            "bakeHeight": true,
+            "seconds": 2.133333444595337,
+            "hipMinimum": -0.8108631372451782,
+            "hipMaximum": 1.112189769744873,
+            "soleMinimum": -0.9478171467781067,
+            "soleMaximum": 0.7603754997253418,
+            "bodyMinimum": -0.9871898293495178,
+            "bodyMaximum": 1.8653178215026856,
+            "rootCurves": [
+                "RootT.x",
+                "RootT.y",
+                "RootT.z",
+                "RootQ.x",
+                "RootQ.y",
+                "RootQ.z",
+                "RootQ.w"
+            ]
+        },
+        {
+            "source": "Assets/_Project/Art/Animations/Mixamo/Traversal/Slide/RunningSlide.fbx",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/RunningSlidePoseOnly.fbx",
+            "bakeHeight": false,
+            "seconds": 1.533333420753479,
+            "hipMinimum": -0.20325535535812379,
+            "hipMaximum": -0.10434669256210327,
+            "soleMinimum": -0.9420516490936279,
+            "soleMaximum": -0.25160688161849978,
+            "bodyMinimum": -0.9420516490936279,
+            "bodyMaximum": 0.727562427520752,
+            "rootCurves": [
+                "RootT.x",
+                "RootT.y",
+                "RootT.z",
+                "RootQ.x",
+                "RootQ.y",
+                "RootQ.z",
+                "RootQ.w"
+            ]
+        },
+        {
+            "source": "Assets/_Project/Art/Animations/Mixamo/Traversal/Slide/RunningSlide.fbx",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/RunningSlideOriginalHeightBaked.fbx",
+            "bakeHeight": true,
+            "seconds": 1.533333420753479,
+            "hipMinimum": -0.7661799192428589,
+            "hipMaximum": -0.14174973964691163,
+            "soleMinimum": -0.9400824904441834,
+            "soleMaximum": -0.8245176076889038,
+            "bodyMinimum": -1.018188238143921,
+            "bodyMaximum": 0.7577744722366333,
+            "rootCurves": [
+                "RootT.x",
+                "RootT.y",
+                "RootT.z",
+                "RootQ.x",
+                "RootQ.y",
+                "RootQ.z",
+                "RootQ.w"
+            ]
+        }
+    ]
+}

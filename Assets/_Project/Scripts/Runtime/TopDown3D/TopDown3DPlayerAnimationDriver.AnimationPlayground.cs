@@ -37,6 +37,16 @@ namespace BooterBigArm.TopDown3D
             animationPresentationTime = seconds;
             return true;
         }
+        public bool TryReplaceAnimationPresentation(object owner,AnimationClip clip)
+        {
+            if(owner==null || !ReferenceEquals(owner,animationPresentationOwner) || animationPreview || clip==null || clip.length<=0
+                || !playableGraph.IsValid() || !animationActionPlayable.IsValid())return false;
+            var replacement=AnimationClipPlayable.Create(playableGraph,clip);
+            replacement.SetApplyFootIK(false);replacement.SetApplyPlayableIK(false);replacement.SetSpeed(0);replacement.SetTime(0);
+            playableGraph.Disconnect(mixer,AnimationActionIndex);playableGraph.Connect(replacement,0,mixer,AnimationActionIndex);
+            playableGraph.DestroyPlayable(animationActionPlayable);animationActionPlayable=replacement;
+            animationPresentationTime=0;animationHeightCorrection=0;animationFootProjection=false;return true;
+        }
 
         public bool SetAnimationHeightCorrection(object owner,float correction)
         {

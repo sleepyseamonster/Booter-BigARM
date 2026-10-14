@@ -1,0 +1,41 @@
+{
+    "state": "airborne-draft-not-physical-qualified",
+    "clips": [
+        {
+            "name": "JumpStandingRisingPose",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingRisingPose.anim",
+            "source": "",
+            "start": 0.0,
+            "end": 0.0,
+            "minimumSole": -0.9079999923706055,
+            "minimumHip": 0.04938673973083496,
+            "maximumHip": 0.04938709735870361,
+            "maximumBody": 0.9690306186676025,
+            "maximumAdjustment": 0.11580082029104233
+        },
+        {
+            "name": "JumpRunningRisingPose",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningRisingPose.anim",
+            "source": "",
+            "start": 0.0,
+            "end": 0.0,
+            "minimumSole": -0.9080001711845398,
+            "minimumHip": -0.00965815782546997,
+            "maximumHip": -0.009657800197601319,
+            "maximumBody": 0.9156934022903442,
+            "maximumAdjustment": 0.056755926460027698
+        },
+        {
+            "name": "JumpUnarmedRisingPose",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedRisingPose.anim",
+            "source": "",
+            "start": 0.0,
+            "end": 0.0,
+            "minimumSole": -0.9079998135566711,
+            "minimumHip": 0.03623563051223755,
+            "maximumHip": 0.03623610734939575,
+            "maximumBody": 0.9345976114273071,
+            "maximumAdjustment": 0.10264965146780014
+        }
+    ]
+}

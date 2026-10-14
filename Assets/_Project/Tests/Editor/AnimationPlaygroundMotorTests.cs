@@ -101,6 +101,15 @@ namespace BooterBigArm.Tests
             motor.SetAnimationMotorIntent(owner,new AnimationPlaygroundMotorIntent(Vector3.zero,Vector3.forward,paused:true));Tick(motor);
             motor.ReleaseAnimationMotion(owner);Assert.That(body.linearVelocity.y,Is.EqualTo(-4));Assert.That(body.useGravity,Is.True);
         }
+        [Test] public void GroundDistanceRequiresTheLeaseAndMeasuresTheSurfaceBelowTheFeet()
+        {
+            obstacle=GameObject.CreatePrimitive(PrimitiveType.Cube);obstacle.transform.position=actor.transform.position+Vector3.down*1.4f;
+            obstacle.transform.localScale=new Vector3(4,.2f,4);Physics.SyncTransforms();
+            Assert.That(motor.TryAnimationGroundDistance(new object(),1,out _),Is.False);
+            Assert.That(motor.TryAnimationGroundDistance(owner,1,out var distance),Is.True);
+            Assert.That(distance,Is.EqualTo(.3f).Within(.002f));
+            Assert.That(motor.TryAnimationGroundDistance(owner,.1f,out _),Is.False);
+        }
         [Test] public void CompactShapeCannotBeLabelledStandingOrAnUnknownMode()
         {
             Assert.That(motor.TryBeginAnimationMotion(owner,(AnimationPlaygroundMotionMode)999),Is.False);
