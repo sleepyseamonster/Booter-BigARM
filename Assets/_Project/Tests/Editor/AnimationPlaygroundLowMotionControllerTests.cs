@@ -11,8 +11,11 @@ using Object=UnityEngine.Object;
 
 namespace BooterBigArm.Tests
 {
+    [TestFixture(false),TestFixture(true)]
     public sealed class AnimationPlaygroundLowMotionControllerTests
     {
+        private readonly bool fitted;
+        public AnimationPlaygroundLowMotionControllerTests(bool useFittedProfile){fitted=useFittedProfile;}
         private GameObject actor,floor,roof,visual;
         private Rigidbody body;
         private TopDown3DPlayerMotor motor;
@@ -31,7 +34,7 @@ namespace BooterBigArm.Tests
         [SetUp] public void Setup()
         {
             paused=false;busy=false;
-            var source=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundLowMotionProfile>(AnimationPlaygroundLowMotionAuthoring.ProfilePath);
+            var source=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundLowMotionProfile>(fitted ? AnimationPlaygroundLowMotionFitting.ProfilePath : AnimationPlaygroundLowMotionAuthoring.ProfilePath);
             Assert.That(source,Is.Not.Null);profile=Object.Instantiate(source);profile.qualified=true; // Controller fixture does not qualify source art.
             actor=new GameObject("Low-motion lease fixture");actor.SetActive(false);actor.transform.position=new Vector3(78000,.91f,78000);
             motor=actor.AddComponent<TopDown3DPlayerMotor>();driver=actor.AddComponent<TopDown3DPlayerAnimationDriver>();body=actor.GetComponent<Rigidbody>();

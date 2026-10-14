@@ -7,6 +7,28 @@ namespace BooterBigArm.TopDown3D
     {
         public bool AnimationLowShapeActive=>animationShapeCaptured && capsule!=null && capsule.direction==2;
         public bool LaboratoryModalPaused=>input!=null && input.Mode!=TopDown3DInputMode.Gameplay;
+        public bool TryGetLaboratoryGroundPlane(out Plane plane)
+        {
+            plane=default;
+            if(animationPostureOwner==null && animationMotionOwner==null)return false;
+            EnsureAnimationShape();var origin=AnimationCurrentFootPoint()+Vector3.up*.1f;int count;
+            while(true)
+            {
+                count=Physics.RaycastNonAlloc(origin,Vector3.down,animationReturnHits,.4f,groundMask,QueryTriggerInteraction.Ignore);
+                if(count<animationReturnHits.Length)break;
+                if(animationReturnHits.Length>=4096)return false;
+                Array.Resize(ref animationReturnHits,animationReturnHits.Length*2);
+            }
+            var nearest=float.PositiveInfinity;var found=false;
+            for(var i=0;i<count;i++)
+            {
+                var hit=animationReturnHits[i];
+                if(hit.collider==null || hit.collider.transform.IsChildOf(transform) || hit.distance>=nearest
+                    || hit.collider.GetComponentInParent<TopDown3DGroundSurface>()==null || !TopDown3DSlopeMath.IsWalkable(hit.normal,maxWalkableSlope))continue;
+                nearest=hit.distance;plane=new Plane(hit.normal,hit.point);found=true;
+            }
+            return found;
+        }
 
         // A longitudinal capsule retains the authored foot plane and follows the motor's facing.
         public bool TrySetAnimationLowShape(object owner,float length,float radius,float forwardOffset)

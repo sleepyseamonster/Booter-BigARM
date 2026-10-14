@@ -46,8 +46,10 @@ namespace BooterBigArm.TopDown3D
             if(!CollectPoseSources(mixer,1,sources,0) || sources.Count==0)return false;
             var height=visualInstance.transform.localPosition.y-visualLocalPosition.y;
             var bodyProjection=animationBodyProjection || poseBlendBodyProjection;
+            var garmentFloor=animationGarmentFloor || poseBlendGarmentFloor;
             ReleasePoseBlend();
             poseBlendBodyProjection=bodyProjection;
+            poseBlendGarmentFloor=garmentFloor;
             if(mixer.GetInputCount()<=PoseBlendInputIndex)mixer.SetInputCount(PoseBlendInputIndex+1);
             poseBlendSnapshot=AnimationMixerPlayable.Create(playableGraph,sources.Count);
             try
@@ -97,6 +99,7 @@ namespace BooterBigArm.TopDown3D
             var height=Mathf.Lerp(poseBlendSourceHeight,visualInstance.transform.localPosition.y-visualLocalPosition.y,amount);
             visualInstance.transform.localPosition=visualLocalPosition+Vector3.up*height;
             ProjectLaboratoryFootPlane();
+            ApplyGarmentFloor();
             if(amount>=1)ReleasePoseBlend();
         }
         private void ProjectLaboratoryFootPlane()
@@ -131,6 +134,8 @@ namespace BooterBigArm.TopDown3D
             }
             poseBlendClips.Clear();poseBlendSnapshot=default;poseBlendOwner=null;poseBlendElapsed=0;
             poseBlendBodyProjection=false;
+            poseBlendGarmentFloor=false;
+            if(!animationGarmentFloor)RestoreGarmentFloor();
         }
     }
 }

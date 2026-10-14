@@ -17,7 +17,7 @@ namespace BooterBigArm.Editor
             try{return BuildFixture(asset,model,wholeBody);}
             finally{Object.DestroyImmediate(model);EditorSceneManager.ClosePreviewScene(scene);}
         }
-        public static AnimationPlaygroundFootProjection BuildFixture(GameObject asset,GameObject model,bool wholeBody)
+        public static AnimationPlaygroundFootProjection BuildFixture(GameObject asset,GameObject model,bool wholeBody,bool excludeSoftGarments=false)
         {
             if(asset==null || model==null)throw new ArgumentException("A paired model fixture is required.");
             var result=ScriptableObject.CreateInstance<AnimationPlaygroundFootProjection>();
@@ -27,6 +27,7 @@ namespace BooterBigArm.Editor
                 var bones=new List<Transform>();var vertices=new List<AnimationPlaygroundFootVertex>();
                 foreach(var skin in model.GetComponentsInChildren<SkinnedMeshRenderer>(true))
                 {
+                    if(excludeSoftGarments && TopDown3DPlayerAnimationDriver.IsSoftGarment(skin))continue;
                     var mesh=skin.sharedMesh;var positions=mesh.vertices;var bindposes=mesh.bindposes;
                     using var counts=mesh.GetBonesPerVertex();using var weights=mesh.GetAllBoneWeights();var cursor=0;
                     for(var i=0;i<positions.Length;i++)

@@ -1,0 +1,954 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="143" result="Passed" total="143" passed="143" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-14 20:32:47Z" end-time="2026-10-14 20:33:01Z" duration="13.5772534">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="1258" result="Passed" start-time="2026-10-14 20:32:47Z" end-time="2026-10-14 20:33:01Z" duration="13.577253" total="143" passed="143" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2495" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/AnimationPlayground20261013/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="1258" result="Passed" start-time="2026-10-14 20:32:47Z" end-time="2026-10-14 20:33:01Z" duration="13.570163" total="143" passed="143" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="15724" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2496" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="1258" result="Passed" start-time="2026-10-14 20:32:47Z" end-time="2026-10-14 20:33:01Z" duration="13.569764" total="143" passed="143" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2497" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="1258" result="Passed" start-time="2026-10-14 20:32:47Z" end-time="2026-10-14 20:33:01Z" duration="13.569461" total="143" passed="143" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1001" name="AnimationPlaygroundAirborneTests" fullname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests" classname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-14 20:32:47Z" end-time="2026-10-14 20:32:50Z" duration="2.988902" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1006" name="ADisappearingSurfaceReturnsApproachToFallingWithoutReleasingGravity" fullname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ADisappearingSurfaceReturnsApproachToFallingWithoutReleasingGravity" methodname="ADisappearingSurfaceReturnsApproachToFallingWithoutReleasingGravity" classname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests" runstate="Runnable" seed="942135046" result="Passed" start-time="2026-10-14 20:32:47Z" end-time="2026-10-14 20:32:48Z" duration="0.262503" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1007" name="AFailedPresentationStageReleasesOnlyItsOwnSequence" fullname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests.AFailedPresentationStageReleasesOnlyItsOwnSequence" methodname="AFailedPresentationStageReleasesOnlyItsOwnSequence" classname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests" runstate="Runnable" seed="21229364" result="Passed" start-time="2026-10-14 20:32:48Z" end-time="2026-10-14 20:32:48Z" duration="0.002424" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1005" name="ExternalCancellationCannotLeaveAStaleAirborneController" fullname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ExternalCancellationCannotLeaveAStaleAirborneController" methodname="ExternalCancellationCannotLeaveAStaleAirborneController" classname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests" runstate="Runnable" seed="90512417" result="Passed" start-time="2026-10-14 20:32:48Z" end-time="2026-10-14 20:32:48Z" duration="0.001627" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1002" name="JumpLaunchesOnceAndLandingRequiresSurfaceContactRatherThanClipEnd" fullname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests.JumpLaunchesOnceAndLandingRequiresSurfaceContactRatherThanClipEnd" methodname="JumpLaunchesOnceAndLandingRequiresSurfaceContactRatherThanClipEnd" classname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests" runstate="Runnable" seed="550708541" result="Passed" start-time="2026-10-14 20:32:48Z" end-time="2026-10-14 20:32:48Z" duration="0.004574" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1003" name="PauseFreezesPoseAndCancelKeepsFallingPhysicsOwned" fullname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests.PauseFreezesPoseAndCancelKeepsFallingPhysicsOwned" methodname="PauseFreezesPoseAndCancelKeepsFallingPhysicsOwned" classname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests" runstate="Runnable" seed="1236046597" result="Passed" start-time="2026-10-14 20:32:48Z" end-time="2026-10-14 20:32:48Z" duration="0.003947" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1010" name="PhysicalContactCanTransferToRollWithoutLosingTheMotorOrRepeatingLanding" fullname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests.PhysicalContactCanTransferToRollWithoutLosingTheMotorOrRepeatingLanding" methodname="PhysicalContactCanTransferToRollWithoutLosingTheMotorOrRepeatingLanding" classname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests" runstate="Runnable" seed="1119165196" result="Passed" start-time="2026-10-14 20:32:48Z" end-time="2026-10-14 20:32:48Z" duration="0.121751" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1011" name="QualifiedRolesRetainHumanoidDataAndAirPosesHaveNoAnimatedVerticalArc" fullname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests.QualifiedRolesRetainHumanoidDataAndAirPosesHaveNoAnimatedVerticalArc" methodname="QualifiedRolesRetainHumanoidDataAndAirPosesHaveNoAnimatedVerticalArc" classname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests" runstate="Runnable" seed="1913931364" result="Passed" start-time="2026-10-14 20:32:48Z" end-time="2026-10-14 20:32:50Z" duration="2.568659" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1004" name="ResetInvalidatesTheSequenceAndRestoresOnlyTheExistingActor" fullname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ResetInvalidatesTheSequenceAndRestoresOnlyTheExistingActor" methodname="ResetInvalidatesTheSequenceAndRestoresOnlyTheExistingActor" classname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests" runstate="Runnable" seed="1841012774" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.004357" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1009" name="UnavailableLandingDelegatePreservesDefaultRecoveryAndEmitsDamageOnce" fullname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests.UnavailableLandingDelegatePreservesDefaultRecoveryAndEmitsDamageOnce" methodname="UnavailableLandingDelegatePreservesDefaultRecoveryAndEmitsDamageOnce" classname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests" runstate="Runnable" seed="1697484034" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.003116" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1008" name="UnqualifiedAirborneProfileAndCrouchedPostureCannotLaunch" fullname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests.UnqualifiedAirborneProfileAndCrouchedPostureCannotLaunch" methodname="UnqualifiedAirborneProfileAndCrouchedPostureCannotLaunch" classname="BooterBigArm.Tests.AnimationPlaygroundAirborneTests" runstate="Runnable" seed="1987115594" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.001345" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1012" name="AnimationPlaygroundBodyProjectionTests" fullname="BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests" classname="BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.012617" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1015" name="BodyProjectionUsesNonFootPointsAndReleasesBeforeTheNextAction" fullname="BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests.BodyProjectionUsesNonFootPointsAndReleasesBeforeTheNextAction" methodname="BodyProjectionUsesNonFootPointsAndReleasesBeforeTheNextAction" classname="BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests" runstate="Runnable" seed="1313827001" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.002108" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1017" name="OwnedRuntimeClothWeightsKeepTheirBonesWhenOrderedForSkinning" fullname="BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests.OwnedRuntimeClothWeightsKeepTheirBonesWhenOrderedForSkinning" methodname="OwnedRuntimeClothWeightsKeepTheirBonesWhenOrderedForSkinning" classname="BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests" runstate="Runnable" seed="923644546" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.002287" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1014" name="PreviewCannotAcquireBodyProjectionOrAlterTheActor" fullname="BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests.PreviewCannotAcquireBodyProjectionOrAlterTheActor" methodname="PreviewCannotAcquireBodyProjectionOrAlterTheActor" classname="BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests" runstate="Runnable" seed="499912341" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.000620" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1013" name="ProjectionRequiresThePhysicalOwnerAndItsSelectedModel" fullname="BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests.ProjectionRequiresThePhysicalOwnerAndItsSelectedModel" methodname="ProjectionRequiresThePhysicalOwnerAndItsSelectedModel" classname="BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests" runstate="Runnable" seed="1664966001" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.000588" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1016" name="WholeBodyProjectionRetainsTheExistingCorrectionCeiling" fullname="BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests.WholeBodyProjectionRetainsTheExistingCorrectionCeiling" methodname="WholeBodyProjectionRetainsTheExistingCorrectionCeiling" classname="BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests" runstate="Runnable" seed="781615313" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.002779" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1022" name="AnimationPlaygroundCrouchClockTests" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.008111" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1026" name="ClockRejectsInvalidOrUnboundedFixedSteps" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests.ClockRejectsInvalidOrUnboundedFixedSteps" methodname="ClockRejectsInvalidOrUnboundedFixedSteps" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests" runstate="Runnable" seed="1219005027" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.001730" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1025" name="PauseAndUnsupportedMotionCannotConsumeContacts" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests.PauseAndUnsupportedMotionCannotConsumeContacts" methodname="PauseAndUnsupportedMotionCannotConsumeContacts" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests" runstate="Runnable" seed="43114071" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.000979" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1024" name="SkippedContactBoundariesEmitAlternatingMarkersAtTheirActualPosePhase" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests.SkippedContactBoundariesEmitAlternatingMarkersAtTheirActualPosePhase" methodname="SkippedContactBoundariesEmitAlternatingMarkersAtTheirActualPosePhase" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests" runstate="Runnable" seed="1772468413" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.001715" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1027" name="SlowActualMotionDoesNotForceHalfSpeedFootsteps" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests.SlowActualMotionDoesNotForceHalfSpeedFootsteps" methodname="SlowActualMotionDoesNotForceHalfSpeedFootsteps" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests" runstate="Runnable" seed="1416596111" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.000271" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1023" name="SustainedPostureHasNoFiniteActionQuotaAndUsesLocalDirections" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests.SustainedPostureHasNoFiniteActionQuotaAndUsesLocalDirections" methodname="SustainedPostureHasNoFiniteActionQuotaAndUsesLocalDirections" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests" runstate="Runnable" seed="216440913" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.001362" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1028" name="AnimationPlaygroundCrouchControllerTests" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:51Z" duration="0.237256" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1036" name="ACloseWallPreventsExpandingIntoTheWiderCrouchEnvelope" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.ACloseWallPreventsExpandingIntoTheWiderCrouchEnvelope" methodname="ACloseWallPreventsExpandingIntoTheWiderCrouchEnvelope" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" runstate="Runnable" seed="48110846" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:50Z" duration="0.013813" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1035" name="BlockedResetRetainsAClearCrouchPoseUntilASafeReturnBecomesAvailable" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.BlockedResetRetainsAClearCrouchPoseUntilASafeReturnBecomesAvailable" methodname="BlockedResetRetainsAClearCrouchPoseUntilASafeReturnBecomesAvailable" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" runstate="Runnable" seed="374543943" result="Passed" start-time="2026-10-14 20:32:50Z" end-time="2026-10-14 20:32:51Z" duration="0.021243" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1032" name="CancelDuringEntryFinishesSafelyAndResetInvalidatesEveryPoseBranch" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.CancelDuringEntryFinishesSafelyAndResetInvalidatesEveryPoseBranch" methodname="CancelDuringEntryFinishesSafelyAndResetInvalidatesEveryPoseBranch" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" runstate="Runnable" seed="32271800" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.025571" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1031" name="CeilingBlocksExitWithoutGrowingTheCapsuleOrLosingThePose" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.CeilingBlocksExitWithoutGrowingTheCapsuleOrLosingThePose" methodname="CeilingBlocksExitWithoutGrowingTheCapsuleOrLosingThePose" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" runstate="Runnable" seed="786473081" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.019662" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1037" name="CommandedVelocityWithoutDisplacementCannotAdvanceCrouchSteps" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.CommandedVelocityWithoutDisplacementCannotAdvanceCrouchSteps" methodname="CommandedVelocityWithoutDisplacementCannotAdvanceCrouchSteps" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" runstate="Runnable" seed="358061530" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.018293" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1034" name="DirectionalCrouchRetainsEntryFacingAndStillUsesTheExistingMotor" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.DirectionalCrouchRetainsEntryFacingAndStillUsesTheExistingMotor" methodname="DirectionalCrouchRetainsEntryFacingAndStillUsesTheExistingMotor" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" runstate="Runnable" seed="621974273" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.015072" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1039" name="DisableBelowACeilingSuspendsPostureUntilTheControllerResumes" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.DisableBelowACeilingSuspendsPostureUntilTheControllerResumes" methodname="DisableBelowACeilingSuspendsPostureUntilTheControllerResumes" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" runstate="Runnable" seed="928897107" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.023049" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1040" name="DisableInClearSpaceRestoresStandingAndKeepsOrdinaryMovementAvailable" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.DisableInClearSpaceRestoresStandingAndKeepsOrdinaryMovementAvailable" methodname="DisableInClearSpaceRestoresStandingAndKeepsOrdinaryMovementAvailable" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" runstate="Runnable" seed="1275584995" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.014780" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1038" name="DisposalBelowACeilingTransfersTheSafePoseUntilStandingIsClear" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.DisposalBelowACeilingTransfersTheSafePoseUntilStandingIsClear" methodname="DisposalBelowACeilingTransfersTheSafePoseUntilStandingIsClear" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" runstate="Runnable" seed="1740543096" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.015221" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1029" name="DraftPauseAirborneAndOtherActivitiesCannotStartPosture" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.DraftPauseAirborneAndOtherActivitiesCannotStartPosture" methodname="DraftPauseAirborneAndOtherActivitiesCannotStartPosture" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" runstate="Runnable" seed="110124111" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.013430" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1030" name="EnterSustainsOneOutputAndExitsThroughTheSharedActionOwner" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.EnterSustainsOneOutputAndExitsThroughTheSharedActionOwner" methodname="EnterSustainsOneOutputAndExitsThroughTheSharedActionOwner" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" runstate="Runnable" seed="936097078" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.020036" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1033" name="ForeignOwnersAndInvalidPoseCannotStealTheSustainedBranch" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.ForeignOwnersAndInvalidPoseCannotStealTheSustainedBranch" methodname="ForeignOwnersAndInvalidPoseCannotStealTheSustainedBranch" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" runstate="Runnable" seed="1505201183" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.017644" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1041" name="SettlingBlendPausesAndResetReleasesItsGraphAndMotorLease" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.SettlingBlendPausesAndResetReleasesItsGraphAndMotorLease" methodname="SettlingBlendPausesAndResetReleasesItsGraphAndMotorLease" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests" runstate="Runnable" seed="1829521552" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.014895" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1042" name="AnimationPlaygroundCrouchFacingTests" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchFacingTests" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchFacingTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.008329" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1043" name="ContactAtTheLoopBoundaryMergesItsTwoFragments" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchFacingTests.ContactAtTheLoopBoundaryMergesItsTwoFragments" methodname="ContactAtTheLoopBoundaryMergesItsTwoFragments" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchFacingTests" runstate="Runnable" seed="91355856" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.004261" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1045" name="SoleContactRequiresGroundHeightAndMotionOpposingTheTravelAxis" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchFacingTests.SoleContactRequiresGroundHeightAndMotionOpposingTheTravelAxis" methodname="SoleContactRequiresGroundHeightAndMotionOpposingTheTravelAxis" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchFacingTests" runstate="Runnable" seed="1955407318" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.001769" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1044" name="UnexplainedExtraContactsAndInvalidTimelineRequireReview" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchFacingTests.UnexplainedExtraContactsAndInvalidTimelineRequireReview" methodname="UnexplainedExtraContactsAndInvalidTimelineRequireReview" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchFacingTests" runstate="Runnable" seed="46517463" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.000403" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1046" name="AnimationPlaygroundCrouchGroundingTests" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchGroundingTests" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchGroundingTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.010677" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1047" name="GroundingInterpolatesTheBlendWeightsAndWrapsAcrossForward" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchGroundingTests.GroundingInterpolatesTheBlendWeightsAndWrapsAcrossForward" methodname="GroundingInterpolatesTheBlendWeightsAndWrapsAcrossForward" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchGroundingTests" runstate="Runnable" seed="749232509" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.001750" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1048" name="PhysicalProfileRequiresACompleteReviewedGroundingGrid" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchGroundingTests.PhysicalProfileRequiresACompleteReviewedGroundingGrid" methodname="PhysicalProfileRequiresACompleteReviewedGroundingGrid" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchGroundingTests" runstate="Runnable" seed="1403226325" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.007801" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1049" name="AnimationPlaygroundCrouchQualificationTests" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:59Z" duration="8.503107" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1053" name="BrokenShapeCurvesAndMissingRolesCannotPassTheDraftGate" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests.BrokenShapeCurvesAndMissingRolesCannotPassTheDraftGate" methodname="BrokenShapeCurvesAndMissingRolesCannotPassTheDraftGate" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests" runstate="Runnable" seed="1266014762" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.002978" asserts="0">
+              <properties>
+                <property name="Category" value="PrivateAnimationQualification" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1051" name="CyclicCrouchContactsRejectDuplicatesNonFiniteAndWrongOrder" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests.CyclicCrouchContactsRejectDuplicatesNonFiniteAndWrongOrder" methodname="CyclicCrouchContactsRejectDuplicatesNonFiniteAndWrongOrder" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests" runstate="Runnable" seed="103823327" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:51Z" duration="0.000288" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1054" name="DirectionalDerivativePreservesRelativeLimbMotion" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests.DirectionalDerivativePreservesRelativeLimbMotion" methodname="DirectionalDerivativePreservesRelativeLimbMotion" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests" runstate="Runnable" seed="836055691" result="Passed" start-time="2026-10-14 20:32:51Z" end-time="2026-10-14 20:32:59Z" duration="8.250910" asserts="0">
+              <properties>
+                <property name="Category" value="PrivateAnimationQualification" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1052" name="HydratedCrouchHasSevenQualifiedHumanoidRoles" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests.HydratedCrouchHasSevenQualifiedHumanoidRoles" methodname="HydratedCrouchHasSevenQualifiedHumanoidRoles" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests" runstate="Runnable" seed="1247561628" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.009036" asserts="0">
+              <properties>
+                <property name="Category" value="PrivateAnimationQualification" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1050" name="QualificationRequiresAllCanonicalMotionPayloadsOnDisk" fullname="BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests.QualificationRequiresAllCanonicalMotionPayloadsOnDisk" methodname="QualificationRequiresAllCanonicalMotionPayloadsOnDisk" classname="BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests" runstate="Runnable" seed="781934227" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.237119" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1055" name="AnimationPlaygroundFootProjectionTests" fullname="BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests" classname="BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.009946" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1057" name="ProjectionPreservesWeightedBoneMotionAndVisualScale" fullname="BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests.ProjectionPreservesWeightedBoneMotionAndVisualScale" methodname="ProjectionPreservesWeightedBoneMotionAndVisualScale" classname="BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests" runstate="Runnable" seed="1091165947" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.001301" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1058" name="ProjectionRejectsWrongModelsMissingBonesAndIncompleteWeights" fullname="BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests.ProjectionRejectsWrongModelsMissingBonesAndIncompleteWeights" methodname="ProjectionRejectsWrongModelsMissingBonesAndIncompleteWeights" classname="BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests" runstate="Runnable" seed="666285890" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.000635" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1056" name="ProjectionReturnsTheLowestBodyPointWhenItsSupportingBoneChanges" fullname="BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests.ProjectionReturnsTheLowestBodyPointWhenItsSupportingBoneChanges" methodname="ProjectionReturnsTheLowestBodyPointWhenItsSupportingBoneChanges" classname="BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests" runstate="Runnable" seed="439139949" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.000614" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1059" name="QualifiedCrouchCannotBootstrapWithoutItsPairedProjection" fullname="BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests.QualifiedCrouchCannotBootstrapWithoutItsPairedProjection" methodname="QualifiedCrouchCannotBootstrapWithoutItsPairedProjection" classname="BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests" runstate="Runnable" seed="1573448732" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.004550" asserts="0">
+              <properties>
+                <property name="Category" value="PrivateAnimationQualification" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1064" name="AnimationPlaygroundGarmentFloorTests" fullname="BooterBigArm.Tests.AnimationPlaygroundGarmentFloorTests" classname="BooterBigArm.Tests.AnimationPlaygroundGarmentFloorTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.012300" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1066" name="ExcessiveDisplacementAndSingularSkinMatricesAreRejected" fullname="BooterBigArm.Tests.AnimationPlaygroundGarmentFloorTests.ExcessiveDisplacementAndSingularSkinMatricesAreRejected" methodname="ExcessiveDisplacementAndSingularSkinMatricesAreRejected" classname="BooterBigArm.Tests.AnimationPlaygroundGarmentFloorTests" runstate="Runnable" seed="345964104" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.000829" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1065" name="ProjectionKeepsTheSkinnedVertexOnASlopedPlaneWithoutMovingBones" fullname="BooterBigArm.Tests.AnimationPlaygroundGarmentFloorTests.ProjectionKeepsTheSkinnedVertexOnASlopedPlaneWithoutMovingBones" methodname="ProjectionKeepsTheSkinnedVertexOnASlopedPlaneWithoutMovingBones" classname="BooterBigArm.Tests.AnimationPlaygroundGarmentFloorTests" runstate="Runnable" seed="1217181777" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.001301" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1067" name="RuntimeCopyRespectsSkinQualityAndRestoresItsOriginalGeometry" fullname="BooterBigArm.Tests.AnimationPlaygroundGarmentFloorTests.RuntimeCopyRespectsSkinQualityAndRestoresItsOriginalGeometry" methodname="RuntimeCopyRespectsSkinQualityAndRestoresItsOriginalGeometry" classname="BooterBigArm.Tests.AnimationPlaygroundGarmentFloorTests" runstate="Runnable" seed="831431136" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.007538" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="ParameterizedFixture" id="1102" name="AnimationPlaygroundLowMotionControllerTests" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" testcasecount="26" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:33:00Z" duration="0.267768" total="26" passed="26" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="TestFixture" id="1074" name="AnimationPlaygroundLowMotionControllerTests(False)" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False)" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.135950" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1084" name="AFailedResetCanBeRetriedWithoutLosingTheRetainedPose" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).AFailedResetCanBeRetriedWithoutLosingTheRetainedPose" methodname="AFailedResetCanBeRetriedWithoutLosingTheRetainedPose" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="1475386682" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.012184" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1081" name="BlockedRecoveryHandsOffToTheExistingCrouchController" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).BlockedRecoveryHandsOffToTheExistingCrouchController" methodname="BlockedRecoveryHandsOffToTheExistingCrouchController" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="607873526" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.021025" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1080" name="BlockedStandingFreezesTheLastSafeRecoveryPoseThenResumes" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).BlockedStandingFreezesTheLastSafeRecoveryPoseThenResumes" methodname="BlockedStandingFreezesTheLastSafeRecoveryPoseThenResumes" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="525257685" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.011389" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1087" name="DisableFinishesSafelyAndBlockedDisposalRetainsPhysicsUntilClear" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).DisableFinishesSafelyAndBlockedDisposalRetainsPhysicsUntilClear" methodname="DisableFinishesSafelyAndBlockedDisposalRetainsPhysicsUntilClear" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="876157176" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.011177" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1085" name="DisposalFromAFoldedRollFinishesItsSourceRangeBeforeStanding" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).DisposalFromAFoldedRollFinishesItsSourceRangeBeforeStanding" methodname="DisposalFromAFoldedRollFinishesItsSourceRangeBeforeStanding" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="2120489615" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.008810" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1083" name="ExternalCancellationCannotLeaveAProneActorWithoutItsLease" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).ExternalCancellationCannotLeaveAProneActorWithoutItsLease" methodname="ExternalCancellationCannotLeaveAProneActorWithoutItsLease" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="1764481923" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.007303" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1086" name="LandingHandoffChangesTheSequenceOwnerWithoutReleasingTheMotor" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).LandingHandoffChangesTheSequenceOwnerWithoutReleasingTheMotor" methodname="LandingHandoffChangesTheSequenceOwnerWithoutReleasingTheMotor" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="1729799435" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.008002" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1078" name="PauseFreezesPoseAndMotorAndCancellationFinishesTheRollPhase" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).PauseFreezesPoseAndMotorAndCancellationFinishesTheRollPhase" methodname="PauseFreezesPoseAndMotorAndCancellationFinishesTheRollPhase" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="864956540" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.009284" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1079" name="RecoveryWaitsForRealSupportRatherThanTheSourceClock" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).RecoveryWaitsForRealSupportRatherThanTheSourceClock" methodname="RecoveryWaitsForRealSupportRatherThanTheSourceClock" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="316060261" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.010329" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1082" name="ResetInvalidatesTheSequenceAndRestoresTheAuthoredReturn" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).ResetInvalidatesTheSequenceAndRestoresTheAuthoredReturn" methodname="ResetInvalidatesTheSequenceAndRestoresTheAuthoredReturn" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="146069061" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.008079" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1077" name="RollEmitsItsLandingContactOnceAfterTheBlendAndPause" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).RollEmitsItsLandingContactOnceAfterTheBlendAndPause" methodname="RollEmitsItsLandingContactOnceAfterTheBlendAndPause" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="1202190649" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.008883" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1076" name="SlideRequiresSprintSpeedSupportAndQualification" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).SlideRequiresSprintSpeedSupportAndQualification" methodname="SlideRequiresSprintSpeedSupportAndQualification" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="217492658" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.001358" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1075" name="SlideRunsAllPhasesWithOneLeaseAndRestoresStanding" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).SlideRunsAllPhasesWithOneLeaseAndRestoresStanding" methodname="SlideRunsAllPhasesWithOneLeaseAndRestoresStanding" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="1685854665" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.006803" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-suite type="TestFixture" id="1088" name="AnimationPlaygroundLowMotionControllerTests(True)" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True)" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:33:00Z" duration="0.127589" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1098" name="AFailedResetCanBeRetriedWithoutLosingTheRetainedPose" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).AFailedResetCanBeRetriedWithoutLosingTheRetainedPose" methodname="AFailedResetCanBeRetriedWithoutLosingTheRetainedPose" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="579023383" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.007760" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1095" name="BlockedRecoveryHandsOffToTheExistingCrouchController" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).BlockedRecoveryHandsOffToTheExistingCrouchController" methodname="BlockedRecoveryHandsOffToTheExistingCrouchController" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="287006177" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.020932" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1094" name="BlockedStandingFreezesTheLastSafeRecoveryPoseThenResumes" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).BlockedStandingFreezesTheLastSafeRecoveryPoseThenResumes" methodname="BlockedStandingFreezesTheLastSafeRecoveryPoseThenResumes" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="445495139" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.011314" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1101" name="DisableFinishesSafelyAndBlockedDisposalRetainsPhysicsUntilClear" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).DisableFinishesSafelyAndBlockedDisposalRetainsPhysicsUntilClear" methodname="DisableFinishesSafelyAndBlockedDisposalRetainsPhysicsUntilClear" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="293214350" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.009584" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1099" name="DisposalFromAFoldedRollFinishesItsSourceRangeBeforeStanding" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).DisposalFromAFoldedRollFinishesItsSourceRangeBeforeStanding" methodname="DisposalFromAFoldedRollFinishesItsSourceRangeBeforeStanding" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="379917862" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.007571" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1097" name="ExternalCancellationCannotLeaveAProneActorWithoutItsLease" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).ExternalCancellationCannotLeaveAProneActorWithoutItsLease" methodname="ExternalCancellationCannotLeaveAProneActorWithoutItsLease" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="1970861821" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.007372" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1100" name="LandingHandoffChangesTheSequenceOwnerWithoutReleasingTheMotor" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).LandingHandoffChangesTheSequenceOwnerWithoutReleasingTheMotor" methodname="LandingHandoffChangesTheSequenceOwnerWithoutReleasingTheMotor" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="34220436" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.006893" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1092" name="PauseFreezesPoseAndMotorAndCancellationFinishesTheRollPhase" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).PauseFreezesPoseAndMotorAndCancellationFinishesTheRollPhase" methodname="PauseFreezesPoseAndMotorAndCancellationFinishesTheRollPhase" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="724337313" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.008314" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1093" name="RecoveryWaitsForRealSupportRatherThanTheSourceClock" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).RecoveryWaitsForRealSupportRatherThanTheSourceClock" methodname="RecoveryWaitsForRealSupportRatherThanTheSourceClock" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="1905156323" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:32:59Z" duration="0.009217" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1096" name="ResetInvalidatesTheSequenceAndRestoresTheAuthoredReturn" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).ResetInvalidatesTheSequenceAndRestoresTheAuthoredReturn" methodname="ResetInvalidatesTheSequenceAndRestoresTheAuthoredReturn" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="860247801" result="Passed" start-time="2026-10-14 20:32:59Z" end-time="2026-10-14 20:33:00Z" duration="0.008319" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1091" name="RollEmitsItsLandingContactOnceAfterTheBlendAndPause" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).RollEmitsItsLandingContactOnceAfterTheBlendAndPause" methodname="RollEmitsItsLandingContactOnceAfterTheBlendAndPause" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="1011005859" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.007412" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1090" name="SlideRequiresSprintSpeedSupportAndQualification" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).SlideRequiresSprintSpeedSupportAndQualification" methodname="SlideRequiresSprintSpeedSupportAndQualification" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="1089183522" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.001458" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1089" name="SlideRunsAllPhasesWithOneLeaseAndRestoresStanding" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).SlideRunsAllPhasesWithOneLeaseAndRestoresStanding" methodname="SlideRunsAllPhasesWithOneLeaseAndRestoresStanding" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests" runstate="Runnable" seed="1607535550" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.010649" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+          </test-suite>
+          <test-suite type="TestFixture" id="1103" name="AnimationPlaygroundLowMotionProfileTests" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.007562" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1108" name="ACurveWithoutTheFullPhaseRangeCannotQualify" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests.ACurveWithoutTheFullPhaseRangeCannotQualify" methodname="ACurveWithoutTheFullPhaseRangeCannotQualify" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests" runstate="Runnable" seed="46941941" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000844" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1107" name="InvalidShapeValuesCannotReachTheMotor" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests.InvalidShapeValuesCannotReachTheMotor" methodname="InvalidShapeValuesCannotReachTheMotor" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests" runstate="Runnable" seed="1198167192" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000322" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1109" name="OversizedLongitudinalShapeAndUnboundedSpeedRemainRejected" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests.OversizedLongitudinalShapeAndUnboundedSpeedRemainRejected" methodname="OversizedLongitudinalShapeAndUnboundedSpeedRemainRejected" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests" runstate="Runnable" seed="2045709950" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000375" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1105" name="QualifiedFlagCannotBypassMissingRolesOrProjectionPairing" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests.QualifiedFlagCannotBypassMissingRolesOrProjectionPairing" methodname="QualifiedFlagCannotBypassMissingRolesOrProjectionPairing" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests" runstate="Runnable" seed="1762514306" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000379" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1104" name="SixDistinctSegmentedPhasesRemainUnavailableUntilPhysicalQualification" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests.SixDistinctSegmentedPhasesRemainUnavailableUntilPhysicalQualification" methodname="SixDistinctSegmentedPhasesRemainUnavailableUntilPhysicalQualification" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests" runstate="Runnable" seed="1477753869" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000680" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1106" name="WrongModelAndMissingBodyProjectionCannotPassTheImportContract" fullname="BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests.WrongModelAndMissingBodyProjectionCannotPassTheImportContract" methodname="WrongModelAndMissingBodyProjectionCannotPassTheImportContract" classname="BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests" runstate="Runnable" seed="1918669674" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000545" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1110" name="AnimationPlaygroundLowPostureTests" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" testcasecount="13" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.019318" total="13" passed="13" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1115" name="BlockedStandRetainsLowShapeUntilClearThenRestoresOriginalGeometry" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.BlockedStandRetainsLowShapeUntilClearThenRestoresOriginalGeometry" methodname="BlockedStandRetainsLowShapeUntilClearThenRestoresOriginalGeometry" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" seed="87210835" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.001620" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1116" name="ConversionToCrouchChecksTheNewUprightVolumeAndRestoresTheFootPlane" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.ConversionToCrouchChecksTheNewUprightVolumeAndRestoresTheFootPlane" methodname="ConversionToCrouchChecksTheNewUprightVolumeAndRestoresTheFootPlane" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" seed="772603559" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000788" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1112" name="FootProbeDoesNotUseTheLongitudinalLengthAsVerticalHeight" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.FootProbeDoesNotUseTheLongitudinalLengthAsVerticalHeight" methodname="FootProbeDoesNotUseTheLongitudinalLengthAsVerticalHeight" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" seed="2123405327" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000671" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1124" name="InvalidGeometryCannotChangeTheActor" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.InvalidGeometryCannotChangeTheActor" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.006664" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1118" name="InvalidGeometryCannotChangeTheActor(float.NaN,0.4f,0)" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.InvalidGeometryCannotChangeTheActor(float.NaN,0.4f,0)" methodname="InvalidGeometryCannotChangeTheActor" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" seed="1008185942" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000746" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1119" name="InvalidGeometryCannotChangeTheActor(1.9f,float.NaN,0)" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.InvalidGeometryCannotChangeTheActor(1.9f,float.NaN,0)" methodname="InvalidGeometryCannotChangeTheActor" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" seed="59645344" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000410" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1120" name="InvalidGeometryCannotChangeTheActor(1.9f,0.4f,float.PositiveInfinity)" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.InvalidGeometryCannotChangeTheActor(1.9f,0.4f,float.PositiveInfinity)" methodname="InvalidGeometryCannotChangeTheActor" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" seed="1002759243" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000378" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1121" name="InvalidGeometryCannotChangeTheActor(0.5f,0.4f,0)" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.InvalidGeometryCannotChangeTheActor(0.5f,0.4f,0)" methodname="InvalidGeometryCannotChangeTheActor" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" seed="639005768" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000381" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1122" name="InvalidGeometryCannotChangeTheActor(4.0f,0.4f,0)" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.InvalidGeometryCannotChangeTheActor(4.0f,0.4f,0)" methodname="InvalidGeometryCannotChangeTheActor" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" seed="1176630071" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000353" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1123" name="InvalidGeometryCannotChangeTheActor(1.9f,0.4f,2)" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.InvalidGeometryCannotChangeTheActor(1.9f,0.4f,2)" methodname="InvalidGeometryCannotChangeTheActor" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" seed="1180829472" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000370" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1114" name="LongShapeMustFitBeforeItCanReplaceTheUprightCapsule" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.LongShapeMustFitBeforeItCanReplaceTheUprightCapsule" methodname="LongShapeMustFitBeforeItCanReplaceTheUprightCapsule" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" seed="951196589" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000697" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1113" name="LowBodySweepsBlockItsFrontBeyondTheFormerStandingRadius" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.LowBodySweepsBlockItsFrontBeyondTheFormerStandingRadius" methodname="LowBodySweepsBlockItsFrontBeyondTheFormerStandingRadius" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" seed="1010569284" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.001030" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1117" name="PauseReleaseAndResetKeepGravityAndClearOnlyOwnedGeometry" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.PauseReleaseAndResetKeepGravityAndClearOnlyOwnedGeometry" methodname="PauseReleaseAndResetKeepGravityAndClearOnlyOwnedGeometry" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" seed="1034873543" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000882" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1111" name="ShapeRetainsFootPlaneLongitudinalExtentAndOwnedSupport" fullname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.ShapeRetainsFootPlaneLongitudinalExtentAndOwnedSupport" methodname="ShapeRetainsFootPlaneLongitudinalExtentAndOwnedSupport" classname="BooterBigArm.Tests.AnimationPlaygroundLowPostureTests" runstate="Runnable" seed="686228340" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000855" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1125" name="AnimationPlaygroundMotorTests" fullname="BooterBigArm.Tests.AnimationPlaygroundMotorTests" classname="BooterBigArm.Tests.AnimationPlaygroundMotorTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.010911" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1132" name="AirbornePauseRestoresVerticalVelocityOnResumeOrCancellation" fullname="BooterBigArm.Tests.AnimationPlaygroundMotorTests.AirbornePauseRestoresVerticalVelocityOnResumeOrCancellation" methodname="AirbornePauseRestoresVerticalVelocityOnResumeOrCancellation" classname="BooterBigArm.Tests.AnimationPlaygroundMotorTests" runstate="Runnable" seed="523574872" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.001081" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1134" name="CompactShapeCannotBeLabelledStandingOrAnUnknownMode" fullname="BooterBigArm.Tests.AnimationPlaygroundMotorTests.CompactShapeCannotBeLabelledStandingOrAnUnknownMode" methodname="CompactShapeCannotBeLabelledStandingOrAnUnknownMode" classname="BooterBigArm.Tests.AnimationPlaygroundMotorTests" runstate="Runnable" seed="1329962663" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000504" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1126" name="ControlledMotionAdvancesInsideTheExistingConstraintAndCannotBeStolen" fullname="BooterBigArm.Tests.AnimationPlaygroundMotorTests.ControlledMotionAdvancesInsideTheExistingConstraintAndCannotBeStolen" methodname="ControlledMotionAdvancesInsideTheExistingConstraintAndCannotBeStolen" classname="BooterBigArm.Tests.AnimationPlaygroundMotorTests" runstate="Runnable" seed="616302851" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000854" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1129" name="DisableReleasesOnlyOwnedStateAndPreservesTheOriginalGravitySetting" fullname="BooterBigArm.Tests.AnimationPlaygroundMotorTests.DisableReleasesOnlyOwnedStateAndPreservesTheOriginalGravitySetting" methodname="DisableReleasesOnlyOwnedStateAndPreservesTheOriginalGravitySetting" classname="BooterBigArm.Tests.AnimationPlaygroundMotorTests" runstate="Runnable" seed="137392607" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000619" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1131" name="FloorSupportDoesNotBlockPlanarMotionAndTakeoffReleasesSupport" fullname="BooterBigArm.Tests.AnimationPlaygroundMotorTests.FloorSupportDoesNotBlockPlanarMotionAndTakeoffReleasesSupport" methodname="FloorSupportDoesNotBlockPlanarMotionAndTakeoffReleasesSupport" classname="BooterBigArm.Tests.AnimationPlaygroundMotorTests" runstate="Runnable" seed="342573406" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000953" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1133" name="GroundDistanceRequiresTheLeaseAndMeasuresTheSurfaceBelowTheFeet" fullname="BooterBigArm.Tests.AnimationPlaygroundMotorTests.GroundDistanceRequiresTheLeaseAndMeasuresTheSurfaceBelowTheFeet" methodname="GroundDistanceRequiresTheLeaseAndMeasuresTheSurfaceBelowTheFeet" classname="BooterBigArm.Tests.AnimationPlaygroundMotorTests" runstate="Runnable" seed="363035839" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000601" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1128" name="PostureAnchorsFeetAndRefusesStandingThroughACeiling" fullname="BooterBigArm.Tests.AnimationPlaygroundMotorTests.PostureAnchorsFeetAndRefusesStandingThroughACeiling" methodname="PostureAnchorsFeetAndRefusesStandingThroughACeiling" classname="BooterBigArm.Tests.AnimationPlaygroundMotorTests" runstate="Runnable" seed="170626352" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.001065" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1130" name="ResetRefusesOccupiedReturnAndNeverTakesAForeignLease" fullname="BooterBigArm.Tests.AnimationPlaygroundMotorTests.ResetRefusesOccupiedReturnAndNeverTakesAForeignLease" methodname="ResetRefusesOccupiedReturnAndNeverTakesAForeignLease" classname="BooterBigArm.Tests.AnimationPlaygroundMotorTests" runstate="Runnable" seed="1138800223" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000967" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1135" name="ReviewedRadiusExpansionRequiresClearanceAndPreservesTheFootPlane" fullname="BooterBigArm.Tests.AnimationPlaygroundMotorTests.ReviewedRadiusExpansionRequiresClearanceAndPreservesTheFootPlane" methodname="ReviewedRadiusExpansionRequiresClearanceAndPreservesTheFootPlane" classname="BooterBigArm.Tests.AnimationPlaygroundMotorTests" runstate="Runnable" seed="1764911078" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000844" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1127" name="SweepAndPauseConstrainMotionAndReleaseRestoresGravity" fullname="BooterBigArm.Tests.AnimationPlaygroundMotorTests.SweepAndPauseConstrainMotionAndReleaseRestoresGravity" methodname="SweepAndPauseConstrainMotionAndReleaseRestoresGravity" classname="BooterBigArm.Tests.AnimationPlaygroundMotorTests" runstate="Runnable" seed="1146449123" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000872" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1141" name="AnimationPlaygroundPlayerIntegrationTests" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" testcasecount="7" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:01Z" duration="1.006265" total="7" passed="7" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1147" name="AuthoredPlayerUsesOneGraphAndEquipmentHasIndependentMetreScale" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.AuthoredPlayerUsesOneGraphAndEquipmentHasIndependentMetreScale" methodname="AuthoredPlayerUsesOneGraphAndEquipmentHasIndependentMetreScale" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" seed="1042515681" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.224098" asserts="0">
+              <properties>
+                <property name="Category" value="PrivateAnimationQualification" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1144" name="BindingRejectsBrokenColliderProfileAndSpeedContracts" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.BindingRejectsBrokenColliderProfileAndSpeedContracts" methodname="BindingRejectsBrokenColliderProfileAndSpeedContracts" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" seed="1944506879" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000694" asserts="0">
+              <properties>
+                <property name="Category" value="PrivateAnimationQualification" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1146" name="FailedResetBlocksMovementAndActionsWhilePaletteRemainsAvailable" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.FailedResetBlocksMovementAndActionsWhilePaletteRemainsAvailable" methodname="FailedResetBlocksMovementAndActionsWhilePaletteRemainsAvailable" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" seed="733732856" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.112113" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1142" name="PhysicsHierarchyRejectsScaledAncestorsAndMirrors" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.PhysicsHierarchyRejectsScaledAncestorsAndMirrors" methodname="PhysicsHierarchyRejectsScaledAncestorsAndMirrors" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" seed="1247490132" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.000514" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1143" name="PrivateBindingCoversEverySourceWithoutPromotingPhysicalReadiness" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.PrivateBindingCoversEverySourceWithoutPromotingPhysicalReadiness" methodname="PrivateBindingCoversEverySourceWithoutPromotingPhysicalReadiness" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" seed="688644332" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.466862" asserts="0">
+              <properties>
+                <property name="Category" value="PrivateAnimationQualification" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1145" name="ReturnAnchorsRequireNearbyWalkableSupport" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.ReturnAnchorsRequireNearbyWalkableSupport" methodname="ReturnAnchorsRequireNearbyWalkableSupport" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" seed="1571401488" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:00Z" duration="0.001138" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1148" name="SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset" fullname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset" methodname="SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset" classname="BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests" runstate="Runnable" seed="1957307407" result="Passed" start-time="2026-10-14 20:33:00Z" end-time="2026-10-14 20:33:01Z" duration="0.196516" asserts="0">
+              <properties>
+                <property name="Category" value="PrivateAnimationQualification" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1149" name="AnimationPlaygroundPresentationTests" fullname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests" classname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests" runstate="Runnable" testcasecount="9" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.020647" total="9" passed="9" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1153" name="LoopingPhysicalStageContinuesPastClipEndAndPausesBothClocks" fullname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests.LoopingPhysicalStageContinuesPastClipEndAndPausesBothClocks" methodname="LoopingPhysicalStageContinuesPastClipEndAndPausesBothClocks" classname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests" runstate="Runnable" seed="1128455533" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.003048" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1156" name="MotorBoundaryOwnsTheClockEffectsPauseAndResetCancellation" fullname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests.MotorBoundaryOwnsTheClockEffectsPauseAndResetCancellation" methodname="MotorBoundaryOwnsTheClockEffectsPauseAndResetCancellation" classname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests" runstate="Runnable" seed="621245103" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.001382" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1151" name="NullOwnersCannotClaimStateAndDisableReleasesTheDynamicPlayable" fullname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests.NullOwnersCannotClaimStateAndDisableReleasesTheDynamicPlayable" methodname="NullOwnersCannotClaimStateAndDisableReleasesTheDynamicPlayable" classname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests" runstate="Runnable" seed="1051315363" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000637" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1158" name="OnlyTheOwnedPhysicalBranchEmitsAContactAtTheMotorBoundary" fullname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests.OnlyTheOwnedPhysicalBranchEmitsAContactAtTheMotorBoundary" methodname="OnlyTheOwnedPhysicalBranchEmitsAContactAtTheMotorBoundary" classname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests" runstate="Runnable" seed="254845889" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.002189" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1150" name="OwnedClockSupportsPreviewSeekAndSuppressesAllLegacyMixerInputs" fullname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests.OwnedClockSupportsPreviewSeekAndSuppressesAllLegacyMixerInputs" methodname="OwnedClockSupportsPreviewSeekAndSuppressesAllLegacyMixerInputs" classname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests" runstate="Runnable" seed="1184291808" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.002149" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1154" name="PhysicalPoseMappingCannotCreateAnInvalidStageOrReplaceAPreview" fullname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests.PhysicalPoseMappingCannotCreateAnInvalidStageOrReplaceAPreview" methodname="PhysicalPoseMappingCannotCreateAnInvalidStageOrReplaceAPreview" classname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests" runstate="Runnable" seed="156488411" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.001235" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1152" name="PhysicalSequenceChangesStageWithoutReleasingPhysicsAndRejectsForeignOwners" fullname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests.PhysicalSequenceChangesStageWithoutReleasingPhysicsAndRejectsForeignOwners" methodname="PhysicalSequenceChangesStageWithoutReleasingPhysicsAndRejectsForeignOwners" classname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests" runstate="Runnable" seed="2051926808" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.001135" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1155" name="PoseSnapshotFreezesItsSourcesAndBlendsUnderTheExistingOutput" fullname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests.PoseSnapshotFreezesItsSourcesAndBlendsUnderTheExistingOutput" methodname="PoseSnapshotFreezesItsSourcesAndBlendsUnderTheExistingOutput" classname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests" runstate="Runnable" seed="124742448" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.001281" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1157" name="StaleTargetCancelsBeforeEffectAndPreviewCannotPromoteAnImportToPhysical" fullname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests.StaleTargetCancelsBeforeEffectAndPreviewCannotPromoteAnImportToPhysical" methodname="StaleTargetCancelsBeforeEffectAndPreviewCannotPromoteAnImportToPhysical" classname="BooterBigArm.Tests.AnimationPlaygroundPresentationTests" runstate="Runnable" seed="1196897977" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.001769" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="1168" name="AnimationPlaygroundStationTests" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" testcasecount="22" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.151269" total="22" passed="22" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-suite type="ParameterizedMethod" id="1182" name="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.011765" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1170" name="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(1)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(1)" methodname="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="510746932" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.002400" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1171" name="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(2)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(2)" methodname="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="1671261731" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000220" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1172" name="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(3)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(3)" methodname="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="64762982" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000534" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1173" name="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(4)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(4)" methodname="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="2083983834" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000194" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1174" name="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(5)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(5)" methodname="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="1152383950" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000322" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1175" name="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(6)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(6)" methodname="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="1940672177" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000174" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1176" name="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(7)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(7)" methodname="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="821671398" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000172" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1177" name="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(8)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(8)" methodname="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="1783409921" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000167" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1178" name="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(9)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(9)" methodname="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="741309614" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000175" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1179" name="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(10)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(10)" methodname="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="205189138" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000173" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1180" name="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(11)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(11)" methodname="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="2118808306" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000207" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1181" name="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(12)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(12)" methodname="AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="1626661853" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000206" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+            </test-suite>
+            <test-case id="1192" name="AuthorInstallerCannotRunInsideTheValidationCopyOrInteractiveEditor" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthorInstallerCannotRunInsideTheValidationCopyOrInteractiveEditor" methodname="AuthorInstallerCannotRunInsideTheValidationCopyOrInteractiveEditor" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="1968340160" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000670" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1184" name="DuplicatePropIdentityCannotAcquireASecondResetOwner" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.DuplicatePropIdentityCannotAcquireASecondResetOwner" methodname="DuplicatePropIdentityCannotAcquireASecondResetOwner" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="1343153369" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000695" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1191" name="InstalledStationsFilterPaletteInvalidateCapturesAndResetOwnedProps" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.InstalledStationsFilterPaletteInvalidateCapturesAndResetOwnedProps" methodname="InstalledStationsFilterPaletteInvalidateCapturesAndResetOwnedProps" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="383151409" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.096440" asserts="0">
+              <properties>
+                <property name="Category" value="PrivateAnimationQualification" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1169" name="PreparedLayoutRejectsChangedOrEscapingTerrainIdentities" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.PreparedLayoutRejectsChangedOrEscapingTerrainIdentities" methodname="PreparedLayoutRejectsChangedOrEscapingTerrainIdentities" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="1666282863" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.028685" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-case id="1183" name="PropLeaseAndResetRestoreOnlyRegisteredAuthoredState" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.PropLeaseAndResetRestoreOnlyRegisteredAuthoredState" methodname="PropLeaseAndResetRestoreOnlyRegisteredAuthoredState" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="128829862" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.002254" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="1190" name="StationIdentityMatchesTheTwelveAuthoredAreas" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.StationIdentityMatchesTheTwelveAuthoredAreas" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.005304" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="1185" name="StationIdentityMatchesTheTwelveAuthoredAreas(&quot;AP00&quot;,False)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.StationIdentityMatchesTheTwelveAuthoredAreas(&quot;AP00&quot;,False)" methodname="StationIdentityMatchesTheTwelveAuthoredAreas" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="1118246125" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000430" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1186" name="StationIdentityMatchesTheTwelveAuthoredAreas(&quot;AP01&quot;,True)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.StationIdentityMatchesTheTwelveAuthoredAreas(&quot;AP01&quot;,True)" methodname="StationIdentityMatchesTheTwelveAuthoredAreas" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="1984546127" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000104" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1187" name="StationIdentityMatchesTheTwelveAuthoredAreas(&quot;AP12&quot;,True)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.StationIdentityMatchesTheTwelveAuthoredAreas(&quot;AP12&quot;,True)" methodname="StationIdentityMatchesTheTwelveAuthoredAreas" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="848843969" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000066" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1188" name="StationIdentityMatchesTheTwelveAuthoredAreas(&quot;AP13&quot;,False)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.StationIdentityMatchesTheTwelveAuthoredAreas(&quot;AP13&quot;,False)" methodname="StationIdentityMatchesTheTwelveAuthoredAreas" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="1600282531" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000064" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+              </test-case>
+              <test-case id="1189" name="StationIdentityMatchesTheTwelveAuthoredAreas(&quot;AP1&quot;,False)" fullname="BooterBigArm.Tests.AnimationPlaygroundStationTests.StationIdentityMatchesTheTwelveAuthoredAreas(&quot;AP1&quot;,False)" methodname="StationIdentityMatchesTheTwelveAuthoredAreas" classname="BooterBigArm.Tests.AnimationPlaygroundStationTests" runstate="Runnable" seed="305165530" result="Passed" start-time="2026-10-14 20:33:01Z" end-time="2026-10-14 20:33:01Z" duration="0.000062" asserts="0">
+                <properties>
+                  <property name="retryIteration" value="0" />
+                  <property name="repeatIteration" value="0" />
+                </properties>
+                <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+              </test-case>
+            </test-suite>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

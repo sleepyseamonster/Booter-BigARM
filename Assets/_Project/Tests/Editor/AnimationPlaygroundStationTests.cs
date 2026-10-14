@@ -105,16 +105,17 @@ namespace BooterBigArm.Tests
                 var jumpStation=session.Stations.Single(value=>value.StationId=="AP04");
                 Assert.That(jumpStation.Targets.Single(value=>value.ActionKind==AnimationPlaygroundActionKind.Jump).IsAvailable,Is.True);
                 Assert.That(jumpStation.Targets.Single(value=>value.ActionKind==AnimationPlaygroundActionKind.Fall).IsAvailable,Is.True);
-                Assert.That(jumpStation.Status,Does.Contain("roll recovery pending"));
+                Assert.That(jumpStation.Status,Does.Contain("roll landing ready"));
                 Assert.That(session.CrouchReady,Is.True);
                 var physical=station.Targets.Single(value=>value.ActionKind==AnimationPlaygroundActionKind.Crouch);
                 Assert.That(physical.IsAvailable,Is.True);Assert.That(physical.Prompt,Is.EqualTo("Crouch or stand"));
                 Assert.That(station.Status,Does.Contain("Crouch ready"));
-                Assert.That(station.Targets.Single(value=>value.ActionKind==AnimationPlaygroundActionKind.Slide).IsAvailable,Is.False);
+                Assert.That(session.SlideReady,Is.True);
+                Assert.That(station.Targets.Single(value=>value.ActionKind==AnimationPlaygroundActionKind.Slide).IsAvailable,Is.True);
                 Assert.That(session.Stations.Single(value=>value.StationId=="AP08").Targets.Single(value=>value.ActionKind==AnimationPlaygroundActionKind.Crouch).IsAvailable,Is.False);
                 string feedback=null;player.GetComponent<TopDown3DPlayerActionController>().FeedbackRequested+=message=>feedback=message;
                 typeof(TopDown3DPlayerMotor).GetField("<SprintActive>k__BackingField",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(player,true);
-                Invoke(session,"ToggleCrouch");Assert.That(feedback,Does.Contain("Sliding"));Assert.That(session.Coordinator.IsBusy,Is.False);
+                Invoke(session,"ToggleCrouch");Assert.That(feedback,Does.Contain("unavailable"));Assert.That(session.Coordinator.IsBusy,Is.False);
                 Assert.That(player.AnimationPosture,Is.EqualTo(AnimationPlaygroundPosture.Standing));
                 typeof(TopDown3DPlayerMotor).GetField("<SprintActive>k__BackingField",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(player,false);
                 foreach(var command in new[]{"AnimationJumpRequested","AnimationActionRequested"})

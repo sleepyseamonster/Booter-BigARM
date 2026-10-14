@@ -40,6 +40,7 @@ namespace BooterBigArm.TopDown3D
             {
                 if(!presentation.SetAnimationPresentationTime(this,time) || !presentation.SetAnimationBodyProjection(this,calibration.bodyProjection))
                     throw new InvalidOperationException("The retained low pose lost its paired presentation.");
+                presentation.SetAnimationGarmentFloor(this,calibration.garmentFloorQualified,calibration.maximumGarmentProjection,calibration.garmentClearance);
                 motor=actor;driver=presentation;facing=heading;profile=calibration;entry=pose;poseTime=time;
                 motor.AnimationMotionPreparing+=Prepare;motor.AnimationMotionAdvanced+=Advance;
                 motor.SetLaboratoryPostureSuspended(this,true);return true;
@@ -71,7 +72,9 @@ namespace BooterBigArm.TopDown3D
             var next=profile.Get(role);
             if(!Shape(next,0) || !driver.TryCapturePoseBlend(this,BlendSeconds)
                 || !driver.TryReplaceAnimationPresentation(this,next.clip))return false;
-            driver.SetAnimationBodyProjection(this,profile.bodyProjection);entry=next;poseTime=0;return true;
+            driver.SetAnimationBodyProjection(this,profile.bodyProjection);
+            driver.SetAnimationGarmentFloor(this,profile.garmentFloorQualified,profile.maximumGarmentProjection,profile.garmentClearance);
+            entry=next;poseTime=0;return true;
         }
         private void Advance()
         {

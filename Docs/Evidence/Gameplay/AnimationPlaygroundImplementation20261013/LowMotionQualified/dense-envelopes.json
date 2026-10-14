@@ -1,0 +1,1088 @@
+{
+    "state": "fitted-low-motion-review",
+    "cacheExpanded": false,
+    "fullVertices": 43488,
+    "reducedVertices": 126,
+    "envelopes": [
+        {
+            "name": "OneBone.SlideEnter",
+            "minimumBody": -0.9096816182136536,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.4921322464942932,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.SlideActive",
+            "minimumBody": -0.9082133173942566,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.3998710513114929,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.SlideRecover",
+            "minimumBody": -0.9084388017654419,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.24804575741291047,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.RollContact",
+            "minimumBody": -0.9084032773971558,
+            "minimumGarment": -0.6795396208763123,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.RollActive",
+            "minimumBody": -0.908612072467804,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.5066338181495667,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.RollRecover",
+            "minimumBody": -0.9081858992576599,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.45483940839767458,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.Slide.EntryToActive",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.0057566165924072269,
+            "maximumGarmentDisplacement": 0.3998710513114929,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.Slide.ActiveToRecover",
+            "minimumBody": -0.9099999666213989,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0030979514122009279,
+            "maximumGarmentDisplacement": 0.24804575741291047,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.Slide.RecoverToIdle",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.7121162414550781,
+            "maximumBodyCorrection": 0.02255880832672119,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.Slide.RecoverToCrouch0",
+            "minimumBody": -0.9100002646446228,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.08981800079345703,
+            "maximumGarmentDisplacement": 0.16317661106586457,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.Slide.RecoverToCrouch1",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.058597564697265628,
+            "maximumGarmentDisplacement": 0.0745328739285469,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.Slide.RecoverToCrouch2",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.14491885900497437,
+            "maximumGarmentDisplacement": 0.07444847375154495,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.Slide.RecoverToCrouch3",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.02128732204437256,
+            "maximumGarmentDisplacement": 0.07446033507585526,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.Roll.EntryToActive",
+            "minimumBody": -0.9100000262260437,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.006216704845428467,
+            "maximumGarmentDisplacement": 0.019357988610863687,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.Roll.ActiveToRecover",
+            "minimumBody": -0.9094671010971069,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.4498850703239441,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.Roll.RecoverToIdle",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.7043773531913757,
+            "maximumBodyCorrection": 0.02256476879119873,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.Roll.RecoverToCrouch0",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000003933906555,
+            "maximumBodyCorrection": 0.029535293579101564,
+            "maximumGarmentDisplacement": 0.22141392529010774,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.Roll.RecoverToCrouch1",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.0041046142578125,
+            "maximumGarmentDisplacement": 0.07468480616807938,
+            "maximumPredictionError": 7.152557373046875e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.Roll.RecoverToCrouch2",
+            "minimumBody": -0.9100002646446228,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.02465975284576416,
+            "maximumGarmentDisplacement": 0.0744863823056221,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.Roll.RecoverToCrouch3",
+            "minimumBody": -0.910000205039978,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.02712094783782959,
+            "maximumGarmentDisplacement": 0.07447666674852371,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.SprintToSlide0",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.0335465669631958,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.LandingToRoll0",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.07964295148849487,
+            "maximumGarmentDisplacement": 0.3206186890602112,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.SprintToSlide1",
+            "minimumBody": -0.9092423319816589,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.LandingToRoll1",
+            "minimumBody": -0.9099999666213989,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.07909369468688965,
+            "maximumGarmentDisplacement": 0.3098185658454895,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.SprintToSlide2",
+            "minimumBody": -0.9100000262260437,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.03927034139633179,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 4.76837158203125e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.LandingToRoll2",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.07502979040145874,
+            "maximumGarmentDisplacement": 0.27090805768966677,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.SprintToSlide3",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.05447155237197876,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.LandingToRoll3",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.06775271892547608,
+            "maximumGarmentDisplacement": 0.20607049763202668,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.SprintToSlide4",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.017531156539916993,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.LandingToRoll4",
+            "minimumBody": -0.910000205039978,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.05531054735183716,
+            "maximumGarmentDisplacement": 0.11029822379350662,
+            "maximumPredictionError": 4.76837158203125e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.SprintToSlide5",
+            "minimumBody": -0.9081078767776489,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.LandingToRoll5",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.8699000477790833,
+            "maximumBodyCorrection": 0.03573322296142578,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.SprintToSlide6",
+            "minimumBody": -0.9099999666213989,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.0031595826148986818,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 4.76837158203125e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.LandingToRoll6",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.7392345666885376,
+            "maximumBodyCorrection": 0.018902480602264406,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.SprintToSlide7",
+            "minimumBody": -0.9100000262260437,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.07804697751998902,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "OneBone.LandingToRoll7",
+            "minimumBody": -0.910000205039978,
+            "minimumGarment": -0.6832802295684815,
+            "maximumBodyCorrection": 0.0107535719871521,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.SlideEnter",
+            "minimumBody": -0.9096764922142029,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.4921322464942932,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.SlideActive",
+            "minimumBody": -0.9082133173942566,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.3998710513114929,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.SlideRecover",
+            "minimumBody": -0.9082328677177429,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.24804575741291047,
+            "maximumPredictionError": 7.152557373046875e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.RollContact",
+            "minimumBody": -0.9082546234130859,
+            "minimumGarment": -0.6795396208763123,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.RollActive",
+            "minimumBody": -0.908612072467804,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.5066338181495667,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.RollRecover",
+            "minimumBody": -0.9081904888153076,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.45483940839767458,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.Slide.EntryToActive",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0057566165924072269,
+            "maximumGarmentDisplacement": 0.3998710513114929,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.Slide.ActiveToRecover",
+            "minimumBody": -0.9082760810852051,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.24804575741291047,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.Slide.RecoverToIdle",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.7121162414550781,
+            "maximumBodyCorrection": 0.022310614585876466,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.Slide.RecoverToCrouch0",
+            "minimumBody": -0.9100002646446228,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.08982795476913452,
+            "maximumGarmentDisplacement": 0.16317661106586457,
+            "maximumPredictionError": 7.152557373046875e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.Slide.RecoverToCrouch1",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.05862480401992798,
+            "maximumGarmentDisplacement": 0.0745328739285469,
+            "maximumPredictionError": 7.152557373046875e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.Slide.RecoverToCrouch2",
+            "minimumBody": -0.910000205039978,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.14495056867599488,
+            "maximumGarmentDisplacement": 0.07444847375154495,
+            "maximumPredictionError": 7.748603820800781e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.Slide.RecoverToCrouch3",
+            "minimumBody": -0.910000205039978,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.023238062858581544,
+            "maximumGarmentDisplacement": 0.07446033507585526,
+            "maximumPredictionError": 7.152557373046875e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.Roll.EntryToActive",
+            "minimumBody": -0.9100000262260437,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.006803631782531738,
+            "maximumGarmentDisplacement": 0.019357988610863687,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.Roll.ActiveToRecover",
+            "minimumBody": -0.9094671010971069,
+            "minimumGarment": -0.9000003933906555,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.4498850703239441,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.Roll.RecoverToIdle",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.7043773531913757,
+            "maximumBodyCorrection": 0.022293150424957277,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.Roll.RecoverToCrouch0",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.9000003933906555,
+            "maximumBodyCorrection": 0.03031247854232788,
+            "maximumGarmentDisplacement": 0.22141392529010774,
+            "maximumPredictionError": 7.152557373046875e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.Roll.RecoverToCrouch1",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0042899250984191898,
+            "maximumGarmentDisplacement": 0.07468480616807938,
+            "maximumPredictionError": 7.152557373046875e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.Roll.RecoverToCrouch2",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.02514815330505371,
+            "maximumGarmentDisplacement": 0.0744863823056221,
+            "maximumPredictionError": 7.152557373046875e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.Roll.RecoverToCrouch3",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.027592897415161134,
+            "maximumGarmentDisplacement": 0.07447666674852371,
+            "maximumPredictionError": 7.152557373046875e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.SprintToSlide0",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.03363347053527832,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.LandingToRoll0",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.07962268590927124,
+            "maximumGarmentDisplacement": 0.3206186890602112,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.SprintToSlide1",
+            "minimumBody": -0.9096454381942749,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.LandingToRoll1",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.07907342910766602,
+            "maximumGarmentDisplacement": 0.3098185658454895,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.SprintToSlide2",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.03925454616546631,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.LandingToRoll2",
+            "minimumBody": -0.9100000262260437,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.07501012086868286,
+            "maximumGarmentDisplacement": 0.27090805768966677,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.SprintToSlide3",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.05454099178314209,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.LandingToRoll3",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.06773322820663452,
+            "maximumGarmentDisplacement": 0.20607049763202668,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.SprintToSlide4",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.0175437331199646,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.LandingToRoll4",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.0552898645401001,
+            "maximumGarmentDisplacement": 0.11029822379350662,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.SprintToSlide5",
+            "minimumBody": -0.9080969095230103,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 7.152557373046875e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.LandingToRoll5",
+            "minimumBody": -0.910000205039978,
+            "minimumGarment": -0.8699000477790833,
+            "maximumBodyCorrection": 0.035722196102142337,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.SprintToSlide6",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.003792703151702881,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.LandingToRoll6",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.7392345666885376,
+            "maximumBodyCorrection": 0.018888354301452638,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.SprintToSlide7",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000000953674316,
+            "maximumBodyCorrection": 0.07842731475830078,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "TwoBones.LandingToRoll7",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.6832621097564697,
+            "maximumBodyCorrection": 0.010740041732788086,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.SlideEnter",
+            "minimumBody": -0.9096764922142029,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.4921322464942932,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.SlideActive",
+            "minimumBody": -0.9082133173942566,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.3998710513114929,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.SlideRecover",
+            "minimumBody": -0.9082328677177429,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.24804575741291047,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.RollContact",
+            "minimumBody": -0.9082546234130859,
+            "minimumGarment": -0.6795396208763123,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.RollActive",
+            "minimumBody": -0.908612072467804,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.5066338181495667,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.RollRecover",
+            "minimumBody": -0.9081904888153076,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.45483940839767458,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.Slide.EntryToActive",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0057566165924072269,
+            "maximumGarmentDisplacement": 0.3998710513114929,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.Slide.ActiveToRecover",
+            "minimumBody": -0.9082800149917603,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.24804575741291047,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.Slide.RecoverToIdle",
+            "minimumBody": -0.910000205039978,
+            "minimumGarment": -0.7121162414550781,
+            "maximumBodyCorrection": 0.022312164306640626,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.Slide.RecoverToCrouch0",
+            "minimumBody": -0.9100002646446228,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.08982795476913452,
+            "maximumGarmentDisplacement": 0.16317661106586457,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.Slide.RecoverToCrouch1",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.05862480401992798,
+            "maximumGarmentDisplacement": 0.0745328739285469,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.Slide.RecoverToCrouch2",
+            "minimumBody": -0.910000205039978,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.14495056867599488,
+            "maximumGarmentDisplacement": 0.07444847375154495,
+            "maximumPredictionError": 7.748603820800781e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.Slide.RecoverToCrouch3",
+            "minimumBody": -0.910000205039978,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.023238062858581544,
+            "maximumGarmentDisplacement": 0.07446033507585526,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.Roll.EntryToActive",
+            "minimumBody": -0.9100000262260437,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.006803631782531738,
+            "maximumGarmentDisplacement": 0.019357988610863687,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.Roll.ActiveToRecover",
+            "minimumBody": -0.9094671010971069,
+            "minimumGarment": -0.9000003933906555,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.4498850703239441,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.Roll.RecoverToIdle",
+            "minimumBody": -0.910000205039978,
+            "minimumGarment": -0.7043773531913757,
+            "maximumBodyCorrection": 0.022318780422210695,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.Roll.RecoverToCrouch0",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.9000003933906555,
+            "maximumBodyCorrection": 0.03031247854232788,
+            "maximumGarmentDisplacement": 0.22141392529010774,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.Roll.RecoverToCrouch1",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.0042899250984191898,
+            "maximumGarmentDisplacement": 0.07468480616807938,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.Roll.RecoverToCrouch2",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.02514815330505371,
+            "maximumGarmentDisplacement": 0.0744863823056221,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.Roll.RecoverToCrouch3",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.027592897415161134,
+            "maximumGarmentDisplacement": 0.07447666674852371,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.SprintToSlide0",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.03363347053527832,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.LandingToRoll0",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.07962268590927124,
+            "maximumGarmentDisplacement": 0.3206186890602112,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.SprintToSlide1",
+            "minimumBody": -0.9096646308898926,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.LandingToRoll1",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.07907342910766602,
+            "maximumGarmentDisplacement": 0.3098185658454895,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.SprintToSlide2",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.03925454616546631,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.LandingToRoll2",
+            "minimumBody": -0.9100000262260437,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.07501012086868286,
+            "maximumGarmentDisplacement": 0.27090805768966677,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.SprintToSlide3",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000002145767212,
+            "maximumBodyCorrection": 0.05454099178314209,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.LandingToRoll3",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000003337860107,
+            "maximumBodyCorrection": 0.06773322820663452,
+            "maximumGarmentDisplacement": 0.20607049763202668,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.SprintToSlide4",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.0175437331199646,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.LandingToRoll4",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.900000274181366,
+            "maximumBodyCorrection": 0.0552898645401001,
+            "maximumGarmentDisplacement": 0.11029822379350662,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.SprintToSlide5",
+            "minimumBody": -0.9080969095230103,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.0,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.LandingToRoll5",
+            "minimumBody": -0.910000205039978,
+            "minimumGarment": -0.8699000477790833,
+            "maximumBodyCorrection": 0.035722196102142337,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 5.960464477539063e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.SprintToSlide6",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000001549720764,
+            "maximumBodyCorrection": 0.003792703151702881,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.LandingToRoll6",
+            "minimumBody": -0.9100001454353333,
+            "minimumGarment": -0.7392345666885376,
+            "maximumBodyCorrection": 0.018888354301452638,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.SprintToSlide7",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.9000000953674316,
+            "maximumBodyCorrection": 0.07842731475830078,
+            "maximumGarmentDisplacement": 0.01788611151278019,
+            "maximumPredictionError": 5.364418029785156e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        },
+        {
+            "name": "FourBones.LandingToRoll7",
+            "minimumBody": -0.9100000858306885,
+            "minimumGarment": -0.6832621097564697,
+            "maximumBodyCorrection": 0.010740041732788086,
+            "maximumGarmentDisplacement": 0.0,
+            "maximumPredictionError": 6.556510925292969e-7,
+            "maximumReducedError": 0.0,
+            "exceeded": false
+        }
+    ]
+}

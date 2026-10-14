@@ -137,7 +137,7 @@ namespace BooterBigArm.Editor
             public Vector3 TorsoMinimum {get;private set;}
             public Vector3 TorsoMaximum {get;private set;}
             public float TorsoMaximumRadius {get;private set;}
-            public SoleProbe(GameObject model,Transform leftFoot,Transform rightFoot)
+            public SoleProbe(GameObject model,Transform leftFoot,Transform rightFoot,bool excludeSoftGarments=false)
             {
                 root=model.transform;
                 var torsoBones=new HashSet<Transform>();var animator=model.GetComponentInChildren<Animator>();
@@ -148,6 +148,7 @@ namespace BooterBigArm.Editor
                     if(animator.GetBoneTransform(role)!=null)protectedBones.Add(animator.GetBoneTransform(role));
                 foreach(var renderer in model.GetComponentsInChildren<SkinnedMeshRenderer>(true))
                 {
+                    if(excludeSoftGarments && BooterBigArm.TopDown3D.TopDown3DPlayerAnimationDriver.IsSoftGarment(renderer))continue;
                     using var counts=renderer.sharedMesh.GetBonesPerVertex();using var weights=renderer.sharedMesh.GetAllBoneWeights();
                     var left=new List<int>();var right=new List<int>();var torso=new List<int>();var protectedBody=new List<int>();var cursor=0;
                     for(var vertex=0;vertex<counts.Length;vertex++)

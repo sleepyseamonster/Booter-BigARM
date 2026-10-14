@@ -125,6 +125,14 @@ The lab now binds the draft low controller, routes sprint/crouch input and stati
 
 Blocked recovery can transfer to the existing crouch controller when clear. Disposal retains a safe pose and gravity in a recovery component, which completes remaining source ranges before standing. It does not teleport the actor. All 127 focused checks pass against the current committed runtime, including released riding/workstation hooks, and the isolated saved-scene fixture. The 119-pair PHY1LowMotionBoundDraft checkpoint changes only the private player binding. The profile stays unqualified; slide/roll input remains disabled pending equipment fitting and final pose/cache qualification. Existing crouch and jump/fall behavior remains enabled. See [low-motion runtime evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/LowMotionRuntime/README.md).
 
+## Fitted slide and roll controls — October 14
+
+Sliding and selected roll landing are enabled. Six new equipped derivatives account for backpack contact; a runtime garment floor constraint bends the cloak while preserving original assets and bone poses. The longitudinal capsule radius is fitted to 0.76117m, and AP03's roof stays unchanged. Cancellation, blocked crouch recovery, real support, landing effects and reset/disposal retain their existing owners.
+
+All 143 focused Edit Mode checks pass across the original and fitted collider profiles. The 108 dense equipped envelopes keep body/backpack correction below 18cm and garment displacement below 60cm, with approximately 10mm of garment floor clearance. The 126-point cache matches the full critical-body cache on that grid. The 127-pair PHY1LowMotionQualified private seal preserves prior sources and selects the fitted profile in PlayerBindings. See [qualified low-motion evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/LowMotionQualified/README.md).
+
+Appearance/feel acceptance, remaining locomotion gaps and the other physical families and requested motions remain in the active goal. Validation uses the isolated saved-scene fixture and sealed shared runtime; concurrent work remains preserved.
+
 ## Validation and source boundaries
 
 File restoration fixtures pass twelve checks. The isolated Unity candidate at `D:\BooterBigArmValidation\AnimationPlayground20261013` contains the Camp Loop dependency closure and active scripts/settings/UI/character/test assets; it is a validation copy, not a Git worktree. Initial session and targeting regressions pass 44 tests. All 25 menu regressions pass after the candidate's missing SystemMenu prefab dependency was restored. Installed-session checks are repeated against the saved scene. See the [foundation evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Foundations/README.md).

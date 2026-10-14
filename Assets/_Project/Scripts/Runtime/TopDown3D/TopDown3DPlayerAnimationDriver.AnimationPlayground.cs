@@ -47,7 +47,7 @@ namespace BooterBigArm.TopDown3D
             replacement.SetApplyFootIK(false);replacement.SetApplyPlayableIK(false);replacement.SetSpeed(0);replacement.SetTime(0);
             playableGraph.Disconnect(mixer,AnimationActionIndex);playableGraph.Connect(replacement,0,mixer,AnimationActionIndex);
             playableGraph.DestroyPlayable(animationActionPlayable);animationActionPlayable=replacement;
-            animationPresentationTime=0;animationHeightCorrection=0;animationFootProjection=false;animationBodyProjection=false;return true;
+            animationPresentationTime=0;animationHeightCorrection=0;animationFootProjection=false;animationBodyProjection=false;animationGarmentFloor=false;return true;
         }
 
         public bool SetAnimationHeightCorrection(object owner,float correction)
@@ -91,6 +91,7 @@ namespace BooterBigArm.TopDown3D
             var blending=PoseBlendOwned;ApplyPoseBlend();
             if((animationFootProjection || animationBodyProjection) && !blending)ProjectLaboratoryFootPlane();
             else if(!blending)LastPoseBlendGroundCorrection=0;
+            ApplyGarmentFloor();
             // No legacy locomotion/contact clock advances while this branch owns the pose.
             return true;
         }
@@ -121,6 +122,8 @@ namespace BooterBigArm.TopDown3D
             animationHeightCorrection=0;
             animationFootProjection=false;
             animationBodyProjection=false;
+            animationGarmentFloor=false;
+            if(!poseBlendGarmentFloor)RestoreGarmentFloor();
             ResetTransitionState(TopDown3DLocomotionState.Idle);
             locomotionPhase = 0;
             smoothedPlanarSpeed = 0;

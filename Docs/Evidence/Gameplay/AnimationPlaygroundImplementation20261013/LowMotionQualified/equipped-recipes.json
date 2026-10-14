@@ -1,0 +1,53 @@
+{
+    "clips": [
+        {
+            "role": "SlideEnter",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideEnterBodyGrounded.anim",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideEnterEquippedGrounded.anim",
+            "minimum": -0.9079999923706055,
+            "maximumHeight": 1.6795127391815186,
+            "maximumShift": 0.0027649402618408205
+        },
+        {
+            "role": "SlideActive",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideActiveBodyGrounded.anim",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideActiveEquippedGrounded.anim",
+            "minimum": -0.9079999923706055,
+            "maximumHeight": 1.1704058647155762,
+            "maximumShift": 0.00029855966567993164
+        },
+        {
+            "role": "SlideRecover",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideRecoverBodyGrounded.anim",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideRecoverEquippedGrounded.anim",
+            "minimum": -0.9079999923706055,
+            "maximumHeight": 1.6831307411193848,
+            "maximumShift": 0.0023117661476135256
+        },
+        {
+            "role": "RollContact",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Derived/RollContactBodyGrounded.anim",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollContactEquippedGrounded.anim",
+            "minimum": -0.9079999923706055,
+            "maximumHeight": 1.7596418857574463,
+            "maximumShift": 0.0012160539627075196
+        },
+        {
+            "role": "RollActive",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Derived/RollActiveBodyGrounded.anim",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollActiveEquippedGrounded.anim",
+            "minimum": -0.9079999923706055,
+            "maximumHeight": 1.4823391437530518,
+            "maximumShift": 0.5107412338256836
+        },
+        {
+            "role": "RollRecover",
+            "source": "Assets/_Project/Art/Animations/Mixamo/Derived/RollRecoverBodyGrounded.anim",
+            "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollRecoverEquippedGrounded.anim",
+            "minimum": -0.9079999923706055,
+            "maximumHeight": 1.6970233917236329,
+            "maximumShift": 0.0007824301719665527
+        }
+    ],
+    "lowRadius": 0.7611695528030396
+}

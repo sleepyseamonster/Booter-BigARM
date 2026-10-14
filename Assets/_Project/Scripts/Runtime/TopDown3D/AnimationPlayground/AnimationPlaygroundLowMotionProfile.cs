@@ -20,6 +20,8 @@ namespace BooterBigArm.TopDown3D
         public AnimationPlaygroundLowMotionEntry[] entries=Array.Empty<AnimationPlaygroundLowMotionEntry>();
         public float standingHeight=1.82f,verticalRadius=.4f,lowLength=2.2f,lowRadius=.55f,lowForwardOffset=.05f;
         public float minimumSlideSpeed=3,slideDeceleration=4,rollSpeed=2.2f;
+        public bool garmentFloorQualified;
+        public float maximumGarmentProjection=.6f,garmentClearance=.01f;
         public AnimationPlaygroundLowMotionEntry Get(AnimationPlaygroundLowMotionRole role)
         {
             foreach(var entry in entries ?? Array.Empty<AnimationPlaygroundLowMotionEntry>())
@@ -59,6 +61,9 @@ namespace BooterBigArm.TopDown3D
                 || lowRadius>.8f || lowRadius*2>standingHeight || verticalRadius*2>standingHeight
                 || minimumSlideSpeed>12 || rollSpeed>12)
             {reason="Low-motion calibration exceeds the reviewed range.";return false;}
+            if(!float.IsFinite(maximumGarmentProjection) || maximumGarmentProjection<=0 || maximumGarmentProjection>1
+                || !float.IsFinite(garmentClearance) || garmentClearance<0 || garmentClearance>.05f)
+            {reason="Garment fitting calibration is invalid.";return false;}
             if(requireQualified && !qualified){reason="Slide and roll qualification is pending.";return false;}
             return true;
         }

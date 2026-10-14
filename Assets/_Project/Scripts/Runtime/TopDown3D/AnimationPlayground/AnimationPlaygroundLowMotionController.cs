@@ -100,6 +100,7 @@ namespace BooterBigArm.TopDown3D
                     ? AnimationPlaygroundLowMotionState.Recovering : AnimationPlaygroundLowMotionState.Entering;
             if(!driver.SetAnimationBodyProjection(coordinator,profile.bodyProjection))
                 throw new InvalidOperationException("The low-motion family lost its paired body projection.");
+            driver.SetAnimationGarmentFloor(coordinator,profile.garmentFloorQualified,profile.maximumGarmentProjection,profile.garmentClearance);
             return true;
         }
         private AnimationPlaygroundMotorIntent Intent(double seconds)
@@ -166,7 +167,8 @@ namespace BooterBigArm.TopDown3D
             cancelRequested=true;initialSpeed=0;
             if(coordinator.TryBeginPhysicalSequence(this,Binding(entry.clip),roll ? AnimationPlaygroundMotionMode.Recovery : AnimationPlaygroundMotionMode.Slide,
                 null,Intent,null,time=>poseTime,true))
-            {driver.SetAnimationPresentationTime(coordinator,poseTime);driver.SetAnimationBodyProjection(coordinator,profile.bodyProjection);}
+            {driver.SetAnimationPresentationTime(coordinator,poseTime);driver.SetAnimationBodyProjection(coordinator,profile.bodyProjection);
+                driver.SetAnimationGarmentFloor(coordinator,profile.garmentFloorQualified,profile.maximumGarmentProjection,profile.garmentClearance);}
         }
         public bool TryCancel()
         {
@@ -186,6 +188,7 @@ namespace BooterBigArm.TopDown3D
                 if(!driver.IsAnimationPresentationOwner(this) && !driver.TryBeginAnimationPresentation(this,entry.clip))
                     throw new InvalidOperationException("Reset could not retain the low pose.");
                 driver.SetAnimationPresentationTime(this,poseTime);driver.SetAnimationBodyProjection(this,profile.bodyProjection);
+                driver.SetAnimationGarmentFloor(this,profile.garmentFloorQualified,profile.maximumGarmentProjection,profile.garmentClearance);
                 motor.SetLaboratoryPostureSuspended(coordinator,true);
             }
         }
