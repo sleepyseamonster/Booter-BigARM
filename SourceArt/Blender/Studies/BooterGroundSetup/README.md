@@ -10,6 +10,10 @@ The initial plane is 10 by 10 metres. One Blender metre equals one Unity unit. T
 
 ## Creation and verification
 
+### Scale correction — October 13, 2026
+
+The original snapshot used `BakeMesh(mesh, false)` followed by `TransformPoint`, applying the character's scale twice. It produced a body approximately 3.4735 m tall; fresh Unity measurement and independent bone/bindpose skinning establish the current game body at approximately 2.4811 m. The exporter now compensates renderer scale before converting vertices to world space. Existing Blender files and snapshots are preserved and have **not** been repaired. Do not use their body as an approved size reference. The author has selected **1.80 m** for Booter's future standing height; see [the scale audit](../../../../Docs/Evidence/Art/CharacterScaleAudit20261013/audit.json). Repair a versioned character reference before fitting new equipment; preserve the authored rock/ground content and local source files.
+
 [Unity snapshot script](../../../../Tools/Art/Blender/export_booter_standing.cs) runs through the installed Unity Pipeline `eval_file` command against this checkout. It uses a disposable preview scene, samples the idle clip, exports the mesh snapshot into ignored `Logs/BooterGroundSetup/booter_standing.json`, and destroys its temporary objects and animation graph. It does not open or save production scenes. It refuses to overwrite an existing snapshot.
 
 [Blender creator](../../../../Tools/Art/Blender/create_booter_ground_project.py) runs with Blender `--background --factory-startup --python SCRIPT -- CHECKOUT_ROOT`. It refuses to overwrite the existing authoring file. Preserve the existing file and snapshot before deliberately creating a new version.

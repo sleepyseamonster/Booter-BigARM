@@ -38,7 +38,9 @@ try
         var mesh = new UnityEngine.Mesh();
         try
         {
-            renderer.BakeMesh(mesh, false);
+            // Compensate renderer scale before TransformPoint applies it once.
+            // false double-applies the 1.4 character scale in this hierarchy.
+            renderer.BakeMesh(mesh, true);
             var vertices = mesh.vertices.Select(v => renderer.transform.TransformPoint(v)).Select(v => new[] { v.x, v.y, v.z }).ToArray();
             var parts = new System.Collections.Generic.List<object>();
             for (int i = 0; i < mesh.subMeshCount; i++)

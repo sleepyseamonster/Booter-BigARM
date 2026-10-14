@@ -1,0 +1,85 @@
+{
+  "date_local": "2026-10-13",
+  "scope": "Unity units, Booter body dimensions and dependent animation/authoring calibration",
+  "audit_status": "measured; exporter corrected; coordinated resizing remains in progress",
+  "approved_target": {
+    "authority": "User selected 1.80 metres in Review Unity character scale",
+    "metres_per_unity_unit": 1,
+    "standing_body_height_metres": 1.8,
+    "measurement": "Feet to head in documented neutral standing reference pose; exclude equipment and broad renderer bounds",
+    "physics_root_scale": [1, 1, 1],
+    "collider_policy": "Fit torso clearance and supported postures; do not infer radius from arm span or assume capsule proves mesh height"
+  },
+  "findings": [
+    {
+      "surface": "Saved GreaterWasteland player",
+      "body_height_metres_in_sampled_idle": 2.4810915,
+      "visual_scale": 1.4,
+      "capsule_height": 2.48,
+      "capsule_radius": 0.52,
+      "visual_offset_y": -1.24,
+      "root_scale": [1, 1, 1],
+      "root_parent": "scene root",
+      "conclusion": "Body is enlarged relative to approved 1.80m target; inherited prototype constants establish implementation, not an approved giant-character design"
+    },
+    {
+      "surface": "Standing mesh export and Blender reference",
+      "incorrect_height_metres": 3.47352815,
+      "cause": "BakeMesh(false) followed by renderer.TransformPoint double-applies the prototype renderer scale",
+      "correction": "BakeMesh(true) followed by renderer.TransformPoint",
+      "proof": "Independent world-space bone matrix times bindpose skinning agrees with compensated BakeMesh within 0.001m for both imported models at two scales",
+      "corrected_export_verified_height_metres": 2.48109126,
+      "legacy_snapshot_policy": "Existing snapshots are retained evidence of the bug, not approved sizing references"
+    },
+    {
+      "surface": "Original replacement rig",
+      "inherited_visual_scale": 0.123861514,
+      "height_metres_in_production_idle": 2.480805,
+      "conclusion": "Existing rig qualification fits inherited 2.48m. Recalibrate using the selected standing reference pose for 1.80m; do not reuse old import scale or raw Blender dimensions"
+    },
+    {
+      "surface": "Terrain units",
+      "sample_scope": "Two loaded CampLoopTesting native terrain objects; not a full production terrain revalidation",
+      "terrain_data_size": [256, 1800, 256],
+      "transform_scale": [1, 1, 1],
+      "conclusion": "Sampled horizontal tiles are 256m; TerrainData Y is its encoding range, not visible mountain height. No terrain or world rescale is called for"
+    }
+  ],
+  "dependency_audit": [
+    {"surface": "Production scene and prototype builder", "current": "Visual1.4, capsule2.48/radius0.52, feet offset-1.24", "required": "Migrate visual, collider, centre and grounded root position together; update builder and validators in same verified batch"},
+    {"surface": "Replacement rig and lab player", "owner": "Find Mixamo character animations", "required": "Measure neutral reference, fit1.80m body and capsule clearance; preserve raw source imports and root scale one"},
+    {"surface": "Animation profile", "owner": "Find Mixamo character animations", "required": "Recalculate stride distance, cadence/playback, foot contact tolerances and source/target retargeting after calibration; retain valid phase markers rather than rescaling normalized time"},
+    {"surface": "Crouch/prone/jump/climb/stations", "owner": "Find Mixamo character animations", "required": "Recheck posture capsule sizes, supported feet plane, headroom, hand/foot contact and enter/exit transitions at1.80m before physical readiness"},
+    {"surface": "Motor", "current": "Walk4.2m/s, sprint7.4m/s, ground probe0.28m, climb probe1.2m, vault maximum0.8m", "required": "Review individual physical distances; movement speeds are gameplay choices, not automatic scale multipliers; avoid changing dirty animation-owner files"},
+    {"surface": "Equipment and camp", "current": "Cloak/backpack inherit visual scale; blanket uses visualScale; packed camp has explicit0.65 scale and hardcoded offsets", "required": "Refit equipment/harness and camp grounding to approved rig; inspect hardcoded chest/hip skinning ranges and packed-kit offsets; nested geometry and standalone props need different handling"},
+    {"surface": "Camera and companion", "current": "Camera distance25m, pitch50deg, target offsetY1.15; companion follow distance4.2m", "required": "Review framing/target pivot and companion clearance independently; keep physical metre scale intact"},
+    {"surface": "Interaction reach and world props", "required": "Review target acquisition origin/range, mining/tool reach, chair/table/ladder dimensions and contact points with1m gauge; no global environment shrink"},
+    {"surface": "Local Blender modeling setup", "owner": "Set up Blender character scale", "required": "Correct MaleBaseMesh_UnityModeling.blend to1.80m in place as explicitly authorized; feetZ0, Metric/unitScale1, ground excluded from export, preserve mesh/rig/user content and handle unsaved edits"},
+    {"surface": "BooterGroundSetup sculpt scene", "required": "Existing frozen body is affected by export bug; README now flags it. Its rocks/ground and source files remain untouched; this audit does not infer rock resize from a bad reference"}
+  ],
+  "coordination": {
+    "animation_thread_id": "01a13555-c1c8-7343-afc1-3e71a032a58a",
+    "blender_thread_id": "01a13848-729b-7b91-a608-56bfbb4916a6",
+    "audit_ownership": "Measurement tooling, exporter bug fix, standard and audit evidence",
+    "animation_ownership": "Rig/import/profile/contact/station/lab wiring; dimension-independent work continues",
+    "blender_ownership": "Local character modeling setup correction and native reopen verification",
+    "integration_gate": "Production cutover follows calibrated rig/profile readiness; do not partially shrink production while animation calibration is in flight"
+  },
+  "world_system_contract": {
+    "world_identity": "No world seed, topology or authored position changes",
+    "streaming": "Terrain remains fixed and always loaded; no terrain generation/streaming introduced",
+    "generated_object_identity": "No generated IDs or dressing placement rules changed",
+    "authored_constraints": "1.80m approved body target; preserve asset GUIDs and local-only source policy",
+    "persisted_deltas": "No save schema or persisted delta changes in audit; eventual collider migration must resolve ground support/headroom for restored actor positions"
+  },
+  "verification": {
+    "unity_version": "6000.4.0f1",
+    "mode": "Existing Editor, background Pipeline; disposable preview scenes; no Play Mode",
+    "measurements": "measurements.json",
+    "measurement_tool": "Tools/Repository/CharacterScaleAudit.cs",
+    "exporter": "Tools/Art/Blender/export_booter_standing.cs",
+    "export_test": "Same exporter with output filename changed only, preserving original snapshot; corrected body height agrees with independent skinning",
+    "scene_state": "CampLoopTesting stayed active and clean during measurement",
+    "limits": "Sampled standing idle, not full animation extrema, rendered silhouette approval or hands-on gameplay acceptance. Production resizing has not occurred"
+  }
+}

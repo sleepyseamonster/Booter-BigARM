@@ -1,0 +1,281 @@
+{
+  "measuredUtc": "2026-10-14T02:52:44.9410908Z",
+  "unityVersion": "6000.4.0f1",
+  "activeScene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+  "activeSceneDirty": false,
+  "targetBodyHeightMetres": 1.8,
+  "reports": [
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/defaultmale_rig.fbx",
+      "guid": "20d97ea0953936148b25caa82b5e14f9",
+      "scale": 1.0,
+      "pose": "MCU_am_Stand_Idle_01",
+      "sampleSeconds": 0.1,
+      "meshes": [
+        {
+          "renderer": "Body",
+          "rendererScale": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0
+          },
+          "independentWorldSkinning": {
+            "min": {
+              "x": -0.328084379,
+              "y": -1.02328631E-05,
+              "z": -0.129523
+            },
+            "max": {
+              "x": 0.324580967,
+              "y": 1.77219808,
+              "z": 0.192723572
+            },
+            "size": {
+              "x": 0.6526654,
+              "y": 1.77220833,
+              "z": 0.322246552
+            }
+          },
+          "bakeFalseThenTransform": {
+            "min": {
+              "x": -0.32808435,
+              "y": -1.02319755E-05,
+              "z": -0.12998201
+            },
+            "max": {
+              "x": 0.324581027,
+              "y": 1.77219808,
+              "z": 0.192723587
+            },
+            "size": {
+              "x": 0.6526654,
+              "y": 1.77220833,
+              "z": 0.3227056
+            }
+          },
+          "bakeTrueThenTransform": {
+            "min": {
+              "x": -0.32808435,
+              "y": -1.02319755E-05,
+              "z": -0.12998201
+            },
+            "max": {
+              "x": 0.324581027,
+              "y": 1.77219808,
+              "z": 0.192723587
+            },
+            "size": {
+              "x": 0.6526654,
+              "y": 1.77220833,
+              "z": 0.3227056
+            }
+          }
+        }
+      ]
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/defaultmale_rig.fbx",
+      "guid": "20d97ea0953936148b25caa82b5e14f9",
+      "scale": 1.4,
+      "pose": "MCU_am_Stand_Idle_01",
+      "sampleSeconds": 0.1,
+      "meshes": [
+        {
+          "renderer": "Body",
+          "rendererScale": {
+            "x": 1.4,
+            "y": 1.4,
+            "z": 1.4
+          },
+          "independentWorldSkinning": {
+            "min": {
+              "x": -0.459318042,
+              "y": -1.43293046E-05,
+              "z": -0.181332186
+            },
+            "max": {
+              "x": 0.454413354,
+              "y": 2.48107719,
+              "z": 0.269813
+            },
+            "size": {
+              "x": 0.9137314,
+              "y": 2.4810915,
+              "z": 0.451145172
+            }
+          },
+          "bakeFalseThenTransform": {
+            "min": {
+              "x": -0.643045068,
+              "y": -2.00714912E-05,
+              "z": -0.254764736
+            },
+            "max": {
+              "x": 0.6361786,
+              "y": 3.47350812,
+              "z": 0.377738237
+            },
+            "size": {
+              "x": 1.27922368,
+              "y": 3.47352815,
+              "z": 0.632503
+            }
+          },
+          "bakeTrueThenTransform": {
+            "min": {
+              "x": -0.45931825,
+              "y": -1.4336908E-05,
+              "z": -0.181974813
+            },
+            "max": {
+              "x": 0.454413265,
+              "y": 2.481077,
+              "z": 0.269813
+            },
+            "size": {
+              "x": 0.9137315,
+              "y": 2.48109126,
+              "z": 0.451787829
+            }
+          }
+        }
+      ]
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshOriginalRig.fbx",
+      "guid": "8d60dce4243ccf341a8e4e755abc2d29",
+      "scale": 1.0,
+      "pose": "MCU_am_Stand_Idle_01",
+      "sampleSeconds": 0.1,
+      "meshes": [
+        {
+          "renderer": "skull",
+          "rendererScale": {
+            "x": 0.01,
+            "y": 0.009999996,
+            "z": 0.009999998
+          },
+          "independentWorldSkinning": {
+            "min": {
+              "x": -3.528127,
+              "y": -0.0327683724,
+              "z": -1.74388051
+            },
+            "max": {
+              "x": 3.457772,
+              "y": 19.996088,
+              "z": 1.71229386
+            },
+            "size": {
+              "x": 6.985899,
+              "y": 20.0288563,
+              "z": 3.45617437
+            }
+          },
+          "bakeFalseThenTransform": {
+            "min": {
+              "x": -0.0352812,
+              "y": 18.5987568,
+              "z": 0.9004047
+            },
+            "max": {
+              "x": 0.0345777869,
+              "y": 18.7990437,
+              "z": 0.935150862
+            },
+            "size": {
+              "x": 0.06985898,
+              "y": 0.200286865,
+              "z": 0.03474617
+            }
+          },
+          "bakeTrueThenTransform": {
+            "min": {
+              "x": -3.52812672,
+              "y": -0.0326366425,
+              "z": -1.76232219
+            },
+            "max": {
+              "x": 3.45777225,
+              "y": 19.996088,
+              "z": 1.71229362
+            },
+            "size": {
+              "x": 6.985899,
+              "y": 20.0287247,
+              "z": 3.47461581
+            }
+          }
+        }
+      ]
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshOriginalRig.fbx",
+      "guid": "8d60dce4243ccf341a8e4e755abc2d29",
+      "scale": 0.123861514,
+      "pose": "MCU_am_Stand_Idle_01",
+      "sampleSeconds": 0.1,
+      "meshes": [
+        {
+          "renderer": "skull",
+          "rendererScale": {
+            "x": 0.00123861514,
+            "y": 0.00123861467,
+            "z": 0.0012386149
+          },
+          "independentWorldSkinning": {
+            "min": {
+              "x": -0.4369991,
+              "y": -0.004058961,
+              "z": -0.215999678
+            },
+            "max": {
+              "x": 0.428284883,
+              "y": 2.47674584,
+              "z": 0.2120873
+            },
+            "size": {
+              "x": 0.865283966,
+              "y": 2.480805,
+              "z": 0.428087
+            }
+          },
+          "bakeFalseThenTransform": {
+            "min": {
+              "x": -0.0005412659,
+              "y": 2.32409334,
+              "z": 0.114444263
+            },
+            "max": {
+              "x": 0.000530488032,
+              "y": 2.32716584,
+              "z": 0.11497733
+            },
+            "size": {
+              "x": 0.00107175391,
+              "y": 0.00307250023,
+              "z": 0.0005330667
+            }
+          },
+          "bakeTrueThenTransform": {
+            "min": {
+              "x": -0.4369992,
+              "y": -0.00404266035,
+              "z": -0.218283862
+            },
+            "max": {
+              "x": 0.428284943,
+              "y": 2.476746,
+              "z": 0.212087274
+            },
+            "size": {
+              "x": 0.865284145,
+              "y": 2.48078871,
+              "z": 0.430371135
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -64,7 +64,17 @@ Assets/_Project/
 - Use `BooterBigArm.Runtime.Tests.asmdef` and `BooterBigArm.Editor.Tests.asmdef` for test assemblies when they exist.
 - Keep assembly names consistent with folder purpose and avoid inventing unrelated names.
 
-## Asset Handling
+## World Units And Character Size
+
+- One Unity world unit represents one metre. Blender authoring uses Metric with Unit Scale 1.0; imported dimensions must still be measured in Unity.
+- On October 13, 2026, the author selected **1.80 metres** for Booter's standing body height, measured from feet to head in a documented standing reference pose. Equipment, hair, broad renderer bounds and collider clearance are separate measurements.
+- Keep the physics/controller root and its ancestors at unit scale. Calibrate the visual child from measured imported geometry; do not reuse a different rig's numeric import scale.
+- Fit capsule height, radius, centre and grounded visual offset together. Radius follows body clearance rather than outstretched arms. Preserve foot contact when changing capsule dimensions. A collider is not proof of visible body height.
+- Qualify movement stride/cadence, crouch/prone shapes, vault/climb probes, hand/foot contacts, props and equipment at the approved size before player cutover. World-space movement speeds and interaction ranges need individual review; do not multiply all distances by a single character scale ratio.
+- Preserve fixed terrain dimensions, authored world positions and object IDs. Camera framing is reviewed separately from physical size.
+- Measurement evidence and the outstanding correction sequence are in [the scale audit](../Evidence/Art/CharacterScaleAudit20261013/audit.json). Existing production remains at the inherited size until its coordinated cutover passes validation.
+
+## Asset Handling Rules
 
 - Move assets in Unity rather than by hand whenever possible.
 - Preserve `.meta` files and keep source-control history intact.
