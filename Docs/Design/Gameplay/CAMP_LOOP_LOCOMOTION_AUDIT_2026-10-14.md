@@ -30,6 +30,8 @@ The saved motor still contains historical 4.2/7.4m/s defaults; the lab overrides
 
 ## Revised priority plan
 
+The [detailed locomotion implementation plan](./CAMP_LOOP_LOCOMOTION_IMPLEMENTATION_PLAN_2026-10-14.md) defines the bounded steps, compatibility decisions and completion gates for these priorities.
+
 1. **Establish three clean forward loops.** In the isolated candidate, evaluate walking, running and sprinting individually at the intended speeds. Keep idle as a reference. Isolate legacy starts/stops/pivots and strafe blends in the qualification harness so their effects can be attributed. Preserve author assets, GUIDs, motor ownership and existing physical interaction recovery.
 2. **Measure stride and choose the motion family.** Review the existing downloaded alternatives before acquiring anything else. Measure stance windows, foot displacement, limb amplitude, forward orientation and native cadence on the accepted rig. Keep intended movement speeds as design inputs. Select or author/retime compatible clips; do not arbitrarily slow the player to conceal sliding. Store derivatives locally with recipes and hashes.
 3. **Repair the continuous clock and contact mapping.** Use an explicit stride-count convention. Make cadence continuous at the actual dominant-gait midpoints and nominal speeds. Check the derivative of semantic-to-source time, including asymmetric sprint intervals, against accepted per-clip rate bounds. Use actual motion/displacement where needed; stop cadence when movement is blocked. Preserve full limb motion and one animation output.
