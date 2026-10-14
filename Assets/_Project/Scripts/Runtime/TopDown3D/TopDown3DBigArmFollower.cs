@@ -110,12 +110,14 @@ namespace BooterBigArm.TopDown3D
 
         public void RequestRecall()
         {
+            if (HasRideLease) return;
             // "Recall" asks the Legger to traverse back urgently. It never relocates him.
             callRequested = true;
         }
 
         public void RequestCallOver()
         {
+            if (HasRideLease) return;
             callOverActive = true;
             callOverArrived = false;
             callRequested = true;
@@ -163,12 +165,14 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDisable()
         {
+            NotifyRideFollowerDisabled();
             SetSubscribedInput(null);
             startupGroundingComplete = false;
         }
 
         private void FixedUpdate()
         {
+            if (TickRideLease()) return;
             if (followTarget == null || body == null)
             {
                 return;

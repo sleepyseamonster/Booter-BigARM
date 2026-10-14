@@ -310,6 +310,7 @@ namespace BooterBigArm.TopDown3D
 
         private void FixedUpdate()
         {
+            if (YieldMountedMotor()) return;
             WaitingForPopulation = PopulationPreparation != null && !PopulationPreparation(PopulationPreparationBounds());
             if (WaitingForPopulation)
             {
@@ -1333,6 +1334,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDisable()
         {
+            NotifyRiderMotorDisabled();
             DisableAnimationCapability();
             CancelTraversal();
             EndClimb();

@@ -451,6 +451,7 @@ namespace BooterBigArm.TopDown3D
 
         private void Update()
         {
+            if (PresentMountedPose()) return;
             if (!playableGraph.IsValid() || motor == null)
             {
                 return;

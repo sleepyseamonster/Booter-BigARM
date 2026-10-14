@@ -447,10 +447,11 @@ namespace BooterBigArm.TopDown3D
             menuRequested = menuBackRequested = false;
             if (toggle) MenuToggleRequested?.Invoke();
             else if (back) UiCancelRequested?.Invoke();
-            var animationCommand=ResolveAnimationCommands(toggle || back);
-            var itemCommand = ResolveGameplayItemInput(toggle || back || animationCommand);
-            ResolveAlgaeInput(toggle || back || itemCommand || animationCommand);
-            ResolveCargoInput(toggle || back || itemCommand || animationCommand);
+            var ridingCommand=ResolveRidingCommands(toggle || back);
+            var animationCommand=ResolveAnimationCommands(toggle || back || ridingCommand);
+            var itemCommand = ResolveGameplayItemInput(toggle || back || animationCommand || ridingCommand);
+            ResolveAlgaeInput(toggle || back || itemCommand || animationCommand || ridingCommand);
+            ResolveCargoInput(toggle || back || itemCommand || animationCommand || ridingCommand);
         }
 
         public void EnterSystemMenuMode() => SetMode(TopDown3DInputMode.SystemMenu);
@@ -485,6 +486,7 @@ namespace BooterBigArm.TopDown3D
 
         private void SetMode(TopDown3DInputMode mode)
         {
+            if (RidingController != null && RidingController.State.OwnsMount) FenceRidingInteraction();
             if (mode == Mode)
             {
                 return;
@@ -628,6 +630,8 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleDeviceChange(InputDevice device, InputDeviceChange change)
         {
+            if (change == InputDeviceChange.Disconnected || change == InputDeviceChange.Removed || change == InputDeviceChange.Disabled)
+                RidingController?.InterruptInput();
             DisarmAnimationCommands();
             DisarmAlgae();
             if (!(device is Gamepad))

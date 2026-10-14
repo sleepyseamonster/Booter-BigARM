@@ -101,8 +101,13 @@ namespace BooterBigArm.TopDown3D
                 {
                     targetComponents.Clear(); collider.GetComponentsInParent(false,targetComponents);
                     foreach(var component in targetComponents)
+                    {
+                        // This actor's cargo remains on its dedicated hold/menu path while the ride binding owns tap selection.
+                        if (component is TopDown3DBigArmCargoAccess
+                            && collider.GetComponentInParent<TopDown3DLeggerMountTarget>() is { HasConfiguredOwner: true }) continue;
                         if(component is ITopDown3DInteractionTarget target && TopDown3DInteractionTarget.OwnsCollider(target,collider))
                         { candidate=target;break; }
+                    }
                 }
                 if (candidate == null || candidate.UnityObject == null || !candidate.IsAvailable
                     || (candidate.UnityObject is Behaviour behaviour && !behaviour.isActiveAndEnabled))

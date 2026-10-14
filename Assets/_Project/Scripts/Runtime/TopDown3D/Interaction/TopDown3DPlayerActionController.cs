@@ -43,7 +43,7 @@ namespace BooterBigArm.TopDown3D
             get
             {
                 if(activityCamp == null) activityCamp=GetComponent<TopDown3DCampController>();
-                return new TopDown3DActivitySnapshot(IsGathering,IsPlacingHarvester,motor != null && motor.IsActionConstrained,
+                return new TopDown3DActivitySnapshot(IsGathering,IsPlacingHarvester,RideReserved || motor != null && motor.IsActionConstrained,
                     activityCamp != null && activityCamp.Phase != TopDown3DCampPhase.Idle,
                     campModalOpen || stationReceiver != null && (!(stationReceiver is UnityEngine.Object owner) || owner != null) && stationReceiver.IsBusy);
             }
@@ -56,7 +56,7 @@ namespace BooterBigArm.TopDown3D
             stationReceiver=receiver;
         }
         public bool CanOpenCargo => input != null && input.Mode == TopDown3DInputMode.Gameplay
-            && !IsBusy && TopDown3DCargoAccess.CanAccess(bigArmCargo, transform);
+            && (!IsBusy || MountedCargoAllowed) && TopDown3DCargoAccess.CanAccess(bigArmCargo, transform);
         public string BusyPrompt => IsGathering && input != null
             ? (IsAwaitingCargo ? "Waiting for Legger" : "Working")
                 + $"  [{input.GetBindingDisplayName("Gameplay/PickupCanister", "C")}] cancel"
@@ -130,6 +130,7 @@ namespace BooterBigArm.TopDown3D
             if (placementPreview != null) CancelPlacementPreview();
             if(IsBusy) return TopDown3DGatherActionResult.Rejected;
             var selection=interaction != null ? interaction.CaptureTarget() : default;
+            if(selection.Target is TopDown3DLeggerMountTarget) return TryBeginMount(selection);
             if(selection.Target is ITopDown3DStationInteraction) return TryBeginStation(selection);
             EnsureGatherAction();
             if (gatherAction == null || interaction == null || motor == null || animationDriver == null)
@@ -319,6 +320,7 @@ namespace BooterBigArm.TopDown3D
             if(IsBusy) return;
             if (!captured) { interaction?.RefreshTarget(); TryBeginCurrentTarget(); return; }
             if (!target.IsValid || interaction == null || !interaction.CanReachTarget(target.Target)) return;
+            if(target.Target is TopDown3DLeggerMountTarget){TryBeginMount(target);return;}
             if(target.Target is ITopDown3DStationInteraction){TryBeginStation(target);return;}
             EnsureGatherAction();
             if (gatherAction != null && motor != null && animationDriver != null && target.Target is ITopDown3DInteractable resource) TryBeginTarget(resource);

@@ -122,7 +122,18 @@ namespace BooterBigArm.TopDown3D
                 promptDirty = true; SetLabel(string.Empty); return;
             }
             string text;
-            if (actionController != null && actionController.IsPlacingHarvester)
+            if (input != null && input.RidingController != null && input.RidingController.State.OwnsMount)
+            {
+                promptDirty = true;
+                var riding = input.RidingController;
+                text = riding.State.Phase == LeggerRidePhase.Faulted ? "Riding interrupted · Use lab reset"
+                    : riding.State.Phase == LeggerRidePhase.Mounting ? "Mounting Legger"
+                    : riding.State.Phase == LeggerRidePhase.Dismounting ? "Stopping to dismount"
+                    : $"[{input.GetBindingDisplayName("Gameplay/Interact", "E")}] Dismount Legger";
+                if (actionController != null && actionController.CanOpenCargo && input.PromptDevice != TopDown3DPromptDevice.Gamepad)
+                    text += $"\n[Hold {input.GetBindingDisplayName("Gameplay/OpenCargo", "E")}] Open Legger cargo";
+            }
+            else if (actionController != null && actionController.IsPlacingHarvester)
             {
                 promptDirty = true; text = actionController.PlacementPrompt;
             }

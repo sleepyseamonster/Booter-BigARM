@@ -41,6 +41,23 @@ namespace BooterBigArm.TopDown3D
         private Vector3 smoothedTarget;
         private Vector3 targetVelocity;
         private Vector3 lookAheadOffset;
+        private TopDown3DLeggerRidingController ridingFramingOwner;
+        private Transform ridingFrame;
+        private Transform ridingMount;
+        private float ridingFramingBlend;
+        private Vector3 ridingEntryTarget, lastRidingFrame;
+        internal void SetRidingFrame(TopDown3DLeggerRidingController owner, Transform frame, Transform mountRoot)
+        {
+            if (owner == null || ridingFramingOwner != null && ridingFramingOwner != owner) return;
+            ridingEntryTarget = smoothedTarget;
+            ridingFramingOwner = owner; ridingFrame = frame; ridingMount = mountRoot;
+        }
+        internal void ReleaseRidingFrame(TopDown3DLeggerRidingController owner)
+        {
+            if (ridingFramingOwner != owner) return;
+            ridingFrame = null;
+            // Keep the old mount excluded until the framing blend has returned to Booter.
+        }
         private bool initialized;
         private bool hasVerifiedClearPosition;
         private Vector3 verifiedClearPosition;
@@ -93,6 +110,14 @@ namespace BooterBigArm.TopDown3D
             ApplyLens();
             ApplyCameraInput();
             var rawTarget = target.position + targetOffset;
+            ridingFramingBlend = Mathf.MoveTowards(ridingFramingBlend, ridingFrame != null ? 1 : 0, Time.deltaTime / .2f);
+            if (ridingFrame != null)
+            {
+                lastRidingFrame = ridingFrame.position + targetOffset;
+                rawTarget = Vector3.Lerp(ridingEntryTarget, lastRidingFrame, ridingFramingBlend);
+            }
+            else if (ridingFramingOwner != null) rawTarget = Vector3.Lerp(rawTarget, lastRidingFrame, ridingFramingBlend);
+            if (ridingFrame == null && ridingFramingBlend <= 0) { ridingFramingOwner = null; ridingMount = null; }
             smoothedTarget = followSmoothTime <= 0f
                 ? rawTarget
                 : Vector3.SmoothDamp(smoothedTarget, rawTarget, ref targetVelocity, followSmoothTime);
@@ -286,7 +311,8 @@ namespace BooterBigArm.TopDown3D
 
         private bool IsBlockingCollider(Collider collider)
         {
-            return collider != null && (target == null || !collider.transform.IsChildOf(target));
+            return collider != null && (target == null || !collider.transform.IsChildOf(target))
+                && (ridingMount == null || !collider.transform.IsChildOf(ridingMount));
         }
 
         private bool HasBlockingOverlap(Vector3 position)
