@@ -219,7 +219,7 @@ namespace BooterBigArm.Tests
                 Assert.That(devices.DeployedCount, Is.Zero); Assert.That(kit.State.Slots[0].InstanceId, Is.EqualTo(canisterIdentity));
                 Assert.That(devices.CaptureSnapshot().NextSequence, Is.GreaterThanOrEqualTo(sequenceBeforeReset));
                 Assert.That(trial.RequestReset(), Does.Contain("Confirm reset")); Assert.That(trial.CancelConfirmation(), Is.True);
-                trial.ExternalResetBlockReason = () => "Refinery owns equipment; use the coordinated economy reset.";
+                trial.RegisterResetParticipant("fixture.socket", () => "Refinery owns equipment; use the coordinated economy reset.");
                 Assert.That(trial.RequestReset(), Does.Contain("Refinery owns equipment")); Assert.That(trial.ConfirmationPending, Is.False);
             }
             finally { UnityEditor.SceneManagement.EditorSceneManager.NewScene(UnityEditor.SceneManagement.NewSceneSetup.EmptyScene); }

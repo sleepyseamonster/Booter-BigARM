@@ -28075,6 +28075,7 @@ SceneRoots:
   - {fileID: 1496457184}
   - {fileID: 201830966}
   - {fileID: 1749876859}
+  - {fileID: 1562946236}
 --- !u!1001 &1496457184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28192,6 +28193,7 @@ MonoBehaviour:
   initialized: 0
   epoch: 0
   starterCanisterId:
+  site: {fileID: 1562946235}
 --- !u!4 &201830966
 Transform:
   m_ObjectHideFlags: 0
@@ -29357,3 +29359,123 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2004241255}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &946583811
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1562946236}
+    m_Modifications:
+    - target: {fileID: 4630847583354883742, guid: cf0efdc66f67e354dae6cf0704bb6dc3, type: 3}
+      propertyPath: m_Name
+      value: IronstoneProcessor
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445129137833138918, guid: cf0efdc66f67e354dae6cf0704bb6dc3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1830.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445129137833138918, guid: cf0efdc66f67e354dae6cf0704bb6dc3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -47.38327
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445129137833138918, guid: cf0efdc66f67e354dae6cf0704bb6dc3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1499.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445129137833138918, guid: cf0efdc66f67e354dae6cf0704bb6dc3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445129137833138918, guid: cf0efdc66f67e354dae6cf0704bb6dc3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445129137833138918, guid: cf0efdc66f67e354dae6cf0704bb6dc3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445129137833138918, guid: cf0efdc66f67e354dae6cf0704bb6dc3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445129137833138918, guid: cf0efdc66f67e354dae6cf0704bb6dc3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445129137833138918, guid: cf0efdc66f67e354dae6cf0704bb6dc3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7445129137833138918, guid: cf0efdc66f67e354dae6cf0704bb6dc3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cf0efdc66f67e354dae6cf0704bb6dc3, type: 3}
+--- !u!114 &946583812 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1527303798807910812, guid: cf0efdc66f67e354dae6cf0704bb6dc3, type: 3}
+  m_PrefabInstance: {fileID: 946583811}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f5181e4be545cbaa05f5465f3094d5, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DIronstoneProcessor
+--- !u!4 &946583813 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7445129137833138918, guid: cf0efdc66f67e354dae6cf0704bb6dc3, type: 3}
+  m_PrefabInstance: {fileID: 946583811}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1562946234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1562946236}
+  - component: {fileID: 1562946235}
+  m_Layer: 0
+  m_Name: Camp Management
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1562946235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562946234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39465ad72c9d48b2a351d3657e8f9830, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DCampSite
+  definition: {fileID: 11400000, guid: f38f596572023604898350a8caf8c23c, type: 2}
+  processor: {fileID: 946583812}
+--- !u!4 &1562946236
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1562946234}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 946583813}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

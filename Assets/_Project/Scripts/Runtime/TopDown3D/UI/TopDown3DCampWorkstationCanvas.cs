@@ -48,8 +48,8 @@ namespace BooterBigArm.TopDown3D
             rowGrid.spacing = new Vector2(8, 4); rowGrid.constraint = GridLayoutGroup.Constraint.FixedColumnCount; rowGrid.constraintCount = 2;
             var source = Button("Source", "SOURCE: BOOTER", panel, () => command?.Invoke("Source"));
             Place(source.GetComponent<RectTransform>(), new Vector2(35, -85), new Vector2(450, 42)); commands.Add("Source", source);
-            var names = new[] { "Craft", "Insert", "Refine", "Battery", "Canister", "Deploy", "Transfer", "Destination", "Reset", "Close" };
-            var labels = new[] { "CRAFT EMPTY BATTERY", "INSERT SELECTED ITEM", "REFINE AND CHARGE", "TAKE BATTERY", "TAKE CANISTER", "DEPLOY SELECTED CANISTER", "TRANSFER SELECTED ITEM", "DESTINATION: BOOTER", "RESET CAMP ECONOMY", "CLOSE" };
+            var names = new[] { "Craft", "Insert", "Refine", "Battery", "Canister", "Deploy", "Transfer", "Destination", "Reset", "Close", "OverviewItems", "OverviewStations", "OverviewCompanions", "Station0", "Station1", "Station2", "Sort", "Take", "Call", "ManageTransfer" };
+            var labels = new[] { "CRAFT EMPTY BATTERY", "INSERT SELECTED ITEM", "REFINE AND CHARGE", "TAKE BATTERY", "TAKE CANISTER", "DEPLOY SELECTED CANISTER", "TRANSFER SELECTED ITEM", "DESTINATION: BOOTER", "RESET CAMP ECONOMY", "CLOSE", "CAMP OVERVIEW · ITEMS", "CAMP STATIONS", "COMPANIONS", "WORKBENCH", "ARC DUST REFINERY", "IRONSTONE SORTER", "PREPARE ONE SORTING BATCH", "TAKE ENTIRE SELECTED STACK", "CALL LEGGER", "MOVE ENTIRE SELECTED STACK" };
             for (var i = 0; i < names.Length; i++)
             {
                 var id = names[i]; var value = Button(id, labels[i], panel, () => command?.Invoke(id));
@@ -84,8 +84,8 @@ namespace BooterBigArm.TopDown3D
             var button = commands[id]; button.gameObject.SetActive(visible); button.interactable = available;
             if (label != null) button.GetComponentInChildren<Text>().text = label;
         }
-        public void SetVisible(bool value) { canvas.enabled = value; if (value) UpdateSafeArea(); }
-        public void SetInputReady(bool ready) { group.interactable = ready; group.blocksRaycasts = ready; }
+        public void SetVisible(bool value) { if (canvas == null) return; canvas.enabled = value; if (value && safeArea != null) UpdateSafeArea(); }
+        public void SetInputReady(bool ready) { if (group == null) return; group.interactable = ready; group.blocksRaycasts = ready; }
         public void SetLargeText(bool value)
         {
             largeText = value;
@@ -95,7 +95,17 @@ namespace BooterBigArm.TopDown3D
                 text.fontSize = value ? Mathf.RoundToInt(size * 1.2f) : size;
             }
         }
-        public void SelectFirst(EventSystem events) { events?.SetSelectedGameObject(commands["Source"].gameObject); }
+        public void SelectFirst(EventSystem events)
+        { foreach (var button in commands.Values) if (button.gameObject.activeInHierarchy && button.interactable) { events?.SetSelectedGameObject(button.gameObject); return; } }
+        public void ArrangeCommands()
+        {
+            var row = 0;
+            foreach (var pair in commands)
+            {
+                if (pair.Key == "Source" || !pair.Value.gameObject.activeSelf) continue;
+                Place(pair.Value.GetComponent<RectTransform>(), new Vector2(520, -320 - row++ * 40), new Vector2(445, 36));
+            }
+        }
         private void Update() { if (IsVisible && lastSafeArea != Screen.safeArea) UpdateSafeArea(); }
         private void UpdateSafeArea()
         {

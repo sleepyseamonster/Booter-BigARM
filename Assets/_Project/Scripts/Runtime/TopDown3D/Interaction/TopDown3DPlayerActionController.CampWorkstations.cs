@@ -16,7 +16,7 @@ namespace BooterBigArm.TopDown3D
         public void SetCampModalOpen(bool value) => campModalOpen = value;
         private bool TryOpenCampTarget(ITopDown3DInteractable target)
         {
-            if (CampStationAccessRequested == null || !(target is TopDown3DCampWorkbench || target is TopDown3DDustRefinery
+            if (CampStationAccessRequested == null || !(target is TopDown3DCampWorkbench || target is TopDown3DDustRefinery || target is TopDown3DIronstoneProcessor
                 || target is TopDown3DResourceCache cache && cache.State.Policy.IsCampStorage)) return false;
             if (!motor.LaboratoryStandingActionsAllowed || IsBusy) return false;
             CampStationAccessRequested.Invoke(target); return campModalOpen;

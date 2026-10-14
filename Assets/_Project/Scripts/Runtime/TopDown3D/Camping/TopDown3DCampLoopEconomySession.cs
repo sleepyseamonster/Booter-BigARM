@@ -17,6 +17,11 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, HideInInspector] private bool initialized;
         [SerializeField, HideInInspector] private uint epoch;
         [SerializeField, HideInInspector] private string starterCanisterId;
+        [SerializeField] private TopDown3DCampSite site;
+        public TopDown3DCampSite Site => site;
+        public bool ManagementReady => site?.Registry?.Current == true && site.Processor.Output.Ready;
+        internal void RebindManagement() { if (Ready && site != null) site.Bind(this); }
+        public bool IsCommitting => locked;
         private bool configured, locked, recovery;
         private TopDown3DPlacedHarvesterState devices;
         private TopDown3DInputRouter input;
@@ -39,6 +44,7 @@ namespace BooterBigArm.TopDown3D
         internal void Configure(TopDown3DPlayerInventory player, TopDown3DBigArmCargo carrier, TopDown3DResourceCache storage,
             TopDown3DCampWorkbench bench, TopDown3DDustRefinery station)
         { kit = player; cargo = carrier; cache = storage; workbench = bench; refinery = station; }
+        internal void ConfigureSite(TopDown3DCampSite value) => site = value;
         private void Start() => TryInitializeWhenReady();
         private void Update() { if (!configured && !recovery) TryInitializeWhenReady(); }
         private void TryInitializeWhenReady()
@@ -50,6 +56,7 @@ namespace BooterBigArm.TopDown3D
         internal bool Initialize()
         {
             if (configured) return Ready;
+            if (TopDown3DAnimationPlaygroundSession.Find(gameObject.scene)?.PreviewReady != true) return false;
             if (!GreaterWastelandSceneScope.IsCampLoop(gameObject.scene) || !TopDown3DAnimationPlaygroundSession.IsSessionOnly(gameObject.scene)
                 || kit == null || cargo == null || cache == null || workbench == null || refinery == null
                 || workbench.Recipe == null || new Component[] { kit, cargo, cache, workbench, refinery }.Any(c => c.gameObject.scene != gameObject.scene))
@@ -66,6 +73,13 @@ namespace BooterBigArm.TopDown3D
                 || TopDown3DGameHudCanvas.FindInScene<TopDown3DMenuController>(gameObject.scene) == null
                 || TopDown3DGameHudCanvas.FindInScene<TopDown3DInventoryUiController>(gameObject.scene)?.EventSystem == null)
                 return Fail($"Camp contents configuration is incompatible; automatic grants are disabled. Devices: {devices != null}/{devices?.IsAuthored}, input: {input != null}, action: {action != null}, linked chest: {workbench.Chest == cache}, recipe: {workbench.Recipe.TryValidate(kit.ItemCatalog, out _)}, menu: {TopDown3DGameHudCanvas.FindInScene<TopDown3DMenuController>(gameObject.scene) != null}, events: {TopDown3DGameHudCanvas.FindInScene<TopDown3DInventoryUiController>(gameObject.scene)?.EventSystem != null}.");
+            trial = kit.GetComponent<TopDown3DCampLoopInventoryTrial>();
+            if (site != null && !site.Bind(this))
+            {
+                if (!initialized) return Fail(site.FailureReason);
+                Debug.LogWarning("Camp management requires recovery; existing workstation stock was preserved: " + site.FailureReason, this);
+            }
+            if (trial != null && !trial.PreflightCampBaseline(this) && !initialized) return Fail(trial.FailureReason);
             var activation = new[] { kit.State.PrepareCanisterContentsAtStartup(), cargo.State.PrepareCanisterContentsAtStartup(),
                 cache.State.PrepareCanisterContentsAtStartup(true) };
             if (activation.Any(a => a == null) || !TopDown3DInventoryTransaction.Commit(Array.Empty<TopDown3DInventoryTransaction.Mutation>(),
@@ -104,10 +118,10 @@ namespace BooterBigArm.TopDown3D
             if (trial != null)
             {
                 if (fresh) trial.AdoptEconomyBaseline(kit.CaptureSnapshot(), cargo.State.CaptureSnapshot(), cache.State.CaptureSnapshot());
-                trial.ExternalResetBlockReason = () => !Ready ? "Camp economy requires recovery before resetting."
+                trial.RegisterResetParticipant("camp.economy", () => !Ready || site != null && !ManagementReady ? "Camp economy requires recovery before resetting."
                     : refinery.CaptureState().HasCanister || refinery.CaptureState().HasBattery
-                        ? "Retrieve refinery items before resetting the inventory trial." : null;
-                trial.ExternalResetMutation = PrepareEpochAdvance;
+                        ? "Retrieve refinery items before resetting the inventory trial." : null, PrepareTrialParticipants, ResetStamp);
+                if (site == null || ManagementReady) trial.CompleteCampBaseline(this);
             }
             return true;
         }
@@ -132,26 +146,42 @@ namespace BooterBigArm.TopDown3D
         public bool CanAccessOwner(int owner)
         {
             if (!Ready) return false;
+            if (ManagementReady) return owner >= 0 && owner < site.Registry.Stores.Count && site.Registry.Stores[owner].Accessible;
             return owner == 0 || owner == 1 && TopDown3DCargoAccess.CanAccess(cargo, kit.transform)
                 || owner == 2 && cache.CanAccess(kit.transform);
         }
-        public TopDown3DInventoryState Owner(int owner) => owner switch { 0 => kit.State, 1 => cargo.State, 2 => cache.State, _ => null };
+        public int OwnerCount => ManagementReady ? site.Registry.Stores.Count : 3;
+        public string StoreLabel(int owner) => ManagementReady && owner >= 0 && owner < site.Registry.Stores.Count
+            ? site.Registry.Stores[owner].Label : OwnerLabel(owner);
+        public bool AcceptsTransfers(int owner) => !ManagementReady ? owner >= 0 && owner < 3
+            : owner >= 0 && owner < site.Registry.Stores.Count && site.Registry.Stores[owner].AcceptsTransfers;
+        public TopDown3DInventoryState Owner(int owner) => ManagementReady && owner >= 0 && owner < site.Registry.Stores.Count
+            ? site.Registry.Stores[owner].State : LegacyOwner(owner);
+        private TopDown3DInventoryState LegacyOwner(int owner) => owner switch { 0 => kit.State, 1 => cargo.State, 2 => cache.State, _ => null };
         public static string OwnerLabel(int owner) => owner switch { 0 => "BOOTER", 1 => "LEGGER", 2 => "CAMP CHEST", _ => "UNAVAILABLE" };
 
         public TopDown3DInventoryResult ResetEconomy(uint expectedEpoch)
         {
             if (!Ready || expectedEpoch != epoch || epoch == uint.MaxValue || input.Mode != TopDown3DInputMode.Inventory || locked
                 || !ValidateOwnership()) return TopDown3DCraftingService.Failure("Camp reset is unavailable; current contents were preserved.");
+            var vitals = kit.GetComponent<TopDown3DSurvivalVitals>();
+            if (!kit.isActiveAndEnabled || vitals == null || vitals.Health <= 0) return TopDown3DCraftingService.Failure("A live Booter is required to reset camp.");
             var camp = kit.GetComponent<TopDown3DCampController>();
             if (action.IsGathering || action.IsPlacingHarvester || camp != null && camp.Phase != TopDown3DCampPhase.Idle)
                 return TopDown3DCraftingService.Failure("Finish the current activity before resetting.");
-            var mutations = new[] { new TopDown3DInventoryTransaction.Mutation(kit.State),
-                new TopDown3DInventoryTransaction.Mutation(cargo.State), new TopDown3DInventoryTransaction.Mutation(cache.State) };
+            var mutations = new List<TopDown3DInventoryTransaction.Mutation> { new(kit.State), new(cargo.State), new(cache.State) };
+            if (site != null)
+            {
+                if (site.Processor == null || !site.Processor.Output.Ready || site.Processor.Output.State.IsCommitting) return TopDown3DCraftingService.Failure("Processor tray requires recovery.");
+                mutations.Add(new TopDown3DInventoryTransaction.Mutation(site.Processor.Output.State));
+            }
             foreach (var mutation in mutations)
                 for (var i = 0; i < mutation.Draft.Capacity; i++)
                 {
                     var slot = mutation.Draft.Slots[i];
-                    if (slot.IsEmpty || slot.ItemId != TopDown3DHarvesterSettings.CanisterItemId
+                    if (slot.IsEmpty) continue;
+                    var clearTray = site != null && ReferenceEquals(mutation.State, site.Processor.Output.State);
+                    if (!clearTray && !TopDown3DProcessRecipe.Products.Contains(slot.ItemId) && slot.ItemId != TopDown3DHarvesterSettings.CanisterItemId
                         && slot.ItemId != TopDown3DDustRefineryState.EmptyBatteryId && slot.ItemId != TopDown3DDustRefineryState.ChargedBatteryId) continue;
                     var removed = mutation.Draft.RemoveFromSlot(i, slot.Quantity); if (!removed.Succeeded) return removed;
                 }
@@ -172,8 +202,12 @@ namespace BooterBigArm.TopDown3D
             var reset = new TopDown3DPreparedWorldMutation(
                 () => { if (locked || epoch != expectedEpoch) return false; locked = true; return true; },
                 () => epoch = nextEpoch, () => { }, () => locked = false);
-            return TopDown3DInventoryTransaction.Commit(mutations, () => Ready && input.Mode == TopDown3DInputMode.Inventory,
-                new[] { world, refinery.Prepare(new TopDown3DDustRefineryState()), reset });
+            var participants = new TopDown3DCampResetPreparation(); participants.Inventories.AddRange(mutations);
+            participants.World.Add(world); participants.World.Add(refinery.Prepare(new TopDown3DDustRefineryState())); participants.World.Add(reset);
+            if (site != null) participants.World.Add(site.Processor.PrepareAdvance());
+            if (!participants.IsValid) return TopDown3DCraftingService.Failure("Reset participants require recovery.");
+            return TopDown3DInventoryTransaction.Commit(participants.Inventories, () => Ready && input.Mode == TopDown3DInputMode.Inventory,
+                participants.World);
         }
         private bool Fail(string reason) { recovery = true; FailureReason = reason; Debug.LogWarning(reason, this); return false; }
         private TopDown3DPreparedWorldMutation PrepareEpochAdvance()
@@ -183,6 +217,26 @@ namespace BooterBigArm.TopDown3D
             return new TopDown3DPreparedWorldMutation(() => { if (locked || epoch != expected) return false; locked = true; return true; },
                 () => epoch++, () => { }, () => locked = false);
         }
-        private void OnDisable() { Ui?.Teardown(); configured = false; }
+        internal TopDown3DCampResetPreparation PrepareTrialParticipants()
+        {
+            var result = new TopDown3DCampResetPreparation(); result.World.Add(PrepareEpochAdvance());
+            if (site != null)
+            {
+                if (trial.StationBaseline == null || !site.Processor.Output.Ready) return null;
+                var tray = new TopDown3DInventoryTransaction.Mutation(site.Processor.Output.State);
+                if (!tray.Draft.ApplySnapshot(trial.StationBaseline).Succeeded) return null;
+                result.Inventories.Add(tray); result.World.Add(site.Processor.PrepareAdvance());
+            }
+            return result.IsValid ? result : null;
+        }
+        public string ResetStamp()
+        {
+            var result = epoch + ":" + kit.State.Revision + ":" + cargo.State.Revision + ":" + cache.State.Revision
+                + ":" + refinery.CaptureState().revision + ":" + devices.DeployedCount + ":" + devices.CaptureSnapshot().NextSequence;
+            if (site != null) result += ":" + site.Registry?.SessionToken + ":" + site.Registry?.Generation
+                + ":" + site.Registry?.Active + ":" + site.Processor.Revision + ":" + site.Processor.Output.State?.Revision;
+            return result;
+        }
+        private void OnDisable() { Ui?.Teardown(); site?.Invalidate(); configured = false; }
     }
 }

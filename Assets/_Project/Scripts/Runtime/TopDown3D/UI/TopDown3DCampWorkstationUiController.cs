@@ -7,7 +7,7 @@ using UnityEngine.InputSystem.Controls;
 
 namespace BooterBigArm.TopDown3D
 {
-    public sealed class TopDown3DCampWorkstationUiController : MonoBehaviour
+    public sealed partial class TopDown3DCampWorkstationUiController : MonoBehaviour
     {
         private TopDown3DCampLoopEconomySession session;
         private TopDown3DCampWorkstationCanvas view;
@@ -21,6 +21,7 @@ namespace BooterBigArm.TopDown3D
         private uint openedEpoch;
         private string message;
         private GameObject suspendedSelection;
+        private readonly List<TopDown3DInventoryState> observedStates = new();
         public bool IsOpen => open;
         public bool IsSuspended => suspended;
 
@@ -39,14 +40,16 @@ namespace BooterBigArm.TopDown3D
                 && AnyCanister(session.Owner(1));
             session.Input.UiCancelRequested += Cancel;
             session.Input.ModeChanged += ModeChanged;
-            foreach (var state in new[] { session.Kit.State, session.Cargo.State, session.Cache.State }) state.Changed += Refresh;
+            observedStates.Clear(); observedStates.Add(session.Kit.State); observedStates.Add(session.Cargo.State); observedStates.Add(session.Cache.State);
+            foreach (var state in observedStates) state.Changed += Refresh;
             session.Refinery.Changed += Refresh;
-            subscribed = true;
+            BindManagement(); subscribed = true;
         }
         private static bool AnyCanister(TopDown3DInventoryState state)
         { foreach (var slot in state.Slots) if (slot.ItemId == TopDown3DHarvesterSettings.CanisterItemId) return true; return false; }
         private bool TargetAccessible => target == null || target.UnityObject != null &&
-            (target is TopDown3DCampWorkbench bench && bench.CanAccess(session.Kit.transform)
+            (session.Site?.Registry?.FindStation(target)?.CanAccess(session.Kit.transform) == true
+            || target is TopDown3DCampWorkbench bench && bench.CanAccess(session.Kit.transform)
             || target is TopDown3DDustRefinery refinery && refinery.CanAccess(session.Kit.transform)
             || target is TopDown3DResourceCache chest && chest.CanAccess(session.Kit.transform));
 
@@ -54,10 +57,11 @@ namespace BooterBigArm.TopDown3D
         private void OpenDeployment() => Open(null);
         private void Open(ITopDown3DInteractable value)
         {
-            if (open || !session.Ready || session.Input.Mode != TopDown3DInputMode.Gameplay) return;
-            target = value; if (!TargetAccessible) { target = null; return; }
+            if (open || !session.Ready || !ActorAlive || value != null && !session.Kit.GetComponent<TopDown3DPlayerMotor>().LaboratoryStandingActionsAllowed || session.Input.Mode != TopDown3DInputMode.Gameplay) return;
+            session.RebindManagement(); StartManagement(); target = value; if (!TargetAccessible) { target = null; return; }
             inventoryUi.Close(); session.Action.CancelGather();
             open = true; source = value is TopDown3DResourceCache ? 2 : value == null ? 1 : 0;
+            if (value is TopDown3DIronstoneProcessor) source = 2;
             destination = 0; selected = -1; openedEpoch = session.Epoch; resetPending = false;
             message = "Choose a source and an item. Contents stay in their physical owner until an action succeeds.";
             session.Action.SetCampModalOpen(true); session.Input.EnterInventoryMode();
@@ -66,20 +70,21 @@ namespace BooterBigArm.TopDown3D
         public void Close(bool restoreGameplay = true)
         {
             if (!open) return;
-            open = false; suspended = false; resetPending = false; selected = -1; target = null;
-            view.SetVisible(false); view.SetInputReady(false); session.Action.SetCampModalOpen(false);
+            open = false; suspended = false; resetPending = false; processQuote = null; selected = -1; target = null;
+            if (view != null) { view.SetVisible(false); view.SetInputReady(false); }
+            if (session.Action != null) session.Action.SetCampModalOpen(false);
             if (restoreGameplay && session.Input.Mode == TopDown3DInputMode.Inventory) session.Input.EnterGameplayMode();
         }
         public void SuspendForMenu()
         {
             if (!open || suspended) return;
-            suspended = true; resetPending = false; suspendedSelection = events.currentSelectedGameObject;
+            suspended = true; resetPending = false; processQuote = null; suspendedSelection = events.currentSelectedGameObject;
             view.SetVisible(false); view.SetInputReady(false);
         }
         public bool ResumeFromMenu()
         {
             if (!open || !suspended) return false;
-            if (!session.Ready || openedEpoch != session.Epoch || !TargetAccessible) { Close(false); return false; }
+            if (!session.Ready || !ActorAlive || !RegistrationValid || openedEpoch != session.Epoch || !TargetAccessible) { Close(false); return false; }
             suspended = false; session.Input.EnterInventoryMode(); view.SetVisible(true); Arm(); Refresh();
             if (suspendedSelection != null && suspendedSelection.activeInHierarchy) events.SetSelectedGameObject(suspendedSelection);
             else view.SelectFirst(events);
@@ -98,7 +103,8 @@ namespace BooterBigArm.TopDown3D
         private void Update()
         {
             if (!open || suspended) return;
-            if (!session.Ready || !TargetAccessible || openedEpoch != session.Epoch) { Close(); return; }
+            if (!session.Ready || !ActorAlive || !RegistrationValid || !TargetAccessible || openedEpoch != session.Epoch) { Close(); return; }
+            if (Time.unscaledTime >= statusAt) { statusAt = Time.unscaledTime + .4f; Refresh(); }
             if (waitingRelease && !ControlsHeld()) { waitingRelease = false; view.SetInputReady(true); }
         }
         private void ModeChanged(TopDown3DInputMode mode)
@@ -106,6 +112,7 @@ namespace BooterBigArm.TopDown3D
         private void Cancel()
         {
             if (!open || suspended || waitingRelease || session.Input.Mode != TopDown3DInputMode.Inventory) return;
+            if (processQuote != null) { processQuote = null; message = "Sorting cancelled."; Refresh(); return; }
             if (resetPending) { resetPending = false; message = "Reset cancelled."; Refresh(); } else Close();
         }
         private void Select(int index)
@@ -115,20 +122,24 @@ namespace BooterBigArm.TopDown3D
             selected = index; selectedRevision = state.Revision; resetPending = false; Refresh();
         }
         private bool CanCommand => open && !suspended && !waitingRelease && session.Ready && openedEpoch == session.Epoch
-            && session.Input.Mode == TopDown3DInputMode.Inventory && TargetAccessible;
+            && ActorAlive && RegistrationValid && session.Input.Mode == TopDown3DInputMode.Inventory && TargetAccessible;
 
         private void Command(string id)
         {
             if (!CanCommand) return;
+            if (ManagementCommand(id)) return;
+            if (management != ManagementView.Detail && (id == "Craft" || id == "Insert" || id == "Refine" || id == "Battery"
+                || id == "Canister" || id == "Deploy" || id == "Transfer")) return;
             if (id == "Craft" && target is not TopDown3DCampWorkbench
                 || (id == "Insert" || id == "Refine" || id == "Battery" || id == "Canister") && target is not TopDown3DDustRefinery
                 || id == "Transfer" && target is not TopDown3DResourceCache || id == "Reset" && target == null) return;
             if (id == "Close") { Close(); return; }
-            if (id == "Source") { source = (source + 1) % 3; selected = -1; resetPending = false; Refresh(); return; }
-            if (id == "Destination") { destination = (destination + 1) % 3; resetPending = false; Refresh(); return; }
+            if (id == "Source") { source = (source + 1) % session.OwnerCount; processQuote = null; selected = -1; resetPending = false; Refresh(); return; }
+            if (id == "Destination") { do { destination = (destination + 1) % session.OwnerCount; } while (!session.AcceptsTransfers(destination)); processQuote = null; resetPending = false; Refresh(); return; }
             if (id == "Reset")
             {
-                if (!resetPending) { resetPending = true; message = "Confirm reset: remove trial batteries/canisters and replace chest ingredients. Other items, salvage, actors and vitals remain. Back cancels."; Arm(); Refresh(); return; }
+                if (!resetPending) { resetPending = true; resetStamp = session.ResetStamp(); processQuote = null; message = "Confirm reset: remove trial batteries/canisters and Ironstone products, clear sorter tray and replace all chest recipe ore with four. Cargo ore, other items, salvage, actors and vitals remain. Back cancels."; Arm(); Refresh(); return; }
+                if (resetStamp != session.ResetStamp()) { resetPending = false; message = "Camp contents changed. Request and confirm reset again."; Arm(); Refresh(); return; }
                 var result = session.ResetEconomy(openedEpoch); message = result.Succeeded ? "Camp economy restored." : result.Message;
                 openedEpoch = session.Epoch; selected = -1; resetPending = false; Arm(); Refresh(); return;
             }
@@ -136,8 +147,8 @@ namespace BooterBigArm.TopDown3D
             TopDown3DInventoryResult outcome;
             if (id == "Craft") outcome = session.Workbench.Craft(session.Kit);
             else if (id == "Refine") outcome = session.Refinery.Refine(() => CanCommand);
-            else if (id == "Battery") outcome = session.Refinery.RetrieveBattery(session.Owner(destination), () => CanCommand && session.CanAccessOwner(destination));
-            else if (id == "Canister") outcome = session.Refinery.RetrieveCanister(session.Owner(destination), () => CanCommand && session.CanAccessOwner(destination));
+            else if (id == "Battery") outcome = session.Refinery.RetrieveBattery(session.Owner(destination), () => CanCommand && session.CanAccessOwner(destination) && session.AcceptsTransfers(destination));
+            else if (id == "Canister") outcome = session.Refinery.RetrieveCanister(session.Owner(destination), () => CanCommand && session.CanAccessOwner(destination) && session.AcceptsTransfers(destination));
             else
             {
                 var state = session.Owner(source);
@@ -155,8 +166,8 @@ namespace BooterBigArm.TopDown3D
                 else if (id == "Transfer")
                 {
                     var moved = TopDown3DInventoryTransferService.TransferSlot(state, session.Owner(destination), selected,
-                        () => CanCommand && session.CanAccessOwner(source) && session.CanAccessOwner(destination));
-                    message = moved.Succeeded ? $"Moved {moved.Quantity} item to {TopDown3DCampLoopEconomySession.OwnerLabel(destination)}." : moved.Message;
+                        () => CanCommand && session.CanAccessOwner(source) && session.CanAccessOwner(destination) && session.AcceptsTransfers(destination));
+                    message = moved.Succeeded ? $"Moved {moved.Quantity} item to {session.StoreLabel(destination)}." : moved.Message;
                     selected = -1; Refresh(); return;
                 }
                 else return;
@@ -168,6 +179,7 @@ namespace BooterBigArm.TopDown3D
         private void Refresh()
         {
             if (!open || suspended) return;
+            if (!ActorAlive || !RegistrationValid || !TargetAccessible) { Close(); return; }
             var state = session.Owner(source); if (selected >= 0 && selectedRevision != state.Revision) selected = -1;
             var labels = new List<string>(state.Capacity);
             foreach (var slot in state.Slots) labels.Add(slot.IsEmpty ? "Empty" : slot.CanisterContents.IsPresent
@@ -187,8 +199,8 @@ namespace BooterBigArm.TopDown3D
             view.Present(isBench ? "CAMP WORKBENCH" : isRefinery ? "DUST REFINERY" : target == null ? "DEPLOY CANISTER" : "CAMP CHEST",
                 description, (accessible ? message : "Source is out of reach; inspection only.") + "\n[" + session.Input.GetBindingDisplayName("UI/Cancel", "Back") + "] Back", labels, selected, accessible);
             view.SetLargeText(menu.LargeText);
-            view.SetCommand("Source", true, true, "SOURCE: " + TopDown3DCampLoopEconomySession.OwnerLabel(source));
-            view.SetCommand("Destination", true, true, "DESTINATION: " + TopDown3DCampLoopEconomySession.OwnerLabel(destination));
+            view.SetCommand("Source", true, true, "SOURCE: " + session.StoreLabel(source));
+            view.SetCommand("Destination", true, true, "DESTINATION: " + session.StoreLabel(destination));
             view.SetCommand("Craft", isBench, isBench);
             view.SetCommand("Insert", isRefinery && selected >= 0 && accessible, isRefinery);
             view.SetCommand("Refine", isRefinery && session.Refinery.CanRefine, isRefinery);
@@ -197,17 +209,21 @@ namespace BooterBigArm.TopDown3D
             view.SetCommand("Deploy", selected >= 0 && accessible && state.Slots[selected].ItemId == TopDown3DHarvesterSettings.CanisterItemId, !isRefinery && !isBench);
             view.SetCommand("Transfer", selected >= 0 && accessible && source != destination && session.CanAccessOwner(destination), target is TopDown3DResourceCache);
             view.SetCommand("Reset", true, target != null, resetPending ? "CONFIRM CAMP ECONOMY RESET" : "RESET CAMP ECONOMY");
+            PresentManagement();
         }
         private void OnDisable() => Teardown();
+        private void OnDestroy() => Teardown();
         public void Teardown()
         {
+            if (subscribed) UnbindManagement();
             Close(false); if (!subscribed) return;
             session.Action.AccessibleCargoCanister = null;
             if (menu != null) menu.ConfigureCampWorkstations(null);
             if (inventoryUi != null) inventoryUi.ConfigureCampWorkstations(null);
             session.Action.CampStationAccessRequested -= OpenTarget; session.Action.CanisterSelectionRequested -= OpenDeployment;
             session.Input.UiCancelRequested -= Cancel; session.Input.ModeChanged -= ModeChanged;
-            foreach (var state in new[] { session.Kit.State, session.Cargo.State, session.Cache.State }) state.Changed -= Refresh;
+            foreach (var state in observedStates) state.Changed -= Refresh;
+            observedStates.Clear();
             session.Refinery.Changed -= Refresh; subscribed = false;
         }
     }

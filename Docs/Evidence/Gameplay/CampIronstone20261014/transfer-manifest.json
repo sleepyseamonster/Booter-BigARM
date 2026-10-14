@@ -1,0 +1,500 @@
+{
+  "head": "a1ae01582bcb974da58e0a30fbb9faf81a3000cd",
+  "files": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryPolicy.cs",
+      "sha256": "63a5019d2ac3fb59d1e6085f4c45a27a8ed6acd487770ccc851f85144b4f6296",
+      "priorSha256": "3205c7f7b78d134d7b21c9bbcf61c1d3acc786abf092f6510bd4fb0430a88ce6"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DCampLoopInventoryTrial.cs",
+      "sha256": "10316037712cf4b3b7a7093ecb90b3242fc7991e4f3c02b4877547fd45c71a35",
+      "priorSha256": "e3f8961d93e3eba00f9f532504f7b8e0a9b938776937f2cf427e231b75c9e7ab"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampLoopEconomySession.cs",
+      "sha256": "a7ea8b19e29ef9afa8e6f87d42876324bea7e89c7efa7a238b84443e014c00cb",
+      "priorSha256": "b8a9949848f8df6317ec014908e905f5edbaaaec8022cd4231a34c6ee369690a"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DPlayerActionController.CampWorkstations.cs",
+      "sha256": "097e0be007690042c9bdd39e9e04f95a722827ea815b47435a346c98660d3fcf",
+      "priorSha256": "adfe773721bd090280e272320f884a122771998bca18bb17d2d21c35caada5f1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DCampWorkstationCanvas.cs",
+      "sha256": "c8cdb18a031c142380245205470e503f1f7ab475c62943cfab969a6624d59f9e",
+      "priorSha256": "c244920e86d0480483aefe8328075325184eec4b33fbc261fe0ebf4788e5db02"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DCampWorkstationUiController.cs",
+      "sha256": "822ca49f0543ec206f9394e4068489721a60cf0a4fe8ed26c32d031fc6de36f8",
+      "priorSha256": "b29c06c2680f609958cad902583bcc830cf457ce38ae584abc7746e33616c521"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/CampLoopLoadoutTests.cs",
+      "sha256": "2e1cdd7448f33d5dd321d3fb7394719e0b7a3f9762634762515be29462c4cd73",
+      "priorSha256": "b9a18ceaa864c6c36621f40c0e1e8e3a339c2c28522dda1fc0651cad5ca3fe7d"
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/CampLoopLoadout/Resources/CampLoopLoadoutProfile.asset",
+      "sha256": "0b93147715dc4656b8bae6c60e0eee0d91fdead838bcb0dc051a166add62604e",
+      "priorSha256": "849bb0c9d25f96e34810fcc6b7657ddee45ff09a9bc2a02aa3ee2488d9603aae"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DProcessRecipe.cs",
+      "sha256": "f1316f5271d28a6d5d4e93ce50dbbd7308964cd7ad513a8af1297918477beb4d",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampRegistry.cs",
+      "sha256": "a312cc4d2076c484c6f4597881ff08b00411fa9303501337b35498eda0064836",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampSite.cs",
+      "sha256": "de80e81804ab75d9cde0e203e05dcb7fa9f43acac239b10da7d2bd00d390100b",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DStationResourceStore.cs",
+      "sha256": "6d128beafd52767b46ac06348095eb600216958fda4adba163156b43ed6761da",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DIronstoneProcessor.cs",
+      "sha256": "ede4c881d1a0a75db0fe288f4224285aff9d8620014abdad8d08b613de90ec2e",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DProcessingService.cs",
+      "sha256": "81387188d543e5526c71334f99f3e0b49870591fc00714833ba52e125ff1f88b",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampResetParticipant.cs",
+      "sha256": "c1cbf10a6c8e24432e5572fbd917da12a5496247d7c158f38abea219210176fa",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampCompanionStatus.cs",
+      "sha256": "9fb647398d9b7a8e196e316747d23ce726f495dabc72806aa0fe1ad163a578a2",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DCampWorkstationUiController.Management.cs",
+      "sha256": "3e39ab440ab287c222b77c7e509e6a808bc2e3bf1d786790e82fd39eeb2599ed",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryTransferService.Exact.cs",
+      "sha256": "d4f8ee16b3b2540c13a83542e4a3210e0a8e3b08680277aa090ffa6761e117d6",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampIronstoneAuthoring.cs",
+      "sha256": "1bf4b8d04ed6744dda33bdeed99fa664b2b572d84005d0b1cc5357823b767a73",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampIronstoneVisualProof.cs",
+      "sha256": "2c482efecaff47d5507d4d3b0b8f64e6b6dd7c1427ef9416a14539c9e1143c05",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/CampIronstoneProcessingTests.cs",
+      "sha256": "d25bf0b3d801871d625bf4f09e4ffdacbdb0b39dd82989297399b2363f06e04f",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DProcessRecipe.cs.meta",
+      "sha256": "ed21ccfd49b5f933c5344b9caf827d3a8b770a719401d15cee97fcac39dc72f4",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampRegistry.cs.meta",
+      "sha256": "2ee6cb048d8a69086b1cc631a22b316e5cc1d8c9e3f6684732f9e8c3a163d32f",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampSite.cs.meta",
+      "sha256": "30a12529968448b559ed3a258339d425543d46ae3c53f147c77ccb7434ff5d08",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DStationResourceStore.cs.meta",
+      "sha256": "11ce1150ce9fb61522d3d4661fe2115863a40d40e023a348b489013a02d55a15",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DIronstoneProcessor.cs.meta",
+      "sha256": "07671df25fa4b2b3bd96a3f76bc63d98a4e560fadbaf529428344d801188fb22",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DProcessingService.cs.meta",
+      "sha256": "92c4d9963c83c1544254b8bf0d891d74ec8d55f81b12f80b48f549647cc44b4e",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampResetParticipant.cs.meta",
+      "sha256": "77332f7b475f4d67d9a43e6ea6527b8cf92d24b091bb821ce19dfa888fc8a404",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampCompanionStatus.cs.meta",
+      "sha256": "ac09645fbab4a848cd0a1edb288ef3992d7829e8e3788980a816d186721907b3",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DCampWorkstationUiController.Management.cs.meta",
+      "sha256": "8879d2614b046a8e7377d9f64cd459617bf7258e4680adf99b946e30730bef72",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Inventory/TopDown3DInventoryTransferService.Exact.cs.meta",
+      "sha256": "c02d6af676c308b82cb65180433282bea5667a23528eae66b47386aa80759915",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampIronstoneAuthoring.cs.meta",
+      "sha256": "f15cbc5355fb443be1d7212383bdd5e1ebacc4ae4a805488e3c1af830a9ac67b",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampIronstoneVisualProof.cs.meta",
+      "sha256": "f05097f0f8282d97828c79f758c7d16ec734806aa9909a6023aef97956f7cbe2",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/CampIronstoneProcessingTests.cs.meta",
+      "sha256": "a1377dcb5ac6da7107f8b25984ae7c6e061cf1e0e5e2f8c96ddf6e0dd9fbcc21",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/CampLoopIronstone/0-CoarseAggregate.asset",
+      "sha256": "5c16d79586b246538ff86dba4dd4f671d4ef8a1c3b6bd62e67987c25a57738c0",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/CampLoopIronstone/0-CoarseAggregate.asset.meta",
+      "sha256": "f758ff55a96dc41111eb59b8504f5b2383a2f64ab5d803b5568b7d2063460a48",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/CampLoopIronstone/1-Iron-richConcentrate.asset",
+      "sha256": "861a50fe8ffaa9467c57b059fc8198968affdfdfe9f4ee9fe6767b1e2801503e",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/CampLoopIronstone/1-Iron-richConcentrate.asset.meta",
+      "sha256": "7aa40e4909309fcd0f407c41bf8b7423782555094f7e21a0cae871c961f6e54f",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/CampLoopIronstone/2-MineralSand.asset",
+      "sha256": "13c4c3392b5518a5558809ab118978fb16d35c39a17be5197ff92a10573f1ad0",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/CampLoopIronstone/2-MineralSand.asset.meta",
+      "sha256": "8932c0e069d1a03d24af0691970afdb1b4a93d832cbba5030e401961c256887c",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/CampLoopIronstone/3-MineralDust.asset",
+      "sha256": "5d44eb8f316b1271f9e46ad4b8b826b1505fe71e9702d46d4ab8bd953869c8ff",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/CampLoopIronstone/3-MineralDust.asset.meta",
+      "sha256": "451a40c24c0f0658f8232e04cc642094b46cca2b1df7276222106a7b2a43bc95",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/CampLoopIronstone/DrySortingRecipe.asset",
+      "sha256": "1bacda5fb49b16e3ff97ca5b44842f375caf6c709fd95884cbdc20a3b20b2a80",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/CampLoopIronstone/DrySortingRecipe.asset.meta",
+      "sha256": "cd4d4c2ab2e32e714f4b4be62d467a4cbd572e755176c6528375bfbdffc8d727",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Settings/Items/CampLoopIronstone.meta",
+      "sha256": "a25c01b12eb8109d59f9f36cc34525a97a8eaff5d5bac98cba2dd76cfdf08aee",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/UI/Items/CampIronstone/Material0.png",
+      "sha256": "6aaf2dab712d123adaf456817665e8c6683983ebf0b60d49c3007c49a55b2e47",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/UI/Items/CampIronstone/Material0.png.meta",
+      "sha256": "3e7813fe2880df3923f0da3b06dcdc94ccce095ce2164c6067104f08fa24b8f6",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/UI/Items/CampIronstone/Material1.png",
+      "sha256": "e53a00260939f141b7ef998e4d4803271fd648df05989cc1784f3fdf49ab5a9b",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/UI/Items/CampIronstone/Material1.png.meta",
+      "sha256": "3c2ee707e124f6c72f02dbbe6e9bc49a5c47af22b34b7503dadcac48d58397ca",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/UI/Items/CampIronstone/Material2.png",
+      "sha256": "6349126618bd977b915caa7197ab685dec3a00563093ff8b787f7f87a8409e33",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/UI/Items/CampIronstone/Material2.png.meta",
+      "sha256": "2e2d7e71add4b4c299bed4892032b41ed203a617ee060952a54c1c7026387071",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/UI/Items/CampIronstone/Material3.png",
+      "sha256": "cf0ccff64f2e1cc94cb7a2b22cd5320f5b0cd0eeb5b1a4d12ee04deeb5804675",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/UI/Items/CampIronstone/Material3.png.meta",
+      "sha256": "6bed2d20ab4ec6114f698c8ca6a7235b67697a7e3f82d07ec4718b0abeff6380",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/UI/Items/CampIronstone.meta",
+      "sha256": "bcb1fc7f99c7d81e3e2763de3d4b031851046e64702d317bfe79bbc48f6b21bb",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Camping/IronstoneProcessor.prefab",
+      "sha256": "cb9aefa465dc396e56009c5745b21a0c51befd69a10c4d17533b54f249301edd",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Camping/IronstoneProcessor.prefab.meta",
+      "sha256": "3b44bf8bedb269523ab785722a32ee0d7f398e5380a443fc04d622ae708d5ce6",
+      "priorSha256": null
+    },
+    {
+      "path": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+      "sha256": "d892a31615284db7d396e91a21bcf0a1f635ed29845b3ee1ab5fb2072d8ab865",
+      "priorSha256": "e729011a2a03d91c0eeb16f5c805646d05dcaea8f74d959d193da99279a5e89a"
+    }
+  ],
+  "sceneProof": {
+    "sourceSha256": "e729011a2a03d91c0eeb16f5c805646d05dcaea8f74d959d193da99279a5e89a",
+    "baselineHead": "b53ca27667f197ab3c9b2cec4c2d72a87b292d8a",
+    "existingDocuments": 1346,
+    "newDocuments": [
+      "946583811",
+      "946583812",
+      "946583813",
+      "1562946234",
+      "1562946235",
+      "1562946236"
+    ],
+    "modifiedDocuments": [
+      "201830965",
+      "9223372036854775807"
+    ],
+    "preservedDocuments": 1344,
+    "mergedSha256": "d892a31615284db7d396e91a21bcf0a1f635ed29845b3ee1ab5fb2072d8ab865",
+    "discardedSerializerChanges": [
+      "38689567",
+      "54059879",
+      "70757341",
+      "74494138",
+      "134882497",
+      "139159553",
+      "149730114",
+      "149730115",
+      "168785883",
+      "171334290",
+      "201007743",
+      "204051241",
+      "204051242",
+      "257770047",
+      "259798267",
+      "286330407",
+      "337429359",
+      "350743165",
+      "387631145",
+      "387631146",
+      "387631147",
+      "402875676",
+      "407874407",
+      "412165501",
+      "451293422",
+      "558312030",
+      "570821465",
+      "600140376",
+      "600140377",
+      "621122510",
+      "630092008",
+      "630092009",
+      "630092010",
+      "645246343",
+      "663049370",
+      "668086199",
+      "686992595",
+      "687259003",
+      "690964286",
+      "690964287",
+      "690964288",
+      "690964289",
+      "690964290",
+      "690964291",
+      "690964297",
+      "711298944",
+      "727048373",
+      "727048374",
+      "727048375",
+      "733549178",
+      "734196527",
+      "777784423",
+      "812436516",
+      "812448489",
+      "812448493",
+      "812448494",
+      "812448495",
+      "812448496",
+      "845385324",
+      "863541925",
+      "865537520",
+      "869281319",
+      "888413138",
+      "897339806",
+      "921854005",
+      "922163867",
+      "926157477",
+      "942298567",
+      "952397244",
+      "967469283",
+      "990489581",
+      "990489582",
+      "990489583",
+      "1006182494",
+      "1009422201",
+      "1015305371",
+      "1015305372",
+      "1015305374",
+      "1015305375",
+      "1080695142",
+      "1113307400",
+      "1113980916",
+      "1131456569",
+      "1134600058",
+      "1169893031",
+      "1190293693",
+      "1201969162",
+      "1201969163",
+      "1201969164",
+      "1254504495",
+      "1255022537",
+      "1255022538",
+      "1255022539",
+      "1313337380",
+      "1313337381",
+      "1313337382",
+      "1324787518",
+      "1325570784",
+      "1325570785",
+      "1327653773",
+      "1345220834",
+      "1345220835",
+      "1345220836",
+      "1377960389",
+      "1419090604",
+      "1419090605",
+      "1419090606",
+      "1429444840",
+      "1441292279",
+      "1501502479",
+      "1504880555",
+      "1504880556",
+      "1504880557",
+      "1515905891",
+      "1526697159",
+      "1536116842",
+      "1562912695",
+      "1562912696",
+      "1562912697",
+      "1563881017",
+      "1566299432",
+      "1576353987",
+      "1590739382",
+      "1591592402",
+      "1612185249",
+      "1618021290",
+      "1641016488",
+      "1650774349",
+      "1662507187",
+      "1664019964",
+      "1668832399",
+      "1675810704",
+      "1675810705",
+      "1675810706",
+      "1722217454",
+      "1722217455",
+      "1722217456",
+      "1735111352",
+      "1739593615",
+      "1751738108",
+      "1751738109",
+      "1751738110",
+      "1764300351",
+      "1799545184",
+      "1799545186",
+      "1803345861",
+      "1810074536",
+      "1810339664",
+      "1867016624",
+      "1874441081",
+      "1933125749",
+      "1934570403",
+      "1934570405",
+      "1963024836",
+      "2011723894",
+      "2023552410",
+      "2024204713",
+      "2028992273",
+      "2028992274",
+      "2028992275",
+      "2080807208",
+      "2080807209",
+      "2091090446",
+      "2106169231",
+      "2116680476",
+      "2116680477",
+      "2116680478",
+      "2125886226",
+      "2126727609",
+      "2126727611",
+      "2126727613",
+      "2131556173",
+      "2134761926",
+      "294645661645340988",
+      "1296991611585183184",
+      "4391345221687692747",
+      "9223372036000000001",
+      "9001410000000",
+      "9001410000002",
+      "9001410000003",
+      "2126727615",
+      "214363085",
+      "214363086",
+      "1467156895",
+      "1985768597",
+      "670407845",
+      "812448497",
+      "1749876858",
+      "1986937978"
+    ]
+  }
+}

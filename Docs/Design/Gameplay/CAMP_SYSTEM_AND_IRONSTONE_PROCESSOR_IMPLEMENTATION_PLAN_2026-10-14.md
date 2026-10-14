@@ -1,6 +1,6 @@
 # Camp foundation and Ironstone processor implementation plan
 
-October 14, 2026. **Planning only; implementation has not begun. Audited and revised October 14.** Source: the author's request for an extensible camp/item/companion-management skeleton and an Ironstone refinery, followed by “Create a plan” and “Audit the plan.” This plan turns the [audit and brainstorm](CAMP_SYSTEM_SKELETON_AND_IRONSTONE_REFINERY_BRAINSTORM_2026-10-14.md) into a bounded first implementation and explicit later milestones. New economy values and material names remain provisional lab defaults. Section 15 records the audit findings and their disposition.
+October 14, 2026. **Plan authored and audited October 14; bounded first slice implemented at the author's subsequent request.** Source: the author's request for an extensible camp/item/companion-management skeleton and an Ironstone refinery, followed by “Create a plan,” “Audit the plan” and “Pursue implementation of the plan as your goal.” This plan turns the [audit and brainstorm](CAMP_SYSTEM_SKELETON_AND_IRONSTONE_REFINERY_BRAINSTORM_2026-10-14.md) into a bounded first implementation and explicit later milestones. New economy values and material names remain provisional lab defaults. Section 15 records the audit; section 16 records execution closeout.
 
 ## 1. Objective and observable success
 
@@ -217,3 +217,11 @@ Audited against live InventoryState/Transaction/PreparedWorldMutation, Inventory
 | Camp identity, actor membership and companion freshness needed bounds. | Medium: both scenes can use `camp.starting`; cargo moves; companion Task is static while follower state changes. | Scene-local registry, actor-owned projections, localized availability and bounded visible status refresh; life/ride/interrupt checks. |
 
 **Audit outcome:** the architecture remains appropriate for the bounded lab slice after these revisions. Product yields and later metal/power costs remain proposals. The implementation must first revalidate the settled concurrent source/scene baseline, then satisfy the expanded proof matrix; this audit is not authorization or proof of implementation.
+
+## 16. Execution closeout — October 14, 2026
+
+The author subsequently authorized implementation as the goal. The bounded first slice is implemented and verified; see [the camp foundation evidence](../../Evidence/Gameplay/CampIronstone20261014/README.md). Final proof includes 293/293 selected EditMode checks, static normal/large-text layout review for fourteen actual-controller captures, repeated-installer idempotence, native loading clearance and an exact guarded source transfer. Six new scene records and two owned additions preserve 1,344 existing records. Production/pins/catalog/cache and nine native Camp Loop terrain assets remain protected.
+
+Implementation consolidates simple binding/adapter/reset records into their owning files and uses one existing canvas for all views. The exact transfer helper lives in a separate partial file, preserving legacy maximum-fit defaults. The retained envelope uses required decimal counter strings so absent values cannot masquerade as zero. The current UI blocks process definitions larger than its one-input/four-output preview, while the shared recipe validator allows up to eight of each for later interfaces. These adjustments retain the ownership and transaction contracts.
+
+Cutting, powered metals, companion labor, production promotion and application-restart persistence remain outside this completion. Yields/material names remain lab defaults, and hands-on gameplay/appearance acceptance is still user-owned.
