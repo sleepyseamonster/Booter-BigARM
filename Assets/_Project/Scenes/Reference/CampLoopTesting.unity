@@ -28155,7 +28155,9 @@ MonoBehaviour:
   m_Name:
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DSceneRenderingOverride
   disableTiltShift: 1
-  atmosphereProfile: {fileID: 11400000, guid: aedf3be74d4f5724fa98020176c100d5, type: 2}
+  atmosphereProfile: {fileID: 11400000, guid: 8f975fdc527040169a3b02d738059baf, type: 2}
+  opticsFocusTarget: {fileID: 690964292}
+  opticsFocusOffset: {x: 0, y: 1.15, z: 0}
 --- !u!1 &201830964
 GameObject:
   m_ObjectHideFlags: 0

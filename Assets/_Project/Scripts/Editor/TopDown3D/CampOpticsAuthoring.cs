@@ -2,7 +2,9 @@ using System;
 using System.IO;
 using BooterBigArm.TopDown3D;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 namespace BooterBigArm.Editor
@@ -83,7 +85,7 @@ namespace BooterBigArm.Editor
 
         public static void ValidateFromCli()
         {
-            foreach (var tier in new[] { "Low", "Standard", "High", "Band", "Flare", "Off", "Aces" })
+            foreach (var tier in new[] { "Low", "Standard", "High", "Band", "Flare", "Off", "Aces", "Combined" })
             {
                 var atmosphere = AssetDatabase.LoadAssetAtPath<TopDown3DAtmosphereStudyProfile>(Settings + "/" + tier + "Twilight.asset");
                 if (atmosphere == null || !atmosphere.IsValid || atmosphere.nativeOptics == null || !atmosphere.nativeOptics.IsValid)
@@ -91,7 +93,8 @@ namespace BooterBigArm.Editor
                 if (atmosphere.bloomEnabled || atmosphere.streakEnabled) throw new InvalidOperationException("Duplicate bloom/streak producer " + tier);
                 if (atmosphere.tiltShiftEnabled && atmosphere.nativeOptics.depthMode != DepthOfFieldMode.Off)
                     throw new InvalidOperationException("Stacked world blur " + tier);
-                if (atmosphere.flareEnabled && atmosphere.nativeOptics.depthMode != DepthOfFieldMode.Off)
+                if (atmosphere.flareEnabled && atmosphere.nativeOptics.depthMode != DepthOfFieldMode.Off
+                    && !atmosphere.nativeOptics.gaussianBeforeLens)
                     throw new InvalidOperationException("Custom flare would enter native DOF " + tier);
                 var texture = atmosphere.nativeOptics.dirtTexture;
                 var importer = (TextureImporter)AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(texture));
@@ -107,7 +110,48 @@ namespace BooterBigArm.Editor
                 foreach (var message in ShaderUtil.GetShaderMessages(shader))
                     if (message.severity.ToString() == "Error") throw new InvalidOperationException(message.message);
             }
-            Debug.Log("CAMP_OPTICS_VALIDATION_OK: seven candidate selections, linear masks, blur exclusivity, baseline and shader diagnostics");
+            Debug.Log("CAMP_OPTICS_VALIDATION_OK: eight candidate selections, linear masks, blur exclusivity, baseline and shader diagnostics");
+        }
+
+        public static void ValidateCameraPrerequisites(Camera camera, UniversalRendererData renderer)
+        {
+            var data = camera != null ? camera.GetComponent<UniversalAdditionalCameraData>() : null;
+            if (data == null || data.renderType != CameraRenderType.Base || !data.renderPostProcessing)
+                throw new InvalidOperationException("Camp optics requires a base camera with URP postprocessing enabled.");
+            if (renderer == null || !renderer.rendererFeatures.Exists(feature => feature is TopDown3DSunBloomFeature && feature.isActive))
+                throw new InvalidOperationException("Selected camp renderer is missing the active Sun Bloom optics bridge.");
+            if (!renderer.rendererFeatures.Exists(feature => feature is TopDown3DRoundLensFlareFeature && feature.isActive))
+                throw new InvalidOperationException("Selected camp renderer is missing the active Round Lens Flare feature.");
+            var shader = renderer.postProcessData != null ? renderer.postProcessData.shaders.gaussianDepthOfFieldPS : null;
+            if (shader == null || !shader.isSupported)
+                throw new InvalidOperationException("Selected camp renderer requires the supported stock Gaussian DOF shader.");
+        }
+
+        public static void ValidateCampFromCli()
+        {
+            ValidateFromCli();
+            var scene = EditorSceneManager.OpenScene("Assets/_Project/Scenes/Reference/CampLoopTesting.unity");
+            var camera = TopDown3DSceneRenderingOverride.AtmosphereCamera(scene);
+            var pipeline = GraphicsSettings.currentRenderPipeline as UniversalRenderPipelineAsset;
+            if (camera == null || pipeline == null) throw new InvalidOperationException("Missing camp camera or active URP pipeline.");
+            var cameraSerialized = new SerializedObject(camera.GetUniversalAdditionalCameraData());
+            int index = cameraSerialized.FindProperty("m_RendererIndex").intValue;
+            var pipelineSerialized = new SerializedObject(pipeline);
+            if (index < 0) index = pipelineSerialized.FindProperty("m_DefaultRendererIndex").intValue;
+            var renderers = pipelineSerialized.FindProperty("m_RendererDataList");
+            if (index >= renderers.arraySize) throw new InvalidOperationException("Camp renderer index is outside the selected pipeline.");
+            ValidateCameraPrerequisites(camera, renderers.GetArrayElementAtIndex(index).objectReferenceValue as UniversalRendererData);
+            if (!TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(camera, out var study)
+                || study.nativeOptics == null || !study.nativeOptics.gaussianBeforeLens || !study.flareEnabled)
+                throw new InvalidOperationException("Camp must select the combined world-blur/lens profile.");
+            Debug.Log("CAMP_COMBINED_OPTICS_VALIDATION_OK: saved binding, renderer, postprocessing and stock shader prerequisites");
+        }
+
+        public static void ValidateRenderingFromCli()
+        {
+            ValidateCampFromCli();
+            CampOpticsLensFixture.RunFromCli();
+            CampOpticsCapture.CaptureFromCli();
         }
 
         private static Texture2D Derive(string name)

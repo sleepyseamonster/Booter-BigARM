@@ -52,7 +52,9 @@ namespace BooterBigArm.TopDown3D
             if (Application.isBatchMode)
             {
                 offscreenTarget = new RenderTexture(1920, 1080, 24, RenderTextureFormat.ARGBHalf);
-                offscreenTarget.Create(); outputCamera.targetTexture = offscreenTarget; outputCamera.enabled = false;
+                // Keep normal enabled-camera ownership while explicitly submitting the
+                // offscreen batch render. Disabled manual cameras intentionally release.
+                offscreenTarget.Create(); outputCamera.targetTexture = offscreenTarget; outputCamera.enabled = true;
             }
             baseRotation = outputCamera.transform.rotation;
             Directory.CreateDirectory(GetOutput());

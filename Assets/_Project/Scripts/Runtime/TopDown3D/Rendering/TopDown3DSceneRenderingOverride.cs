@@ -19,7 +19,20 @@ namespace BooterBigArm.TopDown3D
             TopDown3DCampOpticsStack.Release(GetComponent<Camera>());
         }
         private static readonly HashSet<TopDown3DSceneRenderingOverride> active = new HashSet<TopDown3DSceneRenderingOverride>();
-        private void OnEnable() => active.Add(this);
+        private Camera ownerCamera;
+        private bool cameraWasEnabled;
+        private void OnEnable()
+        {
+            active.Add(this);
+            ownerCamera = GetComponent<Camera>();
+            cameraWasEnabled = ownerCamera != null && ownerCamera.enabled;
+        }
+        private void Update()
+        {
+            var cameraEnabled = ownerCamera != null && ownerCamera.enabled;
+            if (cameraWasEnabled && !cameraEnabled) TopDown3DCampOpticsStack.Release(ownerCamera);
+            cameraWasEnabled = cameraEnabled;
+        }
         private void OnDisable()
         {
             active.Remove(this);
@@ -34,7 +47,11 @@ namespace BooterBigArm.TopDown3D
             return false;
         }
 
-        public void ConfigureAtmosphere(TopDown3DAtmosphereStudyProfile profile) => atmosphereProfile = profile;
+        public void ConfigureAtmosphere(TopDown3DAtmosphereStudyProfile profile)
+        {
+            if (atmosphereProfile != profile) TopDown3DCampOpticsStack.Release(GetComponent<Camera>());
+            atmosphereProfile = profile;
+        }
 
         // Fail closed for ambiguous bindings. The validator reports duplicates, never first-wins selection.
         public static bool TryGetAtmosphereProfile(Scene scene, out TopDown3DAtmosphereStudyProfile profile)

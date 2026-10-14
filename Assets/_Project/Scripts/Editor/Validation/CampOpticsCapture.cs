@@ -30,6 +30,7 @@ namespace BooterBigArm.Editor
             var camera = TopDown3DSceneRenderingOverride.AtmosphereCamera(scene);
             if (camera == null) throw new InvalidOperationException("Missing unique camp camera binding");
             var binding = camera.GetComponent<TopDown3DSceneRenderingOverride>();
+            TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(camera, out var originalProfile);
             var rig = camera.GetComponent<TopDown3DCameraRig>();
             var sun = UnityEngine.Object.FindFirstObjectByType<PerpetualTwilightSun>();
             var oldProfile = AssetDatabase.LoadAssetAtPath<TopDown3DAtmosphereStudyProfile>(CampAtmosphereAuthoring.Settings + "/Clear.asset");
@@ -44,7 +45,7 @@ namespace BooterBigArm.Editor
             var pixels = new Texture2D(1536, 864, TextureFormat.RGB24, false, true);
             Material sky = null;
             bool restored = true;
-            var variants = new[] { "Clear", "Off", "Low", "Standard", "High", "Band", "Flare", "Aces", "Fxaa" };
+            var variants = new[] { "Clear", "Off", "Low", "Standard", "High", "Band", "Flare", "Aces", "Fxaa", "Combined" };
             try
             {
                 camera.enabled = false;
@@ -90,7 +91,7 @@ namespace BooterBigArm.Editor
             }
             finally
             {
-                binding.ConfigureAtmosphere(oldProfile);
+                binding.ConfigureAtmosphere(originalProfile);
                 TopDown3DCampOpticsStack.Release(camera);
                 sun.EndStudyPreview();
                 camera.targetTexture = oldTarget;
@@ -107,7 +108,7 @@ namespace BooterBigArm.Editor
             File.WriteAllText(output + "/report.json", JsonUtility.ToJson(new Report
             { gpu = SystemInfo.graphicsDeviceName, api = SystemInfo.graphicsDeviceType.ToString(), stackRestored = restored, sourceSceneUnchanged = unchanged, variants = variants }, true));
             if (!unchanged || !restored) throw new InvalidOperationException("Capture preservation gate failed");
-            Debug.Log("CAMP_OPTICS_CAPTURE_OK: 45 matched views; scene bytes preserved; manager stack restored");
+            Debug.Log("CAMP_OPTICS_CAPTURE_OK: 50 matched views; scene bytes preserved; manager stack restored");
         }
     }
 }

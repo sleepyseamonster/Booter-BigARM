@@ -232,6 +232,10 @@ namespace BooterBigArm.Tests
         [TestCase("exposure")]
         [TestCase("focus")]
         [TestCase("range")]
+        [TestCase("tonemapping")]
+        [TestCase("bloomFilter")]
+        [TestCase("bloomDownscale")]
+        [TestCase("earlyBokeh")]
         public void InvalidOpticsProfileCannotAcquireManagerStack(string invalidField)
         {
             switch (invalidField)
@@ -240,6 +244,10 @@ namespace BooterBigArm.Tests
                 case "exposure": optics.postExposure = float.NaN; break;
                 case "focus": optics.focusDistance = 0f; break;
                 case "range": optics.farEnd = optics.farStart; break;
+                case "tonemapping": optics.tonemapping = (TonemappingMode)999; break;
+                case "bloomFilter": optics.bloomFilter = (BloomFilterMode)999; break;
+                case "bloomDownscale": optics.bloomDownscale = (BloomDownscaleMode)999; break;
+                case "earlyBokeh": optics.gaussianBeforeLens = true; optics.depthMode = DepthOfFieldMode.Bokeh; break;
             }
             Assert.That(optics.IsValid, Is.False);
             Assert.That(TopDown3DCampOpticsStack.TryApply(camera), Is.False);
@@ -326,6 +334,137 @@ namespace BooterBigArm.Tests
                 Assert.That(VolumeManager.instance.stack.GetComponent<DepthOfField>().focusDistance.value, Is.EqualTo(60f).Within(.001f));
             }
             finally { Object.DestroyImmediate(target); }
+        }
+
+        [TestCase("postprocessing")]
+        [TestCase("overlay")]
+        [TestCase("cameraData")]
+        public void PreviouslyEligibleCameraReleasesWhenItsRenderEligibilityChanges(string reason)
+        {
+            Assert.That(TopDown3DCampOpticsStack.TryApply(camera), Is.True);
+            var owned = VolumeManager.instance.stack;
+            switch (reason)
+            {
+                case "postprocessing": cameraData.renderPostProcessing = false; break;
+                case "overlay": cameraData.renderType = CameraRenderType.Overlay; break;
+                case "cameraData": Object.DestroyImmediate(cameraData); break;
+            }
+            Assert.That(TopDown3DCampOpticsStack.TryApply(camera), Is.False);
+            Assert.That(owned.isValid, Is.False);
+            Assert.That(VolumeManager.instance.stack, Is.SameAs(originalManagerStack));
+        }
+
+        [Test]
+        public void CameraDisableReleasesIdleOwnershipButAllowsManualRenderAcquisition()
+        {
+            Assert.That(TopDown3DCampOpticsStack.TryApply(camera), Is.True);
+            var owned = VolumeManager.instance.stack;
+            camera.enabled = false;
+            typeof(TopDown3DSceneRenderingOverride).GetMethod("Update", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(binding, null);
+            Assert.That(owned.isValid, Is.False);
+            Assert.That(VolumeManager.instance.stack, Is.SameAs(originalManagerStack));
+            Assert.That(TopDown3DCampOpticsStack.TryApply(camera), Is.True,
+                "Disabled cameras remain eligible for explicit Camera.Render.");
+            var manualOwned = VolumeManager.instance.stack;
+            EndCamera(camera);
+            Assert.That(manualOwned.isValid, Is.False, "A manual disabled-camera render does not retain idle ownership.");
+            Assert.That(VolumeManager.instance.stack, Is.SameAs(originalManagerStack));
+        }
+
+        [Test]
+        public void FallbackFocusRetriesDelayedSpawnAndReacquiresRespawn()
+        {
+            camera.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+            optics.followPlayerFocus = true; optics.depthMode = DepthOfFieldMode.Bokeh;
+            optics.focusDistance = 24f;
+            Assert.That(TopDown3DCampOpticsStack.TryApply(camera), Is.True);
+            Assert.That(VolumeManager.instance.stack.GetComponent<DepthOfField>().focusDistance.value, Is.EqualTo(24f));
+            TopDown3DCampOpticsStack.Restore(camera);
+            var first = new GameObject("Delayed focus-only motor proxy");
+            SceneManager.MoveGameObjectToScene(first, studyScene);
+            first.transform.position = new Vector3(0f, 0f, 30f);
+            first.AddComponent<TopDown3DPlayerMotor>();
+            GameObject replacement = null;
+            try
+            {
+                // Control the scheduler deadline rather than sleeping or advancing gameplay.
+                var states = (System.Collections.IDictionary)typeof(TopDown3DCampOpticsStack)
+                    .GetField("states", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null);
+                var state = states[camera.GetInstanceID()];
+                var deadline = state.GetType().GetField("nextFocusSearchTime");
+                deadline.SetValue(state, double.MaxValue);
+                Assert.That(TopDown3DCampOpticsStack.TryApply(camera), Is.True);
+                Assert.That(VolumeManager.instance.stack.GetComponent<DepthOfField>().focusDistance.value, Is.EqualTo(24f),
+                    "Absent-target searches must not run on every render.");
+                TopDown3DCampOpticsStack.Restore(camera);
+                deadline.SetValue(state, 0d);
+                Assert.That(TopDown3DCampOpticsStack.TryApply(camera), Is.True);
+                Assert.That(VolumeManager.instance.stack.GetComponent<DepthOfField>().focusDistance.value, Is.EqualTo(30f).Within(.001f));
+                TopDown3DCampOpticsStack.Restore(camera);
+                Object.DestroyImmediate(first);
+                replacement = new GameObject("Replacement focus-only motor proxy");
+                SceneManager.MoveGameObjectToScene(replacement, studyScene);
+                replacement.transform.position = new Vector3(0f, 0f, 40f);
+                replacement.AddComponent<TopDown3DPlayerMotor>();
+                deadline.SetValue(state, double.MaxValue);
+                Assert.That(TopDown3DCampOpticsStack.TryApply(camera), Is.True);
+                Assert.That(VolumeManager.instance.stack.GetComponent<DepthOfField>().focusDistance.value, Is.EqualTo(40f).Within(.001f),
+                    "Destroyed targets invalidate the old retry deadline and history.");
+            }
+            finally { if (first != null) Object.DestroyImmediate(first); if (replacement != null) Object.DestroyImmediate(replacement); }
+        }
+
+        [Test]
+        public void FocusBehindCameraUsesConfiguredFallbackAndRecoversWhenVisible()
+        {
+            var anchor = new GameObject("Behind-camera focus anchor");
+            SceneManager.MoveGameObjectToScene(anchor, studyScene);
+            try
+            {
+                camera.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+                optics.followPlayerFocus = true; optics.depthMode = DepthOfFieldMode.Bokeh;
+                optics.focusDistance = 24f; optics.farStart = 32f; optics.farEnd = 75f;
+                anchor.transform.position = Vector3.back * 3f;
+                binding.ConfigureFocusTarget(anchor.transform, Vector3.zero);
+                Assert.That(TopDown3DCampOpticsStack.TryApply(camera), Is.True);
+                var dof = VolumeManager.instance.stack.GetComponent<DepthOfField>();
+                Assert.That(dof.focusDistance.value, Is.EqualTo(24f));
+                Assert.That(dof.gaussianStart.value, Is.EqualTo(32f));
+                Assert.That(dof.gaussianEnd.value, Is.EqualTo(75f));
+                TopDown3DCampOpticsStack.Restore(camera);
+                anchor.transform.position = Vector3.forward * 10f;
+                Assert.That(TopDown3DCampOpticsStack.TryApply(camera), Is.True);
+                Assert.That(VolumeManager.instance.stack.GetComponent<DepthOfField>().focusDistance.value, Is.EqualTo(10f).Within(.001f));
+            }
+            finally { Object.DestroyImmediate(anchor); }
+        }
+
+        [Test]
+        public void EarlyGaussianWritesParametersWithoutDuplicatingNativeDepthBlur()
+        {
+            optics.gaussianBeforeLens = true;
+            optics.gaussianHighQualitySampling = true;
+            optics.depthMode = DepthOfFieldMode.Gaussian;
+            optics.farStart = 35f; optics.farEnd = 80f; optics.gaussianRadius = 1f;
+            optics.bloomFilter = BloomFilterMode.Dual;
+            optics.bloomDownscale = BloomDownscaleMode.Quarter;
+            optics.bloomMaxIterations = 4;
+            Assert.That(optics.IsValid, Is.True);
+            Assert.That(TopDown3DCampOpticsStack.TryApply(camera), Is.True);
+            var stack = VolumeManager.instance.stack;
+            var dof = stack.GetComponent<DepthOfField>();
+            Assert.That(dof.mode.value, Is.EqualTo(DepthOfFieldMode.Off));
+            Assert.That(dof.gaussianStart.value, Is.EqualTo(35f));
+            Assert.That(dof.gaussianEnd.value, Is.EqualTo(80f));
+            Assert.That(dof.gaussianMaxRadius.value, Is.EqualTo(1f));
+            Assert.That(dof.highQualitySampling.value, Is.True);
+            Assert.That(stack.GetComponent<Bloom>().filter.value, Is.EqualTo(BloomFilterMode.Dual));
+            Assert.That(stack.GetComponent<Bloom>().downscale.value, Is.EqualTo(BloomDownscaleMode.Quarter));
+            Assert.That(stack.GetComponent<Bloom>().maxIterations.value, Is.EqualTo(4));
+            TopDown3DCampOpticsStack.Restore(camera);
+            optics.gaussianBeforeLens = false;
+            Assert.That(TopDown3DCampOpticsStack.TryApply(camera), Is.True);
+            Assert.That(VolumeManager.instance.stack.GetComponent<DepthOfField>().mode.value, Is.EqualTo(DepthOfFieldMode.Gaussian));
         }
 
         [Test]

@@ -17,9 +17,14 @@ namespace BooterBigArm.TopDown3D
         [Range(0f, 5f)] public float bloomThreshold = 1f;
         [Range(0f, 1f)] public float bloomScatter = .65f;
         public bool highQualityBloom = true;
+        public BloomFilterMode bloomFilter = BloomFilterMode.Gaussian;
+        public BloomDownscaleMode bloomDownscale = BloomDownscaleMode.Half;
+        [Range(2, 8)] public int bloomMaxIterations = 6;
         public Texture dirtTexture;
         [Range(0f, 5f)] public float dirtIntensity = .3f;
         public DepthOfFieldMode depthMode = DepthOfFieldMode.Off;
+        public bool gaussianBeforeLens;
+        public bool gaussianHighQualitySampling = true;
         [Min(.1f)] public float focusDistance = 20f;
         public bool followPlayerFocus;
         [Range(.01f, 2f)] public float focusSmoothingSeconds = .25f;
@@ -42,6 +47,10 @@ namespace BooterBigArm.TopDown3D
             && float.IsFinite(readableFarPadding) && float.IsFinite(farBlurTransition)
             && float.IsFinite(sunAngularDiameterDegrees) && float.IsFinite(flareVisibilityAttackSeconds)
             && float.IsFinite(flareVisibilityReleaseSeconds)
-            && (int)depthMode >= 0 && (int)depthMode <= (int)DepthOfFieldMode.Bokeh;
+            && (int)depthMode >= 0 && (int)depthMode <= (int)DepthOfFieldMode.Bokeh
+            && (!gaussianBeforeLens || depthMode != DepthOfFieldMode.Bokeh)
+            && (tonemapping == TonemappingMode.None || tonemapping == TonemappingMode.Neutral || tonemapping == TonemappingMode.ACES)
+            && (bloomFilter == BloomFilterMode.Gaussian || bloomFilter == BloomFilterMode.Dual || bloomFilter == BloomFilterMode.Kawase)
+            && (bloomDownscale == BloomDownscaleMode.Half || bloomDownscale == BloomDownscaleMode.Quarter);
     }
 }

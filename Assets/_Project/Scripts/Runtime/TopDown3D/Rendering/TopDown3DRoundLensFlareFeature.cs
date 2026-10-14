@@ -123,7 +123,9 @@ namespace BooterBigArm.TopDown3D
             var conservative = hasStudy && study.nativeOptics != null;
             var optics = conservative ? study.nativeOptics : null;
             if (hasStudy && (!study.flareEnabled || (conservative
-                && (!optics.IsValid || !optics.opticsEnabled || optics.depthMode != DepthOfFieldMode.Off
+                && (!optics.IsValid || !optics.opticsEnabled
+                    || (optics.depthMode != DepthOfFieldMode.Off && !optics.gaussianBeforeLens)
+                    || (optics.gaussianBeforeLens && !TopDown3DCampGaussianPass.ShaderSupported)
                     || !float.IsFinite(optics.sunAngularDiameterDegrees)
                     || !float.IsFinite(optics.flareVisibilityAttackSeconds)
                     || !float.IsFinite(optics.flareVisibilityReleaseSeconds)))))
@@ -180,7 +182,7 @@ namespace BooterBigArm.TopDown3D
                 conservative ? 1f : Mathf.Clamp01(aureoleOcclusion),
                 conservative ? 1f : Mathf.Clamp01(ghostOcclusion),
                 Mathf.Clamp(occlusionStability, 0f, 0.95f),
-                conservative ? Color.Lerp(study.deepSunColor, study.brightSunColor, Mathf.Clamp01(sunBrightness)) : tint,
+                conservative ? EvaluateStudyTint(study, sunBrightness) : tint,
                 primaryFlareSprite,
                 ghostRingSprite,
                 apertureGhostSprite,
@@ -189,6 +191,13 @@ namespace BooterBigArm.TopDown3D
                 conservative ? optics.flareVisibilityAttackSeconds : .06f,
                 conservative ? optics.flareVisibilityReleaseSeconds : .12f);
             renderer.EnqueuePass(pass);
+        }
+
+        public static Color EvaluateStudyTint(TopDown3DAtmosphereStudyProfile study, float fallbackBrightness)
+        {
+            float phase = PerpetualTwilightSun.Active != null ? PerpetualTwilightSun.Active.Brightness01
+                : Mathf.InverseLerp(.68f, 1.18f, fallbackBrightness);
+            return Color.Lerp(study.deepSunColor, study.brightSunColor, phase);
         }
 
         private Vector3 ResolveDirectionToSun(out float sunBrightness)

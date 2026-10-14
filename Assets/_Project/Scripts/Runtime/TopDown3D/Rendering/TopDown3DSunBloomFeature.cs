@@ -44,6 +44,8 @@ namespace BooterBigArm.TopDown3D
         private SunBloomPass pass;
         private Light fallbackDirectionalSun;
         private CampDepthRequirement campDepthRequirement;
+        private TopDown3DCampGaussianPass campGaussian;
+        private bool reportedGaussianFallback;
 
         private sealed class CampDepthRequirement : ScriptableRenderPass
         {
@@ -74,6 +76,8 @@ namespace BooterBigArm.TopDown3D
 
         public override void Create()
         {
+            campGaussian?.Dispose();
+            campGaussian = new TopDown3DCampGaussianPass();
             campDepthRequirement = new CampDepthRequirement();
             if (material != null && material.shader != bloomShader)
             {
@@ -117,7 +121,21 @@ namespace BooterBigArm.TopDown3D
             {
                 if (TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var selected)
                     && selected.nativeOptics.opticsEnabled && selected.nativeOptics.depthMode != DepthOfFieldMode.Off)
-                    renderer.EnqueuePass(campDepthRequirement);
+                {
+                    if (selected.nativeOptics.gaussianBeforeLens && selected.nativeOptics.depthMode == DepthOfFieldMode.Gaussian)
+                    {
+                        if (!campGaussian.IsSupported)
+                        {
+                            VolumeManager.instance.stack.GetComponent<DepthOfField>().mode.Override(DepthOfFieldMode.Gaussian);
+                            renderer.EnqueuePass(campDepthRequirement);
+                            if (!reportedGaussianFallback)
+                                Debug.LogWarning("Camp optics: early Gaussian unavailable; using native DOF with lens flare suppressed.");
+                            reportedGaussianFallback = true;
+                        }
+                        else renderer.EnqueuePass(campGaussian);
+                    }
+                    else renderer.EnqueuePass(campDepthRequirement);
+                }
                 return;
             }
             bool hasStudy = TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var study);
@@ -232,6 +250,7 @@ namespace BooterBigArm.TopDown3D
 
         protected override void Dispose(bool disposing)
         {
+            campGaussian?.Dispose();
             CoreUtils.Destroy(material);
             material = null;
             pass = null;

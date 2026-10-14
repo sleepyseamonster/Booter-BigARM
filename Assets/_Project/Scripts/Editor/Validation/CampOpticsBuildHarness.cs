@@ -46,7 +46,8 @@ namespace BooterBigArm.Editor
             var fixture = owner.AddComponent<TopDown3DCampOpticsPerformanceFixture>();
             fixture.outputCamera = camera;
             fixture.binding = camera.GetComponent<TopDown3DSceneRenderingOverride>();
-            var names = new[] { "Off", "Low", "Standard", "High", "Band", "Flare" };
+            var names = Array.IndexOf(Environment.GetCommandLineArgs(), "-campCombinedQualification") >= 0
+                ? new[] { "Off", "Combined" } : new[] { "Off", "Low", "Standard", "High", "Band", "Flare", "Combined" };
             fixture.profiles = new TopDown3DAtmosphereStudyProfile[names.Length];
             var focus = frozenFocus;
             for (int i = 0; i < names.Length; i++)

@@ -26,14 +26,16 @@ namespace BooterBigArm.Editor
 
         [Serializable] private sealed class Report
         {
-            public string proof = "Actual URP camera readbacks; generated-mask bloom response and opaque solar occlusion only";
-            public string limitations = "No GPU timing, motion/partial/translucent occlusion, native data-driven flare, or gameplay acceptance proof";
+            public string proof = "Actual URP camera readbacks; combined Gaussian/flare/native bloom/dirt, lens invariance and opaque solar visibility";
+            public string limitations = "No GPU timing, continuous-motion/translucent occlusion, native data-driven flare, or gameplay acceptance proof";
             public string gpu, api, failure;
             public int width = Size, height = Size;
             public string dirtAsset = CampOpticsAuthoring.Textures + "/LensDustFine.png";
             public bool linearDirtImport, initializedAtEntry, stackRestored = true;
             public bool sunRestored, targetsRestored, activeSceneRestored;
             public bool dirtRespondsToBloom, dirtAbsentWithoutBloom, clearSunProducesFlare, blockedSunHasNoFlare;
+            public bool combinedDofActive, combinedDirtActive, combinedFlareActive, lensUnaffectedByDof, combinedBlockedSun;
+            public bool combinedPartialSun, combinedOffscreenSun;
             public Difference[] comparisons;
         }
 
@@ -188,6 +190,57 @@ namespace BooterBigArm.Editor
                 var blockedDifference = Compare("Fully blocked sun: first enabled frame versus disabled", blockedOn, blockedOff);
                 differences.Add(blockedDifference);
                 report.blockedSunHasNoFlare = blockedDifference.maxAbsoluteRgb <= .0001f;
+
+                blocker.SetActive(false);
+                // Prove the lens is downstream of world DOF on a black scene, then
+                // exercise all producers together at the selected bloom/dirt strengths.
+                optics.depthMode = DepthOfFieldMode.Gaussian; optics.gaussianBeforeLens = true;
+                optics.farStart = 2f; optics.farEnd = 4f; optics.gaussianRadius = .6f;
+                optics.bloomEnabled = true; optics.bloomIntensity = .18f; optics.bloomThreshold = 1f;
+                optics.bloomScatter = .65f; optics.dirtIntensity = .3f;
+                profile.flareEnabled = true;
+                var lensWithDof = Capture("Combined-lens-world-DOF-on");
+                optics.depthMode = DepthOfFieldMode.Off;
+                var lensWithoutDof = Capture("Combined-lens-world-DOF-off");
+                var invariant = Compare("Lens artifacts: world DOF on versus off, black scene", lensWithDof, lensWithoutDof);
+                differences.Add(invariant); report.lensUnaffectedByDof = invariant.maxAbsoluteRgb <= .0001f;
+                foreach (var emitter in emitters) emitter.SetActive(true);
+                optics.depthMode = DepthOfFieldMode.Gaussian;
+                var combined = Capture("Combined-all-effects");
+                optics.depthMode = DepthOfFieldMode.Off;
+                var combinedNoDof = Capture("Combined-without-world-DOF");
+                var dofDifference = Compare("Combined: Gaussian versus no world DOF", combined, combinedNoDof);
+                differences.Add(dofDifference); report.combinedDofActive = dofDifference.maxAbsoluteRgb > .0001f;
+                optics.depthMode = DepthOfFieldMode.Gaussian; optics.dirtIntensity = 0f;
+                var combinedNoDirt = Capture("Combined-without-lens-dust");
+                var dirtDifference = Compare("Combined: dirt 0.3 versus zero", combined, combinedNoDirt);
+                differences.Add(dirtDifference); report.combinedDirtActive = dirtDifference.maxAbsoluteRgb > .0001f;
+                optics.dirtIntensity = .3f; profile.flareEnabled = false;
+                var combinedNoFlare = Capture("Combined-without-lens-flare");
+                var flareDifference = Compare("Combined: lens flare on versus off", combined, combinedNoFlare);
+                differences.Add(flareDifference); report.combinedFlareActive = flareDifference.maxAbsoluteRgb > .0001f;
+                profile.flareEnabled = true;
+                Capture("Combined-visible-history");
+                blocker.SetActive(true);
+                var combinedBlocked = Capture("Combined-blocked-first-frame", 1);
+                profile.flareEnabled = false;
+                var combinedBlockedOff = Capture("Combined-blocked-flare-off");
+                var combinedBlockedDifference = Compare("Combined: opaque blocking first frame versus flare off", combinedBlocked, combinedBlockedOff);
+                differences.Add(combinedBlockedDifference); report.combinedBlockedSun = combinedBlockedDifference.maxAbsoluteRgb <= .0001f;
+                blocker.transform.position += camera.transform.right * .75f;
+                var partialOff = Capture("Combined-partial-flare-off");
+                profile.flareEnabled = true;
+                var partialOn = Capture("Combined-partial-flare-on");
+                var partialDifference = Compare("Combined: half-disc opaque occlusion", partialOn, partialOff);
+                differences.Add(partialDifference);
+                report.combinedPartialSun = partialDifference.maxAbsoluteRgb > .0001f
+                    && partialDifference.meanAbsoluteRgb < flareDifference.meanAbsoluteRgb;
+                light.transform.rotation = Quaternion.LookRotation(camera.transform.forward, camera.transform.up);
+                var behindOn = Capture("Combined-behind-camera-flare-on", 1);
+                profile.flareEnabled = false;
+                var behindOff = Capture("Combined-behind-camera-flare-off");
+                var behindDifference = Compare("Combined: behind-camera source versus flare off", behindOn, behindOff);
+                differences.Add(behindDifference); report.combinedOffscreenSun = behindDifference.maxAbsoluteRgb <= .0001f;
             }
             catch (Exception exception) { failure = exception; report.failure = exception.ToString(); }
             finally
@@ -226,10 +279,13 @@ namespace BooterBigArm.Editor
             }
             if (failure != null) throw new InvalidOperationException("Lens fixture could not complete; inspect its report.", failure);
             if (!report.dirtRespondsToBloom || !report.dirtAbsentWithoutBloom || !report.clearSunProducesFlare
+                || !report.combinedDofActive || !report.combinedDirtActive || !report.combinedFlareActive
+                || !report.lensUnaffectedByDof || !report.combinedBlockedSun
+                || !report.combinedPartialSun || !report.combinedOffscreenSun
                 || !report.blockedSunHasNoFlare || !report.stackRestored || !report.sunRestored
                 || !report.targetsRestored || !report.activeSceneRestored)
                 throw new InvalidOperationException("Lens camera fixture gate failed; inspect Logs/CampOpticsLensFixture/report.json.");
-            Debug.Log("CAMP_OPTICS_LENS_FIXTURE_OK: native bloom-lit dirt and immediate opaque solar occlusion, restored state.");
+            Debug.Log("CAMP_OPTICS_LENS_FIXTURE_OK: combined world DOF/flare/bloom/dust, partial and immediate opaque occlusion, restored state.");
         }
 
         private static GameObject NewObject(string name, Scene scene)
