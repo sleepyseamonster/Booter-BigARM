@@ -457,6 +457,7 @@ namespace BooterBigArm.TopDown3D
             AdvanceCrouchRecovery();
             if (PresentAnimationAction()) return;
             if (PresentCrouchPose()) return;
+            if (PresentStandingPoseBlend()) return;
 
             var snapshot = motor.LocomotionSnapshot;
             if (visualInstance != null)
@@ -1052,6 +1053,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDestroy()
         {
+            ReleasePoseBlend();
             ReleaseCrouchPresentation();
             foreach (var mesh in cloakMeshes)
                 if (mesh != null) { if (Application.isPlaying) Destroy(mesh); else DestroyImmediate(mesh); }
@@ -1064,6 +1066,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDisable()
         {
+            ReleasePoseBlend();
             ReleaseAnimationPresentation();
             EndGather();
             ResetTransitionState(TopDown3DLocomotionState.Idle);

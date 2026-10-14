@@ -17,7 +17,7 @@ namespace BooterBigArm.TopDown3D
         private Func<bool> ownsInput;
         private string selectedSource;
         private DelegateResetParticipant legacyReset, vitalsReset, inputReset;
-        public bool IsBusy => coordinator != null && coordinator.IsBusy;
+        public bool IsBusy => coordinator != null && coordinator.IsBusy || crouch!=null && crouch.Transitioning;
         public TopDown3DPlayerMotor Player => player;
         public AnimationPlaygroundActionCoordinator Coordinator => coordinator;
 

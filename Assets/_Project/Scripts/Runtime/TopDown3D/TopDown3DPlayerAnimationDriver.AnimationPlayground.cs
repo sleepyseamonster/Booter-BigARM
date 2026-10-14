@@ -60,13 +60,14 @@ namespace BooterBigArm.TopDown3D
             for (var i = 0; i < ClipCount; i++) mixer.SetInputWeight(i, i == AnimationActionIndex ? 1 : 0);
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition+Vector3.up*animationHeightCorrection, Quaternion.Euler(visualLocalEulerAngles));
             CurrentLocomotionState = TopDown3DLocomotionState.ConstrainedAction;
+            ApplyPoseBlend();
             // No legacy locomotion/contact clock advances while this branch owns the pose.
             return true;
         }
 
         public bool TryEmitAnimationFootContact(object owner, TopDown3DFootSide side, float speed)
         {
-            if (owner == null || !ReferenceEquals(owner, animationPresentationOwner) || animationPreview || motor == null
+            if (owner == null || !ReferenceEquals(owner, animationPresentationOwner) || animationPreview || PoseBlendOwned || motor == null
                 || !motor.AnimationSnapshot.Supported || !float.IsFinite(speed) || speed < 0) return false;
             if (!PresentAnimationAction()) return false;
             playableGraph.Evaluate(0); // Sample the owned pose before reading its contact position.

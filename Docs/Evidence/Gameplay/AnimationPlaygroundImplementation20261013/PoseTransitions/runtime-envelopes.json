@@ -1,0 +1,101 @@
+{
+    "state": "runtime-blend-envelope-not-physical-qualified",
+    "blends": [
+        {
+            "name": "Boundary0Phase0",
+            "minimumSole": -0.9121293425559998,
+            "maximumBodyHeight": 1.791168212890625,
+            "maximumCapsuleGap": -0.19902785122394563
+        },
+        {
+            "name": "Boundary1Phase0",
+            "minimumSole": -0.9243077039718628,
+            "maximumBodyHeight": 1.2355587482452393,
+            "maximumCapsuleGap": -0.07921403646469116
+        },
+        {
+            "name": "Boundary2Phase0",
+            "minimumSole": -0.9203471541404724,
+            "maximumBodyHeight": 1.2355587482452393,
+            "maximumCapsuleGap": -0.07921403646469116
+        },
+        {
+            "name": "Boundary3Phase0",
+            "minimumSole": -0.9102475643157959,
+            "maximumBodyHeight": 1.793893814086914,
+            "maximumCapsuleGap": -0.012205660343170166
+        },
+        {
+            "name": "Boundary0Phase1",
+            "minimumSole": -0.9109079837799072,
+            "maximumBodyHeight": 1.7912096977233887,
+            "maximumCapsuleGap": -0.19902785122394563
+        },
+        {
+            "name": "Boundary1Phase1",
+            "minimumSole": -0.9243077039718628,
+            "maximumBodyHeight": 1.2355587482452393,
+            "maximumCapsuleGap": -0.07921403646469116
+        },
+        {
+            "name": "Boundary2Phase1",
+            "minimumSole": -0.9217259287834168,
+            "maximumBodyHeight": 1.2728276252746583,
+            "maximumCapsuleGap": -0.08098956942558289
+        },
+        {
+            "name": "Boundary3Phase1",
+            "minimumSole": -0.9102475643157959,
+            "maximumBodyHeight": 1.793893814086914,
+            "maximumCapsuleGap": -0.012205660343170166
+        },
+        {
+            "name": "Boundary0Phase2",
+            "minimumSole": -0.9112200736999512,
+            "maximumBodyHeight": 1.7913357019424439,
+            "maximumCapsuleGap": -0.19902785122394563
+        },
+        {
+            "name": "Boundary1Phase2",
+            "minimumSole": -0.9243077039718628,
+            "maximumBodyHeight": 1.2355587482452393,
+            "maximumCapsuleGap": -0.07921403646469116
+        },
+        {
+            "name": "Boundary2Phase2",
+            "minimumSole": -0.9233400821685791,
+            "maximumBodyHeight": 1.2732586860656739,
+            "maximumCapsuleGap": -0.08162248134613037
+        },
+        {
+            "name": "Boundary3Phase2",
+            "minimumSole": -0.9102475643157959,
+            "maximumBodyHeight": 1.793893814086914,
+            "maximumCapsuleGap": -0.012205660343170166
+        },
+        {
+            "name": "Boundary0Phase3",
+            "minimumSole": -0.9107780456542969,
+            "maximumBodyHeight": 1.791149616241455,
+            "maximumCapsuleGap": -0.19902785122394563
+        },
+        {
+            "name": "Boundary1Phase3",
+            "minimumSole": -0.9243077039718628,
+            "maximumBodyHeight": 1.2355587482452393,
+            "maximumCapsuleGap": -0.07921403646469116
+        },
+        {
+            "name": "Boundary2Phase3",
+            "minimumSole": -0.9216550588607788,
+            "maximumBodyHeight": 1.240907907485962,
+            "maximumCapsuleGap": -0.0788615345954895
+        },
+        {
+            "name": "Boundary3Phase3",
+            "minimumSole": -0.9102475643157959,
+            "maximumBodyHeight": 1.793893814086914,
+            "maximumCapsuleGap": -0.012205660343170166
+        }
+    ]
+}

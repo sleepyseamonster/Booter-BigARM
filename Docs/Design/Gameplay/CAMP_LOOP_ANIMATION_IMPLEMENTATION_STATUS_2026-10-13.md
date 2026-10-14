@@ -73,6 +73,12 @@ Blocked controller disposal now transfers the safe pose and posture lease to the
 
 Sixteen measured boundaries expose hard-cut jumps of about 12–15cm at the feet and up to 82cm at a hand. Owned transition blending and its floor/body envelope qualification are the next dependency before enabling the family. See [lifecycle and boundary evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/CrouchLifecycle/README.md).
 
+## Owned pose transitions — October 14
+
+The existing graph now freezes its active weighted clip sources and blends them into entry, crouch idle, exit and standing idle under one Animator output. Fixed-step settling holds a temporary existing-motor constraint and respects pause/reset/disable/disposal. Seventy-two focused Edit Mode tests pass without failures or skips.
+
+The actual runtime blend fixture retains protected capsule clearance but exposes up to 14.3mm of foot penetration. Transition-specific grounding remains required before enabling physical crouching; the private qualification flags remain false. See [pose transition evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/PoseTransitions/README.md). Remaining families and requested motion gaps stay in the active goal.
+
 ## Validation and source boundaries
 
 File restoration fixtures pass twelve checks. The isolated Unity candidate at `D:\BooterBigArmValidation\AnimationPlayground20261013` contains the Camp Loop dependency closure and active scripts/settings/UI/character/test assets; it is a validation copy, not a Git worktree. Initial session and targeting regressions pass 44 tests. All 25 menu regressions pass after the candidate's missing SystemMenu prefab dependency was restored. Installed-session checks are repeated against the saved scene. See the [foundation evidence](../../Evidence/Gameplay/AnimationPlaygroundImplementation20261013/Foundations/README.md).

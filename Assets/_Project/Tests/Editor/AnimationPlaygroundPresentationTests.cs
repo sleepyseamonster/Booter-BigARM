@@ -64,6 +64,29 @@ namespace BooterBigArm.Tests
             Assert.That(driver.AnimationPresentationOwned,Is.False);Assert.That(mixer.GetInput(21).IsValid(),Is.False);
             Assert.That(driver.TryBeginAnimationPresentation(owner,clip),Is.True);
         }
+        [Test] public void PoseSnapshotFreezesItsSourcesAndBlendsUnderTheExistingOutput()
+        {
+            var source=AnimationClipPlayable.Create(graph,clip);source.SetTime(.25);source.SetSpeed(0);
+            graph.Connect(source,0,mixer,0);mixer.SetInputWeight(0,1);
+            visual.transform.localPosition=Vector3.up*.04f;
+            Assert.That(driver.TryCapturePoseBlend(owner,.2f),Is.True);
+            Assert.That(driver.TryCapturePoseBlend(new object(),.2f),Is.False);
+            Assert.That(driver.TryBeginAnimationPresentation(owner,clip),Is.True);
+            driver.SetAnimationPresentationTime(owner,.8);driver.SetAnimationHeightCorrection(owner,.1f);
+            Assert.That(driver.SetPoseBlendElapsed(owner,.1),Is.True);
+            Assert.That(driver.SetPoseBlendElapsed(owner,.05),Is.False);
+            typeof(TopDown3DPlayerAnimationDriver).GetMethod("PresentAnimationAction",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(driver,null);
+            Assert.That(graph.GetOutputCount(),Is.EqualTo(1));Assert.That(mixer.GetInputWeight(21),Is.EqualTo(.5f).Within(.00001));
+            Assert.That(mixer.GetInputWeight(23),Is.EqualTo(.5f).Within(.00001));
+            Assert.That(visual.transform.localPosition.y,Is.EqualTo(.07f).Within(.00001));
+            var snapshot=(AnimationMixerPlayable)mixer.GetInput(23);source.SetTime(.9);
+            Assert.That(snapshot.GetInput(0).GetTime(),Is.EqualTo(.25).Within(.00001));Assert.That(snapshot.GetInput(0).GetSpeed(),Is.Zero);
+            Assert.That(driver.TryCapturePoseBlend(owner,.2f),Is.True);
+            snapshot=(AnimationMixerPlayable)mixer.GetInput(23);Assert.That(snapshot.GetInputCount(),Is.EqualTo(2));
+            driver.SetPoseBlendElapsed(owner,.2);
+            typeof(TopDown3DPlayerAnimationDriver).GetMethod("PresentAnimationAction",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(driver,null);
+            Assert.That(driver.PoseBlendOwned,Is.False);Assert.That(mixer.GetInputWeight(21),Is.EqualTo(1));
+        }
         [Test] public void MotorBoundaryOwnsTheClockEffectsPauseAndResetCancellation()
         {
             coordinator=actor.AddComponent<AnimationPlaygroundActionCoordinator>();var registry=new AnimationPlaygroundResetRegistry();var motor=actor.GetComponent<TopDown3DPlayerMotor>();

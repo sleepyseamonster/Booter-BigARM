@@ -82,11 +82,11 @@ namespace BooterBigArm.TopDown3D
             }
             correction+=crouchProfile.GroundCorrection(crouchPose.Direction,crouchPose.MovingWeight,crouchPose.Phase);
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition+Vector3.up*correction,Quaternion.Euler(visualLocalEulerAngles));
-            CurrentLocomotionState=TopDown3DLocomotionState.Sustained;return true;
+            ApplyPoseBlend();CurrentLocomotionState=TopDown3DLocomotionState.Sustained;return true;
         }
         public bool TryEmitCrouchFootContact(object owner,TopDown3DFootSide side,float speed)
         {
-            if(owner==null || !ReferenceEquals(owner,crouchPresentationOwner) || !crouchPose.Supported || animationPresentationOwner!=null || !float.IsFinite(speed) || speed<0)return false;
+            if(owner==null || !ReferenceEquals(owner,crouchPresentationOwner) || !crouchPose.Supported || animationPresentationOwner!=null || PoseBlendOwned || !float.IsFinite(speed) || speed<0)return false;
             if(!PresentCrouchPose())return false;playableGraph.Evaluate(0);return EmitFootContact(side,side==TopDown3DFootSide.Left ? leftFoot : rightFoot,speed);
         }
         private void ReleaseCrouchPresentation()

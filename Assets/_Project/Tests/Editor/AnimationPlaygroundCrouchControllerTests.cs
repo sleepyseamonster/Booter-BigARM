@@ -42,6 +42,8 @@ namespace BooterBigArm.Tests
             var shape=actor.GetComponent<CapsuleCollider>();shape.height=1.82f;shape.radius=.2f;shape.center=Vector3.zero;
             visual=new GameObject("Owned crouch visual");visual.transform.SetParent(actor.transform,false);var animator=visual.AddComponent<Animator>();
             graph=PlayableGraph.Create("Crouch ownership fixture");mixer=AnimationMixerPlayable.Create(graph,22);
+            var idlePlayable=AnimationClipPlayable.Create(graph,profile.Get(AnimationPlaygroundCrouchRole.Idle).clip);
+            idlePlayable.SetSpeed(0);graph.Connect(idlePlayable,0,mixer,0);mixer.SetInputWeight(0,1);
             var output=AnimationPlayableOutput.Create(graph,"Only output",animator);output.SetSourcePlayable(mixer);graph.Play();
             Set(driver,"motor",motor);Set(driver,"visualInstance",visual);Set(driver,"visualLocalPosition",Vector3.zero);
             Set(driver,"playableGraph",graph);Set(driver,"mixer",mixer);
@@ -62,8 +64,13 @@ namespace BooterBigArm.Tests
         }
         private void FinishTransition()
         {
-            for(var i=0;i<300 && coordinator.IsBusy;i++){Call(coordinator,"PrepareMotion");Call(coordinator,"CommitEffects");}
+            for(var i=0;i<400 && (coordinator.IsBusy || crouch.Transitioning);i++)
+            {
+                if(coordinator.IsBusy){Call(coordinator,"PrepareMotion");Call(coordinator,"CommitEffects");}
+                else Call(crouch,"AdvanceLocomotion");
+            }
             Assert.That(coordinator.IsBusy,Is.False);
+            Assert.That(crouch.Transitioning,Is.False);
         }
         private void Enter(){Assert.That(crouch.TryToggle(),Is.True,crouch.LastFailure);FinishTransition();}
         private void PutRoof()
@@ -202,6 +209,18 @@ namespace BooterBigArm.Tests
             Enter();Call(crouch,"OnDisable");Assert.That(crouch.State,Is.EqualTo(AnimationPlaygroundCrouchState.Standing));
             Assert.That(driver.CrouchPresentationOwned,Is.False);Assert.That(crouch.TryCancel(),Is.False);
             Set(input,"<MoveValue>k__BackingField",Vector2.right);Call(motor,"FixedUpdate");Assert.That(motor.Velocity.x,Is.GreaterThan(0));
+        }
+        [Test] public void SettlingBlendPausesAndResetReleasesItsGraphAndMotorLease()
+        {
+            Assert.That(crouch.TryToggle(),Is.True);
+            for(var i=0;i<100 && coordinator.IsBusy;i++){Call(coordinator,"PrepareMotion");Call(coordinator,"CommitEffects");}
+            Assert.That(crouch.State,Is.EqualTo(AnimationPlaygroundCrouchState.SettlingCrouch));
+            Assert.That(driver.PoseBlendOwned,Is.True);Assert.That(motor.IsActionConstrained,Is.True);
+            paused=true;for(var i=0;i<20;i++)Call(crouch,"AdvanceLocomotion");
+            Assert.That(crouch.State,Is.EqualTo(AnimationPlaygroundCrouchState.SettlingCrouch));
+            Assert.That(registry.TryReset(),Is.True,registry.LastFailure);
+            Assert.That(driver.PoseBlendOwned,Is.False);Assert.That(motor.IsActionConstrained,Is.False);
+            Assert.That(crouch.State,Is.EqualTo(AnimationPlaygroundCrouchState.Standing));
         }
     }
 }

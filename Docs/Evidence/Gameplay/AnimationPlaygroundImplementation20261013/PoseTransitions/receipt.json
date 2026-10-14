@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "date": "2026-10-14",
+  "state": "owned-transition-contract-qualified-physical-grounding-pending",
+  "parent_commit": "a8a6d8fa96b76596cb38e1068dd8389e6605ce3c",
+  "tests": {
+    "count": 72,
+    "passed": 72,
+    "failed": 0,
+    "skipped": 0
+  },
+  "runtime_blends": 16,
+  "minimum_sole": -0.9243077039718628,
+  "feet_plane": -0.91,
+  "protected_capsule_clearance": 0.012205660343170166,
+  "animator_outputs": 1,
+  "blend_seconds": 0.18,
+  "scene_sha256": "cbf32a29aed75c475b23ff5d0fd8e6dca4711725853ca4512b01a3badc66fc44",
+  "private_asset_mutation": false,
+  "files": [
+    {
+      "path": "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundCrouchBoundaryAuthoring.cs",
+      "sha256": "5f8640b48db8ba763f9a7e3c7248d2415983f284f09dbeec7f0f04256400c144",
+      "candidate_sha256": "5f8640b48db8ba763f9a7e3c7248d2415983f284f09dbeec7f0f04256400c144"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundCrouchController.cs",
+      "sha256": "4553cec27acb8eee144d320b9d14253626d320a86186594545149f3d879a1d09",
+      "candidate_sha256": "4553cec27acb8eee144d320b9d14253626d320a86186594545149f3d879a1d09"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.Player.cs",
+      "sha256": "4ba9e5856377d926c7c609be3b6a9d28df3d2f6197bad271266b2dd04c4cd98f",
+      "candidate_sha256": "4ba9e5856377d926c7c609be3b6a9d28df3d2f6197bad271266b2dd04c4cd98f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.AnimationPlayground.cs",
+      "sha256": "b5bf35c75df5d5232845ab1d91167685eb02ee8bfe27373905116191b04600f4",
+      "candidate_sha256": "b5bf35c75df5d5232845ab1d91167685eb02ee8bfe27373905116191b04600f4"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.Crouch.cs",
+      "sha256": "3e069c8a50377e362f5477e727cb2227ec003b870bc23577855958b20f30e9c8",
+      "candidate_sha256": "3e069c8a50377e362f5477e727cb2227ec003b870bc23577855958b20f30e9c8"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs",
+      "sha256": "fa0b4fafdab2667592d0abce25c0854f1d93ebdf2b14777e974737c70eadad05",
+      "candidate_sha256": "fa0b4fafdab2667592d0abce25c0854f1d93ebdf2b14777e974737c70eadad05"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.PoseBlend.cs",
+      "sha256": "d567556ad0f53c84dfcf537ed6012586c16a887067fab10fb354ce30baab4d23",
+      "candidate_sha256": "d567556ad0f53c84dfcf537ed6012586c16a887067fab10fb354ce30baab4d23"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.PoseBlend.cs.meta",
+      "sha256": "75594bf517b82fb01f2b33c84e1f61ae9bee2485436e877eeeb6f08e41dc6fea",
+      "candidate_sha256": "75594bf517b82fb01f2b33c84e1f61ae9bee2485436e877eeeb6f08e41dc6fea"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundCrouchControllerTests.cs",
+      "sha256": "96c967ea0ecd3f9ef4b39f93b8ceb10ca4367ea098b12e18839a06579ea1234a",
+      "candidate_sha256": "96c967ea0ecd3f9ef4b39f93b8ceb10ca4367ea098b12e18839a06579ea1234a"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundPresentationTests.cs",
+      "sha256": "12bcc7c9390ef60354317daa6484fae1aa3cc73c8bc08a4a25d00e0d6f021ec5",
+      "candidate_sha256": "12bcc7c9390ef60354317daa6484fae1aa3cc73c8bc08a4a25d00e0d6f021ec5"
+    }
+  ],
+  "remaining": [
+    "transition-specific grounding",
+    "equipment/terrain contact acceptance",
+    "other physical families and motion gaps",
+    "author visual/contact/feel acceptance"
+  ]
+}

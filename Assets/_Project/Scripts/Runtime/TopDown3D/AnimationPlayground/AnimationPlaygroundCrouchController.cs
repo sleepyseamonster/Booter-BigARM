@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BooterBigArm.TopDown3D
 {
-    public enum AnimationPlaygroundCrouchState { Standing, Entering, Crouched, Exiting }
+    public enum AnimationPlaygroundCrouchState { Standing, Entering, Crouched, Exiting, SettlingCrouch, SettlingStanding }
 
     [DisallowMultipleComponent]
     public sealed class AnimationPlaygroundCrouchController : MonoBehaviour, IAnimationPlaygroundResetParticipant
@@ -18,9 +18,13 @@ namespace BooterBigArm.TopDown3D
         private Vector3 facing;
         private bool exitRequested,disposed,resetPending,suspended;
         private float contactSpeed;
+        private const float BlendSeconds=.18f;
+        private float settleElapsed;
         public AnimationPlaygroundCrouchState State {get;private set;}
         public bool Active=>State!=AnimationPlaygroundCrouchState.Standing;
-        public bool Transitioning=>State==AnimationPlaygroundCrouchState.Entering || State==AnimationPlaygroundCrouchState.Exiting;
+        private bool TimedTransition=>State==AnimationPlaygroundCrouchState.Entering || State==AnimationPlaygroundCrouchState.Exiting;
+        private bool Settling=>State==AnimationPlaygroundCrouchState.SettlingCrouch || State==AnimationPlaygroundCrouchState.SettlingStanding;
+        public bool Transitioning=>TimedTransition || Settling;
         public string LastFailure {get;private set;}
         public string ResetId=>"CampLoop.Booter.Crouch";
         public AnimationPlaygroundResetStage ResetStage=>AnimationPlaygroundResetStage.Actor;
@@ -54,8 +58,8 @@ namespace BooterBigArm.TopDown3D
         {
             if(disposed || suspended || !isActiveAndEnabled)return Fail("Crouch input is unavailable.");
             if(resetPending)return Fail("Finish the safe actor reset first.");
-            if(State==AnimationPlaygroundCrouchState.Entering){exitRequested=true;return true;}
-            if(State==AnimationPlaygroundCrouchState.Exiting)return true;
+            if(State==AnimationPlaygroundCrouchState.Entering || State==AnimationPlaygroundCrouchState.SettlingCrouch){exitRequested=true;return true;}
+            if(State==AnimationPlaygroundCrouchState.Exiting || State==AnimationPlaygroundCrouchState.SettlingStanding)return true;
             return State==AnimationPlaygroundCrouchState.Crouched && TryExit();
         }
 
@@ -70,9 +74,10 @@ namespace BooterBigArm.TopDown3D
             var entry=profile.Get(role);
             var binding=new AnimationPlaygroundMotionBinding{sourceId="QualifiedCrouch."+role,clip=entry.clip,
                 readiness=AnimationPlaygroundMotionReadiness.PhysicalQualified};
+            if(!driver.TryCapturePoseBlend(this,BlendSeconds))return Fail("The current pose could not be reserved for blending.");
             if(!coordinator.TryBeginPhysical(binding,AnimationPlaygroundMotionMode.AlignedAction,null,
                 seconds=>TransitionIntent(entry,(float)(seconds/entry.clip.length)),null))
-                return Fail("The player pose or motor already has an owner.");
+            {driver.EndPoseBlend(this);return Fail("The player pose or motor already has an owner.");}
             driver.EndCrouchPresentation(this);
             State=role==AnimationPlaygroundCrouchRole.Enter ? AnimationPlaygroundCrouchState.Entering : AnimationPlaygroundCrouchState.Exiting;
             motor.SetLaboratoryCrouchFacing(coordinator,facing,true);
@@ -88,20 +93,27 @@ namespace BooterBigArm.TopDown3D
                 throw new InvalidOperationException("The posture transition was obstructed.");
             if(!driver.SetAnimationHeightCorrection(coordinator,entry.Correction(phase)))
                 throw new InvalidOperationException("The posture presentation lost its owner.");
+            driver.SetPoseBlendElapsed(this,phase*entry.clip.length);
             return new AnimationPlaygroundMotorIntent(Vector3.zero,facing,phase:phase);
         }
 
         private void CompleteTransition()
         {
-            if(!Transitioning)return;
+            if(!TimedTransition)return;
             var entering=State==AnimationPlaygroundCrouchState.Entering;
+            if(!driver.TryCapturePoseBlend(this,BlendSeconds))throw new InvalidOperationException("The completed transition could not preserve its outgoing pose.");
             coordinator.Cancel();
             if(!entering && motor.TryRestoreAnimationPosture(coordinator))
             {
-                State=AnimationPlaygroundCrouchState.Standing;motor.SetLaboratoryCrouchFacing(coordinator,facing,false);clock.Reset();return;
+                State=AnimationPlaygroundCrouchState.SettlingStanding;motor.SetLaboratoryCrouchFacing(coordinator,facing,false);clock.Reset();BeginSettle();return;
             }
             HoldCrouch();
-            if(entering && exitRequested){exitRequested=false;TryExit();}
+            State=AnimationPlaygroundCrouchState.SettlingCrouch;BeginSettle();
+        }
+        private void BeginSettle()
+        {
+            settleElapsed=0;
+            if(!motor.TryBeginActionConstraint(this))throw new InvalidOperationException("The settling pose could not preserve its motor constraint.");
         }
 
         private void HoldCrouch()
@@ -118,7 +130,20 @@ namespace BooterBigArm.TopDown3D
         private void AdvanceLocomotion()
         {
             if(resetPending || suspended || !isActiveAndEnabled)return;
-            if(Transitioning && !coordinator.IsBusy){LastFailure=coordinator.LastFailure;HoldCrouch();}
+            if(Settling)
+            {
+                if(paused?.Invoke()!=true)settleElapsed+=Time.fixedDeltaTime;
+                driver.SetPoseBlendElapsed(this,settleElapsed);
+                if(settleElapsed>=BlendSeconds)
+                {
+                    var crouched=State==AnimationPlaygroundCrouchState.SettlingCrouch;
+                    driver.EndPoseBlend(this);motor.EndActionConstraint(this);
+                    State=crouched ? AnimationPlaygroundCrouchState.Crouched : AnimationPlaygroundCrouchState.Standing;
+                    if(crouched && exitRequested){exitRequested=false;TryExit();}
+                }
+                return;
+            }
+            if(TimedTransition && !coordinator.IsBusy){LastFailure=coordinator.LastFailure;driver.EndPoseBlend(this);HoldCrouch();}
             if(State!=AnimationPlaygroundCrouchState.Crouched || coordinator.IsBusy)return;
             var velocity=motor.LaboratoryMeasuredVelocity;contactSpeed=Vector3.ProjectOnPlane(velocity,Vector3.up).magnitude;
             var local=new Vector2(Vector3.Dot(velocity,Vector3.Cross(Vector3.up,facing)),Vector3.Dot(velocity,facing));
@@ -141,7 +166,8 @@ namespace BooterBigArm.TopDown3D
         public void InvalidateForReset(uint epoch)
         {
             if(motor==null)return;
-            if(Transitioning)coordinator.Cancel();
+            if(TimedTransition)coordinator.Cancel();
+            driver.EndPoseBlend(this);motor.EndActionConstraint(this);
             if(motor.AnimationPosture==AnimationPlaygroundPosture.Crouched)HoldCrouch();
             else {driver.EndCrouchPresentation(this);State=AnimationPlaygroundCrouchState.Standing;}
             clock.Reset();resetPending=true;exitRequested=false;
@@ -158,7 +184,8 @@ namespace BooterBigArm.TopDown3D
             if(disposed)return;disposed=true;
             if(motor!=null)
             {
-                if(Transitioning)coordinator.Cancel();
+                if(TimedTransition)coordinator.Cancel();
+                driver.EndPoseBlend(this);motor.EndActionConstraint(this);
                 if(Active && !motor.TryRestoreAnimationPosture(coordinator))
                 {
                     HoldCrouch();
@@ -175,7 +202,8 @@ namespace BooterBigArm.TopDown3D
         private void OnDisable()
         {
             if(motor==null || disposed || !Active)return;
-            if(Transitioning)coordinator.Cancel();
+            if(TimedTransition)coordinator.Cancel();
+            driver.EndPoseBlend(this);motor.EndActionConstraint(this);
             if(motor.TryRestoreAnimationPosture(coordinator))
             {driver.EndCrouchPresentation(this);State=AnimationPlaygroundCrouchState.Standing;motor.SetLaboratoryCrouchFacing(coordinator,facing,false);}
             else HoldCrouch();
