@@ -1,0 +1,236 @@
+{
+  "research_date": "2026-10-14",
+  "scope": "Primary AAA developer techniques, supporting engine/optics research and read-only Camp Loop comparison. No Unity launch, rendering changes, benchmarks or gameplay smoke tests.",
+  "head_at_local_inspection": "f5b3d1d83a7568a49fb5d4f2389ce825edd5f896",
+  "sources": [
+    {
+      "id": "cod-aw",
+      "title": "Next Generation Post Processing in Call of Duty: Advanced Warfare",
+      "author": "Jorge Jimenez / Activision, presenting for Sledgehammer Games",
+      "year": 2014,
+      "type": "Developer conference presentation and author explanation",
+      "urls": [
+        "https://www.iryoku.com/next-generation-post-processing-in-call-of-duty-advanced-warfare/",
+        "https://www.iryoku.com/downloads/Next-Generation-Post-Processing-in-Call-of-Duty-Advanced-Warfare-v18.pptx"
+      ],
+      "edition": "Author-hosted v18; differs from older mirrored slide numbering",
+      "locators": [
+        "137: Xbox One performance",
+        "145: non-thresholded bloom",
+        "146-158: stability/downsampling",
+        "161: progressive tent upsample",
+        "167-168: partial Karis averaging",
+        "170: six R11G11B10 mip summary"
+      ],
+      "inspection": "Original PPTX ZIP slide/notes XML via HTTP byte ranges: 171 slide parts, 129 notes parts, about 0.5 MB retrieved from 427.56 MB archive. XML saved before a terminal Unicode print error; extraction complete. Images/movies were not retrieved.",
+      "local_cache": "Logs/AAAOpticsResearch20261014/cod-aw-slide-text.json",
+      "limit": "Documented development builds; no claim about every final shipping setting or current sequel.",
+      "local_cache_sha256": "ab606135128af10e4913bf464566971e97f3693c7aa9dfe3b31ed1f2abee32eb"
+    },
+    {
+      "id": "order-1886",
+      "title": "Deconstructing Post process of the Order 1886: developer replies",
+      "author": "Matt Pettineo (MJP), Ready at Dawn",
+      "year": 2015,
+      "type": "Firsthand developer technical explanation",
+      "urls": [
+        "https://gamedev.net/forums/topic/671939-deconstructing-post-process-of-the-order-1886/",
+        "https://therealmjp.github.io/posts/siggraph-follow-up/"
+      ],
+      "locators": [
+        "September 22: half-resolution 21x21 Gaussian compute bloom, quarter-resolution fixed flare kernels replacing FFT",
+        "September 24: compute/shared-memory filtering, tone curve, exposure and production limitations"
+      ],
+      "inspection": "Full developer replies read; personal SIGGRAPH post corroborates authorship on The Order. Other forum contributors were not treated as implementation authorities.",
+      "limit": "No isolated flare GPU timing or claim that all cinematics used the same settings."
+    },
+    {
+      "id": "crysis3",
+      "title": "Feast Your Eyes on a New CryENGINE 3 Tech Trailer",
+      "author": "Crytek",
+      "year": 2012,
+      "type": "Developer feature announcement",
+      "urls": [
+        "https://www.crytek.com/news/feast-your-eyes-on-a-new-cryengine-3-tech-trailer"
+      ],
+      "locators": [
+        "August 10 announcement body"
+      ],
+      "inspection": "Full developer page read",
+      "limit": "Confirms Crysis 3 feature association, not algorithms or final shipment parameters."
+    },
+    {
+      "id": "cryengine-optics",
+      "title": "Optical Flare System",
+      "author": "Crytek",
+      "year": null,
+      "type": "CRYENGINE V developer documentation",
+      "urls": [
+        "https://www.cryengine.com/docs/static/engines/cryengine-5/categories/23756816/pages/36868680"
+      ],
+      "locators": [
+        "Important Concepts / Occlusion Interaction",
+        "Basic Set / Ghost",
+        "Basic Set / Volumetric Shafts",
+        "Basic Set / Camera Orbs"
+      ],
+      "inspection": "Full relevant sections read",
+      "limit": "Later engine documentation; does not establish identical Crysis 3 release implementation or temporal-history algorithm."
+    },
+    {
+      "id": "killzone-shadow-fall",
+      "title": "Killzone Shadow Fall Demo Postmortem",
+      "author": "Michal Valient / Guerrilla",
+      "year": 2013,
+      "type": "Developer conference presentation",
+      "urls": [
+        "https://www.guerrilla-games.com/media/News/Files/Valient_Killzone_Shadow_Fall_Demo_Postmortem.pdf"
+      ],
+      "locators": [
+        "Post processing slide; numeric page not verified"
+      ],
+      "inspection": "Indexed original developer slide text; direct PDF fetch unavailable in web tool. Only its explicit feature list is used.",
+      "limit": "No inferred flare kernel, occlusion method or isolated performance. Killzone 2 screenshot reverse-engineering excluded."
+    },
+    {
+      "id": "destiny",
+      "title": "Destiny's Multithreaded Rendering Architecture",
+      "author": "Natalya Tatarchuk / Bungie",
+      "year": 2015,
+      "type": "Developer conference presentation",
+      "urls": [
+        "https://advances.realtimerendering.com/destiny/gdc_2015/Tatarchuk_GDC_2015__Destiny_Renderer_web.pdf"
+      ],
+      "locators": [
+        "PDF pages 155-157: light-shaft occlusion buffer, flares, completed frame",
+        "PDF page 158: view-specific renderer paths"
+      ],
+      "inspection": "Bounded read-only research delegate inspected original PDF in memory; root corroborated document attribution. Root web fetch unavailable.",
+      "limit": "Frame-pass evidence only; does not establish bloom filter, flare history or source visibility method."
+    },
+    {
+      "id": "mirrors-edge-catalyst",
+      "title": "Lighting the City of Glass",
+      "author": "Fabien Christin / DICE",
+      "year": 2016,
+      "type": "Developer conference presentation uploaded by Electronic Arts / DICE",
+      "urls": [
+        "https://www.slideshare.net/slideshow/lighting-the-city-of-glass/60383382"
+      ],
+      "locators": [
+        "14: physical camera exposure",
+        "22-24: HDR references and limitations",
+        "34: sky/cloud console timing",
+        "43-45: atmospheric art direction",
+        "46-47: time-of-day coordinated sun flare, exposure, bloom and disc size"
+      ],
+      "inspection": "Full relevant slide text on developer-uploaded deck read",
+      "limit": "Contains work-in-progress visuals and historical console timing; no transfer of budgets to current PC."
+    },
+    {
+      "id": "ghost-tsushima",
+      "title": "Real-Time Samurai Cinema",
+      "author": "Jasmin Patry / Sucker Punch Productions",
+      "year": 2021,
+      "type": "Developer conference presentation with speaker notes",
+      "urls": [
+        "https://advances.realtimerendering.com/s2021/jpatry_advances2021/index.html",
+        "https://www.glowybits.com/talks/real-time_samurai_cinema/real-time_samurai_cinema.pdf"
+      ],
+      "locators": [
+        "102-105: haze stability",
+        "129-130: illuminance-based exposure and sky/readability",
+        "135-140: bilateral grid, cost, ringing and halos"
+      ],
+      "inspection": "Developer HTML, PDF text and selected PDF screenshots inspected",
+      "limit": "Exposure/atmosphere reference; no bloom/flare algorithm attribution."
+    },
+    {
+      "id": "horizon-nubis",
+      "title": "Nubis, Evolved",
+      "author": "Andrew Schneider / Guerrilla",
+      "year": 2022,
+      "type": "Developer conference publication",
+      "urls": [
+        "https://www.guerrilla-games.com/read/nubis-evolved",
+        "https://d3d3g8mu99pzk9.cloudfront.net/AndrewSchneider/NubisEvolved/NubisEvolved-NoVideos.pdf"
+      ],
+      "locators": [
+        "Official abstract: Zero Dawn skybox timing, Forbidden West extensions, temporal artifacts"
+      ],
+      "inspection": "Official publication read; delegate inspected presentation PDF. Report uses abstract-level claims.",
+      "limit": "Cloud rendering reference, not bloom or lens flare."
+    },
+    {
+      "id": "frostbite-pbr",
+      "title": "Moving Frostbite to Physically Based Rendering",
+      "author": "Sebastien Lagarde and Charles de Rousiers",
+      "year": 2014,
+      "type": "Developer course notes",
+      "edition": "v3.2, author-hosted July 2015 revision",
+      "urls": [
+        "https://seblagarde.files.wordpress.com/2015/07/course_notes_moving_frostbite_to_pbr_v32.pdf"
+      ],
+      "locators": [
+        "Section 5.1; printed pages 84-87, PDF pages 85-88",
+        "5.1.3: emissive and bloom effects"
+      ],
+      "inspection": "Downloaded original author-hosted 122-page PDF; selected sections extracted with bundled pypdf",
+      "local_cache": "Logs/AAAOpticsResearch20261014/frostbite-pbr-v32.pdf",
+      "limit": "Engine guidance, not title-specific final settings.",
+      "local_cache_sha256": "e696c41fd706dfe2897f02a14bf74f38e2518e2e602b61a3ed47b4d6645e67ee"
+    },
+    {
+      "id": "physical-lens",
+      "title": "Physically-Based Real-Time Lens Flare Rendering",
+      "author": "Matthias Hullin, Elmar Eisemann, Hans-Peter Seidel and Sungkil Lee",
+      "year": 2011,
+      "type": "SIGGRAPH research paper",
+      "urls": [
+        "https://resources.mpi-inf.mpg.de/lensflareRendering/",
+        "https://resources.mpi-inf.mpg.de/lensflareRendering/pdf/flare.pdf"
+      ],
+      "locators": [
+        "Section 3: optical system model",
+        "Section 4.2: accelerations"
+      ],
+      "inspection": "Author-hosted fetch blocked; identical-title/author primary paper read from a public mirror, 9 PDF pages, with optical-model page rendered/inspected. No mirror commentary used.",
+      "retrieval_mirror": "https://www.froyok.fr/blog/2021-09-ue4-custom-lens-flare/resources/papers/physically-based-real-time_lens_flare_rendering.pdf",
+      "local_cache": "Logs/AAAOpticsResearch20261014/hullin-lens-flare.pdf",
+      "limit": "No verified shipped AAA adoption, scene-occlusion policy or transferable runtime budget.",
+      "local_cache_sha256": "5397a06c24d42b3b93f850b681e8c44593a795a70e1a5d671300ac31245f4362"
+    },
+    {
+      "id": "epic-image-flare",
+      "title": "Lens Flare",
+      "author": "Epic Games",
+      "year": null,
+      "type": "Developer engine documentation",
+      "edition": "Unreal Engine 4.27 documentation",
+      "urls": [
+        "https://dev.epicgames.com/documentation/unreal-engine/lens-flare?application_version=4.27"
+      ],
+      "locators": [
+        "Threshold",
+        "Bokeh Size",
+        "Bokeh Shape"
+      ],
+      "inspection": "Full property table read",
+      "limit": "Image-based engine technique; no named AAA shipment attribution."
+    }
+  ],
+  "local_source_sha256": {
+    "Assets/_Project/Shaders/TopDown3D/BrokenWorldSunBloom.shader": "476c710ec6a0ad27525230bee9db728e434295cffac3c12d94122a19a5b80e7a",
+    "Assets/_Project/Shaders/TopDown3D/BrokenWorldRoundLensFlare.shader": "457f18426647a82facc79d9a6a2dff1f59f7a71f0faa085ba1e1a6f744ff686f",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSunBloomFeature.cs": "5be9319b2d71ed6c4abfde36948ae586259ff062d41fb0294ca489018f7e5f0e",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DRoundLensFlareFeature.cs": "de9b25f18b977c63322b03961dbe7b7d34e4e5df0c5bab67b98336509beaea56",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DAtmosphereStudyProfile.cs": "482ce45bdbc764b0b8f41dc75d0fdd8d4d3551be94fe57e5dc84cff8831fa7e5",
+    "Assets/_Project/Settings/Studies/CampAtmosphere20261014/Clear.asset": "39e4b67b5569bdc65d4175f9a2ca568b65c8d0526c7810e943ccea7fe2fa0b87",
+    "Assets/_Project/Settings/Profiles/DefaultVolumeProfile.asset": "40f7e48a8869bb1412662feb900305a621400096399373769be25f38ffcee1fb",
+    "Packages/manifest.json": "a9b4f332893effbb67f87b48508240992d76968b8b78f870f8f05f12a436f409",
+    "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/package.json": "e3a84d4ef7fd4e7a971c4cfaf0518952f4eb040e388fedf076a5d0007e09615d",
+    "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Shaders/PostProcessing/Bloom.shader": "7c0fe7d6e3e79ecce5ddd0de29574298723789c650f4db60940b6fe2e4ca1942",
+    "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Runtime/Overrides/Bloom.cs": "0c4e5f2e6d1f55c37e5d88a6b53538dc5ff21a56a1a3f783a4743d14f8f577a6"
+  },
+  "acceptance": "Recommendations only. Visual quality is an art judgment; historical performance is not a current-PC budget. Source PDFs/full slide text remain ignored local cache, not republished repository content."
+}
