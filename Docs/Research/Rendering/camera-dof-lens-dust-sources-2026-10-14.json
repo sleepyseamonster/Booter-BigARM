@@ -1,0 +1,294 @@
+{
+  "date": "2026-10-14",
+  "scope": "Primary-source depth-of-field, tilt-shift and illuminated lens-dust research; read-only local rendering audit",
+  "report": "CAMERA_DEPTH_OF_FIELD_TILT_SHIFT_LENS_DUST_RESEARCH_2026-10-14.md",
+  "previous_ledger": "aaa-optics-sources-2026-10-14.json",
+  "sources": [
+    {
+      "id": "cod4-dof",
+      "title": "Practical Post-Process Depth of Field, GPU Gems 3 chapter 28",
+      "author": "Earl Hammon Jr., Infinity Ward",
+      "year": 2007,
+      "classification": "Named-game developer algorithm: Call of Duty 4 Modern Warfare",
+      "url": "https://developer.nvidia.com/gpugems/gpugems3/part-iv-image-effects/chapter-28-practical-post-process-depth-field",
+      "locators": [
+        "28.1 named-game provenance",
+        "28.4 foreground silhouettes and algorithm evolution",
+        "28.5 four-stage implementation"
+      ],
+      "inspection": "Full original chapter text and algorithm descriptions",
+      "limit": "Historical Shader Model 2.0 constraints; no contemporary project cost inference"
+    },
+    {
+      "id": "cod-aw-dof",
+      "title": "Next Generation Post Processing in Call of Duty Advanced Warfare",
+      "author": "Jorge Jimenez / Activision, Sledgehammer Games",
+      "year": 2014,
+      "classification": "Named-game developer conference presentation",
+      "url": "https://www.iryoku.com/next-generation-post-processing-in-call-of-duty-advanced-warfare/",
+      "artifact_url": "https://www.iryoku.com/downloads/Next-Generation-Post-Processing-in-Call-of-Duty-Advanced-Warfare-v18.pptx",
+      "locators": [
+        "Original v18 slide 90: half-resolution circular filter",
+        "100-104: CoC classification, coverage, foreground alpha and hidden background",
+        "110-111: layer filtering and stability/highlight contrast"
+      ],
+      "inspection": "Original ZIP slide/notes XML previously extracted via HTTP ranges; 171 slides and 129 notes parts",
+      "local_cache": "Logs/AAAOpticsResearch20261014/cod-aw-slide-text.json",
+      "limit": "Slide text inspected, not all embedded media; no universal final-shipping-settings claim"
+    },
+    {
+      "id": "skylanders-dof",
+      "title": "The Skylanders SWAP Force Depth of Field Shader",
+      "author": "Morgan McGuire; technique with Bukowski, Hennessy and Osman",
+      "year": 2013,
+      "classification": "Named-game author article and sample update",
+      "url": "https://casual-effects.blogspot.com/2013/09/the-skylanders-swap-force-depth-of.html",
+      "locators": [
+        "GPU Pro 4 technique attribution",
+        "Updated sample: downsampling, disabled far-field test, halos and guard bands"
+      ],
+      "inspection": "Indexed original author text; direct access encountered Google challenge",
+      "limit": "No challenge bypass; full book chapter not directly verified; book timings excluded"
+    },
+    {
+      "id": "cryengine3-graphics-gems",
+      "title": "Graphics Gems from CryENGINE 3",
+      "author": "Tiago Sousa, Crytek",
+      "year": 2013,
+      "classification": "Developer research prototype, explicitly not yet shipped",
+      "url": "https://pt.slideshare.net/slideshow/graphics-gems-from-cryengine-3-siggraph-2013/25052583?nway-content_model=A",
+      "locators": [
+        "Slide 2: ongoing research disclaimer",
+        "33, 38-44: half-resolution gathering, tile CoC, bilateral reduction and layer weights",
+        "54: reconstruction"
+      ],
+      "inspection": "Author-uploaded deck and read-only delegate source handoff",
+      "limit": "Do not label as shipped Crysis 3 DOF; image-only timing not quoted"
+    },
+    {
+      "id": "cryengine3-dof-usage",
+      "title": "Proper DoF Setup and Usage",
+      "author": "Crytek",
+      "classification": "Engine authoring guidance with Crysis 2 usage reference",
+      "url": "https://www.cryengine.com/docs/static/engines/cryengine-3/categories/1114113/pages/1048587",
+      "locators": [
+        "General Rules",
+        "Flow Graph focus transitions",
+        "C2 cinematic usage"
+      ],
+      "inspection": "Official documentation text",
+      "limit": "Guidance does not prove a geometry culling or streaming change"
+    },
+    {
+      "id": "epic-bokeh",
+      "title": "A Life of a Bokeh",
+      "author": "Guillaume Abadie, Epic Games",
+      "year": 2018,
+      "classification": "UE4.20 developer rendering research",
+      "url": "https://advances.realtimerendering.com/s2018/index.htm",
+      "locators": [
+        "Official course abstract: gathering/occlusion and foreground hole filling",
+        "Highlight sprite scattering",
+        "Slight defocus and TAA"
+      ],
+      "inspection": "Official abstract; full slide implementation not retrieved",
+      "limit": "Fortnite biography is not proof that Fortnite shipped this algorithm; no timing claim"
+    },
+    {
+      "id": "knockout-city",
+      "title": "Knockout City Frame Breakdown",
+      "author": "Velan Studios",
+      "year": 2023,
+      "classification": "Named-game studio frame breakdown",
+      "url": "https://www.velanstudios.com/post/knockout-city-frame-breakdown",
+      "locators": [
+        "Depth of Field: five passes, half-resolution preparation, temporal filtering, 16/49 gather, 3x3 median and composite",
+        "Transparent draw-order workaround",
+        "Sun shafts and view-direction fading"
+      ],
+      "inspection": "Indexed primary-domain article; direct fetch returned error",
+      "limit": "No isolated GPU timing; transparent workaround not assumed portable to URP"
+    },
+    {
+      "id": "epic-dirt",
+      "title": "Bloom: Dirt Mask",
+      "author": "Epic Games",
+      "classification": "Current engine capability; retrieved page identified UE5.8",
+      "url": "https://dev.epicgames.com/documentation/en-us/unreal-engine/bloom-in-unreal-engine",
+      "locators": [
+        "Bloom Dirt Mask",
+        "Image Best Practices"
+      ],
+      "inspection": "Official documentation and delegate handoff",
+      "limit": "No named AAA shipping claim; Unreal import recommendations require Unity-specific validation"
+    },
+    {
+      "id": "cryengine-optical",
+      "title": "Optical Flare System",
+      "author": "Crytek",
+      "classification": "CRYENGINE 5 optical-effect capability",
+      "url": "https://www.cryengine.com/docs/static/engines/cryengine-5/categories/23756816/pages/36868680",
+      "locators": [
+        "Important Concepts / EnableLensDetailShading",
+        "Basic Setup / CameraOrbs",
+        "Occlusion Interaction",
+        "CorrectAspectRatio"
+      ],
+      "inspection": "Official documentation text and delegate handoff",
+      "limit": "Not an exact Crysis shipping algorithm; no verified temporal/offscreen policy or project timing"
+    },
+    {
+      "id": "destiny-gunk",
+      "title": "Destiny Renderer, GDC 2015",
+      "author": "Natalya Tatarchuk, Bungie",
+      "year": 2015,
+      "classification": "Named-game developer pipeline presentation",
+      "url": "https://advances.realtimerendering.com/destiny/gdc_2015/Tatarchuk_GDC_2015__Destiny_Renderer_web.pdf",
+      "locators": [
+        "Slide 148 Complete Frame: Lens Flares Occlusion; Lens Flares and Gunk Render after water/transparents, before postprocess"
+      ],
+      "inspection": "Indexed original-domain slide text; direct PDF retrieval failed",
+      "limit": "Pipeline diagram does not establish dirt formula, persistence, shared visibility buffer or cost"
+    },
+    {
+      "id": "cryengine-event-overlay",
+      "title": "Flow Graph image effects examples",
+      "author": "Crytek",
+      "classification": "Engine event-overlay examples",
+      "url": "https://www.cryengine.com/docs/static/engines/cryengine-3/categories/1114113/pages/1048842",
+      "locators": [
+        "Image Nodes full-screen pass warning",
+        "Water effects",
+        "Fade in Textures on Screen dirt example"
+      ],
+      "inspection": "Official documentation",
+      "limit": "Event overlays are not equivalent to bloom-driven dirt or persistent accumulation"
+    },
+    {
+      "id": "unity-dof",
+      "title": "Depth of Field volume override, Unity 6000.0 URP",
+      "author": "Unity Technologies",
+      "classification": "Official engine reference; local 17.4.0 source is version authority",
+      "url": "https://docs.unity.com/en-us/engine/6000.0/manual/post-processing-and-full-screen-effects/urp/effect-list/depth-of-field-urp/volume-override",
+      "locators": [
+        "Gaussian far-only",
+        "Bokeh near/far and lens controls"
+      ],
+      "inspection": "Official reference plus pinned source inspection",
+      "limit": "6000.0 documentation does not replace installed 6000.4 / URP17.4 source"
+    },
+    {
+      "id": "nikon-tilt",
+      "title": "The PC Lens Advantage: What You See Is What You'll Get",
+      "author": "Nikon",
+      "classification": "Primary optics explanation",
+      "url": "https://www.nikonusa.com/learn-and-explore/c/tips-and-techniques/the-pc-lens-advantage-what-you-see-is-what-youll-get",
+      "locators": [
+        "Tilt and focal plane",
+        "Shift and perspective"
+      ],
+      "inspection": "Full manufacturer article",
+      "limit": "Does not establish a game shader or physically correct world-plane heuristic"
+    },
+    {
+      "id": "simcity-art-direction",
+      "title": "How do you put the Sim in SimCity?",
+      "author": "Christian Nutt interviewing Ocean Quigley, Maxis",
+      "year": 2012,
+      "classification": "Firsthand game art-direction interview",
+      "url": "https://www.gamedeveloper.com/design/how-do-you-put-the-sim-in-i-simcity-i-",
+      "locators": [
+        "Tilt-shift / miniature visual direction and visual communication"
+      ],
+      "inspection": "Original interview text",
+      "limit": "Aesthetic reference only, no shader implementation"
+    }
+  ],
+  "local_audit": {
+    "editor": "6000.4.0f1",
+    "urp": "17.4.0",
+    "render_validation": "None during research; static code and serialized-data inspection only",
+    "tilt_serialized": {
+      "downsample": 2,
+      "focusCenter": 0.5,
+      "sharpBandWidth": 0.05,
+      "featherWidth": 0.427,
+      "blurRadius": 3.64
+    },
+    "nominal_tap_reach_source_pixels": {
+      "horizontal": 14.56,
+      "vertical": 29.12,
+      "qualification": "Four offset steps at full blur weight; inferred from shader and downsample, not measured point-spread function"
+    },
+    "camp_clear_tilt": false,
+    "native_bloom_intensity": 0,
+    "native_dirt_texture": null,
+    "native_dof_mode": "Off",
+    "source_files": [
+      {
+        "path": "ProjectSettings/ProjectVersion.txt",
+        "sha256": "8468d7add4c1613c42224053cb9c889688ccf141875f44065a40e6d133bc3ea7"
+      },
+      {
+        "path": "Packages/manifest.json",
+        "sha256": "a9b4f332893effbb67f87b48508240992d76968b8b78f870f8f05f12a436f409"
+      },
+      {
+        "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DTiltShiftFeature.cs",
+        "sha256": "55c34d94ab4a00f93fc74ce15ecc06c6426975ecbb2b7edb0a8daf63a3be48ee"
+      },
+      {
+        "path": "Assets/_Project/Shaders/TopDown3D/BrokenWorldTiltShift.shader",
+        "sha256": "c7efdca0e47079aa2b4f7f869fd021053858b430cca150170baf78a71bb05a31"
+      },
+      {
+        "path": "Assets/_Project/Settings/Rendering/URP/Renderer3D.asset",
+        "sha256": "5631a1877831185cbf061a94996d7207b8018c60b1947dbdc734b8e552c17c17"
+      },
+      {
+        "path": "Assets/_Project/Settings/Studies/CampAtmosphere20261014/Clear.asset",
+        "sha256": "39e4b67b5569bdc65d4175f9a2ca568b65c8d0526c7810e943ccea7fe2fa0b87"
+      },
+      {
+        "path": "Assets/_Project/Settings/Profiles/DefaultVolumeProfile.asset",
+        "sha256": "40f7e48a8869bb1412662feb900305a621400096399373769be25f38ffcee1fb"
+      },
+      {
+        "path": "Assets/_Project/Tests/Editor/TopDown3DTiltShiftTests.cs",
+        "sha256": "48059599518bb37a50b02980d76ae2e843f0ec494af3d40424f41a0779edf9bc"
+      },
+      {
+        "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSunBloomFeature.cs",
+        "sha256": "5be9319b2d71ed6c4abfde36948ae586259ff062d41fb0294ca489018f7e5f0e"
+      },
+      {
+        "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Runtime/Overrides/Bloom.cs",
+        "sha256": "0c4e5f2e6d1f55c37e5d88a6b53538dc5ff21a56a1a3f783a4743d14f8f577a6"
+      },
+      {
+        "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Runtime/Overrides/DepthOfField.cs",
+        "sha256": "34ca547290d0f276dde7cc3b232a01fa5d2463d5de01bba65447c8b6e67fc9e7"
+      },
+      {
+        "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Shaders/PostProcessing/UberPost.shader",
+        "sha256": "2e898fb3085347e8b9803564be89604f41ab7c30f64d909cafb42d94cf0fbfc4"
+      },
+      {
+        "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Shaders/PostProcessing/BokehDepthOfField.shader",
+        "sha256": "0832e88938830e8e08613830643ef0b48572408e40fc4540de7e702731b1e233"
+      },
+      {
+        "path": "Library/PackageCache/com.unity.render-pipelines.universal@0c5162adfb45/Runtime/Passes/PostProcess/UberPostProcessPass.cs",
+        "sha256": "6705bddb9626f2adfdc9a0bfd7ba2bdd062302e325289f023a6f70e604e9b1d1"
+      }
+    ]
+  },
+  "excluded_claims": [
+    "Skylanders book benchmark numbers without directly verified original chapter",
+    "CryENGINE 2013 research labeled as shipped Crysis 3 implementation",
+    "Fortnite or God of War DOF implementation inferred from biography or bibliography",
+    "Battlefield or DOOM dirt implementation inferred from third-party frame breakdowns",
+    "Historical timing used as current Unity project performance budget"
+  ],
+  "changes": "Research report and source ledger only; no runtime, scene, rendering or package changes"
+}
