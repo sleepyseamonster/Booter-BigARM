@@ -68,6 +68,8 @@ Author direction recorded October 14, 2026:
 - These fibers can also be processed and pressed into textile materials, but this is very difficult. Abundant raw fibers do not imply easy finished-material production.
 - Hides and furs can be processed into textile and other materials, but the usable yield is extremely low. No numeric yield or processing recipe is established.
 - There is no cloth of any kind. Textile-material references do not authorize cloth items or a conventional cloth production chain.
+- Ancient technology uses materials comparable to carbon-fiber composites, nanocarbon materials, plasteels and related futuristic manufactured substances. These materials are **extremely rare**.
+- Their exact compositions, properties, recovery forms and present-day manufacturing possibilities remain undefined. Finding an ancient material does not establish the ability to reproduce it.
 
 ## Player Character
 
