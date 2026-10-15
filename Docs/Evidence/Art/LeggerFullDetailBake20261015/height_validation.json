@@ -1,0 +1,32 @@
+{
+  "Frame": {
+    "map": "Height_validated.exr",
+    "midlevel": 0.5,
+    "meters_per_unit": 0.04,
+    "valid_core_fraction": 0.999994572509762,
+    "neutralized_core_texels": 9,
+    "maximum_abs_valid_height_m": 0.019734850153326988,
+    "p99_abs_valid_height_m": 0.0125588933005929,
+    "invalid_policy": "Neutral 0.5 when outside UV, projected displacement exceeds 9 cm, non-finite, or absolute normal displacement exceeds 2 cm. Height is auxiliary and not connected to displacement."
+  },
+  "LeftLeg": {
+    "map": "Height_validated.exr",
+    "midlevel": 0.5,
+    "meters_per_unit": 0.04,
+    "valid_core_fraction": 0.9999706481790573,
+    "neutralized_core_texels": 126,
+    "maximum_abs_valid_height_m": 0.019998181611299515,
+    "p99_abs_valid_height_m": 0.01233532652258873,
+    "invalid_policy": "Neutral 0.5 when outside UV, projected displacement exceeds 9 cm, non-finite, or absolute normal displacement exceeds 2 cm. Height is auxiliary and not connected to displacement."
+  },
+  "RightLeg": {
+    "map": "Height_validated.exr",
+    "midlevel": 0.5,
+    "meters_per_unit": 0.04,
+    "valid_core_fraction": 0.999986832938963,
+    "neutralized_core_texels": 65,
+    "maximum_abs_valid_height_m": 0.019611265510320663,
+    "p99_abs_valid_height_m": 0.011895938776433468,
+    "invalid_policy": "Neutral 0.5 when outside UV, projected displacement exceeds 9 cm, non-finite, or absolute normal displacement exceeds 2 cm. Height is auxiliary and not connected to displacement."
+  }
+}

@@ -1,5 +1,7 @@
 # Legger cargo and saddle detail bake
 
+This checkpoint was subsequently extended by the [full frame/leg detail bake](../LeggerFullDetailBake20261015/README.md), which now describes the current authoring file. Counts and hashes below record the preceding cargo-only checkpoint.
+
 October 15, 2026. The author requested replacing dense detail geometry on cargo cases, straps, buckles and the saddle with newly generated baked textures, using the supplied close-up as the target area. This changes the current local Blender file in place; it does not start another 10% whole-model decimation pass.
 
 ## Current authoring asset

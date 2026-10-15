@@ -1,8 +1,8 @@
 # Legger topology iteration 01
 
-## Current authoring file — cargo and seat bake
+## Current authoring file — full detail bake
 
-The same retained `Legger_Topology_Iteration04.blend` was subsequently updated in place at the author's request with reduced cargo/seat surfaces and four packed 4K PBR maps. The pre-bake robot is hidden inside that same file for rebaking. The [bake receipt](../LeggerCargoSeatBake20261015/README.md) and its application hash describe the latest authoring file; the cleanup and iteration hashes below describe earlier checkpoints.
+The same retained `Legger_Topology_Iteration04.blend` was subsequently updated in place at the author's request with frame/leg detail bakes and the earlier cargo/seat bake. The active robot has 171,999 triangles and 25 packed maps. The detailed source remains hidden inside the same file for rebaking. The [full detail bake receipt](../LeggerFullDetailBake20261015/README.md) and its application hash describe the latest authoring file; the cargo bake, cleanup and iteration hashes describe earlier checkpoints.
 
 ## Author-requested source cleanup — October 15, 2026
 

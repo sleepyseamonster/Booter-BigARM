@@ -1,0 +1,261 @@
+{
+  "file": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration04.blend",
+  "sha256": "51109196796320a25a2f9b1d048cfd977063af5b409e1830296f4d89b7a0fca6",
+  "native_reopen_passed": true,
+  "blender": "5.2.2 LTS",
+  "active_robot_triangles": 171999,
+  "objects": [
+    {
+      "name": "Legger_Frame_Baked",
+      "triangles": 99999,
+      "uv": "Frame_Atlas"
+    },
+    {
+      "name": "Legger_LeftLeg_Baked",
+      "triangles": 30000,
+      "uv": "LeftLeg_Atlas"
+    },
+    {
+      "name": "Legger_RightLeg_Baked",
+      "triangles": 30000,
+      "uv": "RightLeg_Atlas"
+    },
+    {
+      "name": "Legger_CargoSeat_Baked",
+      "triangles": 12000,
+      "uv": "CargoSeat_Atlas"
+    }
+  ],
+  "packed_active_maps": 25,
+  "new_maps": 21,
+  "retained_source_triangles": 2667021,
+  "source_hidden": true,
+  "maps": {
+    "Legger_Frame_BaseColor": {
+      "size": [
+        8192,
+        8192
+      ],
+      "colorspace": "sRGB",
+      "packed_bytes": 27659290,
+      "packed_sha256": "8f95563cbeaad28fa8abc6acfb83cde4dc4ad8caed58203bbd5ac1478dadf14e"
+    },
+    "Legger_Frame_Roughness": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 6009679,
+      "packed_sha256": "70342292737bf6424b3fda64179f0b0a735f4da0c2a7d6ba9a0ea1105d0b58b6"
+    },
+    "Legger_Frame_Metallic": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 5948394,
+      "packed_sha256": "c355f82fb7f17abe338cd9c9dd1abd08605ff2ac1b0702328141635045441f4e"
+    },
+    "Legger_Frame_Normal": {
+      "size": [
+        8192,
+        8192
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 41095988,
+      "packed_sha256": "9222d307491bb751b31e3561b01265d213e5a8b3885ddbfa82065922297257b9"
+    },
+    "Legger_Frame_AO": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 10730301,
+      "packed_sha256": "d626a70dd693ec1523f2a5e3e9af06498f3db261f66669815ad3bb03afd7407a"
+    },
+    "Legger_Frame_ObjectNormal": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 20013640,
+      "packed_sha256": "19149cc6b4dcf1bfd9c3376670a03d1b58f4cf10a17c0b1d1512873c87f53230"
+    },
+    "Legger_Frame_Height": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 12238512,
+      "packed_sha256": "727af278e51745b139221693ba960fa0c3913a474e2f203f238ed716e5819d68"
+    },
+    "Legger_LeftLeg_BaseColor": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "sRGB",
+      "packed_bytes": 11987040,
+      "packed_sha256": "ab9bd9ba90fe8a163333d4251ba58cdbb1e6c0508f50a7fec4950b9553e37975"
+    },
+    "Legger_LeftLeg_Roughness": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 4465606,
+      "packed_sha256": "05023a91e5772ddca52b1d525f40e0ba3290249b73d183f04fde080de217032f"
+    },
+    "Legger_LeftLeg_Metallic": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 3884088,
+      "packed_sha256": "da025da80c8972c2c3563f424efc16eee8f8116259880a6f6b169efed0321452"
+    },
+    "Legger_LeftLeg_Normal": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 16343612,
+      "packed_sha256": "d0b17036b676842e9c936e36023a652a603b3c47021c7c868a2b163b14ceeabd"
+    },
+    "Legger_LeftLeg_AO": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 8768420,
+      "packed_sha256": "d9e4c68459c3ca4330d4aaf30fed7a6c69a36aff0949540c39ce2d43ff556f50"
+    },
+    "Legger_LeftLeg_ObjectNormal": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 16582694,
+      "packed_sha256": "0c7fe06858eaae113d0ed67df192209893a7640da5328b9e5c54d96e8881d37a"
+    },
+    "Legger_LeftLeg_Height": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 22525030,
+      "packed_sha256": "973d14977e5e42d88f925b9e4e320c6027b0e9aabe16706c146d7b9eb7e07772"
+    },
+    "Legger_RightLeg_BaseColor": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "sRGB",
+      "packed_bytes": 12567494,
+      "packed_sha256": "1f3cf7b918871a5abc2e354d15a415865dbb8a8978b4b74fe96f66c3bec2f98c"
+    },
+    "Legger_RightLeg_Roughness": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 4415679,
+      "packed_sha256": "f592a7cccba7ee395dc325c457c618e1745bf6df77a07004f19c0109b8b8fffc"
+    },
+    "Legger_RightLeg_Metallic": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 3877936,
+      "packed_sha256": "1c60daeda5d605245a412d7185d56b0e0710f7e6df24e416caf786d1d22a1238"
+    },
+    "Legger_RightLeg_Normal": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 15989427,
+      "packed_sha256": "368928e5eaad8afb4ccc60f8b2f3af86b0f7ba4851e28627e2c1c6aacae42182"
+    },
+    "Legger_RightLeg_AO": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 8622421,
+      "packed_sha256": "d333bd7f15869d11164bb9561111d4177b7b24a5e216e31c620f3d48c27d693c"
+    },
+    "Legger_RightLeg_ObjectNormal": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 16373255,
+      "packed_sha256": "f5097fd09bd8d5087d94359f8d5940ac01dd441adc7ce48c8753e42010ea6ac0"
+    },
+    "Legger_RightLeg_Height": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 24992778,
+      "packed_sha256": "d92c34e04b1314bedcbc01df347d6367c613d227195d86fbfaa5169cff475e2c"
+    },
+    "Legger_CargoSeat_BaseColor": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "sRGB",
+      "packed_bytes": 11424329,
+      "packed_sha256": "2d001d0f37193dfe2a65a2a575de1853582167d930d72d76832d06ed91f17318"
+    },
+    "Legger_CargoSeat_Roughness": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 4381046,
+      "packed_sha256": "819eb992cddbb0200dc59673fc3115ff500b8582db4a575d565c57d21668f2f8"
+    },
+    "Legger_CargoSeat_Metallic": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 4171161,
+      "packed_sha256": "19f67a067afe49dd7e76bafe9d9bcb1f46afd046494dfc1d06f6e2fb93836c04"
+    },
+    "Legger_CargoSeat_Normal": {
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 15282328,
+      "packed_sha256": "e9b9cfe0975848a11ebd19ec56352098cd36e524cfb659e7839982ff7a52fc93"
+    }
+  },
+  "cargo_mesh_and_packed_maps_unchanged": true
+}

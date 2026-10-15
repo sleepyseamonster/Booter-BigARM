@@ -1,0 +1,59 @@
+{
+  "resolution": [
+    1400,
+    1100
+  ],
+  "alpha_threshold": 127,
+  "views": {
+    "front": {
+      "silhouette_iou": 0.9978718944975575,
+      "source_pixels": 185924,
+      "candidate_pixels": 185842,
+      "changed_silhouette_pixels": 396,
+      "orthographic_scale": 3.2
+    },
+    "side": {
+      "silhouette_iou": 0.9972693508502248,
+      "source_pixels": 313909,
+      "candidate_pixels": 313655,
+      "changed_silhouette_pixels": 858,
+      "orthographic_scale": 3.2
+    },
+    "rear": {
+      "silhouette_iou": 0.9978558185775318,
+      "source_pixels": 185930,
+      "candidate_pixels": 185841,
+      "changed_silhouette_pixels": 399,
+      "orthographic_scale": 3.2
+    },
+    "frame": {
+      "silhouette_iou": 0.998538265921783,
+      "source_pixels": 948112,
+      "candidate_pixels": 948247,
+      "changed_silhouette_pixels": 1387,
+      "orthographic_scale": 1.25
+    },
+    "legs": {
+      "silhouette_iou": 0.9970517293604227,
+      "source_pixels": 445106,
+      "candidate_pixels": 444950,
+      "changed_silhouette_pixels": 1314,
+      "orthographic_scale": 1.55
+    },
+    "feet": {
+      "silhouette_iou": 0.9968878517926438,
+      "source_pixels": 387167,
+      "candidate_pixels": 387296,
+      "changed_silhouette_pixels": 1207,
+      "orthographic_scale": 1.08
+    },
+    "underside": {
+      "silhouette_iou": 0.9987506295070022,
+      "source_pixels": 932704,
+      "candidate_pixels": 932670,
+      "changed_silhouette_pixels": 1166,
+      "orthographic_scale": 1.6
+    }
+  },
+  "scope": "Matched orthographic views, body and unchanged cargo; front/side/rear show the entire robot. Remaining views are close-ups. Measures sampled projected outlines, not shading fidelity or every direction. Whole views were rendered from the native-reopened applied file, with prior body appended only for comparison; nothing was saved from the review session."
+}

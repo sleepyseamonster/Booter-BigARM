@@ -1,0 +1,46 @@
+{
+  "source": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration04.blend",
+  "source_sha256": "ef61043affec4b70040b11a4e886e9f8eb9050c495813e0b7a8c154049703481",
+  "before_body_triangles": 2084137,
+  "partition_source_triangles": [
+    1287237,
+    442368,
+    354532
+  ],
+  "parts": [
+    {
+      "name": "Frame",
+      "object": "Legger_Frame_Baked",
+      "source_triangles": 1287237,
+      "target": 100000,
+      "triangles": 99999,
+      "vertices": 52020,
+      "pinned_vertices": 11679,
+      "pinned_preserved_exact": true,
+      "uv_layer": "Frame_Atlas"
+    },
+    {
+      "name": "LeftLeg",
+      "object": "Legger_LeftLeg_Baked",
+      "source_triangles": 442368,
+      "target": 30000,
+      "triangles": 30000,
+      "vertices": 15027,
+      "pinned_vertices": 1523,
+      "pinned_preserved_exact": true,
+      "uv_layer": "LeftLeg_Atlas"
+    },
+    {
+      "name": "RightLeg",
+      "object": "Legger_RightLeg_Baked",
+      "source_triangles": 354532,
+      "target": 30000,
+      "triangles": 30000,
+      "vertices": 15067,
+      "pinned_vertices": 1166,
+      "pinned_preserved_exact": true,
+      "uv_layer": "RightLeg_Atlas"
+    }
+  ],
+  "active_robot_triangles": 171999
+}

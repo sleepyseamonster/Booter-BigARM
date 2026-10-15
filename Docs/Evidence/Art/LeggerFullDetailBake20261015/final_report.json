@@ -1,0 +1,648 @@
+{
+  "blender": "5.2.2 LTS",
+  "source_sha256": "ef61043affec4b70040b11a4e886e9f8eb9050c495813e0b7a8c154049703481",
+  "before_active_robot_triangles": 2096137,
+  "active_objects": [
+    {
+      "object": "Legger_Frame_Baked",
+      "vertices": 52020,
+      "polygons": 99999,
+      "triangles": 99999,
+      "uv_layers": [
+        "Frame_Atlas"
+      ],
+      "matrix_world": [
+        [
+          0.7425782084465027,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7425782084465027,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7425782084465027,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "world_bounds": [
+        [
+          -0.4139799177646637,
+          -0.7590687274932861,
+          1.326063632965088
+        ],
+        [
+          0.41701826453208923,
+          0.8225361704826355,
+          2.2275116443634033
+        ]
+      ]
+    },
+    {
+      "object": "Legger_LeftLeg_Baked",
+      "vertices": 15027,
+      "polygons": 30000,
+      "triangles": 30000,
+      "uv_layers": [
+        "LeftLeg_Atlas"
+      ],
+      "matrix_world": [
+        [
+          0.7425782084465027,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7425782084465027,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7425782084465027,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "world_bounds": [
+        [
+          -0.4293806254863739,
+          -0.48086416721343994,
+          0.002145787002518773
+        ],
+        [
+          0.009147675707936287,
+          0.6641252636909485,
+          1.349851369857788
+        ]
+      ]
+    },
+    {
+      "object": "Legger_RightLeg_Baked",
+      "vertices": 15067,
+      "polygons": 30000,
+      "triangles": 30000,
+      "uv_layers": [
+        "RightLeg_Atlas"
+      ],
+      "matrix_world": [
+        [
+          0.7425782084465027,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7425782084465027,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7425782084465027,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "world_bounds": [
+        [
+          -0.012904396280646324,
+          -0.823174774646759,
+          0.00015312994946725667
+        ],
+        [
+          0.4297216534614563,
+          0.4064219892024994,
+          1.3520585298538208
+        ]
+      ]
+    },
+    {
+      "object": "Legger_CargoSeat_Baked",
+      "vertices": 7932,
+      "polygons": 12000,
+      "triangles": 12000,
+      "uv_layers": [
+        "CargoSeat_Atlas"
+      ],
+      "matrix_world": [
+        [
+          0.7425782084465027,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7425782084465027,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7425782084465027,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "world_bounds": [
+        [
+          -0.40897902846336365,
+          -0.28578752279281616,
+          1.490545630455017
+        ],
+        [
+          0.4160573482513428,
+          0.773232638835907,
+          2.2031216621398926
+        ]
+      ]
+    }
+  ],
+  "maps": [
+    {
+      "image": "Legger_Frame_BaseColor",
+      "role_node": "Baked BaseColor",
+      "size": [
+        8192,
+        8192
+      ],
+      "colorspace": "sRGB",
+      "packed_bytes": 27659290,
+      "connected": true,
+      "filepath": "//Textures/Legger_Frame_BaseColor.png"
+    },
+    {
+      "image": "Legger_Frame_Roughness",
+      "role_node": "Baked Roughness",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 6009679,
+      "connected": true,
+      "filepath": "//Textures/Legger_Frame_Roughness.png"
+    },
+    {
+      "image": "Legger_Frame_Metallic",
+      "role_node": "Baked Metallic",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 5948394,
+      "connected": true,
+      "filepath": "//Textures/Legger_Frame_Metallic.png"
+    },
+    {
+      "image": "Legger_Frame_Normal",
+      "role_node": "Baked Tangent Normal",
+      "size": [
+        8192,
+        8192
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 41095988,
+      "connected": true,
+      "filepath": "//Textures/Legger_Frame_Normal.png"
+    },
+    {
+      "image": "Legger_Frame_AO",
+      "role_node": "Baked AO - authoring/export",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 10730301,
+      "connected": false,
+      "filepath": "//Textures/Legger_Frame_AO.png"
+    },
+    {
+      "image": "Legger_Frame_ObjectNormal",
+      "role_node": "Baked ObjectNormal - authoring/export",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 20013640,
+      "connected": false,
+      "filepath": "//Textures/Legger_Frame_ObjectNormal.png"
+    },
+    {
+      "image": "Legger_Frame_Height",
+      "role_node": "Baked Height - authoring/export",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 12238512,
+      "connected": false,
+      "filepath": "//Textures/Legger_Frame_Height.exr"
+    },
+    {
+      "image": "Legger_LeftLeg_BaseColor",
+      "role_node": "Baked BaseColor",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "sRGB",
+      "packed_bytes": 11987040,
+      "connected": true,
+      "filepath": "//Textures/Legger_LeftLeg_BaseColor.png"
+    },
+    {
+      "image": "Legger_LeftLeg_Roughness",
+      "role_node": "Baked Roughness",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 4465606,
+      "connected": true,
+      "filepath": "//Textures/Legger_LeftLeg_Roughness.png"
+    },
+    {
+      "image": "Legger_LeftLeg_Metallic",
+      "role_node": "Baked Metallic",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 3884088,
+      "connected": true,
+      "filepath": "//Textures/Legger_LeftLeg_Metallic.png"
+    },
+    {
+      "image": "Legger_LeftLeg_Normal",
+      "role_node": "Baked Tangent Normal",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 16343612,
+      "connected": true,
+      "filepath": "//Textures/Legger_LeftLeg_Normal.png"
+    },
+    {
+      "image": "Legger_LeftLeg_AO",
+      "role_node": "Baked AO - authoring/export",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 8768420,
+      "connected": false,
+      "filepath": "//Textures/Legger_LeftLeg_AO.png"
+    },
+    {
+      "image": "Legger_LeftLeg_ObjectNormal",
+      "role_node": "Baked ObjectNormal - authoring/export",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 16582694,
+      "connected": false,
+      "filepath": "//Textures/Legger_LeftLeg_ObjectNormal.png"
+    },
+    {
+      "image": "Legger_LeftLeg_Height",
+      "role_node": "Baked Height - authoring/export",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 22525030,
+      "connected": false,
+      "filepath": "//Textures/Legger_LeftLeg_Height.exr"
+    },
+    {
+      "image": "Legger_RightLeg_BaseColor",
+      "role_node": "Baked BaseColor",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "sRGB",
+      "packed_bytes": 12567494,
+      "connected": true,
+      "filepath": "//Textures/Legger_RightLeg_BaseColor.png"
+    },
+    {
+      "image": "Legger_RightLeg_Roughness",
+      "role_node": "Baked Roughness",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 4415679,
+      "connected": true,
+      "filepath": "//Textures/Legger_RightLeg_Roughness.png"
+    },
+    {
+      "image": "Legger_RightLeg_Metallic",
+      "role_node": "Baked Metallic",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 3877936,
+      "connected": true,
+      "filepath": "//Textures/Legger_RightLeg_Metallic.png"
+    },
+    {
+      "image": "Legger_RightLeg_Normal",
+      "role_node": "Baked Tangent Normal",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 15989427,
+      "connected": true,
+      "filepath": "//Textures/Legger_RightLeg_Normal.png"
+    },
+    {
+      "image": "Legger_RightLeg_AO",
+      "role_node": "Baked AO - authoring/export",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 8622421,
+      "connected": false,
+      "filepath": "//Textures/Legger_RightLeg_AO.png"
+    },
+    {
+      "image": "Legger_RightLeg_ObjectNormal",
+      "role_node": "Baked ObjectNormal - authoring/export",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 16373255,
+      "connected": false,
+      "filepath": "//Textures/Legger_RightLeg_ObjectNormal.png"
+    },
+    {
+      "image": "Legger_RightLeg_Height",
+      "role_node": "Baked Height - authoring/export",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 24992778,
+      "connected": false,
+      "filepath": "//Textures/Legger_RightLeg_Height.exr"
+    },
+    {
+      "image": "Legger_CargoSeat_BaseColor",
+      "role_node": "Baked BaseColor",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "sRGB",
+      "packed_bytes": 11424329,
+      "connected": true,
+      "filepath": "//Textures/Legger_CargoSeat_BaseColor.png"
+    },
+    {
+      "image": "Legger_CargoSeat_Roughness",
+      "role_node": "Baked Roughness",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 4381046,
+      "connected": true,
+      "filepath": "//Textures/Legger_CargoSeat_Roughness.png"
+    },
+    {
+      "image": "Legger_CargoSeat_Metallic",
+      "role_node": "Baked Metallic",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 4171161,
+      "connected": true,
+      "filepath": "//Textures/Legger_CargoSeat_Metallic.png"
+    },
+    {
+      "image": "Legger_CargoSeat_Normal",
+      "role_node": "Baked Tangent Normal",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed_bytes": 15282328,
+      "connected": true,
+      "filepath": "//Textures/Legger_CargoSeat_Normal.png"
+    }
+  ],
+  "surface_samples": {
+    "source_to_reduced": {
+      "sample_count": 10000,
+      "mean_m": 0.00025330649969939446,
+      "p95_m": 0.0006661996594630182,
+      "p99_m": 0.0009334346395917237,
+      "maximum_sampled_m": 0.003339956281706691
+    },
+    "reduced_to_source": {
+      "sample_count": 10000,
+      "mean_m": 0.00023458294505450698,
+      "p95_m": 0.000644698622636497,
+      "p99_m": 0.0008668856462463737,
+      "maximum_sampled_m": 0.0013943027006462216
+    },
+    "scope": "10,000 seeded samples per direction: 5,000 vertices and 5,000 triangle centers, uniform by index, body only. World meters. Not area-weighted, exhaustive, or a Hausdorff bound."
+  },
+  "retained_source": {
+    "object": "Legger_DetailBake_Source",
+    "triangles": 2667021,
+    "hidden_render": true,
+    "hidden_viewport": true,
+    "nonselectable": true
+  },
+  "active_robot_triangles": 171999,
+  "triangle_reduction_fraction": 0.9179447717396334,
+  "packed_active_maps": 25,
+  "new_maps": 21,
+  "other_objects": [
+    {
+      "name": "Reference_Head",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_Torso",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_Pelvis",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_Neck",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_Thigh",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_Shin",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_Foot",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_UpperArm",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_Forearm",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_Hand",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_Thigh.001",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_Shin.001",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_Foot.001",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_UpperArm.001",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_Forearm.001",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    },
+    {
+      "name": "Reference_Hand.001",
+      "type": "MESH",
+      "hidden_viewport": true,
+      "hidden_render": true
+    }
+  ],
+  "prepared_sha256": "51109196796320a25a2f9b1d048cfd977063af5b409e1830296f4d89b7a0fca6",
+  "prepared_bytes": 589972071,
+  "height_lossless_compression": {
+    "Frame": {
+      "decoded_float32_pixels_identical": true,
+      "codec": "ZIP",
+      "channels": "RGB",
+      "bit_depth": 32,
+      "packed_bytes": 12238512
+    },
+    "LeftLeg": {
+      "decoded_float32_pixels_identical": true,
+      "codec": "ZIP",
+      "channels": "RGB",
+      "bit_depth": 32,
+      "packed_bytes": 22525030
+    },
+    "RightLeg": {
+      "decoded_float32_pixels_identical": true,
+      "codec": "ZIP",
+      "channels": "RGB",
+      "bit_depth": 32,
+      "packed_bytes": 24992778
+    }
+  }
+}
