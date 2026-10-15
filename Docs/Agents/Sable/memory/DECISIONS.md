@@ -33,3 +33,9 @@ Sable recommends stronger construction, material response, and motivated wear be
 Authority: the author requested more stylized inspiration, naming Risk of Rain 2. The [stylized reference study](../work/2026-10-15-stylized-realism/STYLIZED_REFERENCES.md) adds Risk of Rain 2, Solar Ash, Deep Rock Galactic, and a Hyper Light Breaker discovery reference, with ten resource entries and explicit inspection status.
 
 Sable proposes stronger large-form design, broader color grouping, and selective detail while retaining believable construction and the accepted B ground / B–C rocks and props. This research request does not approve a replacement style, new renders, or production changes.
+
+## October 15, 2026 — Expanded game reference research goal
+
+Authority: the author's explicit goal to brainstorm and research more games combining Arcane / No Rest for the Wicked art with realism. The [ten-game study](../work/2026-10-15-stylized-realism/EXPANDED_GAME_STUDY.md) researches Dishonored 2, Kena, GreedFall, Enshrouded, Ashen, Sea of Thieves, Darksiders II, Lost in Random, Atlas Fallen, and Darkest Dungeon II.
+
+Sable's leading recommendations are Dishonored 2 for painted material balance, Kena for believable lighting on stylized forms, and GreedFall for tonal composition. These are researched reference roles, not replacement-style approval. B's ground and the accepted B–C rock/prop balance remain controlling; no production integration or new render was performed.

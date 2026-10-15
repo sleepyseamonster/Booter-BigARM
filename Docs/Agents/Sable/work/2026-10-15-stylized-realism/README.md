@@ -16,6 +16,8 @@ The author's subsequent request for more realistic inspiration is covered in [Di
 
 The [Risk of Rain 2 stylized reference study](STYLIZED_REFERENCES.md) adds the author's next research direction, including Iron Alluvium concept-to-level references, Solar Ash, Deep Rock Galactic, and a Hyper Light Breaker discovery entry. It explores shape and detail simplification alongside the accepted painted surfaces.
 
+The [expanded ten-game study](EXPANDED_GAME_STUDY.md) researches additional matches for Arcane / No Rest for the Wicked painterliness with realism. It ranks Dishonored 2 as the closest additional surface reference, Kena for lighting, and GreedFall for tonal composition, with seven supporting comparisons and direct source links.
+
 ## How the named influences contribute
 
 | Influence | Contribution to the proposed direction | What needs restraint |
