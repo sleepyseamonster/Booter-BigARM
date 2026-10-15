@@ -1,5 +1,7 @@
 # Camp Loop standing strafe slice
 
+**Latest continuation:** the author requested finishing the remaining motion families before returning for testing. The [combined review](../../Evidence/Gameplay/LocomotionImplementation20261014/CampMotionContinuation20261015/README.md) now owns that route and the airborne speed reconciliation. This document preserves the first lateral slice and its source limitations.
+
 October 15, 2026. Continues the [locomotion handoff](CAMP_LOOP_LOCOMOTION_CONTINUATION_HANDOFF_2026-10-15.md). The author chose **hold LT to lock facing and strafe, retaining camera look-ahead**. Forward gait anchors remain 1.4/3/4/5/6 m/s; the existing airborne 3.8 m/s control cap remains an audited mismatch for the later jumping slice.
 
 The first implementation slice is an explicitly experimental **AP02 flat-deck slow lateral review**. The existing run strafe sources require further calibration: their fixed sole tracks have substantial fore/aft motion during lateral travel. They are not sufficient to claim independent-facing running. Complete walk sources offer a smaller, measurable starting envelope near 0.5 m/s. This bounded slice does not qualify the general directional family.

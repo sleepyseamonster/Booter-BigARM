@@ -5,6 +5,7 @@ namespace BooterBigArm.TopDown3D
     public sealed partial class TopDown3DAnimationPlaygroundSession
     {
         private AnimationPlaygroundAirborneController airborne;
+        private AnimationPlaygroundTurnController turning;
         public bool JumpReady=>servicesBound && isActiveAndEnabled && PreviewReady && airborne!=null && bindings!=null
             && bindings.airborne!=null && bindings.airborne.qualified && bindings.footProjection!=null;
         private void BindAirborne()
@@ -15,6 +16,7 @@ namespace BooterBigArm.TopDown3D
                 ()=>!isActiveAndEnabled || !servicesBound || !PreviewReady || !Application.isFocused
                     || playerInput.Mode!=TopDown3DInputMode.Gameplay,()=>playerAction.IsBusy || crouch!=null && crouch.Active || lowMotion!=null && lowMotion.Active);
             airborne.LandingRecovery=TrySelectedRollLanding;
+            if(bindings.continuationReview!=null && presentation.LaboratoryContinuationConfigured)airborne.ConfigureContinuationReview(bindings.continuationReview);
             airborne.Landed+=CommitLandingDamage;
         }
         private void CommitLandingDamage(float speed)

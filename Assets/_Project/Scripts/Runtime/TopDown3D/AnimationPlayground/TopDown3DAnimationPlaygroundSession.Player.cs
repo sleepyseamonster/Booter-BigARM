@@ -58,6 +58,7 @@ namespace BooterBigArm.TopDown3D
                     var station = Array.Find(stations, value => value != null && value.StationId == "AP02");
                     presentation.ConfigureLaboratoryForwardReview(review, station);
                     if (bindings.standingStrafeReview != null) presentation.ConfigureLaboratoryStandingStrafeReview(bindings.standingStrafeReview);
+                    if (bindings.continuationReview != null) presentation.ConfigureLaboratoryContinuation(bindings.continuationReview);
                     if (Mathf.Abs(review.gaits[0].nominalSpeed - bindings.slowWalkSpeed) > .0001f
                         || Mathf.Abs(review.gaits[1].nominalSpeed - bindings.runSpeed) > .0001f
                         || Mathf.Abs(review.gaits[review.FastRunIndex].nominalSpeed - bindings.sprintSpeed) > .0001f)
@@ -106,6 +107,13 @@ namespace BooterBigArm.TopDown3D
                     playerInput.AnimationCrouchRequested+=ToggleCrouch;
                 }
                 BindLowMotion();BindAirborne();
+                if(bindings.continuationReview!=null && presentation.LaboratoryContinuationConfigured)
+                {
+                    turning=player.gameObject.AddComponent<AnimationPlaygroundTurnController>();
+                    turning.Configure(player,presentation,coordinator,bindings.continuationReview,ResetRegistry,
+                        ()=>!Application.isFocused || playerInput.Mode!=TopDown3DInputMode.Gameplay || playerAction.IsBusy
+                            || crouch!=null && crouch.Active || lowMotion!=null && lowMotion.Active || airborne!=null && airborne.Active);
+                }
                 ownsInput = () => IsBusy || crouch!=null && crouch.Active;
                 playerInput.AnimationActionOwned = ownsInput;
                 playerInput.AnimationCancelRequested += CancelOwnedAction;
@@ -156,6 +164,7 @@ namespace BooterBigArm.TopDown3D
         }
         private void CancelOwnedAction()
         {
+            if(turning!=null && turning.Active){turning.Cancel("Turn cancelled; release the stick to rearm.");return;}
             if(lowMotion!=null && lowMotion.Active){lowMotion.TryCancel();return;}
             if(airborne!=null && airborne.Active){airborne.TryCancel();return;}
             if(crouch!=null && crouch.Active)
@@ -209,6 +218,7 @@ namespace BooterBigArm.TopDown3D
         }
         private void DetachPlayerServices()
         {
+            if(turning!=null){turning.DisposeOwnedServices();if(Application.isPlaying)Destroy(turning);else DestroyImmediate(turning);turning=null;}
             coordinator?.Cancel();
             DetachAirborne();
             DetachLowMotion();

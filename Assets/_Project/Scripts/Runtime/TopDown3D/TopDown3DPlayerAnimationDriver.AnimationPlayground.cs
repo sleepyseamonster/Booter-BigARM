@@ -88,7 +88,9 @@ namespace BooterBigArm.TopDown3D
             for (var i = 0; i < ClipCount; i++) mixer.SetInputWeight(i, i == AnimationActionIndex ? 1 : 0);
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition+Vector3.up*animationHeightCorrection, Quaternion.Euler(visualLocalEulerAngles));
             CurrentLocomotionState = TopDown3DLocomotionState.ConstrainedAction;
+            PrepareContinuationActionTerrain();
             var blending=PoseBlendOwned;ApplyPoseBlend();
+            PrepareAdaptedTurnPose();
             if((animationFootProjection || animationBodyProjection) && !blending)ProjectLaboratoryFootPlane();
             else if(!blending)LastPoseBlendGroundCorrection=0;
             ApplyGarmentFloor();
@@ -108,6 +110,8 @@ namespace BooterBigArm.TopDown3D
         private void ReleaseAnimationPresentation()
         {
             if (animationPresentationOwner == null) return;
+            ReleaseAdaptedTurnPose();
+            continuationActionTerrainApplied=false;forwardTerrainApplied=false;forwardTerrainPose?.Disable();
             if (playableGraph.IsValid())
             {
                 playableGraph.Disconnect(mixer, AnimationActionIndex);

@@ -147,23 +147,29 @@ namespace BooterBigArm.Tests
             finally { CloseFixtureScene(scene); }
         }
 
-        [TestCase(false, false, false), TestCase(true, false, false), TestCase(true, true, false), TestCase(false, false, true), Category("PrivateAnimationQualification")]
-        public void SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(bool measuredForward, bool terrain, bool review)
+        [TestCase(false,false,false,false), TestCase(true,false,false,false), TestCase(true,true,false,false),
+            TestCase(false,false,true,false), TestCase(false,false,true,true), Category("PrivateAnimationQualification")]
+        public void SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(bool measuredForward, bool terrain, bool review,bool continuation)
         {
             PrivateBindings(); var scene = EditorSceneManager.OpenScene(TopDown3DAnimationPlaygroundSession.ScenePath, OpenSceneMode.Additive); InputActionAsset actions = null;
             TopDown3DAnimationPlaygroundBindings draft = null; AnimationPlaygroundForwardLocomotionProfile policy = null;
             try
             {
                 var session = TopDown3DAnimationPlaygroundSession.Find(scene);
+                draft=Object.Instantiate(session.Bindings);
+                if(!continuation){draft.continuationReview=null;draft.continuationReviewRequired=false;}
+                else Assert.That(draft.continuationReview,Is.Not.Null,"Select the combined private candidate for this integration gate.");
+                session.Configure(draft);
                 session.ConfigureForwardReview(review ? AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(
-                    "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset") : null);
+                    continuation ? "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset"
+                        : "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset") : null);
                 if (measuredForward)
                 {
                     var source = AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(
                         "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset");
                     Assert.That(source, Is.Not.Null, "Restore the measured private forward draft.");
                     policy = Object.Instantiate(source); policy.qualified = true; policy.terrainQualified = terrain;
-                    draft = Object.Instantiate(session.Bindings); draft.forwardLocomotion = policy; draft.locomotion = policy.locomotion;
+                    draft.forwardLocomotion = policy; draft.locomotion = policy.locomotion;
                     session.Configure(draft);
                 }
                 Invoke(session, "Awake");
@@ -177,7 +183,9 @@ namespace BooterBigArm.Tests
                 Assert.That(driver.LaboratorySustainedDiagnostic, Is.False, "Source selection must not opt the author into a diagnostic.");
                 Assert.That(driver.LaboratoryForwardReady, Is.EqualTo(measuredForward || review));
                 Assert.That(driver.LaboratoryForwardReviewConfigured, Is.EqualTo(review));
-                Assert.That(Field<AnimationPlaygroundTerrainPose>(driver, "forwardTerrainPose") != null, Is.EqualTo(terrain));
+                Assert.That(Field<AnimationPlaygroundTerrainPose>(driver, "forwardTerrainPose") != null, Is.EqualTo(terrain||continuation));
+                Assert.That(driver.LaboratoryContinuationConfigured,Is.EqualTo(continuation));
+                Assert.That(player.GetComponent<AnimationPlaygroundTurnController>()!=null,Is.EqualTo(continuation));
                 Assert.That(session.Coordinator, Is.Not.Null); Assert.That(input.AnimationActionOwned, Is.Not.Null);
                 if (review)
                 {

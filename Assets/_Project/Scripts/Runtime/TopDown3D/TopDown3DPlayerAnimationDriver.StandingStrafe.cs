@@ -29,7 +29,7 @@ namespace BooterBigArm.TopDown3D
             : standingStrafeMotionUnavailable && motor != null && motor.LaboratoryStandingLateral ? "LT review: completed travel left the lateral envelope; pose paused."
             : motor != null && motor.LaboratoryStandingDirectionUnsupported ? "LT review: diagonal/backward travel unavailable; release LT to steer normally."
             : motor != null && motor.LaboratoryStandingFacingLocked ? "LT facing locked: forward or slow left/right (0.5 m/s). Release LT to steer normally."
-            : "AP02: hold LT for facing lock and slow left/right strafe. Look-ahead remains active.";
+            : (LaboratoryContinuationConfigured ? "Camp Loop" : "AP02") + ": hold LT for facing lock and slow left/right strafe. Look-ahead remains active.";
 
         public void ConfigureLaboratoryStandingStrafeReview(AnimationPlaygroundStandingStrafeProfile profile)
         {
@@ -117,7 +117,9 @@ namespace BooterBigArm.TopDown3D
             var alpha = Mathf.Clamp01((float)((Time.timeAsDouble - Time.fixedTimeAsDouble) / Math.Max(.0001, Time.fixedDeltaTime)));
             var speed = Mathf.Lerp(standingStrafePreviousSpeed, standingStrafeSpeed, alpha);
             if (!motor.IsGrounded || Time.fixedTimeAsDouble - standingStrafeMotion.CompletedTime > .1) speed = 0;
-            PresentStandingStrafeFrame(speed, standingStrafeClock.RenderCycles(alpha), Time.deltaTime);
+            try { PresentStandingStrafeFrame(speed, standingStrafeClock.RenderCycles(alpha), Time.deltaTime); }
+            catch(InvalidOperationException error) when(continuationReview!=null)
+            {RejectContinuationPose(error.Message);return false;}
             return true;
         }
 
@@ -141,8 +143,22 @@ namespace BooterBigArm.TopDown3D
             var correction = gait.signedHeight.Evaluate(phase) * standingStrafeWeight
                 + idle.HeightCorrection(Mathf.Repeat((float)(standingStrafeIdleSeconds / idle.Clip.length), 1)) * (1 - standingStrafeWeight);
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition + Vector3.up * correction, Quaternion.Euler(visualLocalEulerAngles));
+            forwardTerrainApplied = continuationReview != null && forwardTerrainPose != null && motor != null
+                && motor.TryGetLaboratorySupportPlane(out forwardTerrainPlane,true);
+            if(forwardTerrainApplied)
+            {
+                forwardTerrainTick=motor.LaboratoryGroundedMotion.Tick;forwardTerrainEpoch=motor.LaboratoryGroundedMotion.Epoch;
+                forwardTerrainPose.Configure(forwardTerrainPlane,transform.TransformPoint(Vector3.up*laboratoryFeetPlane).y);
+            }
             playableGraph.Evaluate(0);
-            correction += Mathf.Max(0, transform.TransformPoint(Vector3.up * laboratoryFeetPlane).y - footProjectionSampler.MinimumWorldY());
+            if(forwardTerrainApplied)
+            {
+                var terrain=forwardTerrainPose.Sample;
+                if(!float.IsFinite(terrain.requiredLowering) || terrain.requiredLowering>laboratoryForwardProfile.maximumTerrainBodyLowering+.00001f
+                    || terrain.incompatibleReach>.001f)throw new InvalidOperationException("Standing strafe exceeded the terrain reach envelope.");
+                correction+=Mathf.Max(0,-footProjectionSampler.MinimumDistance(forwardTerrainPlane))/forwardTerrainPlane.normal.y;
+            }
+            else correction += Mathf.Max(0, transform.TransformPoint(Vector3.up * laboratoryFeetPlane).y - footProjectionSampler.MinimumWorldY());
             if (!float.IsFinite(correction) || correction < -.03001f || correction > .08001f)
                 throw new InvalidOperationException("Standing strafe exceeded the existing visual grounding envelope.");
             visualInstance.transform.localPosition = visualLocalPosition + Vector3.up * correction;

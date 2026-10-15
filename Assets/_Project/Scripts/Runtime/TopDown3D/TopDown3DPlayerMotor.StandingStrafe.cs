@@ -34,6 +34,7 @@ namespace BooterBigArm.TopDown3D
         private void ReleaseStandingStrafeReview()
         {
             ResetStandingStrafe(true); standingStrafeProfile = null; standingStrafeSupport = null;
+            laboratoryTurnReview=false;laboratoryTurnSupport=null;LaboratoryTurnBraking=false;
         }
 
         // Early action/mount returns must also drop this transient facing lease.

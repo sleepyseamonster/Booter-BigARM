@@ -16,13 +16,19 @@ namespace BooterBigArm.TopDown3D
         private AnimationPlaygroundJumpVariant variant;
         private Vector3 facing,planar;
         private bool launched,leftGround,disposed,landingContactPending;
-        private float impactSpeed,settleTime;
+        private float impactSpeed,settleTime,launchSpeed,reviewAirSpeed;
         private const float BlendSeconds=.12f;
         public AnimationPlaygroundAirborneState State {get;private set;}
         public bool Active=>State!=AnimationPlaygroundAirborneState.Standing;
         public string LastFailure {get;private set;}
         public event Action<float> Landed;
         public Func<float,bool> LandingRecovery {get;set;}
+        public void ConfigureContinuationReview(AnimationPlaygroundContinuationProfile review)
+        {
+            if (motor == null || Active || review == null || review.maximumAirSpeed != 6)
+                throw new InvalidOperationException("Configure airborne review before acquiring an action.");
+            reviewAirSpeed = review.maximumAirSpeed;
+        }
         public string ResetId=>"CampLoop.Booter.Jump";
         public AnimationPlaygroundResetStage ResetStage=>AnimationPlaygroundResetStage.Actor;
         public void Configure(TopDown3DPlayerMotor value,TopDown3DPlayerAnimationDriver presentation,
@@ -42,7 +48,9 @@ namespace BooterBigArm.TopDown3D
             if(!profile.Validate(out var reason))return Fail(reason);
             if(Active || coordinator.IsBusy || motor.IsActionConstrained || otherActivity?.Invoke()==true)return Fail("Finish the current activity first.");
             if(!motor.IsGrounded || motor.AnimationPosture!=AnimationPlaygroundPosture.Standing)return Fail("Jumping requires standing ground support.");
-            planar=Vector3.ProjectOnPlane(motor.Velocity,Vector3.up);facing=motor.FacingDirection;
+            planar=Vector3.ProjectOnPlane(motor.Velocity,Vector3.up);
+            facing=reviewAirSpeed>0 ? Vector3.ProjectOnPlane(motor.transform.forward,Vector3.up).normalized : motor.FacingDirection;
+            launchSpeed=planar.magnitude;
             variant=useUnarmed ? profile.unarmed : planar.magnitude>=profile.runningThreshold ? profile.running : profile.standing;
             launched=false;leftGround=false;impactSpeed=0;
             if(!Begin(variant.takeoff,AnimationPlaygroundMotionMode.Jump,AnimationPlaygroundAirborneState.Takeoff,false,
@@ -74,10 +82,18 @@ namespace BooterBigArm.TopDown3D
         private AnimationPlaygroundMotorIntent Intent(double seconds)
         {
             driver.SetPoseBlendElapsed(this,coordinator.PhysicalStageSeconds);
-            if(paused?.Invoke()!=true && State!=AnimationPlaygroundAirborneState.Takeoff && State!=AnimationPlaygroundAirborneState.Landing)
-                planar=Vector3.MoveTowards(planar,motor.LaboratoryMoveDirection*profile.maximumPlanarSpeed,profile.airControlAcceleration*Time.fixedDeltaTime);
-            var velocity=State==AnimationPlaygroundAirborneState.Landing ? Vector3.zero : planar;
-            return new AnimationPlaygroundMotorIntent(velocity,facing,phase:0);
+            if(paused?.Invoke()!=true)
+            {
+                if(State==AnimationPlaygroundAirborneState.Landing)
+                    planar=reviewAirSpeed>0 ? Vector3.MoveTowards(planar,Vector3.zero,20*Time.fixedDeltaTime) : Vector3.zero;
+                else if(State!=AnimationPlaygroundAirborneState.Takeoff)
+                    planar=reviewAirSpeed>0
+                        ? AnimationPlaygroundAirControl.Advance(planar,motor.LaboratoryMoveDirection,launchSpeed,
+                            reviewAirSpeed,profile.airControlAcceleration,Time.fixedDeltaTime)
+                        : Vector3.MoveTowards(planar,motor.LaboratoryMoveDirection*profile.maximumPlanarSpeed,
+                            profile.airControlAcceleration*Time.fixedDeltaTime);
+            }
+            return new AnimationPlaygroundMotorIntent(planar,facing,phase:0);
         }
         private void StageCompleted()
         {
@@ -94,12 +110,28 @@ namespace BooterBigArm.TopDown3D
             if(disposed || !isActiveAndEnabled || paused?.Invoke()==true || !Active || State==AnimationPlaygroundAirborneState.Settling)return;
             if(!coordinator.IsSequenceOwner(this)){State=AnimationPlaygroundAirborneState.Standing;driver.EndPoseBlend(this);ObserveLocomotion();return;}
             var sample=motor.AnimationSnapshot;
+            if(reviewAirSpeed>0 && sample.Blocked)planar=Vector3.ProjectOnPlane(sample.Velocity,Vector3.up);
             impactSpeed=Mathf.Max(impactSpeed,Mathf.Max(0,-sample.Velocity.y));
             if(!sample.Supported)leftGround=true;
-            if(State==AnimationPlaygroundAirborneState.Takeoff)return;
+            if(State==AnimationPlaygroundAirborneState.Takeoff)
+            {
+                if(reviewAirSpeed>0 && !launched && !sample.Supported && sample.Velocity.y<-.5f)
+                {
+                    variant=null;launchSpeed=planar.magnitude;landingContactPending=false;
+                    Begin(profile.falling,AnimationPlaygroundMotionMode.Fall,AnimationPlaygroundAirborneState.Falling,true);
+                }
+                return;
+            }
             if(State==AnimationPlaygroundAirborneState.Rising && !leftGround)return;
             if(State==AnimationPlaygroundAirborneState.Landing)
             {
+                if(reviewAirSpeed>0 && !sample.Supported && sample.Velocity.y<-.5f)
+                {
+                    variant=null;launchSpeed=planar.magnitude;impactSpeed=Mathf.Max(0,-sample.Velocity.y);
+                    landingContactPending=false;
+                    Begin(profile.falling,AnimationPlaygroundMotionMode.Fall,AnimationPlaygroundAirborneState.Falling,true);
+                    return;
+                }
                 if(landingContactPending && !driver.PoseBlendOwned)
                 {landingContactPending=false;driver.TryEmitAnimationFootContact(coordinator,TopDown3DFootSide.Left,impactSpeed);}
                 return;
@@ -142,7 +174,9 @@ namespace BooterBigArm.TopDown3D
             if(Active || coordinator.IsBusy || motor.IsActionConstrained || otherActivity?.Invoke()==true
                 || motor.AnimationPosture!=AnimationPlaygroundPosture.Standing || motor.IsGrounded || motor.Velocity.y>-.5f
                 || !profile.Validate(out _))return;
-            variant=null;planar=Vector3.ProjectOnPlane(motor.Velocity,Vector3.up);facing=motor.FacingDirection;
+            variant=null;planar=Vector3.ProjectOnPlane(motor.Velocity,Vector3.up);
+            facing=reviewAirSpeed>0 ? Vector3.ProjectOnPlane(motor.transform.forward,Vector3.up).normalized : motor.FacingDirection;
+            launchSpeed=planar.magnitude;
             impactSpeed=-motor.Velocity.y;leftGround=true;
             Begin(profile.falling,AnimationPlaygroundMotionMode.Fall,AnimationPlaygroundAirborneState.Falling,true);
         }

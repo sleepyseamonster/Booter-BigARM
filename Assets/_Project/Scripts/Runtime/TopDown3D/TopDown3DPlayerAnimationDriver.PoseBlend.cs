@@ -110,7 +110,8 @@ namespace BooterBigArm.TopDown3D
             playableGraph.Evaluate(0);
             var minimum=sampler.MinimumWorldY();
             var plane=transform.TransformPoint(Vector3.up*laboratoryFeetPlane).y;
-            var correction=Mathf.Max(0,plane-minimum);
+            var correction=forwardTerrainApplied ? Mathf.Max(0,-sampler.MinimumDistance(forwardTerrainPlane))/forwardTerrainPlane.normal.y
+                : Mathf.Max(0,plane-minimum);
             if(!float.IsFinite(correction) || correction>.18f)throw new InvalidOperationException("The posture ground correction exceeds its qualified envelope.");
             visualInstance.transform.localPosition+=Vector3.up*correction;LastPoseBlendGroundCorrection=correction;
         }

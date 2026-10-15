@@ -242,3 +242,11 @@ Focused fixtures are `TopDown3DControlPreferencesTests`, `TopDown3DMenuTests` an
 - Keep build output outside `Assets/`.
 - Keep Unity source assets and metadata under version control.
 - If the build pipeline grows, add more static entry points rather than embedding shell logic in ad hoc scripts.
+
+## Camp Loop combined motion review
+
+The [combined motion receipt](../Evidence/Gameplay/LocomotionImplementation20261014/CampMotionContinuation20261015/README.md) records the selected slow lateral, adapted pivot, mild-slope and expanded-speed airborne experiment. The accepted forward sources and qualification flags remain separate. Reuse AP02's authored mild ramp/turn circle and AP04's jump fixtures; no scene rewrite is needed.
+
+`CampMotionContinuationPreparation.Create` consumes the sealed native turn/root inputs only in the marked batchmode candidate. `SelectReview` changes that candidate's two continuation binding fields; `Inspect` emits source/dependency and loaded-assembly hashes to a fresh receipt. `CampMotionContinuationCodeImport.Import` accepts a sealed plan and imports only its task scripts into the already-open author Editor. `CampMotionContinuationInstallation.Install` validates source parity/protected hashes, adds four new private payload/metadata files and selects the paired profile. Its destination and receipt guards are one-shot. It preserves the author scene's dirty state and never saves/reloads it, changes focus or enters Play Mode.
+
+Run the focused `AnimationPlaygroundContinuationTests`, expanded `AnimationPlaygroundAirborneTests` and the combined case in `AnimationPlaygroundPlayerIntegrationTests` in the isolated candidate. The receipt lists directly affected regression fixtures. Async `test_status` results must match the requested fixture; parameterized fixture names can use parentheses before the method separator. Keep earlier unselected/intermediate results distinct from the final selected-profile series. Hands-on collision and appearance testing remains author-owned.

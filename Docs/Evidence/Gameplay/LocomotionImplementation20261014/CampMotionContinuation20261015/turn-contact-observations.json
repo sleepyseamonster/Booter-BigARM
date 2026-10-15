@@ -1,0 +1,126 @@
+{
+  "samplesPerSource": 181,
+  "scope": "Offline actual runtime stage; float-world point measurements. Authored-origin contactAimMet failures remain open.",
+  "rows": [
+    {
+      "clip": "RapidTurningRight_Mirror",
+      "influences": 1,
+      "samples": 181,
+      "authoredOrigin": false,
+      "contactAimMet": true,
+      "pointExcursion": 0.00031234583002515137,
+      "cumulativeTravel": 0.00811617448925972,
+      "maximumCorrection": 0.013140333816409111
+    },
+    {
+      "clip": "RapidTurningLeft",
+      "influences": 1,
+      "samples": 181,
+      "authoredOrigin": false,
+      "contactAimMet": true,
+      "pointExcursion": 0.00031177038908936083,
+      "cumulativeTravel": 0.008356288075447083,
+      "maximumCorrection": 0.014050465077161789
+    },
+    {
+      "clip": "RapidTurningRight_Mirror",
+      "influences": 1,
+      "samples": 181,
+      "authoredOrigin": true,
+      "contactAimMet": false,
+      "pointExcursion": 0.0006103515625,
+      "cumulativeTravel": 0.036896295845508575,
+      "maximumCorrection": 0.0132450507953763
+    },
+    {
+      "clip": "RapidTurningLeft",
+      "influences": 1,
+      "samples": 181,
+      "authoredOrigin": true,
+      "contactAimMet": false,
+      "pointExcursion": 0.0007425247458741069,
+      "cumulativeTravel": 0.042491309344768524,
+      "maximumCorrection": 0.0140380859375
+    },
+    {
+      "clip": "RapidTurningRight_Mirror",
+      "influences": 2,
+      "samples": 181,
+      "authoredOrigin": false,
+      "contactAimMet": true,
+      "pointExcursion": 0.0003122775524388999,
+      "cumulativeTravel": 0.008136272430419922,
+      "maximumCorrection": 0.013161097653210163
+    },
+    {
+      "clip": "RapidTurningLeft",
+      "influences": 2,
+      "samples": 181,
+      "authoredOrigin": false,
+      "contactAimMet": true,
+      "pointExcursion": 0.00031169148860499263,
+      "cumulativeTravel": 0.008363996632397175,
+      "maximumCorrection": 0.014071295969188213
+    },
+    {
+      "clip": "RapidTurningRight_Mirror",
+      "influences": 2,
+      "samples": 181,
+      "authoredOrigin": true,
+      "contactAimMet": false,
+      "pointExcursion": 0.0006103515625,
+      "cumulativeTravel": 0.036896295845508575,
+      "maximumCorrection": 0.0132450507953763
+    },
+    {
+      "clip": "RapidTurningLeft",
+      "influences": 2,
+      "samples": 181,
+      "authoredOrigin": true,
+      "contactAimMet": false,
+      "pointExcursion": 0.0007425247458741069,
+      "cumulativeTravel": 0.042491309344768524,
+      "maximumCorrection": 0.0140380859375
+    },
+    {
+      "clip": "RapidTurningRight_Mirror",
+      "influences": 4,
+      "samples": 181,
+      "authoredOrigin": false,
+      "contactAimMet": true,
+      "pointExcursion": 0.0003122775524388999,
+      "cumulativeTravel": 0.008136272430419922,
+      "maximumCorrection": 0.013161097653210163
+    },
+    {
+      "clip": "RapidTurningLeft",
+      "influences": 4,
+      "samples": 181,
+      "authoredOrigin": false,
+      "contactAimMet": true,
+      "pointExcursion": 0.00031169148860499263,
+      "cumulativeTravel": 0.008363996632397175,
+      "maximumCorrection": 0.014071295969188213
+    },
+    {
+      "clip": "RapidTurningRight_Mirror",
+      "influences": 4,
+      "samples": 181,
+      "authoredOrigin": true,
+      "contactAimMet": false,
+      "pointExcursion": 0.0006103515625,
+      "cumulativeTravel": 0.036896295845508575,
+      "maximumCorrection": 0.0132450507953763
+    },
+    {
+      "clip": "RapidTurningLeft",
+      "influences": 4,
+      "samples": 181,
+      "authoredOrigin": true,
+      "contactAimMet": false,
+      "pointExcursion": 0.0007425247458741069,
+      "cumulativeTravel": 0.042491309344768524,
+      "maximumCorrection": 0.0140380859375
+    }
+  ]
+}

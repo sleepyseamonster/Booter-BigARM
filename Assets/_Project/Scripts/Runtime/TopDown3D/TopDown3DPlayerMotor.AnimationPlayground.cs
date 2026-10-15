@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace BooterBigArm.TopDown3D
 {
-    public enum AnimationPlaygroundMotionMode { None, AlignedAction, Slide, Dodge, Ladder, Cover, Jump, Fall, Recovery, Dead }
+    public enum AnimationPlaygroundMotionMode { None, AlignedAction, Slide, Dodge, Ladder, Cover, Jump, Fall, Recovery, Dead, Turn }
     public enum AnimationPlaygroundPosture { Standing, Crouched, Prone }
     public readonly struct AnimationPlaygroundMotorIntent
     {

@@ -1,0 +1,175 @@
+{
+  "success": true,
+  "command": "command test_status",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 0.87,
+      "summary": {
+        "total": 21,
+        "passed": 21,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.ASourceYawPauseRetainsItsEarliestTime",
+          "Status": "Passed",
+          "Duration": 0.00108,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"duplicate-time\")",
+          "Status": "Passed",
+          "Duration": 0.0040317,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"nonfinite-time\")",
+          "Status": "Passed",
+          "Duration": 0.0002684,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"backwards-yaw\")",
+          "Status": "Passed",
+          "Duration": 0.0002091,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"wrong-sign\")",
+          "Status": "Passed",
+          "Duration": 0.0002068,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"partial-source\")",
+          "Status": "Passed",
+          "Duration": 0.0002041,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"discarded-root-travel\")",
+          "Status": "Passed",
+          "Duration": 0.0002038,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"discarded-root-height\")",
+          "Status": "Passed",
+          "Duration": 0.0001988,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"duration-mismatch\")",
+          "Status": "Passed",
+          "Duration": 0.0001988,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"missing-clip\")",
+          "Status": "Passed",
+          "Duration": 0.0001983,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.NamedEvaluatedSourceDataRemainsUnqualifiedAndUnbound",
+          "Status": "Passed",
+          "Duration": 0.8410381,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.PairingAndProvenanceAreRequiredEvenOffline(\"receipt\")",
+          "Status": "Passed",
+          "Duration": 0.0008873,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.PairingAndProvenanceAreRequiredEvenOffline(\"calibration\")",
+          "Status": "Passed",
+          "Duration": 0.0002778,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.PairingAndProvenanceAreRequiredEvenOffline(\"duplicate-clip\")",
+          "Status": "Passed",
+          "Duration": 0.0001984,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.PairingAndProvenanceAreRequiredEvenOffline(\"swapped-direction\")",
+          "Status": "Passed",
+          "Duration": 0.0001627,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.PairingAndProvenanceAreRequiredEvenOffline(\"swapped-clips\")",
+          "Status": "Passed",
+          "Duration": 0.000158,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.PairingAndProvenanceAreRequiredEvenOffline(\"sampled-name\")",
+          "Status": "Passed",
+          "Duration": 0.0001566,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.SignedYawAndNativeTimeRoundTripWithoutRetiming(-1)",
+          "Status": "Passed",
+          "Duration": 0.0006431,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.SignedYawAndNativeTimeRoundTripWithoutRetiming(1)",
+          "Status": "Passed",
+          "Duration": 0.0002764,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.WrongDirectionAndNonfiniteQueriesFailVisibly(-1)",
+          "Status": "Passed",
+          "Duration": 0.0007181,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.WrongDirectionAndNonfiniteQueriesFailVisibly(1)",
+          "Status": "Passed",
+          "Duration": 0.0001002,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -1,0 +1,161 @@
+{
+  "success": true,
+  "command": "command test_status",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 3.87,
+      "summary": {
+        "total": 19,
+        "passed": 19,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.ActionOwnerUsesInertTerrainStageAndReturnsWithoutAnotherOutput",
+          "Status": "Passed",
+          "Duration": 0.1817022,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.AirborneFootKeepsTangentStrideWithinTheJointReachEnvelope",
+          "Status": "Passed",
+          "Duration": 0.0763908,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.ColdGarmentUsesActualLateUpdateWithoutASecondGraphEvaluation(OneBone)",
+          "Status": "Passed",
+          "Duration": 0.1000968,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.ColdGarmentUsesActualLateUpdateWithoutASecondGraphEvaluation(FourBones)",
+          "Status": "Passed",
+          "Duration": 0.0689185,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.NativeFlatPoseMatchesDisabledStageAndWarmTerrainHasNoManagedAllocation",
+          "Status": "Passed",
+          "Duration": 0.1563943,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.NearFlatSurfaceDoesNotIntroduceAPoseStep",
+          "Status": "Passed",
+          "Duration": 0.1715264,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(OneBone,0.0f)",
+          "Status": "Passed",
+          "Duration": 0.3480694,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(TwoBones,0.0f)",
+          "Status": "Passed",
+          "Duration": 0.3238246,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(FourBones,0.0f)",
+          "Status": "Passed",
+          "Duration": 0.3160701,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(OneBone,30.0f)",
+          "Status": "Passed",
+          "Duration": 0.3953013,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(TwoBones,30.0f)",
+          "Status": "Passed",
+          "Duration": 0.3315087,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(FourBones,30.0f)",
+          "Status": "Passed",
+          "Duration": 0.2942311,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(OneBone,48.0f)",
+          "Status": "Passed",
+          "Duration": 0.2895051,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(TwoBones,48.0f)",
+          "Status": "Passed",
+          "Duration": 0.3138785,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(FourBones,48.0f)",
+          "Status": "Passed",
+          "Duration": 0.2951505,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.ResetBetweenPoseAndGarmentCannotProjectAgainstAnOldPlane",
+          "Status": "Passed",
+          "Duration": 0.0561701,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.SteepCrossSlopeDoesNotSwitchKneeSolutionsWithinATinyPhaseChange(45.0f,0.469049d)",
+          "Status": "Passed",
+          "Duration": 0.0566717,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.SteepCrossSlopeDoesNotSwitchKneeSolutionsWithinATinyPhaseChange(90.0f,0.35190978d)",
+          "Status": "Passed",
+          "Duration": 0.0553134,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.TerrainExtensionRequiresItsVersionAndBoundsWithoutEnablingOldAssets",
+          "Status": "Passed",
+          "Duration": 0.0025997,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

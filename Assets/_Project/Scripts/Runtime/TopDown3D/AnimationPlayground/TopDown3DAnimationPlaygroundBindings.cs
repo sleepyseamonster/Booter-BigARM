@@ -29,6 +29,8 @@ namespace BooterBigArm.TopDown3D
         public bool forwardReviewOverrideRequired;
         public AnimationPlaygroundStandingStrafeProfile standingStrafeReview;
         public bool standingStrafeReviewRequired;
+        public AnimationPlaygroundContinuationProfile continuationReview;
+        public bool continuationReviewRequired;
         public AnimationPlaygroundCrouchProfile crouch;
         public AnimationPlaygroundFootProjection footProjection;
         public AnimationPlaygroundAirborneProfile airborne;
@@ -78,6 +80,12 @@ namespace BooterBigArm.TopDown3D
                 reason = "Laboratory locomotion speeds must be finite and ordered.";
             else if(standingStrafeReviewRequired && standingStrafeReview==null)
                 reason="Restore the required private standing strafe review.";
+            else if(continuationReviewRequired && continuationReview==null)
+                reason="Restore the required private Camp Loop motion continuation.";
+            else if(continuationReview!=null && (forwardReviewOverride==null || !forwardReviewOverride.ExpandedReview
+                || standingStrafeReview==null || airborne==null))
+                reason="The continuation review requires its expanded forward, strafe and airborne families.";
+            else if(continuationReview!=null && !continuationReview.Validate(targetModel,footProjection,out reason))return false;
             else if(footProjection!=null && !footProjection.Validate(targetModel,out reason))return false;
             else if(standingStrafeReview!=null && !standingStrafeReview.Validate(targetModel,footProjection,out reason))return false;
             else if(crouch!=null && (crouch.contactsQualified || crouch.groundingQualified) && footProjection==null)

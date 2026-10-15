@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene(); var session=BooterBigArm.TopDown3D.TopDown3DAnimationPlaygroundSession.Find(scene); var b=session.Bindings; var p=b.continuationReview; var valid=b.ValidatePlayer(out var reason); return Newtonsoft.Json.JsonConvert.SerializeObject(new { playing=UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode, compiling=UnityEditor.EditorApplication.isCompiling, scene=scene.path, dirty=scene.isDirty, bindingValid=valid, reason, continuationRequired=b.continuationReviewRequired, continuation=UnityEditor.AssetDatabase.GetAssetPath(p), p.maximumSlope, p.maximumAirSpeed, forwardQualified=b.forwardReviewOverride.qualified, terrainQualified=b.forwardReviewOverride.terrainQualified, forwardSpeeds=b.forwardReviewOverride.gaits.Select(g=>g.nominalSpeed).ToArray(), legacyAirborneCap=b.airborne.maximumPlanarSpeed, leftTurn=p.left.clip.name, rightTurn=p.right.clip.name, source=UnityEditor.AssetDatabase.GetAssetPath(p.left.clip), module=typeof(BooterBigArm.TopDown3D.TopDown3DPlayerAnimationDriver).Assembly.ManifestModule.ModuleVersionId, unitPhysics=BooterBigArm.TopDown3D.TopDown3DAnimationPlaygroundSession.HasUnitPhysicsHierarchy(session.Player.transform) });",
+      "timeout": "25000"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": "{\"playing\":false,\"compiling\":false,\"scene\":\"Assets/_Project/Scenes/Reference/CampLoopTesting.unity\",\"dirty\":true,\"bindingValid\":true,\"reason\":null,\"continuationRequired\":true,\"continuation\":\"Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampMotionContinuationReview.asset\",\"maximumSlope\":10.0,\"maximumAirSpeed\":6.0,\"forwardQualified\":false,\"terrainQualified\":false,\"forwardSpeeds\":[1.4,3.0,4.0,5.0,6.0],\"legacyAirborneCap\":3.8,\"leftTurn\":\"RapidTurningLeft\",\"rightTurn\":\"RapidTurningRight_Mirror\",\"source\":\"Assets/_Project/Art/Characters/AnimationPlayground/Qualification/RapidTurnNative.fbx\",\"module\":\"f744f3fb-c089-4193-9447-35b7a91cdb5c\",\"unitPhysics\":true}"
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\Arc & Dust\\Project"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

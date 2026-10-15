@@ -36,11 +36,11 @@ namespace BooterBigArm.TopDown3D
         private bool forwardTerrainApplied;
         private Plane forwardTerrainPlane;
         private long forwardTerrainTick, forwardTerrainEpoch;
-        private bool ForwardTerrainPoseCurrent => forwardTerrainApplied && motor != null
-            && !AnimationPresentationOwned && !CrouchPresentationOwned && !PoseBlendOwned && !motor.IsMounted
+        private bool ForwardTerrainPoseCurrent => forwardTerrainApplied && motor != null && (ContinuationActionTerrainCurrent
+            || !AnimationPresentationOwned && !CrouchPresentationOwned && !PoseBlendOwned && !motor.IsMounted
             && motor.LaboratoryGroundedMotion.Tick == forwardTerrainTick
             && motor.LaboratoryGroundedMotion.Epoch == forwardTerrainEpoch
-            && motor.TryGetLaboratorySupportPlane(out _, true);
+            && motor.TryGetLaboratorySupportPlane(out _, true));
         public float LaboratoryTerrainBodyLowering => forwardTerrainApplied ? forwardTerrainPose.Sample.lowering : 0;
         public int LaboratoryTerrainEvaluations => forwardTerrainPose?.Sample.evaluations ?? 0;
         public bool LaboratoryForwardReady { get; private set; }
@@ -63,7 +63,7 @@ namespace BooterBigArm.TopDown3D
             { LaboratoryForwardFailure = reason; return; }
             InitializeForwardReviewInputs();
             forwardClock = new AnimationPlaygroundGaitClock(laboratoryForwardProfile.enterSpeed, laboratoryForwardProfile.exitSpeed);
-            if (laboratoryForwardProfile.terrainQualified)
+            if (laboratoryForwardProfile.terrainQualified || LaboratoryContinuationConfigured)
                 forwardTerrainPose = new AnimationPlaygroundTerrainPose(humanoidAnimator, visualInstance.transform,
                     laboratoryForwardProfile.footProjection, playableGraph, laboratoryForwardProfile.maximumTerrainBodyLowering);
             LaboratoryForwardReady = true; BindForwardMotion();
@@ -78,6 +78,7 @@ namespace BooterBigArm.TopDown3D
         }
         private void UnbindForwardMotion()
         {
+            ResetLaboratoryContinuationReview();
             RestoreStandingStrafeBaseline();
             ResetStandingStrafePresentation();
             RestoreForwardReviewBaseline();
@@ -128,6 +129,7 @@ namespace BooterBigArm.TopDown3D
 
         private void PrepareForwardGraphUpdate()
         {
+            continuationActionTerrainApplied=false;
             RestoreStandingStrafeBaseline();
             RestoreForwardReviewBaseline();
             forwardTerrainApplied = false; forwardTerrainPose?.Disable();
@@ -159,7 +161,9 @@ namespace BooterBigArm.TopDown3D
             var speed = Mathf.Lerp(forwardPreviousSpeed, forwardSpeed, alpha);
             if (!motor.IsGrounded || Time.fixedTimeAsDouble - forwardMotion.CompletedTime > .1) speed = 0;
             var cycles = forwardClock.RenderCycles(alpha, forwardSpeed, laboratoryForwardProfile);
-            PresentForwardFrame(speed, cycles, Time.deltaTime);
+            try { PresentForwardFrame(speed, cycles, Time.deltaTime); }
+            catch(InvalidOperationException error) when(continuationReview!=null)
+            {RejectContinuationPose(error.Message);return false;}
             CurrentLocomotionState = forwardPoseEnvelope.Settling ? TopDown3DLocomotionState.Stopping
                 : forwardPoseEnvelope.Resuming ? TopDown3DLocomotionState.Starting
                 : speed > 0 ? TopDown3DLocomotionState.Sustained : TopDown3DLocomotionState.Idle;

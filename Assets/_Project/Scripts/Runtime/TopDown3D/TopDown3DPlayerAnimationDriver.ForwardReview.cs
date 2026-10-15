@@ -21,9 +21,11 @@ namespace BooterBigArm.TopDown3D
             && !PoseBlendOwned && motor != null && !motor.IsMounted && !motor.IsActionConstrained;
         public string LaboratoryForwardReviewStatus => (!LaboratoryForwardReviewConfigured ? null
             : LaboratoryForwardFailure != null ? "Forward gait review unavailable: " + LaboratoryForwardFailure
+            : LaboratoryContinuationFailure != null ? "Motion review fallback: " + LaboratoryContinuationFailure
+            : LaboratoryContinuationConfigured ? "Experimental Camp Loop motions: static even slopes up to " + continuationReview.maximumSlope + " degrees; baseline beyond. A jump / B cancel."
             : LaboratoryForwardReviewActive ? "Experimental forward gaits — AP02 flat deck"
             : "Experimental forward gaits available on AP02's flat deck. Baseline active elsewhere.")
-            + (LaboratoryStandingStrafeConfigured ? "\n" + LaboratoryStandingStrafeStatus : null);
+            + (LaboratoryStandingStrafeConfigured ? "\n" + LaboratoryStandingStrafeStatus : null)+ContinuationTurnStatus;
 
         public void ConfigureLaboratoryForwardReview(AnimationPlaygroundForwardLocomotionProfile policy,
             TopDown3DAnimationPlaygroundStation station)
@@ -46,6 +48,10 @@ namespace BooterBigArm.TopDown3D
         private bool ForwardReviewSupportAvailable()
         {
             if (!LaboratoryForwardReviewConfigured) return true;
+            var currentSupport=motor!=null ? motor.LaboratorySupportCollider : null;
+            if(continuationReview!=null && currentSupport!=null && currentSupport==continuationRejectedSupport
+                && currentSupport.transform.localToWorldMatrix==continuationRejectedMatrix)return false;
+            if (ContinuationReviewSupportAvailable()) return true;
             if (forwardReviewStation == null || forwardReviewSession == null || !forwardReviewSession.isActiveAndEnabled
                 || forwardReviewSession.Readiness == AnimationPlaygroundReadiness.Failed
                 || !forwardReviewStation.isActiveAndEnabled || motor == null || !motor.TryGetLaboratorySupportPlane(out var plane, true)

@@ -236,6 +236,8 @@ namespace BooterBigArm.TopDown3D
             laboratoryFootProjection=value.footProjection;
             laboratoryForwardProfile=value.forwardLocomotion;
             forwardReviewConfigured=false; forwardReviewStation=null; forwardReviewSession=null;
+            standingStrafeReview=null;continuationReview=null;continuationJumpStation=null;
+            continuationRejectedSupport=null;LaboratoryContinuationFailure=null;
             equipmentScale = value.bodyHeight / value.equipmentModelHeight;
             equipmentPresentationRatio = equipmentScale / PrototypeVisualScale;
             laboratoryFeetPlane = -value.capsuleHeight * .5f;
@@ -1073,6 +1075,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDestroy()
         {
+            DisposeAdaptedTurnPose();
             UnbindForwardMotion();
             ReleasePoseBlend();
             ReleaseCrouchPresentation();

@@ -24,8 +24,14 @@ namespace BooterBigArm.TopDown3D
         private bool TrySelectedRollLanding(float speed)
         {
             var selected=bindings.Find(selectedSource);
-            return SlideReady && selected?.CanPreview==true && selected.clip.name=="FallRollLanding"
-                && lowMotion.TryTakeLandingSequence(airborne,speed);
+            if(!SlideReady || selected?.CanPreview!=true || selected.clip.name!="FallRollLanding")return false;
+            if(bindings.continuationReview!=null && presentation.LaboratoryContinuationConfigured)
+            {
+                var planar=Vector3.ProjectOnPlane(player.Velocity,Vector3.up);
+                if(planar.magnitude>3.8f || planar.magnitude>.1f && Vector3.Dot(planar.normalized,player.FacingDirection)<.7f
+                    || !presentation.TryGetContinuationLandingPlane(out var plane) || Vector3.Angle(plane.normal,Vector3.up)>.25f)return false;
+            }
+            return lowMotion.TryTakeLandingSequence(airborne,speed);
         }
         private void DetachLowMotion()
         {

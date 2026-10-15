@@ -144,6 +144,56 @@ namespace BooterBigArm.Tests
                 airborne.LandingRecovery=null;low.DisposeOwnedServices();Object.DestroyImmediate(low);Object.DestroyImmediate(lowProfile);Object.DestroyImmediate(projection);
             }
         }
+        [TestCase(0f)] [TestCase(.5f)] [TestCase(1.4f)] [TestCase(3f)] [TestCase(4f)] [TestCase(5f)] [TestCase(6f)]
+        public void ContinuationRetainsEveryLaunchSpeedAndFacingThenBrakesIntoOneLanding(float speed)
+        {
+            var review=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundContinuationProfile>(
+                "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampMotionContinuationReview.asset");
+            Assert.That(review,Is.Not.Null);airborne.ConfigureContinuationReview(review);
+            var direction=speed==.5f ? Vector3.right : Vector3.forward;
+            motor.FacePlanarDirection(Vector3.forward);body.linearVelocity=direction*speed;
+            var landings=0;airborne.Landed+=value=>landings++;
+            Assert.That(airborne.TryJump(),Is.True,airborne.LastFailure);Assert.That(airborne.TryJump(),Is.False);
+            for(var i=0;i<100 && airborne.State==AnimationPlaygroundAirborneState.Takeoff;i++)Tick();
+            Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Rising));
+            Assert.That(Vector3.Distance(Vector3.ProjectOnPlane(body.linearVelocity,Vector3.up),direction*speed),Is.LessThan(.0001f));
+            body.position=new Vector3(68000,1.91f,68000);body.linearVelocity=direction*speed+Vector3.up*4;Physics.SyncTransforms();Tick(40);
+            Assert.That(Vector3.Distance(Vector3.ProjectOnPlane(body.linearVelocity,Vector3.up),direction*speed),Is.LessThan(.0001f));
+            Assert.That(motor.FacingDirection,Is.EqualTo(Vector3.forward));
+            body.linearVelocity=direction*speed+Vector3.down*3;Tick();
+            body.position=new Vector3(68000,.91f,68000);body.linearVelocity=direction*speed+Vector3.down*.1f;Physics.SyncTransforms();Tick();
+            Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Landing));Assert.That(landings,Is.EqualTo(1));
+            var before=Vector3.ProjectOnPlane(body.linearVelocity,Vector3.up);Tick();
+            var after=Vector3.ProjectOnPlane(body.linearVelocity,Vector3.up);
+            Assert.That(Vector3.Distance(before,after),Is.LessThanOrEqualTo(.4001f));
+            Tick(100);Assert.That(airborne.Active,Is.False);Assert.That(motor.IsActionConstrained,Is.False);Assert.That(landings,Is.EqualTo(1));
+        }
+        [Test] public void ContinuationTakeoffLedgeLossCancelsItsImpulseAndRetainsFastFallMomentum()
+        {
+            airborne.ConfigureContinuationReview(AssetDatabase.LoadAssetAtPath<AnimationPlaygroundContinuationProfile>(
+                "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampMotionContinuationReview.asset"));
+            body.linearVelocity=Vector3.forward*6;Assert.That(airborne.TryJump(),Is.True);Tick();
+            Object.DestroyImmediate(floor);body.position+=Vector3.up*.2f;body.linearVelocity=Vector3.forward*6+Vector3.down;
+            Physics.SyncTransforms();Tick();
+            Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Falling));
+            Tick(100);Assert.That(body.linearVelocity.y,Is.EqualTo(-1));Assert.That(body.linearVelocity.z,Is.EqualTo(6));
+            Assert.That(coordinator.IsSequenceOwner(airborne),Is.True);Assert.That(airborne.TryJump(),Is.False);
+        }
+        [Test] public void ContinuationLandingSupportLossReturnsToFallAndCountsTheNextDistinctImpactOnce()
+        {
+            airborne.ConfigureContinuationReview(AssetDatabase.LoadAssetAtPath<AnimationPlaygroundContinuationProfile>(
+                "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampMotionContinuationReview.asset"));
+            var landings=0;airborne.Landed+=value=>landings++;Launch();body.linearVelocity=Vector3.down*3;Tick();
+            body.position=new Vector3(68000,.91f,68000);body.linearVelocity=Vector3.down*.1f;Physics.SyncTransforms();Tick();
+            Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Landing));Assert.That(landings,Is.EqualTo(1));
+            Object.DestroyImmediate(floor);body.position+=Vector3.up*.5f;body.linearVelocity=Vector3.down*2;Physics.SyncTransforms();Tick();
+            Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Falling));
+            Assert.That((float)typeof(AnimationPlaygroundAirborneController).GetField("impactSpeed",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(airborne),Is.EqualTo(2));
+            floor=GameObject.CreatePrimitive(PrimitiveType.Cube);floor.transform.position=new Vector3(68000,-.1f,68000);
+            floor.transform.localScale=new Vector3(10,.2f,10);floor.AddComponent<TopDown3DGroundSurface>();
+            body.position=new Vector3(68000,.91f,68000);body.linearVelocity=Vector3.down*.1f;Physics.SyncTransforms();Tick();
+            Assert.That(landings,Is.EqualTo(2));Tick(120);Assert.That(landings,Is.EqualTo(2));Assert.That(airborne.Active,Is.False);
+        }
         [Test] public void QualifiedRolesRetainHumanoidDataAndAirPosesHaveNoAnimatedVerticalArc()
         {
             var source=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundAirborneProfile>(AnimationPlaygroundAirborneAuthoring.ProfilePath);

@@ -1,0 +1,26 @@
+{
+  "checkpoint": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-13\\ImportCheckpoints\\CampMotionContinuation20261015",
+  "manifest": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-13\\ImportCheckpoints\\CampMotionContinuation20261015\\sealed-files.json",
+  "manifestSha256": "b521e30bd2c59f9a3fbb1a54dde7c9c8b64879022b4f7ee4bb3add52be722537",
+  "sealedFiles": 253,
+  "sealedBytes": 14032114,
+  "installationPlan": "install-plan-resume.json",
+  "previousBinding": "author-binding-before-final-install.asset",
+  "installedPayloadRoot": "Final",
+  "baselineParents": [
+    "ExpandedGaitAuthorInstall20261015",
+    "StandingStrafeReview20261015",
+    "StandingStrafeReviewHardening20261015",
+    "TurnNativeCalibration20261015",
+    "TurnTangentStabilization20261015",
+    "PHY1AirborneQualified"
+  ],
+  "scope": "Private animation/profile payloads stay local. Four new private files, two selection fields, task code/tests/tools/docs only. Original scene and unrelated work preserved; no external publication.",
+  "publicReceiptNormalization": {
+    "path": "author-install.json",
+    "operation": "CRLF to LF only; JSON values unchanged",
+    "rawSha256": "6521889b98e97aa43b3bfb265c71e90eab23391994aea93e23768ab526b0cfaf",
+    "publicSha256": "e02f8a9d3f715ce1cf9097de575122a1456c04e0e436504005dd15de0f5e07f2",
+    "note": "Private manifest payloads retain original bytes. The public verification records both hashes."
+  }
+}
