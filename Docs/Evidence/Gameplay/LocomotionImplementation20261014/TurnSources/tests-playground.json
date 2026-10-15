@@ -1,0 +1,2138 @@
+{
+  "Summary": {
+    "Total": 303,
+    "Passed": 303,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "Results": [
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ADisappearingSurfaceReturnsApproachToFallingWithoutReleasingGravity",
+      "Status": "Passed",
+      "Duration": 0.2665428,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.AFailedPresentationStageReleasesOnlyItsOwnSequence",
+      "Status": "Passed",
+      "Duration": 0.003002,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ExternalCancellationCannotLeaveAStaleAirborneController",
+      "Status": "Passed",
+      "Duration": 0.0020387,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.JumpLaunchesOnceAndLandingRequiresSurfaceContactRatherThanClipEnd",
+      "Status": "Passed",
+      "Duration": 0.0044888,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.PauseFreezesPoseAndCancelKeepsFallingPhysicsOwned",
+      "Status": "Passed",
+      "Duration": 0.0033849,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.PhysicalContactCanTransferToRollWithoutLosingTheMotorOrRepeatingLanding",
+      "Status": "Passed",
+      "Duration": 0.1225969,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.QualifiedRolesRetainHumanoidDataAndAirPosesHaveNoAnimatedVerticalArc",
+      "Status": "Passed",
+      "Duration": 2.5420655,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ResetInvalidatesTheSequenceAndRestoresOnlyTheExistingActor",
+      "Status": "Passed",
+      "Duration": 0.0050508,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.UnavailableLandingDelegatePreservesDefaultRecoveryAndEmitsDamageOnce",
+      "Status": "Passed",
+      "Duration": 0.0031408,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.UnqualifiedAirborneProfileAndCrouchedPostureCannotLaunch",
+      "Status": "Passed",
+      "Duration": 0.0010062,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests.BodyProjectionUsesNonFootPointsAndReleasesBeforeTheNextAction",
+      "Status": "Passed",
+      "Duration": 0.0022157,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests.OwnedRuntimeClothWeightsKeepTheirBonesWhenOrderedForSkinning",
+      "Status": "Passed",
+      "Duration": 0.0025793,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests.PreviewCannotAcquireBodyProjectionOrAlterTheActor",
+      "Status": "Passed",
+      "Duration": 0.0006451,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests.ProjectionRequiresThePhysicalOwnerAndItsSelectedModel",
+      "Status": "Passed",
+      "Duration": 0.0006735,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundBodyProjectionTests.WholeBodyProjectionRetainsTheExistingCorrectionCeiling",
+      "Status": "Passed",
+      "Duration": 0.002534,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundClockTests.BoundaryMarkersAndInvalidClockInputsAreExplicit",
+      "Status": "Passed",
+      "Duration": 0.0013231,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundClockTests.LongFrameCrossesEveryApprovedCycleWithoutDuplicatingEffects",
+      "Status": "Passed",
+      "Duration": 0.0005703,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundClockTests.PauseCancelAndEpochPreventUncommittedOrStaleEffects",
+      "Status": "Passed",
+      "Duration": 0.0003956,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests.ClockRejectsInvalidOrUnboundedFixedSteps",
+      "Status": "Passed",
+      "Duration": 0.0013111,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests.PauseAndUnsupportedMotionCannotConsumeContacts",
+      "Status": "Passed",
+      "Duration": 0.0008874,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests.SkippedContactBoundariesEmitAlternatingMarkersAtTheirActualPosePhase",
+      "Status": "Passed",
+      "Duration": 0.0022132,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests.SlowActualMotionDoesNotForceHalfSpeedFootsteps",
+      "Status": "Passed",
+      "Duration": 0.0002913,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchClockTests.SustainedPostureHasNoFiniteActionQuotaAndUsesLocalDirections",
+      "Status": "Passed",
+      "Duration": 0.0013615,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.ACloseWallPreventsExpandingIntoTheWiderCrouchEnvelope",
+      "Status": "Passed",
+      "Duration": 0.0143001,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.BlockedResetRetainsAClearCrouchPoseUntilASafeReturnBecomesAvailable",
+      "Status": "Passed",
+      "Duration": 0.0195733,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.CancelDuringEntryFinishesSafelyAndResetInvalidatesEveryPoseBranch",
+      "Status": "Passed",
+      "Duration": 0.0260442,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.CeilingBlocksExitWithoutGrowingTheCapsuleOrLosingThePose",
+      "Status": "Passed",
+      "Duration": 0.0198454,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.CommandedVelocityWithoutDisplacementCannotAdvanceCrouchSteps",
+      "Status": "Passed",
+      "Duration": 0.0192096,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.DirectionalCrouchRetainsEntryFacingAndStillUsesTheExistingMotor",
+      "Status": "Passed",
+      "Duration": 0.0149249,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.DisableBelowACeilingSuspendsPostureUntilTheControllerResumes",
+      "Status": "Passed",
+      "Duration": 0.0240787,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.DisableInClearSpaceRestoresStandingAndKeepsOrdinaryMovementAvailable",
+      "Status": "Passed",
+      "Duration": 0.0153431,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.DisposalBelowACeilingTransfersTheSafePoseUntilStandingIsClear",
+      "Status": "Passed",
+      "Duration": 0.0155265,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.DraftPauseAirborneAndOtherActivitiesCannotStartPosture",
+      "Status": "Passed",
+      "Duration": 0.0136316,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.EnterSustainsOneOutputAndExitsThroughTheSharedActionOwner",
+      "Status": "Passed",
+      "Duration": 0.0220757,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.ForeignOwnersAndInvalidPoseCannotStealTheSustainedBranch",
+      "Status": "Passed",
+      "Duration": 0.0182668,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchControllerTests.SettlingBlendPausesAndResetReleasesItsGraphAndMotorLease",
+      "Status": "Passed",
+      "Duration": 0.015185,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchFacingTests.ContactAtTheLoopBoundaryMergesItsTwoFragments",
+      "Status": "Passed",
+      "Duration": 0.0040118,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchFacingTests.SoleContactRequiresGroundHeightAndMotionOpposingTheTravelAxis",
+      "Status": "Passed",
+      "Duration": 0.0016609,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchFacingTests.UnexplainedExtraContactsAndInvalidTimelineRequireReview",
+      "Status": "Passed",
+      "Duration": 0.0003491,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchGroundingTests.GroundingInterpolatesTheBlendWeightsAndWrapsAcrossForward",
+      "Status": "Passed",
+      "Duration": 0.0019542,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchGroundingTests.PhysicalProfileRequiresACompleteReviewedGroundingGrid",
+      "Status": "Passed",
+      "Duration": 0.0079759,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests.BrokenShapeCurvesAndMissingRolesCannotPassTheDraftGate",
+      "Status": "Passed",
+      "Duration": 0.0027705,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests.CyclicCrouchContactsRejectDuplicatesNonFiniteAndWrongOrder",
+      "Status": "Passed",
+      "Duration": 0.0001991,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests.DirectionalDerivativePreservesRelativeLimbMotion",
+      "Status": "Passed",
+      "Duration": 8.3541382,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests.HydratedCrouchHasSevenQualifiedHumanoidRoles",
+      "Status": "Passed",
+      "Duration": 0.0094632,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchQualificationTests.QualificationRequiresAllCanonicalMotionPayloadsOnDisk",
+      "Status": "Passed",
+      "Duration": 0.2414057,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests.ProjectionPreservesWeightedBoneMotionAndVisualScale",
+      "Status": "Passed",
+      "Duration": 0.0014116,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests.ProjectionRejectsWrongModelsMissingBonesAndIncompleteWeights",
+      "Status": "Passed",
+      "Duration": 0.0006917,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests.ProjectionReturnsTheLowestBodyPointWhenItsSupportingBoneChanges",
+      "Status": "Passed",
+      "Duration": 0.0006352,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests.QualifiedCrouchCannotBootstrapWithoutItsPairedProjection",
+      "Status": "Passed",
+      "Duration": 0.0052374,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundFootProjectionTests.SupportPlaneChangesTheLowestContactWithoutMovingTheRig",
+      "Status": "Passed",
+      "Duration": 0.0011188,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.ActualDriverUsesOneManualPoseAndNeverMovesThePhysicsRoot(OneBone)",
+      "Status": "Passed",
+      "Duration": 0.2603076,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.ActualDriverUsesOneManualPoseAndNeverMovesThePhysicsRoot(TwoBones)",
+      "Status": "Passed",
+      "Duration": 0.0491783,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.ActualDriverUsesOneManualPoseAndNeverMovesThePhysicsRoot(FourBones)",
+      "Status": "Passed",
+      "Duration": 0.0493865,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.CompletedTickTraceOwnsContactsWhileBlockedPoseSettles(30)",
+      "Status": "Passed",
+      "Duration": 0.0921885,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.CompletedTickTraceOwnsContactsWhileBlockedPoseSettles(60)",
+      "Status": "Passed",
+      "Duration": 0.0650834,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.CompletedTickTraceOwnsContactsWhileBlockedPoseSettles(144)",
+      "Status": "Passed",
+      "Duration": 0.0899072,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.DraftAndMismatchedPoliciesCannotBootstrapThePlayer",
+      "Status": "Passed",
+      "Duration": 0.0025668,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.FrameLifecyclePreservesIdleTimeAndDoesNotDuplicateMotionSubscriptions",
+      "Status": "Passed",
+      "Duration": 0.0465753,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.MeasuredDistanceInvertsAcrossWrapsAndPreservesTickSubdivision",
+      "Status": "Passed",
+      "Duration": 0.0101761,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.MeasuredPolicyRetainsOriginalSourcesAndLegacyValidationContract",
+      "Status": "Passed",
+      "Duration": 0.0022693,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.NativeRateBudgetsHoldAcrossGaitThresholdsAndSignificantContributors",
+      "Status": "Passed",
+      "Duration": 0.6473349,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.PartialTravelShortensStrideWhilePreservingCadenceAndActualGait",
+      "Status": "Passed",
+      "Duration": 0.000534,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.SourceSegmentsAndSignedHeightCannotBypassReviewedBudgets",
+      "Status": "Passed",
+      "Duration": 0.0017205,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardPoseEnvelopeTests.BlockedPoseSettlesWithinTheBoundAndStaysIdle(30)",
+      "Status": "Passed",
+      "Duration": 0.0004513,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardPoseEnvelopeTests.BlockedPoseSettlesWithinTheBoundAndStaysIdle(60)",
+      "Status": "Passed",
+      "Duration": 0.0001508,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardPoseEnvelopeTests.BlockedPoseSettlesWithinTheBoundAndStaysIdle(144)",
+      "Status": "Passed",
+      "Duration": 0.0003012,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardPoseEnvelopeTests.ResetAndLongFrameDoNotLeaveAStaleMovingPose",
+      "Status": "Passed",
+      "Duration": 0.0004021,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardPoseEnvelopeTests.ResumeInterruptsSettleContinuouslyAndReturnsToActualTravel",
+      "Status": "Passed",
+      "Duration": 0.000236,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardPoseEnvelopeTests.StopFadesTheCurrentSourceDirectlyToIdleWithoutVisitingOtherGaits",
+      "Status": "Passed",
+      "Duration": 0.0006129,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.AuthoredAP02DeckProvidesAStaticFlatReviewSupport",
+      "Status": "Passed",
+      "Duration": 0.0519357,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.ColdEquippedReviewClearsTheDeckAtSupportedSkinQualities(OneBone)",
+      "Status": "Passed",
+      "Duration": 0.97616,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.ColdEquippedReviewClearsTheDeckAtSupportedSkinQualities(TwoBones)",
+      "Status": "Passed",
+      "Duration": 1.0536872,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.ColdEquippedReviewClearsTheDeckAtSupportedSkinQualities(FourBones)",
+      "Status": "Passed",
+      "Duration": 0.988567,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.CompletedMotionDrivesTheActualReviewBranchAndActionOwnershipVetoesIt",
+      "Status": "Passed",
+      "Duration": 0.0469421,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.MissingOrDisabledReviewOwnersCannotTurnTheExperimentIntoGeneralLocomotion(0)",
+      "Status": "Passed",
+      "Duration": 0.0497426,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.MissingOrDisabledReviewOwnersCannotTurnTheExperimentIntoGeneralLocomotion(1)",
+      "Status": "Passed",
+      "Duration": 0.0481675,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.MissingOrDisabledReviewOwnersCannotTurnTheExperimentIntoGeneralLocomotion(2)",
+      "Status": "Passed",
+      "Duration": 0.0483104,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.MissingRequiredPrivateReviewProfileIsVisibleInsteadOfSilentlyFallingBack",
+      "Status": "Passed",
+      "Duration": 0.0432139,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(0.0f)",
+      "Status": "Passed",
+      "Duration": 0.0603318,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(0.7f)",
+      "Status": "Passed",
+      "Duration": 0.0615205,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(1.4f)",
+      "Status": "Passed",
+      "Duration": 0.0610493,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(2.05f)",
+      "Status": "Passed",
+      "Duration": 0.064279,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(2.7f)",
+      "Status": "Passed",
+      "Duration": 0.0620672,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(3.25f)",
+      "Status": "Passed",
+      "Duration": 0.076936,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(3.8f)",
+      "Status": "Passed",
+      "Duration": 0.0620243,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.ReviewIsAnExplicitRouteAndDoesNotRelaxTheNormalBindingGate",
+      "Status": "Passed",
+      "Duration": 0.0447878,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.ReviewKeepsTheBaselineAndQualificationFlagsAndUsesOneOutput",
+      "Status": "Passed",
+      "Duration": 0.0496842,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.ReviewRejectsSlopesForeignSupportAndTheDeckEdgeAndRestoresBaselineWeights",
+      "Status": "Passed",
+      "Duration": 0.0487505,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.SessionPreparesTheExplicitReviewRouteWithoutReplacingItsPrivateBinding",
+      "Status": "Passed",
+      "Duration": 0.0464283,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundGaitTests.HeightCorrectionPreservesFlightAndRejectsBrokenRetargeting",
+      "Status": "Passed",
+      "Duration": 0.0012109,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundGaitTests.HydratedProfileHasTwelveRolesAndActualTwoCycleSources",
+      "Status": "Passed",
+      "Duration": 0.0008674,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundGaitTests.LegacyEntryHasNoCorrectionAndInvalidLoopSeamsAreRejected",
+      "Status": "Passed",
+      "Duration": 0.0003516,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundGarmentFloorTests.ExcessiveDisplacementAndSingularSkinMatricesAreRejected",
+      "Status": "Passed",
+      "Duration": 0.0009592,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundGarmentFloorTests.ProjectionKeepsTheSkinnedVertexOnASlopedPlaneWithoutMovingBones",
+      "Status": "Passed",
+      "Duration": 0.0011362,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundGarmentFloorTests.RuntimeCopyRespectsSkinQualityAndRestoresItsOriginalGeometry",
+      "Status": "Passed",
+      "Duration": 0.0062244,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundHeldPropTests.AttachAlignsAuthoredGripAndFollowsHandWithoutParentingOrScalingPhysics",
+      "Status": "Passed",
+      "Duration": 0.0062332,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundHeldPropTests.CancelAllAndDisableRestorePhysicsWithoutRepositioningTheActor",
+      "Status": "Passed",
+      "Duration": 0.0036315,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundHeldPropTests.CancelLeaseAndUnbindReleaseHeldBody(False)",
+      "Status": "Passed",
+      "Duration": 0.0006792,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundHeldPropTests.CancelLeaseAndUnbindReleaseHeldBody(True)",
+      "Status": "Passed",
+      "Duration": 0.0004848,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundHeldPropTests.DeadLeaseOwnerAndInactiveHandCannotAcquirePhysicalOwnership",
+      "Status": "Passed",
+      "Duration": 0.0004678,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundHeldPropTests.EffectReplaysCannotReattachOrThrowThePropTwice",
+      "Status": "Passed",
+      "Duration": 0.0010962,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundHeldPropTests.ForeignOwnerAndInvalidGeometryHaveNoPhysicalSideEffects",
+      "Status": "Passed",
+      "Duration": 0.0005168,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundHeldPropTests.InvalidReleaseVelocityDoesNotConsumeLeaseOrEffect",
+      "Status": "Passed",
+      "Duration": 0.0006005,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundHeldPropTests.LostAnchorOrOwnerSafelyDropsInsteadOfLeavingKinematicBody(False)",
+      "Status": "Passed",
+      "Duration": 0.0008461,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundHeldPropTests.LostAnchorOrOwnerSafelyDropsInsteadOfLeavingKinematicBody(True)",
+      "Status": "Passed",
+      "Duration": 0.0003099,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundHeldPropTests.RebindKeepsAuthoredResetPoseAndInvalidatesEarlierPropCaptures",
+      "Status": "Passed",
+      "Duration": 0.0012109,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundHeldPropTests.ReleaseGuardsSelfCollisionUntilSeparationThenRestoresPairs",
+      "Status": "Passed",
+      "Duration": 0.0009679,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundHeldPropTests.ReleasePreservesAPreexistingIgnorePair",
+      "Status": "Passed",
+      "Duration": 0.0008064,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundHeldPropTests.ResetDetachesRestoresAuthoredStateAndRejectsOldEffectEpochs",
+      "Status": "Passed",
+      "Duration": 0.0008558,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundInputTests.CompatibleOverridesAreCopiedWithoutMutatingTheSource",
+      "Status": "Passed",
+      "Duration": 0.0257224,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundInputTests.HeldJumpCannotLeakThroughModalReturnAndEastCancelWinsPickup",
+      "Status": "Passed",
+      "Duration": 0.1300296,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundInputTests.InitialPreferenceInheritanceDoesNotWriteEitherFileAndExistingLabDataWins",
+      "Status": "Passed",
+      "Duration": 0.0531382,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundInputTests.LabCoactiveBindingsRejectNewActionConflictsWithoutChangingProductionPolicy",
+      "Status": "Passed",
+      "Duration": 0.0093683,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundInputTests.OwnedAssetPreservesShippedIdsAndDeterministicLabBindings",
+      "Status": "Passed",
+      "Duration": 0.019356,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.ClockCountsMultipleWrappedContactsAndKeepsCosmeticDroppingSeparate",
+      "Status": "Passed",
+      "Duration": 0.0007882,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.ClockSettlesWhenBlockedAndRebasesOwnedMotionBeforeResuming",
+      "Status": "Passed",
+      "Duration": 0.0004323,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.CompletedMotionRebasesSupportOwnerAndTeleportWithoutDuplicateTicks",
+      "Status": "Passed",
+      "Duration": 0.0007727,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.CompletedMotionRejectsInvalidObservations",
+      "Status": "Passed",
+      "Duration": 0.0004877,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.CompletedMotionUsesTravelAlongSupportAndIgnoresSettlement",
+      "Status": "Passed",
+      "Duration": 0.0006096,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.MeasuredStrideClockHasNoDominantRoleDiscontinuity(2.05f)",
+      "Status": "Passed",
+      "Duration": 0.0005144,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.MeasuredStrideClockHasNoDominantRoleDiscontinuity(3.25f)",
+      "Status": "Passed",
+      "Duration": 5.69e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.MotorConstraintBoundariesRebaseEvenWhenActionCompletesBetweenTicks",
+      "Status": "Passed",
+      "Duration": 0.0010137,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.RenderSubdivisionsCannotAdvanceSimulationOrDuplicateContacts(30)",
+      "Status": "Passed",
+      "Duration": 0.0040456,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.RenderSubdivisionsCannotAdvanceSimulationOrDuplicateContacts(60)",
+      "Status": "Passed",
+      "Duration": 0.0067079,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.RenderSubdivisionsCannotAdvanceSimulationOrDuplicateContacts(120)",
+      "Status": "Passed",
+      "Duration": 0.0124091,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.SupportedSteepUphillTravelUsesWalkingMetresPerSecondAlongTheSurface(1.0f)",
+      "Status": "Passed",
+      "Duration": 0.002684,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.SupportedSteepUphillTravelUsesWalkingMetresPerSecondAlongTheSurface(0.5f)",
+      "Status": "Passed",
+      "Duration": 0.0006337,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.SustainedDiagnosticCannotActivateOnProductionConfiguration",
+      "Status": "Passed",
+      "Duration": 0.0005735,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.SustainedDiagnosticGatesLegacyDispatchAndPreservesConstrainedOwner",
+      "Status": "Passed",
+      "Duration": 0.0019114,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UpcomingInclineBrakesThroughTheExistingMotorAndKeepsInputMagnitude(1.0f,False)",
+      "Status": "Passed",
+      "Duration": 0.0010176,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UpcomingInclineBrakesThroughTheExistingMotorAndKeepsInputMagnitude(0.5f,False)",
+      "Status": "Passed",
+      "Duration": 0.0004017,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UpcomingInclineBrakesThroughTheExistingMotorAndKeepsInputMagnitude(1.0f,True)",
+      "Status": "Passed",
+      "Duration": 0.0003936,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UpcomingInclineBrakesThroughTheExistingMotorAndKeepsInputMagnitude(0.5f,True)",
+      "Status": "Passed",
+      "Duration": 0.0003895,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UpcomingInclineIsDetectedBeforeTheReviewedBrakingDistanceIsConsumed",
+      "Status": "Passed",
+      "Duration": 0.0006846,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UphillPolicyDoesNotSlowLevelOrDownhillTravel(90)",
+      "Status": "Passed",
+      "Duration": 0.0001947,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UphillPolicyDoesNotSlowLevelOrDownhillTravel(180)",
+      "Status": "Passed",
+      "Duration": 3.4e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UphillPolicyDoesNotSlowLevelOrDownhillTravel(270)",
+      "Status": "Passed",
+      "Duration": 3.11e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UphillPolicyIsContinuousAndNeverIncreasesASlowerRequest",
+      "Status": "Passed",
+      "Duration": 0.0041327,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UphillPolicyRequiresConfiguredLabOwnershipAndIgnoresDynamicOrTriggerRamps",
+      "Status": "Passed",
+      "Duration": 0.0045937,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UphillPolicyRetainsFlatSpeedAndBlendsToWalking(0,3.8f)",
+      "Status": "Passed",
+      "Duration": 0.0003935,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UphillPolicyRetainsFlatSpeedAndBlendsToWalking(30,3.8f)",
+      "Status": "Passed",
+      "Duration": 4.94e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UphillPolicyRetainsFlatSpeedAndBlendsToWalking(32,3.8f)",
+      "Status": "Passed",
+      "Duration": 3.91e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UphillPolicyRetainsFlatSpeedAndBlendsToWalking(36,2.6f)",
+      "Status": "Passed",
+      "Duration": 3.59e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UphillPolicyRetainsFlatSpeedAndBlendsToWalking(40,1.4f)",
+      "Status": "Passed",
+      "Duration": 3.66e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLocomotionRepairTests.UphillPolicyRetainsFlatSpeedAndBlendsToWalking(48,1.4f)",
+      "Status": "Passed",
+      "Duration": 3.42e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).AFailedResetCanBeRetriedWithoutLosingTheRetainedPose",
+      "Status": "Passed",
+      "Duration": 0.0118958,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).BlockedRecoveryHandsOffToTheExistingCrouchController",
+      "Status": "Passed",
+      "Duration": 0.0245668,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).BlockedStandingFreezesTheLastSafeRecoveryPoseThenResumes",
+      "Status": "Passed",
+      "Duration": 0.01265,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).DisableFinishesSafelyAndBlockedDisposalRetainsPhysicsUntilClear",
+      "Status": "Passed",
+      "Duration": 0.0162466,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).DisposalFromAFoldedRollFinishesItsSourceRangeBeforeStanding",
+      "Status": "Passed",
+      "Duration": 0.0104485,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).ExternalCancellationCannotLeaveAProneActorWithoutItsLease",
+      "Status": "Passed",
+      "Duration": 0.0081212,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).LandingHandoffChangesTheSequenceOwnerWithoutReleasingTheMotor",
+      "Status": "Passed",
+      "Duration": 0.0083783,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).PauseFreezesPoseAndMotorAndCancellationFinishesTheRollPhase",
+      "Status": "Passed",
+      "Duration": 0.0098806,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).RecoveryWaitsForRealSupportRatherThanTheSourceClock",
+      "Status": "Passed",
+      "Duration": 0.0110093,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).ResetInvalidatesTheSequenceAndRestoresTheAuthoredReturn",
+      "Status": "Passed",
+      "Duration": 0.0087018,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).RollEmitsItsLandingContactOnceAfterTheBlendAndPause",
+      "Status": "Passed",
+      "Duration": 0.0091959,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).SlideRequiresSprintSpeedSupportAndQualification",
+      "Status": "Passed",
+      "Duration": 0.0014648,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(False).SlideRunsAllPhasesWithOneLeaseAndRestoresStanding",
+      "Status": "Passed",
+      "Duration": 0.0073685,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).AFailedResetCanBeRetriedWithoutLosingTheRetainedPose",
+      "Status": "Passed",
+      "Duration": 0.0086508,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).BlockedRecoveryHandsOffToTheExistingCrouchController",
+      "Status": "Passed",
+      "Duration": 0.0216193,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).BlockedStandingFreezesTheLastSafeRecoveryPoseThenResumes",
+      "Status": "Passed",
+      "Duration": 0.0124945,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).DisableFinishesSafelyAndBlockedDisposalRetainsPhysicsUntilClear",
+      "Status": "Passed",
+      "Duration": 0.0097175,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).DisposalFromAFoldedRollFinishesItsSourceRangeBeforeStanding",
+      "Status": "Passed",
+      "Duration": 0.0084322,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).ExternalCancellationCannotLeaveAProneActorWithoutItsLease",
+      "Status": "Passed",
+      "Duration": 0.007328,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).LandingHandoffChangesTheSequenceOwnerWithoutReleasingTheMotor",
+      "Status": "Passed",
+      "Duration": 0.0074428,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).PauseFreezesPoseAndMotorAndCancellationFinishesTheRollPhase",
+      "Status": "Passed",
+      "Duration": 0.0085805,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).RecoveryWaitsForRealSupportRatherThanTheSourceClock",
+      "Status": "Passed",
+      "Duration": 0.0098552,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).ResetInvalidatesTheSequenceAndRestoresTheAuthoredReturn",
+      "Status": "Passed",
+      "Duration": 0.0089602,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).RollEmitsItsLandingContactOnceAfterTheBlendAndPause",
+      "Status": "Passed",
+      "Duration": 0.0087069,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).SlideRequiresSprintSpeedSupportAndQualification",
+      "Status": "Passed",
+      "Duration": 0.0010684,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionControllerTests(True).SlideRunsAllPhasesWithOneLeaseAndRestoresStanding",
+      "Status": "Passed",
+      "Duration": 0.0076184,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests.ACurveWithoutTheFullPhaseRangeCannotQualify",
+      "Status": "Passed",
+      "Duration": 0.0006365,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests.InvalidShapeValuesCannotReachTheMotor",
+      "Status": "Passed",
+      "Duration": 0.0003038,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests.OversizedLongitudinalShapeAndUnboundedSpeedRemainRejected",
+      "Status": "Passed",
+      "Duration": 0.0003291,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests.QualifiedFlagCannotBypassMissingRolesOrProjectionPairing",
+      "Status": "Passed",
+      "Duration": 0.0003401,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests.SixDistinctSegmentedPhasesRemainUnavailableUntilPhysicalQualification",
+      "Status": "Passed",
+      "Duration": 0.0007913,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowMotionProfileTests.WrongModelAndMissingBodyProjectionCannotPassTheImportContract",
+      "Status": "Passed",
+      "Duration": 0.0003839,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.BlockedStandRetainsLowShapeUntilClearThenRestoresOriginalGeometry",
+      "Status": "Passed",
+      "Duration": 0.0017565,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.ConversionToCrouchChecksTheNewUprightVolumeAndRestoresTheFootPlane",
+      "Status": "Passed",
+      "Duration": 0.0007593,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.FootProbeDoesNotUseTheLongitudinalLengthAsVerticalHeight",
+      "Status": "Passed",
+      "Duration": 0.0006391,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.InvalidGeometryCannotChangeTheActor(float.NaN,0.4f,0)",
+      "Status": "Passed",
+      "Duration": 0.0004952,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.InvalidGeometryCannotChangeTheActor(1.9f,float.NaN,0)",
+      "Status": "Passed",
+      "Duration": 0.0002799,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.InvalidGeometryCannotChangeTheActor(1.9f,0.4f,float.PositiveInfinity)",
+      "Status": "Passed",
+      "Duration": 0.0002763,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.InvalidGeometryCannotChangeTheActor(0.5f,0.4f,0)",
+      "Status": "Passed",
+      "Duration": 0.0002651,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.InvalidGeometryCannotChangeTheActor(4.0f,0.4f,0)",
+      "Status": "Passed",
+      "Duration": 0.0002728,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.InvalidGeometryCannotChangeTheActor(1.9f,0.4f,2)",
+      "Status": "Passed",
+      "Duration": 0.0002671,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.LongShapeMustFitBeforeItCanReplaceTheUprightCapsule",
+      "Status": "Passed",
+      "Duration": 0.000586,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.LowBodySweepsBlockItsFrontBeyondTheFormerStandingRadius",
+      "Status": "Passed",
+      "Duration": 0.0007949,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.PauseReleaseAndResetKeepGravityAndClearOnlyOwnedGeometry",
+      "Status": "Passed",
+      "Duration": 0.0007554,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundLowPostureTests.ShapeRetainsFootPlaneLongitudinalExtentAndOwnedSupport",
+      "Status": "Passed",
+      "Duration": 0.0006633,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.AirbornePauseRestoresVerticalVelocityOnResumeOrCancellation",
+      "Status": "Passed",
+      "Duration": 0.0010524,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.CompactShapeCannotBeLabelledStandingOrAnUnknownMode",
+      "Status": "Passed",
+      "Duration": 0.0004612,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.ControlledMotionAdvancesInsideTheExistingConstraintAndCannotBeStolen",
+      "Status": "Passed",
+      "Duration": 0.0008235,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.DisableReleasesOnlyOwnedStateAndPreservesTheOriginalGravitySetting",
+      "Status": "Passed",
+      "Duration": 0.0005802,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.FloorSupportDoesNotBlockPlanarMotionAndTakeoffReleasesSupport",
+      "Status": "Passed",
+      "Duration": 0.0007679,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.GroundDistanceRequiresTheLeaseAndMeasuresTheSurfaceBelowTheFeet",
+      "Status": "Passed",
+      "Duration": 0.0006986,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.PostureAnchorsFeetAndRefusesStandingThroughACeiling",
+      "Status": "Passed",
+      "Duration": 0.0009319,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.ResetRefusesOccupiedReturnAndNeverTakesAForeignLease",
+      "Status": "Passed",
+      "Duration": 0.0008166,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.ReviewedRadiusExpansionRequiresClearanceAndPreservesTheFootPlane",
+      "Status": "Passed",
+      "Duration": 0.0007809,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.SweepAndPauseConstrainMotionAndReleaseRestoresGravity",
+      "Status": "Passed",
+      "Duration": 0.000838,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPaletteTests.AuthoredCatalogRetainsRestrictedSourcesWithoutOfferingThemAsActions",
+      "Status": "Passed",
+      "Duration": 0.0011517,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPaletteTests.PaletteRegistersInExistingViewWithOneEventSystemAndNavigation(False)",
+      "Status": "Passed",
+      "Duration": 0.0363148,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPaletteTests.PaletteRegistersInExistingViewWithOneEventSystemAndNavigation(True)",
+      "Status": "Passed",
+      "Duration": 0.0098243,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.AuthoredPlayerUsesOneGraphAndEquipmentHasIndependentMetreScale",
+      "Status": "Passed",
+      "Duration": 0.0473617,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.BindingRejectsBrokenColliderProfileAndSpeedContracts",
+      "Status": "Passed",
+      "Duration": 0.0007223,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.FailedResetBlocksMovementAndActionsWhilePaletteRemainsAvailable",
+      "Status": "Passed",
+      "Duration": 0.0139229,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.PhysicsHierarchyRejectsScaledAncestorsAndMirrors",
+      "Status": "Passed",
+      "Duration": 0.0004242,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.PrivateBindingCoversEverySourceWithoutPromotingPhysicalReadiness",
+      "Status": "Passed",
+      "Duration": 0.4773672,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.ReturnAnchorsRequireNearbyWalkableSupport",
+      "Status": "Passed",
+      "Duration": 0.0011516,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(False,False,False)",
+      "Status": "Passed",
+      "Duration": 0.1723982,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(True,False,False)",
+      "Status": "Passed",
+      "Duration": 0.101032,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(True,True,False)",
+      "Status": "Passed",
+      "Duration": 0.1156442,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(False,False,True)",
+      "Status": "Passed",
+      "Duration": 0.1078528,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.LoopingPhysicalStageContinuesPastClipEndAndPausesBothClocks",
+      "Status": "Passed",
+      "Duration": 0.0029725,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.MotorBoundaryOwnsTheClockEffectsPauseAndResetCancellation",
+      "Status": "Passed",
+      "Duration": 0.0013933,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.NullOwnersCannotClaimStateAndDisableReleasesTheDynamicPlayable",
+      "Status": "Passed",
+      "Duration": 0.0005414,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.OnlyTheOwnedPhysicalBranchEmitsAContactAtTheMotorBoundary",
+      "Status": "Passed",
+      "Duration": 0.0030291,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.OwnedClockSupportsPreviewSeekAndSuppressesAllLegacyMixerInputs",
+      "Status": "Passed",
+      "Duration": 0.0022653,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.PhysicalPoseMappingCannotCreateAnInvalidStageOrReplaceAPreview",
+      "Status": "Passed",
+      "Duration": 0.0012762,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.PhysicalSequenceChangesStageWithoutReleasingPhysicsAndRejectsForeignOwners",
+      "Status": "Passed",
+      "Duration": 0.0010771,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.PoseSnapshotFreezesItsSourcesAndBlendsUnderTheExistingOutput",
+      "Status": "Passed",
+      "Duration": 0.0011973,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.StaleTargetCancelsBeforeEffectAndPreviewCannotPromoteAnImportToPhysical",
+      "Status": "Passed",
+      "Duration": 0.0020023,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundResetTests.BlockedActorReturnLeavesInputDisarmedAndCanRetryWithANewEpoch",
+      "Status": "Passed",
+      "Duration": 0.0015162,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundResetTests.DuplicateIdsAreRejectedAndCancellationFailureStillInvalidatesEveryOwner",
+      "Status": "Passed",
+      "Duration": 0.0005075,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundResetTests.EveryEpochInvalidatesBeforePropsStationsActorAndInputRestore",
+      "Status": "Passed",
+      "Duration": 0.0004011,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.AuthoredLabBlocksRestoreAndAllCheckpointEntryPointsBeforeStartup",
+      "Status": "Passed",
+      "Duration": 0.047489,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.ImportAndPreviewAreInsufficientForPhysicalEffects",
+      "Status": "Passed",
+      "Duration": 0.0003767,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.PolicyRequiresTheExactAuthoredSceneAndMarker",
+      "Status": "Passed",
+      "Duration": 0.0001813,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.SessionOutsideLabCannotAdvanceToPlayable",
+      "Status": "Passed",
+      "Duration": 0.000381,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(1)",
+      "Status": "Passed",
+      "Duration": 0.0033071,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(2)",
+      "Status": "Passed",
+      "Duration": 0.0001696,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(3)",
+      "Status": "Passed",
+      "Duration": 0.0004133,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(4)",
+      "Status": "Passed",
+      "Duration": 0.0001825,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(5)",
+      "Status": "Passed",
+      "Duration": 0.0002989,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(6)",
+      "Status": "Passed",
+      "Duration": 0.0001574,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(7)",
+      "Status": "Passed",
+      "Duration": 0.0001584,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(8)",
+      "Status": "Passed",
+      "Duration": 0.0001506,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(9)",
+      "Status": "Passed",
+      "Duration": 0.0001506,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(10)",
+      "Status": "Passed",
+      "Duration": 0.0001523,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(11)",
+      "Status": "Passed",
+      "Duration": 0.0001945,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthoredPrefabsHaveOwnedBoundedFixturesAndNoPrematurePhysicalActions(12)",
+      "Status": "Passed",
+      "Duration": 0.000196,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.AuthorInstallerCannotRunInsideTheValidationCopyOrInteractiveEditor",
+      "Status": "Passed",
+      "Duration": 0.000632,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.DuplicatePropIdentityCannotAcquireASecondResetOwner",
+      "Status": "Passed",
+      "Duration": 0.0005558,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.InstalledStationsFilterPaletteInvalidateCapturesAndResetOwnedProps",
+      "Status": "Passed",
+      "Duration": 0.1079195,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.PreparedLayoutRejectsChangedOrEscapingTerrainIdentities",
+      "Status": "Passed",
+      "Duration": 0.0298997,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.PropLeaseAndResetRestoreOnlyRegisteredAuthoredState",
+      "Status": "Passed",
+      "Duration": 0.0018141,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.StationIdentityMatchesTheTwelveAuthoredAreas(\"AP00\",False)",
+      "Status": "Passed",
+      "Duration": 0.0004053,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.StationIdentityMatchesTheTwelveAuthoredAreas(\"AP01\",True)",
+      "Status": "Passed",
+      "Duration": 5.18e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.StationIdentityMatchesTheTwelveAuthoredAreas(\"AP12\",True)",
+      "Status": "Passed",
+      "Duration": 5.13e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.StationIdentityMatchesTheTwelveAuthoredAreas(\"AP13\",False)",
+      "Status": "Passed",
+      "Duration": 4.21e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundStationTests.StationIdentityMatchesTheTwelveAuthoredAreas(\"AP1\",False)",
+      "Status": "Passed",
+      "Duration": 3.98e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundSupportPlaneTests.ExistingGroundProbePublishesExactCompletedPlaneAndVetoesStaleSupport(0.0f)",
+      "Status": "Passed",
+      "Duration": 0.0492769,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundSupportPlaneTests.ExistingGroundProbePublishesExactCompletedPlaneAndVetoesStaleSupport(20.0f)",
+      "Status": "Passed",
+      "Duration": 0.0434175,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundSupportPlaneTests.ExistingGroundProbePublishesExactCompletedPlaneAndVetoesStaleSupport(40.0f)",
+      "Status": "Passed",
+      "Duration": 0.0436313,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTargetTests.CompoundNonResourceTargetUsesTheSameSelector",
+      "Status": "Passed",
+      "Duration": 0.0040953,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTargetTests.EveryExistingAndNewOwnerProjectsBusy(True,False,False,False,False)",
+      "Status": "Passed",
+      "Duration": 0.0004951,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTargetTests.EveryExistingAndNewOwnerProjectsBusy(False,True,False,False,False)",
+      "Status": "Passed",
+      "Duration": 0.0002742,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTargetTests.EveryExistingAndNewOwnerProjectsBusy(False,False,True,False,False)",
+      "Status": "Passed",
+      "Duration": 0.0002643,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTargetTests.EveryExistingAndNewOwnerProjectsBusy(False,False,False,True,False)",
+      "Status": "Passed",
+      "Duration": 0.0002597,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTargetTests.EveryExistingAndNewOwnerProjectsBusy(False,False,False,False,True)",
+      "Status": "Passed",
+      "Duration": 0.0002716,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTargetTests.ResetEpochAndDisableInvalidateCapturedPressWithoutRetargeting",
+      "Status": "Passed",
+      "Duration": 0.0006217,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTargetTests.StationDispatchNeverStartsGatheringAndSharesActivityGates",
+      "Status": "Passed",
+      "Duration": 0.0020269,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.ActionOwnerUsesInertTerrainStageAndReturnsWithoutAnotherOutput",
+      "Status": "Passed",
+      "Duration": 0.0673055,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.AirborneFootKeepsTangentStrideWithinTheJointReachEnvelope",
+      "Status": "Passed",
+      "Duration": 0.0544633,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.ColdGarmentUsesActualLateUpdateWithoutASecondGraphEvaluation(OneBone)",
+      "Status": "Passed",
+      "Duration": 0.0585422,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.ColdGarmentUsesActualLateUpdateWithoutASecondGraphEvaluation(FourBones)",
+      "Status": "Passed",
+      "Duration": 0.0573328,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.NativeFlatPoseMatchesDisabledStageAndWarmTerrainHasNoManagedAllocation",
+      "Status": "Passed",
+      "Duration": 0.1315669,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.NearFlatSurfaceDoesNotIntroduceAPoseStep",
+      "Status": "Passed",
+      "Duration": 0.1486458,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(OneBone,0.0f)",
+      "Status": "Passed",
+      "Duration": 0.2746567,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(TwoBones,0.0f)",
+      "Status": "Passed",
+      "Duration": 0.2729171,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(FourBones,0.0f)",
+      "Status": "Passed",
+      "Duration": 0.3119337,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(OneBone,30.0f)",
+      "Status": "Passed",
+      "Duration": 0.3184618,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(TwoBones,30.0f)",
+      "Status": "Passed",
+      "Duration": 0.2894512,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(FourBones,30.0f)",
+      "Status": "Passed",
+      "Duration": 0.2856294,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(OneBone,48.0f)",
+      "Status": "Passed",
+      "Duration": 0.3022004,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(TwoBones,48.0f)",
+      "Status": "Passed",
+      "Duration": 0.3430709,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.RealDriverKeepsOneEvaluationAndClearsEquippedPoseWithoutMovingPhysics(FourBones,48.0f)",
+      "Status": "Passed",
+      "Duration": 0.3125524,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.ResetBetweenPoseAndGarmentCannotProjectAgainstAnOldPlane",
+      "Status": "Passed",
+      "Duration": 0.0571565,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.SteepCrossSlopeDoesNotSwitchKneeSolutionsWithinATinyPhaseChange(45.0f,0.469049d)",
+      "Status": "Passed",
+      "Duration": 0.056246,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.SteepCrossSlopeDoesNotSwitchKneeSolutionsWithinATinyPhaseChange(90.0f,0.35190978d)",
+      "Status": "Passed",
+      "Duration": 0.0614584,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTerrainPoseTests.TerrainExtensionRequiresItsVersionAndBoundsWithoutEnablingOldAssets",
+      "Status": "Passed",
+      "Duration": 0.0022597,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.ASourceYawPauseRetainsItsEarliestTime",
+      "Status": "Passed",
+      "Duration": 0.0009062,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"duplicate-time\")",
+      "Status": "Passed",
+      "Duration": 0.0034659,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"nonfinite-time\")",
+      "Status": "Passed",
+      "Duration": 0.0003454,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"backwards-yaw\")",
+      "Status": "Passed",
+      "Duration": 0.0002387,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"wrong-sign\")",
+      "Status": "Passed",
+      "Duration": 0.0002982,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"partial-source\")",
+      "Status": "Passed",
+      "Duration": 0.0002608,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"discarded-root-travel\")",
+      "Status": "Passed",
+      "Duration": 0.0002151,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"discarded-root-height\")",
+      "Status": "Passed",
+      "Duration": 0.0002136,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"duration-mismatch\")",
+      "Status": "Passed",
+      "Duration": 0.0002114,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.InvalidSourceCannotPassTheExplicitOfflineRoute(\"missing-clip\")",
+      "Status": "Passed",
+      "Duration": 0.0002083,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.NamedEvaluatedSourceDataRemainsUnqualifiedAndUnbound",
+      "Status": "Passed",
+      "Duration": 0.7247819,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.PairingAndProvenanceAreRequiredEvenOffline(\"receipt\")",
+      "Status": "Passed",
+      "Duration": 0.000722,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.PairingAndProvenanceAreRequiredEvenOffline(\"calibration\")",
+      "Status": "Passed",
+      "Duration": 0.0001977,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.PairingAndProvenanceAreRequiredEvenOffline(\"duplicate-clip\")",
+      "Status": "Passed",
+      "Duration": 0.0001627,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.PairingAndProvenanceAreRequiredEvenOffline(\"swapped-direction\")",
+      "Status": "Passed",
+      "Duration": 0.0001528,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.PairingAndProvenanceAreRequiredEvenOffline(\"swapped-clips\")",
+      "Status": "Passed",
+      "Duration": 0.000228,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.PairingAndProvenanceAreRequiredEvenOffline(\"sampled-name\")",
+      "Status": "Passed",
+      "Duration": 0.0001961,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.SignedYawAndNativeTimeRoundTripWithoutRetiming(-1)",
+      "Status": "Passed",
+      "Duration": 0.0005832,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.SignedYawAndNativeTimeRoundTripWithoutRetiming(1)",
+      "Status": "Passed",
+      "Duration": 0.0002838,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.WrongDirectionAndNonfiniteQueriesFailVisibly(-1)",
+      "Status": "Passed",
+      "Duration": 0.0006718,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTurnProfileTests.WrongDirectionAndNonfiniteQueriesFailVisibly(1)",
+      "Status": "Passed",
+      "Duration": 0.0001086,
+      "Message": null,
+      "StackTrace": null
+    }
+  ],
+  "Duration": 25.27,
+  "StatusPath": null,
+  "Mode": "EditMode",
+  "FilterApplied": "testname: AnimationPlayground",
+  "success": true,
+  "result": null
+}

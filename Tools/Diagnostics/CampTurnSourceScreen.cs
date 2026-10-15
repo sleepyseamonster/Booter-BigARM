@@ -16,7 +16,7 @@ using UnityEngine.Playables;
 // Source screen, not a pivot/contact qualification or runtime installation.
 public static class CampTurnSourceScreen
 {
-    public static string Run(string name = "TurnSourceScreenV6")
+    public static string Run(string name = "TurnSourceScreenV7")
     {
         var root = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
         if (!Application.isBatchMode || EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling
@@ -148,7 +148,7 @@ public static class CampTurnSourceScreen
             graph = PlayableGraph.Create("Named offline turn source"); graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
             var playable = AnimationClipPlayable.Create(graph, clip); playable.SetApplyFootIK(false); playable.SetApplyPlayableIK(false); playable.SetSpeed(0);
             AnimationPlayableOutput.Create(graph, "Named source", animator).SetSourcePlayable(playable); graph.Play();
-            var intervals = Mathf.CeilToInt(clip.length * 60);
+            var intervals = Mathf.CeilToInt(clip.length * 120);
             var result = new AnimationPlaygroundMotionSampler.MotionMeasurement { modelPath = AssetDatabase.GetAssetPath(bindings.targetModel),
                 clipPath = path, clipName = clip.name, visualScale = bindings.visualScale, seconds = clip.length,
                 sampleRate = intervals / clip.length, finite = true, footIK = false, frames = new AnimationPlaygroundMotionSampler.PoseFrame[intervals + 1] };

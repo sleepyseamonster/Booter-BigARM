@@ -1,0 +1,50 @@
+{
+  "rowsIdentical": true,
+  "inputsIdentical": true,
+  "cases": 6,
+  "poseSamplesPerExecution": 1092,
+  "firstAssemblies": {
+    "BooterBigArm.TopDown3D.Runtime": {
+      "moduleId": "670c6bd8-8151-4552-90e4-0df29128fc56",
+      "sha256": "b145456e9aa0f2ce359b7325e5dd9149ef1b26336a29785e637cccaab872d863"
+    },
+    "BooterBigArm.Editor.Tests": {
+      "moduleId": "cc4286c8-e377-44e7-aadc-fd077e20833a",
+      "sha256": "d6d1ffb3969bf466c528bddfece00481cba91a095130a974e1177a475b6f5516"
+    },
+    "BooterBigArm.Editor": {
+      "moduleId": "36df3e95-66b5-4d13-b0c0-b85ca9b84fcd",
+      "sha256": "bf2d38c9354ef6a2a012cd2bc5d8bd867b249b099b86e87b7d413553543e00f7"
+    }
+  },
+  "repeatAssemblies": {
+    "BooterBigArm.TopDown3D.Runtime": {
+      "moduleId": "b392f2f1-dda7-4871-b178-32b928a58df3",
+      "sha256": "37300f3c56cd65ec60bc61846ef8cb36012cc51a7aa81eef1bbf95563ee97a46"
+    },
+    "BooterBigArm.Editor.Tests": {
+      "moduleId": "2a7784a7-6d8b-4490-af46-f85e45f2faff",
+      "sha256": "1d91013faa1551170db96cfe1bacc34b11121ed3f1f7bdccb5cf12347320859b"
+    },
+    "BooterBigArm.Editor": {
+      "moduleId": "90a9ba99-fd31-4689-b166-6782929c0448",
+      "sha256": "f4137ab0fd5fab8012fba73e233c1f0da5a4112f0b2bfa3dfd80801aba360bfa"
+    }
+  },
+  "scope": "Three executions have identical pose rows and inputs. Final run loaded the final turn-source identity contract. Later startup lookup repair is covered separately by 304 EditMode checks; this is not current controller or live-playback qualification.",
+  "finalAssemblies": {
+    "BooterBigArm.TopDown3D.Runtime": {
+      "moduleId": "bbf237f1-7c66-4755-8ea4-542902739167",
+      "sha256": "b3e4ae29f839bc7f1e0f17d73822082a9a60623145b0e4cc8e35dd6f592caddd"
+    },
+    "BooterBigArm.Editor.Tests": {
+      "moduleId": "96bb2e40-d3b8-4063-b80f-3a5cca286c11",
+      "sha256": "70faf8b04dfd75a5f224348931334551974773df036cd4cc881950081b153d35"
+    },
+    "BooterBigArm.Editor": {
+      "moduleId": "9d0237cd-f504-4fd1-a300-2da4a9cf8f3f",
+      "sha256": "6b2663d4ae6ee8063362a0c09f627bc53dce7791f56c8158bd2de6cb2abba5be"
+    }
+  },
+  "executions": 3
+}
