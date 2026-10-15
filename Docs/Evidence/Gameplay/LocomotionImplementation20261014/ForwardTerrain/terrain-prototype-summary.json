@@ -1,0 +1,236 @@
+{
+  "state": "offline-prototype-not-qualified-or-installed",
+  "cases": 336,
+  "poses": 21840,
+  "graph_evaluations_per_pose": 2,
+  "speeds_metres_per_second": [
+    0,
+    1.4,
+    2.7,
+    3.8
+  ],
+  "phase_samples": 65,
+  "scope": "Offline graph prototype, bare rig, flat baseline plus one terrain evaluation, no installed adaptation or physics simulation",
+  "plant_window": "Selected semantic plant side at centre and +/-0.03125 cycles; no tangent drift or equipment qualification",
+  "low_ankle_proxy": "Ankle within 160mm of the flat floor; not an accepted stance classifier",
+  "terrain_types": "Uniform planes, upright capsule support height, four headings except flat",
+  "limits": "Bare rig only, four bone influences; no continuous stance classification, tangent drift, transition, actual terrain, body/equipment clearance, performance, or appearance acceptance",
+  "aggregate": [
+    {
+      "slope_degrees": 0,
+      "body_lowering_metres": 0,
+      "cases": 4,
+      "minimum_sole_plane_distance_metres": -8.940697e-07,
+      "maximum_plant_centre_goal_error_metres": 0.000362774619,
+      "maximum_plant_window_goal_error_metres": 0.0008732632,
+      "maximum_all_pose_goal_error_metres": 0.00451368652
+    },
+    {
+      "slope_degrees": 0,
+      "body_lowering_metres": 0.08,
+      "cases": 4,
+      "minimum_sole_plane_distance_metres": -5.042553e-05,
+      "maximum_plant_centre_goal_error_metres": 2.39429828e-05,
+      "maximum_plant_window_goal_error_metres": 3.1964526e-05,
+      "maximum_all_pose_goal_error_metres": 7.230524e-05
+    },
+    {
+      "slope_degrees": 0,
+      "body_lowering_metres": 0.16,
+      "cases": 4,
+      "minimum_sole_plane_distance_metres": -6.902218e-05,
+      "maximum_plant_centre_goal_error_metres": 2.98041432e-05,
+      "maximum_plant_window_goal_error_metres": 3.48309331e-05,
+      "maximum_all_pose_goal_error_metres": 8.303828e-05
+    },
+    {
+      "slope_degrees": 0,
+      "body_lowering_metres": 0.24,
+      "cases": 4,
+      "minimum_sole_plane_distance_metres": -9.15527344e-05,
+      "maximum_plant_centre_goal_error_metres": 3.977934e-05,
+      "maximum_plant_window_goal_error_metres": 4.181965e-05,
+      "maximum_all_pose_goal_error_metres": 0.0001972449
+    },
+    {
+      "slope_degrees": 10,
+      "body_lowering_metres": 0,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.00101363659,
+      "maximum_plant_centre_goal_error_metres": 0.00529585127,
+      "maximum_plant_window_goal_error_metres": 0.00605001766,
+      "maximum_all_pose_goal_error_metres": 0.0616477579
+    },
+    {
+      "slope_degrees": 10,
+      "body_lowering_metres": 0.08,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.000122606754,
+      "maximum_plant_centre_goal_error_metres": 3.26550071e-05,
+      "maximum_plant_window_goal_error_metres": 3.26550071e-05,
+      "maximum_all_pose_goal_error_metres": 0.00310582435
+    },
+    {
+      "slope_degrees": 10,
+      "body_lowering_metres": 0.16,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -9.030104e-05,
+      "maximum_plant_centre_goal_error_metres": 3.448886e-05,
+      "maximum_plant_window_goal_error_metres": 3.54274562e-05,
+      "maximum_all_pose_goal_error_metres": 8.71556549e-05
+    },
+    {
+      "slope_degrees": 10,
+      "body_lowering_metres": 0.24,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.0001437068,
+      "maximum_plant_centre_goal_error_metres": 3.99075761e-05,
+      "maximum_plant_window_goal_error_metres": 4.00682075e-05,
+      "maximum_all_pose_goal_error_metres": 0.000519415364
+    },
+    {
+      "slope_degrees": 20,
+      "body_lowering_metres": 0,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.00186651945,
+      "maximum_plant_centre_goal_error_metres": 0.0364553779,
+      "maximum_plant_window_goal_error_metres": 0.0509472974,
+      "maximum_all_pose_goal_error_metres": 0.142618626
+    },
+    {
+      "slope_degrees": 20,
+      "body_lowering_metres": 0.08,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.0007864833,
+      "maximum_plant_centre_goal_error_metres": 2.62847116e-05,
+      "maximum_plant_window_goal_error_metres": 0.0006807993,
+      "maximum_all_pose_goal_error_metres": 0.07347734
+    },
+    {
+      "slope_degrees": 20,
+      "body_lowering_metres": 0.16,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.00024122,
+      "maximum_plant_centre_goal_error_metres": 3.77138531e-05,
+      "maximum_plant_window_goal_error_metres": 4.17261726e-05,
+      "maximum_all_pose_goal_error_metres": 0.00697493
+    },
+    {
+      "slope_degrees": 20,
+      "body_lowering_metres": 0.24,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.00023162365,
+      "maximum_plant_centre_goal_error_metres": 3.36303347e-05,
+      "maximum_plant_window_goal_error_metres": 5.083857e-05,
+      "maximum_all_pose_goal_error_metres": 0.00104019931
+    },
+    {
+      "slope_degrees": 30,
+      "body_lowering_metres": 0,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.002485752,
+      "maximum_plant_centre_goal_error_metres": 0.07959013,
+      "maximum_plant_window_goal_error_metres": 0.128889844,
+      "maximum_all_pose_goal_error_metres": 0.24573347
+    },
+    {
+      "slope_degrees": 30,
+      "body_lowering_metres": 0.08,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.00141525269,
+      "maximum_plant_centre_goal_error_metres": 0.004934189,
+      "maximum_plant_window_goal_error_metres": 0.05215654,
+      "maximum_all_pose_goal_error_metres": 0.174408749
+    },
+    {
+      "slope_degrees": 30,
+      "body_lowering_metres": 0.16,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.0008981228,
+      "maximum_plant_centre_goal_error_metres": 3.81935934e-05,
+      "maximum_plant_window_goal_error_metres": 0.000794033869,
+      "maximum_all_pose_goal_error_metres": 0.104512393
+    },
+    {
+      "slope_degrees": 30,
+      "body_lowering_metres": 0.24,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.0004105568,
+      "maximum_plant_centre_goal_error_metres": 4.201184e-05,
+      "maximum_plant_window_goal_error_metres": 4.63960241e-05,
+      "maximum_all_pose_goal_error_metres": 0.0363957472
+    },
+    {
+      "slope_degrees": 40,
+      "body_lowering_metres": 0,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.00287431479,
+      "maximum_plant_centre_goal_error_metres": 0.135964513,
+      "maximum_plant_window_goal_error_metres": 0.227739215,
+      "maximum_all_pose_goal_error_metres": 0.3738723
+    },
+    {
+      "slope_degrees": 40,
+      "body_lowering_metres": 0.08,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.00216305256,
+      "maximum_plant_centre_goal_error_metres": 0.05621447,
+      "maximum_plant_window_goal_error_metres": 0.15038462,
+      "maximum_all_pose_goal_error_metres": 0.300651461
+    },
+    {
+      "slope_degrees": 40,
+      "body_lowering_metres": 0.16,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.00134980679,
+      "maximum_plant_centre_goal_error_metres": 0.000838169362,
+      "maximum_plant_window_goal_error_metres": 0.07349838,
+      "maximum_all_pose_goal_error_metres": 0.228426367
+    },
+    {
+      "slope_degrees": 40,
+      "body_lowering_metres": 0.24,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.00107461214,
+      "maximum_plant_centre_goal_error_metres": 4.8990918e-05,
+      "maximum_plant_window_goal_error_metres": 0.00427698763,
+      "maximum_all_pose_goal_error_metres": 0.157418743
+    },
+    {
+      "slope_degrees": 48,
+      "body_lowering_metres": 0,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.00298661,
+      "maximum_plant_centre_goal_error_metres": 0.197305962,
+      "maximum_plant_window_goal_error_metres": 0.333029419,
+      "maximum_all_pose_goal_error_metres": 0.508117437
+    },
+    {
+      "slope_degrees": 48,
+      "body_lowering_metres": 0.08,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.002577424,
+      "maximum_plant_centre_goal_error_metres": 0.117525518,
+      "maximum_plant_window_goal_error_metres": 0.25519073,
+      "maximum_all_pose_goal_error_metres": 0.433512121
+    },
+    {
+      "slope_degrees": 48,
+      "body_lowering_metres": 0.16,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.00192523,
+      "maximum_plant_centre_goal_error_metres": 0.0377857462,
+      "maximum_plant_window_goal_error_metres": 0.177694842,
+      "maximum_all_pose_goal_error_metres": 0.359616667
+    },
+    {
+      "slope_degrees": 48,
+      "body_lowering_metres": 0.24,
+      "cases": 16,
+      "minimum_sole_plane_distance_metres": -0.00134390593,
+      "maximum_plant_centre_goal_error_metres": 4.349304e-05,
+      "maximum_plant_window_goal_error_metres": 0.100629888,
+      "maximum_all_pose_goal_error_metres": 0.286574
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "archive": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-13\\ImportCheckpoints\\ForwardTerrainProbe20261014",
+  "sealed_files": [
+    {
+      "path": "forward-terrain-job-matrix-v1.json",
+      "sha256": "4ed9ceb8a07c8fbe0043cd118bd7db7111ff303ee847fb8e0a9d714e9d8084f6",
+      "bytes": 74154
+    },
+    {
+      "path": "forward-terrain-job-matrix-v2.json",
+      "sha256": "f93abfaace7b1950fbd0f0b87bd50ecba9390d3ce27b9320cee268ecdb70c091",
+      "bytes": 74105
+    },
+    {
+      "path": "forward-terrain-job-matrix-v3.json",
+      "sha256": "989bc77695ecf05d7cb77ea216669f2f3b4c06b3d24b3caa2590a7728fdea322",
+      "bytes": 111366
+    },
+    {
+      "path": "forward-terrain-job-matrix-v4.json",
+      "sha256": "7d1678ef197220aec7c79d53a29539eabd840cb15b3400f873a5c7a055b181a7",
+      "bytes": 133506
+    },
+    {
+      "path": "forward-terrain-job-probe-v1.json",
+      "sha256": "03a55fa2a5bd09e9223e4d102ca7ef7d396ff194a0e4417953781af71445d911",
+      "bytes": 2635
+    },
+    {
+      "path": "forward-terrain-job-probe-v2.json",
+      "sha256": "0bf316040051cdb27f33be6fed57bd7a7bea485288734c4b1d16fe4ca557c69e",
+      "bytes": 3396
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs",
+      "sha256": "fb89045b0e376ab679a473df90c44969cf2223254b589f2fd02e039d1c82a186",
+      "bytes": 63394
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs.meta",
+      "sha256": "f2e6db0b44b4e20f075c9891724ff6041341fbda0c60281071a0dc2767a9faf5",
+      "bytes": 59
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.LaboratoryLocomotion.cs",
+      "sha256": "0c3b7dabec0c803e125e6421f5b03454760ca81792183fcf7bca90f3de944be8",
+      "bytes": 3645
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.LaboratoryLocomotion.cs.meta",
+      "sha256": "e10e443f4cf26c9268849faf0abe0b8732edfa89cd9c3ac6484d6ed5003f7cd9",
+      "bytes": 60
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.LowPosture.cs",
+      "sha256": "49f02a412aa1e85884f172373a0538746508885ffc0bfe62e0194311cf140826",
+      "bytes": 5743
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.LowPosture.cs.meta",
+      "sha256": "28d257898450cdf4d4f4b30912e89d9f7c1d3d365201832ad1b675424599a9b1",
+      "bytes": 60
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Tests/Editor/AnimationPlaygroundSupportPlaneTests.cs",
+      "sha256": "9c7e01a93b61b2bab794700d2cd448b4689414993a0539e8e5b07b7af7632541",
+      "bytes": 5071
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Tests/Editor/AnimationPlaygroundSupportPlaneTests.cs.meta",
+      "sha256": "4bfd569833ab42706e7bc7e1d25057cf53ab20ecf19c24532d82c4992f39f520",
+      "bytes": 60
+    },
+    {
+      "path": "SourceSnapshot/Tools/Diagnostics/CampForwardTerrainQualification.cs",
+      "sha256": "d9f80c266c85e77faafabebaeeb5e000d6e58b4329096875e675b6d605891b8a",
+      "bytes": 13140
+    }
+  ],
+  "baseline_pairs_verified": 127,
+  "draft_files_verified": 10,
+  "checked_locations": [
+    "author checkout",
+    "marked candidate"
+  ],
+  "author_binding_changed": false,
+  "prototype_graph_installed": false,
+  "exploratory_reports": "probe v1/v2 and matrices v1-v3 are retained exploration, not source-bound qualification. Final matrix v4 is bound to SourceSnapshot."
+}

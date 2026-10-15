@@ -6,6 +6,8 @@ Implementation finding: the [transition/current-scene checkpoint](../../Evidence
 
 ## Outcome and scope
 
+The subsequent [terrain observation/prototype checkpoint](../../Evidence/Gameplay/LocomotionImplementation20261014/ForwardTerrain/README.md) adds a completed-support plane readout without new queries and passes 247 relevant Edit Mode checks. Its offline single-output Humanoid experiment measures contact reach separately from sole clearance; steep slopes still fail the sampled plant window. That experiment remains outside runtime presentation. Complete supported-contact, reach/body/equipment and one-evaluation qualification before installing any terrain adaptation.
+
 Make walking, running and sprinting readable, responsive and consistent with the distance the player travels. Feet should plant convincingly; changing speed, starting, stopping and steering should preserve the pose rather than pop, skate or sink. The author's playtest acceptance completes the work.
 
 Keep the current 1.4/2.7/3.8m/s lab speeds as initial design inputs. Preserve the accepted rig, 1.80m character scale, physics root, existing input/camera, inventory/vitals and one animation output. The visible capsule placeholder needs no repair for this work. Its separate collider remains the motor's collision shape.
