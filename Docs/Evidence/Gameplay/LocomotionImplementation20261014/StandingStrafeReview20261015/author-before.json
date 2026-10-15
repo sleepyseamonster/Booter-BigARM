@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "return new { playing=UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode, compiling=UnityEditor.EditorApplication.isCompiling, module=typeof(BooterBigArm.TopDown3D.TopDown3DPlayerMotor).Module.ModuleVersionId, installedApi=typeof(BooterBigArm.TopDown3D.TopDown3DAnimationPlaygroundBindings).GetField(\"standingStrafeReviewRequired\")!=null, sceneDirty=UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty, scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path };",
+      "timeout": "25000"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "playing": false,
+        "compiling": false,
+        "module": "d874fb08-f1cc-4dce-8571-68ed80867adb",
+        "installedApi": false,
+        "sceneDirty": false,
+        "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity"
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\Arc & Dust\\Project"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

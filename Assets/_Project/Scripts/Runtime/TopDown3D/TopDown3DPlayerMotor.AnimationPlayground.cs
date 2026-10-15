@@ -73,12 +73,13 @@ namespace BooterBigArm.TopDown3D
         public bool TransferAnimationPostureOwner(object owner,object successor)
         {
             if(!IsAnimationPostureOwner(owner) || successor==null || animationMotionOwner!=null)return false;
-            animationPostureOwner=successor;ResetStandingMotionObservation();return true;
+            ReleaseStandingStrafeReview();animationPostureOwner=successor;ResetStandingMotionObservation();return true;
         }
         public bool SetLaboratoryPostureSuspended(object owner,bool value)
         {
             if(!IsAnimationPostureOwner(owner))return false;
             if(laboratoryPostureSuspended!=value)ResetStandingMotionObservation();
+            if(value)ResetStandingStrafe(true);
             laboratoryPostureSuspended=value;return true;
         }
         public AnimationPlaygroundMotionMode AnimationMotionMode {get;private set;}
@@ -160,6 +161,7 @@ namespace BooterBigArm.TopDown3D
             if(!TryRestoreAnimationPosture(owner))return false;
             animationPostureOwner=null;laboratoryBlocksLegacyTraversal=false;laboratoryCrouchFacingLocked=false;laboratoryPostureSuspended=false;
             laboratoryUphillGaitEnabled=false;
+            ReleaseStandingStrafeReview();
             laboratoryGamepadRunSpeed = laboratoryGamepadSprintSpeed = 0;
             ResetStandingMotionObservation();return true;
         }

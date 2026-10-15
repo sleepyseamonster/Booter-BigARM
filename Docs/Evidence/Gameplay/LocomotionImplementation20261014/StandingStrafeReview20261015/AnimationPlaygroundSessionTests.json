@@ -1,0 +1,71 @@
+{
+  "success": true,
+  "command": "command run_tests",
+  "data": {
+    "command": "run_tests",
+    "parameters": {
+      "mode": "editor",
+      "filter": "AnimationPlaygroundSessionTests",
+      "filter_type": "testName"
+    },
+    "result": {
+      "Summary": {
+        "Total": 5,
+        "Passed": 5,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.AuthoredLabBlocksRestoreAndAllCheckpointEntryPointsBeforeStartup",
+          "Status": "Passed",
+          "Duration": 0.3289395,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.EarlyAwakeLookupUsesTheRegisteredOwnerBeforeSceneLoaded",
+          "Status": "Passed",
+          "Duration": 0.0968006,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.ImportAndPreviewAreInsufficientForPhysicalEffects",
+          "Status": "Passed",
+          "Duration": 0.0009191,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.PolicyRequiresTheExactAuthoredSceneAndMarker",
+          "Status": "Passed",
+          "Duration": 0.0004484,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.SessionOutsideLabCannotAdvanceToPlayable",
+          "Status": "Passed",
+          "Duration": 0.0013261,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 1.32,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: AnimationPlaygroundSessionTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

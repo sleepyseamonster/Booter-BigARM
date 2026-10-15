@@ -57,6 +57,7 @@ namespace BooterBigArm.TopDown3D
                 {
                     var station = Array.Find(stations, value => value != null && value.StationId == "AP02");
                     presentation.ConfigureLaboratoryForwardReview(review, station);
+                    if (bindings.standingStrafeReview != null) presentation.ConfigureLaboratoryStandingStrafeReview(bindings.standingStrafeReview);
                     if (Mathf.Abs(review.gaits[0].nominalSpeed - bindings.slowWalkSpeed) > .0001f
                         || Mathf.Abs(review.gaits[1].nominalSpeed - bindings.runSpeed) > .0001f
                         || Mathf.Abs(review.gaits[review.FastRunIndex].nominalSpeed - bindings.sprintSpeed) > .0001f)
@@ -95,6 +96,8 @@ namespace BooterBigArm.TopDown3D
                     player.ConfigureLaboratoryGamepadGaits(coordinator, ExperimentalForwardReview.gaits[3].nominalSpeed,
                         ExperimentalForwardReview.gaits[4].nominalSpeed);
                 player.BlockUnqualifiedLaboratoryTraversal(coordinator);
+                if (bindings.standingStrafeReview != null && presentation.LaboratoryStandingStrafeConfigured)
+                    player.ConfigureLaboratoryStandingStrafe(coordinator, bindings.standingStrafeReview, presentation.StandingStrafeReviewSupportAvailable);
                 if(bindings.crouch!=null)
                 {
                     crouch=player.gameObject.AddComponent<AnimationPlaygroundCrouchController>();

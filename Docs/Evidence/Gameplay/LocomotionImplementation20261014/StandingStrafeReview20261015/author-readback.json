@@ -1,0 +1,70 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var s=BooterBigArm.TopDown3D.TopDown3DAnimationPlaygroundSession.Find(UnityEngine.SceneManagement.SceneManager.GetActiveScene());\nvar b=s.Bindings; var p=b.standingStrafeReview; var f=s.ExperimentalForwardReview;\nvar valid=b.ValidatePlayer(out var reason);\nreturn new {playing=UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode,compiling=UnityEditor.EditorApplication.isCompiling,scene=s.gameObject.scene.path,sceneDirty=s.gameObject.scene.isDirty,selectedRequired=b.standingStrafeReviewRequired,valid,reason,maximumSpeed=p.maximumSpeed,left=new {path=UnityEditor.AssetDatabase.GetAssetPath(p.left.sourceClip),p.left.sourceClip.length,p.left.sourceClip.isLooping,p.left.metresPerCycle,p.left.nativeContacts},right=new {path=UnityEditor.AssetDatabase.GetAssetPath(p.right.sourceClip),p.right.sourceClip.length,p.right.sourceClip.isLooping,p.right.metresPerCycle,p.right.nativeContacts},forwardSpeeds=f.gaits.Select(g=>g.nominalSpeed).ToArray(),f.qualified,f.terrainQualified,airborneSpeed=b.airborne.maximumPlanarSpeed,airborneAcceleration=b.airborne.airControlAcceleration,ap02=s.Stations.Single(st=>st.StationId==\"AP02\").StationId,runtimeModule=typeof(BooterBigArm.TopDown3D.TopDown3DPlayerMotor).Module.ModuleVersionId};",
+      "timeout": "25000"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "playing": false,
+        "compiling": false,
+        "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+        "sceneDirty": false,
+        "selectedRequired": true,
+        "valid": true,
+        "reason": null,
+        "maximumSpeed": 0.5,
+        "left": {
+          "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingStrafeWalkLeftReview.anim",
+          "length": 2.9333334,
+          "isLooping": true,
+          "metresPerCycle": 1.53125,
+          "nativeContacts": [
+            0.09517045,
+            0.248579547,
+            0.595170438,
+            0.748579562
+          ]
+        },
+        "right": {
+          "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingStrafeWalkRightReview.anim",
+          "length": 2.9333334,
+          "isLooping": true,
+          "metresPerCycle": 1.50546885,
+          "nativeContacts": [
+            0.0127840908,
+            0.342329532,
+            0.5042614,
+            0.842329562
+          ]
+        },
+        "forwardSpeeds": [
+          1.4,
+          3,
+          4,
+          5,
+          6
+        ],
+        "qualified": false,
+        "terrainQualified": false,
+        "airborneSpeed": 3.8,
+        "airborneAcceleration": 3,
+        "ap02": "AP02",
+        "runtimeModule": "58bbd525-e04a-42cd-b5ac-91c44dac3ab5"
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\Arc & Dust\\Project"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

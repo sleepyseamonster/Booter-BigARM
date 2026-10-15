@@ -1,0 +1,17 @@
+# Camp Loop standing strafe slice
+
+October 15, 2026. Continues the [locomotion handoff](CAMP_LOOP_LOCOMOTION_CONTINUATION_HANDOFF_2026-10-15.md). The author chose **hold LT to lock facing and strafe, retaining camera look-ahead**. Forward gait anchors remain 1.4/3/4/5/6 m/s; the existing airborne 3.8 m/s control cap remains an audited mismatch for the later jumping slice.
+
+The first implementation slice is an explicitly experimental **AP02 flat-deck slow lateral review**. The existing run strafe sources require further calibration: their fixed sole tracks have substantial fore/aft motion during lateral travel. They are not sufficient to claim independent-facing running. Complete walk sources offer a smaller, measurable starting envelope near 0.5 m/s. This bounded slice does not qualify the general directional family.
+
+1. Preserve the accepted forward private profile, source clips, input IDs, scene bytes and foreign changes. Record exact source/private hashes and immutable recovery files.
+2. Add the LT facing lease under the existing laboratory posture owner. Brake before capturing completed Rigidbody yaw, changing between forward/left/right, reversing lateral travel or releasing lateral facing. Keep the motor as the sole root writer. Release on action, reset, suspension, owner transfer, disable, unsupported support and menu/device interruption.
+3. Use complete two-cycle walk derivatives with horizontal root translation removed. Advance native source time from completed lateral displacement and its own measured lateral stride. Preserve the unequal native R-L-R-L contact intervals; do not apply forward stride or quarter-phase calibration to these sources.
+4. Integrate a bounded nested mixer in the existing single-output graph. Keep the accepted forward branch intact. Supply visible review status and explicit unavailable diagonal/backward directions. Scope lateral review to the existing AP02 footprint/static flat support; ordinary travel remains available after releasing LT.
+5. Verify the actual graph, equipped one/two/four influence poses, native stride/contact timing, analog magnitude, facing ownership, braking, menu/device/reset behavior and affected forward/motor/action regressions in the isolated candidate. Pair tests with exact loaded source hashes and a guarded private asset handoff. Author Play Mode feel testing remains user-owned.
+
+For this slice, directions within 20 degrees of the captured forward or either lateral axis are projected onto that axis without increasing stick magnitude. Forward uses the accepted gait family. Lateral travel is capped at 0.5 m/s and RB does not accelerate it. Diagonal and backward input brakes with an unavailable message. This is a deliberately incomplete direction envelope, documented before installation rather than represented as full strafe locomotion. Expanding it requires directional blend/contact proof and suitable backward sources.
+
+World concerns: the fixed authored terrain remains always loaded. No terrain generation or streaming is introduced. AP02's authored station identity is unchanged. Facing, pose and gait clocks are transient and released at reset/disable/unload; no generated-object identity or persisted runtime delta/save-format change is needed.
+
+Turning integration follows this slice, then slopes, then jumping. The later adapted native turn trajectory remains separate from the old stationary turn profile. Terrain experiments and the high-speed airborne mismatch retain the qualification boundaries in the controlling handoff.

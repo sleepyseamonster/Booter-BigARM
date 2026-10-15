@@ -1,0 +1,57 @@
+{
+  "success": true,
+  "command": "command run_tests",
+  "data": {
+    "command": "run_tests",
+    "parameters": {
+      "mode": "editor",
+      "filter": "AnimationPlaygroundCrouchFacingTests",
+      "filter_type": "testName"
+    },
+    "result": {
+      "Summary": {
+        "Total": 3,
+        "Passed": 3,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchFacingTests.ContactAtTheLoopBoundaryMergesItsTwoFragments",
+          "Status": "Passed",
+          "Duration": 0.0061643,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchFacingTests.SoleContactRequiresGroundHeightAndMotionOpposingTheTravelAxis",
+          "Status": "Passed",
+          "Duration": 0.0090804,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundCrouchFacingTests.UnexplainedExtraContactsAndInvalidTimelineRequireReview",
+          "Status": "Passed",
+          "Duration": 0.0005448,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 0.64,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: AnimationPlaygroundCrouchFacingTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -1,0 +1,99 @@
+{
+  "success": true,
+  "command": "command run_tests",
+  "data": {
+    "command": "run_tests",
+    "parameters": {
+      "mode": "editor",
+      "filter": "AnimationPlaygroundPresentationTests",
+      "filter_type": "testName"
+    },
+    "result": {
+      "Summary": {
+        "Total": 9,
+        "Passed": 9,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.LoopingPhysicalStageContinuesPastClipEndAndPausesBothClocks",
+          "Status": "Passed",
+          "Duration": 0.0111316,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.MotorBoundaryOwnsTheClockEffectsPauseAndResetCancellation",
+          "Status": "Passed",
+          "Duration": 0.0021593,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.NullOwnersCannotClaimStateAndDisableReleasesTheDynamicPlayable",
+          "Status": "Passed",
+          "Duration": 0.0010264,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.OnlyTheOwnedPhysicalBranchEmitsAContactAtTheMotorBoundary",
+          "Status": "Passed",
+          "Duration": 0.0074528,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.OwnedClockSupportsPreviewSeekAndSuppressesAllLegacyMixerInputs",
+          "Status": "Passed",
+          "Duration": 0.0042896,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.PhysicalPoseMappingCannotCreateAnInvalidStageOrReplaceAPreview",
+          "Status": "Passed",
+          "Duration": 0.0039294,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.PhysicalSequenceChangesStageWithoutReleasingPhysicsAndRejectsForeignOwners",
+          "Status": "Passed",
+          "Duration": 0.0019786,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.PoseSnapshotFreezesItsSourcesAndBlendsUnderTheExistingOutput",
+          "Status": "Passed",
+          "Duration": 0.0583318,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPresentationTests.StaleTargetCancelsBeforeEffectAndPreviewCannotPromoteAnImportToPhysical",
+          "Status": "Passed",
+          "Duration": 0.003273,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 1.4,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: AnimationPlaygroundPresentationTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

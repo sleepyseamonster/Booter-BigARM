@@ -123,6 +123,7 @@ namespace BooterBigArm.TopDown3D
 
         private void LateUpdate()
         {
+            EmitStandingStrafeFootEffects();
             EmitForwardFootEffectsForRenderedPose();
             if (forwardTerrainApplied) ApplyGarmentFloor();
             else if (!animationGarmentFloor && !poseBlendGarmentFloor) RestoreGarmentFloor();

@@ -1,0 +1,105 @@
+{
+  "state": "unqualified-slow-lateral-review",
+  "quality": "OneBone",
+  "graphOutputs": 1,
+  "rows": [
+    {
+      "side": "Left",
+      "vertex": 333,
+      "nativeStart": 0.2416666719046506,
+      "nativeEnd": 0.31666667353023181,
+      "sourceRate": 0.957823157,
+      "persistentPointExcursion": 0.0117929019,
+      "cumulativeTravel": 0.0122058773,
+      "maximumGroundGap": 0.0018157959,
+      "minimumSoleHeight": 0.001335144,
+      "maximumSoleHeight": 0.0018157959
+    },
+    {
+      "side": "Left",
+      "vertex": 38,
+      "nativeStart": 0.69166668165813794,
+      "nativeEnd": 0.76666668328371912,
+      "sourceRate": 0.957823157,
+      "persistentPointExcursion": 0.0187229756,
+      "cumulativeTravel": 0.0190708339,
+      "maximumGroundGap": 0.0009994507,
+      "minimumSoleHeight": 0.000747680664,
+      "maximumSoleHeight": 0.0009994507
+    },
+    {
+      "side": "Left",
+      "vertex": 333,
+      "nativeStart": 1.7083333703604611,
+      "nativeEnd": 1.7833333719860425,
+      "sourceRate": 0.957823157,
+      "persistentPointExcursion": 0.0117929019,
+      "cumulativeTravel": 0.0122058773,
+      "maximumGroundGap": 0.0018157959,
+      "minimumSoleHeight": 0.001335144,
+      "maximumSoleHeight": 0.0018157959
+    },
+    {
+      "side": "Left",
+      "vertex": 38,
+      "nativeStart": 2.1583333801139486,
+      "nativeEnd": 2.2333333817395298,
+      "sourceRate": 0.957823157,
+      "persistentPointExcursion": 0.0187229756,
+      "cumulativeTravel": 0.01909441,
+      "maximumGroundGap": 0.0009994507,
+      "minimumSoleHeight": 0.000747680664,
+      "maximumSoleHeight": 0.0009994507
+    },
+    {
+      "side": "Right",
+      "vertex": 329,
+      "nativeStart": 0.0,
+      "nativeEnd": 0.075000001625581222,
+      "sourceRate": 0.9742259,
+      "persistentPointExcursion": 0.0200823285,
+      "cumulativeTravel": 0.02046981,
+      "maximumGroundGap": 0.001159668,
+      "minimumSoleHeight": 0.000885009766,
+      "maximumSoleHeight": 0.001159668
+    },
+    {
+      "side": "Right",
+      "vertex": 42,
+      "nativeStart": 0.96666668761860242,
+      "nativeEnd": 1.0416666892441837,
+      "sourceRate": 0.9742259,
+      "persistentPointExcursion": 0.0119385766,
+      "cumulativeTravel": 0.012280575,
+      "maximumGroundGap": 0.0018157959,
+      "minimumSoleHeight": 0.00143432617,
+      "maximumSoleHeight": 0.0018157959
+    },
+    {
+      "side": "Right",
+      "vertex": 329,
+      "nativeStart": 1.44166669791395,
+      "nativeEnd": 1.5166666995395313,
+      "sourceRate": 0.9742259,
+      "persistentPointExcursion": 0.0190992262,
+      "cumulativeTravel": 0.0193268247,
+      "maximumGroundGap": 0.00107574463,
+      "minimumSoleHeight": 0.000793457031,
+      "maximumSoleHeight": 0.00107574463
+    },
+    {
+      "side": "Right",
+      "vertex": 42,
+      "nativeStart": 2.4333333860744131,
+      "nativeEnd": 2.5083333876999943,
+      "sourceRate": 0.9742259,
+      "persistentPointExcursion": 0.0119385766,
+      "cumulativeTravel": 0.0122545613,
+      "maximumGroundGap": 0.0018157959,
+      "minimumSoleHeight": 0.00143432617,
+      "maximumSoleHeight": 0.0018157959
+    }
+  ],
+  "runtimeModule": "bcfa9581-c0aa-497f-a527-b7501cc6c37d",
+  "scope": "Eight native fixed sole windows on the actual driver at the recorded skin quality. Virtual constant-speed lateral path; no collision, physics, terrain, diagonal, backward, input-feel or performance proof."
+}

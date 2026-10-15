@@ -1,0 +1,134 @@
+{
+  "success": true,
+  "command": "command run_tests",
+  "data": {
+    "command": "run_tests",
+    "parameters": {
+      "mode": "editor",
+      "filter": "AnimationPlaygroundForwardLocomotionTests",
+      "filter_type": "testName"
+    },
+    "result": {
+      "Summary": {
+        "Total": 14,
+        "Passed": 14,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.ActualDriverUsesOneManualPoseAndNeverMovesThePhysicsRoot(OneBone)",
+          "Status": "Passed",
+          "Duration": 0.398789,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.ActualDriverUsesOneManualPoseAndNeverMovesThePhysicsRoot(TwoBones)",
+          "Status": "Passed",
+          "Duration": 0.0842333,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.ActualDriverUsesOneManualPoseAndNeverMovesThePhysicsRoot(FourBones)",
+          "Status": "Passed",
+          "Duration": 0.0828395,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.CompletedTickTraceOwnsContactsWhileBlockedPoseSettles(30)",
+          "Status": "Passed",
+          "Duration": 0.1138064,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.CompletedTickTraceOwnsContactsWhileBlockedPoseSettles(60)",
+          "Status": "Passed",
+          "Duration": 0.1460931,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.CompletedTickTraceOwnsContactsWhileBlockedPoseSettles(144)",
+          "Status": "Passed",
+          "Duration": 0.3048318,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.DraftAndMismatchedPoliciesCannotBootstrapThePlayer",
+          "Status": "Passed",
+          "Duration": 0.0041361,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.FrameLifecyclePreservesIdleTimeAndDoesNotDuplicateMotionSubscriptions",
+          "Status": "Passed",
+          "Duration": 0.0809681,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.MeasuredDistanceInvertsAcrossWrapsAndPreservesTickSubdivision",
+          "Status": "Passed",
+          "Duration": 0.0129026,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.MeasuredPolicyRetainsSourceProvenanceAndLegacyValidationContract",
+          "Status": "Passed",
+          "Duration": 0.0305754,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.NativeRateBudgetsHoldAcrossGaitThresholdsAndSignificantContributors",
+          "Status": "Passed",
+          "Duration": 0.8260313,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.OptionalJogPlateauPreservesPureJogAndRejectsInvalidBlendBounds",
+          "Status": "Passed",
+          "Duration": 0.00365,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.PartialTravelShortensStrideWhilePreservingCadenceAndActualGait",
+          "Status": "Passed",
+          "Duration": 0.0006308,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardLocomotionTests.SourceSegmentsAndSignedHeightCannotBypassReviewedBudgets",
+          "Status": "Passed",
+          "Duration": 0.0020333,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 2.55,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: AnimationPlaygroundForwardLocomotionTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

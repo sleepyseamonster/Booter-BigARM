@@ -19,10 +19,11 @@ namespace BooterBigArm.TopDown3D
         public bool LaboratoryForwardReviewActive => LaboratoryForwardReviewConfigured && forwardPoseRenderedThisFrame
             && forwardReviewOutputApplied && ForwardReviewSupportAvailable() && !AnimationPresentationOwned && !CrouchPresentationOwned
             && !PoseBlendOwned && motor != null && !motor.IsMounted && !motor.IsActionConstrained;
-        public string LaboratoryForwardReviewStatus => !LaboratoryForwardReviewConfigured ? null
+        public string LaboratoryForwardReviewStatus => (!LaboratoryForwardReviewConfigured ? null
             : LaboratoryForwardFailure != null ? "Forward gait review unavailable: " + LaboratoryForwardFailure
             : LaboratoryForwardReviewActive ? "Experimental forward gaits — AP02 flat deck"
-            : "Experimental forward gaits available on AP02's flat deck. Baseline active elsewhere.";
+            : "Experimental forward gaits available on AP02's flat deck. Baseline active elsewhere.")
+            + (LaboratoryStandingStrafeConfigured ? "\n" + LaboratoryStandingStrafeStatus : null);
 
         public void ConfigureLaboratoryForwardReview(AnimationPlaygroundForwardLocomotionProfile policy,
             TopDown3DAnimationPlaygroundStation station)
@@ -73,6 +74,7 @@ namespace BooterBigArm.TopDown3D
             }
             playableGraph.Connect(forwardReviewMixer, 0, mixer, ForwardReviewInputIndex);
             mixer.SetInputWeight(ForwardReviewInputIndex, 0);
+            InitializeStandingStrafeReviewInputs();
         }
 
         private AnimationClipPlayable ForwardClip(int role) => LaboratoryForwardReviewConfigured ? forwardReviewClips[role] : clipPlayables[role];

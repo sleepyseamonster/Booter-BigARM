@@ -1,0 +1,190 @@
+{
+  "success": true,
+  "command": "command run_tests",
+  "data": {
+    "command": "run_tests",
+    "parameters": {
+      "mode": "editor",
+      "filter": "AnimationPlaygroundForwardReviewTests",
+      "filter_type": "testName"
+    },
+    "result": {
+      "Summary": {
+        "Total": 22,
+        "Passed": 22,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.AuthoredAP02DeckProvidesAStaticFlatReviewSupport",
+          "Status": "Passed",
+          "Duration": 0.2803875,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.ColdEquippedReviewClearsTheDeckAtSupportedSkinQualities(OneBone)",
+          "Status": "Passed",
+          "Duration": 2.7672029,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.ColdEquippedReviewClearsTheDeckAtSupportedSkinQualities(TwoBones)",
+          "Status": "Passed",
+          "Duration": 2.9219358,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.ColdEquippedReviewClearsTheDeckAtSupportedSkinQualities(FourBones)",
+          "Status": "Passed",
+          "Duration": 2.0423473,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.CompletedMotionDrivesTheActualReviewBranchAndActionOwnershipVetoesIt",
+          "Status": "Passed",
+          "Duration": 0.0810783,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.MissingOrDisabledReviewOwnersCannotTurnTheExperimentIntoGeneralLocomotion(0)",
+          "Status": "Passed",
+          "Duration": 0.0802781,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.MissingOrDisabledReviewOwnersCannotTurnTheExperimentIntoGeneralLocomotion(1)",
+          "Status": "Passed",
+          "Duration": 0.0763965,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.MissingOrDisabledReviewOwnersCannotTurnTheExperimentIntoGeneralLocomotion(2)",
+          "Status": "Passed",
+          "Duration": 0.075358,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.MissingRequiredPrivateReviewProfileIsVisibleInsteadOfSilentlyFallingBack",
+          "Status": "Passed",
+          "Duration": 0.069356,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(0.0f)",
+          "Status": "Passed",
+          "Duration": 0.1095557,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(0.7f)",
+          "Status": "Passed",
+          "Duration": 0.1090682,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(1.4f)",
+          "Status": "Passed",
+          "Duration": 0.110555,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(2.05f)",
+          "Status": "Passed",
+          "Duration": 0.0880255,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(2.2f)",
+          "Status": "Passed",
+          "Duration": 0.0914024,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(2.7f)",
+          "Status": "Passed",
+          "Duration": 0.0904558,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(3.25f)",
+          "Status": "Passed",
+          "Duration": 0.0967343,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(3.8f)",
+          "Status": "Passed",
+          "Duration": 0.0957018,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(5.0f)",
+          "Status": "Passed",
+          "Duration": 0.1014431,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.ReviewIsAnExplicitRouteAndDoesNotRelaxTheNormalBindingGate",
+          "Status": "Passed",
+          "Duration": 0.0669937,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.ReviewKeepsTheBaselineAndQualificationFlagsAndUsesOneOutput",
+          "Status": "Passed",
+          "Duration": 0.0730456,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.ReviewRejectsSlopesForeignSupportAndTheDeckEdgeAndRestoresBaselineWeights",
+          "Status": "Passed",
+          "Duration": 0.1302812,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests.SessionPreparesTheExplicitReviewRouteWithoutReplacingItsPrivateBinding",
+          "Status": "Passed",
+          "Duration": 0.1186174,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 10.31,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: AnimationPlaygroundForwardReviewTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

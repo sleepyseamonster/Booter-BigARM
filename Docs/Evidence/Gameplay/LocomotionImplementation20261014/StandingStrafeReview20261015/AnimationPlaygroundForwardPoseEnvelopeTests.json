@@ -1,0 +1,78 @@
+{
+  "success": true,
+  "command": "command run_tests",
+  "data": {
+    "command": "run_tests",
+    "parameters": {
+      "mode": "editor",
+      "filter": "AnimationPlaygroundForwardPoseEnvelopeTests",
+      "filter_type": "testName"
+    },
+    "result": {
+      "Summary": {
+        "Total": 6,
+        "Passed": 6,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardPoseEnvelopeTests.BlockedPoseSettlesWithinTheBoundAndStaysIdle(30)",
+          "Status": "Passed",
+          "Duration": 0.0015152,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardPoseEnvelopeTests.BlockedPoseSettlesWithinTheBoundAndStaysIdle(60)",
+          "Status": "Passed",
+          "Duration": 0.0004329,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardPoseEnvelopeTests.BlockedPoseSettlesWithinTheBoundAndStaysIdle(144)",
+          "Status": "Passed",
+          "Duration": 0.0004648,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardPoseEnvelopeTests.ResetAndLongFrameDoNotLeaveAStaleMovingPose",
+          "Status": "Passed",
+          "Duration": 0.0010341,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardPoseEnvelopeTests.ResumeInterruptsSettleContinuouslyAndReturnsToActualTravel",
+          "Status": "Passed",
+          "Duration": 0.0003436,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundForwardPoseEnvelopeTests.StopFadesTheCurrentSourceDirectlyToIdleWithoutVisitingOtherGaits",
+          "Status": "Passed",
+          "Duration": 0.0009315,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 0.53,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: AnimationPlaygroundForwardPoseEnvelopeTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

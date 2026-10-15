@@ -43,6 +43,14 @@ Connection, compilation, and focused test proof from the initial setup are recor
 
 ## Platform Routing
 
+### Camp Loop slow standing strafe review
+
+`Tools/Diagnostics/CampStrafeSourceAudit.cs` derives two complete walk cycles and exports source sole tracks only in the marked background candidate. `calibrate_standing_strafe.py` screens lateral sources and creates private calibration proposals without changing original animation sources. `CampStandingStrafePreparation.Prepare` creates the separate private review; `SelectReview` binds it only in that candidate. These methods refuse to replace existing outputs.
+
+`CampStandingStrafeQualification.RunFinal`, `RunFinalOne` and `RunFinalTwo` measure fixed sole windows through the actual single-output driver at four/one/two bone influences, with a virtual lateral trajectory and no physics stepping or Play Mode. `CampStandingStrafeInstallation.Install(planPath)` imports only six sealed private files and changes the two standing-strafe binding fields in a stable, clean, already open author CampLoopTesting session. It checks exact source/protected hashes and GUID ownership; it never saves/reloads a scene or enters Play Mode. Failed installation restores previous binding bytes and retains new private pairs unbound for recovery. Invoke these tools through guarded `run_script`, after discovering its current schema; targeted task-code import and compilation must precede author installation.
+
+The [implementation receipt](../Evidence/Gameplay/LocomotionImplementation20261014/StandingStrafeReview20261015/README.md) records the 0.5 m/s AP02 envelope, LT/look-ahead control, 157 focused checks, exact recovery and unavailable diagonal/backward coverage. Author Play Mode feel testing remains user-owned.
+
 ### Camp Loop gait pace tuning
 
 `Tools/Diagnostics/CampGaitPaceTuning.cs` prepares and measures the authored sprint only in the marked background candidate. `InstallAuthor` imports the sealed private pairs into the already open CampLoopTesting scene in stable Edit Mode, validates exact previous/current hashes and leaves the scene unchanged. `TryJogPace` explicitly configures a temporary 2.5m/s jog during author-owned Play Mode on AP02; it preserves sprint, uses a transient policy and cleans up on Play exit or assembly reload. `PrepareFasterJog` and `InstallFasterJog` handle the later saved 3.0m/s comparison through separately sealed previous/resulting pairs; installation requires stable author Edit Mode and verifies the accepted sprint is unchanged. None of these commands enters Play Mode or drives input. See the [pace-tuning receipt](../Evidence/Gameplay/LocomotionImplementation20261014/GaitPaceTuning20261015/README.md) for recovery, verification and remaining qualification limits.

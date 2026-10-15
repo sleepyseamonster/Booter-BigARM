@@ -12,9 +12,11 @@ SOURCES = (
 )
 
 
-def calibrate(root, align_stance=False, sources=None, maximum_lift=.07, maximum_lowering=.03, maximum_native_speed=7, regularization=.5):
-    if not (np.isfinite([maximum_lift, maximum_lowering, maximum_native_speed, regularization]).all()
-            and maximum_lift > 0 and maximum_lowering >= 0 and maximum_native_speed > .5 and 0 <= regularization <= 1):
+def calibrate(root, align_stance=False, sources=None, maximum_lift=.07, maximum_lowering=.03, maximum_native_speed=7, regularization=.5,
+              minimum_native_speed=.5):
+    if not (np.isfinite([maximum_lift, maximum_lowering, maximum_native_speed, regularization, minimum_native_speed]).all()
+            and maximum_lift > 0 and maximum_lowering >= 0 and 0 <= minimum_native_speed < maximum_native_speed
+            and 0 <= regularization <= 1):
         raise ValueError("Calibration bounds and regularization must be finite and ordered.")
     reports = []
     selected_sources = SOURCES if sources is None else sources
@@ -69,7 +71,7 @@ def calibrate(root, align_stance=False, sources=None, maximum_lift=.07, maximum_
                         continue
                     p = part[:, vertex][:, [0, 2]]
                     speed = -float(np.dot(ct, p[:, 1] - p[:, 1].mean()) / np.dot(ct, ct))
-                    if not .5 < speed < maximum_native_speed:
+                    if not minimum_native_speed < speed < maximum_native_speed:
                         continue
                     world = p + np.column_stack((np.zeros(len(times)), times * speed))
                     lateral_excursion = float(np.abs(p[:, 0] - p[0, 0]).max())

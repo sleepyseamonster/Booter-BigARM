@@ -1,0 +1,180 @@
+{
+  "state": "source-selection-not-qualification",
+  "rows": [
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/DirectionalStrafeLeftTwoCycles.anim",
+      "sha256": "01b44bf598f913dae5f718e262f24be24ddb23801746e46aa63e59128e8186b9",
+      "metaSha256": "a909bf79931bab6213e12de7faa9806815ad085a00d08d96c2b3b075b5c2b60e",
+      "seconds": 1.33333337,
+      "looping": true,
+      "maximumPositiveFloorCorrection": 0.04786285400000001,
+      "maximumContinuousLoweringToFloor": 0.07976165800000001,
+      "bestBilateral100msWindows": [
+        {
+          "side": ".L",
+          "vertex": 15,
+          "nativeLateralSpeed": 2.9330678031591972,
+          "excursion": 0.33972217803977217,
+          "cumulativeTravel": 0.34909619658138397,
+          "start": 0.416666679084301,
+          "end": 0.5166666820645333
+        },
+        {
+          "side": ".R",
+          "vertex": 328,
+          "nativeLateralSpeed": 2.724609279459656,
+          "excursion": 0.1889977999414674,
+          "cumulativeTravel": 0.2509100285422575,
+          "start": 0.5916666842997074,
+          "end": 0.6916666872799396
+        }
+      ]
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/DirectionalStrafeRightTwoCycles.anim",
+      "sha256": "09cceac1da7426f0a902feb4d4a0d334595b046787c9d0f8f84e44b62057f45a",
+      "metaSha256": "8c5ab28d0f825431eb48d28673ceb028c07e09cae6277cb6b2a0db28254ae817",
+      "seconds": 1.33333337,
+      "looping": true,
+      "maximumPositiveFloorCorrection": 0.06122955299999999,
+      "maximumContinuousLoweringToFloor": 0.002948900000000032,
+      "bestBilateral100msWindows": [
+        {
+          "side": ".L",
+          "vertex": 42,
+          "nativeLateralSpeed": 1.818498830468248,
+          "excursion": 0.1806441748625696,
+          "cumulativeTravel": 0.20806895639770956,
+          "start": 0.13333333730697633,
+          "end": 0.23333334028720856
+        },
+        {
+          "side": ".R",
+          "vertex": 320,
+          "nativeLateralSpeed": 0.24338942063654032,
+          "excursion": 0.22448731556857457,
+          "cumulativeTravel": 0.22980352554635877,
+          "start": 0.47500001415610316,
+          "end": 0.5750000171363354
+        }
+      ]
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunLeft.fbx",
+      "sha256": "d0ebacb98080968155ef8712770764dfd77be0196a77634238e28974aafe06af",
+      "metaSha256": "3da52c5978a8c6154a8c44a2ec9f2e456ed7556597a217bc6096ed2d861833d2",
+      "seconds": 0.6666667,
+      "looping": false,
+      "maximumPositiveFloorCorrection": 0.09448607999999992,
+      "maximumContinuousLoweringToFloor": 0.03703704800000007,
+      "bestBilateral100msWindows": [
+        {
+          "side": ".L",
+          "vertex": 15,
+          "nativeLateralSpeed": 2.9444968786867154,
+          "excursion": 0.3397260591209439,
+          "cumulativeTravel": 0.3493165988133333,
+          "start": 0.3333333432674408,
+          "end": 0.43333334624767306
+        },
+        {
+          "side": ".R",
+          "vertex": 328,
+          "nativeLateralSpeed": 2.738130939979756,
+          "excursion": 0.19242684722364317,
+          "cumulativeTravel": 0.25174582085100755,
+          "start": 0.5083333484828472,
+          "end": 0.6083333514630794
+        }
+      ]
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunRight.fbx",
+      "sha256": "f2324abd74ab2440c9f6bc4dbe53c96f5ea4f27946c9844fc21536e432448947",
+      "metaSha256": "9718148c4ec664627c2283d240e8e289d354b39527560ecc44f5e48fe80ab8c6",
+      "seconds": 0.6666667,
+      "looping": false,
+      "maximumPositiveFloorCorrection": 0.07759459999999996,
+      "maximumContinuousLoweringToFloor": 0.0,
+      "bestBilateral100msWindows": [
+        {
+          "side": ".L",
+          "vertex": 42,
+          "nativeLateralSpeed": 1.8268693648517536,
+          "excursion": 0.18068780459799136,
+          "cumulativeTravel": 0.20911587719811173,
+          "start": 0.20000000596046447,
+          "end": 0.3000000089406967
+        },
+        {
+          "side": ".R",
+          "vertex": 320,
+          "nativeLateralSpeed": 0.24242359209389505,
+          "excursion": 0.22619630159873444,
+          "cumulativeTravel": 0.23033340365762509,
+          "start": 0.5416666828095913,
+          "end": 0.6416666857898236
+        }
+      ]
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkLeft.fbx",
+      "sha256": "957e963aaa528bde8ce8f8cb89b4ce4857fadba693be4a707f4a654198463c65",
+      "metaSha256": "48abc779dae7ef14fb7c12c99be54a495948d4e205e0e326d18141fa8a203007",
+      "seconds": 1.4666667,
+      "looping": false,
+      "maximumPositiveFloorCorrection": 0.025554499999999924,
+      "maximumContinuousLoweringToFloor": 0.011684600000000045,
+      "bestBilateral100msWindows": [
+        {
+          "side": ".L",
+          "vertex": 54,
+          "nativeLateralSpeed": 0.40919039844971783,
+          "excursion": 0.019531488853728178,
+          "cumulativeTravel": 0.019640413677230417,
+          "start": 0.7083333486860449,
+          "end": 0.8083333508534865
+        },
+        {
+          "side": ".R",
+          "vertex": 309,
+          "nativeLateralSpeed": 0.5281486184427976,
+          "excursion": 0.005859927749049566,
+          "cumulativeTravel": 0.007723039975303678,
+          "start": 0.22500000487674365,
+          "end": 0.3250000070441853
+        }
+      ]
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkRight.fbx",
+      "sha256": "5198884d344292a0650afcb00dd13d46963ff84048b230cb0a1389a04beca1d6",
+      "metaSha256": "f21dd8b1467b3a04509498bc98d4d25385220fda8a1170ce2ff289f98fe38528",
+      "seconds": 1.4666667,
+      "looping": false,
+      "maximumPositiveFloorCorrection": 0.03242095899999997,
+      "maximumContinuousLoweringToFloor": 0.0065957640000000595,
+      "bestBilateral100msWindows": [
+        {
+          "side": ".L",
+          "vertex": 54,
+          "nativeLateralSpeed": 0.5287925265607084,
+          "excursion": 0.006470486423719437,
+          "cumulativeTravel": 0.0082898913853053,
+          "start": 0.9500000205906954,
+          "end": 1.0500000227581372
+        },
+        {
+          "side": ".R",
+          "vertex": 309,
+          "nativeLateralSpeed": 0.4421896691630504,
+          "excursion": 0.020019552956789533,
+          "cumulativeTravel": 0.02014925036338244,
+          "start": 0.02500000054186041,
+          "end": 0.12500000270930203
+        }
+      ]
+    }
+  ],
+  "scope": "Best persistent near-ground fixed vertex per foot over 100ms at individually fitted lateral speed. Horizontal fore/aft residual is retained. Continuous lowering is reported, not applied during flight. Actual-driver native timing, equipment, transitions and physics need separate proof."
+}

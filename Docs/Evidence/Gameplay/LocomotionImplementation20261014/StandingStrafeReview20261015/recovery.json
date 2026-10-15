@@ -1,0 +1,293 @@
+{
+  "state": "sealed-local-unqualified-standing-strafe-review",
+  "root": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-13\\ImportCheckpoints\\StandingStrafeReviewHardening20261015",
+  "previousAuthorCommit": "47c0da846",
+  "testedCode": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundStandingStrafeProfile.cs",
+      "sha256": "018f5e3d4dbd7b4b87abe08b3309053fe198c12c0532eb1c4f924dd0c788b58c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundStandingStrafeProfile.cs.meta",
+      "sha256": "60cb253c802ea70b9393ca1a3fa3fa386b58b761578ac048d6a717af9c07a343"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.StandingStrafe.cs",
+      "sha256": "c999e859aaf9d96074123433b95581491774621cd9c561e304384cf0db4abc7b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.StandingStrafe.cs.meta",
+      "sha256": "477f5b15f6770d6f8e0ddb72a2fd7aa244f1a9b30dec9ce3e5d77244a892dbac"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.StandingStrafe.cs",
+      "sha256": "3bcdc5a4add216f12175f643b0fdde08456977331c0084f52b86ed6977ab5380"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.StandingStrafe.cs.meta",
+      "sha256": "1b62c646b1796ae3c1486ebc5abddd98c746a1d716048f0a3c08454c493b1c6b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundBindings.cs",
+      "sha256": "2a6a68a25e213d0e3a020167a6b038fd6a872ac852d43b188beef680bcd3787c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundBindings.cs.meta",
+      "sha256": "5aca825e738fb870fab7ae877214280b03e80fd456f26b8c615da7d1e3d2c6ee"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.Player.cs",
+      "sha256": "f331bcd48f4cb24d6b178e6d7624c902e55890050c8d4530428430f1bf7ca56e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.Player.cs.meta",
+      "sha256": "41bf7dde67c01cd1c9fb1a25d787c3f8637ffa15c17a67d6172dbd412d8abf38"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.AnimationPlayground.cs",
+      "sha256": "5c2f0ad1cf2a00601123a27cc9167cb1db89e83d5638f339388482fb712a2070"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.AnimationPlayground.cs.meta",
+      "sha256": "c0a0981127a6e68b5d61472fd1d0c8babf42ada7f460c00e7e0ef65816356ab5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs",
+      "sha256": "e44f4dc38c0e8ae4fed3eb14c411ecb8247c0eec7036a31af52bf843c38c6060"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs.meta",
+      "sha256": "f2e6db0b44b4e20f075c9891724ff6041341fbda0c60281071a0dc2767a9faf5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.AnimationPlayground.cs",
+      "sha256": "fda9f10eb24e21c2cee308bf6c393f3b300c2dd48afe28365230f6d083be8b2e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.AnimationPlayground.cs.meta",
+      "sha256": "4e6dfb81c4a013127663ebd3ddca0657b8064d063a7efa8332b3f0fed5af7053"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs",
+      "sha256": "e93aa84d164e137b5b75aa5026fa932cfaca565b836c48909701523de20494cb"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs.meta",
+      "sha256": "125bb846f9a1e8de22b13aef35865640f3d968159853da727013c3ae7a7e9e52"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs",
+      "sha256": "37c3d919bf0fa32028be38dc97a46172524da58f1cdfe2ecd042b92924a2c796"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs.meta",
+      "sha256": "9d8c82a656c45ff5e62d116246351894cdb599495a1e21bb27a537a70cee73a2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.ForwardReview.cs",
+      "sha256": "88f7f7c8c35aff3121473e7b533337fcfd3171595dfae652ad43da8849c38be8"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.ForwardReview.cs.meta",
+      "sha256": "5ab3dd942421bab8fd2d8690fb029649587b74de48b237685989331836d1e314"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundStandingStrafeTests.cs",
+      "sha256": "4d6095d11d8feafdb653bdff2bd394c8fe85b6fb242039c56c6325865128372d"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundStandingStrafeTests.cs.meta",
+      "sha256": "4c003e03290f7b29b816a8e323f4dd1d25c8342e2fab377c1be459b94ca8e02e"
+    },
+    {
+      "path": "Tools/Diagnostics/CampStrafeSourceAudit.cs",
+      "sha256": "05d8f3082730a5632db3c24451ce82bcc9b649f8a76d0a0dab51a48a6b5ac844"
+    },
+    {
+      "path": "Tools/Diagnostics/CampStandingStrafePreparation.cs",
+      "sha256": "a14e784980f671674908344e1f3607690bcddc5f0b3c74a36a710daf83c9868e"
+    },
+    {
+      "path": "Tools/Diagnostics/CampStandingStrafeQualification.cs",
+      "sha256": "7777cb748589810f5dd2ed8f245795caea196d89560866c826b2698af42d2b74"
+    },
+    {
+      "path": "Tools/Diagnostics/CampStandingStrafeInstallation.cs",
+      "sha256": "ddc5996005e7c3d587a5c5a6416eebd1b61ecfc54e498e7c819d2d90dc76b487"
+    },
+    {
+      "path": "Tools/Diagnostics/calibrate_forward_gaits.py",
+      "sha256": "5a74a1f920e066fd1d90fd80b1d50e199a3b25278f8939104d31811ed96315a3"
+    },
+    {
+      "path": "Tools/Diagnostics/calibrate_standing_strafe.py",
+      "sha256": "3f49593ba4c71d654aad14c0e5cf28cdb5f8fd59cf815b1dca7dced2e3ed999e"
+    }
+  ],
+  "privatePairs": [
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingStrafeWalkLeftReview.anim",
+      "sha256": "2ed6797026b45d02fc12d8a636347d8de4a9632d6f04cd6d2a65e98e97fc1e27"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingStrafeWalkLeftReview.anim.meta",
+      "sha256": "ae3a7252801f55f9ec8db55aeda9f09c582d695d1a8eafd499967ef26762a45d"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingStrafeWalkRightReview.anim",
+      "sha256": "088a2ec1c8bd0985de4dda80e9f1a6a6e351e90be8905adafb2c9d09986c7f3a"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingStrafeWalkRightReview.anim.meta",
+      "sha256": "1bc1229c9af832a0747f03378fc9465d09413c9461a7731998e738b8ed92c41b"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/StandingStrafeReview.asset",
+      "sha256": "d0dcab5cdb9071c26ef8dab81dbac05dda65f0c1e8323c3833773a6160a6e1cb"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/StandingStrafeReview.asset.meta",
+      "sha256": "af8d705607d02b6f588d422267298938fc4629247c6020ed587d200e7e0e00c9"
+    }
+  ],
+  "protectedInputs": [
+    {
+      "path": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+      "sha256": "c32df68c3039d0aee36013a43ce04daadd88e15c5cbf2ad6f9057d49a75cf9c5"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset",
+      "sha256": "686aca8d1116b07838c2fd383e6432dead3d6b4d40ca87481ce39da101d749c1"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset",
+      "sha256": "6ebbd3828a30f5de1936819963fe5177e7ca93c820df545cfd798a03f7e7fc31"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionClipsStageAlignedCandidate.asset",
+      "sha256": "38acc24cd0b7356d3fef8c01e7ffb098a3baa2947ecd6edf3ad70035443caaef"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/AirborneProfile.asset",
+      "sha256": "777dfc1a2841ee64d750ac9c2e2981f50620d8de4e9b957996a83e485f852a24"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DCampLookEditor.cs",
+      "sha256": "c819d05dc03a7dadefdbf4a3ca1c17f6e2fa14a67f16d65601bc0af22bd72d7e"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/CombinedOptics.asset",
+      "sha256": "db3fbf86581872c7c892ec2ef24abe24bc3c01458a31e1caa03d31242b508838"
+    },
+    {
+      "path": "Assets/_Project/Settings/Studies/CampOptics20261014/CombinedTwilight.asset",
+      "sha256": "f0be34e5664d1bec876390006ab14823224226ae85ac9d97a16e3c76db90417c"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Walk_Fwd_NoRM.FBX",
+      "sha256": "0832e93fc931b80c11e12d82dfa2c6b42f1b104ad8818b31613ac24d234dad89"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Walk_Fwd_NoRM.FBX.meta",
+      "sha256": "21533eba755a8def837ce4af2ea65fcbf1c6505e127ecad0ff867a9457b6225a"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_NoRM.FBX",
+      "sha256": "38039a18614857cbdd6cce42fc317ebc970c2d8829530cf97bc5b3ef6b714fab"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_NoRM.FBX.meta",
+      "sha256": "de14059a30686ae22dbee9eca7f0ea9236003b13c2e61e0155ec937b5e605076"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Run_Fwd_NoRM.FBX",
+      "sha256": "17e73a6e4f05287e33bf753c1e9526949ac57a958549c0525e95468f9d21d721"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Run_Fwd_NoRM.FBX.meta",
+      "sha256": "0845593412268073f3f3c948dcdc484d676baf6e5f44eba9661fba725dacc0ac"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim",
+      "sha256": "850c033b50a92b4e96cb08ad08efc09e8062f41d831c54aeb89fc52625b31d97"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim.meta",
+      "sha256": "308dbcc6dd59288a33e26ab7a7a34aa5bf3a713d9e7c4821519d6a93c576653e"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintStandardReview.anim",
+      "sha256": "db3fa37dcec840741ce332ff7fd7ff3273a098ca6a89020187e5ccc5be2a97d9"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintStandardReview.anim.meta",
+      "sha256": "e60bca4178534e3f0b4fc60f81c6845c67f6822b43f8e8b3ec7036402c7e7bfe"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/DirectionalStrafeLeftTwoCycles.anim",
+      "sha256": "01b44bf598f913dae5f718e262f24be24ddb23801746e46aa63e59128e8186b9"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/DirectionalStrafeLeftTwoCycles.anim.meta",
+      "sha256": "a909bf79931bab6213e12de7faa9806815ad085a00d08d96c2b3b075b5c2b60e"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/DirectionalStrafeRightTwoCycles.anim",
+      "sha256": "09cceac1da7426f0a902feb4d4a0d334595b046787c9d0f8f84e44b62057f45a"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/DirectionalStrafeRightTwoCycles.anim.meta",
+      "sha256": "8c5ab28d0f825431eb48d28673ceb028c07e09cae6277cb6b2a0db28254ae817"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunLeft.fbx",
+      "sha256": "d0ebacb98080968155ef8712770764dfd77be0196a77634238e28974aafe06af"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunLeft.fbx.meta",
+      "sha256": "3da52c5978a8c6154a8c44a2ec9f2e456ed7556597a217bc6096ed2d861833d2"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunRight.fbx",
+      "sha256": "f2324abd74ab2440c9f6bc4dbe53c96f5ea4f27946c9844fc21536e432448947"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunRight.fbx.meta",
+      "sha256": "9718148c4ec664627c2283d240e8e289d354b39527560ecc44f5e48fe80ab8c6"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkLeft.fbx",
+      "sha256": "957e963aaa528bde8ce8f8cb89b4ce4857fadba693be4a707f4a654198463c65"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkLeft.fbx.meta",
+      "sha256": "48abc779dae7ef14fb7c12c99be54a495948d4e205e0e326d18141fa8a203007"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkRight.fbx",
+      "sha256": "5198884d344292a0650afcb00dd13d46963ff84048b230cb0a1389a04beca1d6"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkRight.fbx.meta",
+      "sha256": "f21dd8b1467b3a04509498bc98d4d25385220fda8a1170ce2ff289f98fe38528"
+    }
+  ],
+  "resultingBindingSha256": "9911f447f7078f144b54f83d8f9529d8a8dae66e5acb59badee1a2f071a554c3",
+  "sealedFiles": 89,
+  "sealedManifestSha256": "3ad2cd17ae55130a1d46d8a3e7405c0089b09d9f777b9533ef186ae6f96f0762",
+  "rawTracksPublished": false,
+  "sceneSaved": false,
+  "sceneReloaded": false,
+  "agentPlayMode": false,
+  "parentCheckpoint": {
+    "root": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-13\\ImportCheckpoints\\StandingStrafeReview20261015",
+    "sealedFiles": 107,
+    "sealedManifestSha256": "a83ad4c503a8592888627ce331dbacaa9d948c9c7509c8044d2f13703facfa81"
+  },
+  "hardening": "Reject completed speed outside command cap + 0.02m/s tolerance or native playback ceiling; reject unsupported headings; repeat 157 checks.",
+  "finalPassed": 157,
+  "authorGuardLoaded": true,
+  "authorFinalSceneDirty": true,
+  "savedAuthorSceneBytesPreserved": true,
+  "newGuidOwnersVerified": 7
+}

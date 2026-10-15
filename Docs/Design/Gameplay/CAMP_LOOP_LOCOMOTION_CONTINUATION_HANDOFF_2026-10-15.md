@@ -2,6 +2,8 @@
 
 October 15, 2026. The author accepted the latest forward-gait comparison: **“Okay, that looks great.”** The next requested work is **strafing, turning, slopes and jumping**, integrated into the Camp Loop playtesting loop. This handoff records the starting point for the incoming implementation agent. Its preparation changes documentation only.
 
+**Continuation update:** the author subsequently chose LT facing lock with camera look-ahead retained. The [first slow lateral slice](CAMP_LOOP_STANDING_STRAFE_SLICE_2026-10-15.md) is now installed for bounded AP02 review; its [evidence and recovery](../../Evidence/Gameplay/LocomotionImplementation20261014/StandingStrafeReview20261015/README.md) record 157 passing checks and the remaining direction/turn/slope/jump gaps. Statements below about an unchosen strafe control describe handoff preparation, before this decision.
+
 ## Start here
 
 Work in `D:/Arc & Dust/Project`, on `main` tracking `origin/main`. Read [AGENTS.md](../../../AGENTS.md), [local workspace](../../LOCAL_WORKSPACE.md), [Gottspan](../../Agents/Gottspan/README.md), [Babineaux](../../Agents/Babineaux/README.md), [Unity automation](../../Engineering/UNITY_AUTOMATION.md) and [input architecture](../../Engineering/INPUT_ARCHITECTURE_STANDARD.md). Recheck the live tree and Editor before editing; this is a shared checkout.

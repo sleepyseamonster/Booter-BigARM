@@ -78,6 +78,8 @@ namespace BooterBigArm.TopDown3D
         }
         private void UnbindForwardMotion()
         {
+            RestoreStandingStrafeBaseline();
+            ResetStandingStrafePresentation();
             RestoreForwardReviewBaseline();
             if (forwardBound && motor != null) motor.LaboratoryGroundedMotionCompleted -= AdvanceForwardMotion;
             forwardBound = false; forwardClock?.Reset(); forwardSpeed = forwardPreviousSpeed = 0;
@@ -93,11 +95,17 @@ namespace BooterBigArm.TopDown3D
             if (!LaboratoryForwardReady || !isActiveAndEnabled) return;
             if (!ForwardReviewSupportAvailable())
             {
+                if (LaboratoryStandingStrafeConfigured) ResetStandingStrafePresentation();
                 forwardClock.Reset(); forwardSpeed = forwardPreviousSpeed = 0;
                 LaboratoryDiscardedFootEffects += forwardPlantCount; forwardPlantCount = forwardPlantStart = 0;
                 forwardPoseEnvelope.Reset(); return;
             }
             forwardMotion = sample;
+            if (AdvanceStandingStrafeMotion(sample))
+            {
+                forwardClock.Reset(); forwardSpeed = forwardPreviousSpeed = 0;
+                forwardPlantStart = forwardPlantCount = 0; forwardPoseEnvelope.Reset(); return;
+            }
             forwardPreviousSpeed = forwardSpeed;
             var contacts = forwardClock.Advance(sample, laboratoryForwardProfile);
             forwardSpeed = forwardClock.Travelling && sample.Available ? sample.Speed : 0;
@@ -120,6 +128,7 @@ namespace BooterBigArm.TopDown3D
 
         private void PrepareForwardGraphUpdate()
         {
+            RestoreStandingStrafeBaseline();
             RestoreForwardReviewBaseline();
             forwardTerrainApplied = false; forwardTerrainPose?.Disable();
             if (!forwardPoseRenderedThisFrame) { forwardIdleSeconds = 0; forwardPoseEnvelope.Reset(); }
@@ -136,6 +145,7 @@ namespace BooterBigArm.TopDown3D
 
         private bool TryPresentForwardLocomotion()
         {
+            if (TryPresentStandingStrafe()) return true;
             if (!LaboratoryForwardReady || !ForwardReviewSupportAvailable() || !playableGraph.IsValid() || motor == null || visualInstance == null
                 || motor.IsActionConstrained || motor.AnimationPosture != AnimationPlaygroundPosture.Standing
                 || motor.ActiveTraversal != TopDown3DTraversalMove.None || motor.ClimbMode >= TopDown3DClimbMode.Scramble

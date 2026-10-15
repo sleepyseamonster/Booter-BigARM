@@ -27,6 +27,8 @@ namespace BooterBigArm.TopDown3D
         public AnimationPlaygroundForwardLocomotionProfile forwardLocomotion;
         public AnimationPlaygroundForwardLocomotionProfile forwardReviewOverride;
         public bool forwardReviewOverrideRequired;
+        public AnimationPlaygroundStandingStrafeProfile standingStrafeReview;
+        public bool standingStrafeReviewRequired;
         public AnimationPlaygroundCrouchProfile crouch;
         public AnimationPlaygroundFootProjection footProjection;
         public AnimationPlaygroundAirborneProfile airborne;
@@ -74,7 +76,10 @@ namespace BooterBigArm.TopDown3D
             else if (!float.IsFinite(slowWalkSpeed) || !float.IsFinite(runSpeed) || !float.IsFinite(sprintSpeed)
                 || slowWalkSpeed <= 0 || runSpeed < slowWalkSpeed || sprintSpeed < runSpeed)
                 reason = "Laboratory locomotion speeds must be finite and ordered.";
+            else if(standingStrafeReviewRequired && standingStrafeReview==null)
+                reason="Restore the required private standing strafe review.";
             else if(footProjection!=null && !footProjection.Validate(targetModel,out reason))return false;
+            else if(standingStrafeReview!=null && !standingStrafeReview.Validate(targetModel,footProjection,out reason))return false;
             else if(crouch!=null && (crouch.contactsQualified || crouch.groundingQualified) && footProjection==null)
                 reason="A qualified crouch family requires its paired transition foot projection.";
             else if(airborne!=null && !airborne.Validate(out reason,false))return false;

@@ -1,0 +1,55 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var method=typeof(BooterBigArm.TopDown3D.TopDown3DPlayerAnimationDriver).GetMethod(\"AdvanceStandingStrafeMotion\",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);\nvar data=method.GetMethodBody().GetILAsByteArray(); var calls=new System.Collections.Generic.List<string>();\nfor(var i=0;i+4<data.Length;i++) if(data[i]==0x28 || data[i]==0x6f) { try { var member=method.Module.ResolveMethod(System.BitConverter.ToInt32(data,i+1)); calls.Add(member.DeclaringType.FullName+\".\"+member.Name); } catch {} }\nreturn new { module=method.Module.ModuleVersionId, explicitSpeedGuardLoaded=calls.Contains(\"UnityEngine.Mathf.Min\"), calls=calls.Distinct().ToArray(), scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path, dirty=UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty, playing=UnityEditor.EditorApplication.isPlayingOrWillChangePlaymode, compiling=UnityEditor.EditorApplication.isCompiling };",
+      "timeout": "25000"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "module": "e72c3a5d-faf5-40b0-92ab-909beb478e82",
+        "explicitSpeedGuardLoaded": true,
+        "calls": [
+          "BooterBigArm.TopDown3D.TopDown3DPlayerAnimationDriver.get_LaboratoryStandingStrafeConfigured",
+          "BooterBigArm.TopDown3D.TopDown3DPlayerMotor.get_LaboratoryStandingLateral",
+          "BooterBigArm.TopDown3D.TopDown3DPlayerMotor.get_LaboratoryStandingTravel",
+          "BooterBigArm.TopDown3D.TopDown3DPlayerAnimationDriver.ResetStandingStrafePresentation",
+          "UnityEngine.Vector3.get_up",
+          "BooterBigArm.TopDown3D.TopDown3DPlayerMotor.get_FacingDirection",
+          "UnityEngine.Vector3.Cross",
+          "UnityEngine.Vector3.get_normalized",
+          "UnityEngine.Vector3.op_Multiply",
+          "BooterBigArm.TopDown3D.AnimationPlaygroundGroundedMotion.get_Speed",
+          "UnityEngine.AnimationClip.get_length",
+          "UnityEngine.Mathf.Min",
+          "BooterBigArm.TopDown3D.AnimationPlaygroundGroundedMotion.get_Distance",
+          "UnityEngine.Vector3.Dot",
+          "UnityEngine.Mathf.Abs",
+          "UnityEngine.Mathf.Tan",
+          "UnityEngine.Vector3.get_zero",
+          "BooterBigArm.TopDown3D.AnimationPlaygroundGroundedMotion..ctor",
+          "BooterBigArm.TopDown3D.AnimationPlaygroundGaitClock.get_Cycles",
+          "BooterBigArm.TopDown3D.AnimationPlaygroundGaitClock.Advance",
+          "BooterBigArm.TopDown3D.AnimationPlaygroundGaitClock.get_Travelling",
+          "System.Math.Floor"
+        ],
+        "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+        "dirty": true,
+        "playing": false,
+        "compiling": false
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\Arc & Dust\\Project"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

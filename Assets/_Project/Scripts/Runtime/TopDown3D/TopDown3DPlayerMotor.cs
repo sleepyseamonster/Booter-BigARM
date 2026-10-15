@@ -223,6 +223,7 @@ namespace BooterBigArm.TopDown3D
 
         public void Teleport(Vector3 position)
         {
+            ResetStandingStrafe(true);
             EnsureBody();
             CancelTraversal();
             EndClimb();
@@ -253,6 +254,7 @@ namespace BooterBigArm.TopDown3D
             EndClimb();
             if (actionConstraintOwner == null) ResetStandingMotionObservation();
             actionConstraintOwner = owner;
+            ResetStandingStrafe(true);
             SprintActive = false;
             PlanarAcceleration = Vector3.zero;
             if (body != null)
@@ -319,6 +321,7 @@ namespace BooterBigArm.TopDown3D
 
         private void AdvanceMotorFixedTick()
         {
+            GuardStandingStrafeOwner();
             if (YieldMountedMotor()) return;
             WaitingForPopulation = PopulationPreparation != null && !PopulationPreparation(PopulationPreparationBounds());
             if (WaitingForPopulation)
@@ -426,7 +429,8 @@ namespace BooterBigArm.TopDown3D
                 body.AddForce(-gravityAlongSlope, ForceMode.Acceleration);
             }
 
-            SprintActive = input.SprintHeld
+            ApplyStandingStrafeIntent(ref desiredDirection);
+            SprintActive = input.SprintHeld && !LaboratoryStandingLateral
                 && AnimationPosture==AnimationPlaygroundPosture.Standing && !input.AnimationSlowWalkHeld
                 && desiredDirection.sqrMagnitude > 0.0001f
                 && traversalCooldownRemaining <= 0f;
@@ -435,7 +439,7 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
-            var requestedSpeed = AnimationLocomotionSpeed(LaboratoryRequestedSpeed(SprintActive));
+            var requestedSpeed = StandingStrafeRequestedSpeed(AnimationLocomotionSpeed(LaboratoryRequestedSpeed(SprintActive)));
             var slopeSpeed = ApplyLaboratoryUphillGait(requestedSpeed, desiredDirection, measuredGroundNormal);
             if (slopeSpeed < requestedSpeed && slopeSpeed <= walkSpeed) SprintActive = false;
             var targetVelocity = desiredDirection * slopeSpeed;
@@ -484,6 +488,7 @@ namespace BooterBigArm.TopDown3D
             {
                 planarFacing = new Vector3(desiredDirection.x, 0f, desiredDirection.z);
             }
+            if (standingStrafeLocked) planarFacing = standingStrafeFacing;
 
             if (planarFacing.sqrMagnitude > 0.0001f)
             {
@@ -1358,6 +1363,7 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDisable()
         {
+            ReleaseStandingStrafeReview();
             NotifyRiderMotorDisabled();
             DisableAnimationCapability();
             CancelTraversal();
