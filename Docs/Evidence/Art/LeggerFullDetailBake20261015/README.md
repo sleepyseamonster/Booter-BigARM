@@ -1,5 +1,7 @@
 # Legger full detail bake
 
+The [subsequent protected refinement](../LeggerDetailRefinement20261015/README.md) now describes the current authoring file: 155,999 active triangles and 28 packed maps. Counts and hashes below record the preceding whole-robot bake checkpoint.
+
 October 15, 2026. Owner: Blender under Gottspan coordination. The author requested extracting more surface detail into textures so the robot could continue losing polygons while retaining its appearance. This checkpoint extends the earlier cargo/saddle bake to the remaining frame and both legs.
 
 ## Applied authoring file

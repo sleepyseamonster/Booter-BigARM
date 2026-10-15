@@ -1,0 +1,235 @@
+{
+  "source_sha256": "51109196796320a25a2f9b1d048cfd977063af5b409e1830296f4d89b7a0fca6",
+  "before_active_robot_triangles": 171999,
+  "parts": [
+    {
+      "name": "Frame",
+      "object": "Legger_Frame_Baked",
+      "source_triangles": 99999,
+      "target": 89999,
+      "triangles": 89999,
+      "vertices": 47020,
+      "initial_pinned_vertices": 11679,
+      "pinned_vertices": 11828,
+      "pinned_preserved_exact": true,
+      "matrix_world": [
+        [
+          0.7425782084465027,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7425782084465027,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7425782084465027,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "uv_layer": "Frame_Atlas",
+      "adaptive_history": [
+        {
+          "attempt": 1,
+          "pinned_vertices": 11679,
+          "triangles": 89999,
+          "max_before_vertex_or_center_to_after_m": 0.0064152260310947895,
+          "max_after_vertex_or_center_to_before_m": 0.000787401688285172,
+          "new_sensitive_vertices": 46
+        },
+        {
+          "attempt": 2,
+          "pinned_vertices": 11818,
+          "triangles": 89999,
+          "max_before_vertex_or_center_to_after_m": 0.002266980241984129,
+          "max_after_vertex_or_center_to_before_m": 0.000787401688285172,
+          "new_sensitive_vertices": 2
+        },
+        {
+          "attempt": 3,
+          "pinned_vertices": 11828,
+          "triangles": 89999,
+          "max_before_vertex_or_center_to_after_m": 0.001495629781857133,
+          "max_after_vertex_or_center_to_before_m": 0.000787401688285172,
+          "new_sensitive_vertices": 0
+        }
+      ],
+      "geometry_unchanged": false
+    },
+    {
+      "name": "LeftLeg",
+      "object": "Legger_LeftLeg_Baked",
+      "source_triangles": 30000,
+      "target": 27000,
+      "triangles": 27000,
+      "vertices": 13527,
+      "initial_pinned_vertices": 1523,
+      "pinned_vertices": 1576,
+      "pinned_preserved_exact": true,
+      "matrix_world": [
+        [
+          0.7425782084465027,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7425782084465027,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7425782084465027,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "uv_layer": "LeftLeg_Atlas",
+      "adaptive_history": [
+        {
+          "attempt": 1,
+          "pinned_vertices": 1523,
+          "triangles": 27000,
+          "max_before_vertex_or_center_to_after_m": 0.003764719469472766,
+          "max_after_vertex_or_center_to_before_m": 0.0008314786828123033,
+          "new_sensitive_vertices": 12
+        },
+        {
+          "attempt": 2,
+          "pinned_vertices": 1572,
+          "triangles": 27000,
+          "max_before_vertex_or_center_to_after_m": 0.0015225789975374937,
+          "max_after_vertex_or_center_to_before_m": 0.0008314786828123033,
+          "new_sensitive_vertices": 1
+        },
+        {
+          "attempt": 3,
+          "pinned_vertices": 1576,
+          "triangles": 27000,
+          "max_before_vertex_or_center_to_after_m": 0.0014869654551148415,
+          "max_after_vertex_or_center_to_before_m": 0.0008314786828123033,
+          "new_sensitive_vertices": 0
+        }
+      ],
+      "geometry_unchanged": false
+    },
+    {
+      "name": "RightLeg",
+      "object": "Legger_RightLeg_Baked",
+      "source_triangles": 30000,
+      "target": 27000,
+      "triangles": 27000,
+      "vertices": 13567,
+      "initial_pinned_vertices": 1166,
+      "pinned_vertices": 1224,
+      "pinned_preserved_exact": true,
+      "matrix_world": [
+        [
+          0.7425782084465027,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7425782084465027,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7425782084465027,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "uv_layer": "RightLeg_Atlas",
+      "adaptive_history": [
+        {
+          "attempt": 1,
+          "pinned_vertices": 1166,
+          "triangles": 27000,
+          "max_before_vertex_or_center_to_after_m": 0.004653273615986109,
+          "max_after_vertex_or_center_to_before_m": 0.001204808009788394,
+          "new_sensitive_vertices": 16
+        },
+        {
+          "attempt": 2,
+          "pinned_vertices": 1224,
+          "triangles": 27000,
+          "max_before_vertex_or_center_to_after_m": 0.0013481414644047618,
+          "max_after_vertex_or_center_to_before_m": 0.000407517101848498,
+          "new_sensitive_vertices": 0
+        }
+      ],
+      "geometry_unchanged": false
+    },
+    {
+      "name": "CargoSeat",
+      "object": "Legger_CargoSeat_Baked",
+      "source_triangles": 12000,
+      "target": 12000,
+      "triangles": 12000,
+      "vertices": 7932,
+      "initial_pinned_vertices": 5305,
+      "pinned_vertices": 5305,
+      "pinned_preserved_exact": true,
+      "matrix_world": [
+        [
+          0.7425782084465027,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7425782084465027,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7425782084465027,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "uv_layer": "CargoSeat_Atlas",
+      "adaptive_history": [],
+      "geometry_unchanged": true
+    }
+  ],
+  "policy": "Keep cargo geometry unchanged; adaptive support pins where vertex or triangle-center deviation exceeds 1.5 mm.",
+  "active_robot_triangles": 155999
+}

@@ -1,0 +1,58 @@
+{
+  "resolution": [
+    1400,
+    1100
+  ],
+  "alpha_threshold": 127,
+  "views": {
+    "front": {
+      "silhouette_iou": 0.9998547199862253,
+      "changed_pixels": 27,
+      "before_pixels": 185842,
+      "after_pixels": 185827
+    },
+    "side": {
+      "silhouette_iou": 0.9999075464419727,
+      "changed_pixels": 29,
+      "before_pixels": 313655,
+      "after_pixels": 313658
+    },
+    "rear": {
+      "silhouette_iou": 0.9998601037384586,
+      "changed_pixels": 26,
+      "before_pixels": 185841,
+      "after_pixels": 185837
+    },
+    "frame": {
+      "silhouette_iou": 0.9999072022642648,
+      "changed_pixels": 88,
+      "before_pixels": 948247,
+      "after_pixels": 948263
+    },
+    "cargo": {
+      "silhouette_iou": 0.999941674824567,
+      "changed_pixels": 51,
+      "before_pixels": 874389,
+      "after_pixels": 874376
+    },
+    "legs": {
+      "silhouette_iou": 0.9999190951239081,
+      "changed_pixels": 36,
+      "before_pixels": 444950,
+      "after_pixels": 444948
+    },
+    "feet": {
+      "silhouette_iou": 0.9999122177413109,
+      "changed_pixels": 34,
+      "before_pixels": 387296,
+      "after_pixels": 387314
+    },
+    "underside": {
+      "silhouette_iou": 0.9999388859225331,
+      "changed_pixels": 57,
+      "before_pixels": 932670,
+      "after_pixels": 932637
+    }
+  },
+  "scope": "Matched orthographic full robot front/side/rear and five close-ups; does not certify every direction, shading, mips, parallax or cast shadows."
+}

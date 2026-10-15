@@ -1,0 +1,488 @@
+{
+  "parts": [
+    {
+      "name": "Frame",
+      "object": "Legger_Frame_Baked",
+      "triangles": 89999,
+      "vertices": 47020,
+      "uv_layer": "Frame_Atlas",
+      "matrix_world": [
+        [
+          0.7425782084465027,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7425782084465027,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7425782084465027,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "maps": [
+        {
+          "image": "Legger_Frame_BaseColor",
+          "node": "Baked BaseColor",
+          "size": [
+            8192,
+            8192
+          ],
+          "colorspace": "sRGB",
+          "packed_bytes": 27916004,
+          "packed_sha256": "a1cfbeba5f2c7f9fbba0850a0d476306d82dfbc95fd8bc7201bad8e29bf8013d",
+          "connected": true
+        },
+        {
+          "image": "Legger_Frame_Roughness",
+          "node": "Baked Roughness",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 6010718,
+          "packed_sha256": "a29f5edf54e2821c08b2ad3527b6f9518eb5f732d9b2f7385a45ea775f7dc918",
+          "connected": true
+        },
+        {
+          "image": "Legger_Frame_Metallic",
+          "node": "Baked Metallic",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 5949172,
+          "packed_sha256": "4638b4d1d0c29f40dda82fe4c5ae8a285fa10562149c9e443e35d3b5c73b0b82",
+          "connected": true
+        },
+        {
+          "image": "Legger_Frame_Normal",
+          "node": "Baked Tangent Normal",
+          "size": [
+            8192,
+            8192
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 41319637,
+          "packed_sha256": "e8a158ff1f073febd89edb00fb7f762a0c05041e79f1732a6d428210847d2d3b",
+          "connected": true
+        },
+        {
+          "image": "Legger_Frame_AO",
+          "node": "Baked AO - authoring/export",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 10757083,
+          "packed_sha256": "95c4e64d4f263791cf6c94b2e634ed481dd40b6665079d05cd92fffa4cee8561",
+          "connected": false
+        },
+        {
+          "image": "Legger_Frame_ObjectNormal",
+          "node": "Baked ObjectNormal - authoring/export",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 20133864,
+          "packed_sha256": "88bd337d80ea2edc9bf685ee5c5e3ba6dcd0ad3d2bb8cb42a119f4f6721b5b19",
+          "connected": false
+        },
+        {
+          "image": "Legger_Frame_Height",
+          "node": "Baked Height - authoring/export",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 12728788,
+          "packed_sha256": "c8921bbd1aebc13950ad010e7efd913f60b9d85bdb916dbb63bd47af3a937bec",
+          "connected": false
+        }
+      ]
+    },
+    {
+      "name": "LeftLeg",
+      "object": "Legger_LeftLeg_Baked",
+      "triangles": 27000,
+      "vertices": 13527,
+      "uv_layer": "LeftLeg_Atlas",
+      "matrix_world": [
+        [
+          0.7425782084465027,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7425782084465027,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7425782084465027,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "maps": [
+        {
+          "image": "BaseColor.png",
+          "node": "Baked BaseColor",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "sRGB",
+          "packed_bytes": 11961429,
+          "packed_sha256": "cae14a9528d66c2f41f3c53db39819d97282226c1553419c825d9df0faacb12d",
+          "connected": true
+        },
+        {
+          "image": "Roughness.png",
+          "node": "Baked Roughness",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 4423637,
+          "packed_sha256": "4e3766bce9a39f3d9f6121db40e7d76008a99719d73e6804b4ca9f48a749827e",
+          "connected": true
+        },
+        {
+          "image": "Metallic.png",
+          "node": "Baked Metallic",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 3860569,
+          "packed_sha256": "18f9671f1ae450cd938cd80bf26d07f1e6beef4601a91d095382779a79688ea7",
+          "connected": true
+        },
+        {
+          "image": "Normal.png",
+          "node": "Baked Tangent Normal",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 16265140,
+          "packed_sha256": "d667ba556b29fa3b140292af07390fc310dc8b7382a47e37144635ba99f81737",
+          "connected": true
+        },
+        {
+          "image": "AO.png",
+          "node": "Baked AO - authoring/export",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 8719603,
+          "packed_sha256": "366d5cb00c59125d6ba9222e6b9c0f9b4f0dfc4196cf9e7c2e3938a338bac565",
+          "connected": false
+        },
+        {
+          "image": "ObjectNormal.png",
+          "node": "Baked ObjectNormal - authoring/export",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 16510784,
+          "packed_sha256": "0f4598b5bc4b144e214643056a38311003661e1647f64b83fca2eca87a789168",
+          "connected": false
+        },
+        {
+          "image": "Legger_LeftLeg_Height",
+          "node": "Baked Height - authoring/export",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 22963753,
+          "packed_sha256": "887cc5606130a760ae39707e275ba472bf5fce0a08bc6f86561bbbb4733ccab6",
+          "connected": false
+        }
+      ]
+    },
+    {
+      "name": "RightLeg",
+      "object": "Legger_RightLeg_Baked",
+      "triangles": 27000,
+      "vertices": 13567,
+      "uv_layer": "RightLeg_Atlas",
+      "matrix_world": [
+        [
+          0.7425782084465027,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7425782084465027,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7425782084465027,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "maps": [
+        {
+          "image": "Legger_RightLeg_BaseColor",
+          "node": "Baked BaseColor",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "sRGB",
+          "packed_bytes": 12616688,
+          "packed_sha256": "7399b0df8c31e8949074f6c5593ca0819f11b79fdabb27f7d0609d032c73263b",
+          "connected": true
+        },
+        {
+          "image": "Legger_RightLeg_Roughness",
+          "node": "Baked Roughness",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 4408492,
+          "packed_sha256": "eb875ec291052d487e31456df76a77f3cf8d99ea3724fa5f51bba08ec46293a6",
+          "connected": true
+        },
+        {
+          "image": "Legger_RightLeg_Metallic",
+          "node": "Baked Metallic",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 3875296,
+          "packed_sha256": "8940b59c9a18753c720166ee431c2d6c68dbb1b18152af15eea4831fba50ce01",
+          "connected": true
+        },
+        {
+          "image": "Legger_RightLeg_Normal",
+          "node": "Baked Tangent Normal",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 15998501,
+          "packed_sha256": "9bdb7abeb3278c28832d2aca257bfd8a749c380950bffe7f871c84910e607132",
+          "connected": true
+        },
+        {
+          "image": "Legger_RightLeg_AO",
+          "node": "Baked AO - authoring/export",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 8624975,
+          "packed_sha256": "3106d9fe3c182a17bb6baf492d84e28c4b9372b5d3b06e3d9f8d0632f42f42cb",
+          "connected": false
+        },
+        {
+          "image": "Legger_RightLeg_ObjectNormal",
+          "node": "Baked ObjectNormal - authoring/export",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 16391921,
+          "packed_sha256": "81c8950c6bcb7087ff18c51afe6c7824e212088ca2680fa6b65f152ce4a0321e",
+          "connected": false
+        },
+        {
+          "image": "Legger_RightLeg_Height",
+          "node": "Baked Height - authoring/export",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 25461063,
+          "packed_sha256": "a27ff5cb1dbcaeaaf344c51471993e83af8d9a3fbdf87fc260c50d51bf7353ff",
+          "connected": false
+        }
+      ]
+    },
+    {
+      "name": "CargoSeat",
+      "object": "Legger_CargoSeat_Baked",
+      "triangles": 12000,
+      "vertices": 7932,
+      "uv_layer": "CargoSeat_Atlas",
+      "matrix_world": [
+        [
+          0.7425782084465027,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.7425782084465027,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.7425782084465027,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "maps": [
+        {
+          "image": "Legger_CargoSeat_BaseColor",
+          "node": "Baked BaseColor",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "sRGB",
+          "packed_bytes": 11424329,
+          "packed_sha256": "2d001d0f37193dfe2a65a2a575de1853582167d930d72d76832d06ed91f17318",
+          "connected": true
+        },
+        {
+          "image": "Legger_CargoSeat_Roughness",
+          "node": "Baked Roughness",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 4381046,
+          "packed_sha256": "819eb992cddbb0200dc59673fc3115ff500b8582db4a575d565c57d21668f2f8",
+          "connected": true
+        },
+        {
+          "image": "Legger_CargoSeat_Metallic",
+          "node": "Baked Metallic",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 4171161,
+          "packed_sha256": "19f67a067afe49dd7e76bafe9d9bcb1f46afd046494dfc1d06f6e2fb93836c04",
+          "connected": true
+        },
+        {
+          "image": "Legger_CargoSeat_Normal",
+          "node": "Baked Tangent Normal",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 15282339,
+          "packed_sha256": "91113b88df5be1fa4d3adf391f2e9951307fb190ee8b126a51c7b8ee3c2a707f",
+          "connected": true
+        },
+        {
+          "image": "Legger_CargoSeat_AO",
+          "node": "Baked AO - authoring/export",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 8329711,
+          "packed_sha256": "8ac2820d04cee3d7f34aeacb501f69951a95cb4c83d2561cd1dbfdeebdeb51ed",
+          "connected": false
+        },
+        {
+          "image": "Legger_CargoSeat_ObjectNormal",
+          "node": "Baked ObjectNormal - authoring/export",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 15089779,
+          "packed_sha256": "62afc0dbab5b02f948cb5da43794f12da8cbfca826953891dc5d41a485683fe8",
+          "connected": false
+        },
+        {
+          "image": "Legger_CargoSeat_Height",
+          "node": "Baked Height - authoring/export",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color",
+          "packed_bytes": 21350323,
+          "packed_sha256": "297236ec670219c2b9f7bbc4f13266ffa0555bac53428dd92b2168a9b4cae4fa",
+          "connected": false
+        }
+      ]
+    }
+  ],
+  "source_sha256": "51109196796320a25a2f9b1d048cfd977063af5b409e1830296f4d89b7a0fca6",
+  "active_robot_triangles": 155999,
+  "before_active_robot_triangles": 171999,
+  "reduction_fraction": 0.0930237966499805,
+  "packed_active_maps": 28,
+  "retained_source_triangles": 2667021,
+  "prepared_sha256": "98c660b1fd75c866c2e04c049ced1a65eeb50356c462c85fc19c996570225d4b",
+  "prepared_bytes": 635432991
+}

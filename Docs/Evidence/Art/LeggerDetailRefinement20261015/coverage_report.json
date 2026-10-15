@@ -1,0 +1,35 @@
+{
+  "maps": {
+    "Frame_4096": {
+      "core_texels": 1764564,
+      "uncovered_core_texels": 1,
+      "coverage_fraction": 0.9999994332877696,
+      "atlas_fill_fraction": 0.142645001411438
+    },
+    "Frame_8192": {
+      "core_texels": 7745229,
+      "uncovered_core_texels": 0,
+      "coverage_fraction": 1.0,
+      "atlas_fill_fraction": 0.13523522019386292
+    },
+    "LeftLeg_4096": {
+      "core_texels": 4418196,
+      "uncovered_core_texels": 0,
+      "coverage_fraction": 1.0,
+      "atlas_fill_fraction": 0.29774677753448486
+    },
+    "RightLeg_4096": {
+      "core_texels": 5051568,
+      "uncovered_core_texels": 0,
+      "coverage_fraction": 1.0,
+      "atlas_fill_fraction": 0.3356993794441223
+    },
+    "CargoSeat_4096": {
+      "core_texels": 4149601,
+      "uncovered_core_texels": 0,
+      "coverage_fraction": 1.0,
+      "atlas_fill_fraction": 0.27499860525131226
+    }
+  },
+  "scope": "White selected-to-active projection coverage over one-pixel-eroded rasterized UV interiors; does not cover gutters, mips or every continuous surface point."
+}

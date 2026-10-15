@@ -1,0 +1,46 @@
+{
+  "Frame": {
+    "midlevel": 0.5,
+    "meters_per_unit": 0.04,
+    "valid_core_fraction": 0.9999909326043147,
+    "neutralized_core_texels": 16,
+    "maximum_abs_valid_height_m": 0.0189605001360178,
+    "p99_abs_valid_height_m": 0.01254977285861969,
+    "lossless_float32_saved_values_identical": true,
+    "codec": "ZIP",
+    "invalid_policy": "Neutral 0.5 outside UV or coverage, nonfinite, displacement over 9 cm, or normal height over 2 cm. Auxiliary only; no displacement connection."
+  },
+  "LeftLeg": {
+    "midlevel": 0.5,
+    "meters_per_unit": 0.04,
+    "valid_core_fraction": 0.9999576750329773,
+    "neutralized_core_texels": 187,
+    "maximum_abs_valid_height_m": 0.0199312511831522,
+    "p99_abs_valid_height_m": 0.012349840253591537,
+    "lossless_float32_saved_values_identical": true,
+    "codec": "ZIP",
+    "invalid_policy": "Neutral 0.5 outside UV or coverage, nonfinite, displacement over 9 cm, or normal height over 2 cm. Auxiliary only; no displacement connection."
+  },
+  "RightLeg": {
+    "midlevel": 0.5,
+    "meters_per_unit": 0.04,
+    "valid_core_fraction": 0.9999813919163317,
+    "neutralized_core_texels": 94,
+    "maximum_abs_valid_height_m": 0.01994280144572258,
+    "p99_abs_valid_height_m": 0.01188567839562893,
+    "lossless_float32_saved_values_identical": true,
+    "codec": "ZIP",
+    "invalid_policy": "Neutral 0.5 outside UV or coverage, nonfinite, displacement over 9 cm, or normal height over 2 cm. Auxiliary only; no displacement connection."
+  },
+  "CargoSeat": {
+    "midlevel": 0.5,
+    "meters_per_unit": 0.04,
+    "valid_core_fraction": 0.9980663201112588,
+    "neutralized_core_texels": 8024,
+    "maximum_abs_valid_height_m": 0.019999584183096886,
+    "p99_abs_valid_height_m": 0.012406054884195328,
+    "lossless_float32_saved_values_identical": true,
+    "codec": "ZIP",
+    "invalid_policy": "Neutral 0.5 outside UV or coverage, nonfinite, displacement over 9 cm, or normal height over 2 cm. Auxiliary only; no displacement connection."
+  }
+}

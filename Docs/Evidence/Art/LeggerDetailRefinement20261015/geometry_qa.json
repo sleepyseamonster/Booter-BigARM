@@ -1,0 +1,185 @@
+{
+  "parts": [
+    {
+      "object": "Legger_Frame_Baked",
+      "before_topology": {
+        "boundary_edges": 5884,
+        "nonmanifold_edges": 5915,
+        "loose_vertices": 0,
+        "near_zero_area_faces_local_threshold_1e_14": 0
+      },
+      "after_topology": {
+        "boundary_edges": 5884,
+        "nonmanifold_edges": 5915,
+        "loose_vertices": 0,
+        "near_zero_area_faces_local_threshold_1e_14": 0
+      },
+      "uv_finite_within_0_1": true,
+      "before_world_bounds": [
+        [
+          -0.4139799177646637,
+          -0.7590687274932861,
+          1.326063632965088
+        ],
+        [
+          0.41701826453208923,
+          0.8225361704826355,
+          2.2275116443634033
+        ]
+      ],
+      "after_world_bounds": [
+        [
+          -0.41416195034980774,
+          -0.7589197754859924,
+          1.326063632965088
+        ],
+        [
+          0.41701826453208923,
+          0.8225226998329163,
+          2.2275116443634033
+        ]
+      ],
+      "matrix_unchanged": true
+    },
+    {
+      "object": "Legger_LeftLeg_Baked",
+      "before_topology": {
+        "boundary_edges": 738,
+        "nonmanifold_edges": 755,
+        "loose_vertices": 0,
+        "near_zero_area_faces_local_threshold_1e_14": 0
+      },
+      "after_topology": {
+        "boundary_edges": 738,
+        "nonmanifold_edges": 755,
+        "loose_vertices": 0,
+        "near_zero_area_faces_local_threshold_1e_14": 0
+      },
+      "uv_finite_within_0_1": true,
+      "before_world_bounds": [
+        [
+          -0.4293806254863739,
+          -0.48086416721343994,
+          0.002145787002518773
+        ],
+        [
+          0.009147675707936287,
+          0.6641252636909485,
+          1.349851369857788
+        ]
+      ],
+      "after_world_bounds": [
+        [
+          -0.4293806254863739,
+          -0.48086416721343994,
+          0.002145787002518773
+        ],
+        [
+          0.009147675707936287,
+          0.6641252636909485,
+          1.349851369857788
+        ]
+      ],
+      "matrix_unchanged": true
+    },
+    {
+      "object": "Legger_RightLeg_Baked",
+      "before_topology": {
+        "boundary_edges": 565,
+        "nonmanifold_edges": 575,
+        "loose_vertices": 0,
+        "near_zero_area_faces_local_threshold_1e_14": 0
+      },
+      "after_topology": {
+        "boundary_edges": 565,
+        "nonmanifold_edges": 575,
+        "loose_vertices": 0,
+        "near_zero_area_faces_local_threshold_1e_14": 0
+      },
+      "uv_finite_within_0_1": true,
+      "before_world_bounds": [
+        [
+          -0.012904396280646324,
+          -0.823174774646759,
+          0.00015312994946725667
+        ],
+        [
+          0.4297216534614563,
+          0.4064219892024994,
+          1.3520585298538208
+        ]
+      ],
+      "after_world_bounds": [
+        [
+          -0.012904396280646324,
+          -0.823174774646759,
+          0.00015312994946725667
+        ],
+        [
+          0.4297216534614563,
+          0.4064219892024994,
+          1.3520585298538208
+        ]
+      ],
+      "matrix_unchanged": true
+    },
+    {
+      "object": "Legger_CargoSeat_Baked",
+      "before_topology": {
+        "boundary_edges": 4727,
+        "nonmanifold_edges": 4749,
+        "loose_vertices": 0,
+        "near_zero_area_faces_local_threshold_1e_14": 0
+      },
+      "after_topology": {
+        "boundary_edges": 4727,
+        "nonmanifold_edges": 4749,
+        "loose_vertices": 0,
+        "near_zero_area_faces_local_threshold_1e_14": 0
+      },
+      "uv_finite_within_0_1": true,
+      "before_world_bounds": [
+        [
+          -0.40897902846336365,
+          -0.28578752279281616,
+          1.490545630455017
+        ],
+        [
+          0.4160573482513428,
+          0.773232638835907,
+          2.2031216621398926
+        ]
+      ],
+      "after_world_bounds": [
+        [
+          -0.40897902846336365,
+          -0.28578752279281616,
+          1.490545630455017
+        ],
+        [
+          0.4160573482513428,
+          0.773232638835907,
+          2.2031216621398926
+        ]
+      ],
+      "matrix_unchanged": true
+    }
+  ],
+  "surface_samples": {
+    "before_to_after": {
+      "samples": 10000,
+      "mean_m": 2.575953936794998e-05,
+      "p95_m": 0.00015680581564083684,
+      "p99_m": 0.00039005045575322587,
+      "maximum_sampled_m": 0.001362894894555211
+    },
+    "after_to_before": {
+      "samples": 10000,
+      "mean_m": 1.53081552453447e-05,
+      "p95_m": 0.00011345376915414805,
+      "p99_m": 0.00026406847493490207,
+      "maximum_sampled_m": 0.0005986040341667831
+    },
+    "scope": "10,000 seeded samples each direction: 5,000 vertices and 5,000 face centers uniformly by index across four active robot regions, world meters; not area weighted or an exhaustive Hausdorff bound."
+  }
+}
