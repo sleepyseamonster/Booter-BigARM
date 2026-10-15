@@ -92,6 +92,13 @@ Author direction recorded October 14, 2026:
 - Finished items can be crafted directly from raw inputs or from materials at any of these tiers. A product does not need a four-tier crafting chain.
 - The [master item database](./Design/Items/MASTER_ITEM_DATABASE.xlsx) separates material tier from item rarity, quality and finished-product classification. Its specific tier assignments, candidate refinement routes and regional demand/fashion ideas remain brainstorming proposals; they do not establish recipes, prices, national customs or present-day ancient-material manufacture.
 
+### Machine-Derived Communications
+
+Author direction recorded October 14, 2026:
+
+- Crude two-way radios exist and were reverse engineered from machine technology.
+- Their construction, power supply, transmission range, availability and behavior in the world's charged atmosphere remain undefined. This establishes a lore item family, not an implemented radio system or a particular crafting tier.
+
 ## Player Character
 
 Booter is a professional desert survivor and metal scrapper.
