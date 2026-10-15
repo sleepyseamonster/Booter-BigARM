@@ -1,0 +1,64 @@
+{
+  "state": "native-effort-comparison-not-author-acceptance",
+  "rows": [
+    {
+      "stage": "FastRun",
+      "source": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim",
+      "sha256": "850c033b50a92b4e96cb08ad08efc09e8062f41d831c54aeb89fc52625b31d97",
+      "metadataSha256": "308dbcc6dd59288a33e26ab7a7a34aa5bf3a713d9e7c4821519d6a93c576653e",
+      "nominalSpeed": 5.0,
+      "metresPerCycle": 5.607321,
+      "clipSeconds": 1.23333335,
+      "samples": 149,
+      "stepsPerSecond": 3.56676579,
+      "maximumKneeFlexionDegrees": [
+        134.1705,
+        144.819763
+      ],
+      "maximumForwardThighDegrees": [
+        53.97441,
+        55.09928
+      ],
+      "footRecoveryRelativeHipMetres": [
+        0.547743261,
+        0.6361923
+      ],
+      "handForwardBackMetres": [
+        0.5711041,
+        0.6588868
+      ],
+      "maximumHeadHipLeanDegrees": 31.3542881
+    },
+    {
+      "stage": "Sprint",
+      "source": "Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintStandardReview.anim",
+      "sha256": "db3fa37dcec840741ce332ff7fd7ff3273a098ca6a89020187e5ccc5be2a97d9",
+      "metadataSha256": "e60bca4178534e3f0b4fc60f81c6845c67f6822b43f8e8b3ec7036402c7e7bfe",
+      "nominalSpeed": 6.0,
+      "metresPerCycle": 5.215884,
+      "clipSeconds": 1.06666672,
+      "samples": 129,
+      "stepsPerSecond": 4.60132933,
+      "maximumKneeFlexionDegrees": [
+        140.020172,
+        135.813889
+      ],
+      "maximumForwardThighDegrees": [
+        76.36014,
+        73.46424
+      ],
+      "footRecoveryRelativeHipMetres": [
+        0.471771061,
+        0.415011525
+      ],
+      "handForwardBackMetres": [
+        0.9081672,
+        0.8618559
+      ],
+      "maximumHeadHipLeanDegrees": 28.5001125
+    }
+  ],
+  "scope": "Calibrated target bone motion; complete pure sources, 120Hz. Scalar comparisons do not prove visual preference or full contact qualification.",
+  "diagnosticSourceSha256": "8135d0b6b88917ec53dad79809ad269b2bec4fb33627f6cf23c943b7c8977f24",
+  "rawSamplesOmitted": true
+}

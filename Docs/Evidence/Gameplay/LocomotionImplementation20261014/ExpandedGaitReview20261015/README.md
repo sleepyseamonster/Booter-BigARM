@@ -20,6 +20,12 @@ The additional actual-driver contact screen covers 13 speeds from 3 to 6m/s and 
 
 The marked candidate predates the author's resource-study addition. Its session dependency uses an exact event-only declaration matching the current author's partial class, without running resource gameplay. That adapter is excluded from the handoff. Current-author compilation and exact installed-source checks are separate gates from the isolated test proof. No agent-driven Play Mode, gameplay input, physics simulation, smoke test, scene save/reload, foreground activation, package change or production cutover occurs.
 
+## Direct effort comparison
+
+The follow-up [120Hz bone-motion audit](effort-summary.json) compares the complete accepted fast run with the selected full sprint on Booter's calibrated Humanoid. The new sprint's peak forward thigh drive is 73.46–76.36 degrees versus 53.97–55.10 degrees in fast run; each hand travels 0.862–0.908m fore/aft versus 0.571–0.659m. At the selected physical speeds, the distance clock gives 4.601 steps/second versus 3.567 (approximately 29% higher cadence). The source is a separate motion with stronger forward knee and arm drive.
+
+Rear-foot recovery range is lower in the new sprint, peak knee flexion is similar, and peak head-to-hip lean is 28.50 degrees versus 31.35 degrees. These measures describe the difference rather than proving the author's intended full-effort appearance. The author comparison remains required. Source and metadata hashes are unchanged. Raw per-frame joint measures and the exact diagnostic source are sealed in the companion [local recovery receipt](effort-recovery.json). This read-only audit does not alter the prepared profile, source calibration, or 78-test handoff.
+
 ## Recovery
 
 The complete local checkpoint is `D:/BooterBigArmPrivateAssets/Mixamo/2026-10-13/ImportCheckpoints/ExpandedGaitReview20261015`. It retains previous/resulting task code, the previous binding pair, all three resulting private pairs, calibration recipes and raw source/contact tracks. Original source hashes and the accepted comparison are sealed separately. Public receipts contain only scalar results, provenance and hashes; raw pose/mesh traces and animation payloads remain private.
