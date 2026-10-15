@@ -1,0 +1,18 @@
+{
+  "base": {
+    "path": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-13\\ImportCheckpoints\\ForwardSteering20261014",
+    "files": 71,
+    "bytes": 15351043,
+    "manifestSha256": "3a335c5a537c0c52d9d1c3758b032cf67741cca0fe99e327a4b24db692ad715d",
+    "allCopiesVerified": true,
+    "scope": "Private raw poses, command traces, calibration input, licensed source/model bytes, metadata, final diagnostic source and execution receipts. Earlier failed trials retained without qualification."
+  },
+  "supplement": {
+    "path": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-13\\ImportCheckpoints\\ForwardSteeringContact20261014",
+    "files": 10,
+    "bytes": 160356,
+    "manifestSha256": "aadc660b8296b88ee662cd161f5140585a5719005ddd34e2cd606768592be21d",
+    "allCopiesVerified": true
+  },
+  "restoreOrder": "Base checkpoint first; supplement contains the final steering diagnostic source and stricter pose observations. Original Assets inputs unchanged."
+}

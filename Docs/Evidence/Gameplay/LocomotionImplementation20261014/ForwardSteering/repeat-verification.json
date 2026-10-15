@@ -1,0 +1,30 @@
+{
+  "checks": [
+    {
+      "first": "ForwardSteeringCommandV3",
+      "repeat": "ForwardSteeringCommandRepeatV1",
+      "identical": true,
+      "rows": 600,
+      "sourcesIdentical": true
+    },
+    {
+      "first": "ForwardSteeringPoseV3",
+      "repeat": "ForwardSteeringPoseRepeatV3",
+      "identical": true,
+      "rows": 48,
+      "sourcesIdentical": true
+    },
+    {
+      "first": "TurnSourceScreenV6",
+      "repeat": "TurnSourceScreenRepeatV1",
+      "identical": true,
+      "rows": 4,
+      "sourcesIdentical": true
+    }
+  ],
+  "projectionChecks": 210,
+  "commandSamples": 117000,
+  "poseSamples": 7200,
+  "sourcePoseSamples": 1020,
+  "scope": "Two executions of final measurements. No Play Mode or physics simulation."
+}
