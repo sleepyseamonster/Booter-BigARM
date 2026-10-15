@@ -49,6 +49,9 @@ namespace BooterBigArm.TopDown3D
 
         private void Awake()
         {
+            // Scene.isLoaded remains false through Awake/OnEnable. Register before
+            // player preparation, which needs this session to configure forward review.
+            if (IsLab) Sessions[gameObject.scene.handle] = this;
             if (CheckDependencies()) PreparePlayer();
         }
         public bool CheckDependencies()
@@ -95,10 +98,15 @@ namespace BooterBigArm.TopDown3D
 
         // This policy depends on authored scene identity/marker, never arbitrary Awake order or binding availability.
         public static TopDown3DAnimationPlaygroundSession Find(Scene scene)
+            => FindDuringSceneLoad(scene, scene.isLoaded);
+
+        // Keep the load phase explicit so EditMode tests can cover early startup.
+        private static TopDown3DAnimationPlaygroundSession FindDuringSceneLoad(Scene scene, bool sceneLoaded)
         {
-            if (!scene.IsValid() || !scene.isLoaded || !MatchesLabIdentity(scene.path, true)) return null;
+            if (!scene.IsValid() || !MatchesLabIdentity(scene.path, true)) return null;
             if (Sessions.TryGetValue(scene.handle, out var cached) && cached != null && cached.gameObject.scene == scene)
                 return cached;
+            if (!sceneLoaded) return null;
             foreach (var root in scene.GetRootGameObjects())
             {
                 var session = root.GetComponentInChildren<TopDown3DAnimationPlaygroundSession>(true);

@@ -54,6 +54,33 @@ namespace BooterBigArm.Tests
 
         // Scene-opening fixtures run only in the isolated validation candidate, never the author's loaded checkout.
         [Test]
+        public void EarlyAwakeLookupUsesTheRegisteredOwnerBeforeSceneLoaded()
+        {
+            var scene = EditorSceneManager.OpenScene(TopDown3DAnimationPlaygroundSession.ScenePath, OpenSceneMode.Additive);
+            var type = typeof(TopDown3DAnimationPlaygroundSession);
+            var flags = BindingFlags.Static | BindingFlags.NonPublic;
+            var reset = type.GetMethod("ResetCache", flags);
+            var find = type.GetMethod("FindDuringSceneLoad", flags);
+            try
+            {
+                reset.Invoke(null, null);
+                var session = TopDown3DAnimationPlaygroundSession.Find(scene);
+                reset.Invoke(null, null);
+                Assert.That(find.Invoke(null, new object[] { scene, false }), Is.Null,
+                    "Do not scan a scene whose objects have not finished enabling.");
+                type.GetMethod("Awake", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(session, null);
+                Assert.That(session.Readiness, Is.EqualTo(AnimationPlaygroundReadiness.DependenciesChecked), session.UnavailableReason);
+                Assert.That(find.Invoke(null, new object[] { scene, false }), Is.SameAs(session),
+                    "Forward review and input binding need the authored owner during Awake/OnEnable.");
+                Assert.That(find.Invoke(null, new object[] { default(Scene), false }), Is.Null);
+                type.GetMethod("OnDestroy", BindingFlags.Instance | BindingFlags.NonPublic).Invoke(session, null);
+                Assert.That(find.Invoke(null, new object[] { scene, false }), Is.Null,
+                    "Scene destruction must remove the early owner so reload cannot reuse it.");
+            }
+            finally { reset.Invoke(null, null); AnimationPlaygroundPlayerIntegrationTests.CloseFixtureScene(scene); }
+        }
+
+        [Test]
         public void AuthoredLabBlocksRestoreAndAllCheckpointEntryPointsBeforeStartup()
         {
             var scene = EditorSceneManager.OpenScene(TopDown3DAnimationPlaygroundSession.ScenePath, OpenSceneMode.Additive);

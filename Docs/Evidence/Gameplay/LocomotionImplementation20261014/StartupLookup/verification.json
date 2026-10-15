@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "date": "2026-10-14",
+  "scope": "Camp Loop early startup lookup",
+  "files": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.cs",
+      "sha256": "6e80d1e82ebc130f4ab03754a2679d0c813f61ccafb47820dec8ec1363a47f8b",
+      "authorCandidatePaired": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.cs.meta",
+      "sha256": "5a42e39cfbc4e4e78481ca77caf9624056ce400862e4bc4c7b522c62509544df",
+      "authorCandidatePaired": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundSessionTests.cs",
+      "sha256": "991e76812c88799a6bf301cc82ff2b786878dc5c3a490c06dfb03b64a0a0c3a8",
+      "authorCandidatePaired": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundSessionTests.cs.meta",
+      "sha256": "04738283bc2977ff31414eac0d369c64e83618f487e1503154aa2e74dbe7cc20",
+      "authorCandidatePaired": true
+    }
+  ],
+  "tests": {
+    "Total": 304,
+    "Passed": 304,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "sessionTests": {
+    "Total": 5,
+    "Passed": 5,
+    "Failed": 0,
+    "Skipped": 0,
+    "Inconclusive": 0
+  },
+  "authorLoaded": {
+    "compiling": false,
+    "playing": false,
+    "startupLookup": true,
+    "module": "2be30ce0-9eb8-47f3-b7a2-45dc1122121d",
+    "sceneDirty": true
+  },
+  "candidateLoaded": {
+    "compiling": false,
+    "startupLookup": true,
+    "module": "185ce837-814a-4aeb-a879-e2cac5795927"
+  },
+  "noAgentPlayMode": true,
+  "noSceneSaveOrReload": true,
+  "livePlaybackAcceptance": "pending author fresh Play Mode",
+  "previousScriptReloads": "observed; general hot reload recovery is outside this repair"
+}
