@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4163539155439578756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ec32db4b614c309ce0b1c5b5c7b9bf, type: 3}
+  m_Name: Camera Optics
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DCameraOpticsFeature
+  m_Active: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25,13 +38,14 @@ MonoBehaviour:
     probeSamplingDebugTexture: {fileID: 0}
     probeVolumeBlendStatesCS: {fileID: 0}
   m_RendererFeatures:
+  - {fileID: -4163539155439578756}
   - {fileID: 8947123059812374813}
   - {fileID: 3288659935097919263}
   - {fileID: 6172849301728394051}
   - {fileID: 5791042863317659437}
   - {fileID: 7219931842335071659}
   - {fileID: 8357291046284017532}
-  m_RendererFeatureMap: 1d99d2dd04912a7c1f179272c9aaa32d43fb8919bc5daa552d2f1c4bcdea5d50abdde9fcc15932647cbf4f82ed0ffb73
+  m_RendererFeatureMap: 7c11988f322338c61d99d2dd04912a7c1f179272c9aaa32d43fb8919bc5daa552d2f1c4bcdea5d50abdde9fcc15932647cbf4f82ed0ffb73
   m_UseNativeRenderPass: 0
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}

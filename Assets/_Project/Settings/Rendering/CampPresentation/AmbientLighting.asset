@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c60250a89a08ba14db3e5b5efb6298ca, type: 3}
+  m_Name: AmbientLighting
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DAmbientLightingProfile
+  deepSky: {r: 0.18, g: 0.085, b: 0.04, a: 1}
+  brightSky: {r: 0.34, g: 0.22, b: 0.12, a: 1}
+  deepEquator: {r: 0.15, g: 0.075, b: 0.045, a: 1}
+  brightEquator: {r: 0.4, g: 0.23, b: 0.12, a: 1}
+  deepGround: {r: 0.055, g: 0.03, b: 0.02, a: 1}
+  brightGround: {r: 0.15, g: 0.085, b: 0.045, a: 1}
+  subtractiveShadow: {r: 0.055, g: 0.025, b: 0.05, a: 1}
+  reflection: {fileID: 8900000, guid: f505de2ea84ba344ea5f9dfb8cbe29fb, type: 2}
+  deepReflectionIntensity: 0.65
+  brightReflectionIntensity: 1.05

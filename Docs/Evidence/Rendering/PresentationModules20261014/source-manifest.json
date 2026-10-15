@@ -1,0 +1,273 @@
+{
+  "candidate": "D:\\BooterBigArmValidation\\CampModularity20261014-01",
+  "taskSources": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/PerpetualTwilightSun.cs",
+      "sha256": "80c05c47e9065f00c050c24b0134b43ba5a87d87e7fa1c4e337a4a206c59179d",
+      "normalizedSha256": "80c05c47e9065f00c050c24b0134b43ba5a87d87e7fa1c4e337a4a206c59179d"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/PerpetualTwilightSun.cs.meta",
+      "sha256": "0b70b8ea74d9614a2f6c52569d9b64507ee7dfbf15d07bd7308fc5740f765412"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSceneRenderingOverride.cs",
+      "sha256": "c2cddefba52de0b7cb8b30530c5ad20ab5e9b0786c4626ef72b303bd59a07e4e",
+      "normalizedSha256": "c2cddefba52de0b7cb8b30530c5ad20ab5e9b0786c4626ef72b303bd59a07e4e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSceneRenderingOverride.cs.meta",
+      "sha256": "c17deeda613d60da53838beca6714a8880b85d46cb603840fe0cc972ab8cea97"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCameraOpticsFeature.cs",
+      "sha256": "1c7fd98c059947d644970ebf3a0c1943175826f495bc194bf39d0daccae64d5e",
+      "normalizedSha256": "1c7fd98c059947d644970ebf3a0c1943175826f495bc194bf39d0daccae64d5e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCameraOpticsFeature.cs.meta",
+      "sha256": "d5053037ba15f9b8f4f7953f90281f68829ea958bc88831118507b8c7101329d"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCameraOpticsProfile.cs",
+      "sha256": "a3379f9593b092bf25cd08228a2c9d3d25222157b144b18e50052dda82016555",
+      "normalizedSha256": "a3379f9593b092bf25cd08228a2c9d3d25222157b144b18e50052dda82016555"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCameraOpticsProfile.cs.meta",
+      "sha256": "5628074fda3d05eacacd760c8d765233787d2d483921c2c7eadd36a3b4536b36"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampOpticsStack.cs",
+      "sha256": "f176eefa6d7bb61a38a7ffef1560e8e2de7315c94ed1481deef95f853eb4d945",
+      "normalizedSha256": "f176eefa6d7bb61a38a7ffef1560e8e2de7315c94ed1481deef95f853eb4d945"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampOpticsStack.cs.meta",
+      "sha256": "c927725ab27641eac8030d8110fc3030fe69bc6147ce0301b607b044b5b6bde9"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampGaussianPass.cs",
+      "sha256": "b997882232074725a0f2c434cbc8e89c65ac292dc138ca2b550b5965319321fe",
+      "normalizedSha256": "b997882232074725a0f2c434cbc8e89c65ac292dc138ca2b550b5965319321fe"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampGaussianPass.cs.meta",
+      "sha256": "4162ebc58f20ccecbd56ea2520bf81b2dfb7dfefd8099f638f8b3b898ea2b92f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DTiltShiftFeature.cs",
+      "sha256": "3fc4a71bfabf737032a88914863270b7b6be15071a5dc4e36fbc27506abce3b3",
+      "normalizedSha256": "3fc4a71bfabf737032a88914863270b7b6be15071a5dc4e36fbc27506abce3b3"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DTiltShiftFeature.cs.meta",
+      "sha256": "08e41e43d5115ea43d55c99512535564a05159bb55e5e420706476809b34f1d0"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DAnamorphicStreakFeature.cs",
+      "sha256": "b9c42cd9721589df3e30537f045a2aa54adebc2e80db4306e5f6957cbb630654",
+      "normalizedSha256": "b9c42cd9721589df3e30537f045a2aa54adebc2e80db4306e5f6957cbb630654"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DAnamorphicStreakFeature.cs.meta",
+      "sha256": "5a4c183d19627c01c7fafe43518b849e1d2204adaf7bc9e149880adf89879db9"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DRoundLensFlareFeature.cs",
+      "sha256": "1a57487716bad69a367c92fc4aa5b401cf3c0a8b9f5afacb01cd60245bcd114c",
+      "normalizedSha256": "1a57487716bad69a367c92fc4aa5b401cf3c0a8b9f5afacb01cd60245bcd114c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DRoundLensFlareFeature.cs.meta",
+      "sha256": "8e5f5edd797b8dc12e166f7f48a7794a988515a85a62a8cad9d8ea87aef88cf7"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSunBloomFeature.cs",
+      "sha256": "b58a53002d441318ff994d3a872ba454ddbad39fa42db4e1ea2f11c3260d9dfc",
+      "normalizedSha256": "b58a53002d441318ff994d3a872ba454ddbad39fa42db4e1ea2f11c3260d9dfc"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSunBloomFeature.cs.meta",
+      "sha256": "f6efed3f84751bf7a8b715184081b34cd7a4fc59e0716ed18345f85eb8be444c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DEnvironmentRig.cs",
+      "sha256": "ab6e66b223ef931d0fe92e67eb87048d9f0f5d9f2c702697f0e8fc0290ed9075",
+      "normalizedSha256": "ab6e66b223ef931d0fe92e67eb87048d9f0f5d9f2c702697f0e8fc0290ed9075"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DEnvironmentRig.cs.meta",
+      "sha256": "32addda12b84b3a520fb3798acf6379074fcfb890ef28de740e63a8cb5c8657d"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DTwilightClock.cs",
+      "sha256": "c6be3c8e1c9e03a1c3a4e60f80972448de2d442d8ada264f20b44e39a5ca9880",
+      "normalizedSha256": "c6be3c8e1c9e03a1c3a4e60f80972448de2d442d8ada264f20b44e39a5ca9880"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DTwilightClock.cs.meta",
+      "sha256": "a5cda8f356df6ec7c74bdbe407e6c0bfde8b5baace4d29188aacdb590908e589"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSunLight.cs",
+      "sha256": "c6980e53e2bb801e7b04e1f0f390903e815de3e1f54176e00d2e6267c9762cbb",
+      "normalizedSha256": "c6980e53e2bb801e7b04e1f0f390903e815de3e1f54176e00d2e6267c9762cbb"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSunLight.cs.meta",
+      "sha256": "92b916f13d2865ce9005562dae9cfbe2f7b31cb1f4af642649c7e56b34cc9a0b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSunLightingProfile.cs",
+      "sha256": "772499c233e827a968e4b1135b1a686258086cc4983196dc476925a57ec1efed",
+      "normalizedSha256": "772499c233e827a968e4b1135b1a686258086cc4983196dc476925a57ec1efed"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSunLightingProfile.cs.meta",
+      "sha256": "18c0f4454ae98d41f4272377f80f4618b9851bfe2d499a639c5df38e73f7584a"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DAmbientLighting.cs",
+      "sha256": "087acf7bf9796e0a5a5529bd3b56994678de9cd07a64787ef5e6d595735d70f2",
+      "normalizedSha256": "087acf7bf9796e0a5a5529bd3b56994678de9cd07a64787ef5e6d595735d70f2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DAmbientLighting.cs.meta",
+      "sha256": "1f1985ba646e2d68f0eff1749d2af589159f188cb6b231d0e632dd1b013f89a4"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DAmbientLightingProfile.cs",
+      "sha256": "26d66e4a9133b0c4a15d5f1a13bdce353a0c66f2657522f9b736650276819875",
+      "normalizedSha256": "26d66e4a9133b0c4a15d5f1a13bdce353a0c66f2657522f9b736650276819875"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DAmbientLightingProfile.cs.meta",
+      "sha256": "d78d25cedc8269a63f36faafd847f09473aae1537739937bd6ae47b8c843c304"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSkyPresentation.cs",
+      "sha256": "7ccbbac5ee3ef9441f2b9dde8df0a8f186c66d60cb8cf08a6782cd196eefc1fc",
+      "normalizedSha256": "7ccbbac5ee3ef9441f2b9dde8df0a8f186c66d60cb8cf08a6782cd196eefc1fc"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSkyPresentation.cs.meta",
+      "sha256": "5f1db7bcad32eb02a7eb5e0c070274d390da69b243ef242ae738527b20d3b93f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSkyProfile.cs",
+      "sha256": "978e6bd4a4c746d0f110f1905b549147c9f1170aa43101ff307841f122f693a9",
+      "normalizedSha256": "978e6bd4a4c746d0f110f1905b549147c9f1170aa43101ff307841f122f693a9"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSkyProfile.cs.meta",
+      "sha256": "22787db196c39952d9c06934d5be5d867521bfaeffd472e0b03a695ba41a17e5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampLookEditorPreview.cs",
+      "sha256": "76e9ae5669cbb5da6fa3c232851a6387603fc6305e1d0cf14724a6283aec6b64",
+      "normalizedSha256": "76e9ae5669cbb5da6fa3c232851a6387603fc6305e1d0cf14724a6283aec6b64"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampLookEditorPreview.cs.meta",
+      "sha256": "48e1d4c68c75a518676ebd0e09273461506f2693a1bdc18d1f1db7d182819ee4"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DCameraRigEditor.cs",
+      "sha256": "12e50ee715b46e3e981b5780970f23c37bb431652c0461aba397fc11ffe3db2e",
+      "normalizedSha256": "12e50ee715b46e3e981b5780970f23c37bb431652c0461aba397fc11ffe3db2e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DCameraRigEditor.cs.meta",
+      "sha256": "7bb88dbab4d526af5c309844b01eadd9930922814ee769af8bbdae8390510d69"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DCampLookEditor.cs",
+      "sha256": "5f75d1e74eaf97aa96f7e462969cef6dd0f442d35690ac1c7189230d9ead9303",
+      "normalizedSha256": "5f75d1e74eaf97aa96f7e462969cef6dd0f442d35690ac1c7189230d9ead9303"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DCampLookEditor.cs.meta",
+      "sha256": "a56194e4511fdb2d86c3aeb7fd678970f27e3a34921038466a756414bb4e44fa"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampLookAuthoring.cs",
+      "sha256": "49ce251bceea19be6fcddfc42af578f489938d70b60bed1eb03d68c89802f30d",
+      "normalizedSha256": "49ce251bceea19be6fcddfc42af578f489938d70b60bed1eb03d68c89802f30d"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampLookAuthoring.cs.meta",
+      "sha256": "7a498ee94dc5b6bb15b40c1dfc25e94e700fec694a7a4bba7135a3abe929b8b3"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampPresentationMigration.cs",
+      "sha256": "7ef6ced8bbf36699b7c99826cd78d361fe130c8d36790a4f7a86210f9953a284",
+      "normalizedSha256": "7ef6ced8bbf36699b7c99826cd78d361fe130c8d36790a4f7a86210f9953a284"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampPresentationMigration.cs.meta",
+      "sha256": "8f2cae529598c36b9e04c5a8e395bbc4a215f04932bd48cea9e5acf866425d14"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DModularPresentationEditor.cs",
+      "sha256": "aa64b91039cb54ec44dbb56e5ca46b7f8726570c56b56c090332980d0935f286",
+      "normalizedSha256": "aa64b91039cb54ec44dbb56e5ca46b7f8726570c56b56c090332980d0935f286"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DModularPresentationEditor.cs.meta",
+      "sha256": "13f4611aa2ffb87560ef613b7a6f9d69df824e27eef02133836dd8683248fb6f"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DModularOpticsTests.cs",
+      "sha256": "14781685ee7a9c454488bd40e9fb3d31a35840322ec3e6c8404da89d6594e272",
+      "normalizedSha256": "14781685ee7a9c454488bd40e9fb3d31a35840322ec3e6c8404da89d6594e272"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DModularOpticsTests.cs.meta",
+      "sha256": "c0b972617a9ecb61c508843430c862ea4f52acd56e3c6a0a2c0b15161e20f9ce"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DEnvironmentModulesTests.cs",
+      "sha256": "a43c710a27f7b5827fadf87c4672cb35b17e170eaab5d8b0b93fe35ea0ceea5a",
+      "normalizedSha256": "a43c710a27f7b5827fadf87c4672cb35b17e170eaab5d8b0b93fe35ea0ceea5a"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DEnvironmentModulesTests.cs.meta",
+      "sha256": "8768fa695fe8e07c712dc3443ef9375de45c008f62964ac866df2db0d8b9e939"
+    },
+    {
+      "path": "Tools/Diagnostics/CampPresentationQualification.cs",
+      "sha256": "a68392db995e48916a3a86fe9b59245e7c702a723efd64c388dcb344ddb3df76"
+    },
+    {
+      "path": "Tools/Repository/prepare_camp_presentation_delta.py",
+      "sha256": "6b2d91dedd96e907ae6876bf0a7821d2afd717f2d4550e6398e9b7b90feac592"
+    },
+    {
+      "path": "Docs/Engineering/MODULAR_PRESENTATION.md",
+      "sha256": "5b8d310585fb82a30c80d45b765e02acb4b753b38f9c7a2e3d21d0ec8d1d7a89"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Resources/GreaterWastelandIronstoneInstaller.cs",
+      "sha256": "bc78a38b6d920e8059455973ca5290a2a325aadc5418700909b9381a1fcadb54",
+      "normalizedSha256": "bc78a38b6d920e8059455973ca5290a2a325aadc5418700909b9381a1fcadb54"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Resources/GreaterWastelandIronstoneInstaller.cs.meta",
+      "sha256": "06a87d5d01e0966db03422a07688650827161813ca94fed4bcaa33fe9199308c"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandIronstoneTests.cs",
+      "sha256": "dbff525860faee1e559c5d77a62db4ee30ee9a69ccd6c62a647d0a9bbc2c0391",
+      "normalizedSha256": "dbff525860faee1e559c5d77a62db4ee30ee9a69ccd6c62a647d0a9bbc2c0391"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/GreaterWastelandIronstoneTests.cs.meta",
+      "sha256": "85145810e91496443b60eeea68ebd96cba07c72bd45bdbac64bc9e0c3153bd34"
+    }
+  ],
+  "proofBoundary": "119 focused EditMode checks; static D3D11 960x540 captures; no gameplay smoke, Player build, GPU-budget or author visual acceptance",
+  "repositoryHeadAtEvidence": "d5592104355f4e0d41896a28c2940463e001df6e",
+  "sceneIndexBaseSha256": "86d1b327f5940d0bbb9152148e04bc91c2e7f2e4c4e0da9c33ef30c70066186a",
+  "finalValidationDate": "2026-10-15"
+}

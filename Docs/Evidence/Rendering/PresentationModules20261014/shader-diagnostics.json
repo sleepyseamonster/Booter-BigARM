@@ -1,0 +1,46 @@
+[
+  {
+    "name": "BooterBigArm/TopDown3D/Broken World Volumetric Dust",
+    "supported": true,
+    "messages": [
+      {
+        "severity": "Warning",
+        "message": "floating point division by zero"
+      },
+      {
+        "severity": "Warning",
+        "message": "integer modulus may be much slower, try using uints if possible."
+      }
+    ]
+  },
+  {
+    "name": "BooterBigArm/TopDown3D/Broken World Tilt Shift",
+    "supported": true,
+    "messages": []
+  },
+  {
+    "name": "BooterBigArm/TopDown3D/Broken World Anamorphic Streak",
+    "supported": true,
+    "messages": []
+  },
+  {
+    "name": "BooterBigArm/TopDown3D/Broken World Round Lens Flare",
+    "supported": true,
+    "messages": []
+  },
+  {
+    "name": "BooterBigArm/TopDown3D/Broken World Sun Bloom",
+    "supported": true,
+    "messages": []
+  },
+  {
+    "name": "BooterBigArm/TopDown3D/Camp Ochre Spherical Sky",
+    "supported": true,
+    "messages": []
+  },
+  {
+    "name": "Hidden/Universal Render Pipeline/GaussianDepthOfField",
+    "supported": true,
+    "messages": []
+  }
+]

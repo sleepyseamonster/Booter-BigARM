@@ -122,9 +122,17 @@ namespace BooterBigArm.TopDown3D
             if (!TopDown3DSceneRenderingOverride.AuthoringEffectsEnabled(cameraData.camera))
             { pass?.ForgetHistory(cameraData.camera); return; }
             bool hasStudy = TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var study);
-            var conservative = hasStudy && study.nativeOptics != null;
-            var optics = conservative ? study.nativeOptics : null;
-            if (hasStudy && (!study.flareEnabled || (conservative
+            bool isModular = TopDown3DCameraOpticsFeature.IsModularCamera(cameraData.camera);
+            var modular = TopDown3DSceneRenderingOverride.CameraOpticsFor(cameraData.camera);
+            if (isModular && (modular == null || !modular.flareEnabled || !modular.nativeOptics.opticsEnabled))
+            { pass?.ForgetHistory(cameraData.camera); return; }
+            var conservative = isModular || (hasStudy && study.nativeOptics != null);
+            var optics = isModular ? modular.nativeOptics : conservative ? study.nativeOptics : null;
+            var effectiveDepth = isModular ? modular.EffectiveDepthMode : optics != null ? optics.depthMode : DepthOfFieldMode.Off;
+            if (isModular && ((effectiveDepth != DepthOfFieldMode.Off && !optics.gaussianBeforeLens)
+                || (effectiveDepth == DepthOfFieldMode.Gaussian && optics.gaussianBeforeLens && !TopDown3DCampGaussianPass.ShaderSupported)))
+            { pass?.ForgetHistory(cameraData.camera); return; }
+            if (!isModular && hasStudy && (!study.flareEnabled || (conservative
                 && (!optics.IsValid || !optics.opticsEnabled
                     || (optics.depthMode != DepthOfFieldMode.Off && !optics.gaussianBeforeLens)
                     || (optics.gaussianBeforeLens && !TopDown3DCampGaussianPass.ShaderSupported)
@@ -153,6 +161,11 @@ namespace BooterBigArm.TopDown3D
             }
 
             var camera = cameraData.camera;
+            float angularDiameter = isModular
+                ? TopDown3DSceneRenderingOverride.SunAngularDiameterFor(camera, optics.sunAngularDiameterDegrees)
+                : conservative ? optics.sunAngularDiameterDegrees : 0f;
+            if (conservative && !float.IsFinite(angularDiameter))
+            { pass?.ForgetHistory(camera); return; }
             var sourcePoint = camera.transform.position
                 + directionToSun.normalized * (camera.farClipPlane * 0.9f);
             var viewportPoint = camera.WorldToViewportPoint(sourcePoint);
@@ -169,8 +182,8 @@ namespace BooterBigArm.TopDown3D
                 cameraData.cameraTargetDescriptor,
                 new Vector2(viewportPoint.x, viewportPoint.y),
                 camera.aspect,
-                Mathf.Clamp(hasStudy ? study.flareIntensity : intensity, 0f, 2f),
-                conservative ? Mathf.Max(.001f, CalculateSolarDiscViewportRadius(optics.sunAngularDiameterDegrees, camera.fieldOfView) * 2f)
+                Mathf.Clamp(isModular ? modular.flareIntensity : hasStudy ? study.flareIntensity : intensity, 0f, 2f),
+                conservative ? Mathf.Max(.001f, CalculateSolarDiscViewportRadius(angularDiameter, camera.fieldOfView) * 2f)
                     : Mathf.Clamp(radius, 0.02f, 0.75f),
                 conservative ? 1f : Mathf.Clamp(anisotropy, 0.4f, 2.5f),
                 Mathf.Clamp(ghostReach, 0f, 3f),
@@ -178,18 +191,19 @@ namespace BooterBigArm.TopDown3D
                 Mathf.Clamp(haloThickness, 0.03f, 0.5f),
                 Mathf.Clamp(hdrEnergy, 0.5f, 6f),
                 sunBrightness,
-                conservative ? CalculateSolarDiscViewportRadius(optics.sunAngularDiameterDegrees, camera.fieldOfView)
+                conservative ? CalculateSolarDiscViewportRadius(angularDiameter, camera.fieldOfView)
                     : Mathf.Clamp(occlusionRadius, 0.005f, 0.25f),
                 conservative ? 1f : Mathf.Clamp01(coreOcclusion),
                 conservative ? 1f : Mathf.Clamp01(aureoleOcclusion),
                 conservative ? 1f : Mathf.Clamp01(ghostOcclusion),
                 Mathf.Clamp(occlusionStability, 0f, 0.95f),
-                conservative ? EvaluateStudyTint(study, sunBrightness) : tint,
+                isModular ? TopDown3DSceneRenderingOverride.SunTintFor(camera, tint)
+                    : conservative ? EvaluateStudyTint(study, sunBrightness) : tint,
                 primaryFlareSprite,
                 ghostRingSprite,
                 apertureGhostSprite,
                 conservative,
-                conservative ? VisibilityProfileKey(study) : 0,
+                isModular ? VisibilityProfileKey(modular, angularDiameter) : conservative ? VisibilityProfileKey(study) : 0,
                 conservative ? optics.flareVisibilityAttackSeconds : .06f,
                 conservative ? optics.flareVisibilityReleaseSeconds : .12f);
             renderer.EnqueuePass(pass);
@@ -331,6 +345,20 @@ namespace BooterBigArm.TopDown3D
                 key = key * 397 ^ optics.GetInstanceID();
                 key = key * 397 ^ study.flareIntensity.GetHashCode();
                 key = key * 397 ^ optics.sunAngularDiameterDegrees.GetHashCode();
+                key = key * 397 ^ optics.flareVisibilityAttackSeconds.GetHashCode();
+                return key * 397 ^ optics.flareVisibilityReleaseSeconds.GetHashCode();
+            }
+        }
+
+        private static int VisibilityProfileKey(TopDown3DCameraOpticsProfile profile, float angularDiameter)
+        {
+            unchecked
+            {
+                var optics = profile.nativeOptics;
+                var key = profile.GetInstanceID();
+                key = key * 397 ^ optics.GetInstanceID();
+                key = key * 397 ^ profile.flareIntensity.GetHashCode();
+                key = key * 397 ^ angularDiameter.GetHashCode();
                 key = key * 397 ^ optics.flareVisibilityAttackSeconds.GetHashCode();
                 return key * 397 ^ optics.flareVisibilityReleaseSeconds.GetHashCode();
             }

@@ -79,7 +79,12 @@ namespace BooterBigArm.TopDown3D
         {
             var cameraData = renderingData.cameraData;
             if (!TopDown3DSceneRenderingOverride.AuthoringEffectsEnabled(cameraData.camera)) return;
-            if (TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var study)
+            var modular = TopDown3DSceneRenderingOverride.CameraOpticsFor(cameraData.camera);
+            if (TopDown3DCameraOpticsFeature.IsModularCamera(cameraData.camera))
+            {
+                if (modular == null || !modular.EffectiveStreak) return;
+            }
+            else if (TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var study)
                 && (!study.streakEnabled || (study.nativeOptics != null
                     && (!study.nativeOptics.IsValid || !study.nativeOptics.opticsEnabled
                         || study.nativeOptics.depthMode != DepthOfFieldMode.Off)))) return;

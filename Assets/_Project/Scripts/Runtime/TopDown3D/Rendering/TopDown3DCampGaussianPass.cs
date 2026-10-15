@@ -54,10 +54,12 @@ namespace BooterBigArm.TopDown3D
             var resources = frameData.Get<UniversalResourceData>();
             var cameraData = frameData.Get<UniversalCameraData>();
             if (!IsSupported || resources.isActiveTargetBackBuffer || !resources.cameraDepthTexture.IsValid()
-                || !TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var study)
-                || study.nativeOptics == null || !study.nativeOptics.IsValid || !study.nativeOptics.opticsEnabled
-                || !study.nativeOptics.gaussianBeforeLens || study.nativeOptics.depthMode != DepthOfFieldMode.Gaussian)
+                || !TopDown3DSceneRenderingOverride.TryGetOpticsProfile(cameraData.camera, out var optics)
+                || optics == null || !optics.IsValid || !optics.opticsEnabled
+                || !optics.gaussianBeforeLens || optics.depthMode != DepthOfFieldMode.Gaussian)
                 return;
+            var modular = TopDown3DSceneRenderingOverride.CameraOpticsFor(cameraData.camera);
+            if (modular != null && modular.EffectiveDepthMode != DepthOfFieldMode.Gaussian) return;
             var dof = VolumeManager.instance.stack.GetComponent<DepthOfField>();
             var source = resources.activeColorTexture;
             if (!source.IsValid()) return;

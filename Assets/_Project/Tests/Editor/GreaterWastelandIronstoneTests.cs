@@ -150,6 +150,9 @@ namespace BooterBigArm.Tests
                 var root = GreaterWastelandIronstoneInstaller.TryInstall(scene);
                 Assert.That(root, Is.Not.Null);
                 Assert.That(GreaterWastelandIronstoneInstaller.TryInstall(scene), Is.SameAs(root));
+                var group = new GameObject("World"); SceneManager.MoveGameObjectToScene(group, scene);
+                root.transform.SetParent(group.transform, true);
+                Assert.That(GreaterWastelandIronstoneInstaller.TryInstall(scene), Is.SameAs(root), "Grouping must not duplicate authored resources");
                 var nodes = root.GetComponentsInChildren<TopDown3DAuthoredIronstoneNode>();
                 Assert.That(nodes.Length, Is.EqualTo(12));
                 Assert.That(nodes.Select(node => node.StableId).Distinct().Count(), Is.EqualTo(12));

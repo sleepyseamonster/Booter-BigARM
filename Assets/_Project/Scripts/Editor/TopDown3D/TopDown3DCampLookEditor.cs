@@ -38,6 +38,14 @@ namespace BooterBigArm.Editor
             }
             if (GUILayout.Button("Open Edit Mode Camera Preview")) CampLookCameraPreview.Open(look);
 
+            if (look.sun != null && look.sun.EnvironmentModules != null)
+            {
+                EditorGUILayout.HelpBox("Preview overview only. Camera optics, twilight timing, direct light, ambient fill and sky have independent owners.", MessageType.Info);
+                EditorGUILayout.ObjectField("Environment Modules", look.sun.EnvironmentModules, typeof(TopDown3DEnvironmentRig), true);
+                EditorGUILayout.ObjectField("Camera Optics Binding", look.gameCamera != null ? look.gameCamera.GetComponent<TopDown3DSceneRenderingOverride>() : null, typeof(TopDown3DSceneRenderingOverride), true);
+                return;
+            }
+
             DrawSun(look.sun);
             EditorGUILayout.Space(8f);
             if (look.gameCamera == null)
@@ -198,6 +206,13 @@ namespace BooterBigArm.Editor
         public override void OnInspectorGUI()
         {
             var sun = (PerpetualTwilightSun)target;
+            if (sun.EnvironmentModules != null)
+            {
+                EditorGUILayout.HelpBox("Compatibility access for existing gameplay consumers. Edit Sun Light for illumination, Twilight Clock for timing, and Camera Optics for lens effects.", MessageType.Info);
+                EditorGUILayout.ObjectField("Environment Modules", sun.EnvironmentModules, typeof(TopDown3DEnvironmentRig), true);
+                EditorGUILayout.ObjectField("Sun Light", sun.EnvironmentModules.sunLight, typeof(TopDown3DSunLight), true);
+                return;
+            }
             var camera = TopDown3DSceneRenderingOverride.AtmosphereCamera(sun.gameObject.scene);
             if (camera == null || !TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(camera, out var profile))
             { DrawDefaultInspector(); return; }

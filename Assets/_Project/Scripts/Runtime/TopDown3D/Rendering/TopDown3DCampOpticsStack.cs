@@ -34,15 +34,15 @@ namespace BooterBigArm.TopDown3D
         {
             if (camera == null || (camera.cameraType != CameraType.Game && !TopDown3DSceneRenderingOverride.IsAuthoringCamera(camera))
                 || !TopDown3DSceneRenderingOverride.AuthoringEffectsEnabled(camera)
-                || !TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(camera, out var study)
-                || study.nativeOptics == null || !study.nativeOptics.IsValid)
+                || !TopDown3DSceneRenderingOverride.TryGetOpticsProfile(camera, out var optics)
+                || optics == null || !optics.IsValid)
             {
                 Release(camera);
                 return false;
             }
             var manager = VolumeManager.instance;
             if (!manager.isInitialized) return false;
-            long allocationBefore = study.nativeOptics.collectDiagnostics ? System.GC.GetAllocatedBytesForCurrentThread() : 0;
+            long allocationBefore = optics.collectDiagnostics ? System.GC.GetAllocatedBytesForCurrentThread() : 0;
             var data = camera.GetComponent<UniversalAdditionalCameraData>();
             if (data == null || data.renderType != CameraRenderType.Base || !data.renderPostProcessing)
             {
@@ -63,10 +63,11 @@ namespace BooterBigArm.TopDown3D
             }
             if (manager.stack != state.owned) state.previous = manager.stack;
             manager.Update(state.owned, data.volumeTrigger != null ? data.volumeTrigger : camera.transform, data.volumeLayerMask);
-            Apply(state.owned, study.nativeOptics);
-            UpdateFocus(state, study.nativeOptics);
+            var modular = TopDown3DSceneRenderingOverride.CameraOpticsFor(camera);
+            Apply(state.owned, optics, modular != null ? modular.EffectiveDepthMode : optics.depthMode);
+            UpdateFocus(state, optics);
             manager.stack = state.owned;
-            state.lastManagedAllocation = study.nativeOptics.collectDiagnostics ? System.GC.GetAllocatedBytesForCurrentThread() - allocationBefore : -1;
+            state.lastManagedAllocation = optics.collectDiagnostics ? System.GC.GetAllocatedBytesForCurrentThread() - allocationBefore : -1;
             return true;
         }
 
@@ -145,6 +146,9 @@ namespace BooterBigArm.TopDown3D
         }
 
         public static void Apply(VolumeStack stack, TopDown3DCampOpticsProfile profile)
+            => Apply(stack, profile, profile.depthMode);
+
+        public static void Apply(VolumeStack stack, TopDown3DCampOpticsProfile profile, DepthOfFieldMode effectiveDepthMode)
         {
             var bloom = stack.GetComponent<Bloom>();
             bloom.intensity.Override(profile.opticsEnabled && profile.bloomEnabled ? Mathf.Clamp(profile.bloomIntensity, 0f, 2f) : 0f);
@@ -158,7 +162,7 @@ namespace BooterBigArm.TopDown3D
             bloom.dirtTexture.Override(profile.dirtTexture);
             bloom.dirtIntensity.Override(profile.opticsEnabled ? Mathf.Clamp(profile.dirtIntensity, 0f, 5f) : 0f);
             var dof = stack.GetComponent<DepthOfField>();
-            dof.mode.Override(profile.opticsEnabled && !profile.gaussianBeforeLens ? profile.depthMode : DepthOfFieldMode.Off);
+            dof.mode.Override(profile.opticsEnabled && !profile.gaussianBeforeLens ? effectiveDepthMode : DepthOfFieldMode.Off);
             dof.focusDistance.Override(Mathf.Max(.1f, profile.focusDistance));
             dof.gaussianStart.Override(Mathf.Max(.1f, profile.farStart));
             dof.gaussianEnd.Override(Mathf.Max(profile.farStart + .1f, profile.farEnd));

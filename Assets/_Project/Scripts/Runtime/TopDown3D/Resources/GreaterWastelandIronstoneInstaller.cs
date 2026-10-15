@@ -13,7 +13,8 @@ namespace BooterBigArm.TopDown3D
         {
             if (!scene.IsValid() || !scene.isLoaded || (scene.name != "GreaterWasteland" && !GreaterWastelandSceneScope.IsCampLoop(scene))) return null;
             foreach (var root in scene.GetRootGameObjects())
-                if (root.name == RootName) return root;
+                foreach (var child in root.GetComponentsInChildren<Transform>(true))
+                    if (child.name == RootName) return child.gameObject;
             var prefab = Resources.Load<GameObject>(ResourceName);
             if (prefab == null)
             {

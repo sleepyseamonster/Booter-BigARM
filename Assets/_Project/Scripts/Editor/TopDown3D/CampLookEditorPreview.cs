@@ -65,7 +65,8 @@ namespace BooterBigArm.Editor
             }
             if (result == null || result.gameCamera == null || result.sun == null
                 || result.sun.gameObject.scene != scene || result.gameCamera.gameObject.scene != scene
-                || !result.sun.isActiveAndEnabled || !TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(result.gameCamera, out _)) return null;
+                || !result.sun.isActiveAndEnabled
+                || (result.sun.EnvironmentModules == null && !TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(result.gameCamera, out _))) return null;
             return result;
         }
 

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 namespace BooterBigArm.TopDown3D
 {
-    [DisallowMultipleComponent]
+    [ExecuteAlways, DisallowMultipleComponent]
     [RequireComponent(typeof(Light))]
     [DefaultExecutionOrder(-500)]
     public sealed class PerpetualTwilightSun : MonoBehaviour
@@ -91,6 +91,27 @@ namespace BooterBigArm.TopDown3D
         private Material previousCameraSkybox;
         private bool previousCameraSkyboxEnabled, createdCameraSkybox;
         private bool staticStudyPreview;
+        [SerializeField] private TopDown3DEnvironmentRig environmentModules;
+        public TopDown3DEnvironmentRig EnvironmentModules => environmentModules;
+        internal void SetModularAuthority(TopDown3DEnvironmentRig owner, bool acquired)
+        {
+            if (environmentModules != owner) return;
+            if (acquired) Active = this; else if (Active == this) Active = null;
+        }
+        private static readonly HashSet<PerpetualTwilightSun> enabledSuns = new HashSet<PerpetualTwilightSun>();
+        public static int EnabledCount(Scene scene)
+        {
+            int count = 0;
+            foreach (var item in enabledSuns) if (item != null && item.isActiveAndEnabled && item.gameObject.scene == scene) count++;
+            return count;
+        }
+        public void ConfigureModules(TopDown3DEnvironmentRig modules)
+        {
+            ResolveSun();
+            if (environmentModules != null && environmentModules != modules) environmentModules.EndPreview();
+            ReleaseStudyState(); studyProfile = null;
+            environmentModules = modules;
+        }
 
         public static PerpetualTwilightSun Active { get; private set; }
 
@@ -138,15 +159,16 @@ namespace BooterBigArm.TopDown3D
         private static void ResetStaticState()
         {
             Active = null;
+            enabledSuns.Clear();
             pendingRestores.Clear();
             RegisterRestoreCallbacks();
         }
 
-        public float Cycle01 => cycle01;
-        public float CycleDurationSeconds => cycleDurationSeconds;
-        public float Brightness01 => brightness01;
-        public bool CycleEnabled => cycleEnabled;
-        public Vector3 DirectionToSun => sun != null ? -sun.transform.forward : Vector3.up;
+        public float Cycle01 => environmentModules != null && environmentModules.clock != null ? environmentModules.clock.Phase : cycle01;
+        public float CycleDurationSeconds => environmentModules != null && environmentModules.clock != null ? environmentModules.clock.DurationSeconds : cycleDurationSeconds;
+        public float Brightness01 => environmentModules != null ? environmentModules.State.Brightness01 : brightness01;
+        public bool CycleEnabled => environmentModules != null && environmentModules.clock != null ? environmentModules.clock.CycleEnabled : cycleEnabled;
+        public Vector3 DirectionToSun => environmentModules != null ? environmentModules.DirectionToSun : sun != null ? -sun.transform.forward : Vector3.up;
         public Vector3 LightTravelDirection => sun != null ? sun.transform.forward : Vector3.down;
 
         private void Awake()
@@ -156,12 +178,19 @@ namespace BooterBigArm.TopDown3D
 
         private void OnEnable()
         {
+            enabledSuns.Add(this);
             ResolveSun();
-            ApplyCurrentState();
+            if (Application.isPlaying) ApplyCurrentState();
         }
 
         private void Update()
         {
+            if (!Application.isPlaying) return;
+            if (environmentModules != null)
+            {
+                if (environmentModules.IsOwner) Active = this; else if (Active == this) Active = null;
+                return;
+            }
             // Presentation ownership does not change the existing scaled simulation clock.
             if (cycleEnabled)
             {
@@ -175,6 +204,8 @@ namespace BooterBigArm.TopDown3D
 
         private void OnDisable()
         {
+            enabledSuns.Remove(this);
+            if (environmentModules != null) environmentModules.EndPreview();
             if (Active == this)
             {
                 Active = null;
@@ -222,12 +253,16 @@ namespace BooterBigArm.TopDown3D
 
         public void SetCycle01(float normalizedCycle)
         {
+            if (environmentModules != null && environmentModules.clock != null)
+            { environmentModules.clock.SetPhase(normalizedCycle); environmentModules.Apply(); return; }
             cycle01 = Mathf.Repeat(normalizedCycle, 1f);
             ApplyCurrentState();
         }
 
         public void SetCycleEnabled(bool enabled)
         {
+            if (environmentModules != null && environmentModules.clock != null)
+            { environmentModules.clock.SetRunning(enabled); return; }
             cycleEnabled = enabled;
         }
 
@@ -249,6 +284,8 @@ namespace BooterBigArm.TopDown3D
 
         private void ResolveSun()
         {
+            // Preview/configuration also register the facade; disabled/destroyed entries never count.
+            if (isActiveAndEnabled) enabledSuns.Add(this);
             if (sun == null)
             {
                 sun = GetComponent<Light>();
@@ -262,6 +299,7 @@ namespace BooterBigArm.TopDown3D
 
         private void ApplyCurrentState()
         {
+            if (environmentModules != null) { environmentModules.Apply(); return; }
             if (!ReconcilePresentation()) return;
             if (sun == null)
             {
@@ -398,10 +436,11 @@ namespace BooterBigArm.TopDown3D
         }
 
         // Static candidate captures use the same cycle and color path without advancing simulation.
-        public Material EditorPreviewSky => runtimeSkybox;
+        public Material EditorPreviewSky => environmentModules != null ? environmentModules.PreviewSky : runtimeSkybox;
         public void RefreshEditorPresentation()
         {
             if (Application.isPlaying) return;
+            if (environmentModules != null) { environmentModules.RefreshPreview(); return; }
             staticStudyPreview = true;
             ResolveSun();
             // Source-material edits must appear immediately in the owned preview clone.
@@ -415,6 +454,19 @@ namespace BooterBigArm.TopDown3D
 
         public void ApplyStudyPreview(float phase, Material sky)
         {
+            if (environmentModules != null)
+            {
+                var presentation = environmentModules.sky;
+                if (!environmentModules.IsOwner || presentation == null || presentation.profile == null || !presentation.profile.IsValid
+                    || sky == null || !sky.HasProperty("_SunDirection") || !sky.HasProperty("_Exposure"))
+                    throw new System.InvalidOperationException("A valid active modular environment and preview material are required.");
+                environmentModules.clock.SetPhase(phase); environmentModules.RefreshPreview();
+                sky.SetVector("_SunDirection", DirectionToSun);
+                sky.SetFloat("_Exposure", Mathf.Lerp(presentation.profile.deepExposure, presentation.profile.brightExposure, Brightness01));
+                if (sky.HasProperty("_TwilightBrightness")) sky.SetFloat("_TwilightBrightness", Brightness01);
+                if (sky.HasProperty("_SunAngularRadius")) sky.SetFloat("_SunAngularRadius", presentation.profile.sunAngularDiameterDegrees * .5f);
+                return;
+            }
             TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(gameObject.scene, out var profile);
             if (profile == null || sky == null || !sky.HasProperty("_SunDirection") || !sky.HasProperty("_Exposure")
                 || TopDown3DSceneRenderingOverride.AtmosphereCamera(gameObject.scene) == null
@@ -430,6 +482,7 @@ namespace BooterBigArm.TopDown3D
 
         public void EndStudyPreview()
         {
+            if (environmentModules != null) { environmentModules.EndPreview(); if (Active == this) Active = null; return; }
             staticStudyPreview = false;
             ReleaseStudyState();
             studyProfile = null;

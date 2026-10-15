@@ -1,0 +1,33 @@
+{
+  "migration": "Version 1: retain all source assets/GUIDs; clone native optics; copy lighting, sky and dormant blur values; preserve scaled twilight phase/path, camera pose and actor state; group existing objects without renaming. Effective blur=Gaussian; sun phase=0.75; installed in memory. Scene not saved.",
+  "repeat": "Version 1 already installed; no migration needed.",
+  "resolution": "960x540",
+  "preservedTransforms": 979,
+  "preservedTerrainReferences": 9,
+  "protectedSourcesUnchanged": true,
+  "opticsIndependentOfBloomHost": true,
+  "results": [
+    {
+      "phase": 0.783,
+      "meanByteDifference": 0.0,
+      "maximumByteDifference": 0,
+      "changedChannels": 0,
+      "channels": 1555200
+    },
+    {
+      "phase": 0.25,
+      "meanByteDifference": 0.0,
+      "maximumByteDifference": 0,
+      "changedChannels": 0,
+      "channels": 1555200
+    },
+    {
+      "phase": 0.75,
+      "meanByteDifference": 0.0,
+      "maximumByteDifference": 0,
+      "changedChannels": 0,
+      "channels": 1555200
+    }
+  ],
+  "limitation": "Static EditMode candidate captures; no gameplay, Player or performance acceptance."
+}

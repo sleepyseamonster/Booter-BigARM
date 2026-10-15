@@ -26,7 +26,9 @@ namespace BooterBigArm.Editor
             var image = new Texture2D(960, 540, TextureFormat.RGB24, false, true);
             var previous = RenderTexture.active;
             TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(look.gameCamera, out var profile);
-            string source = EditorJsonUtility.ToJson(profile.skyMaterial);
+            var sourceMaterial = look.sun.EnvironmentModules != null ? look.sun.EnvironmentModules.sky?.profile?.material : profile != null ? profile.skyMaterial : null;
+            if (sourceMaterial == null) throw new InvalidOperationException("The selected look has no valid source sky.");
+            string source = EditorJsonUtility.ToJson(sourceMaterial);
             float cycle = look.sun.Cycle01;
             var proof = new PreviewProof();
             const string output = "Logs/CampLookPreview";
@@ -65,7 +67,7 @@ namespace BooterBigArm.Editor
                 proof.skyVisible = proof.skyMean > .01f;
                 proof.opticsVisible = proof.opticsMeanDifference > .0001f;
                 proof.authoringCameraRestored = !TopDown3DSceneRenderingOverride.IsAuthoringCamera(camera);
-                proof.sourceSkyUnchanged = source == EditorJsonUtility.ToJson(profile.skyMaterial);
+                proof.sourceSkyUnchanged = source == EditorJsonUtility.ToJson(sourceMaterial);
                 proof.frozenCycle = cycle == look.sun.Cycle01;
             }
             finally

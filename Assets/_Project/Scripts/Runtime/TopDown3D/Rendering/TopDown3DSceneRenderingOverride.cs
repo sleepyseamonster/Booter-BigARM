@@ -9,6 +9,54 @@ namespace BooterBigArm.TopDown3D
     {
         [SerializeField] private bool disableTiltShift = true;
         [SerializeField] private TopDown3DAtmosphereStudyProfile atmosphereProfile;
+        [SerializeField] private TopDown3DCameraOpticsProfile cameraOpticsProfile;
+        public bool ModularOpticsConfigured => cameraOpticsProfile != null;
+        public void ConfigureOptics(TopDown3DCameraOpticsProfile profile)
+        {
+            TopDown3DCampOpticsStack.Release(GetComponent<Camera>());
+            cameraOpticsProfile = profile;
+        }
+        public static TopDown3DCameraOpticsProfile CameraOpticsFor(Camera camera)
+        {
+            var binding = BindingForCamera(camera);
+            if (binding == null || !binding.isActiveAndEnabled || binding.cameraOpticsProfile == null
+                || !binding.cameraOpticsProfile.IsValid || !AuthoringEffectsEnabled(camera)
+                || (camera.cameraType == CameraType.SceneView && !IsAuthoringCamera(camera))) return null;
+            int count = 0;
+            foreach (var item in active)
+                if (item != null && item.isActiveAndEnabled && item.gameObject.scene == binding.gameObject.scene
+                    && (item.cameraOpticsProfile != null || item.atmosphereProfile != null)) count++;
+            return count == 1 && binding.GetComponent<Camera>() != null ? binding.cameraOpticsProfile : null;
+        }
+        public static bool TryGetOpticsProfile(Camera camera, out TopDown3DCampOpticsProfile optics)
+        {
+            optics = null;
+            var binding = BindingForCamera(camera);
+            if (binding != null && binding.ModularOpticsConfigured)
+            { var selected = CameraOpticsFor(camera); optics = selected != null ? selected.nativeOptics : null; return optics != null; }
+            if (!TryGetAtmosphereProfile(camera, out var legacy)) return false;
+            optics = legacy.nativeOptics;
+            return optics != null && optics.IsValid;
+        }
+        public static bool TryGetOpticsProfile(Scene scene, out TopDown3DCampOpticsProfile optics)
+        {
+            optics = null;
+            foreach (var item in active)
+                if (item != null && item.gameObject.scene == scene && item.ModularOpticsConfigured)
+                    return TryGetOpticsProfile(item.GetComponent<Camera>(), out optics);
+            return TryGetAtmosphereProfile(scene, out var legacy) && (optics = legacy.nativeOptics) != null && optics.IsValid;
+        }
+        public static float SunAngularDiameterFor(Camera camera, float fallback)
+        {
+            var rig = TopDown3DEnvironmentRig.ForScene(RenderingScene(camera));
+            return rig != null && rig.sky != null && rig.sky.profile != null ? rig.sky.profile.sunAngularDiameterDegrees : fallback;
+        }
+        public static Color SunTintFor(Camera camera, Color fallback)
+        {
+            var rig = TopDown3DEnvironmentRig.ForScene(RenderingScene(camera));
+            return rig != null && rig.sunLight != null && rig.sunLight.profile != null
+                ? rig.sunLight.profile.Tint(rig.State.Brightness01) : fallback;
+        }
         [SerializeField] private Transform opticsFocusTarget;
         [SerializeField] private Vector3 opticsFocusOffset = new Vector3(0f, 1.15f, 0f);
         public Transform OpticsFocusTarget => opticsFocusTarget;

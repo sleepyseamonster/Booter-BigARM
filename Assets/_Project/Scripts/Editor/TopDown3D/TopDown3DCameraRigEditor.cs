@@ -20,7 +20,8 @@ namespace BooterBigArm.Editor
             if (EditorGUI.EndChangeCheck() && !Application.isPlaying)
             {
                 foreach (var rig in targets.OfType<TopDown3DCameraRig>())
-                    if (TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(rig.GetComponent<Camera>(), out _))
+                    if (rig.GetComponent<TopDown3DSceneRenderingOverride>()?.ModularOpticsConfigured == true
+                        || TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(rig.GetComponent<Camera>(), out _))
                     {
                         Undo.RecordObject(rig.transform, "Preview camp camera framing");
                         rig.SetViewAngles(rig.YawDegrees, rig.PitchDegrees);
@@ -28,6 +29,11 @@ namespace BooterBigArm.Editor
                 CampLookEditorPreview.Refresh();
             }
             EditorGUILayout.Space(10f);
+            if (targets.OfType<TopDown3DCameraRig>().Any(r => r.GetComponent<TopDown3DSceneRenderingOverride>()?.ModularOpticsConfigured == true))
+            {
+                EditorGUILayout.HelpBox("Camera motion is owned here. Select Scene Rendering Override on this camera for independent optics and focus settings.", MessageType.Info);
+                return;
+            }
             foreach (var rig in targets.OfType<TopDown3DCameraRig>())
             {
                 var camera = rig.GetComponent<Camera>();

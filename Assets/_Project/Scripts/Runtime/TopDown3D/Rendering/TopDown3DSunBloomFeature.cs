@@ -117,6 +117,8 @@ namespace BooterBigArm.TopDown3D
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
             var cameraData = renderingData.cameraData;
+            // Modular cameras initialize their optics through the dedicated feature, even if bloom is disabled.
+            if (TopDown3DCameraOpticsFeature.IsModularCamera(cameraData.camera)) return;
             if (TopDown3DCampOpticsStack.TryApply(cameraData.camera))
             {
                 if (TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var selected)

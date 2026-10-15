@@ -74,13 +74,16 @@ namespace BooterBigArm.TopDown3D
             var cameraData = renderingData.cameraData;
             var cameraType = cameraData.cameraType;
             var scene = TopDown3DSceneRenderingOverride.RenderingScene(cameraData.camera);
-            if (TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var selectedProfile)
+            bool isModular = TopDown3DCameraOpticsFeature.IsModularCamera(cameraData.camera);
+            var modular = TopDown3DSceneRenderingOverride.CameraOpticsFor(cameraData.camera);
+            if (isModular && (modular == null || !modular.EffectiveTiltShift)) return;
+            if (!isModular && TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var selectedProfile)
                 && SuppressArtisticBlur(selectedProfile)) return;
 #if UNITY_EDITOR
             // Editor Scene cameras are utility objects; their rendered authoring scene is active.
             if (cameraType == CameraType.SceneView) scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
 #endif
-            if (TopDown3DSceneRenderingOverride.TiltShiftDisabledIn(scene)) return;
+            if (!isModular && TopDown3DSceneRenderingOverride.TiltShiftDisabledIn(scene)) return;
             if (material == null
                 || cameraData.renderType != CameraRenderType.Base
                 || (cameraType != CameraType.Game && cameraType != CameraType.SceneView)
@@ -91,12 +94,17 @@ namespace BooterBigArm.TopDown3D
 
             pass.Setup(
                 material,
-                Mathf.Clamp(downsample, 1, 4),
-                Mathf.Clamp01(focusCenter),
-                Mathf.Clamp(sharpBandWidth, 0.05f, 0.8f),
-                Mathf.Clamp(featherWidth, 0.01f, 0.5f),
-                Mathf.Clamp(blurRadius, 0.5f, 12f));
-            if (TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var profile)
+                Mathf.Clamp(isModular ? modular.legacyDownsample : downsample, 1, 4),
+                Mathf.Clamp01(isModular ? modular.legacyFocusCenter : focusCenter),
+                Mathf.Clamp(isModular ? modular.legacySharpBandWidth : sharpBandWidth, 0.05f, 0.8f),
+                Mathf.Clamp(isModular ? modular.legacyFeatherWidth : featherWidth, 0.01f, 0.5f),
+                Mathf.Clamp(isModular ? modular.legacyBlurRadius : blurRadius, 0.5f, 12f));
+            if (isModular && modular.useReferenceResolutionTiltShift)
+            {
+                if (modular.tiltShiftBlurRadiusPixels <= 0f) return;
+                pass.SetupReferenceResolution(modular);
+            }
+            else if (!isModular && TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var profile)
                 && profile.useReferenceResolutionTiltShift)
             {
                 if (profile.tiltShiftBlurRadiusPixels <= 0f) return;
@@ -198,6 +206,18 @@ namespace BooterBigArm.TopDown3D
             }
 
             public void SetupReferenceResolution(TopDown3DAtmosphereStudyProfile profile)
+            {
+                referenceResolution = true;
+                downsample = Mathf.Clamp(profile.tiltShiftDownsample, 1, 4);
+                referenceHeight = Mathf.Clamp(profile.tiltShiftReferenceHeight, 360f, 4320f);
+                blurRadius = Mathf.Clamp(profile.tiltShiftBlurRadiusPixels, 0f, 24f);
+                bandAngleDegrees = Mathf.Clamp(profile.tiltShiftBandAngleDegrees, -90f, 90f);
+                focusCenter = Mathf.Clamp01(profile.tiltShiftFocusCenter);
+                sharpBandWidth = Mathf.Clamp(profile.tiltShiftSharpBandWidth, .05f, .8f);
+                featherWidth = Mathf.Clamp(profile.tiltShiftFeatherWidth, .01f, .5f);
+            }
+
+            public void SetupReferenceResolution(TopDown3DCameraOpticsProfile profile)
             {
                 referenceResolution = true;
                 downsample = Mathf.Clamp(profile.tiltShiftDownsample, 1, 4);
