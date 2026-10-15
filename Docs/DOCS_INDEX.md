@@ -252,6 +252,9 @@ These describe current repo state rather than durable design truth.
 
 These are intentionally non-canonical. They preserve ideas, research, or working context that may later be refined, replaced, or discarded.
 
+- [Sable's stylized realism research](./Agents/Sable/work/2026-10-15-stylized-realism/README.md)
+  Arcane and No Rest for the Wicked as primary influences, Wayfinder and Ori supporting references, comparable styles, a resource catalogue, and a proposed comparison study. The author's broad preference guides research; specific treatments remain proposals.
+
 - [Waypoint fast travel and camp hub research](./Research/Gameplay/WAYPOINT_FAST_TRAVEL_RESEARCH.md)
   Six game comparisons covering camp services, discovery, travel friction, cargo, and implications for the single Greater Wasteland starting camp.
 

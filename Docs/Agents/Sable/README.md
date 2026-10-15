@@ -33,6 +33,10 @@ This appointment establishes the role and workspace; it does not start an asset 
 
 Shared accepted art standards belong in the established topic-owned `Docs/` locations. Production assets belong under `Assets/_Project/`; editable source art follows [repository organization](../../REPOSITORY_ORGANIZATION.md). Link to these files from this workspace instead of duplicating them.
 
+## Current research
+
+- [Stylized realism art direction research](work/2026-10-15-stylized-realism/README.md) — the author's Arcane and No Rest for the Wicked direction, additional influences, resource catalogue, and proposed comparison study.
+
 ## Completion standard
 
 An art task is complete when its requested deliverable is saved, feedback is specific and tied to evidence, proposal and approval status are clear, asset and implementation handoffs are recorded where needed, relevant checks pass, and remaining visual or technical limits are stated honestly. File inspection alone does not prove visual quality, and an attractive render alone does not prove Unity readiness.
