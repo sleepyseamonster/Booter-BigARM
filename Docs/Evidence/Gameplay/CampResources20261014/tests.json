@@ -1,0 +1,422 @@
+[
+  {
+    "suite": "CampResourceStudyTests",
+    "summary": {
+      "Total": 28,
+      "Passed": 28,
+      "Failed": 0,
+      "Skipped": 0,
+      "Inconclusive": 0
+    },
+    "tests": [
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.CargoLeavingAndStaleEpochCannotConsume",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.DeathDoesNotHarvestOrReviveAndRejectsInvalidDamage",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.EverySourceHasAnUnobstructedAuthoredWorkFace",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.FiveSourcesHaveDistinctIdentityAndSingleFiniteHarvest(0)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.FiveSourcesHaveDistinctIdentityAndSingleFiniteHarvest(1)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.FiveSourcesHaveDistinctIdentityAndSingleFiniteHarvest(2)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.FiveSourcesHaveDistinctIdentityAndSingleFiniteHarvest(3)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.FiveSourcesHaveDistinctIdentityAndSingleFiniteHarvest(4)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.GatherUsesCargoOnceAndAnimationResetCannotReplenish(0)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.GatherUsesCargoOnceAndAnimationResetCannotReplenish(1)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.GatherUsesCargoOnceAndAnimationResetCannotReplenish(2)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.GatherUsesCargoOnceAndAnimationResetCannotReplenish(3)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.GatherUsesCargoOnceAndAnimationResetCannotReplenish(4)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.HitRequiresRangeFacingAndVerticalEligibility(0,0,1,True)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.HitRequiresRangeFacingAndVerticalEligibility(0,0,4,False)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.HitRequiresRangeFacingAndVerticalEligibility(0,0,-1,False)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.HitRequiresRangeFacingAndVerticalEligibility(0,3,1,False)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.InstalledStudyBindsExistingEconomyAndConfirmedResetRestoresItsBeetle",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.InvalidRetainedStateFailsClosed",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.PreparedTrialResetRestoresInventoryAndSourcesTogetherAndRejectsChangedState",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.ReloadAndAnimationInvalidationPreserveStockAndDeath(0)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.ReloadAndAnimationInvalidationPreserveStockAndDeath(1)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.ReloadAndAnimationInvalidationPreserveStockAndDeath(2)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.ReloadAndAnimationInvalidationPreserveStockAndDeath(3)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.ReloadAndAnimationInvalidationPreserveStockAndDeath(4)",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.SceneHasFiveOwnedSourcesAndPreservesOriginalResourceAndNpcOwners",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.SkippingTheEntireHitWindowCannotApplyALateStrike",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampResourceStudyTests.StrikeEmitsOnceAndCancellationCannotQueueDamage",
+        "status": "Passed"
+      }
+    ]
+  },
+  {
+    "suite": "CampLoopLoadoutTests",
+    "summary": {
+      "Total": 16,
+      "Passed": 16,
+      "Failed": 0,
+      "Skipped": 0,
+      "Inconclusive": 0
+    },
+    "tests": [
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.AccessLossAndExcessMassPreserveBothEquipmentOwners",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.AttachedAlgaeCannotBeTransferredOrRemoved",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.DeployedReservationRejectsReplacementButAcceptsSameInstance",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.DuplicateInstanceSnapshotIsRejectedWithoutMutation",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.EquipmentIdentitySurvivesTransferPackingAndSnapshot",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.EquipSwapIsCoherentBeforeEitherObserverRuns",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.EveryEquipmentFitsOnlyItsNamedSlot",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.LegacyProductionKeepsOriginalCapacityAndVersionOne",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.LoadoutNavigationConnectsEquipmentSuppliesAndFooter",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.PopupCampUsesSupplyPocketAndWrongSlotMovePreservesIdentity",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.ReconstructionReconnectsBothSlotRegionsWithoutDuplicates",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.ResourcesNeverEnterEquipmentOrSupplies(\"resource.ironstone_ore\")",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.ResourcesNeverEnterEquipmentOrSupplies(\"resource.airborne_dust\")",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.SavedCampLoopUsesTypedStateBeforeAndAfterServiceInstallation",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.StaleWorldResetRejectsWithoutChangingInventoryOrAlgae",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopLoadoutTests.WorldAndInventoryResetInstallBeforeNotificationsAndBlockReentry",
+        "status": "Passed"
+      }
+    ]
+  },
+  {
+    "suite": "CampEconomySessionTests",
+    "summary": {
+      "Total": 7,
+      "Passed": 7,
+      "Failed": 0,
+      "Skipped": 0,
+      "Inconclusive": 0
+    },
+    "tests": [
+      {
+        "name": "BooterBigArm.Tests.CampEconomySessionTests.AuthoredLoopConsumesRecipeOnceThenRefinesAndResetsWithoutDuplicatingIdentity",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampEconomySessionTests.HeldGamepadSubmitCannotCraftUntilReleased",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampEconomySessionTests.InvalidRetainedDeviceSnapshotBlocksEconomyWithoutDeletingSnapshot",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampEconomySessionTests.ReenableUsesSameUiAndRetainsUsedEconomyRatherThanGrantingAgain",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampEconomySessionTests.RetainedMissingStarterBlocksRegrantAndLeavesUsedItemsIntact",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampEconomySessionTests.StartupCapabilityPreparationRejectsOneInvalidOwnerWithoutMutatingAnother",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampEconomySessionTests.StationMenuSuspendsResumesAndLostAccessClosesWithoutChangingContents",
+        "status": "Passed"
+      }
+    ]
+  },
+  {
+    "suite": "TopDown3DInteractionTests",
+    "summary": {
+      "Total": 17,
+      "Passed": 17,
+      "Failed": 0,
+      "Skipped": 0,
+      "Inconclusive": 0
+    },
+    "tests": [
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.CancelRangeExitAndDestroyedTarget_AwardNothing",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.CanisterTargeting_IgnoresCloserWorldPromptAndStillChecksReachability",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.FailedResourceCommit_RollsBackInventoryAndCannotDuplicate",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.FullInventory_RejectsBeforeActionAndLeavesTargetUntouched",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.GatherAnimation_IsHumanoidInPlaceAndNonLooping",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.InputAsset_GamepadInteractsNormallyAndKeyboardRetainsTapHoldPair",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.MotorActionConstraint_IsOwnerBoundAndFacesTarget",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.PlayerActionController_RebuildsSerializedGatherStateWhenEnabled",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.PlayerActionStartup_PreservesEarlyActiveGatherAndCanReleaseItsMotorConstraint",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.Targeting_DeliberateFacingChangeOverridesDistanceHysteresis",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.Targeting_HysteresisImmediatelyDropsInvalidTarget(\"disabled\")",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.Targeting_HysteresisImmediatelyDropsInvalidTarget(\"range\")",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.Targeting_HysteresisImmediatelyDropsInvalidTarget(\"facing\")",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.Targeting_HysteresisImmediatelyDropsInvalidTarget(\"blocked\")",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.Targeting_RejectsBlockedNodeAndSelectsItWhenLineOfSightClears",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.Targeting_RetainsSmallDistanceJitterButSwitchesToClearlyCloserTarget",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInteractionTests.ValidCompletion_AwardsAndConsumesExactlyOnce",
+        "status": "Passed"
+      }
+    ]
+  },
+  {
+    "suite": "CampLoopSalvageTests",
+    "summary": {
+      "Total": 9,
+      "Passed": 9,
+      "Failed": 0,
+      "Skipped": 0,
+      "Inconclusive": 0
+    },
+    "tests": [
+      {
+        "name": "BooterBigArm.Tests.CampLoopSalvageTests.BlockedReachAndExplicitCancelLeavePartIntact",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopSalvageTests.CargoLeavingAtCompletionDoesNotConsumeOrFallback",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopSalvageTests.EpochChangeCancelsEvenWhenRestoredTargetIsAvailable",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopSalvageTests.HeavyCargoRejectsBeforeExtraction",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopSalvageTests.MissingResetStorageNeverReplenishesWreck",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopSalvageTests.ResetClearsTransferredRewardsAndPreservesOtherItems",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopSalvageTests.SceneHasPrivateBindingsAndCheckpointIsSuppressed",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopSalvageTests.SerializedDepletionAndInventoryReconstructTogether",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.CampLoopSalvageTests.ThreeIndependentPartsAwardExactlyOnceAndRespectCargoOnlyPolicy",
+        "status": "Passed"
+      }
+    ]
+  },
+  {
+    "suite": "TopDown3DInventoryLoopTests",
+    "summary": {
+      "Total": 10,
+      "Passed": 10,
+      "Failed": 0,
+      "Skipped": 0,
+      "Inconclusive": 0
+    },
+    "tests": [
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInventoryLoopTests.BulkUnloadKeepsEveryRemainderWhenCacheOnlyPartlyFits",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInventoryLoopTests.CapacityQueriesRespectBothWeightAndSlots",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInventoryLoopTests.HarvestHelperRechecksAccessAtCommitWithoutFallback",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInventoryLoopTests.JointTransferPublishesOnlyCompleteStateAndRejectsReentrantWrites",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInventoryLoopTests.MixedPickupCommitsToolResourceAndWorldConditionTogether",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInventoryLoopTests.QuickTransferRemovesTheSelectedStackAndAccessLossLeavesBothUntouched",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInventoryLoopTests.ResourceDeliveryNeverFallsBackAndChangesOnlyLegger",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInventoryLoopTests.SnapshotCannotReintroduceResourcesIntoBooter",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInventoryLoopTests.StockResourcesAreForbiddenInBooterAndPermittedInCargoAndCache(\"resource.ironstone_ore\")",
+        "status": "Passed"
+      },
+      {
+        "name": "BooterBigArm.Tests.TopDown3DInventoryLoopTests.StockResourcesAreForbiddenInBooterAndPermittedInCargoAndCache(\"resource.airborne_dust\")",
+        "status": "Passed"
+      }
+    ]
+  }
+]

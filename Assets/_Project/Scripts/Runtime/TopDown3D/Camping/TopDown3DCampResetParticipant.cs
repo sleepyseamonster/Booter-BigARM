@@ -25,5 +25,6 @@ namespace BooterBigArm.TopDown3D
         internal Func<string> Block;
         internal Func<TopDown3DCampResetPreparation> Prepare;
         internal Func<string> Stamp;
+        internal string Notice;
     }
 }

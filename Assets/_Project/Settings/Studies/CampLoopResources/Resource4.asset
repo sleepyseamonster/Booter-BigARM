@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81605b79f6bb48b18dcdb159136018fe, type: 3}
+  m_Name: Resource4
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DItemDefinition
+  itemId: lab.resource.chitin_fibers
+  displayName: Scraped Chitin Fibers
+  description: Raw material from the Camp Loop resource study. Prototype tuning.
+  category: Resource
+  icon: {fileID: -6291270420782597619, guid: e446fd90ad28eb948ae16e6ccb89ec79, type: 3}
+  maxStack: 20
+  mass: 0.1
+  carryPreference: 4
+  packingPreference: 0
+  equipmentSlot: 0
+  fieldSupply: 0

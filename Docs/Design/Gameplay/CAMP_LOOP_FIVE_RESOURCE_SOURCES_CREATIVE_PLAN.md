@@ -1,6 +1,6 @@
 # Camp Loop five resource sources creative plan
 
-October 14, 2026. Status: creative plan only. Target: the existing `Assets/_Project/Scenes/Reference/CampLoopTesting.unity`. This plan authorizes no implementation, asset creation, scene edits or production installation.
+October 14, 2026. Original scope: creative plan only. The author subsequently requested implementation with the [plan audit](CAMP_LOOP_FIVE_RESOURCE_SOURCES_PLAN_AUDIT.md) incorporated. Target: the existing `Assets/_Project/Scenes/Reference/CampLoopTesting.unity`; production installation remains outside this scope. The [implementation receipt](../../Evidence/Gameplay/CampResources20261014/README.md) records current delivery and verification.
 
 Build a small, coherent gathering circuit outside the camp's working space: an Ironstone outcrop, an ancient salt crust, an abandoned bristle hollow, a dead winch and one husk beetle. Each source should explain its material through shape, placement and the change left after harvesting. The circuit should feel like a piece of the wasteland rather than a row of vending machines.
 
@@ -137,23 +137,37 @@ Death stops locomotion and attacks, settles the body against supported ground an
 
 ## Shared interaction and material presentation
 
-All five sources produce one known raw item type each. Trial quantities, stack limits, unit mass, durations and tool presentation will need explicit values in a later implementation plan. Do not infer them from the proposed physical sizes or fill missing spreadsheet values with zero.
+All five sources produce one known raw item type each. The implementation uses the explicit trial quantities and metadata below, with finite gather durations and the existing in-place gather presentation. These are prototype settings, not values inferred from prop sizes or blanks in the spreadsheet. Dedicated extraction animation and final tool presentation remain later art/feel work.
 
 Use the current device-aware prompt style with short verbs: `Mine ironstone`, `Scrape salts`, `Gather bristles`, `Recover cable`, and `Scrape husk`. Show the defined reward where existing UI supports it. Inventory icons should match the recognizable harvested form: ore fragment, pale crystals, stiff bristle bundle, stranded cable and scraped fiber tuft.
 
 Extend the currently selected Camp Loop item catalog as one coherent set, retaining all existing definitions and explicitly resolving same-ID variants. Booter, Legger, cache and UI must resolve the same selected definitions. Do not replace the current catalog with an older baseline, create parallel competing catalogs, change starting supplies or add these concepts to the production catalog.
 
-Raw rewards follow current nearby, finite Legger-cargo rules. A full, overweight or out-of-range destination leaves the source unconsumed and gives clear existing-style feedback. The player can cancel work. Do not create ground-loot scatter, auto-pickup or remote cargo transfer as a convenience. Each successful transaction changes source state and adds inventory exactly once.
+Raw rewards follow current nearby, finite Legger-cargo rules. A full, overweight or out-of-range destination leaves the source unconsumed and gives clear existing-style feedback. The player can cancel work. Do not create ground-loot scatter, auto-pickup or remote cargo transfer as a convenience. Each successful transaction changes source state and adds inventory exactly once. The new generic source does not inherit Ironstone's special automatic call-over branch; use the existing companion regroup command when needed. The winch has its own source record and never adds a second hard-coded ghost-machine wreck owner.
+
+Implemented trial mappings are explicit. These quantities and new-item mass/stack values are prototype tuning, not spreadsheet edits or final economy:
+
+| Source | Runtime reward ID | Quantity per trial | Unit mass / stack |
+| --- | --- | --- | --- |
+| Ironstone outcrop | `resource.ironstone_ore` | 2 | Existing 1.25 / 99 |
+| Salt crust | `lab.resource.dry_mineral_salts` | 2 | 0.15 / 20 |
+| Bristle hollow | `lab.resource.coarse_sensory_bristles` | 3 | 0.08 / 20 |
+| Winch | `lab.resource.salvaged_metal_cable` | 1 | 0.8 / 20 |
+| Beetle carcass | `lab.resource.chitin_fibers` | 3 | 0.1 / 20 |
+
+All four new definitions use runtime category `Resource`, Legger-only carrying and distinct icons. Extend the existing private salvage catalog without replacing its asset identity or current definitions, retaining the scene's existing inventory/session bindings and loadout resolution. Confirmed trial reset owns the aggregate inventory drafts; the new study adds only its own prepared world-state mutation.
 
 ## Identity and repeatable Camp Loop trials
 
 Use a private study identity plus immutable source IDs, for example `lab.resource-study.ironstone.001` through distinct named IDs for salt, bristles, winch and beetle. Display names, hierarchy order, coordinates and prefab instance IDs do not determine logical identity. The beetle keeps its identity after movement, death and harvesting.
 
-Terrain generation and terrain streaming are not applicable: the study uses fixed, always-loaded native terrain. Procedural source spawning is also outside this authored five-instance layout. Disable/re-enable, camera culling and visual replacement do not renew stock or resurrect the beetle. Only the explicit coordinated lab reset or a fresh session restores initial trial state.
+Terrain generation and terrain streaming are not applicable: the study uses fixed, always-loaded native terrain. Procedural source spawning is also outside this authored five-instance layout. Disable/re-enable, camera culling, domain reload and visual replacement do not renew stock or resurrect the beetle. A versioned serialized study ledger retains five consumption records, health, revision and target epoch. The beetle's transform remains scene runtime state; its authored home is separate. Invalid retained state disables new harvesting without altering inventory.
 
-Keep source consumption, beetle health/death and reward mutations in session-only state. Register with existing session readiness and ordered reset ownership rather than creating a second reset button or save service. Reset first cancels attacks/work and invalidates stale captures, then restores source visuals/stock and the authored beetle anchor under the lab reset contract. Resetting a fixture actor is distinct from forbidden companion teleport recovery: never reset or teleport the Legger.
+Keep source consumption, beetle health/death and reward mutations in session-only state. Animation reset only cancels study attacks and invalidates stale captures; it preserves stock, health and inventory. The existing confirmed inventory-trial reset restores its agreed inventory baseline and all five sources together, including the beetle's starting health and supported home anchor. Its confirmation explicitly names this beetle exception while preserving Booter, Legger and their vitals. A failed world preflight or changed revision cancels the compound transaction. Never reset or teleport the Legger, and never create a second reset menu or save service.
 
-Restore inventory through the existing coordinated captured-lab-state mechanism. Do not subtract quantities by item ID: the Ironstone item already exists elsewhere, so that could erase unrelated ore. Repeated resets must restore a coherent initial trial state without multiplying rewards or silently wiping items outside the agreed session snapshot. If reset fails, sources/actions stay safely unavailable until the existing recovery path succeeds.
+Restore inventory through `TopDown3DCampLoopInventoryTrial` and its prepared participant contract, not through the sequential animation reset registry. Do not subtract quantities by item ID: the Ironstone item already exists elsewhere, so that could erase unrelated ore. Repeated confirmed resets restore the agreed whole-trial baseline without multiplying rewards. New availability requires that existing trial owner and session readiness. Failed reset does not independently restore study stock or publish a fresh beetle.
+
+Prototype melee has one attack instance, an explicit hit window, range/facing/height and obstruction checks, and one potential target hit per attack. Player strikes use the existing imported unrestricted jab clip through the current presentation owner and a motor action lease. They cannot compete with gathering, riding, station actions, posture changes or modal UI. Mode/readiness/focus/pause loss cancels study intent. The beetle has 30 starting health, takes 10 damage per player strike and delivers one 6-damage bite after a 0.65-second telegraph, followed by 1.1 seconds of recovery. This establishes functional prototype behavior; animation contact, feel and final art acceptance remain author-owned.
 
 There are no disk-persisted creature or harvest deltas in this slice. Preserve the scene's session-only save gate. Promotion into production, respawn, offline simulation, automatic corpse removal and durable-world migration require later scope.
 
@@ -165,8 +179,8 @@ There are no disk-persisted creature or harvest deltas in this slice. Preserve t
 4. **Finish the living beetle.** Qualify movement, home limits, player attack, hit/death rules and carcass scraping, then connect that same reward/reset transaction. Reuse safe NPC movement seams where appropriate without changing the Lager profile or behavior.
 5. **Compose and review the complete circuit.** Refine ground contact, source visibility, sound/motion cues and spacing. Keep working-area and hazard separation visible in editor guides. Remove temporary player-facing scaffolding after the sources explain themselves visually.
 
-The later build is complete only when all five are present under the intended owned hierarchy, rewards resolve correctly, active/depleted states are readable, repeated reset is coherent, the beetle cannot damage or reward after death, and the protected scene content remains intact. Future background import/compilation and focused structural/transaction checks support that handoff. Hands-on feel, appearance and gathering/combat acceptance remain author-owned; no gameplay smoke testing is requested here.
+The build is complete only when all five are present under the intended owned hierarchy, rewards resolve correctly, active/depleted states are readable, repeated reset is coherent, and protected scene content remains intact. The beetle cannot move or attack after death. Death adds no inventory reward; its unharvested carcass can award one finite scrape reward, then stays unavailable until confirmed trial reset. Background import/compilation and focused structural/transaction checks support that handoff. Hands-on feel, appearance and gathering/combat acceptance remain author-owned; no gameplay smoke testing is requested here.
 
 ## Planning closeout
 
-This plan adds documentation only. Hierarchy, dimensions, distance bands and source visuals are creative proposals. Exact positions and rendered contact have not been approved or verified in Unity. Once implementation is requested, begin with the bounded scene survey and five-source blockout, using the current action/reset owners and the sequence above.
+The original hierarchy, dimensions and distance bands guided the bounded implementation. Consult the implementation receipt for the surveyed positions, final owned hierarchy, offscreen blockout captures and exact test evidence. No whole-world population or production adoption is implied.

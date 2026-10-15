@@ -4,6 +4,12 @@ The Windows checkout uses the Unity CLI and its pinned `com.unity.pipeline` pack
 
 ## Windows CLI connection
 
+### Camp Loop five resource sources
+
+`BooterBigArm.Editor.CampResourceStudyAuthoring.BuildFromCli` authors the five-source study only in a background candidate marked `.camp-resources-validation`. `ValidateFromCli` opens and validates CampLoopTesting; use the isolated candidate while the author works. `CaptureFromCli` captures the five blockouts offscreen without entering Play Mode. `FitGroundFromCli`, `RefineBlockoutFromCli` and `SealFromCli` are candidate-only authoring operations, not read-only validators.
+
+`InstallInOpenAuthorScene` adds the verified linked prefab with Undo into an already open CampLoopTesting scene. It neither opens nor saves a scene, rejects Play Mode/compilation, validates existing content and removes only its own new object if validation fails. The equivalent menu is **Booter & BigARM → Camp Loop → Install Five Resource Sources**. Never dismiss an external-change dialog by discarding unsaved author work. See the [implementation receipt](../Evidence/Gameplay/CampResources20261014/README.md) for reset behavior, placement, tests and live synchronization status.
+
 ### Camp Loop salvage study
 
 `BooterBigArm.Editor.CampLoopSalvageAuthoring.InstallFromCli` authors one dead ghost-machine blockout in the existing marked CampLoopTesting scene, creates private trial items/materials/icons, and assigns scene-local inventory catalog overrides. It requires background batchmode Edit Mode. An already installed study is validated without rebuilding or replacing hand edits. Do not invoke it in an active author-owned Editor session.

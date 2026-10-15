@@ -87,3 +87,7 @@ The proposed “12 m clear encounter area” still needs an unambiguous diameter
 No Unity process was launched or focused, no gameplay smoke test was created, and no implementation was validated. Findings come from current source contracts and the reviewed document. The worktree contains concurrent scene/NPC/rendering edits; implementation must refresh its baseline rather than use this audit as a sealed scene snapshot. Older salvage documentation describes a historical reset path; current inventory-trial code controls the live baseline-reset integration.
 
 Recommended disposition: retain the creative layout and source briefs; revise the six contracts above before starting the build. The original plan is deliberately left unchanged so this review remains distinct from an accepted design revision.
+
+## Implementation follow-through
+
+The author subsequently requested implementation. The revised creative plan and [implementation receipt](../../Evidence/Gameplay/CampResources20261014/README.md) incorporate all six findings: separate animation and inventory resets, finite post-death harvesting, an independent winch ledger, explicit item/catalog mappings, retained versioned source state and owned melee hit/cancellation rules. Eighty-seven focused checks pass in the isolated candidate against the latest saved scene. Live synchronization into the author's dirty Editor remains subject to its external-scene-change dialog; this does not authorize discarding or reloading unsaved work.

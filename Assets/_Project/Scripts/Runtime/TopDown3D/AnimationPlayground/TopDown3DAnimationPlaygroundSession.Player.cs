@@ -17,7 +17,7 @@ namespace BooterBigArm.TopDown3D
         private Func<bool> ownsInput;
         private string selectedSource;
         private DelegateResetParticipant legacyReset, vitalsReset, inputReset;
-        public bool IsBusy => coordinator != null && coordinator.IsBusy || crouch!=null && crouch.Transitioning || airborne!=null && airborne.Active || lowMotion!=null && lowMotion.Active;
+        public bool IsBusy => coordinator != null && coordinator.IsBusy || crouch!=null && crouch.Transitioning || airborne!=null && airborne.Active || lowMotion!=null && lowMotion.Active || ResourceCombatBusy?.Invoke() == true;
         public TopDown3DPlayerMotor Player => player;
         public AnimationPlaygroundActionCoordinator Coordinator => coordinator;
         public bool CrouchReady=>servicesBound && isActiveAndEnabled && PreviewReady && crouch!=null && bindings!=null
@@ -142,7 +142,11 @@ namespace BooterBigArm.TopDown3D
             if(!crouch.Active && player.SprintActive){RequestSlide();return;}
             if(!crouch.TryToggle())playerAction.ReportFeedback(crouch.LastFailure);
         }
-        private void UnavailableAction()=>playerAction?.ReportFeedback("This action needs a qualified interaction at a test station.");
+        private void UnavailableAction()
+        {
+            if (ResourceAttackRequested?.Invoke() == true) return;
+            playerAction?.ReportFeedback("This action needs a qualified interaction at a test station.");
+        }
         private void CancelOwnedAction()
         {
             if(lowMotion!=null && lowMotion.Active){lowMotion.TryCancel();return;}

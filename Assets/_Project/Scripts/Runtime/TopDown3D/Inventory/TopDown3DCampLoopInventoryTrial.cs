@@ -74,10 +74,18 @@ namespace BooterBigArm.TopDown3D
             catch (Exception) { return BaselineFailure("Retained trial baseline cannot be decoded; its bytes were preserved."); }
         }
         private bool BaselineFailure(string reason) { captured = false; FailureReason = reason; return false; }
-        internal void RegisterResetParticipant(string id, Func<string> block, Func<TopDown3DCampResetPreparation> prepare = null, Func<string> stamp = null)
+        internal void RegisterResetParticipant(string id, Func<string> block, Func<TopDown3DCampResetPreparation> prepare = null, Func<string> stamp = null, string notice = null)
         {
             if (string.IsNullOrWhiteSpace(id) || block == null) throw new ArgumentException("Reset participant identity and blocker are required.");
-            participants[id] = new TopDown3DCampResetParticipant { Id = id, Block = block, Prepare = prepare, Stamp = stamp };
+            participants[id] = new TopDown3DCampResetParticipant { Id = id, Block = block, Prepare = prepare, Stamp = stamp, Notice = notice };
+        }
+        internal void UnregisterResetParticipant(string id) => participants.Remove(id);
+        private string ParticipantNotices()
+        {
+            var text = string.Empty;
+            foreach (var participant in participants.Values)
+                if (!string.IsNullOrWhiteSpace(participant.Notice)) text += " " + participant.Notice;
+            return text;
         }
         private string BlockReason()
         { foreach (var participant in participants.Values) { var reason = participant.Block(); if (!string.IsNullOrEmpty(reason)) return reason; } return null; }
@@ -171,7 +179,7 @@ namespace BooterBigArm.TopDown3D
             if (!ConfirmationPending)
             {
                 ConfirmationPending = true; confirmationStamp = ResetStamp(); Changed?.Invoke();
-                return "Confirm reset: equipment, supplies, cargo, cache, sorter output, harvests and algae return to the starting trial. Actors and vitals stay unchanged. Back cancels.";
+                return "Confirm reset: equipment, supplies, cargo, cache, sorter output, harvests and algae return to the starting trial. Booter, Legger and their vitals stay unchanged." + ParticipantNotices() + " Back cancels.";
             }
             ConfirmationPending = false;
             if (confirmationStamp != ResetStamp()) return "Trial contents changed. Request and confirm reset again.";
@@ -205,7 +213,7 @@ namespace BooterBigArm.TopDown3D
                 var result = TopDown3DInventoryTransaction.Commit(mutations,
                     () => kit.UsesLoadout && input.Mode == TopDown3DInputMode.Inventory && lab.PreviewReady
                         && string.IsNullOrEmpty(BlockReason()), world);
-                return result.Succeeded ? "Inventory trial restored. Actors and vitals were preserved." : result.Message;
+                return result.Succeeded ? "Inventory trial restored. Booter, Legger and their vitals were preserved." + ParticipantNotices() : result.Message;
             }
             finally { resetting = false; Changed?.Invoke(); }
         }
