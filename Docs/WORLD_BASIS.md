@@ -47,6 +47,8 @@ The game is about endurance, deliberate movement, and living inside a hostile sy
 - Human survival depends on algae.
 - Settlements maintain algae vats.
 - People carry personal algae reserves as the backbone of survival.
+- The Phagia used for eating and drinking can be processed into higher-performing consumables, including prepared drinks, algae bars, dried bars and prepared meals. Specific recipes, portion sizes, nutritional/hydration benefits, preservation and other game effects remain undefined.
+- Selected edible fauna resources can be combined with Phagia to produce high-quality delicacy meals. Phagia remains the nutritional foundation; this culinary use does not make fauna generally nutritious or its industrial chemicals edible.
 - Failure should come from accumulation: resource depletion, exposure, distance, and poor planning.
 
 ## Faunal Biology And Material Use
