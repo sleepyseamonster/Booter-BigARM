@@ -19,6 +19,27 @@ namespace BooterBigArm.TopDown3D
             TopDown3DCampOpticsStack.Release(GetComponent<Camera>());
         }
         private static readonly HashSet<TopDown3DSceneRenderingOverride> active = new HashSet<TopDown3DSceneRenderingOverride>();
+        private static readonly Dictionary<int, TopDown3DSceneRenderingOverride> authoringCameras = new Dictionary<int, TopDown3DSceneRenderingOverride>();
+        private static readonly HashSet<int> authoringEffects = new HashSet<int>();
+        public static void RegisterAuthoringCamera(Camera camera, TopDown3DSceneRenderingOverride binding, bool effects)
+        {
+            if (camera == null || camera.cameraType != CameraType.SceneView || binding == null) return;
+            authoringCameras[camera.GetInstanceID()] = binding;
+            if (effects) authoringEffects.Add(camera.GetInstanceID()); else authoringEffects.Remove(camera.GetInstanceID());
+        }
+        public static void UnregisterAuthoringCamera(Camera camera)
+        {
+            if (ReferenceEquals(camera, null)) return;
+            TopDown3DCampOpticsStack.Release(camera);
+            authoringCameras.Remove(camera.GetInstanceID()); authoringEffects.Remove(camera.GetInstanceID());
+        }
+        public static bool IsAuthoringCamera(Camera camera)
+            => camera != null && authoringCameras.ContainsKey(camera.GetInstanceID());
+        public static bool AuthoringEffectsEnabled(Camera camera)
+            => !IsAuthoringCamera(camera) || authoringEffects.Contains(camera.GetInstanceID());
+        public static TopDown3DSceneRenderingOverride BindingForCamera(Camera camera)
+            => camera == null ? null : authoringCameras.TryGetValue(camera.GetInstanceID(), out var binding)
+                ? binding : camera.GetComponent<TopDown3DSceneRenderingOverride>();
         private Camera ownerCamera;
         private bool cameraWasEnabled;
         private void OnEnable()
@@ -90,6 +111,14 @@ namespace BooterBigArm.TopDown3D
 
         public static bool TryGetAtmosphereProfile(Camera camera, out TopDown3DAtmosphereStudyProfile profile)
         {
+            if (IsAuthoringCamera(camera))
+            {
+                var binding = BindingForCamera(camera);
+                if (binding != null && binding.isActiveAndEnabled
+                    && AtmosphereCamera(binding.gameObject.scene) == binding.GetComponent<Camera>())
+                    return TryGetAtmosphereProfile(binding.gameObject.scene, out profile);
+                profile = null; return false;
+            }
             var scene = RenderingScene(camera);
             // Camera-local sky/optics are selected together. Utility and unrelated cameras retain defaults.
             if (camera == null || camera.cameraType == CameraType.SceneView || AtmosphereCamera(scene) != camera)
@@ -98,6 +127,7 @@ namespace BooterBigArm.TopDown3D
         }
 
         public static Scene RenderingScene(Camera camera)
-            => camera == null ? default : camera.scene.IsValid() ? camera.scene : camera.gameObject.scene;
+            => camera == null ? default : IsAuthoringCamera(camera) && BindingForCamera(camera) != null
+                ? BindingForCamera(camera).gameObject.scene : camera.scene.IsValid() ? camera.scene : camera.gameObject.scene;
     }
 }

@@ -362,7 +362,11 @@ namespace BooterBigArm.TopDown3D
                     var camera = studyCamera;
                     studyCameraSkybox = camera.GetComponent<Skybox>();
                     createdCameraSkybox = studyCameraSkybox == null;
-                    if (createdCameraSkybox) studyCameraSkybox = camera.gameObject.AddComponent<Skybox>();
+                    if (createdCameraSkybox)
+                    {
+                        studyCameraSkybox = camera.gameObject.AddComponent<Skybox>();
+                        if (!Application.isPlaying) studyCameraSkybox.hideFlags = HideFlags.HideAndDontSave;
+                    }
                     previousCameraSkybox = studyCameraSkybox.material;
                     previousCameraSkyboxEnabled = studyCameraSkybox.enabled;
                     studyCameraSkybox.material = runtimeSkybox; studyCameraSkybox.enabled = true;
@@ -394,6 +398,21 @@ namespace BooterBigArm.TopDown3D
         }
 
         // Static candidate captures use the same cycle and color path without advancing simulation.
+        public Material EditorPreviewSky => runtimeSkybox;
+        public void RefreshEditorPresentation()
+        {
+            if (Application.isPlaying) return;
+            staticStudyPreview = true;
+            ResolveSun();
+            // Source-material edits must appear immediately in the owned preview clone.
+            if (runtimeSkybox != null && studyTemplate != null)
+            {
+                runtimeSkybox.shader = studyTemplate.shader;
+                runtimeSkybox.CopyPropertiesFromMaterial(studyTemplate);
+            }
+            ApplyCurrentState();
+        }
+
         public void ApplyStudyPreview(float phase, Material sky)
         {
             TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(gameObject.scene, out var profile);

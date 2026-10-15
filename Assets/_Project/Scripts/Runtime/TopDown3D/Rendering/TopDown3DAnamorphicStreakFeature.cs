@@ -78,6 +78,7 @@ namespace BooterBigArm.TopDown3D
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
             var cameraData = renderingData.cameraData;
+            if (!TopDown3DSceneRenderingOverride.AuthoringEffectsEnabled(cameraData.camera)) return;
             if (TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(cameraData.camera, out var study)
                 && (!study.streakEnabled || (study.nativeOptics != null
                     && (!study.nativeOptics.IsValid || !study.nativeOptics.opticsEnabled

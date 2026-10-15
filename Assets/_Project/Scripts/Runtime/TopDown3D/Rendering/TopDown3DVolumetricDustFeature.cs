@@ -54,9 +54,10 @@ namespace BooterBigArm.TopDown3D
         {
             var cameraData = renderingData.cameraData;
             var camera = cameraData.camera;
+            if (!TopDown3DSceneRenderingOverride.AuthoringEffectsEnabled(camera)) return;
             if (material == null
                 || camera == null
-                || cameraData.cameraType != CameraType.Game
+                || (cameraData.cameraType != CameraType.Game && !TopDown3DSceneRenderingOverride.IsAuthoringCamera(camera))
                 || cameraData.renderType != CameraRenderType.Base)
             {
                 return;
@@ -65,7 +66,8 @@ namespace BooterBigArm.TopDown3D
             var state = default(TopDown3DDustAtmosphere.VolumetricRenderState);
             bool dustEnabled = TopDown3DDustAtmosphere.Active != null
                 && TopDown3DDustAtmosphere.Active.TryGetVolumetricRenderState(camera, out state);
-            var range = camera.GetComponent<BadwaterCameraRange>();
+            var binding = TopDown3DSceneRenderingOverride.BindingForCamera(camera);
+            var range = binding != null ? binding.GetComponent<BadwaterCameraRange>() : camera.GetComponent<BadwaterCameraRange>();
             float hazeDistance = range != null && range.DistanceHazeEnabled ? range.EffectiveDistance : 0f;
             if (!dustEnabled && hazeDistance <= 0f) return;
 

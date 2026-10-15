@@ -1,0 +1,93 @@
+{
+  "files": [
+    {
+      "path": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+      "sha256": "1276d8cc7087848d354e3a9a5fb24431d41cff8ed2b4beafd3a866fbb5a554a8"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampLookAuthoring.cs",
+      "sha256": "fb10190ac876ac03798bdae9a9ae5428b76139efcf0157510996b5299738c633"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampLookAuthoring.cs.meta",
+      "sha256": "7a498ee94dc5b6bb15b40c1dfc25e94e700fec694a7a4bba7135a3abe929b8b3"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampLookCameraPreview.cs",
+      "sha256": "4ded63e72ded1bf8ed598d0b73975a5333ff846ba16a9d041a44d1c5b10eb21c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampLookCameraPreview.cs.meta",
+      "sha256": "e807def9d08decd0debd669583d84fb992966fc73a210b4c9a6c2eed8ad1ed65"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampLookEditorPreview.cs",
+      "sha256": "8e6dff81256830dcbaf49c44593134113841b7bc564c0d5291ca1a5a621ab510"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CampLookEditorPreview.cs.meta",
+      "sha256": "48e1d4c68c75a518676ebd0e09273461506f2693a1bdc18d1f1db7d182819ee4"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DCameraRigEditor.cs",
+      "sha256": "9c28cbcd72bcf3b5f447d0ff6047cd8cfed06ce819bcabf9aea4243ef231a951"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DCampLookEditor.cs",
+      "sha256": "169519e2bdc1ee836234acfa92965bc1c3a4fb06871953c03189f182b8dfd971"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DCampLookEditor.cs.meta",
+      "sha256": "a56194e4511fdb2d86c3aeb7fd678970f27e3a34921038466a756414bb4e44fa"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/PerpetualTwilightSun.cs",
+      "sha256": "1ad9dfd8bc66bd84fca593c105ed3c720413689a06ba3818ebdf61c8db35d6f6"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DAnamorphicStreakFeature.cs",
+      "sha256": "eddab08067f0673dc7f76170ebe21d1569d2da5ef17e634829e4fd04ca4bb2b6"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampLook.cs",
+      "sha256": "e5ff776031eddfee9c25d4af7eac535c8e8530a5600905337a7a2db9cb6edbeb"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampLook.cs.meta",
+      "sha256": "a53b9472feab27397017317267ee5beea6f96beaa8d27fd50668a4b82594f891"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DCampOpticsStack.cs",
+      "sha256": "e365766bd1825effa91e3ae512188df1888d009e98f71b492fe4f6375128f3be"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DRoundLensFlareFeature.cs",
+      "sha256": "80125331cf307988016d40921abcd68cc97a39f55d81f41d3c4f1135c4342de0"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSceneRenderingOverride.cs",
+      "sha256": "74908a65b58757a34552239ae7f8d951ce08d80747621fa579d1dd4226aa0038"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DTiltShiftFeature.cs",
+      "sha256": "2f3e7d6b9ae128de491b456b13e941630f4f6269708bf3108066463b2c7882c9"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DVolumetricDustFeature.cs",
+      "sha256": "e5b1ea85916b7125b1c6641ef57d659c546fb7d101f958ead5fee49f1c7f7cab"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/CampLookEditorPreviewTests.cs",
+      "sha256": "0c89e6c905b8ccddfe51da0bec29387ef3db19d3e8da469a0124631710d9117f"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/CampLookEditorPreviewTests.cs.meta",
+      "sha256": "adaa93e139218f80809824560db64ef8602d87e0645ad1e475b00a7bf2641fd0"
+    }
+  ],
+  "testsPassed": 72,
+  "finalPreviewChecksPassed": 4,
+  "playModeEntered": false,
+  "foregroundActivated": false,
+  "liveEditorRefreshConfirmed": false
+}

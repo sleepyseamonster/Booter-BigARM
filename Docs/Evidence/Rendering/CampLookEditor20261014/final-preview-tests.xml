@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="4" result="Passed" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-15 02:45:07Z" end-time="2026-10-15 02:45:13Z" duration="6.9080867">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="1511" result="Passed" start-time="2026-10-15 02:45:07Z" end-time="2026-10-15 02:45:13Z" duration="6.908087" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="2794" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/CampOptics20261014-01/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="1511" result="Passed" start-time="2026-10-15 02:45:07Z" end-time="2026-10-15 02:45:13Z" duration="6.872478" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="35560" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="2795" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="1511" result="Passed" start-time="2026-10-15 02:45:07Z" end-time="2026-10-15 02:45:13Z" duration="6.857063" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="2796" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="1511" result="Passed" start-time="2026-10-15 02:45:07Z" end-time="2026-10-15 02:45:13Z" duration="6.834728" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="1524" name="CampLookEditorPreviewTests" fullname="BooterBigArm.Tests.CampLookEditorPreviewTests" classname="BooterBigArm.Tests.CampLookEditorPreviewTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-15 02:45:07Z" end-time="2026-10-15 02:45:13Z" duration="6.768818" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="1525" name="FrozenPreviewUsesOwnedSkyAndRestoresBorrowedCameraState" fullname="BooterBigArm.Tests.CampLookEditorPreviewTests.FrozenPreviewUsesOwnedSkyAndRestoresBorrowedCameraState" methodname="FrozenPreviewUsesOwnedSkyAndRestoresBorrowedCameraState" classname="BooterBigArm.Tests.CampLookEditorPreviewTests" runstate="Runnable" seed="1222124951" result="Passed" start-time="2026-10-15 02:45:07Z" end-time="2026-10-15 02:45:08Z" duration="1.290823" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Sun: OnDidAddComponent)
+]]></output>
+            </test-case>
+            <test-case id="1526" name="PreviewCanDisableOpticsAndReleaseWithoutChangingGameCamera" fullname="BooterBigArm.Tests.CampLookEditorPreviewTests.PreviewCanDisableOpticsAndReleaseWithoutChangingGameCamera" methodname="PreviewCanDisableOpticsAndReleaseWithoutChangingGameCamera" classname="BooterBigArm.Tests.CampLookEditorPreviewTests" runstate="Runnable" seed="394554100" result="Passed" start-time="2026-10-15 02:45:08Z" end-time="2026-10-15 02:45:08Z" duration="0.216629" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Sun: OnDidAddComponent)
+]]></output>
+            </test-case>
+            <test-case id="1528" name="SceneSavingReleasesTransientMaterialAndCameraComponents" fullname="BooterBigArm.Tests.CampLookEditorPreviewTests.SceneSavingReleasesTransientMaterialAndCameraComponents" methodname="SceneSavingReleasesTransientMaterialAndCameraComponents" classname="BooterBigArm.Tests.CampLookEditorPreviewTests" runstate="Runnable" seed="938317901" result="Passed" start-time="2026-10-15 02:45:08Z" end-time="2026-10-15 02:45:13Z" duration="4.766714" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Sun: OnDidAddComponent)
+]]></output>
+            </test-case>
+            <test-case id="1527" name="UnregisteredSceneCameraIsRejectedAndDuplicateLookReleasesPreview" fullname="BooterBigArm.Tests.CampLookEditorPreviewTests.UnregisteredSceneCameraIsRejectedAndDuplicateLookReleasesPreview" methodname="UnregisteredSceneCameraIsRejectedAndDuplicateLookReleasesPreview" classname="BooterBigArm.Tests.CampLookEditorPreviewTests" runstate="Runnable" seed="752649" result="Passed" start-time="2026-10-15 02:45:13Z" end-time="2026-10-15 02:45:13Z" duration="0.405953" asserts="0">
+              <properties>
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[SendMessage cannot be called during Awake, CheckConsistency, or OnValidate (Sun: OnDidAddComponent)
+Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

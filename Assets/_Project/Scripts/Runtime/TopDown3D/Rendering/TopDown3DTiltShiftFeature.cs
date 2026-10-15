@@ -70,6 +70,7 @@ namespace BooterBigArm.TopDown3D
 
         public override void AddRenderPasses(ScriptableRenderer renderer, ref RenderingData renderingData)
         {
+            if (!TopDown3DSceneRenderingOverride.AuthoringEffectsEnabled(renderingData.cameraData.camera)) return;
             var cameraData = renderingData.cameraData;
             var cameraType = cameraData.cameraType;
             var scene = TopDown3DSceneRenderingOverride.RenderingScene(cameraData.camera);

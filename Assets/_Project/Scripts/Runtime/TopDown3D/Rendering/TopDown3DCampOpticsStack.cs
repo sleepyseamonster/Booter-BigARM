@@ -32,7 +32,8 @@ namespace BooterBigArm.TopDown3D
 
         public static bool TryApply(Camera camera)
         {
-            if (camera == null || camera.cameraType != CameraType.Game
+            if (camera == null || (camera.cameraType != CameraType.Game && !TopDown3DSceneRenderingOverride.IsAuthoringCamera(camera))
+                || !TopDown3DSceneRenderingOverride.AuthoringEffectsEnabled(camera)
                 || !TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(camera, out var study)
                 || study.nativeOptics == null || !study.nativeOptics.IsValid)
             {
@@ -81,7 +82,7 @@ namespace BooterBigArm.TopDown3D
             double now = Time.realtimeSinceStartupAsDouble;
             bool profileChanged = state.profile != profile;
             if (profileChanged) { state.nextFocusSearchTime = 0; state.focusTarget = null; state.explicitTarget = null; }
-            var binding = state.camera.GetComponent<TopDown3DSceneRenderingOverride>();
+            var binding = TopDown3DSceneRenderingOverride.BindingForCamera(state.camera);
             var explicitTarget = binding != null ? binding.OpticsFocusTarget : null;
             if (state.explicitTarget != explicitTarget)
             {
@@ -100,7 +101,7 @@ namespace BooterBigArm.TopDown3D
                 // A delayed spawn or replacement is found within half a second. Reused lists
                 // avoid allocating a global search array and also support preview scenes.
                 state.nextFocusSearchTime = now + .5;
-                var scene = state.camera.gameObject.scene;
+                var scene = TopDown3DSceneRenderingOverride.RenderingScene(state.camera);
                 if (scene.IsValid() && scene.isLoaded)
                 {
                     scene.GetRootGameObjects(state.searchRoots);

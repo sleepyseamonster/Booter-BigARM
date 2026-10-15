@@ -10,10 +10,45 @@ namespace BooterBigArm.Editor
     [CanEditMultipleObjects]
     public sealed class TopDown3DCameraRigEditor : UnityEditor.Editor
     {
+        private UnityEditor.Editor campOpticsEditor, campSkyEditor;
+        private bool showCampSky;
+
         public override void OnInspectorGUI()
         {
+            EditorGUI.BeginChangeCheck();
             DrawDefaultInspector();
+            if (EditorGUI.EndChangeCheck() && !Application.isPlaying)
+            {
+                foreach (var rig in targets.OfType<TopDown3DCameraRig>())
+                    if (TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(rig.GetComponent<Camera>(), out _))
+                    {
+                        Undo.RecordObject(rig.transform, "Preview camp camera framing");
+                        rig.SetViewAngles(rig.YawDegrees, rig.PitchDegrees);
+                    }
+                CampLookEditorPreview.Refresh();
+            }
             EditorGUILayout.Space(10f);
+            foreach (var rig in targets.OfType<TopDown3DCameraRig>())
+            {
+                var camera = rig.GetComponent<Camera>();
+                if (!TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(camera, out var profile))
+                {
+                    var binding = camera != null ? camera.GetComponent<TopDown3DSceneRenderingOverride>() : null;
+                    if (binding == null || !binding.isActiveAndEnabled) continue;
+                    if (targets.Length == 1) TopDown3DCampLookEditor.DrawBindingSelection(camera);
+                    EditorGUILayout.HelpBox("Resolve this camera's atmosphere binding before editing its look. Shared renderer controls are hidden while the camp binding is active.", MessageType.Warning);
+                    return;
+                }
+                if (targets.Length != 1)
+                {
+                    EditorGUILayout.HelpBox("Select one camp camera to edit its atmosphere and optics assets.", MessageType.Info);
+                    return;
+                }
+                TopDown3DCampLookEditor.DrawBindingSelection(camera);
+                if (TopDown3DSceneRenderingOverride.TryGetAtmosphereProfile(camera, out profile))
+                    TopDown3DCampLookEditor.DrawProfile(profile, ref campOpticsEditor, ref campSkyEditor, ref showCampSky);
+                return;
+            }
             DrawSharedTiltShiftControls();
             EditorGUILayout.Space(10f);
             DrawSharedAnamorphicStreakControls();
@@ -21,6 +56,12 @@ namespace BooterBigArm.Editor
             DrawSharedRoundLensFlareControls();
             EditorGUILayout.Space(10f);
             DrawSharedSunBloomControls();
+        }
+
+        private void OnDisable()
+        {
+            DestroyImmediate(campOpticsEditor);
+            DestroyImmediate(campSkyEditor);
         }
 
         private static void DrawSharedSunBloomControls()
