@@ -99,6 +99,14 @@ Author direction recorded October 14, 2026:
 - Crude two-way radios exist and were reverse engineered from machine technology.
 - Their construction, power supply, transmission range, availability and behavior in the world's charged atmosphere remain undefined. This establishes a lore item family, not an implemented radio system or a particular crafting tier.
 
+### Ancient Weapons And Reverse-Engineered Machinery
+
+Author direction recorded October 14, 2026:
+
+- Laser swords, laser blasters, rockets and rocket launchers are ancient machine-technology item families.
+- Some machine technology has been reverse engineered into a crude Iron Age amalgamation of robotics, rocket science and advanced engineering. This establishes a present-day engineering tradition without specifying which of these weapon families has a working reproduction.
+- Particular mechanisms, materials, power or propulsion supplies, compatible ammunition, operating performance, availability and recipes remain undefined. Ancient origin does not assign a crafting tier or imply the ability to reproduce ancient composites and other rare materials.
+
 ## Player Character
 
 Booter is a professional desert survivor and metal scrapper.
