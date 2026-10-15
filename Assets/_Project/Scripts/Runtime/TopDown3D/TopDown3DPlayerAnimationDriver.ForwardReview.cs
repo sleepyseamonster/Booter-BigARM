@@ -12,7 +12,7 @@ namespace BooterBigArm.TopDown3D
         private TopDown3DAnimationPlaygroundSession forwardReviewSession;
         private bool forwardReviewConfigured;
         private AnimationMixerPlayable forwardReviewMixer;
-        private readonly AnimationClipPlayable[] forwardReviewClips = new AnimationClipPlayable[4];
+        private readonly AnimationClipPlayable[] forwardReviewClips = new AnimationClipPlayable[6];
         private readonly float[] forwardReviewBaselineWeights = new float[ClipCount];
         private bool forwardReviewOutputApplied;
         public bool LaboratoryForwardReviewConfigured => forwardReviewConfigured;
@@ -61,8 +61,9 @@ namespace BooterBigArm.TopDown3D
         {
             if (!LaboratoryForwardReviewConfigured) return;
             if (mixer.GetInputCount() <= ForwardReviewInputIndex) mixer.SetInputCount(ForwardReviewInputIndex + 1);
-            forwardReviewMixer = AnimationMixerPlayable.Create(playableGraph, 4);
-            for (var i = 0; i < 4; i++)
+            var inputs = laboratoryForwardProfile.MovingGaitCount + 1;
+            forwardReviewMixer = AnimationMixerPlayable.Create(playableGraph, inputs);
+            for (var i = 0; i < inputs; i++)
             {
                 var clip = i == 0 ? laboratoryForwardProfile.locomotion.GetRequiredEntry(TopDown3DLocomotionClipRole.Idle).Clip
                     : laboratoryForwardProfile.gaits[i - 1].sourceClip;
@@ -75,13 +76,13 @@ namespace BooterBigArm.TopDown3D
         }
 
         private AnimationClipPlayable ForwardClip(int role) => LaboratoryForwardReviewConfigured ? forwardReviewClips[role] : clipPlayables[role];
-        private void SetForwardWeights(Vector4 weights)
+        private void SetForwardPoseWeights(AnimationPlaygroundGaitWeights weights)
         {
             if (LaboratoryForwardReviewConfigured)
             {
                 for (var i = 0; i < ClipCount; i++) forwardReviewBaselineWeights[i] = mixer.GetInputWeight(i);
                 for (var i = 0; i < mixer.GetInputCount(); i++) mixer.SetInputWeight(i, i == ForwardReviewInputIndex ? 1 : 0);
-                for (var i = 0; i < 4; i++) forwardReviewMixer.SetInputWeight(i, weights[i]);
+                for (var i = 0; i < forwardReviewMixer.GetInputCount(); i++) forwardReviewMixer.SetInputWeight(i, weights[i]);
                 forwardReviewOutputApplied = true;
             }
             else for (var i = 0; i < mixer.GetInputCount(); i++) mixer.SetInputWeight(i, i < 4 ? weights[i] : 0);

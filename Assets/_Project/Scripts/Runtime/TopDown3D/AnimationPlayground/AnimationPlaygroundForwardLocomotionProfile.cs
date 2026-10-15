@@ -53,6 +53,9 @@ namespace BooterBigArm.TopDown3D
     {
         public int schema = 1;
         public bool qualified;
+        public bool ExpandedReview => schema == 2;
+        public int MovingGaitCount => gaits.Length;
+        public int FastRunIndex => ExpandedReview ? 3 : 2;
         // Independently sealed optional terrain extension. Existing assets and
         // production/null profiles retain their original presentation path.
         public int terrainSchema = 1;
@@ -77,13 +80,14 @@ namespace BooterBigArm.TopDown3D
             out string reason, bool requireQualified = true)
         {
             reason = null;
-            if (schema != 1 || targetModel == null || targetModel != expectedModel || locomotion == null || locomotion != expectedProfile)
+            if (schema != 1 && schema != 2 || targetModel == null || targetModel != expectedModel || locomotion == null || locomotion != expectedProfile)
                 reason = "The forward gait policy must pair with the selected model and twelve-role profile.";
+            else if (ExpandedReview && (qualified || terrainQualified)) reason = "Expanded gaits remain an explicit flat-deck review.";
             else if (requireQualified && !qualified) reason = "Forward locomotion is awaiting pose/contact qualification.";
             else if (!locomotion.TryValidate(out reason)) return false;
             else if (footProjection == null || !footProjection.Validate(targetModel, out reason))
             { reason = reason ?? "Forward locomotion requires its paired foot projection."; return false; }
-            else if (gaits == null || gaits.Length != 3 || significantWeight != .1f
+            else if (gaits == null || gaits.Length != (ExpandedReview ? 5 : 3) || significantWeight != .1f
                 || !float.IsFinite(maximumLift) || maximumLift <= 0 || maximumLift > .08f
                 || !float.IsFinite(maximumLowering) || maximumLowering < 0 || maximumLowering > .03f
                 || !float.IsFinite(enterSpeed) || !float.IsFinite(exitSpeed) || exitSpeed < 0 || enterSpeed <= exitSpeed)
@@ -104,11 +108,13 @@ namespace BooterBigArm.TopDown3D
                 { reason = "Mixed stance distance calibration is invalid."; return false; }
             }
             var previousSpeed = 0f;
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < gaits.Length; i++)
             {
                 var gait = gaits[i];
-                if (gait == null || gait.role != (TopDown3DLocomotionClipRole)(i + 1)
-                    || gait.sourceClip == null || gait.sourceClip != locomotion.GetRequiredEntry(gait.role).Clip
+                var pairedRole = ExpandedReview ? i switch { 0 => 1, 1 => 2, 3 => 3, _ => -1 } : i + 1;
+                if (gait == null || pairedRole >= 0 && (gait.role != (TopDown3DLocomotionClipRole)pairedRole
+                        || gait.sourceClip != locomotion.GetRequiredEntry((TopDown3DLocomotionClipRole)pairedRole).Clip)
+                    || gait.sourceClip == null
                     || !gait.sourceClip.isHumanMotion || !gait.sourceClip.isLooping
                     || !float.IsFinite(gait.nominalSpeed) || gait.nominalSpeed <= previousSpeed
                     || !float.IsFinite(gait.metresPerCycle) || gait.metresPerCycle <= 0
@@ -162,7 +168,7 @@ namespace BooterBigArm.TopDown3D
                     { reason = "Signed height segments must retain bounded linear interpolation."; return false; }
                 }
             }
-            var walk = gaits[0].nominalSpeed; var run = gaits[1].nominalSpeed; var sprint = gaits[2].nominalSpeed;
+            var walk = gaits[0].nominalSpeed; var run = gaits[1].nominalSpeed; var sprint = gaits[^1].nominalSpeed;
             var blendEnd = walkToJogBlendEndSpeed > 0 ? walkToJogBlendEndSpeed : run;
             if (!float.IsFinite(walkToJogBlendEndSpeed) || walkToJogBlendEndSpeed < 0 || blendEnd <= walk || blendEnd > run)
             { reason = "The walk/jog blend must end between walking and nominal jogging speed."; return false; }
@@ -173,13 +179,20 @@ namespace BooterBigArm.TopDown3D
             { reason = "Mixed stance calibration must preserve the measured pure gaits."; return false; }
             var rateSpeeds = new System.Collections.Generic.List<float> { .18f, walk, run, sprint,
                 Mathf.Lerp(walk, run, .1f), Mathf.Lerp(walk, run, .9f), Mathf.Lerp(run, sprint, .1f), Mathf.Lerp(run, sprint, .9f) };
+            if (ExpandedReview)
+                for (var i = 1; i < gaits.Length; i++)
+                {
+                    rateSpeeds.Add(gaits[i].nominalSpeed);
+                    rateSpeeds.Add(Mathf.Lerp(gaits[i - 1].nominalSpeed, gaits[i].nominalSpeed, .1f));
+                    rateSpeeds.Add(Mathf.Lerp(gaits[i - 1].nominalSpeed, gaits[i].nominalSpeed, .9f));
+                }
             rateSpeeds.Add(blendEnd); rateSpeeds.Add(Mathf.Lerp(walk, blendEnd, .1f)); rateSpeeds.Add(Mathf.Lerp(walk, blendEnd, .9f));
             foreach (var point in secondRightDistanceAdjustment) rateSpeeds.Add(point.x);
             foreach (var speed in rateSpeeds)
             {
                 if (speed <= 0) continue;
-                var weights = Weights(speed);
-                for (var i = 0; i < 3; i++)
+                var weights = PoseWeights(speed);
+                for (var i = 0; i < gaits.Length; i++)
                 {
                     if (weights[i + 1] < significantWeight - .00001f) continue;
                     var gait = gaits[i];
@@ -254,6 +267,7 @@ namespace BooterBigArm.TopDown3D
 
         public Vector4 Weights(float speed)
         {
+            if (ExpandedReview) throw new InvalidOperationException("Use six-channel pose weights for the expanded review.");
             var blendEnd = walkToJogBlendEndSpeed > 0 ? walkToJogBlendEndSpeed : gaits[1].nominalSpeed;
             var lowerBand = speed <= gaits[1].nominalSpeed;
             TopDown3DAnimationMath.CalculateGaitWeights(lowerBand ? Mathf.Min(speed, blendEnd) : speed,
@@ -263,8 +277,36 @@ namespace BooterBigArm.TopDown3D
             return new Vector4(1 - travel, walk * travel, run * travel, sprint * travel);
         }
 
+        public AnimationPlaygroundGaitWeights PoseWeights(float speed)
+        {
+            if (!ExpandedReview) return new AnimationPlaygroundGaitWeights(Weights(speed));
+            var result = new AnimationPlaygroundGaitWeights();
+            var travel = Mathf.Clamp01(speed / gaits[0].nominalSpeed);
+            result[0] = 1 - travel;
+            var blendEnd = walkToJogBlendEndSpeed > 0 ? walkToJogBlendEndSpeed : gaits[1].nominalSpeed;
+            if (speed <= gaits[1].nominalSpeed)
+            {
+                var jog = Mathf.InverseLerp(gaits[0].nominalSpeed, blendEnd, speed);
+                result[1] = (1 - jog) * travel; result[2] = jog * travel;
+            }
+            else
+            {
+                var upper = 2;
+                while (upper < gaits.Length - 1 && speed > gaits[upper].nominalSpeed) upper++;
+                var blend = Mathf.InverseLerp(gaits[upper - 1].nominalSpeed, gaits[upper].nominalSpeed, speed);
+                result[upper] = 1 - blend; result[upper + 1] = blend;
+            }
+            return result;
+        }
+
         public double CycleDistance(float speed)
         {
+            if (ExpandedReview)
+            {
+                var weights = PoseWeights(speed); var distance = 0d;
+                for (var i = 0; i < gaits.Length; i++) distance += weights[i + 1] * gaits[i].metresPerCycle;
+                return Math.Max(.01, distance);
+            }
             var w = Weights(speed);
             // Small analog movement shortens the stride by blending idle, retaining
             // native cadence rather than holding a raised foot for several seconds.

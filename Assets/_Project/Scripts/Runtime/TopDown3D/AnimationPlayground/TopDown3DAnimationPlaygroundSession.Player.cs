@@ -52,13 +52,14 @@ namespace BooterBigArm.TopDown3D
             try
             {
                 presentation.ConfigureLaboratory(bindings);
-                if (experimentalForwardReview != null)
+                var review = ExperimentalForwardReview;
+                if (review != null)
                 {
                     var station = Array.Find(stations, value => value != null && value.StationId == "AP02");
-                    presentation.ConfigureLaboratoryForwardReview(experimentalForwardReview, station);
-                    if (Mathf.Abs(experimentalForwardReview.gaits[0].nominalSpeed - bindings.slowWalkSpeed) > .0001f
-                        || Mathf.Abs(experimentalForwardReview.gaits[1].nominalSpeed - bindings.runSpeed) > .0001f
-                        || Mathf.Abs(experimentalForwardReview.gaits[2].nominalSpeed - bindings.sprintSpeed) > .0001f)
+                    presentation.ConfigureLaboratoryForwardReview(review, station);
+                    if (Mathf.Abs(review.gaits[0].nominalSpeed - bindings.slowWalkSpeed) > .0001f
+                        || Mathf.Abs(review.gaits[1].nominalSpeed - bindings.runSpeed) > .0001f
+                        || Mathf.Abs(review.gaits[review.FastRunIndex].nominalSpeed - bindings.sprintSpeed) > .0001f)
                         throw new InvalidOperationException("Experimental gait calibration and laboratory motor speeds disagree.");
                 }
             }
@@ -90,6 +91,9 @@ namespace BooterBigArm.TopDown3D
                 coordinator.Configure(player, presentation, ResetRegistry, returns,
                     () => !Application.isFocused || playerInput.Mode != TopDown3DInputMode.Gameplay);
                 player.ConfigureLaboratorySpeeds(coordinator, bindings.slowWalkSpeed, bindings.runSpeed, bindings.sprintSpeed);
+                if (ExperimentalForwardReview != null && ExperimentalForwardReview.ExpandedReview)
+                    player.ConfigureLaboratoryGamepadGaits(coordinator, ExperimentalForwardReview.gaits[3].nominalSpeed,
+                        ExperimentalForwardReview.gaits[4].nominalSpeed);
                 player.BlockUnqualifiedLaboratoryTraversal(coordinator);
                 if(bindings.crouch!=null)
                 {
@@ -174,7 +178,7 @@ namespace BooterBigArm.TopDown3D
 
         public void ResetSessionForForwardReview()
         {
-            if (!IsLab || !isActiveAndEnabled || !servicesBound || !PreviewReady || experimentalForwardReview == null) return;
+            if (!IsLab || !isActiveAndEnabled || !servicesBound || !PreviewReady || ExperimentalForwardReview == null) return;
             var station = Array.Find(stations, value => value != null && value.StationId == "AP02");
             if (station?.SafeReturn == null || !coordinator.TrySelectResetReturn(station.SafeReturn.position))
             { playerAction.ReportFeedback("The authored gait-deck return is unavailable."); return; }

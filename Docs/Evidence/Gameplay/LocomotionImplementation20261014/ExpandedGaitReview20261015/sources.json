@@ -1,0 +1,148 @@
+{
+  "state": "candidate-tested-code-exactly-installed-on-disk-author-import-pending",
+  "sourceFiles": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardLocomotionProfile.cs",
+      "sha256": "5242a4f88d8fe5680318650b0b93b75e078c565675e7607280c6d8d704f660df"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardPoseEnvelope.cs",
+      "sha256": "944462b238b249421386d3d86ab2cefdd527d1e937a90987cdb2f43866904289"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundBindings.cs",
+      "sha256": "5b3da33c4cd2a64934b101146e4fa99503830b390c0b6b8767b9201cf9633624"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.cs",
+      "sha256": "14f98ff75e295985317037fa322af07b0a0c6d2284c865b7222b93d2f3def3c9"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.Player.cs",
+      "sha256": "42a314a0ace054e5ec692a7377c706adfe0aa07ed11ad438503ad4622437b51c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundGaitWeights.cs",
+      "sha256": "dc3bf2db46eda8afa517241e06aa6a81740e0230ff1bd169ff621facd3848e73"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.ForwardReview.cs",
+      "sha256": "642d3acea25fb0a2a2ec1a9f9753f90922aaf5281f22de2edffe816893d2d4fa"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs",
+      "sha256": "0784b66176ad65189c553f0f061f6be86f1dd5bb1aa94bbb74c9778d982cbc0c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.cs",
+      "sha256": "6fdb364e7d78dc5b6b8f51accd10cec526e256d50a9c44224f12eba11ff242db"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.AnimationPlayground.cs",
+      "sha256": "2ff885ebef246a6ec926bb09e521c8d3a395151e1d8932557ba6620298f1deed"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs",
+      "sha256": "599972496c59b66da03c23bd5871a639d953a12507d41e19bd3875a886862915"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.LaboratoryLocomotion.cs",
+      "sha256": "e9b26e0926ed4aba8a0e87db956ee032d1e6bd9fc896b8dd54564ea9bfa8a23d"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundForwardReviewTests.cs",
+      "sha256": "c608238beae8df8a3883ef5e7760879929e9ae4088a4ecc22d4dc494b55738f8"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundExpandedGaitTests.cs",
+      "sha256": "25649c8a5bfc8343c3d47e2f01878f86647b111e6788c1d93481f2af7985c532"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundGaitWeights.cs.meta",
+      "sha256": "9ea2b9b59f9efe23044439249075c7ef0250c6df01bc275833154befcb3346d9"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundExpandedGaitTests.cs.meta",
+      "sha256": "8df5fae6e1e00b4da6fcdb8cad4fc370e94ac0985929b58efff003cf2c4130c0"
+    },
+    {
+      "path": "Tools/Diagnostics/CampFullSprintAudit.cs",
+      "sha256": "dae17e9c074e17f63fc4ee0eb9836ee9e091311720caa2dbab9da2d9edb84326"
+    },
+    {
+      "path": "Tools/Diagnostics/CampFullSprintPreparation.cs",
+      "sha256": "a949a83e83d791ddb1ea20e5bf623357e3ee154faaa84492ad22fe15bde26c42"
+    },
+    {
+      "path": "Tools/Diagnostics/CampExpandedGaitPreparation.cs",
+      "sha256": "36f9e05b62844d8cbb431af2d9b80a4df260db7e0f204ca2001aceff3125036e"
+    },
+    {
+      "path": "Tools/Diagnostics/CampExpandedGaitInstallation.cs",
+      "sha256": "2eaff456f6df53b4774f0e79954a430132f1ac4847d6df582a0799e5877ab835"
+    },
+    {
+      "path": "Tools/Diagnostics/CampForwardLocomotionQualification.cs",
+      "sha256": "3bcbf20b91da4900e3e714e296eec5f1b79a611019c4f9b47560ad4b089014e9"
+    },
+    {
+      "path": "Tools/Diagnostics/CampLocomotionSoleTracks.cs",
+      "sha256": "88e26d606550abdee5c2e3663e71b9a77414f712909ba5a772c99f7f1b5f0ca0"
+    },
+    {
+      "path": "Tools/Diagnostics/calibrate_forward_gaits.py",
+      "sha256": "f185bec58ef1f3b894539914792ed85642460cd55803056fe157025cd3d947ac"
+    }
+  ],
+  "preservedSources": [
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset",
+      "sha256": "94054051a46b00dafe94805878e7c9cf1c3db7dfc75a78ad8288c603660d9a87"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset.meta",
+      "sha256": "e3a3016b346d7c8ef91d42f03a85d209633484e9e2f8185e814590b3fbe55286"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionClipsStageAlignedCandidate.asset",
+      "sha256": "38acc24cd0b7356d3fef8c01e7ffb098a3baa2947ecd6edf3ad70035443caaef"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionClipsStageAlignedCandidate.asset.meta",
+      "sha256": "462cafc86242373d78db4304d76974f510a4964957e6cfc43605bb5591eb77d3"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim",
+      "sha256": "850c033b50a92b4e96cb08ad08efc09e8062f41d831c54aeb89fc52625b31d97"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim.meta",
+      "sha256": "308dbcc6dd59288a33e26ab7a7a34aa5bf3a713d9e7c4821519d6a93c576653e"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@SprintForwards.fbx",
+      "sha256": "95c6728b2b72ae3803730d722bfc4bc7b7b94b4a13a095306c2de09550793a42"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@SprintForwards.fbx.meta",
+      "sha256": "2d1660ebd20926075fa80abd25a014f5cc108800b76fac72db3db6c23c7d599e"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/TwoCycleSprint.fbx",
+      "sha256": "9f0f7650f92962b82fa25f767b84f3ed32e375dde8c0c8bdd85898b3f8fa9e52"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/TwoCycleSprint.fbx.meta",
+      "sha256": "69d2d964089c71e5483bd066facf818dd23e4ce5d68c2b2c18da31f3c8918bc7"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Locomotion/SprintForwardTravelAlternative.fbx",
+      "sha256": "a09071f70bdb8887f94ce90a49998a6966b13ab13b3f898aa94fd8fb79e40d99"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Locomotion/SprintForwardTravelAlternative.fbx.meta",
+      "sha256": "5edc2342426c4e939645b6ad39b9d9d9cae40c7c58fd257622a4aa31bac39c9f"
+    }
+  ],
+  "currentAuthorImportVerified": false
+}

@@ -32,8 +32,9 @@ namespace BooterBigArm.TopDown3D
             // Unlike a downward probe at a distant point, this detects the front
             // of a short rising ramp. Its distance does not retreat while braking.
             GetWorldCapsule(body.position, 1, out _, out var bottom, out var radius);
-            var distance = Mathf.Min(2, radius + Mathf.Max(0, sprintSpeed * sprintSpeed - animationWalkSpeed * animationWalkSpeed)
-                / (2 * Mathf.Max(.1f, deceleration)) + sprintSpeed * Time.fixedDeltaTime * 2 + .1f);
+            var topSpeed = Mathf.Max(sprintSpeed, laboratoryGamepadSprintSpeed);
+            var distance = Mathf.Min(2, radius + Mathf.Max(0, topSpeed * topSpeed - animationWalkSpeed * animationWalkSpeed)
+                / (2 * Mathf.Max(.1f, deceleration)) + topSpeed * Time.fixedDeltaTime * 2 + .1f);
             var origin = laboratoryGroundPlane.ClosestPointOnPlane(bottom) + normal.normalized * .06f;
             var tangent = TopDown3DSlopeMath.ProjectDirectionOnSlope(direction, normal, maxWalkableSlope);
             var count = Physics.RaycastNonAlloc(origin, tangent.normalized, groundHits, distance,

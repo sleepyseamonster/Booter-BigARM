@@ -12,7 +12,10 @@ SOURCES = (
 )
 
 
-def calibrate(root, align_stance=False, sources=None):
+def calibrate(root, align_stance=False, sources=None, maximum_lift=.07, maximum_lowering=.03, maximum_native_speed=7, regularization=.5):
+    if not (np.isfinite([maximum_lift, maximum_lowering, maximum_native_speed, regularization]).all()
+            and maximum_lift > 0 and maximum_lowering >= 0 and maximum_native_speed > .5 and 0 <= regularization <= 1):
+        raise ValueError("Calibration bounds and regularization must be finite and ordered.")
     reports = []
     selected_sources = SOURCES if sources is None else sources
     for role, name, nominal, seeds, window_seconds in selected_sources:
@@ -52,7 +55,7 @@ def calibrate(root, align_stance=False, sources=None):
                     continue
                 part = xyz[first:stop + 1]
                 correction = floor - minimum[first:stop + 1]
-                if correction.min() < -.03 or correction.max() > .07:
+                if correction.min() < -maximum_lowering or correction.max() > maximum_lift:
                     continue
                 low = part[:, ids, 1].min(axis=1)
                 # The selected foot must be the lower foot throughout its window.
@@ -66,7 +69,7 @@ def calibrate(root, align_stance=False, sources=None):
                         continue
                     p = part[:, vertex][:, [0, 2]]
                     speed = -float(np.dot(ct, p[:, 1] - p[:, 1].mean()) / np.dot(ct, ct))
-                    if not .5 < speed < 7:
+                    if not .5 < speed < maximum_native_speed:
                         continue
                     world = p + np.column_stack((np.zeros(len(times)), times * speed))
                     lateral_excursion = float(np.abs(p[:, 0] - p[0, 0]).max())
@@ -109,10 +112,11 @@ def calibrate(root, align_stance=False, sources=None):
             raise ValueError("The native source map must be strictly increasing.")
         # Regularize exact stance locking toward the native contact-centre map.
         # A rolling sole does not need mathematically zero drift at the cost of
-        # abrupt source-rate changes. Keep half the measured correction first.
+        # abrupt source-rate changes. Default to half the measured correction;
+        # the complete sprint uses a smaller fit to retain its pure-rate budget.
         baseline_u = np.arange(5) * .25
         baseline_native = np.r_[contacts, contacts[0] + 1]
-        knots = [(u, float(.5 * native + .5 * np.interp(u, baseline_u, baseline_native))) for u, native in knots]
+        knots = [(u, float(regularization * native + (1-regularization) * np.interp(u, baseline_u, baseline_native))) for u, native in knots]
         clean = [knots[0]]
         for knot in knots[1:]:
             if knot[0] - clean[-1][0] < 1e-6 or knot[1] - clean[-1][1] < 1e-6:
@@ -157,7 +161,7 @@ def calibrate(root, align_stance=False, sources=None):
             p["medianDriftSpeed"] = float(np.median(travel / np.diff(times)))
             p["peakDriftSpeed"] = float(np.max(travel / np.diff(times)))
         reports.append(dict(role=role, source=data["path"], nominalSpeed=nominal, duration=period,
-            regularization=.5,
+            regularization=regularization,
             nativeContactSpeed=speed, metresPerCycle=distance, nativeContacts=contacts.tolist(),
             sourceTimeMap=knots, pureMinimumEffectiveRate=float(native_rates.min()),
             pureMaximumEffectiveRate=float(native_rates.max()),
@@ -165,7 +169,7 @@ def calibrate(root, align_stance=False, sources=None):
             correction=[[float(at / period), float(value)] for at, value in zip(original_t, signed)],
             maximumLift=float(signed.max()), maximumLowering=float(-signed.min())))
     return dict(state="bounded-native-family-calibration-proposal", nativeSourcesUnchanged=True, stanceStageAligned=align_stance,
-        budgets=dict(stancePatchExcursion=.02, windowGroundGap=.008, lowering=.03, lift=.07,
+        budgets=dict(stancePatchExcursion=.02, windowGroundGap=.008, lowering=maximum_lowering, lift=maximum_lift,
                      blendSegmentRateMinimum=.65, blendSegmentRateMaximum=1.35,
                      significantContributorWeight=.1, referenceSpeeds=[s[2] for s in selected_sources]),
         limitations="Contact-window proposals and native-only drift; semantic mapping/blends/equipment still require qualification.",
@@ -177,13 +181,20 @@ def main():
     parser.add_argument("directory", type=Path)
     parser.add_argument("output", type=Path)
     parser.add_argument("--align-stance", action="store_true")
-    parser.add_argument("--sprint-arm-drive", action="store_true",
+    selection = parser.add_mutually_exclusive_group()
+    selection.add_argument("--sprint-arm-drive", action="store_true",
                         help="Calibrate the authored SprintArmDriveReview source at the requested 5m/s review pace.")
+    selection.add_argument("--full-sprint", action="store_true",
+                        help="Calibrate the complete Standard sprint derivative at 6m/s with 50ms stance windows.")
     args = parser.parse_args()
     if args.output.exists():
         raise FileExistsError("Preserve existing proposals.")
     sources = (("Sprint", "SprintArmDriveReview", 5.0, (.18919, .43243, .67568, .91892), 8 / 120),) if args.sprint_arm_drive else None
-    report = calibrate(args.directory, args.align_stance, sources)
+    if args.full_sprint:
+        sources = (("Sprint", "FullSprintStandardReview", 6.0, (.078, .333, .578, .833), 6 / 120),)
+    report = calibrate(args.directory, args.align_stance, sources,
+                       maximum_lift=.08 if args.full_sprint else .07,
+                       regularization=.08 if args.full_sprint else .5)
     args.output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps([{k: g[k] for k in ("role", "nativeContactSpeed", "metresPerCycle", "nativeContacts", "maximumLift", "maximumLowering")} |
                       dict(maximumExcursion=max(p["familySpeedExcursion"] for p in g["patches"]))

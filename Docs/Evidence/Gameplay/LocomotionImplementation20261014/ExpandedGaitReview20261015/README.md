@@ -1,0 +1,27 @@
+# Expanded gamepad gait comparison
+
+October 15, 2026. Implements the [expanded gait review](../../../../Design/Gameplay/CAMP_LOOP_EXPANDED_GAIT_REVIEW_2026-10-15.md) following the author's acceptance of jog/run and request to retain the former sprint as fast run. This is an unqualified AP02 flat-deck comparison; hands-on sprint acceptance remains pending.
+
+Author installation status: tested public code is copied into the checkout. The private review selection is sealed and remains unbound while the author Editor is blocked by its externally modified scene dialog. Choose **Ignore** to retain unsaved scene edits; then run the guarded import and verify loaded dependencies. The scene has not been saved or reloaded by this work.
+
+The stick blends idle → walk → jog → run → fast run at 0/1.4/3/4/5m/s. Existing RB selects the new 6m/s sprint. The accepted fast run and original three-gait policy are unchanged. Keyboard stage selection is deferred; existing keyboard speed controls remain. A schema-2 private profile supplies five moving clips plus idle through the existing driver's single output and distance clock. A private binding override selects it without rewriting the scene. Explicit fixture/authoring selections retain precedence, and required missing private data fails visibly.
+
+## Source audit and calibration
+
+All six inspected imported/derived motions contain complete loops or complete baked takes. The previous top gait is the MCU run derivative, rather than an incomplete sprint. The Mixamo sprint sources are complete, but their retargeted lift/contact results exclude them from this comparison. The selected Standard sprint retains the full source cycle, repeated twice for the established four-contact clock, with phase alignment and horizontal root translation removed. The source imports and metadata remain unchanged.
+
+The selected source has approximately 0.914m hand travel relative to hips, compared with 0.743m in the accepted fast run. Its measured native contact speed is 4.8899m/s and four-contact distance 5.2159m. Contact-centre-biased fitting at 6m/s gives pure source rates 1.1355–1.3432, within the existing 0.65–1.35 ceiling. Grounding remains within the existing +80/−30mm limits. The stronger half-stance fitting proposal exceeded the pure source-rate ceiling and was discarded. [Calibration control](calibration-control.json) reproduces the selected proposal through the new `--full-sprint` option and proves unchanged default-tool results against HEAD.
+
+## Verification and limits
+
+The isolated candidate passes **78 focused EditMode checks**: 8 expanded-gait, 42 forward-presentation/clock/envelope, 3 gait, 5 animation-input, 10 player-integration and 10 motor checks. The expanded suite covers 601 speed samples, dense significant-contributor rates, exact distance inversion, four-contact counting, six-channel stop/resume, actual graph and action capture, private override precedence, RB and analog input, mouse-look/device independence, menu neutralization, device removal and keyboard fallback. Its equipped-body screen evaluates 2,925 poses at one/two/four bone skin qualities, including cloak and rigid carried kit. It requires one output and the existing floor/1.82m height bounds.
+
+The additional actual-driver contact screen covers 13 speeds from 3 to 6m/s and 129 cycle poses per case, plus persistent contact windows. Maximum equipped skinned height is approximately 1.8141m and floor penetration below 0.001mm. All four selected windows have continuous support at these sampled speeds. At 6m/s, persistent-point excursion reaches approximately 30.05mm and cumulative travel 67.54mm; at 5m/s the accepted fast run retains approximately 16.90/31.23mm. These exceed the approximately 20mm contact-drift qualification aim. They remain visible limitations of the review, not passing full qualification results. Terrain, steering, low-analog support, moving action handoffs and general locomotion acceptance remain open. Both qualification flags remain false; baseline presentation remains outside AP02.
+
+The marked candidate predates the author's resource-study addition. Its session dependency uses an exact event-only declaration matching the current author's partial class, without running resource gameplay. That adapter is excluded from the handoff. Current-author compilation and exact installed-source checks are separate gates from the isolated test proof. No agent-driven Play Mode, gameplay input, physics simulation, smoke test, scene save/reload, foreground activation, package change or production cutover occurs.
+
+## Recovery
+
+The complete local checkpoint is `D:/BooterBigArmPrivateAssets/Mixamo/2026-10-13/ImportCheckpoints/ExpandedGaitReview20261015`. It retains previous/resulting task code, the previous binding pair, all three resulting private pairs, calibration recipes and raw source/contact tracks. Original source hashes and the accepted comparison are sealed separately. Public receipts contain only scalar results, provenance and hashes; raw pose/mesh traces and animation payloads remain private.
+
+`CampExpandedGaitInstallation.Install` requires stable author Edit Mode, matching tested public code and prior private bytes, unchanged accepted sources, and the already open Camp Loop scene. It verifies loaded dependencies and unchanged scene bytes/dirty state after import. Failure restores the previous binding pair and retains new assets unbound with their GUIDs for recovery.

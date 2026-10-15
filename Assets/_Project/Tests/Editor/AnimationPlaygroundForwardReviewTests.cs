@@ -210,7 +210,7 @@ namespace BooterBigArm.Tests
         }
 
         // Authored-scene wiring, explicit support and graph poses only. No physics simulation or Play Mode.
-        private sealed class Fixture : IDisposable
+        internal sealed class Fixture : IDisposable
         {
             public readonly Scene Scene;
             public readonly TopDown3DAnimationPlaygroundSession Session;
@@ -224,6 +224,8 @@ namespace BooterBigArm.Tests
             public readonly AnimationMixerPlayable Mixer;
             private readonly SkinWeights quality = QualitySettings.skinWeights;
             public Fixture(bool initialize = true, SkinWeights influence = SkinWeights.FourBones)
+                : this(initialize, influence, null) { }
+            public Fixture(bool initialize, SkinWeights influence, string profilePath)
             {
                 try
                 {
@@ -233,7 +235,7 @@ namespace BooterBigArm.Tests
                 Station = Session.Stations.Single(s => s.StationId == "AP02");
                 Actor = Session.Player.gameObject; Actor.SetActive(false); Motor = Session.Player; Player = Actor.GetComponent<Rigidbody>();
                 Actor.transform.position = Station.transform.position + Vector3.up * 2; Player.position = Actor.transform.position;
-                Policy = Object.Instantiate(AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(PolicyPath));
+                Policy = Object.Instantiate(AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(profilePath ?? PolicyPath));
                 Driver = Actor.GetComponent<TopDown3DPlayerAnimationDriver>();
                 Driver.ConfigureLaboratory(Session.Bindings);
                 if (initialize)

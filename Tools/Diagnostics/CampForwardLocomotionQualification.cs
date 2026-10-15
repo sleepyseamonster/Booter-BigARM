@@ -40,6 +40,10 @@ public static class CampForwardLocomotionQualification
     public static string RunTunedReview() => RunMatrix(SkinWeights.FourBones, true, "GaitPaceTuningContact20261015", false,
         "LocomotionImplementation20261014/GaitPaceTuning20261015/combined-calibration.json",
         new[] { .2f, .7f, 1.4f, 1.48f, 1.6f, 1.8f, 2f, 2.12f, 2.2f, 2.48f, 2.9f, 3.6f, 4.3f, 4.72f, 5f });
+    public static string RunExpandedReview() => RunMatrix(SkinWeights.FourBones, true, "FullSprintContact20261015", false,
+        "LocomotionImplementation20261014/FullSprintPreparation20261015/combined-calibration.json",
+        new[] { 3f, 3.25f, 3.5f, 3.75f, 4f, 4.25f, 4.5f, 4.75f, 5f, 5.25f, 5.5f, 5.75f, 6f },
+        "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset");
 
     public static string BenchmarkClock()
     {
@@ -70,7 +74,7 @@ public static class CampForwardLocomotionQualification
     }
 
     private static string RunMatrix(SkinWeights skinWeights, bool normalizeEquipment, string name, bool dense = false,
-        string selectedRecipe = null, float[] selectedSpeeds = null)
+        string selectedRecipe = null, float[] selectedSpeeds = null, string selectedProfile = null)
     {
         var root = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
         if (!Application.isBatchMode || EditorApplication.isPlayingOrWillChangePlaymode
@@ -81,7 +85,7 @@ public static class CampForwardLocomotionQualification
         if (Directory.Exists(directory)) throw new IOException("Preserve prior pose evidence.");
         Directory.CreateDirectory(directory);
         var policy = AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(
-            "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset");
+            selectedProfile ?? "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset");
         if (!policy.Validate(policy.targetModel, policy.locomotion, out var error, false)) throw new InvalidDataException(error);
         var recipePath = selectedRecipe ?? "LocomotionImplementation20261014/native-calibration-v6.json";
         var recipe = JObject.Parse(File.ReadAllText(Path.Combine(root, recipePath)));
@@ -99,6 +103,13 @@ public static class CampForwardLocomotionQualification
             EditorUtility.CopySerialized(TopDown3DAnimationPlaygroundSession.Find(scene).Player.GetComponent<TopDown3DPlayerAnimationDriver>(), driver);
             driver.ConfigureLaboratory(bindings); Call(driver, "Awake"); actor.SetActive(true);
             typeof(TopDown3DPlayerAnimationDriver).GetField("laboratoryForwardProfile", Flags).SetValue(driver, policy);
+            if (policy.ExpandedReview)
+            {
+                // Pose-only fixture. Authored AP02 ownership/support is exercised
+                // separately by the real-scene six-channel EditMode tests.
+                typeof(TopDown3DPlayerAnimationDriver).GetField("forwardReviewConfigured", Flags).SetValue(driver, true);
+                Call(driver, "InitializeForwardReviewInputs");
+            }
             var render = (Action<float, double, double>)Delegate.CreateDelegate(typeof(Action<float, double, double>), driver,
                 typeof(TopDown3DPlayerAnimationDriver).GetMethod("PresentForwardLocomotionPose", Flags));
             render(0, 0, 0);
@@ -153,11 +164,11 @@ public static class CampForwardLocomotionQualification
                     row.maximumLift = Mathf.Max(row.maximumLift, driver.LaboratoryForwardLift);
                     row.minimumLift = Mathf.Min(row.minimumLift, driver.LaboratoryForwardLift); row.samples++;
                 }
-                var weights = policy.Weights(speed);
+                var weights = policy.PoseWeights(speed);
                 for (var plant = 0; plant < 4; plant++)
                 {
                     var from = double.NegativeInfinity; var to = double.PositiveInfinity;
-                    for (var gait = 0; gait < 3; gait++)
+                    for (var gait = 0; gait < policy.MovingGaitCount; gait++)
                     {
                         if (weights[gait + 1] < .09999f) continue;
                         var patch = recipe["gaits"][gait]["patches"][plant]; var entry = policy.gaits[gait];

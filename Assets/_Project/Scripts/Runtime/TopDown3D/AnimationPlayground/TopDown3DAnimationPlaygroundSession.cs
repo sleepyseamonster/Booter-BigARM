@@ -18,14 +18,16 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private GameObject palettePrefab;
         [SerializeField] private AnimationPlaygroundForwardLocomotionProfile experimentalForwardReview;
         [SerializeField] private bool experimentalForwardReviewRequired;
-        public AnimationPlaygroundForwardLocomotionProfile ExperimentalForwardReview => experimentalForwardReview;
-        public string ForwardReviewStatus => experimentalForwardReview == null
+        private bool forwardReviewExplicit;
+        public AnimationPlaygroundForwardLocomotionProfile ExperimentalForwardReview => forwardReviewExplicit ? experimentalForwardReview
+            : bindings != null && bindings.forwardReviewOverride != null ? bindings.forwardReviewOverride : experimentalForwardReview;
+        public string ForwardReviewStatus => ExperimentalForwardReview == null
             ? experimentalForwardReviewRequired ? "Experimental forward gait review unavailable: restore its private profile." : null : presentation?.LaboratoryForwardReviewStatus
             ?? "Experimental forward gait review — awaiting player startup.";
         public void ConfigureForwardReview(AnimationPlaygroundForwardLocomotionProfile value)
         {
             if (servicesBound) throw new InvalidOperationException("Author forward review before startup.");
-            experimentalForwardReview = value;
+            experimentalForwardReview = value; forwardReviewExplicit = true;
             experimentalForwardReviewRequired = value != null;
         }
         public TopDown3DAnimationPlaygroundBindings Bindings => bindings;
@@ -59,7 +61,9 @@ namespace BooterBigArm.TopDown3D
             if (!IsLab) return Fail("Animation playground configuration is only valid in Camp Loop Testing.");
             if (bindings == null) return Fail("Private animation binding set is absent. Restore the playground dependencies first.");
             if (!bindings.ValidateImport(out var reason)) return Fail(reason);
-            if (experimentalForwardReviewRequired && experimentalForwardReview == null)
+            if (!forwardReviewExplicit && bindings.forwardReviewOverrideRequired && bindings.forwardReviewOverride == null)
+                return Fail("Restore the private expanded forward review profile.");
+            if (experimentalForwardReviewRequired && ExperimentalForwardReview == null)
                 return Fail("The experimental forward review profile is missing. Restore the sealed forward draft dependencies.");
             SetReadiness(AnimationPlaygroundReadiness.DependenciesChecked, null);
             return true;

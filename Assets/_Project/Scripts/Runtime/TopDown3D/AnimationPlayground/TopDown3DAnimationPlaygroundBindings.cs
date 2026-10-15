@@ -25,6 +25,8 @@ namespace BooterBigArm.TopDown3D
         public Avatar sourceAvatar, targetAvatar;
         public TopDown3DLocomotionClipProfile locomotion;
         public AnimationPlaygroundForwardLocomotionProfile forwardLocomotion;
+        public AnimationPlaygroundForwardLocomotionProfile forwardReviewOverride;
+        public bool forwardReviewOverrideRequired;
         public AnimationPlaygroundCrouchProfile crouch;
         public AnimationPlaygroundFootProjection footProjection;
         public AnimationPlaygroundAirborneProfile airborne;

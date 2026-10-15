@@ -1,0 +1,331 @@
+{
+  "state": "sealed-author-private-import-pending-dialog",
+  "archive": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-13\\ImportCheckpoints\\ExpandedGaitReview20261015",
+  "manifestSha256": "5a0a30d66a4724c1ad8fcb3723fca74288f3e0b70993109009fa73239d9d046c",
+  "payloadCount": 64,
+  "payloadBytes": 13459968,
+  "payloads": [
+    {
+      "path": "After/Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintStandardReview.anim",
+      "sha256": "db3fa37dcec840741ce332ff7fd7ff3273a098ca6a89020187e5ccc5be2a97d9",
+      "bytes": 3865615
+    },
+    {
+      "path": "After/Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintStandardReview.anim.meta",
+      "sha256": "e60bca4178534e3f0b4fc60f81c6845c67f6822b43f8e8b3ec7036402c7e7bfe",
+      "bytes": 188
+    },
+    {
+      "path": "After/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardLocomotionProfile.cs",
+      "sha256": "5242a4f88d8fe5680318650b0b93b75e078c565675e7607280c6d8d704f660df",
+      "bytes": 19566
+    },
+    {
+      "path": "After/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardPoseEnvelope.cs",
+      "sha256": "944462b238b249421386d3d86ab2cefdd527d1e937a90987cdb2f43866904289",
+      "bytes": 3403
+    },
+    {
+      "path": "After/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundGaitWeights.cs",
+      "sha256": "dc3bf2db46eda8afa517241e06aa6a81740e0230ff1bd169ff621facd3848e73",
+      "bytes": 1276
+    },
+    {
+      "path": "After/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundGaitWeights.cs.meta",
+      "sha256": "9ea2b9b59f9efe23044439249075c7ef0250c6df01bc275833154befcb3346d9",
+      "bytes": 59
+    },
+    {
+      "path": "After/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundBindings.cs",
+      "sha256": "5b3da33c4cd2a64934b101146e4fa99503830b390c0b6b8767b9201cf9633624",
+      "bytes": 6257
+    },
+    {
+      "path": "After/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.cs",
+      "sha256": "14f98ff75e295985317037fa322af07b0a0c6d2284c865b7222b93d2f3def3c9",
+      "bytes": 7280
+    },
+    {
+      "path": "After/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.Player.cs",
+      "sha256": "42a314a0ace054e5ec692a7377c706adfe0aa07ed11ad438503ad4622437b51c",
+      "bytes": 15516
+    },
+    {
+      "path": "After/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.cs",
+      "sha256": "6fdb364e7d78dc5b6b8f51accd10cec526e256d50a9c44224f12eba11ff242db",
+      "bytes": 31482
+    },
+    {
+      "path": "After/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.ForwardReview.cs",
+      "sha256": "642d3acea25fb0a2a2ec1a9f9753f90922aaf5281f22de2edffe816893d2d4fa",
+      "bytes": 6461
+    },
+    {
+      "path": "After/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs",
+      "sha256": "0784b66176ad65189c553f0f061f6be86f1dd5bb1aa94bbb74c9778d982cbc0c",
+      "bytes": 16012
+    },
+    {
+      "path": "After/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.AnimationPlayground.cs",
+      "sha256": "2ff885ebef246a6ec926bb09e521c8d3a395151e1d8932557ba6620298f1deed",
+      "bytes": 22893
+    },
+    {
+      "path": "After/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs",
+      "sha256": "599972496c59b66da03c23bd5871a639d953a12507d41e19bd3875a886862915",
+      "bytes": 63971
+    },
+    {
+      "path": "After/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.LaboratoryLocomotion.cs",
+      "sha256": "e9b26e0926ed4aba8a0e87db956ee032d1e6bd9fc896b8dd54564ea9bfa8a23d",
+      "bytes": 7355
+    },
+    {
+      "path": "After/Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset",
+      "sha256": "6ebbd3828a30f5de1936819963fe5177e7ca93c820df545cfd798a03f7e7fc31",
+      "bytes": 198847
+    },
+    {
+      "path": "After/Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset.meta",
+      "sha256": "90f199a6130d2e73c8f24d24d3a6918629820f6a6a29804416e591154549ab0e",
+      "bytes": 189
+    },
+    {
+      "path": "After/Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset",
+      "sha256": "686aca8d1116b07838c2fd383e6432dead3d6b4d40ca87481ce39da101d749c1",
+      "bytes": 17397
+    },
+    {
+      "path": "After/Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset.meta",
+      "sha256": "017c05259c6ce9146eb61ed6e901e6e495f59e634c27d07576e171f97af77612",
+      "bytes": 189
+    },
+    {
+      "path": "After/Assets/_Project/Tests/Editor/AnimationPlaygroundExpandedGaitTests.cs",
+      "sha256": "25649c8a5bfc8343c3d47e2f01878f86647b111e6788c1d93481f2af7985c532",
+      "bytes": 13505
+    },
+    {
+      "path": "After/Assets/_Project/Tests/Editor/AnimationPlaygroundExpandedGaitTests.cs.meta",
+      "sha256": "8df5fae6e1e00b4da6fcdb8cad4fc370e94ac0985929b58efff003cf2c4130c0",
+      "bytes": 59
+    },
+    {
+      "path": "After/Assets/_Project/Tests/Editor/AnimationPlaygroundForwardReviewTests.cs",
+      "sha256": "c608238beae8df8a3883ef5e7760879929e9ae4088a4ecc22d4dc494b55738f8",
+      "bytes": 17868
+    },
+    {
+      "path": "Before/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardLocomotionProfile.cs",
+      "sha256": "3d581c5abc0d7119c77f50e5c6113ea1b4fe393e6f0b2a534f22ea53b8551ea5",
+      "bytes": 17148
+    },
+    {
+      "path": "Before/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardPoseEnvelope.cs",
+      "sha256": "1b7d33fdb46e64cd2d2844c3ffed666154eebbba07d3426df3a846dabc1ba0af",
+      "bytes": 2916
+    },
+    {
+      "path": "Before/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundBindings.cs",
+      "sha256": "ac2affd9036c7b86e51bda1372cc3fd78481198afc6154a6f152c804874ebfd9",
+      "bytes": 6124
+    },
+    {
+      "path": "Before/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.cs",
+      "sha256": "6e80d1e82ebc130f4ab03754a2679d0c813f61ccafb47820dec8ec1363a47f8b",
+      "bytes": 6839
+    },
+    {
+      "path": "Before/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.Player.cs",
+      "sha256": "b2734c8c0936ecba42c435a7163afd02c904befbfa40710f596295b11ee06f24",
+      "bytes": 15243
+    },
+    {
+      "path": "Before/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.cs",
+      "sha256": "e15dc9aba1e06b0ecd4a15f0dc7c90f511085b64fc35607f9577bbc71167df90",
+      "bytes": 30784
+    },
+    {
+      "path": "Before/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.ForwardReview.cs",
+      "sha256": "83ecddc681b18e4df124e38d1eabd625e8a6572c1a2a7c4250c8b972fdcf8625",
+      "bytes": 6320
+    },
+    {
+      "path": "Before/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs",
+      "sha256": "cfe42c93c1ab45d0d8a73ac25d139b2cbc7d9ec266387a3a7ca1c89d84e16989",
+      "bytes": 15757
+    },
+    {
+      "path": "Before/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.AnimationPlayground.cs",
+      "sha256": "4d65ebd62e3d5da5c44ebc1051efff84c42dbfdb1e1ab3db508defa1e2b85832",
+      "bytes": 21848
+    },
+    {
+      "path": "Before/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs",
+      "sha256": "837b6b695febb42ad24eac77c5f53a1b7ec02fe7e456cec2737442cc7452433d",
+      "bytes": 63971
+    },
+    {
+      "path": "Before/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.LaboratoryLocomotion.cs",
+      "sha256": "0290001b639e5f4dc22b8a05e0a2918bab9c543af2a5e6a7caa00ba8e12c2277",
+      "bytes": 7283
+    },
+    {
+      "path": "Before/Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset",
+      "sha256": "1e0c50adcb67bcaa5ccd373e09d815f0aefeb69ab5839a70df02bd173af28cdb",
+      "bytes": 17269
+    },
+    {
+      "path": "Before/Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset.meta",
+      "sha256": "017c05259c6ce9146eb61ed6e901e6e495f59e634c27d07576e171f97af77612",
+      "bytes": 189
+    },
+    {
+      "path": "Before/Assets/_Project/Tests/Editor/AnimationPlaygroundForwardReviewTests.cs",
+      "sha256": "bb52ae24d35c2e5c7ec70e40bfbfcc18dff961036eb5cab0c4af510573c8df8b",
+      "bytes": 17709
+    },
+    {
+      "path": "expanded-regression-AnimationPlaygroundExpandedGaitTests.json",
+      "sha256": "385c6c0cad746a4715dc461ece2e5cb228e1fa016f25baa2e4ed3c3fa7be4834",
+      "bytes": 3233
+    },
+    {
+      "path": "expanded-regression-AnimationPlaygroundForward.json",
+      "sha256": "5a9fe363aef28c1901594a043b90de7e0490e6cb018dd35e46df6a8bfb38011e",
+      "bytes": 13189
+    },
+    {
+      "path": "expanded-regression-AnimationPlaygroundGaitTests.json",
+      "sha256": "a933279726cb91d15d51f2dc081b8f013696972661f0e508e1722c836d476b7d",
+      "bytes": 1653
+    },
+    {
+      "path": "expanded-regression-AnimationPlaygroundInputTests.json",
+      "sha256": "0ced65bc3091c5234863347f7482c7c287be298f98857e486667b78e2441b905",
+      "bytes": 2247
+    },
+    {
+      "path": "expanded-regression-AnimationPlaygroundMotorTests.json",
+      "sha256": "344dced11db4d6e1a417621ed857434280e039eb337e4f56e583b63481ab5c49",
+      "bytes": 3635
+    },
+    {
+      "path": "expanded-regression-AnimationPlaygroundPlayerIntegrationTests.json",
+      "sha256": "325bd8e864ba60b26e618c7f48ecb33e381cf7d777ac4ad9c104f148e107982d",
+      "bytes": 3821
+    },
+    {
+      "path": "manifest.json",
+      "sha256": "5a0a30d66a4724c1ad8fcb3723fca74288f3e0b70993109009fa73239d9d046c",
+      "bytes": 11198
+    },
+    {
+      "path": "Raw/FullSprintAudit20261015/m@RunForwards.json",
+      "sha256": "6d476de4b9c55c7c1d24f832a6fe5f12611f0161e706086f335c268c683c720a",
+      "bytes": 126639
+    },
+    {
+      "path": "Raw/FullSprintAudit20261015/m@SprintForwards.json",
+      "sha256": "67b68e7da0d172de58e960de96118915f5c035a49cb11423ee5dece5c6aeaf28",
+      "bytes": 112645
+    },
+    {
+      "path": "Raw/FullSprintAudit20261015/MCU_am_Loco_Run_Fwd_NoRM.json",
+      "sha256": "c5571af5effba08cc072626201ae275247ec04fe1545fe4479420e26c6585a8a",
+      "bytes": 258048
+    },
+    {
+      "path": "Raw/FullSprintAudit20261015/SprintArmDriveReview.json",
+      "sha256": "4c9b9f9be063108bb441bb6312b06a1246b8aead1e03ed23f36c4d6082665d35",
+      "bytes": 258117
+    },
+    {
+      "path": "Raw/FullSprintAudit20261015/SprintForwardTravelAlternative.json",
+      "sha256": "f3b4918529026545e536b0f1ea5e05b15df49320f7a85bfeea93ddb53fdab306",
+      "bytes": 112517
+    },
+    {
+      "path": "Raw/FullSprintAudit20261015/summary.json",
+      "sha256": "1145b357ce94a438726248472b9aef7e483412090b9d2faca221f6ad9e94b46c",
+      "bytes": 11178
+    },
+    {
+      "path": "Raw/FullSprintAudit20261015/TwoCycleSprint.json",
+      "sha256": "3c83395651fadd21592552b9512118d5bcf5dba46cef2642efb8efaa1cdf3924",
+      "bytes": 222629
+    },
+    {
+      "path": "Raw/FullSprintContact20261015/progress.json",
+      "sha256": "c68be2803268911c9d756391b0b1db2a3c2a79fc8ef56cae5893916cdce746ef",
+      "bytes": 384436
+    },
+    {
+      "path": "Raw/FullSprintContact20261015/summary.json",
+      "sha256": "74642b80e9bdfeba5428a94697cd651565e1bd6644c743b60b9141eb32f4b2ad",
+      "bytes": 409809
+    },
+    {
+      "path": "Raw/FullSprintPreparation20261015/combined-calibration.json",
+      "sha256": "4c540117d7b399ac5cbd96b07d8f0cd669ddc21df52a8e43bb1841cfaecebab8",
+      "bytes": 111920
+    },
+    {
+      "path": "Raw/FullSprintPreparation20261015/expanded-recipe.json",
+      "sha256": "9d4c38b487729c5e9503376c8b8495880754b2ea0c51811636bdf999cf9ce1f9",
+      "bytes": 1781
+    },
+    {
+      "path": "Raw/FullSprintPreparation20261015/FullSprintStandardReview-calibration.json",
+      "sha256": "ced4e86de59650030a61294da39332bae39da8e96cb3f99a7113a00fd1147737",
+      "bytes": 17982
+    },
+    {
+      "path": "Raw/FullSprintPreparation20261015/FullSprintStandardReview-cli-control.json",
+      "sha256": "5f5fb3d36cbdefbc4bdd71b6c2bf84b301ffe113385eff5f41f17339e1cd1365",
+      "bytes": 17977
+    },
+    {
+      "path": "Raw/FullSprintPreparation20261015/FullSprintStandardReview-contact-centres-calibration.json",
+      "sha256": "ea85fc461dc29b6618d83b83c51163ba5301adece947f96772ed41a39a38e2aa",
+      "bytes": 15917
+    },
+    {
+      "path": "Raw/FullSprintPreparation20261015/FullSprintStandardReview-final-calibration.json",
+      "sha256": "5f5fb3d36cbdefbc4bdd71b6c2bf84b301ffe113385eff5f41f17339e1cd1365",
+      "bytes": 17977
+    },
+    {
+      "path": "Raw/FullSprintPreparation20261015/PlayerBindings.Before.asset",
+      "sha256": "1e0c50adcb67bcaa5ccd373e09d815f0aefeb69ab5839a70df02bd173af28cdb",
+      "bytes": 17269
+    },
+    {
+      "path": "Raw/FullSprintPreparation20261015/PlayerBindings.Before.asset.meta",
+      "sha256": "017c05259c6ce9146eb61ed6e901e6e495f59e634c27d07576e171f97af77612",
+      "bytes": 189
+    },
+    {
+      "path": "Raw/FullSprintPreparation20261015/recipe.json",
+      "sha256": "bf1c3798b35d7e5170003e202b00148bf21ce5aad5b6187458aba20ef333c2c0",
+      "bytes": 1890
+    },
+    {
+      "path": "Raw/FullSprintPreparation20261015/SoleTracks/FullSprintMixamoReview.json",
+      "sha256": "0aba4c1f026fced46dcc04ea33b81a8de22f7ce96770f8bb876ad06dc110bda9",
+      "bytes": 3388498
+    },
+    {
+      "path": "Raw/FullSprintPreparation20261015/SoleTracks/FullSprintStandardReview.json",
+      "sha256": "04b70abfbfbea03830246aeb2157b1eb6cd5706ef6885cb220349b7b3b1b5205",
+      "bytes": 3388265
+    },
+    {
+      "path": "Raw/FullSprintPreparation20261015/SoleTracks/summary.json",
+      "sha256": "00ccba5bab76ba8bcd37a8a9a2e31175deb725ff203526845a7ab4433f53a341",
+      "bytes": 521
+    }
+  ],
+  "originalAndAcceptedSourcesUnchanged": true,
+  "rawPayloadsOmittedFromGit": true
+}

@@ -63,6 +63,8 @@ namespace BooterBigArm.TopDown3D
         private bool awaitCampMoveNeutral, awaitCampLookNeutral;
         private int ignoreMouseLookUntilFrame = -1;
 
+        private InputDevice movementDevice;
+        public bool MoveFromGamepad { get; private set; }
         public Vector2 MoveValue { get; private set; }
         public Vector2 CameraLookValue { get; private set; }
         public Vector2 MouseLookDelta => !LaboratoryResetBlocked && (Mode == TopDown3DInputMode.Gameplay || Mode == TopDown3DInputMode.CampPlacement) && Application.isFocused
@@ -279,7 +281,7 @@ namespace BooterBigArm.TopDown3D
             toggleInventoryAction = null;
             uiCancelAction = null;
             menuAction = null;
-            MoveValue = Vector2.zero;
+            MoveValue = Vector2.zero; MoveFromGamepad = false; movementDevice = null;
             CameraLookValue = Vector2.zero;
             CameraLookAheadHeld = false;
             SprintHeld = false;
@@ -334,14 +336,16 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleMove(InputAction.CallbackContext context)
         {
-            if (LaboratoryResetBlocked) { MoveValue = Vector2.zero; return; }
+            if (LaboratoryResetBlocked) { MoveValue = Vector2.zero; MoveFromGamepad = false; movementDevice = null; return; }
             if (awaitMoveNeutral)
             {
                 if (context.ReadValue<Vector2>().sqrMagnitude < 0.0484f) awaitMoveNeutral = false;
-                MoveValue = Vector2.zero;
+                MoveValue = Vector2.zero; MoveFromGamepad = false; movementDevice = null;
                 return;
             }
             MoveValue = TopDown3DInputMath.ClampMove(context.ReadValue<Vector2>());
+            movementDevice = MoveValue.sqrMagnitude > 0 ? context.control?.device : null;
+            MoveFromGamepad = movementDevice is Gamepad;
         }
 
         private void HandleSprint(InputAction.CallbackContext context)
@@ -592,7 +596,7 @@ namespace BooterBigArm.TopDown3D
         private void ClearGameplayIntent()
         {
             interactRequested = pickupRequested = itemCancelRequested = cargoRequested = false;
-            MoveValue = Vector2.zero;
+            MoveValue = Vector2.zero; MoveFromGamepad = false; movementDevice = null;
             CameraLookValue = Vector2.zero;
             CameraLookAheadHeld = false;
             SprintHeld = false;
@@ -630,6 +634,8 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleDeviceChange(InputDevice device, InputDeviceChange change)
         {
+            if (device == movementDevice && (change == InputDeviceChange.Disconnected || change == InputDeviceChange.Removed || change == InputDeviceChange.Disabled))
+            { MoveValue = Vector2.zero; MoveFromGamepad = false; movementDevice = null; }
             if (change == InputDeviceChange.Disconnected || change == InputDeviceChange.Removed || change == InputDeviceChange.Disabled)
                 RidingController?.InterruptInput();
             DisarmAnimationCommands();

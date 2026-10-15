@@ -133,8 +133,22 @@ namespace BooterBigArm.TopDown3D
                 || !float.IsFinite(slowWalk) || slowWalk<=0 || run<slowWalk || sprint<run)
                 throw new ArgumentException("The laboratory posture owner and finite ordered speeds are required.");
             walkSpeed=run;sprintSpeed=sprint;animationWalkSpeed=slowWalk;
+            laboratoryGamepadRunSpeed = laboratoryGamepadSprintSpeed = 0;
             laboratoryUphillGaitEnabled=true;
         }
+        private float laboratoryGamepadRunSpeed, laboratoryGamepadSprintSpeed;
+        public void ConfigureLaboratoryGamepadGaits(object owner, float fastRun, float fullSprint)
+        {
+            if (!IsAnimationPostureOwner(owner) || !float.IsFinite(fastRun) || !float.IsFinite(fullSprint)
+                || fastRun < walkSpeed || fullSprint <= fastRun)
+                throw new ArgumentException("The laboratory owner and ordered gamepad gaits are required.");
+            laboratoryGamepadRunSpeed = fastRun; laboratoryGamepadSprintSpeed = fullSprint;
+        }
+        private float LaboratoryRequestedSpeed(bool sprinting)
+            => animationPostureOwner != null && input != null && input.MoveFromGamepad && laboratoryGamepadRunSpeed > 0
+                ? sprinting ? laboratoryGamepadSprintSpeed : laboratoryGamepadRunSpeed
+                : sprinting ? sprintSpeed : walkSpeed;
+
         public void BlockUnqualifiedLaboratoryTraversal(object owner)
         {
             if(!ReferenceEquals(owner,animationPostureOwner))throw new ArgumentException("Only the laboratory posture owner configures traversal qualification.");
@@ -146,6 +160,7 @@ namespace BooterBigArm.TopDown3D
             if(!TryRestoreAnimationPosture(owner))return false;
             animationPostureOwner=null;laboratoryBlocksLegacyTraversal=false;laboratoryCrouchFacingLocked=false;laboratoryPostureSuspended=false;
             laboratoryUphillGaitEnabled=false;
+            laboratoryGamepadRunSpeed = laboratoryGamepadSprintSpeed = 0;
             ResetStandingMotionObservation();return true;
         }
         private float AnimationLocomotionSpeed(float normalSpeed)

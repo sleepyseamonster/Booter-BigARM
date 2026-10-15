@@ -26,6 +26,9 @@ public static class CampLocomotionSoleTracks
     public static string Run() => RunCore("SoleTracksV2", null);
     public static string RunSprintReview() => RunCore("GaitPaceTuning20261015/SoleTracks", new[] {
         "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim" });
+    public static string RunFullSprintReview() => RunCore("FullSprintPreparation20261015/SoleTracks", new[] {
+        "Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintMixamoReview.anim",
+        "Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintStandardReview.anim" });
     private static string RunCore(string destinationName, string[] selectedPaths)
     {
         var root = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));

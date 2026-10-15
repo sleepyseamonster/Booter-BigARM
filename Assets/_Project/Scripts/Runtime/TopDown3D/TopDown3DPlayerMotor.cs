@@ -435,7 +435,7 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
-            var requestedSpeed = AnimationLocomotionSpeed(SprintActive ? sprintSpeed : walkSpeed);
+            var requestedSpeed = AnimationLocomotionSpeed(LaboratoryRequestedSpeed(SprintActive));
             var slopeSpeed = ApplyLaboratoryUphillGait(requestedSpeed, desiredDirection, measuredGroundNormal);
             if (slopeSpeed < requestedSpeed && slopeSpeed <= walkSpeed) SprintActive = false;
             var targetVelocity = desiredDirection * slopeSpeed;

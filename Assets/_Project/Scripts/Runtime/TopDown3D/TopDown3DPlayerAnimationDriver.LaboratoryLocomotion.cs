@@ -159,8 +159,8 @@ namespace BooterBigArm.TopDown3D
         private void PresentForwardFrame(float speed, double cycles, float deltaTime)
         {
             forwardIdleSeconds += deltaTime;
-            var weights = forwardPoseEnvelope.SampleWeights(laboratoryForwardProfile.Weights(speed), speed, deltaTime);
-            PresentForwardWeightedPose(weights, cycles, forwardIdleSeconds);
+            var weights = forwardPoseEnvelope.SampleGaitWeights(laboratoryForwardProfile.PoseWeights(speed), speed, deltaTime);
+            PresentForwardGaitPose(weights, cycles, forwardIdleSeconds);
             forwardPoseRenderedThisFrame = true;
         }
 
@@ -184,19 +184,22 @@ namespace BooterBigArm.TopDown3D
 
         // Same pose path is used by guarded offline qualification, without running a motor.
         private void PresentForwardLocomotionPose(float speed, double cycles, double idleSeconds)
-            => PresentForwardWeightedPose(laboratoryForwardProfile.Weights(speed), cycles, idleSeconds);
+            => PresentForwardGaitPose(laboratoryForwardProfile.PoseWeights(speed), cycles, idleSeconds);
 
         private void PresentForwardWeightedPose(Vector4 weights, double cycles, double idleSeconds)
+            => PresentForwardGaitPose(new AnimationPlaygroundGaitWeights(weights), cycles, idleSeconds);
+
+        private void PresentForwardGaitPose(AnimationPlaygroundGaitWeights weights, double cycles, double idleSeconds)
         {
             var policy = laboratoryForwardProfile;
             playableGraph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
-            SetForwardWeights(weights);
+            SetForwardPoseWeights(weights);
             for (var i = 0; i < clipPlayables.Length; i++) if (clipPlayables[i].IsValid()) clipPlayables[i].SetSpeed(0);
             var idleEntry = LaboratoryForwardReviewConfigured ? policy.locomotion.GetRequiredEntry(TopDown3DLocomotionClipRole.Idle) : locomotionEntries[IdleIndex];
             ForwardClip(IdleIndex).SetTime(idleSeconds);
             var correction = idleEntry.HeightCorrection(
-                Mathf.Repeat((float)(idleSeconds / idleEntry.Clip.length), 1)) * weights.x;
-            for (var i = 0; i < 3; i++)
+                Mathf.Repeat((float)(idleSeconds / idleEntry.Clip.length), 1)) * weights[0];
+            for (var i = 0; i < policy.MovingGaitCount; i++)
             {
                 ForwardClip(i + 1).SetTime(policy.gaits[i].SourceSeconds(cycles));
                 correction += policy.gaits[i].Height(cycles) * weights[i + 1];
