@@ -1,0 +1,3062 @@
+{
+  "groups": {
+    "Chassis": {
+      "objects": 47,
+      "base_quads": 1970,
+      "evaluated_triangles": 10900
+    },
+    "Armor": {
+      "objects": 6,
+      "base_quads": 228,
+      "evaluated_triangles": 2296
+    },
+    "Hardware": {
+      "objects": 126,
+      "base_quads": 1676,
+      "evaluated_triangles": 41720
+    },
+    "Controls": {
+      "objects": 15,
+      "base_quads": 958,
+      "evaluated_triangles": 4140
+    },
+    "Leather": {
+      "objects": 15,
+      "base_quads": 838,
+      "evaluated_triangles": 6028
+    },
+    "Legs": {
+      "objects": 68,
+      "base_quads": 2472,
+      "evaluated_triangles": 18576
+    },
+    "Cargo": {
+      "objects": 66,
+      "base_quads": 876,
+      "evaluated_triangles": 13144
+    }
+  },
+  "objects": [
+    {
+      "name": "Legger_Drive_core",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Spine_housing",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_perimeter_frame",
+      "base_quads": 202,
+      "evaluated_triangles": 404,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_L_upper_rail",
+      "base_quads": 154,
+      "evaluated_triangles": 308,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_L_front_fairing",
+      "base_quads": 48,
+      "evaluated_triangles": 416,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_tail_shroud",
+      "base_quads": 28,
+      "evaluated_triangles": 360,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_armor_bolt_1.68",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_armor_bolt_1.91",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_armor_bolt_1.9",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_cargo_mount",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_rack",
+      "base_quads": 102,
+      "evaluated_triangles": 204,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_L_rider_peg",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_peg_mount",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_service_hose",
+      "base_quads": 134,
+      "evaluated_triangles": 268,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_L_power_hose",
+      "base_quads": 102,
+      "evaluated_triangles": 204,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_R_perimeter_frame",
+      "base_quads": 202,
+      "evaluated_triangles": 404,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_R_upper_rail",
+      "base_quads": 154,
+      "evaluated_triangles": 308,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_R_front_fairing",
+      "base_quads": 48,
+      "evaluated_triangles": 416,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_tail_shroud",
+      "base_quads": 28,
+      "evaluated_triangles": 360,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_armor_bolt_1.68",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_armor_bolt_1.91",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_armor_bolt_1.9",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_cargo_mount",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_rack",
+      "base_quads": 102,
+      "evaluated_triangles": 204,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_R_rider_peg",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_peg_mount",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_service_hose",
+      "base_quads": 134,
+      "evaluated_triangles": 268,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_R_power_hose",
+      "base_quads": 102,
+      "evaluated_triangles": 204,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_Front_instrument_shell",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Front_inset",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Front_lamp",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Rear_vent_housing",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Rear_vent_recess_1.825",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Rear_vent_fin_1.825_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Rear_vent_fin_1.825_1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Rear_vent_fin_1.825_2",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Rear_vent_fin_1.825_3",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Rear_vent_recess_1.955",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Rear_vent_fin_1.955_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Rear_vent_fin_1.955_1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Rear_vent_fin_1.955_2",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Rear_vent_fin_1.955_3",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Saddle_shaped_quad_loft",
+      "base_quads": 70,
+      "evaluated_triangles": 556,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_saddle_piping",
+      "base_quads": 126,
+      "evaluated_triangles": 252,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_R_saddle_piping",
+      "base_quads": 126,
+      "evaluated_triangles": 252,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_Steering_stem",
+      "base_quads": 106,
+      "evaluated_triangles": 212,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_Handlebar",
+      "base_quads": 298,
+      "evaluated_triangles": 596,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_L_rubber_grip",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_control_switch",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_brake_lever",
+      "base_quads": 70,
+      "evaluated_triangles": 140,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_L_grip_end",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_rubber_grip",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_control_switch",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_brake_lever",
+      "base_quads": 70,
+      "evaluated_triangles": 140,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_R_grip_end",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Gauge_body",
+      "base_quads": 96,
+      "evaluated_triangles": 480,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_Gauge_glass",
+      "base_quads": 96,
+      "evaluated_triangles": 480,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Hip_bearing",
+      "base_quads": 96,
+      "evaluated_triangles": 480,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Hip_outer_hub",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Hip_axle",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Hip_rim_0",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Hip_rim_1.5707963267948966",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Hip_rim_3.141592653589793",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Hip_rim_4.71238898038469",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Knee_bearing",
+      "base_quads": 96,
+      "evaluated_triangles": 480,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Knee_outer_hub",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Knee_axle",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Knee_rim_0",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Knee_rim_1.5707963267948966",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Knee_rim_3.141592653589793",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Knee_rim_4.71238898038469",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Ankle_bearing",
+      "base_quads": 96,
+      "evaluated_triangles": 480,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Ankle_outer_hub",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Ankle_axle",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Ankle_rim_0",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Ankle_rim_1.5707963267948966",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Ankle_rim_3.141592653589793",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Ankle_rim_4.71238898038469",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Thigh_core",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Thigh_armor",
+      "base_quads": 38,
+      "evaluated_triangles": 372,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Thigh_inset",
+      "base_quads": 28,
+      "evaluated_triangles": 328,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Thigh_cover_bolt_0.2",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Thigh_cover_bolt_0.8",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Thigh_actuator_barrel",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Thigh_actuator_rod",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Thigh_hose",
+      "base_quads": 70,
+      "evaluated_triangles": 140,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_L_Shin_core",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Shin_armor",
+      "base_quads": 38,
+      "evaluated_triangles": 372,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Shin_inset",
+      "base_quads": 28,
+      "evaluated_triangles": 328,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Shin_cover_bolt_0.2",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Shin_cover_bolt_0.8",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Shin_actuator_barrel",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Shin_actuator_rod",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Shin_hose",
+      "base_quads": 70,
+      "evaluated_triangles": 140,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_L_foot_sole",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_foot_bridge",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_ankle_post",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_toe_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_toe_pad_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_toe_1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_toe_pad_1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_toe_2",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_toe_pad_2",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_heel",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_foot_instep",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Thigh_inner_armor",
+      "base_quads": 38,
+      "evaluated_triangles": 372,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Shin_inner_armor",
+      "base_quads": 38,
+      "evaluated_triangles": 372,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Hip_inner_hub",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Hip_inner_axle",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Knee_inner_hub",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Knee_inner_axle",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Ankle_inner_hub",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Ankle_inner_axle",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_hip_yoke",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Hip_bearing",
+      "base_quads": 96,
+      "evaluated_triangles": 480,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Hip_outer_hub",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Hip_axle",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Hip_rim_0",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Hip_rim_1.5707963267948966",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Hip_rim_3.141592653589793",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Hip_rim_4.71238898038469",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Knee_bearing",
+      "base_quads": 96,
+      "evaluated_triangles": 480,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Knee_outer_hub",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Knee_axle",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Knee_rim_0",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Knee_rim_1.5707963267948966",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Knee_rim_3.141592653589793",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Knee_rim_4.71238898038469",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Ankle_bearing",
+      "base_quads": 96,
+      "evaluated_triangles": 480,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Ankle_outer_hub",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Ankle_axle",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Ankle_rim_0",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Ankle_rim_1.5707963267948966",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Ankle_rim_3.141592653589793",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Ankle_rim_4.71238898038469",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Thigh_core",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Thigh_armor",
+      "base_quads": 38,
+      "evaluated_triangles": 372,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Thigh_inset",
+      "base_quads": 28,
+      "evaluated_triangles": 328,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Thigh_cover_bolt_0.2",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Thigh_cover_bolt_0.8",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Thigh_actuator_barrel",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Thigh_actuator_rod",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Thigh_hose",
+      "base_quads": 70,
+      "evaluated_triangles": 140,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_R_Shin_core",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Shin_armor",
+      "base_quads": 38,
+      "evaluated_triangles": 372,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Shin_inset",
+      "base_quads": 28,
+      "evaluated_triangles": 328,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Shin_cover_bolt_0.2",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Shin_cover_bolt_0.8",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Shin_actuator_barrel",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Shin_actuator_rod",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Shin_hose",
+      "base_quads": 70,
+      "evaluated_triangles": 140,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_R_foot_sole",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_foot_bridge",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_ankle_post",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_toe_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_toe_pad_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_toe_1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_toe_pad_1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_toe_2",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_toe_pad_2",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_heel",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_foot_instep",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Thigh_inner_armor",
+      "base_quads": 38,
+      "evaluated_triangles": 372,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Shin_inner_armor",
+      "base_quads": 38,
+      "evaluated_triangles": 372,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Hip_inner_hub",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Hip_inner_axle",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Knee_inner_hub",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Knee_inner_axle",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Ankle_inner_hub",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Ankle_inner_axle",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_hip_yoke",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_upper_body_shroud",
+      "base_quads": 38,
+      "evaluated_triangles": 372,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_drive_casing",
+      "base_quads": 96,
+      "evaluated_triangles": 480,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_drive_cover",
+      "base_quads": 96,
+      "evaluated_triangles": 480,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_drive_axle",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_drive_cover_bolt_0",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_drive_cover_bolt_1",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_drive_cover_bolt_2",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_drive_cover_bolt_3",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_drive_cover_bolt_4",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_drive_cover_bolt_5",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_cooling_panel",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_cooling_fin_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_cooling_fin_1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_cooling_fin_2",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_cooling_fin_3",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_cooling_fin_4",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_upper_body_shroud",
+      "base_quads": 38,
+      "evaluated_triangles": 372,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_drive_casing",
+      "base_quads": 96,
+      "evaluated_triangles": 480,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_drive_cover",
+      "base_quads": 96,
+      "evaluated_triangles": 480,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_drive_axle",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_drive_cover_bolt_0",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_drive_cover_bolt_1",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_drive_cover_bolt_2",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_drive_cover_bolt_3",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_drive_cover_bolt_4",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_drive_cover_bolt_5",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_cooling_panel",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_cooling_fin_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_cooling_fin_1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_cooling_fin_2",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_cooling_fin_3",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_cooling_fin_4",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_body",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_lid_gasket",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_separate_lid",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_face_border",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_face_insert",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_corner_v_-1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_corner_h_-1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_corner_rivet_-1-1",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_corner_v_-11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_corner_h_-11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_corner_rivet_-11",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_corner_v_1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_corner_h_1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_corner_rivet_1-1",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_corner_v_11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_corner_h_11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_corner_rivet_11",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_hinge_0.3811",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_hinge_0.6189",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_leather_loop_0",
+      "base_quads": 80,
+      "evaluated_triangles": 640,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_side_0-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_side_01",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_end_0-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_end_01",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_tongue_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_leather_tail_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_strap_stud_0-0.11",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_strap_stud_0-0.04",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_leather_loop_1",
+      "base_quads": 80,
+      "evaluated_triangles": 640,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_side_1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_side_11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_end_1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_end_11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_tongue_1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_leather_tail_1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_strap_stud_1-0.11",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_strap_stud_1-0.04",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_lid_latch",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_handle_mount_-0.06",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_handle_mount_0.06",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Main_case_grab_handle",
+      "base_quads": 78,
+      "evaluated_triangles": 156,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_L_Aux_case_body",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_lid_gasket",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_separate_lid",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_face_border",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_face_insert",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_v_-1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_h_-1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_rivet_-1-1",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_v_-11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_h_-11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_rivet_-11",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_v_1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_h_1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_rivet_1-1",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_v_11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_h_11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_rivet_11",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_hinge_0.11780000000000002",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_hinge_0.2222",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_leather_loop_0",
+      "base_quads": 80,
+      "evaluated_triangles": 640,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_buckle_side_0-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_buckle_side_01",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_buckle_end_0-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_buckle_end_01",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_buckle_tongue_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_leather_tail_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_strap_stud_0-0.11",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_strap_stud_0-0.04",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_L_Aux_case_lid_latch",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_body",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_lid_gasket",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_separate_lid",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_face_border",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_face_insert",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_corner_v_-1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_corner_h_-1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_corner_rivet_-1-1",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_corner_v_-11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_corner_h_-11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_corner_rivet_-11",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_corner_v_1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_corner_h_1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_corner_rivet_1-1",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_corner_v_11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_corner_h_11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_corner_rivet_11",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_hinge_0.3811",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_hinge_0.6189",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_leather_loop_0",
+      "base_quads": 80,
+      "evaluated_triangles": 640,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_side_0-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_side_01",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_end_0-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_end_01",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_tongue_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_leather_tail_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_strap_stud_0-0.11",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_strap_stud_0-0.04",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_leather_loop_1",
+      "base_quads": 80,
+      "evaluated_triangles": 640,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_side_1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_side_11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_end_1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_end_11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_tongue_1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_leather_tail_1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_strap_stud_1-0.11",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_strap_stud_1-0.04",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_lid_latch",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_handle_mount_-0.06",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_handle_mount_0.06",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Main_case_grab_handle",
+      "base_quads": 78,
+      "evaluated_triangles": 156,
+      "modifiers": []
+    },
+    {
+      "name": "Legger_R_Aux_case_body",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_lid_gasket",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_separate_lid",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_face_border",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_face_insert",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_v_-1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_h_-1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_rivet_-1-1",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_v_-11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_h_-11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_rivet_-11",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_v_1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_h_1-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_rivet_1-1",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_v_11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_h_11",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_rivet_11",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_hinge_0.11780000000000002",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_hinge_0.2222",
+      "base_quads": 48,
+      "evaluated_triangles": 288,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_leather_loop_0",
+      "base_quads": 80,
+      "evaluated_triangles": 640,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_buckle_side_0-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_buckle_side_01",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_buckle_end_0-1",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_buckle_end_01",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_buckle_tongue_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_leather_tail_0",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_strap_stud_0-0.11",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_strap_stud_0-0.04",
+      "base_quads": 16,
+      "evaluated_triangles": 384,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    },
+    {
+      "name": "Legger_R_Aux_case_lid_latch",
+      "base_quads": 6,
+      "evaluated_triangles": 188,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ]
+    }
+  ]
+}

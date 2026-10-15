@@ -1,0 +1,70 @@
+{
+  "source_sha256": "98c660b1fd75c866c2e04c049ced1a65eeb50356c462c85fc19c996570225d4b",
+  "candidate_sha256": "8e0aa3112afb0a0e033b3721d4322f49e524d320a8490a3af222d62c95d62a66",
+  "total_base_faces": 9018,
+  "total_base_quads": 9018,
+  "total_evaluated_triangles": 96804,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate_faces": 0,
+  "loose_vertices": 0,
+  "groups": {
+    "Chassis": {
+      "objects": 47,
+      "base_quads": 1970,
+      "evaluated_triangles": 10900
+    },
+    "Armor": {
+      "objects": 6,
+      "base_quads": 228,
+      "evaluated_triangles": 2296
+    },
+    "Hardware": {
+      "objects": 126,
+      "base_quads": 1676,
+      "evaluated_triangles": 41720
+    },
+    "Controls": {
+      "objects": 15,
+      "base_quads": 958,
+      "evaluated_triangles": 4140
+    },
+    "Leather": {
+      "objects": 15,
+      "base_quads": 838,
+      "evaluated_triangles": 6028
+    },
+    "Legs": {
+      "objects": 68,
+      "base_quads": 2472,
+      "evaluated_triangles": 18576
+    },
+    "Cargo": {
+      "objects": 66,
+      "base_quads": 876,
+      "evaluated_triangles": 13144
+    }
+  },
+  "bounds_m": [
+    [
+      -0.43299999833106995,
+      -0.8025000095367432,
+      0.0
+    ],
+    [
+      0.43299999833106995,
+      0.8126519918441772,
+      2.2260000705718994
+    ]
+  ],
+  "dimensions_m": [
+    0.8659999966621399,
+    1.6151520013809204,
+    2.2260000705718994
+  ],
+  "quad_fraction": 1.0,
+  "mesh_objects": 343,
+  "all_new_control_faces_quads": true,
+  "all_new_parts_closed_manifold": true,
+  "old_asset_hidden": true
+}

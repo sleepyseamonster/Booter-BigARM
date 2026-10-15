@@ -1,5 +1,7 @@
 # Legger detail refinement
 
+The author's subsequent request for improved manufactured forms and clean quads produced the [clean quad rebuild](../LeggerQuadRebuild20261015/README.md), which now describes the visible asset in the same authoring file. The geometry and hashes below remain the preceding baked reference, retained hidden inside that file.
+
 October 15, 2026. Owner: Blender under Gottspan coordination. The author asked whether the preceding bake covered the whole robot and authorized continuing the texture/geometry work. The [preceding checkpoint](../LeggerFullDetailBake20261015/README.md) already covered the frame, both legs and the cargo/saddle. This continuation reduces the frame and legs again while retaining the accepted cargo geometry.
 
 ## Applied checkpoint

@@ -1,8 +1,8 @@
 # Legger topology iteration 01
 
-## Current authoring file — full detail refinement
+## Current authoring file — clean quad rebuild
 
-The same retained `Legger_Topology_Iteration04.blend` was subsequently updated in place at the author's request with whole-robot detail bakes and a protected reduction of the frame and both legs. The active robot has 155,999 triangles and 28 packed maps. Cargo/saddle geometry remains at 12,000 triangles. The detailed source remains hidden inside the same file for rebaking. The [detail refinement receipt](../LeggerDetailRefinement20261015/README.md) and its application hash describe the latest authoring file; the full detail bake, cargo bake, cleanup and iteration hashes describe earlier checkpoints.
+The same retained `Legger_Topology_Iteration04.blend` was subsequently updated at the author's request with newly constructed cases, leather straps, chassis, armor and legs. The visible rebuild has 9,018 quad control faces (100% of its control faces) and 96,804 evaluated triangles with editable bevels. The preceding baked asset and detailed source remain hidden inside the same file. The [clean quad rebuild receipt](../LeggerQuadRebuild20261015/README.md) and its application hash describe the current authoring source. Its materials are authoring previews; final atlases and runtime baking are pending. Earlier reduction/bake counts and hashes describe historical checkpoints.
 
 ## Author-requested source cleanup — October 15, 2026
 
