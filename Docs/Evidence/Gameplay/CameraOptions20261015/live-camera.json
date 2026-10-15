@@ -1,0 +1,36 @@
+{
+  "capturedOn": "2026-10-15 America/Phoenix",
+  "head": "9fea50d4c800ffe11ad0cc5db01d531f03289c42",
+  "live": {
+    "playing": false,
+    "compiling": false,
+    "scenes": [
+      {
+        "path": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+        "dirty": false
+      }
+    ],
+    "cameras": [
+      {
+        "name": "Main Camera",
+        "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+        "distance": 22,
+        "pitch": 50,
+        "yaw": 40,
+        "fov": 48,
+        "near": 0.1,
+        "far": 8000,
+        "components": [
+          "UnityEngine.Transform",
+          "UnityEngine.Camera",
+          "UnityEngine.AudioListener",
+          "UnityEngine.Rendering.Universal.UniversalAdditionalCameraData",
+          "BooterBigArm.TopDown3D.TopDown3DCameraRig",
+          "BooterBigArm.TopDown3D.BadwaterCameraRange",
+          "BooterBigArm.TopDown3D.TopDown3DSceneRenderingOverride",
+          "UnityEngine.Skybox"
+        ]
+      }
+    ]
+  }
+}

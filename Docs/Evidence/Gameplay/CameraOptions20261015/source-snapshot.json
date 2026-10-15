@@ -1,0 +1,146 @@
+{
+  "date": "2026-10-15",
+  "timezone": "America/Phoenix",
+  "head": "9df04c7054b81a8638de0c8c0c09803b2f70c1b9",
+  "scope": "Read-only camera audit; source hashes include the existing working tree, not only HEAD",
+  "scenes": [
+    {
+      "path": "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+      "sha256": "E03A043676774E64CB049B2EAC5E5BD59AF0C0056BE38FD22E46F434F2F33288",
+      "cameraCount": 1,
+      "listenerCount": 1,
+      "rigCount": 1,
+      "values": {
+        "distance": 22.0,
+        "fieldOfView": 48.0,
+        "pitchDegrees": 50.0,
+        "yawDegrees": 40.0,
+        "minimumPitchDegrees": 26.0,
+        "maximumPitchDegrees": 65.0,
+        "followSmoothTime": 0.14,
+        "maximumLookAheadDistance": 12.0,
+        "obstructionRadius": 0.35,
+        "minimumDistance": 4.0
+      }
+    },
+    {
+      "path": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+      "sha256": "F1F12C4B94779BA6E6F552F1A26A342CFE4ABC1C6F2E5758EA58713EBD7199D6",
+      "cameraCount": 1,
+      "listenerCount": 1,
+      "rigCount": 1,
+      "values": {
+        "distance": 22.0,
+        "fieldOfView": 48.0,
+        "pitchDegrees": 50.0,
+        "yawDegrees": 40.0,
+        "minimumPitchDegrees": 26.0,
+        "maximumPitchDegrees": 65.0,
+        "followSmoothTime": 0.14,
+        "maximumLookAheadDistance": 12.0,
+        "obstructionRadius": 0.35,
+        "minimumDistance": 4.0
+      }
+    },
+    {
+      "path": "Assets/_Project/Scenes/TopDown3D/GameplaySetup.unity",
+      "sha256": "FA776CB27F680F0E078D93ECB30C36F5734F63D5D62CE3E5CFF2D19C45DE6A04",
+      "cameraCount": 1,
+      "listenerCount": 1,
+      "rigCount": 1,
+      "values": {
+        "distance": 22.0,
+        "fieldOfView": 48.0,
+        "pitchDegrees": 50.0,
+        "yawDegrees": 40.0,
+        "minimumPitchDegrees": 26.0,
+        "maximumPitchDegrees": 65.0,
+        "followSmoothTime": 0.14,
+        "maximumLookAheadDistance": 12.0,
+        "obstructionRadius": 0.35,
+        "minimumDistance": 4.0
+      }
+    }
+  ],
+  "sources": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraRig.cs",
+      "sha256": "A51C298868E75944EC4C01CFBA0E7F8606A950B235B01FC8E11E2C7F0888126D"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DInputRouter.cs",
+      "sha256": "E15DC9ABA1E06B0ECD4A15F0DC7C90F511085B64FC35607F9577BBC71167DF90"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs",
+      "sha256": "837B6B695FEBB42AD24EAC77C5F53A1B7EC02FE7E456CEC2737442CC7452433D"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DMovementBasis.cs",
+      "sha256": "B4B98354ED5923DD1D14A8F54295ED44A1AE8A3ACDA7A7923E87B2C2BD871D6F"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Riding/TopDown3DLeggerRidingController.cs",
+      "sha256": "7070F78436063ECAFA04ECB0A8842E7422D8F4C584034978DCEFBDD8F888B614"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Interaction/TopDown3DInteractionController.cs",
+      "sha256": "3F71B8DA967877ACF4CC1F38239F7D810FF7759B86A6AF5D888EFA546EC1BA18"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Rendering/TopDown3DSceneRenderingOverride.cs",
+      "sha256": "C2CDDEFBA52DE0B7CB8B30530C5AD20AB5E9B0786C4626EF72B303BD59A07E4E"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DDustAtmosphere.cs",
+      "sha256": "63023DF89D81F20BD305BC09DC084B6498780FDBB080E6B7948482DED2756E80"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/GreaterWastelandTerrainRendering.cs",
+      "sha256": "4BB736C6B1EA92261B075E55C9523D5FAEBD19F35D2E4A5D502010E09624393D"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/FixedTerrainCameraCoverage.cs",
+      "sha256": "C9867B9286D34332C27E2A3C2A9999D997C8CBDCF1D243457B8DAE0932E738B3"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BadwaterCameraRange.cs",
+      "sha256": "BEF426A41DE11B4BC0B59C222F857B61876FBDBF76324EDD33D69D35F7803648"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCompassHud.cs",
+      "sha256": "7E6ADFADFE25690DF02A1D7D45D90AEAF40E889D1D5E0E90D5A5796E74307296"
+    },
+    {
+      "path": "Assets/_Project/Settings/Input/InputSystem_Actions.inputactions",
+      "sha256": "E0D7121869D4BFA40DB5FEC73CA23769EFE57AA3D855A6C76F847099EC4D17BB"
+    },
+    {
+      "path": "Packages/manifest.json",
+      "sha256": "A9B4F332893EFFBB67F87B48508240992D76968B8B78F870F8F05F12A436F409"
+    },
+    {
+      "path": "Packages/packages-lock.json",
+      "sha256": "D2ADAB2CB95C215760C616AC81950F6EAB23AE18AEED23D69B9C58FE63C8F473"
+    },
+    {
+      "path": "ProjectSettings/ProjectVersion.txt",
+      "sha256": "8468D7ADD4C1613C42224053CB9C889688CCF141875F44065A40E6D133BC3EA7"
+    },
+    {
+      "path": "ProjectSettings/EditorBuildSettings.asset",
+      "sha256": "5C19423DD7754B8E3708EEC956B964282D38554B1F48E06CA2838E7C24E853D5"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DCameraClearanceTests.cs",
+      "sha256": "B0EBF511EE0B83AE81E1C075E3DA4242542F1E7F866B410661211F37360164E9"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/FixedTerrainCameraCoverageTests.cs",
+      "sha256": "FDAEC217973B8053B173B2534EB74D8F0E3B3CD6B477113DE609E2916A983EB9"
+    }
+  ],
+  "cinemachineInstalledVersion": "3.1.5",
+  "cinemachineDocumentationExamined": "Library/PackageCache/com.unity.cinemachine@5342685532bb/Documentation~",
+  "gameplayOrVisualTestsRun": false
+}
