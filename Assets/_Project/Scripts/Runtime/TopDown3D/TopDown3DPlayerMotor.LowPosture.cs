@@ -90,7 +90,7 @@ namespace BooterBigArm.TopDown3D
                 nearest=hit.distance;support=hit.collider;contact=hit.point;
             }
             return support!=null && TryReadTrueSurfaceNormal(contact+Vector3.up*GroundNormalRayLift,
-                GroundNormalRayLift*2+groundProbeDistance,support,out normal)
+                GroundNormalRayLift*2+groundProbeDistance,support,out normal,out _)
                 && TopDown3DSlopeMath.IsWalkable(normal,maxWalkableSlope);
         }
         private Vector3 AnimationCurrentFootPoint()

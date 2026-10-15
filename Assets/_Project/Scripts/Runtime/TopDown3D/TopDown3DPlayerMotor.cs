@@ -1146,18 +1146,22 @@ namespace BooterBigArm.TopDown3D
                     centerRayOrigin,
                     centerRayDistance,
                     proximityCollider,
-                    out normal)
+                    out normal, out var supportPoint)
                 && !TryReadTrueSurfaceNormal(
                     proximityPoint + Vector3.up * GroundNormalRayLift,
                     GroundNormalRayLift * 2f + groundProbeDistance,
                     proximityCollider,
-                    out normal))
+                    out normal, out supportPoint))
             {
                 return false;
             }
 
             var walkable = TopDown3DSlopeMath.IsWalkable(normal, maxWalkableSlope);
-            if (walkable) laboratoryGroundSupport = proximityCollider;
+            if (walkable)
+            {
+                laboratoryGroundSupport = proximityCollider;
+                laboratoryGroundPlane = new Plane(normal, supportPoint);
+            }
             return walkable;
         }
 
@@ -1165,9 +1169,10 @@ namespace BooterBigArm.TopDown3D
             Vector3 rayOrigin,
             float rayDistance,
             Collider expectedCollider,
-            out Vector3 normal)
+            out Vector3 normal, out Vector3 point)
         {
             normal = Vector3.up;
+            point = Vector3.zero;
             var hitCount = Physics.RaycastNonAlloc(
                 rayOrigin,
                 Vector3.down,
@@ -1187,6 +1192,7 @@ namespace BooterBigArm.TopDown3D
 
                 nearestDistance = hit.distance;
                 normal = hit.normal;
+                point = hit.point;
                 found = true;
             }
 
