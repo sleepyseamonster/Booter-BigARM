@@ -8,6 +8,8 @@ This research establishes a reference library and proposes how to combine those 
 
 Read the [resource catalogue](RESOURCE_CATALOGUE.md) for direct sources, artists, talks, books, material libraries, and access notes. The [comparison study brief](COMPARISON_STUDY.md) turns the findings into a bounded future art exercise.
 
+The author subsequently authorized that exercise. See the [offline comparison results](STUDY_RESULTS.md) and [interactive comparison viewer](comparison.html) for the same rock, ground, and prop under the three material treatments. This adds an art study without changing production content.
+
 ## How the named influences contribute
 
 | Influence | Contribution to the proposed direction | What needs restraint |

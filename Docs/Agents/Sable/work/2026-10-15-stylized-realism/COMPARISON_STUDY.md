@@ -1,6 +1,6 @@
 # Proposed stylized realism comparison study
 
-October 15, 2026. Proposed by Sable from the [art research](README.md); asset production is a subsequent task.
+October 15, 2026. Proposed by Sable from the [art research](README.md), then authorized by the author's follow-up request. The [completed offline comparison](STUDY_RESULTS.md) records delivered views, material methods, verification, and limits; production integration remains separate.
 
 ## Question to resolve
 

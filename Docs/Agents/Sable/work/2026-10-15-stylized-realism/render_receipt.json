@@ -1,0 +1,665 @@
+{
+  "blender": "5.2.2 LTS",
+  "source_hashes": {
+    "Assets\\_Project\\Art\\Environment\\Rocks\\SculptedBasalt01\\SculptedBasalt01.fbx": "dd1810d5d9cc77fbc5242f4009e3be90d8b980e72efaedd5a851cf3e748e845a",
+    "Assets\\_Project\\Art\\Environment\\Rocks\\SculptedBasalt01\\SculptedBasalt01_BaseColor.png": "0b1f43d32341c4aa7d9a1350a916161eac6645e07ac44b271ef40aa7385d96c1",
+    "Assets\\_Project\\Art\\Environment\\Rocks\\SculptedBasalt01\\SculptedBasalt01_Normal.png": "2afbc5cfd66129eecc16ffdeedd20084feecb6d85eebbb043fd72adf906b8487",
+    "Assets\\_Project\\Art\\Environment\\Rocks\\SculptedBasalt01\\SculptedBasalt01_Roughness.png": "d439990f11ae0a1c578eed5521ae80cf49d59f430b155869474e1bb46d300a10",
+    "SourceArt\\Blender\\Studies\\textures\\BadlandsCompactedRustSoil.png": "8eb78e217075722f20a04cee541e0ca4059d07af5fd5b0346c8dbd10e6b27aa7"
+  },
+  "study_atlas_hashes": {
+    "textures\\B_subtle_atlas.png": "c038c8f9a94a274baf225cdd1bb77eb1d8bbf00d7fcc70faadfd61695f46fcc8",
+    "textures\\C_painterly_atlas.png": "39b193c04b7306e3a76b17f3a0f083984629e80583bd249105bec9c1c68a01d7"
+  },
+  "atlas_panel_rects_x_pixels": {
+    "1": {
+      "rock": [
+        2,
+        642
+      ],
+      "ground": [
+        649,
+        1444
+      ],
+      "ceramic": [
+        1454,
+        2169
+      ]
+    },
+    "2": {
+      "rock": [
+        2,
+        721
+      ],
+      "ground": [
+        727,
+        1445
+      ],
+      "ceramic": [
+        1453,
+        2169
+      ]
+    }
+  },
+  "geometry_hashes": {
+    "SculptedBasalt01_LOD0": "bb20bbf1e079e87f78fb826f1bf393b2f84de0af4523ef7158f5f2774da7be82",
+    "Ground": "b9ab96ac1922b0999208fb0850db714fdaef9441173a254b03f16ba98f0dc57c",
+    "Ceramic canister body": "0b2df4850420645cc2c4baa723d0bb68be0c5259f1dd64dca9bf4ed023f45e00",
+    "Iron retention band": "37369667b1ec173f776b1dfe5ab2416b71b72e1a1b203c3fdfd68fa607c72bdb",
+    "Iron retention band.001": "8d41045faf7eb39af96a5729e92a5285e9d9ddac7c40dd5d56964d12b4438f64",
+    "Iron base": "1c86d1ae772abe3d5f6288a8b3d21036ea6160634d9a4554e985591a63b065b3",
+    "Handle support": "9fbb1398717526d198003a7da0b7d05cd7d953a8ec9b27db7645327b9f123495",
+    "Handle support.001": "b1a31ac3b3d8820df690a1a0a4d90edd443fb4278c585bdd648e228444a44f18",
+    "Carry handle": "a1a139581d4dbf9327d8b9d652e37e475cc9255d3191db116b6e40c3ae3b30dc",
+    "Sealed cap": "b64c2ab66753ac91369a549acf21efd3ee4e24b6f00ce43485ed00cca8e88cdb",
+    "Fixed stone 0": "d8a606eb68e5beecf64ad6ef907c3e31324d9c1575e4a701c773b39924f5a37c",
+    "Fixed stone 1": "6f6c9c6594785610bbf9bbc6d09e1ec5182ca7ba0ba25723cf96e8cd855c5e46",
+    "Fixed stone 2": "e51287d66958fa6843a29e621980fba6f593606c49e94cbbc569d469a9a46dbc",
+    "Fixed stone 3": "47f180731824f4734e40190a77edaee3f7bdfe98a8ddb67b80d6946d371fd3f1",
+    "Fixed stone 4": "ae2c78bbf9cc82b470b891e42410ff7e23b8b525109bfda9b6fceb5350f5ebcc",
+    "Fixed stone 5": "f3c5f9afd9d6cb69b9e281d8dbea3950fe9af50c1c3371be79c51ea071258d31"
+  },
+  "rock_dimensions_m": [
+    3.176636219024658,
+    3.234774112701416,
+    4.961411952972412
+  ],
+  "camera_vertical_fov": 48,
+  "view_transform": "AgX",
+  "exposure": 0,
+  "script_sha256": "1411204989f9273e380a1878b562ecb890db0dc1dd96d50ffe999a9411ef88de",
+  "resolution": [
+    1440,
+    1080
+  ],
+  "fill_size_m": 9,
+  "fill_color": [
+    0.7200000286102295,
+    0.8100000023841858,
+    1.0
+  ],
+  "samples": 24,
+  "renders": [
+    {
+      "file": "sunset_close_A.png",
+      "variant": "A",
+      "light": "sunset",
+      "sun_energy": 2.4,
+      "sun_color": [
+        1,
+        0.82,
+        0.64
+      ],
+      "ambient": 0.6,
+      "view": "close",
+      "fill_energy": 450.0,
+      "geometry_verified": true,
+      "camera": [
+        5.571759223937988,
+        -6.640164375305176,
+        7.922276496887207
+      ],
+      "pitch": 38,
+      "yaw": 40,
+      "distance": 11,
+      "sha256": "e25d53b02aaeb14620d921c90ab21d4d8b15d43c09da1401d661076d5338c9d0"
+    },
+    {
+      "file": "sunset_close_B.png",
+      "variant": "B",
+      "light": "sunset",
+      "sun_energy": 2.4,
+      "sun_color": [
+        1,
+        0.82,
+        0.64
+      ],
+      "ambient": 0.6,
+      "view": "close",
+      "fill_energy": 450.0,
+      "geometry_verified": true,
+      "camera": [
+        5.571759223937988,
+        -6.640164375305176,
+        7.922276496887207
+      ],
+      "pitch": 38,
+      "yaw": 40,
+      "distance": 11,
+      "sha256": "3abed1401e900699ff9263a88c80559521f2716790ca4b974861393cd7f8fadb"
+    },
+    {
+      "file": "sunset_close_C.png",
+      "variant": "C",
+      "light": "sunset",
+      "sun_energy": 2.4,
+      "sun_color": [
+        1,
+        0.82,
+        0.64
+      ],
+      "ambient": 0.6,
+      "view": "close",
+      "fill_energy": 450.0,
+      "geometry_verified": true,
+      "camera": [
+        5.571759223937988,
+        -6.640164375305176,
+        7.922276496887207
+      ],
+      "pitch": 38,
+      "yaw": 40,
+      "distance": 11,
+      "sha256": "b1f02b0aa5e46fe84f2f4515921fb100b0d52ad945944295a2c9d8f758035033"
+    },
+    {
+      "file": "sunset_gameplay_A.png",
+      "variant": "A",
+      "light": "sunset",
+      "sun_energy": 2.4,
+      "sun_color": [
+        1,
+        0.82,
+        0.64
+      ],
+      "ambient": 0.6,
+      "view": "gameplay",
+      "fill_energy": 450.0,
+      "geometry_verified": true,
+      "camera": [
+        9.08987045288086,
+        -10.832884788513184,
+        18.00297737121582
+      ],
+      "pitch": 50,
+      "yaw": 40,
+      "distance": 22,
+      "sha256": "94217da26bcae2a78a45369ecca60126be553204204a45150f5b025ea47209ab"
+    },
+    {
+      "file": "sunset_gameplay_B.png",
+      "variant": "B",
+      "light": "sunset",
+      "sun_energy": 2.4,
+      "sun_color": [
+        1,
+        0.82,
+        0.64
+      ],
+      "ambient": 0.6,
+      "view": "gameplay",
+      "fill_energy": 450.0,
+      "geometry_verified": true,
+      "camera": [
+        9.08987045288086,
+        -10.832884788513184,
+        18.00297737121582
+      ],
+      "pitch": 50,
+      "yaw": 40,
+      "distance": 22,
+      "sha256": "b84f742ab12da60e0d1c0773a3c52367d31a0cf4bf62ac073041ab4d85b5db6e"
+    },
+    {
+      "file": "sunset_gameplay_C.png",
+      "variant": "C",
+      "light": "sunset",
+      "sun_energy": 2.4,
+      "sun_color": [
+        1,
+        0.82,
+        0.64
+      ],
+      "ambient": 0.6,
+      "view": "gameplay",
+      "fill_energy": 450.0,
+      "geometry_verified": true,
+      "camera": [
+        9.08987045288086,
+        -10.832884788513184,
+        18.00297737121582
+      ],
+      "pitch": 50,
+      "yaw": 40,
+      "distance": 22,
+      "sha256": "c7440d9096153ce1e7957bd3decd95ad7af4a2929320c4944e15f750aa6a7e33"
+    },
+    {
+      "file": "sunset_orbit_A.png",
+      "variant": "A",
+      "light": "sunset",
+      "sun_energy": 2.4,
+      "sun_color": [
+        1,
+        0.82,
+        0.64
+      ],
+      "ambient": 0.6,
+      "view": "orbit",
+      "fill_energy": 450.0,
+      "geometry_verified": true,
+      "camera": [
+        13.033344268798828,
+        6.077548503875732,
+        8.163938522338867
+      ],
+      "pitch": 26,
+      "yaw": 115,
+      "distance": 16,
+      "sha256": "a04650f0bd1f5ef43400d83ac53ea7135aaa9b18074f4733e9d5ae59a04934a7"
+    },
+    {
+      "file": "sunset_orbit_B.png",
+      "variant": "B",
+      "light": "sunset",
+      "sun_energy": 2.4,
+      "sun_color": [
+        1,
+        0.82,
+        0.64
+      ],
+      "ambient": 0.6,
+      "view": "orbit",
+      "fill_energy": 450.0,
+      "geometry_verified": true,
+      "camera": [
+        13.033344268798828,
+        6.077548503875732,
+        8.163938522338867
+      ],
+      "pitch": 26,
+      "yaw": 115,
+      "distance": 16,
+      "sha256": "729d61fdaa376695d283f8d19b899192fa1883cbec59bd5dc64802d5db320cab"
+    },
+    {
+      "file": "sunset_orbit_C.png",
+      "variant": "C",
+      "light": "sunset",
+      "sun_energy": 2.4,
+      "sun_color": [
+        1,
+        0.82,
+        0.64
+      ],
+      "ambient": 0.6,
+      "view": "orbit",
+      "fill_energy": 450.0,
+      "geometry_verified": true,
+      "camera": [
+        13.033344268798828,
+        6.077548503875732,
+        8.163938522338867
+      ],
+      "pitch": 26,
+      "yaw": 115,
+      "distance": 16,
+      "sha256": "5ee7ed191e653f066bb72f473e5a1b271e50cddeec679e6ea13d110e3a47c550"
+    },
+    {
+      "file": "sunset_prop_A.png",
+      "variant": "A",
+      "light": "sunset",
+      "sun_energy": 2.4,
+      "sun_color": [
+        1,
+        0.82,
+        0.64
+      ],
+      "ambient": 0.6,
+      "view": "prop",
+      "fill_energy": 450.0,
+      "geometry_verified": true,
+      "camera": [
+        3.189868450164795,
+        -2.899160146713257,
+        2.1500000953674316
+      ],
+      "pitch": 30,
+      "yaw": 35,
+      "distance": 3.1,
+      "sha256": "f5fbfc0c725b505d7de964c84e637dc65dee2bdb5712522797ae2e4a8da62426"
+    },
+    {
+      "file": "sunset_prop_B.png",
+      "variant": "B",
+      "light": "sunset",
+      "sun_energy": 2.4,
+      "sun_color": [
+        1,
+        0.82,
+        0.64
+      ],
+      "ambient": 0.6,
+      "view": "prop",
+      "fill_energy": 450.0,
+      "geometry_verified": true,
+      "camera": [
+        3.189868450164795,
+        -2.899160146713257,
+        2.1500000953674316
+      ],
+      "pitch": 30,
+      "yaw": 35,
+      "distance": 3.1,
+      "sha256": "7726a05d463acf10db3e81309aa62de2f189f384c94c7e78e8617e03dd004686"
+    },
+    {
+      "file": "sunset_prop_C.png",
+      "variant": "C",
+      "light": "sunset",
+      "sun_energy": 2.4,
+      "sun_color": [
+        1,
+        0.82,
+        0.64
+      ],
+      "ambient": 0.6,
+      "view": "prop",
+      "fill_energy": 450.0,
+      "geometry_verified": true,
+      "camera": [
+        3.189868450164795,
+        -2.899160146713257,
+        2.1500000953674316
+      ],
+      "pitch": 30,
+      "yaw": 35,
+      "distance": 3.1,
+      "sha256": "028655b76c44721221f5593ef4445cec641297ebdf8992995df98f0d225b2594"
+    },
+    {
+      "file": "twilight_close_A.png",
+      "variant": "A",
+      "light": "twilight",
+      "sun_energy": 0.85,
+      "sun_color": [
+        1,
+        0.63,
+        0.45
+      ],
+      "ambient": 0.28,
+      "view": "close",
+      "fill_energy": 160.0,
+      "geometry_verified": true,
+      "camera": [
+        5.571759223937988,
+        -6.640164375305176,
+        7.922276496887207
+      ],
+      "pitch": 38,
+      "yaw": 40,
+      "distance": 11,
+      "sha256": "dab31c91930b3d3116c3a457cb43531b98a6a882e4457d5ead9da5e56dde4e71"
+    },
+    {
+      "file": "twilight_close_B.png",
+      "variant": "B",
+      "light": "twilight",
+      "sun_energy": 0.85,
+      "sun_color": [
+        1,
+        0.63,
+        0.45
+      ],
+      "ambient": 0.28,
+      "view": "close",
+      "fill_energy": 160.0,
+      "geometry_verified": true,
+      "camera": [
+        5.571759223937988,
+        -6.640164375305176,
+        7.922276496887207
+      ],
+      "pitch": 38,
+      "yaw": 40,
+      "distance": 11,
+      "sha256": "98d62302a710960387cafd4214d9e2d1e4a7a8b3ace1ec3a8de8befb4ef3f792"
+    },
+    {
+      "file": "twilight_close_C.png",
+      "variant": "C",
+      "light": "twilight",
+      "sun_energy": 0.85,
+      "sun_color": [
+        1,
+        0.63,
+        0.45
+      ],
+      "ambient": 0.28,
+      "view": "close",
+      "fill_energy": 160.0,
+      "geometry_verified": true,
+      "camera": [
+        5.571759223937988,
+        -6.640164375305176,
+        7.922276496887207
+      ],
+      "pitch": 38,
+      "yaw": 40,
+      "distance": 11,
+      "sha256": "984c66b569933c16742f572e0d0b1f356d94cb455f0374d991127d526717ff40"
+    },
+    {
+      "file": "twilight_gameplay_A.png",
+      "variant": "A",
+      "light": "twilight",
+      "sun_energy": 0.85,
+      "sun_color": [
+        1,
+        0.63,
+        0.45
+      ],
+      "ambient": 0.28,
+      "view": "gameplay",
+      "fill_energy": 160.0,
+      "geometry_verified": true,
+      "camera": [
+        9.08987045288086,
+        -10.832884788513184,
+        18.00297737121582
+      ],
+      "pitch": 50,
+      "yaw": 40,
+      "distance": 22,
+      "sha256": "3196b4c85f4d66fb673f0573587fbaeb57b8e7de4e17841c212b87f696b8f92b"
+    },
+    {
+      "file": "twilight_gameplay_B.png",
+      "variant": "B",
+      "light": "twilight",
+      "sun_energy": 0.85,
+      "sun_color": [
+        1,
+        0.63,
+        0.45
+      ],
+      "ambient": 0.28,
+      "view": "gameplay",
+      "fill_energy": 160.0,
+      "geometry_verified": true,
+      "camera": [
+        9.08987045288086,
+        -10.832884788513184,
+        18.00297737121582
+      ],
+      "pitch": 50,
+      "yaw": 40,
+      "distance": 22,
+      "sha256": "66e5fd0686bda05d219bf7e5610a3933c98b9e0466df470714e7ba61f860fcc7"
+    },
+    {
+      "file": "twilight_gameplay_C.png",
+      "variant": "C",
+      "light": "twilight",
+      "sun_energy": 0.85,
+      "sun_color": [
+        1,
+        0.63,
+        0.45
+      ],
+      "ambient": 0.28,
+      "view": "gameplay",
+      "fill_energy": 160.0,
+      "geometry_verified": true,
+      "camera": [
+        9.08987045288086,
+        -10.832884788513184,
+        18.00297737121582
+      ],
+      "pitch": 50,
+      "yaw": 40,
+      "distance": 22,
+      "sha256": "502bbba9e67fc538e8189d7f49ed486a4a542817316ae0cc87323872ae854ebf"
+    },
+    {
+      "file": "twilight_orbit_A.png",
+      "variant": "A",
+      "light": "twilight",
+      "sun_energy": 0.85,
+      "sun_color": [
+        1,
+        0.63,
+        0.45
+      ],
+      "ambient": 0.28,
+      "view": "orbit",
+      "fill_energy": 160.0,
+      "geometry_verified": true,
+      "camera": [
+        13.033344268798828,
+        6.077548503875732,
+        8.163938522338867
+      ],
+      "pitch": 26,
+      "yaw": 115,
+      "distance": 16,
+      "sha256": "b0129afdfa9d67fc07bf53af39c0d5133dd6dfaa9ed8f9c640cc4b32540f4fcf"
+    },
+    {
+      "file": "twilight_orbit_B.png",
+      "variant": "B",
+      "light": "twilight",
+      "sun_energy": 0.85,
+      "sun_color": [
+        1,
+        0.63,
+        0.45
+      ],
+      "ambient": 0.28,
+      "view": "orbit",
+      "fill_energy": 160.0,
+      "geometry_verified": true,
+      "camera": [
+        13.033344268798828,
+        6.077548503875732,
+        8.163938522338867
+      ],
+      "pitch": 26,
+      "yaw": 115,
+      "distance": 16,
+      "sha256": "09b038dc12e15b8cce53d50b69a9765d98b445453fcb935c0f7477cecb802e7d"
+    },
+    {
+      "file": "twilight_orbit_C.png",
+      "variant": "C",
+      "light": "twilight",
+      "sun_energy": 0.85,
+      "sun_color": [
+        1,
+        0.63,
+        0.45
+      ],
+      "ambient": 0.28,
+      "view": "orbit",
+      "fill_energy": 160.0,
+      "geometry_verified": true,
+      "camera": [
+        13.033344268798828,
+        6.077548503875732,
+        8.163938522338867
+      ],
+      "pitch": 26,
+      "yaw": 115,
+      "distance": 16,
+      "sha256": "4f56a5bf010f5c57052d90595b29dfa9da0385f4fabfb87bddb498fb9a183afa"
+    },
+    {
+      "file": "twilight_prop_A.png",
+      "variant": "A",
+      "light": "twilight",
+      "sun_energy": 0.85,
+      "sun_color": [
+        1,
+        0.63,
+        0.45
+      ],
+      "ambient": 0.28,
+      "view": "prop",
+      "fill_energy": 160.0,
+      "geometry_verified": true,
+      "camera": [
+        3.189868450164795,
+        -2.899160146713257,
+        2.1500000953674316
+      ],
+      "pitch": 30,
+      "yaw": 35,
+      "distance": 3.1,
+      "sha256": "2c6cf12fd388cdca3d586878f57fe5b08d7908760acdafa2532262b48298ac8b"
+    },
+    {
+      "file": "twilight_prop_B.png",
+      "variant": "B",
+      "light": "twilight",
+      "sun_energy": 0.85,
+      "sun_color": [
+        1,
+        0.63,
+        0.45
+      ],
+      "ambient": 0.28,
+      "view": "prop",
+      "fill_energy": 160.0,
+      "geometry_verified": true,
+      "camera": [
+        3.189868450164795,
+        -2.899160146713257,
+        2.1500000953674316
+      ],
+      "pitch": 30,
+      "yaw": 35,
+      "distance": 3.1,
+      "sha256": "a3be01ecfda2e3eb65882c3b119c069bb475e13f25acbae617203ea0353d5ed4"
+    },
+    {
+      "file": "twilight_prop_C.png",
+      "variant": "C",
+      "light": "twilight",
+      "sun_energy": 0.85,
+      "sun_color": [
+        1,
+        0.63,
+        0.45
+      ],
+      "ambient": 0.28,
+      "view": "prop",
+      "fill_energy": 160.0,
+      "geometry_verified": true,
+      "camera": [
+        3.189868450164795,
+        -2.899160146713257,
+        2.1500000953674316
+      ],
+      "pitch": 30,
+      "yaw": 35,
+      "distance": 3.1,
+      "sha256": "f2cf30ec0c60976d3cb7a0605e971cb8479cfd816035819ea3a59fd53f1ef66e"
+    }
+  ],
+  "render_device": "GPU",
+  "devices": [
+    "NVIDIA GeForce RTX 3060 Ti"
+  ],
+  "method": "Original baseline maps and imagegen-authored painted albedo atlases, reduced fine relief; offline look development, not manually painted production textures or Unity proof."
+}
