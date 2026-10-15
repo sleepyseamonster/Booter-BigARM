@@ -107,6 +107,15 @@ Author direction recorded October 14, 2026:
 - Some machine technology has been reverse engineered into a crude Iron Age amalgamation of robotics, rocket science and advanced engineering. This establishes a present-day engineering tradition without specifying which of these weapon families has a working reproduction.
 - Particular mechanisms, materials, power or propulsion supplies, compatible ammunition, operating performance, availability and recipes remain undefined. Ancient origin does not assign a crafting tier or imply the ability to reproduce ancient composites and other rare materials.
 
+### Field Control And Electrical Protection
+
+Author direction recorded October 14, 2026:
+
+- Equipment families include magnetic field disruptors, inhibitors and enhancers, plus static-electricity field enhancers and disruptors. Their mechanisms, field strength, range, power supplies and targets remain open; the functional distinction between a magnetic inhibitor and disruptor is not yet defined.
+- Arc ray guns, also described as lightning blasters, form an electrical-discharge weapon family separate from laser blasters.
+- Insulating materials and insulating suits, gloves and boots exist for handling high-voltage electricity. Their composition, construction, operating limits and compatibility remain undefined; garment construction follows the established no-cloth material rules. Insulation and grounding remain distinct equipment purposes.
+- Ancient, reverse-engineered or contemporary origins and crafting tiers have not been assigned to these families. Their existence does not establish particular combat effects, immunity, or enhancement/suppression of living peoples' abilities.
+
 ## Player Character
 
 Booter is a professional desert survivor and metal scrapper.
