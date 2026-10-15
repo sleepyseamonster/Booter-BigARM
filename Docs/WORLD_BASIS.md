@@ -84,6 +84,14 @@ Author direction recorded October 14, 2026:
 - Ancient technology uses materials comparable to carbon-fiber composites, nanocarbon materials, plasteels and related futuristic manufactured substances. These materials are **extremely rare**.
 - Their exact compositions, properties, recovery forms and present-day manufacturing possibilities remain undefined. Finding an ancient material does not establish the ability to reproduce it.
 
+### Material Refinement Tiers
+
+Author direction recorded October 14, 2026:
+
+- Raw crafting inputs are Tier 0. Refining or manufacturing raw inputs produces Tier 1 materials; further material transformations progress from Tier 1 to Tier 2, Tier 2 to Tier 3, and Tier 3 to Tier 4.
+- Finished items can be crafted directly from raw inputs or from materials at any of these tiers. A product does not need a four-tier crafting chain.
+- The [master item database](./Design/Items/MASTER_ITEM_DATABASE.xlsx) separates material tier from item rarity, quality and finished-product classification. Its specific tier assignments, candidate refinement routes and regional demand/fashion ideas remain brainstorming proposals; they do not establish recipes, prices, national customs or present-day ancient-material manufacture.
+
 ## Player Character
 
 Booter is a professional desert survivor and metal scrapper.
