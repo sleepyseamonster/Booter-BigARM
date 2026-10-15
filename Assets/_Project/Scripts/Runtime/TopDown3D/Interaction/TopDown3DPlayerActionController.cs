@@ -157,7 +157,7 @@ namespace BooterBigArm.TopDown3D
             }
             if(motor!=null && !motor.LaboratoryStandingActionsAllowed)
             {ReportFeedback("Stand before starting this activity.");return TopDown3DGatherActionResult.Rejected;}
-            if (target is TopDown3DIronstoneNode ironstone && ironstone.Definition.YieldedItem.IsResource)
+            if (inventory != null && inventory.ItemCatalog.TryGetDefinition(target.Reward.ItemId, out var yieldedItem) && yieldedItem.IsResource)
             {
                 if (bigArmCargo == null || !bigArmCargo.isActiveAndEnabled)
                 {
@@ -168,7 +168,7 @@ namespace BooterBigArm.TopDown3D
                 if (!space.Succeeded)
                 {
                     ReportFeedback(space.Code == TopDown3DInventoryResultCode.TooHeavy
-                        ? "Legger cannot carry this deposit's weight." : "Legger cargo is full.");
+                        ? "Legger cannot carry this reward's weight." : "Legger cargo is full.");
                     return TopDown3DGatherActionResult.InventoryFull;
                 }
                 if (!TopDown3DCargoAccess.CanAccess(bigArmCargo, transform))
@@ -177,7 +177,8 @@ namespace BooterBigArm.TopDown3D
                     if (follower == null || !follower.isActiveAndEnabled
                         || Vector3.Distance(transform.position, bigArmCargo.transform.position) > 24f)
                     {
-                        ReportFeedback("Call the Legger closer before mining.");
+                        ReportFeedback(target is TopDown3DIronstoneNode
+                            ? "Call the Legger closer before mining." : "Call the Legger closer before scavenging.");
                         return TopDown3DGatherActionResult.Rejected;
                     }
                     follower.RequestCallOver();
@@ -254,8 +255,10 @@ namespace BooterBigArm.TopDown3D
                     || interaction == null || !interaction.CanReachTarget(pendingResource)
                     || follower == null || (approachSeconds > 1f && follower.State == TopDown3DBigArmFollower.FollowState.WaitingForRoute))
                 {
+                    var wasMining = pendingResource is TopDown3DIronstoneNode;
                     pendingResource = null;
-                    ReportFeedback("Mining cancelled — the Legger or deposit cannot be reached.");
+                    ReportFeedback(wasMining ? "Mining cancelled — the Legger or deposit cannot be reached."
+                        : "Scavenging cancelled — the Legger or machine cannot be reached.");
                     return;
                 }
                 if (TopDown3DCargoAccess.CanAccess(bigArmCargo, transform))

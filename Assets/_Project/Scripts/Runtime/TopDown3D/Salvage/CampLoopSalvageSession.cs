@@ -5,7 +5,8 @@ using UnityEngine;
 namespace BooterBigArm.TopDown3D
 {
     [DisallowMultipleComponent]
-    public sealed class CampLoopSalvageSession : MonoBehaviour, IAnimationPlaygroundResetParticipant
+    public sealed class CampLoopSalvageSession : MonoBehaviour, IAnimationPlaygroundResetParticipant,
+        ITopDown3DInteractable, ITopDown3DTargetEpoch, ITopDown3DTargetColliderOwner
     {
         [SerializeField] private TopDown3DItemCatalog catalog;
         [SerializeField] private TopDown3DPlayerInventory kit;
@@ -14,7 +15,42 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private TopDown3DSalvageWreckState wreck;
         private TopDown3DAnimationPlaygroundSession lab;
         private bool registered, failed;
+        private TopDown3DSalvagePoint[] points;
         public bool Ready => registered && !failed && isActiveAndEnabled && lab != null && lab.isActiveAndEnabled && lab.PreviewReady;
+        public UnityEngine.Object UnityObject => this;
+        public string StableId => wreck != null ? wreck.StableId + ":scavenge" : string.Empty;
+        public uint Epoch => wreck != null ? wreck.Epoch : 0;
+        private TopDown3DSalvagePoint NextPart => points?.FirstOrDefault(p => p != null && p.IsAvailable);
+        public bool IsAvailable => Ready && NextPart != null;
+        public TopDown3DItemAmount Reward => NextPart?.Reward ?? default;
+        public float ActionDuration => NextPart?.ActionDuration ?? 0;
+        public float InteractionRange => 2.8f;
+        public string Prompt => NextPart is { } part && catalog != null
+            ? $"Scavenge machine — {part.Reward.Quantity} {catalog.GetRequiredDefinition(part.Reward.ItemId).DisplayName}"
+            : string.Empty;
+        public Vector3 InteractionPoint
+        {
+            get
+            {
+                var actor = kit != null ? kit.transform.position + Vector3.up * .8f : transform.position;
+                var closest = transform.position; var distance = float.PositiveInfinity;
+                foreach (var collider in GetComponentsInChildren<Collider>())
+                {
+                    if (!collider.enabled || collider.isTrigger) continue;
+                    var point = collider.ClosestPoint(actor); var squared = (point - actor).sqrMagnitude;
+                    if (squared < distance) { closest = point; distance = squared; }
+                }
+                return closest;
+            }
+        }
+        // The carcass owns its hull and socket colliders; other world obstacles still block access.
+        public bool OwnsCollider(Collider collider) => collider != null && collider.transform.IsChildOf(transform);
+        public bool TryConsume(out int remainingUses)
+        {
+            remainingUses = 0;
+            var part = NextPart;
+            return Ready && part != null && part.TryConsume(out remainingUses);
+        }
         public string ResetId => "CampLoop.Salvage.Wreck01";
         public AnimationPlaygroundResetStage ResetStage => AnimationPlaygroundResetStage.StationState;
         public string FailureReason { get; private set; }
@@ -35,7 +71,7 @@ namespace BooterBigArm.TopDown3D
                     || kit.gameObject.scene != gameObject.scene || cargo.gameObject.scene != gameObject.scene || cache.gameObject.scene != gameObject.scene
                     || kit.ItemCatalog != catalog || cargo.ItemCatalog != catalog || cache.ItemCatalog != catalog)
                     throw new InvalidOperationException("Private salvage catalog bindings are missing; inventory was preserved.");
-                var points = gameObject.GetComponentsInChildren<TopDown3DSalvagePoint>(true);
+                points = gameObject.GetComponentsInChildren<TopDown3DSalvagePoint>(true).OrderBy(p => p.StableId, StringComparer.Ordinal).ToArray();
                 var wrecks = gameObject.scene.GetRootGameObjects().SelectMany(r => r.GetComponentsInChildren<TopDown3DSalvageWreckState>(true)).ToArray();
                 if (points.Length != 3 || points.Select(p => p.StableId).Distinct().Count() != 3 || wrecks.Length != 1
                     || Inventories().Any(s => s.ItemCatalog != catalog) || !wreck.ValidateRewards(Inventories()))

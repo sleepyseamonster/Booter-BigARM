@@ -35,6 +35,8 @@ namespace BooterBigArm.TopDown3D
         {
             if (resetLocked || !IsValid || IsRemoved(index)) return false;
             removedMask |= 1 << index;
+            // Switching the hull's next reward invalidates any action captured against the old part.
+            epoch = unchecked(epoch + 1);
             return true;
         }
         public void Invalidate() => epoch = unchecked(epoch + 1);

@@ -6,7 +6,7 @@ Implemented October 14, 2026 in the existing [CampLoopTesting scene](../../../..
 
 One linked machine blockout is placed 28 metres east of Starting Camp at approximately (-1814, -46.27, -1498). Its exposed side contains three independently scavengable sockets: two Metal Plates in 2.5 seconds, one Wire Bundle in 2 seconds, and one Drive Assembly in 3.5 seconds. Together they weigh 10.5 kg under trial tuning.
 
-Use the existing Interact command while standing beside a socket. Bring the Legger into physical cargo access first using the existing call/regroup controls. Prompts include item and quantity; completion receipts name the cargo destination. The loose part geometry disappears after a committed extraction while the structural obstacle remains. Current in-place gather animation is reused and stretched to each duration; the machine and icons are functional blockout art, not final assets. No dedicated extraction motion or new sound set is claimed.
+Use the existing Interact command beside the hull or an individual socket. The hull selects the next remaining part, shows its reward, and can be approached from either end or flank. If the Legger is nearby but outside cargo access, interaction calls him over before extraction, matching mining. A distant/unavailable Legger or full cargo produces feedback without consuming a part. The loose part geometry disappears after a committed extraction while the structural obstacle remains. Current in-place gather animation is reused and stretched to each duration; the machine and icons are functional blockout art, not final assets. No dedicated extraction motion or new sound set is claimed.
 
 Use the existing animation playground Reset control for another trial. The reset cancels work, invalidates stale target epochs, removes all three lab item types from kit/cargo/cache regardless of distance, and restores the wreck as one coordinated state change. Other inventory contents and Ironstone depletion are preserved. The Legger is not teleported.
 
@@ -33,3 +33,15 @@ Protected production scene, shared resource prefabs, stock item catalog, package
 Hands-on extraction feel, controller comfort, final appearance and Player performance remain author-owned. Production persistence and wider wreck distribution remain later slices. Unrelated animation/station/cargo work and fused rocks were excluded from this feature commit.
 
 Ignored diagnostics remain under the checkout's `Logs/camp-salvage-*.log` and the isolated candidate's `Logs/`. New authoring/validation commands are documented in [Unity automation](../../../Engineering/UNITY_AUTOMATION.md).
+
+## Interaction repair October 15 2026
+
+The author reported no interaction prompt. Live readback showed a ready salvage session with all three parts available, but only the three small socket triggers were targets; the main hull had no interaction contract. The original scene test approached sockets only from their exposed side, leaving ordinary hull approaches unqualified.
+
+The existing session component now also implements the timed interaction contract on the hull. Its interaction point is the nearest solid wreck surface to Booter, with a 2.8 m reach limit. Collider ownership includes the carcass itself but excludes other world obstacles. The individual sockets remain available. Successful removal advances the retained epoch so a pending hull action cannot silently change reward if another part is removed. Reset and retained inventory/depletion validation remain in place.
+
+The player action controller's cargo preflight now recognizes Resource rewards rather than only the Ironstone component type. Nearby Legger call-over and cargo capacity checks therefore apply to both hull and socket scavenging; mining behavior remains covered by regression checks.
+
+**44 focused EditMode checks passed, zero failures/skips**, in the hydrated isolated candidate: 10 salvage, 7 interaction-query, 17 interaction and 10 inventory-loop tests. [Repair test results](interaction-fix-20261015.xml) include real scene target selection from front/back/both ends, cargo approach through the player action controller, all three hull awards, exhaustion and reset. The existing cancellation, epoch, capacity and retained-state contracts also passed. These are direct EditMode contracts, not a gameplay smoke test.
+
+The open production-checkout Editor reported the new hull interaction type compiled with no compilation active. No agent command moved the player, entered/stopped Play Mode, focused a window or saved the author's scene. The fix changes four C# files and documentation/evidence; existing dirty scene, camera and menu work remains outside the repair. Terrain, placement, IDs, item definitions, prefab GUIDs and checkpoint policy are unchanged.

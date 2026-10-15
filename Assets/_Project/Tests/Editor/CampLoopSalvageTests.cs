@@ -151,5 +151,53 @@ namespace BooterBigArm.Tests
             try { var save = saveObject.AddComponent<GreaterWastelandInventorySaveService>(); Assert.That(save.IsSessionOnly, Is.True); Assert.That(save.Save(), Is.False); }
             finally { Object.DestroyImmediate(saveObject); EditorSceneManager.NewScene(NewSceneSetup.EmptyScene); }
         }
+        [Test] public void WholeHullIsSelectableFromEachSideAndYieldsAllParts()
+        {
+            Object.DestroyImmediate(owner); owner = null;
+            var scene = EditorSceneManager.OpenScene(GreaterWastelandSceneScope.CampLoopScene);
+            try
+            {
+                var lab = TopDown3DAnimationPlaygroundSession.Find(scene);
+                Assert.That(lab.CheckDependencies(), Is.True);
+                lab.Advance(AnimationPlaygroundReadiness.ServicesBound); lab.Advance(AnimationPlaygroundReadiness.VisualReady);
+                var roots = scene.GetRootGameObjects();
+                var session = roots.SelectMany(r => r.GetComponentsInChildren<CampLoopSalvageSession>()).Single();
+                session.TryBindSession(); Assert.That(session.Ready, Is.True, session.FailureReason);
+                var player = roots.SelectMany(r => r.GetComponentsInChildren<TopDown3DPlayerMotor>()).Single();
+                var interaction = player.GetComponent<TopDown3DInteractionController>(); interaction.Configure(player);
+                var sceneCargo = roots.SelectMany(r => r.GetComponentsInChildren<TopDown3DBigArmCargo>()).Single();
+                var sceneKit = player.GetComponent<TopDown3DPlayerInventory>();
+                foreach (var offset in new[] { new Vector3(0, 0, 2.2f), new Vector3(0, 0, -2.2f), new Vector3(-3, 0, 0), new Vector3(3, 0, 0) })
+                {
+                    var position = session.transform.position + offset + Vector3.up;
+                    player.transform.position = position;
+                    player.GetComponent<Rigidbody>().position = position; player.FacePlanarDirection(-offset); Physics.SyncTransforms();
+                    interaction.RefreshTarget();
+                    Assert.That(interaction.SelectedTarget, Is.Not.Null, "No prompt from " + offset);
+                    Assert.That(interaction.SelectedTarget is CampLoopSalvageSession || interaction.SelectedTarget is TopDown3DSalvagePoint, Is.True);
+                    Assert.That(interaction.CanReachTarget(session), Is.True, "Hull approach blocked from " + offset);
+                }
+                sceneCargo.transform.position = player.Position + Vector3.left * 8;
+                sceneCargo.GetComponent<Rigidbody>().position = sceneCargo.transform.position;
+                Physics.SyncTransforms(); interaction.RefreshTarget();
+                var action = player.GetComponent<TopDown3DPlayerActionController>();
+                Assert.That(action.TryBeginCurrentTarget(), Is.EqualTo(TopDown3DGatherActionResult.AwaitingCargo),
+                    "Interacting with salvage should call nearby Legger cargo over, just like mining.");
+                action.CancelGather();
+                for (var i = 0; i < 3; i++)
+                {
+                    var gather = new TopDown3DGatherActionState(new TopDown3DItemDestinationService(sceneKit.State, sceneCargo.State, () => true));
+                    Assert.That(session.Prompt, Does.StartWith("Scavenge machine"));
+                    var amount = session.Reward;
+                    Assert.That(gather.TryBegin(session, player.Position), Is.EqualTo(TopDown3DGatherActionResult.Started));
+                    Assert.That(gather.Advance(4, player.Position), Is.EqualTo(TopDown3DGatherActionResult.Completed));
+                    Assert.That(sceneCargo.State.Slots.Where(s => s.ItemId == amount.ItemId).Sum(s => s.Quantity), Is.EqualTo(amount.Quantity));
+                }
+                Assert.That(session.IsAvailable, Is.False);
+                Assert.That(lab.ResetRegistry.TryReset(), Is.True, lab.ResetRegistry.LastFailure);
+                Assert.That(session.IsAvailable, Is.True);
+            }
+            finally { EditorSceneManager.NewScene(NewSceneSetup.EmptyScene); }
+        }
     }
 }
