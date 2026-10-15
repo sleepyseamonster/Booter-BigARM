@@ -1,0 +1,118 @@
+{
+  "source": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger.blend",
+  "source_sha256": "9e1fe169ac10d2b902722c74923b435591f7a3ca857bfaf68963f23205e43281",
+  "candidate": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration03.blend",
+  "candidate_sha256": "93c53901735c439923642f250a5c058be407e3ec3065f2295d5144f3c3b34f5f",
+  "original": {
+    "vertices": 2030602,
+    "faces": 4064968,
+    "triangles": 4064968,
+    "quads": 0,
+    "dimensions": [
+      0.8586044311523438,
+      1.6463122367858887,
+      2.2277345657348633
+    ],
+    "matrix_world": [
+      [
+        0.7425782084465027,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.7425782084465027,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.7425782084465027,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "uv_layers": [
+      "UVMap"
+    ]
+  },
+  "candidate_stats": {
+    "vertices": 1479798,
+    "faces": 2805471,
+    "triangles": 2963358,
+    "quads": 157887,
+    "dimensions": [
+      0.858575701713562,
+      1.6463167667388916,
+      2.2277183532714844
+    ],
+    "matrix_world": [
+      [
+        0.7425782084465027,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.7425782084465027,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.7425782084465027,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "uv_layers": [
+      "UVMap"
+    ]
+  },
+  "candidate_to_full_source": {
+    "samples": 16085,
+    "mean_meters": 7.927869924212893e-06,
+    "p99_meters": 6.469564686995e-05,
+    "max_meters": 0.0001221799902850762
+  },
+  "candidate_mesh_health": {
+    "boundary_edges": 49,
+    "non_manifold_edges": 128,
+    "loose_vertices": 0
+  },
+  "full_source_to_candidate": {
+    "samples": 16116,
+    "mean_meters": 1.3557294605866585e-05,
+    "p99_meters": 7.498826744267717e-05,
+    "max_meters": 0.0007686507306061685
+  },
+  "packed_images_on_candidate": [
+    {
+      "name": "Image_0.001",
+      "packed": true
+    },
+    {
+      "name": "Image_1.001",
+      "packed": true
+    },
+    {
+      "name": "Image_2.001",
+      "packed": true
+    }
+  ],
+  "total_triangle_reduction_percent": 27.100090332814432
+}

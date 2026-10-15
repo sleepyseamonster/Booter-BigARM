@@ -1,0 +1,151 @@
+{
+  "source": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration02.blend",
+  "source_sha256": "0555acc99eb4096a5fa2adb917317d08beb3446ef948f4b25c2d38a3f860a92a",
+  "output": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration03.blend",
+  "blender_version": "5.2.2 LTS",
+  "ratio_requested": 0.9,
+  "before": {
+    "vertices": 1644429,
+    "faces": 3109089,
+    "triangles": 3292620,
+    "quads": 183531,
+    "dimensions": [
+      0.858575701713562,
+      1.6463167667388916,
+      2.227745294570923
+    ],
+    "matrix_world": [
+      [
+        0.7425782084465027,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.7425782084465027,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.7425782084465027,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "uv_layers": [
+      "UVMap"
+    ]
+  },
+  "after_collapse": {
+    "vertices": 1479798,
+    "faces": 2963358,
+    "triangles": 2963358,
+    "quads": 0,
+    "dimensions": [
+      0.858575701713562,
+      1.6463167667388916,
+      2.2277183532714844
+    ],
+    "matrix_world": [
+      [
+        0.7425782084465027,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.7425782084465027,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.7425782084465027,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "uv_layers": [
+      "UVMap"
+    ]
+  },
+  "mesh_health": {
+    "boundary_edges": 49,
+    "non_manifold_edges": 128,
+    "loose_vertices": 0
+  },
+  "after": {
+    "vertices": 1479798,
+    "faces": 2805471,
+    "triangles": 2963358,
+    "quads": 157887,
+    "dimensions": [
+      0.858575701713562,
+      1.6463167667388916,
+      2.2277183532714844
+    ],
+    "matrix_world": [
+      [
+        0.7425782084465027,
+        0.0,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.7425782084465027,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.7425782084465027,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "uv_layers": [
+      "UVMap"
+    ]
+  },
+  "candidate_to_source": {
+    "samples": 16085,
+    "mean_local_units": 4.06987998101238e-06,
+    "p99_local_units": 7.161748362705112e-05,
+    "max_local_units": 0.00010921640205197036
+  },
+  "source_to_candidate": {
+    "samples": 16122,
+    "mean_local_units": 7.736031400069304e-06,
+    "p99_local_units": 8.67355483933352e-05,
+    "max_local_units": 0.00016665353905409575
+  },
+  "packed_images": 3,
+  "triangle_reduction_percent": 9.999999999999998,
+  "limitations": [
+    "Sampled distances are not a global error bound.",
+    "Quad pairing is not animation-ready edge flow.",
+    "No rig, bake, collision, LOD or Unity import is established."
+  ]
+}
