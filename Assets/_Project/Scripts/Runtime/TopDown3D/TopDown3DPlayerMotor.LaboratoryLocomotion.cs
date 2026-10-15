@@ -16,10 +16,11 @@ namespace BooterBigArm.TopDown3D
 
         // The existing normal ray supplies this plane. Reading it adds no query
         // and cannot return a support from another completed tick or owner.
-        public bool TryGetLaboratorySupportPlane(out Plane plane)
+        public bool TryGetLaboratorySupportPlane(out Plane plane, bool allowRebasedPose = false)
         {
             plane = completedLaboratoryGroundPlane;
-            return hasCompletedLaboratoryGroundPlane && LaboratoryGroundedMotion.Available
+            return hasCompletedLaboratoryGroundPlane && (LaboratoryGroundedMotion.Available
+                || allowRebasedPose && LaboratoryGroundedMotion.Rebased)
                 && IsGrounded && observedGroundSupport != null && observedGroundSupport == laboratoryGroundSupport
                 && observedGroundSupport.enabled && observedGroundSupport.gameObject.activeInHierarchy
                 && observedGroundSupport.attachedRigidbody == null
@@ -57,7 +58,7 @@ namespace BooterBigArm.TopDown3D
             LaboratoryGroundedMotion = groundedMotionTracker.Observe(Position, completedTime,
                 eligible, support != null ? support.GetInstanceID() : 0,
                 hasStableGroundNormal ? stableGroundNormal : Vector3.up);
-            if (eligible && LaboratoryGroundedMotion.Available)
+            if (eligible && (LaboratoryGroundedMotion.Available || LaboratoryGroundedMotion.Rebased))
             {
                 completedLaboratoryGroundPlane = laboratoryGroundPlane;
                 hasCompletedLaboratoryGroundPlane = true;

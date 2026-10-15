@@ -45,6 +45,7 @@ namespace BooterBigArm.Tests
                     typeof(TopDown3DPlayerMotor).GetMethod("ObserveCompletedLaboratoryMotionAt", Private));
                 Assert.That(motor.TryGetLaboratorySupportPlane(out _), Is.False);
                 observe(1); Assert.That(motor.TryGetLaboratorySupportPlane(out _), Is.False);
+                Assert.That(motor.TryGetLaboratorySupportPlane(out _, true), Is.True, "A rebase has a real surface for pose only; it cannot count travel.");
                 observe(1.02);
                 Assert.That(motor.TryGetLaboratorySupportPlane(out var plane), Is.True);
                 Assert.That(plane.GetDistanceToPoint(point), Is.EqualTo(0).Within(.0001));
@@ -69,6 +70,7 @@ namespace BooterBigArm.Tests
                 Assert.That(motor.TryGetLaboratorySupportPlane(out _), Is.False);
                 motor.EndActionConstraint(owner);
                 Assert.That(motor.TryGetLaboratorySupportPlane(out _), Is.False);
+                Assert.That(motor.TryGetLaboratorySupportPlane(out _, true), Is.False);
             }
             finally
             {

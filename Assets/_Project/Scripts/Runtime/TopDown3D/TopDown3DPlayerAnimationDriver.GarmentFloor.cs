@@ -22,18 +22,24 @@ namespace BooterBigArm.TopDown3D
         }
         private void ApplyGarmentFloor()
         {
-            if(!animationGarmentFloor && !poseBlendGarmentFloor){RestoreGarmentFloor();return;}
+            if(forwardTerrainApplied && !ForwardTerrainPoseCurrent)
+            {forwardTerrainApplied=false;forwardTerrainPose?.Disable();RestoreGarmentFloor();return;}
+            if(!animationGarmentFloor && !poseBlendGarmentFloor && !forwardTerrainApplied){RestoreGarmentFloor();return;}
             if(!cloakBound || visualInstance==null)return;
+            NormalizeCampSkinWeights();
             if(garmentFloors.Count==0)
                 foreach(var skin in visualInstance.GetComponentsInChildren<SkinnedMeshRenderer>(true))
                     if(IsSoftGarment(skin))garmentFloors.Add(new AnimationPlaygroundGarmentFloor(skin));
             Plane plane;
-            if(garmentFixturePlane.HasValue)plane=garmentFixturePlane.Value;
+            if(forwardTerrainApplied)plane=forwardTerrainPlane;
+            else if(garmentFixturePlane.HasValue)plane=garmentFixturePlane.Value;
             else if(motor==null || !motor.TryGetLaboratoryGroundPlane(out plane)){RestoreGarmentFloor();return;}
-            playableGraph.Evaluate(0);LastGarmentFloorDisplacement=0;GarmentFloorExceeded=false;
+            if(!forwardTerrainApplied)playableGraph.Evaluate(0);
+            LastGarmentFloorDisplacement=0;GarmentFloorExceeded=false;
             foreach(var garment in garmentFloors)
             {
-                garment.Apply(plane,garmentClearance,garmentMaximum);
+                garment.Apply(plane,forwardTerrainApplied ? .001f : garmentClearance,
+                    forwardTerrainApplied ? laboratoryForwardProfile.maximumTerrainGarmentDisplacement : garmentMaximum);
                 LastGarmentFloorDisplacement=Mathf.Max(LastGarmentFloorDisplacement,garment.MaximumDisplacement);
                 GarmentFloorExceeded|=garment.ExceededLimit;
             }

@@ -53,6 +53,12 @@ namespace BooterBigArm.TopDown3D
     {
         public int schema = 1;
         public bool qualified;
+        // Independently sealed optional terrain extension. Existing assets and
+        // production/null profiles retain their original presentation path.
+        public int terrainSchema = 1;
+        public bool terrainQualified;
+        public float maximumTerrainBodyLowering = .45f;
+        public float maximumTerrainGarmentDisplacement = .35f;
         public GameObject targetModel;
         public TopDown3DLocomotionClipProfile locomotion;
         public AnimationPlaygroundFootProjection footProjection;
@@ -80,6 +86,11 @@ namespace BooterBigArm.TopDown3D
                 || !float.IsFinite(enterSpeed) || !float.IsFinite(exitSpeed) || exitSpeed < 0 || enterSpeed <= exitSpeed)
                 reason = "The forward gait policy has invalid reviewed bounds.";
             if (reason != null) return false;
+            if (terrainQualified && (terrainSchema != 1 || !float.IsFinite(maximumTerrainBodyLowering)
+                || maximumTerrainBodyLowering <= 0 || maximumTerrainBodyLowering > .45f
+                || !float.IsFinite(maximumTerrainGarmentDisplacement) || maximumTerrainGarmentDisplacement <= 0
+                || maximumTerrainGarmentDisplacement > .35f))
+            { reason = "The terrain extension requires its reviewed version and bounded body/garment policy."; return false; }
             if (secondRightDistanceAdjustment == null || secondRightDistanceAdjustment.Length > 32)
             { reason = "Mixed stance distance calibration is incomplete."; return false; }
             for (var k = 0; k < secondRightDistanceAdjustment.Length; k++)

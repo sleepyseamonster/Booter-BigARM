@@ -1,0 +1,161 @@
+{
+  "success": true,
+  "command": "command run_tests",
+  "data": {
+    "command": "run_tests",
+    "parameters": {
+      "mode": "editor",
+      "filter": "TopDown3DPlayerLocomotionTests"
+    },
+    "result": {
+      "Summary": {
+        "Total": 18,
+        "Passed": 18,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.AccelerationProfile_UsesDistinctStartStopAndDirectionChangeRates",
+          "Status": "Passed",
+          "Duration": 0.0003976,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.AnimationSpeedSmoothing_IsIndependentOfPhysicsStepSubdivision",
+          "Status": "Passed",
+          "Duration": 0.0001964,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.DirectionalGait_UsesLocalTrajectoryAndMeasuredYawSymmetrically",
+          "Status": "Passed",
+          "Duration": 0.0007325,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.GaitCadence_RemainsContinuousAtNominalRunSpeed",
+          "Status": "Passed",
+          "Duration": 0.0002909,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.GaitPhaseContact_DetectsOrdinaryAndWrappedCrossingsOnce",
+          "Status": "Passed",
+          "Duration": 0.000205,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.GaitWeights_AreContinuousAndNormalizedAcrossRunAndSprintBoundaries",
+          "Status": "Passed",
+          "Duration": 0.0002839,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.GroundedTravelState_HoldsStartAndStopUntilTheirReleaseThresholds",
+          "Status": "Passed",
+          "Duration": 0.0003499,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.HardTurnClassification_IsDirectionalLatchedAndTraversalSafe",
+          "Status": "Passed",
+          "Duration": 0.0003231,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.LocomotionProfile_OwnsOneCompleteHumanoidNoRootMotionSet",
+          "Status": "Passed",
+          "Duration": 0.0064474,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.LocomotionSnapshot_PreservesAnimationFacingInputsWithoutOwningMotion",
+          "Status": "Passed",
+          "Duration": 0.0005746,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.MovementInput_UsesOneDeadzoneAuthorityAndOnlyClampsMagnitude",
+          "Status": "Passed",
+          "Duration": 0.0002787,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.OneShotSideSelection_UsesTheNextMeasuredPlant",
+          "Status": "Passed",
+          "Duration": 0.000288,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.ProfilePhaseRemap_AlignsBothMeasuredContactsAcrossTwoStrideLoops",
+          "Status": "Passed",
+          "Duration": 0.000215,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.ResponseTiming_DefaultRatesStayInsideWeightyPlanBounds",
+          "Status": "Passed",
+          "Duration": 0.0001741,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.StopCadenceAlignment_IsBoundedAndMovesTowardTheNextPlant",
+          "Status": "Passed",
+          "Duration": 0.0002167,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.SustainedCadence_ClampsTheDominantClipToProfilePlaybackBounds",
+          "Status": "Passed",
+          "Duration": 0.0002118,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.TurnGaitWeight_IsSignedDirectionIndependentAndBounded",
+          "Status": "Passed",
+          "Duration": 0.0002172,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerLocomotionTests.TurnProfile_ReducesTurnRateOnlyAboveNormalRunSpeed",
+          "Status": "Passed",
+          "Duration": 0.0001337,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 0.3,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: TopDown3DPlayerLocomotionTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

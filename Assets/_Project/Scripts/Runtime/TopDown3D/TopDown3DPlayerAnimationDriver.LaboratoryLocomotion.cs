@@ -32,6 +32,17 @@ namespace BooterBigArm.TopDown3D
         private readonly AnimationPlaygroundForwardPoseEnvelope forwardPoseEnvelope = new();
         private bool forwardPoseRenderedThisFrame;
         private bool forwardFootEffectsProcessed;
+        private AnimationPlaygroundTerrainPose forwardTerrainPose;
+        private bool forwardTerrainApplied;
+        private Plane forwardTerrainPlane;
+        private long forwardTerrainTick, forwardTerrainEpoch;
+        private bool ForwardTerrainPoseCurrent => forwardTerrainApplied && motor != null
+            && !AnimationPresentationOwned && !CrouchPresentationOwned && !PoseBlendOwned && !motor.IsMounted
+            && motor.LaboratoryGroundedMotion.Tick == forwardTerrainTick
+            && motor.LaboratoryGroundedMotion.Epoch == forwardTerrainEpoch
+            && motor.TryGetLaboratorySupportPlane(out _, true);
+        public float LaboratoryTerrainBodyLowering => forwardTerrainApplied ? forwardTerrainPose.Sample.lowering : 0;
+        public int LaboratoryTerrainEvaluations => forwardTerrainPose?.Sample.evaluations ?? 0;
         public bool LaboratoryForwardReady { get; private set; }
         public string LaboratoryForwardFailure { get; private set; }
         public float LaboratoryForwardSpeed => forwardSpeed;
@@ -50,6 +61,9 @@ namespace BooterBigArm.TopDown3D
             if (!laboratoryForwardProfile.Validate(humanoidPrefab, locomotionProfile, out var reason))
             { LaboratoryForwardFailure = reason; return; }
             forwardClock = new AnimationPlaygroundGaitClock(laboratoryForwardProfile.enterSpeed, laboratoryForwardProfile.exitSpeed);
+            if (laboratoryForwardProfile.terrainQualified)
+                forwardTerrainPose = new AnimationPlaygroundTerrainPose(humanoidAnimator, visualInstance.transform,
+                    laboratoryForwardProfile.footProjection, playableGraph, laboratoryForwardProfile.maximumTerrainBodyLowering);
             LaboratoryForwardReady = true; BindForwardMotion();
         }
         private void OnEnable() => BindForwardMotion();
@@ -65,6 +79,7 @@ namespace BooterBigArm.TopDown3D
             if (forwardBound && motor != null) motor.LaboratoryGroundedMotionCompleted -= AdvanceForwardMotion;
             forwardBound = false; forwardClock?.Reset(); forwardSpeed = forwardPreviousSpeed = 0;
             forwardPoseRenderedThisFrame = false;
+            forwardTerrainApplied = false; forwardTerrainPose?.Disable();
             forwardPoseEnvelope.Reset();
             forwardFootEffectsProcessed = false;
             forwardPlantStart = forwardPlantCount = 0;
@@ -96,6 +111,7 @@ namespace BooterBigArm.TopDown3D
 
         private void PrepareForwardGraphUpdate()
         {
+            forwardTerrainApplied = false; forwardTerrainPose?.Disable();
             if (!forwardPoseRenderedThisFrame) { forwardIdleSeconds = 0; forwardPoseEnvelope.Reset(); }
             forwardPoseRenderedThisFrame = false;
             forwardFootEffectsProcessed = false;
@@ -176,11 +192,28 @@ namespace BooterBigArm.TopDown3D
             }
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition + Vector3.up * correction,
                 Quaternion.Euler(visualLocalEulerAngles));
+            var plane = transform.TransformPoint(Vector3.up * laboratoryFeetPlane).y;
+            forwardTerrainApplied = forwardTerrainPose != null && motor != null
+                && motor.TryGetLaboratorySupportPlane(out forwardTerrainPlane, true);
+            if (forwardTerrainApplied)
+            {
+                forwardTerrainTick = motor.LaboratoryGroundedMotion.Tick;
+                forwardTerrainEpoch = motor.LaboratoryGroundedMotion.Epoch;
+                forwardTerrainPose.Configure(forwardTerrainPlane, plane);
+            }
+            else forwardTerrainPose?.Disable();
             // Evaluate exactly once at the supplied timestamp; moving the visual host
             // afterward updates the same cached bone transforms without advancing time.
             playableGraph.Evaluate(0);
-            var plane = transform.TransformPoint(Vector3.up * laboratoryFeetPlane).y;
-            correction += Mathf.Max(0, plane - footProjectionSampler.MinimumWorldY());
+            if (forwardTerrainApplied)
+            {
+                var sample = forwardTerrainPose.Sample;
+                if (!float.IsFinite(sample.requiredLowering) || sample.requiredLowering > policy.maximumTerrainBodyLowering + .00001f
+                    || sample.incompatibleReach > .001f || correction + sample.flatLift > policy.maximumLift + .00001f)
+                    throw new InvalidOperationException("The terrain pose exceeds its qualified reach/body envelope.");
+                correction += Mathf.Max(0, -footProjectionSampler.MinimumDistance(forwardTerrainPlane)) / forwardTerrainPlane.normal.y;
+            }
+            else correction += Mathf.Max(0, plane - footProjectionSampler.MinimumWorldY());
             if (!float.IsFinite(correction) || correction < -policy.maximumLowering - .00001f || correction > policy.maximumLift + .00001f)
                 throw new InvalidOperationException("The forward pose exceeds its qualified visual grounding envelope.");
             visualInstance.transform.localPosition = visualLocalPosition + Vector3.up * correction;

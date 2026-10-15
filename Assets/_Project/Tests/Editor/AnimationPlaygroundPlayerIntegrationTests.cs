@@ -147,7 +147,8 @@ namespace BooterBigArm.Tests
             finally { CloseFixtureScene(scene); }
         }
 
-        [TestCase(false), TestCase(true), Category("PrivateAnimationQualification")] public void SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(bool measuredForward)
+        [TestCase(false, false), TestCase(true, false), TestCase(true, true), Category("PrivateAnimationQualification")]
+        public void SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(bool measuredForward, bool terrain)
         {
             PrivateBindings(); var scene = EditorSceneManager.OpenScene(TopDown3DAnimationPlaygroundSession.ScenePath, OpenSceneMode.Additive); InputActionAsset actions = null;
             TopDown3DAnimationPlaygroundBindings draft = null; AnimationPlaygroundForwardLocomotionProfile policy = null;
@@ -159,7 +160,7 @@ namespace BooterBigArm.Tests
                     var source = AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(
                         "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset");
                     Assert.That(source, Is.Not.Null, "Restore the measured private forward draft.");
-                    policy = Object.Instantiate(source); policy.qualified = true;
+                    policy = Object.Instantiate(source); policy.qualified = true; policy.terrainQualified = terrain;
                     draft = Object.Instantiate(session.Bindings); draft.forwardLocomotion = policy; draft.locomotion = policy.locomotion;
                     session.Configure(draft);
                 }

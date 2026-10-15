@@ -124,6 +124,8 @@ namespace BooterBigArm.TopDown3D
         private void LateUpdate()
         {
             EmitForwardFootEffectsForRenderedPose();
+            if (forwardTerrainApplied) ApplyGarmentFloor();
+            else if (!animationGarmentFloor && !poseBlendGarmentFloor) RestoreGarmentFloor();
             if (!HasCampAnimationSet || cloakBound || humanoidAnimator == null) return;
             var chest = humanoidAnimator.GetBoneTransform(HumanBodyBones.Chest);
             var hips = humanoidAnimator.GetBoneTransform(HumanBodyBones.Hips);
@@ -153,6 +155,7 @@ namespace BooterBigArm.TopDown3D
                 renderer.enabled = false;
             }
             cloakBound = true;
+            if (forwardTerrainApplied) ApplyGarmentFloor();
         }
         private const float LocomotionStopSpeed = 0.08f;
         private const int FootGroundHitCapacity = 4;
@@ -440,9 +443,8 @@ namespace BooterBigArm.TopDown3D
             }
 
             var output = AnimationPlayableOutput.Create(playableGraph, "Booter Humanoid", animator);
-            // The mixer is the sole pose authority. Procedural IK and body/foot
-            // rewriting previously collapsed full locomotion clips into a small
-            // leg wiggle even while their playhead advanced normally.
+            // Native motion is the baseline output. A separately qualified lab
+            // terrain stage may attach here under this same driver's ownership.
             output.SetSourcePlayable(mixer);
             playableGraph.Play();
         }
@@ -1079,6 +1081,7 @@ namespace BooterBigArm.TopDown3D
             {
                 playableGraph.Destroy();
             }
+            forwardTerrainPose?.Dispose(); forwardTerrainPose = null;
         }
 
         private void OnDisable()
