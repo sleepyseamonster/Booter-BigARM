@@ -1,0 +1,49 @@
+{
+  "before_boundary_length_m": 0.06974213928333484,
+  "after_boundary_length_m": 0.07087377909920178,
+  "before_defect_edges": 128,
+  "after_defect_edges": 130,
+  "max_defect_endpoint_distance_m": 0.0011316398158669472,
+  "changed_defect_edges": [
+    {
+      "a": [
+        0.04577465355396271,
+        -0.6408936381340027,
+        2.0789875984191895
+      ],
+      "b": [
+        0.04612128809094429,
+        -0.6419335603713989,
+        2.0787065029144287
+      ],
+      "length_m": 0.0011316398158669472,
+      "faces": 1,
+      "boundary": true,
+      "max_endpoint_distance_to_prior_defect_m": 0.0011316398158669472,
+      "nearest_prior_defect_face_counts": [
+        4,
+        4
+      ]
+    },
+    {
+      "a": [
+        0.04577465355396271,
+        -0.6408936381340027,
+        2.0789875984191895
+      ],
+      "b": [
+        0.04659321531653404,
+        -0.6419733762741089,
+        2.0798168182373047
+      ],
+      "length_m": 0.0015885476022958755,
+      "faces": 3,
+      "boundary": false,
+      "max_endpoint_distance_to_prior_defect_m": 0.0011316398158669472,
+      "nearest_prior_defect_face_counts": [
+        4,
+        4
+      ]
+    }
+  ]
+}
