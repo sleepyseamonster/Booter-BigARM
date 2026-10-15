@@ -1,0 +1,44 @@
+{
+  "archive": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-13\\ImportCheckpoints\\ExpandedGaitAuthorInstall20261015",
+  "manifestSha256": "66851d6f61c6180a6110a348ac1a038e3ca025dee7aa4196bda8016e47652b0f",
+  "payloadCount": 7,
+  "payloadBytes": 16240,
+  "payloads": [
+    {
+      "path": "expanded-author-console-status.json",
+      "bytes": 874,
+      "sha256": "0a59efc6cb3a8610a2a42e57d6957a4d05066c2d369a0b99c088c60806ff6609"
+    },
+    {
+      "path": "expanded-author-deck-readback.json",
+      "bytes": 3055,
+      "sha256": "db558bfc43bc95e970c81722bd9821eb92ca9cfa5e244e0195a8d12b58190560"
+    },
+    {
+      "path": "expanded-author-install-command.json",
+      "bytes": 910,
+      "sha256": "90cbedf2301f0c1433b96aecca2ee953b59da8b04ce115898e4b834f18e88daf"
+    },
+    {
+      "path": "expanded-author-readback-code.cs",
+      "bytes": 2494,
+      "sha256": "8ad0e6f56bc771d86a9505bc63e0fbcfc8825f735c423141e40caf147febbeb4"
+    },
+    {
+      "path": "expanded-author-readback.json",
+      "bytes": 5606,
+      "sha256": "db14ab00d7964cc8be8965e461c31602211de64c025d41abbbef8b11c2635bbf"
+    },
+    {
+      "path": "expanded-author-second-reload-state.json",
+      "bytes": 1295,
+      "sha256": "c83225b8b884c0192876be7bc5be823c9f571106d30d4c5f55df08b45fdcaac6"
+    },
+    {
+      "path": "expanded-gait-author-installed.json",
+      "bytes": 2006,
+      "sha256": "285fd115ab9234abe7b66862c6fbbdf5668daceb88bfa746ad2f4e4a2fd5ac21"
+    }
+  ],
+  "previousAndResultingPrivatePayloads": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-13\\ImportCheckpoints\\ExpandedGaitReview20261015"
+}

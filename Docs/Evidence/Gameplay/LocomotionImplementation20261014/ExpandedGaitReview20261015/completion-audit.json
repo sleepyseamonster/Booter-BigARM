@@ -1,0 +1,52 @@
+{
+  "state": "verified-author-playtest-review-prepared",
+  "checks": [
+    {
+      "requirement": "Six stages and gamepad control",
+      "evidence": "author-readback.json",
+      "finding": "Loaded five moving gaits plus idle; 1.4/3/4/5/6m/s anchors, rightShoulder sprint, keyboard unchanged."
+    },
+    {
+      "requirement": "Preserve accepted fast run",
+      "evidence": "sources.json",
+      "finding": "Original source/profile hashes unchanged; new profile fast-run source and 5m/s anchor retained."
+    },
+    {
+      "requirement": "Complete sprint source",
+      "evidence": "source-audit.json",
+      "finding": "Full baked Standard take; complete cycle repeated twice and phase aligned; looping Humanoid source imported."
+    },
+    {
+      "requirement": "Distinct motion and higher cadence",
+      "evidence": "effort-summary.json",
+      "finding": "Separate sprint source, greater forward thigh and hand motion, 6m/s and 4.601 steps/s versus 5m/s and 3.567 steps/s."
+    },
+    {
+      "requirement": "Bounded source retiming and distance clock",
+      "evidence": "tests.json",
+      "finding": "78 focused checks on exact installed C# bytes, including dense rates, distance inversion, input, graph ownership and equipped poses."
+    },
+    {
+      "requirement": "Current author import and compilation",
+      "evidence": "author-console.json",
+      "finding": "Guarded install succeeded; loaded new API and test revision; current compilation succeeded with zero console errors."
+    },
+    {
+      "requirement": "Authored playtest deck",
+      "evidence": "author-deck.json",
+      "finding": "Current AP02 owner, safe return and enabled static ground support present."
+    },
+    {
+      "requirement": "Preserve scene and private recovery",
+      "evidence": "author-import-recovery.json",
+      "finding": "Only three private asset pairs imported; scene bytes/clean state unchanged by agent; previous and resulting payloads retained locally."
+    },
+    {
+      "requirement": "Keep unqualified terrain and turning gated",
+      "evidence": "author-readback.json",
+      "finding": "Forward and terrain qualification remain false; AP02-only review path retained; no production promotion."
+    }
+  ],
+  "handsOnAcceptance": "Pending author Play Mode comparison; not claimed by static or isolated tests.",
+  "remainingQualification": "Terrain, steering, low-analog support, cumulative contact drift and full action handoffs remain outside this bounded review."
+}

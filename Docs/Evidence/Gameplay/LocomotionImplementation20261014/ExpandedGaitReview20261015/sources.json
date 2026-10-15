@@ -1,5 +1,5 @@
 {
-  "state": "candidate-tested-code-exactly-installed-on-disk-author-import-pending",
+  "state": "candidate-tested-code-and-private-assets-verified-in-author-editor",
   "sourceFiles": [
     {
       "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardLocomotionProfile.cs",
@@ -144,5 +144,43 @@
       "sha256": "5edc2342426c4e939645b6ad39b9d9d9cae40c7c58fd257622a4aa31bac39c9f"
     }
   ],
-  "currentAuthorImportVerified": false
+  "currentAuthorImportVerified": true,
+  "installedPrivateAssets": [
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset",
+      "sha256": "686aca8d1116b07838c2fd383e6432dead3d6b4d40ca87481ce39da101d749c1",
+      "bytes": 17397
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset.meta",
+      "sha256": "017c05259c6ce9146eb61ed6e901e6e495f59e634c27d07576e171f97af77612",
+      "bytes": 189
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset",
+      "sha256": "6ebbd3828a30f5de1936819963fe5177e7ca93c820df545cfd798a03f7e7fc31",
+      "bytes": 198847
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset.meta",
+      "sha256": "90f199a6130d2e73c8f24d24d3a6918629820f6a6a29804416e591154549ab0e",
+      "bytes": 189
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintStandardReview.anim",
+      "sha256": "db3fa37dcec840741ce332ff7fd7ff3273a098ca6a89020187e5ccc5be2a97d9",
+      "bytes": 3865615
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintStandardReview.anim.meta",
+      "sha256": "e60bca4178534e3f0b4fc60f81c6845c67f6822b43f8e8b3ec7036402c7e7bfe",
+      "bytes": 188
+    }
+  ],
+  "sceneUnchangedByAgentImport": {
+    "sha256": "c32df68c3039d0aee36013a43ce04daadd88e15c5cbf2ad6f9057d49a75cf9c5",
+    "dirty": false,
+    "saved": false,
+    "reloadedByAgent": false
+  }
 }

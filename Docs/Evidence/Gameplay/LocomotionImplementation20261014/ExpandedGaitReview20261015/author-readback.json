@@ -1,0 +1,72 @@
+{
+  "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+  "isDirty": false,
+  "isLoaded": true,
+  "sceneCount": 1,
+  "isPlaying": false,
+  "isCompiling": false,
+  "profile": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset",
+  "schema": 2,
+  "ExpandedReview": true,
+  "graphInputs": 6,
+  "qualified": false,
+  "terrainQualified": false,
+  "validPolicy": true,
+  "policyReason": null,
+  "validPlayer": true,
+  "playerReason": null,
+  "player": "Booter Perspective 3D Controller",
+  "unitPhysicsHierarchy": true,
+  "capsuleHeight": 1.82,
+  "capsuleRadius": 0.2,
+  "gamepadSprintBinding": [
+    "<Gamepad>/rightShoulder"
+  ],
+  "keyboardDefault": 3,
+  "keyboardSprint": 5,
+  "gamepadFullStick": 5,
+  "gamepadRB": 6,
+  "testFixtureRevisionLoaded": true,
+  "stages": [
+    {
+      "stage": "Walk",
+      "nominalSpeed": 1.4,
+      "metresPerCycle": 3.22170615,
+      "clip": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Walk_Fwd_NoRM.FBX",
+      "isHumanMotion": true,
+      "isLooping": true
+    },
+    {
+      "stage": "Jog",
+      "nominalSpeed": 3,
+      "metresPerCycle": 4.36681175,
+      "clip": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_NoRM.FBX",
+      "isHumanMotion": true,
+      "isLooping": true
+    },
+    {
+      "stage": "Run",
+      "nominalSpeed": 4,
+      "metresPerCycle": 5.592029,
+      "clip": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Run_Fwd_NoRM.FBX",
+      "isHumanMotion": true,
+      "isLooping": true
+    },
+    {
+      "stage": "FastRun",
+      "nominalSpeed": 5,
+      "metresPerCycle": 5.607321,
+      "clip": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim",
+      "isHumanMotion": true,
+      "isLooping": true
+    },
+    {
+      "stage": "Sprint",
+      "nominalSpeed": 6,
+      "metresPerCycle": 5.215884,
+      "clip": "Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintStandardReview.anim",
+      "isHumanMotion": true,
+      "isLooping": true
+    }
+  ]
+}
