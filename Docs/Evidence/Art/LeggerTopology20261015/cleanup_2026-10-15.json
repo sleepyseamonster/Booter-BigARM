@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-15",
+  "authority": "Author explicitly requested deletion of every earlier Legger Blender file except the current version",
+  "action": "Moved to Windows Recycle Bin",
+  "retained": {
+    "path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration04.blend",
+    "sha256": "b6b353e4bb2f302b8c487de51f57ffd5a341be493d9409f9b84fc943bbbe03b9",
+    "bytes": 244482243
+  },
+  "removed": [
+    {
+      "path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger.blend",
+      "bytes": 370646988,
+      "sha256": "9e1fe169ac10d2b902722c74923b435591f7a3ca857bfaf68963f23205e43281"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger.blend1",
+      "bytes": 370646988,
+      "sha256": "3bc6ea64e2fbe3d57313320e9f358880442cfbd7e22db7c010ae02ba448d89ef"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration01.blend",
+      "bytes": 324367868,
+      "sha256": "5cb2e0ce1358ce934e34795c0a3f59f5af3300adca5b87405fa8ed0e0b3ada6f"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration02.blend",
+      "bytes": 295090231,
+      "sha256": "0555acc99eb4096a5fa2adb917317d08beb3446ef948f4b25c2d38a3f860a92a"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration03.blend",
+      "bytes": 268487737,
+      "sha256": "93c53901735c439923642f250a5c058be407e3ec3065f2295d5144f3c3b34f5f"
+    },
+    {
+      "path": "C:\\Users\\kbkno\\Downloads\\Meshy_AI_bipedal_cargo_robot_1015150444_image-to-3d-texture.blend",
+      "bytes": 370365924,
+      "sha256": "bd27814bd61079a4abf4194777b002b437b8f795c3388f1f13acaf8d58dd9dfe"
+    }
+  ],
+  "total_removed_bytes": 1999605736.0,
+  "notes": "Historical topology receipts retain original hashes and former paths. Their source-preservation statements describe the state before this author-authorized cleanup. Reports, tooling and raw comparison renders remain."
+}

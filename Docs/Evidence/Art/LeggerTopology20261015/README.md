@@ -1,5 +1,9 @@
 # Legger topology iteration 01
 
+## Author-requested source cleanup — October 15, 2026
+
+Only `SourceArt/Blender/Studies/Legger/Legger_Topology_Iteration04.blend` remains as the current local Blender source. At the author's explicit request, the earlier source, numbered backup, iterations 01–03 and original Meshy download were moved to the Windows Recycle Bin. The retained iteration 04 hash matches its native-validation receipt. See the [cleanup manifest](cleanup_2026-10-15.json) for exact paths, hashes and sizes. Reports, tooling and raw review images remain. Preservation statements and source paths below and in the earlier iteration receipts describe their historical validation state; the deleted high-density source must be recovered before repeating those cumulative comparisons. Future authoring should use the retained iteration 04 file.
+
 October 15, 2026. Owner: Blender under Gottspan coordination.
 
 The author requested an incremental topology reduction, keeping density high for now. This is a review candidate toward a game asset, not a completed game-ready mesh or approved deformation topology.
