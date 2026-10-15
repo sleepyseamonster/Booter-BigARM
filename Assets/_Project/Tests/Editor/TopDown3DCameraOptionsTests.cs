@@ -162,6 +162,66 @@ namespace BooterBigArm.Tests
             Assert.That(camera.fieldOfView, Is.EqualTo(48));
         }
 
+        private TopDown3DCameraSelection AddAuthoredSelection()
+        {
+            var selection = Make("Camera Options").AddComponent<TopDown3DCameraSelection>();
+            var elevated = Make("Elevated Camera Rig").AddComponent<TopDown3DElevatedCameraSettings>();
+            elevated.transform.SetParent(selection.transform, true);
+            elevated.distance = 9; elevated.yawDegrees = 23; elevated.obstructionMask = 1 << 31;
+            var third = Make("Third Person Camera Rig").AddComponent<TopDown3DThirdPersonCameraSettings>();
+            third.transform.SetParent(selection.transform, true); third.profile = profile; third.fieldOfView = 65;
+            selection.elevated = elevated; selection.thirdPerson = third;
+            var setup = new SerializedObject(selection); setup.FindProperty("outputRig").objectReferenceValue = rig; setup.ApplyModifiedProperties();
+            var owner = new SerializedObject(rig); owner.FindProperty("cameraSelection").objectReferenceValue = selection; owner.ApplyModifiedProperties();
+            options.Configure(rig, profile);
+            return selection;
+        }
+
+        [Test] public void AuthoredStartingViewAndLensOverrideOldLocalChoiceOnlyOnStartup()
+        {
+            var selection = AddAuthoredSelection();
+            var saved = new TopDown3DMenuSettings { cameraView = TopDown3DCameraView.Elevated, cameraFieldOfView = 55 };
+            options.ApplyPreferences(saved);
+            Assert.That(options.PreferredView, Is.EqualTo(TopDown3DCameraView.ThirdPerson));
+            Assert.That(options.ThirdPersonFieldOfView, Is.EqualTo(65));
+            Assert.That(saved.cameraView, Is.EqualTo(TopDown3DCameraView.Elevated), "Caller data must not be mutated.");
+            options.ApplyPreferences(saved);
+            Assert.That(options.PreferredView, Is.EqualTo(TopDown3DCameraView.Elevated), "Subsequent menu Apply must work.");
+            Assert.That(selection.startingView, Is.EqualTo(TopDown3DCameraView.ThirdPerson));
+        }
+
+        [Test] public void SceneSelectorRequestsSwitchWithoutChangingStartingChoiceOrOutputIdentity()
+        {
+            var selection = AddAuthoredSelection(); AttachRouter(TopDown3DInputMode.Gameplay);
+            int identity = camera.GetInstanceID(); options.Tick(.1f);
+            Assert.That(options.EffectiveView, Is.EqualTo(TopDown3DCameraView.ThirdPerson));
+            selection.RequestView(TopDown3DCameraView.Elevated); options.Tick(.1f);
+            Assert.That(options.EffectiveView, Is.EqualTo(TopDown3DCameraView.Elevated));
+            Assert.That(selection.startingView, Is.EqualTo(TopDown3DCameraView.ThirdPerson));
+            Assert.That(camera.GetInstanceID(), Is.EqualTo(identity)); Assert.That(rig.isActiveAndEnabled, Is.True);
+        }
+
+        [Test] public void SeparateElevatedSettingsPreserveOrbitUntilEditedAndDoNotChangeThirdPersonProfile()
+        {
+            var selection = AddAuthoredSelection();
+            Assert.That(rig.Distance, Is.EqualTo(9)); Assert.That(rig.YawDegrees, Is.EqualTo(23));
+            rig.SetViewAngles(110, 45); rig.RefreshAuthoring();
+            Assert.That(rig.YawDegrees, Is.EqualTo(110), "Unchanged authored settings must not overwrite player orbit each frame.");
+            var settings = new SerializedObject(selection.elevated);
+            settings.FindProperty("distance").floatValue = 7; settings.ApplyModifiedProperties(); rig.RefreshAuthoring();
+            Assert.That(rig.Distance, Is.EqualTo(7)); Assert.That(profile.distance, Is.EqualTo(5));
+        }
+
+        [Test] public void AuthoredThirdPersonSolverIsVisibleUnderItsOwnRigAndAddsNoRenderingCamera()
+        {
+            var selection = AddAuthoredSelection();
+            Assert.That(options.TrySetView(TopDown3DCameraView.ThirdPerson), Is.True);
+            Assert.That(selection.thirdPerson.transform.Find("Pose Solver (runtime)"), Is.Not.Null);
+            Assert.That(selection.thirdPerson.transform.Find("Follow Pivot (runtime)"), Is.Not.Null);
+            Assert.That(selection.thirdPerson.transform.Find("Pose Solver (runtime)").gameObject.hideFlags & HideFlags.HideInHierarchy, Is.EqualTo(HideFlags.None));
+            Assert.That(selection.GetComponentsInChildren<Camera>(true), Is.Empty);
+        }
+
         [Test] public void OldSettingsAndUnknownCameraValuesRemainCompatible()
         {
             var legacy = JsonUtility.FromJson<TopDown3DMenuSettings>("{\"version\":1,\"largeText\":true}");

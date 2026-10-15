@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="41" result="Failed(Child)" total="41" passed="40" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-15 18:44:49Z" end-time="2026-10-15 18:44:50Z" duration="1.056322">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="1731" result="Failed" site="Child" start-time="2026-10-15 18:44:49Z" end-time="2026-10-15 18:44:50Z" duration="1.056322" total="41" passed="40" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="3059" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/CameraOptions20261015-01/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="1731" result="Failed" site="Child" start-time="2026-10-15 18:44:49Z" end-time="2026-10-15 18:44:50Z" duration="0.955292" total="41" passed="40" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="46524" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="3060" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="1731" result="Failed" site="Child" start-time="2026-10-15 18:44:49Z" end-time="2026-10-15 18:44:50Z" duration="0.946029" total="41" passed="40" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="3061" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="1731" result="Failed" site="Child" start-time="2026-10-15 18:44:49Z" end-time="2026-10-15 18:44:50Z" duration="0.936332" total="41" passed="40" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="2003" name="LeggerRidingOwnershipTests" fullname="BooterBigArm.Tests.LeggerRidingOwnershipTests" classname="BooterBigArm.Tests.LeggerRidingOwnershipTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.052774" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2005" name="ActualMotorCallbackYieldsBeforePopulationAndOtherMotionWriters" fullname="BooterBigArm.Tests.LeggerRidingOwnershipTests.ActualMotorCallbackYieldsBeforePopulationAndOtherMotionWriters" methodname="ActualMotorCallbackYieldsBeforePopulationAndOtherMotionWriters" classname="BooterBigArm.Tests.LeggerRidingOwnershipTests" runstate="Runnable" seed="580524668" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.032206" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2008" name="DestroyedControllerCannotReenableNormalMotorWrites" fullname="BooterBigArm.Tests.LeggerRidingOwnershipTests.DestroyedControllerCannotReenableNormalMotorWrites" methodname="DestroyedControllerCannotReenableNormalMotorWrites" classname="BooterBigArm.Tests.LeggerRidingOwnershipTests" runstate="Runnable" seed="20919085" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.001244" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2004" name="ExclusiveLeaseSuppressesGravityAndRestoresCapturedBodyState" fullname="BooterBigArm.Tests.LeggerRidingOwnershipTests.ExclusiveLeaseSuppressesGravityAndRestoresCapturedBodyState" methodname="ExclusiveLeaseSuppressesGravityAndRestoresCapturedBodyState" classname="BooterBigArm.Tests.LeggerRidingOwnershipTests" runstate="Runnable" seed="1832992753" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.000948" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2007" name="ResetWithoutVerifiedLabOwnerAndEpochCannotReleaseRider" fullname="BooterBigArm.Tests.LeggerRidingOwnershipTests.ResetWithoutVerifiedLabOwnerAndEpochCannotReleaseRider" methodname="ResetWithoutVerifiedLabOwnerAndEpochCannotReleaseRider" classname="BooterBigArm.Tests.LeggerRidingOwnershipTests" runstate="Runnable" seed="746385532" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.000755" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2006" name="UnsupportedOrBlockedReleaseLeavesRiderPassive" fullname="BooterBigArm.Tests.LeggerRidingOwnershipTests.UnsupportedOrBlockedReleaseLeavesRiderPassive" methodname="UnsupportedOrBlockedReleaseLeavesRiderPassive" classname="BooterBigArm.Tests.LeggerRidingOwnershipTests" runstate="Runnable" seed="110491105" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.001047" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="2159" name="TopDown3DCameraClearanceTests" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.027081" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2160" name="ClearBoom_PreservesAuthoredDistance" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.ClearBoom_PreservesAuthoredDistance" methodname="ClearBoom_PreservesAuthoredDistance" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1459550719" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.003548" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2161" name="CloseBlocker_OverridesMinimumDistanceWithoutPenetration" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.CloseBlocker_OverridesMinimumDistanceWithoutPenetration" methodname="CloseBlocker_OverridesMinimumDistanceWithoutPenetration" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="2145722886" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.004322" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2162" name="ConfigureAndViewReset_ResolveClearanceImmediately" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.ConfigureAndViewReset_ResolveClearanceImmediately" methodname="ConfigureAndViewReset_ResolveClearanceImmediately" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="346188421" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.001156" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2163" name="FollowUpdate_UsesSameClearanceAsSnap" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.FollowUpdate_UsesSameClearanceAsSnap" methodname="FollowUpdate_UsesSameClearanceAsSnap" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1830638404" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.005335" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2168" name="FullyEnclosedBoom_ReportsFailureAndDoesNotAcceptUnsafePose" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.FullyEnclosedBoom_ReportsFailureAndDoesNotAcceptUnsafePose" methodname="FullyEnclosedBoom_ReportsFailureAndDoesNotAcceptUnsafePose" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1990668229" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.001076" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2169" name="FullyEnclosedNewTarget_RetainsRecheckedSafePreviousPosition" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.FullyEnclosedNewTarget_RetainsRecheckedSafePreviousPosition" methodname="FullyEnclosedNewTarget_RetainsRecheckedSafePreviousPosition" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1061511203" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.000859" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2164" name="OriginInsideBlocker_RecoversToClearPointOnAuthoredBoom" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.OriginInsideBlocker_RecoversToClearPointOnAuthoredBoom" methodname="OriginInsideBlocker_RecoversToClearPointOnAuthoredBoom" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="2125884730" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.001027" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2165" name="SaturatedCast_FindsNearestBlocker" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.SaturatedCast_FindsNearestBlocker" methodname="SaturatedCast_FindsNearestBlocker" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="1584401608" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.002331" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2166" name="SaturatedOriginOverlap_StillExcludesTargetAndFindsExternalBlocker" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.SaturatedOriginOverlap_StillExcludesTargetAndFindsExternalBlocker" methodname="SaturatedOriginOverlap_StillExcludesTargetAndFindsExternalBlocker" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="659823244" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.002020" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2167" name="TargetHierarchyAndTriggers_AreIgnoredInBothQueries" fullname="BooterBigArm.Tests.TopDown3DCameraClearanceTests.TargetHierarchyAndTriggers_AreIgnoredInBothQueries" methodname="TargetHierarchyAndTriggers_AreIgnoredInBothQueries" classname="BooterBigArm.Tests.TopDown3DCameraClearanceTests" runstate="Runnable" seed="2127996773" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:39Z" duration="0.001082" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="2170" name="TopDown3DCameraMenuTests" fullname="BooterBigArm.Tests.TopDown3DCameraMenuTests" classname="BooterBigArm.Tests.TopDown3DCameraMenuTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:40Z" duration="0.487202" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2171" name="AuthoredCameraControlsApplyOnlyAfterSaveAndRemainDeferredUntilResume" fullname="BooterBigArm.Tests.TopDown3DCameraMenuTests.AuthoredCameraControlsApplyOnlyAfterSaveAndRemainDeferredUntilResume" methodname="AuthoredCameraControlsApplyOnlyAfterSaveAndRemainDeferredUntilResume" classname="BooterBigArm.Tests.TopDown3DCameraMenuTests" runstate="Runnable" seed="1782921147" result="Passed" start-time="2026-10-15 18:44:39Z" end-time="2026-10-15 18:44:40Z" duration="0.381998" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2172" name="CameraBackRetainsDraftAndDiscardDoesNotChangePreference" fullname="BooterBigArm.Tests.TopDown3DCameraMenuTests.CameraBackRetainsDraftAndDiscardDoesNotChangePreference" methodname="CameraBackRetainsDraftAndDiscardDoesNotChangePreference" classname="BooterBigArm.Tests.TopDown3DCameraMenuTests" runstate="Runnable" seed="56370420" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.103931" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="2173" name="TopDown3DCameraOptionsTests" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" testcasecount="22" result="Failed" site="Child" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.069424" total="22" passed="21" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="2190" name="AuthoredStartingViewAndLensOverrideOldLocalChoiceOnlyOnStartup" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.AuthoredStartingViewAndLensOverrideOldLocalChoiceOnlyOnStartup" methodname="AuthoredStartingViewAndLensOverrideOldLocalChoiceOnlyOnStartup" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="664201568" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.004289" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2193" name="AuthoredThirdPersonSolverIsVisibleUnderItsOwnRigAndAddsNoRenderingCamera" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.AuthoredThirdPersonSolverIsVisibleUnderItsOwnRigAndAddsNoRenderingCamera" methodname="AuthoredThirdPersonSolverIsVisibleUnderItsOwnRigAndAddsNoRenderingCamera" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="1154800943" result="Failed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.020418" asserts="0">
+              <properties />
+              <failure>
+                <message><![CDATA[  Expected: 0
+  But was:  None
+]]></message>
+                <stack-trace><![CDATA[at BooterBigArm.Tests.TopDown3DCameraOptionsTests.AuthoredThirdPersonSolverIsVisibleUnderItsOwnRigAndAddsNoRenderingCamera () [0x00064] in D:\BooterBigArmValidation\CameraOptions20261015-01\Assets\_Project\Tests\Editor\TopDown3DCameraOptionsTests.cs:221
+]]></stack-trace>
+              </failure>
+            </test-case>
+            <test-case id="2176" name="BlockedSwitchRetainsPoseLensAndOwner" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.BlockedSwitchRetainsPoseLensAndOwner" methodname="BlockedSwitchRetainsPoseLensAndOwner" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="1239759301" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.002726" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2196" name="CameraPreferencesRoundTripAndFailedSaveDoesNotChangeAcceptedState" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.CameraPreferencesRoundTripAndFailedSaveDoesNotChangeAcceptedState" methodname="CameraPreferencesRoundTripAndFailedSaveDoesNotChangeAcceptedState" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="1206645448" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.010795" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2179" name="CameraRangeRemainsFinalOwner" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.CameraRangeRemainsFinalOwner" methodname="CameraRangeRemainsFinalOwner" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="1483099655" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.001472" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2189" name="DisablingOptionsReleasesCameraWithoutDisablingRidingFacade" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.DisablingOptionsReleasesCameraWithoutDisablingRidingFacade" methodname="DisablingOptionsReleasesCameraWithoutDisablingRidingFacade" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="1718521918" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.001249" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2175" name="InactiveElevatedWriterCannotSnapOrApplyLens" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.InactiveElevatedWriterCannotSnapOrApplyLens" methodname="InactiveElevatedWriterCannotSnapOrApplyLens" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="1128204497" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.001312" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2187" name="ModalUiFreezesAutomaticMotionAndDefersSelectedView" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.ModalUiFreezesAutomaticMotionAndDefersSelectedView" methodname="ModalUiFreezesAutomaticMotionAndDefersSelectedView" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="898017372" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.003434" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2194" name="OldSettingsAndUnknownCameraValuesRemainCompatible" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.OldSettingsAndUnknownCameraValuesRemainCompatible" methodname="OldSettingsAndUnknownCameraValuesRemainCompatible" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="602898726" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.001039" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2188" name="PlacementOverrideRestoresPreferenceWithoutSavingAnOverride" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.PlacementOverrideRestoresPreferenceWithoutSavingAnOverride" methodname="PlacementOverrideRestoresPreferenceWithoutSavingAnOverride" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="2092557600" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.001449" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2186" name="PreferencesAreDesiredStateUntilSafeRuntimeCommit" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.PreferencesAreDesiredStateUntilSafeRuntimeCommit" methodname="PreferencesAreDesiredStateUntilSafeRuntimeCommit" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="8180550" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.000988" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2195" name="ProfileEnablesOnlyTheApprovedStudyAndRejectsInvalidTuning" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.ProfileEnablesOnlyTheApprovedStudyAndRejectsInvalidTuning" methodname="ProfileEnablesOnlyTheApprovedStudyAndRejectsInvalidTuning" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="375253456" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.001069" asserts="0">
+              <properties />
+            </test-case>
+            <test-suite type="ParameterizedMethod" id="2185" name="RecenterOnlyDuringForwardTravelAfterIdle" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.RecenterOnlyDuringForwardTravelAfterIdle" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" testcasecount="5" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.006727" total="5" passed="5" failed="0" inconclusive="0" skipped="0" asserts="0">
+              <properties />
+              <test-case id="2180" name="RecenterOnlyDuringForwardTravelAfterIdle(0,1,2,True,True)" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.RecenterOnlyDuringForwardTravelAfterIdle(0,1,2,True,True)" methodname="RecenterOnlyDuringForwardTravelAfterIdle" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="2028269234" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.001611" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="2181" name="RecenterOnlyDuringForwardTravelAfterIdle(1,0,2,True,False)" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.RecenterOnlyDuringForwardTravelAfterIdle(1,0,2,True,False)" methodname="RecenterOnlyDuringForwardTravelAfterIdle" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="1846264907" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.000715" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="2182" name="RecenterOnlyDuringForwardTravelAfterIdle(0,-1,2,True,False)" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.RecenterOnlyDuringForwardTravelAfterIdle(0,-1,2,True,False)" methodname="RecenterOnlyDuringForwardTravelAfterIdle" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="1950968013" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.000625" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="2183" name="RecenterOnlyDuringForwardTravelAfterIdle(0,1,1,True,False)" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.RecenterOnlyDuringForwardTravelAfterIdle(0,1,1,True,False)" methodname="RecenterOnlyDuringForwardTravelAfterIdle" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="947679434" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.000637" asserts="0">
+                <properties />
+              </test-case>
+              <test-case id="2184" name="RecenterOnlyDuringForwardTravelAfterIdle(0,1,2,False,False)" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.RecenterOnlyDuringForwardTravelAfterIdle(0,1,2,False,False)" methodname="RecenterOnlyDuringForwardTravelAfterIdle" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="2073004637" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.000642" asserts="0">
+                <properties />
+              </test-case>
+            </test-suite>
+            <test-case id="2174" name="RoundTripPreservesOutputIdentityAnglesAndRidingAvailability" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.RoundTripPreservesOutputIdentityAnglesAndRidingAvailability" methodname="RoundTripPreservesOutputIdentityAnglesAndRidingAvailability" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="2052490390" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.001149" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2191" name="SceneSelectorRequestsSwitchWithoutChangingStartingChoiceOrOutputIdentity" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.SceneSelectorRequestsSwitchWithoutChangingStartingChoiceOrOutputIdentity" methodname="SceneSelectorRequestsSwitchWithoutChangingStartingChoiceOrOutputIdentity" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="481153061" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.001629" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2192" name="SeparateElevatedSettingsPreserveOrbitUntilEditedAndDoNotChangeThirdPersonProfile" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.SeparateElevatedSettingsPreserveOrbitUntilEditedAndDoNotChangeThirdPersonProfile" methodname="SeparateElevatedSettingsPreserveOrbitUntilEditedAndDoNotChangeThirdPersonProfile" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="1943523670" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.002002" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2178" name="ThirdPersonCompressionOverridesPreferredDistance" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.ThirdPersonCompressionOverridesPreferredDistance" methodname="ThirdPersonCompressionOverridesPreferredDistance" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="1234101416" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.001496" asserts="0">
+              <properties />
+            </test-case>
+            <test-case id="2177" name="ThirdPersonIgnoresTargetHierarchyAndRiddenMount" fullname="BooterBigArm.Tests.TopDown3DCameraOptionsTests.ThirdPersonIgnoresTargetHierarchyAndRiddenMount" methodname="ThirdPersonIgnoresTargetHierarchyAndRiddenMount" classname="BooterBigArm.Tests.TopDown3DCameraOptionsTests" runstate="Runnable" seed="1483606463" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:40Z" duration="0.001517" asserts="0">
+              <properties />
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="2197" name="TopDown3DCameraRuntimeTests" fullname="BooterBigArm.Tests.TopDown3DCameraRuntimeTests" classname="BooterBigArm.Tests.TopDown3DCameraRuntimeTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-15 18:44:50Z" end-time="2026-10-15 18:44:50Z" duration="0.827227" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2198" name="RuntimeCallbacksAcquireThirdPersonAndRestoreElevatedOnDisable" fullname="BooterBigArm.Tests.TopDown3DCameraRuntimeTests.RuntimeCallbacksAcquireThirdPersonAndRestoreElevatedOnDisable" methodname="RuntimeCallbacksAcquireThirdPersonAndRestoreElevatedOnDisable" classname="BooterBigArm.Tests.TopDown3DCameraRuntimeTests" runstate="Runnable" seed="457369398" result="Passed" start-time="2026-10-15 18:44:40Z" end-time="2026-10-15 18:44:45Z" duration="5.011124" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="2199" name="ThirdPersonFollowsRootTranslationWithoutMovingTheTarget" fullname="BooterBigArm.Tests.TopDown3DCameraRuntimeTests.ThirdPersonFollowsRootTranslationWithoutMovingTheTarget" methodname="ThirdPersonFollowsRootTranslationWithoutMovingTheTarget" classname="BooterBigArm.Tests.TopDown3DCameraRuntimeTests" runstate="Runnable" seed="121169837" result="Passed" start-time="2026-10-15 18:44:45Z" end-time="2026-10-15 18:44:50Z" duration="5.419140" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

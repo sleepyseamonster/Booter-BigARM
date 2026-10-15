@@ -16,6 +16,39 @@ namespace BooterBigArm.TopDown3D
         public const float DefaultMinimumPitchDegrees = 26f;
 
         [SerializeField] private Transform target;
+        [SerializeField] private TopDown3DCameraSelection cameraSelection;
+        internal TopDown3DCameraSelection CameraSelection => cameraSelection;
+        private TopDown3DElevatedCameraSettings authoredSettings;
+        private int authoredRevision = -1;
+        internal void BindAuthoring(TopDown3DElevatedCameraSettings settings)
+        {
+            if (authoredSettings != settings) { authoredSettings = settings; authoredRevision = -1; }
+            RefreshAuthoring();
+        }
+        internal void RefreshAuthoring()
+        {
+            if (authoredSettings == null || authoredRevision == authoredSettings.Revision) return;
+            authoredRevision = authoredSettings.Revision;
+            targetOffset = authoredSettings.targetOffset;
+            pitchDegrees = authoredSettings.pitchDegrees;
+            yawDegrees = authoredSettings.yawDegrees;
+            minimumPitchDegrees = authoredSettings.minimumPitchDegrees;
+            maximumPitchDegrees = authoredSettings.maximumPitchDegrees;
+            yawSpeedDegrees = authoredSettings.yawSpeedDegrees;
+            pitchSpeedDegrees = authoredSettings.pitchSpeedDegrees;
+            mouseSensitivityDegreesPerPixel = authoredSettings.mouseSensitivityDegreesPerPixel;
+            distance = authoredSettings.distance;
+            fieldOfView = authoredSettings.fieldOfView;
+            followSmoothTime = authoredSettings.followSmoothTime;
+            maximumLookAheadDistance = authoredSettings.maximumLookAheadDistance;
+            lookAheadSpeed = authoredSettings.lookAheadSpeed;
+            lookAheadReturnSpeed = authoredSettings.lookAheadReturnSpeed;
+            obstructionRadius = authoredSettings.obstructionRadius;
+            minimumDistance = authoredSettings.minimumDistance;
+            obstructionMask = authoredSettings.obstructionMask;
+            OnValidate();
+        }
+
         private TopDown3DCameraOptions cameraOptions;
         internal Transform FollowTarget => target;
         internal TopDown3DInputRouter InputRouter => input;
@@ -124,6 +157,7 @@ namespace BooterBigArm.TopDown3D
 
         private void LateUpdate()
         {
+            RefreshAuthoring();
             if (target == null || ExternalViewOwnsOutput)
             {
                 return;
@@ -417,6 +451,7 @@ namespace BooterBigArm.TopDown3D
 
         internal bool TryGetElevatedPose(out Vector3 position, out Quaternion rotation)
         {
+            RefreshAuthoring();
             rotation = Quaternion.Euler(pitchDegrees, yawDegrees, 0);
             var origin = ridingFrame != null ? ridingFrame.position + targetOffset : target.position + targetOffset;
             var backward = -(rotation * Vector3.forward);

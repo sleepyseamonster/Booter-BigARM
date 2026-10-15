@@ -11,6 +11,12 @@ namespace BooterBigArm.TopDown3D
             cameraOptions = rig != null ? rig.CameraOptions : null;
             view.SetActive("CameraOptions", cameraOptions != null && view.HasCameraPanel);
             cameraOptions?.ApplyPreferences(settings.Accepted);
+            if (cameraOptions != null)
+            {
+                // Reflect the authored scene default in the initial menu draft without writing the preference file.
+                settings.Accepted.cameraView = cameraOptions.PreferredView;
+                settings.Accepted.cameraFieldOfView = cameraOptions.ThirdPersonFieldOfView;
+            }
         }
 
         private bool HandleCameraCommand(string command)

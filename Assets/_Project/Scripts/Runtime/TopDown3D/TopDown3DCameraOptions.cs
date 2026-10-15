@@ -17,11 +17,14 @@ namespace BooterBigArm.TopDown3D
         private CinemachineCamera virtualCamera;
         private CinemachineThirdPersonFollow follow;
         private TopDown3DThirdPersonCameraProfile profile;
+        private TopDown3DCameraSelection selection;
+        private bool preferencesApplied;
         private TopDown3DMenuSettings preferences = new();
         private float yaw, pitch = 12, lookIdle, recoveredDistance = 5, travelHeading;
         private bool initialized, hasOrbit, ownsOutput, hasTravelHeading;
         public bool OwnsOutput => isActiveAndEnabled && ownsOutput;
         public TopDown3DCameraView PreferredView => preferences.cameraView;
+        public float ThirdPersonFieldOfView => preferences.cameraFieldOfView;
         public TopDown3DCameraView EffectiveView => ownsOutput ? TopDown3DCameraView.ThirdPerson : TopDown3DCameraView.Elevated;
         public string Notice { get; private set; }
         public bool HasUnresolvedClearance { get; private set; }
@@ -33,15 +36,34 @@ namespace BooterBigArm.TopDown3D
             profile = tuning != null ? tuning : Resources.Load<TopDown3DThirdPersonCameraProfile>("ThirdPersonCameraProfile");
             if (rig == null || output == null) throw new System.InvalidOperationException("Camera options require the existing camera rig.");
             rig.RegisterCameraOptions(this);
+            selection = rig.CameraSelection;
+            if (selection != null && selection.IsConfigured && selection.OutputRig == rig)
+            {
+                rig.BindAuthoring(selection.elevated);
+                profile = selection.thirdPerson.profile;
+                if (!preferencesApplied)
+                {
+                    preferences.cameraView = selection.startingView;
+                    preferences.cameraFieldOfView = selection.thirdPerson.fieldOfView;
+                    TopDown3DMenuSettingsService.NormalizeCamera(preferences);
+                }
+            }
+            else selection = null;
         }
 
         private void EnsureSolver()
         {
             if (virtualCamera != null) return;
-            var anchor = new GameObject("Third Person Pivot") { hideFlags = HideFlags.HideAndDontSave };
+            var flags = selection != null ? HideFlags.DontSave : HideFlags.HideAndDontSave;
+            var anchor = new GameObject("Follow Pivot (runtime)") { hideFlags = flags };
             SceneManager.MoveGameObjectToScene(anchor, gameObject.scene); pivot = anchor.transform;
-            var solver = new GameObject("Third Person Pose Solver") { hideFlags = HideFlags.HideAndDontSave };
+            var solver = new GameObject("Pose Solver (runtime)") { hideFlags = flags };
             SceneManager.MoveGameObjectToScene(solver, gameObject.scene);
+            if (selection != null)
+            {
+                pivot.SetParent(selection.thirdPerson.transform, true);
+                solver.transform.SetParent(selection.thirdPerson.transform, true);
+            }
             virtualCamera = solver.AddComponent<CinemachineCamera>();
             // Never register this solver as a competing live camera. There is intentionally no Brain.
             virtualCamera.enabled = false;
@@ -58,8 +80,21 @@ namespace BooterBigArm.TopDown3D
         public void ApplyPreferences(TopDown3DMenuSettings settings)
         {
             preferences = settings.Clone();
+            if (selection != null && !preferencesApplied)
+            {
+                preferences.cameraView = selection.startingView;
+                preferences.cameraFieldOfView = selection.thirdPerson.fieldOfView;
+            }
             TopDown3DMenuSettingsService.NormalizeCamera(preferences);
+            preferencesApplied = true;
             lookIdle = 0;
+            Notice = PreferredView == EffectiveView ? null : "Camera view will change when gameplay resumes and space is clear.";
+        }
+
+        public void RequestView(TopDown3DCameraView view)
+        {
+            if (view != TopDown3DCameraView.Elevated && view != TopDown3DCameraView.ThirdPerson) return;
+            preferences.cameraView = view;
             Notice = PreferredView == EffectiveView ? null : "Camera view will change when gameplay resumes and space is clear.";
         }
 

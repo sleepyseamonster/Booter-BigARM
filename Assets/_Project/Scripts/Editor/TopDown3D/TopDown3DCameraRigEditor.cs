@@ -15,6 +15,19 @@ namespace BooterBigArm.Editor
 
         public override void OnInspectorGUI()
         {
+            if (targets.Length == 1 && ((TopDown3DCameraRig)target).CameraSelection is { IsConfigured: true } selection)
+            {
+                serializedObject.Update();
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("target"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("input"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("cameraSelection"));
+                serializedObject.ApplyModifiedProperties();
+                EditorGUILayout.HelpBox("Framing is authored on Camera Options / Elevated Camera Rig and Third Person Camera Rig. "
+                    + "This component keeps the shared output, follow target, riding frame and collision service available.", MessageType.Info);
+                CameraRigInspector.Controls(selection, TopDown3DCameraView.Elevated);
+                CameraRigInspector.Controls(selection, TopDown3DCameraView.ThirdPerson);
+                return;
+            }
             EditorGUI.BeginChangeCheck();
             DrawDefaultInspector();
             if (EditorGUI.EndChangeCheck() && !Application.isPlaying)

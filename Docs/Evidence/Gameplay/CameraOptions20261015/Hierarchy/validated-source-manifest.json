@@ -1,0 +1,53 @@
+{
+  "comparison": "Source and isolated candidate match after CRLF/LF normalization. Scene hash includes preserved unrelated working edits, excluded from this commit. Three empty m_Name lines in new scene records were whitespace-normalized after validation.",
+  "files": [
+    {
+      "path": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+      "lfNormalizedSha256": "c32df68c3039d0aee36013a43ce04daadd88e15c5cbf2ad6f9057d49a75cf9c5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraRig.cs",
+      "lfNormalizedSha256": "12753bb3029b81fe9a87e3dfa749c906511f4ca958dbc0563d94f982061a4c53"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraOptions.cs",
+      "lfNormalizedSha256": "afd2463888ca06ad55695aa11932f80c432bb1f9bdddeafb0e4980a6a24bd3e4"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DMenuController.Camera.cs",
+      "lfNormalizedSha256": "60d869a826fd3951dc1e1fe83e6e288f87f4cb4587bf98fea1cd4328ef83d0df"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DCameraRigEditor.cs",
+      "lfNormalizedSha256": "e26319f5386b523d64765c3d8b6fc2532fd1fed323f09926aefc38ab3cf463bc"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CameraHierarchyAuthoring.cs",
+      "lfNormalizedSha256": "5bfc27d38df6f16cf87e47fd8e93a3db4f3bd254e9eca94690c18e7f195122f5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DCameraSelectionEditor.cs",
+      "lfNormalizedSha256": "089d1842409f71f215d2b0652e8f9b03626eaaaa753b67036a4cdad811731068"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraSelection.cs",
+      "lfNormalizedSha256": "3af6a394588f0d6eb4c7f38d36ef8e766a4a56e5621e54a7c8e0082fccdaccb5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DElevatedCameraSettings.cs",
+      "lfNormalizedSha256": "1736dc376de9157ac4699d5a6d82309f2b3f70f751b474a41e26fc123e02a53f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DThirdPersonCameraSettings.cs",
+      "lfNormalizedSha256": "337ca8e2736ad9bba655b94c105940648784727049d306571aea050be581a67e"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DCameraOptionsTests.cs",
+      "lfNormalizedSha256": "6a21bbf4fa2f8ec9c41373aeca5dbae03a0acff0d85af33fc8fabe0898fc19a0"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DCameraRuntimeTests.cs",
+      "lfNormalizedSha256": "b03e2983c9c0f8df64e6f2ed06c9027bf52229695af2ae220913e64aa8710219"
+    }
+  ]
+}
