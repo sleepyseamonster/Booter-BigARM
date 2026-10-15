@@ -67,7 +67,10 @@ Author direction recorded October 14, 2026:
 - Scraped husk fibers are the main source of paper.
 - These fibers can also be processed and pressed into textile materials, but this is very difficult. Abundant raw fibers do not imply easy finished-material production.
 - Hides and furs can be processed into textile and other materials, but the usable yield is extremely low. No numeric yield or processing recipe is established.
-- There is no cloth of any kind. Textile-material references do not authorize cloth items or a conventional cloth production chain.
+- There is no cloth of any kind, but clothing can be made from husk fibers, animal fur, hides and related processed materials. The no-cloth rule does not prohibit garments from these sources.
+- Such clothing takes very large quantities of material and very large amounts of processing and crafting time. Fashion items are consequently very rare and expensive.
+- Specialized spectacles, eyeglasses and hats are rare. Their exact optical functions, construction and game effects remain open.
+- Inputs used to craft expensive fashion items are intended to command high sale value, giving resource gathering a valuable role in the economy. Exact recipes, input quantities, prices, currency and crafting times remain undefined.
 - Ancient technology uses materials comparable to carbon-fiber composites, nanocarbon materials, plasteels and related futuristic manufactured substances. These materials are **extremely rare**.
 - Their exact compositions, properties, recovery forms and present-day manufacturing possibilities remain undefined. Finding an ancient material does not establish the ability to reproduce it.
 
