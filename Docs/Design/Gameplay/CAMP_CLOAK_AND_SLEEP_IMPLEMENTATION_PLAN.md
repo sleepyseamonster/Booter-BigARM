@@ -1,5 +1,7 @@
 # Camp cloak and sleep implementation plan
 
+Shade-material direction, October 14, 2026: delicate insectoid megafauna inner wings are an author-selected resource for vertical sun shades. This supersedes generic cloth composition assumptions, without changing the current popup-camp asset or behavior. Wing preparation, joining, shade properties and art revision require their own implementation scope.
+
 Material clarification, October 14, 2026: the author's [material-culture rules](../../WORLD_BASIS.md#material-culture) supersede cloth/fabric composition assumptions below. No cloth exists. Husk fibers supply paper and difficult pressed textile materials; hide/fur processing yields extremely little usable material. Retained cloth/shader/animation terminology describes prototype presentation, not accepted material composition. Material selection and art revision remain separate work; no Unity asset or runtime behavior changes here.
 
 Planning checkpoint dated October 10, 2026. Build a small, physical camp loop for Greater Wasteland: Booter deploys a vertical shade through the radial menu, rests or sleeps beneath his cloak, regains Reserve while spending supplies, and wakes into the same continuously simulated world. The recommended first release of the prototype is session-only and uses the existing player, input, inventory, animation, survival, and twilight authorities.

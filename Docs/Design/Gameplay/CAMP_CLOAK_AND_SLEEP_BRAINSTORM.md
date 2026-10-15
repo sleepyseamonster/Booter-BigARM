@@ -1,5 +1,7 @@
 # Camp cloak and sleep prototype proposal
 
+Shade-material direction, October 14, 2026: the author selected delicate insectoid megafauna inner wings as a resource for vertical sun shades. Raw ordinary shell is cheap bulk material. Wing preparation, panel joining, optical/thermal behavior and art changes remain undefined; the existing popup camp is the owned shade candidate, not a duplicate new inventory item.
+
 Material clarification, October 14, 2026: the author's [material-culture rules](../../WORLD_BASIS.md#material-culture) supersede cloth/fabric composition assumptions below. No cloth exists. Husk fibers supply paper and difficult pressed textile materials; hide/fur processing yields extremely little usable material. The older appearance and animation terminology does not settle the cloak or shade's material. This clarification changes no Unity asset or runtime behavior.
 
 Brainstorming pass dated October 10, 2026. Booter carries a compact vertical shade, deploys it through the radial menu, and sleeps on its shaded side using his cloak as a blanket. Sleep restores physical Reserve while consuming nourishment, hydration, and oxygen. The world continues visibly at accelerated speed, including threats and the existing twilight sun.

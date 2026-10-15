@@ -65,6 +65,8 @@ Author direction recorded October 14, 2026:
 
 - Shell husks supply abundant chitin and icore fibers that can be scraped from them. The term `icore` retains the author's spelling; its composition is not yet defined.
 - Scraped husk fibers are the main source of paper.
+- Ordinary megafauna shells are cheap bulk material. This does not make processed fibers, precision components or labor-intensive finished goods cheap.
+- Delicate inner wings from insectoid megafauna can be gathered as resources and used as material for vertical sun shades. Preparation, joining, durability and the actual shade properties remain open.
 - These fibers can also be processed and pressed into textile materials, but this is very difficult. Abundant raw fibers do not imply easy finished-material production.
 - Hides and furs can be processed into textile and other materials, but the usable yield is extremely low. No numeric yield or processing recipe is established.
 - There is no cloth of any kind, but clothing can be made from husk fibers, animal fur, hides and related processed materials. The no-cloth rule does not prohibit garments from these sources.
@@ -72,6 +74,7 @@ Author direction recorded October 14, 2026:
 - Elaborate fashion clothing takes very large quantities of material and very large amounts of processing and crafting time. Fashion items are consequently very rare and expensive. This fashion scarcity does not make ordinary simple wraps or chainmail inherently luxury items.
 - Specialized spectacles, eyeglasses and hats are rare. Their exact optical functions, construction and game effects remain open.
 - Inputs used to craft expensive fashion items are intended to command high sale value, giving resource gathering a valuable role in the economy. Exact recipes, input quantities, prices, currency and crafting times remain undefined.
+- Seals and sealants are recognized canister-related item/material families. Specific formulations, part compatibility, service procedures and game effects remain undefined; source-lore canister systems are references rather than installed gameplay.
 - Gemstones exist on the Broken World. Particular gemstone types, deposits, grades, rarity, cutting practices and uses remain open for brainstorming; gemstone existence does not approve a specific terrestrial mineral roster or special powers.
 - Ancient technology uses materials comparable to carbon-fiber composites, nanocarbon materials, plasteels and related futuristic manufactured substances. These materials are **extremely rare**.
 - Their exact compositions, properties, recovery forms and present-day manufacturing possibilities remain undefined. Finding an ancient material does not establish the ability to reproduce it.
