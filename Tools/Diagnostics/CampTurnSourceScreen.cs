@@ -16,13 +16,15 @@ using UnityEngine.Playables;
 // Source screen, not a pivot/contact qualification or runtime installation.
 public static class CampTurnSourceScreen
 {
-    public static string Run(string name = "TurnSourceScreenV7")
+    public static string Run(string name = "TurnSourceScreenV7", string rapidSource = "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@RapidTurningLeft.fbx")
     {
         var root = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
         if (!Application.isBatchMode || EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling
             || Directory.Exists(Path.Combine(root, ".git")) || !File.Exists(Path.Combine(root, ".animation-playground-validation-project")))
             throw new InvalidOperationException("Use the marked, compiled, non-playing candidate.");
         if (!Regex.IsMatch(name, @"^[A-Za-z0-9]+$")) throw new ArgumentException("Use a simple immutable run name.");
+        if (!rapidSource.StartsWith("Assets/_Project/Art/Characters/", StringComparison.Ordinal) || rapidSource.Contains(".."))
+            throw new ArgumentException("Use an imported project-owned character source.");
         var output = Path.Combine(root, "LocomotionImplementation20261014", name);
         if (Directory.Exists(output)) throw new IOException("Preserve existing measurements.");
         const string bindingPath = "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset";
@@ -31,7 +33,7 @@ public static class CampTurnSourceScreen
         var paths = new[] {
             "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM.FBX",
             "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM_Mirror.FBX",
-            "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@RapidTurningLeft.fbx"
+            rapidSource
         };
         var sourcePaths = paths.SelectMany(p => new[] { p, p + ".meta" }).Concat(new[] { model, model + ".meta", bindingPath,
             "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundMotionSampler.cs" }).ToArray();

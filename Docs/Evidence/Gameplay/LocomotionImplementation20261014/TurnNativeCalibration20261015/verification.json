@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-15",
+  "taskSources": {
+    "Tools/Diagnostics/CampTurnNativeImport.cs": "ef59e3f149d1137edb2da069b800677e8af3878cfd18d2d31310a205eb40a5bf",
+    "Tools/Diagnostics/CampTurnSourceScreen.cs": "bf77ceb282f15af0ecdbfaf169eec9049c725364cbb4e3438995d3c206c94aa1",
+    "Tools/Diagnostics/CampTurnContactQualification.cs": "5ec220cf3867bbcf2496c441c0685484c558a693fb1014031c25c68a77078834",
+    "Tools/Diagnostics/camp_turn_root_curve.py": "392a8b36ce79074d86ee5ade785f619769682616913f78b5aae2d6f97e444d4a"
+  },
+  "originalAuthorSourceAndMetaPreserved": true,
+  "defaultToolControlCasesIdentical": 6,
+  "boundedRootFitsVerified": 2,
+  "rootReplayCasesIdentical": 6,
+  "coldEquippedPoseSamples": 7644,
+  "standaloneSourcePoseSamples": 4056,
+  "knownMathCases": 2,
+  "serializedCurveChecks": 2,
+  "runtimeSourceOrPlayerBindingChanged": false,
+  "authorLivePlayback": "unverified; latest background main-thread query timed out",
+  "scope": "Source/calibration implementation and offline candidate only. Cumulative contact travel still fails a stable plant; built-in foot IK is rejected. No motor/collision/action handoff or visual acceptance."
+}

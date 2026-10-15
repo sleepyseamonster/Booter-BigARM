@@ -1,0 +1,104 @@
+{
+  "source": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@RapidTurningLeft.fbx",
+  "sourceHash": "ff7b61df0c00d94103f9c402ed13f64d345d2e274a3417b8ffc525e25c6473a7",
+  "sourceMeta": "8c3ea2d22d600da51381a5a58dc8cee92f63c59e87dbb1d3b499fa44e53f87fd",
+  "rows": [
+    {
+      "target": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/RapidTurnOneShot.fbx",
+      "guid": "708269b866a834f4baa0625165455400",
+      "sha256": "ff7b61df0c00d94103f9c402ed13f64d345d2e274a3417b8ffc525e25c6473a7",
+      "metaSha256": "c89f32ad069cfc5eafb0d549f5eebf199b77aca9025073206aeef13062a728f3",
+      "settings": [
+        {
+          "name": "RapidTurningLeft",
+          "firstFrame": 1.0,
+          "lastFrame": 46.0,
+          "loopTime": false,
+          "loopPose": false,
+          "cycleOffset": 0.0,
+          "mirror": false,
+          "lockRootRotation": false,
+          "lockRootHeightY": true,
+          "lockRootPositionXZ": true,
+          "keepOriginalPositionXZ": true
+        },
+        {
+          "name": "RapidTurningRight_Mirror",
+          "firstFrame": 1.0,
+          "lastFrame": 46.0,
+          "loopTime": false,
+          "loopPose": false,
+          "cycleOffset": 0.0,
+          "mirror": true,
+          "lockRootRotation": false,
+          "lockRootHeightY": true,
+          "lockRootPositionXZ": true,
+          "keepOriginalPositionXZ": true
+        }
+      ],
+      "clips": [
+        {
+          "name": "RapidTurningLeft",
+          "length": 1.50000012,
+          "isLooping": false,
+          "isHumanMotion": true
+        },
+        {
+          "name": "RapidTurningRight_Mirror",
+          "length": 1.50000012,
+          "isLooping": false,
+          "isHumanMotion": true
+        }
+      ]
+    },
+    {
+      "target": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/RapidTurnNative.fbx",
+      "guid": "ba11d15677a55e34aa078398a9a30833",
+      "sha256": "ff7b61df0c00d94103f9c402ed13f64d345d2e274a3417b8ffc525e25c6473a7",
+      "metaSha256": "3625c06a128f6b80fc0af1db9a14e4b0b344f40834e83b3559822468eead541b",
+      "settings": [
+        {
+          "name": "RapidTurningLeft",
+          "firstFrame": 1.0,
+          "lastFrame": 46.0,
+          "loopTime": false,
+          "loopPose": false,
+          "cycleOffset": 0.0,
+          "mirror": false,
+          "lockRootRotation": false,
+          "lockRootHeightY": true,
+          "lockRootPositionXZ": false,
+          "keepOriginalPositionXZ": false
+        },
+        {
+          "name": "RapidTurningRight_Mirror",
+          "firstFrame": 1.0,
+          "lastFrame": 46.0,
+          "loopTime": false,
+          "loopPose": false,
+          "cycleOffset": 0.0,
+          "mirror": true,
+          "lockRootRotation": false,
+          "lockRootHeightY": true,
+          "lockRootPositionXZ": false,
+          "keepOriginalPositionXZ": false
+        }
+      ],
+      "clips": [
+        {
+          "name": "RapidTurningLeft",
+          "length": 1.50000012,
+          "isLooping": false,
+          "isHumanMotion": true
+        },
+        {
+          "name": "RapidTurningRight_Mirror",
+          "length": 1.50000012,
+          "isLooping": false,
+          "isHumanMotion": true
+        }
+      ]
+    }
+  ],
+  "scope": "Private candidate-only source variants. Original FBX bytes retained. Nonlooping, zero cycle offset; native variant also extracts planar center motion. No player binding, controller, scene save or physics simulation."
+}

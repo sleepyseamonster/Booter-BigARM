@@ -28,26 +28,32 @@ public static class CampTurnContactQualification
         public float seconds, lift; public Vector3[] points;
     }
 
-    public static string Run(string name = "TurnContactV2")
+    public static string Run(string name = "TurnContactV2", string source = "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@RapidTurningLeft.fbx",
+        string basis = "TurnSourceContactBasisV1", bool applyPlanarRoot = false, bool recenter = false, string rootCurveRun = null, bool footIK = false)
     {
         var root = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
         if (!Application.isBatchMode || EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling
             || Directory.Exists(Path.Combine(root, ".git")) || !File.Exists(Path.Combine(root, ".animation-playground-validation-project")))
             throw new InvalidOperationException("Use the marked, compiled, non-playing candidate.");
         if (!Regex.IsMatch(name, @"^[A-Za-z0-9]+$")) throw new ArgumentException("Use an immutable alphanumeric run name.");
+        if (!Regex.IsMatch(basis, @"^[A-Za-z0-9]+$") || !source.StartsWith("Assets/_Project/Art/Characters/", StringComparison.Ordinal) || source.Contains(".."))
+            throw new ArgumentException("Use a sealed local source and simple source-basis name.");
+        if (rootCurveRun != null && (!Regex.IsMatch(rootCurveRun, @"^[A-Za-z0-9]+$") || !applyPlanarRoot || !recenter))
+            throw new ArgumentException("A bounded root replay requires its native source and origin-precision route.");
         var output = Path.Combine(root, "LocomotionImplementation20261014", name);
         if (Directory.Exists(output)) throw new IOException("Preserve prior measurements.");
-        const string source = "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@RapidTurningLeft.fbx";
         const string policyPath = "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset";
         var profile = AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(policyPath);
-        var tapeRoot = "LocomotionImplementation20261014/TurnSourceContactBasisV1/";
+        var tapeRoot = "LocomotionImplementation20261014/" + basis + "/";
         var clips = AssetDatabase.LoadAllAssetsAtPath(source).OfType<AnimationClip>().Where(c => !c.name.StartsWith("__preview__")).OrderBy(c => c.name).ToArray();
         if (clips.Length != 2 || clips.Any(c => !c.isHumanMotion)) throw new InvalidDataException("Require the two named imported Humanoid turns.");
         var inputPaths = AssetDatabase.GetDependencies(new[] { policyPath, source,
             "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset" }, true)
             .Where(p => p.StartsWith("Assets/", StringComparison.Ordinal) && File.Exists(Path.Combine(root, p)))
             .SelectMany(p => File.Exists(Path.Combine(root, p + ".meta")) ? new[] { p, p + ".meta" } : new[] { p })
-            .Concat(clips.Select(c => tapeRoot + c.name + "-private-applied-poses.json")).Distinct().ToArray();
+            .Concat(clips.Select(c => tapeRoot + c.name + "-private-applied-poses.json"))
+            .Concat(rootCurveRun == null ? Array.Empty<string>() : clips.Select(c => "LocomotionImplementation20261014/" + rootCurveRun + "/" + c.name + "-private-root.json"))
+            .Distinct().ToArray();
         string Hash(string path) { using var sha = SHA256.Create(); return BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path))).Replace("-", "").ToLowerInvariant(); }
         var inputs = inputPaths.ToDictionary(p => p, p => Hash(Path.Combine(root, p)));
         var fixtureType = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType("BooterBigArm.Tests.AnimationPlaygroundForwardReviewTests+Fixture")).First(t => t != null);
@@ -58,8 +64,19 @@ public static class CampTurnContactQualification
         foreach (var clip in clips)
         {
             var tape = JsonUtility.FromJson<AnimationPlaygroundMotionSampler.MotionMeasurement>(File.ReadAllText(Path.Combine(root, tapeRoot + clip.name + "-private-applied-poses.json")));
-            if (tape.clipName != clip.name || tape.frames.Length < 180 || Math.Abs(tape.seconds - clip.length) > .00001f)
+            if (tape.clipName != clip.name || tape.clipPath != source || tape.modelPath != AssetDatabase.GetAssetPath(profile.targetModel)
+                || tape.frames.Length < 180 || Math.Abs(tape.seconds - clip.length) > .00001f)
                 throw new InvalidDataException("Require the named 120Hz evaluated source-root tape.");
+            var rootCurve = rootCurveRun == null ? null : Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(
+                Path.Combine(root, "LocomotionImplementation20261014/" + rootCurveRun + "/" + clip.name + "-private-root.json")));
+            if (rootCurve != null && ((string)rootCurve["clip"] != clip.name || (string)rootCurve["source"] != source
+                || (string)rootCurve["rootSpace"] != "actor-origin" || (bool)rootCurve["qualified"]
+                || !(bool)rootCurve["metrics"]["boundedCurveEstablished"]
+                || (string)rootCurve["sourceSha256"] != Hash(Path.Combine(root, source))
+                || (string)rootCurve["sourceMetaSha256"] != Hash(Path.Combine(root, source + ".meta"))
+                || (string)rootCurve["nativeTapeSha256"] != Hash(Path.Combine(root, tapeRoot + clip.name + "-private-applied-poses.json"))
+                || rootCurve["frames"] is not Newtonsoft.Json.Linq.JArray curveFrames || curveFrames.Count != tape.frames.Length))
+                throw new InvalidDataException("Require the exact unqualified, bounded, native-source root curve.");
             using var fixture = (IDisposable)Activator.CreateInstance(fixtureType, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
                 null, new object[] { true, quality }, null);
             T Field<T>(string field) => (T)fixtureType.GetField(field).GetValue(fixture);
@@ -81,8 +98,10 @@ public static class CampTurnContactQualification
             if (sides.Any(s => s < 0)) throw new InvalidDataException("All cached sole points need an anatomical side.");
             var selected = profile.footProjection.vertices.Select(v => v.points.Select((p, i) => new { point = p, index = i })
                 .OrderByDescending(p => p.point.weight).ThenBy(p => p.index).Take((int)quality).Select(p => p.point).ToArray()).ToArray();
-            var origin = actor.transform.position; var floor = origin.y - .91f;
-            var playable = AnimationClipPlayable.Create(graph, clip); playable.SetApplyFootIK(false); playable.SetApplyPlayableIK(false); playable.SetSpeed(0);
+            var authoredOrigin = actor.transform.position;
+            var origin = recenter ? new Vector3(0, .91f, 0) : authoredOrigin;
+            var floor = origin.y - .91f;
+            var playable = AnimationClipPlayable.Create(graph, clip); playable.SetApplyFootIK(footIK); playable.SetApplyPlayableIK(false); playable.SetSpeed(0);
             var slot = mixer.GetInputCount(); mixer.SetInputCount(slot + 1); graph.Connect(playable, 0, mixer, slot);
             for (var i = 0; i < mixer.GetInputCount(); i++) mixer.SetInputWeight(i, i == slot ? 1 : 0);
             var late = (Action)Delegate.CreateDelegate(typeof(Action), driver, typeof(TopDown3DPlayerAnimationDriver).GetMethod("LateUpdate", Private));
@@ -93,9 +112,22 @@ public static class CampTurnContactQualification
             AnimationPlaygroundMotionSampler.SoleProbe sole = null;
             try
             {
+                var frameIndex = 0;
                 foreach (var frame in tape.frames)
                 {
-                    actor.transform.SetPositionAndRotation(origin, frame.rootRotation); body.position = origin; body.rotation = frame.rootRotation;
+                    var translation = applyPlanarRoot ? frame.root - tape.frames[0].root : Vector3.zero;
+                    if (Mathf.Abs(translation.y) > .001f) throw new InvalidDataException("Planar evaluation cannot discard native vertical root motion.");
+                    if (rootCurve != null)
+                    {
+                        var entry = rootCurve["frames"][frameIndex];
+                        if (Math.Abs((double)entry["seconds"] - frame.seconds) > .000001)
+                            throw new InvalidDataException("Root replay must retain native pose times.");
+                        translation = new Vector3((float)entry["position"][0], 0, (float)entry["position"][1]);
+                        if (!float.IsFinite(translation.sqrMagnitude)) throw new InvalidDataException("Nonfinite root curve.");
+                    }
+                    frameIndex++;
+                    translation.y = 0;
+                    actor.transform.SetPositionAndRotation(origin + translation, frame.rootRotation); body.position = origin + translation; body.rotation = frame.rootRotation;
                     visual.transform.SetLocalPositionAndRotation(localPosition, Quaternion.Euler(localEuler));
                     foreach (var skin in actor.GetComponentsInChildren<SkinnedMeshRenderer>(true)) skin.quality = SkinQuality.Auto;
                     playable.SetTime(frame.seconds); graph.Evaluate(0);
@@ -151,8 +183,28 @@ public static class CampTurnContactQualification
                 if (savedFrames == null || savedFrames.Count != record.frames.Count
                     || savedFrames.Any(f => f["points"] is not Newtonsoft.Json.Linq.JArray values || values.Count != sides.Length))
                     throw new InvalidDataException("The saved private sole track is incomplete.");
+                object anchorMetrics = null;
+                if (rootCurve != null)
+                {
+                    var vertex = (int)rootCurve["vertex"];
+                    if (vertex < 0 || vertex >= sides.Length || sides[vertex] != (int)rootCurve["side"])
+                        throw new InvalidDataException("Root curve must retain its anatomical sole point.");
+                    var anchor = record.frames[0].points[vertex]; var previous = anchor;
+                    var excursion = 0f; var travel = 0f; var low = float.PositiveInfinity; var high = float.NegativeInfinity;
+                    foreach (var frame in record.frames)
+                    {
+                        var point = frame.points[vertex];
+                        excursion = Mathf.Max(excursion, Vector3.ProjectOnPlane(point - anchor, Vector3.up).magnitude);
+                        travel += Vector3.ProjectOnPlane(point - previous, Vector3.up).magnitude;
+                        low = Mathf.Min(low, point.y); high = Mathf.Max(high, point.y); previous = point;
+                    }
+                    anchorMetrics = new { vertex, side = sides[vertex], excursion, cumulativeTravel = travel, minimumHeight = low, maximumHeight = high };
+                }
                 rows.Add(new { clip = clip.name, quality = (int)quality, samples = record.frames.Count, minMesh, maxHeight, maxLift, minSole,
                     maxNearestGap, maxPredictionError, foundCloak, foundRigid, targetOutputs = graph.GetOutputCount(),
+                    authoredOrigin = new[] { authoredOrigin.x, authoredOrigin.y, authoredOrigin.z },
+                    measurementOrigin = new[] { origin.x, origin.y, origin.z },
+                    persistentAnchor = anchorMetrics,
                     privateTrack = new { file = trackName, sha256 = Hash(trackPath), frames = savedFrames.Count, pointsPerFrame = sides.Length },
                     supportWindows = new[] { .08f, .12f, .18f }.Select(seconds => Windows(record, seconds)).ToArray() });
             }
@@ -161,8 +213,8 @@ public static class CampTurnContactQualification
         foreach (var path in inputPaths) if (Hash(Path.Combine(root, path)) != inputs[path]) throw new InvalidOperationException("Input changed during measurement.");
         if (EditorApplication.isCompiling) throw new InvalidOperationException("Assembly changed during measurement.");
         var destination = Path.Combine(output, "summary.json");
-        File.WriteAllText(destination, Newtonsoft.Json.JsonConvert.SerializeObject(new { state = "turn-contact-screen-not-qualified-or-installed", inputs, assemblies, rows,
-            scope = "Cold equipped single-output review rig, named turn clips, manually supplied 120Hz evaluated source yaw, existing sole cache and bounded upward host projection. No motor, physics or gameplay simulation. Window test is optimistic: best fixed point per centered window within [-1mm,+8mm], >=80/120/180ms, excursion <=20mm. Changing selected points does not establish a persistent contact contract or rolling acceptance. Full-mesh finite samples are not continuous-pose proof."
+        File.WriteAllText(destination, Newtonsoft.Json.JsonConvert.SerializeObject(new { state = "turn-contact-screen-not-qualified-or-installed", source, basis, applyPlanarRoot, recenter, rootCurveRun, footIK, inputs, assemblies, rows,
+            scope = "Cold equipped single-output review rig, named turn clips, manually supplied 120Hz evaluated source yaw, optional recorded planar root or bounded root curve. Measurement origin is explicit. Existing sole cache and bounded upward host projection. No motor, physics or gameplay simulation. Window test is optimistic: best fixed point per centered window within [-1mm,+8mm], >=80/120/180ms, excursion <=20mm. A fixed-point replay reports cumulative travel separately; it does not establish rolling acceptance. Full-mesh finite samples are not continuous-pose proof."
         }, Newtonsoft.Json.Formatting.Indented) + "\n", new UTF8Encoding(false));
         return destination;
     }

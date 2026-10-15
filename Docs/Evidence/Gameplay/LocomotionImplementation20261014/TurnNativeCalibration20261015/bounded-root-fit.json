@@ -1,0 +1,47 @@
+{
+  "state": "offline-bounded-root-fit-not-contact-qualified-or-installed",
+  "budgets": {
+    "contactResidual": 0.019,
+    "speed": 1.4,
+    "acceleration": 8.5,
+    "maximumRootOffset": 0.4,
+    "endpointSpeed": 0,
+    "nativeRate": 1
+  },
+  "sourceSummarySha256": "043c715aaf130019571bb61258858c14c000a7559ed9930db85e09497e6bc36f",
+  "rows": [
+    {
+      "clip": "RapidTurningLeft",
+      "quality": 4,
+      "vertex": 9,
+      "iterations": 20000,
+      "normalizedViolation": 9.634857800477903e-09,
+      "maximumRootOffset": 0.39900766559452705,
+      "maximumContactResidual": 0.01397237617376537,
+      "maximumSpeed": 1.2804540502672939,
+      "maximumAcceleration": 8.49900002050252,
+      "rmsContactResidual": 0.004944390248030726,
+      "sampledContactCumulativeTravel": 0.10457990407851273,
+      "endpointSpeed": 0.0,
+      "solverConverged": false,
+      "boundedCurveEstablished": true
+    },
+    {
+      "clip": "RapidTurningRight_Mirror",
+      "quality": 4,
+      "vertex": 300,
+      "iterations": 20000,
+      "normalizedViolation": 1.8591449224558687e-07,
+      "maximumRootOffset": 0.39900848797044264,
+      "maximumContactResidual": 0.01314056522720963,
+      "maximumSpeed": 1.2660378282438607,
+      "maximumAcceleration": 8.499000359926084,
+      "rmsContactResidual": 0.004724411548564399,
+      "sampledContactCumulativeTravel": 0.10319749647285907,
+      "endpointSpeed": 0.0,
+      "solverConverged": false,
+      "boundedCurveEstablished": true
+    }
+  ],
+  "scope": "Native 1.50s sources, zero endpoint velocity, one persistent sole point. Analytic quadratic root/velocity/acceleration bounds. Contact-error bound assumes linear interpolation of recorded sole motion; dense equipped replay and actual motor/collision/handoff proof remain required. Cumulative contact travel is reported, not accepted."
+}

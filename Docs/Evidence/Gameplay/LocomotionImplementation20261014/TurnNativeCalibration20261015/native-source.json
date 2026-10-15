@@ -1,0 +1,215 @@
+{
+  "state": "existing-turn-source-screen-not-qualified",
+  "sources": {
+    "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM.FBX": "2b25346e9842037c20d4bc356e98c8a505a7881a701779d4942ab3eeaa50b487",
+    "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM.FBX.meta": "ab8603837b517e9e30a0edd94539364029f5331fb4b9160a258d597a1aaaf1e2",
+    "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM_Mirror.FBX": "2b25346e9842037c20d4bc356e98c8a505a7881a701779d4942ab3eeaa50b487",
+    "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM_Mirror.FBX.meta": "ef2551d48c1e238033ef01b76b2dc58b2315bc6fc09d15f49225fb3a3c97438a",
+    "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/RapidTurnNative.fbx": "ff7b61df0c00d94103f9c402ed13f64d345d2e274a3417b8ffc525e25c6473a7",
+    "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/RapidTurnNative.fbx.meta": "3625c06a128f6b80fc0af1db9a14e4b0b344f40834e83b3559822468eead541b",
+    "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshOriginalRig.fbx": "1563823a3d90a8024cccde2ce195215a42747aee127f2190725a709a3fad9536",
+    "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshOriginalRig.fbx.meta": "84f652afa3d2658059a41eb596150dea5784a73103ef1cfeb3c412bfae06184c",
+    "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset": "c31e43404908caffb202fa27b9abf2cb9b1df429a773fefba2b1a97314088a3e",
+    "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundMotionSampler.cs": "aadeb1390767a3164378915cbcc889f9dbf6405b58a556ce43dada37d46c96ec"
+  },
+  "moduleId": "9d0237cd-f504-4fd1-a300-2da4a9cf8f3f",
+  "rows": [
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM.FBX",
+      "available": true,
+      "clip": "MCU_am_Loco_Jog_Fwd_Pivot_NoRM",
+      "clipGuid": "6ab308534cf6f1248aeeabd718abb99f",
+      "localId": 8993902097722301239,
+      "seconds": 2.7,
+      "samples": 325,
+      "totalHipsYaw": 5.034865,
+      "minimumHipsYaw": -10.2529068,
+      "maximumHipsYaw": 8.631908,
+      "rootRotationDrift": 0.0,
+      "rootDrift": 0.0,
+      "maximumFootDisplacement": 0.6104323,
+      "appliedRootRotation": 0.0,
+      "appliedRootDistance": 0.0,
+      "appliedSignedYaw": 0.0,
+      "minimumSole": -0.944622636,
+      "maximumHeight": 0.8934425,
+      "loopBlendOrientation": false,
+      "keepOriginalOrientation": false,
+      "orientationOffsetY": 0.0,
+      "rotationProperties": [
+        "MotionQ.x",
+        "MotionQ.y",
+        "MotionQ.z",
+        "MotionQ.w",
+        "RootQ.x",
+        "RootQ.y",
+        "RootQ.z",
+        "RootQ.w"
+      ],
+      "rotationCurves": [
+        {
+          "prefix": "RootQ",
+          "available": true,
+          "totalYaw": 0.16321373,
+          "minimumYaw": -11.9656506,
+          "maximumYaw": 7.94019556,
+          "samples": 325
+        },
+        {
+          "prefix": "MotionQ",
+          "available": true,
+          "totalYaw": 0.0,
+          "minimumYaw": 0.0,
+          "maximumYaw": 0.0,
+          "samples": 325
+        }
+      ],
+      "leftContactProposals": 0,
+      "rightContactProposals": 1
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM_Mirror.FBX",
+      "available": true,
+      "clip": "MCU_am_Loco_Jog_Fwd_Pivot_NoRM_Mirror",
+      "clipGuid": "4bc239a2dc044f3a89814c7811f16d3b",
+      "localId": 8993902097722301239,
+      "seconds": 2.7,
+      "samples": 325,
+      "totalHipsYaw": -5.03470945,
+      "minimumHipsYaw": -8.631973,
+      "maximumHipsYaw": 10.2528582,
+      "rootRotationDrift": 0.0,
+      "rootDrift": 0.0,
+      "maximumFootDisplacement": 0.611338,
+      "appliedRootRotation": 0.0,
+      "appliedRootDistance": 0.0,
+      "appliedSignedYaw": 0.0,
+      "minimumSole": -0.9449382,
+      "maximumHeight": 0.8935677,
+      "loopBlendOrientation": false,
+      "keepOriginalOrientation": false,
+      "orientationOffsetY": 0.0,
+      "rotationProperties": [
+        "MotionQ.x",
+        "MotionQ.y",
+        "MotionQ.z",
+        "MotionQ.w",
+        "RootQ.x",
+        "RootQ.y",
+        "RootQ.z",
+        "RootQ.w"
+      ],
+      "rotationCurves": [
+        {
+          "prefix": "RootQ",
+          "available": true,
+          "totalYaw": 0.16321373,
+          "minimumYaw": -11.9656506,
+          "maximumYaw": 7.94019556,
+          "samples": 325
+        },
+        {
+          "prefix": "MotionQ",
+          "available": true,
+          "totalYaw": 0.0,
+          "minimumYaw": 0.0,
+          "maximumYaw": 0.0,
+          "samples": 325
+        }
+      ],
+      "leftContactProposals": 1,
+      "rightContactProposals": 0
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/RapidTurnNative.fbx",
+      "available": true,
+      "clip": "RapidTurningLeft",
+      "clipGuid": "ba11d15677a55e34aa078398a9a30833",
+      "localId": 7400000,
+      "seconds": 1.50000012,
+      "samples": 182,
+      "totalHipsYaw": 8.15391541e-05,
+      "minimumHipsYaw": -1.52444458,
+      "maximumHipsYaw": 4.73968172,
+      "rootRotationDrift": 0.0,
+      "rootDrift": 0.0,
+      "maximumFootDisplacement": 0.198972061,
+      "appliedRootRotation": 180.0,
+      "appliedRootDistance": 0.134202033,
+      "appliedSignedYaw": -180.000061,
+      "minimumSole": -0.9182072,
+      "maximumHeight": 0.881315,
+      "loopBlendOrientation": false,
+      "keepOriginalOrientation": false,
+      "orientationOffsetY": 0.0,
+      "rotationProperties": [
+        "RootQ.x",
+        "RootQ.y",
+        "RootQ.z",
+        "RootQ.w"
+      ],
+      "rotationCurves": [
+        {
+          "prefix": "RootQ",
+          "available": true,
+          "totalYaw": -180.000092,
+          "minimumYaw": -180.000092,
+          "maximumYaw": 0.0,
+          "samples": 182
+        },
+        {
+          "prefix": "MotionQ",
+          "available": false
+        }
+      ],
+      "leftContactProposals": 1,
+      "rightContactProposals": 1
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/RapidTurnNative.fbx",
+      "available": true,
+      "clip": "RapidTurningRight_Mirror",
+      "clipGuid": "ba11d15677a55e34aa078398a9a30833",
+      "localId": 7400002,
+      "seconds": 1.50000012,
+      "samples": 182,
+      "totalHipsYaw": -4.720688e-05,
+      "minimumHipsYaw": -4.73967171,
+      "maximumHipsYaw": 1.52445817,
+      "rootRotationDrift": 0.0,
+      "rootDrift": 0.0,
+      "maximumFootDisplacement": 0.198955491,
+      "appliedRootRotation": 180.0,
+      "appliedRootDistance": 0.134202048,
+      "appliedSignedYaw": 180.0,
+      "minimumSole": -0.9181966,
+      "maximumHeight": 0.881283045,
+      "loopBlendOrientation": false,
+      "keepOriginalOrientation": false,
+      "orientationOffsetY": 0.0,
+      "rotationProperties": [
+        "RootQ.x",
+        "RootQ.y",
+        "RootQ.z",
+        "RootQ.w"
+      ],
+      "rotationCurves": [
+        {
+          "prefix": "RootQ",
+          "available": true,
+          "totalYaw": -180.000092,
+          "minimumYaw": -180.000092,
+          "maximumYaw": 0.0,
+          "samples": 182
+        },
+        {
+          "prefix": "MotionQ",
+          "available": false
+        }
+      ],
+      "leftContactProposals": 1,
+      "rightContactProposals": 1
+    }
+  ],
+  "scope": "Named original clips on the accepted target at saved scale/offset. Four-influence body. Separate manual-graph root-disabled and root-applied samples; root curves are raw importer data, whose mirror sign is not a runtime contract. Hip heading is only a visual proxy. No action/controller or physics simulation. Raw soles and proposed windows do not qualify contact or equipment."
+}

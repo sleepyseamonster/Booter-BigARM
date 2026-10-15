@@ -1,0 +1,46 @@
+{
+  "mathCases": [
+    {
+      "case": "interior quadratic peak",
+      "peak": 0.25,
+      "expected": 0.25
+    },
+    {
+      "case": "known feasible C1 moving curve",
+      "knownContinuousCurveError": 5.524981314700078e-07,
+      "linearInterpolationErrorBound": 2.1776763180761307e-05,
+      "metrics": {
+        "iterations": 7371,
+        "normalizedViolation": 0.0,
+        "maximumRootOffset": 0.10000004875795393,
+        "maximumContactResidual": 2.2206711917345734e-05,
+        "maximumSpeed": 0.09999763958204305,
+        "maximumAcceleration": 0.15987646248742307,
+        "rmsContactResidual": 3.092827253303318e-08,
+        "sampledContactCumulativeTravel": 2.222752065280484e-06,
+        "endpointSpeed": 0.0,
+        "solverConverged": true,
+        "boundedCurveEstablished": true
+      }
+    }
+  ],
+  "serializedCurveChecks": [
+    {
+      "clip": "RapidTurningLeft",
+      "independentDensePlusLipschitzRadiusUpperBound": 0.3990283911071578,
+      "maximumSpeed": 1.2804540502672939,
+      "maximumAcceleration": 8.49900002050252,
+      "maximumPositionContinuityError": 5.814197788887657e-17,
+      "endpointSpeed": 0
+    },
+    {
+      "clip": "RapidTurningRight_Mirror",
+      "independentDensePlusLipschitzRadiusUpperBound": 0.3990289225438347,
+      "maximumSpeed": 1.2660378282438607,
+      "maximumAcceleration": 8.499000359926084,
+      "maximumPositionContinuityError": 5.985424482118264e-17,
+      "endpointSpeed": 0
+    }
+  ],
+  "noUnityGameplaySimulation": true
+}
