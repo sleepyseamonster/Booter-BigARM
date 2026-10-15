@@ -12,6 +12,8 @@ The author subsequently authorized that exercise. See the [offline comparison re
 
 Following review on October 15, the author selected B's ground treatment and a balance between B and C for rocks and props, retaining C's texture character and broader painted accents with restraint. This accepted surface direction supersedes the open choice between the three study candidates; exact asset treatments still need refinement.
 
+The author's subsequent request for more realistic inspiration is covered in [Diablo IV and Path of Exile reference research](REALISM_REFERENCES.md), with a separately labelled Path of Exile 2 supplement, 16 resources, and concrete lessons for the existing rock, ground, and prop study. Its refinements remain recommendations.
+
 ## How the named influences contribute
 
 | Influence | Contribution to the proposed direction | What needs restraint |
