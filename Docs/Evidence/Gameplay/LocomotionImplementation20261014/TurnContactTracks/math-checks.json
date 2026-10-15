@@ -1,0 +1,15 @@
+{
+  "known3dWorldPivotChecks": [
+    {
+      "signedHalfTurn": -1,
+      "maximumResidual": 1.3877787807814457e-16,
+      "radiusRecovered": true
+    },
+    {
+      "signedHalfTurn": 1,
+      "maximumResidual": 7.850462293418876e-17,
+      "radiusRecovered": true
+    }
+  ],
+  "noUnityGameplaySimulation": true
+}

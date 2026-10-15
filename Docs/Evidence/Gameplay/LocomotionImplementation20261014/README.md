@@ -4,6 +4,8 @@ October 14, 2026. Implements the [audited walking/running/sprinting plan](../../
 
 The preceding [steering/source checkpoint](ForwardSteering/README.md) reproduces reversal misalignment, rejects a contact-failing numerical alternative and screens the existing named rapid-turn clips. Its repeated command/pose measurements remain outside live controller code.
 
+The [complete turn-track checkpoint](TurnContactTracks/README.md) repairs private track serialization, verifies all 736,008 recorded sole-point samples and reproduces the previous six-case metrics. Its persistent-contact analysis rejects a single fixed-pivot correction; a qualified contact/trajectory adaptation or replacement source is still required.
+
 The [experimental forward review](ForwardReview/README.md) remains installed in the saved author scene with 306 previously passing relevant Edit Mode checks. F9 → Reset to gait deck opens the bounded AP02 review, preserving the baseline elsewhere and leaving qualification flags false. Author feedback is pending. Native support/contact, steering, moving action handoffs and full acceptance remain open.
 
 The [uphill motor policy](ForwardUphillGait/README.md), failed [terrain reach qualification](ForwardTerrainReach/README.md), earlier [gated terrain prototype](ForwardTerrainRuntime/README.md), [support-plane experiment](ForwardTerrain/README.md), [transition/current-scene checkpoint](ForwardTransitions/README.md) and [forward draft](ForwardDraft/README.md) retain preceding evidence. The foundation/source-selection sections below are historical checkpoints; they do not supersede the installed review or close its remaining gates.

@@ -1,0 +1,453 @@
+{
+  "state": "persistent-contact-and-fixed-pivot-screen-not-qualified-or-installed",
+  "inputHashes": {
+    "summary.json": "6d933619de27c09c9b475007641c0fcfed45f5537355b93bd0d233c4ce622b69",
+    "RapidTurningLeft-1-private-tracks.json": "7f37ecb5268b4114e62dcc6d20e145af43d2009951ca5ac710806c6ab3af887b",
+    "TurnSourceContactBasisV1\\RapidTurningLeft-private-applied-poses.json": "6b4df3e31568feabbcc9ca12c2f89e4f3808d65d92c94defa3971eca09a28f24",
+    "RapidTurningRight_Mirror-1-private-tracks.json": "a015ef1238e8bbc5db11b6c2a73c8e05f498ec4dc9c49e1606874eee2b827905",
+    "TurnSourceContactBasisV1\\RapidTurningRight_Mirror-private-applied-poses.json": "2ec55a9178cf3bbcf6f51cb74881df80284f78259f5cdce811d415cb3e377368",
+    "RapidTurningLeft-2-private-tracks.json": "d039a505b174b66d465fd78a7a29fbe16516f7269669ab79103a1799db16a089",
+    "RapidTurningRight_Mirror-2-private-tracks.json": "a69abb9ae35dfed382b9ab0dbd012683d28a04ff10cf79fa423fad79f4eeed3c",
+    "RapidTurningLeft-4-private-tracks.json": "d474316f6da779ee5a148d9d211d571c2cbf504cf12c359f6ff5613bba57bf5d",
+    "RapidTurningRight_Mirror-4-private-tracks.json": "220d469e447132cdd5c86a1bdecfb7abb2e902a89598c4b7b67840da4ad8c692"
+  },
+  "trackedPointsAcrossFrames": 736008,
+  "contactCeiling": 0.001,
+  "optimisticContactCeiling": 0.008,
+  "driftBudget": 0.02,
+  "rows": [
+    {
+      "clip": "RapidTurningLeft",
+      "quality": 1,
+      "samples": 182,
+      "nativeSeconds": 1.50000012,
+      "nativeSignedYaw": -179.99998601945816,
+      "persistentFloorPoints": 2,
+      "bestUnconstrainedFixedPivot": {
+        "side": 0,
+        "rms": 0.06584510808642875,
+        "maximumResidual": 0.10871732072958579,
+        "pivotRadius": 0.16224715571272014,
+        "maximumRootShift": 0.32449431142543794,
+        "rootPathLength": 0.5097075230521035
+      },
+      "fixedPivotRejectedForTestedPoints": true,
+      "feet": [
+        {
+          "side": 0,
+          "nearFloor1mm": {
+            "nearGroundFrames": 182,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 1.50000012,
+                "persistentPoints": 2,
+                "bestFixedPointExcursion": 0.34603848282210353
+              }
+            ]
+          },
+          "optimisticNearFloor8mm": {
+            "nearGroundFrames": 182,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 1.50000012,
+                "persistentPoints": 25,
+                "bestFixedPointExcursion": 0.26791750308913626
+              }
+            ]
+          }
+        },
+        {
+          "side": 1,
+          "nearFloor1mm": {
+            "nearGroundFrames": 0,
+            "episodes": []
+          },
+          "optimisticNearFloor8mm": {
+            "nearGroundFrames": 97,
+            "episodes": [
+              {
+                "startSeconds": 0.3729282,
+                "endSeconds": 1.16850841,
+                "durationSeconds": 0.79558021,
+                "persistentPoints": 0,
+                "bestFixedPointExcursion": null
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "clip": "RapidTurningRight_Mirror",
+      "quality": 1,
+      "samples": 182,
+      "nativeSeconds": 1.50000012,
+      "nativeSignedYaw": 180.00006221874796,
+      "persistentFloorPoints": 2,
+      "bestUnconstrainedFixedPivot": {
+        "side": 1,
+        "rms": 0.09268222536120524,
+        "maximumResidual": 0.18484488609211122,
+        "pivotRadius": 0.17363998545509857,
+        "maximumRootShift": 0.3472799709101459,
+        "rootPathLength": 0.5454988974460481
+      },
+      "fixedPivotRejectedForTestedPoints": true,
+      "feet": [
+        {
+          "side": 0,
+          "nearFloor1mm": {
+            "nearGroundFrames": 0,
+            "episodes": []
+          },
+          "optimisticNearFloor8mm": {
+            "nearGroundFrames": 99,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 0.422651976,
+                "durationSeconds": 0.422651976,
+                "persistentPoints": 0,
+                "bestFixedPointExcursion": null
+              },
+              {
+                "startSeconds": 1.11878467,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 0.38121545,
+                "persistentPoints": 0,
+                "bestFixedPointExcursion": null
+              }
+            ]
+          }
+        },
+        {
+          "side": 1,
+          "nearFloor1mm": {
+            "nearGroundFrames": 182,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 1.50000012,
+                "persistentPoints": 2,
+                "bestFixedPointExcursion": 0.3055708364611732
+              }
+            ]
+          },
+          "optimisticNearFloor8mm": {
+            "nearGroundFrames": 182,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 1.50000012,
+                "persistentPoints": 25,
+                "bestFixedPointExcursion": 0.18909968293111476
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "clip": "RapidTurningLeft",
+      "quality": 2,
+      "samples": 182,
+      "nativeSeconds": 1.50000012,
+      "nativeSignedYaw": -179.99998601945816,
+      "persistentFloorPoints": 2,
+      "bestUnconstrainedFixedPivot": {
+        "side": 0,
+        "rms": 0.06584781625977429,
+        "maximumResidual": 0.10871893838666884,
+        "pivotRadius": 0.16224975800768796,
+        "maximumRootShift": 0.3244995160153735,
+        "rootPathLength": 0.509715698291395
+      },
+      "fixedPivotRejectedForTestedPoints": true,
+      "feet": [
+        {
+          "side": 0,
+          "nearFloor1mm": {
+            "nearGroundFrames": 182,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 1.50000012,
+                "persistentPoints": 2,
+                "bestFixedPointExcursion": 0.34603848282210353
+              }
+            ]
+          },
+          "optimisticNearFloor8mm": {
+            "nearGroundFrames": 182,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 1.50000012,
+                "persistentPoints": 24,
+                "bestFixedPointExcursion": 0.2686552374867753
+              }
+            ]
+          }
+        },
+        {
+          "side": 1,
+          "nearFloor1mm": {
+            "nearGroundFrames": 0,
+            "episodes": []
+          },
+          "optimisticNearFloor8mm": {
+            "nearGroundFrames": 88,
+            "episodes": [
+              {
+                "startSeconds": 0.3563536,
+                "endSeconds": 1.07734811,
+                "durationSeconds": 0.7209945099999999,
+                "persistentPoints": 0,
+                "bestFixedPointExcursion": null
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "clip": "RapidTurningRight_Mirror",
+      "quality": 2,
+      "samples": 182,
+      "nativeSeconds": 1.50000012,
+      "nativeSignedYaw": 180.00006221874796,
+      "persistentFloorPoints": 2,
+      "bestUnconstrainedFixedPivot": {
+        "side": 1,
+        "rms": 0.09268578885713749,
+        "maximumResidual": 0.18484283063211956,
+        "pivotRadius": 0.17364993938776016,
+        "maximumRootShift": 0.34729987877546914,
+        "rootPathLength": 0.5455301682347313
+      },
+      "fixedPivotRejectedForTestedPoints": true,
+      "feet": [
+        {
+          "side": 0,
+          "nearFloor1mm": {
+            "nearGroundFrames": 0,
+            "episodes": []
+          },
+          "optimisticNearFloor8mm": {
+            "nearGroundFrames": 91,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 0.331491739,
+                "durationSeconds": 0.331491739,
+                "persistentPoints": 0,
+                "bestFixedPointExcursion": null
+              },
+              {
+                "startSeconds": 0.3812155,
+                "endSeconds": 0.3812155,
+                "durationSeconds": 0.0,
+                "persistentPoints": 1,
+                "bestFixedPointExcursion": 0.0
+              },
+              {
+                "startSeconds": 1.10221,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 0.39779012,
+                "persistentPoints": 1,
+                "bestFixedPointExcursion": 0.08424301969957537
+              }
+            ]
+          }
+        },
+        {
+          "side": 1,
+          "nearFloor1mm": {
+            "nearGroundFrames": 182,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 1.50000012,
+                "persistentPoints": 2,
+                "bestFixedPointExcursion": 0.3055708364611732
+              }
+            ]
+          },
+          "optimisticNearFloor8mm": {
+            "nearGroundFrames": 182,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 1.50000012,
+                "persistentPoints": 24,
+                "bestFixedPointExcursion": 0.21385189027112353
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "clip": "RapidTurningLeft",
+      "quality": 4,
+      "samples": 182,
+      "nativeSeconds": 1.50000012,
+      "nativeSignedYaw": -179.99998601945816,
+      "persistentFloorPoints": 2,
+      "bestUnconstrainedFixedPivot": {
+        "side": 0,
+        "rms": 0.06584781625977429,
+        "maximumResidual": 0.10871893838666884,
+        "pivotRadius": 0.16224975800768796,
+        "maximumRootShift": 0.3244995160153735,
+        "rootPathLength": 0.509715698291395
+      },
+      "fixedPivotRejectedForTestedPoints": true,
+      "feet": [
+        {
+          "side": 0,
+          "nearFloor1mm": {
+            "nearGroundFrames": 182,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 1.50000012,
+                "persistentPoints": 2,
+                "bestFixedPointExcursion": 0.34603848282210353
+              }
+            ]
+          },
+          "optimisticNearFloor8mm": {
+            "nearGroundFrames": 182,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 1.50000012,
+                "persistentPoints": 24,
+                "bestFixedPointExcursion": 0.2686552374867753
+              }
+            ]
+          }
+        },
+        {
+          "side": 1,
+          "nearFloor1mm": {
+            "nearGroundFrames": 0,
+            "episodes": []
+          },
+          "optimisticNearFloor8mm": {
+            "nearGroundFrames": 93,
+            "episodes": [
+              {
+                "startSeconds": 0.3563536,
+                "endSeconds": 1.09392273,
+                "durationSeconds": 0.73756913,
+                "persistentPoints": 0,
+                "bestFixedPointExcursion": null
+              },
+              {
+                "startSeconds": 1.11878467,
+                "endSeconds": 1.13535917,
+                "durationSeconds": 0.01657450000000016,
+                "persistentPoints": 1,
+                "bestFixedPointExcursion": 0.002880968073962126
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "clip": "RapidTurningRight_Mirror",
+      "quality": 4,
+      "samples": 182,
+      "nativeSeconds": 1.50000012,
+      "nativeSignedYaw": 180.00006221874796,
+      "persistentFloorPoints": 2,
+      "bestUnconstrainedFixedPivot": {
+        "side": 1,
+        "rms": 0.09268578885713749,
+        "maximumResidual": 0.18484283063211956,
+        "pivotRadius": 0.17364993938776016,
+        "maximumRootShift": 0.34729987877546914,
+        "rootPathLength": 0.5455301682347313
+      },
+      "fixedPivotRejectedForTestedPoints": true,
+      "feet": [
+        {
+          "side": 0,
+          "nearFloor1mm": {
+            "nearGroundFrames": 0,
+            "episodes": []
+          },
+          "optimisticNearFloor8mm": {
+            "nearGroundFrames": 95,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 0.339779019,
+                "durationSeconds": 0.339779019,
+                "persistentPoints": 0,
+                "bestFixedPointExcursion": null
+              },
+              {
+                "startSeconds": 0.364640921,
+                "endSeconds": 0.3895028,
+                "durationSeconds": 0.024861878999999976,
+                "persistentPoints": 1,
+                "bestFixedPointExcursion": 0.004401309754772549
+              },
+              {
+                "startSeconds": 1.10221,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 0.39779012,
+                "persistentPoints": 1,
+                "bestFixedPointExcursion": 0.08424301969957537
+              }
+            ]
+          }
+        },
+        {
+          "side": 1,
+          "nearFloor1mm": {
+            "nearGroundFrames": 182,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 1.50000012,
+                "persistentPoints": 2,
+                "bestFixedPointExcursion": 0.3055708364611732
+              }
+            ]
+          },
+          "optimisticNearFloor8mm": {
+            "nearGroundFrames": 182,
+            "episodes": [
+              {
+                "startSeconds": 0.0,
+                "endSeconds": 1.50000012,
+                "durationSeconds": 1.50000012,
+                "persistentPoints": 24,
+                "bestFixedPointExcursion": 0.21385189027112353
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Complete recorded native turns. Sole height does not establish force/support. One fixed-pivot model and recorded persistent sole points only; not all IK/root-trajectory adaptations. Unconstrained RMS lower-bounds worst drift. No runtime, motor, collision, handoff or author-feel qualification."
+}

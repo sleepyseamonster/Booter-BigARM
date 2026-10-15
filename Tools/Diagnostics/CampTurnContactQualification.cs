@@ -28,7 +28,7 @@ public static class CampTurnContactQualification
         public float seconds, lift; public Vector3[] points;
     }
 
-    public static string Run(string name = "TurnContactV1")
+    public static string Run(string name = "TurnContactV2")
     {
         var root = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
         if (!Application.isBatchMode || EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling
@@ -116,6 +116,7 @@ public static class CampTurnContactQualification
                         var point = Vector3.zero; var total = 0f;
                         foreach (var influence in selected[i]) { point += matrices[influence.bone].MultiplyPoint3x4(influence.position) * influence.weight; total += influence.weight; }
                         points[i] = point / total - origin; points[i].y += .91f;
+                        if (!float.IsFinite(points[i].sqrMagnitude)) throw new InvalidDataException("Nonfinite cached sole track.");
                     }
                     record.frames.Add(new Frame { seconds = frame.seconds, lift = lift, points = points });
                     foreach (var renderer in driver.HumanoidAnimator.transform.parent.GetComponentsInChildren<Renderer>(true))
@@ -136,9 +137,23 @@ public static class CampTurnContactQualification
                     }
                 }
                 if (!foundCloak || !foundRigid || graph.GetOutputCount() != 1) throw new InvalidOperationException("Require cold cloak, rigid kit and one target output.");
-                File.WriteAllText(Path.Combine(output, clip.name + "-" + (int)quality + "-private-tracks.json"), JsonUtility.ToJson(record), new UTF8Encoding(false));
+                // JsonUtility omits the frame list from this dynamically compiled
+                // diagnostic type. Serialize scalar DTOs and verify the saved track.
+                var trackName = clip.name + "-" + (int)quality + "-private-tracks.json";
+                var trackPath = Path.Combine(output, trackName);
+                File.WriteAllText(trackPath, Newtonsoft.Json.JsonConvert.SerializeObject(new {
+                    record.clip, record.quality, record.sides,
+                    frames = record.frames.Select(f => new { f.seconds, f.lift,
+                        points = f.points.Select(p => new { p.x, p.y, p.z }).ToArray() }).ToArray()
+                }), new UTF8Encoding(false));
+                var saved = Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(trackPath));
+                var savedFrames = saved["frames"] as Newtonsoft.Json.Linq.JArray;
+                if (savedFrames == null || savedFrames.Count != record.frames.Count
+                    || savedFrames.Any(f => f["points"] is not Newtonsoft.Json.Linq.JArray values || values.Count != sides.Length))
+                    throw new InvalidDataException("The saved private sole track is incomplete.");
                 rows.Add(new { clip = clip.name, quality = (int)quality, samples = record.frames.Count, minMesh, maxHeight, maxLift, minSole,
                     maxNearestGap, maxPredictionError, foundCloak, foundRigid, targetOutputs = graph.GetOutputCount(),
+                    privateTrack = new { file = trackName, sha256 = Hash(trackPath), frames = savedFrames.Count, pointsPerFrame = sides.Length },
                     supportWindows = new[] { .08f, .12f, .18f }.Select(seconds => Windows(record, seconds)).ToArray() });
             }
             finally { sole?.Dispose(); UnityEngine.Object.DestroyImmediate(mesh); }

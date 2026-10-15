@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "sourceFiles": {
+    "Tools/Diagnostics/CampTurnContactQualification.cs": "87e046da8add1d37cb81d01c5d8610e4d166d6cdf37b598fbc225bbc7d82d399",
+    "Tools/Diagnostics/camp_turn_contact_analysis.py": "e4b6fad283b41936d2cb42eb6986a90650f4a563015c55c5d49acbcb84e75384"
+  },
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "numpy": "2.3.5",
+  "legacyMetricsIdentical": true,
+  "all272MeasuredInputsIdentical": true,
+  "tracks": 6,
+  "frames": 1092,
+  "trackedPointsAcrossFrames": 736008,
+  "allFramesReadBack": true,
+  "allCoordinatesFinite": true,
+  "scalarAnalysesIdentical": true,
+  "fixedPivotRejectedCases": 6,
+  "independentKnown3dPivotCases": 2,
+  "noAgentPlayModeOrPhysicsSimulation": true,
+  "scope": "Diagnostic repair and bounded model rejection. No player/controller qualification or source asset mutation."
+}
