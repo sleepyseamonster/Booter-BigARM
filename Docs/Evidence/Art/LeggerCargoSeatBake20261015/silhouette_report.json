@@ -1,0 +1,34 @@
+{
+  "side": {
+    "silhouette_iou": 0.9973596816010127,
+    "changed_silhouette_pixels": 1827,
+    "image_dimensions": [
+      1400,
+      1100
+    ]
+  },
+  "rear": {
+    "silhouette_iou": 0.9940050039941519,
+    "changed_silhouette_pixels": 4773,
+    "image_dimensions": [
+      1400,
+      1100
+    ]
+  },
+  "saddle": {
+    "silhouette_iou": 0.9976633220311191,
+    "changed_silhouette_pixels": 2166,
+    "image_dimensions": [
+      1400,
+      1100
+    ]
+  },
+  "cargo": {
+    "silhouette_iou": 0.9969886443177138,
+    "changed_silhouette_pixels": 2947,
+    "image_dimensions": [
+      1400,
+      1100
+    ]
+  }
+}

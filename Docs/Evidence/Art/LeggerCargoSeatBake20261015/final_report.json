@@ -1,0 +1,101 @@
+{
+  "source": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration04.blend",
+  "before_file_sha256": "b6b353e4bb2f302b8c487de51f57ffd5a341be493d9409f9b84fc943bbbe03b9",
+  "prepared_file": "D:\\Arc & Dust\\Project\\Logs\\LeggerBake20261015\\FinalVerified.blend",
+  "after_prepared_sha256": "ef61043affec4b70040b11a4e886e9f8eb9050c495813e0b7a8c154049703481",
+  "source_regions_triangles": 582884,
+  "baked_surface_triangles": 12000,
+  "region_reduction_percent": 97.94127133357581,
+  "active_robot_triangles": 2096137,
+  "untargeted_vertex_positions_exact": true,
+  "objects": {
+    "Legger_Body": {
+      "vertices": 1042966,
+      "triangles": 2084137,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "dimensions": [
+        0.858575701713562,
+        1.6463167667388916,
+        2.2277183532714844
+      ],
+      "hidden_render": false,
+      "hidden_viewport": false
+    },
+    "Legger_CargoSeat_Baked": {
+      "vertices": 7932,
+      "triangles": 12000,
+      "uv_layers": [
+        "CargoSeat_Atlas"
+      ],
+      "dimensions": [
+        0.8250364065170288,
+        1.0590201616287231,
+        0.7125759124755859
+      ],
+      "hidden_render": false,
+      "hidden_viewport": false
+    },
+    "Legger_DetailBake_Source": {
+      "vertices": 1331630,
+      "triangles": 2667021,
+      "uv_layers": [
+        "UVMap"
+      ],
+      "dimensions": [
+        0.858575701713562,
+        1.6463167667388916,
+        2.2277183532714844
+      ],
+      "hidden_render": true,
+      "hidden_viewport": true
+    }
+  },
+  "new_packed_images": [
+    {
+      "name": "Legger_CargoSeat_BaseColor",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "sRGB",
+      "packed": true
+    },
+    {
+      "name": "Legger_CargoSeat_Roughness",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed": true
+    },
+    {
+      "name": "Legger_CargoSeat_Metallic",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed": true
+    },
+    {
+      "name": "Legger_CargoSeat_Normal",
+      "size": [
+        4096,
+        4096
+      ],
+      "colorspace": "Non-Color",
+      "packed": true
+    }
+  ],
+  "coverage": {
+    "atlas_filled_fraction": 0.27499860525131226,
+    "interior_texels": 4149601,
+    "interior_coverage_fraction": 1.0,
+    "missed_interior_texels": 0,
+    "bake_margin_px": 16
+  },
+  "blender_version": "5.2.2 LTS"
+}
