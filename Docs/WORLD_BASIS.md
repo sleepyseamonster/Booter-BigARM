@@ -78,7 +78,7 @@ Author direction recorded October 14, 2026:
 - Everyday clothing is simple: wraps, metal chainmail and other practical wear that can be made with metal and minimal fur. Minimal fur use does not create an abundant fur-processing supply; wrap construction and fastening details remain open under the no-cloth rule.
 - Elaborate fashion clothing takes very large quantities of material and very large amounts of processing and crafting time. Fashion items are consequently very rare and expensive. This fashion scarcity does not make ordinary simple wraps or chainmail inherently luxury items.
 - Specialized spectacles, eyeglasses and hats are rare. Their exact optical functions, construction and game effects remain open.
-- Inputs used to craft expensive fashion items are intended to command high sale value, giving resource gathering a valuable role in the economy. Exact recipes, input quantities, prices, currency and crafting times remain undefined.
+- Inputs used to craft expensive fashion items are intended to command high sale value, giving resource gathering a valuable role in the economy. Exact recipes, input quantities, prices and crafting times remain undefined.
 - Seals and sealants are recognized canister-related item/material families. Specific formulations, part compatibility, service procedures and game effects remain undefined; source-lore canister systems are references rather than installed gameplay.
 - Gemstones exist on the Broken World. Particular gemstone types, deposits, grades, rarity, cutting practices and uses remain open for brainstorming; gemstone existence does not approve a specific terrestrial mineral roster or special powers.
 - Ancient technology uses materials comparable to carbon-fiber composites, nanocarbon materials, plasteels and related futuristic manufactured substances. These materials are **extremely rare**.
@@ -91,6 +91,13 @@ Author direction recorded October 14, 2026:
 - Raw crafting inputs are Tier 0. Refining or manufacturing raw inputs produces Tier 1 materials; further material transformations progress from Tier 1 to Tier 2, Tier 2 to Tier 3, and Tier 3 to Tier 4.
 - Finished items can be crafted directly from raw inputs or from materials at any of these tiers. A product does not need a four-tier crafting chain.
 - The [master item database](./Design/Items/MASTER_ITEM_DATABASE.xlsx) separates material tier from item rarity, quality and finished-product classification. Its specific tier assignments, candidate refinement routes and regional demand/fashion ideas remain brainstorming proposals; they do not establish recipes, prices, national customs or present-day ancient-material manufacture.
+
+### Material Mark Currencies
+
+Author direction recorded October 15, 2026:
+
+- Currency includes iron marks, steel marks, ceramic marks and glass marks. Material and craftsmanship distinguish the currency items; this does not assign them a material-refinement tier.
+- Exchange ratios, denomination ranking, craftsmanship grades, issuing authority and the exact relationship to the source proposal's Imperial Commons remain undefined. The database records the four material marks separately without inventing those details.
 
 ### Machine-Derived Communications
 
