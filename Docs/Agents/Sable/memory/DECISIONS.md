@@ -39,3 +39,9 @@ Sable proposes stronger large-form design, broader color grouping, and selective
 Authority: the author's explicit goal to brainstorm and research more games combining Arcane / No Rest for the Wicked art with realism. The [ten-game study](../work/2026-10-15-stylized-realism/EXPANDED_GAME_STUDY.md) researches Dishonored 2, Kena, GreedFall, Enshrouded, Ashen, Sea of Thieves, Darksiders II, Lost in Random, Atlas Fallen, and Darkest Dungeon II.
 
 Sable's leading recommendations are Dishonored 2 for painted material balance, Kena for believable lighting on stylized forms, and GreedFall for tonal composition. These are researched reference roles, not replacement-style approval. B's ground and the accepted B–C rock/prop balance remain controlling; no production integration or new render was performed.
+
+## October 15, 2026 — Material diorama planning goal
+
+Authority: the author requested a more complete, well-lit multi-style scene study with processed metals, raw/rusted iron, volcanic/granite/limestone stone, dirt, rock textures, and clutter, then explicitly requested a plan as the goal. The [diorama plan](../work/2026-10-15-material-dioramas/PLAN.md) proposes three scenes in four treatments, fifteen surface conditions including separate bare iron and ore, and 76 primary review images with fixed comparison conditions.
+
+This completes planning only. Scene names, kit, treatments, capture counts, and implementation gates are proposed execution details. No diorama, new texture, render, Unity integration, or replacement art approval is claimed by the planning batch.
