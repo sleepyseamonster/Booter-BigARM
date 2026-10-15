@@ -41,6 +41,8 @@ The optics master suppresses all modular optical effects. Unsupported early Gaus
 
 Modular tilt shift owns both legacy sampling parameters and reference-resolution parameters. Changing modes preserves dormant tuning. Shared renderer settings remain the authority for unconverted cameras only. Apparent sun diameter comes from the sky profile for modular flare calculations; the retained native field is legacy compatibility data.
 
+Both the inline native-optics controls and the standalone native asset inspector clear and disable `Gaussian Before Lens` when Bokeh is selected. This preserves a valid Bokeh profile without disabling bloom or changing other tuning. Programmatic malformed profiles still fail closed through the existing runtime validation.
+
 ## Version 1 migration
 
 `CampPresentationMigration.DryRun` checks the compiled open Camp scene, unique legacy camera/sun/profile, and destination state. `InstallCurrentScene` creates module profiles and scene objects with Undo, preserving world poses, existing object names, source assets, and GUIDs. It does not save the scene. A complete repeat is a no-op; partial or invalid installation is rejected for inspection.
@@ -50,6 +52,8 @@ The migration maps source direct-light colors and intensities to SunLighting, am
 Migration preserves effective gameplay blur: selected native DOF takes precedence over a simultaneously checked legacy tilt flag. Preserving the suppressed tilt parameters does not activate them.
 
 The grouping roots are Systems, Actors, Camera, Environment, World, UI and Development. Existing terrain subtrees remain intact. Camera and sun move out of Camp Look; Camp Look becomes an editor-preview overview under Development. Existing root-dependent production/template builders retain their old scene contracts; they are not run to rebuild the migrated Camp scene.
+
+Runtime radial/system menus and camp canvases are created under UI, camp world/site objects under World, and world-speed, harvester-state and inventory-checkpoint services under Systems. `TopDown3DSceneHierarchy` resolves or creates the group in the requested scene, preserves world pose and rejects duplicate or inactive group authorities. It caches no scene references and changes no saved identity or record format. Unconverted scenes acquire the same organizational groups only when these objects are created; terrain remains fixed and always loaded.
 
 `RegisterRendererFeature` adds one optics entry point before lens effects, with a serialized renderer feature-map entry. For unconverted cameras this feature is a no-op, and Sun Bloom retains its old setup path. For modular cameras Sun Bloom no longer sets up optics. Bloom can therefore be disabled independently.
 
@@ -66,3 +70,5 @@ Stop a dependent batch on ownership conflict, missing migration source, failed r
 ## Implementation evidence
 
 The [October 14 implementation record](../Evidence/Rendering/PresentationModules20261014/README.md) retains 119 focused checks, three exact matched-phase captures, saved-scene reload proof and the bounded scene delta. Live Editor dialog handling and Git closeout are reported separately from isolated proof.
+
+The [October 15 follow-up verification](../Evidence/Rendering/PresentationModules20261014/Followup20261015.json) records 106 focused checks and live Unity verification of all eight runtime placements and the Bokeh guard. The author session's scene and optics tuning were preserved.

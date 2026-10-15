@@ -60,7 +60,7 @@ namespace BooterBigArm.TopDown3D
             cargo = legger != null ? legger.GetComponent<TopDown3DBigArmCargo>() : null;
             Registry = new TopDown3DWaypointCampRegistry(definition.worldId, definition.siteId, true);
             speed = TopDown3DWorldSpeedController.ForScene(gameObject.scene);
-            var ui = new GameObject("Camps Destination Canvas", typeof(RectTransform)); SceneManager.MoveGameObjectToScene(ui, gameObject.scene);
+            var ui = new GameObject("Camps Destination Canvas", typeof(RectTransform)); TopDown3DSceneHierarchy.Place(ui, gameObject.scene, TopDown3DSceneGroup.UI);
             view = ui.AddComponent<TopDown3DCampCanvas>(); view.Configure(BeginReturn, Regroup, Close); view.SetLabels("Return", "Regroup", "Back");
             module = system.GetComponent<InputSystemUIInputModule>();
             menu = TopDown3DGameHudCanvas.FindInScene<TopDown3DMenuController>(gameObject.scene);
@@ -78,7 +78,7 @@ namespace BooterBigArm.TopDown3D
             if (!TopDown3DCampPlacement.Validate(Definition.position, Quaternion.identity, settings, transform, null, out var ground, out var reason))
             { actions?.ReportFeedback("Starting Camp unavailable: " + reason); return; }
             var root = Instantiate(settings.deployedPrefab); root.name = Definition.displayName;
-            SceneManager.MoveGameObjectToScene(root, gameObject.scene); root.transform.SetPositionAndRotation(ground, Quaternion.identity);
+            TopDown3DSceneHierarchy.Place(root, gameObject.scene, TopDown3DSceneGroup.World); root.transform.SetPositionAndRotation(ground, Quaternion.identity);
             Site = root.GetComponent<TopDown3DCampView>();
             Site.ConfigureEstablished(recovery, settings, new TopDown3DCampRecord { id = Registry.SiteId, position = ground, rotation = Quaternion.identity });
             var marker = GameObject.CreatePrimitive(PrimitiveType.Cube); marker.name = "Camp marker";

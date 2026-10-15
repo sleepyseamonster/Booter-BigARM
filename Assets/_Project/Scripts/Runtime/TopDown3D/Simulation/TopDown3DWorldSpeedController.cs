@@ -16,7 +16,7 @@ namespace BooterBigArm.TopDown3D
             }
             if (found != null) return found;
             var owner = new GameObject("World Simulation");
-            UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(owner, scene);
+            TopDown3DSceneHierarchy.Place(owner, scene, TopDown3DSceneGroup.Systems);
             return owner.AddComponent<TopDown3DWorldSpeedController>();
         }
         private object owner;

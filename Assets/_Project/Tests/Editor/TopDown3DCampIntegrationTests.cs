@@ -123,7 +123,13 @@ namespace BooterBigArm.Tests
             Deploy(); var record = camp.Record; var scene = inventory.gameObject.scene;
             TopDown3DInventoryUiSceneInstaller.TryInstallForScene(scene);
             Assert.That(camp.Record, Is.SameAs(record)); Assert.That(camp.KitCarried, Is.False);
-            Assert.That(scene.GetRootGameObjects().Count(root => root.name == "Camp World"), Is.EqualTo(1));
+            var all = scene.GetRootGameObjects().SelectMany(root => root.GetComponentsInChildren<Transform>(true)).ToArray();
+            var world = all.Single(t => t.name == "Camp World");
+            Assert.That(world.parent.name, Is.EqualTo("World"));
+            Assert.That(camp.Camp.transform.parent, Is.SameAs(world));
+            Assert.That(all.Single(t => t.name == "World Simulation").parent.name, Is.EqualTo("Systems"));
+            foreach (var name in new[] { "Radial Menu", "System Menu", "Camp Canvas" })
+                Assert.That(all.Single(t => t.name == name).parent.name, Is.EqualTo("UI"));
         }
         [Test] public void FocusLossCancelsPreviewAndDoesNotConsumeOrRetrieveKit()
         {

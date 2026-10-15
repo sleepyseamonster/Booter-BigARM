@@ -118,7 +118,13 @@ namespace BooterBigArm.Tests
         { legger.transform.position = motor.Position + new Vector3(-1.7f, -.43f, 0); Physics.SyncTransforms(); }
         private void Arm() => typeof(TopDown3DWaypointCampController).GetField("armed", BindingFlags.Instance | BindingFlags.NonPublic).SetValue(waypoint, true);
         [Test] public void SiteAndPortableKitHaveIndependentOwnership()
-        { Assert.That(waypoint.Site.CanPack, Is.False); Assert.That(waypoint.Site.StableId, Is.EqualTo("camp.starting")); Assert.That(recovery.Record, Is.Null); Assert.That(recovery.KitCarried, Is.True); }
+        {
+            Assert.That(waypoint.Site.CanPack, Is.False); Assert.That(waypoint.Site.StableId, Is.EqualTo("camp.starting"));
+            Assert.That(recovery.Record, Is.Null); Assert.That(recovery.KitCarried, Is.True);
+            Assert.That(waypoint.Site.transform.parent.name, Is.EqualTo("World"));
+            var view = (TopDown3DCampCanvas)typeof(TopDown3DWaypointCampController).GetField("view", BindingFlags.Instance | BindingFlags.NonPublic).GetValue(waypoint);
+            Assert.That(view.transform.parent.name, Is.EqualTo("UI"));
+        }
         [Test] public void EstablishedRecoveryWorksWithoutKitAndCannotPack()
         {
             inventory.State.TryRemove(TopDown3DCampSettings.ItemId, 1, () => true);

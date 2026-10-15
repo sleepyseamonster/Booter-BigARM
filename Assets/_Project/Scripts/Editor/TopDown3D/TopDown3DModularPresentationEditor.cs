@@ -41,15 +41,49 @@ namespace BooterBigArm.Editor
             if (profile.nativeOptics == null) return;
             EditorGUILayout.LabelField("Native Optics Asset", EditorStyles.boldLabel);
             var source = new SerializedObject(profile.nativeOptics); source.Update();
+            TopDown3DNativeOpticsProfileEditor.DrawSettings(source, true);
+            if (source.ApplyModifiedProperties()) CampLookEditorPreview.Refresh();
+            EditorGUILayout.HelpBox("Apparent sun diameter is owned by the Sky profile.", MessageType.Info);
+        }
+    }
+
+    [CustomEditor(typeof(TopDown3DCampOpticsProfile))]
+    public sealed class TopDown3DNativeOpticsProfileEditor : UnityEditor.Editor
+    {
+        // Keep the guard shared by the inline module editor and direct asset editing.
+        internal static bool EnforceDepthCompatibility(SerializedObject source)
+        {
+            var depth = source.FindProperty("depthMode");
+            var early = source.FindProperty("gaussianBeforeLens");
+            if (depth.intValue != (int)UnityEngine.Rendering.Universal.DepthOfFieldMode.Bokeh || !early.boolValue) return false;
+            early.boolValue = false;
+            return true;
+        }
+
+        internal static void DrawSettings(SerializedObject source, bool modular)
+        {
+            EnforceDepthCompatibility(source);
             var property = source.GetIterator(); bool enterChildren = true;
             while (property.NextVisible(enterChildren))
             {
                 enterChildren = false;
-                if (property.name == "m_Script" || property.name == "sunAngularDiameterDegrees") continue;
-                EditorGUILayout.PropertyField(property, true);
+                if (property.name == "m_Script" || (modular && property.name == "sunAngularDiameterDegrees")) continue;
+                if (property.name == "gaussianBeforeLens")
+                {
+                    bool bokeh = source.FindProperty("depthMode").intValue == (int)UnityEngine.Rendering.Universal.DepthOfFieldMode.Bokeh;
+                    using (new EditorGUI.DisabledScope(bokeh)) EditorGUILayout.PropertyField(property, true);
+                    if (bokeh) EditorGUILayout.HelpBox("Bokeh uses native post-processing. Gaussian Before Lens is available only for Gaussian DOF.", MessageType.Info);
+                }
+                else EditorGUILayout.PropertyField(property, true);
+                if (property.name == "depthMode") EnforceDepthCompatibility(source);
             }
-            if (source.ApplyModifiedProperties()) CampLookEditorPreview.Refresh();
-            EditorGUILayout.HelpBox("Apparent sun diameter is owned by the Sky profile.", MessageType.Info);
+        }
+
+        public override void OnInspectorGUI()
+        {
+            serializedObject.Update();
+            DrawSettings(serializedObject, false);
+            if (serializedObject.ApplyModifiedProperties()) CampLookEditorPreview.Refresh();
         }
     }
 }

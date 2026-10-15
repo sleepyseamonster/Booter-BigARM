@@ -75,9 +75,9 @@ namespace BooterBigArm.TopDown3D
             inventory = GetComponent<TopDown3DPlayerInventory>(); motor = GetComponent<TopDown3DPlayerMotor>();
             animation = GetComponent<TopDown3DPlayerAnimationDriver>(); vitals = GetComponent<TopDown3DSurvivalVitals>();
             action = GetComponent<TopDown3DPlayerActionController>();
-            var root = new GameObject("Camp World"); SceneManager.MoveGameObjectToScene(root, gameObject.scene);
+            var root = new GameObject("Camp World"); TopDown3DSceneHierarchy.Place(root, gameObject.scene, TopDown3DSceneGroup.World);
             worldRoot = root.transform; speed = TopDown3DWorldSpeedController.ForScene(gameObject.scene);
-            var ui = new GameObject("Camp Canvas", typeof(RectTransform)); SceneManager.MoveGameObjectToScene(ui, gameObject.scene);
+            var ui = new GameObject("Camp Canvas", typeof(RectTransform)); TopDown3DSceneHierarchy.Place(ui, gameObject.scene, TopDown3DSceneGroup.UI);
             canvas = ui.AddComponent<TopDown3DCampCanvas>(); canvas.Configure(() => BeginRecovery(true), () => BeginRecovery(false), BeginPack);
             module = system.GetComponent<InputSystemUIInputModule>();
             menu = TopDown3DGameHudCanvas.FindInScene<TopDown3DMenuController>(gameObject.scene);

@@ -17,7 +17,7 @@ namespace BooterBigArm.TopDown3D
             if (radial == null || prefab == null || eventSystem == null)
             { Debug.LogError("System menu requires SystemMenu.prefab, radial controller, and the existing EventSystem."); return null; }
             var instance = Object.Instantiate(prefab); instance.name = "System Menu";
-            instance.SetActive(false); SceneManager.MoveGameObjectToScene(instance, scene);
+            instance.SetActive(false); TopDown3DSceneHierarchy.Place(instance, scene, TopDown3DSceneGroup.UI);
             var view = instance.GetComponent<TopDown3DMenuView>();
             var controller = instance.AddComponent<TopDown3DMenuController>();
             var range = TopDown3DGameHudCanvas.FindInScene<BadwaterCameraRange>(scene);

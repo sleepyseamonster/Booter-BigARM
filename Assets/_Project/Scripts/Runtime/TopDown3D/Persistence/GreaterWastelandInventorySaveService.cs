@@ -257,7 +257,7 @@ namespace BooterBigArm.TopDown3D
                 || TopDown3DGameHudCanvas.FindInScene<GreaterWastelandInventorySaveService>(scene) != null) return;
             GreaterWastelandIronstoneInstaller.TryInstall(scene); TopDown3DResourceCache.TryInstall(scene);
             var owner = new GameObject("Greater Wasteland inventory checkpoint");
-            SceneManager.MoveGameObjectToScene(owner, scene); owner.AddComponent<GreaterWastelandInventorySaveService>();
+            TopDown3DSceneHierarchy.Place(owner, scene, TopDown3DSceneGroup.Systems); owner.AddComponent<GreaterWastelandInventorySaveService>();
         }
     }
 }

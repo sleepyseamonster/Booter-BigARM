@@ -22,13 +22,13 @@ namespace BooterBigArm.TopDown3D
                 {
                     // Devices must remain at their placement point when Booter moves.
                     var registryRoot = new GameObject("Authored Canister State");
-                    SceneManager.MoveGameObjectToScene(registryRoot, scene);
+                    TopDown3DSceneHierarchy.Place(registryRoot, scene, TopDown3DSceneGroup.Systems);
                     state = registryRoot.AddComponent<TopDown3DPlacedHarvesterState>();
                 }
                 state.ConfigureAuthored("4de5dd018ee194314a00fd369e2d3eeb", TopDown3DHarvesterSettings.Load());
                 action.ConfigureHarvester(state, null);
             }
-            var root = new GameObject("Radial Menu", typeof(RectTransform)); SceneManager.MoveGameObjectToScene(root, scene);
+            var root = new GameObject("Radial Menu", typeof(RectTransform)); TopDown3DSceneHierarchy.Place(root, scene, TopDown3DSceneGroup.UI);
             var view = root.AddComponent<TopDown3DRadialCanvas>(); view.Build();
             var controller = root.AddComponent<TopDown3DRadialMenuController>();
             controller.Configure(input, inventory, inventoryUi, action, follower, cargo, view,

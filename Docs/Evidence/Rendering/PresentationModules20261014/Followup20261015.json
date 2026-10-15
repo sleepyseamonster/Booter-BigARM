@@ -1,0 +1,207 @@
+{
+  "dateLocal": "2026-10-15",
+  "project": "D:/Arc & Dust/Project",
+  "baseHead": "9fea50d4c800ffe11ad0cc5db01d531f03289c42",
+  "isolatedUnity": {
+    "path": "D:/BooterBigArmValidation/CampModularity20261014-01",
+    "version": "6000.4.0f1",
+    "totalPassed": 106,
+    "suites": [
+      {
+        "filter": "testname: TopDown3DSceneHierarchyTests",
+        "summary": {
+          "Total": 6,
+          "Passed": 6,
+          "Failed": 0,
+          "Skipped": 0,
+          "Inconclusive": 0
+        }
+      },
+      {
+        "filter": "testname: TopDown3DCampIntegrationTests",
+        "summary": {
+          "Total": 9,
+          "Passed": 9,
+          "Failed": 0,
+          "Skipped": 0,
+          "Inconclusive": 0
+        }
+      },
+      {
+        "filter": "testname: TopDown3DCampOpticsStackTests",
+        "summary": {
+          "Total": 26,
+          "Passed": 26,
+          "Failed": 0,
+          "Skipped": 0,
+          "Inconclusive": 0
+        }
+      },
+      {
+        "filter": "testname: TopDown3DMenuTests",
+        "summary": {
+          "Total": 25,
+          "Passed": 25,
+          "Failed": 0,
+          "Skipped": 0,
+          "Inconclusive": 0
+        }
+      },
+      {
+        "filter": "testname: TopDown3DModularOpticsTests",
+        "summary": {
+          "Total": 5,
+          "Passed": 5,
+          "Failed": 0,
+          "Skipped": 0,
+          "Inconclusive": 0
+        }
+      },
+      {
+        "filter": "testname: TopDown3DRadialTests",
+        "summary": {
+          "Total": 12,
+          "Passed": 12,
+          "Failed": 0,
+          "Skipped": 0,
+          "Inconclusive": 0
+        }
+      },
+      {
+        "filter": "testname: TopDown3DWaypointCampIntegrationTests",
+        "summary": {
+          "Total": 23,
+          "Passed": 23,
+          "Failed": 0,
+          "Skipped": 0,
+          "Inconclusive": 0
+        }
+      }
+    ]
+  },
+  "liveUnity": {
+    "sampledUtc": "2026-10-15T14:26:56.1247037Z",
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "playing": true,
+    "sceneDirty": false,
+    "objects": [
+      {
+        "name": "Radial Menu",
+        "count": 1,
+        "path": "UI/Radial Menu",
+        "expectedGroup": "UI",
+        "correct": true
+      },
+      {
+        "name": "System Menu",
+        "count": 1,
+        "path": "UI/System Menu",
+        "expectedGroup": "UI",
+        "correct": true
+      },
+      {
+        "name": "Camp Canvas",
+        "count": 1,
+        "path": "UI/Camp Canvas",
+        "expectedGroup": "UI",
+        "correct": true
+      },
+      {
+        "name": "Camps Destination Canvas",
+        "count": 1,
+        "path": "UI/Camps Destination Canvas",
+        "expectedGroup": "UI",
+        "correct": true
+      },
+      {
+        "name": "Camp World",
+        "count": 1,
+        "path": "World/Camp World",
+        "expectedGroup": "World",
+        "correct": true
+      },
+      {
+        "name": "Starting Camp",
+        "count": 1,
+        "path": "World/Starting Camp",
+        "expectedGroup": "World",
+        "correct": true
+      },
+      {
+        "name": "World Simulation",
+        "count": 1,
+        "path": "Systems/World Simulation",
+        "expectedGroup": "Systems",
+        "correct": true
+      },
+      {
+        "name": "Greater Wasteland inventory checkpoint",
+        "count": 1,
+        "path": "Systems/Greater Wasteland inventory checkpoint",
+        "expectedGroup": "Systems",
+        "correct": true
+      }
+    ],
+    "allEightGrouped": true,
+    "rootNames": [
+      "Environment",
+      "Camera",
+      "Development",
+      "Systems",
+      "Actors",
+      "World",
+      "UI",
+      "Camp Loop Resource Study"
+    ],
+    "environmentOwner": true,
+    "missingScripts": 0,
+    "optics": {
+      "invalidInputRejected": true,
+      "normalized": true,
+      "validAfter": true,
+      "bokehSelected": "Bokeh",
+      "earlyGaussian": false,
+      "stackDepth": "Bokeh",
+      "bloom": 0.95,
+      "bloomExpected": 0.95,
+      "editor": "TopDown3DNativeOpticsProfileEditor",
+      "globalStackPreserved": true,
+      "liveNativeUnchanged": true,
+      "liveMode": "Gaussian"
+    }
+  },
+  "liveConsole": {
+    "sampledUtc": "2026-10-15T14:26:56.1431456Z",
+    "ageMs": 100,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 0,
+    "consoleWarnings": 0,
+    "consoleLogs": 11,
+    "seeded": true
+  },
+  "contract": {
+    "worldIdentity": "Unchanged; organizational parent paths do not define stable IDs.",
+    "terrain": "Fixed and always loaded; no generation or streaming changes.",
+    "sceneUnloadReload": "Group lookup is scene-local without cached references; tested across preview-scene replacement.",
+    "authoredConstraints": "Existing groups reused; world poses preserved; duplicate or inactive groups rejected.",
+    "persistence": "No saved-record, runtime-delta or serialization-format changes."
+  },
+  "limits": [
+    "Focused EditMode verification and live object inspection; no gameplay smoke test, Player build or new image-equivalence capture.",
+    "Live Bokeh guard verified using a temporary cloned profile and private volume stack; author tuning unchanged."
+  ],
+  "sourceSha256": {
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampController.cs": "2337da309aca65b262250e4d5c7df1028834b56f12287021155722fa2233107c",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DWaypointCampController.cs": "261f21ee3448e446e777d6a3efca0ffc6ea9e47bea6ddadc0f4fea4aa12c25a9",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DRadialSceneInstaller.cs": "ec12e949147079cffad1e64b5fcac36fa6010844bc3cfd893b01175657c65ee7",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DMenuSceneInstaller.cs": "4f5598840b40d514c86984a36d23ebda917184db95983f32f94d831738447eba",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Simulation/TopDown3DWorldSpeedController.cs": "f0d83ec893b6bf49341e1d4c7751b40c2da879747ad2e7ee4b5ebd481bca3220",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/Persistence/GreaterWastelandInventorySaveService.cs": "633cfe4be9f9da0b2dc31a19ef6386759d86e794729f737541e00d00028626e3",
+    "Assets/_Project/Scripts/Editor/TopDown3D/TopDown3DModularPresentationEditor.cs": "ede7b444df470fbb5b4530164b5f99adc0f36c15374d8fe5b114c44ffdc1a76c",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DSceneHierarchy.cs": "ff389f8eaaaf2ee6e0a8128bd0c120b3a21db22161cd7359833bc59e4dcc15d7",
+    "Assets/_Project/Tests/Editor/TopDown3DSceneHierarchyTests.cs": "e566f536b7197c04f08b084ec7564c5813f1f73547095f84e38d9eb68033bce3",
+    "Assets/_Project/Tests/Editor/TopDown3DCampIntegrationTests.cs": "0588f7cfa5b865727bb29ee6fb2f08e7900d034b957d9bff4fcb8e988cf6b1bb",
+    "Assets/_Project/Tests/Editor/TopDown3DWaypointCampTests.cs": "885d9ee6803c4db6504f82b91c880fb594ab51acaf357846103773aa1164fa5a"
+  }
+}
