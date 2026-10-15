@@ -24,14 +24,47 @@ namespace BooterBigArm.Tests
         }
 
         [Test, Category("PrivateAnimationQualification")]
-        public void MeasuredPolicyRetainsOriginalSourcesAndLegacyValidationContract()
+        public void MeasuredPolicyRetainsSourceProvenanceAndLegacyValidationContract()
         {
             var policy = Policy();
             Assert.That(policy.Validate(policy.targetModel, policy.locomotion, out var reason, false), Is.True, reason);
             Assert.That(policy.locomotion.TryValidate(out reason), Is.True, reason);
             foreach (var gait in policy.gaits)
             {
-                Assert.That(AssetDatabase.GetAssetPath(gait.sourceClip).EndsWith(".FBX", StringComparison.OrdinalIgnoreCase), Is.True);
+                var path = AssetDatabase.GetAssetPath(gait.sourceClip);
+                if (!path.EndsWith(".FBX", StringComparison.OrdinalIgnoreCase))
+                {
+                    Assert.That(gait.role, Is.EqualTo(TopDown3DLocomotionClipRole.Sprint));
+                    Assert.That(path, Is.EqualTo("Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim"));
+                    AnimationClip source = null;
+                    foreach (var asset in AssetDatabase.LoadAllAssetsAtPath("Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Run_Fwd_NoRM.FBX"))
+                        if (asset is AnimationClip clip && !clip.name.StartsWith("__preview__")) source = clip;
+                    Assert.That(source, Is.Not.Null);
+                    Assert.That(gait.sourceClip.length, Is.EqualTo(source.length).Within(.000001));
+                    var originals = AnimationUtility.GetCurveBindings(source);
+                    Assert.That(AnimationUtility.GetCurveBindings(gait.sourceClip).Length, Is.EqualTo(originals.Length));
+                    var changed = 0;
+                    foreach (var binding in originals)
+                    {
+                        var keys = AnimationUtility.GetEditorCurve(gait.sourceClip, binding).keys;
+                        var baseline = AnimationUtility.GetEditorCurve(source, binding).keys;
+                        var upperBody = binding.path == "" && (binding.propertyName == "Left Arm Front-Back" || binding.propertyName == "Right Arm Front-Back"
+                            || binding.propertyName == "Left Arm Down-Up" || binding.propertyName == "Right Arm Down-Up"
+                            || binding.propertyName == "Chest Front-Back" || binding.propertyName == "UpperChest Front-Back");
+                        if (upperBody)
+                        {
+                            changed++;
+                            Assert.That(keys.Length, Is.EqualTo(baseline.Length));
+                            for (var i = 0; i < keys.Length; i++)
+                            {
+                                Assert.That(keys[i].time, Is.EqualTo(baseline[i].time));
+                                Assert.That(keys[i].value, Is.InRange(-1f, 1f));
+                            }
+                        }
+                        else CollectionAssert.AreEqual(baseline, keys, "Preserve source root, leg, foot and other muscle curves: " + binding.propertyName);
+                    }
+                    Assert.That(changed, Is.EqualTo(6));
+                }
                 Assert.That(gait.sourceClip.isHumanMotion && gait.sourceClip.isLooping, Is.True);
                 Assert.That(gait.sourceClip, Is.SameAs(policy.locomotion.GetRequiredEntry(gait.role).Clip));
                 var before = gait.SourceSeconds(.999999);
@@ -102,6 +135,33 @@ namespace BooterBigArm.Tests
         }
 
         [Test, Category("PrivateAnimationQualification")]
+        public void OptionalJogPlateauPreservesPureJogAndRejectsInvalidBlendBounds()
+        {
+            var policy = Object.Instantiate(Policy());
+            try
+            {
+                var walk = policy.gaits[0].nominalSpeed; var jog = policy.gaits[1].nominalSpeed;
+                var previous = policy.walkToJogBlendEndSpeed > 0 ? policy.walkToJogBlendEndSpeed : jog;
+                var end = Mathf.Lerp(walk, jog, .8f);
+                for (var i = 0; i < policy.secondRightDistanceAdjustment.Length; i++)
+                {
+                    var p = policy.secondRightDistanceAdjustment[i];
+                    if (p.x > walk && p.x <= previous) p.x = Mathf.Lerp(walk, end, Mathf.InverseLerp(walk, previous, p.x));
+                    policy.secondRightDistanceAdjustment[i] = p;
+                }
+                policy.walkToJogBlendEndSpeed = end;
+                Assert.That(policy.Validate(policy.targetModel, policy.locomotion, out var reason, false), Is.True, reason);
+                foreach (var speed in new[] { end, (end + jog) * .5f, jog })
+                    Assert.That(policy.Weights(speed), Is.EqualTo(new Vector4(0, 0, 1, 0)));
+                policy.walkToJogBlendEndSpeed = jog + .1f;
+                Assert.That(policy.Validate(policy.targetModel, policy.locomotion, out _, false), Is.False);
+                policy.walkToJogBlendEndSpeed = float.NaN;
+                Assert.That(policy.Validate(policy.targetModel, policy.locomotion, out _, false), Is.False);
+            }
+            finally { Object.DestroyImmediate(policy); }
+        }
+
+        [Test, Category("PrivateAnimationQualification")]
         public void PartialTravelShortensStrideWhilePreservingCadenceAndActualGait()
         {
             var policy = Policy();
@@ -110,8 +170,8 @@ namespace BooterBigArm.Tests
             var weights = policy.Weights(.2f);
             Assert.That(weights.x, Is.GreaterThan(.8f)); Assert.That(weights.z + weights.w, Is.Zero);
             Assert.That(weights.x + weights.y, Is.EqualTo(1).Within(.00001));
-            Assert.That(policy.Weights(2.7f).z, Is.EqualTo(1).Within(.00001));
-            Assert.That(policy.Weights(3.8f).w, Is.EqualTo(1).Within(.00001));
+            Assert.That(policy.Weights(policy.gaits[1].nominalSpeed).z, Is.EqualTo(1).Within(.00001));
+            Assert.That(policy.Weights(policy.gaits[2].nominalSpeed).w, Is.EqualTo(1).Within(.00001));
         }
 
         [Test, Category("PrivateAnimationQualification")]
@@ -120,7 +180,7 @@ namespace BooterBigArm.Tests
             var policy = Policy();
             for (var step = 0; step <= 1024; step++)
             {
-                var speed = Mathf.Lerp(.18f, 3.8f, step / 1024f);
+                var speed = Mathf.Lerp(.18f, policy.gaits[2].nominalSpeed, step / 1024f);
                 var weights = policy.Weights(speed);
                 for (var role = 0; role < 3; role++)
                 {

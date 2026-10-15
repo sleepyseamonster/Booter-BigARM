@@ -1,0 +1,51 @@
+{
+  "state": "installed-experimental-flat-deck-review-awaiting-author-play",
+  "speeds": [
+    1.4,
+    2.2,
+    5.0
+  ],
+  "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+  "sceneDirty": false,
+  "sceneHash": "f1f12c4b94779ba6e6f552f1a26a342cfe4abc1c6f2e5758ea58713ebd7199d6",
+  "qualified": false,
+  "terrainQualified": false,
+  "animation": "SprintArmDriveReview",
+  "sources": [
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset",
+      "sha256": "f4f58499a2aa3b5a52ece64433f2b2b5649c8b2f37fb3a0882c3fd2f87ad23d1"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset.meta",
+      "sha256": "e3a3016b346d7c8ef91d42f03a85d209633484e9e2f8185e814590b3fbe55286"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionClipsStageAlignedCandidate.asset",
+      "sha256": "ec2ea3bb400f0cc8c874312c256d2f9b1ef23e7c76c816b27d4e2958c7d2d4e8"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionClipsStageAlignedCandidate.asset.meta",
+      "sha256": "462cafc86242373d78db4304d76974f510a4964957e6cfc43605bb5591eb77d3"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset",
+      "sha256": "69da090b483546128ef8c808115d010dd20a4f88e821d7329d4807fb772f6d43"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset.meta",
+      "sha256": "017c05259c6ce9146eb61ed6e901e6e495f59e634c27d07576e171f97af77612"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim",
+      "sha256": "850c033b50a92b4e96cb08ad08efc09e8062f41d831c54aeb89fc52625b31d97"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim.meta",
+      "sha256": "308dbcc6dd59288a33e26ab7a7a34aa5bf3a713d9e7c4821519d6a93c576653e"
+    }
+  ],
+  "sceneSaved": false,
+  "playModeEntered": false,
+  "foregroundActivated": false
+}

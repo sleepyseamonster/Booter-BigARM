@@ -23,20 +23,23 @@ public static class CampLocomotionSoleTracks
         public int[] sides;
     }
 
-    public static string Run()
+    public static string Run() => RunCore("SoleTracksV2", null);
+    public static string RunSprintReview() => RunCore("GaitPaceTuning20261015/SoleTracks", new[] {
+        "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim" });
+    private static string RunCore(string destinationName, string[] selectedPaths)
     {
         var root = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
         if (!Application.isBatchMode || EditorApplication.isPlayingOrWillChangePlaymode
             || Directory.Exists(Path.Combine(root, ".git"))
             || !File.Exists(Path.Combine(root, AnimationPlaygroundLayoutAuthoring.CandidateMarker)))
             throw new InvalidOperationException("Use the marked offline candidate.");
-        var destination = Path.Combine(root, "LocomotionImplementation20261014", "SoleTracksV2");
+        var destination = Path.Combine(root, "LocomotionImplementation20261014", destinationName);
         if (Directory.Exists(destination)) throw new IOException("Preserve prior measurements.");
         Directory.CreateDirectory(destination);
         var bindings = AssetDatabase.LoadAssetAtPath<TopDown3DAnimationPlaygroundBindings>(AnimationPlaygroundPlayerAuthoring.BindingPath);
         if (bindings == null || !bindings.ValidatePlayer(out var error))
             throw new InvalidDataException("Restore valid baseline bindings before sampling.");
-        var paths = new[]
+        var paths = selectedPaths ?? new[]
         {
             "Assets/_Project/Art/Animations/Mixamo/Locomotion/StandardWalk.fbx",
             "Assets/_Project/Art/Animations/Mixamo/Locomotion/StandardRun.fbx",

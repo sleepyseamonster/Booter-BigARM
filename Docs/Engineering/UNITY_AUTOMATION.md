@@ -43,6 +43,10 @@ Connection, compilation, and focused test proof from the initial setup are recor
 
 ## Platform Routing
 
+### Camp Loop gait pace tuning
+
+`Tools/Diagnostics/CampGaitPaceTuning.cs` prepares and measures the authored sprint only in the marked background candidate. `InstallAuthor` imports the sealed private pairs into the already open CampLoopTesting scene in stable Edit Mode, validates exact previous/current hashes and leaves the scene unchanged. `TryJogPace` explicitly configures a temporary 2.5m/s jog during author-owned Play Mode on AP02; it preserves sprint, uses a transient policy and cleans up on Play exit or assembly reload. `PrepareFasterJog` and `InstallFasterJog` handle the later saved 3.0m/s comparison through separately sealed previous/resulting pairs; installation requires stable author Edit Mode and verifies the accepted sprint is unchanged. None of these commands enters Play Mode or drives input. See the [pace-tuning receipt](../Evidence/Gameplay/LocomotionImplementation20261014/GaitPaceTuning20261015/README.md) for recovery, verification and remaining qualification limits.
+
 ### Camp Loop forward gait review
 
 `Tools/Diagnostics/CampForwardReviewInstallation.cs` prepares a single session-record patch in the marked offline candidate. `InstallAuthor` applies the measured patch only when the clean CampLoopTesting scene is already the sole open scene, compilation is complete, the paired runtime API is loaded and the saved bytes match the plan. It preserves the other records instead of saving the whole author scene, verifies reload/readiness, and leaves qualification flags false. The [review receipt](../Evidence/Gameplay/LocomotionImplementation20261014/ForwardReview/README.md) includes the plan and handoff. This is an experimental flat-deck review, not full terrain qualification; agents must not enter Play Mode to accept it.

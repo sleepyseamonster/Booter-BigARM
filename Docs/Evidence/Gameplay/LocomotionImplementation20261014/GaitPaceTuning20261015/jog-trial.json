@@ -1,0 +1,25 @@
+{
+  "authorFeedback": "Sprint looks good; jogging character should move quicker",
+  "sprintAcceptance": "5.0mps and authored upper-body effort accepted on AP02",
+  "trial": {
+    "state": "temporary-current-play-session-only",
+    "speeds": [
+      1.4,
+      2.5,
+      5.0
+    ],
+    "originalBindingSpeeds": [
+      1.4,
+      2.2,
+      5.0
+    ],
+    "preservesSprintSource": true,
+    "preservesPlayerPosition": true,
+    "assetsSaved": false,
+    "cleanup": "Restore original profile and binding speeds; destroy transient clone on Play exit or assembly reload"
+  },
+  "jogAcceptance": "2.5mps-still-too-slow",
+  "persistentJogSpeed": 3,
+  "latestAuthorFeedback": "Actual jogging move speed is still too slow",
+  "latestComparison": "3.0mps persisted in Edit Mode; hands-on acceptance pending"
+}

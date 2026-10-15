@@ -14,6 +14,8 @@ The [experimental forward review](ForwardReview/README.md) remains installed in 
 
 The [uphill motor policy](ForwardUphillGait/README.md), failed [terrain reach qualification](ForwardTerrainReach/README.md), earlier [gated terrain prototype](ForwardTerrainRuntime/README.md), [support-plane experiment](ForwardTerrain/README.md), [transition/current-scene checkpoint](ForwardTransitions/README.md) and [forward draft](ForwardDraft/README.md) retain preceding evidence. The foundation/source-selection sections below are historical checkpoints; they do not supersede the installed review or close its remaining gates.
 
+The latest [jog/sprint tuning](GaitPaceTuning20261015/README.md) installs a stronger authored sprint at 5.0m/s with 45 passing focused checks. The author accepts that sprint and found 2.5m/s jogging still too slow. A saved 3.0m/s jog now follows, with 52 passing final checks; hands-on pace acceptance remains pending. Terrain and final qualification remain open.
+
 ## Implemented foundation
 
 - Added a session-only sustained diagnostic to the existing animation driver. It requires a calibrated lab character, retains all twelve serialized roles and the original profile validator, and gates legacy start/stop/pivot dispatch and directional overlays. Camp, traversal and other owned presentations retain priority. The author scene never enables this diagnostic.

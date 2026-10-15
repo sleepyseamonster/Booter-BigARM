@@ -104,9 +104,11 @@ namespace BooterBigArm.Tests
         [TestCase(.7f)]
         [TestCase(1.4f)]
         [TestCase(2.05f)]
+        [TestCase(2.2f)]
         [TestCase(2.7f)]
         [TestCase(3.25f)]
         [TestCase(3.8f)]
+        [TestCase(5f)]
         [Category("PrivateAnimationQualification")]
         public void NestedReviewSamplesClearTheFlatFloorWithoutMovingThePlayer(float speed)
         {
@@ -147,7 +149,7 @@ namespace BooterBigArm.Tests
             {
                 var minimum = float.PositiveInfinity; var maximum = float.NegativeInfinity;
                 var foundCloak = false; var foundRigidKit = false;
-                foreach (var speed in new[] { 0f, 1.4f, 2.05f, 2.7f, 3.25f, 3.8f })
+                foreach (var speed in new[] { 0f, 1.4f, 2.05f, 2.2f, 2.7f, 3.25f, 3.8f, 5f })
                 for (var i = 0; i <= 16; i++)
                 {
                     f.Frame(speed, i / 16d);

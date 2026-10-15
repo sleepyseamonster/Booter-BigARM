@@ -12,9 +12,10 @@ SOURCES = (
 )
 
 
-def calibrate(root, align_stance=False):
+def calibrate(root, align_stance=False, sources=None):
     reports = []
-    for role, name, nominal, seeds, window_seconds in SOURCES:
+    selected_sources = SOURCES if sources is None else sources
+    for role, name, nominal, seeds, window_seconds in selected_sources:
         data = json.loads((root / (name + ".json")).read_text(encoding="utf-8-sig"))
         if data.get("globalSkinWeights") != "FourBones":
             raise ValueError("Use the corrected four-bone raw tracks.")
@@ -166,7 +167,7 @@ def calibrate(root, align_stance=False):
     return dict(state="bounded-native-family-calibration-proposal", nativeSourcesUnchanged=True, stanceStageAligned=align_stance,
         budgets=dict(stancePatchExcursion=.02, windowGroundGap=.008, lowering=.03, lift=.07,
                      blendSegmentRateMinimum=.65, blendSegmentRateMaximum=1.35,
-                     significantContributorWeight=.1, referenceSpeeds=[1.4, 2.7, 3.8]),
+                     significantContributorWeight=.1, referenceSpeeds=[s[2] for s in selected_sources]),
         limitations="Contact-window proposals and native-only drift; semantic mapping/blends/equipment still require qualification.",
         gaits=reports)
 
@@ -176,10 +177,13 @@ def main():
     parser.add_argument("directory", type=Path)
     parser.add_argument("output", type=Path)
     parser.add_argument("--align-stance", action="store_true")
+    parser.add_argument("--sprint-arm-drive", action="store_true",
+                        help="Calibrate the authored SprintArmDriveReview source at the requested 5m/s review pace.")
     args = parser.parse_args()
     if args.output.exists():
         raise FileExistsError("Preserve existing proposals.")
-    report = calibrate(args.directory, args.align_stance)
+    sources = (("Sprint", "SprintArmDriveReview", 5.0, (.18919, .43243, .67568, .91892), 8 / 120),) if args.sprint_arm_drive else None
+    report = calibrate(args.directory, args.align_stance, sources)
     args.output.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     print(json.dumps([{k: g[k] for k in ("role", "nativeContactSpeed", "metresPerCycle", "nativeContacts", "maximumLift", "maximumLowering")} |
                       dict(maximumExcursion=max(p["familySpeedExcursion"] for p in g["patches"]))

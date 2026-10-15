@@ -1,0 +1,65 @@
+{
+  "state": "authored-sprint-recalibrated-not-fully-qualified",
+  "after": [
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset",
+      "sha256": "f4f58499a2aa3b5a52ece64433f2b2b5649c8b2f37fb3a0882c3fd2f87ad23d1"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset.meta",
+      "sha256": "e3a3016b346d7c8ef91d42f03a85d209633484e9e2f8185e814590b3fbe55286"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionClipsStageAlignedCandidate.asset",
+      "sha256": "ec2ea3bb400f0cc8c874312c256d2f9b1ef23e7c76c816b27d4e2958c7d2d4e8"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionClipsStageAlignedCandidate.asset.meta",
+      "sha256": "462cafc86242373d78db4304d76974f510a4964957e6cfc43605bb5591eb77d3"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset",
+      "sha256": "69da090b483546128ef8c808115d010dd20a4f88e821d7329d4807fb772f6d43"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset.meta",
+      "sha256": "017c05259c6ce9146eb61ed6e901e6e495f59e634c27d07576e171f97af77612"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim",
+      "sha256": "850c033b50a92b4e96cb08ad08efc09e8062f41d831c54aeb89fc52625b31d97"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim.meta",
+      "sha256": "308dbcc6dd59288a33e26ab7a7a34aa5bf3a713d9e7c4821519d6a93c576653e"
+    }
+  ],
+  "rates": [
+    {
+      "role": "Walk",
+      "minimum": 0.8151036,
+      "maximum": 1.32952762
+    },
+    {
+      "role": "Run",
+      "minimum": 0.5854327,
+      "maximum": 1.34371829
+    },
+    {
+      "role": "Sprint",
+      "minimum": 0.600542843,
+      "maximum": 1.21700728
+    }
+  ],
+  "calibrationSha256": "adc5a5d46610d1c147a379c5603b9558e34cd5b7207c15c322fdf51193f8876d",
+  "nominalSpeed": 5.0,
+  "metresPerCycle": 5.607321,
+  "nativeContacts": [
+    0.1891892,
+    0.445945919,
+    0.702702761,
+    0.9459459
+  ],
+  "qualified": false,
+  "terrainQualified": false
+}

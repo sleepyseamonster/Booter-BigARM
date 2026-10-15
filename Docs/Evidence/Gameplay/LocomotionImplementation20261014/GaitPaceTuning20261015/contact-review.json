@@ -1,0 +1,2214 @@
+{
+  "state": "actual-forward-driver-coarse-review",
+  "sourcePolicyQualified": false,
+  "globalSkinWeights": "FourBones",
+  "normalizeEquipment": true,
+  "dense": false,
+  "phaseSamplesPerCase": 129,
+  "staticPackedKit": {
+    "vertices": 532,
+    "minimum": -0.471566558,
+    "maximumHeight": 0.881706
+  },
+  "sourcePolicy": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset",
+  "recipe": "LocomotionImplementation20261014/GaitPaceTuning20261015/combined-calibration.json",
+  "rows": [
+    {
+      "speed": 0.2,
+      "minimumSole": -0.9100001,
+      "minimumBody": -0.9100001,
+      "maximumHeight": 1.79117036,
+      "maximumLift": 0.0381902866,
+      "minimumLift": 0.0,
+      "maximumPatchExcursion": "Infinity",
+      "maximumPatchTravel": 0.00395664759,
+      "maximumPatchGap": 0.0116744637,
+      "maximumNearestSoleGap": 0.00115090609,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 5.364418e-07,
+      "poseMicroseconds": 129.690625,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22549,
+          "start": -0.04140583775410722,
+          "end": 0.0452198549663749,
+          "duration": 0.19934466819491337,
+          "anchorExcursion": 0.00274477853,
+          "cumulativeTravel": 0.00395664759,
+          "maximumGroundGap": 0.0116744637,
+          "contactQualified": true,
+          "fittedCycleDistance": 0.492817253,
+          "fittedExcursion": 0.00142908737,
+          "lateralExcursion": 0.0008608252,
+          "maximumTargetGap": 0.0115389824,
+          "supportedTraces": [
+            {
+              "vertex": 22549,
+              "rolling": false,
+              "maximumGap": 0.0116744637,
+              "anchorExcursion": 0.00274477853,
+              "cumulativeTravel": 0.00395664759,
+              "fittedDerivative": 0.492817253
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": -1,
+          "start": 0.20515744660599636,
+          "end": 0.2920372479294269,
+          "duration": 0.19992942767618735,
+          "anchorExcursion": "Infinity",
+          "cumulativeTravel": 0.0,
+          "maximumGroundGap": 0.0,
+          "contactQualified": false,
+          "fittedCycleDistance": 0.0,
+          "fittedExcursion": 0.0,
+          "lateralExcursion": 0.0,
+          "maximumTargetGap": 0.0141406655,
+          "supportedTraces": [
+            {
+              "vertex": 6656,
+              "rolling": false,
+              "maximumGap": 0.0116278529,
+              "anchorExcursion": 0.00150530809,
+              "cumulativeTravel": 0.00216140272,
+              "fittedDerivative": 0.476059973
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": -1,
+          "start": 0.45750536383869234,
+          "end": 0.543955127911391,
+          "duration": 0.1989398178922262,
+          "anchorExcursion": "Infinity",
+          "cumulativeTravel": 0.0,
+          "maximumGroundGap": 0.0,
+          "contactQualified": false,
+          "fittedCycleDistance": 0.0,
+          "fittedExcursion": 0.0,
+          "lateralExcursion": 0.0,
+          "maximumTargetGap": 0.0151101947,
+          "supportedTraces": [
+            {
+              "vertex": 22543,
+              "rolling": false,
+              "maximumGap": 0.0115065575,
+              "anchorExcursion": 0.003550022,
+              "cumulativeTravel": 0.00395739032,
+              "fittedDerivative": 0.500338554
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": -1,
+          "start": 0.7072294949536168,
+          "end": 0.7907217716868288,
+          "duration": 0.1921339925779863,
+          "anchorExcursion": "Infinity",
+          "cumulativeTravel": 0.0,
+          "maximumGroundGap": 0.0,
+          "contactQualified": false,
+          "fittedCycleDistance": 0.0,
+          "fittedExcursion": 0.0,
+          "lateralExcursion": 0.0,
+          "maximumTargetGap": 0.0161082745,
+          "supportedTraces": [
+            {
+              "vertex": 6640,
+              "rolling": false,
+              "maximumGap": 0.0117985606,
+              "anchorExcursion": 0.00263928622,
+              "cumulativeTravel": 0.00372336386,
+              "fittedDerivative": 0.495867759
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.00125700235,
+          "rightGap": 0.0007107258
+        },
+        {
+          "plant": 1.0,
+          "leftGap": 0.00359606743,
+          "rightGap": 1.78813934e-07
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 1.78813934e-07,
+          "rightGap": 0.0006586313
+        },
+        {
+          "plant": 3.0,
+          "leftGap": 0.00379067659,
+          "rightGap": 1.78813934e-07
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.00125700235,
+          "rightGap": 0.0007107258
+        }
+      ]
+    },
+    {
+      "speed": 0.7,
+      "minimumSole": -0.9100001,
+      "minimumBody": -0.9100001,
+      "maximumHeight": 1.790704,
+      "maximumLift": 0.0379590653,
+      "minimumLift": 0.0,
+      "maximumPatchExcursion": "Infinity",
+      "maximumPatchTravel": 0.009415588,
+      "maximumPatchGap": 0.0118428469,
+      "maximumNearestSoleGap": 0.00132864714,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 6.556511e-07,
+      "poseMicroseconds": 143.071875,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22610,
+          "start": -0.04140583775410722,
+          "end": 0.0452198549663749,
+          "duration": 0.19934466564879896,
+          "anchorExcursion": 0.006602051,
+          "cumulativeTravel": 0.009415588,
+          "maximumGroundGap": 0.0115885139,
+          "contactQualified": true,
+          "fittedCycleDistance": 1.66994107,
+          "fittedExcursion": 0.00435038,
+          "lateralExcursion": 0.00231497,
+          "maximumTargetGap": 0.003929615,
+          "supportedTraces": [
+            {
+              "vertex": 22527,
+              "rolling": false,
+              "maximumGap": 0.005355239,
+              "anchorExcursion": 0.00682550948,
+              "cumulativeTravel": 0.009750239,
+              "fittedDerivative": 1.67436671
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": 6624,
+          "start": 0.20515744660599636,
+          "end": 0.2920372479294269,
+          "duration": 0.19992942512260414,
+          "anchorExcursion": 0.004271594,
+          "cumulativeTravel": 0.007954791,
+          "maximumGroundGap": 0.0109780431,
+          "contactQualified": true,
+          "fittedCycleDistance": 1.60543692,
+          "fittedExcursion": 0.00405762065,
+          "lateralExcursion": 0.00366355479,
+          "maximumTargetGap": 0.009814978,
+          "supportedTraces": [
+            {
+              "vertex": 6624,
+              "rolling": false,
+              "maximumGap": 0.0109780431,
+              "anchorExcursion": 0.004271594,
+              "cumulativeTravel": 0.007954791,
+              "fittedDerivative": 1.60543692
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": 22613,
+          "start": 0.45750536383869234,
+          "end": 0.543955127911391,
+          "duration": 0.19893981535128272,
+          "anchorExcursion": 0.008022477,
+          "cumulativeTravel": 0.009399414,
+          "maximumGroundGap": 0.0118428469,
+          "contactQualified": true,
+          "fittedCycleDistance": 1.695651,
+          "fittedExcursion": 0.00468498142,
+          "lateralExcursion": 0.00462082028,
+          "maximumTargetGap": 0.009713054,
+          "supportedTraces": [
+            {
+              "vertex": 22523,
+              "rolling": false,
+              "maximumGap": 0.009982228,
+              "anchorExcursion": 0.008117333,
+              "cumulativeTravel": 0.009545086,
+              "fittedDerivative": 1.69728172
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": -1,
+          "start": 0.7072294949536168,
+          "end": 0.7907217716868288,
+          "duration": 0.19213399012396987,
+          "anchorExcursion": "Infinity",
+          "cumulativeTravel": 0.0,
+          "maximumGroundGap": 0.0,
+          "contactQualified": false,
+          "fittedCycleDistance": 0.0,
+          "fittedExcursion": 0.0,
+          "lateralExcursion": 0.0,
+          "maximumTargetGap": 0.0132448673,
+          "supportedTraces": [
+            {
+              "vertex": 6658,
+              "rolling": false,
+              "maximumGap": 0.0119808912,
+              "anchorExcursion": 0.00744570652,
+              "cumulativeTravel": 0.011276558,
+              "fittedDerivative": 1.67611229
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.0127498507,
+          "rightGap": 1.78813934e-07
+        },
+        {
+          "plant": 1.0,
+          "leftGap": 0.0009678602,
+          "rightGap": 0.00780004263
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 0.0131182075,
+          "rightGap": 1.1920929e-07
+        },
+        {
+          "plant": 3.0,
+          "leftGap": 0.00111860037,
+          "rightGap": 0.00680279732
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.0127498507,
+          "rightGap": 1.78813934e-07
+        }
+      ]
+    },
+    {
+      "speed": 1.4,
+      "minimumSole": -0.91,
+      "minimumBody": -0.91,
+      "maximumHeight": 1.78344154,
+      "maximumLift": 0.0296086483,
+      "minimumLift": -0.0074557215,
+      "maximumPatchExcursion": 0.008322598,
+      "maximumPatchTravel": 0.0153556718,
+      "maximumPatchGap": 0.0119875073,
+      "maximumNearestSoleGap": 0.0230121017,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 5.364418e-07,
+      "poseMicroseconds": 127.16054687500001,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22573,
+          "start": -0.04140583775410722,
+          "end": 0.0452198549663749,
+          "duration": 0.19934466564879896,
+          "anchorExcursion": 0.00680864928,
+          "cumulativeTravel": 0.0153556718,
+          "maximumGroundGap": 0.0118975639,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.219979,
+          "fittedExcursion": 0.00687544653,
+          "lateralExcursion": 0.00446973741,
+          "maximumTargetGap": 1.51991844e-05,
+          "supportedTraces": [
+            {
+              "vertex": 22527,
+              "rolling": false,
+              "maximumGap": 0.006023228,
+              "anchorExcursion": 0.00716312276,
+              "cumulativeTravel": 0.0154774645,
+              "fittedDerivative": 3.22692466
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": 6609,
+          "start": 0.20515744660599636,
+          "end": 0.2920372479294269,
+          "duration": 0.19992942512260414,
+          "anchorExcursion": 0.008322598,
+          "cumulativeTravel": 0.0126998574,
+          "maximumGroundGap": 0.005939424,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.14178848,
+          "fittedExcursion": 0.00492767058,
+          "lateralExcursion": 0.00143245608,
+          "maximumTargetGap": 2.026558e-05,
+          "supportedTraces": [
+            {
+              "vertex": 6610,
+              "rolling": false,
+              "maximumGap": 0.004907012,
+              "anchorExcursion": 0.008363069,
+              "cumulativeTravel": 0.012502376,
+              "fittedDerivative": 3.14217734
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": 22628,
+          "start": 0.45750536383869234,
+          "end": 0.543955127911391,
+          "duration": 0.19893981535128272,
+          "anchorExcursion": 0.0025931464,
+          "cumulativeTravel": 0.006272192,
+          "maximumGroundGap": 0.0119875073,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.23770475,
+          "fittedExcursion": 0.00264813565,
+          "lateralExcursion": 0.00252575427,
+          "maximumTargetGap": 2.96831131e-05,
+          "supportedTraces": [
+            {
+              "vertex": 22523,
+              "rolling": false,
+              "maximumGap": 0.000162243843,
+              "anchorExcursion": 0.00280518713,
+              "cumulativeTravel": 0.00654089637,
+              "fittedDerivative": 3.24825287
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": 6657,
+          "start": 0.7072294949536168,
+          "end": 0.7907217716868288,
+          "duration": 0.19213399012396987,
+          "anchorExcursion": 0.005654988,
+          "cumulativeTravel": 0.0142033827,
+          "maximumGroundGap": 0.0110968947,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.23257232,
+          "fittedExcursion": 0.00600107526,
+          "lateralExcursion": 0.005638242,
+          "maximumTargetGap": 1.07884407e-05,
+          "supportedTraces": [
+            {
+              "vertex": 6612,
+              "rolling": false,
+              "maximumGap": 0.003667295,
+              "anchorExcursion": 0.00584003469,
+              "cumulativeTravel": 0.0141173536,
+              "fittedDerivative": 3.22617245
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.051281333,
+          "rightGap": 2.38418579e-07
+        },
+        {
+          "plant": 1.0,
+          "leftGap": 5.96046448e-08,
+          "rightGap": 0.08528787
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 0.06649423,
+          "rightGap": 3.57627869e-07
+        },
+        {
+          "plant": 3.0,
+          "leftGap": 0.0,
+          "rightGap": 0.08126551
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.051281333,
+          "rightGap": 2.38418579e-07
+        }
+      ]
+    },
+    {
+      "speed": 1.48,
+      "minimumSole": -0.9100001,
+      "minimumBody": -0.9100001,
+      "maximumHeight": 1.77704608,
+      "maximumLift": 0.02664569,
+      "minimumLift": -0.00739023555,
+      "maximumPatchExcursion": 0.00400968362,
+      "maximumPatchTravel": 0.009070691,
+      "maximumPatchGap": 0.0110608339,
+      "maximumNearestSoleGap": 0.0193781257,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 4.76837158e-07,
+      "poseMicroseconds": 143.701171875,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22610,
+          "start": -0.023050830279269352,
+          "end": 0.022512375354450213,
+          "duration": 0.10270860258079836,
+          "anchorExcursion": 0.00400968362,
+          "cumulativeTravel": 0.00757577643,
+          "maximumGroundGap": 0.0108312964,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.35475421,
+          "fittedExcursion": 0.00358795514,
+          "lateralExcursion": 0.00135843456,
+          "maximumTargetGap": 0.000376582146,
+          "supportedTraces": [
+            {
+              "vertex": 22521,
+              "rolling": false,
+              "maximumGap": 0.001276195,
+              "anchorExcursion": 0.004243967,
+              "cumulativeTravel": 0.007597196,
+              "fittedDerivative": 3.36539841
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": 6612,
+          "start": 0.22697076877083783,
+          "end": 0.27400138086420167,
+          "duration": 0.10601643100928282,
+          "anchorExcursion": 0.003360688,
+          "cumulativeTravel": 0.00570438057,
+          "maximumGroundGap": 0.003110528,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.307459,
+          "fittedExcursion": 0.00273757777,
+          "lateralExcursion": 0.0008322634,
+          "maximumTargetGap": 4.172325e-07,
+          "supportedTraces": [
+            {
+              "vertex": 6618,
+              "rolling": false,
+              "maximumGap": 4.172325e-07,
+              "anchorExcursion": 0.00339511246,
+              "cumulativeTravel": 0.005742595,
+              "fittedDerivative": 3.31238246
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": 22533,
+          "start": 0.4754446516701013,
+          "end": 0.5220721827039303,
+          "duration": 0.10314220772654561,
+          "anchorExcursion": 0.00130768633,
+          "cumulativeTravel": 0.001969219,
+          "maximumGroundGap": 0.0110608339,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.2625668,
+          "fittedExcursion": 0.00138274173,
+          "lateralExcursion": 0.00130579993,
+          "maximumTargetGap": 5.364418e-07,
+          "supportedTraces": [
+            {
+              "vertex": 22523,
+              "rolling": false,
+              "maximumGap": 5.364418e-07,
+              "anchorExcursion": 0.00166502013,
+              "cumulativeTravel": 0.00233291229,
+              "fittedDerivative": 3.27292943
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": 6654,
+          "start": 0.7272899625218219,
+          "end": 0.7734134606856905,
+          "duration": 0.10397161430281557,
+          "anchorExcursion": 0.00374354376,
+          "cumulativeTravel": 0.009070691,
+          "maximumGroundGap": 0.0106540322,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.37044978,
+          "fittedExcursion": 0.004501539,
+          "lateralExcursion": 0.00221980363,
+          "maximumTargetGap": 4.76837158e-07,
+          "supportedTraces": [
+            {
+              "vertex": 6618,
+              "rolling": false,
+              "maximumGap": 4.76837158e-07,
+              "anchorExcursion": 0.00382447359,
+              "cumulativeTravel": 0.008848515,
+              "fittedDerivative": 3.366844
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.0575933456,
+          "rightGap": 1.1920929e-07
+        },
+        {
+          "plant": 1.0,
+          "leftGap": -5.96046448e-08,
+          "rightGap": 0.09870684
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 0.07543826,
+          "rightGap": 1.78813934e-07
+        },
+        {
+          "plant": 3.0,
+          "leftGap": 1.1920929e-07,
+          "rightGap": 0.09354591
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.0575933456,
+          "rightGap": 1.1920929e-07
+        }
+      ]
+    },
+    {
+      "speed": 1.6,
+      "minimumSole": -0.91,
+      "minimumBody": -0.91,
+      "maximumHeight": 1.77336431,
+      "maximumLift": 0.0222047418,
+      "minimumLift": -0.007558869,
+      "maximumPatchExcursion": 0.00569387944,
+      "maximumPatchTravel": 0.009962664,
+      "maximumPatchGap": 0.0114879608,
+      "maximumNearestSoleGap": 0.0188652873,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 5.364418e-07,
+      "poseMicroseconds": 269.693359375,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22799,
+          "start": -0.023050830279269352,
+          "end": 0.022512375354450213,
+          "duration": 0.09989683370409118,
+          "anchorExcursion": 0.00328011252,
+          "cumulativeTravel": 0.006376784,
+          "maximumGroundGap": 0.0114879608,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.519628,
+          "fittedExcursion": 0.00303377979,
+          "lateralExcursion": 0.00117119029,
+          "maximumTargetGap": 0.0008780956,
+          "supportedTraces": [
+            {
+              "vertex": 22521,
+              "rolling": false,
+              "maximumGap": 0.000943958759,
+              "anchorExcursion": 0.00365898828,
+              "cumulativeTravel": 0.006477659,
+              "fittedDerivative": 3.530443
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": 6657,
+          "start": 0.22697076877083783,
+          "end": 0.27400138086420167,
+          "duration": 0.1031141064362562,
+          "anchorExcursion": 0.00272334833,
+          "cumulativeTravel": 0.00497848634,
+          "maximumGroundGap": 0.0110804439,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.4875865,
+          "fittedExcursion": 0.00229464239,
+          "lateralExcursion": 0.00136819482,
+          "maximumTargetGap": 4.76837158e-07,
+          "supportedTraces": [
+            {
+              "vertex": 6618,
+              "rolling": false,
+              "maximumGap": 4.76837158e-07,
+              "anchorExcursion": 0.00293033756,
+              "cumulativeTravel": 0.00491294963,
+              "fittedDerivative": 3.494105
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": 22573,
+          "start": 0.4754446516701013,
+          "end": 0.5220721827039303,
+          "duration": 0.0964511675872717,
+          "anchorExcursion": 0.00333903753,
+          "cumulativeTravel": 0.006645828,
+          "maximumGroundGap": 0.0113965273,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.30748773,
+          "fittedExcursion": 0.00329384464,
+          "lateralExcursion": 0.00257920474,
+          "maximumTargetGap": 4.172325e-07,
+          "supportedTraces": [
+            {
+              "vertex": 22523,
+              "rolling": false,
+              "maximumGap": 4.172325e-07,
+              "anchorExcursion": 0.003722502,
+              "cumulativeTravel": 0.00726792,
+              "fittedDerivative": 3.307473
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": 6654,
+          "start": 0.7272899625218219,
+          "end": 0.7734134606856905,
+          "duration": 0.10112526899373932,
+          "anchorExcursion": 0.00569387944,
+          "cumulativeTravel": 0.009962664,
+          "maximumGroundGap": 0.0100149512,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.49097276,
+          "fittedExcursion": 0.00532667572,
+          "lateralExcursion": 0.000333309174,
+          "maximumTargetGap": 4.172325e-07,
+          "supportedTraces": [
+            {
+              "vertex": 6618,
+              "rolling": false,
+              "maximumGap": 4.172325e-07,
+              "anchorExcursion": 0.006049474,
+              "cumulativeTravel": 0.0107094236,
+              "fittedDerivative": 3.48647547
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.07193899,
+          "rightGap": 1.1920929e-07
+        },
+        {
+          "plant": 1.0,
+          "leftGap": 2.98023224e-07,
+          "rightGap": 0.122345269
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 0.09202379,
+          "rightGap": 1.1920929e-07
+        },
+        {
+          "plant": 3.0,
+          "leftGap": 2.38418579e-07,
+          "rightGap": 0.115401208
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.07193899,
+          "rightGap": 1.1920929e-07
+        }
+      ]
+    },
+    {
+      "speed": 1.8,
+      "minimumSole": -0.91,
+      "minimumBody": -0.91,
+      "maximumHeight": 1.7760942,
+      "maximumLift": 0.016199559,
+      "minimumLift": -0.00877905451,
+      "maximumPatchExcursion": 0.008586675,
+      "maximumPatchTravel": 0.0159189831,
+      "maximumPatchGap": 0.0111867785,
+      "maximumNearestSoleGap": 0.0354060531,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 5.364418e-07,
+      "poseMicroseconds": 301.267578125,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22776,
+          "start": -0.023050830279269352,
+          "end": 0.022512375354450213,
+          "duration": 0.09604366796324364,
+          "anchorExcursion": 0.002519,
+          "cumulativeTravel": 0.004997434,
+          "maximumGroundGap": 0.0100269914,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.78767061,
+          "fittedExcursion": 0.00261566788,
+          "lateralExcursion": 0.00201410986,
+          "maximumTargetGap": 0.0004904866,
+          "supportedTraces": [
+            {
+              "vertex": 22544,
+              "rolling": false,
+              "maximumGap": 0.008873701,
+              "anchorExcursion": 0.00255742134,
+              "cumulativeTravel": 0.004798973,
+              "fittedDerivative": 3.8136158
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": 6657,
+          "start": 0.22697076877083783,
+          "end": 0.27400138086420167,
+          "duration": 0.09913684582061753,
+          "anchorExcursion": 0.001956368,
+          "cumulativeTravel": 0.00332041527,
+          "maximumGroundGap": 0.0111867785,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.77883077,
+          "fittedExcursion": 0.00147063413,
+          "lateralExcursion": 0.00134245306,
+          "maximumTargetGap": 5.96046448e-07,
+          "supportedTraces": [
+            {
+              "vertex": 6657,
+              "rolling": false,
+              "maximumGap": 0.0111867785,
+              "anchorExcursion": 0.001956368,
+              "cumulativeTravel": 0.00332041527,
+              "fittedDerivative": 3.77883077
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": 22574,
+          "start": 0.4754446516701013,
+          "end": 0.5220721827039303,
+          "duration": 0.08738811672196974,
+          "anchorExcursion": 0.007996403,
+          "cumulativeTravel": 0.0159189831,
+          "maximumGroundGap": 0.009341717,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.37351346,
+          "fittedExcursion": 0.007996402,
+          "lateralExcursion": 0.00481767952,
+          "maximumTargetGap": 4.172325e-07,
+          "supportedTraces": [
+            {
+              "vertex": 22527,
+              "rolling": false,
+              "maximumGap": 0.00107872486,
+              "anchorExcursion": 0.008512684,
+              "cumulativeTravel": 0.0166416466,
+              "fittedDerivative": 3.37120938
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": 6651,
+          "start": 0.7272899625218219,
+          "end": 0.7734134606856905,
+          "duration": 0.09722472072236073,
+          "anchorExcursion": 0.008586675,
+          "cumulativeTravel": 0.0121174054,
+          "maximumGroundGap": 0.0111202,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.70612526,
+          "fittedExcursion": 0.00684214849,
+          "lateralExcursion": 0.00132862478,
+          "maximumTargetGap": 3.57627869e-07,
+          "supportedTraces": [
+            {
+              "vertex": 6664,
+              "rolling": false,
+              "maximumGap": 0.003961861,
+              "anchorExcursion": 0.009084505,
+              "cumulativeTravel": 0.0132958125,
+              "fittedDerivative": 3.69781733
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.108082056,
+          "rightGap": 1.1920929e-07
+        },
+        {
+          "plant": 1.0,
+          "leftGap": 1.1920929e-07,
+          "rightGap": 0.169970989
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 0.1274553,
+          "rightGap": 3.57627869e-07
+        },
+        {
+          "plant": 3.0,
+          "leftGap": 4.76837158e-07,
+          "rightGap": 0.1599878
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.108082056,
+          "rightGap": 1.1920929e-07
+        }
+      ]
+    },
+    {
+      "speed": 2.0,
+      "minimumSole": -0.9100002,
+      "minimumBody": -0.9100002,
+      "maximumHeight": 1.77687764,
+      "maximumLift": 0.0129058715,
+      "minimumLift": -0.0112301847,
+      "maximumPatchExcursion": 0.0125221973,
+      "maximumPatchTravel": 0.0248399228,
+      "maximumPatchGap": 0.0117660165,
+      "maximumNearestSoleGap": 0.0618976355,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 5.96046448e-07,
+      "poseMicroseconds": 162.652734375,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22544,
+          "start": -0.023050830279269352,
+          "end": 0.022512375354450213,
+          "duration": 0.09296113411973383,
+          "anchorExcursion": 0.00146080554,
+          "cumulativeTravel": 0.00321069569,
+          "maximumGroundGap": 0.0100972056,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.076661,
+          "fittedExcursion": 0.00151575718,
+          "lateralExcursion": 0.00121559482,
+          "maximumTargetGap": 4.76837158e-07,
+          "supportedTraces": [
+            {
+              "vertex": 22544,
+              "rolling": false,
+              "maximumGap": 0.0100972056,
+              "anchorExcursion": 0.00146080554,
+              "cumulativeTravel": 0.00321069569,
+              "fittedDerivative": 4.076661
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": 6657,
+          "start": 0.22697076877083783,
+          "end": 0.27400138086420167,
+          "duration": 0.09595503603699063,
+          "anchorExcursion": 0.0020697182,
+          "cumulativeTravel": 0.00387630542,
+          "maximumGroundGap": 0.0117660165,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.057171,
+          "fittedExcursion": 0.00103063521,
+          "lateralExcursion": 0.000627979636,
+          "maximumTargetGap": 4.76837158e-07,
+          "supportedTraces": [
+            {
+              "vertex": 6657,
+              "rolling": false,
+              "maximumGap": 0.0117660165,
+              "anchorExcursion": 0.0020697182,
+              "cumulativeTravel": 0.00387630542,
+              "fittedDerivative": 4.057171
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": 22574,
+          "start": 0.4754446516701013,
+          "end": 0.5220721827039303,
+          "duration": 0.08001557875840659,
+          "anchorExcursion": 0.0125221973,
+          "cumulativeTravel": 0.0248399228,
+          "maximumGroundGap": 0.009929538,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.43211746,
+          "fittedExcursion": 0.0125222,
+          "lateralExcursion": 0.0065728277,
+          "maximumTargetGap": 5.364418e-07,
+          "supportedTraces": [
+            {
+              "vertex": 22527,
+              "rolling": false,
+              "maximumGap": 0.00120204687,
+              "anchorExcursion": 0.0132435691,
+              "cumulativeTravel": 0.02580533,
+              "fittedDerivative": 3.42782569
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": 6651,
+          "start": 0.7272899625218219,
+          "end": 0.7734134606856905,
+          "duration": 0.09410428083904465,
+          "anchorExcursion": 0.0114488173,
+          "cumulativeTravel": 0.0144917145,
+          "maximumGroundGap": 0.0106523633,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.91803527,
+          "fittedExcursion": 0.008313673,
+          "lateralExcursion": 0.002468288,
+          "maximumTargetGap": 4.172325e-07,
+          "supportedTraces": [
+            {
+              "vertex": 6654,
+              "rolling": false,
+              "maximumGap": 0.008541405,
+              "anchorExcursion": 0.0117796231,
+              "cumulativeTravel": 0.0149987759,
+              "fittedDerivative": 3.90835738
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.157689571,
+          "rightGap": 2.38418579e-07
+        },
+        {
+          "plant": 1.0,
+          "leftGap": 4.172325e-07,
+          "rightGap": 0.226111591
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 0.171274,
+          "rightGap": -5.96046448e-08
+        },
+        {
+          "plant": 3.0,
+          "leftGap": -1.1920929e-07,
+          "rightGap": 0.212869465
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.157689571,
+          "rightGap": 2.38418579e-07
+        }
+      ]
+    },
+    {
+      "speed": 2.12,
+      "minimumSole": -0.909999967,
+      "minimumBody": -0.909999967,
+      "maximumHeight": 1.77584052,
+      "maximumLift": 0.01022929,
+      "minimumLift": -0.0147903329,
+      "maximumPatchExcursion": 0.0130472584,
+      "maximumPatchTravel": 0.0255332626,
+      "maximumPatchGap": 0.0119601488,
+      "maximumNearestSoleGap": 0.0784726739,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 6.556511e-07,
+      "poseMicroseconds": 297.6375,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22544,
+          "start": -0.023050830279269352,
+          "end": 0.022512375354450213,
+          "duration": 0.0913907893989973,
+          "anchorExcursion": 0.00125210977,
+          "cumulativeTravel": 0.00253553,
+          "maximumGroundGap": 0.0108801723,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.23323,
+          "fittedExcursion": 0.00130384392,
+          "lateralExcursion": 0.00124095939,
+          "maximumTargetGap": 4.172325e-07,
+          "supportedTraces": [
+            {
+              "vertex": 22544,
+              "rolling": false,
+              "maximumGap": 0.0108801723,
+              "anchorExcursion": 0.00125210977,
+              "cumulativeTravel": 0.00253553,
+              "fittedDerivative": 4.23323
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": 6665,
+          "start": 0.22697076877083783,
+          "end": 0.27400138086420167,
+          "duration": 0.09433411686796779,
+          "anchorExcursion": 0.002315409,
+          "cumulativeTravel": 0.00497739669,
+          "maximumGroundGap": 0.008626044,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.22753763,
+          "fittedExcursion": 0.001481484,
+          "lateralExcursion": 0.001261346,
+          "maximumTargetGap": 5.364418e-07,
+          "supportedTraces": [
+            {
+              "vertex": 6624,
+              "rolling": false,
+              "maximumGap": 0.0065099597,
+              "anchorExcursion": 0.00324184028,
+              "cumulativeTravel": 0.005417967,
+              "fittedDerivative": 4.19881439
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": 22528,
+          "start": 0.4754446516701013,
+          "end": 0.5220721827039303,
+          "duration": 0.08211954965389971,
+          "anchorExcursion": 0.00775907142,
+          "cumulativeTravel": 0.0255332626,
+          "maximumGroundGap": 0.01058501,
+          "contactQualified": true,
+          "fittedCycleDistance": 3.70147753,
+          "fittedExcursion": 0.008786248,
+          "lateralExcursion": 0.006121536,
+          "maximumTargetGap": 5.364418e-07,
+          "supportedTraces": [
+            {
+              "vertex": 22528,
+              "rolling": false,
+              "maximumGap": 0.01058501,
+              "anchorExcursion": 0.00775907142,
+              "cumulativeTravel": 0.0255332626,
+              "fittedDerivative": 3.70147753
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": 6645,
+          "start": 0.7272899625218219,
+          "end": 0.7734134606856905,
+          "duration": 0.09251462552756835,
+          "anchorExcursion": 0.0130472584,
+          "cumulativeTravel": 0.0156195424,
+          "maximumGroundGap": 0.0119601488,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.04514551,
+          "fittedExcursion": 0.009099444,
+          "lateralExcursion": 0.00202082843,
+          "maximumTargetGap": 4.172325e-07,
+          "supportedTraces": [
+            {
+              "vertex": 6647,
+              "rolling": false,
+              "maximumGap": 0.00967735052,
+              "anchorExcursion": 0.0132605843,
+              "cumulativeTravel": 0.0160159487,
+              "fittedDerivative": 4.039086
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.19273752,
+          "rightGap": 2.98023224e-07
+        },
+        {
+          "plant": 1.0,
+          "leftGap": 2.38418579e-07,
+          "rightGap": 0.262832582
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 0.200807691,
+          "rightGap": 2.38418579e-07
+        },
+        {
+          "plant": 3.0,
+          "leftGap": 2.38418579e-07,
+          "rightGap": 0.248365581
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.19273752,
+          "rightGap": 2.98023224e-07
+        }
+      ]
+    },
+    {
+      "speed": 2.2,
+      "minimumSole": -0.9099999,
+      "minimumBody": -0.9099999,
+      "maximumHeight": 1.77533436,
+      "maximumLift": 0.00650097337,
+      "minimumLift": -0.0173445325,
+      "maximumPatchExcursion": 0.00682816561,
+      "maximumPatchTravel": 0.0170412473,
+      "maximumPatchGap": 0.011039257,
+      "maximumNearestSoleGap": 0.09074807,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 5.364418e-07,
+      "poseMicroseconds": 121.41875,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22543,
+          "start": -0.023050830279269352,
+          "end": 0.022512375354450213,
+          "duration": 0.09043906251009028,
+          "anchorExcursion": 0.00153109524,
+          "cumulativeTravel": 0.00239920686,
+          "maximumGroundGap": 0.011039257,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.34258175,
+          "fittedExcursion": 0.00136176555,
+          "lateralExcursion": 0.00133322924,
+          "maximumTargetGap": 0.00015860796,
+          "supportedTraces": [
+            {
+              "vertex": 22544,
+              "rolling": false,
+              "maximumGap": 0.0114221573,
+              "anchorExcursion": 0.0017051883,
+              "cumulativeTravel": 0.00240813871,
+              "fittedDerivative": 4.33648443
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": 6867,
+          "start": 0.22697076877083783,
+          "end": 0.27400138086420167,
+          "duration": 0.0933517387075979,
+          "anchorExcursion": 0.00196353649,
+          "cumulativeTravel": 0.00841989,
+          "maximumGroundGap": 0.010743916,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.296777,
+          "fittedExcursion": 0.00300311926,
+          "lateralExcursion": 0.00134506077,
+          "maximumTargetGap": 0.0002349019,
+          "supportedTraces": [
+            {
+              "vertex": 6609,
+              "rolling": false,
+              "maximumGap": 0.0005186796,
+              "anchorExcursion": 0.00204082043,
+              "cumulativeTravel": 0.007886429,
+              "fittedDerivative": 4.32045
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": 22534,
+          "start": 0.4754446516701013,
+          "end": 0.5220721827039303,
+          "duration": 0.0925516573122509,
+          "anchorExcursion": 0.00682816561,
+          "cumulativeTravel": 0.0170412473,
+          "maximumGroundGap": 0.0109680891,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.324412,
+          "fittedExcursion": 0.00611829944,
+          "lateralExcursion": 0.005924157,
+          "maximumTargetGap": 0.000319898129,
+          "supportedTraces": [
+            {
+              "vertex": 22528,
+              "rolling": false,
+              "maximumGap": 0.01045984,
+              "anchorExcursion": 0.007022814,
+              "cumulativeTravel": 0.0172487032,
+              "fittedDerivative": 4.312308
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": 6636,
+          "start": 0.7272899625218219,
+          "end": 0.7734134606856905,
+          "duration": 0.09155119521570892,
+          "anchorExcursion": 0.002007541,
+          "cumulativeTravel": 0.007863168,
+          "maximumGroundGap": 0.0110200644,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.38735342,
+          "fittedExcursion": 0.00205603358,
+          "lateralExcursion": 0.00196785387,
+          "maximumTargetGap": 0.0001796484,
+          "supportedTraces": [
+            {
+              "vertex": 6641,
+              "rolling": false,
+              "maximumGap": 0.0111390948,
+              "anchorExcursion": 0.0023515427,
+              "cumulativeTravel": 0.00775883347,
+              "fittedDerivative": 4.410777
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.217725575,
+          "rightGap": 2.38418579e-07
+        },
+        {
+          "plant": 1.0,
+          "leftGap": 1.78813934e-07,
+          "rightGap": 0.287877321
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 0.221525371,
+          "rightGap": 2.98023224e-07
+        },
+        {
+          "plant": 3.0,
+          "leftGap": 2.38418579e-07,
+          "rightGap": 0.2726987
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.217725575,
+          "rightGap": 2.38418579e-07
+        }
+      ]
+    },
+    {
+      "speed": 2.48,
+      "minimumSole": -0.909999967,
+      "minimumBody": -0.909999967,
+      "maximumHeight": 1.777169,
+      "maximumLift": 0.007834988,
+      "minimumLift": -0.0164935682,
+      "maximumPatchExcursion": 0.007594263,
+      "maximumPatchTravel": 0.0175459776,
+      "maximumPatchGap": 0.0116173029,
+      "maximumNearestSoleGap": 0.0899440646,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 5.96046448e-07,
+      "poseMicroseconds": 196.0625,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22544,
+          "start": -0.023050830279269352,
+          "end": 0.022512375354450213,
+          "duration": 0.08250729468203934,
+          "anchorExcursion": 0.00312671927,
+          "cumulativeTravel": 0.009205124,
+          "maximumGroundGap": 0.0116173029,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.371282,
+          "fittedExcursion": 0.00346507085,
+          "lateralExcursion": 0.00138678215,
+          "maximumTargetGap": 4.76837158e-07,
+          "supportedTraces": [
+            {
+              "vertex": 22543,
+              "rolling": false,
+              "maximumGap": 0.0111378431,
+              "anchorExcursion": 0.00317402533,
+              "cumulativeTravel": 0.009017944,
+              "fittedDerivative": 4.37760639
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": 6890,
+          "start": 0.22697076877083783,
+          "end": 0.27400138086420167,
+          "duration": 0.08516452073758699,
+          "anchorExcursion": 0.003870243,
+          "cumulativeTravel": 0.011355578,
+          "maximumGroundGap": 0.0108149052,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.367459,
+          "fittedExcursion": 0.004783337,
+          "lateralExcursion": 0.00276704319,
+          "maximumTargetGap": 0.00115561485,
+          "supportedTraces": [
+            {
+              "vertex": 6619,
+              "rolling": false,
+              "maximumGap": 0.00459772348,
+              "anchorExcursion": 0.004047708,
+              "cumulativeTravel": 0.0108678481,
+              "fittedDerivative": 4.3873
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": 22568,
+          "start": 0.4754446516701013,
+          "end": 0.5220721827039303,
+          "duration": 0.08443460879883653,
+          "anchorExcursion": 0.007594263,
+          "cumulativeTravel": 0.0175459776,
+          "maximumGroundGap": 0.0110654831,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.447917,
+          "fittedExcursion": 0.00707090273,
+          "lateralExcursion": 0.00698049,
+          "maximumTargetGap": 5.96046448e-07,
+          "supportedTraces": [
+            {
+              "vertex": 22525,
+              "rolling": false,
+              "maximumGap": 0.01192987,
+              "anchorExcursion": 0.008066979,
+              "cumulativeTravel": 0.01800233,
+              "fittedDerivative": 4.41423941
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": 6637,
+          "start": 0.7272899625218219,
+          "end": 0.7734134606856905,
+          "duration": 0.08352189012698633,
+          "anchorExcursion": 0.00310148322,
+          "cumulativeTravel": 0.009442291,
+          "maximumGroundGap": 0.00907582,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.51692772,
+          "fittedExcursion": 0.003109847,
+          "lateralExcursion": 0.00304464623,
+          "maximumTargetGap": 0.00237077475,
+          "supportedTraces": [
+            {
+              "vertex": 6645,
+              "rolling": false,
+              "maximumGap": 0.010735631,
+              "anchorExcursion": 0.003244462,
+              "cumulativeTravel": 0.009208186,
+              "fittedDerivative": 4.53892851
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.23525542,
+          "rightGap": 5.96046448e-08
+        },
+        {
+          "plant": 1.0,
+          "leftGap": 0.0005745888,
+          "rightGap": 0.302097857
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 0.2327407,
+          "rightGap": 1.1920929e-07
+        },
+        {
+          "plant": 3.0,
+          "leftGap": 0.00135427713,
+          "rightGap": 0.2959767
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.23525542,
+          "rightGap": 5.96046448e-08
+        }
+      ]
+    },
+    {
+      "speed": 2.9,
+      "minimumSole": -0.9100001,
+      "minimumBody": -0.9100001,
+      "maximumHeight": 1.77995777,
+      "maximumLift": 0.0125956722,
+      "minimumLift": -0.0159121957,
+      "maximumPatchExcursion": 0.008523745,
+      "maximumPatchTravel": 0.0178436711,
+      "maximumPatchGap": 0.0118973851,
+      "maximumNearestSoleGap": 0.08847374,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 5.96046448e-07,
+      "poseMicroseconds": 152.769140625,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22544,
+          "start": -0.023050830279269352,
+          "end": 0.022512375354450213,
+          "duration": 0.07348149464952726,
+          "anchorExcursion": 0.006279741,
+          "cumulativeTravel": 0.0178436711,
+          "maximumGroundGap": 0.0118973851,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.46053839,
+          "fittedExcursion": 0.0075096814,
+          "lateralExcursion": 0.0018764995,
+          "maximumTargetGap": 4.76837158e-07,
+          "supportedTraces": [
+            {
+              "vertex": 22533,
+              "rolling": false,
+              "maximumGap": 0.00492680073,
+              "anchorExcursion": 0.006556775,
+              "cumulativeTravel": 0.0190646462,
+              "fittedDerivative": 4.43813562
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": 6867,
+          "start": 0.22697076877083783,
+          "end": 0.27400138086420167,
+          "duration": 0.07584803621334635,
+          "anchorExcursion": 0.006768209,
+          "cumulativeTravel": 0.0174572542,
+          "maximumGroundGap": 0.0102852583,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.498974,
+          "fittedExcursion": 0.00780393,
+          "lateralExcursion": 0.00375157036,
+          "maximumTargetGap": 0.00226080418,
+          "supportedTraces": [
+            {
+              "vertex": 6619,
+              "rolling": false,
+              "maximumGap": 0.00468117,
+              "anchorExcursion": 0.006978192,
+              "cumulativeTravel": 0.017349463,
+              "fittedDerivative": 4.520497
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": 22564,
+          "start": 0.4754446516701013,
+          "end": 0.5220721827039303,
+          "duration": 0.07519797223502055,
+          "anchorExcursion": 0.008523745,
+          "cumulativeTravel": 0.0172814075,
+          "maximumGroundGap": 0.0118267536,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.604925,
+          "fittedExcursion": 0.00767734041,
+          "lateralExcursion": 0.00764240231,
+          "maximumTargetGap": 4.172325e-07,
+          "supportedTraces": [
+            {
+              "vertex": 22533,
+              "rolling": false,
+              "maximumGap": 0.01154983,
+              "anchorExcursion": 0.00868328,
+              "cumulativeTravel": 0.0174132753,
+              "fittedDerivative": 4.59403467
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": 6642,
+          "start": 0.7272899625218219,
+          "end": 0.7734134606856905,
+          "duration": 0.07438509947679274,
+          "anchorExcursion": 0.00440532155,
+          "cumulativeTravel": 0.0117205763,
+          "maximumGroundGap": 0.0105326176,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.7132206,
+          "fittedExcursion": 0.004331881,
+          "lateralExcursion": 0.00431421027,
+          "maximumTargetGap": 0.00349295139,
+          "supportedTraces": [
+            {
+              "vertex": 6642,
+              "rolling": false,
+              "maximumGap": 0.0105326176,
+              "anchorExcursion": 0.00440532155,
+              "cumulativeTravel": 0.0117205763,
+              "fittedDerivative": 4.7132206
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.26164,
+          "rightGap": 4.76837158e-07
+        },
+        {
+          "plant": 1.0,
+          "leftGap": 0.00162047148,
+          "rightGap": 0.323726952
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 0.2502753,
+          "rightGap": 2.38418579e-07
+        },
+        {
+          "plant": 3.0,
+          "leftGap": 0.00334429741,
+          "rightGap": 0.331160963
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.26164,
+          "rightGap": 4.76837158e-07
+        }
+      ]
+    },
+    {
+      "speed": 3.6,
+      "minimumSole": -0.91,
+      "minimumBody": -0.91,
+      "maximumHeight": 1.78751183,
+      "maximumLift": 0.02696708,
+      "minimumLift": -0.0167996064,
+      "maximumPatchExcursion": 0.0106728468,
+      "maximumPatchTravel": 0.0246241447,
+      "maximumPatchGap": 0.0119321942,
+      "maximumNearestSoleGap": 0.09093958,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 5.96046448e-07,
+      "poseMicroseconds": 206.881640625,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22543,
+          "start": -0.023050830279269352,
+          "end": 0.022512375354450213,
+          "duration": 0.0631185345347669,
+          "anchorExcursion": 0.007867453,
+          "cumulativeTravel": 0.0246241447,
+          "maximumGroundGap": 0.0116786957,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.697442,
+          "fittedExcursion": 0.0107512819,
+          "lateralExcursion": 0.00333342515,
+          "maximumTargetGap": 5.96046448e-07,
+          "supportedTraces": [
+            {
+              "vertex": 22524,
+              "rolling": false,
+              "maximumGap": 0.00183320045,
+              "anchorExcursion": 0.009918107,
+              "cumulativeTravel": 0.025894003,
+              "fittedDerivative": 4.66510868
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": 6867,
+          "start": 0.22697076877083783,
+          "end": 0.27400138086420167,
+          "duration": 0.06515132709208103,
+          "anchorExcursion": 0.009396197,
+          "cumulativeTravel": 0.0235838722,
+          "maximumGroundGap": 0.0119321942,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.78571224,
+          "fittedExcursion": 0.0114472173,
+          "lateralExcursion": 0.006342659,
+          "maximumTargetGap": 0.00380647182,
+          "supportedTraces": [
+            {
+              "vertex": 6635,
+              "rolling": false,
+              "maximumGap": 0.006749928,
+              "anchorExcursion": 0.009812254,
+              "cumulativeTravel": 0.0228733253,
+              "fittedDerivative": 4.8104887
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": 22572,
+          "start": 0.4754446516701013,
+          "end": 0.5220721827039303,
+          "duration": 0.06459294044165334,
+          "anchorExcursion": 0.0106728468,
+          "cumulativeTravel": 0.0208949763,
+          "maximumGroundGap": 0.0107181668,
+          "contactQualified": true,
+          "fittedCycleDistance": 4.94944048,
+          "fittedExcursion": 0.01042021,
+          "lateralExcursion": 0.0103812553,
+          "maximumTargetGap": 0.000486671925,
+          "supportedTraces": [
+            {
+              "vertex": 22533,
+              "rolling": false,
+              "maximumGap": 0.00849098,
+              "anchorExcursion": 0.0109898644,
+              "cumulativeTravel": 0.02108619,
+              "fittedDerivative": 4.92251873
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": 6677,
+          "start": 0.7272899625218219,
+          "end": 0.7734134606856905,
+          "duration": 0.06389470563427381,
+          "anchorExcursion": 0.007887035,
+          "cumulativeTravel": 0.0187024567,
+          "maximumGroundGap": 0.0117121935,
+          "contactQualified": true,
+          "fittedCycleDistance": 5.03428841,
+          "fittedExcursion": 0.007877851,
+          "lateralExcursion": 0.007849815,
+          "maximumTargetGap": 0.003985226,
+          "supportedTraces": [
+            {
+              "vertex": 6646,
+              "rolling": false,
+              "maximumGap": 0.00761199,
+              "anchorExcursion": 0.00826204848,
+              "cumulativeTravel": 0.01885274,
+              "fittedDerivative": 5.04832935
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.305622637,
+          "rightGap": 2.38418579e-07
+        },
+        {
+          "plant": 1.0,
+          "leftGap": 0.00205826759,
+          "rightGap": 0.3603565
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 0.281243145,
+          "rightGap": 1.1920929e-07
+        },
+        {
+          "plant": 3.0,
+          "leftGap": 0.002350092,
+          "rightGap": 0.389771283
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.305622637,
+          "rightGap": 2.38418579e-07
+        }
+      ]
+    },
+    {
+      "speed": 4.3,
+      "minimumSole": -0.909999967,
+      "minimumBody": -0.909999967,
+      "maximumHeight": 1.80106091,
+      "maximumLift": 0.0391991064,
+      "minimumLift": -0.0195990764,
+      "maximumPatchExcursion": 0.0124391941,
+      "maximumPatchTravel": 0.0232264269,
+      "maximumPatchGap": 0.011720717,
+      "maximumNearestSoleGap": 0.113936245,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 5.364418e-07,
+      "poseMicroseconds": 156.48632812500003,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22563,
+          "start": -0.023050830279269352,
+          "end": 0.022512375354450213,
+          "duration": 0.0561295606105799,
+          "anchorExcursion": 0.0100255106,
+          "cumulativeTravel": 0.0210154168,
+          "maximumGroundGap": 0.011720717,
+          "contactQualified": true,
+          "fittedCycleDistance": 5.013329,
+          "fittedExcursion": 0.008422814,
+          "lateralExcursion": 0.00584236532,
+          "maximumTargetGap": 5.364418e-07,
+          "supportedTraces": [
+            {
+              "vertex": 22563,
+              "rolling": false,
+              "maximumGap": 0.011720717,
+              "anchorExcursion": 0.0100255106,
+              "cumulativeTravel": 0.0210154168,
+              "fittedDerivative": 5.013329
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": 6838,
+          "start": 0.22697076877083783,
+          "end": 0.27400138086420167,
+          "duration": 0.057937266602100496,
+          "anchorExcursion": 0.009044309,
+          "cumulativeTravel": 0.0217571724,
+          "maximumGroundGap": 0.008113861,
+          "contactQualified": true,
+          "fittedCycleDistance": 5.15680838,
+          "fittedExcursion": 0.0111025507,
+          "lateralExcursion": 0.00522957556,
+          "maximumTargetGap": 0.00296074152,
+          "supportedTraces": [
+            {
+              "vertex": 6635,
+              "rolling": false,
+              "maximumGap": 0.00380826,
+              "anchorExcursion": 0.009329895,
+              "cumulativeTravel": 0.0219660178,
+              "fittedDerivative": 5.168728
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": 22569,
+          "start": 0.4754446516701013,
+          "end": 0.5220721827039303,
+          "duration": 0.057440708854517575,
+          "anchorExcursion": 0.0124391941,
+          "cumulativeTravel": 0.0223590974,
+          "maximumGroundGap": 0.0104376674,
+          "contactQualified": true,
+          "fittedCycleDistance": 5.33590174,
+          "fittedExcursion": 0.0125025036,
+          "lateralExcursion": 0.0124376416,
+          "maximumTargetGap": 0.000565230846,
+          "supportedTraces": [
+            {
+              "vertex": 22565,
+              "rolling": false,
+              "maximumGap": 0.009229481,
+              "anchorExcursion": 0.0124889547,
+              "cumulativeTravel": 0.0223937724,
+              "fittedDerivative": 5.33055162
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": 6674,
+          "start": 0.7272899625218219,
+          "end": 0.7734134606856905,
+          "duration": 0.056819788023099366,
+          "anchorExcursion": 0.0119434213,
+          "cumulativeTravel": 0.0232264269,
+          "maximumGroundGap": 0.008800209,
+          "contactQualified": true,
+          "fittedCycleDistance": 5.389182,
+          "fittedExcursion": 0.0118655376,
+          "lateralExcursion": 0.0118030356,
+          "maximumTargetGap": 0.00191533566,
+          "supportedTraces": [
+            {
+              "vertex": 6646,
+              "rolling": false,
+              "maximumGap": 0.00452339649,
+              "anchorExcursion": 0.01231659,
+              "cumulativeTravel": 0.02352415,
+              "fittedDerivative": 5.397016
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.349231362,
+          "rightGap": 1.1920929e-07
+        },
+        {
+          "plant": 1.0,
+          "leftGap": 0.00101560354,
+          "rightGap": 0.3972972
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 0.310957849,
+          "rightGap": 0.000521838665
+        },
+        {
+          "plant": 3.0,
+          "leftGap": 0.00131416321,
+          "rightGap": 0.446451068
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.349231362,
+          "rightGap": 1.1920929e-07
+        }
+      ]
+    },
+    {
+      "speed": 4.72,
+      "minimumSole": -0.910000145,
+      "minimumBody": -0.910000145,
+      "maximumHeight": 1.80918908,
+      "maximumLift": 0.04552333,
+      "minimumLift": -0.0212787557,
+      "maximumPatchExcursion": 0.0144679677,
+      "maximumPatchTravel": 0.0264543686,
+      "maximumPatchGap": 0.0119488835,
+      "maximumNearestSoleGap": 0.123396218,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 5.364418e-07,
+      "poseMicroseconds": 143.50429687500002,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22563,
+          "start": -0.023050830279269352,
+          "end": 0.022512375354450213,
+          "duration": 0.05293122024933104,
+          "anchorExcursion": 0.011484338,
+          "cumulativeTravel": 0.01741893,
+          "maximumGroundGap": 0.0114223361,
+          "contactQualified": true,
+          "fittedCycleDistance": 5.229047,
+          "fittedExcursion": 0.008140065,
+          "lateralExcursion": 0.007343795,
+          "maximumTargetGap": 3.57627869e-07,
+          "supportedTraces": [
+            {
+              "vertex": 22563,
+              "rolling": false,
+              "maximumGap": 0.0114223361,
+              "anchorExcursion": 0.011484338,
+              "cumulativeTravel": 0.01741893,
+              "fittedDerivative": 5.229047
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": 6838,
+          "start": 0.22697076877083783,
+          "end": 0.27400138086420167,
+          "duration": 0.054635920641465906,
+          "anchorExcursion": 0.00731013855,
+          "cumulativeTravel": 0.0187675487,
+          "maximumGroundGap": 0.009184122,
+          "contactQualified": true,
+          "fittedCycleDistance": 5.39606762,
+          "fittedExcursion": 0.008838876,
+          "lateralExcursion": 0.005691019,
+          "maximumTargetGap": 0.00116598606,
+          "supportedTraces": [
+            {
+              "vertex": 6637,
+              "rolling": false,
+              "maximumGap": 0.00152218342,
+              "anchorExcursion": 0.008169292,
+              "cumulativeTravel": 0.01873055,
+              "fittedDerivative": 5.4295826
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": 22566,
+          "start": 0.4754446516701013,
+          "end": 0.5220721827039303,
+          "duration": 0.054167657444357115,
+          "anchorExcursion": 0.0136964014,
+          "cumulativeTravel": 0.0241805352,
+          "maximumGroundGap": 0.0119488835,
+          "contactQualified": true,
+          "fittedCycleDistance": 5.57005358,
+          "fittedExcursion": 0.013627586,
+          "lateralExcursion": 0.0135715771,
+          "maximumTargetGap": 0.000268757343,
+          "supportedTraces": [
+            {
+              "vertex": 22566,
+              "rolling": false,
+              "maximumGap": 0.0119488835,
+              "anchorExcursion": 0.0136964014,
+              "cumulativeTravel": 0.0241805352,
+              "fittedDerivative": 5.57005358
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": 6674,
+          "start": 0.7272899625218219,
+          "end": 0.7734134606856905,
+          "duration": 0.05358211754474495,
+          "anchorExcursion": 0.0144679677,
+          "cumulativeTravel": 0.0264543686,
+          "maximumGroundGap": 0.006934166,
+          "contactQualified": true,
+          "fittedCycleDistance": 5.6055727,
+          "fittedExcursion": 0.0143342465,
+          "lateralExcursion": 0.0142465308,
+          "maximumTargetGap": 0.00082463026,
+          "supportedTraces": [
+            {
+              "vertex": 6674,
+              "rolling": false,
+              "maximumGap": 0.006934166,
+              "anchorExcursion": 0.0144679677,
+              "cumulativeTravel": 0.0264543686,
+              "fittedDerivative": 5.6055727
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.375025451,
+          "rightGap": 3.57627869e-07
+        },
+        {
+          "plant": 1.0,
+          "leftGap": 0.000341594219,
+          "rightGap": 0.419401079
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 0.319836676,
+          "rightGap": 0.0002695322
+        },
+        {
+          "plant": 3.0,
+          "leftGap": 0.0006380677,
+          "rightGap": 0.478969932
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.375025451,
+          "rightGap": 3.57627869e-07
+        }
+      ]
+    },
+    {
+      "speed": 5.0,
+      "minimumSole": -0.9100002,
+      "minimumBody": -0.9100002,
+      "maximumHeight": 1.81403446,
+      "maximumLift": 0.0493218973,
+      "minimumLift": -0.0223985445,
+      "maximumPatchExcursion": 0.0169023369,
+      "maximumPatchTravel": 0.0312342234,
+      "maximumPatchGap": 0.008923531,
+      "maximumNearestSoleGap": 0.12928623,
+      "idleSeconds": 0.0,
+      "maximumProjectionError": 6.556511e-07,
+      "poseMicroseconds": 274.151171875,
+      "poseAllocatedBytes": 0.0,
+      "samples": 129,
+      "patches": [
+        {
+          "plant": 0,
+          "vertex": 22566,
+          "start": -0.026015541643401807,
+          "end": 0.02592598415745972,
+          "duration": 0.05825055945098441,
+          "anchorExcursion": 0.014319187,
+          "cumulativeTravel": 0.0203471687,
+          "maximumGroundGap": 0.008923531,
+          "contactQualified": true,
+          "fittedCycleDistance": 5.38659,
+          "fittedExcursion": 0.0102651045,
+          "lateralExcursion": 0.01016606,
+          "maximumTargetGap": 4.7147274e-05,
+          "supportedTraces": [
+            {
+              "vertex": 22566,
+              "rolling": false,
+              "maximumGap": 0.008923531,
+              "anchorExcursion": 0.014319187,
+              "cumulativeTravel": 0.0203471687,
+              "fittedDerivative": 5.38659
+            }
+          ]
+        },
+        {
+          "plant": 1,
+          "vertex": 6686,
+          "start": 0.22318748345632808,
+          "end": 0.2757909000878097,
+          "duration": 0.05899284629344095,
+          "anchorExcursion": 0.005649132,
+          "cumulativeTravel": 0.019899115,
+          "maximumGroundGap": 0.00776571035,
+          "contactQualified": true,
+          "fittedCycleDistance": 5.576128,
+          "fittedExcursion": 0.006064378,
+          "lateralExcursion": 0.005100483,
+          "maximumTargetGap": 0.000184834,
+          "supportedTraces": [
+            {
+              "vertex": 6637,
+              "rolling": false,
+              "maximumGap": 0.00180625916,
+              "anchorExcursion": 0.006182851,
+              "cumulativeTravel": 0.019920053,
+              "fittedDerivative": 5.60294533
+            }
+          ]
+        },
+        {
+          "plant": 2,
+          "vertex": 22561,
+          "start": 0.47306379405463816,
+          "end": 0.5280312280776626,
+          "duration": 0.061644007064827824,
+          "anchorExcursion": 0.0169023369,
+          "cumulativeTravel": 0.0306681767,
+          "maximumGroundGap": 0.007586539,
+          "contactQualified": true,
+          "fittedCycleDistance": 5.71158552,
+          "fittedExcursion": 0.0167369787,
+          "lateralExcursion": 0.0166947749,
+          "maximumTargetGap": 8.249283e-05,
+          "supportedTraces": [
+            {
+              "vertex": 22565,
+              "rolling": false,
+              "maximumGap": 0.00676447153,
+              "anchorExcursion": 0.0170056336,
+              "cumulativeTravel": 0.0308640338,
+              "fittedDerivative": 5.720988
+            }
+          ]
+        },
+        {
+          "plant": 3,
+          "vertex": 6671,
+          "start": 0.7217935583879143,
+          "end": 0.778097839000021,
+          "duration": 0.06314323259803115,
+          "anchorExcursion": 0.0156160267,
+          "cumulativeTravel": 0.0312342234,
+          "maximumGroundGap": 0.00742870569,
+          "contactQualified": true,
+          "fittedCycleDistance": 5.71598673,
+          "fittedExcursion": 0.0156204142,
+          "lateralExcursion": 0.0154835228,
+          "maximumTargetGap": 0.000393390656,
+          "supportedTraces": [
+            {
+              "vertex": 6674,
+              "rolling": false,
+              "maximumGap": 0.00668895245,
+              "anchorExcursion": 0.0156225469,
+              "cumulativeTravel": 0.03129879,
+              "fittedDerivative": 5.714243
+            }
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "plant": 0.0,
+          "leftGap": 0.392016828,
+          "rightGap": 4.172325e-07
+        },
+        {
+          "plant": 1.0,
+          "leftGap": 2.98023224e-07,
+          "rightGap": 0.4340577
+        },
+        {
+          "plant": 2.0,
+          "leftGap": 0.32763207,
+          "rightGap": 0.0
+        },
+        {
+          "plant": 3.0,
+          "leftGap": 2.98023224e-07,
+          "rightGap": 0.499924541
+        },
+        {
+          "plant": 4.0,
+          "leftGap": 0.392016828,
+          "rightGap": 4.172325e-07
+        }
+      ]
+    }
+  ],
+  "limits": {
+    "floor": 0.001,
+    "patch": 0.02,
+    "lift": 0.08,
+    "lower": 0.03
+  },
+  "coverage": "skinned body/cloak/backpack; static packed kit vertex bounds. Boots have no separate equipped renderer."
+}

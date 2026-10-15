@@ -37,6 +37,9 @@ public static class CampForwardLocomotionQualification
     public static string RunTwo() => RunMatrix(SkinWeights.TwoBones, true, "ForwardDistancePoseTwoV1");
     public static string RunCold() => RunMatrix(SkinWeights.FourBones, false, "ForwardDistancePoseColdV1");
     public static string RunDense() => RunMatrix(SkinWeights.FourBones, true, "ForwardDensePoseV1", true);
+    public static string RunTunedReview() => RunMatrix(SkinWeights.FourBones, true, "GaitPaceTuningContact20261015", false,
+        "LocomotionImplementation20261014/GaitPaceTuning20261015/combined-calibration.json",
+        new[] { .2f, .7f, 1.4f, 1.48f, 1.6f, 1.8f, 2f, 2.12f, 2.2f, 2.48f, 2.9f, 3.6f, 4.3f, 4.72f, 5f });
 
     public static string BenchmarkClock()
     {
@@ -66,7 +69,8 @@ public static class CampForwardLocomotionQualification
         return destination;
     }
 
-    private static string RunMatrix(SkinWeights skinWeights, bool normalizeEquipment, string name, bool dense = false)
+    private static string RunMatrix(SkinWeights skinWeights, bool normalizeEquipment, string name, bool dense = false,
+        string selectedRecipe = null, float[] selectedSpeeds = null)
     {
         var root = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
         if (!Application.isBatchMode || EditorApplication.isPlayingOrWillChangePlaymode
@@ -79,7 +83,8 @@ public static class CampForwardLocomotionQualification
         var policy = AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(
             "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset");
         if (!policy.Validate(policy.targetModel, policy.locomotion, out var error, false)) throw new InvalidDataException(error);
-        var recipe = JObject.Parse(File.ReadAllText(Path.Combine(root, "LocomotionImplementation20261014/native-calibration-v6.json")));
+        var recipePath = selectedRecipe ?? "LocomotionImplementation20261014/native-calibration-v6.json";
+        var recipe = JObject.Parse(File.ReadAllText(Path.Combine(root, recipePath)));
         var scene = EditorSceneManager.OpenScene(TopDown3DAnimationPlaygroundSession.ScenePath, OpenSceneMode.Additive);
         var preview = EditorSceneManager.NewPreviewScene(); GameObject actor = null;
         var bindings = Object.Instantiate(TopDown3DAnimationPlaygroundSession.Find(scene).Bindings);
@@ -124,7 +129,7 @@ public static class CampForwardLocomotionQualification
                     var world = filter.transform.TransformPoint(vertex);
                     kitMinimum = Mathf.Min(kitMinimum, world.y); kitMaximum = Mathf.Max(kitMaximum, world.y); kitVertices++;
                 }
-            foreach (var speed in new[] { .2f, .7f, 1.4f, 1.53f, 1.725f, 2.05f, 2.375f, 2.57f, 2.7f, 2.81f, 2.975f, 3.25f, 3.525f, 3.69f, 3.8f })
+            foreach (var speed in selectedSpeeds ?? new[] { .2f, .7f, 1.4f, 1.53f, 1.725f, 2.05f, 2.375f, 2.57f, 2.7f, 2.81f, 2.975f, 3.25f, 3.525f, 3.69f, 3.8f })
             foreach (var idle in dense && speed < 1.4f ? new[] { 0d, .25, .5, .75 } : new[] { 0d })
             {
                 var idleSeconds = idle * policy.locomotion.GetRequiredEntry(TopDown3DLocomotionClipRole.Idle).Clip.length;
@@ -231,7 +236,7 @@ public static class CampForwardLocomotionQualification
                 globalSkinWeights = skinWeights.ToString(), normalizeEquipment,
                 dense, phaseSamplesPerCase = phases.Length,
                 staticPackedKit = new { vertices = kitVertices, minimum = kitMinimum, maximumHeight = kitMaximum - floor },
-                sourcePolicy = AssetDatabase.GetAssetPath(policy), recipe = "native-calibration-v6-stage-aligned",
+                sourcePolicy = AssetDatabase.GetAssetPath(policy), recipe = recipePath,
                 rows, limits = new { floor = .001f, patch = .02f, lift = .08f, lower = .03f },
                 coverage = "skinned body/cloak/backpack; static packed kit vertex bounds. Boots have no separate equipped renderer."
             }, Newtonsoft.Json.Formatting.Indented));

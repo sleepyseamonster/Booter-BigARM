@@ -1,0 +1,40 @@
+{
+  "state": "persistent-faster-jog-installed-awaiting-author-comparison",
+  "speeds": [
+    1.4,
+    3.0,
+    5.0
+  ],
+  "walkToJogBlendEndSpeed": 2.7,
+  "sceneHash": "f1f12c4b94779ba6e6f552f1a26a342cfe4abc1c6f2e5758ea58713ebd7199d6",
+  "sceneDirty": false,
+  "acceptedSprintUnchanged": true,
+  "sceneSaved": false,
+  "playModeEntered": false,
+  "sources": [
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset",
+      "sha256": "94054051a46b00dafe94805878e7c9cf1c3db7dfc75a78ad8288c603660d9a87"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset.meta",
+      "sha256": "e3a3016b346d7c8ef91d42f03a85d209633484e9e2f8185e814590b3fbe55286"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionClipsStageAlignedCandidate.asset",
+      "sha256": "38acc24cd0b7356d3fef8c01e7ffb098a3baa2947ecd6edf3ad70035443caaef"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionClipsStageAlignedCandidate.asset.meta",
+      "sha256": "462cafc86242373d78db4304d76974f510a4964957e6cfc43605bb5591eb77d3"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset",
+      "sha256": "1e0c50adcb67bcaa5ccd373e09d815f0aefeb69ab5839a70df02bd173af28cdb"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset.meta",
+      "sha256": "017c05259c6ce9146eb61ed6e901e6e495f59e634c27d07576e171f97af77612"
+    }
+  ]
+}

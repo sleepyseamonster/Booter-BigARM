@@ -1,0 +1,63 @@
+{
+  "source": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Run_Fwd_NoRM.FBX",
+  "sourceSha256": "17e73a6e4f05287e33bf753c1e9526949ac57a958549c0525e95468f9d21d721",
+  "sourceMetaSha256": "0845593412268073f3f3c948dcdc484d676baf6e5f44eba9661fba725dacc0ac",
+  "authoredCurves": [
+    {
+      "muscle": "Chest Front-Back",
+      "gain": 1.15,
+      "centre": 0.0
+    },
+    {
+      "muscle": "UpperChest Front-Back",
+      "gain": 1.1,
+      "centre": 0.0
+    },
+    {
+      "muscle": "Left Arm Down-Up",
+      "gain": 1.15,
+      "centre": -0.4320667
+    },
+    {
+      "muscle": "Left Arm Front-Back",
+      "gain": 1.2,
+      "centre": 0.282655567
+    },
+    {
+      "muscle": "Right Arm Down-Up",
+      "gain": 1.15,
+      "centre": -0.5590046
+    },
+    {
+      "muscle": "Right Arm Front-Back",
+      "gain": 1.2,
+      "centre": 0.261516124
+    }
+  ],
+  "speeds": [
+    1.4,
+    2.2,
+    5.0
+  ],
+  "measured": {
+    "duration": 1.23333335,
+    "metresPerCycle": 5.6073208532103065,
+    "nativeContacts": [
+      0.18918919244338928,
+      0.44594592005478484,
+      0.7027027348283414,
+      0.9459459318115413
+    ],
+    "nativeContactSpeed": 4.546476306028946,
+    "nominalNativePlaybackRate": 1.09975278951078,
+    "pureMinimumEffectiveRate": 0.966756614727935,
+    "pureMaximumEffectiveRate": 1.2170067120435686,
+    "maximumLift": 0.04898239999999998,
+    "maximumLowering": 0.024467144000000052
+  },
+  "originalSourcesModified": false,
+  "rejectedSources": {
+    "SprintForwardTravelAlternative": "Retargeted minimum sole needs about 95mm lift, beyond the existing 80mm review bound; not installed",
+    "TwoCycleSprint": "Retargeted minimum sole needs about 112mm lift; asymmetric timing remains a separate issue; not installed"
+  }
+}

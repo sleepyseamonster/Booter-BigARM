@@ -66,6 +66,9 @@ namespace BooterBigArm.TopDown3D
         public float significantWeight = .1f;
         public float maximumLift = .08f, maximumLowering = .03f;
         public float enterSpeed = .18f, exitSpeed = .1f;
+        // Optional full-jog plateau: finish blending out walking before reaching
+        // the requested jogging travel speed. Zero preserves existing profiles.
+        public float walkToJogBlendEndSpeed;
         // Measured mixed-pose distance derivative around the second right stance.
         // x = actual speed, y = adjustment in metres per semantic cycle.
         public Vector2[] secondRightDistanceAdjustment = Array.Empty<Vector2>();
@@ -160,13 +163,17 @@ namespace BooterBigArm.TopDown3D
                 }
             }
             var walk = gaits[0].nominalSpeed; var run = gaits[1].nominalSpeed; var sprint = gaits[2].nominalSpeed;
+            var blendEnd = walkToJogBlendEndSpeed > 0 ? walkToJogBlendEndSpeed : run;
+            if (!float.IsFinite(walkToJogBlendEndSpeed) || walkToJogBlendEndSpeed < 0 || blendEnd <= walk || blendEnd > run)
+            { reason = "The walk/jog blend must end between walking and nominal jogging speed."; return false; }
             foreach (var point in secondRightDistanceAdjustment)
-                if (point.y != 0 && (point.x <= walk || point.x >= run))
+                if (point.y != 0 && (point.x <= walk || point.x >= blendEnd))
                 { reason = "Mixed stance distance calibration is limited to the measured walk/run interval."; return false; }
-            if (DistanceAdjustment(0) != 0 || DistanceAdjustment(walk) != 0 || DistanceAdjustment(run) != 0 || DistanceAdjustment(sprint) != 0)
+            if (DistanceAdjustment(0) != 0 || DistanceAdjustment(walk) != 0 || DistanceAdjustment(blendEnd) != 0 || DistanceAdjustment(run) != 0 || DistanceAdjustment(sprint) != 0)
             { reason = "Mixed stance calibration must preserve the measured pure gaits."; return false; }
             var rateSpeeds = new System.Collections.Generic.List<float> { .18f, walk, run, sprint,
                 Mathf.Lerp(walk, run, .1f), Mathf.Lerp(walk, run, .9f), Mathf.Lerp(run, sprint, .1f), Mathf.Lerp(run, sprint, .9f) };
+            rateSpeeds.Add(blendEnd); rateSpeeds.Add(Mathf.Lerp(walk, blendEnd, .1f)); rateSpeeds.Add(Mathf.Lerp(walk, blendEnd, .9f));
             foreach (var point in secondRightDistanceAdjustment) rateSpeeds.Add(point.x);
             foreach (var speed in rateSpeeds)
             {
@@ -247,7 +254,10 @@ namespace BooterBigArm.TopDown3D
 
         public Vector4 Weights(float speed)
         {
-            TopDown3DAnimationMath.CalculateGaitWeights(speed, gaits[0].nominalSpeed, gaits[1].nominalSpeed, gaits[2].nominalSpeed,
+            var blendEnd = walkToJogBlendEndSpeed > 0 ? walkToJogBlendEndSpeed : gaits[1].nominalSpeed;
+            var lowerBand = speed <= gaits[1].nominalSpeed;
+            TopDown3DAnimationMath.CalculateGaitWeights(lowerBand ? Mathf.Min(speed, blendEnd) : speed,
+                gaits[0].nominalSpeed, lowerBand ? blendEnd : gaits[1].nominalSpeed, gaits[2].nominalSpeed,
                 out var walk, out var run, out var sprint);
             var travel = Mathf.Clamp01(speed / gaits[0].nominalSpeed);
             return new Vector4(1 - travel, walk * travel, run * travel, sprint * travel);
