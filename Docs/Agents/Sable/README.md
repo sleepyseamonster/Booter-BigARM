@@ -36,7 +36,7 @@ Shared accepted art standards belong in the established topic-owned `Docs/` loca
 ## Current research
 
 - [Stylized realism art direction research](work/2026-10-15-stylized-realism/README.md) — the author's Arcane and No Rest for the Wicked direction, additional influences, resource catalogue, and proposed comparison study.
-- [Material diorama comparison plan](work/2026-10-15-material-dioramas/PLAN.md) — three dressed scenes, four treatments, fifteen surface conditions, controlled lights/cameras, and execution gates for the next comparison.
+- [Material diorama results and viewer](work/2026-10-15-material-dioramas/RESULTS.md) — implemented three-scene, four-treatment study: 97 captures, fifteen surface conditions, original B ground control, form pilot and native-source verification. New candidates await creative selection.
 
 ## Completion standard
 

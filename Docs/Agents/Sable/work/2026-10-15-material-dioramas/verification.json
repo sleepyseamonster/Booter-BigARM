@@ -1,0 +1,1009 @@
+{
+  "primary_images": 97,
+  "controlled_matching_groups": 18,
+  "material_coverage": {
+    "yard": [
+      "C01",
+      "G01",
+      "G02",
+      "G03",
+      "M01",
+      "M02",
+      "M03",
+      "M04",
+      "M05",
+      "M06",
+      "O01",
+      "S01",
+      "S02",
+      "S03",
+      "S04"
+    ],
+    "gate": [
+      "C01",
+      "G01",
+      "G02",
+      "G03",
+      "M01",
+      "M02",
+      "M03",
+      "M04",
+      "M05",
+      "M06",
+      "O01",
+      "S01",
+      "S02",
+      "S03",
+      "S04"
+    ],
+    "quarry": [
+      "C01",
+      "G01",
+      "G02",
+      "G03",
+      "M01",
+      "M02",
+      "M03",
+      "M04",
+      "M05",
+      "M06",
+      "O01",
+      "S01",
+      "S02",
+      "S03",
+      "S04"
+    ]
+  },
+  "native_resolution": [
+    2560,
+    1440
+  ],
+  "source_and_render_hashes_verified": true,
+  "camera_match_verified": true,
+  "review_images": [
+    {
+      "source": "yard_A_sunset_gameplay_controlled.png",
+      "image": "images/yard_A_sunset_gameplay_controlled.jpg",
+      "sha256": "fe5fea82b6de8cf4315f3ffe5411139ae3e29c8cf42647bb6f2cd00dfe22a62e"
+    },
+    {
+      "source": "yard_B_sunset_gameplay_controlled.png",
+      "image": "images/yard_B_sunset_gameplay_controlled.jpg",
+      "sha256": "f9b488191832a2a35df959e0d6ca50eacdda2f71136cdd7e0392361c1bb08479"
+    },
+    {
+      "source": "yard_C_sunset_gameplay_controlled.png",
+      "image": "images/yard_C_sunset_gameplay_controlled.jpg",
+      "sha256": "c7afe822d2c654a0c069d6257f545e8d13337d0162ab40112fdfb513971f3876"
+    },
+    {
+      "source": "yard_D_sunset_gameplay_controlled.png",
+      "image": "images/yard_D_sunset_gameplay_controlled.jpg",
+      "sha256": "15d559a8d85f52d4b57283e887d9ba6a7e048590891a5d80e6397a62e287b433"
+    },
+    {
+      "source": "yard_A_sunset_close_controlled.png",
+      "image": "images/yard_A_sunset_close_controlled.jpg",
+      "sha256": "ebaaee83aa7991a0896bcf9033f963f91bedacd9365eb502dc20d7479ffe3b4f"
+    },
+    {
+      "source": "yard_B_sunset_close_controlled.png",
+      "image": "images/yard_B_sunset_close_controlled.jpg",
+      "sha256": "2f5100cf2490ebe425caf69ebed73e06e8cebd9a3cb91218c773741e2c09626d"
+    },
+    {
+      "source": "yard_C_sunset_close_controlled.png",
+      "image": "images/yard_C_sunset_close_controlled.jpg",
+      "sha256": "b5d346e5562ceac9ec167a7c65d3812e3335c795ba0fe7ce7539638dce9fd076"
+    },
+    {
+      "source": "yard_D_sunset_close_controlled.png",
+      "image": "images/yard_D_sunset_close_controlled.jpg",
+      "sha256": "668152ee2c324c2a3389ac54cea8bdeb80d8e5813f28df11099c270a2f0194af"
+    },
+    {
+      "source": "yard_A_sunset_orbit_controlled.png",
+      "image": "images/yard_A_sunset_orbit_controlled.jpg",
+      "sha256": "bd389161c8c1cc4f3ceec8163acb6f7a13a2480ee48ec2bfdcbf4ca3fb8b4089"
+    },
+    {
+      "source": "yard_B_sunset_orbit_controlled.png",
+      "image": "images/yard_B_sunset_orbit_controlled.jpg",
+      "sha256": "f391fb91a56e0c27bdb5231ee09dee500b98926155738d45e5c73417049ace44"
+    },
+    {
+      "source": "yard_C_sunset_orbit_controlled.png",
+      "image": "images/yard_C_sunset_orbit_controlled.jpg",
+      "sha256": "b53800f5fc184c1bf1de1f7bf47f6dd89bf6fe03774c2233a98967f7ff320351"
+    },
+    {
+      "source": "yard_D_sunset_orbit_controlled.png",
+      "image": "images/yard_D_sunset_orbit_controlled.jpg",
+      "sha256": "50806291f3ca379a1423943d6f8b014785a52b1c67284ae6b2a15e3ce158e62e"
+    },
+    {
+      "source": "yard_A_twilight_gameplay_controlled.png",
+      "image": "images/yard_A_twilight_gameplay_controlled.jpg",
+      "sha256": "7356000c2d3f85338920cb9432975b91c9949acdec4ffa92327c5c71d0847121"
+    },
+    {
+      "source": "yard_B_twilight_gameplay_controlled.png",
+      "image": "images/yard_B_twilight_gameplay_controlled.jpg",
+      "sha256": "355b106ae34e209e0bef55f489724458e7872e48fbce9eb9eea762fc8897fccb"
+    },
+    {
+      "source": "yard_C_twilight_gameplay_controlled.png",
+      "image": "images/yard_C_twilight_gameplay_controlled.jpg",
+      "sha256": "aa935788f455785f8abe28f5afb7d538ac07adea791e8a6cd7226acbbd0a5c84"
+    },
+    {
+      "source": "yard_D_twilight_gameplay_controlled.png",
+      "image": "images/yard_D_twilight_gameplay_controlled.jpg",
+      "sha256": "c00cfa4f1eabf72da01059dba0a7b16524f15cce831e80a401754100c059eecc"
+    },
+    {
+      "source": "yard_A_twilight_close_controlled.png",
+      "image": "images/yard_A_twilight_close_controlled.jpg",
+      "sha256": "78cfb987293d329037fb9fbff46cc96e05144a3d15b529dbd793a5065dbd05e1"
+    },
+    {
+      "source": "yard_B_twilight_close_controlled.png",
+      "image": "images/yard_B_twilight_close_controlled.jpg",
+      "sha256": "645a2ff892658b1466a0f8b4bc23542f7ed829c98f186984d587ea43fd0a376e"
+    },
+    {
+      "source": "yard_C_twilight_close_controlled.png",
+      "image": "images/yard_C_twilight_close_controlled.jpg",
+      "sha256": "828c9bd810968da4b30030f14622551460d57898e19ffd8886a764f04b1e6293"
+    },
+    {
+      "source": "yard_D_twilight_close_controlled.png",
+      "image": "images/yard_D_twilight_close_controlled.jpg",
+      "sha256": "2081a725de11b9b3d31309f791fdd88621fd3011f9dcc926dae9dee3b6268d4f"
+    },
+    {
+      "source": "yard_A_twilight_orbit_controlled.png",
+      "image": "images/yard_A_twilight_orbit_controlled.jpg",
+      "sha256": "a2b95847a660ce495f4c34a6a930019471037cabab9b8d5ac4d41052b182673f"
+    },
+    {
+      "source": "yard_B_twilight_orbit_controlled.png",
+      "image": "images/yard_B_twilight_orbit_controlled.jpg",
+      "sha256": "9d5a99337b478a8076db7a2b0d713308d093ae9ada8b6946528b7982e1943b7d"
+    },
+    {
+      "source": "yard_C_twilight_orbit_controlled.png",
+      "image": "images/yard_C_twilight_orbit_controlled.jpg",
+      "sha256": "42cb612b4ec00731115e95466896fc1c35ab5beb0fc39c9240007346373cdcab"
+    },
+    {
+      "source": "yard_D_twilight_orbit_controlled.png",
+      "image": "images/yard_D_twilight_orbit_controlled.jpg",
+      "sha256": "46ac214b695e3a6e525d44db4f7bc26425a271598273260c291e2e160ecd4a1b"
+    },
+    {
+      "source": "gate_A_sunset_gameplay_controlled.png",
+      "image": "images/gate_A_sunset_gameplay_controlled.jpg",
+      "sha256": "285ab06b38654a0243aee493a3139880b13a8cbca25d43c11c78031d3675cc9e"
+    },
+    {
+      "source": "gate_B_sunset_gameplay_controlled.png",
+      "image": "images/gate_B_sunset_gameplay_controlled.jpg",
+      "sha256": "7752e9b500458ab78989dea322bcc4b0c6a2fed721906b397d3920cdf198cc16"
+    },
+    {
+      "source": "gate_C_sunset_gameplay_controlled.png",
+      "image": "images/gate_C_sunset_gameplay_controlled.jpg",
+      "sha256": "b9655587278e74cd4bc340705d626311d43210f1a59dbe659ae8776a04f7a036"
+    },
+    {
+      "source": "gate_D_sunset_gameplay_controlled.png",
+      "image": "images/gate_D_sunset_gameplay_controlled.jpg",
+      "sha256": "0aba4c45f576fa3c16b067b501571abcaf75198bc8a1884a234ff979daa4f1b1"
+    },
+    {
+      "source": "gate_A_sunset_close_controlled.png",
+      "image": "images/gate_A_sunset_close_controlled.jpg",
+      "sha256": "5e7b0698bdd43c9df4b1302896921490d4e694acc7dc1babb93d1dbc88e1fc08"
+    },
+    {
+      "source": "gate_B_sunset_close_controlled.png",
+      "image": "images/gate_B_sunset_close_controlled.jpg",
+      "sha256": "abd777982590df8d5a32ff21bcafede99657cb15739756ccec7fed349b3ed2a4"
+    },
+    {
+      "source": "gate_C_sunset_close_controlled.png",
+      "image": "images/gate_C_sunset_close_controlled.jpg",
+      "sha256": "a79d96e4c2f2ce993ac099a72e22c53e1aa421817191fc8e6e115c12e406ca2b"
+    },
+    {
+      "source": "gate_D_sunset_close_controlled.png",
+      "image": "images/gate_D_sunset_close_controlled.jpg",
+      "sha256": "db90d86fdc594e4b33884fa74e2c0ce89530c4118350e876a7c2de60cb3a93c9"
+    },
+    {
+      "source": "gate_A_sunset_orbit_controlled.png",
+      "image": "images/gate_A_sunset_orbit_controlled.jpg",
+      "sha256": "dc999d54935bc8eba8fe10085d283b21b593c0d9ea43e10f85284f13dbae2fcc"
+    },
+    {
+      "source": "gate_B_sunset_orbit_controlled.png",
+      "image": "images/gate_B_sunset_orbit_controlled.jpg",
+      "sha256": "02bae42141d72d6cb06a39b63ec5a6236837e3ba009ec72817448692d501542d"
+    },
+    {
+      "source": "gate_C_sunset_orbit_controlled.png",
+      "image": "images/gate_C_sunset_orbit_controlled.jpg",
+      "sha256": "c8500898232195e19002eeeeeca236c59aa37bd760e8df7a07d51c0f4af19ab5"
+    },
+    {
+      "source": "gate_D_sunset_orbit_controlled.png",
+      "image": "images/gate_D_sunset_orbit_controlled.jpg",
+      "sha256": "0ee0bc4be0368a9a6d118ff2882143abc02c79c46c9f045711b7a77486c05018"
+    },
+    {
+      "source": "gate_A_twilight_gameplay_controlled.png",
+      "image": "images/gate_A_twilight_gameplay_controlled.jpg",
+      "sha256": "2cb83cf01bacc227a24a1d491912cf5ec80755862ee057e3e8601c858364cf44"
+    },
+    {
+      "source": "gate_B_twilight_gameplay_controlled.png",
+      "image": "images/gate_B_twilight_gameplay_controlled.jpg",
+      "sha256": "24abd991cf4b327e4ed1d0f913e9552dc95a170340c356a720cdc3b323452643"
+    },
+    {
+      "source": "gate_C_twilight_gameplay_controlled.png",
+      "image": "images/gate_C_twilight_gameplay_controlled.jpg",
+      "sha256": "4dc364403148db66cefb30b131573af2dbb2ee2536c9e5304468e815d8fac305"
+    },
+    {
+      "source": "gate_D_twilight_gameplay_controlled.png",
+      "image": "images/gate_D_twilight_gameplay_controlled.jpg",
+      "sha256": "4faa8725928d78f4b68f50747e0ad6a3404b77c2dff334408dd043a3bd288a16"
+    },
+    {
+      "source": "gate_A_twilight_close_controlled.png",
+      "image": "images/gate_A_twilight_close_controlled.jpg",
+      "sha256": "282695a7ffac0452bc20277c735482f8af718f58017efb10c7c99a478dc5b884"
+    },
+    {
+      "source": "gate_B_twilight_close_controlled.png",
+      "image": "images/gate_B_twilight_close_controlled.jpg",
+      "sha256": "9bd7afa6d6f3b61707b3344860ace06e46ed8eb15332779a049021cb979f9611"
+    },
+    {
+      "source": "gate_C_twilight_close_controlled.png",
+      "image": "images/gate_C_twilight_close_controlled.jpg",
+      "sha256": "ec09c57443c16a3b62af6a4a76cbdd2f4d040f372ad1bfc1a313ca1509a87bd6"
+    },
+    {
+      "source": "gate_D_twilight_close_controlled.png",
+      "image": "images/gate_D_twilight_close_controlled.jpg",
+      "sha256": "794dd1a7184a2ac6b63866e46b04fee944ec299a9851eacba24a15293643d5f5"
+    },
+    {
+      "source": "gate_A_twilight_orbit_controlled.png",
+      "image": "images/gate_A_twilight_orbit_controlled.jpg",
+      "sha256": "d7ead0058bfeb2c0c2ada582cbb28f41a5f00ba11a6114838940e2028d7e5ae3"
+    },
+    {
+      "source": "gate_B_twilight_orbit_controlled.png",
+      "image": "images/gate_B_twilight_orbit_controlled.jpg",
+      "sha256": "081c8e99b98ec9ba04285c192915e41f9d2b987fc49e8a172f6ed50a44e86ab0"
+    },
+    {
+      "source": "gate_C_twilight_orbit_controlled.png",
+      "image": "images/gate_C_twilight_orbit_controlled.jpg",
+      "sha256": "3ca73c683296d90dd48e9daa281d928641b4632f352c2173a2c8b8880739421e"
+    },
+    {
+      "source": "gate_D_twilight_orbit_controlled.png",
+      "image": "images/gate_D_twilight_orbit_controlled.jpg",
+      "sha256": "93f3d2eea733db784a79b826a218618a5e775f027e1e7f8075f7b24743fa2c30"
+    },
+    {
+      "source": "quarry_A_sunset_gameplay_controlled.png",
+      "image": "images/quarry_A_sunset_gameplay_controlled.jpg",
+      "sha256": "8e2579c951cde4c9232c3920e36ca58a44c79f1e00dbb383ebe25aad4dd3191f"
+    },
+    {
+      "source": "quarry_B_sunset_gameplay_controlled.png",
+      "image": "images/quarry_B_sunset_gameplay_controlled.jpg",
+      "sha256": "9cb549995dd218072e81e50590f4f8478deee821aa37f45d3d48672edafd6d16"
+    },
+    {
+      "source": "quarry_C_sunset_gameplay_controlled.png",
+      "image": "images/quarry_C_sunset_gameplay_controlled.jpg",
+      "sha256": "7e95fa26d39945538398f4ab1c73959ad6a9c988e9e5a006bd8177ddbd457c2e"
+    },
+    {
+      "source": "quarry_D_sunset_gameplay_controlled.png",
+      "image": "images/quarry_D_sunset_gameplay_controlled.jpg",
+      "sha256": "ff410c91d55f0935e64f8fcaf8b344a615494d1314af30d2c0786d57c47230bd"
+    },
+    {
+      "source": "quarry_A_sunset_close_controlled.png",
+      "image": "images/quarry_A_sunset_close_controlled.jpg",
+      "sha256": "ee942728587fd287b4ecadacf622ad397113a830141e267115d183c613f43ff9"
+    },
+    {
+      "source": "quarry_B_sunset_close_controlled.png",
+      "image": "images/quarry_B_sunset_close_controlled.jpg",
+      "sha256": "2f8d509cf270d4e466cc2c6c7f165f601ced661f295ebcc3b8326b492d7933b2"
+    },
+    {
+      "source": "quarry_C_sunset_close_controlled.png",
+      "image": "images/quarry_C_sunset_close_controlled.jpg",
+      "sha256": "f7e9972c2e798cdc902558f5738a308ee3747c389d17a6791a44866ee7c01522"
+    },
+    {
+      "source": "quarry_D_sunset_close_controlled.png",
+      "image": "images/quarry_D_sunset_close_controlled.jpg",
+      "sha256": "a5135dac6829381794fb5335a1352fe537f9b3c39d6b0f1cc7293ef8504c6c93"
+    },
+    {
+      "source": "quarry_A_sunset_orbit_controlled.png",
+      "image": "images/quarry_A_sunset_orbit_controlled.jpg",
+      "sha256": "bc94040ff73f2879dfe6fd11e33b0a46dea811c785bca5afb3fb2e4d1a2a080c"
+    },
+    {
+      "source": "quarry_B_sunset_orbit_controlled.png",
+      "image": "images/quarry_B_sunset_orbit_controlled.jpg",
+      "sha256": "514b82cb5edbd712d10ba20f082698e613e53d12b8a6b4b76ec1c2df62b0e861"
+    },
+    {
+      "source": "quarry_C_sunset_orbit_controlled.png",
+      "image": "images/quarry_C_sunset_orbit_controlled.jpg",
+      "sha256": "9bdfc40df6891de461587d52c8fa1927e1be5de5b102a557b1da78b18ef1f181"
+    },
+    {
+      "source": "quarry_D_sunset_orbit_controlled.png",
+      "image": "images/quarry_D_sunset_orbit_controlled.jpg",
+      "sha256": "6070138ca635cadc23ff00d96133b18d65d8c4f52fa6c71470a1ed83101991a9"
+    },
+    {
+      "source": "quarry_A_twilight_gameplay_controlled.png",
+      "image": "images/quarry_A_twilight_gameplay_controlled.jpg",
+      "sha256": "abff73d03e28b7eccb8c9c3f598e9db9ef801ed7cddea81924c9059706f2e3a1"
+    },
+    {
+      "source": "quarry_B_twilight_gameplay_controlled.png",
+      "image": "images/quarry_B_twilight_gameplay_controlled.jpg",
+      "sha256": "04bd3d6cf6b81867a8f63270ffab74b9d73de1e0882f76dce6cbe5fdce111948"
+    },
+    {
+      "source": "quarry_C_twilight_gameplay_controlled.png",
+      "image": "images/quarry_C_twilight_gameplay_controlled.jpg",
+      "sha256": "ef8521568cbbe46d748559bed60471b0ad7dce5425831d4a5997d9f4da7d12af"
+    },
+    {
+      "source": "quarry_D_twilight_gameplay_controlled.png",
+      "image": "images/quarry_D_twilight_gameplay_controlled.jpg",
+      "sha256": "852557093918355bad63e6d82681e83624f67d7773d4a4498a9e67f2376ff878"
+    },
+    {
+      "source": "quarry_A_twilight_close_controlled.png",
+      "image": "images/quarry_A_twilight_close_controlled.jpg",
+      "sha256": "75d2ea0c6869d7c01f6f00dcc4721dbf48682364faa5c18ea0c4ff85ad2d3fb0"
+    },
+    {
+      "source": "quarry_B_twilight_close_controlled.png",
+      "image": "images/quarry_B_twilight_close_controlled.jpg",
+      "sha256": "234ee6b2b6bfc82739c61c1ce0756bfb1366cd3412bee3ba6f1522a4ca870d77"
+    },
+    {
+      "source": "quarry_C_twilight_close_controlled.png",
+      "image": "images/quarry_C_twilight_close_controlled.jpg",
+      "sha256": "7a6947b0dc8f49ee6522293709ccc19ec258b9da881343d46b1463a404f5aa7d"
+    },
+    {
+      "source": "quarry_D_twilight_close_controlled.png",
+      "image": "images/quarry_D_twilight_close_controlled.jpg",
+      "sha256": "3549c60ff890bdd1d098922f4f457590469aaa9ae7ff45d33a8a1598d6458612"
+    },
+    {
+      "source": "quarry_A_twilight_orbit_controlled.png",
+      "image": "images/quarry_A_twilight_orbit_controlled.jpg",
+      "sha256": "ac0d7e62a7ca4a443dd04710cf7c7bcf263050e3ef1281dfdbf89e92e09cd8c7"
+    },
+    {
+      "source": "quarry_B_twilight_orbit_controlled.png",
+      "image": "images/quarry_B_twilight_orbit_controlled.jpg",
+      "sha256": "ede1dfce2610e78b0f5d00154affff76a13d2ad135748854a61542c04992e13e"
+    },
+    {
+      "source": "quarry_C_twilight_orbit_controlled.png",
+      "image": "images/quarry_C_twilight_orbit_controlled.jpg",
+      "sha256": "912c9ece2707a622a7b78e2b09678ce08a37e4b2e27879e40cc78386b268dab9"
+    },
+    {
+      "source": "quarry_D_twilight_orbit_controlled.png",
+      "image": "images/quarry_D_twilight_orbit_controlled.jpg",
+      "sha256": "dd3aee15a896f0a898c0c191ca922832533687c32cc4067d810a2fc782943e8b"
+    },
+    {
+      "source": "plates_A_neutral_plate_material_metal.png",
+      "image": "images/plates_A_neutral_plate_material_metal.jpg",
+      "sha256": "530f8a2ffde5f9811c25a7807b04f5e8e4689a5121532108e78723da9b68ab8e"
+    },
+    {
+      "source": "plates_B_neutral_plate_material_metal.png",
+      "image": "images/plates_B_neutral_plate_material_metal.jpg",
+      "sha256": "e74aa8eefde98b4a7409102229e0a7b8cfeff5a86139863deb1f47733621cf43"
+    },
+    {
+      "source": "plates_C_neutral_plate_material_metal.png",
+      "image": "images/plates_C_neutral_plate_material_metal.jpg",
+      "sha256": "3f6b55e642bd51b0cd6a74256ec4d4be3c9791b6c20682c4765c1665c4a6a8bf"
+    },
+    {
+      "source": "plates_D_neutral_plate_material_metal.png",
+      "image": "images/plates_D_neutral_plate_material_metal.jpg",
+      "sha256": "6067096c9dd69b4bc5e5ca412301feed13955976d03da5261cab6d0fcdbf3f3c"
+    },
+    {
+      "source": "plates_A_neutral_plate_material_stone.png",
+      "image": "images/plates_A_neutral_plate_material_stone.jpg",
+      "sha256": "34a4d508df06f895f6d37fa5a2f547bd1cfbe96829c62856dbe3f64a52e847fc"
+    },
+    {
+      "source": "plates_B_neutral_plate_material_stone.png",
+      "image": "images/plates_B_neutral_plate_material_stone.jpg",
+      "sha256": "0cad607ab127dcaa1a55ffd224df390b3af435201774ee6eb221f0f8c146463e"
+    },
+    {
+      "source": "plates_C_neutral_plate_material_stone.png",
+      "image": "images/plates_C_neutral_plate_material_stone.jpg",
+      "sha256": "7b559aec2cc93c8d6c939c1606deba04afc0f3f72775e162d58b622d50bde0ed"
+    },
+    {
+      "source": "plates_D_neutral_plate_material_stone.png",
+      "image": "images/plates_D_neutral_plate_material_stone.jpg",
+      "sha256": "a0fb9646909480b484dbe441098dccf93f4ab3b77a79729c76bd594cb27cc4c1"
+    },
+    {
+      "source": "plates_A_neutral_plate_material_ground.png",
+      "image": "images/plates_A_neutral_plate_material_ground.jpg",
+      "sha256": "ee3e23a4df16698f37b8d1391f6bf2687c73518ebe72423c27dc4daf1f4fd162"
+    },
+    {
+      "source": "plates_B_neutral_plate_material_ground.png",
+      "image": "images/plates_B_neutral_plate_material_ground.jpg",
+      "sha256": "5f3eaf4315dc43bbe3410b0c6ff730be34f9f5647794cb9a9dcd2a37e6851683"
+    },
+    {
+      "source": "plates_C_neutral_plate_material_ground.png",
+      "image": "images/plates_C_neutral_plate_material_ground.jpg",
+      "sha256": "3d5418dc680f681110475d2cd1e9c5ebaf9525e149dbb130c58e32ca13e98690"
+    },
+    {
+      "source": "plates_D_neutral_plate_material_ground.png",
+      "image": "images/plates_D_neutral_plate_material_ground.jpg",
+      "sha256": "db177b42bce3872e71157d276d8530fe7dc05ea099853886d26f9e14432d8644"
+    },
+    {
+      "source": "yard_A_neutral_gameplay_neutral_diagnostic.png",
+      "image": "images/yard_A_neutral_gameplay_neutral_diagnostic.jpg",
+      "sha256": "e6a2eecf9abc5412cdfe3fe7e3889a628efb6227c59187d9d4666df1a16640c5"
+    },
+    {
+      "source": "yard_B_neutral_gameplay_neutral_diagnostic.png",
+      "image": "images/yard_B_neutral_gameplay_neutral_diagnostic.jpg",
+      "sha256": "3f4c90bd6f3290e19edb5ae2f02a3c6437aa93388bf11169623a6cabcd213ba0"
+    },
+    {
+      "source": "yard_C_neutral_gameplay_neutral_diagnostic.png",
+      "image": "images/yard_C_neutral_gameplay_neutral_diagnostic.jpg",
+      "sha256": "ac97aeae085e852ba81c94cfd96d8ba2013f76bae1d7c67658ef50a540c0ff7f"
+    },
+    {
+      "source": "yard_D_neutral_gameplay_neutral_diagnostic.png",
+      "image": "images/yard_D_neutral_gameplay_neutral_diagnostic.jpg",
+      "sha256": "137bec2f70cd821eaef36f1d2db6153dc726aafac970a84833e13fdb239542bb"
+    },
+    {
+      "source": "control_B_neutral_control_accepted_ground.png",
+      "image": "images/control_B_neutral_control_accepted_ground.jpg",
+      "sha256": "2ee0d5b584d5d7d4ea3709b16ff55270aaacf9bcbb72c65f31db2b73f48af2ea"
+    },
+    {
+      "source": "yard_A_sunset_gameplay_whole_style.png",
+      "image": "images/yard_A_sunset_gameplay_whole_style.jpg",
+      "sha256": "e545b8709e699cb31633ac2b4081b75cab50c254bf967a764dfa5c74c702dc1d"
+    },
+    {
+      "source": "yard_A_sunset_close_whole_style.png",
+      "image": "images/yard_A_sunset_close_whole_style.jpg",
+      "sha256": "a081b329a158d340d0e8e5fab4d9e54b63af7100d8f44fe4725a77a666def3a1"
+    },
+    {
+      "source": "yard_B_sunset_gameplay_whole_style.png",
+      "image": "images/yard_B_sunset_gameplay_whole_style.jpg",
+      "sha256": "911df359a37a54aaa6a3654a2a86615abe782be96ade85e9cc002745c51a49c1"
+    },
+    {
+      "source": "yard_B_sunset_close_whole_style.png",
+      "image": "images/yard_B_sunset_close_whole_style.jpg",
+      "sha256": "a57b11550804c184fb0b9a15c6c523cba900a9d3fbe7f34bf4feaf21547103dd"
+    },
+    {
+      "source": "yard_C_sunset_gameplay_whole_style.png",
+      "image": "images/yard_C_sunset_gameplay_whole_style.jpg",
+      "sha256": "0bc6b6ea2923f6ed3f8bf6b601542f7448ed5fa927795b130b7bcfd2b81eacf3"
+    },
+    {
+      "source": "yard_C_sunset_close_whole_style.png",
+      "image": "images/yard_C_sunset_close_whole_style.jpg",
+      "sha256": "0bfdb1c938718cbc3c69055c83fe01ce6139e55799a047eaa5185edbd81a575b"
+    },
+    {
+      "source": "yard_D_sunset_gameplay_whole_style.png",
+      "image": "images/yard_D_sunset_gameplay_whole_style.jpg",
+      "sha256": "0057b60ddbcecde66ab77699aba43794451fadd938733b776112789f1af430b3"
+    },
+    {
+      "source": "yard_D_sunset_close_whole_style.png",
+      "image": "images/yard_D_sunset_close_whole_style.jpg",
+      "sha256": "a3d0de9eb0b8cda7c585e14df9f801723a32e01cd438df7192860f610ae89bda"
+    }
+  ],
+  "image_metrics": [
+    {
+      "file": "yard_A_sunset_gameplay_controlled.png",
+      "mean_luma_8bit": 77.81443060980902,
+      "near_black_fraction": 0.00032362196180555557,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_B_sunset_gameplay_controlled.png",
+      "mean_luma_8bit": 69.68575249565973,
+      "near_black_fraction": 0.00022189670138888888,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_C_sunset_gameplay_controlled.png",
+      "mean_luma_8bit": 77.61157362196181,
+      "near_black_fraction": 0.0002669270833333333,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_D_sunset_gameplay_controlled.png",
+      "mean_luma_8bit": 76.51345486111111,
+      "near_black_fraction": 0.0004736328125,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_A_sunset_close_controlled.png",
+      "mean_luma_8bit": 93.01049886067709,
+      "near_black_fraction": 0.0025927734375,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_B_sunset_close_controlled.png",
+      "mean_luma_8bit": 92.67303846571181,
+      "near_black_fraction": 0.0026573350694444444,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_C_sunset_close_controlled.png",
+      "mean_luma_8bit": 95.5671533203125,
+      "near_black_fraction": 0.002328830295138889,
+      "near_white_fraction": 2.712673611111111e-07
+    },
+    {
+      "file": "yard_D_sunset_close_controlled.png",
+      "mean_luma_8bit": 96.52926812065972,
+      "near_black_fraction": 0.003273654513888889,
+      "near_white_fraction": 2.7126736111111112e-06
+    },
+    {
+      "file": "yard_A_sunset_orbit_controlled.png",
+      "mean_luma_8bit": 68.21553873697917,
+      "near_black_fraction": 0.03201714409722222,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_B_sunset_orbit_controlled.png",
+      "mean_luma_8bit": 63.68615749782986,
+      "near_black_fraction": 0.02674777560763889,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_C_sunset_orbit_controlled.png",
+      "mean_luma_8bit": 68.9648402235243,
+      "near_black_fraction": 0.027760145399305554,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_D_sunset_orbit_controlled.png",
+      "mean_luma_8bit": 68.6952086046007,
+      "near_black_fraction": 0.019613444010416668,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_A_twilight_gameplay_controlled.png",
+      "mean_luma_8bit": 48.46315022786458,
+      "near_black_fraction": 0.0020966254340277777,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_B_twilight_gameplay_controlled.png",
+      "mean_luma_8bit": 42.683215874565974,
+      "near_black_fraction": 0.0007709418402777777,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_C_twilight_gameplay_controlled.png",
+      "mean_luma_8bit": 48.29837727864583,
+      "near_black_fraction": 0.0013981119791666666,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_D_twilight_gameplay_controlled.png",
+      "mean_luma_8bit": 47.42850992838542,
+      "near_black_fraction": 0.0012247721354166667,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_A_twilight_close_controlled.png",
+      "mean_luma_8bit": 64.63699544270834,
+      "near_black_fraction": 0.006004503038194445,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_B_twilight_close_controlled.png",
+      "mean_luma_8bit": 63.56837890625,
+      "near_black_fraction": 0.0055992296006944445,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_C_twilight_close_controlled.png",
+      "mean_luma_8bit": 66.53280056423611,
+      "near_black_fraction": 0.005259060329861111,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_D_twilight_close_controlled.png",
+      "mean_luma_8bit": 66.89595621744792,
+      "near_black_fraction": 0.007537706163194445,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_A_twilight_orbit_controlled.png",
+      "mean_luma_8bit": 36.388095431857636,
+      "near_black_fraction": 0.05880832248263889,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_B_twilight_orbit_controlled.png",
+      "mean_luma_8bit": 32.905642903645834,
+      "near_black_fraction": 0.05169243706597222,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_C_twilight_orbit_controlled.png",
+      "mean_luma_8bit": 36.64581136067709,
+      "near_black_fraction": 0.055310872395833335,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_D_twilight_orbit_controlled.png",
+      "mean_luma_8bit": 36.41391927083333,
+      "near_black_fraction": 0.04586669921875,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_A_sunset_gameplay_controlled.png",
+      "mean_luma_8bit": 85.04669297960069,
+      "near_black_fraction": 1.0036892361111111e-05,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_B_sunset_gameplay_controlled.png",
+      "mean_luma_8bit": 73.7903564453125,
+      "near_black_fraction": 2.3600260416666666e-05,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_C_sunset_gameplay_controlled.png",
+      "mean_luma_8bit": 83.9156298828125,
+      "near_black_fraction": 1.220703125e-05,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_D_sunset_gameplay_controlled.png",
+      "mean_luma_8bit": 81.49714382595486,
+      "near_black_fraction": 1.46484375e-05,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_A_sunset_close_controlled.png",
+      "mean_luma_8bit": 112.06979899088542,
+      "near_black_fraction": 0.0009757486979166666,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_B_sunset_close_controlled.png",
+      "mean_luma_8bit": 105.43785698784723,
+      "near_black_fraction": 0.0011222330729166667,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_C_sunset_close_controlled.png",
+      "mean_luma_8bit": 112.78147189670139,
+      "near_black_fraction": 0.0010161675347222221,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_D_sunset_close_controlled.png",
+      "mean_luma_8bit": 110.41566324869791,
+      "near_black_fraction": 0.0012443033854166667,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_A_sunset_orbit_controlled.png",
+      "mean_luma_8bit": 79.45841091579861,
+      "near_black_fraction": 0.0080517578125,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_B_sunset_orbit_controlled.png",
+      "mean_luma_8bit": 72.28953152126736,
+      "near_black_fraction": 0.0038937717013888887,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_C_sunset_orbit_controlled.png",
+      "mean_luma_8bit": 79.65507839626736,
+      "near_black_fraction": 0.00577392578125,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_D_sunset_orbit_controlled.png",
+      "mean_luma_8bit": 78.52527642144098,
+      "near_black_fraction": 0.005070258246527778,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_A_twilight_gameplay_controlled.png",
+      "mean_luma_8bit": 53.84310384114583,
+      "near_black_fraction": 0.0009375,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_B_twilight_gameplay_controlled.png",
+      "mean_luma_8bit": 45.86086886935764,
+      "near_black_fraction": 0.0002663845486111111,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_C_twilight_gameplay_controlled.png",
+      "mean_luma_8bit": 53.00919894748264,
+      "near_black_fraction": 0.0006740993923611111,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_D_twilight_gameplay_controlled.png",
+      "mean_luma_8bit": 51.11866861979167,
+      "near_black_fraction": 0.00028184678819444443,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_A_twilight_close_controlled.png",
+      "mean_luma_8bit": 80.2323375108507,
+      "near_black_fraction": 0.0018560112847222222,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_B_twilight_close_controlled.png",
+      "mean_luma_8bit": 74.84031656901041,
+      "near_black_fraction": 0.0019276258680555555,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_C_twilight_close_controlled.png",
+      "mean_luma_8bit": 80.9081068250868,
+      "near_black_fraction": 0.0017621527777777778,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_D_twilight_close_controlled.png",
+      "mean_luma_8bit": 78.56298692491319,
+      "near_black_fraction": 0.0031890190972222224,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_A_twilight_orbit_controlled.png",
+      "mean_luma_8bit": 43.52940131293403,
+      "near_black_fraction": 0.013189561631944444,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_B_twilight_orbit_controlled.png",
+      "mean_luma_8bit": 38.10553602430556,
+      "near_black_fraction": 0.010377875434027777,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_C_twilight_orbit_controlled.png",
+      "mean_luma_8bit": 43.33059868706597,
+      "near_black_fraction": 0.01229465060763889,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "gate_D_twilight_orbit_controlled.png",
+      "mean_luma_8bit": 42.44063666449653,
+      "near_black_fraction": 0.009751790364583334,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_A_sunset_gameplay_controlled.png",
+      "mean_luma_8bit": 81.61836697048611,
+      "near_black_fraction": 5.4253472222222224e-06,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_B_sunset_gameplay_controlled.png",
+      "mean_luma_8bit": 71.03701904296875,
+      "near_black_fraction": 7.32421875e-06,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_C_sunset_gameplay_controlled.png",
+      "mean_luma_8bit": 80.82427463107639,
+      "near_black_fraction": 4.611545138888889e-06,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_D_sunset_gameplay_controlled.png",
+      "mean_luma_8bit": 79.13090033637152,
+      "near_black_fraction": 1.3834635416666666e-05,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_A_sunset_close_controlled.png",
+      "mean_luma_8bit": 97.251015625,
+      "near_black_fraction": 0.0009849717881944445,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_B_sunset_close_controlled.png",
+      "mean_luma_8bit": 93.14429361979167,
+      "near_black_fraction": 0.0010205078125,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_C_sunset_close_controlled.png",
+      "mean_luma_8bit": 99.09738823784723,
+      "near_black_fraction": 0.0008810763888888889,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_D_sunset_close_controlled.png",
+      "mean_luma_8bit": 98.86719156901042,
+      "near_black_fraction": 0.0010215928819444445,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_A_sunset_orbit_controlled.png",
+      "mean_luma_8bit": 78.29945421006944,
+      "near_black_fraction": 0.006329481336805555,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_B_sunset_orbit_controlled.png",
+      "mean_luma_8bit": 71.23750325520834,
+      "near_black_fraction": 0.0027842881944444443,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_C_sunset_orbit_controlled.png",
+      "mean_luma_8bit": 78.57911566840278,
+      "near_black_fraction": 0.0038956705729166667,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_D_sunset_orbit_controlled.png",
+      "mean_luma_8bit": 77.67463297526042,
+      "near_black_fraction": 0.004200032552083333,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_A_twilight_gameplay_controlled.png",
+      "mean_luma_8bit": 50.76848442925347,
+      "near_black_fraction": 3.824869791666667e-05,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_B_twilight_gameplay_controlled.png",
+      "mean_luma_8bit": 43.2767822265625,
+      "near_black_fraction": 3.41796875e-05,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_C_twilight_gameplay_controlled.png",
+      "mean_luma_8bit": 50.14141031901042,
+      "near_black_fraction": 3.607855902777778e-05,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_D_twilight_gameplay_controlled.png",
+      "mean_luma_8bit": 48.91318277994792,
+      "near_black_fraction": 9.250217013888889e-05,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_A_twilight_close_controlled.png",
+      "mean_luma_8bit": 66.999814453125,
+      "near_black_fraction": 0.0022273763020833333,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_B_twilight_close_controlled.png",
+      "mean_luma_8bit": 63.34872477213542,
+      "near_black_fraction": 0.0022393120659722223,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_C_twilight_close_controlled.png",
+      "mean_luma_8bit": 68.30283528645833,
+      "near_black_fraction": 0.0018660481770833334,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_D_twilight_close_controlled.png",
+      "mean_luma_8bit": 67.95564425998263,
+      "near_black_fraction": 0.002797309027777778,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_A_twilight_orbit_controlled.png",
+      "mean_luma_8bit": 42.67564398871528,
+      "near_black_fraction": 0.011213650173611112,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_B_twilight_orbit_controlled.png",
+      "mean_luma_8bit": 37.358301866319444,
+      "near_black_fraction": 0.008167860243055556,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_C_twilight_orbit_controlled.png",
+      "mean_luma_8bit": 42.52918077256945,
+      "near_black_fraction": 0.009979112413194444,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "quarry_D_twilight_orbit_controlled.png",
+      "mean_luma_8bit": 41.8618296983507,
+      "near_black_fraction": 0.007723253038194444,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_A_neutral_gameplay_neutral_diagnostic.png",
+      "mean_luma_8bit": 81.04895914713542,
+      "near_black_fraction": 0.00011013454861111112,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_B_neutral_gameplay_neutral_diagnostic.png",
+      "mean_luma_8bit": 72.88490342881944,
+      "near_black_fraction": 7.080078125e-05,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_C_neutral_gameplay_neutral_diagnostic.png",
+      "mean_luma_8bit": 80.83622992621528,
+      "near_black_fraction": 8.51779513888889e-05,
+      "near_white_fraction": 0.0
+    },
+    {
+      "file": "yard_D_neutral_gameplay_neutral_diagnostic.png",
+      "mean_luma_8bit": 79.79031982421876,
+      "near_black_fraction": 0.0002772352430555556,
+      "near_white_fraction": 0.0
+    }
+  ],
+  "limits": "Metrics diagnose clipping but do not prove visual quality. Offline Cycles only. Visual review and clean-source reproduction recorded separately."
+}

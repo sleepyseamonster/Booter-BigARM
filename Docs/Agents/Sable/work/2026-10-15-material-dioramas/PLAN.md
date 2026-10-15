@@ -1,6 +1,6 @@
 # Material diorama comparison plan
 
-Sable, October 15, 2026. **Status: proposed execution plan; planning deliverable complete.** Authority: the author requested fleshed-out, well-lit dioramas showing different art styles, processed metals, raw and rusted iron, several stone families, dirt, rock textures, and clutter, and explicitly requested this plan as a goal.
+Sable, October 15, 2026. **Status: implementation authorized; audit corrections incorporated.** Authority: the author requested this plan, reviewed its audit, then explicitly directed implementation as a goal. Creative candidates remain proposals until visual review.
 
 ## Intended result
 
@@ -8,7 +8,7 @@ Build **three authored dioramas in four surface treatments: twelve comparable sc
 
 Use the accepted **B ground and restrained B–C rocks/props** as the preferred-direction candidate, not as a final answer imposed on the new comparison. The author's selection remains controlling until they review alternatives. See [accepted comparison](../2026-10-15-stylized-realism/STUDY_RESULTS.md), [expanded references](../2026-10-15-stylized-realism/EXPANDED_GAME_STUDY.md), and [world basis](../../../../WORLD_BASIS.md).
 
-This goal ends with the plan. The implementation described below is the next execution scope; no diorama, texture, render, or Unity integration is delivered by this planning batch.
+The initial planning goal is complete. The current implementation goal delivers an offline study and evidence, not production integration. See [AUDIT.md](AUDIT.md) for the pre-implementation findings and [IMPLEMENTATION.md](IMPLEMENTATION.md) for the bounded execution revision and its proof requirements.
 
 ## Three places to compare
 
@@ -65,7 +65,7 @@ For the first comparison, **geometry, prop arrangement, stone distribution, mate
 
 Keep clean metal clean and heavily rusted metal heavily rusted in every candidate. Keep chips, scratches, and oxide boundaries in the same places. Match broad color/value intent well enough that simply making a version brighter does not become its apparent advantage. Do not force dark basalt and pale limestone to have equal brightness.
 
-Do not use a global oil-paint postfilter to create B or C. Do not decimate geometry only for D in this pass. A shape-language comparison can follow if the materials study identifies a reason; it would use its own matched views and explicit geometry differences.
+Do not use a global oil-paint postfilter to create B or C. The common-geometry material matrix preserves all meshes. A separate workyard whole-style pilot adds documented rock-plane and selected machinery-proportion changes for C/D, with A/B retaining the common form. It uses its own matched views and is explicitly not texture-only evidence.
 
 ## Asset and texture authoring
 
@@ -91,11 +91,11 @@ Create one shared lighting rig with two world-compatible presets plus a separate
 
 Scene practical lamps may support composition if justified, but their positions, colors, and intensities stay fixed across candidates. Keep atmosphere light enough to see surfaces; no heavy fog curtain, bloom, or depth of field that conceals comparison subjects. Match the rig in scene coordinates and record any scene-specific occlusion.
 
-Lock exposure and color management across style candidates. Tune the sunset and twilight presets once against A and B, then freeze them for all four. Neutral gray and dark reference chips outside the beauty framing help diagnose clipping and exposure. Review unfiltered color and grayscale companions; grayscale is not the approval image.
+Lock exposure and color management across style candidates. Qualify sunset and twilight on all four candidates before accepting the capture batch. Use diagnostic plates and a neutral full-workyard comparison to separate lighting from surface design. Review unfiltered color and grayscale companions; grayscale is not the approval image.
 
 ## Cameras and capture matrix
 
-Use a shared camera definition per scene, stored numerically. Recheck live production camera settings at implementation time. The earlier study used 22 m distance, 50-degree pitch, and 48-degree vertical field of view; use that as the starting gameplay reference, then record any diorama framing adjustment. Preserve a single framing per view across all four candidates.
+Use a shared camera definition per scene, stored numerically. Preserve the serialized elevated-camera reference at 22 m distance, 50-degree pitch, 40-degree yaw, 1.15 m target height, and 48-degree vertical field of view. The study fixes a 16:9 aspect ratio. This is an offline authored-camera proxy: runtime user preferences, obstruction response, look-ahead, and riding can alter the active view. Compose for this reference rather than changing its distance/FOV to fit. Close and orbit views are separately framed and labelled.
 
 1. **Elevated gameplay:** whole composition, clear route, large material patches, and scale reference visible.
 2. **Material close view:** stage a grouping containing processed metal, forged iron, rust, and the three main stone families; enough pixels to inspect roughness, grain, and edges.
@@ -103,9 +103,9 @@ Use a shared camera definition per scene, stored numerically. Recheck live produ
 
 Place an original neutral human-scale stand-in and a metre reference outside the main close-up. Record its dimensions as a study scale aid, not a new canonical Booter height. Do not borrow an actively changing character or the dirty camp scene as scratch content.
 
-Final capture target: **3 scenes × 4 candidates × 2 world lighting presets × 3 views = 72 scene images**, plus **4 neutral material plates**, one per candidate, each with the same 15 labelled samples. **Total: 76 primary review images.** Arrange each plate as a five-by-three grid with flat and curved/bevelled surface cues. Derived contact sheets, grayscale views, and crops do not count as additional scene renders.
+Revised capture target: **72 common-geometry scene images**, **12 neutral detail plates** (metal, stone/ore, and ground/ceramic for each candidate), **4 neutral full-workyard diagnostics**, **1 paired accepted-ground control**, and **8 whole-style pilot images** (four candidates, gameplay and close, sunset). **Total: 97 primary review images.** Plates use identical flat/bevelled and curved coupons at matching orientation, grouped at no more than six materials per plate. Derived contact sheets, grayscale views, and crops do not count as additional scene renders.
 
-Start with 960 × 600 previews. Target 2560 × 1600 for final review; inspect fine-detail crops at native pixels. Benchmark the actual scene and available renderer before selecting final samples, denoising, concurrency, storage, or any completion estimate. Raise quality only where noise or denoising affects the material decision.
+Use 960 × 540 previews and 2560 × 1440 final review images, preserving 16:9 framing. Inspect fine-detail crops at native pixels. Benchmark the actual scene and available renderer before selecting samples, denoising, concurrency, or storage. Raise quality only where noise or denoising affects the material decision.
 
 ## Execution order and gates
 
@@ -113,10 +113,10 @@ Start with 960 × 600 previews. Target 2560 × 1600 for final review; inspect fi
 | --- | --- | --- |
 | 1. Preflight and source selection | Inspect tools, source availability, licensing, ownership, and local storage; inventory all 15 surface conditions | Source paths/hashes, missing-source list resolved, local-only native destination and narrow raw-output exclusion confirmed |
 | 2. Scene blockouts | Build all three compositions in neutral gray with the scale stand-in and broad light | Three readable gameplay previews; no floating props, blocked review subjects, or stage edges in camera |
-| 3. Material kit | Finish A's material families and the common wear/dust masks; prepare B/C/D variants | Four neutral plates; all 15 surfaces present, distinct, labelled, and mapped consistently |
+| 3. Material kit | Finish A's material families and the common wear/dust masks; prepare B/C/D variants | Twelve grouped neutral plates; all 15 surfaces present, labelled, and mapped consistently; original-B/new-ground control retained |
 | 4. First complete scene | Dress the salvage workyard and compare all four candidates in sunset and twilight | Internal visual review of scene hierarchy, material distinction, seams, metal reflections, and twilight exposure; correct failures before multiplying scenes |
 | 5. Remaining dioramas | Dress the service gate and quarry from the sealed shared kit | Matching scene manifests per style, intentional clutter hierarchy, all requested families represented |
-| 6. Final capture and packaging | Render the 76-image matrix, build matched comparison boards and a local viewer | Complete matrix, matching camera/light/layout checks, inspected images, working viewer, provenance receipt |
+| 6. Final capture and packaging | Render the revised 97-image matrix, build matched comparison boards and a local viewer | Complete matrix, matching camera/light/layout checks, inspected images, working viewer, provenance receipt, packed-dependency reopen and reproduction frame |
 | 7. Art review and handoff | Record strengths, failures, material-specific recommendations, and unresolved choices | User-facing review can select ground, stone, metal, and overall finish independently; no global style choice forced by one attractive image |
 
 Steps 2–6 include internal quality gates, not a new permission request at every stage. If implementation is requested, proceed through reversible study work within that scope and repair ordinary defects. Stop for a concrete missing dependency or ownership conflict, not merely because a visual iteration is needed.

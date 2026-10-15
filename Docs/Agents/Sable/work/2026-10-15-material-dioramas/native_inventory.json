@@ -1,0 +1,56 @@
+{
+  "packed_images": [
+    {
+      "name": "B_subtle_atlas.png",
+      "packed": true,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "packed_sha256": "c038c8f9a94a274baf225cdd1bb77eb1d8bbf00d7fcc70faadfd61695f46fcc8"
+    },
+    {
+      "name": "C_painterly_atlas.png",
+      "packed": true,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "packed_sha256": "39b193c04b7306e3a76b17f3a0f083984629e80583bd249105bec9c1c68a01d7"
+    },
+    {
+      "name": "SculptedBasalt01_BaseColor",
+      "packed": true,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "0b1f43d32341c4aa7d9a1350a916161eac6645e07ac44b271ef40aa7385d96c1"
+    },
+    {
+      "name": "SculptedBasalt01_Normal",
+      "packed": true,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "2afbc5cfd66129eecc16ffdeedd20084feecb6d85eebbb043fd72adf906b8487"
+    },
+    {
+      "name": "SculptedBasalt01_Roughness",
+      "packed": true,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "d439990f11ae0a1c578eed5521ae80cf49d59f430b155869474e1bb46d300a10"
+    }
+  ],
+  "inventory": {
+    "yard": 177,
+    "gate": 151,
+    "quarry": 123
+  },
+  "materials": 74,
+  "mesh_topology_checks": 483
+}

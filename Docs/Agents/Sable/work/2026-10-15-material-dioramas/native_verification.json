@@ -1,0 +1,80 @@
+{
+  "opened_source": "D:\\Arc & Dust\\Project\\outputs\\Sable\\MaterialDioramas20261015\\reopen\\MaterialDioramas.blend",
+  "packed_images": [
+    {
+      "name": "B_subtle_atlas.png",
+      "packed": true,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "packed_sha256": "c038c8f9a94a274baf225cdd1bb77eb1d8bbf00d7fcc70faadfd61695f46fcc8"
+    },
+    {
+      "name": "C_painterly_atlas.png",
+      "packed": true,
+      "dimensions": [
+        2172,
+        724
+      ],
+      "packed_sha256": "39b193c04b7306e3a76b17f3a0f083984629e80583bd249105bec9c1c68a01d7"
+    },
+    {
+      "name": "SculptedBasalt01_BaseColor",
+      "packed": true,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "0b1f43d32341c4aa7d9a1350a916161eac6645e07ac44b271ef40aa7385d96c1"
+    },
+    {
+      "name": "SculptedBasalt01_Normal",
+      "packed": true,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "2afbc5cfd66129eecc16ffdeedd20084feecb6d85eebbb043fd72adf906b8487"
+    },
+    {
+      "name": "SculptedBasalt01_Roughness",
+      "packed": true,
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "packed_sha256": "d439990f11ae0a1c578eed5521ae80cf49d59f430b155869474e1bb46d300a10"
+    }
+  ],
+  "inventory": {
+    "yard": 177,
+    "gate": 151,
+    "quarry": 123
+  },
+  "materials": 74,
+  "mesh_topology_checks": 483,
+  "material_manifest_sha256": "aeeb651ceba33cf64f3beaa92943b6bb96db2011b1be0cc0ed1ede0139d4ebd9",
+  "reference": "yard_B_sunset_gameplay_controlled.png",
+  "reproduction": "outputs\\Sable\\MaterialDioramas20261015\\native_reproduction.png",
+  "reproduction_sha256": "10971ef661579f13183fd80868ab10550c312d704b5ac37881e9b8823fc6a8db",
+  "exact_hash_match": false,
+  "render_settings": {
+    "samples": 40,
+    "resolution": [
+      2560,
+      1440
+    ],
+    "exposure": 0.0
+  },
+  "unity_proof": false,
+  "pixel_comparison": {
+    "identical": false,
+    "mean_absolute_rgb": [
+      5.9136284722222224e-05,
+      4.475911458333333e-05,
+      4.638671875e-05
+    ],
+    "maximum_channel_error": 1
+  }
+}

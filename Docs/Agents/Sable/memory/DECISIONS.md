@@ -45,3 +45,11 @@ Sable's leading recommendations are Dishonored 2 for painted material balance, K
 Authority: the author requested a more complete, well-lit multi-style scene study with processed metals, raw/rusted iron, volcanic/granite/limestone stone, dirt, rock textures, and clutter, then explicitly requested a plan as the goal. The [diorama plan](../work/2026-10-15-material-dioramas/PLAN.md) proposes three scenes in four treatments, fifteen surface conditions including separate bare iron and ore, and 76 primary review images with fixed comparison conditions.
 
 This completes planning only. Scene names, kit, treatments, capture counts, and implementation gates are proposed execution details. No diorama, new texture, render, Unity integration, or replacement art approval is claimed by the planning batch.
+
+## October 15, 2026 — Material diorama implementation goal
+
+Authority: the author explicitly requested implementation of the audited plan as a goal. [Results](../work/2026-10-15-material-dioramas/RESULTS.md) deliver three dressed Blender scenes, four original treatments, fifteen surface conditions, 97 primary images, 25 boards/contact sheets and an interactive local viewer. Native files and raw captures remain local; review artifacts, tools and evidence are retained in Sable's task folder.
+
+All eighteen controlled comparison groups match cameras and foreground geometry. Original B ground control, neutral plates/diagnostics and a separate eight-frame form pilot address the audit. Packed-native reopen retains all sixty candidate materials; a B frame reproduces within one 8-bit channel value. The viewer loads all 97 images. Results document the repaired orbit background, pilot rim-light difference, procedural/generated-texture provenance and offline-only validation boundary.
+
+Sable recommends B ground and believable material response with selected C rock/prop accents. New studies do not supersede the author's accepted B-ground / B–C rock-and-prop direction or establish exact game-style reproduction. Creative selection and Unity import remain separate work; no production content or settings changed.

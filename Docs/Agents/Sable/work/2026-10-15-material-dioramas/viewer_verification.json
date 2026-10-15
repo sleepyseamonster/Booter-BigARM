@@ -1,0 +1,169 @@
+{
+  "date": "2026-10-15",
+  "method": "CUA in-app browser; selectOption through all groups; inspect DOM image complete and naturalWidth. One initially pending gate image was revisited and loaded. Main comparison screenshot checked after image layout settled.",
+  "url": "http://127.0.0.1:8767/comparison.html",
+  "groups": [
+    {
+      "mode": "controlled",
+      "scene": "yard",
+      "light": "sunset",
+      "view": "close",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "yard",
+      "light": "sunset",
+      "view": "gameplay",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "yard",
+      "light": "sunset",
+      "view": "orbit",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "yard",
+      "light": "twilight",
+      "view": "close",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "yard",
+      "light": "twilight",
+      "view": "gameplay",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "yard",
+      "light": "twilight",
+      "view": "orbit",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "gate",
+      "light": "sunset",
+      "view": "close",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "gate",
+      "light": "sunset",
+      "view": "gameplay",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "gate",
+      "light": "sunset",
+      "view": "orbit",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "gate",
+      "light": "twilight",
+      "view": "close",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "gate",
+      "light": "twilight",
+      "view": "gameplay",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "gate",
+      "light": "twilight",
+      "view": "orbit",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "quarry",
+      "light": "sunset",
+      "view": "close",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "quarry",
+      "light": "sunset",
+      "view": "gameplay",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "quarry",
+      "light": "sunset",
+      "view": "orbit",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "quarry",
+      "light": "twilight",
+      "view": "close",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "quarry",
+      "light": "twilight",
+      "view": "gameplay",
+      "loaded_images": 4
+    },
+    {
+      "mode": "controlled",
+      "scene": "quarry",
+      "light": "twilight",
+      "view": "orbit",
+      "loaded_images": 4
+    },
+    {
+      "mode": "whole_style",
+      "view": "close",
+      "loaded_images": 4
+    },
+    {
+      "mode": "whole_style",
+      "view": "gameplay",
+      "loaded_images": 4
+    },
+    {
+      "mode": "material",
+      "group": "metal",
+      "loaded_images": 4
+    },
+    {
+      "mode": "material",
+      "group": "stone",
+      "loaded_images": 4
+    },
+    {
+      "mode": "material",
+      "group": "ground",
+      "loaded_images": 4
+    },
+    {
+      "mode": "neutral_diagnostic",
+      "loaded_images": 4
+    },
+    {
+      "mode": "accepted_ground",
+      "loaded_images": 1
+    }
+  ],
+  "groups_checked": 25,
+  "images_loaded": 97,
+  "all_loaded": true
+}
