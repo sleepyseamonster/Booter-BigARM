@@ -435,7 +435,10 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
 
-            var targetVelocity = desiredDirection * AnimationLocomotionSpeed(SprintActive ? sprintSpeed : walkSpeed);
+            var requestedSpeed = AnimationLocomotionSpeed(SprintActive ? sprintSpeed : walkSpeed);
+            var slopeSpeed = ApplyLaboratoryUphillGait(requestedSpeed, desiredDirection, measuredGroundNormal);
+            if (slopeSpeed < requestedSpeed && slopeSpeed <= walkSpeed) SprintActive = false;
+            var targetVelocity = desiredDirection * slopeSpeed;
             var currentVelocity = body.linearVelocity;
             var currentPlanar = new Vector3(currentVelocity.x, 0f, currentVelocity.z);
             var targetPlanar = new Vector3(targetVelocity.x, 0f, targetVelocity.z);
@@ -1105,7 +1108,11 @@ namespace BooterBigArm.TopDown3D
             var scale = transform.lossyScale;
             var radius = capsule.radius * Mathf.Max(Mathf.Abs(scale.x), Mathf.Abs(scale.z)) * 0.88f;
             var halfHeight = Mathf.Max(radius, capsule.height * Mathf.Abs(scale.y) * 0.5f);
-            var center = transform.TransformPoint(capsule.center);
+            // Lab support and completed travel must refer to the same Rigidbody
+            // sample, including while its rendered Transform is interpolated.
+            var center = animationPostureOwner != null && body != null
+                ? body.position + body.rotation * Vector3.Scale(capsule.center, transform.lossyScale)
+                : transform.TransformPoint(capsule.center);
             var distance = Mathf.Max(0f, halfHeight - radius) + groundProbeDistance;
             var hitCount = Physics.SphereCastNonAlloc(
                 center,

@@ -152,6 +152,142 @@ namespace BooterBigArm.Tests
             finally { Object.DestroyImmediate(actor); }
         }
 
+        [TestCase(0, 3.8f)]
+        [TestCase(30, 3.8f)]
+        [TestCase(32, 3.8f)]
+        [TestCase(36, 2.6f)]
+        [TestCase(40, 1.4f)]
+        [TestCase(48, 1.4f)]
+        public void UphillPolicyRetainsFlatSpeedAndBlendsToWalking(float grade, float expected)
+        {
+            var normal = Quaternion.AngleAxis(-grade, Vector3.right) * Vector3.up;
+            Assert.That(AnimationPlaygroundUphillGait.SpeedLimit(3.8f, 1.4f, Vector3.forward, normal, 48),
+                Is.EqualTo(expected).Within(.0001f));
+        }
+
+        [TestCase(90)]
+        [TestCase(180)]
+        [TestCase(270)]
+        public void UphillPolicyDoesNotSlowLevelOrDownhillTravel(float heading)
+        {
+            var normal = Quaternion.AngleAxis(-48, Vector3.right) * Vector3.up;
+            var direction = Quaternion.AngleAxis(heading, Vector3.up) * Vector3.forward;
+            Assert.That(AnimationPlaygroundUphillGait.SpeedLimit(3.8f, 1.4f, direction, normal, 48), Is.EqualTo(3.8f));
+        }
+
+        [Test] public void UphillPolicyIsContinuousAndNeverIncreasesASlowerRequest()
+        {
+            var previous = 3.8f;
+            for (var i = 0; i <= 1000; i++)
+            {
+                var normal = Quaternion.AngleAxis(-(30 + i * .012f), Vector3.right) * Vector3.up;
+                var value = AnimationPlaygroundUphillGait.SpeedLimit(3.8f, 1.4f, Vector3.forward, normal, 48);
+                Assert.That(value, Is.InRange(1.39999f, previous + .00001f));
+                Assert.That(previous - value, Is.LessThan(.006f)); previous = value;
+                Assert.That(AnimationPlaygroundUphillGait.SpeedLimit(.7f, 1.4f, Vector3.forward, normal, 48), Is.EqualTo(.7f));
+            }
+        }
+
+        [TestCase(1f, false)]
+        [TestCase(.5f, false)]
+        [TestCase(1f, true)]
+        [TestCase(.5f, true)]
+        public void UpcomingInclineBrakesThroughTheExistingMotorAndKeepsInputMagnitude(float magnitude, bool slowWalk)
+        {
+            using var fixture = new UphillFixture();
+            fixture.Input(magnitude, slowWalk);
+            fixture.Body.linearVelocity = Vector3.forward * 3.8f;
+            fixture.Tick();
+            Assert.That(fixture.Motor.IsGrounded, Is.True);
+            Assert.That(fixture.Motor.LocomotionSnapshot.DesiredPlanarVelocity.z, Is.EqualTo(1.4f * magnitude).Within(.0001f));
+            Assert.That(fixture.Body.linearVelocity.z, Is.EqualTo(3.8f - 12.5f * Time.fixedDeltaTime).Within(.0001f));
+            Assert.That(fixture.Motor.SprintActive, Is.False);
+            Assert.That(fixture.Body.position, Is.EqualTo(fixture.StartPosition), "Velocity planning does not move the actor in this Edit Mode fixture.");
+            fixture.Ramp.SetActive(false); Physics.SyncTransforms(); fixture.Tick();
+            var flatSpeed = (slowWalk ? 1.4f : 3.8f) * magnitude;
+            Assert.That(fixture.Motor.LocomotionSnapshot.DesiredPlanarVelocity.z, Is.EqualTo(flatSpeed).Within(.0001f));
+        }
+
+        [Test] public void UpcomingInclineIsDetectedBeforeTheReviewedBrakingDistanceIsConsumed()
+        {
+            using var fixture = new UphillFixture();
+            fixture.Input(1, false); fixture.Body.position = fixture.StartPosition + Vector3.back * .25f;
+            fixture.Body.linearVelocity = Vector3.forward * 3.8f; Physics.SyncTransforms(); fixture.Tick();
+            Assert.That(fixture.Motor.LocomotionSnapshot.DesiredPlanarVelocity.z, Is.EqualTo(1.4f).Within(.0001f));
+            var distanceToLeadingContact = .8f - .2f;
+            var stoppingDistance = (3.8f * 3.8f - 1.4f * 1.4f) / (2 * 12.5f);
+            Assert.That(stoppingDistance + 3.8f * Time.fixedDeltaTime, Is.LessThan(distanceToLeadingContact));
+        }
+
+        [TestCase(1f)]
+        [TestCase(.5f)]
+        public void SupportedSteepUphillTravelUsesWalkingMetresPerSecondAlongTheSurface(float magnitude)
+        {
+            using var fixture = new UphillFixture(); fixture.Input(magnitude, false);
+            var height = Mathf.Tan(48 * Mathf.Deg2Rad) * .95f + .71f + .2f / Mathf.Cos(48 * Mathf.Deg2Rad);
+            var position = new Vector3(87000, height, 87001.5f);
+            fixture.Body.position = position; Physics.SyncTransforms();
+            for (var tick = 0; tick < 16; tick++) fixture.Tick();
+            Assert.That(fixture.Motor.IsGrounded, Is.True);
+            Assert.That(fixture.Body.linearVelocity.magnitude, Is.EqualTo(1.4f * magnitude).Within(.001f));
+            Assert.That(fixture.Motor.SprintActive, Is.False);
+            Assert.That(fixture.Body.position, Is.EqualTo(position));
+        }
+
+        [Test] public void UphillPolicyRequiresConfiguredLabOwnershipAndIgnoresDynamicOrTriggerRamps()
+        {
+            using var fixture = new UphillFixture();
+            fixture.Input(1, false);
+            fixture.Ramp.GetComponent<BoxCollider>().isTrigger = true; Physics.SyncTransforms(); fixture.Tick();
+            Assert.That(fixture.Motor.LocomotionSnapshot.DesiredPlanarVelocity.z, Is.EqualTo(3.8f).Within(.0001f));
+            fixture.Ramp.GetComponent<BoxCollider>().isTrigger = false;
+            fixture.Ramp.AddComponent<Rigidbody>().isKinematic = true; Physics.SyncTransforms(); fixture.Tick();
+            Assert.That(fixture.Motor.LocomotionSnapshot.DesiredPlanarVelocity.z, Is.EqualTo(3.8f).Within(.0001f));
+            Object.DestroyImmediate(fixture.Ramp.GetComponent<Rigidbody>());
+            Assert.That(fixture.Motor.ReleaseAnimationPostureOwner(fixture.Owner), Is.True);
+            Physics.SyncTransforms(); fixture.Tick();
+            Assert.That(fixture.Motor.LocomotionSnapshot.DesiredPlanarVelocity.z, Is.EqualTo(3.8f).Within(.0001f));
+        }
+
+        // Explicit static query/velocity fixtures. No Play Mode or physics simulation.
+        private sealed class UphillFixture : IDisposable
+        {
+            public readonly object Owner = new();
+            public readonly Vector3 StartPosition = new(87000, .91f, 87000);
+            public readonly TopDown3DPlayerMotor Motor;
+            public readonly Rigidbody Body;
+            public readonly GameObject Ramp;
+            private readonly GameObject actor, floor, basis;
+            private readonly TopDown3DInputRouter input;
+            private static void Set(object target, string field, object value) => target.GetType().GetField(field, Private).SetValue(target, value);
+
+            public UphillFixture()
+            {
+                actor = new GameObject("Uphill velocity planning"); actor.SetActive(false); actor.transform.position = StartPosition;
+                Motor = actor.AddComponent<TopDown3DPlayerMotor>(); Body = actor.GetComponent<Rigidbody>();
+                var capsule = actor.GetComponent<CapsuleCollider>(); capsule.height = 1.82f; capsule.radius = .2f;
+                input = actor.AddComponent<TopDown3DInputRouter>(); basis = new GameObject("Uphill camera basis");
+                Set(Motor, "input", input); Set(Motor, "cameraBasis", basis.transform);
+                Motor.BindAnimationPostureOwner(Owner); Motor.ConfigureLaboratorySpeeds(Owner, 1.4f, 2.7f, 3.8f);
+                Motor.BlockUnqualifiedLaboratoryTraversal(Owner);
+                floor = new GameObject("Uphill support"); floor.transform.position = new Vector3(87000, -.05f, 87000);
+                floor.AddComponent<BoxCollider>().size = new Vector3(10, .1f, 10); floor.AddComponent<TopDown3DGroundSurface>();
+                Ramp = new GameObject("Upcoming 48 degree ramp"); var rotation = Quaternion.AngleAxis(-48, Vector3.right);
+                Ramp.transform.SetPositionAndRotation(new Vector3(87000, 0, 87000.55f) + rotation * new Vector3(0, -.05f, 2), rotation);
+                Ramp.AddComponent<BoxCollider>().size = new Vector3(4, .1f, 4); Ramp.AddComponent<TopDown3DGroundSurface>();
+                actor.SetActive(true); Physics.SyncTransforms();
+            }
+            public void Input(float magnitude, bool slowWalk)
+            {
+                Set(input, "<MoveValue>k__BackingField", Vector2.up * magnitude);
+                Set(input, "<SprintHeld>k__BackingField", true);
+                Set(input, "<AnimationSlowWalkHeld>k__BackingField", slowWalk);
+            }
+            public void Tick() => typeof(TopDown3DPlayerMotor).GetMethod("FixedUpdate", Private).Invoke(Motor, null);
+            public void Dispose()
+            { Object.DestroyImmediate(actor); Object.DestroyImmediate(floor); Object.DestroyImmediate(Ramp); Object.DestroyImmediate(basis); Physics.SyncTransforms(); }
+        }
+
         [Test] public void SustainedDiagnosticCannotActivateOnProductionConfiguration()
         {
             var actor = new GameObject("diagnostic isolation"); actor.SetActive(false);

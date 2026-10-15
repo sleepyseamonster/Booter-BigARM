@@ -1,0 +1,216 @@
+{
+  "state": "edit-mode-static-uphill-query-and-velocity-planning",
+  "sources": {
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs": "837b6b695febb42ad24eac77c5f53a1b7ec02fe7e456cec2737442cc7452433d",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.AnimationPlayground.cs": "4d65ebd62e3d5da5c44ebc1051efff84c42dbfdb1e1ab3db508defa1e2b85832",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.LaboratoryLocomotion.cs": "4e6ee4987ed2f48a1b0a2529a8062c517e6749be34bbd8db5ebaada84821cfa8",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundLocomotionRepairTests.cs": "9c92c0a7f28b3e30f040272a2bba8dfc747f926eedd6d4fe135e56624e5882ef"
+  },
+  "moduleId": "a07730fd-d7a1-4524-a922-7b801df90fb6",
+  "beginGrade": 32.0,
+  "walkingGrade": 40.0,
+  "curve": [
+    {
+      "grade": 0,
+      "speed": 3.8
+    },
+    {
+      "grade": 1,
+      "speed": 3.8
+    },
+    {
+      "grade": 2,
+      "speed": 3.8
+    },
+    {
+      "grade": 3,
+      "speed": 3.8
+    },
+    {
+      "grade": 4,
+      "speed": 3.8
+    },
+    {
+      "grade": 5,
+      "speed": 3.8
+    },
+    {
+      "grade": 6,
+      "speed": 3.8
+    },
+    {
+      "grade": 7,
+      "speed": 3.8
+    },
+    {
+      "grade": 8,
+      "speed": 3.8
+    },
+    {
+      "grade": 9,
+      "speed": 3.8
+    },
+    {
+      "grade": 10,
+      "speed": 3.8
+    },
+    {
+      "grade": 11,
+      "speed": 3.8
+    },
+    {
+      "grade": 12,
+      "speed": 3.8
+    },
+    {
+      "grade": 13,
+      "speed": 3.8
+    },
+    {
+      "grade": 14,
+      "speed": 3.8
+    },
+    {
+      "grade": 15,
+      "speed": 3.8
+    },
+    {
+      "grade": 16,
+      "speed": 3.8
+    },
+    {
+      "grade": 17,
+      "speed": 3.8
+    },
+    {
+      "grade": 18,
+      "speed": 3.8
+    },
+    {
+      "grade": 19,
+      "speed": 3.8
+    },
+    {
+      "grade": 20,
+      "speed": 3.8
+    },
+    {
+      "grade": 21,
+      "speed": 3.8
+    },
+    {
+      "grade": 22,
+      "speed": 3.8
+    },
+    {
+      "grade": 23,
+      "speed": 3.8
+    },
+    {
+      "grade": 24,
+      "speed": 3.8
+    },
+    {
+      "grade": 25,
+      "speed": 3.8
+    },
+    {
+      "grade": 26,
+      "speed": 3.8
+    },
+    {
+      "grade": 27,
+      "speed": 3.8
+    },
+    {
+      "grade": 28,
+      "speed": 3.8
+    },
+    {
+      "grade": 29,
+      "speed": 3.8
+    },
+    {
+      "grade": 30,
+      "speed": 3.8
+    },
+    {
+      "grade": 31,
+      "speed": 3.8
+    },
+    {
+      "grade": 32,
+      "speed": 3.8
+    },
+    {
+      "grade": 33,
+      "speed": 3.69687486
+    },
+    {
+      "grade": 34,
+      "speed": 3.42499876
+    },
+    {
+      "grade": 35,
+      "speed": 3.04062176
+    },
+    {
+      "grade": 36,
+      "speed": 2.6
+    },
+    {
+      "grade": 37,
+      "speed": 2.15937328
+    },
+    {
+      "grade": 38,
+      "speed": 1.77500129
+    },
+    {
+      "grade": 39,
+      "speed": 1.50312424
+    },
+    {
+      "grade": 40,
+      "speed": 1.4
+    },
+    {
+      "grade": 41,
+      "speed": 1.4
+    },
+    {
+      "grade": 42,
+      "speed": 1.4
+    },
+    {
+      "grade": 43,
+      "speed": 1.4
+    },
+    {
+      "grade": 44,
+      "speed": 1.4
+    },
+    {
+      "grade": 45,
+      "speed": 1.4
+    },
+    {
+      "grade": 46,
+      "speed": 1.4
+    },
+    {
+      "grade": 47,
+      "speed": 1.4
+    },
+    {
+      "grade": 48,
+      "speed": 1.4
+    }
+  ],
+  "performance": {
+    "samples": 8192,
+    "microseconds": 10.6920166015625,
+    "recurringBytes": 0,
+    "scope": "warm existing motor FixedUpdate and observer, including optional incline ray; no physics simulation or graph presentation"
+  }
+}

@@ -133,6 +133,7 @@ namespace BooterBigArm.TopDown3D
                 || !float.IsFinite(slowWalk) || slowWalk<=0 || run<slowWalk || sprint<run)
                 throw new ArgumentException("The laboratory posture owner and finite ordered speeds are required.");
             walkSpeed=run;sprintSpeed=sprint;animationWalkSpeed=slowWalk;
+            laboratoryUphillGaitEnabled=true;
         }
         public void BlockUnqualifiedLaboratoryTraversal(object owner)
         {
@@ -144,6 +145,7 @@ namespace BooterBigArm.TopDown3D
             if(owner==null || !ReferenceEquals(owner,animationPostureOwner))return false;
             if(!TryRestoreAnimationPosture(owner))return false;
             animationPostureOwner=null;laboratoryBlocksLegacyTraversal=false;laboratoryCrouchFacingLocked=false;laboratoryPostureSuspended=false;
+            laboratoryUphillGaitEnabled=false;
             ResetStandingMotionObservation();return true;
         }
         private float AnimationLocomotionSpeed(float normalSpeed)

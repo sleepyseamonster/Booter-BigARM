@@ -11,8 +11,45 @@ namespace BooterBigArm.TopDown3D
         private Matrix4x4 observedSupportMatrix;
         private Plane laboratoryGroundPlane, completedLaboratoryGroundPlane;
         private bool hasCompletedLaboratoryGroundPlane;
+        private bool laboratoryUphillGaitEnabled;
         public AnimationPlaygroundGroundedMotion LaboratoryGroundedMotion { get; private set; }
         public event Action<AnimationPlaygroundGroundedMotion> LaboratoryGroundedMotionCompleted;
+
+        // Author-approved Camp Loop policy. No persisted state, new motor or
+        // animation clock: only the existing motor's requested speed changes.
+        private float ApplyLaboratoryUphillGait(float requestedSpeed, Vector3 direction, Vector3 normal)
+        {
+            if (!laboratoryUphillGaitEnabled || animationPostureOwner == null || !IsGrounded
+                || laboratoryPostureSuspended || AnimationPosture != AnimationPlaygroundPosture.Standing
+                || laboratoryGroundSupport == null || laboratoryGroundSupport.attachedRigidbody != null)
+                return requestedSpeed;
+            var limit = AnimationPlaygroundUphillGait.SpeedLimit(requestedSpeed, animationWalkSpeed,
+                direction, normal, maxWalkableSlope);
+            if (limit <= animationWalkSpeed || direction.sqrMagnitude < .000001f) return limit;
+
+            // One bounded nonallocating ray, parallel to the current support.
+            // Unlike a downward probe at a distant point, this detects the front
+            // of a short rising ramp. Its distance does not retreat while braking.
+            GetWorldCapsule(body.position, 1, out _, out var bottom, out var radius);
+            var distance = Mathf.Min(2, radius + Mathf.Max(0, sprintSpeed * sprintSpeed - animationWalkSpeed * animationWalkSpeed)
+                / (2 * Mathf.Max(.1f, deceleration)) + sprintSpeed * Time.fixedDeltaTime * 2 + .1f);
+            var origin = laboratoryGroundPlane.ClosestPointOnPlane(bottom) + normal.normalized * .06f;
+            var tangent = TopDown3DSlopeMath.ProjectDirectionOnSlope(direction, normal, maxWalkableSlope);
+            var count = Physics.RaycastNonAlloc(origin, tangent.normalized, groundHits, distance,
+                groundMask, QueryTriggerInteraction.Ignore);
+            var nearest = float.PositiveInfinity;
+            var ahead = normal;
+            for (var i = 0; i < count; i++)
+            {
+                var hit = groundHits[i];
+                if (hit.collider == null || hit.collider.transform.IsChildOf(transform)
+                    || hit.collider.attachedRigidbody != null || hit.distance >= nearest
+                    || hit.collider.GetComponentInParent<TopDown3DGroundSurface>() == null) continue;
+                nearest = hit.distance; ahead = hit.normal;
+            }
+            return Mathf.Min(limit, AnimationPlaygroundUphillGait.SpeedLimit(requestedSpeed,
+                animationWalkSpeed, direction, ahead, maxWalkableSlope));
+        }
 
         // The existing normal ray supplies this plane. Reading it adds no query
         // and cannot return a support from another completed tick or owner.
@@ -64,6 +101,21 @@ namespace BooterBigArm.TopDown3D
                 hasCompletedLaboratoryGroundPlane = true;
             }
             LaboratoryGroundedMotionCompleted?.Invoke(LaboratoryGroundedMotion);
+        }
+    }
+
+    public static class AnimationPlaygroundUphillGait
+    {
+        public const float BeginGrade = 32, WalkingGrade = 40;
+
+        public static float SpeedLimit(float requestedSpeed, float walkingSpeed, Vector3 direction,
+            Vector3 normal, float maximumSlope)
+        {
+            if (requestedSpeed <= walkingSpeed || !TopDown3DSlopeMath.IsWalkable(normal, maximumSlope)) return requestedSpeed;
+            var tangent = TopDown3DSlopeMath.ProjectDirectionOnSlope(direction, normal, maximumSlope);
+            var grade = Mathf.Atan2(tangent.y, new Vector2(tangent.x, tangent.z).magnitude) * Mathf.Rad2Deg;
+            var weight = Mathf.SmoothStep(0, 1, Mathf.InverseLerp(BeginGrade, WalkingGrade, grade));
+            return Mathf.Lerp(requestedSpeed, walkingSpeed, weight);
         }
     }
 }
