@@ -124,6 +124,13 @@ Author direction recorded October 14, 2026:
 - Contemporary steelmaking is fairly advanced. The Iron Age framing does not limit all metallurgy to crude iron. Steel is a recognized manufactured material; specific grades, compositions, production access, heat treatment, properties and crafting routes remain open. This capability does not establish reproduction of ancient composites or assign steel a numeric material tier.
 - Supporting smithing tools and forge equipment in the item database remain brainstorming proposals. Heating and hot-work processes must respect the world's atmosphere/fire rules and material scarcity; ordinary combustion, wooden handles or free-water quenching are not established by this direction.
 
+### Inner-City Transport
+
+Author direction recorded October 14, 2026:
+
+- The inner cities have carriages and cars; most of this transport machinery is bipedal.
+- The exact relation of carriage and car designs to bipedal locomotion remains open. These names do not establish wheeled vehicles, draft animals or combustion engines. Power supplies, capacity, ownership, manufacturing and availability beyond the inner cities remain undefined.
+
 ## Player Character
 
 Booter is a professional desert survivor and metal scrapper.
