@@ -68,7 +68,8 @@ Author direction recorded October 14, 2026:
 - These fibers can also be processed and pressed into textile materials, but this is very difficult. Abundant raw fibers do not imply easy finished-material production.
 - Hides and furs can be processed into textile and other materials, but the usable yield is extremely low. No numeric yield or processing recipe is established.
 - There is no cloth of any kind, but clothing can be made from husk fibers, animal fur, hides and related processed materials. The no-cloth rule does not prohibit garments from these sources.
-- Such clothing takes very large quantities of material and very large amounts of processing and crafting time. Fashion items are consequently very rare and expensive.
+- Everyday clothing is simple: wraps, metal chainmail and other practical wear that can be made with metal and minimal fur. Minimal fur use does not create an abundant fur-processing supply; wrap construction and fastening details remain open under the no-cloth rule.
+- Elaborate fashion clothing takes very large quantities of material and very large amounts of processing and crafting time. Fashion items are consequently very rare and expensive. This fashion scarcity does not make ordinary simple wraps or chainmail inherently luxury items.
 - Specialized spectacles, eyeglasses and hats are rare. Their exact optical functions, construction and game effects remain open.
 - Inputs used to craft expensive fashion items are intended to command high sale value, giving resource gathering a valuable role in the economy. Exact recipes, input quantities, prices, currency and crafting times remain undefined.
 - Gemstones exist on the Broken World. Particular gemstone types, deposits, grades, rarity, cutting practices and uses remain open for brainstorming; gemstone existence does not approve a specific terrestrial mineral roster or special powers.
