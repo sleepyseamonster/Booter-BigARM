@@ -49,7 +49,19 @@ namespace BooterBigArm.TopDown3D
             foreach (var anchor in safeReturns)
                 if (anchor == null || anchor.gameObject.scene != gameObject.scene)
                 { Fail("Safe returns must be authored in the laboratory scene."); return; }
-            try { presentation.ConfigureLaboratory(bindings); }
+            try
+            {
+                presentation.ConfigureLaboratory(bindings);
+                if (experimentalForwardReview != null)
+                {
+                    var station = Array.Find(stations, value => value != null && value.StationId == "AP02");
+                    presentation.ConfigureLaboratoryForwardReview(experimentalForwardReview, station);
+                    if (Mathf.Abs(experimentalForwardReview.gaits[0].nominalSpeed - bindings.slowWalkSpeed) > .0001f
+                        || Mathf.Abs(experimentalForwardReview.gaits[1].nominalSpeed - bindings.runSpeed) > .0001f
+                        || Mathf.Abs(experimentalForwardReview.gaits[2].nominalSpeed - bindings.sprintSpeed) > .0001f)
+                        throw new InvalidOperationException("Experimental gait calibration and laboratory motor speeds disagree.");
+                }
+            }
             catch (Exception error) { Fail(error.Message); }
         }
 
@@ -154,6 +166,20 @@ namespace BooterBigArm.TopDown3D
             playerInput.SetLaboratoryResetBlocked(true);
             if (!ResetRegistry.TryReset()) playerAction.ReportFeedback(ResetRegistry.LastFailure);
             else { playerInput.SetLaboratoryResetBlocked(false); playerAction.ReportFeedback("Lab player and registered station state reset."); }
+        }
+
+        public void ResetSessionForForwardReview()
+        {
+            if (!IsLab || !isActiveAndEnabled || !servicesBound || !PreviewReady || experimentalForwardReview == null) return;
+            var station = Array.Find(stations, value => value != null && value.StationId == "AP02");
+            if (station?.SafeReturn == null || !coordinator.TrySelectResetReturn(station.SafeReturn.position))
+            { playerAction.ReportFeedback("The authored gait-deck return is unavailable."); return; }
+            try
+            {
+                ResetSession();
+                if (ResetRegistry.LastFailure == null) playerAction.ReportFeedback("Experimental forward gait review: AP02 flat deck.");
+            }
+            finally { coordinator.ClearSelectedResetReturn(); }
         }
 
         private void RegisterPlayerReset()

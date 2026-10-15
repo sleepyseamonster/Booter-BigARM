@@ -4673,6 +4673,8 @@ MonoBehaviour:
   bindings: {fileID: 11400000, guid: 0b97d0f21a25d864ba6ae82349d29f45, type: 2}
   catalog: {fileID: 11400000, guid: 5a6d7845bea4d844ca9b2ed6ce1f24d5, type: 2}
   palettePrefab: {fileID: 3837550995056048614, guid: 7182e29350166c24eb3ed221f1d1a4a4, type: 3}
+  experimentalForwardReview: {fileID: 11400000, guid: d1c75db69046c3c458bb66c49cba5535, type: 2}
+  experimentalForwardReviewRequired: 1
 --- !u!4 &451293423
 Transform:
   m_ObjectHideFlags: 0

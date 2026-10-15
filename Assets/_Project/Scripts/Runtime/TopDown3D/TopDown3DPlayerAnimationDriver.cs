@@ -234,6 +234,7 @@ namespace BooterBigArm.TopDown3D
             laboratoryAvatar = value.targetAvatar; laboratoryBodyMaterial = value.bodyMaterial;
             laboratoryFootProjection=value.footProjection;
             laboratoryForwardProfile=value.forwardLocomotion;
+            forwardReviewConfigured=false; forwardReviewStation=null; forwardReviewSession=null;
             equipmentScale = value.bodyHeight / value.equipmentModelHeight;
             equipmentPresentationRatio = equipmentScale / PrototypeVisualScale;
             laboratoryFeetPlane = -value.capsuleHeight * .5f;

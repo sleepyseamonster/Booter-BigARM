@@ -16,6 +16,7 @@ namespace BooterBigArm.TopDown3D
         private Func<AnimationPlaygroundEffectKey,bool> effect;
         private Func<bool> pause;
         private Vector3[] returnPositions;
+        private int selectedResetReturn = -1;
         private Vector3 initialFacing;
         private double previewTime;
         private ulong nextAction;
@@ -178,8 +179,23 @@ namespace BooterBigArm.TopDown3D
             LastFailure=reason;
         }
         public void InvalidateForReset(uint epoch)=>Cancel();
+        public bool TrySelectResetReturn(Vector3 position)
+        {
+            selectedResetReturn = -1;
+            if (returnPositions == null) return false;
+            for (var i = 0; i < returnPositions.Length; i++)
+                if ((returnPositions[i] - position).sqrMagnitude <= .000001f) { selectedResetReturn = i; return true; }
+            return false;
+        }
+        public void ClearSelectedResetReturn() => selectedResetReturn = -1;
         public bool TryRestoreForReset(out string reason)
         {
+            if (selectedResetReturn >= 0)
+            {
+                var position = returnPositions[selectedResetReturn]; selectedResetReturn = -1;
+                if (motor.IsAnimationReturnSupported(position) && motor.TryResetAnimationActor(this, position, initialFacing)) { reason = null; return true; }
+                reason = "The selected authored return has no ground support or standing clearance."; return false;
+            }
             foreach(var position in returnPositions)
                 if(motor.IsAnimationReturnSupported(position) && motor.TryResetAnimationActor(this,position,initialFacing)){reason=null;return true;}
             reason="No authored return position has ground support and standing clearance.";return false;

@@ -14,6 +14,7 @@ namespace BooterBigArm.TopDown3D
         private bool laboratoryUphillGaitEnabled;
         public AnimationPlaygroundGroundedMotion LaboratoryGroundedMotion { get; private set; }
         public event Action<AnimationPlaygroundGroundedMotion> LaboratoryGroundedMotionCompleted;
+        public Collider LaboratorySupportCollider => TryGetLaboratorySupportPlane(out _, true) ? observedGroundSupport : null;
 
         // Author-approved Camp Loop policy. No persisted state, new motor or
         // animation clock: only the existing motor's requested speed changes.

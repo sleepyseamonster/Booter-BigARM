@@ -56,13 +56,17 @@ namespace BooterBigArm.TopDown3D
                 view.SetText("LabSelect"+row,entry.category+": "+entry.title+"  ["+status+"]");
             }
             view.SetButton("LabPrevious",animationPage>0);view.SetButton("LabNext",animationPage+1<pages);
+            view.SetText("LabReset", animationSession.ExperimentalForwardReview != null ? "Reset to gait deck" : "Reset lab");
             var selected=animationSession.Bindings?.Find(SelectedAnimationId);
             var selectedInStation=animationChoices.Exists(value=>value.sourceId==SelectedAnimationId);
             view.SetButton("LabPreview",selectedInStation && animationSession.PreviewReady && selected?.CanPreview==true);
-            view.SetText("LabPaletteStatus",animationSession.Readiness == AnimationPlaygroundReadiness.Failed
+            var paletteStatus = animationSession.Readiness == AnimationPlaygroundReadiness.Failed
                 ? "Unavailable: " + animationSession.UnavailableReason : string.IsNullOrEmpty(SelectedAnimationId)
                 ? animationChoices.Count==0 ? "This station has no unarmed variants yet. F9 opens the full library." : "Select a variant. Physical actions require contact qualification."
-                : "Selected: "+SelectedAnimationId+". Preview has no gameplay effects.");
+                : "Selected: "+SelectedAnimationId+". Preview has no gameplay effects.";
+            if (animationSession.Readiness != AnimationPlaygroundReadiness.Failed && animationSession.ForwardReviewStatus != null)
+                paletteStatus = animationSession.ForwardReviewStatus + "\n" + paletteStatus;
+            view.SetText("LabPaletteStatus", paletteStatus);
         }
         private bool HandleAnimationPaletteCommand(string command)
         {
@@ -70,7 +74,13 @@ namespace BooterBigArm.TopDown3D
             if(command == "LabPrevious" || command == "LabNext")
             {animationPage+=command == "LabNext" ? 1 : -1;DrawAnimationPage();view.RefreshNavigation();return true;}
             if(command == "LabPaletteBack"){Close();return true;}
-            if(command == "LabReset"){Close();AnimationResetRequested?.Invoke();return true;}
+            if(command == "LabReset")
+            {
+                Close();
+                if (animationSession.ExperimentalForwardReview != null) animationSession.ResetSessionForForwardReview();
+                else AnimationResetRequested?.Invoke();
+                return true;
+            }
             if(command == "LabPreview")
             {
                 if(animationChoices.Exists(value=>value.sourceId==SelectedAnimationId) && animationSession.PreviewReady && animationSession.Bindings?.Find(SelectedAnimationId)?.CanPreview==true)

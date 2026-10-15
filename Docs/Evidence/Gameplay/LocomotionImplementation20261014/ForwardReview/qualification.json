@@ -1,0 +1,48 @@
+{
+  "state": "experimental-flat-deck-review-not-full-locomotion-acceptance",
+  "sources": {
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs": "1b0b0030399c1cbeb65b177df1789aaa6fb46c785998917e7bdf4c1667b63f54",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.ForwardReview.cs": "83ecddc681b18e4df124e38d1eabd625e8a6572c1a2a7c4250c8b972fdcf8625",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs": "cfe42c93c1ab45d0d8a73ac25d139b2cbc7d9ec266387a3a7ca1c89d84e16989",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.LaboratoryLocomotion.cs": "0290001b639e5f4dc22b8a05e0a2918bab9c543af2a5e6a7caa00ba8e12c2277",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.cs": "b83c3e10de828d93deec39773515c31e64d14412f5e1e01851d3b5c2735630a3",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.Player.cs": "d58d47099939a02a3f86e80335c6e00048547de3b5a0aed1eb1f5e1f2032c9c6",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundActionCoordinator.cs": "66083c57ab8549ecdbb7a17211d5250471ce6c3fe61d2f9ac895b209d26ce1ba",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundStation.cs": "fcb0fd81b2c8cef2dcb6eb93cb2a9908c4efcee29aee0eb49ed5b81d0d9e272f",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DMenuController.AnimationPlayground.cs": "6da68ec3c27aae14f15c773e210d7724a518a1dfd2f677fbb3a262dcd47e940b",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundForwardReviewTests.cs": "d88a7b778eb69ae6a8a21bc22fb169bdc467a50588831c73ee4526d34ed2c95f",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundPlayerIntegrationTests.cs": "679453d0fe158a9249c8890ebc4c56c9a34f506524be3b5ed45e8c335f4edb37",
+    "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP02.prefab": "c3290512b3e48f3ad05f2b306e6f2cbabb7f2582ad240b77e4b72522a85023f6",
+    "Assets/_Project/Scripts/Editor/AnimationPlayground/AnimationPlaygroundStationAuthoring.cs": "6b33c0ac1bba0bc14d66806e16c53e258d7430fb586609e83167283e42de74fc",
+    "Assets/_Project/Scenes/Reference/CampLoopTesting.unity": "b5833bf14bbe1605eebeb432be03e7f23b48ceb96469d0cff7c182825339e65d"
+  },
+  "moduleId": "670c6bd8-8151-4552-90e4-0df29128fc56",
+  "outputs": 1,
+  "measurements": [
+    {
+      "speed": 0.0,
+      "samples": 1024,
+      "microseconds": 99.14189453125002,
+      "recurringBytes": 0
+    },
+    {
+      "speed": 1.4,
+      "samples": 1024,
+      "microseconds": 98.72753906250001,
+      "recurringBytes": 0
+    },
+    {
+      "speed": 2.7,
+      "samples": 1024,
+      "microseconds": 98.26455078125,
+      "recurringBytes": 0
+    },
+    {
+      "speed": 3.8,
+      "samples": 1024,
+      "microseconds": 98.13896484375,
+      "recurringBytes": 0
+    }
+  ],
+  "scope": "actual prepare, nested clip mix, one zero-time graph evaluation and LateUpdate; no physics simulation, mesh baking, UI or author feel proof"
+}

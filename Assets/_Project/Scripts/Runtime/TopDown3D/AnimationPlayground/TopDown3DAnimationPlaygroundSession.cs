@@ -16,6 +16,18 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private TopDown3DAnimationPlaygroundBindings bindings;
         [SerializeField] private AnimationPlaygroundCatalog catalog;
         [SerializeField] private GameObject palettePrefab;
+        [SerializeField] private AnimationPlaygroundForwardLocomotionProfile experimentalForwardReview;
+        [SerializeField] private bool experimentalForwardReviewRequired;
+        public AnimationPlaygroundForwardLocomotionProfile ExperimentalForwardReview => experimentalForwardReview;
+        public string ForwardReviewStatus => experimentalForwardReview == null
+            ? experimentalForwardReviewRequired ? "Experimental forward gait review unavailable: restore its private profile." : null : presentation?.LaboratoryForwardReviewStatus
+            ?? "Experimental forward gait review — awaiting player startup.";
+        public void ConfigureForwardReview(AnimationPlaygroundForwardLocomotionProfile value)
+        {
+            if (servicesBound) throw new InvalidOperationException("Author forward review before startup.");
+            experimentalForwardReview = value;
+            experimentalForwardReviewRequired = value != null;
+        }
         public TopDown3DAnimationPlaygroundBindings Bindings => bindings;
         public AnimationPlaygroundCatalog Catalog => catalog;
         public GameObject PalettePrefab => palettePrefab;
@@ -44,6 +56,8 @@ namespace BooterBigArm.TopDown3D
             if (!IsLab) return Fail("Animation playground configuration is only valid in Camp Loop Testing.");
             if (bindings == null) return Fail("Private animation binding set is absent. Restore the playground dependencies first.");
             if (!bindings.ValidateImport(out var reason)) return Fail(reason);
+            if (experimentalForwardReviewRequired && experimentalForwardReview == null)
+                return Fail("The experimental forward review profile is missing. Restore the sealed forward draft dependencies.");
             SetReadiness(AnimationPlaygroundReadiness.DependenciesChecked, null);
             return true;
         }

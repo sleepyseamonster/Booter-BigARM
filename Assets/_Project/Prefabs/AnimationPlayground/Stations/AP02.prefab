@@ -1603,6 +1603,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1389404991480420919}
   - component: {fileID: 1737525742031166043}
+  - component: {fileID: 8177610344812333669}
   m_Layer: 0
   m_Name: AP02
   m_TagString: Untagged
@@ -4141,3 +4142,15 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8177610344812333669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4371394455908226979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3443df6b0755f46568177c3f7eabdb43, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DGroundSurface

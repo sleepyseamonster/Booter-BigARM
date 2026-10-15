@@ -4,7 +4,9 @@ Started 2026-10-13 from `e5a6e8b9d`, following the [revised plan](./CAMP_LOOP_AN
 
 ## Focused forward locomotion draft — October 14
 
-The [uphill motor checkpoint](../../Evidence/Gameplay/LocomotionImplementation20261014/ForwardUphillGait/README.md) is the latest continuation. The lab motor blends to walking pace on very steep uphill travel, anticipates braking and preserves flat speeds and input semantics. All 285 relevant Edit Mode checks pass. The experimental author-review candidate and remaining motion, terrain, steering/action and integration gates are open; private animation bindings remain unchanged.
+The [experimental forward review](../../Evidence/Gameplay/LocomotionImplementation20261014/ForwardReview/README.md) is the latest continuation. It is installed in the saved author scene with a bounded AP02 route and F9 reset shortcut. All 306 relevant Edit Mode checks pass. The baseline binding and false qualification flags remain intact, missing private review data is visible, and author feedback is pending. Native support/contact, steering, moving action handoffs and final acceptance remain open.
+
+The preceding [uphill motor checkpoint](../../Evidence/Gameplay/LocomotionImplementation20261014/ForwardUphillGait/README.md) records the slope-speed change. The lab motor blends to walking pace on very steep uphill travel, anticipates braking and preserves flat speeds and input semantics. All 285 relevant Edit Mode checks pass. The following historical checkpoints precede the installed review above; remaining motion, terrain, steering/action and full integration gates are open. Private animation bindings remain unchanged.
 
 The preceding [terrain reach checkpoint](../../Evidence/Gameplay/LocomotionImplementation20261014/ForwardTerrainReach/README.md) records the earlier pose experiment. All 267 relevant Edit Mode checks pass, while the wider matrix still rejects terrain installation. Both private qualification flags and PlayerBindings remain unchanged. That checkpoint predates the slower uphill motor policy above. Source drift, steering, native uneven support, integration and author acceptance remain open.
 

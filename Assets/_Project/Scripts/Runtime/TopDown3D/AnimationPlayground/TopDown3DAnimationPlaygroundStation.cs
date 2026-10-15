@@ -86,6 +86,7 @@ namespace BooterBigArm.TopDown3D
             if(stationId=="AP03" && session?.SlideReady==true)physical="Crouch ready | slide ready";
             if(stationId=="AP04" && session?.JumpReady==true)physical="Jump, fall and landing ready | roll recovery pending";
             if(stationId=="AP04" && session?.JumpReady==true && session.SlideReady)physical="Jump, fall and roll landing ready";
+            if (stationId == "AP02" && session?.ExperimentalForwardReview != null) physical = session.ForwardReviewStatus;
             Status = session?.Readiness == AnimationPlaygroundReadiness.Failed ? session.UnavailableReason
                 : $"Imported {imported} | Preview {preview} | Restricted {restricted}\nPhysical: {physical}";
             var text = stationId + "  " + title + "\n" + Status + "\nInspect terminal: variants | Reset terminal: session";

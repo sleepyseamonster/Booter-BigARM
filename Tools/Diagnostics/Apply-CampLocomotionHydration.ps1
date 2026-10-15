@@ -1,4 +1,7 @@
-param([Parameter(Mandatory=$true)][string]$PlanPath)
+param(
+    [Parameter(Mandatory=$true)][string]$PlanPath,
+    [ValidatePattern('^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$')][string]$RecoveryName = 'CurrentSceneHydration20261014'
+)
 $ErrorActionPreference = 'Stop'
 $plan = Get-Content -LiteralPath $PlanPath -Raw | ConvertFrom-Json
 if ($plan.state -ne 'read-only-current-saved-scene-hydration-plan') { throw 'Unexpected hydration plan schema.' }
@@ -16,7 +19,7 @@ function Within([string]$Base,[string]$Relative) {
     $value
 }
 function Hash([string]$Path) { (Get-FileHash -LiteralPath $Path).Hash.ToLowerInvariant() }
-$recovery = Within $candidate 'CurrentSceneHydration20261014'
+$recovery = Within $candidate $RecoveryName
 if (Test-Path -LiteralPath $recovery) { throw 'Preserve the existing hydration recovery; do not replay.' }
 foreach ($file in $plan.files) {
     if (-not $file.path.StartsWith('Assets/',[StringComparison]::Ordinal)) { throw 'Only Assets belong in this transfer.' }

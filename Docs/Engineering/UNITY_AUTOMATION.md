@@ -37,6 +37,12 @@ Connection, compilation, and focused test proof from the initial setup are recor
 
 ## Platform Routing
 
+### Camp Loop forward gait review
+
+`Tools/Diagnostics/CampForwardReviewInstallation.cs` prepares a single session-record patch in the marked offline candidate. `InstallAuthor` applies the measured patch only when the clean CampLoopTesting scene is already the sole open scene, compilation is complete, the paired runtime API is loaded and the saved bytes match the plan. It preserves the other records instead of saving the whole author scene, verifies reload/readiness, and leaves qualification flags false. The [review receipt](../Evidence/Gameplay/LocomotionImplementation20261014/ForwardReview/README.md) includes the plan and handoff. This is an experimental flat-deck review, not full terrain qualification; agents must not enter Play Mode to accept it.
+
+`Apply-CampLocomotionHydration.ps1` accepts an optional validated `-RecoveryName` for a fresh immutable recovery directory. It still requires the task-owned candidate Editor to be stopped and verifies source/target hashes before any transfer. Never reuse or overwrite an earlier recovery directory.
+
 For the restored Windows checkout, start with [LOCAL_WORKSPACE.md](../LOCAL_WORKSPACE.md) and its PowerShell preflight. The macOS paths below describe the earlier workstation and must not be used as Windows executable or project paths.
 
 ## Previous Workstation Editor

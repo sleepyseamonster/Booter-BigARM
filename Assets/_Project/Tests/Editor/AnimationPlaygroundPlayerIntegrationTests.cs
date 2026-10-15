@@ -147,14 +147,16 @@ namespace BooterBigArm.Tests
             finally { CloseFixtureScene(scene); }
         }
 
-        [TestCase(false, false), TestCase(true, false), TestCase(true, true), Category("PrivateAnimationQualification")]
-        public void SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(bool measuredForward, bool terrain)
+        [TestCase(false, false, false), TestCase(true, false, false), TestCase(true, true, false), TestCase(false, false, true), Category("PrivateAnimationQualification")]
+        public void SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(bool measuredForward, bool terrain, bool review)
         {
             PrivateBindings(); var scene = EditorSceneManager.OpenScene(TopDown3DAnimationPlaygroundSession.ScenePath, OpenSceneMode.Additive); InputActionAsset actions = null;
             TopDown3DAnimationPlaygroundBindings draft = null; AnimationPlaygroundForwardLocomotionProfile policy = null;
             try
             {
                 var session = TopDown3DAnimationPlaygroundSession.Find(scene);
+                session.ConfigureForwardReview(review ? AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(
+                    "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset") : null);
                 if (measuredForward)
                 {
                     var source = AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(
@@ -173,8 +175,28 @@ namespace BooterBigArm.Tests
                 Assert.That(Field<float>(player, "walkSpeed"), Is.EqualTo(2.7f).Within(.0001f));
                 Assert.That(Field<float>(player, "sprintSpeed"), Is.EqualTo(3.8f).Within(.0001f));
                 Assert.That(driver.LaboratorySustainedDiagnostic, Is.False, "Source selection must not opt the author into a diagnostic.");
-                Assert.That(driver.LaboratoryForwardReady, Is.EqualTo(measuredForward));
+                Assert.That(driver.LaboratoryForwardReady, Is.EqualTo(measuredForward || review));
+                Assert.That(driver.LaboratoryForwardReviewConfigured, Is.EqualTo(review));
+                Assert.That(Field<AnimationPlaygroundTerrainPose>(driver, "forwardTerrainPose") != null, Is.EqualTo(terrain));
                 Assert.That(session.Coordinator, Is.Not.Null); Assert.That(input.AnimationActionOwned, Is.Not.Null);
+                if (review)
+                {
+                    var station = session.Stations.Single(value => value.StationId == "AP02");
+                    var spawn = player.Position;
+                    Assert.That(session.Coordinator.TrySelectResetReturn(new Vector3(12345, 6789, 12345)), Is.False);
+                    var reviewMenu = TopDown3DGameHudCanvas.FindInScene<TopDown3DMenuController>(scene);
+                    reviewMenu.OpenAnimationPalette();
+                    var reviewPanel = Field<GameObject>(reviewMenu, "animationPanel");
+                    Assert.That(reviewPanel.GetComponentsInChildren<UnityEngine.UI.Text>(true).Single(value => value.name == "LabResetLabel").text, Is.EqualTo("Reset to gait deck"));
+                    Physics.SyncTransforms();
+                    Assert.That((bool)typeof(TopDown3DMenuController).GetMethod("HandleAnimationPaletteCommand", BindingFlags.Instance | BindingFlags.NonPublic)
+                        .Invoke(reviewMenu, new object[] { "LabReset" }), Is.True);
+                    Assert.That(session.ResetRegistry.LastFailure, Is.Null);
+                    Assert.That(Vector3.Distance(player.Position, station.SafeReturn.position), Is.LessThan(.001f));
+                    Assert.That(input.LaboratoryResetBlocked, Is.False);
+                    session.ResetSession();
+                    Assert.That(Vector3.Distance(player.Position, spawn), Is.LessThan(.001f), "The review return selection must not leak into ordinary resets.");
+                }
                 var binding = session.Bindings.motions.First(value => value.CanPreview);
                 Assert.That(session.Coordinator.TryBeginPreview(binding), Is.True); Assert.That(input.AnimationActionOwned(), Is.True);
                 var replacement=session.Bindings.motions.First(value=>value.CanPreview && value!=binding);

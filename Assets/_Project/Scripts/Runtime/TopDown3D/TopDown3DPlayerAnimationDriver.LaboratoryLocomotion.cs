@@ -57,9 +57,11 @@ namespace BooterBigArm.TopDown3D
 
         private void InitializeForwardLocomotion()
         {
-            if (laboratoryForwardProfile == null || !laboratoryForwardProfile.qualified) return;
-            if (!laboratoryForwardProfile.Validate(humanoidPrefab, locomotionProfile, out var reason))
+            if (laboratoryForwardProfile == null || !laboratoryForwardProfile.qualified && !LaboratoryForwardReviewConfigured) return;
+            if (!laboratoryForwardProfile.Validate(humanoidPrefab, LaboratoryForwardReviewConfigured ? laboratoryForwardProfile.locomotion : locomotionProfile,
+                out var reason, !LaboratoryForwardReviewConfigured))
             { LaboratoryForwardFailure = reason; return; }
+            InitializeForwardReviewInputs();
             forwardClock = new AnimationPlaygroundGaitClock(laboratoryForwardProfile.enterSpeed, laboratoryForwardProfile.exitSpeed);
             if (laboratoryForwardProfile.terrainQualified)
                 forwardTerrainPose = new AnimationPlaygroundTerrainPose(humanoidAnimator, visualInstance.transform,
@@ -76,6 +78,7 @@ namespace BooterBigArm.TopDown3D
         }
         private void UnbindForwardMotion()
         {
+            RestoreForwardReviewBaseline();
             if (forwardBound && motor != null) motor.LaboratoryGroundedMotionCompleted -= AdvanceForwardMotion;
             forwardBound = false; forwardClock?.Reset(); forwardSpeed = forwardPreviousSpeed = 0;
             forwardPoseRenderedThisFrame = false;
@@ -88,6 +91,12 @@ namespace BooterBigArm.TopDown3D
         private void AdvanceForwardMotion(AnimationPlaygroundGroundedMotion sample)
         {
             if (!LaboratoryForwardReady || !isActiveAndEnabled) return;
+            if (!ForwardReviewSupportAvailable())
+            {
+                forwardClock.Reset(); forwardSpeed = forwardPreviousSpeed = 0;
+                LaboratoryDiscardedFootEffects += forwardPlantCount; forwardPlantCount = forwardPlantStart = 0;
+                forwardPoseEnvelope.Reset(); return;
+            }
             forwardMotion = sample;
             forwardPreviousSpeed = forwardSpeed;
             var contacts = forwardClock.Advance(sample, laboratoryForwardProfile);
@@ -111,6 +120,7 @@ namespace BooterBigArm.TopDown3D
 
         private void PrepareForwardGraphUpdate()
         {
+            RestoreForwardReviewBaseline();
             forwardTerrainApplied = false; forwardTerrainPose?.Disable();
             if (!forwardPoseRenderedThisFrame) { forwardIdleSeconds = 0; forwardPoseEnvelope.Reset(); }
             forwardPoseRenderedThisFrame = false;
@@ -126,7 +136,7 @@ namespace BooterBigArm.TopDown3D
 
         private bool TryPresentForwardLocomotion()
         {
-            if (!LaboratoryForwardReady || !playableGraph.IsValid() || motor == null || visualInstance == null
+            if (!LaboratoryForwardReady || !ForwardReviewSupportAvailable() || !playableGraph.IsValid() || motor == null || visualInstance == null
                 || motor.IsActionConstrained || motor.AnimationPosture != AnimationPlaygroundPosture.Standing
                 || motor.ActiveTraversal != TopDown3DTraversalMove.None || motor.ClimbMode >= TopDown3DClimbMode.Scramble
                 || IsGathering || campIndex >= 0) return false;
@@ -156,7 +166,7 @@ namespace BooterBigArm.TopDown3D
 
         private void EmitForwardFootEffectsForRenderedPose()
         {
-            if (forwardFootEffectsProcessed || !forwardPoseRenderedThisFrame || !LaboratoryForwardReady || motor == null
+            if (forwardFootEffectsProcessed || !forwardPoseRenderedThisFrame || !LaboratoryForwardReady || !ForwardReviewSupportAvailable() || motor == null
                 || AnimationPresentationOwned || CrouchPresentationOwned || PoseBlendOwned || motor.IsMounted
                 || motor.IsActionConstrained) return;
             // Effects sample the displayed pose after frame interpolation, rather
@@ -180,14 +190,15 @@ namespace BooterBigArm.TopDown3D
         {
             var policy = laboratoryForwardProfile;
             playableGraph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
-            for (var i = 0; i < mixer.GetInputCount(); i++) mixer.SetInputWeight(i, i < 4 ? weights[i] : 0);
+            SetForwardWeights(weights);
             for (var i = 0; i < clipPlayables.Length; i++) if (clipPlayables[i].IsValid()) clipPlayables[i].SetSpeed(0);
-            clipPlayables[IdleIndex].SetTime(idleSeconds);
-            var correction = locomotionEntries[IdleIndex].HeightCorrection(
-                Mathf.Repeat((float)(idleSeconds / locomotionEntries[IdleIndex].Clip.length), 1)) * weights.x;
+            var idleEntry = LaboratoryForwardReviewConfigured ? policy.locomotion.GetRequiredEntry(TopDown3DLocomotionClipRole.Idle) : locomotionEntries[IdleIndex];
+            ForwardClip(IdleIndex).SetTime(idleSeconds);
+            var correction = idleEntry.HeightCorrection(
+                Mathf.Repeat((float)(idleSeconds / idleEntry.Clip.length), 1)) * weights.x;
             for (var i = 0; i < 3; i++)
             {
-                clipPlayables[i + 1].SetTime(policy.gaits[i].SourceSeconds(cycles));
+                ForwardClip(i + 1).SetTime(policy.gaits[i].SourceSeconds(cycles));
                 correction += policy.gaits[i].Height(cycles) * weights[i + 1];
             }
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition + Vector3.up * correction,

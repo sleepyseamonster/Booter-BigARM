@@ -97,6 +97,7 @@ namespace BooterBigArm.Editor
                         targets.Add(Terminal(root.transform, id + ".Inspect", "Inspect " + Titles[number - 1], new Vector3(-11, 0, -9), AnimationPlaygroundActionKind.Preview));
                         targets.Add(Terminal(root.transform, id + ".Reset", "Reset lab session", new Vector3(-8.5f, 0, -9), AnimationPlaygroundActionKind.Reset));
                         var sign = Sign(root.transform, id + " " + Titles[number - 1], new Vector3(-9.8f, 2.5f, -9));
+                        if (number == 2) root.AddComponent<TopDown3DGroundSurface>();
                         Furnish(number, root.transform, id, targets);
                         root.AddComponent<TopDown3DAnimationPlaygroundStation>().Configure(id, Titles[number - 1], Gates[number - 1], new Vector2(28, 24), entry, safe, sign,
                             targets.ToArray(), root.GetComponentsInChildren<AnimationPlaygroundProp>(true));
