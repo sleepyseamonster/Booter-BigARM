@@ -121,6 +121,7 @@ Author direction recorded October 14, 2026:
 Author direction recorded October 14, 2026:
 
 - Forging tools include hammers and anvils. Their construction, materials, crafting tiers and workshop requirements remain open.
+- Contemporary steelmaking is fairly advanced. The Iron Age framing does not limit all metallurgy to crude iron. Steel is a recognized manufactured material; specific grades, compositions, production access, heat treatment, properties and crafting routes remain open. This capability does not establish reproduction of ancient composites or assign steel a numeric material tier.
 - Supporting smithing tools and forge equipment in the item database remain brainstorming proposals. Heating and hot-work processes must respect the world's atmosphere/fire rules and material scarcity; ordinary combustion, wooden handles or free-water quenching are not established by this direction.
 
 ## Player Character
