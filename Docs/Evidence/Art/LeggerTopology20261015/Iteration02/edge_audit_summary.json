@@ -1,0 +1,47 @@
+{
+  "before_boundary_length_m": 0.06795502072782256,
+  "after_boundary_length_m": 0.06974213928333484,
+  "changed_boundary_edges": [
+    {
+      "a": [
+        0.2639579176902771,
+        -0.41156548261642456,
+        0.13952606916427612
+      ],
+      "b": [
+        0.264186292886734,
+        -0.41235947608947754,
+        0.1392250955104828
+      ],
+      "length_m": 0.0008792986045591533,
+      "faces": 1,
+      "boundary": true,
+      "max_endpoint_distance_to_prior_defect_m": 0.0008792986045591533,
+      "nearest_prior_defect_face_counts": [
+        3,
+        3
+      ]
+    },
+    {
+      "a": [
+        0.2639579176902771,
+        -0.41156548261642456,
+        0.13952606916427612
+      ],
+      "b": [
+        0.26439473032951355,
+        -0.4117938280105591,
+        0.14028842747211456
+      ],
+      "length_m": 0.000907819950953126,
+      "faces": 1,
+      "boundary": true,
+      "max_endpoint_distance_to_prior_defect_m": 0.0008792986045591533,
+      "nearest_prior_defect_face_counts": [
+        3,
+        4
+      ]
+    }
+  ],
+  "interpretation": "Two extra boundary edges, approximately 0.879 and 0.908 mm long, adjacent to existing multi-face non-manifold source edges near a foot at world Z ~0.14 m. This is a small change at an existing defect, not proof of clean manifold topology."
+}

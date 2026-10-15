@@ -9,6 +9,8 @@ from PIL import Image, ImageDraw
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('evidence', type=Path)
+    parser.add_argument('--before-label', default='source')
+    parser.add_argument('--after-label', default='candidate')
     args = parser.parse_args()
     metrics = {}
     sheet = Image.new('RGB', (1280, 4*670), '#262626')
@@ -32,7 +34,7 @@ def main():
                     canvas.paste(im, mask=im.getchannel('A'))
                     sheet.paste(canvas, (col*640, row*670+30))
                     draw.text((col*640+12, row*670+8),
-                              f'{view} / {"source" if col == 0 else "iteration 01"}', fill='white')
+                              f'{view} / {args.before_label if col == 0 else args.after_label}', fill='white')
     (args.evidence/'image_comparison.json').write_text(json.dumps(metrics, indent=2)+'\n')
     sheet.save(args.evidence/'comparison.png')
     print(json.dumps(metrics, indent=2))

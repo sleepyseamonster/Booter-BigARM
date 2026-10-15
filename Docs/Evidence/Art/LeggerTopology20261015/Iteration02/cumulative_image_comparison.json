@@ -1,0 +1,42 @@
+{
+  "front_texture": {
+    "silhouette_iou": 0.9999206601079023,
+    "silhouette_disagreement_pixels": 13,
+    "mean_rgb_difference_on_overlap_0_255": 1.2073417603053405
+  },
+  "front_single": {
+    "silhouette_iou": 0.9999206601079023,
+    "silhouette_disagreement_pixels": 13,
+    "mean_rgb_difference_on_overlap_0_255": 1.122349786477375
+  },
+  "side_texture": {
+    "silhouette_iou": 0.9999059878507376,
+    "silhouette_disagreement_pixels": 26,
+    "mean_rgb_difference_on_overlap_0_255": 1.7303695024843238
+  },
+  "side_single": {
+    "silhouette_iou": 0.9999059878507376,
+    "silhouette_disagreement_pixels": 26,
+    "mean_rgb_difference_on_overlap_0_255": 1.3936610567476935
+  },
+  "elevated_texture": {
+    "silhouette_iou": 0.9999338233556285,
+    "silhouette_disagreement_pixels": 14,
+    "mean_rgb_difference_on_overlap_0_255": 1.1351952261421348
+  },
+  "elevated_single": {
+    "silhouette_iou": 0.9999338233556285,
+    "silhouette_disagreement_pixels": 14,
+    "mean_rgb_difference_on_overlap_0_255": 1.4850801184325182
+  },
+  "underside_texture": {
+    "silhouette_iou": 0.9999258060477345,
+    "silhouette_disagreement_pixels": 16,
+    "mean_rgb_difference_on_overlap_0_255": 1.009771141048531
+  },
+  "underside_single": {
+    "silhouette_iou": 0.9999258060477345,
+    "silhouette_disagreement_pixels": 16,
+    "mean_rgb_difference_on_overlap_0_255": 1.3070713628739923
+  }
+}
