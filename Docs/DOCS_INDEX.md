@@ -88,6 +88,9 @@ These should be treated as the source of truth unless they are intentionally rev
 - [Agents/Blender/README.md](./Agents/Blender/README.md)
   The persistent Blender modeling specialist and entry point for 3D asset research, authoring, and Unity handoff.
 
+- [Agents/Sable/README.md](./Agents/Sable/README.md)
+  The persistent art director's workspace, agent instructions, review SOP, briefs, references, and decision notes.
+
 ## Program Plans
 
 - [Master item database](./Design/Items/MASTER_ITEM_DATABASE.xlsx)

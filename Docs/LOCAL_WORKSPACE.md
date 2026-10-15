@@ -59,6 +59,7 @@ These repository folders contain the restored instructions, SOPs, tools, templat
 | Gear Ball | [README](./Agents/GearBall/README.md) | Scoped Git commits and authorized publication |
 | Lorekeeper | [README](./Agents/Lorekeeper/README.md) | Narrative retrieval and game-canon boundaries |
 | Blender | [README](./Agents/Blender/README.md) | 3D sources, modeling, and asset handoff |
+| Sable | [README](./Agents/Sable/README.md) | Art direction, visual briefs, reference studies, and visual reviews |
 
 Start each session with root instructions, this guide, the relevant role's default load, `git status --short --branch`, and the feature's controlling documents. Keep retained memory bounded; record fresh evidence separately from previous-machine results. Commit only verified task-owned changes. Pushes require current user authority.
 

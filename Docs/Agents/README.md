@@ -22,4 +22,8 @@ This directory contains durable contracts and working surfaces for persistent re
 
 - [Blender](./Blender/README.md) — Blender modeling research, source asset creation, mesh quality, and Unity-ready asset handoff under Gottspan's coordination.
 
+## Persistent Art Director
+
+- [Sable](./Sable/README.md) — visual direction, art briefs, reference studies, and visual reviews, with a dedicated workspace established at the user's request on October 15, 2026. The user retains final creative authority.
+
 Task specialists do not need permanent folders by default. Gottspan assigns temporary specialist seats through bounded task briefs and records only information that needs to survive the task.

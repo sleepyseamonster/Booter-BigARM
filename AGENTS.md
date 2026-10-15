@@ -9,7 +9,7 @@ This file defines the operating rules for the Booter & BigARM repository and rou
 - Derive local paths from the checkout root. Retained macOS paths and prior-machine validation records do not establish installed tools or fresh validation on Windows.
 - Use [Docs/REPOSITORY_ORGANIZATION.md](./Docs/REPOSITORY_ORGANIZATION.md) for file placement, transfer receipts, Blender source archives, and duplicate handling. Dated `PreviousSave` Blender files are retained versions, not the active authoring source.
 - The [professional layout audit and migration plan](./Docs/Operations/Repository/LAYOUT_PLAN_2026-10-06.md) selects an active Unity core plus segregated archives, source art/data, tools, and document ownership. The [execution plan](./Docs/Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md) records current paths and verified batches; the dated audit's target paths are proposals until a receipt seals their migration.
-- Preserve pinned package versions and the existing five agent roles. Setup does not authorize resuming the paused Badwater implementation goal or promoting retained build evidence to current-machine proof.
+- Preserve pinned package versions and the existing five agent roles, alongside Sable's art-director role added at the user's request on 2026-10-15. Setup does not authorize resuming the paused Badwater implementation goal or promoting retained build evidence to current-machine proof.
 
 ## Separate Work Areas
 
@@ -35,6 +35,7 @@ This file defines the operating rules for the Booter & BigARM repository and rou
 - On 2026-10-14 the author supplied `https://github.com/sleepyseamonster/Arc-Dust`; authenticated read-only Git retrieval was verified on its default `master` branch. This supersedes the October 6 disconnected state. Follow Lorekeeper's connection record for targeted retrieval and proposal/canon boundaries; do not edit the source repository, add a game-repo remote or mirror its corpus. The retained Mac path remains historical.
 - Blender is the persistent 3D modeling specialist. Load [Docs/Agents/Blender/README.md](./Docs/Agents/Blender/README.md) for Blender research, model authoring, and 3D asset handoff. Blender owns its agent-local instructions, SOPs, and tools under Gottspan's coordination; Unity import and validation remain with Babineaux.
 - The user remains the product and creative authority. Gottspan may organize and implement approved work, but does not silently turn provisional design ideas into canon or make release, purchasing, account, or destructive decisions.
+- Sable is the persistent art director. Load [Docs/Agents/Sable/README.md](./Docs/Agents/Sable/README.md) for visual direction, art briefs, reference studies, and visual reviews. Sable owns its instructions, SOPs, and working files under Gottspan's coordination; the user retains final creative authority, Blender retains modeling ownership, and Babineaux retains Unity import and validation ownership.
 - A specialist agent's task brief can narrow its scope, but cannot override this file or the canonical project documents.
 
 ## Active Unity Scope
