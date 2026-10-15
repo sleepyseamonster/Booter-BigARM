@@ -116,6 +116,13 @@ Author direction recorded October 14, 2026:
 - Insulating materials and insulating suits, gloves and boots exist for handling high-voltage electricity. Their composition, construction, operating limits and compatibility remain undefined; garment construction follows the established no-cloth material rules. Insulation and grounding remain distinct equipment purposes.
 - Ancient, reverse-engineered or contemporary origins and crafting tiers have not been assigned to these families. Their existence does not establish particular combat effects, immunity, or enhancement/suppression of living peoples' abilities.
 
+### Forging And Workshop Tooling
+
+Author direction recorded October 14, 2026:
+
+- Forging tools include hammers and anvils. Their construction, materials, crafting tiers and workshop requirements remain open.
+- Supporting smithing tools and forge equipment in the item database remain brainstorming proposals. Heating and hot-work processes must respect the world's atmosphere/fire rules and material scarcity; ordinary combustion, wooden handles or free-water quenching are not established by this direction.
+
 ## Player Character
 
 Booter is a professional desert survivor and metal scrapper.
