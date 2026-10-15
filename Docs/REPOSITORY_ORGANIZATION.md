@@ -28,7 +28,7 @@ The [October 6 organization audit](./Evidence/Repository/organization-audit-2026
 
 The [second-pass audit and migration plan](./Operations/Repository/LAYOUT_PLAN_2026-10-06.md) selects a single active Unity core at the repo root, an `Archive/` area for proprietary-engine/Unreal/legacy Unity work, separate `SourceArt/` and source-data manifests, topic-owned documentation, and project-wide tooling. The [execution plan](./Operations/Repository/REORGANIZATION_EXECUTION_PLAN.md) records actual verified batches: inactive hosts, source art/tools, topical and historical documents, and the historical Unity implementation are now segregated and verified. The generated reference remains disabled and the active terrain document package retains its current owner/location. The dated audit map is a proposal snapshot, not a substitute for relocation receipts.
 
-Lorekeeper's external lore source is currently disconnected, as confirmed by the author. The agent package and local game canon remain available. External reconnection is a later task; no lore repository is mirrored here.
+Lorekeeper's external source is `https://github.com/sleepyseamonster/Arc-Dust`, supplied by the author and verified through authenticated read-only Git retrieval on October 14. Follow [the connection record](Agents/Lorekeeper/README.md) for targeted partial-cache access and source status. No lore corpus is mirrored into game documents; source files remain read-only.
 
 ## Completed terrain Blender source retirement â€” October 9, 2026
 

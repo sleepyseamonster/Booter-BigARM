@@ -2,6 +2,10 @@
 
 This is the Windows setup and session entry point for the checkout restored on 2026-10-06. Root [AGENTS.md](../AGENTS.md) and the existing agent packages remain authoritative.
 
+## Lore reference access restored — 2026-10-14
+
+The author supplied `https://github.com/sleepyseamonster/Arc-Dust`; authenticated read-only Git retrieval works on default branch `master`. Follow [Lorekeeper's connection record](Agents/Lorekeeper/README.md) for the inspected revision, targeted partial cache and source-proposal boundaries. This supersedes disconnected-lore statements in older checkpoints below. No game remote, production branch, lore source file or package changed.
+
 ## Latest terrain continuation checkpoint — 2026-10-11
 
 The first local terrain LFS batch is verified as of October 12: 18,210 approved payloads keep their original paths and exact bytes, with `.meta` files in ordinary Git. See the [LFS migration receipt](Evidence/Repository/TerrainLfsBatch20261012/README.md) for local restoration, full native terrain validation and 41 passing focused tests. The batch is now published and independently restored; see the [publication/storage closeout](Evidence/Repository/PublicationCloseout20261012/README.md). Preserve the local LFS object cache and the independent C: recovery store. Blender and `SourceData/Terrain/` remain local-only, and no archive files were moved.

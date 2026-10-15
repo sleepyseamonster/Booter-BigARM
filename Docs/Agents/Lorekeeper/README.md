@@ -4,11 +4,13 @@ Lorekeeper is the persistent worldbuilding, storytelling, lore, plot, and themat
 
 Lorekeeper keeps the game's narrative work connected to the deeper Arc & Dust worldbuilding repository without copying that entire corpus into this Unity repo. The role retrieves only the material needed for the current question, identifies its source and canon status, and translates it into game-facing context or proposals.
 
-## Current Connection State — 2026-10-06
+## Current Connection State — 2026-10-14
 
-The author confirmed that the Arc & Dust lore repository is absent from this Windows machine and its GitHub repository is not connected. External retrieval is unavailable. The retained `/Users/worldbuilder/Desktop/D&D Arc & Dust` path identifies the previous Mac workspace, not a configured local checkout. The game's only configured remote is Booter-BigARM; no lore remote URL has been supplied here.
+The author supplied `https://github.com/sleepyseamonster/Arc-Dust` on October 14. Authenticated read-only Git access was verified: default branch `master`, inspected revision `f6f98515c005dc3c73cccd9cbc031691745740c6`. The game repository's remote and branch are unchanged. The retained Mac path is historical.
 
-Lorekeeper can use local game canon and accepted documents, develop clearly labeled proposals, and record source questions for later retrieval. It must not claim fresh source-canon verification from memory. Connecting the external repository is deferred to a separate user-directed task; do not guess its URL, clone it, attach a connector, or create a lore mirror during organization work.
+Targeted retrieval uses a disposable, ignored partial Git cache at `Logs/ItemDatabase20261014/LoreReference/SourceReadCache`, created with `--filter=blob:none --no-checkout --depth 1`. Read selected records with `git show`; no authoring checkout or bulk lore mirror was created. A missing cache can be recreated for a later authorized read. Recheck the remote revision before claiming current source facts. The public web fetch and GitHub REST attempt returned 404; authenticated Git reads succeeded.
+
+Root governance and the worldbuilding instructions/index were read. Native Fauna Biology (WLD-0147), Domestic Wasteland Beetle (WLD-0148), Native Fauna Catalog (WLD-0149), Chitin (WLD-0063), Phagia Materials (WLD-0064) and Chemical Processing Agents are proposal-stage references. The exact owning record named **Burden Beasts** has not been identified; the beetle record uses `burden beetle` as a working descriptor. Source textile proposals conflict with the author's latest game no-cloth direction; do not import them as accepted game canon.
 
 ## Working Relationship
 

@@ -57,7 +57,7 @@ Author direction recorded October 14, 2026:
 - Most fauna does not have flesh in the traditional sense. Do not assume conventional meat, muscle or fat anatomy when designing harvestable resources.
 - The internal chemicals of most fauna are toxic to humans. Those chemicals and liquids can nevertheless be used as materials; toxicity and material usefulness are separate properties.
 - Species-specific edible fractions, organs, chemical identities, processing uses and extraction/containment rules remain undefined here. Edibility does not imply that other parts of the same creature are safe.
-- The author identifies the separate lore repository's **Burden Beasts** anatomy as a reference. That source remains unavailable in this checkout; these rules record direct author direction, not a fresh anatomy-source review.
+- The author identifies **Burden Beasts** anatomy in [Arc-Dust](https://github.com/sleepyseamonster/Arc-Dust) as a reference. Read-only access was restored October 14: related Native Fauna Biology and Domestic Wasteland Beetle records are source proposals at revision `f6f98515c005dc3c73cccd9cbc031691745740c6`. The exact Burden Beasts owning record is not yet identified. These game rules retain direct author authority; differing source anatomy/textile proposals are not automatically adopted.
 
 ## Material Culture
 

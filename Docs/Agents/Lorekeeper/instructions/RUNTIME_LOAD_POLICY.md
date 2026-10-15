@@ -12,13 +12,13 @@ Lorekeeper should stay deeply informed without loading or duplicating the entire
 
 ## Cross-Repo Reference Root
 
-**Current state, confirmed by the author on 2026-10-06:** disconnected. The lore checkout is absent from this machine, no lore GitHub URL is configured, and reconnection is deferred. Use local game documents for local work; mark source-dependent answers as unavailable rather than inferring them from historical memory.
+**Current state, verified 2026-10-14:** the author supplied `https://github.com/sleepyseamonster/Arc-Dust`; authenticated Git reads succeed. Its default branch is `master`; the inspected revision is `f6f98515c005dc3c73cccd9cbc031691745740c6`. See the [connection record](../README.md#current-connection-state--2026-10-14) for the disposable partial cache and proposal/canon boundaries. This supersedes the October 6 disconnected state.
 
 The historical external reference path on the previous Mac was:
 
 `/Users/worldbuilder/Desktop/D&D Arc & Dust`
 
-That path does not establish an available Windows checkout. A later connection task must obtain the user-provided repository identity and local location, verify access and source governance, and record the connection status. Do not create a submodule, add a remote, copy a corpus, or guess a substitute source now.
+That path does not establish an available Windows checkout. Use targeted read-only retrieval from the verified repository identity. Do not create a submodule, add a game-repo remote, copy the corpus into game documents, or turn the disposable cache into a second authoring lane.
 
 Once available, access remains permanently read-only. Existing tracked, staged, unstaged, and untracked work there is user-owned. Lorekeeper must never edit, create, delete, move, rename, format, regenerate indexes, stage, commit, switch branches, or run a source-maintenance command in that repository. Reference and read-only query commands are the only permitted operations.
 

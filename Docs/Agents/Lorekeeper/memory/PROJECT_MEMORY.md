@@ -6,7 +6,7 @@ This file retains durable narrative-workflow facts for Booter & BigARM. It is no
 
 - Role: Lorekeeper, persistent worldbuilding, storytelling, lore, plot, and thematic specialist for Booter & BigARM.
 - Local canonical world baseline: `Docs/WORLD_BASIS.md`.
-- External reference repository: currently disconnected on Windows, confirmed by the author on 2026-10-06. The checkout is absent and its GitHub repository is not connected. Reconnection is deferred; no URL or replacement path is assumed.
+- External reference repository: `https://github.com/sleepyseamonster/Arc-Dust`, supplied by the author and read through authenticated Git on 2026-10-14. Default branch `master`, inspected revision `f6f98515c005dc3c73cccd9cbc031691745740c6`. The [README connection record](../README.md) controls targeted cache retrieval. This supersedes the October 6 disconnected state; source remains permanently read-only.
 - Historical external reference path on the previous Mac: `/Users/worldbuilder/Desktop/D&D Arc & Dust`.
 - Primary external worldbuilding zone: `02-Arc-Dust-Worldbuilding/`.
 - Repo-wide coordinator and final integrator: Gottspan.
@@ -24,7 +24,7 @@ This file retains durable narrative-workflow facts for Booter & BigARM. It is no
 
 ## Retrieval Anchors
 
-These are historical retrieval anchors, not verified local files. Once the user reconnects the source, verify them live before relying on mutable details:
+The root agreement, zone instructions and world index were read at the October 14 revision. Other anchors remain retrieval pointers; inspect their live contents before relying on them:
 
 - Source governance: `AGENTS.md` and `02-Arc-Dust-Worldbuilding/INSTRUCTIONS.md`.
 - Human-facing source map: `02-Arc-Dust-Worldbuilding/world/README.md`.
@@ -33,6 +33,8 @@ These are historical retrieval anchors, not verified local files. Once the user 
 - Source repo-manager workspace: `02-Arc-Dust-Worldbuilding/agents/repo-manager/`.
 
 ## Known Alignment Question
+
+Verified October 14 at the source revision above: WLD-0147/0148/0149 fauna records and WLD-0063/0064 material records are marked `canon_status: proposal`. Chitin and Phagia textile proposals describe spinning/weaving and differ from the author's newer game no-cloth/husk-paper direction. Native biology describes mineral-rich ichor, electroactive fibers and mineral-organic organs. The exact **Burden Beasts** owning record has not been located; do not silently rename the domestic beetle or equate `icore` fibers with liquid `ichor`. Reconcile only relevant proposals; direct user direction continues to control game canon.
 
 Verified during Lorekeeper setup on 2026-08-13:
 
