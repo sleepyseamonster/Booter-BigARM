@@ -1,0 +1,64 @@
+{
+  "state": "passive-source-import-compiled-no-player-turn-binding",
+  "preflight": {
+    "playing": false,
+    "compiling": false,
+    "scenes": [
+      {
+        "path": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+        "isLoaded": true,
+        "isDirty": false
+      }
+    ]
+  },
+  "loaded": {
+    "compiling": false,
+    "playing": false,
+    "stageLoaded": true,
+    "runtimeModule": "56d9d15e-85f0-476b-83cb-8b07b7b6153d",
+    "sceneDirty": false,
+    "stageGuid": "9bb717b60582463f924ac47a29158887",
+    "testGuid": "a83476b423014e67bcc8edf5bce313c9"
+  },
+  "sourceFiles": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundTangentFootPose.cs",
+      "bytes": 13610,
+      "sha256": "98994f14f7639d74c41406a77547b64d0161ef49fab37a613e92519164ab5367"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundTangentFootPose.cs.meta",
+      "bytes": 60,
+      "sha256": "5019a0061aa9231dac5738a4b1b61473f1e209388cf027c4b9fa4983a5236d74"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundTangentFootPoseTests.cs",
+      "bytes": 12675,
+      "sha256": "9670c37223b3f14ec8564255c9ae2c174f73104aaf1aec4933a78ee16d0153da"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundTangentFootPoseTests.cs.meta",
+      "bytes": 60,
+      "sha256": "19625e274223e1c1c18c70851a85061cd2e24b2b27953f04e2135644e7a0250a"
+    }
+  ],
+  "privateDependencies": {
+    "playing": false,
+    "compiling": false,
+    "bindingValid": true,
+    "bindingReason": null,
+    "profileValid": true,
+    "profileReason": null,
+    "unitHierarchy": true,
+    "sourceAvatar": "MaleBaseMeshMixamoAvatar",
+    "targetAvatar": "MaleBaseMeshOriginalRigAvatar"
+  },
+  "candidateChecks": {
+    "passed": 18,
+    "failed": 0,
+    "source": "../TurnTangentStabilization20261015/tests.json"
+  },
+  "sceneSavedOrReloadedByAgent": false,
+  "playModeStartedBy": "author",
+  "foregroundActivatedByAgent": false
+}

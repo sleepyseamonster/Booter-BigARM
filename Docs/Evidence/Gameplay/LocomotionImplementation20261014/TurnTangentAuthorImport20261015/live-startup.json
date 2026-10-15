@@ -1,0 +1,110 @@
+{
+  "state": "fresh-author-play-startup-ready-motion-acceptance-pending",
+  "first": {
+    "playing": true,
+    "paused": false,
+    "compiling": false,
+    "time": 0.0399999858276644,
+    "frame": 3,
+    "timeScale": 1,
+    "focused": false,
+    "assembly": "56d9d15e-85f0-476b-83cb-8b07b7b6153d",
+    "sessions": [
+      {
+        "name": "Animation Playground",
+        "enabled": true,
+        "Readiness": 3,
+        "UnavailableReason": null,
+        "ForwardReviewStatus": "Experimental forward gaits available on AP02's flat deck. Baseline active elsewhere."
+      }
+    ],
+    "drivers": [
+      {
+        "name": "Booter Perspective 3D Controller",
+        "enabled": true,
+        "active": true,
+        "graphValid": true,
+        "graphPlaying": false,
+        "outputs": 1,
+        "mode": "GameTime",
+        "animator": {
+          "enabled": true,
+          "active": true,
+          "isHuman": true,
+          "avatar": "MaleBaseMeshOriginalRigAvatar",
+          "speed": 1,
+          "hasBoundPlayables": true
+        },
+        "LaboratoryForwardReady": true,
+        "LaboratoryForwardFailure": null,
+        "LaboratoryForwardReviewStatus": "Experimental forward gaits available on AP02's flat deck. Baseline active elsewhere.",
+        "CurrentLocomotionState": 0,
+        "clips": [
+          {
+            "index": 0,
+            "valid": true,
+            "name": "IdleBreathingLoop",
+            "time": 0.039999984204769135,
+            "speed": 1,
+            "weight": 1
+          }
+        ]
+      }
+    ]
+  },
+  "second": {
+    "playing": true,
+    "paused": false,
+    "compiling": false,
+    "time": 44.57707677154195,
+    "frame": 9973,
+    "timeScale": 1,
+    "focused": false,
+    "runInBackground": false,
+    "assembly": "56d9d15e-85f0-476b-83cb-8b07b7b6153d",
+    "sessions": [
+      {
+        "name": "Animation Playground",
+        "enabled": true,
+        "Readiness": 3,
+        "UnavailableReason": null,
+        "ForwardReviewStatus": "Experimental forward gaits available on AP02's flat deck. Baseline active elsewhere."
+      }
+    ],
+    "drivers": [
+      {
+        "name": "Booter Perspective 3D Controller",
+        "enabled": true,
+        "active": true,
+        "graphValid": true,
+        "graphPlaying": false,
+        "outputs": 1,
+        "mode": "GameTime",
+        "animator": {
+          "enabled": true,
+          "active": true,
+          "isHuman": true,
+          "avatar": "MaleBaseMeshOriginalRigAvatar",
+          "speed": 1,
+          "hasBoundPlayables": true
+        },
+        "LaboratoryForwardReady": true,
+        "LaboratoryForwardFailure": null,
+        "LaboratoryForwardReviewStatus": "Experimental forward gaits available on AP02's flat deck. Baseline active elsewhere.",
+        "CurrentLocomotionState": 0,
+        "clips": [
+          {
+            "index": 0,
+            "valid": true,
+            "name": "IdleBreathingLoop",
+            "time": 44.5770767594222,
+            "speed": 1,
+            "weight": 1
+          }
+        ]
+      }
+    ]
+  },
+  "observation": "Idle clip time and frame count advanced during author-owned play. Both reads occurred after focus returned to Codex. runInBackground=false suspends the editor graph while unfocused; graphPlaying=false in these snapshots is not evidence of a broken controller. No agent input or simulation was used.",
+  "movementAndVisualAcceptance": "pending-author-feedback"
+}

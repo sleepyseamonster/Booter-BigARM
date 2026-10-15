@@ -1,0 +1,70 @@
+{
+  "state": "author-feedback-driven-session-trial",
+  "authorFeedback": {
+    "freshPlayback": "Walking and running animate",
+    "baseline": "Sprint pulses and running animation feels too fast",
+    "AP02": "Cadence steady; sprint should be slightly faster",
+    "nextDirection": "Relax intermediate running toward a walk/jog; stronger sprint pose and greater sprint travel speed"
+  },
+  "baselineSourceDerivative": {
+    "minimum": 0.5,
+    "maximum": 1.4375,
+    "basis": "Runtime baseline sprint contact mapping; base source playback one"
+  },
+  "reviewGaits": [
+    {
+      "role": "Walk",
+      "clip": "MCU_am_Loco_Walk_Fwd_NoRM",
+      "nominalSpeed": 1.4,
+      "metresPerCycle": 3.22170615,
+      "duration": 2.13333344,
+      "averageNativeRate": 0.927045047,
+      "minimumNativeRate": 0.8151036,
+      "maximumNativeRate": 1.158851
+    },
+    {
+      "role": "Run",
+      "clip": "MCU_am_Loco_Jog_Fwd_NoRM",
+      "nominalSpeed": 2.7,
+      "metresPerCycle": 4.36681175,
+      "duration": 1.4333334,
+      "averageNativeRate": 0.8862302,
+      "minimumNativeRate": 0.800700843,
+      "maximumNativeRate": 0.965173
+    },
+    {
+      "role": "Sprint",
+      "clip": "MCU_am_Loco_Run_Fwd_NoRM",
+      "nominalSpeed": 3.8,
+      "metresPerCycle": 5.592029,
+      "duration": 1.23333335,
+      "averageNativeRate": 0.8380977,
+      "minimumNativeRate": 0.73587203,
+      "maximumNativeRate": 0.93086195
+    }
+  ],
+  "trial": {
+    "trial": "current-play-session-only",
+    "before": 3.8,
+    "after": 4,
+    "walk": 1.4,
+    "run": 2.7,
+    "animationRateRatio": 1.05263162,
+    "minimumNativeRate": 0.7746021,
+    "maximumNativeRate": 0.9798547,
+    "reviewActive": true,
+    "assetsSaved": false
+  },
+  "acceptance": "4.0mps-trial-positive-further-tuning-requested",
+  "persistentCalibrationChanged": false,
+  "nextComparison": {
+    "speeds": [
+      1.4,
+      2.2,
+      5.0
+    ],
+    "state": "proposed-not-verified-active",
+    "firstLiveSetup": "timed-out",
+    "subsequentEditorState": "Edit Mode"
+  }
+}
