@@ -63,6 +63,8 @@ Author direction recorded October 14, 2026:
 
 Author direction recorded October 14, 2026:
 
+- Oxygen-releasing stone, glowing stone and flint are recognized resource families. Specific mineral names, activation, output, duration, depletion and behavior after extraction remain undefined. Glowing stone does not automatically imply combustion or a heat source.
+- Fire behaves differently in this world. Cooking and fire-related equipment must account for the setting's atmospheric rules. Detailed oxygen, fuel, airflow and cooking behavior remain design work; proposal-stage source mechanisms do not establish implemented game systems.
 - Shell husks supply abundant chitin and icore fibers that can be scraped from them. The term `icore` retains the author's spelling; its composition is not yet defined.
 - Scraped husk fibers are the main source of paper.
 - Ordinary megafauna shells are cheap bulk material. This does not make processed fibers, precision components or labor-intensive finished goods cheap.
