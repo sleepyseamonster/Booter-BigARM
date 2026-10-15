@@ -131,6 +131,13 @@ Author direction recorded October 14, 2026:
 - The inner cities have carriages and cars; most of this transport machinery is bipedal.
 - The exact relation of carriage and car designs to bipedal locomotion remains open. These names do not establish wheeled vehicles, draft animals or combustion engines. Power supplies, capacity, ownership, manufacturing and availability beyond the inner cities remain undefined.
 
+### Metal Corrosion And Surface Treatment
+
+Author direction recorded October 14, 2026:
+
+- Advanced de-rusting materials exist. Their compositions, carriers, production routes and operating performance remain open.
+- Rust removal, rust conversion and corrosion prevention are separate material functions in the item database; conversion treatments and protective finishes are supporting proposals. Mineral/faunal sources are possible directions, not accepted formulas. Ordinary humidity, free-water treatment baths and plant-derived reagents are not established by this direction; the world's actual corrosion conditions remain design work.
+
 ## Player Character
 
 Booter is a professional desert survivor and metal scrapper.
