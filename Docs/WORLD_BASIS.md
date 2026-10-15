@@ -71,6 +71,7 @@ Author direction recorded October 14, 2026:
 - Such clothing takes very large quantities of material and very large amounts of processing and crafting time. Fashion items are consequently very rare and expensive.
 - Specialized spectacles, eyeglasses and hats are rare. Their exact optical functions, construction and game effects remain open.
 - Inputs used to craft expensive fashion items are intended to command high sale value, giving resource gathering a valuable role in the economy. Exact recipes, input quantities, prices, currency and crafting times remain undefined.
+- Gemstones exist on the Broken World. Particular gemstone types, deposits, grades, rarity, cutting practices and uses remain open for brainstorming; gemstone existence does not approve a specific terrestrial mineral roster or special powers.
 - Ancient technology uses materials comparable to carbon-fiber composites, nanocarbon materials, plasteels and related futuristic manufactured substances. These materials are **extremely rare**.
 - Their exact compositions, properties, recovery forms and present-day manufacturing possibilities remain undefined. Finding an ancient material does not establish the ability to reproduce it.
 
