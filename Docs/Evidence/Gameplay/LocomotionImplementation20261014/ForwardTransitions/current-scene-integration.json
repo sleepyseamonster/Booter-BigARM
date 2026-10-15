@@ -1,0 +1,255 @@
+{
+  "state": "current-saved-scene-dependency-and-structure-verification",
+  "valid": true,
+  "verifiedFiles": 2525,
+  "canonicalGuidPaths": 1353,
+  "importedDependencies": 494,
+  "external": [
+    {
+      "guid": "01614664b831546d2ae94a42149d80ac",
+      "path": "Packages/com.unity.inputsystem/InputSystem/Plugins/UI/InputSystemUIInputModule.cs"
+    },
+    {
+      "guid": "0cd44c1031e13a943bb63640046fad76",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Layout/CanvasScaler.cs"
+    },
+    {
+      "guid": "172515602e62fb746b5d573b38a5fe58",
+      "path": "Packages/com.unity.render-pipelines.core/Runtime/Volume/Volume.cs"
+    },
+    {
+      "guid": "1aa08ab6e0800fa44ae55d278d1423e3",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/ScrollRect.cs"
+    },
+    {
+      "guid": "2a4db7a114972834c8e4117be1d82ba3",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Scrollbar.cs"
+    },
+    {
+      "guid": "30649d3a9faa99c48a7b1166b86bf2a0",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Layout/HorizontalLayoutGroup.cs"
+    },
+    {
+      "guid": "306cc8c2b49d7114eaa3623786fc2126",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Layout/LayoutElement.cs"
+    },
+    {
+      "guid": "31321ba15b8f8eb4c954353edc038b1d",
+      "path": "Packages/com.unity.render-pipelines.universal/Runtime/Materials/Lit.mat"
+    },
+    {
+      "guid": "3245ec927659c4140ac4f8d17403cc18",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Layout/ContentSizeFitter.cs"
+    },
+    {
+      "guid": "3312d7739989d2b4e91e6319e9a96d76",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/RectMask2D.cs"
+    },
+    {
+      "guid": "474bcb49853aa07438625e644c072ee6",
+      "path": "Packages/com.unity.render-pipelines.universal/Runtime/UniversalAdditionalLightData.cs"
+    },
+    {
+      "guid": "4e29b1a8efbd4b44bb3f3716e73f07ff",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Button.cs"
+    },
+    {
+      "guid": "59f8146938fff824cb5fd77236b75775",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Layout/VerticalLayoutGroup.cs"
+    },
+    {
+      "guid": "5f7201a12d95ffc409449d95f23cf332",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Text.cs"
+    },
+    {
+      "guid": "69c1f799e772cb6438f56c23efccb782",
+      "path": "Packages/com.unity.render-pipelines.universal/Shaders/Terrain/TerrainLit.shader"
+    },
+    {
+      "guid": "76c392e42b5098c458856cdf6ecaaaa1",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/EventSystem/EventSystem.cs"
+    },
+    {
+      "guid": "8404be70184654265930450def6a9037",
+      "path": "Packages/com.unity.inputsystem/InputSystem/Editor/AssetImporter/InputActionImporter.cs"
+    },
+    {
+      "guid": "8a8695521f0d02e499659fee002a26c2",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Layout/GridLayoutGroup.cs"
+    },
+    {
+      "guid": "933532a4fcc9baf4fa0491de14d08ed7",
+      "path": "Packages/com.unity.render-pipelines.universal/Shaders/Lit.shader"
+    },
+    {
+      "guid": "a79441f348de89743a2939f4d699eac1",
+      "path": "Packages/com.unity.render-pipelines.universal/Runtime/UniversalAdditionalCameraData.cs"
+    },
+    {
+      "guid": "ca9f5fa95ffab41fb9a615ab714db018",
+      "path": "Packages/com.unity.inputsystem/InputSystem/Plugins/PlayerInput/DefaultInputActions.inputactions"
+    },
+    {
+      "guid": "d0353a89b1f911e48b9e16bdc9f2e058",
+      "path": "Packages/com.unity.render-pipelines.universal/Editor/AssetVersion.cs"
+    },
+    {
+      "guid": "d199490a83bb2b844b9695cbf13b01ef",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/InputField.cs"
+    },
+    {
+      "guid": "dc42784cf147c0c48a680349fa168899",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/GraphicRaycaster.cs"
+    },
+    {
+      "guid": "e19747de3f5aca642ab2be37e372fb86",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/VertexModifiers/Outline.cs"
+    },
+    {
+      "guid": "fc1515ab76e54f068e2f2207940fab32",
+      "path": "Packages/com.unity.inputsystem/InputSystem/Actions/InputActionReference.cs"
+    },
+    {
+      "guid": "fe87c0e1cc204ed48ad3b37840f39efc",
+      "path": "Packages/com.unity.ugui/Runtime/UGUI/UI/Core/Image.cs"
+    }
+  ],
+  "structural": {
+    "valid": true,
+    "terrains": 9,
+    "stations": 12,
+    "rigidbodies": 5,
+    "renderers": 364,
+    "skinnedActors": 0,
+    "legacyResources": 12,
+    "caches": 1,
+    "stationReports": [
+      {
+        "id": "AP01",
+        "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP01.prefab",
+        "targets": 2,
+        "props": 0,
+        "bodies": 0,
+        "colliders": 16,
+        "returnClear": true,
+        "returnSupported": true
+      },
+      {
+        "id": "AP02",
+        "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP02.prefab",
+        "targets": 2,
+        "props": 0,
+        "bodies": 0,
+        "colliders": 16,
+        "returnClear": true,
+        "returnSupported": true
+      },
+      {
+        "id": "AP03",
+        "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP03.prefab",
+        "targets": 4,
+        "props": 0,
+        "bodies": 0,
+        "colliders": 20,
+        "returnClear": true,
+        "returnSupported": true
+      },
+      {
+        "id": "AP04",
+        "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP04.prefab",
+        "targets": 4,
+        "props": 0,
+        "bodies": 0,
+        "colliders": 38,
+        "returnClear": true,
+        "returnSupported": true
+      },
+      {
+        "id": "AP05",
+        "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP05.prefab",
+        "targets": 5,
+        "props": 4,
+        "bodies": 3,
+        "colliders": 29,
+        "returnClear": true,
+        "returnSupported": true
+      },
+      {
+        "id": "AP06",
+        "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP06.prefab",
+        "targets": 3,
+        "props": 1,
+        "bodies": 1,
+        "colliders": 18,
+        "returnClear": true,
+        "returnSupported": true
+      },
+      {
+        "id": "AP07",
+        "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP07.prefab",
+        "targets": 3,
+        "props": 2,
+        "bodies": 1,
+        "colliders": 19,
+        "returnClear": true,
+        "returnSupported": true
+      },
+      {
+        "id": "AP08",
+        "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP08.prefab",
+        "targets": 3,
+        "props": 0,
+        "bodies": 0,
+        "colliders": 19,
+        "returnClear": true,
+        "returnSupported": true
+      },
+      {
+        "id": "AP09",
+        "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP09.prefab",
+        "targets": 3,
+        "props": 6,
+        "bodies": 0,
+        "colliders": 24,
+        "returnClear": true,
+        "returnSupported": true
+      },
+      {
+        "id": "AP10",
+        "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP10.prefab",
+        "targets": 3,
+        "props": 1,
+        "bodies": 0,
+        "colliders": 49,
+        "returnClear": true,
+        "returnSupported": true
+      },
+      {
+        "id": "AP11",
+        "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP11.prefab",
+        "targets": 6,
+        "props": 1,
+        "bodies": 0,
+        "colliders": 30,
+        "returnClear": true,
+        "returnSupported": true
+      },
+      {
+        "id": "AP12",
+        "prefab": "Assets/_Project/Prefabs/AnimationPlayground/Stations/AP12.prefab",
+        "targets": 6,
+        "props": 1,
+        "bodies": 0,
+        "colliders": 20,
+        "returnClear": true,
+        "returnSupported": true
+      }
+    ],
+    "errors": []
+  },
+  "sourceSceneSha256": "b11761a9f88b7e52db03bb3acd1e3b8f4a332472edd6efdfbb92da6673cd3594",
+  "forwardPolicyInstalledInBinding": false,
+  "revisedTaskSourcesAfterPlan": 3,
+  "sourceReportSha256": "eaa2ccfdc7a7eefa1b0b6db6c4cb2abb364e420790d9a90059f345ea9f6a84e4",
+  "note": "Scene/runtime closure exact at verification; final source manifest covers subsequent task-owned transition/test tuning. No author scene or binding write."
+}

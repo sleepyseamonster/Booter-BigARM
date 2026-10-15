@@ -2,6 +2,8 @@
 
 Date: 2026-10-14. Revision 2, following the [plan audit](./CAMP_LOOP_LOCOMOTION_PLAN_AUDIT_2026-10-14.md). Status: implementation active by the author's subsequent instruction. Target: the existing Booter character in CampLoopTesting. Source of truth: the [locomotion audit](./CAMP_LOOP_LOCOMOTION_AUDIT_2026-10-14.md) and its [measured evidence](../../Evidence/Gameplay/LocomotionAudit20261014/README.md). Follow the [implementation checkpoint](../../Evidence/Gameplay/LocomotionImplementation20261014/README.md) for current gates; the broader playground expansion remains deferred.
 
+Implementation finding: the [transition/current-scene checkpoint](../../Evidence/Gameplay/LocomotionImplementation20261014/ForwardTransitions/README.md) closes the older saved-scene dependency gap and adds verified direct stop/restart blending. Its active-rig plane audit shows that general slope correction cannot be achieved within the existing visual-host lift limit. L3/L4 must qualify terrain-relative stance/leg adaptation inside the existing pose output while preserving the physics root and collision envelope. This does not authorize widening limits, a competing transform writer or source/terrain changes. The private policy remains gated pending that work and the remaining acceptance requirements below.
+
 ## Outcome and scope
 
 Make walking, running and sprinting readable, responsive and consistent with the distance the player travels. Feet should plant convincingly; changing speed, starting, stopping and steering should preserve the pose rather than pop, skate or sink. The author's playtest acceptance completes the work.

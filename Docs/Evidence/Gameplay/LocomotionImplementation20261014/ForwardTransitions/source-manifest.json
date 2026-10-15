@@ -1,0 +1,105 @@
+{
+  "state": "current-scene-transition-source-checkpoint",
+  "files": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundFootProjection.cs",
+      "sha256": "1f354e4608482d3dfbb921bd46241e37c4af76985fc96b137e82f84ef1a9ea78",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundFootProjection.cs.meta",
+      "sha256": "92459e6c8bee5c9562e472d8f910b2a855c119ba5fc1bc1ae13166f0a6ee654b",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardPoseEnvelope.cs",
+      "sha256": "1b7d33fdb46e64cd2d2844c3ffed666154eebbba07d3426df3a846dabc1ba0af",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardPoseEnvelope.cs.meta",
+      "sha256": "ec6809be47d06a8ac7dcc641b7e676b67153d4f8ff09835ebf25b1d32c28245b",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs",
+      "sha256": "441cc19a13290f226d9c78d4e5c9f1437fc80343d470d8cc9dfe5423fd5df67f",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs.meta",
+      "sha256": "9d8c82a656c45ff5e62d116246351894cdb599495a1e21bb27a537a70cee73a2",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundFootProjectionTests.cs",
+      "sha256": "d9f285f485a1965ebbf2e7266ffac89414c313d2ceac7b449705c77cb21858a0",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundFootProjectionTests.cs.meta",
+      "sha256": "4825c4343bd9b001c37396128555f7d44b91e70e4fcd306c876cf703942c0ed4",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundForwardLocomotionTests.cs",
+      "sha256": "cde978c07e80e88ea62638348f7cc4edada897b320795259f0c6a65bb2f0a170",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundForwardLocomotionTests.cs.meta",
+      "sha256": "37006b1d4a55b57807b3eebd0a7862a5332b02ceffbcf55f63f3f8821110f90e",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundForwardPoseEnvelopeTests.cs",
+      "sha256": "038c5a2ad47f75b9b4d4d516b0e631f97836bb32f22b1a7425e9fc6bf16e2b34",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundForwardPoseEnvelopeTests.cs.meta",
+      "sha256": "0a16fe828d21d4b80547c0c6a40beaa6187b7a3ae3f5046ed6c92599e92d4472",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundPlayerIntegrationTests.cs",
+      "sha256": "5e73f67c550236ff31f8579f436818ef5c4fa05cbc9dc027205306c9801d18c9",
+      "candidateExact": true
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundPlayerIntegrationTests.cs.meta",
+      "sha256": "6b26d29a07994ffcb32cd27ac5ddfa917261e556b7ad6af1bf7208a4a008ac77",
+      "candidateExact": true
+    },
+    {
+      "path": "Tools/Diagnostics/CampForwardLocomotionQualification.cs",
+      "sha256": "456bb53dd67ac25e7d6efe82567617398a261ccd563b7d583bb1762e24153ca6",
+      "surface": "guarded external diagnostic"
+    },
+    {
+      "path": "Tools/Diagnostics/CampForwardSlopeAudit.cs",
+      "sha256": "a53b48aa01869cfdcca01e0ecfb964be7b47ae9591d75526cf54dd7a3322e8df",
+      "surface": "guarded external diagnostic"
+    },
+    {
+      "path": "Tools/Diagnostics/CampForwardStopQualification.cs",
+      "sha256": "bc1237ec04d2190e3e91134b1b97e345ffc98ae1418b40d4f4ff3673f1dda42d",
+      "surface": "guarded external diagnostic"
+    },
+    {
+      "path": "Tools/Diagnostics/CampCurrentLocomotionIntegrationAudit.cs",
+      "sha256": "636853038c0f059df143ef96bfeb059a655ed1502cbe73a4c48a065b46d45bf7",
+      "surface": "guarded external diagnostic"
+    },
+    {
+      "path": "Tools/Diagnostics/plan_camp_locomotion_hydration.py",
+      "sha256": "c498d7ff1807f6cf493cf4ffd373607a2588dc58b2ea488e99d343b038a62989",
+      "surface": "guarded external diagnostic"
+    },
+    {
+      "path": "Tools/Diagnostics/Apply-CampLocomotionHydration.ps1",
+      "sha256": "63fe494bd1e0fa5aec207509492e6e075379aacea633f6a502962f887931a61d",
+      "surface": "guarded external diagnostic"
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "state": "transition-measurements-and-current-scene-proof-preserved",
+  "archive": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-13\\ImportCheckpoints\\ForwardTransitions20261014",
+  "originalPrivatePairsVerified": 127,
+  "files": [
+    {
+      "path": "forward-slope-audit-v1.json",
+      "sha256": "3aef49c427566b3faf66b28fa4c714ffdead04bde1e197411adb71df16bab8e6",
+      "bytes": 85710
+    },
+    {
+      "path": "forward-slope-audit-v2.json",
+      "sha256": "ccd5fa033fd11aa80dabcd27d6c702df886c7718cb89e80c4595164db52b4bb3",
+      "bytes": 86946
+    },
+    {
+      "path": "ForwardDensePoseV1/progress.json",
+      "sha256": "bc0c33fbe440699d5c958348e8fbeab904d51b20d1a44bac2ac4e8b2afbfff79",
+      "bytes": 605886
+    },
+    {
+      "path": "ForwardDensePoseV1/summary.json",
+      "sha256": "f751bb2c2f3310695db6f9ad9253c2152ddd2143584926adc7ad2aec39bebb20",
+      "bytes": 645626
+    },
+    {
+      "path": "ForwardStopDeterminismV1/progress.json",
+      "sha256": "60fe2afcbe202898b4c0296b9c2122124cb6ea199d94bc4cb9e1db6d45aa60b3",
+      "bytes": 470
+    },
+    {
+      "path": "ForwardStopDeterminismV1/summary.json",
+      "sha256": "981f64f0ef70260fe5718544dc639fa428abb1f2e523d3841b211016247ec039",
+      "bytes": 845
+    },
+    {
+      "path": "ForwardStopDeterminismV2/progress.json",
+      "sha256": "24897a3ce67134428d7913ff2aa4919cd57d9424d8635e3de86311cecd5a67da",
+      "bytes": 470
+    },
+    {
+      "path": "ForwardStopDeterminismV2/summary.json",
+      "sha256": "6aa4f552316472122fd8b1be39a73899d02862ef450f378620afb32dcad307e3",
+      "bytes": 876
+    },
+    {
+      "path": "ForwardStopsNativeIdleV1/progress.json",
+      "sha256": "1a4a559abfb8a49f76aaa7f74611dfc4bdd32d23f58d5c93f4cc5ab2e36aaa9f",
+      "bytes": 108565
+    },
+    {
+      "path": "ForwardStopsNativeIdleV1/summary.json",
+      "sha256": "95551ee719c53ca2bf203d7cb49796ee6ec621110d62843d37b9f0914de4402a",
+      "bytes": 117545
+    },
+    {
+      "path": "ForwardStopsV1/progress.json",
+      "sha256": "818934a269d59bff16d8ee4a0674013db28fce4ec3089b91bcdd7c5af0f4dc2c",
+      "bytes": 109251
+    },
+    {
+      "path": "ForwardStopsV1/summary.json",
+      "sha256": "337b584fb5954691d28ec238671e959fa87796fa0e1a13952f1911d4c8bd0401",
+      "bytes": 118208
+    },
+    {
+      "path": "ForwardStopsV2/progress.json",
+      "sha256": "b8735e858582130674f6a3d397672b0578c906971b7146718725837098e5a13a",
+      "bytes": 133930
+    },
+    {
+      "path": "ForwardStopsV2/summary.json",
+      "sha256": "4d820090c0862730c933158106bc229b2e32b817936acb1d2cec9f76516c14dd",
+      "bytes": 144094
+    },
+    {
+      "path": "ForwardStopsV3/progress.json",
+      "sha256": "39d93a692e058af81d167b2cf608b98fb10dce725cac71fb95c572bfaeb87c0b",
+      "bytes": 133890
+    },
+    {
+      "path": "ForwardStopsV3/summary.json",
+      "sha256": "301500c467f8d0824e14ce410214093c773188267bc34a994ee8fbd7784cb171",
+      "bytes": 144054
+    },
+    {
+      "path": "ForwardStopsV4/progress.json",
+      "sha256": "73db05ae6592f307e4141e6c7fd48e50489091b3755fbe702a6651087f0e2146",
+      "bytes": 133885
+    },
+    {
+      "path": "ForwardStopsV4/summary.json",
+      "sha256": "e8181b0dfec01ab646803fca4e48f12eaa847f266e131a3edcabdc96295617e1",
+      "bytes": 144049
+    },
+    {
+      "path": "ForwardWorstRestartV4/progress.json",
+      "sha256": "3e65b9832407044854d40de28681c01fa875a579f5cc91a9c093b413de66c6b7",
+      "bytes": 461
+    },
+    {
+      "path": "ForwardWorstRestartV4/summary.json",
+      "sha256": "09d433f79ac7f5d7c64791580f84d502b7c76455d760463d0d61ef60c9441675",
+      "bytes": 867
+    },
+    {
+      "path": "hydration-plan.json",
+      "sha256": "d7587b08c1ae061c6420b27b0a6bbfbbe94f1884f28cd4a79ddb471956d17c9a",
+      "bytes": 797295
+    },
+    {
+      "path": "hydration-receipt.json",
+      "sha256": "f49f5a8a92d7f2609e4ffa8b74a6a130899d4f21cfb94430d0158d00096801c9",
+      "bytes": 339
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundFootProjection.cs",
+      "sha256": "1f354e4608482d3dfbb921bd46241e37c4af76985fc96b137e82f84ef1a9ea78",
+      "bytes": 6008
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundFootProjection.cs.meta",
+      "sha256": "92459e6c8bee5c9562e472d8f910b2a855c119ba5fc1bc1ae13166f0a6ee654b",
+      "bytes": 60
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardPoseEnvelope.cs",
+      "sha256": "1b7d33fdb46e64cd2d2844c3ffed666154eebbba07d3426df3a846dabc1ba0af",
+      "bytes": 2916
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardPoseEnvelope.cs.meta",
+      "sha256": "ec6809be47d06a8ac7dcc641b7e676b67153d4f8ff09835ebf25b1d32c28245b",
+      "bytes": 60
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs",
+      "sha256": "441cc19a13290f226d9c78d4e5c9f1437fc80343d470d8cc9dfe5423fd5df67f",
+      "bytes": 12575
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs.meta",
+      "sha256": "9d8c82a656c45ff5e62d116246351894cdb599495a1e21bb27a537a70cee73a2",
+      "bytes": 60
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Tests/Editor/AnimationPlaygroundFootProjectionTests.cs",
+      "sha256": "d9f285f485a1965ebbf2e7266ffac89414c313d2ceac7b449705c77cb21858a0",
+      "bytes": 6939
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Tests/Editor/AnimationPlaygroundFootProjectionTests.cs.meta",
+      "sha256": "4825c4343bd9b001c37396128555f7d44b91e70e4fcd306c876cf703942c0ed4",
+      "bytes": 60
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Tests/Editor/AnimationPlaygroundForwardLocomotionTests.cs",
+      "sha256": "cde978c07e80e88ea62638348f7cc4edada897b320795259f0c6a65bb2f0a170",
+      "bytes": 26099
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Tests/Editor/AnimationPlaygroundForwardLocomotionTests.cs.meta",
+      "sha256": "37006b1d4a55b57807b3eebd0a7862a5332b02ceffbcf55f63f3f8821110f90e",
+      "bytes": 60
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Tests/Editor/AnimationPlaygroundForwardPoseEnvelopeTests.cs",
+      "sha256": "038c5a2ad47f75b9b4d4d516b0e631f97836bb32f22b1a7425e9fc6bf16e2b34",
+      "bytes": 3010
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Tests/Editor/AnimationPlaygroundForwardPoseEnvelopeTests.cs.meta",
+      "sha256": "0a16fe828d21d4b80547c0c6a40beaa6187b7a3ae3f5046ed6c92599e92d4472",
+      "bytes": 60
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Tests/Editor/AnimationPlaygroundPlayerIntegrationTests.cs",
+      "sha256": "5e73f67c550236ff31f8579f436818ef5c4fa05cbc9dc027205306c9801d18c9",
+      "bytes": 17148
+    },
+    {
+      "path": "SourceSnapshot/Assets/_Project/Tests/Editor/AnimationPlaygroundPlayerIntegrationTests.cs.meta",
+      "sha256": "6b26d29a07994ffcb32cd27ac5ddfa917261e556b7ad6af1bf7208a4a008ac77",
+      "bytes": 60
+    },
+    {
+      "path": "SourceSnapshot/Tools/Diagnostics/Apply-CampLocomotionHydration.ps1",
+      "sha256": "63fe494bd1e0fa5aec207509492e6e075379aacea633f6a502962f887931a61d",
+      "bytes": 3554
+    },
+    {
+      "path": "SourceSnapshot/Tools/Diagnostics/CampCurrentLocomotionIntegrationAudit.cs",
+      "sha256": "636853038c0f059df143ef96bfeb059a655ed1502cbe73a4c48a065b46d45bf7",
+      "bytes": 5262
+    },
+    {
+      "path": "SourceSnapshot/Tools/Diagnostics/CampForwardLocomotionQualification.cs",
+      "sha256": "456bb53dd67ac25e7d6efe82567617398a261ccd563b7d583bb1762e24153ca6",
+      "bytes": 23929
+    },
+    {
+      "path": "SourceSnapshot/Tools/Diagnostics/CampForwardSlopeAudit.cs",
+      "sha256": "a53b48aa01869cfdcca01e0ecfb964be7b47ae9591d75526cf54dd7a3322e8df",
+      "bytes": 6267
+    },
+    {
+      "path": "SourceSnapshot/Tools/Diagnostics/CampForwardStopQualification.cs",
+      "sha256": "bc1237ec04d2190e3e91134b1b97e345ffc98ae1418b40d4f4ff3673f1dda42d",
+      "bytes": 10495
+    },
+    {
+      "path": "SourceSnapshot/Tools/Diagnostics/plan_camp_locomotion_hydration.py",
+      "sha256": "c498d7ff1807f6cf493cf4ffd373607a2588dc58b2ea488e99d343b038a62989",
+      "bytes": 4778
+    },
+    {
+      "path": "unity-verification.json",
+      "sha256": "eaa2ccfdc7a7eefa1b0b6db6c4cb2abb364e420790d9a90059f345ea9f6a84e4",
+      "bytes": 709226
+    }
+  ],
+  "invalidInactiveActorPilots": [
+    "ForwardStopsV1",
+    "ForwardStopsNativeIdleV1",
+    "ForwardStopDeterminismV1",
+    "forward-slope-audit-v1.json"
+  ],
+  "supersededTransitionTunings": [
+    "ForwardStopsV2",
+    "ForwardStopsV3"
+  ],
+  "recovery": "Candidate Before files remain under CurrentSceneHydration20261014. Root scene/assets were not changed; rollback is the task-owned code delta and paired new metadata."
+}

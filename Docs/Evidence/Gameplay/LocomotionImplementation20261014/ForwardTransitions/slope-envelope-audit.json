@@ -1,0 +1,72 @@
+{
+  "state": "terrain-adaptation-required-not-qualified",
+  "groups": [
+    {
+      "slope": 0,
+      "cases": 6,
+      "planeChecks": 390,
+      "maximumRequiredLift": 5.96046448e-08,
+      "maximumTotalCorrection": 0.04855622,
+      "overCurrentEnvelope": 0
+    },
+    {
+      "slope": 5,
+      "cases": 48,
+      "planeChecks": 3120,
+      "maximumRequiredLift": 0.02778984,
+      "maximumTotalCorrection": 0.0585561767,
+      "overCurrentEnvelope": 0
+    },
+    {
+      "slope": 10,
+      "cases": 48,
+      "planeChecks": 3120,
+      "maximumRequiredLift": 0.0568483919,
+      "maximumTotalCorrection": 0.0744194239,
+      "overCurrentEnvelope": 0
+    },
+    {
+      "slope": 15,
+      "cases": 48,
+      "planeChecks": 3120,
+      "maximumRequiredLift": 0.08831563,
+      "maximumTotalCorrection": 0.10221979,
+      "overCurrentEnvelope": 152
+    },
+    {
+      "slope": 20,
+      "cases": 48,
+      "planeChecks": 3120,
+      "maximumRequiredLift": 0.120168656,
+      "maximumTotalCorrection": 0.137743,
+      "overCurrentEnvelope": 339
+    },
+    {
+      "slope": 30,
+      "cases": 48,
+      "planeChecks": 3120,
+      "maximumRequiredLift": 0.224218458,
+      "maximumTotalCorrection": 0.224218458,
+      "overCurrentEnvelope": 978
+    },
+    {
+      "slope": 40,
+      "cases": 48,
+      "planeChecks": 3120,
+      "maximumRequiredLift": 0.375088,
+      "maximumTotalCorrection": 0.375088,
+      "overCurrentEnvelope": 1462
+    },
+    {
+      "slope": 48,
+      "cases": 48,
+      "planeChecks": 3120,
+      "maximumRequiredLift": 0.525037,
+      "maximumTotalCorrection": 0.525037,
+      "overCurrentEnvelope": 1639
+    }
+  ],
+  "correctionLimit": 0.08,
+  "sourceReportSha256": "ccd5fa033fd11aa80dabcd27d6c702df886c7718cb89e80c4595164db52b4bb3",
+  "limitations": "Complete sole cache evaluated on uniform support planes with upright capsule contact geometry. This is not actual terrain/controller behavior. No terrain adaptation was installed."
+}

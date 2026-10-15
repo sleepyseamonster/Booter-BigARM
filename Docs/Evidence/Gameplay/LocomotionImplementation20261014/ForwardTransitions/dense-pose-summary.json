@@ -1,0 +1,14 @@
+{
+  "state": "active-rig-source-key-and-phase-break-sweep",
+  "cases": 21,
+  "poses": 25515,
+  "phasesPerCase": 1215,
+  "sourceReportSha256": "f751bb2c2f3310695db6f9ad9253c2152ddd2143584926adc7ad2aec39bebb20",
+  "minimumBody": -0.9100003,
+  "maximumHeight": 1.8107388,
+  "maximumProjectionError": 7.748604e-07,
+  "maximumAnchorExcursion": 0.0188000761,
+  "maximumCumulativeTravel": 0.033952605,
+  "missingSupportedTraces": 0,
+  "coverage": "four-bone normalized equipment; source curve keys, phase-map breaks +/-0.00005, height-curve keys, 129 uniform phases; four idle phases for the two low analog speeds"
+}

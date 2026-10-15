@@ -24,6 +24,8 @@ public static class CampForwardLocomotionQualification
         public float speed, minimumSole = float.PositiveInfinity, minimumBody = float.PositiveInfinity;
         public float maximumHeight, maximumLift, minimumLift, maximumPatchExcursion, maximumPatchTravel, maximumPatchGap;
         public float maximumNearestSoleGap;
+        public double idleSeconds;
+        public float maximumProjectionError;
         public double poseMicroseconds, poseAllocatedBytes;
         public int samples;
         public readonly List<object> patches = new();
@@ -34,6 +36,7 @@ public static class CampForwardLocomotionQualification
     public static string RunOne() => RunMatrix(SkinWeights.OneBone, true, "ForwardDistancePoseOneV1");
     public static string RunTwo() => RunMatrix(SkinWeights.TwoBones, true, "ForwardDistancePoseTwoV1");
     public static string RunCold() => RunMatrix(SkinWeights.FourBones, false, "ForwardDistancePoseColdV1");
+    public static string RunDense() => RunMatrix(SkinWeights.FourBones, true, "ForwardDensePoseV1", true);
 
     public static string BenchmarkClock()
     {
@@ -63,7 +66,7 @@ public static class CampForwardLocomotionQualification
         return destination;
     }
 
-    private static string RunMatrix(SkinWeights skinWeights, bool normalizeEquipment, string name)
+    private static string RunMatrix(SkinWeights skinWeights, bool normalizeEquipment, string name, bool dense = false)
     {
         var root = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
         if (!Application.isBatchMode || EditorApplication.isPlayingOrWillChangePlaymode
@@ -111,6 +114,8 @@ public static class CampForwardLocomotionQualification
             };
             baked = new Mesh(); var vertices = new List<Vector3>();
             var rows = new List<Row>(); var floor = -bindings.capsuleHeight * .5f;
+            var projection = Field<AnimationPlaygroundFootProjection.Sampler>(driver, "footProjectionSampler");
+            var phases = dense ? DensePhases(policy) : Enumerable.Range(0, 129).Select(i => i / 128d).ToArray();
             var kit = Field<GameObject>(driver, "packedCamp");
             var kitMinimum = float.PositiveInfinity; var kitMaximum = float.NegativeInfinity; var kitVertices = 0;
             foreach (var filter in kit.GetComponentsInChildren<MeshFilter>(true))
@@ -120,22 +125,26 @@ public static class CampForwardLocomotionQualification
                     kitMinimum = Mathf.Min(kitMinimum, world.y); kitMaximum = Mathf.Max(kitMaximum, world.y); kitVertices++;
                 }
             foreach (var speed in new[] { .2f, .7f, 1.4f, 1.53f, 1.725f, 2.05f, 2.375f, 2.57f, 2.7f, 2.81f, 2.975f, 3.25f, 3.525f, 3.69f, 3.8f })
+            foreach (var idle in dense && speed < 1.4f ? new[] { 0d, .25, .5, .75 } : new[] { 0d })
             {
-                var row = new Row { speed = speed }; var timer = new Stopwatch();
+                var idleSeconds = idle * policy.locomotion.GetRequiredEntry(TopDown3DLocomotionClipRole.Idle).Clip.length;
+                var row = new Row { speed = speed, idleSeconds = idleSeconds }; var timer = new Stopwatch();
                 // Warm the graph before measuring recurring pose cost/allocation.
-                for (var i = 0; i < 32; i++) render(speed, i / 32.0, 0);
+                for (var i = 0; i < 32; i++) render(speed, i / 32.0, idleSeconds);
                 var allocated = GC.GetAllocatedBytesForCurrentThread();
-                timer.Start(); for (var i = 0; i < 256; i++) render(speed, i / 256.0, 0); timer.Stop();
+                timer.Start(); for (var i = 0; i < 256; i++) render(speed, i / 256.0, idleSeconds); timer.Stop();
                 row.poseAllocatedBytes = GC.GetAllocatedBytesForCurrentThread() - allocated;
                 row.poseMicroseconds = timer.Elapsed.TotalMilliseconds * 1000 / 256;
-                for (var frame = 0; frame <= 128; frame++)
+                foreach (var phase in phases)
                 {
-                    render(speed, frame / 128.0, 0);
+                    render(speed, phase, idleSeconds);
                     cpu.Measure(out var left, out var right, out var minimum, out var maximum);
                     row.minimumSole = Mathf.Min(row.minimumSole, left.y, right.y); row.minimumBody = Mathf.Min(row.minimumBody, minimum.y);
                     row.maximumHeight = Mathf.Max(row.maximumHeight, maximum.y - floor);
                     row.maximumNearestSoleGap = Mathf.Max(row.maximumNearestSoleGap, Mathf.Min(left.y, right.y) - floor);
-                    if (frame % 32 == 0) row.plants.Add(new { plant = frame / 32, leftGap = left.y - floor, rightGap = right.y - floor });
+                    row.maximumProjectionError = Mathf.Max(row.maximumProjectionError, Mathf.Abs(projection.MinimumWorldY() - Mathf.Min(left.y, right.y)));
+                    if (Math.Abs(phase * 4 - Math.Round(phase * 4)) < .0000001)
+                        row.plants.Add(new { plant = Math.Round(phase * 4), leftGap = left.y - floor, rightGap = right.y - floor });
                     row.maximumLift = Mathf.Max(row.maximumLift, driver.LaboratoryForwardLift);
                     row.minimumLift = Mathf.Min(row.minimumLift, driver.LaboratoryForwardLift); row.samples++;
                 }
@@ -160,7 +169,7 @@ public static class CampForwardLocomotionQualification
                     for (var frame = 0; frame <= 32; frame++)
                     {
                         var phase = from + (to - from) * frame / 32;
-                        render(speed, phase, 0); body.BakeMesh(baked, true); baked.GetVertices(vertices);
+                        render(speed, phase, idleSeconds); body.BakeMesh(baked, true); baked.GetVertices(vertices);
                         for (var i = 0; i < ids.Length; i++)
                             tracks[i][frame] = body.transform.TransformPoint(vertices[ids[i]]) + Vector3.forward * (float)policy.DistanceAtCycles(speed, phase);
                     }
@@ -220,6 +229,7 @@ public static class CampForwardLocomotionQualification
             {
                 state = "actual-forward-driver-coarse-review", sourcePolicyQualified = policy.qualified,
                 globalSkinWeights = skinWeights.ToString(), normalizeEquipment,
+                dense, phaseSamplesPerCase = phases.Length,
                 staticPackedKit = new { vertices = kitVertices, minimum = kitMinimum, maximumHeight = kitMaximum - floor },
                 sourcePolicy = AssetDatabase.GetAssetPath(policy), recipe = "native-calibration-v6-stage-aligned",
                 rows, limits = new { floor = .001f, patch = .02f, lift = .08f, lower = .03f },
@@ -235,6 +245,26 @@ public static class CampForwardLocomotionQualification
             if (actor != null) Object.DestroyImmediate(actor); Object.DestroyImmediate(bindings);
             EditorSceneManager.ClosePreviewScene(preview); EditorSceneManager.CloseScene(scene, true);
         }
+    }
+
+    private static double[] DensePhases(AnimationPlaygroundForwardLocomotionProfile policy)
+    {
+        var phases = new SortedSet<double>(Enumerable.Range(0, 129).Select(i => i / 128d));
+        foreach (var gait in policy.gaits)
+        {
+            foreach (var point in gait.phaseMap)
+                foreach (var offset in new[] { -.00005, 0, .00005 }) phases.Add(Math.Clamp(point.semantic + offset, 0, 1));
+            foreach (var key in gait.signedHeight.keys) phases.Add(Math.Clamp(Semantic(gait, key.time), 0, 1));
+            foreach (var binding in AnimationUtility.GetCurveBindings(gait.sourceClip))
+            {
+                var curve = AnimationUtility.GetEditorCurve(gait.sourceClip, binding);
+                if (curve == null) continue;
+                foreach (var key in curve.keys) phases.Add(Math.Clamp(Semantic(gait, key.time / gait.sourceClip.length), 0, 1));
+            }
+        }
+        foreach (var point in new[] { .4, .45, .55, .6 })
+            foreach (var offset in new[] { -.00005, 0, .00005 }) phases.Add(point + offset);
+        return phases.ToArray();
     }
 
     private static object[] SupportedTraces(Vector3[][] tracks, int[] ids, double from, double to, AnimationPlaygroundForwardLocomotionProfile policy, float speed, float floor, int plant)
