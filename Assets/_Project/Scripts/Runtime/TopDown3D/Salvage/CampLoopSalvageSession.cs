@@ -82,7 +82,15 @@ namespace BooterBigArm.TopDown3D
         }
         private void Fail(string reason) { failed = true; FailureReason = reason; Debug.LogWarning(reason, this); }
         public void InvalidateForReset(uint epoch)
-        { kit?.GetComponent<TopDown3DPlayerActionController>()?.CancelGather(); wreck?.Invalidate(); }
+        {
+            // Unity objects can be destroyed before this session receives OnDisable.
+            if (kit != null)
+            {
+                var action = kit.GetComponent<TopDown3DPlayerActionController>();
+                if (action != null) action.CancelGather();
+            }
+            if (wreck != null) wreck.Invalidate();
+        }
         public bool TryRestoreForReset(out string reason)
         {
             reason = "Salvage reset storage is missing.";

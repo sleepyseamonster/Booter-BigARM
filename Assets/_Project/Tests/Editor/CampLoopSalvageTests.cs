@@ -42,6 +42,37 @@ namespace BooterBigArm.Tests
         }
         private TopDown3DGatherActionState Gather(System.Func<bool> accessible = null, System.Func<ITopDown3DInteractable, bool> reachable = null)
             => new(new TopDown3DItemDestinationService(kit, cargo, accessible ?? (() => true)), reachable);
+        [TestCase(false, false)]
+        [TestCase(true, false)]
+        [TestCase(false, true)]
+        [TestCase(true, true)]
+        public void SessionInvalidationAndDisableTolerateDestroyedDependencies(bool destroyInventory, bool destroyWreck)
+        {
+            var scene = EditorSceneManager.NewPreviewScene();
+            try
+            {
+                var playerObject = new GameObject("Teardown inventory");
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(playerObject, scene);
+                var inventory = playerObject.AddComponent<TopDown3DPlayerInventory>();
+                var sessionObject = new GameObject("Teardown salvage");
+                UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(sessionObject, scene);
+                var state = sessionObject.AddComponent<TopDown3DSalvageWreckState>();
+                var session = sessionObject.AddComponent<CampLoopSalvageSession>();
+                session.Configure(null, inventory, null, null, state);
+                var initialEpoch = state.Epoch;
+                if (destroyInventory) Object.DestroyImmediate(playerObject);
+                if (destroyWreck) Object.DestroyImmediate(state);
+
+                Assert.DoesNotThrow(() => session.InvalidateForReset(1));
+                // Non-ExecuteAlways behaviours do not receive lifecycle callbacks in Edit Mode.
+                var disable = typeof(CampLoopSalvageSession).GetMethod("OnDisable",
+                    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                Assert.DoesNotThrow(() => disable.Invoke(session, null));
+                Assert.That(state.Epoch, Is.EqualTo(destroyWreck ? initialEpoch : initialEpoch + 2),
+                    "Only a live wreck should be invalidated by reset and disable.");
+            }
+            finally { EditorSceneManager.ClosePreviewScene(scene); }
+        }
         [Test] public void ThreeIndependentPartsAwardExactlyOnceAndRespectCargoOnlyPolicy()
         {
             foreach (var i in new[] { 2, 0, 1 })
