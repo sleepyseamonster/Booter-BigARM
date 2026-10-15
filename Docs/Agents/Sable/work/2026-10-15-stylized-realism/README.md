@@ -14,6 +14,8 @@ Following review on October 15, the author selected B's ground treatment and a b
 
 The author's subsequent request for more realistic inspiration is covered in [Diablo IV and Path of Exile reference research](REALISM_REFERENCES.md), with a separately labelled Path of Exile 2 supplement, 16 resources, and concrete lessons for the existing rock, ground, and prop study. Its refinements remain recommendations.
 
+The [Risk of Rain 2 stylized reference study](STYLIZED_REFERENCES.md) adds the author's next research direction, including Iron Alluvium concept-to-level references, Solar Ash, Deep Rock Galactic, and a Hyper Light Breaker discovery entry. It explores shape and detail simplification alongside the accepted painted surfaces.
+
 ## How the named influences contribute
 
 | Influence | Contribution to the proposed direction | What needs restraint |

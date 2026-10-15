@@ -27,3 +27,9 @@ Use **B for ground** and **a restrained balance between B and C for rocks and pr
 Authority: the author's request to gather more realistic inspiration, naming Diablo IV and Path of Exile. The [expanded research](../work/2026-10-15-stylized-realism/REALISM_REFERENCES.md) covers both, with Path of Exile 2 separately labelled as a companion reference.
 
 Sable recommends stronger construction, material response, and motivated wear beneath the accepted painted treatment. This is a recommendation, not an author-approved replacement for B's ground or the B–C rock/prop balance. No new render or production integration was requested or performed in this batch.
+
+## October 15, 2026 — Expanded stylized reference research
+
+Authority: the author requested more stylized inspiration, naming Risk of Rain 2. The [stylized reference study](../work/2026-10-15-stylized-realism/STYLIZED_REFERENCES.md) adds Risk of Rain 2, Solar Ash, Deep Rock Galactic, and a Hyper Light Breaker discovery reference, with ten resource entries and explicit inspection status.
+
+Sable proposes stronger large-form design, broader color grouping, and selective detail while retaining believable construction and the accepted B ground / B–C rocks and props. This research request does not approve a replacement style, new renders, or production changes.
