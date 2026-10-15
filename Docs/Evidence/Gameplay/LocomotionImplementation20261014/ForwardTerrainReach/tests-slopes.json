@@ -1,0 +1,77 @@
+{
+  "success": true,
+  "command": "command run_tests",
+  "data": {
+    "command": "run_tests",
+    "parameters": {
+      "mode": "editor",
+      "filter": "TopDown3DPlayerSlopeTests"
+    },
+    "result": {
+      "Summary": {
+        "Total": 6,
+        "Passed": 6,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      },
+      "Results": [
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerSlopeTests.GroundNormalSmoothing_FiltersTriangleChangesWithoutFlatteningThem",
+          "Status": "Passed",
+          "Duration": 0.0006304,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerSlopeTests.GroundNormalSmoothing_IsStableAcrossPhysicsStepSizes",
+          "Status": "Passed",
+          "Duration": 0.0005494,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerSlopeTests.SteepSlope_ProducesNoUphillDrive",
+          "Status": "Passed",
+          "Duration": 0.0003446,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerSlopeTests.SteepSlope_RemovesOnlyUphillMovement",
+          "Status": "Passed",
+          "Duration": 0.0004275,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerSlopeTests.WalkableSlope_AcceptsConfiguredLimitAndRejectsSteeperSurface",
+          "Status": "Passed",
+          "Duration": 0.0004829,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.TopDown3DPlayerSlopeTests.WalkableSlope_ProjectsMovementAlongSurfaceWithoutChangingMagnitude",
+          "Status": "Passed",
+          "Duration": 0.0006723,
+          "Message": null,
+          "StackTrace": null
+        }
+      ],
+      "Duration": 0.41,
+      "StatusPath": null,
+      "Mode": "EditMode",
+      "FilterApplied": "testname: TopDown3DPlayerSlopeTests",
+      "success": true,
+      "result": null
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

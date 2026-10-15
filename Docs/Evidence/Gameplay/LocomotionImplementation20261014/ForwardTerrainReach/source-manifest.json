@@ -1,0 +1,90 @@
+{
+  "revision": 13,
+  "files": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundTerrainPose.cs",
+      "sha256": "ab0dd1ad6031fad442b57c3cdd6d2505bbad8d870228cd2124caa5bf354a9676",
+      "candidate_sha256": "ab0dd1ad6031fad442b57c3cdd6d2505bbad8d870228cd2124caa5bf354a9676"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundTerrainPose.cs.meta",
+      "sha256": "7517eaed5459460a6aa70f0dae377d506c22944c4148f60794fdbe4d4b1ba144",
+      "candidate_sha256": "7517eaed5459460a6aa70f0dae377d506c22944c4148f60794fdbe4d4b1ba144"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardLocomotionProfile.cs",
+      "sha256": "d30c04f47fa44ec834b9090291bbf7d73019567e607cb0e4b886cae1ffe3375c",
+      "candidate_sha256": "d30c04f47fa44ec834b9090291bbf7d73019567e607cb0e4b886cae1ffe3375c"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardLocomotionProfile.cs.meta",
+      "sha256": "b255476d10d7ac4669ab381a0a163a7c94a4c14b49fbba99aebd22e8eb278173",
+      "candidate_sha256": "b255476d10d7ac4669ab381a0a163a7c94a4c14b49fbba99aebd22e8eb278173"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs",
+      "sha256": "eb453d33d63673eb6bf3ac54353a1c2df42c3f8324b8bcf3766562a2aabb1db8",
+      "candidate_sha256": "eb453d33d63673eb6bf3ac54353a1c2df42c3f8324b8bcf3766562a2aabb1db8"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs.meta",
+      "sha256": "125bb846f9a1e8de22b13aef35865640f3d968159853da727013c3ae7a7e9e52",
+      "candidate_sha256": "125bb846f9a1e8de22b13aef35865640f3d968159853da727013c3ae7a7e9e52"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs",
+      "sha256": "64f733189f88884127ca1d9033400e99a60fb090a5ed7a2eaa4e0e578e732f89",
+      "candidate_sha256": "64f733189f88884127ca1d9033400e99a60fb090a5ed7a2eaa4e0e578e732f89"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs.meta",
+      "sha256": "9d8c82a656c45ff5e62d116246351894cdb599495a1e21bb27a537a70cee73a2",
+      "candidate_sha256": "9d8c82a656c45ff5e62d116246351894cdb599495a1e21bb27a537a70cee73a2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.GarmentFloor.cs",
+      "sha256": "ef559fcabac3a98976f6eab18acc5c58c685d04047426660b0633e78dae40182",
+      "candidate_sha256": "ef559fcabac3a98976f6eab18acc5c58c685d04047426660b0633e78dae40182"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.GarmentFloor.cs.meta",
+      "sha256": "b294e9f9ae5db6d7522c88ef23d1bf94b29be7d0072b8b9fa075244db63e9e74",
+      "candidate_sha256": "b294e9f9ae5db6d7522c88ef23d1bf94b29be7d0072b8b9fa075244db63e9e74"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.LaboratoryLocomotion.cs",
+      "sha256": "58348390fb562d5f303b397a17a6a8e20af6c28bea29133eadff88826cde882a",
+      "candidate_sha256": "58348390fb562d5f303b397a17a6a8e20af6c28bea29133eadff88826cde882a"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.LaboratoryLocomotion.cs.meta",
+      "sha256": "e10e443f4cf26c9268849faf0abe0b8732edfa89cd9c3ac6484d6ed5003f7cd9",
+      "candidate_sha256": "e10e443f4cf26c9268849faf0abe0b8732edfa89cd9c3ac6484d6ed5003f7cd9"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundTerrainPoseTests.cs",
+      "sha256": "0415321bd4cb571c82955804e19c663f810c192e3ce68dc7e8c42365fecc1e7e",
+      "candidate_sha256": "0415321bd4cb571c82955804e19c663f810c192e3ce68dc7e8c42365fecc1e7e"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundTerrainPoseTests.cs.meta",
+      "sha256": "ac1508db82014272d90e8aaf8777df1a0a2611dca72326bb2aff5267c01b610a",
+      "candidate_sha256": "ac1508db82014272d90e8aaf8777df1a0a2611dca72326bb2aff5267c01b610a"
+    },
+    {
+      "path": "Tools/Diagnostics/CampForwardTerrainDriverQualification.cs",
+      "sha256": "09ad7709b20f848a585ec2bd034455dd0eedbea35387069c9a815363ec16d394",
+      "execution": "run_script reads root source"
+    },
+    {
+      "path": "Tools/Diagnostics/CampForwardTerrainStreamProbe.cs",
+      "sha256": "4fb1189c84e914d2334da11722d4b0a12708b265ce26aefb50b28cf92580b40d",
+      "execution": "run_script reads root source"
+    },
+    {
+      "path": "Tools/Diagnostics/CampForwardTerrainSourceScreen.cs",
+      "sha256": "c9d403425752aec8312609de3d0decb42a178c59d2f4f7a0d4f0961b9ec9507c",
+      "execution": "run_script reads root source"
+    }
+  ]
+}

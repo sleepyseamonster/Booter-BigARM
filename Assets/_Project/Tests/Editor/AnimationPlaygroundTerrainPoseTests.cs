@@ -177,6 +177,35 @@ namespace BooterBigArm.Tests
             Assert.That(height, Is.LessThanOrEqualTo(1.821f));
         }
 
+        [Test, Category("PrivateAnimationQualification")]
+        public void AirborneFootKeepsTangentStrideWithinTheJointReachEnvelope()
+        {
+            using var fixture = new Fixture(SkinWeights.FourBones);
+            var knee = fixture.Driver.HumanoidAnimator.GetBoneTransform(HumanBodyBones.LeftLowerLeg);
+            var foot = fixture.Driver.HumanoidAnimator.GetBoneTransform(HumanBodyBones.LeftFoot);
+            fixture.Support(0); fixture.Frame(3.8f, .453125, 0);
+            var nativeRotation = foot.rotation;
+            fixture.Support(30); fixture.Frame(3.8f, .453125, 0);
+            Assert.That(fixture.Stage.Sample.leftWeight, Is.Zero);
+            var sample = fixture.Stage.Sample;
+            var sourceFoot = (Vector3)sample.matrices[sample.leftFootCacheBone].GetColumn(3);
+            Assert.That(fixture.Motor.TryGetLaboratorySupportPlane(out var plane), Is.True);
+            var surfaceOrigin = plane.ClosestPointOnPlane(Vector3.up * (-.91f + .2f));
+            var tangent = Vector3.ProjectOnPlane(Vector3.forward, plane.normal).normalized;
+            Assert.That(sample.leftReleased, Is.LessThan(.0001f));
+            Assert.That(sample.leftFlightLowering, Is.GreaterThan(.001f), "This fixture exercises the minimum-reach constraint.");
+            Assert.That(plane.GetDistanceToPoint(sample.leftTarget),
+                Is.EqualTo(sourceFoot.y + sample.flatLift + .91f - sample.leftFlightLowering + sample.leftReleased).Within(.0001f));
+            Assert.That(Vector3.Dot(sample.leftTarget - surfaceOrigin, tangent), Is.EqualTo(sourceFoot.z).Within(.0001f));
+            Assert.That(sample.leftTarget.x, Is.EqualTo(sourceFoot.x).Within(.0001f));
+            var hostShift = fixture.VisualHost.position - sample.visualHostPosition;
+            Assert.That(Vector3.Distance(foot.position - hostShift, sample.leftTarget), Is.LessThan(.0001f));
+            Assert.That(Quaternion.Angle(foot.rotation, Quaternion.AngleAxis(30, Vector3.right) * nativeRotation), Is.LessThan(.01f));
+            var hip = fixture.Driver.HumanoidAnimator.GetBoneTransform(HumanBodyBones.LeftUpperLeg);
+            Assert.That(180 - Vector3.Angle(hip.position - knee.position, foot.position - knee.position),
+                Is.LessThanOrEqualTo(AnimationPlaygroundTerrainPose.MaximumKneeFlexion + .01f));
+        }
+
         // Support observations are explicit pose fixtures, not simulated travel.
         private sealed class Fixture : IDisposable
         {
@@ -185,6 +214,7 @@ namespace BooterBigArm.Tests
             public TopDown3DPlayerMotor Motor { get; private set; }
             public PlayableGraph Graph { get; private set; }
             public AnimationPlaygroundTerrainPose Stage { get; private set; }
+            public Transform VisualHost => visual.transform;
             public Action<float, double, float> Frame { get; private set; }
             public Action Garment { get; private set; }
             private readonly SkinWeights previousQuality = QualitySettings.skinWeights;

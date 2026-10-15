@@ -11,6 +11,9 @@ namespace BooterBigArm.TopDown3D
     // or animation time and is inactive for every foreign presentation owner.
     public sealed class AnimationPlaygroundTerrainPose : IDisposable
     {
+        public const int ImplementationRevision = 13;
+        public const float MaximumKneeFlexion = 150;
+        private static readonly float KneeFlexionCosine = Mathf.Cos(MaximumKneeFlexion * Mathf.Deg2Rad);
         public struct Vertex { public int start, count, side; }
         public struct Bone { public TransformStreamHandle handle; public Vector3 scale; }
         public struct ContactJob : IAnimationJob
@@ -20,13 +23,14 @@ namespace BooterBigArm.TopDown3D
             [ReadOnly] public NativeArray<AnimationPlaygroundSkinPoint> points;
             public NativeArray<Matrix4x4> matrices;
             public TransformStreamHandle hips, leftHip, rightHip, leftKnee, rightKnee;
-            public float leftLength, rightLength, leftUpperLength, rightUpperLength, leftLowerLength, rightLowerLength;
             public Plane plane;
             public float flatY, maximumLowering, flatLift;
             public Vector3 characterRight;
             public Vector3 flatOrigin;
+            public Vector3 visualHostPosition;
             public float supportRadius;
             public float leftReleased, rightReleased;
+            public float leftFlightLowering, rightFlightLowering;
             public int influenceLimit, evaluations;
             public int leftFootCacheBone, rightFootCacheBone;
             public float sourceFootError;
@@ -73,50 +77,54 @@ namespace BooterBigArm.TopDown3D
                 leftWeight = SupportWeight(leftGap); rightWeight = SupportWeight(rightGap);
                 leftTarget = left; rightTarget = right; lowering = requiredLowering = incompatibleReach = 0;
                 leftReleased = rightReleased = 0;
+                leftFlightLowering = rightFlightLowering = 0;
                 if (plane.normal.y > .999999f) return; // Exact native pose on a flat plane.
                 var forward = Vector3.Cross(characterRight, Vector3.up).normalized;
                 var surfaceForward = forward + Vector3.up * (-Vector3.Dot(plane.normal, forward) / plane.normal.y);
                 var rotation = Quaternion.LookRotation(surfaceForward.normalized, plane.normal)
                     * Quaternion.Inverse(Quaternion.LookRotation(forward, Vector3.up));
-                leftTarget = OnTangent(left, rotation); rightTarget = OnTangent(right, rotation);
-                var leftDelta = Quaternion.Slerp(Quaternion.identity, rotation, leftWeight);
-                var rightDelta = Quaternion.Slerp(Quaternion.identity, rotation, rightWeight);
-                var leftPlaneMinimum = float.PositiveInfinity; var rightPlaneMinimum = float.PositiveInfinity;
-                for (var i = 0; i < vertices.Length; i++)
-                {
-                    var p = Point(i) + Vector3.up * flatLift;
-                    if (vertices[i].side == 0) leftPlaneMinimum = Mathf.Min(leftPlaneMinimum, plane.GetDistanceToPoint(leftTarget + leftDelta * (p - left)));
-                    else rightPlaneMinimum = Mathf.Min(rightPlaneMinimum, plane.GetDistanceToPoint(rightTarget + rightDelta * (p - right)));
-                }
-                // Supported feet may descend to the surface. Airborne feet keep
-                // their native pose unless they would intersect the actual plane.
-                leftTarget.y += Correction(leftPlaneMinimum, leftGap, leftWeight);
-                rightTarget.y += Correction(rightPlaneMinimum, rightGap, rightWeight);
+                // A single orthonormal support frame preserves the entire source
+                // foot arc: tangential stride and normal flight height together.
+                // Mapping only x/z while retaining world-up height distorts a
+                // recovery foot on steep ground.
+                leftTarget = OnSurface(left, rotation); rightTarget = OnSurface(right, rotation);
+                var leftDelta = rotation; var rightDelta = rotation;
                 var angle = Mathf.Acos(Mathf.Clamp(plane.normal.y, -1, 1));
                 var onset = Mathf.SmoothStep(0, 1, Mathf.Clamp01(angle * Mathf.Rad2Deg / 5));
                 // A continuous incline envelope keeps the hips from chasing each
                 // late-stance reach limit. Those feet lift off when extension ends.
                 requiredLowering = supportRadius * (1 / plane.normal.y - 1) + .1f * Mathf.Tan(angle) + .006f * onset;
                 lowering = Mathf.Min(requiredLowering, maximumLowering);
-                // Preserve airborne motion relative to the lowered body. Holding
-                // it in world space can make a recovery foot orbit its hip.
-                leftTarget.y -= lowering * (1 - leftWeight);
-                rightTarget.y -= lowering * (1 - rightWeight);
-                var leftDistance = leftPlaneMinimum + plane.normal.y * (leftTarget.y - left.y);
-                var rightDistance = rightPlaneMinimum + plane.normal.y * (rightTarget.y - right.y);
-                leftTarget.y += Mathf.Max(0, .02f * (1 - leftWeight) * plane.normal.y - leftDistance) / plane.normal.y;
-                rightTarget.y += Mathf.Max(0, .02f * (1 - rightWeight) * plane.normal.y - rightDistance) / plane.normal.y;
+                var leftUpperLength = Vector3.Distance(nativeLeftHip, nativeLeftKnee);
+                var leftLowerLength = Vector3.Distance(nativeLeftKnee, left - Vector3.up * flatLift);
+                var rightUpperLength = Vector3.Distance(nativeRightHip, nativeRightKnee);
+                var rightLowerLength = Vector3.Distance(nativeRightKnee, right - Vector3.up * flatLift);
+                var leftFloor = left.y - leftMinimum + .001f;
+                var rightFloor = right.y - rightMinimum + .001f;
+                if (!FitsFloors(lowering, nativeLeftHip, nativeRightHip, leftUpperLength, leftLowerLength, rightUpperLength, rightLowerLength, leftFloor, rightFloor))
+                {
+                    // Reduce pelvis lowering when its minimum knee reach would
+                    // otherwise put the boot through the support plane.
+                    var low = 0f; var high = lowering;
+                    if (!FitsFloors(0, nativeLeftHip, nativeRightHip, leftUpperLength, leftLowerLength, rightUpperLength, rightLowerLength, leftFloor, rightFloor)) incompatibleReach = 1;
+                    for (var iteration = 0; iteration < 12; iteration++)
+                    {
+                        var middle = (low + high) * .5f;
+                        if (FitsFloors(middle, nativeLeftHip, nativeRightHip, leftUpperLength, leftLowerLength, rightUpperLength, rightLowerLength, leftFloor, rightFloor)) low = middle; else high = middle;
+                    }
+                    lowering = low;
+                }
                 var leftBodyHip = nativeLeftHip + Vector3.up * (flatLift - lowering);
                 var rightBodyHip = nativeRightHip + Vector3.up * (flatLift - lowering);
-                var leftWanted = leftTarget.y; var rightWanted = rightTarget.y;
-                leftTarget = Reachable(leftBodyHip, leftTarget, leftLength, out var leftConflict);
-                rightTarget = Reachable(rightBodyHip, rightTarget, rightLength, out var rightConflict);
-                leftReleased = leftTarget.y - leftWanted; rightReleased = rightTarget.y - rightWanted;
-                incompatibleReach = Mathf.Max(leftConflict, rightConflict);
+                leftTarget = Reachable(leftBodyHip, leftTarget, leftUpperLength, leftLowerLength,
+                    out leftReleased, out leftFlightLowering, out var leftConflict);
+                rightTarget = Reachable(rightBodyHip, rightTarget, rightUpperLength, rightLowerLength,
+                    out rightReleased, out rightFlightLowering, out var rightConflict);
+                incompatibleReach = Mathf.Max(incompatibleReach, Mathf.Max(leftConflict, rightConflict));
                 var leftHint = Knee(leftBodyHip, leftTarget, nativeLeftKnee + Vector3.up * (flatLift - lowering),
-                    leftUpperLength, leftLowerLength, -characterRight);
+                    left - Vector3.up * lowering, leftUpperLength, leftLowerLength, -characterRight);
                 var rightHint = Knee(rightBodyHip, rightTarget, nativeRightKnee + Vector3.up * (flatLift - lowering),
-                    rightUpperLength, rightLowerLength, characterRight);
+                    right - Vector3.up * lowering, rightUpperLength, rightLowerLength, characterRight);
                 var bodyShift = Vector3.up * (flatLift - lowering);
                 leftHint = Vector3.Lerp(nativeLeftKnee + bodyShift, leftHint, onset);
                 rightHint = Vector3.Lerp(nativeRightKnee + bodyShift, rightHint, onset);
@@ -124,16 +132,21 @@ namespace BooterBigArm.TopDown3D
                 leftSolvedKnee = SolveLeg(stream, leftHip, leftKnee, leftFootHandle, leftBodyHip, nativeLeftKnee + bodyShift,
                     left - Vector3.up * lowering, leftUpperRotation, leftLowerRotation,
                     Vector3.Lerp(left - Vector3.up * lowering, leftTarget, onset),
-                    Quaternion.Slerp(leftRotation, leftDelta * leftRotation, onset), leftHint);
+                    Quaternion.Slerp(leftRotation, leftDelta * leftRotation, onset), leftHint, out var leftResidual);
                 rightSolvedKnee = SolveLeg(stream, rightHip, rightKnee, rightFootHandle, rightBodyHip, nativeRightKnee + bodyShift,
                     right - Vector3.up * lowering, rightUpperRotation, rightLowerRotation,
                     Vector3.Lerp(right - Vector3.up * lowering, rightTarget, onset),
-                    Quaternion.Slerp(rightRotation, rightDelta * rightRotation, onset), rightHint);
+                    Quaternion.Slerp(rightRotation, rightDelta * rightRotation, onset), rightHint, out var rightResidual);
+                incompatibleReach = Mathf.Max(incompatibleReach, Mathf.Max(leftResidual, rightResidual));
             }
             private static Vector3 SolveLeg(AnimationStream stream, TransformStreamHandle upper, TransformStreamHandle lower, TransformStreamHandle foot,
                 Vector3 hip, Vector3 knee, Vector3 end, Quaternion upperRotation, Quaternion lowerRotation,
-                Vector3 target, Quaternion targetRotation, Vector3 hint)
+                Vector3 target, Quaternion targetRotation, Vector3 hint, out float residual)
             {
+                residual = 0;
+                var requestedTarget = target;
+                for (var iteration = 0; iteration < 4; iteration++)
+                {
                 var upperLength = Vector3.Distance(hip, knee); var lowerLength = Vector3.Distance(knee, end);
                 var delta = target - hip; var distance = delta.magnitude;
                 if (distance < .00001f) return knee;
@@ -145,14 +158,32 @@ namespace BooterBigArm.TopDown3D
                 var bend = Vector3.ProjectOnPlane(hint - hip, axis).normalized;
                 if (bend.sqrMagnitude < .1f) bend = Vector3.ProjectOnPlane(knee - hip, axis).normalized;
                 var desiredKnee = hip + axis * along + bend * radius;
-                var upperDelta = Quaternion.FromToRotation(knee - hip, desiredKnee - hip);
-                var posedKnee = hip + upperDelta * (knee - hip);
-                var posedFoot = hip + upperDelta * (end - hip);
-                var lowerDelta = Quaternion.FromToRotation(posedFoot - posedKnee, target - posedKnee);
+                var upperDelta = RotationBetween(knee - hip, desiredKnee - hip);
                 upper.SetRotation(stream, upperDelta * upperRotation);
-                lower.SetRotation(stream, lowerDelta * upperDelta * lowerRotation);
+                // Read the actual FK result so parent scaling/retargeting does
+                // not silently turn a reachable goal into an endpoint miss.
+                var posedKnee = lower.GetPosition(stream); var posedFoot = foot.GetPosition(stream);
+                var lowerDelta = RotationBetween(posedFoot - posedKnee, target - posedKnee);
+                lower.SetRotation(stream, lowerDelta * lower.GetRotation(stream));
+                hip = upper.GetPosition(stream); knee = lower.GetPosition(stream); end = foot.GetPosition(stream);
+                upperRotation = upper.GetRotation(stream); lowerRotation = lower.GetRotation(stream);
+                if ((end - target).sqrMagnitude < .0000000001f) break;
+                }
                 foot.SetRotation(stream, targetRotation);
-                return desiredKnee;
+                residual = Vector3.Distance(foot.GetPosition(stream), requestedTarget);
+                // Only numerical FK residuals may translate the endpoint. The
+                // reach envelope rejects an actual limb-length mismatch first.
+                if (residual <= .001f) foot.SetPosition(stream, requestedTarget);
+                return lower.GetPosition(stream);
+            }
+            private static Quaternion RotationBetween(Vector3 from, Vector3 to)
+            {
+                var magnitude = Mathf.Sqrt(from.sqrMagnitude * to.sqrMagnitude);
+                if (magnitude < .000000000001f) return Quaternion.identity;
+                var cross = Vector3.Cross(from, to); var w = magnitude + Vector3.Dot(from, to);
+                if (w < magnitude * .000001f) return Quaternion.FromToRotation(from, to);
+                var inverse = 1 / Mathf.Sqrt(cross.sqrMagnitude + w * w);
+                return new Quaternion(cross.x * inverse, cross.y * inverse, cross.z * inverse, w * inverse);
             }
             private Vector3 Point(int index)
             {
@@ -171,30 +202,27 @@ namespace BooterBigArm.TopDown3D
                 }
                 return p / total;
             }
-            private Vector3 OnTangent(Vector3 position, Quaternion rotation)
+            private Vector3 OnSurface(Vector3 position, Quaternion rotation)
             {
-                var tangent = rotation * Vector3.ProjectOnPlane(position - flatOrigin, Vector3.up);
-                return new Vector3(flatOrigin.x + tangent.x, position.y, flatOrigin.z + tangent.z);
-            }
-            private float Correction(float minimum, float nativeGap, float weight)
-            {
-                var desiredGap = Mathf.Max(0, nativeGap) * weight;
-                var correction = (desiredGap * plane.normal.y - minimum) / plane.normal.y;
-                return correction >= 0 ? correction : correction * weight;
+                // The upright capsule touches an incline at the projection of
+                // its lower sphere centre, not directly below the actor root.
+                var sphereCentre = flatOrigin + Vector3.up * supportRadius;
+                var surfaceOrigin = sphereCentre - plane.normal * plane.GetDistanceToPoint(sphereCentre);
+                return surfaceOrigin + rotation * (position - flatOrigin);
             }
             private static float SupportWeight(float gap) => 1 - Mathf.SmoothStep(0, 1, Mathf.InverseLerp(.012f, .05f, gap));
-            private Vector3 Knee(Vector3 hip, Vector3 foot, Vector3 original, float upper, float lower, Vector3 outward)
+            private Vector3 Knee(Vector3 hip, Vector3 foot, Vector3 original, Vector3 originalFoot, float upper, float lower, Vector3 outward)
             {
                 var delta = foot - hip; var distance = delta.magnitude;
                 if (distance < .001f) return original;
                 var axis = delta / distance;
                 var along = (upper * upper - lower * lower + distance * distance) / (2 * distance);
                 var centre = hip + axis * along; var radius = Mathf.Sqrt(Mathf.Max(0, upper * upper - along * along));
-                // Use the signed anatomical flexion plane, rather than a pole
-                // direction that can become parallel to a trailing leg.
-                var native = Vector3.Cross(axis, characterRight).normalized;
-                if (native.sqrMagnitude < .1f) native = Vector3.ProjectOnPlane(outward, axis).normalized;
-                native = (native + Vector3.ProjectOnPlane(outward, axis).normalized * .2f).normalized;
+                var sourceAxis = (originalFoot - hip).normalized;
+                var sourceBend = Vector3.ProjectOnPlane(original - hip, sourceAxis);
+                if (sourceBend.sqrMagnitude < .000001f) sourceBend = Vector3.Cross(sourceAxis, characterRight);
+                var native = (RotationBetween(sourceAxis, axis) * sourceBend.normalized).normalized;
+                if (native.sqrMagnitude < .1f) native = Vector3.ProjectOnPlane(original - hip, axis).normalized;
                 if (radius < .001f) return centre + radius * native;
                 var up = Vector3.ProjectOnPlane(plane.normal, axis);
                 var strength = up.magnitude;
@@ -214,13 +242,42 @@ namespace BooterBigArm.TopDown3D
                 if (cosine >= required) return centre + radius * preferred;
                 return centre + radius * (up * required + sideways * (sign * Mathf.Sqrt(Mathf.Max(0, 1 - required * required))));
             }
-            private static Vector3 Reachable(Vector3 hip, Vector3 target, float length, out float conflict)
+            private static float MinimumReach(float upper, float lower)
             {
-                var delta = target - hip;
-                var vertical = Mathf.Sqrt(Mathf.Max(0, length * length - delta.x * delta.x - delta.z * delta.z));
-                conflict = Mathf.Max(0, target.y - hip.y - vertical);
-                target.y = Mathf.Max(target.y, hip.y - vertical);
-                return target;
+                return Mathf.Sqrt(upper * upper + lower * lower + 2 * upper * lower * KneeFlexionCosine);
+            }
+            private static float NormalCeiling(float tangentSquared, float minimum)
+            {
+                // Conservative minimum-reach envelope, C1 at both joins. For
+                // u<=1 its squared distance is minimum²*(1+u²/4); u>=1
+                // already satisfies minimum reach through tangential distance.
+                var u = tangentSquared / (minimum * minimum);
+                if (u <= 1) return -minimum * (1 - .5f * u);
+                if (u >= 2) return 0;
+                var t = u - 1;
+                return minimum * (-.5f + .5f * (t + t * t - t * t * t));
+            }
+            private bool FloorFits(Vector3 hip, Vector3 target, float upper, float lower, float footFloor)
+            {
+                var tangentSquared = Vector3.ProjectOnPlane(target - hip, plane.normal).sqrMagnitude;
+                return plane.GetDistanceToPoint(hip) + NormalCeiling(tangentSquared, MinimumReach(upper, lower)) >= footFloor;
+            }
+            private bool FitsFloors(float value, Vector3 leftHip, Vector3 rightHip, float leftUpper, float leftLower,
+                float rightUpper, float rightLower, float leftFloor, float rightFloor)
+                => FloorFits(leftHip + Vector3.up * (flatLift - value), leftTarget, leftUpper, leftLower, leftFloor)
+                    && FloorFits(rightHip + Vector3.up * (flatLift - value), rightTarget, rightUpper, rightLower, rightFloor);
+            private Vector3 Reachable(Vector3 hip, Vector3 target, float upper, float lower,
+                out float released, out float flightLowering, out float conflict)
+            {
+                var delta = target - hip; var height = Vector3.Dot(delta, plane.normal);
+                var tangentSquared = Vector3.ProjectOnPlane(delta, plane.normal).sqrMagnitude;
+                var maximum = upper + lower - .006f;
+                var bottom = -Mathf.Sqrt(Mathf.Max(0, maximum * maximum - tangentSquared));
+                var top = NormalCeiling(tangentSquared, MinimumReach(upper, lower));
+                conflict = Mathf.Max(Mathf.Max(0, Mathf.Sqrt(tangentSquared) - maximum), bottom - top);
+                released = Mathf.Max(0, bottom - height);
+                flightLowering = Mathf.Max(0, height - top);
+                return target + plane.normal * (Mathf.Clamp(height, bottom, top) - height);
             }
         }
 
@@ -235,6 +292,7 @@ namespace BooterBigArm.TopDown3D
         private readonly Playable source;
         private readonly SkinnedMeshRenderer[] skins;
         private readonly Transform characterFrame;
+        private readonly Transform visualHost;
         private readonly float supportRadius;
         public bool IsDisposed { get; private set; }
         public ContactJob Sample => !IsDisposed && node.IsValid() ? node.GetJobData<ContactJob>() : default;
@@ -250,6 +308,7 @@ namespace BooterBigArm.TopDown3D
             if (output.GetTarget() != animator) throw new ArgumentException("Terrain must share the existing Animator output.");
             if (!projection.Validate(projection.model, out var reason)) throw new ArgumentException(reason);
             skins = visual.GetComponentsInChildren<SkinnedMeshRenderer>(true);
+            visualHost = visual;
             characterFrame = visual.parent != null ? visual.parent : visual;
             var shape = characterFrame.GetComponent<CapsuleCollider>();
             if (shape == null) throw new ArgumentException("Terrain pose requires its existing upright motor capsule.");
@@ -284,10 +343,6 @@ namespace BooterBigArm.TopDown3D
                 var rightHip = animator.GetBoneTransform(HumanBodyBones.RightUpperLeg);
                 var rightKnee = animator.GetBoneTransform(HumanBodyBones.RightLowerLeg);
                 var rightFoot = animator.GetBoneTransform(HumanBodyBones.RightFoot);
-                var leftUpper = Vector3.Distance(leftHip.position, leftKnee.position);
-                var leftLower = Vector3.Distance(leftKnee.position, leftFoot.position);
-                var rightUpper = Vector3.Distance(rightHip.position, rightKnee.position);
-                var rightLower = Vector3.Distance(rightKnee.position, rightFoot.position);
                 var leftFootIndex = Array.FindIndex(projection.bonePaths, p => visual.Find(p) == leftFoot);
                 var rightFootIndex = Array.FindIndex(projection.bonePaths, p => visual.Find(p) == rightFoot);
                 if (leftFootIndex < 0 || rightFootIndex < 0)
@@ -297,9 +352,7 @@ namespace BooterBigArm.TopDown3D
                     leftFootCacheBone = leftFootIndex, rightFootCacheBone = rightFootIndex,
                     hips = animator.BindStreamTransform(animator.GetBoneTransform(HumanBodyBones.Hips)),
                     leftHip = animator.BindStreamTransform(leftHip), leftKnee = animator.BindStreamTransform(leftKnee),
-                    rightHip = animator.BindStreamTransform(rightHip), rightKnee = animator.BindStreamTransform(rightKnee),
-                    leftUpperLength = leftUpper, leftLowerLength = leftLower, leftLength = leftUpper + leftLower - .006f,
-                    rightUpperLength = rightUpper, rightLowerLength = rightLower, rightLength = rightUpper + rightLower - .006f }, 1);
+                    rightHip = animator.BindStreamTransform(rightHip), rightKnee = animator.BindStreamTransform(rightKnee) }, 1);
                 graph.Connect(source, 0, node, 0); node.SetInputWeight(0, 1); output.SetSourcePlayable(node);
             }
             catch { Dispose(); throw; }
@@ -322,6 +375,7 @@ namespace BooterBigArm.TopDown3D
             var data = node.GetJobData<ContactJob>(); data.enabled = true; data.plane = plane; data.flatY = flatY;
             data.characterRight = characterFrame.right;
             data.flatOrigin = new Vector3(characterFrame.position.x, flatY, characterFrame.position.z);
+            data.visualHostPosition = visualHost.position;
             data.influenceLimit = limit; node.SetJobData(data);
         }
         public void Disable()
