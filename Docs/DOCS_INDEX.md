@@ -91,7 +91,7 @@ These should be treated as the source of truth unless they are intentionally rev
 ## Program Plans
 
 - [Master item database](./Design/Items/MASTER_ITEM_DATABASE.xlsx)
-  Editable design register of 18 existing item IDs, all 20 serialized definition variants, current crafting/processing relationships and category gaps for later brainstorming. Separates shared definitions from Camp Loop trials; undecided stats remain blank. This workbook does not change game canon or synchronize Unity assets.
+  Editable 50-entry design register: 18 existing item IDs, two author-directed carried-gear concepts and 30 proposed natural/biological materials. Retains all 20 serialized definition variants and current recipes; adds 16 proposed resource-chain relationships and five hybrid megafauna concepts. Implementation, author direction and proposals remain distinct; undecided stats stay blank. This workbook does not synchronize Unity assets or approve proposed canon.
 
 - [Camp Loop atmosphere implementation](./Design/Gameplay/CAMP_LOOP_ATMOSPHERE_IMPLEMENTATION_PLAN_2026-10-14.md) and [evidence](./Evidence/Rendering/CampAtmosphere20261014/README.md)
   Author-selected Clearer twilight study, separate yellow sun, camera-local optics and render-only native-height surroundings. Includes ownership/clearance proof and static capture limits.
