@@ -49,6 +49,16 @@ The game is about endurance, deliberate movement, and living inside a hostile sy
 - People carry personal algae reserves as the backbone of survival.
 - Failure should come from accumulation: resource depletion, exposure, distance, and poor planning.
 
+## Material Culture
+
+Author direction recorded October 14, 2026:
+
+- Shell husks supply abundant chitin and icore fibers that can be scraped from them. The term `icore` retains the author's spelling; its composition is not yet defined.
+- Scraped husk fibers are the main source of paper.
+- These fibers can also be processed and pressed into textile materials, but this is very difficult. Abundant raw fibers do not imply easy finished-material production.
+- Hides and furs can be processed into textile and other materials, but the usable yield is extremely low. No numeric yield or processing recipe is established.
+- There is no cloth of any kind. Textile-material references do not authorize cloth items or a conventional cloth production chain.
+
 ## Player Character
 
 Booter is a professional desert survivor and metal scrapper.

@@ -1,5 +1,7 @@
 # Camp cloak and sleep prototype proposal
 
+Material clarification, October 14, 2026: the author's [material-culture rules](../../WORLD_BASIS.md#material-culture) supersede cloth/fabric composition assumptions below. No cloth exists. Husk fibers supply paper and difficult pressed textile materials; hide/fur processing yields extremely little usable material. The older appearance and animation terminology does not settle the cloak or shade's material. This clarification changes no Unity asset or runtime behavior.
+
 Brainstorming pass dated October 10, 2026. Booter carries a compact vertical shade, deploys it through the radial menu, and sleeps on its shaded side using his cloak as a blanket. Sleep restores physical Reserve while consuming nourishment, hydration, and oxygen. The world continues visibly at accelerated speed, including threats and the existing twilight sun.
 
 The user has established this direction. Dimensions, rates, controls, visual details, and component names below are provisional prototype choices. This pass specifies the meshes and systems; it does not create meshes or change runtime behavior. It serves the fixed, always-loaded Greater Wasteland production lane. Three brainstorming passes on October 10 cover manageable recovery costs, physical camp construction, controller interactions, and optional features. Balance remains a hypothesis until player testing.

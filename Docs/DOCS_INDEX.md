@@ -91,7 +91,7 @@ These should be treated as the source of truth unless they are intentionally rev
 ## Program Plans
 
 - [Master item database](./Design/Items/MASTER_ITEM_DATABASE.xlsx)
-  Editable 69-entry design register: 18 existing item IDs, 11 author-directed concepts and 40 proposed resources/materials. Retains all 20 serialized definition variants and current recipes; includes 22 proposed resource-chain relationships, five hybrid megafauna concepts and NPS/USGS regional mineral references. Separates raw rock, ore, unworked metal and processed fuel. Implementation, author direction and proposals remain distinct; undecided stats stay blank. This workbook does not synchronize Unity assets or approve proposed canon.
+  Editable 75-entry design register: 18 existing item IDs and 57 design concepts. Retains all 20 serialized definition variants and current recipes; includes 29 qualitative resource-chain relationships, five hybrid megafauna concepts and NPS/USGS regional mineral references. Records the author's husk-fiber paper, difficult pressed textiles, extremely low hide/fur yield and no-cloth rules from [Material Culture](./WORLD_BASIS.md#material-culture). Implementation, author direction and proposals remain distinct; undecided stats stay blank. This workbook does not synchronize Unity assets or approve proposed canon.
 
 - [Camp Loop atmosphere implementation](./Design/Gameplay/CAMP_LOOP_ATMOSPHERE_IMPLEMENTATION_PLAN_2026-10-14.md) and [evidence](./Evidence/Rendering/CampAtmosphere20261014/README.md)
   Author-selected Clearer twilight study, separate yellow sun, camera-local optics and render-only native-height surroundings. Includes ownership/clearance proof and static capture limits.
