@@ -1,0 +1,558 @@
+{
+  "state": "turn-contact-screen-not-qualified-or-installed",
+  "source": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/RapidTurnNative.fbx",
+  "basis": "TurnNativeBasisV1",
+  "rootCurveRun": "TurnRootCurveV4",
+  "tangentFoot": true,
+  "assemblies": {
+    "BooterBigArm.TopDown3D.Runtime": {
+      "moduleId": "50dbbaae-05aa-4b65-869f-e553180f8572",
+      "sha256": "7879a35803ba3b47a75c14203ab8e237c7cc09cd2aabe6d74e8cf90796b7b3cf"
+    },
+    "BooterBigArm.Editor.Tests": {
+      "moduleId": "8a0861ba-a070-435b-bcd2-0513f5c254ae",
+      "sha256": "69312aa24b8dcdda467e77e613fd65f1ec144ac2fffc4062b3b175f390787f29"
+    },
+    "BooterBigArm.Editor": {
+      "moduleId": "5d842003-0df3-4422-bf74-593c8811061f",
+      "sha256": "ecf3cd3ab1dd6819d76d444cac7c98a38637f5774046ee42e027c3e5cb008f8f"
+    }
+  },
+  "rows": [
+    {
+      "clip": "RapidTurningLeft",
+      "quality": 1,
+      "samples": 182,
+      "minMesh": -5.96046448e-08,
+      "maxHeight": 1.798702,
+      "maxLift": 0.00827952847,
+      "minSole": -5.96046448e-08,
+      "maxNearestGap": 5.364418e-07,
+      "maxPredictionError": 5.409886e-07,
+      "foundCloak": true,
+      "foundRigid": true,
+      "targetOutputs": 1,
+      "authoredOrigin": [
+        -2058.0,
+        -70.46237,
+        -1718.0
+      ],
+      "measurementOrigin": [
+        0.0,
+        0.91,
+        0.0
+      ],
+      "persistentAnchor": {
+        "vertex": 9,
+        "side": 0,
+        "excursion": 0.000531536643,
+        "cumulativeTravel": 0.0123495441,
+        "minimumHeight": -5.96046448e-08,
+        "maximumHeight": 6.181002e-05
+      },
+      "tangent": {
+        "enabled": true,
+        "unavailableSamples": 0,
+        "maximumTangentRequest": 0.013951689,
+        "maximumTangentResidual": 0.000528570265,
+        "maximumReachDeficit": 0.0,
+        "maximumBoneLengthError": 3.874302e-07,
+        "maximumKneeCorrection": 0.00603541359,
+        "maximumKneeCorrectionStep": 0.00123478717
+      },
+      "privateTrack": {
+        "file": "RapidTurningLeft-1-private-tracks.json",
+        "sha256": "8600302d6d29c783724192512b5b083056cddfa2c4afcd4af98307f6926f5b72",
+        "frames": 182,
+        "pointsPerFrame": 674
+      },
+      "supportWindows": [
+        {
+          "requestedSeconds": 0.08,
+          "actualSeconds": 0.08287294,
+          "windows": 172,
+          "covered": 172,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.000714430935,
+          "pointSwitches": 52,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 1.0,
+          "rightCoverage": 0.0697674453
+        },
+        {
+          "requestedSeconds": 0.12,
+          "actualSeconds": 0.1325967,
+          "windows": 166,
+          "covered": 166,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.000714430935,
+          "pointSwitches": 34,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 1.0,
+          "rightCoverage": 0.0180722885
+        },
+        {
+          "requestedSeconds": 0.18,
+          "actualSeconds": 0.182320461,
+          "windows": 160,
+          "covered": 160,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.0007710928,
+          "pointSwitches": 26,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 1.0,
+          "rightCoverage": 0.0
+        }
+      ]
+    },
+    {
+      "clip": "RapidTurningRight_Mirror",
+      "quality": 1,
+      "samples": 182,
+      "minMesh": -1.78813934e-07,
+      "maxHeight": 1.79870176,
+      "maxLift": 0.008268753,
+      "minSole": -1.78813934e-07,
+      "maxNearestGap": 6.556511e-07,
+      "maxPredictionError": 6.377871e-07,
+      "foundCloak": true,
+      "foundRigid": true,
+      "targetOutputs": 1,
+      "authoredOrigin": [
+        -2058.0,
+        -70.46237,
+        -1718.0
+      ],
+      "measurementOrigin": [
+        0.0,
+        0.91,
+        0.0
+      ],
+      "persistentAnchor": {
+        "vertex": 300,
+        "side": 1,
+        "excursion": 0.0005233377,
+        "cumulativeTravel": 0.0137119526,
+        "minimumHeight": 0.0,
+        "maximumHeight": 6.181002e-05
+      },
+      "tangent": {
+        "enabled": true,
+        "unavailableSamples": 0,
+        "maximumTangentRequest": 0.01311987,
+        "maximumTangentResidual": 0.0005251285,
+        "maximumReachDeficit": 0.0,
+        "maximumBoneLengthError": 4.172325e-07,
+        "maximumKneeCorrection": 0.00586913666,
+        "maximumKneeCorrectionStep": 0.00134570256
+      },
+      "privateTrack": {
+        "file": "RapidTurningRight_Mirror-1-private-tracks.json",
+        "sha256": "2ce68f8c49dd2f6aeb111c1e4e8031f7a20f89d1bb716f8895e7e108629d1cb9",
+        "frames": 182,
+        "pointsPerFrame": 674
+      },
+      "supportWindows": [
+        {
+          "requestedSeconds": 0.08,
+          "actualSeconds": 0.08287294,
+          "windows": 172,
+          "covered": 172,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.00070508325,
+          "pointSwitches": 51,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 0.0697674453,
+          "rightCoverage": 1.0
+        },
+        {
+          "requestedSeconds": 0.12,
+          "actualSeconds": 0.1325967,
+          "windows": 166,
+          "covered": 166,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.00070508325,
+          "pointSwitches": 33,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 0.0180722885,
+          "rightCoverage": 1.0
+        },
+        {
+          "requestedSeconds": 0.18,
+          "actualSeconds": 0.182320461,
+          "windows": 160,
+          "covered": 160,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.0007420328,
+          "pointSwitches": 28,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 0.0,
+          "rightCoverage": 1.0
+        }
+      ]
+    },
+    {
+      "clip": "RapidTurningLeft",
+      "quality": 2,
+      "samples": 182,
+      "minMesh": -2.98023224e-07,
+      "maxHeight": 1.798599,
+      "maxLift": 0.008207293,
+      "minSole": -2.98023224e-07,
+      "maxNearestGap": 5.96046448e-07,
+      "maxPredictionError": 6.069531e-07,
+      "foundCloak": true,
+      "foundRigid": true,
+      "targetOutputs": 1,
+      "authoredOrigin": [
+        -2058.0,
+        -70.46237,
+        -1718.0
+      ],
+      "measurementOrigin": [
+        0.0,
+        0.91,
+        0.0
+      ],
+      "persistentAnchor": {
+        "vertex": 9,
+        "side": 0,
+        "excursion": 0.000463664648,
+        "cumulativeTravel": 0.0123414965,
+        "minimumHeight": -5.96046448e-08,
+        "maximumHeight": 2.759695e-05
+      },
+      "tangent": {
+        "enabled": true,
+        "unavailableSamples": 0,
+        "maximumTangentRequest": 0.0139724575,
+        "maximumTangentResidual": 0.0004634652,
+        "maximumReachDeficit": 0.0,
+        "maximumBoneLengthError": 3.27825546e-07,
+        "maximumKneeCorrection": 0.00604467746,
+        "maximumKneeCorrectionStep": 0.001175663
+      },
+      "privateTrack": {
+        "file": "RapidTurningLeft-2-private-tracks.json",
+        "sha256": "c308c25c14622f4ad52f9bac46ed1ae5b1f1d8740c75f709acf69254fa7ed87f",
+        "frames": 182,
+        "pointsPerFrame": 674
+      },
+      "supportWindows": [
+        {
+          "requestedSeconds": 0.08,
+          "actualSeconds": 0.08287294,
+          "windows": 172,
+          "covered": 172,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.0007100545,
+          "pointSwitches": 54,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 1.0,
+          "rightCoverage": 0.00581395347
+        },
+        {
+          "requestedSeconds": 0.12,
+          "actualSeconds": 0.1325967,
+          "windows": 166,
+          "covered": 166,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.0007100545,
+          "pointSwitches": 33,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 1.0,
+          "rightCoverage": 0.0
+        },
+        {
+          "requestedSeconds": 0.18,
+          "actualSeconds": 0.182320461,
+          "windows": 160,
+          "covered": 160,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.0007583137,
+          "pointSwitches": 24,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 1.0,
+          "rightCoverage": 0.0
+        }
+      ]
+    },
+    {
+      "clip": "RapidTurningRight_Mirror",
+      "quality": 2,
+      "samples": 182,
+      "minMesh": -3.57627869e-07,
+      "maxHeight": 1.79859817,
+      "maxLift": 0.00819676,
+      "minSole": -3.57627869e-07,
+      "maxNearestGap": 5.96046448e-07,
+      "maxPredictionError": 6.23462256e-07,
+      "foundCloak": true,
+      "foundRigid": true,
+      "targetOutputs": 1,
+      "authoredOrigin": [
+        -2058.0,
+        -70.46237,
+        -1718.0
+      ],
+      "measurementOrigin": [
+        0.0,
+        0.91,
+        0.0
+      ],
+      "persistentAnchor": {
+        "vertex": 300,
+        "side": 1,
+        "excursion": 0.0005079832,
+        "cumulativeTravel": 0.0126033425,
+        "minimumHeight": -5.96046448e-08,
+        "maximumHeight": 2.759695e-05
+      },
+      "tangent": {
+        "enabled": true,
+        "unavailableSamples": 0,
+        "maximumTangentRequest": 0.0131405387,
+        "maximumTangentResidual": 0.0005080572,
+        "maximumReachDeficit": 0.0,
+        "maximumBoneLengthError": 3.874302e-07,
+        "maximumKneeCorrection": 0.00587777,
+        "maximumKneeCorrectionStep": 0.00135589868
+      },
+      "privateTrack": {
+        "file": "RapidTurningRight_Mirror-2-private-tracks.json",
+        "sha256": "6427e1925c7db35cdbbb6ebb03d30d4ae22f9db938db0f71f51422077fc44155",
+        "frames": 182,
+        "pointsPerFrame": 674
+      },
+      "supportWindows": [
+        {
+          "requestedSeconds": 0.08,
+          "actualSeconds": 0.08287294,
+          "windows": 172,
+          "covered": 172,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.0007015956,
+          "pointSwitches": 52,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 0.00581395347,
+          "rightCoverage": 1.0
+        },
+        {
+          "requestedSeconds": 0.12,
+          "actualSeconds": 0.1325967,
+          "windows": 166,
+          "covered": 166,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.0007015956,
+          "pointSwitches": 32,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 0.0,
+          "rightCoverage": 1.0
+        },
+        {
+          "requestedSeconds": 0.18,
+          "actualSeconds": 0.182320461,
+          "windows": 160,
+          "covered": 160,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.0007292779,
+          "pointSwitches": 24,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 0.0,
+          "rightCoverage": 1.0
+        }
+      ]
+    },
+    {
+      "clip": "RapidTurningLeft",
+      "quality": 4,
+      "samples": 182,
+      "minMesh": -2.98023224e-07,
+      "maxHeight": 1.798599,
+      "maxLift": 0.008207293,
+      "minSole": -2.98023224e-07,
+      "maxNearestGap": 5.96046448e-07,
+      "maxPredictionError": 6.069531e-07,
+      "foundCloak": true,
+      "foundRigid": true,
+      "targetOutputs": 1,
+      "authoredOrigin": [
+        -2058.0,
+        -70.46237,
+        -1718.0
+      ],
+      "measurementOrigin": [
+        0.0,
+        0.91,
+        0.0
+      ],
+      "persistentAnchor": {
+        "vertex": 9,
+        "side": 0,
+        "excursion": 0.000463664648,
+        "cumulativeTravel": 0.0123414965,
+        "minimumHeight": -5.96046448e-08,
+        "maximumHeight": 2.759695e-05
+      },
+      "tangent": {
+        "enabled": true,
+        "unavailableSamples": 0,
+        "maximumTangentRequest": 0.0139724575,
+        "maximumTangentResidual": 0.0004634652,
+        "maximumReachDeficit": 0.0,
+        "maximumBoneLengthError": 3.27825546e-07,
+        "maximumKneeCorrection": 0.00604467746,
+        "maximumKneeCorrectionStep": 0.001175663
+      },
+      "privateTrack": {
+        "file": "RapidTurningLeft-4-private-tracks.json",
+        "sha256": "f5900b549d9a3b9e856959f02b369c2622f44c8c38516e3414d5dd6072a81216",
+        "frames": 182,
+        "pointsPerFrame": 674
+      },
+      "supportWindows": [
+        {
+          "requestedSeconds": 0.08,
+          "actualSeconds": 0.08287294,
+          "windows": 172,
+          "covered": 172,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.0007100545,
+          "pointSwitches": 52,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 1.0,
+          "rightCoverage": 0.0174418613
+        },
+        {
+          "requestedSeconds": 0.12,
+          "actualSeconds": 0.1325967,
+          "windows": 166,
+          "covered": 166,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.0007100545,
+          "pointSwitches": 33,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 1.0,
+          "rightCoverage": 0.0
+        },
+        {
+          "requestedSeconds": 0.18,
+          "actualSeconds": 0.182320461,
+          "windows": 160,
+          "covered": 160,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.0007583137,
+          "pointSwitches": 24,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 1.0,
+          "rightCoverage": 0.0
+        }
+      ]
+    },
+    {
+      "clip": "RapidTurningRight_Mirror",
+      "quality": 4,
+      "samples": 182,
+      "minMesh": -3.57627869e-07,
+      "maxHeight": 1.79859817,
+      "maxLift": 0.00819676,
+      "minSole": -3.57627869e-07,
+      "maxNearestGap": 5.96046448e-07,
+      "maxPredictionError": 6.23462256e-07,
+      "foundCloak": true,
+      "foundRigid": true,
+      "targetOutputs": 1,
+      "authoredOrigin": [
+        -2058.0,
+        -70.46237,
+        -1718.0
+      ],
+      "measurementOrigin": [
+        0.0,
+        0.91,
+        0.0
+      ],
+      "persistentAnchor": {
+        "vertex": 300,
+        "side": 1,
+        "excursion": 0.0005079832,
+        "cumulativeTravel": 0.0126033425,
+        "minimumHeight": -5.96046448e-08,
+        "maximumHeight": 2.759695e-05
+      },
+      "tangent": {
+        "enabled": true,
+        "unavailableSamples": 0,
+        "maximumTangentRequest": 0.0131405387,
+        "maximumTangentResidual": 0.0005080572,
+        "maximumReachDeficit": 0.0,
+        "maximumBoneLengthError": 3.874302e-07,
+        "maximumKneeCorrection": 0.00587777,
+        "maximumKneeCorrectionStep": 0.00135589868
+      },
+      "privateTrack": {
+        "file": "RapidTurningRight_Mirror-4-private-tracks.json",
+        "sha256": "368d7e8231cb4fe6e7c3b4ee825cec423dda37c9f9907551cd9c692172c4c486",
+        "frames": 182,
+        "pointsPerFrame": 674
+      },
+      "supportWindows": [
+        {
+          "requestedSeconds": 0.08,
+          "actualSeconds": 0.08287294,
+          "windows": 172,
+          "covered": 172,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.0007015956,
+          "pointSwitches": 51,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 0.0174418613,
+          "rightCoverage": 1.0
+        },
+        {
+          "requestedSeconds": 0.12,
+          "actualSeconds": 0.1325967,
+          "windows": 166,
+          "covered": 166,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.0007015956,
+          "pointSwitches": 32,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 0.0,
+          "rightCoverage": 1.0
+        },
+        {
+          "requestedSeconds": 0.18,
+          "actualSeconds": 0.182320461,
+          "windows": 160,
+          "covered": 160,
+          "unavailable": 0,
+          "coverage": 1.0,
+          "worstAvailableBestExcursion": 0.0007292779,
+          "pointSwitches": 24,
+          "maximumUncoveredSeconds": 0.0,
+          "leftCoverage": 0.0,
+          "rightCoverage": 1.0
+        }
+      ]
+    }
+  ],
+  "scope": "Cold equipped single-output review rig, named turn clips, manually supplied 120Hz evaluated source yaw, optional recorded planar root or bounded root curve. Measurement origin is explicit. Existing sole cache and bounded upward host projection. No motor, physics or gameplay simulation. Window test is optimistic: best fixed point per centered window within [-1mm,+8mm], >=80/120/180ms, excursion <=20mm. A fixed-point replay reports cumulative travel separately; it does not establish rolling acceptance. Full-mesh finite samples are not continuous-pose proof."
+}

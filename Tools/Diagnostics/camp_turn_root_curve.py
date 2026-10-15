@@ -155,6 +155,7 @@ def run(project, name, output):
                        "sourceSha256": summary["inputs"][summary["source"]],
                        "trackSha256": digest(path), "nativeTapeSha256": digest(tape_path),
                        "vertex": int(vertex), "side": int(track["sides"][vertex]), "budgets": BUDGETS,
+                       "anchorXZ": tangent[0].tolist(),
                        "metrics": metrics, "frames": [{"seconds": float(t), "position": p.tolist(), "velocity": v.tolist()}
                                                        for t, p, v in zip(times, positions, velocities)]})
     if len(results) != 2:

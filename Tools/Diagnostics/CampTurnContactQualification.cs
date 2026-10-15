@@ -29,7 +29,7 @@ public static class CampTurnContactQualification
     }
 
     public static string Run(string name = "TurnContactV2", string source = "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@RapidTurningLeft.fbx",
-        string basis = "TurnSourceContactBasisV1", bool applyPlanarRoot = false, bool recenter = false, string rootCurveRun = null, bool footIK = false)
+        string basis = "TurnSourceContactBasisV1", bool applyPlanarRoot = false, bool recenter = false, string rootCurveRun = null, bool footIK = false, bool tangentFoot = false, int subdivisions = 1)
     {
         var root = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
         if (!Application.isBatchMode || EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling
@@ -40,6 +40,10 @@ public static class CampTurnContactQualification
             throw new ArgumentException("Use a sealed local source and simple source-basis name.");
         if (rootCurveRun != null && (!Regex.IsMatch(rootCurveRun, @"^[A-Za-z0-9]+$") || !applyPlanarRoot || !recenter))
             throw new ArgumentException("A bounded root replay requires its native source and origin-precision route.");
+        if (tangentFoot && (rootCurveRun == null || footIK))
+            throw new ArgumentException("Tangent qualification requires a bounded root replay without built-in foot IK.");
+        if (subdivisions < 1 || subdivisions > 8 || subdivisions > 1 && rootCurveRun == null)
+            throw new ArgumentException("Dense source-pose replay requires a bounded root curve and one to eight interval subdivisions.");
         var output = Path.Combine(root, "LocomotionImplementation20261014", name);
         if (Directory.Exists(output)) throw new IOException("Preserve prior measurements.");
         const string policyPath = "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset";
@@ -77,6 +81,10 @@ public static class CampTurnContactQualification
                 || (string)rootCurve["nativeTapeSha256"] != Hash(Path.Combine(root, tapeRoot + clip.name + "-private-applied-poses.json"))
                 || rootCurve["frames"] is not Newtonsoft.Json.Linq.JArray curveFrames || curveFrames.Count != tape.frames.Length))
                 throw new InvalidDataException("Require the exact unqualified, bounded, native-source root curve.");
+            if (rootCurve != null)
+                for (var i = 0; i < tape.frames.Length; i++)
+                    if (Math.Abs((double)rootCurve["frames"][i]["seconds"] - tape.frames[i].seconds) > .000001)
+                        throw new InvalidDataException("Root replay must retain the measured native knot times.");
             using var fixture = (IDisposable)Activator.CreateInstance(fixtureType, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
                 null, new object[] { true, quality }, null);
             T Field<T>(string field) => (T)fixtureType.GetField(field).GetValue(fixture);
@@ -110,19 +118,24 @@ public static class CampTurnContactQualification
             var minSole = float.PositiveInfinity; var maxNearestGap = 0f; var foundCloak = false; var foundRigid = false;
             var mesh = new Mesh(); var vertices = new List<Vector3>(); var matrices = new Matrix4x4[bones.Length];
             AnimationPlaygroundMotionSampler.SoleProbe sole = null;
+            using var tangent = tangentFoot ? new AnimationPlaygroundTangentFootPose(driver.HumanoidAnimator, visual.transform,
+                profile.footProjection, (int)rootCurve["vertex"], graph) : null;
+            var anchorWorld = tangent == null ? Vector3.zero : new Vector3(origin.x + (float)rootCurve["anchorXZ"][0], floor,
+                origin.z + (float)rootCurve["anchorXZ"][1]);
+            var unavailableTangent = 0; var maximumTangentRequest = 0f; var maximumTangentResidual = 0f;
+            var maximumReachDeficit = 0f; var maximumBoneLengthError = 0f; var maximumKneeCorrection = 0f;
+            var maximumKneeCorrectionStep = 0f; var previousKneeCorrection = Vector3.zero;
+            var maximumTangentIterations = 0;
             try
             {
                 var frameIndex = 0;
-                foreach (var frame in tape.frames)
+                foreach (var frame in ReplayFrames(tape.frames, subdivisions))
                 {
                     var translation = applyPlanarRoot ? frame.root - tape.frames[0].root : Vector3.zero;
                     if (Mathf.Abs(translation.y) > .001f) throw new InvalidDataException("Planar evaluation cannot discard native vertical root motion.");
                     if (rootCurve != null)
                     {
-                        var entry = rootCurve["frames"][frameIndex];
-                        if (Math.Abs((double)entry["seconds"] - frame.seconds) > .000001)
-                            throw new InvalidDataException("Root replay must retain native pose times.");
-                        translation = new Vector3((float)entry["position"][0], 0, (float)entry["position"][1]);
+                        translation = RootAtSeconds((Newtonsoft.Json.Linq.JArray)rootCurve["frames"], frame.seconds);
                         if (!float.IsFinite(translation.sqrMagnitude)) throw new InvalidDataException("Nonfinite root curve.");
                     }
                     frameIndex++;
@@ -130,7 +143,22 @@ public static class CampTurnContactQualification
                     actor.transform.SetPositionAndRotation(origin + translation, frame.rootRotation); body.position = origin + translation; body.rotation = frame.rootRotation;
                     visual.transform.SetLocalPositionAndRotation(localPosition, Quaternion.Euler(localEuler));
                     foreach (var skin in actor.GetComponentsInChildren<SkinnedMeshRenderer>(true)) skin.quality = SkinQuality.Auto;
+                    tangent?.Configure(anchorWorld, (int)quality);
                     playable.SetTime(frame.seconds); graph.Evaluate(0);
+                    if (tangent != null)
+                    {
+                        var solved = tangent.Sample;
+                        maximumTangentIterations = Math.Max(maximumTangentIterations, solved.iterations);
+                        if (!solved.available) unavailableTangent++;
+                        maximumTangentRequest = Mathf.Max(maximumTangentRequest, solved.requestedCorrection);
+                        maximumTangentResidual = Mathf.Max(maximumTangentResidual, solved.residual);
+                        maximumReachDeficit = Mathf.Max(maximumReachDeficit, solved.reachDeficit);
+                        maximumBoneLengthError = Mathf.Max(maximumBoneLengthError, solved.boneLengthError);
+                        maximumKneeCorrection = Mathf.Max(maximumKneeCorrection, solved.kneeCorrection.magnitude);
+                        if (frameIndex > 1) maximumKneeCorrectionStep = Mathf.Max(maximumKneeCorrectionStep,
+                            Vector3.Distance(previousKneeCorrection, solved.kneeCorrection));
+                        previousKneeCorrection = solved.kneeCorrection;
+                    }
                     var lift = Mathf.Max(0, floor - sampler.MinimumWorldY());
                     if (!float.IsFinite(lift) || lift > profile.maximumLift + .00001f) throw new InvalidOperationException("Turn exceeds existing host lift limit.");
                     visual.transform.localPosition = localPosition + Vector3.up * lift; maxLift = Mathf.Max(maxLift, lift);
@@ -205,6 +233,9 @@ public static class CampTurnContactQualification
                     authoredOrigin = new[] { authoredOrigin.x, authoredOrigin.y, authoredOrigin.z },
                     measurementOrigin = new[] { origin.x, origin.y, origin.z },
                     persistentAnchor = anchorMetrics,
+                    tangent = new { enabled = tangentFoot, unavailableSamples = unavailableTangent,
+                        maximumTangentRequest, maximumTangentResidual, maximumReachDeficit, maximumBoneLengthError,
+                        maximumKneeCorrection, maximumKneeCorrectionStep, maximumTangentIterations },
                     privateTrack = new { file = trackName, sha256 = Hash(trackPath), frames = savedFrames.Count, pointsPerFrame = sides.Length },
                     supportWindows = new[] { .08f, .12f, .18f }.Select(seconds => Windows(record, seconds)).ToArray() });
             }
@@ -213,10 +244,43 @@ public static class CampTurnContactQualification
         foreach (var path in inputPaths) if (Hash(Path.Combine(root, path)) != inputs[path]) throw new InvalidOperationException("Input changed during measurement.");
         if (EditorApplication.isCompiling) throw new InvalidOperationException("Assembly changed during measurement.");
         var destination = Path.Combine(output, "summary.json");
-        File.WriteAllText(destination, Newtonsoft.Json.JsonConvert.SerializeObject(new { state = "turn-contact-screen-not-qualified-or-installed", source, basis, applyPlanarRoot, recenter, rootCurveRun, footIK, inputs, assemblies, rows,
-            scope = "Cold equipped single-output review rig, named turn clips, manually supplied 120Hz evaluated source yaw, optional recorded planar root or bounded root curve. Measurement origin is explicit. Existing sole cache and bounded upward host projection. No motor, physics or gameplay simulation. Window test is optimistic: best fixed point per centered window within [-1mm,+8mm], >=80/120/180ms, excursion <=20mm. A fixed-point replay reports cumulative travel separately; it does not establish rolling acceptance. Full-mesh finite samples are not continuous-pose proof."
+        File.WriteAllText(destination, Newtonsoft.Json.JsonConvert.SerializeObject(new { state = "turn-contact-screen-not-qualified-or-installed", source, basis, applyPlanarRoot, recenter, rootCurveRun, footIK, tangentFoot, subdivisions, inputs, assemblies, rows,
+            scope = "Cold equipped single-output review rig, named turn clips, measured native yaw knots and optional interpolated yaw between them, optional recorded planar root or bounded C1 root curve. The actual source pose is evaluated at each replay timestamp. Measurement origin is explicit. Existing sole cache and bounded upward host projection. No motor, physics or gameplay simulation. Window test is optimistic: best fixed point per centered window within [-1mm,+8mm], >=80/120/180ms, excursion <=20mm. A fixed-point replay reports cumulative travel separately; it does not establish rolling acceptance. Full-mesh finite samples are not continuous-pose proof."
         }, Newtonsoft.Json.Formatting.Indented) + "\n", new UTF8Encoding(false));
         return destination;
+    }
+
+    // Dense replay evaluates the source pose between measured yaw knots. The
+    // interpolated yaw describes this candidate's trajectory, not a new native
+    // root-motion measurement. Each supplied pose still evaluates once.
+    private static IEnumerable<AnimationPlaygroundMotionSampler.PoseFrame> ReplayFrames(
+        AnimationPlaygroundMotionSampler.PoseFrame[] frames, int subdivisions)
+    {
+        if (subdivisions == 1) return frames;
+        var result = new List<AnimationPlaygroundMotionSampler.PoseFrame>();
+        for (var i = 0; i < frames.Length - 1; i++)
+        for (var j = 0; j < subdivisions; j++)
+        {
+            var alpha = j / (float)subdivisions;
+            result.Add(new AnimationPlaygroundMotionSampler.PoseFrame {
+                seconds = Mathf.Lerp(frames[i].seconds, frames[i + 1].seconds, alpha),
+                root = Vector3.Lerp(frames[i].root, frames[i + 1].root, alpha),
+                rootRotation = Quaternion.Slerp(frames[i].rootRotation, frames[i + 1].rootRotation, alpha) });
+        }
+        result.Add(frames[^1]); return result;
+    }
+
+    private static Vector3 RootAtSeconds(Newtonsoft.Json.Linq.JArray frames, double seconds)
+    {
+        var low = 0; var high = frames.Count - 1;
+        seconds = Math.Max((double)frames[low]["seconds"], Math.Min(seconds, (double)frames[high]["seconds"]));
+        while (high - low > 1)
+        { var middle = (low + high) / 2; if ((double)frames[middle]["seconds"] <= seconds) low = middle; else high = middle; }
+        var duration = (double)frames[high]["seconds"] - (double)frames[low]["seconds"];
+        var elapsed = seconds - (double)frames[low]["seconds"];
+        double Axis(int axis) => (double)frames[low]["position"][axis] + (double)frames[low]["velocity"][axis] * elapsed
+            + .5 * ((double)frames[high]["velocity"][axis] - (double)frames[low]["velocity"][axis]) / duration * elapsed * elapsed;
+        return new Vector3((float)Axis(0), 0, (float)Axis(1));
     }
 
     private static object Windows(Track track, float seconds)

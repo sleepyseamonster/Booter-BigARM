@@ -1,0 +1,39 @@
+{
+  "state": "isolated-pose-stage-candidate-not-author-installed-or-motion-qualified",
+  "tests": {
+    "total": 18,
+    "passed": 18,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "runtimeModule": "cf5d8568-83dc-462a-97f4-fa011f62097b",
+  "testModule": "85663803-a829-4f0f-9658-f1aee3c861fc",
+  "denseSamples": 4350,
+  "rootReplayMath": {
+    "samples": 1021,
+    "maximumError": 0,
+    "passed": true
+  },
+  "defaultControl": {
+    "prior": "TurnFinalToolControlV1",
+    "current": "TurnTangentToolControlV1",
+    "identicalInputs": 272,
+    "identicalComparedFields": 120,
+    "identicalTracks": 6
+  },
+  "authorInspection": {
+    "blockedBy": "The open scene(s) have been modified externally",
+    "sceneDirty": true,
+    "sceneSavedOrReloaded": false,
+    "foregroundActivated": false,
+    "playModeInvoked": false
+  },
+  "remaining": [
+    "Author fresh playback and F9 inspection",
+    "Typed native/adapted trajectory contract",
+    "Existing motor steering/collision/action handoffs",
+    "Terrain and supported-action qualification",
+    "Author acceptance"
+  ]
+}

@@ -1,0 +1,139 @@
+{
+  "status": "completed",
+  "duration": 2.4,
+  "summary": {
+    "total": 18,
+    "passed": 18,
+    "failed": 0,
+    "skipped": 0,
+    "inconclusive": 0
+  },
+  "results": [
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.DisabledStagePassesTheExistingPoseThroughWithoutMovingPhysics",
+      "Status": "Passed",
+      "Duration": 1.8627086,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.DisposalRestoresTheExistingSourceAndHonorsNestedOwnership",
+      "Status": "Passed",
+      "Duration": 0.0476135,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.InvalidConfigurationLeavesTheOutputAndSourceAssetsUntouched",
+      "Status": "Passed",
+      "Duration": 0.0467513,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.JointAlignmentRetainsSmallCorrectionsAndOppositeDirections(0.003f)",
+      "Status": "Passed",
+      "Duration": 0.0012375,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.JointAlignmentRetainsSmallCorrectionsAndOppositeDirections(0.01f)",
+      "Status": "Passed",
+      "Duration": 0.0001105,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.JointAlignmentRetainsSmallCorrectionsAndOppositeDirections(0.03f)",
+      "Status": "Passed",
+      "Duration": 6.93e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.JointAlignmentRetainsSmallCorrectionsAndOppositeDirections(0.05f)",
+      "Status": "Passed",
+      "Duration": 6.5e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.JointAlignmentRetainsSmallCorrectionsAndOppositeDirections(-0.01f)",
+      "Status": "Passed",
+      "Duration": 6.3e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.JointAlignmentRetainsSmallCorrectionsAndOppositeDirections(179.9f)",
+      "Status": "Passed",
+      "Duration": 6.5e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.JointAlignmentRetainsSmallCorrectionsAndOppositeDirections(180.0f)",
+      "Status": "Passed",
+      "Duration": 6.28e-05,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.OverBudgetCorrectionRejectsWithoutWritingThePose",
+      "Status": "Passed",
+      "Duration": 0.0498655,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.SmallTangentCorrectionPreservesFootHeightRotationAndLegLength(OneBone,9)",
+      "Status": "Passed",
+      "Duration": 0.0484216,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.SmallTangentCorrectionPreservesFootHeightRotationAndLegLength(TwoBones,9)",
+      "Status": "Passed",
+      "Duration": 0.0459705,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.SmallTangentCorrectionPreservesFootHeightRotationAndLegLength(FourBones,9)",
+      "Status": "Passed",
+      "Duration": 0.046411,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.SmallTangentCorrectionPreservesFootHeightRotationAndLegLength(OneBone,300)",
+      "Status": "Passed",
+      "Duration": 0.0455161,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.SmallTangentCorrectionPreservesFootHeightRotationAndLegLength(TwoBones,300)",
+      "Status": "Passed",
+      "Duration": 0.0480722,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.SmallTangentCorrectionPreservesFootHeightRotationAndLegLength(FourBones,300)",
+      "Status": "Passed",
+      "Duration": 0.0467276,
+      "Message": null,
+      "StackTrace": null
+    },
+    {
+      "FullName": "BooterBigArm.Tests.AnimationPlaygroundTangentFootPoseTests.WarmStageEvaluatesOncePerPoseWithoutManagedAllocation",
+      "Status": "Passed",
+      "Duration": 0.0815787,
+      "Message": null,
+      "StackTrace": null
+    }
+  ]
+}
