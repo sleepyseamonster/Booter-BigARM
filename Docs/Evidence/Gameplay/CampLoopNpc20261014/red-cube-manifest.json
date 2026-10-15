@@ -1,0 +1,36 @@
+{
+  "scope": "Red cube visibility and recoverable NPC startup initialization",
+  "candidate": "D:\\BooterBigArmValidation\\CampNpc20261014",
+  "tests": {
+    "passed": 37,
+    "failed": 0,
+    "mode": "EditMode"
+  },
+  "finalImportValidatorPassed": true,
+  "liveReportedNonresponseReproduced": false,
+  "repair": "Initial support/clearance failure no longer permanently latches trial binding failure",
+  "liveEditor": "Observed outside Play Mode with unsaved CampLoopTesting scene; subsequent bridge requests timed out",
+  "sceneEdited": false,
+  "prefabRecordIdsPreserved": true,
+  "assetAndScriptMetasPreserved": true,
+  "candidateEquality": [
+    "Assets/_Project/Prefabs/TopDown3D/NPC/LagerSkittish.prefab",
+    "Assets/_Project/Materials/NPC/LagerMetal.mat",
+    "Assets/_Project/Scripts/Editor/NPC/CampLoopNpcAuthoring.cs",
+    "Assets/_Project/Scripts/Editor/NPC/NpcActorEditor.cs",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/CampLoopNpcTrial.cs",
+    "Assets/_Project/Tests/Editor/CampLoopNpcSceneTests.cs"
+  ],
+  "sha256": {
+    "Assets/_Project/Prefabs/TopDown3D/NPC/LagerSkittish.prefab": "ebe6a3d4f8c0ca50c9fe4256692b8ec577749579f9f5ffad90c2b915549932b8",
+    "Assets/_Project/Materials/NPC/LagerMetal.mat": "450c1efbff0e18914fcd3c77f47dc5841c83c865f5ca45c5810c3cbe8441c8a3",
+    "Assets/_Project/Scripts/Editor/NPC/CampLoopNpcAuthoring.cs": "3412475c858b77fd063fe60866c3d4083c070251119e3fde84074f83136115ab",
+    "Assets/_Project/Scripts/Editor/NPC/NpcActorEditor.cs": "4d3d41e3ba75fb3e29ccbfeb9295dae79d35202b8c06d21dddc064c27678c4a0",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/CampLoopNpcTrial.cs": "ff59ae9c986447a97eded97350d51dffefbbb4846d0d26420a3a85a59e20def3",
+    "Assets/_Project/Tests/Editor/CampLoopNpcSceneTests.cs": "8c97f7becb3d58e7c5812bf7312b03d845b2f7a7c58bd453abb8937201d0ca47",
+    "Docs/Design/Gameplay/CAMP_LOOP_LAGER_ENEMY_IMPLEMENTATION_PLAN_2026-10-14.md": "8b5318df7de648a95490f1105876c1e33b5b18cb49131cb28dacf28a6791c458",
+    "Docs/Evidence/Gameplay/CampLoopNpc20261014/README.md": "e32fffc84b2a6f04d1ef797f3767b77afc817feeb18af6a015e40ff6198f5039",
+    "Docs/Evidence/Gameplay/CampLoopNpc20261014/red-cube-tests.xml": "8299e95035e29d5a969fd4e5a6f09a95deffc195d9c3487f52294ae3513cc96c",
+    "Docs/Evidence/Gameplay/CampLoopNpc20261014/lager-blockout.png": "fae27a6198d8115bd9e5004476a41aebf56d288a923fe9a4e78a3be1cc700c01"
+  }
+}

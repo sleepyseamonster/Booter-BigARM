@@ -27,18 +27,65 @@ namespace BooterBigArm.Tests
             Assert.That(actor.ThreatTarget, Is.Null); var tuning = actor.Definition.Profile.Snapshot();
             tuning.comfort = 9; Assert.That(actor.Definition.Profile.Snapshot().comfort, Is.EqualTo(10));
         }
-        [Test] public void LagerPrefabHasTwoBipedalLegsAndNoDecorativeColliders()
+        [Test] public void InstalledTerrainOffersEscapeWhenBooterApproaches()
+        {
+            var scene = EditorSceneManager.OpenScene(CampLoopNpcAuthoring.ScenePath, OpenSceneMode.Single);
+            var actor = CampLoopNpcAuthoring.All<NpcActor>(scene).Single();
+            UnityEngine.Physics.SyncTransforms();
+            Assert.That(actor.Initialize(out var reason), Is.True, reason);
+            var tuning = actor.Tuning;
+            // Inspect actual authored terrain/physics in Edit Mode, without running gameplay.
+            var threat = actor.transform.position - UnityEngine.Vector3.forward * 3;
+            actor.Navigation.Plan(actor.Motor, new NpcIntent(threat, tuning.fleeSpeed), tuning, actor.transform.position, 35, 0);
+            Assert.That(actor.Navigation.HasRoute, Is.True, actor.Navigation.Reason + " / " + string.Join("; ", actor.Navigation.Candidates.Select(c => c.Reason)));
+        }
+        [TestCase(0)] [TestCase(90)] [TestCase(180)] [TestCase(270)]
+        public void InstalledNpcDetectsNearbyBooterAndCommandsMovement(int angle)
+        {
+            var scene = EditorSceneManager.OpenScene(CampLoopNpcAuthoring.ScenePath, OpenSceneMode.Single);
+            var actor = CampLoopNpcAuthoring.All<NpcActor>(scene).Single();
+            var session = CampLoopNpcAuthoring.All<TopDown3DAnimationPlaygroundSession>(scene).Single();
+            Assert.That(session.CheckDependencies(), Is.True, session.UnavailableReason);
+            session.Advance(AnimationPlaygroundReadiness.ServicesBound); session.Advance(AnimationPlaygroundReadiness.VisualReady);
+            var point = actor.transform.position + UnityEngine.Quaternion.Euler(0, angle, 0) * UnityEngine.Vector3.forward * 3;
+            Assert.That(actor.Motor.TryGround(point, actor.Definition.Profile.Snapshot(), true, out var ground), Is.True);
+            var target = actor.ThreatTarget;
+            target.position = ground + UnityEngine.Vector3.up * .9f;
+            target.GetComponent<UnityEngine.Rigidbody>().position = target.position;
+            UnityEngine.Physics.SyncTransforms();
+            var trial = CampLoopNpcAuthoring.All<CampLoopNpcTrial>(scene).Single(); trial.RefreshGate();
+            Assert.That(actor.IsArmed, Is.True, trial.Failure);
+            actor.Tick(10, .02f);
+            Assert.That(actor.Observation.Valid, Is.True, "Nearby Booter was not perceived at angle " + angle);
+            Assert.That(actor.Behavior, Is.EqualTo(NpcBehavior.Flee));
+            Assert.That(actor.Motor.Speed, Is.GreaterThan(0), actor.Failure + " / " + actor.Navigation.Reason);
+        }
+        [Test] public void TemporaryStartupObstructionCanRecoverWithoutReenablingTrial()
+        {
+            var scene = EditorSceneManager.OpenScene(CampLoopNpcAuthoring.ScenePath, OpenSceneMode.Single);
+            var actor = CampLoopNpcAuthoring.All<NpcActor>(scene).Single();
+            var session = CampLoopNpcAuthoring.All<TopDown3DAnimationPlaygroundSession>(scene).Single();
+            Assert.That(session.CheckDependencies(), Is.True, session.UnavailableReason);
+            session.Advance(AnimationPlaygroundReadiness.ServicesBound); session.Advance(AnimationPlaygroundReadiness.VisualReady);
+            var obstruction = UnityEngine.GameObject.CreatePrimitive(UnityEngine.PrimitiveType.Cube);
+            obstruction.transform.position = actor.transform.position + UnityEngine.Vector3.up * .7f;
+            UnityEngine.Physics.SyncTransforms();
+            var trial = CampLoopNpcAuthoring.All<CampLoopNpcTrial>(scene).Single(); trial.RefreshGate();
+            Assert.That(actor.IsArmed, Is.False); Assert.That(trial.Failure, Does.Contain("support"));
+            UnityEngine.Object.DestroyImmediate(obstruction); UnityEngine.Physics.SyncTransforms();
+            trial.RefreshGate();
+            Assert.That(actor.IsArmed, Is.True, trial.Failure); Assert.That(trial.Failure, Is.Null);
+        }
+        [Test] public void LagerPrefabHasOneVisibleRedCubeAndNoDecorativeColliders()
         {
             var prefab = AssetDatabase.LoadAssetAtPath<UnityEngine.GameObject>(CampLoopNpcAuthoring.PrefabPath);
             var visual = prefab.transform.Find("Visual");
-            var pivots = new SerializedObject(prefab.GetComponent<NpcBlockoutView>()).FindProperty("legPivots");
-            Assert.That(pivots.arraySize, Is.EqualTo(2));
-            var left = (UnityEngine.Transform)pivots.GetArrayElementAtIndex(0).objectReferenceValue;
-            var right = (UnityEngine.Transform)pivots.GetArrayElementAtIndex(1).objectReferenceValue;
-            Assert.That(left.parent, Is.EqualTo(visual)); Assert.That(right.parent, Is.EqualTo(visual));
-            Assert.That(left.localPosition.x, Is.LessThan(0)); Assert.That(right.localPosition.x, Is.GreaterThan(0));
-            Assert.That(left.localPosition.z, Is.EqualTo(0)); Assert.That(right.localPosition.z, Is.EqualTo(0));
-            Assert.That(visual.Cast<UnityEngine.Transform>().Count(t => t.name.StartsWith("Leg ")), Is.EqualTo(2));
+            var renderers = visual.GetComponentsInChildren<UnityEngine.Renderer>();
+            Assert.That(renderers.Length, Is.EqualTo(1));
+            Assert.That(renderers[0].name, Is.EqualTo("Body"));
+            Assert.That(renderers[0].transform.localScale, Is.EqualTo(UnityEngine.Vector3.one * 1.25f));
+            Assert.That(renderers[0].sharedMaterial.shader.name, Is.EqualTo("Universal Render Pipeline/Unlit"));
+            Assert.That(renderers[0].sharedMaterial.GetColor("_BaseColor"), Is.EqualTo(UnityEngine.Color.red));
             Assert.That(visual.GetComponentsInChildren<UnityEngine.Collider>(true), Is.Empty);
         }
         [TestCase("CampLoop.Aaa")] [TestCase("CampLoop.Zzz")]

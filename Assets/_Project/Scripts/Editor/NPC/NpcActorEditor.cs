@@ -17,6 +17,9 @@ namespace BooterBigArm.Editor
             EditorGUILayout.LabelField("Decision", actor.DecisionReason);
             EditorGUILayout.LabelField("Route", actor.Navigation.Reason ?? "No active route");
             EditorGUILayout.LabelField("Armed / epoch", actor.IsArmed + " / " + actor.Epoch);
+            var trial = actor.GetComponent<CampLoopNpcTrial>();
+            if (trial != null && !string.IsNullOrEmpty(trial.Failure))
+                EditorGUILayout.HelpBox(trial.Failure, MessageType.Warning);
             EditorGUILayout.LabelField("Searches / probes", actor.Navigation.Searches + " / " + actor.Navigation.ProbeCalls);
             EditorGUILayout.LabelField("Selected score", actor.Navigation.SelectedScore.ToString("F3"));
             EditorGUILayout.LabelField("Observation age", actor.Observation.Valid ? (Time.timeAsDouble - actor.Observation.ObservedAt).ToString("F2") : "None");

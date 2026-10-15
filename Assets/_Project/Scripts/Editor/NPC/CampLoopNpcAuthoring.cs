@@ -29,25 +29,15 @@ namespace BooterBigArm.Editor
             var profile = ScriptableObject.CreateInstance<SkittishNpcProfile>(); AssetDatabase.CreateAsset(profile, ProfilePath);
             var definition = ScriptableObject.CreateInstance<NpcDefinition>(); definition.Configure(profile); AssetDatabase.CreateAsset(definition, DefinitionPath);
             var metal = NewMaterial("LagerMetal", new Color(.28f, .16f, .10f));
-            var sensor = NewMaterial("LagerSensor", new Color(.85f, .76f, .53f));
             var root = new GameObject("Lager"); SceneManager.MoveGameObjectToScene(root, scene);
             var body = root.AddComponent<Rigidbody>(); body.isKinematic = true; body.useGravity = false; body.interpolation = RigidbodyInterpolation.Interpolate;
             var shape = root.AddComponent<CapsuleCollider>(); shape.radius = .67f; shape.height = 1.4f; shape.center = Vector3.up * .7f;
             var actor = root.AddComponent<NpcActor>();
             var visual = new GameObject("Visual"); visual.transform.SetParent(root.transform, false);
-            Block(visual.transform, "Body", new Vector3(0, .75f, 0), new Vector3(.75f, .45f, 1.05f), metal);
-            Block(visual.transform, "Front sensor", new Vector3(0, .84f, .57f), new Vector3(.3f, .16f, .1f), sensor);
-            var pivots = new Transform[2];
-            for (var n = 0; n < 2; n++)
-            {
-                var side = n == 0 ? -1 : 1;
-                var pivot = new GameObject("Leg " + (n + 1)); pivot.transform.SetParent(visual.transform, false);
-                pivot.transform.localPosition = new Vector3(side * .3f, .7f, 0); pivots[n] = pivot.transform;
-                var upper = Block(pivot.transform, "Upper", new Vector3(side * .12f, -.17f, 0), new Vector3(.1f, .4f, .1f), metal);
-                upper.transform.localRotation = Quaternion.Euler(0, 0, side * 25);
-                Block(pivot.transform, "Lower", new Vector3(side * .2f, -.5f, 0), new Vector3(.08f, .3f, .08f), metal);
-            }
-            root.AddComponent<NpcBlockoutView>().Configure(pivots);
+            metal.shader = Shader.Find("Universal Render Pipeline/Unlit");
+            metal.SetColor("_BaseColor", Color.red);
+            Block(visual.transform, "Body", new Vector3(0, .7f, 0), Vector3.one * 1.25f, metal);
+            root.AddComponent<NpcBlockoutView>().Configure(Array.Empty<Transform>());
             var motor = root.GetComponent<NpcGroundMotor>();
             var camp = TopDown3DWaypointCampSettings.Load(); var target = All<TopDown3DPlayerMotor>(scene).Single().transform;
             Physics.SyncTransforms();
@@ -71,6 +61,31 @@ namespace BooterBigArm.Editor
             if (!EditorSceneManager.SaveScene(scene)) throw new IOException("NPC candidate scene save failed.");
             Physics.SyncTransforms(); CampLoopNpcValidator.Validate(scene);
             Debug.Log("CAMP_NPC_INSTALLED: one separate Lager, omnidirectional perception, tunable skittish policy and safe reset.");
+        }
+        public static void MakeRedCubeFromCli()
+        {
+            if (!Application.isBatchMode || Application.isPlaying) throw new InvalidOperationException("Use isolated background Edit Mode authoring.");
+            var material = AssetDatabase.LoadAssetAtPath<Material>("Assets/_Project/Materials/NPC/LagerMetal.mat");
+            var shader = Shader.Find("Universal Render Pipeline/Unlit");
+            if (material == null || shader == null) throw new InvalidOperationException("Missing NPC material or pinned URP shader.");
+            material.shader = shader; material.SetColor("_BaseColor", Color.red);
+            EditorUtility.SetDirty(material);
+            var root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                var visual = root.transform.Find("Visual");
+                var cube = visual.Find("Body");
+                if (cube == null) throw new InvalidOperationException("Missing original blockout body.");
+                // Retain source leg records for later modeling; only the cube is visible in this trial.
+                foreach (Transform child in visual) child.gameObject.SetActive(child == cube);
+                cube.localPosition = Vector3.up * .7f; cube.localScale = Vector3.one * 1.25f;
+                cube.GetComponent<Renderer>().sharedMaterial = material;
+                root.GetComponent<NpcBlockoutView>().Configure(Array.Empty<Transform>());
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
+                AssetDatabase.SaveAssets();
+            }
+            finally { PrefabUtility.UnloadPrefabContents(root); }
+            Debug.Log("CAMP_NPC_RED_CUBE_AUTHORED: one bright unlit red cube, unchanged actor/collider identity.");
         }
         public static void MakeBipedFromCli()
         {

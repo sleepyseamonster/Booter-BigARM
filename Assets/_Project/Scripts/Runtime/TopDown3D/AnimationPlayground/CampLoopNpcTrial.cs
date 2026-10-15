@@ -25,17 +25,19 @@ namespace BooterBigArm.TopDown3D
         {
             if (actor == null) return;
             if (!isActiveAndEnabled) { actor.SetSimulationAllowed(false); return; }
-            if (!actor.isActiveAndEnabled) { actor.SetSimulationAllowed(false); return; }
+            if (!actor.isActiveAndEnabled) { actor.SetSimulationAllowed(false); Failure = "NPC actor is disabled."; return; }
             if (session == null || input == null || !session.IsLab || session.gameObject.scene != gameObject.scene
                 || input.gameObject.scene != gameObject.scene || actor.gameObject.scene != gameObject.scene)
             { actor.SetSimulationAllowed(false); Failure = "Invalid explicit Camp Loop NPC binding."; return; }
             if (!session.isActiveAndEnabled || !session.PreviewReady)
-            { sessionSuspended = true; actor.SetSimulationAllowed(false); return; }
+            { sessionSuspended = true; actor.SetSimulationAllowed(false); Failure = "Waiting for Camp Loop: " + session.Readiness + ". " + session.UnavailableReason; return; }
             if (!registered)
             {
                 if (bindingFailed) return;
                 Physics.SyncTransforms();
-                if (!actor.Initialize(out var reason)) { bindingFailed = true; Failure = reason; return; }
+                // Ground/clearance may become available after startup. A failed probe must not
+                // permanently latch the optional trial off; retry without relocating the actor.
+                if (!actor.Initialize(out var reason)) { Failure = reason; actor.SetSimulationAllowed(false); return; }
                 try { session.ResetRegistry.Register(this); }
                 catch (System.Exception error) { bindingFailed = true; Failure = error.Message; return; }
                 registered = true; restoredEpoch = session.ResetRegistry.Epoch;
@@ -57,6 +59,8 @@ namespace BooterBigArm.TopDown3D
             }
             actor.SetSimulationAllowed(ready);
             if (ready) Failure = null;
+            else Failure = session.ResetRegistry.LastFailure ?? (input.LaboratoryResetBlocked
+                ? "Waiting for laboratory reset input to be released." : "Waiting for a successful whole-session reset.");
         }
         public void InvalidateForReset(uint epoch) { actor?.Invalidate(); }
         private void ReadinessChanged()
