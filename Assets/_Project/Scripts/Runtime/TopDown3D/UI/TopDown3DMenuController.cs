@@ -40,6 +40,7 @@ namespace BooterBigArm.TopDown3D
             cameraRange = range;
             cameraRange?.SetPreset(settings.Accepted.viewDistancePreset);
             view.Initialize(kit.EventSystem); view.ApplySettings(settings.Accepted);
+            ConfigureCameraOptions();
             ConfigureAnimationPalette();
             view.Command += OnCommand; view.Rename += Rename;
             input.MenuToggleRequested += Toggle; input.UiCancelRequested += Back;
@@ -99,6 +100,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (IsRebindingControls) { CancelControlRebind(); return; }
             if (!IsOpen) return;
+            if (panel == "Camera") { Show("Settings", "CameraOptions"); return; }
             if(panel == "AnimationPalette"){Close();return;}
             if (view.IsEditingText) { view.EndTextEdit(); return; }
             if (panel == "Dialog")
@@ -117,7 +119,7 @@ namespace BooterBigArm.TopDown3D
         }
 
         private bool Dirty => panel == "Controls" ? ControlsDirty : panel == "Setup" ? JsonUtility.ToJson(radialDraft) != JsonUtility.ToJson(radial.Preferences)
-            : panel == "Settings" && JsonUtility.ToJson(settingsDraft) != JsonUtility.ToJson(settings.Accepted);
+            : (panel == "Settings" || panel == "Camera") && JsonUtility.ToJson(settingsDraft) != JsonUtility.ToJson(settings.Accepted);
 
         private void LeaveChild(Action destination)
         {
@@ -158,6 +160,7 @@ namespace BooterBigArm.TopDown3D
         private void OnCommand(string command)
         {
             if (waitingRelease || !IsOpen) return;
+            if (HandleCameraCommand(command)) return;
             if (HandleAnimationPaletteCommand(command)) return;
             if (HandleControlCommand(command)) return;
             if (command == "DialogCancel") { Back(); return; }
@@ -186,6 +189,7 @@ namespace BooterBigArm.TopDown3D
             {
                 if (!settings.TrySave(settingsDraft, out var error)) { view.SetText("SettingsNotice", error); return; }
                 cameraRange?.SetPreset(settings.Accepted.viewDistancePreset);
+                cameraOptions?.ApplyPreferences(settings.Accepted);
                 view.ApplySettings(settings.Accepted); ReturnFromChild(); return;
             }
             else if (command == "SetupApply")
@@ -244,6 +248,7 @@ namespace BooterBigArm.TopDown3D
 
         private void Refresh()
         {
+            if (panel == "Camera") RefreshCameraOptions();
             if (panel == "Controls") RefreshControls();
             if (panel == "Settings")
             {

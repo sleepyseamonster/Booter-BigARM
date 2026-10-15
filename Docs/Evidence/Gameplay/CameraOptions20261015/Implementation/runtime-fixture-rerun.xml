@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="2" result="Passed" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-15 15:11:49Z" end-time="2026-10-15 15:11:51Z" duration="1.3184964">
+  <test-suite type="TestSuite" id="1000" name="Booter &amp; BigARM" fullname="Booter &amp; BigARM" runstate="Runnable" testcasecount="1727" result="Passed" start-time="2026-10-15 15:11:49Z" end-time="2026-10-15 15:11:51Z" duration="1.318496" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="3055" name="BooterBigArm.Editor.Tests.dll" fullname="D:/BooterBigArmValidation/CameraOptions20261015-01/Library/ScriptAssemblies/BooterBigArm.Editor.Tests.dll" runstate="Runnable" testcasecount="1727" result="Passed" start-time="2026-10-15 15:11:49Z" end-time="2026-10-15 15:11:51Z" duration="1.058765" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="42252" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestSuite" id="3056" name="BooterBigArm" fullname="BooterBigArm" runstate="Runnable" testcasecount="1727" result="Passed" start-time="2026-10-15 15:11:49Z" end-time="2026-10-15 15:11:51Z" duration="1.047866" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="TestSuite" id="3057" name="Tests" fullname="BooterBigArm.Tests" runstate="Runnable" testcasecount="1727" result="Passed" start-time="2026-10-15 15:11:49Z" end-time="2026-10-15 15:11:51Z" duration="1.028587" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-suite type="TestFixture" id="2193" name="TopDown3DCameraRuntimeTests" fullname="BooterBigArm.Tests.TopDown3DCameraRuntimeTests" classname="BooterBigArm.Tests.TopDown3DCameraRuntimeTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-15 15:11:50Z" end-time="2026-10-15 15:11:50Z" duration="0.998642" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+            <properties />
+            <test-case id="2194" name="RuntimeCallbacksAcquireThirdPersonAndRestoreElevatedOnDisable" fullname="BooterBigArm.Tests.TopDown3DCameraRuntimeTests.RuntimeCallbacksAcquireThirdPersonAndRestoreElevatedOnDisable" methodname="RuntimeCallbacksAcquireThirdPersonAndRestoreElevatedOnDisable" classname="BooterBigArm.Tests.TopDown3DCameraRuntimeTests" runstate="Runnable" seed="908205376" result="Passed" start-time="2026-10-15 15:11:36Z" end-time="2026-10-15 15:11:43Z" duration="6.807711" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+              </properties>
+            </test-case>
+            <test-case id="2195" name="ThirdPersonFollowsRootTranslationWithoutMovingTheTarget" fullname="BooterBigArm.Tests.TopDown3DCameraRuntimeTests.ThirdPersonFollowsRootTranslationWithoutMovingTheTarget" methodname="ThirdPersonFollowsRootTranslationWithoutMovingTheTarget" classname="BooterBigArm.Tests.TopDown3DCameraRuntimeTests" runstate="Runnable" seed="442376448" result="Passed" start-time="2026-10-15 15:11:43Z" end-time="2026-10-15 15:11:50Z" duration="7.629120" asserts="0">
+              <properties>
+                <property name="_JOINTYPE" value="UnityCombinatorial" />
+                <property name="retryIteration" value="0" />
+                <property name="repeatIteration" value="0" />
+              </properties>
+              <output><![CDATA[Saving results to: C:/Users/kbkno/AppData/LocalLow/DefaultCompany/Booter & BigARM\TestResults.xml
+]]></output>
+            </test-case>
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

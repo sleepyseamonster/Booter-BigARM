@@ -11,6 +11,12 @@ namespace BooterBigArm.TopDown3D
         public bool largeText;
         public bool reducedMotion;
         public string viewDistancePreset = "Maximum";
+        public TopDown3DCameraView cameraView;
+        public bool cameraAutoRecenter = true;
+        public bool cameraInvertY;
+        public float cameraSensitivityX = 1;
+        public float cameraSensitivityY = 1;
+        public float cameraFieldOfView = 60;
         public TopDown3DMenuSettings Clone() => JsonUtility.FromJson<TopDown3DMenuSettings>(JsonUtility.ToJson(this));
     }
 
@@ -32,6 +38,7 @@ namespace BooterBigArm.TopDown3D
                 { CanSave = false; Notice = "These settings are from a newer version. The file will be preserved."; return; }
                 if (saved == null || saved.version != 1) throw new ArgumentException("Invalid settings version");
                 saved.viewDistancePreset = BadwaterCameraRange.NormalizePreset(saved.viewDistancePreset);
+                NormalizeCamera(saved);
                 Accepted = saved;
             }
             catch (Exception e) when (e is IOException || e is UnauthorizedAccessException || e is ArgumentException)
@@ -47,6 +54,7 @@ namespace BooterBigArm.TopDown3D
             {
                 var normalized = draft.Clone();
                 normalized.viewDistancePreset = BadwaterCameraRange.NormalizePreset(normalized.viewDistancePreset);
+                NormalizeCamera(normalized);
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
                 File.WriteAllText(path + ".tmp", JsonUtility.ToJson(normalized, true));
                 if (File.Exists(path)) File.Replace(path + ".tmp", path, null);
@@ -56,6 +64,17 @@ namespace BooterBigArm.TopDown3D
             }
             catch (Exception e) when (e is IOException || e is UnauthorizedAccessException)
             { error = "Could not save settings. Your edits are retained; try Apply again."; return false; }
+        }
+
+        public static void NormalizeCamera(TopDown3DMenuSettings settings)
+        {
+            if (settings.cameraView != TopDown3DCameraView.ThirdPerson) settings.cameraView = TopDown3DCameraView.Elevated;
+            settings.cameraSensitivityX = float.IsFinite(settings.cameraSensitivityX) && settings.cameraSensitivityX > 0
+                ? Mathf.Clamp(settings.cameraSensitivityX, .25f, 2) : 1;
+            settings.cameraSensitivityY = float.IsFinite(settings.cameraSensitivityY) && settings.cameraSensitivityY > 0
+                ? Mathf.Clamp(settings.cameraSensitivityY, .25f, 2) : 1;
+            settings.cameraFieldOfView = float.IsFinite(settings.cameraFieldOfView) && settings.cameraFieldOfView > 0
+                ? Mathf.Clamp(settings.cameraFieldOfView, 55, 75) : 60;
         }
     }
 }

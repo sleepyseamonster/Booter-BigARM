@@ -36,6 +36,7 @@ namespace BooterBigArm.TopDown3D
             columns = safe.Find("Setup/SetupViewport/SetupContent/SetupColumns").GetComponent<GridLayoutGroup>();
             foreach (var panel in new[] { "Root", "Settings", "Setup", "Dialog", "Controls" })
                 panels[panel] = safe.Find(panel).gameObject;
+            if (safe.Find("Camera") != null) panels["Camera"] = safe.Find("Camera").gameObject;
             foreach (var button in GetComponentsInChildren<Button>(true))
             {
                 buttons.Add(button.name, button);
@@ -80,6 +81,7 @@ namespace BooterBigArm.TopDown3D
         }
 
         public void SetInputReady(bool ready) => group.interactable = ready && activePanel != null;
+        public bool HasCameraPanel => panels.ContainsKey("Camera");
         public void SetText(string key, string value)
         {
             if (texts.TryGetValue(key, out var label) && label != null) label.text = value;

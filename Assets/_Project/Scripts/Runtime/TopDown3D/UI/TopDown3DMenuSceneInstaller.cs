@@ -16,6 +16,9 @@ namespace BooterBigArm.TopDown3D
             var prefab = Resources.Load<GameObject>("SystemMenu");
             if (radial == null || prefab == null || eventSystem == null)
             { Debug.LogError("System menu requires SystemMenu.prefab, radial controller, and the existing EventSystem."); return null; }
+            var cameraProfile = Resources.Load<TopDown3DThirdPersonCameraProfile>("ThirdPersonCameraProfile");
+            if (cameraProfile != null && cameraProfile.IsEnabledForScene(scene.path))
+                TopDown3DGameHudCanvas.FindInScene<TopDown3DCameraRig>(scene)?.EnableCameraOptions();
             var instance = Object.Instantiate(prefab); instance.name = "System Menu";
             instance.SetActive(false); TopDown3DSceneHierarchy.Place(instance, scene, TopDown3DSceneGroup.UI);
             var view = instance.GetComponent<TopDown3DMenuView>();

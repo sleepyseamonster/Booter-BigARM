@@ -2,6 +2,8 @@
 
 October 15, 2026. Scope: retain the elevated camera and evaluate a second, conventional behind-character view. This is an audit and proposed implementation direction; no gameplay camera, scene, package, input binding or project setting changed in this task.
 
+Implementation continuation: the [current camera contract](../../Engineering/CAMERA_OPTIONS.md) records the approved study's refined ownership and installation design, with [executed evidence](../../Evidence/Gameplay/CameraOptions20261015/Implementation/README.md). The research and snapshots below retain their audit-time scope.
+
 The recommended study uses **two camera rigs sharing the existing Main Camera**. Keep the current elevated rig, and evaluate the installed Cinemachine Third Person Follow component for the new close view. A small mode coordinator must give exactly one rig control of the output. A separate rendering camera is possible, but would require more reference, effects and audio integration without providing a necessary benefit for these two selectable views.
 
 ## Current implementation

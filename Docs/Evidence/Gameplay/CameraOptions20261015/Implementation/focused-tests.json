@@ -1,0 +1,331 @@
+{
+  "date": "2026-10-15",
+  "editor": "6000.4.0f1",
+  "candidate": "D:/BooterBigArmValidation/CameraOptions20261015-01",
+  "total": 80,
+  "passed": 80,
+  "failed": 0,
+  "note": "Combined run passed 78 checks; the two synthetic runtime-camera checks passed after correcting their fixture to configure a real cloned input asset before enabling its router. Their earlier failed setup is retained in combined-tests.xml.",
+  "results": [
+    {
+      "name": "BooterBigArm.Tests.FixedTerrainCameraCoverageTests.CellShadowProjectionIncludesUpstreamAndTallCastersWithoutGlobalHeightInflation",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.FixedTerrainCameraCoverageTests.HorizonAndOrthographicViewsRetainDistantElevatedGround",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.FixedTerrainCameraCoverageTests.LongDownwardFrustumKeepsEveryGroundRayWithoutFarClipInflation",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.FixedTerrainCameraCoverageTests.NativeVegetationUsesUnclippedFallback",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.FixedTerrainCameraCoverageTests.SlabEdgeIntersectionsAndInvalidInputsAreExplicit",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.LeggerRidingInputTests.GamepadTapIsConsumedOnceAndCannotTriggerWorldInteraction",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.LeggerRidingInputTests.HeldInteractAcrossModalReturnRequiresReleaseBeforeDismount",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.LeggerRidingInputTests.JumpCannotRunAnOnFootLabActionWhileMounted",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.LeggerRidingInputTests.ModalContextSuppressesDismountAndHeldMovementMustRearm",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.LeggerRidingInputTests.ReboundKeyboardHoldCannotAlsoDismountAndTapStillWorks",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.LeggerRidingLifecycleTests.BlockedResetKeepsElevatedRiderPassiveAndInputBlocked",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.LeggerRidingLifecycleTests.ManagedResetLeaseCanRecoverAfterNativeControllerRemoval",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.LeggerRidingLifecycleTests.VerifiedResetCanRecoverPostureLeaseClearedByMotorDisable",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.LeggerRidingLifecycleTests.VerifiedResetReturnsBooterBeforeRestoringGravityAndDoesNotMoveLegger",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.LeggerRidingOwnershipTests.ActualMotorCallbackYieldsBeforePopulationAndOtherMotionWriters",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.LeggerRidingOwnershipTests.DestroyedControllerCannotReenableNormalMotorWrites",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.LeggerRidingOwnershipTests.ExclusiveLeaseSuppressesGravityAndRestoresCapturedBodyState",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.LeggerRidingOwnershipTests.ResetWithoutVerifiedLabOwnerAndEpochCannotReleaseRider",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.LeggerRidingOwnershipTests.UnsupportedOrBlockedReleaseLeavesRiderPassive",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraClearanceTests.ClearBoom_PreservesAuthoredDistance",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraClearanceTests.CloseBlocker_OverridesMinimumDistanceWithoutPenetration",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraClearanceTests.ConfigureAndViewReset_ResolveClearanceImmediately",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraClearanceTests.FollowUpdate_UsesSameClearanceAsSnap",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraClearanceTests.FullyEnclosedBoom_ReportsFailureAndDoesNotAcceptUnsafePose",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraClearanceTests.FullyEnclosedNewTarget_RetainsRecheckedSafePreviousPosition",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraClearanceTests.OriginInsideBlocker_RecoversToClearPointOnAuthoredBoom",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraClearanceTests.SaturatedCast_FindsNearestBlocker",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraClearanceTests.SaturatedOriginOverlap_StillExcludesTargetAndFindsExternalBlocker",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraClearanceTests.TargetHierarchyAndTriggers_AreIgnoredInBothQueries",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraMenuTests.AuthoredCameraControlsApplyOnlyAfterSaveAndRemainDeferredUntilResume",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraMenuTests.CameraBackRetainsDraftAndDiscardDoesNotChangePreference",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.BlockedSwitchRetainsPoseLensAndOwner",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.CameraPreferencesRoundTripAndFailedSaveDoesNotChangeAcceptedState",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.CameraRangeRemainsFinalOwner",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.DisablingOptionsReleasesCameraWithoutDisablingRidingFacade",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.InactiveElevatedWriterCannotSnapOrApplyLens",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.ModalUiFreezesAutomaticMotionAndDefersSelectedView",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.OldSettingsAndUnknownCameraValuesRemainCompatible",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.PlacementOverrideRestoresPreferenceWithoutSavingAnOverride",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.PreferencesAreDesiredStateUntilSafeRuntimeCommit",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.ProfileEnablesOnlyTheApprovedStudyAndRejectsInvalidTuning",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.RecenterOnlyDuringForwardTravelAfterIdle(0,1,2,True,True)",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.RecenterOnlyDuringForwardTravelAfterIdle(1,0,2,True,False)",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.RecenterOnlyDuringForwardTravelAfterIdle(0,-1,2,True,False)",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.RecenterOnlyDuringForwardTravelAfterIdle(0,1,1,True,False)",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.RecenterOnlyDuringForwardTravelAfterIdle(0,1,2,False,False)",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.RoundTripPreservesOutputIdentityAnglesAndRidingAvailability",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.ThirdPersonCompressionOverridesPreferredDistance",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraOptionsTests.ThirdPersonIgnoresTargetHierarchyAndRiddenMount",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DFoundationTests.CameraLookAhead_IsFrameRateIndependentRangeLimitedAndQuicklyRecenters",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DFoundationTests.CameraOrbit_IsFrameRateIndependentAndPitchClamped",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DFoundationTests.PerspectiveMovementBasis_IsCameraRelativeAndSpeedClamped",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsDeviceDisconnectCancelsListeningAndPreservesTheDraft",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsFailedSaveKeepsDraftAndRuntimeBindingsUnchanged",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsHoldApplyPersistsAndBackProtectsUnappliedDraft",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsListenFiltersDeviceAndDefersRuntimeMutationUntilApply",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsListenRejectsConflictAndBackCancelsWithoutLeavingPanel",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership(False)",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsPrefabFitsLargeTextAndRetainsExistingMenuOwnership(True)",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.ControlsResetRequiresConfirmationAndApplyBeforeReplacingSavedPreferences",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.DeletingEarlierPage_RetainsDefaultByStableIdentity",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.DisabledInput_ClosesCoveredMenuWithoutReenablingGameplay",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.Escape_OpensOnceThenBacksOutWithoutDoubleTransition",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.Exit_RequiresExplicitConfirmAndCannotBeAcceptedByStart",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.Inventory_IsSuspendedAndSystemToggleCannotCloseIt",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.InventoryOpenerCannotRebindToAUiTransferButton",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum(null)",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.Settings_LegacyOrUnknownDistancePreservesAccessibilityAndUsesMaximum(\"Unknown\")",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.Settings_UnknownVersionIsPreservedAndFailedWritesRetainAcceptedState",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.Setup_DirtyBackProtectsPreferencesAndExplicitDiscardReturnsRoot",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.SetupApply_PersistsExistingSchemaAndReturnsToInvokingInventory",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.Start_OpensOnceAndDoesNotChangeSimulationTime",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.Start_WinsOverWheelStickReleaseWithoutCommand",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.ViewDistance_FailedApplyKeepsCameraAndRetainsDraft",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.ViewDistance_InitializesAcceptedStateAndAppliesOnlyAfterSaving",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation(False)",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuTests.ViewDistance_PrefabRowFitsTextAndParticipatesInNavigation(True)",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DMenuUiIntegrationTests.UiModule_HeldSubmitIsBlocked_FreshSubmitAndBackWork_WorldClockContinues",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraRuntimeTests.RuntimeCallbacksAcquireThirdPersonAndRestoreElevatedOnDisable",
+      "result": "Passed"
+    },
+    {
+      "name": "BooterBigArm.Tests.TopDown3DCameraRuntimeTests.ThirdPersonFollowsRootTranslationWithoutMovingTheTarget",
+      "result": "Passed"
+    }
+  ]
+}

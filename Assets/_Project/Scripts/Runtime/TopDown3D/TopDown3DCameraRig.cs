@@ -16,6 +16,19 @@ namespace BooterBigArm.TopDown3D
         public const float DefaultMinimumPitchDegrees = 26f;
 
         [SerializeField] private Transform target;
+        private TopDown3DCameraOptions cameraOptions;
+        internal Transform FollowTarget => target;
+        internal TopDown3DInputRouter InputRouter => input;
+        internal bool ExternalViewOwnsOutput => cameraOptions != null && cameraOptions.OwnsOutput;
+        public TopDown3DCameraOptions CameraOptions => cameraOptions;
+        internal void RegisterCameraOptions(TopDown3DCameraOptions owner)
+        {
+            if (owner == null || owner.gameObject != gameObject) throw new System.InvalidOperationException("Camera options must share the output camera.");
+            cameraOptions = owner;
+        }
+        internal bool HasRidingFrame => ridingFramingOwner != null;
+        internal Vector3 FollowAnchorPosition => ridingFrame != null ? ridingFrame.position : target.position;
+        internal float TargetHeightOffset => targetOffset.y;
         [SerializeField] private TopDown3DInputRouter input;
         [SerializeField] private Vector3 targetOffset = new Vector3(0f, 1.15f, 0f);
         [SerializeField, Range(20f, 75f)] private float pitchDegrees = 50f;
@@ -95,6 +108,15 @@ namespace BooterBigArm.TopDown3D
             ApplyLens();
         }
 
+        public TopDown3DCameraOptions EnableCameraOptions()
+        {
+            ResolveInput();
+            cameraOptions = GetComponent<TopDown3DCameraOptions>();
+            if (cameraOptions == null) cameraOptions = gameObject.AddComponent<TopDown3DCameraOptions>();
+            cameraOptions.Configure(this);
+            return cameraOptions;
+        }
+
         private void OnEnable()
         {
             SnapToTarget();
@@ -102,15 +124,22 @@ namespace BooterBigArm.TopDown3D
 
         private void LateUpdate()
         {
-            if (target == null)
+            if (target == null || ExternalViewOwnsOutput)
             {
                 return;
             }
 
             ApplyLens();
             ApplyCameraInput();
+            var followPosition = UpdateFollowPosition(Time.deltaTime);
+            var rotation = Quaternion.Euler(pitchDegrees, yawDegrees, 0f);
+            ApplyResolvedPose(followPosition + lookAheadOffset, -(rotation * Vector3.forward), rotation);
+        }
+
+        internal Vector3 UpdateFollowPosition(float deltaTime)
+        {
             var rawTarget = target.position + targetOffset;
-            ridingFramingBlend = Mathf.MoveTowards(ridingFramingBlend, ridingFrame != null ? 1 : 0, Time.deltaTime / .2f);
+            ridingFramingBlend = Mathf.MoveTowards(ridingFramingBlend, ridingFrame != null ? 1 : 0, deltaTime / .2f);
             if (ridingFrame != null)
             {
                 lastRidingFrame = ridingFrame.position + targetOffset;
@@ -120,12 +149,8 @@ namespace BooterBigArm.TopDown3D
             if (ridingFrame == null && ridingFramingBlend <= 0) { ridingFramingOwner = null; ridingMount = null; }
             smoothedTarget = followSmoothTime <= 0f
                 ? rawTarget
-                : Vector3.SmoothDamp(smoothedTarget, rawTarget, ref targetVelocity, followSmoothTime);
-
-            var rotation = Quaternion.Euler(pitchDegrees, yawDegrees, 0f);
-            var backward = -(rotation * Vector3.forward);
-            var framingTarget = smoothedTarget + lookAheadOffset;
-            ApplyResolvedPose(framingTarget, backward, rotation);
+                : Vector3.SmoothDamp(smoothedTarget, rawTarget, ref targetVelocity, followSmoothTime, Mathf.Infinity, deltaTime);
+            return smoothedTarget;
         }
 
         public static float CalculateYaw(float currentYaw, float inputValue, float speedDegrees, float deltaTime)
@@ -242,10 +267,13 @@ namespace BooterBigArm.TopDown3D
         }
 
         internal bool TryResolveDistance(Vector3 origin, Vector3 backward, out float resolvedDistance)
+            => TryResolveDistance(origin, backward, distance, obstructionRadius, out resolvedDistance);
+
+        internal bool TryResolveDistance(Vector3 origin, Vector3 backward, float boomDistance, float radius, out float resolvedDistance)
         {
             resolvedDistance = 0f;
             var startDistance = 0f;
-            if (HasBlockingOverlap(origin))
+            if (HasBlockingOverlap(origin, radius))
             {
                 // Sphere casts do not reliably report blockers containing their origin.
                 // Search only the authored boom, with a fixed upper bound on recovery work.
@@ -253,8 +281,8 @@ namespace BooterBigArm.TopDown3D
                 var previousProbe = 0f;
                 for (var probe = 1; probe <= OriginRecoveryProbeCount; probe++)
                 {
-                    var candidate = distance * probe / OriginRecoveryProbeCount;
-                    if (HasBlockingOverlap(origin + backward * candidate))
+                    var candidate = boomDistance * probe / OriginRecoveryProbeCount;
+                    if (HasBlockingOverlap(origin + backward * candidate, radius))
                     {
                         previousProbe = candidate;
                         continue;
@@ -265,7 +293,7 @@ namespace BooterBigArm.TopDown3D
                     for (var refinement = 0; refinement < OriginRecoveryRefinementCount; refinement++)
                     {
                         var midpoint = (blocked + clear) * 0.5f;
-                        if (HasBlockingOverlap(origin + backward * midpoint)) blocked = midpoint;
+                        if (HasBlockingOverlap(origin + backward * midpoint, radius)) blocked = midpoint;
                         else clear = midpoint;
                     }
 
@@ -279,20 +307,20 @@ namespace BooterBigArm.TopDown3D
 
             var hitCount = Physics.SphereCastNonAlloc(
                 origin + backward * startDistance,
-                obstructionRadius,
+                radius,
                 backward,
                 obstructionHits,
-                distance - startDistance,
+                boomDistance - startDistance,
                 obstructionMask,
                 QueryTriggerInteraction.Ignore);
 
             // NonAlloc results are unordered; a full buffer can omit the closest blocker.
             var hits = hitCount == obstructionHits.Length
-                ? Physics.SphereCastAll(origin + backward * startDistance, obstructionRadius,
-                    backward, distance - startDistance, obstructionMask, QueryTriggerInteraction.Ignore)
+                ? Physics.SphereCastAll(origin + backward * startDistance, radius,
+                    backward, boomDistance - startDistance, obstructionMask, QueryTriggerInteraction.Ignore)
                 : obstructionHits;
             if (hits != obstructionHits) hitCount = hits.Length;
-            var nearest = distance;
+            var nearest = boomDistance;
             for (var i = 0; i < hitCount; i++)
             {
                 var hit = hits[i];
@@ -301,12 +329,12 @@ namespace BooterBigArm.TopDown3D
                     continue;
                 }
 
-                nearest = Mathf.Min(nearest, startDistance + hit.distance - obstructionRadius);
+                nearest = Mathf.Min(nearest, startDistance + hit.distance - radius);
             }
 
             // Clearance takes precedence over the preferred minimum framing distance.
-            resolvedDistance = Mathf.Clamp(nearest, startDistance, distance);
-            return !HasBlockingOverlap(origin + backward * resolvedDistance);
+            resolvedDistance = Mathf.Clamp(nearest, startDistance, boomDistance);
+            return !HasBlockingOverlap(origin + backward * resolvedDistance, radius);
         }
 
         private bool IsBlockingCollider(Collider collider)
@@ -315,12 +343,14 @@ namespace BooterBigArm.TopDown3D
                 && (ridingMount == null || !collider.transform.IsChildOf(ridingMount));
         }
 
-        private bool HasBlockingOverlap(Vector3 position)
+        internal bool HasBlockingOverlap(Vector3 position) => HasBlockingOverlap(position, obstructionRadius);
+
+        internal bool HasBlockingOverlap(Vector3 position, float radius)
         {
-            var count = Physics.OverlapSphereNonAlloc(position, obstructionRadius,
+            var count = Physics.OverlapSphereNonAlloc(position, radius,
                 obstructionOverlaps, obstructionMask, QueryTriggerInteraction.Ignore);
             var overlaps = count == obstructionOverlaps.Length
-                ? Physics.OverlapSphere(position, obstructionRadius, obstructionMask, QueryTriggerInteraction.Ignore)
+                ? Physics.OverlapSphere(position, radius, obstructionMask, QueryTriggerInteraction.Ignore)
                 : obstructionOverlaps;
             if (overlaps != obstructionOverlaps) count = overlaps.Length;
             for (var i = 0; i < count; i++)
@@ -356,12 +386,14 @@ namespace BooterBigArm.TopDown3D
             targetVelocity = Vector3.zero;
             lookAheadOffset = Vector3.zero;
             initialized = true;
+            if (ExternalViewOwnsOutput) { cameraOptions.InvalidateFollow(); return; }
             var rotation = Quaternion.Euler(pitchDegrees, yawDegrees, 0f);
             ApplyResolvedPose(smoothedTarget, -(rotation * Vector3.forward), rotation);
         }
 
         private void ApplyLens()
         {
+            if (ExternalViewOwnsOutput) return;
             if (outputCamera == null)
             {
                 outputCamera = GetComponent<Camera>();
@@ -381,6 +413,30 @@ namespace BooterBigArm.TopDown3D
             {
                 SnapToTarget();
             }
+        }
+
+        internal bool TryGetElevatedPose(out Vector3 position, out Quaternion rotation)
+        {
+            rotation = Quaternion.Euler(pitchDegrees, yawDegrees, 0);
+            var origin = ridingFrame != null ? ridingFrame.position + targetOffset : target.position + targetOffset;
+            var backward = -(rotation * Vector3.forward);
+            var clear = TryResolveDistance(origin, backward, out var resolved);
+            position = origin + backward * resolved;
+            return clear;
+        }
+
+        internal void RememberVerifiedPose(Vector3 position)
+        {
+            verifiedClearPosition = position; hasVerifiedClearPosition = true; HasUnresolvedClearance = false;
+        }
+
+        internal void RestoreElevatedPose(Vector3 position, Quaternion rotation)
+        {
+            smoothedTarget = (ridingFrame != null ? ridingFrame.position : target.position) + targetOffset;
+            targetVelocity = Vector3.zero; lookAheadOffset = Vector3.zero; initialized = true;
+            verifiedClearPosition = position; hasVerifiedClearPosition = true; HasUnresolvedClearance = false;
+            transform.SetPositionAndRotation(position, rotation);
+            ApplyLens();
         }
 
         private void EnsurePostProcessing()

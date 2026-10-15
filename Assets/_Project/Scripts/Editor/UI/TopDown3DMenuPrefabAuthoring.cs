@@ -20,6 +20,35 @@ namespace BooterBigArm.Editor
         public static void UpdateOwnedFromCli()
         { WritePrefab(true); }
 
+        // Adds only the camera controls to the existing authored menu; retains other file IDs and overrides.
+        public static void AddCameraOptionsOwnedFromCli()
+        {
+            var root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                var safe = root.transform.Find("Safe Area");
+                var settings = safe.Find("Settings") as RectTransform;
+                if (settings.Find("CameraOptions") == null)
+                {
+                    var button = Button("CameraOptions", settings, "Camera");
+                    button.transform.SetSiblingIndex(4);
+                }
+                settings.sizeDelta = new Vector2(620, 740);
+                if (safe.Find("Camera") == null)
+                {
+                    var panel = Panel("Camera", safe, new Vector2(800, 850));
+                    Vertical(panel, 12, new RectOffset(32, 32, 24, 24));
+                    Label("CameraTitle", panel, "CAMERA", 28, 48);
+                    foreach (var key in new[] { "CameraView", "CameraRecenter", "CameraInvert", "CameraSensX", "CameraSensY", "CameraFov" })
+                        Height(Button(key, panel, key), 58);
+                    Label("CameraNotice", panel, "Apply saves your camera preference.", 20, 100);
+                    Footer(panel, "CameraApply", "CameraBack");
+                }
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
+            }
+            finally { PrefabUtility.UnloadPrefabContents(root); }
+        }
+
         // Bounded upgrade: preserve existing root, camp links, file IDs and prefab GUID.
         public static void AddControlsOwnedFromCli()
         {

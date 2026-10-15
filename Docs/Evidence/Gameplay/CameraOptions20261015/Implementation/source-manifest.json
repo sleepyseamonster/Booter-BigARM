@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-15",
+  "candidate": "D:\\BooterBigArmValidation\\CameraOptions20261015-01",
+  "headBeforeCommit": "28b0d0a02f2f110020cc46a8c3ac8631d9263c93",
+  "scope": "Camp Loop only; no scene or package changes",
+  "sealedValidatorPassed": true,
+  "fileRecords": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/BooterBigArm.TopDown3D.Runtime.asmdef",
+      "sha256": "07429844700A9D8E5D428F288107DD27957C0CAA9A1D87096ABF235F29C4E593"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraRig.cs",
+      "sha256": "6F822DE2928CA30A00E5C0092113CB64B413EEE57E962A2324889052F16B0715"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraOptions.cs",
+      "sha256": "26855B071A44024D4A864F826E27A1DCB3E0291AC28C68235F5D16F3D04729CB"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DCameraOptions.cs.meta",
+      "sha256": "872367FF1A2D6C43E70FFD8660141D10BB94D1662E563563E28B917D0A427EDC"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DThirdPersonCameraProfile.cs",
+      "sha256": "84D5FFF5D0917462A54A232D487F9AC4BCBCE3CD8E61997212600417DEA1A805"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DThirdPersonCameraProfile.cs.meta",
+      "sha256": "1101940047A6A7A8AFA4ADEE2CCFEEBC041DF0AD248F3AE100FA79441AEBDFF2"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DMenuController.Camera.cs",
+      "sha256": "A623FBCEBF68BEEC8A4A1945DE8E284561E0AD3535C4487D8ED0BDA6C9F85709"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DMenuController.Camera.cs.meta",
+      "sha256": "CF86810EF56223B871460EFCDB7E7BFD9BED1C27A03E96FC089FFF53333AEAA5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DMenuController.cs",
+      "sha256": "3E85BA8BEA992518BE62ED28D45A2D70FF2962AAE18315A83F2435BC889A7603"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DMenuSceneInstaller.cs",
+      "sha256": "9161A2FE11BE77EF2CBCAF5A17FD56D8434F2EF43AD051FFE4B2761323D143E4"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DMenuSettingsService.cs",
+      "sha256": "9AB921C63D03A22D53FF27E88698D3383E5E93E11FAF2922ED882BDB0A582FB5"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/UI/TopDown3DMenuView.cs",
+      "sha256": "F6C72FA41A934C8E02468DF79EE21728676674365885B3F168E9820591DD9FC7"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/UI/TopDown3DMenuPrefabAuthoring.cs",
+      "sha256": "53130345EA760F68C612363909D55D3839CEB22EBE837835D7FF878D25B5E495"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CameraOptionsStudyAuthoring.cs",
+      "sha256": "142786BF9F2CC7982E55441B3458C726F9C4CE4596D2B2134A3395E28C7F8E62"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Editor/TopDown3D/CameraOptionsStudyAuthoring.cs.meta",
+      "sha256": "DE00A5FA775F2C2186BBAEED4C6AB77FFE1EAF0239353DC74FBD58950182ED05"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/UI/Resources/SystemMenu.prefab",
+      "sha256": "F81E1C75155893B663AFC7418B67994DB3A3FC21F48C5F6448BF2A3E6DD6454D"
+    },
+    {
+      "path": "Assets/_Project/Settings/Player/Resources.meta",
+      "sha256": "CC5756BDA7D8E4C378D7A9B0DE195448E8394AB99ACEF8B7BAB09840C947C739"
+    },
+    {
+      "path": "Assets/_Project/Settings/Player/Resources/ThirdPersonCameraProfile.asset",
+      "sha256": "0A8E776073B524EFE46A0A704A8AC730E5C6DF86639C74CE0DBD451EE6C60492"
+    },
+    {
+      "path": "Assets/_Project/Settings/Player/Resources/ThirdPersonCameraProfile.asset.meta",
+      "sha256": "B940D041A2767A30BDD35EE4BCD7AE0DEADE73235F59B0B48655D4AA99EFED6D"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DCameraOptionsTests.cs",
+      "sha256": "44ED9E5560445BCFEA21C02C781B645C371FD306AA9BA4883B7C30EE80804C04"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DCameraOptionsTests.cs.meta",
+      "sha256": "11B0DD1A1BB4D4EE2AE9103E81A217D1F42CE5334A1C453DA9C32AF18F3C83D9"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DCameraMenuTests.cs",
+      "sha256": "AA99238C7A512B2607339C24091993C71D40BA0FB8D580D51296A750F299FB39"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DCameraMenuTests.cs.meta",
+      "sha256": "F102E36A3AA99496561E026D7FEB2F8A88EC46E7B5025354949178187DEEB711"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DCameraRuntimeTests.cs",
+      "sha256": "4338A18AE7DCB14B06DCF272060AD83680BE61F983D142E1356E7D3811A2FE1B"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/TopDown3DCameraRuntimeTests.cs.meta",
+      "sha256": "11E8D5C3F11B2D9116B48F602DC3C318B0DDDEEF40332297B65D66CC0B22679E"
+    }
+  ]
+}
