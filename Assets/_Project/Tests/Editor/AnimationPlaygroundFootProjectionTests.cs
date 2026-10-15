@@ -9,6 +9,26 @@ namespace BooterBigArm.Tests
 {
     public sealed class AnimationPlaygroundFootProjectionTests
     {
+        [Test] public void SupportPlaneChangesTheLowestContactWithoutMovingTheRig()
+        {
+            var model=new GameObject("Oriented foot plane");var a=new GameObject("A");var b=new GameObject("B");
+            a.transform.SetParent(model.transform,false);b.transform.SetParent(model.transform,false);
+            var data=ScriptableObject.CreateInstance<AnimationPlaygroundFootProjection>();
+            try
+            {
+                data.model=model;data.bonePaths=new[]{"A","B"};data.vertices=new[]{
+                    new AnimationPlaygroundFootVertex{points=new[]{new AnimationPlaygroundSkinPoint{bone=0,position=Vector3.zero,weight=1}}},
+                    new AnimationPlaygroundFootVertex{points=new[]{new AnimationPlaygroundSkinPoint{bone=1,position=Vector3.zero,weight=1}}}};
+                a.transform.localPosition=new Vector3(-2,0,0);b.transform.localPosition=Vector3.down;
+                var sampler=data.Bind(model.transform);var plane=new Plane(new Vector3(1,1,0).normalized,-.2f);
+                Assert.That(sampler.MinimumWorldY(out var index),Is.EqualTo(-1));Assert.That(index,Is.EqualTo(1));
+                Assert.That(sampler.MinimumDistance(plane,out index),Is.EqualTo(-Mathf.Sqrt(2)-.2f).Within(.000001));
+                Assert.That(index,Is.Zero);
+                Assert.That(a.transform.localPosition,Is.EqualTo(new Vector3(-2,0,0)));
+                Assert.Throws<ArgumentException>(()=>sampler.MinimumDistance(default));
+            }
+            finally{Object.DestroyImmediate(data);Object.DestroyImmediate(model);}
+        }
         [Test] public void ProjectionReturnsTheLowestBodyPointWhenItsSupportingBoneChanges()
         {
             var model=new GameObject("Whole-body projection fixture");var upper=new GameObject("Upper");var lower=new GameObject("Lower");

@@ -29,11 +29,13 @@ namespace BooterBigArm.TopDown3D
         private readonly PendingPlant[] forwardPlants = new PendingPlant[8];
         private int forwardPlantStart, forwardPlantCount;
         private double forwardIdleSeconds;
+        private readonly AnimationPlaygroundForwardPoseEnvelope forwardPoseEnvelope = new();
         private bool forwardPoseRenderedThisFrame;
         private bool forwardFootEffectsProcessed;
         public bool LaboratoryForwardReady { get; private set; }
         public string LaboratoryForwardFailure { get; private set; }
         public float LaboratoryForwardSpeed => forwardSpeed;
+        public float LaboratoryForwardPoseSpeed => forwardPoseEnvelope.Speed;
         public double LaboratoryForwardCycles => forwardClock?.Cycles ?? 0;
         public long LaboratoryForwardContacts => forwardClock?.ContactCount ?? 0;
         public long LaboratoryDiscardedFootEffects { get; private set; }
@@ -63,6 +65,7 @@ namespace BooterBigArm.TopDown3D
             if (forwardBound && motor != null) motor.LaboratoryGroundedMotionCompleted -= AdvanceForwardMotion;
             forwardBound = false; forwardClock?.Reset(); forwardSpeed = forwardPreviousSpeed = 0;
             forwardPoseRenderedThisFrame = false;
+            forwardPoseEnvelope.Reset();
             forwardFootEffectsProcessed = false;
             forwardPlantStart = forwardPlantCount = 0;
             if (playableGraph.IsValid()) playableGraph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
@@ -93,7 +96,7 @@ namespace BooterBigArm.TopDown3D
 
         private void PrepareForwardGraphUpdate()
         {
-            if (!forwardPoseRenderedThisFrame) forwardIdleSeconds = 0;
+            if (!forwardPoseRenderedThisFrame) { forwardIdleSeconds = 0; forwardPoseEnvelope.Reset(); }
             forwardPoseRenderedThisFrame = false;
             forwardFootEffectsProcessed = false;
             // Other presentation owners keep their established automatic-time path.
@@ -114,21 +117,24 @@ namespace BooterBigArm.TopDown3D
             if (motor.LaboratoryGroundedMotion.Epoch != forwardMotion.Epoch)
             {
                 forwardSpeed = forwardPreviousSpeed = 0; forwardPlantCount = 0;
-                forwardClock.Reset();
+                forwardClock.Reset(); forwardPoseEnvelope.Reset();
             }
             var alpha = Mathf.Clamp01((float)((Time.timeAsDouble - Time.fixedTimeAsDouble) / Math.Max(.0001, Time.fixedDeltaTime)));
             var speed = Mathf.Lerp(forwardPreviousSpeed, forwardSpeed, alpha);
             if (!motor.IsGrounded || Time.fixedTimeAsDouble - forwardMotion.CompletedTime > .1) speed = 0;
             var cycles = forwardClock.RenderCycles(alpha, forwardSpeed, laboratoryForwardProfile);
             PresentForwardFrame(speed, cycles, Time.deltaTime);
-            CurrentLocomotionState = speed > 0 ? TopDown3DLocomotionState.Sustained : TopDown3DLocomotionState.Idle;
+            CurrentLocomotionState = forwardPoseEnvelope.Settling ? TopDown3DLocomotionState.Stopping
+                : forwardPoseEnvelope.Resuming ? TopDown3DLocomotionState.Starting
+                : speed > 0 ? TopDown3DLocomotionState.Sustained : TopDown3DLocomotionState.Idle;
             return true;
         }
 
         private void PresentForwardFrame(float speed, double cycles, float deltaTime)
         {
             forwardIdleSeconds += deltaTime;
-            PresentForwardLocomotionPose(speed, cycles, forwardIdleSeconds);
+            var weights = forwardPoseEnvelope.SampleWeights(laboratoryForwardProfile.Weights(speed), speed, deltaTime);
+            PresentForwardWeightedPose(weights, cycles, forwardIdleSeconds);
             forwardPoseRenderedThisFrame = true;
         }
 
@@ -140,14 +146,23 @@ namespace BooterBigArm.TopDown3D
             // Effects sample the displayed pose after frame interpolation, rather
             // than reading last frame's foot transforms during simulation.
             forwardFootEffectsProcessed = true;
-            EmitForwardRenderedPlants(LaboratoryRenderedCycles);
+            var current = motor.LaboratoryGroundedMotion;
+            if (!current.Available || current.Epoch != forwardMotion.Epoch || current.Tick != forwardMotion.Tick)
+            {
+                LaboratoryDiscardedFootEffects += forwardPlantCount;
+                forwardPlantStart = forwardPlantCount = 0;
+                return;
+            }
+            EmitForwardRenderedPlants(LaboratoryRenderedCycles, Time.fixedTimeAsDouble);
         }
 
         // Same pose path is used by guarded offline qualification, without running a motor.
         private void PresentForwardLocomotionPose(float speed, double cycles, double idleSeconds)
+            => PresentForwardWeightedPose(laboratoryForwardProfile.Weights(speed), cycles, idleSeconds);
+
+        private void PresentForwardWeightedPose(Vector4 weights, double cycles, double idleSeconds)
         {
             var policy = laboratoryForwardProfile;
-            var weights = policy.Weights(speed);
             playableGraph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
             for (var i = 0; i < mixer.GetInputCount(); i++) mixer.SetInputWeight(i, i < 4 ? weights[i] : 0);
             for (var i = 0; i < clipPlayables.Length; i++) if (clipPlayables[i].IsValid()) clipPlayables[i].SetSpeed(0);
@@ -172,7 +187,7 @@ namespace BooterBigArm.TopDown3D
             LaboratoryForwardLift = correction; LaboratoryRenderedCycles = cycles;
             lastActionIndex = -1; activeTransitionIndex = -1; activeHardTurnIndex = -1;
         }
-        private void EmitForwardRenderedPlants(double cycles)
+        private void EmitForwardRenderedPlants(double cycles, double completedNow)
         {
             var emitted = 0;
             while (forwardPlantCount > 0)
@@ -181,13 +196,15 @@ namespace BooterBigArm.TopDown3D
                 var contactCycle = plant.ordinal * .25;
                 if (cycles < contactCycle) break; // This contact has not reached the displayed pose yet.
                 forwardPlantStart = (forwardPlantStart + 1) % forwardPlants.Length; forwardPlantCount--;
-                if (cycles - contactCycle > .03 || Time.fixedTimeAsDouble - plant.time > .12 || emitted >= 2
+                if (cycles - contactCycle > .03 || completedNow - plant.time > .12 || emitted >= 2
                     || !motor.IsGrounded || forwardSpeed < TopDown3DFootstepDust.MinimumMovementSpeed)
                 { LaboratoryDiscardedFootEffects++; continue; }
                 var side = AnimationPlaygroundGaitContacts.Side(plant.ordinal);
-                EmitFootContact(side, side == TopDown3DFootSide.Left ? leftFoot : rightFoot, plant.speed);
-                LaboratoryLastFootEffectEpoch = plant.epoch; LaboratoryLastFootEffectOrdinal = plant.ordinal;
-                emitted++;
+                if (EmitFootContact(side, side == TopDown3DFootSide.Left ? leftFoot : rightFoot, plant.speed))
+                {
+                    LaboratoryLastFootEffectEpoch = plant.epoch; LaboratoryLastFootEffectOrdinal = plant.ordinal;
+                    emitted++;
+                }
             }
         }
     }

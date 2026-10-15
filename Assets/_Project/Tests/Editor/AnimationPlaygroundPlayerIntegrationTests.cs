@@ -147,12 +147,23 @@ namespace BooterBigArm.Tests
             finally { CloseFixtureScene(scene); }
         }
 
-        [Test, Category("PrivateAnimationQualification")] public void SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset()
+        [TestCase(false), TestCase(true), Category("PrivateAnimationQualification")] public void SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(bool measuredForward)
         {
             PrivateBindings(); var scene = EditorSceneManager.OpenScene(TopDown3DAnimationPlaygroundSession.ScenePath, OpenSceneMode.Additive); InputActionAsset actions = null;
+            TopDown3DAnimationPlaygroundBindings draft = null; AnimationPlaygroundForwardLocomotionProfile policy = null;
             try
             {
-                var session = TopDown3DAnimationPlaygroundSession.Find(scene); Invoke(session, "Awake");
+                var session = TopDown3DAnimationPlaygroundSession.Find(scene);
+                if (measuredForward)
+                {
+                    var source = AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(
+                        "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset");
+                    Assert.That(source, Is.Not.Null, "Restore the measured private forward draft.");
+                    policy = Object.Instantiate(source); policy.qualified = true;
+                    draft = Object.Instantiate(session.Bindings); draft.forwardLocomotion = policy; draft.locomotion = policy.locomotion;
+                    session.Configure(draft);
+                }
+                Invoke(session, "Awake");
                 var player = session.Player; var driver = player.GetComponent<TopDown3DPlayerAnimationDriver>(); Invoke(driver, "Awake");
                 var input = player.InputRouter; actions = AnimationPlaygroundInputFactory.Create(input.InputActions);
                 input.Configure(actions); input.Initialize();
@@ -161,6 +172,7 @@ namespace BooterBigArm.Tests
                 Assert.That(Field<float>(player, "walkSpeed"), Is.EqualTo(2.7f).Within(.0001f));
                 Assert.That(Field<float>(player, "sprintSpeed"), Is.EqualTo(3.8f).Within(.0001f));
                 Assert.That(driver.LaboratorySustainedDiagnostic, Is.False, "Source selection must not opt the author into a diagnostic.");
+                Assert.That(driver.LaboratoryForwardReady, Is.EqualTo(measuredForward));
                 Assert.That(session.Coordinator, Is.Not.Null); Assert.That(input.AnimationActionOwned, Is.Not.Null);
                 var binding = session.Bindings.motions.First(value => value.CanPreview);
                 Assert.That(session.Coordinator.TryBeginPreview(binding), Is.True); Assert.That(input.AnimationActionOwned(), Is.True);
@@ -196,7 +208,11 @@ namespace BooterBigArm.Tests
                 Assert.That(panel.GetComponentsInChildren<UnityEngine.UI.Text>(true).Single(value=>value.name=="LabPaletteStatus").text,
                     Does.Contain("Fixture dependency is absent."));
             }
-            finally { CloseFixtureScene(scene); if (actions != null) Object.DestroyImmediate(actions); }
+            finally
+            {
+                CloseFixtureScene(scene); if (actions != null) Object.DestroyImmediate(actions);
+                if (draft != null) Object.DestroyImmediate(draft); if (policy != null) Object.DestroyImmediate(policy);
+            }
         }
     }
 }

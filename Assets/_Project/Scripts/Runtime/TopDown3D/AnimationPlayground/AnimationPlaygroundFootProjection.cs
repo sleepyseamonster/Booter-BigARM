@@ -56,8 +56,13 @@ namespace BooterBigArm.TopDown3D
                 }
             }
             public float MinimumWorldY()=>MinimumWorldY(out _);
-            public float MinimumWorldY(out int minimumVertex)
+            public float MinimumWorldY(out int minimumVertex)=>MinimumDistance(new Plane(Vector3.up,0),out minimumVertex);
+            public float MinimumDistance(Plane plane)=>MinimumDistance(plane,out _);
+            public float MinimumDistance(Plane plane,out int minimumVertex)
             {
+                if(!float.IsFinite(plane.distance) || !float.IsFinite(plane.normal.sqrMagnitude)
+                    || Mathf.Abs(plane.normal.sqrMagnitude-1)>.0001f)
+                    throw new ArgumentException("Foot projection requires a finite normalized support plane.");
                 minimumVertex=-1;
                 var influenceLimit=int.MaxValue;
                 foreach(var renderer in renderers)
@@ -87,8 +92,9 @@ namespace BooterBigArm.TopDown3D
                         point+=matrices[influence.bone].MultiplyPoint3x4(influence.position)*influence.weight;total+=influence.weight;
                     }
                     point/=total;
-                    if(!float.IsFinite(point.y))throw new InvalidOperationException("The active foot projection is not finite.");
-                    if(point.y<minimum){minimum=point.y;minimumVertex=vertexIndex;}
+                    var distance=plane.GetDistanceToPoint(point);
+                    if(!float.IsFinite(distance))throw new InvalidOperationException("The active foot projection is not finite.");
+                    if(distance<minimum){minimum=distance;minimumVertex=vertexIndex;}
                 }
                 return minimum;
             }

@@ -239,6 +239,8 @@ namespace BooterBigArm.Tests
                 EditorUtility.CopySerialized(TopDown3DAnimationPlaygroundSession.Find(scene).Player.GetComponent<TopDown3DPlayerAnimationDriver>(), driver);
                 driver.ConfigureLaboratory(bindings);
                 typeof(TopDown3DPlayerAnimationDriver).GetMethod("Awake", Private).Invoke(driver, null);
+                actor.SetActive(true);
+                Assert.That(driver.HumanoidAnimator.isActiveAndEnabled, Is.True);
                 typeof(TopDown3DPlayerAnimationDriver).GetField("laboratoryForwardProfile", Private).SetValue(driver, policy);
                 var render = (Action<float, double, double>)Delegate.CreateDelegate(typeof(Action<float, double, double>), driver,
                     typeof(TopDown3DPlayerAnimationDriver).GetMethod("PresentForwardLocomotionPose", Private));
@@ -246,19 +248,26 @@ namespace BooterBigArm.Tests
                 var clips = (AnimationClipPlayable[])typeof(TopDown3DPlayerAnimationDriver).GetField("clipPlayables", Private).GetValue(driver);
                 var sampler = (AnimationPlaygroundFootProjection.Sampler)typeof(TopDown3DPlayerAnimationDriver)
                     .GetField("footProjectionSampler", Private).GetValue(driver);
+                var trackedFoot = driver.HumanoidAnimator.GetBoneTransform(HumanBodyBones.LeftFoot);
                 foreach (var speed in new[] { 1.4f, 2.05f, 2.7f, 3.25f, 3.8f })
+                {
+                    var firstFoot = Vector3.zero;
                     foreach (var phase in new[] { 0d, .25, .5, .75 })
                     {
                         render(speed, phase, 0);
+                        if (phase == 0) firstFoot = trackedFoot.position;
+                        if (phase == .25) Assert.That(Vector3.Distance(trackedFoot.position, firstFoot), Is.GreaterThan(.03f), "The source must move the active rig.");
                         Assert.That(graph.GetTimeUpdateMode(), Is.EqualTo(DirectorUpdateMode.Manual));
                         Assert.That(graph.GetOutputCount(), Is.EqualTo(1));
                         Assert.That(sampler.MinimumWorldY(), Is.GreaterThanOrEqualTo(-bindings.capsuleHeight * .5f - .00001f));
-                        var time = clips[2].GetTime(); render(speed, phase, 0);
+                        var time = clips[2].GetTime(); var position = trackedFoot.position; render(speed, phase, 0);
                         Assert.That(clips[2].GetTime(), Is.EqualTo(time).Within(.0000001));
+                        Assert.That(Vector3.Distance(trackedFoot.position, position), Is.LessThan(.00001f));
                         Assert.That(clips[2].GetSpeed(), Is.Zero);
                         Assert.That(actor.transform.position, Is.EqualTo(Vector3.zero));
                         Assert.That(actor.GetComponent<Rigidbody>().position, Is.EqualTo(Vector3.zero));
                     }
+                }
             }
             finally
             {
@@ -267,6 +276,105 @@ namespace BooterBigArm.Tests
                     typeof(TopDown3DPlayerAnimationDriver).GetMethod("OnDestroy", Private).Invoke(actor.GetComponent<TopDown3DPlayerAnimationDriver>(), null);
                 if (actor != null) Object.DestroyImmediate(actor); Object.DestroyImmediate(bindings);
                 EditorSceneManager.ClosePreviewScene(preview); EditorSceneManager.CloseScene(scene, true);
+            }
+        }
+
+        [TestCase(30)] [TestCase(60)] [TestCase(144)]
+        [Category("PrivateAnimationQualification")]
+        public void CompletedTickTraceOwnsContactsWhileBlockedPoseSettles(int renderRate)
+        {
+            var policy = Object.Instantiate(Policy()); policy.qualified = true;
+            var scene = EditorSceneManager.OpenScene(TopDown3DAnimationPlaygroundSession.ScenePath, OpenSceneMode.Additive);
+            var preview = scene; GameObject actor = null, ground = null;
+            var bindings = Object.Instantiate(TopDown3DAnimationPlaygroundSession.Find(scene).Bindings);
+            try
+            {
+                bindings.locomotion = policy.locomotion; bindings.forwardLocomotion = policy;
+                actor = new GameObject("Completed tick trace"); actor.SetActive(false); SceneManager.MoveGameObjectToScene(actor, preview);
+                var motor = actor.AddComponent<TopDown3DPlayerMotor>(); var driver = actor.AddComponent<TopDown3DPlayerAnimationDriver>();
+                EditorUtility.CopySerialized(TopDown3DAnimationPlaygroundSession.Find(scene).Player.GetComponent<TopDown3DPlayerAnimationDriver>(), driver);
+                driver.ConfigureLaboratory(bindings);
+                void Call(string method) => typeof(TopDown3DPlayerAnimationDriver).GetMethod(method, Private).Invoke(driver, null);
+                Call("Awake"); actor.SetActive(true); actor.transform.position = new Vector3(250, 20, 250);
+                typeof(TopDown3DPlayerMotor).GetProperty("IsGrounded").SetValue(motor, true);
+                ground = new GameObject("Deterministic contact-query floor"); SceneManager.MoveGameObjectToScene(ground, preview);
+                ground.transform.position = new Vector3(250, 20 - bindings.capsuleHeight * .5f - .05f, 250);
+                ground.AddComponent<BoxCollider>().size = new Vector3(8, .1f, 8); ground.AddComponent<TopDown3DGroundSurface>();
+                Physics.SyncTransforms();
+                var publish = (Action<AnimationPlaygroundGroundedMotion>)typeof(TopDown3DPlayerMotor)
+                    .GetField("LaboratoryGroundedMotionCompleted", Private).GetValue(motor);
+                var frame = (Action<float, double, float>)Delegate.CreateDelegate(typeof(Action<float, double, float>), driver,
+                    typeof(TopDown3DPlayerAnimationDriver).GetMethod("PresentForwardFrame", Private));
+                var effects = (Action<double, double>)Delegate.CreateDelegate(typeof(Action<double, double>), driver,
+                    typeof(TopDown3DPlayerAnimationDriver).GetMethod("EmitForwardRenderedPlants", Private));
+                var clock = (AnimationPlaygroundGaitClock)typeof(TopDown3DPlayerAnimationDriver).GetField("forwardClock", Private).GetValue(driver);
+                var count = 0; driver.FootContact += _ => count++;
+                var nextTick = 0; var previousSpeed = 0f; var speed = 0f;
+                var stoppedCycles = 0d; var stoppedContacts = 0L; var blockedEffects = 0;
+                for (var rendered = 0; rendered <= renderRate * 3; rendered++)
+                {
+                    var now = rendered / (double)renderRate;
+                    while (nextTick * .02 <= now + .00000001)
+                    {
+                        previousSpeed = speed;
+                        var requested = nextTick < 100 ? Mathf.Min(3.8f, nextTick * .17f) : 0;
+                        var sample = new AnimationPlaygroundGroundedMotion(nextTick, 1, nextTick * .02, .02,
+                            Vector3.forward * (requested * .02f), Vector3.up, true, nextTick == 0);
+                        publish(sample); speed = driver.LaboratoryForwardSpeed; nextTick++;
+                        // A repeated publication cannot add a second contact.
+                        var ledger = driver.LaboratoryForwardContacts; publish(sample);
+                        Assert.That(driver.LaboratoryForwardContacts, Is.EqualTo(ledger));
+                        if (nextTick == 101)
+                        { stoppedCycles = clock.Cycles; stoppedContacts = clock.ContactCount; blockedEffects = count; }
+                    }
+                    var alpha = Mathf.Clamp01((float)((now - (nextTick - 1) * .02) / .02));
+                    var cycles = clock.RenderCycles(alpha, speed, policy);
+                    Call("PrepareForwardGraphUpdate"); frame(Mathf.Lerp(previousSpeed, speed, alpha), cycles, 1f / renderRate);
+                    var before = count; effects(cycles, (nextTick - 1) * .02);
+                    Assert.That(count - before, Is.LessThanOrEqualTo(2));
+                    var after = count; effects(cycles, (nextTick - 1) * .02); Assert.That(count, Is.EqualTo(after));
+                    if (now >= 2.3)
+                    {
+                        Assert.That(driver.LaboratoryForwardPoseSpeed, Is.Zero);
+                        Assert.That(clock.Cycles, Is.EqualTo(stoppedCycles));
+                        Assert.That(clock.ContactCount, Is.EqualTo(stoppedContacts));
+                        Assert.That(count, Is.EqualTo(blockedEffects));
+                    }
+                }
+                Assert.That(clock.ContactCount, Is.GreaterThan(0), $"Completed samples must reach the driver: active={driver.isActiveAndEnabled}, ready={driver.LaboratoryForwardReady}.");
+                Assert.That(count, Is.GreaterThan(0), "The marked floor must exercise actual displayed-pose effects.");
+                Assert.That(clock.ContactCount, Is.EqualTo((long)Math.Floor(clock.Cycles * 4)));
+                Assert.That(actor.transform.position, Is.EqualTo(new Vector3(250, 20, 250)));
+                var effectsBeforeHitch = count; var discardedBeforeHitch = driver.LaboratoryDiscardedFootEffects;
+                publish(new AnimationPlaygroundGroundedMotion(199, 1, 4.8, .8, Vector3.forward * 3.04f, Vector3.up, true, false));
+                Assert.That(clock.ContactCount - stoppedContacts, Is.GreaterThanOrEqualTo(2));
+                Assert.That(clock.ContactCount, Is.EqualTo((long)Math.Floor(clock.Cycles * 4)));
+                frame(3.8f, clock.Cycles, .8f); effects(clock.Cycles, 5.1);
+                Assert.That(count, Is.EqualTo(effectsBeforeHitch), "Stale cosmetic contacts must not replay after a hitch.");
+                Assert.That(driver.LaboratoryDiscardedFootEffects, Is.GreaterThan(discardedBeforeHitch));
+                var pending = new AnimationPlaygroundGroundedMotion(200, 1, 5.6, .8, Vector3.forward * 3.04f, Vector3.up, true, false);
+                publish(pending);
+                typeof(TopDown3DPlayerMotor).GetProperty("LaboratoryGroundedMotion").SetValue(motor, pending);
+                frame(3.8f, clock.Cycles, .02f);
+                Assert.That((int)typeof(TopDown3DPlayerAnimationDriver).GetField("forwardPlantCount", Private).GetValue(driver), Is.GreaterThan(0));
+                // Reset may occur after Update but before LateUpdate. The motor's
+                // invalidated observation must veto the previously rendered pose.
+                typeof(TopDown3DPlayerMotor).GetProperty("LaboratoryGroundedMotion").SetValue(motor, default(AnimationPlaygroundGroundedMotion));
+                Call("EmitForwardFootEffectsForRenderedPose");
+                Assert.That(count, Is.EqualTo(effectsBeforeHitch));
+                Assert.That((int)typeof(TopDown3DPlayerAnimationDriver).GetField("forwardPlantCount", Private).GetValue(driver), Is.Zero);
+                var contactCount = clock.ContactCount;
+                var beforeOwnershipChange = clock.Cycles;
+                publish(new AnimationPlaygroundGroundedMotion(201, 2, 6, .4, Vector3.forward * 10, Vector3.up, false, true));
+                Assert.That(clock.ContactCount, Is.EqualTo(contactCount));
+                Assert.That(clock.Cycles, Is.EqualTo(beforeOwnershipChange));
+            }
+            finally
+            {
+                if (actor != null) typeof(TopDown3DPlayerAnimationDriver).GetMethod("OnDestroy", Private).Invoke(actor.GetComponent<TopDown3DPlayerAnimationDriver>(), null);
+                if (actor != null) Object.DestroyImmediate(actor); if (ground != null) Object.DestroyImmediate(ground);
+                Object.DestroyImmediate(bindings); Object.DestroyImmediate(policy);
+                EditorSceneManager.CloseScene(scene, true);
             }
         }
     }
