@@ -10,6 +10,8 @@ Read the [resource catalogue](RESOURCE_CATALOGUE.md) for direct sources, artists
 
 The author subsequently authorized that exercise. See the [offline comparison results](STUDY_RESULTS.md) and [interactive comparison viewer](comparison.html) for the same rock, ground, and prop under the three material treatments. This adds an art study without changing production content.
 
+Following review on October 15, the author selected B's ground treatment and a balance between B and C for rocks and props, retaining C's texture character and broader painted accents with restraint. This accepted surface direction supersedes the open choice between the three study candidates; exact asset treatments still need refinement.
+
 ## How the named influences contribute
 
 | Influence | Contribution to the proposed direction | What needs restraint |

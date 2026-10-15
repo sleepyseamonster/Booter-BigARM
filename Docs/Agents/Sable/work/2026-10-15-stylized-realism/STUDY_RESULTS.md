@@ -39,7 +39,7 @@ The original basalt maps are image-derived study assets rather than measured sca
 
 ## Sable review
 
-The recommended starting point is between B and C: keep B's restraint across broad ground areas, with C's larger painted accents on selected rock surfaces and manufactured props. C makes the painted treatment more legible in the close views, while the common geometry still carries the object's volume. This is an art recommendation, not the author's selection.
+The author accepted the combined direction on October 15, 2026: **B for the ground**, with **rocks and props balanced between B and C**. C's texture character and broader painted accents are preferred for rocks and props, tempered with B's restraint. The exact balance remains an art-development choice rather than a numeric blend ratio. This supersedes the earlier recommendation-only status; it does not approve every artifact or wear pattern in the draft maps.
 
 At the 22 metre gameplay framing, the canister's shape and color carry more information than its brushwork. The prop-detail view is necessary to compare its finish. The twilight setup suppresses surface distinctions in all three candidates; material approval should use the sunset views alongside twilight, rather than treating darkness as successful simplification.
 
