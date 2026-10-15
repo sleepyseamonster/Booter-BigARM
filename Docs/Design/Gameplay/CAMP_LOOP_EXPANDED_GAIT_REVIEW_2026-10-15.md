@@ -2,7 +2,7 @@
 
 October 15, 2026. Continues the [locomotion implementation plan](CAMP_LOOP_LOCOMOTION_IMPLEMENTATION_PLAN_2026-10-14.md). The author's latest feedback accepts jogging and running, retains the previous sprint as **fast run**, and requests a distinct, faster full sprint. Gamepad is the primary control: stick deflection traverses ordinary gaits; full deflection reaches fast run; the existing right bumper sprint action adds full sprint. Keyboard stage selection is deferred.
 
-Status: installed in the existing author Camp Loop scene and structurally verified for AP02 playtesting. The [author import/readback](../../Evidence/Gameplay/LocomotionImplementation20261014/ExpandedGaitReview20261015/author-readback.json) confirms the selected profile and controls. The author performs Play Mode feel acceptance; the qualification gaps below remain open.
+Status: installed in the existing author Camp Loop scene, structurally verified for AP02 playtesting, and subsequently accepted by the author: “Okay, that looks great.” The [author import/readback](../../Evidence/Gameplay/LocomotionImplementation20261014/ExpandedGaitReview20261015/author-readback.json) confirms the selected profile and controls. The qualification gaps below remain open. Continue the newly requested strafing, turning, slopes and jumping through the [next-agent handoff](CAMP_LOOP_LOCOMOTION_CONTINUATION_HANDOFF_2026-10-15.md).
 
 ## Audit and selected comparison
 
