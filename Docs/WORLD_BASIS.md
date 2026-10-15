@@ -69,6 +69,7 @@ Author direction recorded October 14, 2026:
 - Scraped husk fibers are the main source of paper.
 - Ordinary megafauna shells are cheap bulk material. This does not make processed fibers, precision components or labor-intensive finished goods cheap.
 - Delicate inner wings from insectoid megafauna can be gathered as resources and used as material for vertical sun shades. Preparation, joining, durability and the actual shade properties remain open.
+- Delicate insectoid wings also supply sail material. Wind turbines can be built from fallen/salvaged parts; rotor design, installation and useful mechanical or electrical output remain undefined.
 - These fibers can also be processed and pressed into textile materials, but this is very difficult. Abundant raw fibers do not imply easy finished-material production.
 - Hides and furs can be processed into textile and other materials, but the usable yield is extremely low. No numeric yield or processing recipe is established.
 - There is no cloth of any kind, but clothing can be made from husk fibers, animal fur, hides and related processed materials. The no-cloth rule does not prohibit garments from these sources.
@@ -85,6 +86,7 @@ Author direction recorded October 14, 2026:
 
 Booter is a professional desert survivor and metal scrapper.
 
+- Booter's traversal gear includes a collapsible handheld wind sail and a four-wheel all-terrain dirtboard for sailing across large flat areas. Sail construction uses delicate insectoid wing material. Handling, steering, braking, carry/storage rules and movement tuning remain open; the equipment direction does not establish a working traversal implementation.
 - Booter is not a chosen hero.
 - Booter is highly trained, but still vulnerable.
 - Movement should have momentum, commitment, and positioning cost.
