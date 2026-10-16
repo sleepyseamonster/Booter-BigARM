@@ -1,0 +1,86 @@
+{
+  "source": "Author requested six additional Cultural objects, October 15, 2026. These are new local game brainstorming proposals checked against the current catalog and Docs/WORLD_BASIS.md. No custom, named culture, institution, song, faith or source-world canon is established by their addition.",
+  "boundary": "Catalog objects only. No new faction, quest, ritual benefit, trade price, recipe, performance system, world placement, streaming, generated identity or persisted gameplay delta. No wood, ordinary cloth, plant materials or natural free water assumed.",
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Cultural objects",
+    "Subtype": "Cultural life proposal",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "None",
+    "Carrier metadata": "Physical keepsake, performance prop or leisure object; packing, mass and carrying limits unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed artisan work, personal exchange or settlement trade; availability and ownership customs remain undefined.",
+    "Crafting / processing": "Candidate finished object using selected prepared stock. No quantities, production time, yield or executable recipe authored.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Material preparation, construction, cultural meaning, value and use remain proposals. No automatic social standing, knowledge unlock, supernatural effect or gameplay bonus.",
+    "Rarity": null,
+    "Item type": "Cultural object",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Primary use": "Culture support",
+    "Material family": "Mixed / unresolved",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "Author-requested cultural-object expansion. Distinct finished objects for proposed leisure, storytelling and craft expression; no existing cultural practice is asserted as canon.",
+    "Tier basis": "Proposed T2 finished object using qualified T1 stock. Material preparation, design, construction and useful performance remain unresolved.",
+    "Finished-item input tier": "T1",
+    "Crafting role": "Finished item"
+  },
+  "items": [
+    {
+      "id": "proposal.culture.engraved_game_tiles",
+      "name": "Engraved shell game tiles",
+      "purpose": "A small matched group of shell tiles with contrasting incised marks, proposed for a portable counting or strategy game during rest stops. The tiles are play pieces rather than currency, devotional offerings or a record of rank; rules and imagery remain to be designed.",
+      "icon": "Six small polished shell rectangles with distinct deeply cut geometric marks, arranged beside a short stack.",
+      "material": "Shell / chitin",
+      "use": "Culture support",
+      "fields": {"Material family": "Shell / chitin", "Search aliases": "shell game tiles; portable strategy pieces; engraved play tiles", "Limitations": "No game rules, gambling economy, common symbolism or accepted regional tradition established. The listed item is the matched tile group, without an extra bag, board or storage case."}
+    },
+    {
+      "id": "proposal.culture.ceramic_storytelling_mask",
+      "name": "Ceramic storytelling mask",
+      "purpose": "A stylized ceramic face held or supported during a proposed dramatic retelling. Its exaggerated brow and mouth distinguish a performed character rather than a named ancestor, deity or official role.",
+      "icon": "A hollow ochre ceramic face with an exaggerated brow, open eye slots and a plain metal holding loop at one side.",
+      "material": "Ceramic and metal",
+      "use": "Culture support",
+      "fields": {"Material family": "Ceramic and metal", "Search aliases": "story mask; ceramic performance mask; dramatic face prop", "Limitations": "A performance prop, not protective armor, respiratory equipment or a new wearable slot. Visibility, holding method, character conventions and cultural acceptance remain proposals."}
+    },
+    {
+      "id": "proposal.culture.jointed_shell_shadow_figure",
+      "name": "Jointed shell shadow figure",
+      "purpose": "A thin articulated shell cutout with metal pivot pins, proposed for manually showing silhouettes while telling stories. A suitable local light and projection surface would be required; neither an electrical display nor automatic animation is supplied.",
+      "icon": "A flat beetle-like shell silhouette with three movable limbs, tiny metal pivot pins and a short all-metal operating stem.",
+      "material": "Metal and shell",
+      "use": "Culture support",
+      "fields": {"Material family": "Metal and shell", "Search aliases": "shell shadow puppet; articulated storytelling silhouette; jointed performance figure", "Limitations": "No wood, cloth screen, ordinary flame, powerful glow-stone projection or working performance system assumed. Figure identity, usable illumination and storytelling customs remain open."}
+    },
+    {
+      "id": "proposal.culture.husk_paper_songbook",
+      "name": "Husk-paper songbook",
+      "purpose": "A small folio of prepared husk-paper leaves proposed to preserve song words, repeated lines or simple performance marks. It records a repertoire rather than tuning an instrument, claiming a civic office or supplying a devotional text.",
+      "icon": "A slim stack of pale husk-paper leaves between thin shell covers, joined by small metal rings and marked with short repeated lines.",
+      "material": "Mixed / unresolved",
+      "use": "Writing and records",
+      "fields": {"Tier": "T3", "Finished-item input tier": "T2", "Tier basis": "Proposed T3 assembled folio using the existing T2 husk-paper material with prepared covers and metal binding parts. Writing, notation and manufacture remain proposals.", "Item type": "Document", "Primary use": "Writing and records", "Physical form": "Folio", "Search aliases": "song folio; husk-paper songbook; travelers repertoire", "Limitations": "No actual lyrics, standard musical notation, literacy level, common language, universal tradition or knowledge unlock established. Covers and binding use shell and metal, not wood or cloth."}
+    },
+    {
+      "id": "proposal.culture.apprentice_practice_plaque",
+      "name": "Apprentice practice plaque",
+      "purpose": "A ceramic plaque bearing successive incised practice patterns and correction marks, proposed as a personal record of learning a craft. It shows unfinished attempts rather than the accomplished work displayed by the existing guild craft exemplar.",
+      "icon": "A small fired ceramic tablet with several rows of increasingly regular carved motifs and a few crossed-out attempts.",
+      "material": "Ceramic",
+      "use": "Culture support",
+      "fields": {"Material family": "Ceramic", "Physical form": "Panel", "Search aliases": "craft practice tablet; apprentice exercise plaque; learning keepsake", "Limitations": "Does not establish a guild membership system, formal apprenticeship institution, qualification, skill increase or crafting unlock. Marking methods, ownership and meaning remain proposals."}
+    },
+    {
+      "id": "proposal.culture.household_pattern_roller",
+      "name": "Household pattern roller",
+      "purpose": "A small engraved ceramic cylinder on a metal axle, proposed for repeating a decorative motif on compatible unfired clay or prepared marking stock. The motif is a personal or household design rather than an official seal, pilgrimage mark or proof of ownership.",
+      "icon": "A palm-sized ceramic roller engraved with a repeating stepped pattern, mounted on a simple bent-metal handle.",
+      "material": "Ceramic and metal",
+      "use": "Decoration",
+      "fields": {"Material family": "Ceramic and metal", "Item type": "Tool", "Primary use": "Decoration", "Search aliases": "decorative pattern roller; household motif cylinder; repeating ceramic stamp", "Limitations": "Compatible marking media and impression quality require design; no water-based ink, wooden handle or freely available cloth assumed. Motif meanings, inheritance and household customs are unassigned."}
+    }
+  ]
+}
