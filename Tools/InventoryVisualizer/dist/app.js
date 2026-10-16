@@ -92,8 +92,10 @@ function renderDetail(){
 function renderProgress(){const records=state.items.map(item=>recordFor(id(item)));$('#art-progress').textContent=`ARTWORK / ${records.filter(r=>r.image).length} IMAGES · ${records.filter(r=>r.status==='queued').length} QUEUED · ${records.filter(r=>r.status==='approved').length} APPROVED`;}
 function resetFilters(){state.category='';for(const selector of ['#search','#tier','#design','#art-filter'])$(selector).value='';renderCategories();renderItems();}
 function setView(view){
-  if(!['menu','inventory','art'].includes(view))view='menu';state.view=view;
-  $('#menu').hidden=view!=='menu';$('#workspace').hidden=view==='menu';
+  if(!['menu','inventory','art','game'].includes(view))view='menu';state.view=view;
+  $('#menu').hidden=view!=='menu';$('#workspace').hidden=view==='menu'||view==='game';
+  $('#game-study').hidden=view!=='game';
+  if(view==='game'){const frame=$('#game-study iframe');if(!frame.getAttribute('src'))frame.src=frame.dataset.src;}
   document.querySelectorAll('nav [data-view]').forEach(button=>{button.classList.toggle('active',button.dataset.view===view);button.setAttribute('aria-current',button.dataset.view===view?'page':'false');});
   $('#view-title').textContent=view==='art'?'Artwork studio':'Inventory';
   $('#view-eyebrow').textContent=view==='art'?'ITEM LIBRARY / IMAGE DEVELOPMENT':'EXPEDITION / INVENTORY STUDY';
@@ -140,6 +142,7 @@ $('#import').onchange=safeRun(async event=>{
   await store(records);renderProgress();renderItems();toast(`Imported ${records.length} item records · ${data.art.length-records.length} unknown IDs skipped`);
 });
 document.addEventListener('keydown',event=>{
+  if(state.view==='game')return;
   if($('#settings').open)return;
   if(/INPUT|SELECT|TEXTAREA/.test(event.target.tagName)){if(event.key==='Escape')event.target.blur();return;}
   if(event.key==='Escape'){setView('menu');return;}

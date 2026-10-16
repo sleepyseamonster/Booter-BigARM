@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Arc & Dust · Game inventory</title><link rel="icon" href="data:,"><link rel="stylesheet" href="game.css"></head>
+<body>
+<div class="shell">
+  <header><div class="wordmark">ARC <i>&</i> DUST <small>EXPEDITION SYSTEMS</small></div><div class="study">INTERACTIVE STUDY <span>Local sample save · not live gameplay</span></div><button id="open-menu">☰ Game menu</button></header>
+  <nav aria-label="Game system"><button data-page="inventory" class="active">Inventory <kbd>I</kbd></button><button data-page="crafting">Crafting</button><button data-page="projects">Projects <span id="project-count">0</span></button><button data-page="reference">Item reference</button></nav>
+  <main id="content"><p class="empty">Reading the item catalogue…</p></main>
+  <footer><span id="message" role="status" aria-live="polite">Loading sample expedition…</span><span><kbd>Esc</kbd> Menu / Back · <kbd>/</kbd> Search · <kbd>Tab</kbd> Navigate</span></footer>
+</div>
+<dialog id="menu"><div class="eyebrow">ARC & DUST / SYSTEM</div><h1>Take a moment.</h1><p class="muted">A quiet layer between journeys.</p><div class="menu-actions"><button data-menu="resume">Resume inventory <span>↗</span></button><button data-menu="radial">Radial setup <span>↗</span></button><button data-menu="settings">Settings <span>↗</span></button><button data-menu="exit">Return to item management <span>↗</span></button></div><small>The study stores changes only in this browser.</small></dialog>
+<dialog id="aux"><div id="aux-body"></div><button id="close-aux">Back</button></dialog>
+<dialog id="reset"><div class="eyebrow">STUDY CONTROLS</div><h2>Reset sample expedition?</h2><p>This replaces this tab’s sample possessions, projects and shortcuts. Your workbook, item reviews and artwork are untouched.</p><div class="actions"><button id="cancel-reset">Keep expedition</button><button id="confirm-reset">Reset sample</button></div></dialog>
+<script type="module" src="game.js"></script>
+</body></html>
