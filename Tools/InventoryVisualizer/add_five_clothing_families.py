@@ -85,7 +85,7 @@ def build(snapshot,spec):
         new=dict(spec['defaults']);new.update(item['fields']);new.update({'Item name':item['name'],'Purpose':item['purpose'],'Sources':spec['source']})
         search={k:old[i] for i,k in enumerate(headers)};search.update(new)
         new['Search terms']='; '.join(str(search.get(k) or '') for k in ['Item ID','Item name','Category','Subtype','Item type','Processing stage','Origin family','Primary use','Material family','Physical form','Design status','Search aliases','Tier','Finished-item input tier','Crafting role']).lower()
-        new['Tier sort order']=3
+        new['Tier sort order']=int(new['Tier'][1:]) if new['Tier'] in ['T0','T1','T2','T3','T4'] else 99
         for field,value in new.items():
             if field in headers:edits.setdefault('Items',{})[f'{openpyxl.utils.get_column_letter(headers.index(field)+1)}{n}']=value if value is not None else ''
         # Keep exact-ID linked metadata and cached formula values consistent.
@@ -106,14 +106,14 @@ def build(snapshot,spec):
     revised=output.getvalue();verify_move(snapshot,revised,edits)
     additions=dict(spec);additions['items']=[i for i in spec['items'] if i['id'] not in reused]
     candidate,receipt=append.build(revised,additions)
-    receipt.update(sourceHash=digest(snapshot),reusedIds=list(reused),pieceCount=25)
+    receipt.update(sourceHash=digest(snapshot),reusedIds=list(reused),pieceCount=len(spec['items']))
     return candidate,receipt
 
 
 def apply():
     plan=json.loads((OUT/'plan.json').read_text(encoding='utf-8'));spec=plan['spec']
     authored=openpyxl.load_workbook(OUT/'authored.xlsx',read_only=True,data_only=True)
-    rows=list(authored['Catalog inputs'].values)[1:];assert len(rows)==25
+    rows=list(authored['Catalog inputs'].values)[1:];assert len(rows)==len(spec['items'])
     for row,item in zip(rows,spec['items']):
         assert list(row[:6])==[item[k] for k in ['id','name','purpose','icon','material','use']]
         assert json.loads(row[6])==item['fields']
@@ -123,7 +123,7 @@ def apply():
     guard.release_guard();atomic_write(append.SOURCE,candidate,plan['sourceHash'])
     (OUT/'receipt.json').write_text(json.dumps(receipt,indent=2),encoding='utf-8')
     update_manifest(spec,plan['sourceHash'],digest(candidate))
-    print('Saved 25 individual clothing pieces: 22 added, three reused; no full-set item.')
+    print('Saved',len(spec['items']),'individual clothing pieces; reused IDs:',len(REUSE),'; no full-set item.')
 
 
 def update_manifest(spec,before_hash,after_hash):
@@ -132,9 +132,9 @@ def update_manifest(spec,before_hash,after_hash):
     reused={i['id']:i for i in spec['items'] if i['id'] in REUSE.values()}
     for item in manifest['items']:
         if item['id'] in reused:
-            item.update(name=reused[item['id']]['name'],reason='Individual electrical-insulating garment in the five clothing families; existing ID retained.')
+            item.update(name=reused[item['id']]['name'],reason='Individual garment refined within the requested clothing family; existing ID retained.')
     manifest['sourceHashAfter']=after_hash
-    manifest.setdefault('revisions',[]).append(dict(reason='Complete five clothing families as individual pieces; refine generic insulating suit to a jacket.',reusedIds=list(reused),sourceHashBefore=before_hash,sourceHashAfter=after_hash))
+    manifest.setdefault('revisions',[]).append(dict(reason=spec['scope'],reusedIds=list(reused),sourceHashBefore=before_hash,sourceHashAfter=after_hash))
     atomic_write(path,(json.dumps(manifest,indent=2)+'\n').encode(),digest(original))
 
 
