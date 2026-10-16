@@ -1,0 +1,17 @@
+{
+  "source": "SourceArt/Blender/Studies/Legger/Legger_Topology_Iteration04.blend",
+  "before_sha256": "fcb639d849c25866508a05b9546175140f44fadaa79a1ff177bc499dc08d1b1f",
+  "after_sha256": "fcb639d849c25866508a05b9546175140f44fadaa79a1ff177bc499dc08d1b1f",
+  "bytes": 810807494,
+  "source_changed": false,
+  "native_saved": false,
+  "blender": "5.2.2 LTS",
+  "raw_render_views": 19,
+  "original_evaluated_triangles": 2667021,
+  "current_visible_meshes": 67,
+  "current_control_quads": 36302,
+  "current_evaluated_triangles": 123664,
+  "reference_authority": "Dense Legger_DetailBake_Source at saved world transform; older leg splits truncated around Z=1.35m and not used to infer whole-leg height.",
+  "measurement_limits": "P/K inferred side-plane landmarks, not recovered rig pivots. Coordinate tolerance/sensitivity boxes are analyst assumptions. Cross-section envelopes include nearby components; flagged samples excluded from precise width targets. Foot bands are geometry extents, not a support polygon.",
+  "scope": "New audit evidence only. No changes to any Blender source, prior plan/receipt, Unity content or packages. No foreground application control, rigging, export, import or gameplay test."
+}

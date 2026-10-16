@@ -1,0 +1,90 @@
+{
+  "source_sha256": "fcb639d849c25866508a05b9546175140f44fadaa79a1ff177bc499dc08d1b1f",
+  "views": [
+    {
+      "image": "dense_R_half_side.png",
+      "side": "R",
+      "center": [
+        0,
+        0,
+        0.87
+      ],
+      "camera_offset": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 1.92,
+      "resolution": [
+        1800,
+        1800
+      ],
+      "clip_end_m": 4.0,
+      "interpretation": "Primary-ray far plane at X=0 reveals only the camera-side half of the dense original. This is a camera cut, not an original part boundary."
+    },
+    {
+      "image": "dense_R_half_hip.png",
+      "side": "R",
+      "center": [
+        0,
+        -0.29,
+        1.46
+      ],
+      "camera_offset": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 0.69,
+      "resolution": [
+        1800,
+        1800
+      ],
+      "clip_end_m": 4.0,
+      "interpretation": "Primary-ray far plane at X=0 reveals only the camera-side half of the dense original. This is a camera cut, not an original part boundary."
+    },
+    {
+      "image": "dense_L_half_side.png",
+      "side": "L",
+      "center": [
+        0,
+        0,
+        0.87
+      ],
+      "camera_offset": [
+        -4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 1.92,
+      "resolution": [
+        1800,
+        1800
+      ],
+      "clip_end_m": 4.0,
+      "interpretation": "Primary-ray far plane at X=0 reveals only the camera-side half of the dense original. This is a camera cut, not an original part boundary."
+    },
+    {
+      "image": "dense_L_half_hip.png",
+      "side": "L",
+      "center": [
+        0,
+        -0.29,
+        1.46
+      ],
+      "camera_offset": [
+        -4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 0.69,
+      "resolution": [
+        1800,
+        1800
+      ],
+      "clip_end_m": 4.0,
+      "interpretation": "Primary-ray far plane at X=0 reveals only the camera-side half of the dense original. This is a camera cut, not an original part boundary."
+    }
+  ],
+  "native_saved": false
+}

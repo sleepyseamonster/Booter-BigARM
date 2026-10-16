@@ -1,0 +1,14 @@
+{
+  "dense_R_foot_plan": {
+    "silhouette_principal_axis_yaw_from_Y_deg": 9.166204470749179,
+    "method": "PCA of alpha>127 pixels in the 0.18m-cut plan, each pixel weighted equally. Shape orientation, not recovered toe pivot or engineering foot axis."
+  },
+  "dense_L_foot_plan": {
+    "silhouette_principal_axis_yaw_from_Y_deg": 4.430128571165913,
+    "method": "PCA of alpha>127 pixels in the 0.18m-cut plan, each pixel weighted equally. Shape orientation, not recovered toe pivot or engineering foot axis."
+  },
+  "current_R_foot_plan": {
+    "silhouette_principal_axis_yaw_from_Y_deg": 0.00025230832846895833,
+    "method": "PCA of alpha>127 pixels in the 0.18m-cut plan, each pixel weighted equally. Shape orientation, not recovered toe pivot or engineering foot axis."
+  }
+}

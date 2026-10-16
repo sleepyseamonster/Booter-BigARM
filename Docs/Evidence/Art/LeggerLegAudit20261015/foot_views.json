@@ -1,0 +1,69 @@
+{
+  "source_sha256": "fcb639d849c25866508a05b9546175140f44fadaa79a1ff177bc499dc08d1b1f",
+  "views": [
+    {
+      "image": "dense_R_foot_plan.png",
+      "center": [
+        0.285,
+        -0.48,
+        0.12
+      ],
+      "camera_offset": [
+        0,
+        0,
+        4
+      ],
+      "ortho_scale_m": 0.85,
+      "resolution": [
+        1800,
+        1800
+      ],
+      "clip_start_m": 3.94,
+      "clip_end_m": 4.15,
+      "interpretation": "Plan-view camera cut at Z=0.18m to remove overlying limb. Not an authored foot/object boundary in the original."
+    },
+    {
+      "image": "dense_L_foot_plan.png",
+      "center": [
+        -0.29,
+        0.32,
+        0.12
+      ],
+      "camera_offset": [
+        0,
+        0,
+        4
+      ],
+      "ortho_scale_m": 0.85,
+      "resolution": [
+        1800,
+        1800
+      ],
+      "clip_start_m": 3.94,
+      "clip_end_m": 4.15,
+      "interpretation": "Plan-view camera cut at Z=0.18m to remove overlying limb. Not an authored foot/object boundary in the original."
+    },
+    {
+      "image": "current_R_foot_plan.png",
+      "center": [
+        0.275,
+        -0.3,
+        0.12
+      ],
+      "camera_offset": [
+        0,
+        0,
+        4
+      ],
+      "ortho_scale_m": 0.85,
+      "resolution": [
+        1800,
+        1800
+      ],
+      "clip_start_m": 3.94,
+      "clip_end_m": 4.15,
+      "interpretation": "Plan-view camera cut at Z=0.18m to remove overlying limb. Not an authored foot/object boundary in the original."
+    }
+  ],
+  "native_saved": false
+}

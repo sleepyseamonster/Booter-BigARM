@@ -1,0 +1,25 @@
+{
+  "root": "Logs/LeggerLegAudit20261015",
+  "recipes": {
+    "audit_boards.py": "0b80cb443b2360d170a196efbfa438c7a300f8d20a83c7dc97cbc1f3f95a6bc4",
+    "foot_views.py": "4fd8766776e2c803c37859c161b50fcd1404601593f2a147fbe6e079f798de57",
+    "half_views.py": "623b41a38d82e3c4d2dfb49c2d5b4cc9c832e0c25861a656eb91a928fe93cac7",
+    "inspect.py": "42cf010d4ad732b759a13acd4fb1c3eba801801edc830a83a9fa7e3a22987bb3",
+    "joint_clouds.py": "12df6d7e9afc6654b37de533d0e3ea36e33d154baff01d420aa397969547e65f",
+    "measure.py": "d9a7f655cc370d0c8f9e7ef95201bf0cc56cfa3de2cfe126c56ee4f269a9abee",
+    "section_topology.py": "63fc88eb70e4427aa56b641c3182e3aa2c9ee504034412025b98ab1a421e9e37"
+  },
+  "local_data_cache_sha256": {
+    "current_full_points.npz": "d108a5a07335e10ff13e240d7bee0ac56d416a206d2d52e969c51779183bb271",
+    "current_L_points.npz": "01db8d9f494116a645615ef9360c60e8f359e2f37ee9b246e64c0b06b5381745",
+    "current_R_points.npz": "48ecc3d77b0b3444a8f3fdedd7c52e11e2bec698aa977312dc5f23f582345fc8",
+    "current_R_triangles.npz": "0d16c8cc44ac0da05db26b665590e93e64be6563313291a8c37d4240333885b8",
+    "dense_original_points.npz": "6a4d58a9c22abe928f545933ad1548c37e626ce7d118773b20adcc099045a900",
+    "dense_original_triangles.npz": "c7a9fa06d1fbd0cdac06a9ebfd34d0ab1e0baa0c7f5981b31c80a8bbea08d0b3",
+    "original_L_points.npz": "a7df944212517b381cfa95ac138fb272705a8deb51273fce91e11b6e98a0f686",
+    "original_R_points.npz": "10845cc25c3d6b2b4b0e0befa3ed6f3d7d8877802f0c8f0c2d7ebfb6d8df00bf"
+  },
+  "native_sources_created": 0,
+  "native_save_calls": 0,
+  "note": "Read-only background capture, point/triangle extraction, NumPy triangle-plane sections, analyst landmark estimates, Pillow technical figures. No package installation or Unity invocation."
+}
