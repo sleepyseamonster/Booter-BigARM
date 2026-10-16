@@ -57,3 +57,7 @@ Sable recommends B ground and believable material response with selected C rock/
 ## October 15, 2026 — Refined combined diorama
 
 Authority: the author requested a refined diorama combining B's ground, realism and C's broader rock/prop accents. [The E candidate](../work/2026-10-15-material-dioramas/refined_BC/README.md) preserves exact B ground/deposit graphs and B material response while mixing retained C pigment selectively by exposed-plane orientation. Six captures cover scene, gameplay, twilight, neutral and diagnostic views; two boards compare B / E / C. Saved-source reopen verifies the declared invariants and reproduces the close frame within one 8-bit channel value. This realizes the requested combined direction for review; it is not the author's approval of the resulting candidate or a Unity integration.
+
+## October 15, 2026 — Combined direction endorsed for continued iteration
+
+Author feedback after viewing E: “I think I like the direction so far,” with an explicit expectation of continued iteration and more textures for additional materials. Treat E as the working visual direction: B ground, believable material response and selective broader C painted accents on rocks and props. This is a provisional endorsement of the direction; individual textures, further material families and final production acceptance remain open. Future material studies should extend this visual language while preserving room for feedback. This feedback does not start an unsolicited render batch or authorize Unity integration.

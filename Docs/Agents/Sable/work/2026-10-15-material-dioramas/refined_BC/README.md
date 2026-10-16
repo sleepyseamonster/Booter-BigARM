@@ -2,6 +2,8 @@
 
 October 15, 2026. Sable. The author requested B's ground with rocks and props balanced between B and C, retaining realism and introducing C's broader painted accents. This is a new combined candidate for review, not final art-direction approval.
 
+Subsequent author feedback endorses this as the **working direction for continued iteration**: “I think I like the direction so far.” Additional textures and material families are expected, with individual surfaces and final production acceptance still open.
+
 The existing sealed workyard supplies geometry, composition, fixtures and cameras. G01/G02/G03, including faded deposits, use the exact saved B materials without edits. New E rock/prop materials retain B's roughness, metalness, relief, oxide coverage and coatings, with C's saved pigment graphs mixed more strongly onto exposed planes. This makes the balance selective rather than washing every surface with one painted filter. No new image generation or manually painted texture claim applies.
 
 The six completed captures are sunset close/gameplay, twilight close, neutral gameplay, and neutral metal/stone plates. Their camera poses and lighting match the earlier controlled study. The native source is saved at sunset close view. This is an offline Blender study, with no production import or runtime behavior. Deterministic world identity, streaming/unload, generated-object identity, authored terrain constraints and persisted deltas have no runtime interaction here: the existing authored diorama is rendered offline and production terrain is untouched.
