@@ -1,4 +1,5 @@
 import {IDS,EQUIPMENT,OWNERS,RECIPES,freshState,restoreState,accessible,amount,load,transfer,craft,craftBlocker} from './game-model.mjs';
+import {startInventoryGamepad} from './gamepad.js';
 
 const $=s=>document.querySelector(s),html=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const SAVE='arc-dust-game-inventory-v1',PREFS='arc-dust-game-settings-v1';
@@ -112,4 +113,4 @@ async function init(){
   try{const response=await fetch('/api/catalog');if(!response.ok)throw Error('The item catalogue is unavailable.');const data=await response.json();catalog=new Map(data.items.map(item=>[item['Item ID'],item]));loaded=true;render();say(recovery||'Sample expedition ready · independent browser save · spreadsheet is read-only here.');}
   catch(error){$('#content').innerHTML='<p class="empty">Could not read the item catalogue. Keep the local visualizer server running, then reload this tab.</p>';say(error.message);}
 }
-init();
+init().then(()=>{if(loaded)startInventoryGamepad();});
