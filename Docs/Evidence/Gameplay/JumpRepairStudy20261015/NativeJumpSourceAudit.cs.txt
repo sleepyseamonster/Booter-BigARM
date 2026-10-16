@@ -1,0 +1,79 @@
+using System;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+using UnityEngine;
+using UnityEditor;
+using UnityEngine.SceneManagement;
+using BooterBigArm.TopDown3D;
+using BooterBigArm.Editor;
+
+public static class NativeJumpSourceAudit
+{
+    public static string Capture(string output)
+    {
+        var scene=SceneManager.GetActiveScene();
+        var markedCandidate=Application.isBatchMode && File.Exists(".animation-playground-validation-project") && !Directory.Exists(".git");
+        if(EditorApplication.isPlayingOrWillChangePlaymode || EditorApplication.isCompiling
+            || !markedCandidate && scene.path!="Assets/_Project/Scenes/Reference/CampLoopTesting.unity" || File.Exists(output))
+            throw new InvalidOperationException("Audit the existing stable EditMode scene into a fresh receipt.");
+        var roots=scene.GetRootGameObjects();var dirty=scene.isDirty;
+        var b=AssetDatabase.LoadAssetAtPath<TopDown3DAnimationPlaygroundBindings>(
+            "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset");
+        if(b.targetModel.GetComponentsInChildren<MonoBehaviour>(true).Length!=0)
+            throw new InvalidDataException("Preview only the imported rig without gameplay scripts.");
+        var muscles=new HashSet<string>(HumanTrait.MuscleName);
+        var recipes=new[]{
+            new {id="JumpStanding",start=0f,launch=.6333333f,apex=.9666667f,contact=1.2166667f,end=2.1666667f,variant=b.airborne.standing},
+            new {id="JumpRunning",start=0f,launch=.098f,apex=.376f,contact=.605f,end=.9f,variant=b.airborne.running},
+            new {id="JumpUnarmed",start=.2666667f,launch=.8333333f,apex=1.1666667f,contact=1.4666667f,end=2.3333333f,variant=b.airborne.unarmed}};
+        string Hash(string path){using var sha=SHA256.Create();return BitConverter.ToString(sha.ComputeHash(File.ReadAllBytes(path))).Replace("-","").ToLowerInvariant();}
+        var rows=new List<object>();
+        foreach(var recipe in recipes)
+        {
+            var path="Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/"+recipe.id+"OriginalHeightBaked.fbx";
+            var source=AnimationPlaygroundClipDerivatives.LoadClip(path);
+            var native=AnimationUtility.GetCurveBindings(source)
+                .Where(v=>v.type==typeof(Animator)&&muscles.Contains(v.propertyName))
+                .ToDictionary(v=>v.propertyName,v=>AnimationUtility.GetEditorCurve(source,v));
+            object Compare(AnimationClip clip,float nativeTime,float clipTime)
+            {
+                var derived=AnimationUtility.GetCurveBindings(clip)
+                    .Where(v=>v.type==typeof(Animator)&&muscles.Contains(v.propertyName))
+                    .ToDictionary(v=>v.propertyName,v=>AnimationUtility.GetEditorCurve(clip,v));
+                var deltas=native.Keys.Intersect(derived.Keys)
+                    .Select(k=>Mathf.Abs(native[k].Evaluate(nativeTime)-derived[k].Evaluate(clipTime))).ToArray();
+                return new {channels=deltas.Length,mean=deltas.Average(),maximum=deltas.Max()};
+            }
+            var measured=AnimationPlaygroundMotionSampler.Measure(AssetDatabase.GetAssetPath(b.targetModel),
+                path,b.visualScale,b.visualOffset,120);
+            if(!measured.finite)throw new InvalidDataException("Non-finite source pose.");
+            object Mark(float time)
+            {
+                var frame=measured.frames.OrderBy(f=>Mathf.Abs(f.seconds-time)).First();
+                return new {requestedSeconds=time,sampledSeconds=frame.seconds,
+                    hips=new[]{frame.hips.x,frame.hips.y,frame.hips.z},
+                    leftSole=new[]{frame.leftSole.x,frame.leftSole.y,frame.leftSole.z},
+                    rightSole=new[]{frame.rightSole.x,frame.rightSole.y,frame.rightSole.z}};
+            }
+            var apexFrame=measured.frames.OrderByDescending(f=>f.hips.y).First();
+            rows.Add(new {recipe.id,path,source.length,source.frameRate,source.isHumanMotion,sourceHash=Hash(path),
+                recipe.start,recipe.launch,recipe.apex,recipe.contact,recipe.end,
+                unusedDescentSeconds=recipe.contact-recipe.apex,riseSeconds=recipe.apex-recipe.launch,
+                physicalApexSeconds=recipe.variant.upwardSpeed/-Physics.gravity.y,
+                peakNativeHipsSeconds=apexFrame.seconds,peakNativeHipsY=apexFrame.hips.y,
+                apexMusclesAgainstCurrentRiseEnd=Compare(recipe.variant.rising,recipe.apex,recipe.variant.rising.length),
+                contactMusclesAgainstCurrentLandingStart=Compare(recipe.variant.landing,recipe.contact,0),
+                nativeMarkers=new[]{Mark(recipe.start),Mark(recipe.launch),Mark(recipe.apex),Mark(recipe.contact),Mark(recipe.end)}});
+        }
+        if(scene.isDirty!=dirty || !roots.SequenceEqual(scene.GetRootGameObjects()) || SceneManager.GetActiveScene()!=scene)
+            throw new InvalidOperationException("The author scene changed during preview measurement.");
+        File.WriteAllText(output,Newtonsoft.Json.JsonConvert.SerializeObject(new {
+            utc=DateTime.UtcNow,
+            scope="Audit-only native-source measurements in temporary preview scenes. No motor execution, physics stepping, asset edits, imports or author-scene save/reload. Current skin quality; target rig without separately attached equipment. Marker positions use nearest 120Hz native sample; not controller/transition qualification.",
+            scene=scene.path,sceneDirty=scene.isDirty,markedCandidate,skinWeights=QualitySettings.skinWeights.ToString(),
+            target=AssetDatabase.GetAssetPath(b.targetModel),rows},Newtonsoft.Json.Formatting.Indented)+"\n");
+        return output;
+    }
+}

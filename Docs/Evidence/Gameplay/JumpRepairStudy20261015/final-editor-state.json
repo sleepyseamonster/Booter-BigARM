@@ -1,0 +1,26 @@
+{
+  "author": {
+    "utc": "2026-10-16T04:49:18.628922Z",
+    "playing": false,
+    "compiling": false,
+    "compilationFailed": false,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "dirty": true,
+    "runtimeModule": "c3a1e99e-5521-459a-82b2-8bd9717da120"
+  },
+  "candidate": {
+    "utc": "2026-10-16T04:49:18.8227149Z",
+    "playing": false,
+    "compiling": false,
+    "compilationFailed": false,
+    "scene": "",
+    "dirty": false,
+    "runtimeModule": "718f698a-2542-4ee1-90fd-9f980942746e"
+  },
+  "candidateCleanup": {
+    "utc": "2026-10-16T04:50:11.337826+00:00",
+    "ownedPid": 5192,
+    "action": "Stopped only the background candidate launched by this audit, after validating process, normalized project path, -batchmode, candidate marker and absence of Git metadata.",
+    "authorPidPreserved": 9748
+  }
+}

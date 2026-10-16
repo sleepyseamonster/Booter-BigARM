@@ -1,0 +1,11 @@
+{
+  "utc": "2026-10-16T04:49:18.399920+00:00",
+  "initialManifest": "../JumpAudit20261015/inspected-source-hashes.json",
+  "comparedFiles": 77,
+  "changedAuthorInputs": [],
+  "candidateDifferencesAgainstInitialManifest": [
+    "Assets/_Project/Scenes/Reference/CampLoopTesting.unity"
+  ],
+  "helperSha256": "ee28c3346ffb9fb1eeca19ccbdd5b27b87de2c8a927683d8b0b0a20acad93c4d",
+  "scope": "Initial manifest excludes concurrently authored unrelated scene/art/UI work; no claim that the entire shared worktree is unchanged."
+}

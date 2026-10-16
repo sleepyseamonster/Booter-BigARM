@@ -1,0 +1,386 @@
+{
+  "utc": "2026-10-16T04:40:13.7263354Z",
+  "scope": "Audit-only native-source measurements in temporary preview scenes. No motor execution, physics stepping, asset edits, imports or author-scene save/reload. Current skin quality; target rig without separately attached equipment. Marker positions use nearest 120Hz native sample; not controller/transition qualification.",
+  "scene": "",
+  "sceneDirty": false,
+  "markedCandidate": true,
+  "skinWeights": "OneBone",
+  "target": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshOriginalRig.fbx",
+  "rows": [
+    {
+      "id": "JumpStanding",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpStandingOriginalHeightBaked.fbx",
+      "length": 2.36666679,
+      "frameRate": 30.0,
+      "isHumanMotion": true,
+      "sourceHash": "3605b12a8024b214a2db6c86d301c3b5ad05bff500d93445d0e2ddbf4fb1ede7",
+      "start": 0.0,
+      "launch": 0.6333333,
+      "apex": 0.9666667,
+      "contact": 1.2166667,
+      "end": 2.16666675,
+      "unusedDescentSeconds": 0.25,
+      "riseSeconds": 0.333333373,
+      "physicalApexSeconds": 0.468909234,
+      "peakNativeHipsSeconds": 0.8916667,
+      "peakNativeHipsY": 0.369196415,
+      "apexMusclesAgainstCurrentRiseEnd": {
+        "channels": 55,
+        "mean": 0.0,
+        "maximum": 0.0
+      },
+      "contactMusclesAgainstCurrentLandingStart": {
+        "channels": 55,
+        "mean": 0.0,
+        "maximum": 0.0
+      },
+      "nativeMarkers": [
+        {
+          "requestedSeconds": 0.0,
+          "sampledSeconds": 0.0,
+          "hips": [
+            -0.111209773,
+            -0.187000275,
+            -0.07073573
+          ],
+          "leftSole": [
+            -0.179429516,
+            -0.91706115,
+            0.254691362
+          ],
+          "rightSole": [
+            0.0595266968,
+            -0.947496,
+            -0.30574894
+          ]
+        },
+        {
+          "requestedSeconds": 0.6333333,
+          "sampledSeconds": 0.6333334,
+          "hips": [
+            -0.109715663,
+            -0.0456533432,
+            -0.0582363233
+          ],
+          "leftSole": [
+            -0.07637964,
+            -0.912077367,
+            0.339597821
+          ],
+          "rightSole": [
+            0.235752061,
+            -0.898886561,
+            -0.27727744
+          ]
+        },
+        {
+          "requestedSeconds": 0.9666667,
+          "sampledSeconds": 0.9666667,
+          "hips": [
+            -0.213664159,
+            0.337028146,
+            -0.1296825
+          ],
+          "leftSole": [
+            -0.08676188,
+            -0.0743913054,
+            0.228369623
+          ],
+          "rightSole": [
+            -0.0133649725,
+            -0.19498992,
+            -0.135014474
+          ]
+        },
+        {
+          "requestedSeconds": 1.2166667,
+          "sampledSeconds": 1.2166667,
+          "hips": [
+            -0.158742249,
+            -0.105179548,
+            -0.0597190224
+          ],
+          "leftSole": [
+            -0.060510695,
+            -0.8933042,
+            0.32614252
+          ],
+          "rightSole": [
+            0.224722952,
+            -0.9164694,
+            -0.290685683
+          ]
+        },
+        {
+          "requestedSeconds": 2.16666675,
+          "sampledSeconds": 2.16666675,
+          "hips": [
+            -0.111707337,
+            -0.127808571,
+            -0.06879783
+          ],
+          "leftSole": [
+            -0.177244484,
+            -0.9220055,
+            0.255430758
+          ],
+          "rightSole": [
+            0.06431722,
+            -0.9451031,
+            -0.3139896
+          ]
+        }
+      ]
+    },
+    {
+      "id": "JumpRunning",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpRunningOriginalHeightBaked.fbx",
+      "length": 0.900000036,
+      "frameRate": 30.0,
+      "isHumanMotion": true,
+      "sourceHash": "6993cb9cc44d017fd75d1edb6814d34f9b5ca059d8c0f5448da9e270a5f4392e",
+      "start": 0.0,
+      "launch": 0.098,
+      "apex": 0.376,
+      "contact": 0.605,
+      "end": 0.9,
+      "unusedDescentSeconds": 0.229000032,
+      "riseSeconds": 0.278,
+      "physicalApexSeconds": 0.468909234,
+      "peakNativeHipsSeconds": 0.313761473,
+      "peakNativeHipsY": 0.206810474,
+      "apexMusclesAgainstCurrentRiseEnd": {
+        "channels": 55,
+        "mean": 0.0,
+        "maximum": 0.0
+      },
+      "contactMusclesAgainstCurrentLandingStart": {
+        "channels": 55,
+        "mean": 0.0,
+        "maximum": 0.0
+      },
+      "nativeMarkers": [
+        {
+          "requestedSeconds": 0.0,
+          "sampledSeconds": 0.0,
+          "hips": [
+            -0.00908217,
+            -0.2100969,
+            -0.115146071
+          ],
+          "leftSole": [
+            -0.06496849,
+            -0.480033547,
+            -0.30610922
+          ],
+          "rightSole": [
+            0.05599938,
+            -0.9044441,
+            -0.3076778
+          ]
+        },
+        {
+          "requestedSeconds": 0.098,
+          "sampledSeconds": 0.0990825742,
+          "hips": [
+            -0.0399401672,
+            0.00013178587,
+            -0.09428516
+          ],
+          "leftSole": [
+            -0.214304671,
+            -0.3409893,
+            0.5411196
+          ],
+          "rightSole": [
+            0.0119106639,
+            -0.8896958,
+            -0.45294553
+          ]
+        },
+        {
+          "requestedSeconds": 0.376,
+          "sampledSeconds": 0.379816532,
+          "hips": [
+            -0.02201616,
+            0.187598348,
+            -0.148089856
+          ],
+          "leftSole": [
+            -0.0703576058,
+            -0.188483238,
+            0.502940357
+          ],
+          "rightSole": [
+            0.009974486,
+            -0.3388583,
+            -0.289564967
+          ]
+        },
+        {
+          "requestedSeconds": 0.605,
+          "sampledSeconds": 0.6027523,
+          "hips": [
+            0.0326788463,
+            -0.100038528,
+            -0.119242564
+          ],
+          "leftSole": [
+            -0.14087005,
+            -0.9014493,
+            0.188498259
+          ],
+          "rightSole": [
+            0.07474682,
+            -0.600639939,
+            0.342339635
+          ]
+        },
+        {
+          "requestedSeconds": 0.9,
+          "sampledSeconds": 0.900000036,
+          "hips": [
+            -0.007048576,
+            -0.210028589,
+            -0.114851356
+          ],
+          "leftSole": [
+            -0.07441428,
+            -0.4796167,
+            -0.306548327
+          ],
+          "rightSole": [
+            0.0593654625,
+            -0.9043904,
+            -0.3073071
+          ]
+        }
+      ]
+    },
+    {
+      "id": "JumpUnarmed",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/AirbornePolicies/JumpUnarmedOriginalHeightBaked.fbx",
+      "length": 2.33333349,
+      "frameRate": 30.0,
+      "isHumanMotion": true,
+      "sourceHash": "854db1b3db23f109a9df33e0d838cf4143637696d21e868e821bce84a88429ad",
+      "start": 0.2666667,
+      "launch": 0.8333333,
+      "apex": 1.16666675,
+      "contact": 1.4666667,
+      "end": 2.33333325,
+      "unusedDescentSeconds": 0.299999952,
+      "riseSeconds": 0.333333433,
+      "physicalApexSeconds": 0.468909234,
+      "peakNativeHipsSeconds": 1.13760388,
+      "peakNativeHipsY": 0.28549397,
+      "apexMusclesAgainstCurrentRiseEnd": {
+        "channels": 55,
+        "mean": 0.0,
+        "maximum": 0.0
+      },
+      "contactMusclesAgainstCurrentLandingStart": {
+        "channels": 55,
+        "mean": 0.0,
+        "maximum": 0.0
+      },
+      "nativeMarkers": [
+        {
+          "requestedSeconds": 0.2666667,
+          "sampledSeconds": 0.2657177,
+          "hips": [
+            -0.0224718787,
+            -0.0905515552,
+            -0.117889844
+          ],
+          "leftSole": [
+            -0.217302263,
+            -0.93341285,
+            -0.0301502366
+          ],
+          "rightSole": [
+            0.122295946,
+            -0.927045166,
+            -0.171646819
+          ]
+        },
+        {
+          "requestedSeconds": 0.8333333,
+          "sampledSeconds": 0.8303678,
+          "hips": [
+            -0.0207714234,
+            -0.02091676,
+            -0.14351967
+          ],
+          "leftSole": [
+            -0.284758329,
+            -0.8962466,
+            0.2260436
+          ],
+          "rightSole": [
+            0.239791825,
+            -0.90895164,
+            0.05663604
+          ]
+        },
+        {
+          "requestedSeconds": 1.16666675,
+          "sampledSeconds": 1.16251493,
+          "hips": [
+            -0.061411988,
+            0.284800529,
+            -0.202586681
+          ],
+          "leftSole": [
+            -0.0138708195,
+            -0.243759573,
+            0.071538724
+          ],
+          "rightSole": [
+            0.0990149751,
+            -0.164636374,
+            0.0491898
+          ]
+        },
+        {
+          "requestedSeconds": 1.4666667,
+          "sampledSeconds": 1.469751,
+          "hips": [
+            -0.0617387481,
+            -0.08795172,
+            -0.137332439
+          ],
+          "leftSole": [
+            -0.268545061,
+            -0.9210626,
+            0.112241931
+          ],
+          "rightSole": [
+            0.157709733,
+            -0.9207783,
+            -0.152698562
+          ]
+        },
+        {
+          "requestedSeconds": 2.33333325,
+          "sampledSeconds": 2.33333349,
+          "hips": [
+            -0.0127453338,
+            -0.09311998,
+            -0.08931708
+          ],
+          "leftSole": [
+            -0.239663467,
+            -0.9361577,
+            0.09336209
+          ],
+          "rightSole": [
+            0.14020671,
+            -0.9281247,
+            -0.164494142
+          ]
+        }
+      ]
+    }
+  ]
+}

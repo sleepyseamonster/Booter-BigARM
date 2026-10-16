@@ -1,0 +1,78 @@
+{
+  "scope": "Analytical examples only; no actual Rigidbody trajectory, collision or controller blend was executed.",
+  "physicalBaseline": {
+    "upwardSpeed": 4.6,
+    "gravityMagnitude": 9.81,
+    "idealApexSeconds": 0.46890927624872575,
+    "idealSameHeightFlightSeconds": 0.9378185524974515,
+    "idealApexHeightMetres": 1.078491335372069
+  },
+  "sourcePhaseRates": [
+    {
+      "family": "JumpStanding",
+      "riseSourceSeconds": 0.333333373,
+      "descentSourceSeconds": 0.25,
+      "riseRateAgainstPhysicalHalfFlight": 0.7108696498108696,
+      "descentRateAgainstPhysicalHalfFlight": 0.5331521739130435
+    },
+    {
+      "family": "JumpRunning",
+      "riseSourceSeconds": 0.278,
+      "descentSourceSeconds": 0.229000032,
+      "riseRateAgainstPhysicalHalfFlight": 0.5928652173913045,
+      "descentRateAgainstPhysicalHalfFlight": 0.4883674595478261
+    },
+    {
+      "family": "JumpUnarmed",
+      "riseSourceSeconds": 0.333333433,
+      "descentSourceSeconds": 0.299999952,
+      "riseRateAgainstPhysicalHalfFlight": 0.7108697777673914,
+      "descentRateAgainstPhysicalHalfFlight": 0.6397825063304349
+    }
+  ],
+  "slopeCentreFootGap": {
+    "capsuleRadiusMetres": 0.2,
+    "currentRayThresholdMetres": 0.03,
+    "formula": "radius * (1/cos(slopeRadians) - 1)",
+    "thresholdDegrees": 29.591845793950736,
+    "rows": [
+      {
+        "slopeDegrees": 0,
+        "gapMetres": 0.0
+      },
+      {
+        "slopeDegrees": 16.48,
+        "gapMetres": 0.008568229715248643
+      },
+      {
+        "slopeDegrees": 25,
+        "gapMetres": 0.020675583792498342
+      },
+      {
+        "slopeDegrees": 30,
+        "gapMetres": 0.030940107675850294
+      },
+      {
+        "slopeDegrees": 40,
+        "gapMetres": 0.06108145786645572
+      },
+      {
+        "slopeDegrees": 48,
+        "gapMetres": 0.09889530997292173
+      }
+    ]
+  },
+  "peakSpeedSeverityCounterexample": {
+    "downwardSpeedSamples": [
+      9,
+      4,
+      2
+    ],
+    "assumedActualContactDownwardSpeed": 2,
+    "threshold": 6.5,
+    "damagePerExcessMetrePerSecond": 10,
+    "peakRuleDamage": 25,
+    "contactRuleDamage": 0,
+    "qualification": "Illustrates loss of association after deflection; not proof of collision solver velocity timing."
+  }
+}

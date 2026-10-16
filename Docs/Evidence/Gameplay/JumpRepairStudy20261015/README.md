@@ -1,0 +1,27 @@
+# Continued jump audit evidence — October 15, 2026
+
+Supports the [jump repair plan](../../../Design/Gameplay/CAMP_LOOP_JUMP_REPAIR_PLAN_2026-10-15.md). The author requested continued **audit**, not implementation. No gameplay implementation, animation/profile, scene, input or package was edited. No Play Mode, gameplay smoke test, simulated physics, actor input or foreground activation was used.
+
+## Fresh measurement
+
+`native-source-continuity.json` records complete Standing, Running and Unarmed source takes measured in temporary preview scenes in the existing marked background candidate, using the existing `AnimationPlaygroundMotionSampler`. It samples the imported target rig at 120 Hz, manually evaluates its animation graph, bakes mesh measurements and disposes the preview objects/graph/scene. The imported model was checked to have no MonoBehaviours. No motor/controller executed and no physics advanced. This expands the original audit's geometry/curve-only scope; it does not retroactively change that earlier receipt.
+
+Both boundary comparisons per family contain 55 matching HumanTrait muscle channels with zero mean/maximum absolute difference: complete source at recipe apex versus selected rise end, and complete source at recipe contact versus selected landing start. That establishes an existing limb-pose bridge through the unused descent. It does not establish final rendered position/velocity continuity, correct semantic landmarks or animation feel.
+
+The current candidate skinning quality was **OneBone**. The target was `MaleBaseMeshOriginalRig.fbx`, with the same binding scale/offset as the author checkout, without separately attached equipment. Pose marker positions are nearest 120 Hz samples, with actual sampled times recorded. Coordinates are calibrated rig measurements, not a physical world-space jump trajectory. Recipe apex times need subsequent pose/contact validation; the measured maximum hip height can occur at a different source time.
+
+The candidate's retained `OriginalHeightBaked` policy FBXs have the same bytes as the canonical author Standing/Running/Unarmed source FBXs. Their `.meta` importer policies differ. The candidate copies retain original orientation and bake vertical root height; these imports were already present and were not copied into the author project. `source-study-inputs.json` records both policies' hashes and the exact matching sampler, derivative helper, airborne profile, binding and target rig inputs. Native source-root/height measurements must not be presented as if they came from the author project's canonical importer settings.
+
+`NativeJumpSourceAudit.cs.txt` preserves the exact read-only measurement helper as text. It ran through the installed Unity CLI's in-memory `run_script` compiler against the background candidate; it was never installed under `Assets`. Entry: `NativeJumpSourceAudit.Capture(outputPath)`. It refuses Play Mode, active compilation and an existing output receipt, and verifies active-scene dirty state/root identity after measurement. Reproduction requires the matching privately available source assets, recorded importer policies and existing sampler; this bundle does not contain those assets.
+
+Two preliminary helper attempts did not produce measurements: an in-memory compile rejected unavailable .NET convenience APIs, then an author-checkout attempt found the policy-import path absent before sampling. The helper was corrected to use the supported hashing API and the already provisioned marked candidate. Neither failure is a game/runtime failure or a source-asset edit. The subsequent candidate invocation compiled and executed successfully.
+
+## Analytical and preservation records
+
+- `analytical-models.json`: ideal impulse/gravity timing; possible source phase rates; rounded-capsule centre-foot slope gap; illustrative peak-speed versus contact-speed damage. These are calculations, not gameplay reproductions or accepted tuning values.
+- `preservation-and-parity.json`: all **77** files from the initial inspected manifest still match their recorded author-checkout hashes. Candidate comparison differs only for the CampLoopTesting scene, which the source-pose measurement did not load or use. Runtime source/profile inputs match; distinct runtime assembly module IDs reflect separate Editor compilation and are not byte-level assembly parity proof.
+- `final-editor-state.json`: author Editor remained in Edit Mode, CampLoopTesting dirty, no active/failed compilation, original loaded runtime module. Candidate was in empty clean Edit Mode. Only the audit-launched background candidate PID was stopped after process/path/marker guards; author PID 9748 was preserved.
+
+The shared checkout also contains unrelated author/agent work. These records establish preservation of the inspected inputs and the author's current Editor state; they do not claim that the entire shared worktree is clean or frozen. No assets were imported into or saved from the author Editor. No current console-error resolution, animation-transition qualification, actual jumping reproduction or gameplay test pass is claimed.
+
+J11–J13 are additional source-path findings documented with exact code links in the repair plan. Their runtime extent remains unmeasured. The final plan specifies future completion gates and explicitly separates proposed responsiveness/input-grace values from accepted gameplay settings.

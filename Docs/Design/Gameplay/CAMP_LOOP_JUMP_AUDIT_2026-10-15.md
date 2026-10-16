@@ -4,6 +4,8 @@ Audit only. The author considers strafing acceptable for now and reports poor ju
 
 Jumping currently inherits the braking and recovery rules of laboratory actions. Those rules conflict with continuous running jumps. The strongest movement defect is the jump motor's obstacle sweep treating walkable terrain as a blocker, followed by cached loss of takeoff speed. Mandatory landing braking, velocity-clearing handoffs, frozen-pose blends and mismatched source-height policies compound the result. Replacing animations alone would leave these controller problems intact.
 
+Continued audit: the [repair plan and J11–J13](CAMP_LOOP_JUMP_REPAIR_PLAN_2026-10-15.md) add rejected-acquisition rollback, airborne synthetic-floor projection, contact-associated severity, a measured existing-source reuse path and bounded implementation/acceptance contracts. Its [separate receipt](../../Evidence/Gameplay/JumpRepairStudy20261015/README.md) includes offline source-pose evaluation in disposable preview scenes; the original evidence boundary below remains the scope of the initial audit.
+
 ## Evidence boundary
 
 - Inspected the active Camp Loop code, selected private profiles, twelve clip curves, input routing, action ownership, terrain projection, roll recovery and relevant existing tests. [Exact inspected file hashes](../../Evidence/Gameplay/JumpAudit20261015/inspected-source-hashes.json) identify the 77-file snapshot.
