@@ -3,13 +3,13 @@
   "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
   "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
   "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
-  "sourceHashAfter": "1d7b5f6375758053c2bdbfded3548f32e14c9e2ab256209dedeb636b8654c0f7",
+  "sourceHashAfter": "a703b526f94736ace214713d4b6b3ec4e63eae280ef4bbc7c8d3ecb985f64710",
   "counts": {
     "Accessories": 7,
     "Clothing": 8,
     "Tools": 27,
-    "Armor": 35,
-    "Attachments": 4,
+    "Armor": 38,
+    "Attachments": 1,
     "Salvage": 17,
     "Workshop upgrades": 1,
     "Camp items": 8,
@@ -111,8 +111,8 @@
     {
       "id": "proposal.gear.special_plates",
       "name": "Specialized armor plates",
-      "category": "Attachments",
-      "reason": "General fitted mounts, harnesses, inserts and wearable add-ons. Companion-specific cargo fittings, cases and armor add-ons are Legger attachments; complete protective covers remain Legger armor."
+      "category": "Armor",
+      "reason": "Author direction October 16: all remaining general Attachments belong in Armor; retire the empty Attachments section. Category assignment preserves item type, properties and recipe roles, including the tool belt. Legger attachments remains separate."
     },
     {
       "id": "proposal.gear.shield",
@@ -207,8 +207,8 @@
     {
       "id": "proposal.ceramic.armor_insert",
       "name": "Specialist ceramic armor insert",
-      "category": "Attachments",
-      "reason": "General fitted mounts, harnesses, inserts and wearable add-ons. Companion-specific cargo fittings, cases and armor add-ons are Legger attachments; complete protective covers remain Legger armor."
+      "category": "Armor",
+      "reason": "Author direction October 16: all remaining general Attachments belong in Armor; retire the empty Attachments section. Category assignment preserves item type, properties and recipe roles, including the tool belt. Legger attachments remains separate."
     },
     {
       "id": "proposal.ceramic.grinding_disc",
@@ -597,8 +597,8 @@
     {
       "id": "proposal.collection.minimal_hide_tool_belt",
       "name": "Minimal-hide tool belt",
-      "category": "Attachments",
-      "reason": "General fitted mounts, harnesses, inserts and wearable add-ons. Companion-specific cargo fittings, cases and armor add-ons are Legger attachments; complete protective covers remain Legger armor."
+      "category": "Armor",
+      "reason": "Author direction October 16: all remaining general Attachments belong in Armor; retire the empty Attachments section. Category assignment preserves item type, properties and recipe roles, including the tool belt. Legger attachments remains separate."
     },
     {
       "id": "proposal.collection.pressed_husk_apron",
@@ -989,6 +989,16 @@
       ],
       "sourceHashBefore": "31744495fedb62c5110a9d44ea6b695ea332f428d4898ba51d105d777b37c630",
       "sourceHashAfter": "1d7b5f6375758053c2bdbfded3548f32e14c9e2ab256209dedeb636b8654c0f7"
+    },
+    {
+      "reason": "Author direction October 16: all remaining general Attachments belong in Armor; retire the empty Attachments section. Category assignment preserves item type, properties and recipe roles, including the tool belt. Legger attachments remains separate.",
+      "movedIds": [
+        "proposal.ceramic.armor_insert",
+        "proposal.collection.minimal_hide_tool_belt",
+        "proposal.gear.special_plates"
+      ],
+      "sourceHashBefore": "073a058692a1ba6b895b5dfd6bdabfa2896a18ba92aee105a5ee3a9764859aa8",
+      "sourceHashAfter": "a703b526f94736ace214713d4b6b3ec4e63eae280ef4bbc7c8d3ecb985f64710"
     }
   ]
 }

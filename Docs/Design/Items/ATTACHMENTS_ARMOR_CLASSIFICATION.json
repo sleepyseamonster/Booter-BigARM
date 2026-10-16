@@ -1,0 +1,24 @@
+{
+  "reason": "Author direction October 16: all remaining general Attachments belong in Armor; retire the empty Attachments section. Category assignment preserves item type, properties and recipe roles, including the tool belt. Legger attachments remains separate.",
+  "items": [
+    {
+      "id": "proposal.gear.special_plates",
+      "name": "Specialized armor plates",
+      "previous": "Attachments"
+    },
+    {
+      "id": "proposal.ceramic.armor_insert",
+      "name": "Specialist ceramic armor insert",
+      "previous": "Attachments"
+    },
+    {
+      "id": "proposal.collection.minimal_hide_tool_belt",
+      "name": "Minimal-hide tool belt",
+      "previous": "Attachments"
+    }
+  ],
+  "retiredCategory": "Attachments",
+  "sourceHashBefore": "073a058692a1ba6b895b5dfd6bdabfa2896a18ba92aee105a5ee3a9764859aa8",
+  "sourceHashAfter": "a703b526f94736ace214713d4b6b3ec4e63eae280ef4bbc7c8d3ecb985f64710",
+  "scope": "Catalog classification only; IDs, properties, recipes, review/art state, world identity, fixed terrain, streaming and persisted runtime deltas unchanged."
+}

@@ -22,7 +22,7 @@ def apply():
     finally:append.SOURCE=live
     guard.release_guard()
     atomic_write(live,(OUT/'after.xlsx').read_bytes(),plan['sourceHash'])
-    print('Saved five separate Arc power armor items; no whole-set inventory item.')
+    print('Saved',len(plan['spec']['items']),'separate catalog items; no whole-set inventory item.')
 
 
 if __name__=='__main__':
