@@ -1,0 +1,611 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-16",
+  "scope": "Local Unity caches and abandoned publication scratch files on C: and D:",
+  "authority": "Explicit author request to audit, plan and execute safe cleanup",
+  "inventory": {
+    "directories": 230175,
+    "files_scanned": 4802954,
+    "errors": 0,
+    "reparse_points_skipped": 431,
+    "local_detail": "Logs/StorageCleanup20261016/inventory.json"
+  },
+  "removed_cache_directories": [
+    {
+      "path": "C:\\Users\\kbkno\\OneDrive\\Desktop\\arc & dust Unity\\Library",
+      "bytes": 2752712585,
+      "files": 46530,
+      "started": "2026-10-16T15:19:31.9705247+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:19:47.5660466+00:00"
+    },
+    {
+      "path": "C:\\Users\\kbkno\\OneDrive\\Desktop\\arc & dust Unity\\Logs\\MenuValidationProject\\Library",
+      "bytes": 2253723610,
+      "files": 38082,
+      "started": "2026-10-16T15:19:47.5711509+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:20:03.6297001+00:00"
+    },
+    {
+      "path": "C:\\Users\\kbkno\\OneDrive\\Desktop\\arc & dust Unity\\Temp",
+      "bytes": 441544,
+      "files": 5,
+      "started": "2026-10-16T15:20:03.6313280+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:20:04.3278942+00:00"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\MenuValidationProject\\Library",
+      "bytes": 2253723610,
+      "files": 38082,
+      "started": "2026-10-16T15:20:04.3293121+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:20:14.6318754+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\CampAtmosphere20261014-01\\Library",
+      "bytes": 2595221366,
+      "files": 38467,
+      "started": "2026-10-16T15:20:14.6330569+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:20:23.0015972+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\CampIronstone20261014-01\\Library",
+      "bytes": 2292779770,
+      "files": 38269,
+      "started": "2026-10-16T15:20:23.0033042+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:20:37.5454218+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\CampLoadout20261014\\Library",
+      "bytes": 2271070342,
+      "files": 38250,
+      "started": "2026-10-16T15:20:37.5469277+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:20:52.5054362+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\CampModularity20261014-01\\Library",
+      "bytes": 2698699579,
+      "files": 41642,
+      "started": "2026-10-16T15:20:52.5065222+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:21:08.7150736+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\CampModularity20261014-01\\Temp",
+      "bytes": 129563,
+      "files": 5,
+      "started": "2026-10-16T15:21:08.7157119+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:21:09.2111080+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\CampNpc20261014\\Library",
+      "bytes": 2270147599,
+      "files": 38223,
+      "started": "2026-10-16T15:21:09.2130028+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:21:19.5850271+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\CampOptics20261014-01\\Library",
+      "bytes": 3004895229,
+      "files": 42576,
+      "started": "2026-10-16T15:21:19.5857039+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:21:28.9209376+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\CampResources20261014\\Library",
+      "bytes": 2343749379,
+      "files": 39551,
+      "started": "2026-10-16T15:21:28.9216225+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:21:37.8406802+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\CampSalvage20261014-02\\Library",
+      "bytes": 2345459329,
+      "files": 38375,
+      "started": "2026-10-16T15:21:37.8413346+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:21:47.0254151+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\CampSleep20261010-01\\Library",
+      "bytes": 8040657317,
+      "files": 68020,
+      "started": "2026-10-16T15:21:47.0259600+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:21:59.3906266+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\CampWorkstations20261014-01\\Library",
+      "bytes": 2283365363,
+      "files": 38257,
+      "started": "2026-10-16T15:21:59.3911541+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:22:06.6885361+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\CargoSquare20261013-01\\Library",
+      "bytes": 2266851908,
+      "files": 38143,
+      "started": "2026-10-16T15:22:06.6890943+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:22:17.5211387+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\CompassCamera20261013-01\\Library",
+      "bytes": 2264492103,
+      "files": 38133,
+      "started": "2026-10-16T15:22:17.5216843+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:22:27.5274336+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\FixedTerrainDressing20261009\\Library",
+      "bytes": 2300029527,
+      "files": 38255,
+      "started": "2026-10-16T15:22:27.5279873+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:22:35.7371857+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\Inventory20261011-01\\Library",
+      "bytes": 2427396324,
+      "files": 38310,
+      "started": "2026-10-16T15:22:35.7376799+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:22:41.3638897+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\Ironstone20261011-01\\Library",
+      "bytes": 2339676515,
+      "files": 38221,
+      "started": "2026-10-16T15:22:41.3644397+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:22:47.6086300+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\LeggerRiding20261014-01\\Library",
+      "bytes": 2566118892,
+      "files": 38364,
+      "started": "2026-10-16T15:22:47.6091875+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:22:56.3391957+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\PerformanceAudit20261011-01\\Library",
+      "bytes": 10838533411,
+      "files": 146684,
+      "started": "2026-10-16T15:22:56.3396582+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:23:14.7362832+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\PerformanceImplementation20261011-01\\Library",
+      "bytes": 2358143257,
+      "files": 38235,
+      "started": "2026-10-16T15:23:14.7368877+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:23:22.3234879+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\PerformancePlayer20261012-01\\Library",
+      "bytes": 9627346129,
+      "files": 78556,
+      "started": "2026-10-16T15:23:22.3241726+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:23:38.9981157+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\SmoothCubeRock20261010Candidate\\Library",
+      "bytes": 2303646408,
+      "files": 38224,
+      "started": "2026-10-16T15:23:38.9986577+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:23:47.7260122+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\StartingCamp20261011-01\\Library",
+      "bytes": 2348263876,
+      "files": 38305,
+      "started": "2026-10-16T15:23:47.7267551+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:23:54.7814563+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainExpansion20261007-02\\Library",
+      "bytes": 2784464705,
+      "files": 41289,
+      "started": "2026-10-16T15:23:54.7820341+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:24:06.8126841+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainExpansionFinal20261008-01\\Library",
+      "bytes": 3315233619,
+      "files": 45371,
+      "started": "2026-10-16T15:24:06.8132163+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:24:15.8850993+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainFarWestPair20261008-01\\Library",
+      "bytes": 3949144675,
+      "files": 47883,
+      "started": "2026-10-16T15:24:15.8856529+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:24:25.9549382+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainLfs20261012\\Library",
+      "bytes": 9620694099,
+      "files": 75196,
+      "started": "2026-10-16T15:24:25.9554014+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:24:40.0438025+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainNextWestPair20261008-01\\Library",
+      "bytes": 3569421161,
+      "files": 45831,
+      "started": "2026-10-16T15:24:40.0443960+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:24:47.7280057+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainNorthRidge20261009-01\\Library",
+      "bytes": 4544776905,
+      "files": 51268,
+      "started": "2026-10-16T15:24:47.7286115+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:25:05.3024315+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainNorthRow2_20261009_01\\Library",
+      "bytes": 7522180036,
+      "files": 76183,
+      "started": "2026-10-16T15:25:05.3030530+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:25:35.4125976+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainNorthRow3_20261010_01\\Library",
+      "bytes": 8782281468,
+      "files": 82345,
+      "started": "2026-10-16T15:25:35.4132271+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:26:04.5151114+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainNorthRow4_20261011_02\\Library",
+      "bytes": 10289958952,
+      "files": 88567,
+      "started": "2026-10-16T15:26:04.5157596+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:26:36.3528634+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainNorthRowE50401620261009-01\\Library",
+      "bytes": 4727158396,
+      "files": 52295,
+      "started": "2026-10-16T15:26:36.3538288+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:27:00.3844240+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainNorthRowE50811220261009-01\\Library",
+      "bytes": 5046155131,
+      "files": 53322,
+      "started": "2026-10-16T15:27:00.3872800+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:27:20.5109935+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainNorthRowE51220820261009-01\\Library",
+      "bytes": 5233203865,
+      "files": 54349,
+      "started": "2026-10-16T15:27:20.5115420+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:27:37.0725573+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainNorthRowE51630420261009-01\\Library",
+      "bytes": 5422676639,
+      "files": 55376,
+      "started": "2026-10-16T15:27:37.0736980+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:27:58.3393635+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainNorthRowE52040020261009-01\\Library",
+      "bytes": 5681655737,
+      "files": 56403,
+      "started": "2026-10-16T15:27:58.3398888+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:28:21.4477821+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainWestPair20261008-01\\Library",
+      "bytes": 3229591116,
+      "files": 43829,
+      "started": "2026-10-16T15:28:21.4484089+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:28:32.2029768+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\TerrainWestRidgePair20261008-01\\Library",
+      "bytes": 4295112652,
+      "files": 49935,
+      "started": "2026-10-16T15:28:32.2035850+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:28:51.8722282+00:00"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\ViewDistance20261008-01\\Library",
+      "bytes": 3321333788,
+      "files": 45405,
+      "started": "2026-10-16T15:28:51.8726745+00:00",
+      "result": "deleted",
+      "finished": "2026-10-16T15:29:05.6612259+00:00"
+    }
+  ],
+  "removed_cache_files": 2078611,
+  "removed_cache_logical_bytes": 170382317479,
+  "deleted_git_scratch": [
+    {
+      "bytes": 158,
+      "path": "D:\\Arc & Dust\\Project\\.git\\objects\\10\\tmp_obj_ZEZfvh",
+      "action": "git-temporary-file",
+      "result": "deleted"
+    },
+    {
+      "bytes": 141,
+      "path": "D:\\Arc & Dust\\Project\\.git\\objects\\22\\tmp_obj_IsbpbG",
+      "action": "git-temporary-file",
+      "result": "deleted"
+    },
+    {
+      "bytes": 4641,
+      "path": "D:\\Arc & Dust\\Project\\.git\\objects\\22\\tmp_obj_wQR0yU",
+      "action": "git-temporary-file",
+      "result": "deleted"
+    },
+    {
+      "bytes": 21917244,
+      "path": "D:\\Arc & Dust\\Project\\.git\\objects\\8b\\tmp_obj_qOw2ih",
+      "action": "git-temporary-file",
+      "result": "deleted"
+    },
+    {
+      "path": "C:\\Users\\kbkno\\OneDrive\\Desktop\\arc & dust Unity\\.git\\objects\\8b\\tmp_obj_qOw2ih",
+      "result": "deleted",
+      "action": "supplemental-git-scratch",
+      "bytes": 21917244,
+      "sha256": "83f35a056da23f93cb95c022f92bc04b2bbfdc4bde67cb9593a445cf96531f09"
+    },
+    {
+      "path": "C:\\Users\\kbkno\\OneDrive\\Desktop\\arc & dust Unity\\.git\\objects\\b6\\tmp_obj_cL45Kv",
+      "result": "deleted",
+      "action": "supplemental-git-scratch",
+      "bytes": 47370240,
+      "sha256": "9030b5ba23ce88c004cb3adb3a89ba55a6c09ee12d7f6c4a24b3dd059f9f2eba"
+    },
+    {
+      "path": "C:\\Users\\kbkno\\OneDrive\\Desktop\\arc & dust Unity\\.git\\objects\\b6\\tmp_obj_PDcL7j",
+      "result": "deleted",
+      "action": "supplemental-git-scratch",
+      "bytes": 47464448,
+      "sha256": "b41776390de81203e4dfd4f1fa74a88cf8bdb942ce2f7ba8e6f40a8f47dffaf9"
+    },
+    {
+      "path": "C:\\Users\\kbkno\\OneDrive\\Desktop\\arc & dust Unity\\.git\\objects\\f3\\tmp_obj_TJjShY",
+      "result": "deleted",
+      "action": "supplemental-git-scratch",
+      "bytes": 5005312,
+      "sha256": "cebebf71cd0d371456c91cd146e54112c4e333ca5f092b0b79722c21ca4a4ee0"
+    },
+    {
+      "path": "C:\\Users\\kbkno\\OneDrive\\Desktop\\arc & dust Unity\\.git\\objects\\pack\\tmp_pack_c25DTy",
+      "result": "deleted",
+      "action": "supplemental-git-scratch",
+      "bytes": 73031691,
+      "sha256": "6156e6746081ddaf35cf4266c31938a9a31e5c720d7e65949e65986b75162056"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\.git\\objects\\24\\tmp_obj_086Bw9",
+      "result": "deleted",
+      "action": "supplemental-git-scratch",
+      "bytes": 28672,
+      "sha256": "f3b15f0bd8d7435964e7b7a7add1b1fcc790c58060c2ccbe688dec70f6097789"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\.git\\objects\\41\\tmp_obj_4RaBJ3",
+      "result": "deleted",
+      "action": "supplemental-git-scratch",
+      "bytes": 1003520,
+      "sha256": "b89ee26ea03f4ed5255e493278003c83a6a406e2b63aec63bb1ba03e8f380bca"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\.git\\objects\\69\\tmp_obj_bGkp5F",
+      "result": "deleted",
+      "action": "supplemental-git-scratch",
+      "bytes": 1101824,
+      "sha256": "ee9bb4e4bc4261b57555d035833bb98ed90c682bffb71e528e2b7432b5348884"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\.git\\objects\\b6\\tmp_obj_cL45Kv",
+      "result": "deleted",
+      "action": "supplemental-git-scratch",
+      "bytes": 47370240,
+      "sha256": "9030b5ba23ce88c004cb3adb3a89ba55a6c09ee12d7f6c4a24b3dd059f9f2eba"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\.git\\objects\\b6\\tmp_obj_PDcL7j",
+      "result": "deleted",
+      "action": "supplemental-git-scratch",
+      "bytes": 47464448,
+      "sha256": "b41776390de81203e4dfd4f1fa74a88cf8bdb942ce2f7ba8e6f40a8f47dffaf9"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\.git\\objects\\b6\\tmp_obj_Zsr8rY",
+      "result": "deleted",
+      "action": "supplemental-git-scratch",
+      "bytes": 48590848,
+      "sha256": "673c3480db952c7e49dd3d9a83dd69b71f4d738a4d8a1e03a4788699dd0a1457"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\.git\\objects\\e4\\tmp_obj_cJtkPk",
+      "result": "deleted",
+      "action": "supplemental-git-scratch",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\.git\\objects\\f3\\tmp_obj_TJjShY",
+      "result": "deleted",
+      "action": "supplemental-git-scratch",
+      "bytes": 5005312,
+      "sha256": "cebebf71cd0d371456c91cd146e54112c4e333ca5f092b0b79722c21ca4a4ee0"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\.git\\objects\\pack\\tmp_pack_c25DTy",
+      "result": "deleted",
+      "action": "supplemental-git-scratch",
+      "bytes": 73031691,
+      "sha256": "6156e6746081ddaf35cf4266c31938a9a31e5c720d7e65949e65986b75162056"
+    },
+    {
+      "bytes": 48590848,
+      "sha256": "673c3480db952c7e49dd3d9a83dd69b71f4d738a4d8a1e03a4788699dd0a1457",
+      "path": "C:\\Users\\kbkno\\OneDrive\\Desktop\\arc & dust Unity\\.git\\objects\\b6\\tmp_obj_Zsr8rY",
+      "result": "deleted",
+      "action": "supplemental-git-scratch"
+    }
+  ],
+  "deleted_git_scratch_bytes": 488898522,
+  "archived_diagnostic": {
+    "verified": true,
+    "timestamp": 1792163961.656819,
+    "sources": [
+      {
+        "path": "C:\\BooterBigArmValidationRecovery\\2026-10-16\\Logs\\forward-review-hydration-editor.log",
+        "sha256": "290b31536b6f99e21e3bd11f0c15fae87767435da42ae9a42bac21b02137c541",
+        "bytes": 4235335901,
+        "mtime_ns": 1792097086402453800
+      },
+      {
+        "path": "C:\\Users\\kbkno\\AppData\\Local\\Temp\\Unity\\Editor\\Crashes\\Crash_2026-10-15_204446506\\forward-review-hydration-editor.log",
+        "sha256": "290b31536b6f99e21e3bd11f0c15fae87767435da42ae9a42bac21b02137c541",
+        "bytes": 4235335901,
+        "mtime_ns": 1792097086402453800
+      }
+    ],
+    "archive": "C:\\BooterBigArmValidationRecovery\\2026-10-16\\Logs\\forward-review-hydration-editor.log.gz",
+    "archive_bytes": 26990308,
+    "decoded_sha256": "290b31536b6f99e21e3bd11f0c15fae87767435da42ae9a42bac21b02137c541",
+    "decoded_bytes": 4235335901
+  },
+  "deferred_cache_directories": [
+    {
+      "path": "D:\\BooterBigArmValidation\\AnimationPlayground20261013\\Library",
+      "bytes": 2515263888,
+      "files": 39291,
+      "newest_mtime": 1792163149.7332928,
+      "hardlinked_files": 0,
+      "special": [],
+      "reason": "Recent activity within 24 hours or recovery/reparse content"
+    },
+    {
+      "path": "D:\\BooterBigArmValidation\\CameraOptions20261015-01\\Library",
+      "bytes": 2604170073,
+      "files": 38990,
+      "newest_mtime": 1792090124.0226343,
+      "hardlinked_files": 0,
+      "special": [],
+      "reason": "Recent activity within 24 hours or recovery/reparse content"
+    }
+  ],
+  "protected_paths_present": [
+    "D:\\Arc & Dust\\Project\\Library",
+    "D:\\Arc & Dust\\Project\\Temp",
+    "D:\\Arc & Dust\\Project\\Assets",
+    "D:\\Arc & Dust\\Project\\SourceArt",
+    "D:\\Arc & Dust\\Project\\SourceData",
+    "D:\\Arc & Dust\\Project\\.git\\lfs\\objects",
+    "C:\\Users\\kbkno\\OneDrive\\Desktop\\arc & dust Unity\\Assets",
+    "C:\\Users\\kbkno\\OneDrive\\Desktop\\arc & dust Unity\\.git\\lfs\\objects",
+    "C:\\Users\\kbkno\\BooterBigArmRecovery\\20261012-b57ee6744c28",
+    "D:\\BooterBigArmValidation\\PublishedTerrain20261012"
+  ],
+  "disk": {
+    "C:\\": {
+      "before_free_bytes": 8081358848,
+      "after_free_bytes": 21900341248,
+      "net_free_increase_bytes": 13818982400
+    },
+    "D:\\": {
+      "before_free_bytes": 5226307584,
+      "after_free_bytes": 173816107008,
+      "net_free_increase_bytes": 168589799424
+    }
+  },
+  "proof_limits": [
+    "Disk deltas also reflect concurrent authoring and OS activity.",
+    "Cache deletion preserves validation source snapshots; next imports regenerate caches.",
+    "Only Git temporary scratch names were removed; no valid Git/LFS objects or history were pruned.",
+    "Remote GitHub LFS storage is unchanged.",
+    "Unity remained open on production; no gameplay smoke tests or scene changes were performed."
+  ],
+  "local_execution_records": [
+    "Logs/StorageCleanup20261016/cache-execution.jsonl",
+    "Logs/StorageCleanup20261016/artifacts-execution.jsonl",
+    "Logs/StorageCleanup20261016/git-scratch-execution.jsonl"
+  ],
+  "checks": {
+    "production_git_connectivity_exit": 0,
+    "legacy_git_connectivity_exit": 0,
+    "lfs_current_objects_passed": true,
+    "remaining_git_scratch_files": 0,
+    "production_object_counts": [
+      "count: 4633",
+      "size: 342806",
+      "in-pack: 175666",
+      "packs: 19",
+      "size-pack: 4788055",
+      "prune-packable: 0",
+      "garbage: 0",
+      "size-garbage: 0"
+    ],
+    "legacy_object_counts": [
+      "count: 2996",
+      "size: 326579",
+      "in-pack: 6190",
+      "packs: 1",
+      "size-pack: 791760",
+      "prune-packable: 0",
+      "garbage: 0",
+      "size-garbage: 0"
+    ],
+    "staged_paths_before_task_commit": [],
+    "head_at_closeout": "2bf6d160433f88ffde182ccb7dcd29e1b637e659",
+    "active_production_unity_pids": [
+      9748
+    ]
+  },
+  "archive_file_sha256": "45c1cdceca59f4cdb8dcd143e1d606db5542ab67e6935bc1f67687962acc8d15",
+  "local_evidence_sha256": {
+    "inventory.json": "58abe4d22daf5bad325bb58f42a6a0242c9fbd63597f6b2b881b802a9a2e877d",
+    "plan.json": "daba8368c1882b64e865a363c250091cd0d4ef6c99be8687f8c1c6452cf9914a",
+    "cache-execution.jsonl": "a4138287e4ccbdc92c90db4972cea09b2c6644bb69b017601deb55ae558f441f",
+    "artifacts-execution.jsonl": "47fd00f16e4ced13125e955b3ca2a3cfef2f872e3b06ff722fdba3a288f248ec",
+    "git-scratch-execution.jsonl": "46f171909fd09f7b0f5ee991333ab02f1d6d3921e24fe978ad3399ff3850920b",
+    "archive-verified.json": "ea880af7345a091d71951e91348e2741f813ca28ead88470d7f708345a3c7109"
+  }
+}

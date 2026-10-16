@@ -2,6 +2,10 @@
 
 This is the Windows setup and session entry point for the checkout restored on 2026-10-06. Root [AGENTS.md](../AGENTS.md) and the existing agent packages remain authoritative.
 
+## Local storage maintenance — 2026-10-16
+
+The author authorized an audit and cleanup of unused Unity/publication temporary files on C: and D:. Follow the [cleanup plan and receipt](Operations/Repository/STORAGE_CLEANUP_2026-10-16.md) before interpreting old cache paths. Idle validation and legacy-checkout caches may have been retired; their next Editor import must regenerate them. Production caches, source files, Git/LFS history, the published-terrain restore and independent recovery stores remain protected. This maintenance does not change the canonical checkout or authorize remote GitHub/LFS deletion.
+
 ## Lore reference access restored — 2026-10-14
 
 The author supplied `https://github.com/sleepyseamonster/Arc-Dust`; authenticated read-only Git retrieval works on default branch `master`. Follow [Lorekeeper's connection record](Agents/Lorekeeper/README.md) for the inspected revision, targeted partial cache and source-proposal boundaries. This supersedes disconnected-lore statements in older checkpoints below. No game remote, production branch, lore source file or package changed.
