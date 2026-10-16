@@ -3,12 +3,12 @@
   "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
   "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
   "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
-  "sourceHashAfter": "d11d604e8a6fa6b97b706aff856ee81513fa478f0d7d501abf3f94c43c8bd883",
+  "sourceHashAfter": "5ef755034a6b8892fb3eb3fb364b3ac3787deb620b374edb5db14b3c2dde889a",
   "counts": {
     "Accessories": 7,
     "Clothing": 8,
     "Tools": 27,
-    "Armor": 38,
+    "Armor": 37,
     "Attachments": 1,
     "Salvage": 17,
     "Workshop upgrades": 1,
@@ -667,12 +667,6 @@
       "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
-      "id": "proposal.collection.ceramic_faced_shield",
-      "name": "Ceramic-faced shield",
-      "category": "Armor",
-      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
-    },
-    {
       "id": "proposal.collection.layered_husk_shield",
       "name": "Layered husk shield",
       "category": "Armor",
@@ -1015,6 +1009,20 @@
       ],
       "sourceHashBefore": "a51665b73a89c2fc725e001b8802c3e527552dfbecc600bee69c197610348447",
       "sourceHashAfter": "d11d604e8a6fa6b97b706aff856ee81513fa478f0d7d501abf3f94c43c8bd883"
+    },
+    {
+      "reason": "Author direction October 16: remove the seven highlighted ceramic-faced armor pieces, including the pauldron and shield. Other ceramic goods and the unhighlighted specialist ceramic armor insert are outside this removal.",
+      "removedIds": [
+        "proposal.armor.ceramic.arms",
+        "proposal.armor.ceramic.boots",
+        "proposal.armor.ceramic.chest",
+        "proposal.armor.ceramic.helmet",
+        "proposal.armor.ceramic.legs",
+        "proposal.armor.shoulder.ceramic_deflector",
+        "proposal.collection.ceramic_faced_shield"
+      ],
+      "sourceHashBefore": "8c2ae981ef13068830b24889b455966c929fc8c232e92bbf4332b0beae43cf8c",
+      "sourceHashAfter": "5ef755034a6b8892fb3eb3fb364b3ac3787deb620b374edb5db14b3c2dde889a"
     }
   ]
 }

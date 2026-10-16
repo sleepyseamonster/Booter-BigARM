@@ -1,0 +1,104 @@
+{
+  "reason": "Author direction October 16: remove the seven highlighted ceramic-faced armor pieces, including the pauldron and shield. Other ceramic goods and the unhighlighted specialist ceramic armor insert are outside this removal.",
+  "removedItems": [
+    {
+      "id": "proposal.armor.ceramic.arms",
+      "name": "Ceramic-faced arm guards"
+    },
+    {
+      "id": "proposal.armor.ceramic.boots",
+      "name": "Ceramic-faced armored boots"
+    },
+    {
+      "id": "proposal.armor.ceramic.chest",
+      "name": "Ceramic-faced chestplate"
+    },
+    {
+      "id": "proposal.armor.ceramic.helmet",
+      "name": "Ceramic-faced helmet"
+    },
+    {
+      "id": "proposal.armor.ceramic.legs",
+      "name": "Ceramic-faced leg guards"
+    },
+    {
+      "id": "proposal.armor.shoulder.ceramic_deflector",
+      "name": "Ceramic-faced deflector pauldron"
+    },
+    {
+      "id": "proposal.collection.ceramic_faced_shield",
+      "name": "Ceramic-faced shield"
+    }
+  ],
+  "deletions": [
+    {
+      "itemId": "proposal.armor.ceramic.arms",
+      "itemName": "Ceramic-faced arm guards",
+      "clearedRows": {
+        "Items": 1,
+        "Item uses": 1,
+        "Craft audit": 1
+      }
+    },
+    {
+      "itemId": "proposal.armor.ceramic.boots",
+      "itemName": "Ceramic-faced armored boots",
+      "clearedRows": {
+        "Items": 1,
+        "Item uses": 1,
+        "Craft audit": 1
+      }
+    },
+    {
+      "itemId": "proposal.armor.ceramic.chest",
+      "itemName": "Ceramic-faced chestplate",
+      "clearedRows": {
+        "Items": 1,
+        "Item uses": 1,
+        "Craft audit": 1
+      }
+    },
+    {
+      "itemId": "proposal.armor.ceramic.helmet",
+      "itemName": "Ceramic-faced helmet",
+      "clearedRows": {
+        "Items": 1,
+        "Item uses": 1,
+        "Craft audit": 1
+      }
+    },
+    {
+      "itemId": "proposal.armor.ceramic.legs",
+      "itemName": "Ceramic-faced leg guards",
+      "clearedRows": {
+        "Items": 1,
+        "Item uses": 1,
+        "Craft audit": 1
+      }
+    },
+    {
+      "itemId": "proposal.armor.shoulder.ceramic_deflector",
+      "itemName": "Ceramic-faced deflector pauldron",
+      "clearedRows": {
+        "Items": 1,
+        "Item uses": 1,
+        "Craft audit": 1
+      }
+    },
+    {
+      "itemId": "proposal.collection.ceramic_faced_shield",
+      "itemName": "Ceramic-faced shield",
+      "clearedRows": {
+        "Items": 1,
+        "Item uses": 1,
+        "Material routes": 3,
+        "Crafting recipes": 1,
+        "Crafting browser": 2,
+        "Craft audit": 1
+      }
+    }
+  ],
+  "sourceHashBefore": "8c2ae981ef13068830b24889b455966c929fc8c232e92bbf4332b0beae43cf8c",
+  "sourceHashAfter": "5ef755034a6b8892fb3eb3fb364b3ac3787deb620b374edb5db14b3c2dde889a",
+  "scope": "Catalog removals only, using existing dependency-aware deletion. Unrelated items and stable IDs remain unchanged. No Unity assets, runtime world identity, streaming or saved-game changes."
+}
