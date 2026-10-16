@@ -1,0 +1,150 @@
+{
+  "source": "Author requested reviewing existing Accessories and expanding the category to 20 total with simple practical accessories, including grounding rods for static charges, October 15, 2026. Thirteen new proposals supplement seven existing entries. Docs/WORLD_BASIS.md controls setting and electrical-protection boundaries.",
+  "expectedCategoryCounts": {"Accessories": 20},
+  "boundary": "Catalog proposals only. No new equipment slots, electrical safety ratings, storm immunity, recipes, world objects, streaming, generated identities or persisted gameplay effects. No wood, ordinary cloth, rubber or natural free water assumed.",
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Accessories",
+    "Subtype": "Personal utility accessory",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "Unassigned; no new slot approved",
+    "Carrier metadata": "Booter-carried personal utility gear; mounting, packing, dimensions and mass unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed contemporary craft or specialist trade; availability and construction recipe unresolved.",
+    "Crafting / processing": "Candidate compact finished accessory using selected prepared stock. No ingredient quantities, crafting time, yield or executable recipe authored.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Materials, fit, durability and useful performance require design. Category grants no functioning action, certified protection or additional inventory capacity.",
+    "Rarity": null,
+    "Item type": "Tool",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Primary use": "Survival provision",
+    "Material family": "Metal",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "Author-requested simple personal accessory expansion. These compact supporting utilities are grouped in Accessories; item type, tier and gameplay compatibility remain separate classifications.",
+    "Tier basis": "Proposed T2 finished accessory using qualified T1 stock. Construction details, usability, scarcity and equipment effects are not established by the planning tier.",
+    "Finished-item input tier": "T1",
+    "Crafting role": "Finished item"
+  },
+  "items": [
+    {
+      "id": "proposal.accessory.folding_grounding_rod",
+      "name": "Folding static-grounding rod",
+      "purpose": "A short jointed metal probe carried as a candidate ground-contact accessory for the existing Static grounding kit. Intended to provide a deliberately placed contact point when suitable ground is available; it is not a shelter anchor or a complete grounding system.",
+      "icon": "A folded two-section copper-colored metal rod with a tapered end, locking joint and lead attachment eye.",
+      "material": "Metal",
+      "use": "Static management",
+      "fields": {"Primary use": "Static management", "Search aliases": "static grounding rod; folding earth probe; ground-contact accessory", "Limitations": "Dry rock, loose dust and unknown terrain conductivity may prevent effective contact. Lead, body contact and controlled discharge remain separate requirements. No lightning protection, insulation or storm immunity."}
+    },
+    {
+      "id": "proposal.accessory.static_discharge_wand",
+      "name": "Static-discharge contact wand",
+      "purpose": "A compact contact wand proposed for deliberately equalizing accumulated static between compatible equipment and an established discharge path. A ceramic-separated grip and replaceable metal contact distinguish it from the ground probe itself; the actual discharge-control mechanism remains undefined.",
+      "icon": "A short dark metal contact tip on a thick ceramic grip with a recessed lead eye.",
+      "material": "Ceramic and metal",
+      "use": "Static management",
+      "fields": {"Material family": "Ceramic and metal", "Primary use": "Static management", "Search aliases": "static discharge wand; charge contact probe", "Limitations": "Requires a compatible controlled discharge path; touching a surface alone is not established as safe or effective. Ceramic is not automatically voltage-rated. No live-power servicing, lightning protection or immunity granted."}
+    },
+    {
+      "id": "proposal.accessory.grounding_drag_chain",
+      "name": "Grounding drag chain",
+      "purpose": "A short replaceable trailing metal chain proposed as a personal static-contact accessory on suitable surfaces. Its intended role is maintaining intermittent ground contact while moving, distinct from the deliberately placed grounding rod and the complete grounding kit.",
+      "icon": "A compact coil of small metal links ending in a flattened worn contact link and a plain attachment loop.",
+      "material": "Metal",
+      "use": "Static management",
+      "fields": {"Primary use": "Static management", "Item type": "Wearable", "Search aliases": "static drag chain; trailing ground contact", "Limitations": "Contact may be interrupted or ineffective on dry terrain. Snagging, release, conductivity and compatibility remain unresolved. No automatic discharge, isolation, lightning protection or storm immunity."}
+    },
+    {
+      "id": "proposal.accessory.spectacle_keeper_chain",
+      "name": "Spectacle keeper chain",
+      "purpose": "A fine metal chain with adjustable end loops intended to keep an existing pair of spectacles close when removed. It supplies retention only, preserving the value of scarce eyewear without adding lenses or optical effects.",
+      "icon": "A fine dull-metal chain laid in a loop with two small adjustable wire eyeglass retainers.",
+      "material": "Metal",
+      "use": "Survival provision",
+      "fields": {"Item type": "Wearable", "Search aliases": "eyeglass retaining chain; spectacles neck chain", "Limitations": "Frame fit, snag release, neck comfort and attachment security require design. Does not prevent lens breakage or supply spectacles."}
+    },
+    {
+      "id": "proposal.accessory.pocket_sighting_compass",
+      "name": "Pocket sighting compass",
+      "purpose": "A small magnetic needle and marked sighting rim proposed for comparing travel bearings where local conditions permit. Intended as a simple navigation aid, not a map reveal or guaranteed route home.",
+      "icon": "A shallow round metal case with a dry pivoted needle, scratched bearing ring and folding sighting tab.",
+      "material": "Metal",
+      "use": "Traversal",
+      "fields": {"Primary use": "Traversal", "Search aliases": "pocket compass; sighting compass; bearing aid", "Limitations": "Planetary magnetic reference, local interference, calibration and practical availability are unresolved. No stable north direction, reliable storm reading or automatic navigation is assumed."}
+    },
+    {
+      "id": "proposal.accessory.metal_signal_mirror",
+      "name": "Polished-metal signal mirror",
+      "purpose": "A palm-sized polished metal plate proposed for deliberate reflected-light signals across visible canyon gaps. A central sighting opening helps align the intended signal; low twilight light and canyon geometry constrain its usefulness.",
+      "icon": "A small polished oval metal plate with a central sighting hole, dull reverse and tether eye.",
+      "material": "Metal",
+      "use": "Public communication",
+      "fields": {"Primary use": "Public communication", "Search aliases": "signal mirror; canyon light signal; polished signaling plate", "Limitations": "Requires suitable incident light and line of sight. No self-generated beam, guaranteed range, coded language or ability to summon remote companions is established."}
+    },
+    {
+      "id": "proposal.accessory.mechanical_travel_counter",
+      "name": "Mechanical travel counter",
+      "purpose": "A pocket thumb-operated counting wheel for manually recording chosen travel intervals, turns or supply checks. It retains a simple count without requiring paper, power or automatic tracking.",
+      "icon": "A flat metal capsule with an exposed knurled counting wheel, number window and recessed reset catch.",
+      "material": "Metal",
+      "use": "Writing and records",
+      "fields": {"Primary use": "Writing and records", "Search aliases": "manual travel tally; thumb counter; expedition interval counter", "Limitations": "The player must choose what each increment means. It does not measure distance, track position, count steps automatically or replace the existing reusable writing tablet."}
+    },
+    {
+      "id": "proposal.accessory.retracting_tool_tether",
+      "name": "Retracting tool tether",
+      "purpose": "A compact metal reel with a short retained line, proposed to keep a small personal instrument attached during handling. It supports loss prevention rather than carrying heavy cargo or granting hands-free tool operation.",
+      "icon": "A small metal reel housing with a belt eye, a short line and a single closing tool clip.",
+      "material": "Metal",
+      "use": "Survival provision",
+      "fields": {"Item type": "Wearable", "Search aliases": "small-tool retention reel; retractable gear tether", "Limitations": "Reel construction, line material, recoil, snag release and compatible item mass require design. No climbing, fall arrest, heavy hauling or new equipment slot."}
+    },
+    {
+      "id": "proposal.accessory.personal_cord_reel",
+      "name": "Personal cord reel",
+      "purpose": "A simple open spool carried to keep an existing length of prepared tendon cord or metal line organized and accessible. Unlike the retracting tool tether, it has no spring mechanism and serves general line storage and controlled payout.",
+      "icon": "A flat open metal spool with rounded flanges, a turning finger hole and a narrow line-retaining notch.",
+      "material": "Metal",
+      "use": "Cargo organization",
+      "fields": {"Primary use": "Cargo organization", "Search aliases": "pocket line spool; cord keeper reel", "Limitations": "Cord is a separate item and is not created with the reel. Capacity, mounting and compatibility remain unresolved. It is not a winch, brake, rated climbing device or extra inventory space."}
+    },
+    {
+      "id": "proposal.accessory.folding_wing_hand_fan",
+      "name": "Folding wing-membrane hand fan",
+      "purpose": "A small folding frame carrying a prepared wing-membrane panel, proposed for directing a little local airflow during rest or close work. Uses the existing wing material family without introducing paper cloth, wood or plant reeds.",
+      "icon": "A small fan of thin metal ribs supporting amber wing membrane, partly folded around a plain metal pivot.",
+      "material": "Wing membrane and frame",
+      "use": "Survival provision",
+      "fields": {"Material family": "Wing membrane and frame", "Search aliases": "wing hand fan; folding personal fan", "Limitations": "Membrane preparation, frame durability and useful airflow are proposals. No oxygen supply, dust filtration, guaranteed cooling, hydration benefit or substitute for shelter."}
+    },
+    {
+      "id": "proposal.accessory.pocket_inspection_loupe",
+      "name": "Pocket inspection loupe",
+      "purpose": "A single small glass lens in a folding metal guard, proposed for inspecting part wear, small inscriptions or mineral surfaces at close range. A supporting observation accessory rather than a complete assay or diagnostic instrument.",
+      "icon": "A compact circular glass lens swung out from a scratched folding metal guard.",
+      "material": "Glass and metal",
+      "use": "Inspection",
+      "fields": {"Material family": "Glass and metal", "Primary use": "Inspection", "Search aliases": "inspection loupe; pocket magnifier; folding lens", "Limitations": "Suitable optical glass, lens quality, magnification, availability and handling remain unresolved. No automatic material identification, damage diagnosis or optical rarity downgrade is established."}
+    },
+    {
+      "id": "proposal.accessory.pocket_grit_bellows",
+      "name": "Pocket grit bellows",
+      "purpose": "A palm-sized hand-compressed bellows proposed to dislodge loose dry grit from accessible gear seams before inspection. A small prepared faunal membrane chamber sits between shell cheeks with a short fitted nozzle; no rubber bulb or powered air supply is assumed.",
+      "icon": "Two shallow shell cheek plates enclosing a folded dark membrane chamber and a short ceramic nozzle.",
+      "material": "Mixed / unresolved",
+      "use": "Cleaning",
+      "fields": {"Material family": "Mixed / unresolved", "Primary use": "Cleaning", "Search aliases": "personal grit puffer; small hand bellows; dry dust blower", "Limitations": "Membrane sealing, airflow, nozzle suitability and dust handling need qualification. No breathing air, certified filtration, decontamination or safe cleaning of delicate lenses or live electrical parts is established."}
+    },
+    {
+      "id": "proposal.accessory.metal_signal_whistle",
+      "name": "Pealess metal signal whistle",
+      "purpose": "A compact metal whistle with no loose internal pea, proposed for deliberate audible signals between nearby travelers. Its utilitarian metal construction and intended signaling role distinguish it from the existing wing-rib musical whistle and ceremonial rattles.",
+      "icon": "A short flattened metal whistle with a broad mouth slot, open sound chamber and small tether ring.",
+      "material": "Metal",
+      "use": "Public communication",
+      "fields": {"Primary use": "Public communication", "Search aliases": "emergency signal whistle; pealess field whistle", "Limitations": "Sound production, range, dust tolerance and breathing compatibility remain unresolved. No automatic alarm, accepted signal code, fauna-control effect or remote companion recall is granted."}
+    }
+  ]
+}

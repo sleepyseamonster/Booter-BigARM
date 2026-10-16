@@ -4,6 +4,7 @@ Uses the preserving appender rather than exporting the large production workbook
 """
 import argparse
 import json
+from io import BytesIO
 
 import openpyxl
 from add_ancient_salvage import ROOT, SOURCE, build
@@ -18,6 +19,13 @@ def main(action, specification, directory):
     spec=json.loads(spec_path.read_text(encoding='utf-8'))
     if action=='prepare':
         snapshot=SOURCE.read_bytes()
+        if spec.get('expectedCategoryCounts'):
+            book=openpyxl.load_workbook(BytesIO(snapshot),read_only=True,data_only=True)
+            existing=[r for r in list(book['Items'].values)[5:] if r[0]]
+            for category,total in spec['expectedCategoryCounts'].items():
+                added=sum(i.get('fields',{}).get('Category',spec['defaults']['Category'])==category for i in spec['items'])
+                assert sum(r[3]==category for r in existing)+added==total,'Category target changed; review current roster'
+            book.close()
         (out/'before.xlsx').write_bytes(snapshot)
         (out/'plan.json').write_text(json.dumps(dict(sourceHash=digest(snapshot),spec=spec),indent=2),encoding='utf-8')
         print(f'Prepared {len(spec["items"])} catalog proposal(s).')
@@ -32,6 +40,11 @@ def main(action, specification, directory):
         assert json.loads(row[6])==item.get('fields',{})
     authored.close()
     candidate,receipt=build((out/'before.xlsx').read_bytes(),spec)
+    if spec.get('expectedCategoryCounts'):
+        book=openpyxl.load_workbook(BytesIO(candidate),read_only=True,data_only=True)
+        rows=[r for r in list(book['Items'].values)[5:] if r[0]]
+        for category,total in spec['expectedCategoryCounts'].items():assert sum(r[3]==category for r in rows)==total
+        book.close()
     (out/'after.xlsx').write_bytes(candidate)
     atomic_write(SOURCE,candidate,plan['sourceHash'])
     (out/'receipt.json').write_text(json.dumps(receipt,indent=2),encoding='utf-8')
