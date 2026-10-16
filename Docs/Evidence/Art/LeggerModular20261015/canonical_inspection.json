@@ -1,0 +1,1820 @@
+{
+  "file_sha256": "c5eadd0501631bbace05551e1453c43a14db55df1365b07a77755cbf80b51be5",
+  "blender_version": "5.2.2 LTS",
+  "all_mesh_objects_including_hidden_sources": 626,
+  "active_mesh_objects": 67,
+  "active_control_triangles": 42792,
+  "active_evaluated_triangles": 86072,
+  "objects": [
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Body",
+      "source_triangles": 788,
+      "evaluated_triangles": 2068,
+      "dimensions": [
+        0.167,
+        0.18,
+        0.4
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Lid",
+      "source_triangles": 292,
+      "evaluated_triangles": 724,
+      "dimensions": [
+        0.188,
+        0.192,
+        0.089
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Straps",
+      "source_triangles": 552,
+      "evaluated_triangles": 1768,
+      "dimensions": [
+        0.1838,
+        0.049,
+        0.4786
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Body",
+      "source_triangles": 1736,
+      "evaluated_triangles": 3384,
+      "dimensions": [
+        0.192,
+        0.41,
+        0.56
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Lid",
+      "source_triangles": 644,
+      "evaluated_triangles": 1380,
+      "dimensions": [
+        0.213,
+        0.422,
+        0.165322
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Straps",
+      "source_triangles": 1296,
+      "evaluated_triangles": 4112,
+      "dimensions": [
+        0.2088,
+        0.259,
+        0.6536
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Body",
+      "source_triangles": 788,
+      "evaluated_triangles": 2068,
+      "dimensions": [
+        0.167,
+        0.18,
+        0.4
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Lid",
+      "source_triangles": 292,
+      "evaluated_triangles": 724,
+      "dimensions": [
+        0.188,
+        0.192,
+        0.089
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Straps",
+      "source_triangles": 552,
+      "evaluated_triangles": 1768,
+      "dimensions": [
+        0.1838,
+        0.049,
+        0.4786
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Body",
+      "source_triangles": 1736,
+      "evaluated_triangles": 3384,
+      "dimensions": [
+        0.192,
+        0.41,
+        0.56
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Lid",
+      "source_triangles": 644,
+      "evaluated_triangles": 1380,
+      "dimensions": [
+        0.213,
+        0.422,
+        0.165322
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Straps",
+      "source_triangles": 1296,
+      "evaluated_triangles": 4112,
+      "dimensions": [
+        0.2088,
+        0.259,
+        0.6536
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_DriveCore",
+      "source_triangles": 468,
+      "evaluated_triangles": 1188,
+      "dimensions": [
+        0.29,
+        0.46,
+        0.2875
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Drive_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_FrontControlPod",
+      "source_triangles": 240,
+      "evaluated_triangles": 688,
+      "dimensions": [
+        0.2,
+        0.1535,
+        0.28
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Steering_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_Handlebar",
+      "source_triangles": 1100,
+      "evaluated_triangles": 1676,
+      "dimensions": [
+        0.805448,
+        0.080711,
+        0.075495
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Steering_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_InstrumentGauge",
+      "source_triangles": 408,
+      "evaluated_triangles": 792,
+      "dimensions": [
+        0.112,
+        0.079722,
+        0.116097
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Steering_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_AnkleJoint",
+      "source_triangles": 396,
+      "evaluated_triangles": 732,
+      "dimensions": [
+        0.178,
+        0.108894,
+        0.108894
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_LeftLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_BrakeLever",
+      "source_triangles": 200,
+      "evaluated_triangles": 248,
+      "dimensions": [
+        0.116546,
+        0.039982,
+        0.026691
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Steering_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_CargoRack",
+      "source_triangles": 1648,
+      "evaluated_triangles": 2896,
+      "dimensions": [
+        0.233462,
+        0.654728,
+        0.589245
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Frame_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_DrivePod",
+      "source_triangles": 680,
+      "evaluated_triangles": 1768,
+      "dimensions": [
+        0.0635,
+        0.435,
+        0.24
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Drive_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_Foot",
+      "source_triangles": 228,
+      "evaluated_triangles": 1348,
+      "dimensions": [
+        0.2222,
+        0.5425,
+        0.17
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_LeftLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_Footrest",
+      "source_triangles": 72,
+      "evaluated_triangles": 648,
+      "dimensions": [
+        0.16255,
+        0.15,
+        0.065817
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Frame_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_Grip",
+      "source_triangles": 192,
+      "evaluated_triangles": 320,
+      "dimensions": [
+        0.121539,
+        0.047791,
+        0.038
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Steering_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_HipJoint",
+      "source_triangles": 396,
+      "evaluated_triangles": 732,
+      "dimensions": [
+        0.178,
+        0.217789,
+        0.217789
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_LeftLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_HipMount",
+      "source_triangles": 132,
+      "evaluated_triangles": 484,
+      "dimensions": [
+        0.144023,
+        0.231044,
+        0.172286
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Frame_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_KneeJoint",
+      "source_triangles": 396,
+      "evaluated_triangles": 732,
+      "dimensions": [
+        0.178,
+        0.156412,
+        0.156412
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_LeftLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_ShinActuatorBarrel",
+      "source_triangles": 192,
+      "evaluated_triangles": 256,
+      "dimensions": [
+        0.052551,
+        0.083897,
+        0.314376
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_LeftLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_ShinActuatorRod",
+      "source_triangles": 60,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.02513,
+        0.043029,
+        0.178811
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_LeftLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_ShinFrame",
+      "source_triangles": 552,
+      "evaluated_triangles": 1480,
+      "dimensions": [
+        0.129499,
+        0.173605,
+        0.538877
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_LeftLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_ShinShell",
+      "source_triangles": 976,
+      "evaluated_triangles": 2064,
+      "dimensions": [
+        0.190629,
+        0.166399,
+        0.492662
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_LeftLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_ThighActuatorBarrel",
+      "source_triangles": 192,
+      "evaluated_triangles": 256,
+      "dimensions": [
+        0.062954,
+        0.267854,
+        0.284945
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_LeftLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_ThighActuatorRod",
+      "source_triangles": 60,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.030349,
+        0.14875,
+        0.158435
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_LeftLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_ThighFrame",
+      "source_triangles": 568,
+      "evaluated_triangles": 1528,
+      "dimensions": [
+        0.136029,
+        0.469544,
+        0.489347
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_LeftLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_ThighShell",
+      "source_triangles": 996,
+      "evaluated_triangles": 2100,
+      "dimensions": [
+        0.204152,
+        0.426012,
+        0.452157
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_LeftLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_front_fairing",
+      "source_triangles": 160,
+      "evaluated_triangles": 736,
+      "dimensions": [
+        0.101199,
+        0.343512,
+        0.526376
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_BodyArmor_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_tail_shroud",
+      "source_triangles": 88,
+      "evaluated_triangles": 456,
+      "dimensions": [
+        0.091604,
+        0.319643,
+        0.347821
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_BodyArmor_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_L_upper_body_shroud",
+      "source_triangles": 76,
+      "evaluated_triangles": 252,
+      "dimensions": [
+        0.042889,
+        0.721139,
+        0.239829
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_BodyArmor_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_MainFrame",
+      "source_triangles": 5316,
+      "evaluated_triangles": 5748,
+      "dimensions": [
+        0.332,
+        1.219949,
+        0.645173
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Frame_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_AnkleJoint",
+      "source_triangles": 396,
+      "evaluated_triangles": 732,
+      "dimensions": [
+        0.178,
+        0.108894,
+        0.108894
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_RightLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_BrakeLever",
+      "source_triangles": 200,
+      "evaluated_triangles": 248,
+      "dimensions": [
+        0.116546,
+        0.039982,
+        0.026691
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Steering_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_CargoRack",
+      "source_triangles": 1648,
+      "evaluated_triangles": 2896,
+      "dimensions": [
+        0.233462,
+        0.654728,
+        0.589245
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Frame_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_DrivePod",
+      "source_triangles": 680,
+      "evaluated_triangles": 1768,
+      "dimensions": [
+        0.0635,
+        0.435,
+        0.24
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Drive_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_Foot",
+      "source_triangles": 228,
+      "evaluated_triangles": 1348,
+      "dimensions": [
+        0.2222,
+        0.5425,
+        0.17
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_RightLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_Footrest",
+      "source_triangles": 72,
+      "evaluated_triangles": 648,
+      "dimensions": [
+        0.16255,
+        0.15,
+        0.065817
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Frame_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_Grip",
+      "source_triangles": 192,
+      "evaluated_triangles": 320,
+      "dimensions": [
+        0.121539,
+        0.047791,
+        0.038
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Steering_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_HipJoint",
+      "source_triangles": 396,
+      "evaluated_triangles": 732,
+      "dimensions": [
+        0.178,
+        0.217789,
+        0.217789
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_RightLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_HipMount",
+      "source_triangles": 132,
+      "evaluated_triangles": 484,
+      "dimensions": [
+        0.141136,
+        0.32187,
+        0.174969
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Frame_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_KneeJoint",
+      "source_triangles": 396,
+      "evaluated_triangles": 732,
+      "dimensions": [
+        0.178,
+        0.156412,
+        0.156412
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_RightLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_ShinActuatorBarrel",
+      "source_triangles": 192,
+      "evaluated_triangles": 256,
+      "dimensions": [
+        0.053238,
+        0.166943,
+        0.325346
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_RightLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_ShinActuatorRod",
+      "source_triangles": 60,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.024812,
+        0.090046,
+        0.183471
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_RightLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_ShinFrame",
+      "source_triangles": 568,
+      "evaluated_triangles": 1528,
+      "dimensions": [
+        0.125831,
+        0.300458,
+        0.557659
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_RightLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_ShinShell",
+      "source_triangles": 996,
+      "evaluated_triangles": 2100,
+      "dimensions": [
+        0.190634,
+        0.2615,
+        0.507981
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_RightLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_ThighActuatorBarrel",
+      "source_triangles": 192,
+      "evaluated_triangles": 256,
+      "dimensions": [
+        0.062389,
+        0.095771,
+        0.264023
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_RightLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_ThighActuatorRod",
+      "source_triangles": 60,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.0306,
+        0.049626,
+        0.149518
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_RightLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_ThighFrame",
+      "source_triangles": 504,
+      "evaluated_triangles": 1336,
+      "dimensions": [
+        0.142184,
+        0.194268,
+        0.452522
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_RightLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_ThighShell",
+      "source_triangles": 808,
+      "evaluated_triangles": 1832,
+      "dimensions": [
+        0.204102,
+        0.201031,
+        0.414859
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_RightLeg_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_front_fairing",
+      "source_triangles": 160,
+      "evaluated_triangles": 736,
+      "dimensions": [
+        0.101199,
+        0.343512,
+        0.526376
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_BodyArmor_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_tail_shroud",
+      "source_triangles": 88,
+      "evaluated_triangles": 456,
+      "dimensions": [
+        0.091604,
+        0.319643,
+        0.347713
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_BodyArmor_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_R_upper_body_shroud",
+      "source_triangles": 76,
+      "evaluated_triangles": 252,
+      "dimensions": [
+        0.042889,
+        0.721139,
+        0.239829
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_BodyArmor_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_RearCoolingHousing",
+      "source_triangles": 380,
+      "evaluated_triangles": 1100,
+      "dimensions": [
+        0.26,
+        0.264,
+        0.29
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Drive_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_SaddlePan",
+      "source_triangles": 584,
+      "evaluated_triangles": 1064,
+      "dimensions": [
+        0.2366,
+        0.78,
+        0.199582
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Saddle_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_SaddleUpholstery",
+      "source_triangles": 2388,
+      "evaluated_triangles": 2388,
+      "dimensions": [
+        0.26,
+        0.782195,
+        0.284
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Saddle_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_SeatSubframe",
+      "source_triangles": 1700,
+      "evaluated_triangles": 2516,
+      "dimensions": [
+        0.316121,
+        0.839908,
+        0.229936
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Frame_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_ServiceHarness",
+      "source_triangles": 2480,
+      "evaluated_triangles": 2480,
+      "dimensions": [
+        0.293123,
+        1.007288,
+        0.361571
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Frame_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_SpineHousing",
+      "source_triangles": 384,
+      "evaluated_triangles": 720,
+      "dimensions": [
+        0.2,
+        0.56,
+        0.21
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Drive_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_SteeringMount",
+      "source_triangles": 164,
+      "evaluated_triangles": 452,
+      "dimensions": [
+        0.308148,
+        0.097296,
+        0.096173
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Frame_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_Part_SteeringStem",
+      "source_triangles": 260,
+      "evaluated_triangles": 260,
+      "dimensions": [
+        0.034,
+        0.11958,
+        0.171554
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Steering_Atlas"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    }
+  ],
+  "scope": "Only named meshes inside LEGGER - ASSEMBLED MODEL; retained hidden sources excluded from active totals."
+}

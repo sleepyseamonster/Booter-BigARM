@@ -1,5 +1,7 @@
 # Legger separate cargo cases
 
+Current continuation: the [complete modular assembly](../LeggerModular20261015/README.md) now groups each case into body, lid and strap/fitting meshes in the same scene. The four cargo texture sets and 26,872 evaluated cargo triangles are retained. Separate-piece counts and hashes below describe this earlier cargo checkpoint.
+
 October 15, 2026. The author requested separately modeled and textured crates/cases in the existing Legger scene, using reasonably uniform quads and a game-conscious polygon count. The approved ivory, dark-metal and brown-leather palette with restrained wear remains the controlling direction. This is a cargo-only continuation of the [clean construction checkpoint](../LeggerQuadRebuild20261015/README.md).
 
 ## Saved source and editing

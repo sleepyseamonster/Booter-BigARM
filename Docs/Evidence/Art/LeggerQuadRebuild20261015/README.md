@@ -1,5 +1,7 @@
 # Legger clean quad rebuild
 
+Latest checkpoint: the [complete modular Legger](../LeggerModular20261015/README.md) has 67 visible major meshes, 21,396 quad control faces, 86,072 evaluated triangles and 11 packed PBR sets in one assembled scene. Counts and preview-material deferrals below are historical construction checkpoints.
+
 Current continuation: the [separate cargo case receipt](../LeggerCargo20261015/README.md) records independently editable case assemblies, regular body/strap quads and dedicated packed PBR atlases in the same file. The visible asset now has 12,282 control quads and 88,420 evaluated triangles; the construction counts and material-bake deferral below describe this earlier checkpoint.
 
 October 15, 2026. Owner: Blender under Gottspan coordination. The author requested rigid-looking cargo cases with leather straps and better chassis/frame geometry, authorizing a rebuild from scratch. The author clarified that “polished” means mesh quality rather than a glossy finish, requested clean quads where practical, and explicitly retained the ivory/dark-metal/brown-leather palette with restrained wear.

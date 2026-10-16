@@ -1,8 +1,8 @@
 # Legger topology iteration 01
 
-## Current authoring file — separate textured cargo cases
+## Current authoring file — complete modular assembly
 
-The same retained `Legger_Topology_Iteration04.blend` now contains the [clean quad rebuild](../LeggerQuadRebuild20261015/README.md) with a subsequent [separate textured cargo pass](../LeggerCargo20261015/README.md). Four independent case assemblies have regular quad grids and dedicated packed PBR maps. The visible Legger has 12,282 quad control faces and 88,420 evaluated triangles with editable bevels; the four cases account for 26,872 of those triangles. The preceding baked asset, generated detail source and procedural cargo bake sources remain hidden in the same file. Other rebuilt robot materials remain authoring previews. The cargo receipt and its application hash identify the current source; earlier reduction/bake counts and hashes describe historical checkpoints.
+The same retained `Legger_Topology_Iteration04.blend` now contains the [complete modular assembly](../LeggerModular20261015/README.md): one scene and complete default view, 67 independently editable major meshes, 21,396 quad control faces, 86,072 evaluated triangles and 55 packed maps across 11 PBR texture sets. Chassis, drive, legs, armor, saddle, steering and cargo are organized together; small fittings are grouped into their parent parts. Prior geometry and procedural sources remain hidden. The modular receipt and application hash identify the current source; the [quad rebuild](../LeggerQuadRebuild20261015/README.md), [cargo pass](../LeggerCargo20261015/README.md) and earlier reduction/bake records describe historical checkpoints.
 
 ## Author-requested source cleanup — October 15, 2026
 

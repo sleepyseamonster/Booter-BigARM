@@ -1,0 +1,811 @@
+{
+  "input_prepared_sha256": "ecf0d5ba0e6ddec81c97eb352003d66d91e70cd199e9efed37a7127a2b855b60",
+  "cases": [
+    {
+      "key": "Frame",
+      "resolution": 4096,
+      "control_uv_core_texels": 2921117,
+      "control_uv_overlapping_core_texels": 0,
+      "control_uv_overlap_fraction": 0.0,
+      "sub_4px_control_faces_skipped": 0,
+      "bake_covered_atlas_fraction_including_dilation": 0.3951759338378906,
+      "control_core_covered_fraction": 1.0,
+      "maps": {
+        "BaseColor": {
+          "minimum_rgb": [
+            29,
+            33,
+            31
+          ],
+          "maximum_rgb": [
+            137,
+            144,
+            147
+          ],
+          "mean_rgb": [
+            62.043,
+            67.786,
+            69.256
+          ],
+          "bytes": 464582,
+          "sha256": "6b8d66b93a38810470bc3417ecbf6dcf78f6e4444c82d864b9290c5469e7c91f",
+          "empty_inner_texels": 0
+        },
+        "Normal": {
+          "minimum_rgb": [
+            92,
+            77,
+            205
+          ],
+          "maximum_rgb": [
+            164,
+            229,
+            255
+          ],
+          "mean_rgb": [
+            127.952,
+            127.993,
+            254.994
+          ],
+          "bytes": 1725968,
+          "sha256": "f32e3252986d648380da7caf2d500f957f7e9adafd998392bcd40f9f48c44b59",
+          "fraction_length_within_0_97_to_1_03": 0.9999932471791868,
+          "fraction_negative_tangent_z": 0.0
+        },
+        "Roughness": {
+          "minimum_rgb": [
+            71,
+            71,
+            71
+          ],
+          "maximum_rgb": [
+            199,
+            199,
+            199
+          ],
+          "mean_rgb": [
+            121.537,
+            121.537,
+            121.537
+          ],
+          "bytes": 464992,
+          "sha256": "6165c02424d5a192ac8b74b3f2e40b3cdf969c1cbb9d5145e978db507839a7a6"
+        },
+        "Metallic": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            242,
+            242,
+            242
+          ],
+          "mean_rgb": [
+            187.797,
+            187.797,
+            187.797
+          ],
+          "bytes": 416680,
+          "sha256": "dd7160072d958753cea8c7cbaa170f1e4125b6b8d2a45e4970516e65e676cb9d"
+        },
+        "AO": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            255,
+            255,
+            255
+          ],
+          "mean_rgb": [
+            208.825,
+            208.825,
+            208.825
+          ],
+          "bytes": 4182727,
+          "sha256": "e3552e034f458756763a2d00995290f82f032ba40704456619798841b4560007"
+        }
+      },
+      "evaluated_uv_core_covered_fraction": 1.0,
+      "evaluated_uv_core_texels": 2411506,
+      "evaluated_sub_4px_triangles_skipped": 2904,
+      "evaluated_zero_uv_area_triangles": 0,
+      "evaluated_zero_uv_area_surface_fraction": 0.0
+    },
+    {
+      "key": "Drive",
+      "resolution": 4096,
+      "control_uv_core_texels": 12196435,
+      "control_uv_overlapping_core_texels": 0,
+      "control_uv_overlap_fraction": 0.0,
+      "sub_4px_control_faces_skipped": 0,
+      "bake_covered_atlas_fraction_including_dilation": 0.8543137311935425,
+      "control_core_covered_fraction": 0.999431063257419,
+      "maps": {
+        "BaseColor": {
+          "minimum_rgb": [
+            29,
+            33,
+            31
+          ],
+          "maximum_rgb": [
+            212,
+            206,
+            189
+          ],
+          "mean_rgb": [
+            86.042,
+            89.469,
+            86.674
+          ],
+          "bytes": 329070,
+          "sha256": "41df35680ea3d51e389e7eed27f9e529642adb0b7aefa88cd27385600117760a",
+          "empty_inner_texels": 0
+        },
+        "Normal": {
+          "minimum_rgb": [
+            89,
+            93,
+            247
+          ],
+          "maximum_rgb": [
+            173,
+            166,
+            255
+          ],
+          "mean_rgb": [
+            127.986,
+            127.999,
+            254.999
+          ],
+          "bytes": 803552,
+          "sha256": "f0233fe3f1d8a113e171cbdb9010e002e396443af53d44b4201838ba450a4c8a",
+          "fraction_length_within_0_97_to_1_03": 0.9999994181057699,
+          "fraction_negative_tangent_z": 0.0
+        },
+        "Roughness": {
+          "minimum_rgb": [
+            71,
+            71,
+            71
+          ],
+          "maximum_rgb": [
+            199,
+            199,
+            199
+          ],
+          "mean_rgb": [
+            108.957,
+            108.957,
+            108.957
+          ],
+          "bytes": 1743417,
+          "sha256": "da3e737a5c7297e9f2f2bf4aab5bdfd1b85b0315f868b8199028744792d18761"
+        },
+        "Metallic": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            242,
+            242,
+            242
+          ],
+          "mean_rgb": [
+            170.909,
+            170.909,
+            170.909
+          ],
+          "bytes": 323117,
+          "sha256": "ea4f4f58f352e0fd39eedb92e912c10b45ea9db8ee52ba03cbd9386644444915"
+        },
+        "AO": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            255,
+            255,
+            255
+          ],
+          "mean_rgb": [
+            217.942,
+            217.942,
+            217.942
+          ],
+          "bytes": 4972780,
+          "sha256": "17796402e9d80874e32e27add5e4aef9e68c4f2ae8d0a724f26c7badd666da96"
+        }
+      },
+      "evaluated_uv_core_covered_fraction": 1.0,
+      "evaluated_uv_core_texels": 11416438,
+      "evaluated_sub_4px_triangles_skipped": 448,
+      "evaluated_zero_uv_area_triangles": 0,
+      "evaluated_zero_uv_area_surface_fraction": 0.0
+    },
+    {
+      "key": "LeftLeg",
+      "resolution": 4096,
+      "control_uv_core_texels": 8845799,
+      "control_uv_overlapping_core_texels": 0,
+      "control_uv_overlap_fraction": 0.0,
+      "sub_4px_control_faces_skipped": 4,
+      "bake_covered_atlas_fraction_including_dilation": 0.6958621144294739,
+      "control_core_covered_fraction": 1.0,
+      "maps": {
+        "BaseColor": {
+          "minimum_rgb": [
+            29,
+            33,
+            31
+          ],
+          "maximum_rgb": [
+            212,
+            206,
+            189
+          ],
+          "mean_rgb": [
+            111.469,
+            113.287,
+            108.77
+          ],
+          "bytes": 386927,
+          "sha256": "c8df7c8add21fb8315e300146cceb052185024c587989c7b0157455212e67ecf",
+          "empty_inner_texels": 0
+        },
+        "Normal": {
+          "minimum_rgb": [
+            78,
+            97,
+            243
+          ],
+          "maximum_rgb": [
+            168,
+            165,
+            255
+          ],
+          "mean_rgb": [
+            127.984,
+            127.994,
+            254.999
+          ],
+          "bytes": 1147720,
+          "sha256": "a5f3394fd80f9659727a1150298beecc3f3f37fbc8ff68fd785bcb0f6ae42386",
+          "fraction_length_within_0_97_to_1_03": 1.0,
+          "fraction_negative_tangent_z": 0.0
+        },
+        "Roughness": {
+          "minimum_rgb": [
+            71,
+            71,
+            71
+          ],
+          "maximum_rgb": [
+            199,
+            199,
+            199
+          ],
+          "mean_rgb": [
+            110.765,
+            110.765,
+            110.765
+          ],
+          "bytes": 2438830,
+          "sha256": "a931ac4c0562d81c4efa54cd47799955cf72cb53952967c1df5929cc55ba42e0"
+        },
+        "Metallic": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            242,
+            242,
+            242
+          ],
+          "mean_rgb": [
+            161.688,
+            161.688,
+            161.688
+          ],
+          "bytes": 367178,
+          "sha256": "c3e0bf3da34112423425a193453e0f02b8faa926b2961391418decbf3193837a"
+        },
+        "AO": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            255,
+            255,
+            255
+          ],
+          "mean_rgb": [
+            179.199,
+            179.199,
+            179.199
+          ],
+          "bytes": 6514137,
+          "sha256": "d97bc8a1950849e3d1cb9ef49c92b07fe7b7eb8bba09c2f90b23798c9e822dc7"
+        }
+      },
+      "evaluated_uv_core_covered_fraction": 1.0,
+      "evaluated_uv_core_texels": 8068003,
+      "evaluated_sub_4px_triangles_skipped": 470,
+      "evaluated_zero_uv_area_triangles": 0,
+      "evaluated_zero_uv_area_surface_fraction": 0.0
+    },
+    {
+      "key": "RightLeg",
+      "resolution": 4096,
+      "control_uv_core_texels": 8945239,
+      "control_uv_overlapping_core_texels": 0,
+      "control_uv_overlap_fraction": 0.0,
+      "sub_4px_control_faces_skipped": 4,
+      "bake_covered_atlas_fraction_including_dilation": 0.7010490298271179,
+      "control_core_covered_fraction": 1.0,
+      "maps": {
+        "BaseColor": {
+          "minimum_rgb": [
+            29,
+            33,
+            31
+          ],
+          "maximum_rgb": [
+            212,
+            206,
+            189
+          ],
+          "mean_rgb": [
+            109.779,
+            111.722,
+            107.414
+          ],
+          "bytes": 390129,
+          "sha256": "7eded253c42027906d3595870e27a38791a540586ea25fbfa2eaaf0a04e699f9",
+          "empty_inner_texels": 0
+        },
+        "Normal": {
+          "minimum_rgb": [
+            56,
+            1,
+            0
+          ],
+          "maximum_rgb": [
+            184,
+            252,
+            255
+          ],
+          "mean_rgb": [
+            127.987,
+            127.996,
+            254.994
+          ],
+          "bytes": 1135357,
+          "sha256": "0bbd246dcefd03cf6ca3a1b16c68d04a7d6b6e58ba8742f3df299cc90a4ee290",
+          "fraction_length_within_0_97_to_1_03": 0.999965707019646,
+          "fraction_negative_tangent_z": 1.6965045836469295e-05
+        },
+        "Roughness": {
+          "minimum_rgb": [
+            71,
+            71,
+            71
+          ],
+          "maximum_rgb": [
+            199,
+            199,
+            199
+          ],
+          "mean_rgb": [
+            111.11,
+            111.11,
+            111.11
+          ],
+          "bytes": 2349843,
+          "sha256": "8ef14ab6ccefddd12994d99046f296852b4e82ad71ac99904c5f52aa79fd2b68"
+        },
+        "Metallic": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            242,
+            242,
+            242
+          ],
+          "mean_rgb": [
+            162.679,
+            162.679,
+            162.679
+          ],
+          "bytes": 370011,
+          "sha256": "0373545ebd8caa712e2be299f60bbcfeb583fe44372026e93ded9d8d5ec347eb"
+        },
+        "AO": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            255,
+            255,
+            255
+          ],
+          "mean_rgb": [
+            176.163,
+            176.163,
+            176.163
+          ],
+          "bytes": 6605518,
+          "sha256": "62f116b989723786f4a425b44f7202d923b7c33ae62e1b591f9a5367897fcaf1"
+        }
+      },
+      "evaluated_uv_core_covered_fraction": 1.0,
+      "evaluated_uv_core_texels": 8172630,
+      "evaluated_sub_4px_triangles_skipped": 411,
+      "evaluated_zero_uv_area_triangles": 0,
+      "evaluated_zero_uv_area_surface_fraction": 0.0
+    },
+    {
+      "key": "BodyArmor",
+      "resolution": 4096,
+      "control_uv_core_texels": 9780634,
+      "control_uv_overlapping_core_texels": 0,
+      "control_uv_overlap_fraction": 0.0,
+      "sub_4px_control_faces_skipped": 0,
+      "bake_covered_atlas_fraction_including_dilation": 0.6551682949066162,
+      "control_core_covered_fraction": 1.0,
+      "maps": {
+        "BaseColor": {
+          "minimum_rgb": [
+            137,
+            144,
+            147
+          ],
+          "maximum_rgb": [
+            212,
+            206,
+            189
+          ],
+          "mean_rgb": [
+            211.746,
+            205.79,
+            188.858
+          ],
+          "bytes": 307552,
+          "sha256": "f29a219dc57148797d7a86191a5e51b22434ff5c8eabcc13bf415f20ed9d6a01",
+          "empty_inner_texels": 0
+        },
+        "Normal": {
+          "minimum_rgb": [
+            91,
+            93,
+            248
+          ],
+          "maximum_rgb": [
+            163,
+            163,
+            255
+          ],
+          "mean_rgb": [
+            127.998,
+            127.999,
+            254.999
+          ],
+          "bytes": 704430,
+          "sha256": "387cea9b4148214f319b5b17b1c795b1207b2df7a8fda6bde8410414548e5753",
+          "fraction_length_within_0_97_to_1_03": 1.0,
+          "fraction_negative_tangent_z": 0.0
+        },
+        "Roughness": {
+          "minimum_rgb": [
+            71,
+            71,
+            71
+          ],
+          "maximum_rgb": [
+            107,
+            107,
+            107
+          ],
+          "mean_rgb": [
+            98.092,
+            98.092,
+            98.092
+          ],
+          "bytes": 6300658,
+          "sha256": "63becff39af621c7058aee0beba2eb17469fc514098df8b9c836ca35603774fe"
+        },
+        "Metallic": {
+          "minimum_rgb": [
+            89,
+            89,
+            89
+          ],
+          "maximum_rgb": [
+            242,
+            242,
+            242
+          ],
+          "mean_rgb": [
+            89.518,
+            89.518,
+            89.518
+          ],
+          "bytes": 307366,
+          "sha256": "c29a70aa6db1f723d9ac3fd2959cfb39fbc4fae3014aee931fe21fe65a48d875"
+        },
+        "AO": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            255,
+            255,
+            255
+          ],
+          "mean_rgb": [
+            243.545,
+            243.545,
+            243.545
+          ],
+          "bytes": 2707987,
+          "sha256": "0b47f29a4fb66ead19b5ac18dc6a5001bc6f13778505b012d7c9012286dd8fbe"
+        }
+      },
+      "evaluated_uv_core_covered_fraction": 1.0,
+      "evaluated_uv_core_texels": 9414419,
+      "evaluated_sub_4px_triangles_skipped": 576,
+      "evaluated_zero_uv_area_triangles": 0,
+      "evaluated_zero_uv_area_surface_fraction": 0.0
+    },
+    {
+      "key": "Saddle",
+      "resolution": 2048,
+      "control_uv_core_texels": 1319669,
+      "control_uv_overlapping_core_texels": 0,
+      "control_uv_overlap_fraction": 0.0,
+      "sub_4px_control_faces_skipped": 76,
+      "bake_covered_atlas_fraction_including_dilation": 0.4336729049682617,
+      "control_core_covered_fraction": 1.0,
+      "maps": {
+        "BaseColor": {
+          "minimum_rgb": [
+            53,
+            46,
+            40
+          ],
+          "maximum_rgb": [
+            134,
+            108,
+            80
+          ],
+          "mean_rgb": [
+            66.703,
+            61.332,
+            55.263
+          ],
+          "bytes": 99698,
+          "sha256": "1fd3aed3e1478f8fb609dcd1a4e86b69cfbeb5484b6ec100087147ef88fc8810",
+          "empty_inner_texels": 0
+        },
+        "Normal": {
+          "minimum_rgb": [
+            109,
+            117,
+            254
+          ],
+          "maximum_rgb": [
+            146,
+            140,
+            255
+          ],
+          "mean_rgb": [
+            127.952,
+            127.824,
+            254.996
+          ],
+          "bytes": 996488,
+          "sha256": "e9d97d504ab47993a59d616a8240c70ebaea42e7af2d64d1eccdc1bfc28bec1d",
+          "fraction_length_within_0_97_to_1_03": 1.0,
+          "fraction_negative_tangent_z": 0.0
+        },
+        "Roughness": {
+          "minimum_rgb": [
+            110,
+            110,
+            110
+          ],
+          "maximum_rgb": [
+            177,
+            177,
+            177
+          ],
+          "mean_rgb": [
+            136.084,
+            136.084,
+            136.084
+          ],
+          "bytes": 864555,
+          "sha256": "73f76c1d2c86365459ab9ab9d7835f5c56f267cea4c488c425e1a2eca6ae00f0"
+        },
+        "Metallic": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            217,
+            217,
+            217
+          ],
+          "mean_rgb": [
+            83.97,
+            83.97,
+            83.97
+          ],
+          "bytes": 73132,
+          "sha256": "8b68507badd608f0489321a671163a4d77bcbf830d78d7ba44c2008871baeb8a"
+        },
+        "AO": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            255,
+            255,
+            255
+          ],
+          "mean_rgb": [
+            197.31,
+            197.31,
+            197.31
+          ],
+          "bytes": 872974,
+          "sha256": "6244dc14e61a3cab0c31dcfc65c6f1e59389d610f45cafb63c558c6ef15813e2"
+        }
+      },
+      "evaluated_uv_core_covered_fraction": 1.0,
+      "evaluated_uv_core_texels": 1205106,
+      "evaluated_sub_4px_triangles_skipped": 36,
+      "evaluated_zero_uv_area_triangles": 0,
+      "evaluated_zero_uv_area_surface_fraction": 0.0
+    },
+    {
+      "key": "Steering",
+      "resolution": 2048,
+      "control_uv_core_texels": 2445789,
+      "control_uv_overlapping_core_texels": 0,
+      "control_uv_overlap_fraction": 0.0,
+      "sub_4px_control_faces_skipped": 0,
+      "bake_covered_atlas_fraction_including_dilation": 0.7810115814208984,
+      "control_core_covered_fraction": 0.9997514094633675,
+      "maps": {
+        "BaseColor": {
+          "minimum_rgb": [
+            29,
+            33,
+            31
+          ],
+          "maximum_rgb": [
+            181,
+            170,
+            147
+          ],
+          "mean_rgb": [
+            74.2,
+            80.101,
+            80.189
+          ],
+          "bytes": 127054,
+          "sha256": "faef289faa4330de55544c7f42acdd58b516b4d6300d4a7f4207510079f389d9",
+          "empty_inner_texels": 0
+        },
+        "Normal": {
+          "minimum_rgb": [
+            92,
+            78,
+            244
+          ],
+          "maximum_rgb": [
+            169,
+            162,
+            255
+          ],
+          "mean_rgb": [
+            127.988,
+            127.977,
+            254.999
+          ],
+          "bytes": 354751,
+          "sha256": "52f7a5ce3cf281144e787b5f8e0474985072199a5608d4f380150534e54f6009",
+          "fraction_length_within_0_97_to_1_03": 1.0,
+          "fraction_negative_tangent_z": 0.0
+        },
+        "Roughness": {
+          "minimum_rgb": [
+            51,
+            51,
+            51
+          ],
+          "maximum_rgb": [
+            199,
+            199,
+            199
+          ],
+          "mean_rgb": [
+            108.038,
+            108.038,
+            108.038
+          ],
+          "bytes": 121760,
+          "sha256": "4dbd2a3e241f056ac2c8220f43e2ffb89e0c7cfe649ddde33eeea8036b1f1f24"
+        },
+        "Metallic": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            242,
+            242,
+            242
+          ],
+          "mean_rgb": [
+            194.869,
+            194.869,
+            194.869
+          ],
+          "bytes": 121194,
+          "sha256": "c3f098e51ac5b2b15807eef5a2c3594431e1daf038fdaba00f9bf08b0029f248"
+        },
+        "AO": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            255,
+            255,
+            255
+          ],
+          "mean_rgb": [
+            204.385,
+            204.385,
+            204.385
+          ],
+          "bytes": 1521386,
+          "sha256": "29ede6fa4655a5f879d265a3b49b8d45cf6bb149888bbf891a23a2687d54885f"
+        }
+      },
+      "evaluated_uv_core_covered_fraction": 1.0,
+      "evaluated_uv_core_texels": 2218492,
+      "evaluated_sub_4px_triangles_skipped": 196,
+      "evaluated_zero_uv_area_triangles": 0,
+      "evaluated_zero_uv_area_surface_fraction": 0.0
+    }
+  ],
+  "limits": "Coverage and overlap use rasterized control-UV polygon interiors, eroded by a 3x3 minimum filter to exclude shared-edge pixel aliases; faces below 4 pixels or with no surviving interior are skipped. This is not proof against every evaluated-bevel UV fold or mip artifact. Images are inspected in rendered close-ups as well. Coverage acceptance uses evaluated UV-triangle interiors because bevels remove unused corners of control polygons; both control and evaluated fractions are retained. Zero-area generated UV triangles and subpixel triangles are recorded separately. This does not certify every mip level or collapsed bevel UV."
+}

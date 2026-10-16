@@ -1,0 +1,58 @@
+{
+  "candidate_sha256": "c5eadd0501631bbace05551e1453c43a14db55df1365b07a77755cbf80b51be5",
+  "source_material_vs_baked_material": [
+    {
+      "view": "assembled",
+      "mean_absolute_8bit_rgb": 0.2948946316821232,
+      "p99_absolute_8bit_channel": 2.0,
+      "maximum_absolute_8bit_channel": 48,
+      "silhouette_alpha_max_difference": 0
+    },
+    {
+      "view": "legs",
+      "mean_absolute_8bit_rgb": 0.3656650848236835,
+      "p99_absolute_8bit_channel": 2.0,
+      "maximum_absolute_8bit_channel": 61,
+      "silhouette_alpha_max_difference": 0
+    },
+    {
+      "view": "rider_parts",
+      "mean_absolute_8bit_rgb": 0.5884489635563368,
+      "p99_absolute_8bit_channel": 3.0,
+      "maximum_absolute_8bit_channel": 35,
+      "silhouette_alpha_max_difference": 0
+    },
+    {
+      "view": "chassis",
+      "mean_absolute_8bit_rgb": 0.47187590143833597,
+      "p99_absolute_8bit_channel": 3.0,
+      "maximum_absolute_8bit_channel": 58,
+      "silhouette_alpha_max_difference": 0
+    },
+    {
+      "view": "assembled_body",
+      "mean_absolute_8bit_rgb": 0.2482276220909293,
+      "p99_absolute_8bit_channel": 2.0,
+      "maximum_absolute_8bit_channel": 39,
+      "silhouette_alpha_max_difference": 0
+    }
+  ],
+  "limit": "Matched render of identical new geometry; evaluates bake reproduction, not silhouette equivalence with the old generated asset.",
+  "uv0_cleanup_reproduction": {
+    "before_sha256": "db06db444c032c680248b9a564cd840a46136aa5e2ba361f429b2c4dca6608c8",
+    "after_sha256": "c5eadd0501631bbace05551e1453c43a14db55df1365b07a77755cbf80b51be5",
+    "maximum_absolute_8bit_channel": 1,
+    "mean_absolute_8bit_channel": 6.473214285714286e-06,
+    "change": "Only unused UV layers removed from visible meshes; target atlas coordinates asserted identical. Source coordinate layers retained in hidden references."
+  },
+  "native_saved_file_reproduction": {
+    "file_sha256": "c5eadd0501631bbace05551e1453c43a14db55df1365b07a77755cbf80b51be5",
+    "maximum_absolute_8bit_channel": 1,
+    "mean_absolute_8bit_channel": 6.919642857142857e-06,
+    "shape": [
+      1400,
+      1600,
+      4
+    ]
+  }
+}
