@@ -81,7 +81,7 @@ namespace BooterBigArm.TopDown3D
                 reason ??= "Native camp grounding requires the paired whole-body projection.";
             else if (!float.IsFinite(maximumSlope + maximumSupportResidual + maximumAirSpeed)
                 || maximumSlope < 0 || maximumSlope > (NativeCampGround ? 40 : 10) || maximumSupportResidual <= 0 || maximumSupportResidual > .015f
-                || maximumAirSpeed != 6 || left == null || right == null || left.clip == right.clip
+                || maximumAirSpeed < 6 || maximumAirSpeed > 6.15f || left == null || right == null || left.clip == right.clip
                 || !left.Validate(projection) || !right.Validate(projection))
                 reason = "The continuation review exceeds its measured source/support bounds.";
             return reason == null;

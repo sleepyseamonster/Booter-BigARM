@@ -30,7 +30,7 @@ namespace BooterBigArm.Tests
             Assert.That(p.Validate(p.targetModel, p.locomotion, out var reason, false), Is.True, reason);
             Assert.That(p.Validate(p.targetModel, p.locomotion, out _), Is.False);
             Assert.That(p.qualified || p.terrainQualified, Is.False);
-            CollectionAssert.AreEqual(new[] { 1.4f, 3f, 4f, 5f, 6f }, p.gaits.Select(g => g.nominalSpeed));
+            CollectionAssert.AreEqual(new[] { 1.4f, 3f, 4f, 5f, 6.15f }, p.gaits.Select(g => g.nominalSpeed));
             Assert.That(AssetDatabase.GetAssetPath(p.gaits[3].sourceClip), Does.EndWith("SprintArmDriveReview.anim"));
             Assert.That(p.gaits[4].sourceClip, Is.Not.SameAs(p.gaits[3].sourceClip));
             var source = AssetDatabase.LoadAllAssetsAtPath("Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@SprintForwards.fbx")
@@ -43,7 +43,7 @@ namespace BooterBigArm.Tests
         public void AnalogGaitsAreContinuousAndKeepTheMeasuredDistanceClock()
         {
             var p = Policy(); var previous = p.PoseWeights(0);
-            for (var step = 0; step <= 600; step++)
+            for (var step = 0; step <= Mathf.CeilToInt(p.gaits[4].nominalSpeed * 100); step++)
             {
                 var speed = step / 100f; var weights = p.PoseWeights(speed); var sum = 0f;
                 for (var channel = 0; channel < 6; channel++)
@@ -71,8 +71,8 @@ namespace BooterBigArm.Tests
             var clock = new AnimationPlaygroundGaitClock();
             clock.Advance(new AnimationPlaygroundGroundedMotion(1, 1, .02, .02, Vector3.zero, Vector3.up, true, true), p);
             for (var tick = 2; tick < 102; tick++)
-                clock.Advance(new AnimationPlaygroundGroundedMotion(tick, 1, tick * .02, .02, Vector3.forward * .12f, Vector3.up, true, false), p);
-            Assert.That(clock.Cycles, Is.EqualTo(12 / p.gaits[4].metresPerCycle).Within(.00001));
+                clock.Advance(new AnimationPlaygroundGroundedMotion(tick, 1, tick * .02, .02, Vector3.forward * (p.gaits[4].nominalSpeed * .02f), Vector3.up, true, false), p);
+            Assert.That(clock.Cycles, Is.EqualTo(2 * p.gaits[4].nominalSpeed / p.gaits[4].metresPerCycle).Within(.00001));
             Assert.That(clock.ContactCount, Is.EqualTo((long)Math.Floor(clock.Cycles * 4)));
         }
 
@@ -123,7 +123,7 @@ namespace BooterBigArm.Tests
             {
                 Assert.That(f.Mixer.GetInput(24).GetInputCount(), Is.EqualTo(6));
                 var minimum = float.PositiveInfinity; var maximum = float.NegativeInfinity; var rigid = false; var cloak = false;
-                foreach (var speed in new[] { 0f, 1.4f, 2.05f, 2.7f, 3f, 3.1f, 3.5f, 3.9f, 4f, 4.5f, 5f, 5.1f, 5.5f, 5.9f, 6f })
+                foreach (var speed in new[] { 0f, 1.4f, 2.05f, 2.7f, 3f, 3.1f, 3.5f, 3.9f, 4f, 4.5f, 5f, 5.1f, 5.5f, 5.9f, 6f, 6.15f })
                 for (var phase = 0; phase <= 64; phase++)
                 {
                     f.Frame(speed, phase / 64d);
@@ -167,7 +167,7 @@ namespace BooterBigArm.Tests
                 typeof(TopDown3DPlayerMotor).GetField("input", Private).SetValue(motor, router);
                 var owner = new object(); motor.BindAnimationPostureOwner(owner); motor.ConfigureLaboratorySpeeds(owner, 1.4f, 3, 5);
                 Assert.Throws<ArgumentException>(() => motor.ConfigureLaboratoryGamepadGaits(new object(), 5, 6));
-                motor.ConfigureLaboratoryGamepadGaits(owner, 5, 6);
+                motor.ConfigureLaboratoryGamepadGaits(owner, 5, 6.15f);
                 float Requested(bool sprint) => (float)typeof(TopDown3DPlayerMotor).GetMethod("LaboratoryRequestedSpeed", Private).Invoke(motor, new object[] { sprint });
                 foreach (var amount in new[] { .28f, .6f, .8f, 1f })
                 {
@@ -178,7 +178,7 @@ namespace BooterBigArm.Tests
                 InputSystem.QueueStateEvent(mouse, new MouseState { delta = Vector2.right }); InputSystem.Update();
                 Assert.That(router.MoveFromGamepad, Is.True, "Looking with the mouse cannot lower a held stick's pace.");
                 InputSystem.QueueStateEvent(pad, new GamepadState { leftStick = Vector2.up }.WithButton(GamepadButton.RightShoulder)); InputSystem.Update();
-                Assert.That(router.SprintHeld, Is.True); Assert.That(Requested(router.SprintHeld), Is.EqualTo(6));
+                Assert.That(router.SprintHeld, Is.True); Assert.That(Requested(router.SprintHeld), Is.EqualTo(6.15f));
                 router.EnterSystemMenuMode(); Assert.That(router.MoveFromGamepad, Is.False); Assert.That(router.MoveValue, Is.EqualTo(Vector2.zero));
                 router.EnterGameplayMode(); InputSystem.Update(); Assert.That(router.MoveValue, Is.EqualTo(Vector2.zero));
                 InputSystem.QueueStateEvent(pad, new GamepadState()); InputSystem.Update();

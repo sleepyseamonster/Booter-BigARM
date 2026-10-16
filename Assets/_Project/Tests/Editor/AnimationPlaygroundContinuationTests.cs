@@ -19,20 +19,20 @@ namespace BooterBigArm.Tests
             var value=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundContinuationProfile>(ProfilePath);
             Assert.That(value,Is.Not.Null,"Restore the private continuation recovery bundle.");return value;
         }
-        [TestCase(0f)] [TestCase(.5f)] [TestCase(1.4f)] [TestCase(3f)] [TestCase(4f)] [TestCase(5f)] [TestCase(6f)]
+        [TestCase(0f)] [TestCase(.5f)] [TestCase(1.4f)] [TestCase(3f)] [TestCase(4f)] [TestCase(5f)] [TestCase(6f)] [TestCase(6.15f)]
         public void AirControlRetainsNeutralAndAlignedLaunchMomentumAndBoundsCountersteering(float speed)
         {
             var current=Vector3.forward*speed;
-            var neutral=AnimationPlaygroundAirControl.Advance(current,Vector3.zero,speed,6,3,.02f);
+            var neutral=AnimationPlaygroundAirControl.Advance(current,Vector3.zero,speed,Mathf.Max(6,speed),3,.02f);
             Assert.That(neutral,Is.EqualTo(current));
             for(var i=0;i<100;i++)
             {
-                var next=AnimationPlaygroundAirControl.Advance(current,Vector3.forward,speed,6,3,.02f);
+                var next=AnimationPlaygroundAirControl.Advance(current,Vector3.forward,speed,Mathf.Max(6,speed),3,.02f);
                 Assert.That(next.magnitude,Is.LessThanOrEqualTo(Mathf.Max(1.4f,speed)+.00001f));
                 Assert.That(Vector3.Distance(next,current),Is.LessThanOrEqualTo(.06001f));current=next;
             }
             if(speed>=1.4f)Assert.That(current.magnitude,Is.EqualTo(speed).Within(.00001f));
-            var counter=AnimationPlaygroundAirControl.Advance(current,Vector3.back*.5f,speed,6,3,.02f);
+            var counter=AnimationPlaygroundAirControl.Advance(current,Vector3.back*.5f,speed,Mathf.Max(6,speed),3,.02f);
             Assert.That(Vector3.Dot(counter,Vector3.forward),Is.LessThan(Vector3.Dot(current,Vector3.forward)));
             Assert.That(counter.y,Is.Zero);
         }
@@ -65,7 +65,7 @@ namespace BooterBigArm.Tests
             {
                 foreach(var slope in new[]{0f,5f,10f})
                 foreach(var heading in slope==0 ? new[]{0f} : new[]{0f,45,90,135,180,225,270,315})
-                foreach(var speed in new[]{0f,.7f,1.4f,2.05f,3,4,5,6})
+                foreach(var speed in new[]{0f,.7f,1.4f,2.05f,3,4,5,6,6.15f})
                 for(var frame=0;frame<32;frame++)
                 {
                     f.Support(slope,heading);var before=f.Driver.LaboratoryTerrainEvaluations;

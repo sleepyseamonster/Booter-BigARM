@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-16",
+  "scope": "Full gamepad sprint in main CampLoopTesting native-ground study",
+  "previous": {
+    "sprintSpeed": 6.0,
+    "effectiveMetresPerCycle": 5.215884,
+    "forwardLimit": 6.0,
+    "airLimit": 6.0
+  },
+  "prepared": {
+    "sprintSpeed": 6.15,
+    "effectiveMetresPerCycle": 5.483365,
+    "cadenceRatio": 0.9750000410331977,
+    "forwardLimit": 6.15,
+    "airLimit": 6.15
+  },
+  "retained": {
+    "lowerGaitSpeeds": [
+      1.4,
+      3,
+      4,
+      5
+    ],
+    "lateralLimit": 5,
+    "backwardLimit": 4,
+    "jumpGravityScale": 1.6,
+    "sprintSourceGuid": "64e69fe62a8aa0c4089fbccc8dcd4566",
+    "sourceCurveBytesAndContactHeightMaps": "unchanged",
+    "privateMetas": "unchanged",
+    "scene": "unchanged, unsaved author edits retained"
+  },
+  "derivation": "effective cycle = previous cycle * (new speed / previous speed) / 0.975; slower cadence is deliberate effective stride calibration, not a new geometric measurement",
+  "profiles": {
+    "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset": {
+      "before": "6ebbd3828a30f5de1936819963fe5177e7ca93c820df545cfd798a03f7e7fc31",
+      "after": "399f48f964e944d5c074c3741dd5b74fa744335cf5e9eb7ccf5d86a764f7a0eb",
+      "meta": "90f199a6130d2e73c8f24d24d3a6918629820f6a6a29804416e591154549ab0e"
+    },
+    "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/StandingDirectionalReview.asset": {
+      "before": "19bc0105c4661d1c08a9a5adeaf8226efaec68bcfbfb12abaffe9596df6deaff",
+      "after": "3500c670eaec579d0788fda5bb193c4be593af4ae23ec917c60921cd8d94cbe4",
+      "meta": "5d8f6a116581c2c31f8f38d3f09b26cb6ac2177fe09365b8aa91095f0f73e782"
+    },
+    "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampNativeMotionReview.asset": {
+      "before": "e812dfa2eee09ac13722ba49d0bab88631d1bdcd5673ae6f016653a750a72372",
+      "after": "032faeec846a6a93044dcb1d7974595f4e65e9aeed8cbb197226afa7c75d7eac",
+      "meta": "6fe0f24f6dd524faedddf4b89e05e04ad1ae912e2a9c4926ec3546e453165f5f"
+    }
+  },
+  "taskSourceSha256": {
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundDirectionalMath.cs": "d18a608c0d0e96a204e24157c3b6ea50fcd5d6bc0eb8a573c3bf139caba0abc5",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundContinuationProfile.cs": "b3c2e19305b4fc0623271b92563ccea8bb29f3cb4e84b0be9accf5e9049e63c4",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundAirborneController.cs": "b3623f31a542715faaa11c6b089cf173193b869e3d43f283b22afe228270e727",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundExpandedGaitTests.cs": "acdf2b2200200838ea5db2aa3d10fa37646055646e6f8d6e020214322f7890d2",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundDirectionalTests.cs": "da0f75ff58385775edcf32a3a3821fd48db0e8118a5ada2f7bbaae18c6146b8b",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundContinuationTests.cs": "a9701cdd0261d348dcf5f0c7bf7ccc05c474f4e52697debada68e20144e359b6",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundNativeGroundTests.cs": "ce8eeb6c61d35f4368b8f79a5bb72c0964263fdd94062fe12b054e311566dd22",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundAirborneTests.cs": "4d5f06c7658053e790d9bfea7eb7da98ecbac3cb5c21cbd07ff2f57d557ea675"
+  },
+  "proofBoundary": "Offline equipped pose and command/state checks only. No Play Mode, actual input driving, physics simulation, gameplay smoke, or feel acceptance."
+}

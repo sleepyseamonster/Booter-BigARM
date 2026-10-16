@@ -26,4 +26,4 @@ Immutable starting profile pairs and source files, qualified profile pairs, exac
 
 ## Local commit boundary
 
-Concurrent inventory work committed this pass's twelve staged source/test/evidence files together with five inventory files in `645b1472c16fd88c5a5c9d32979c87096169ed90` (`Add fancy husk-fiber fashion as five individual garments`). The sprint files were verified byte-for-byte against the qualified working copy. That shared commit is retained intact; this receipt records the sprint scope separately. Sprint ownership is the three runtime guards, five test files and four files in this evidence directory. No push was performed by this tuning task.
+During closeout, concurrent inventory work briefly included this pass's staged files in `645b1472c16fd88c5a5c9d32979c87096169ed90`; that concurrent task subsequently returned the branch to its preceding checkpoint. This pass then committed only its own source/test/evidence paths, preserving the inventory entries in the shared index. Task ownership is the three runtime guards, five test files and four files in this evidence directory. No history rewrite or push was performed by this tuning task.

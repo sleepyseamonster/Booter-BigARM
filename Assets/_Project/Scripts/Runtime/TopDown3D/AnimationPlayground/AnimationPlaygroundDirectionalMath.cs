@@ -62,7 +62,7 @@ namespace BooterBigArm.TopDown3D
         {
             reason = null;
             if (p.schema != 2 || model == null || p.targetModel != model || projection == null || p.footProjection != projection
-                || p.maximumSpeed != 6 || p.maximumLateralSpeed != 5 || p.maximumBackwardSpeed != 4
+                || !float.IsFinite(p.maximumSpeed) || p.maximumSpeed < 6 || p.maximumSpeed > 6.15f || p.maximumLateralSpeed != 5 || p.maximumBackwardSpeed != 4
                 || p.directionalGaits == null || p.directionalGaits.Length != 6)
             { reason = "Restore the paired six-source standing directional review and its calibrated speed limits."; return false; }
             for (var i = 0; i < 6; i++)

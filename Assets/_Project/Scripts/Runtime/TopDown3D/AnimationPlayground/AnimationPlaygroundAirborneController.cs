@@ -32,7 +32,7 @@ namespace BooterBigArm.TopDown3D
 
         public void ConfigureContinuationReview(AnimationPlaygroundContinuationProfile review)
         {
-            if(motor==null || Active || review==null || review.maximumAirSpeed!=6)
+            if(motor==null || Active || review==null || !float.IsFinite(review.maximumAirSpeed) || review.maximumAirSpeed<6 || review.maximumAirSpeed>6.15f)
                 throw new InvalidOperationException("Configure airborne continuation before acquiring a jump.");
             airLimit=review.maximumAirSpeed;
         }

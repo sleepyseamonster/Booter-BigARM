@@ -46,7 +46,7 @@ namespace BooterBigArm.Tests
             coordinator.Configure(motor,driver,registry,new[]{actor.transform.position},()=>paused);
             airborne=actor.AddComponent<AnimationPlaygroundAirborneController>();airborne.Configure(motor,driver,coordinator,profile,registry,()=>paused,()=>false,()=>clock);
             airborne.ConfigureContinuationReview(AssetDatabase.LoadAssetAtPath<AnimationPlaygroundContinuationProfile>(
-                "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampMotionContinuationReview.asset"));
+                "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampNativeMotionReview.asset"));
             actor.SetActive(true);Set(motor,"<IsGrounded>k__BackingField",true);
             floor=GameObject.CreatePrimitive(PrimitiveType.Cube);floor.transform.position=new Vector3(68000,-.1f,68000);floor.transform.localScale=new Vector3(10,.2f,10);
             floor.AddComponent<TopDown3DGroundSurface>();Physics.SyncTransforms();
@@ -90,7 +90,7 @@ namespace BooterBigArm.Tests
             Assert.That(clock-before,Is.LessThanOrEqualTo(.10001));
             Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Rising));
         }
-        [TestCase(0f,0f)] [TestCase(1.4f,0f)] [TestCase(3f,0f)] [TestCase(4f,0f)] [TestCase(5f,0f)] [TestCase(6f,0f)]
+        [TestCase(0f,0f)] [TestCase(1.4f,0f)] [TestCase(3f,0f)] [TestCase(4f,0f)] [TestCase(5f,0f)] [TestCase(6f,0f)] [TestCase(6.15f,0f)]
         [TestCase(5f,45f)] [TestCase(5f,90f)] [TestCase(4f,135f)] [TestCase(4f,180f)]
         public void EveryAcceptedEntryRetainsMomentumThroughPromptTakeoffAndSoftRunOut(float speed,float heading)
         {

@@ -46,7 +46,7 @@ namespace BooterBigArm.Tests
             var p=Profile();Assert.That(p.Validate(p.targetModel,p.footProjection,out var reason),Is.True,reason);
             var f=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>("Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset");
             var w=new float[12];
-            foreach(var speed in new[]{0f,.7f,1.4f,2.05f,2.7f,3,4,5,6})
+            foreach(var speed in new[]{0f,.7f,1.4f,2.05f,2.7f,3,4,5,6,6.15f})
             {
                 AnimationPlaygroundDirectionalMath.FillPoseWeights(p,f,speed,Vector2.up,w);var accepted=f.PoseWeights(speed);
                 for(var i=0;i<12;i++)Assert.That(w[i],Is.EqualTo(i<6 ? accepted[i] : 0).Within(.000001));
@@ -84,7 +84,7 @@ namespace BooterBigArm.Tests
                 Assert.That(Apply(d),Is.EqualTo(d));Assert.That(motor.LaboratoryStandingFacingLocked,Is.True);
                 Assert.That(motor.LaboratoryStandingDirectionUnsupported,Is.False);
                 var expected=AnimationPlaygroundDirectionalMath.SpeedLimit(Profile(),new Vector2(Mathf.Sin(angle*Mathf.Deg2Rad),Mathf.Cos(angle*Mathf.Deg2Rad)));
-                var limited=(float)typeof(TopDown3DPlayerMotor).GetMethod("StandingStrafeRequestedSpeed",Private).Invoke(motor,new object[]{6f});
+                var limited=(float)typeof(TopDown3DPlayerMotor).GetMethod("StandingStrafeRequestedSpeed",Private).Invoke(motor,new object[]{Profile().maximumSpeed});
                 Assert.That(limited,Is.EqualTo(expected).Within(.00001f));
                 Assert.That(Vector3.Angle((Vector3)typeof(TopDown3DPlayerMotor).GetField("standingStrafeFacing",Private).GetValue(motor),body.rotation*Vector3.forward),Is.LessThan(.001f));
             }
@@ -121,7 +121,7 @@ namespace BooterBigArm.Tests
             try
             {
                 foreach(var angle in new[]{0f,45,90,135,180,225,270,315})
-                foreach(var requested in new[]{.7f,1.1f,1.4f,1.8f,3,4,5,6})
+                foreach(var requested in new[]{.7f,1.1f,1.4f,1.8f,3,4,5,6,6.15f})
                 {
                     var local=new Vector2(Mathf.Sin(angle*Mathf.Deg2Rad),Mathf.Cos(angle*Mathf.Deg2Rad));
                     var speed=Mathf.Min(requested,AnimationPlaygroundDirectionalMath.SpeedLimit(Profile(),local));
