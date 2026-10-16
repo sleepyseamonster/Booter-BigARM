@@ -1,0 +1,61 @@
+{
+  "status": "Proposal",
+  "date": "2026-10-15",
+  "authority": "Author requested four additional biological-resource brainstorm entries in the inventory visualizer.",
+  "worldBasis": "Docs/WORLD_BASIS.md",
+  "boundary": "Raw harvested materials only. Species, anatomy, processing, yield and performance remain proposals. No recipes, gameplay effects, general edibility or free water are established.",
+  "items": [
+    {
+      "id": "proposal.bio.gripping_pad_scales",
+      "name": "Faunal gripping-pad scales",
+      "purpose": "Candidate textured feed for tool grips, foot-contact surfaces and cargo-rest friction pads.",
+      "acquisition": "Gather naturally shed or recover intact gripping-pad scales from a selected fauna species; anatomy and collection method proposed.",
+      "processing": "Sort intact textured faces for later trimming and backing trials. No adhesive, attachment method or recipe assigned.",
+      "limitations": "Grip under dust, wear rate and safe preparation remain untested. Not a finished boot sole or guaranteed climbing aid.",
+      "use": "Fabrication",
+      "material": "Faunal hard tissue",
+      "form": "Shell plate",
+      "aliases": "grip scales; traction pad; footpad lamellae",
+      "distinction": "Naturally textured contact faces, rather than structural shell plates, wing membranes or raw hide."
+    },
+    {
+      "id": "proposal.bio.resonance_plates",
+      "name": "Faunal resonance plates",
+      "purpose": "Candidate thin resonating feed for mechanical sounders, rattles and acoustic instrument experiments.",
+      "acquisition": "Recover intact dry plates from a proposed sound-producing structure in selected fauna; species and anatomy unresolved.",
+      "processing": "Inspect for cracks and sort by dimensions before resonance trials. No tuning process or finished instrument recipe assigned.",
+      "limitations": "Frequency, loudness and durability remain undefined. No electrical sensing, supernatural resonance or guaranteed lure effect.",
+      "use": "Fabrication",
+      "material": "Faunal hard tissue",
+      "form": "Shell plate",
+      "aliases": "sound plate; stridulation plate; resonating shell",
+      "distinction": "Selected for acoustic response, rather than the bulk structural use of ordinary shell plates."
+    },
+    {
+      "id": "proposal.bio.grinding_grit",
+      "name": "Faunal grinding grit",
+      "purpose": "Candidate mineral-rich abrasive feed for surface finishing and workshop polishing trials.",
+      "acquisition": "Recover loose hard granules from a proposed internal grinding chamber in selected fauna; species, anatomy and yield unresolved.",
+      "processing": "Segregate contaminated material and assess dry grading and containment before abrasive trials. No decontamination process or recipe assigned.",
+      "limitations": "Internal faunal residues may be toxic. Hardness, contamination and safe processing remain unknown; not food or a finished abrasive disc.",
+      "use": "Surface finishing",
+      "material": "Biological and mineral mixture",
+      "form": "Particles",
+      "aliases": "grinding granules; gut grit; biological abrasive feed",
+      "distinction": "Solid mechanically recovered grit, separate from digestive etchant, droppings and geological sand."
+    },
+    {
+      "id": "proposal.bio.mineralized_hinge_rods",
+      "name": "Mineralized hinge rods",
+      "purpose": "Candidate slender hard-part blanks for small mechanical pivots and hinge-pin fitting trials.",
+      "acquisition": "Recover straight mineralized rods from a proposed articulating mouthpart in selected fauna; species and extraction method unresolved.",
+      "processing": "Inspect for cracks and grade by straightness and diameter before fitting trials. No precision machining or component recipe assigned.",
+      "limitations": "Brittleness, tolerances and load capacity remain unverified. Not a finished replacement joint pin or approved load-bearing component.",
+      "use": "Fabrication",
+      "material": "Faunal hard tissue",
+      "form": "Solid piece",
+      "aliases": "faunal pivot rod; mouthpart hinge rod; mineralized pin blank",
+      "distinction": "Straight pivot blanks, separate from joint-socket cups, claw tips, horn cores and manufactured joint pins."
+    }
+  ]
+}
