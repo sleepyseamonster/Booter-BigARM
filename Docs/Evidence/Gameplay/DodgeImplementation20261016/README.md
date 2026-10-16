@@ -2,6 +2,10 @@
 
 Installed in the already open **CampLoopTesting** main camp slice and ready for author hands-on testing. Unity 6000.4.0f1; `main`. The feature uses the existing sole Rigidbody movement owner and sole animation output. No author scene save/reload, Play Mode, foreground activation, package change or external publication occurred.
 
+## Subsequent transition audit — October 16
+
+The [running/sprint recovery audit](../../../Design/Gameplay/CAMP_LOOP_DODGE_TRANSITION_AUDIT_2026-10-16.md) reproduced two handoff defects: held LT facing lock drops on the first ordinary recovery tick, and side/back rolls reset motor facing before the local pose fade. The source/geometry checks below remain valid, but they do not establish smooth temporal recovery. The audit preserves accepted gaits and records correction gates; runtime fixes remain pending.
+
 ## Controls and behavior
 
 - Gamepad **East**: one directional dodge roll per press. Left stick chooses direction; neutral uses current facing.
