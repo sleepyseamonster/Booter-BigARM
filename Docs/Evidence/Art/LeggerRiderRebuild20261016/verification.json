@@ -1,0 +1,87 @@
+{
+  "source_sha256": "9f47958a59cde1ff245825f5d2a569dfda6fa611e7981f56488208f374171b13",
+  "native": {
+    "path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration04.blend",
+    "bytes": 768933496,
+    "sha256": "9f47958a59cde1ff245825f5d2a569dfda6fa611e7981f56488208f374171b13"
+  },
+  "recovery": {
+    "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Before.blend",
+    "bytes": 745433568,
+    "sha256": "788e4de73bac5a52b9853e0071b1df23b9433edc296b981468e2d991c2cd7f93"
+  },
+  "blender": "5.2.2 LTS",
+  "major_meshes": 76,
+  "quad_controls": 45762,
+  "evaluated_triangles": 146264,
+  "preserved_prepass_meshes": 850,
+  "preserved_prepass_packed_images": 146,
+  "all_native_mesh_objects": 909,
+  "all_native_packed_images": 166,
+  "exact_unaffected_active_meshes": 47,
+  "accepted_leg_meshes_exact": 30,
+  "retained_geometry_reatlased": 8,
+  "active_packed_maps": 55,
+  "new_active_maps": 20,
+  "retained_active_maps": 35,
+  "local_review_images": 64,
+  "foreground_interaction": false,
+  "completed_workers": [
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\baseline2.log",
+      "bytes": 244,
+      "sha256": "5083f8f305c3abf7f88a94c3824034a6360c86e5bf6727416c20fa7b1d07ca0a"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\refine_bar.log",
+      "bytes": 266,
+      "sha256": "0ceb87d536abde08b3bd65722d5d1261402224ecf51a22797f0205aca2fd553c"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\prepare6.log",
+      "bytes": 353,
+      "sha256": "8d5c7b370a4612afa32d77b568d05b2a3b479b1f41af3eb2aa88e8fe0799829d"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\bake3.log",
+      "bytes": 2746,
+      "sha256": "0cf89793ecc910ef033787d598417afa12a6a07b07bedb06a108e39007e9bf47"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\normal_prepare.log",
+      "bytes": 122,
+      "sha256": "5a9e0fafa14fe3c1911e7c3af817a2de4213ef17bee7530033815f433ec861ab"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\finalize4.log",
+      "bytes": 364,
+      "sha256": "8e73c86503ec7bcfcaf2a13aa8d3a39e2daee0885ce93de4e23bb9c0b8c20a37"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\qa_normalized.log",
+      "bytes": 257,
+      "sha256": "7b2f8c4fd0999ee781d6ee3d59c81673d29c4d82fa53c7e36efbf944dd35bc67"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\capture_normalized.log",
+      "bytes": 2231,
+      "sha256": "5ca4b66556bcd32b261e6838a0dc92a9db05c246d08a97c46963b0daadc3c7d4"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\pose_corrected.log",
+      "bytes": 1428,
+      "sha256": "3830cf863e2e0f24e9d2aa78e63f9cbc55e98262ad69331b2d1268e2c71f258b"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\native_qa.log",
+      "bytes": 269,
+      "sha256": "59c16cfda9bbff65bba8601ed1e1e9489ebeb1779347c51f0f93c9c495a884fa"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\native_capture.log",
+      "bytes": 493,
+      "sha256": "2c16b66e777c7a31395b968131ad7a409d793c9052f4f56fc40b18e4a4f6d0f9"
+    }
+  ],
+  "proof_boundary": "Blender source implementation only. No export, rig, final seated deformation, full articulation, Unity import, performance or gameplay smoke-test claim."
+}

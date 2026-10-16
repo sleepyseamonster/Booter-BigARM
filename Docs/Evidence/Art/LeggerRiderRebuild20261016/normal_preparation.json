@@ -1,0 +1,105 @@
+{
+  "prepared_sha256": "8a9a07f8bd43a43243bf28b802835961db5eecf157302386a434bb4758f374e1",
+  "cases": [
+    {
+      "key": "Frame",
+      "raw": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsCorrected\\Frame\\Normal.png",
+        "sha256": "13d2810428d1ecb1041d3baaacd927993d5119298d1f1304a8017e46cbb62493",
+        "bytes": 2177540,
+        "resolution": [
+          4096,
+          4096
+        ],
+        "color_space": "Non-Color"
+      },
+      "normalized": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\NormalizedNormals\\Frame\\Normal.png",
+        "sha256": "cf5910572da7b888cc04312ec855b75708d9b7fff5f06947a8a591195d4fa4e7",
+        "bytes": 2179500,
+        "resolution": [
+          4096,
+          4096
+        ],
+        "color_space": "Non-Color"
+      },
+      "zero_vectors_replaced": 0,
+      "operation": "Decode tangent vector, normalize its length without changing nonzero direction, re-encode as Non-Color PNG. Raw bakes retained. Normal-map data preparation, no geometry/color/roughness edits."
+    },
+    {
+      "key": "BodyArmor",
+      "raw": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsCorrected\\BodyArmor\\Normal.png",
+        "sha256": "e1bc17cf7537abd991e8941f29b3804dee104d6cca2cc782e25ec67429c7573f",
+        "bytes": 2128506,
+        "resolution": [
+          4096,
+          4096
+        ],
+        "color_space": "Non-Color"
+      },
+      "normalized": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\NormalizedNormals\\BodyArmor\\Normal.png",
+        "sha256": "4535ccba5c8b125fc1f068cf2e25c25f682d4e9f2c3539d7ff98e84953a68c2f",
+        "bytes": 2128910,
+        "resolution": [
+          4096,
+          4096
+        ],
+        "color_space": "Non-Color"
+      },
+      "zero_vectors_replaced": 0,
+      "operation": "Decode tangent vector, normalize its length without changing nonzero direction, re-encode as Non-Color PNG. Raw bakes retained. Normal-map data preparation, no geometry/color/roughness edits."
+    },
+    {
+      "key": "Saddle",
+      "raw": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsCorrected\\Saddle\\Normal.png",
+        "sha256": "588b4fc336cefac4e2732f90b90bdf1451cb88096b8cc97d7179923e93ece972",
+        "bytes": 1171793,
+        "resolution": [
+          2048,
+          2048
+        ],
+        "color_space": "Non-Color"
+      },
+      "normalized": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\NormalizedNormals\\Saddle\\Normal.png",
+        "sha256": "99493c85b0768f3e10920b8c1570a0d6b56411ef947e8574a1f186dbb683d6ef",
+        "bytes": 1175868,
+        "resolution": [
+          2048,
+          2048
+        ],
+        "color_space": "Non-Color"
+      },
+      "zero_vectors_replaced": 0,
+      "operation": "Decode tangent vector, normalize its length without changing nonzero direction, re-encode as Non-Color PNG. Raw bakes retained. Normal-map data preparation, no geometry/color/roughness edits."
+    },
+    {
+      "key": "Steering",
+      "raw": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsCorrected\\Steering\\Normal.png",
+        "sha256": "36f837d34f6a8aef2b61da6ec6c7b4385e60158a2e799f8b85dc4d074e3f8411",
+        "bytes": 544862,
+        "resolution": [
+          2048,
+          2048
+        ],
+        "color_space": "Non-Color"
+      },
+      "normalized": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\NormalizedNormals\\Steering\\Normal.png",
+        "sha256": "f84a7509599b64937e76d7e04e4cb395f3d4a10d8d156b73102c045349f18ebc",
+        "bytes": 544741,
+        "resolution": [
+          2048,
+          2048
+        ],
+        "color_space": "Non-Color"
+      },
+      "zero_vectors_replaced": 0,
+      "operation": "Decode tangent vector, normalize its length without changing nonzero direction, re-encode as Non-Color PNG. Raw bakes retained. Normal-map data preparation, no geometry/color/roughness edits."
+    }
+  ]
+}

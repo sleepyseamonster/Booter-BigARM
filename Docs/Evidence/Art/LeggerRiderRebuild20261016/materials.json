@@ -1,0 +1,166 @@
+{
+  "input_prepared_sha256": "8a9a07f8bd43a43243bf28b802835961db5eecf157302386a434bb4758f374e1",
+  "input_forms_sha256": "d188a97729732a209d62cc46c8d74c84b2c7c5eb803edbe2b8d8c0644aabd6ec",
+  "candidate": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Textured.blend",
+  "candidate_sha256": "9f47958a59cde1ff245825f5d2a569dfda6fa611e7981f56488208f374171b13",
+  "candidate_bytes": 768933496,
+  "materials": [
+    {
+      "key": "Frame",
+      "material": "Legger_Rider_Frame_PBR",
+      "atlas": "Legger_Rider_Frame_Atlas",
+      "resolution": 4096,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_Rider_Frame_BaseColor",
+          "sha256": "455765851dc8208f40be125c81745bac3df03142b611a22eaec3facfad97df47",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_Rider_Frame_Normal",
+          "sha256": "cf5910572da7b888cc04312ec855b75708d9b7fff5f06947a8a591195d4fa4e7",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_Rider_Frame_Roughness",
+          "sha256": "0026862546a2c215f3bc3da952226c6a1c9c2c82bbf8a026ec968f96b524cafb",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_Rider_Frame_Metallic",
+          "sha256": "b64891c223b53a45521cda4a8f85ed067a05c3bc413a54c1b41e6b2e252d2278",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_Rider_Frame_AO",
+          "sha256": "ff7e61f8cff88b66193ce51ea87480915c256bb70972eee50ad343f36895d299",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "BodyArmor",
+      "material": "Legger_Rider_BodyArmor_PBR",
+      "atlas": "Legger_Rider_BodyArmor_Atlas",
+      "resolution": 4096,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_Rider_BodyArmor_BaseColor",
+          "sha256": "4b845964cd20cad60dfab875551d5ebf56265287d0a8a9b25a8905d4895198c8",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_Rider_BodyArmor_Normal",
+          "sha256": "4535ccba5c8b125fc1f068cf2e25c25f682d4e9f2c3539d7ff98e84953a68c2f",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_Rider_BodyArmor_Roughness",
+          "sha256": "79d25b4d4d0e76db97753454cc7154663dfdf035c098913c196e75a319a23157",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_Rider_BodyArmor_Metallic",
+          "sha256": "a02fa8cba5358b0752398ec842111b4f42a2d01b96b7dfca5bad49ac2f2aa06d",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_Rider_BodyArmor_AO",
+          "sha256": "5c19ac90ae6ad605df583f954179627ec8076a29c7fa868b8a776c854522a83d",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "Saddle",
+      "material": "Legger_Rider_Saddle_PBR",
+      "atlas": "Legger_Rider_Saddle_Atlas",
+      "resolution": 2048,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_Rider_Saddle_BaseColor",
+          "sha256": "d78a1faa1668ed14172e5466db84919746e6176cd3a55cdd0594d4fbcee87752",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_Rider_Saddle_Normal",
+          "sha256": "99493c85b0768f3e10920b8c1570a0d6b56411ef947e8574a1f186dbb683d6ef",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_Rider_Saddle_Roughness",
+          "sha256": "4263824700c1896453560911381b165c98a03d7ee955548e4ee5c17322de6363",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_Rider_Saddle_Metallic",
+          "sha256": "a1a76cb62991154d58a56e182042a46024e05677ab524117e78ba30e6efd2932",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_Rider_Saddle_AO",
+          "sha256": "a1f26841e994fdaa184cb7f2cf88843e8dafb77e9b58fd031091ce034cc5f62f",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "Steering",
+      "material": "Legger_Rider_Steering_PBR",
+      "atlas": "Legger_Rider_Steering_Atlas",
+      "resolution": 2048,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_Rider_Steering_BaseColor",
+          "sha256": "ca65c1a666b12f2a6baa5f91848643b1a6492f4bb0933144819814f7d32662c4",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_Rider_Steering_Normal",
+          "sha256": "f84a7509599b64937e76d7e04e4cb395f3d4a10d8d156b73102c045349f18ebc",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_Rider_Steering_Roughness",
+          "sha256": "5c1f2317aff0652f9734f777e02c67537de18eb822b3049a1f516d7778fb77a1",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_Rider_Steering_Metallic",
+          "sha256": "38af7d8867bee44901e5283f37c1ac481adccc0f40ae7af9d7cf43443aa1ef8f",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_Rider_Steering_AO",
+          "sha256": "9e4b4993aa66acd3d4abf751e7ba345fd123fbe2ec2dfa8497cf7d8cd23fc591",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    }
+  ],
+  "new_maps": 20,
+  "retained_maps": 35,
+  "major_meshes": 76,
+  "control_quads": 45762,
+  "evaluated_triangles": 146264
+}

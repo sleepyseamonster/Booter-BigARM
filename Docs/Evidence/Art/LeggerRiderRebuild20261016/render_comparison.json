@@ -1,0 +1,103 @@
+{
+  "source_sha256": "9f47958a59cde1ff245825f5d2a569dfda6fa611e7981f56488208f374171b13",
+  "forms_sha256": "d188a97729732a209d62cc46c8d74c84b2c7c5eb803edbe2b8d8c0644aabd6ec",
+  "geometry_to_pbr": [
+    {
+      "a": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Views\\current_assembled.png",
+      "b": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\TexturedViews\\current_assembled.png",
+      "alpha_silhouette_equal": true,
+      "mean_rgb_difference_255": 0.11702237103393305,
+      "p99_rgb_difference_255": 2.0,
+      "max_rgb_difference_255": 60
+    },
+    {
+      "a": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Views\\current_clay_seat.png",
+      "b": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\TexturedViews\\current_clay_seat.png",
+      "alpha_silhouette_equal": true,
+      "mean_rgb_difference_255": 0.0028336023294116535,
+      "p99_rgb_difference_255": 0.0,
+      "max_rgb_difference_255": 28
+    },
+    {
+      "a": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Views\\current_clay_top.png",
+      "b": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\TexturedViews\\current_clay_top.png",
+      "alpha_silhouette_equal": true,
+      "mean_rgb_difference_255": 0.005447788211764811,
+      "p99_rgb_difference_255": 0.0,
+      "max_rgb_difference_255": 25
+    },
+    {
+      "a": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Views\\current_front_oblique.png",
+      "b": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\TexturedViews\\current_front_oblique.png",
+      "alpha_silhouette_equal": true,
+      "mean_rgb_difference_255": 0.14156350046484442,
+      "p99_rgb_difference_255": 2.0,
+      "max_rgb_difference_255": 79
+    },
+    {
+      "a": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Views\\current_full_side.png",
+      "b": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\TexturedViews\\current_full_side.png",
+      "alpha_silhouette_equal": true,
+      "mean_rgb_difference_255": 0.14644735457150526,
+      "p99_rgb_difference_255": 2.0,
+      "max_rgb_difference_255": 28
+    },
+    {
+      "a": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Views\\current_grip_close.png",
+      "b": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\TexturedViews\\current_grip_close.png",
+      "alpha_silhouette_equal": true,
+      "mean_rgb_difference_255": 0.29549032751897364,
+      "p99_rgb_difference_255": 2.0,
+      "max_rgb_difference_255": 107
+    },
+    {
+      "a": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Views\\current_knee_close.png",
+      "b": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\TexturedViews\\current_knee_close.png",
+      "alpha_silhouette_equal": true,
+      "mean_rgb_difference_255": 0.20663872485802845,
+      "p99_rgb_difference_255": 2.0,
+      "max_rgb_difference_255": 120
+    },
+    {
+      "a": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Views\\current_rear_oblique.png",
+      "b": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\TexturedViews\\current_rear_oblique.png",
+      "alpha_silhouette_equal": true,
+      "mean_rgb_difference_255": 0.13679501054095222,
+      "p99_rgb_difference_255": 2.0,
+      "max_rgb_difference_255": 100
+    },
+    {
+      "a": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Views\\current_seat_close.png",
+      "b": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\TexturedViews\\current_seat_close.png",
+      "alpha_silhouette_equal": true,
+      "mean_rgb_difference_255": 0.16674659861537808,
+      "p99_rgb_difference_255": 2.0,
+      "max_rgb_difference_255": 70
+    },
+    {
+      "a": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Views\\current_side.png",
+      "b": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\TexturedViews\\current_side.png",
+      "alpha_silhouette_equal": true,
+      "mean_rgb_difference_255": 0.17116897043669727,
+      "p99_rgb_difference_255": 2.0,
+      "max_rgb_difference_255": 26
+    },
+    {
+      "a": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Views\\current_top.png",
+      "b": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\TexturedViews\\current_top.png",
+      "alpha_silhouette_equal": true,
+      "mean_rgb_difference_255": 0.19707731243366805,
+      "p99_rgb_difference_255": 2.0,
+      "max_rgb_difference_255": 65
+    }
+  ],
+  "limits": "Equal-camera offline renders; mean differences are appearance checks, not equality to original generated geometry or runtime proof.",
+  "pbr_to_native": {
+    "a": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\TexturedViews\\current_assembled.png",
+    "b": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\NativeViews\\current_assembled.png",
+    "alpha_silhouette_equal": true,
+    "mean_rgb_difference_255": 4.149668156224632e-05,
+    "p99_rgb_difference_255": 0.0,
+    "max_rgb_difference_255": 1
+  }
+}

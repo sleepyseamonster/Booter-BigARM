@@ -1,0 +1,174 @@
+{
+  "recipes": [
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\brief.md",
+      "bytes": 1870,
+      "sha256": "7f1e4dc40632bd1edbe6d31d736ccfd9ca0bda71a51f53b56dc418f1077854c0"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\baseline.py",
+      "bytes": 2524,
+      "sha256": "613a068aa8b1ba9bbf4fac49981de873d53a86f28d9a8676299b6ac7fe28c019"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\build.py",
+      "bytes": 16491,
+      "sha256": "37647cbb2941257b1474927defc36106dadd47af15bb5903a52b138a9bc95b43"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\refine_bar.py",
+      "bytes": 3330,
+      "sha256": "2509b1aa155c75450c1a0c7f3f638ba1cfbde4aa58fdc61316b9736b3e909b1a"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\make_pipeline.py",
+      "bytes": 7500,
+      "sha256": "2df7710d2ff3aad5c633c742d39dd891b71bf89b3f57694bb3210bd06f36794c"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\prepare.py",
+      "bytes": 5517,
+      "sha256": "c548143008b31be1d291287a2dc8961d810de50441be6450030668fcfcca51ea"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\bake.py",
+      "bytes": 4343,
+      "sha256": "bd12a6f09a1b4b15a96a51472bbecff4c74e7c0b8ba4d71e38cf9d36ba7de8ad"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\normalize_normals.py",
+      "bytes": 1753,
+      "sha256": "4361711065d1ef5326c114d23398aa71b1b448cd74947e69bf0d8be5ea057f9d"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\finalize.py",
+      "bytes": 6637,
+      "sha256": "c4ed193c3e4a7c8a8fc396ac78a98bb70a5ac5bcff89497b1c1d9a5a4fad4c2a"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\qa.py",
+      "bytes": 10196,
+      "sha256": "a05aa785aaf48dd6351efa8c2db84b2fd8059f1256c8ab429dd0d60b968fa243"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\texture_qa.py",
+      "bytes": 4364,
+      "sha256": "01a45ce45d4d4e2059ef0518453b7f447be43939086d5f0b505599cd36ce6998"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\capture.py",
+      "bytes": 5001,
+      "sha256": "51abbe4fc2f8aaea1814a7bbcd6b76e5ad65374869a373a23786b1a01ef3cc4b"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\extract.py",
+      "bytes": 6641,
+      "sha256": "4f3aebbf63bd199c0e3b495ca86719dee1d9f9e5515329edd154beeae10e0c02"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\pose_check.py",
+      "bytes": 9067,
+      "sha256": "1f310309ecb5b073161a77b9fffbf5b4c5a594d71680e26388a44d35bf992c45"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\fit_summary.py",
+      "bytes": 4061,
+      "sha256": "7b2ab0955661b327c8727b420e81179a4aa8826f4dafb8142a113c1afe435d7f"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\boards.py",
+      "bytes": 4843,
+      "sha256": "ccfb10ec26b6afbc8e4a0a8f1ab68c8d83b2e45dca10c8080bd1161023ecc90f"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\compare.py",
+      "bytes": 1705,
+      "sha256": "f7b586d3cf70a5d42f28684375bd5ab9e8a9aa0f66b4d92ebaf02820643d13d8"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\apply.py",
+      "bytes": 2478,
+      "sha256": "eb9eaeb4967e26fd63849a9a47831f7fc2206385a3c4f0fb2a337bf845defaa2"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\seal_records.py",
+      "bytes": 5986,
+      "sha256": "a32e7cd108acf112ff3208fb2d8ba3266d754a5706bcaa7d93753524b78ae675"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\validate_records.py",
+      "bytes": 3402,
+      "sha256": "ba94c7c1e2ba7f2596a54182c5a9e3c236de6534bec10cf45dda9b32f459085e"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\commit_records.py",
+      "bytes": 2663,
+      "sha256": "05aa0a9b72c2f01df0b312ea48207ef2bda88bf0eec25506dc1ce4840b43ad4a"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerSciFi20261015\\forms.py",
+      "bytes": 9219,
+      "sha256": "5c203c6585408c89137a8ab649a2c5f1b86a126d62dade50c03b8114e73f545e"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerSciFi20261015\\fingerprint.py",
+      "bytes": 1762,
+      "sha256": "eb5f095437185432900cd31b2ed07feb3d55796db3dcd72eb7dc8c1a8f5bc86f"
+    }
+  ],
+  "local_checkpoints": [
+    {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Before.blend",
+      "bytes": 745433568,
+      "sha256": "788e4de73bac5a52b9853e0071b1df23b9433edc296b981468e2d991c2cd7f93"
+    },
+    {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\FormsFinal.blend",
+      "bytes": 745934489,
+      "sha256": "d188a97729732a209d62cc46c8d74c84b2c7c5eb803edbe2b8d8c0644aabd6ec"
+    },
+    {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Prepared.blend",
+      "bytes": 746339148,
+      "sha256": "8a9a07f8bd43a43243bf28b802835961db5eecf157302386a434bb4758f374e1"
+    },
+    {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\BakeSources.blend",
+      "bytes": 19648616,
+      "sha256": "a24c2411a5e30088be399d8b5af8bad1623645531dc4cffc81524ba5e3984e75"
+    },
+    {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\Textured.blend",
+      "bytes": 768933496,
+      "sha256": "9f47958a59cde1ff245825f5d2a569dfda6fa611e7981f56488208f374171b13"
+    }
+  ],
+  "raw_fit_data": [
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\seat_surfaces.json",
+      "bytes": 395286,
+      "sha256": "42a732d58c3ed1a7178ecaf47cd69181745be30d3fee047708799e5c75853d3a"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\knee_envelopes.json",
+      "bytes": 91857,
+      "sha256": "d2c5865e61261ad14dde7186b00e5724bb9fa868124d92af6589c6907906c5ae"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\foot_pad_surfaces.json",
+      "bytes": 82397,
+      "sha256": "c386d8ed4b92eb070dc083576514f78b8947865d16f0c0441bfacd14b31fc01c"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\control_uv.json",
+      "bytes": 5389637,
+      "sha256": "b665b28cb8b1ec3cef1c4dc06203a661d23fa5a08da0e869997f4e70733d77be"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderRebuild20261016\\evaluated_uv.json.gz",
+      "bytes": 1692044,
+      "sha256": "3b91c8e9a6865204f06cf208bb7a70e91213a25666593c72a5c78a18daba526e"
+    }
+  ],
+  "limits": "Local sources and recipes only, not a native-source publication or portable production exporter."
+}

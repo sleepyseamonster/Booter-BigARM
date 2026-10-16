@@ -1,0 +1,228 @@
+{
+  "defect": [
+    {
+      "module": "Frame",
+      "black_eroded_coverage": 98,
+      "black_actual_evaluated_core": 0,
+      "core_covered": 1.0,
+      "sample_yx": [
+        [
+          1812,
+          4067
+        ],
+        [
+          1813,
+          4066
+        ],
+        [
+          1813,
+          4067
+        ],
+        [
+          1813,
+          4068
+        ],
+        [
+          1814,
+          4065
+        ],
+        [
+          1814,
+          4066
+        ],
+        [
+          1814,
+          4067
+        ],
+        [
+          1814,
+          4068
+        ],
+        [
+          1814,
+          4069
+        ],
+        [
+          1815,
+          4064
+        ],
+        [
+          1815,
+          4065
+        ],
+        [
+          1815,
+          4066
+        ],
+        [
+          1815,
+          4067
+        ],
+        [
+          1815,
+          4068
+        ],
+        [
+          1815,
+          4069
+        ],
+        [
+          1815,
+          4070
+        ]
+      ]
+    },
+    {
+      "module": "BodyArmor",
+      "black_eroded_coverage": 0,
+      "black_actual_evaluated_core": 0,
+      "core_covered": 1.0,
+      "sample_yx": []
+    },
+    {
+      "module": "Saddle",
+      "black_eroded_coverage": 0,
+      "black_actual_evaluated_core": 0,
+      "core_covered": 1.0,
+      "sample_yx": []
+    },
+    {
+      "module": "Steering",
+      "black_eroded_coverage": 0,
+      "black_actual_evaluated_core": 0,
+      "core_covered": 1.0,
+      "sample_yx": []
+    }
+  ],
+  "before_frame_maps": {
+    "BaseColor": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsFinal\\Frame\\BaseColor.png",
+      "sha256": "962eb0d855ad501245cd0dbbd8509c4dc9325c075a787a6cb04f75c4057382be",
+      "bytes": 920635,
+      "resolution": [
+        4096,
+        4096
+      ],
+      "color_space": "sRGB"
+    },
+    "Roughness": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsFinal\\Frame\\Roughness.png",
+      "sha256": "4527146dc512dd17ac4ccd7c6417f38e932a21aafaf77a3dffec4e16a1ca2e35",
+      "bytes": 965644,
+      "resolution": [
+        4096,
+        4096
+      ],
+      "color_space": "Non-Color"
+    },
+    "Metallic": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsFinal\\Frame\\Metallic.png",
+      "sha256": "4551b8a52531ad1e1a1d5bcd38808759f34f50a5413c81756359e08c005cca0e",
+      "bytes": 528372,
+      "resolution": [
+        4096,
+        4096
+      ],
+      "color_space": "Non-Color"
+    },
+    "Normal": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsFinal\\Frame\\Normal.png",
+      "sha256": "ecd4eb311644164584727424344075d09b92086e0793460a7e6fed2130b8990c",
+      "bytes": 2202191,
+      "resolution": [
+        4096,
+        4096
+      ],
+      "color_space": "Non-Color"
+    },
+    "AO": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsFinal\\Frame\\AO.png",
+      "sha256": "a3e6b293b5f48955a561554636371ffa3908bdacbc9d59c081f08b2358c6d789",
+      "bytes": 4107408,
+      "resolution": [
+        4096,
+        4096
+      ],
+      "color_space": "Non-Color"
+    },
+    "Coverage": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsFinal\\Frame\\Coverage.png",
+      "sha256": "f9a4c15473f64e12291915b294b386bdb956feb5388b5b5064133effe513a019",
+      "bytes": 589239,
+      "resolution": [
+        4096,
+        4096
+      ],
+      "color_space": "Non-Color"
+    }
+  },
+  "after_frame_maps": {
+    "BaseColor": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsCorrected\\Frame\\BaseColor.png",
+      "sha256": "455765851dc8208f40be125c81745bac3df03142b611a22eaec3facfad97df47",
+      "bytes": 912847,
+      "resolution": [
+        4096,
+        4096
+      ],
+      "color_space": "sRGB"
+    },
+    "Roughness": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsCorrected\\Frame\\Roughness.png",
+      "sha256": "0026862546a2c215f3bc3da952226c6a1c9c2c82bbf8a026ec968f96b524cafb",
+      "bytes": 960722,
+      "resolution": [
+        4096,
+        4096
+      ],
+      "color_space": "Non-Color"
+    },
+    "Metallic": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsCorrected\\Frame\\Metallic.png",
+      "sha256": "b64891c223b53a45521cda4a8f85ed067a05c3bc413a54c1b41e6b2e252d2278",
+      "bytes": 522035,
+      "resolution": [
+        4096,
+        4096
+      ],
+      "color_space": "Non-Color"
+    },
+    "Normal": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\NormalizedNormals\\Frame\\Normal.png",
+      "sha256": "cf5910572da7b888cc04312ec855b75708d9b7fff5f06947a8a591195d4fa4e7",
+      "bytes": 2179500,
+      "resolution": [
+        4096,
+        4096
+      ],
+      "color_space": "Non-Color"
+    },
+    "AO": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsCorrected\\Frame\\AO.png",
+      "sha256": "ff7e61f8cff88b66193ce51ea87480915c256bb70972eee50ad343f36895d299",
+      "bytes": 4107351,
+      "resolution": [
+        4096,
+        4096
+      ],
+      "color_space": "Non-Color"
+    },
+    "Coverage": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderRebuild20261016\\MapsCorrected\\Frame\\Coverage.png",
+      "sha256": "f9a4c15473f64e12291915b294b386bdb956feb5388b5b5064133effe513a019",
+      "bytes": 589239,
+      "resolution": [
+        4096,
+        4096
+      ],
+      "color_space": "Non-Color"
+    }
+  },
+  "repair": "Four retained Frame yokes/hip mounts rebaked from their original authored materials and SourceSurface coordinates instead of resampling their older atlas. Exact original meshes/maps retained. All four modules re-baked and the original strict QA gates rerun unchanged.",
+  "after_empty_inner_texels": {
+    "Frame": 0,
+    "BodyArmor": 0,
+    "Saddle": 0,
+    "Steering": 0
+  }
+}

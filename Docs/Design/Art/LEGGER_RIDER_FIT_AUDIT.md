@@ -2,6 +2,8 @@
 
 October 16, 2026. Analysis only. The author's clarification controls this study: **the original Legger has good rider geometry**. Recover its rider layout in the rebuilt assembly. The existing playable-character prototype supplies a dimensional cross-check; it does not replace the original as the design authority.
 
+Subsequent checkpoint: the author authorized implementation after this audit. The [rider-area rebuild](LEGGER_RIDER_REBUILD.md) and its [saved-source receipt](../../Evidence/Art/LeggerRiderRebuild20261016/README.md) record the updated model. Measurements and hashes below describe the preserved pre-rebuild audit, not the latest native file.
+
 The rebuild changes the relationship between the saddle, thigh channels, handlebars and foot supports. Restoring that relationship should precede further surface detailing or baking in this area. No native model edits were made during this audit.
 
 ## Sources and proof boundary
