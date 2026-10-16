@@ -1,18 +1,39 @@
-import {InventoryPadInput,spatialTarget} from './gamepad-core.mjs';
+import {InventoryPadInput,spatialTarget,rightStickScroll,revealScroll} from './gamepad-core.mjs';
 
 export function startInventoryGamepad(){
   const input=new InventoryPadInput(),hint=document.querySelector('#pad-status');
-  let lastFocus=null,editing=null,focusKey=null,running=true,frame;
+  let lastFocus=null,editing=null,focusKey=null,running=true,frame,lastTime=null;
   const controls='button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),a[href]';
   const scope=()=>document.querySelector('dialog[open]')||document.querySelector('.shell');
   const visible=el=>el.getClientRects().length>0&&!el.closest('[hidden]')&&getComputedStyle(el).visibility!=='hidden';
   const candidates=()=>[...scope().querySelectorAll(controls)].filter(visible);
   const key=el=>el?.id?`#${CSS.escape(el.id)}`:['entry','owner','page','recipe','action','transfer','menu','near','project','radial','setting','reference','craftLink','remove'].map(k=>el?.dataset[k]!==undefined?`[data-${k.replace(/[A-Z]/g,c=>'-'+c.toLowerCase())}="${CSS.escape(el.dataset[k])}"]`:null).find(Boolean);
+  function reveal(el){
+    el.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
+    const modal=document.querySelector('dialog[open]');
+    const footer=modal?0:document.querySelector('footer')?.getBoundingClientRect().height||0;
+    const dy=revealScroll(el.getBoundingClientRect(),window.innerHeight,footer);
+    if(dy){if(modal)modal.scrollBy({top:dy,behavior:'instant'});else window.scrollBy({top:dy,behavior:'instant'});}
+  }
+  function scroll(amount){
+    const modal=document.querySelector('dialog[open]');
+    let target=lastFocus?.isConnected?lastFocus.parentElement:null;
+    if(modal&&!modal.contains(target))target=modal;
+    while(target&&target!==document.body){
+      const style=getComputedStyle(target);
+      const canY=target.scrollHeight>target.clientHeight&&/auto|scroll/.test(style.overflowY);
+      const canX=target.scrollWidth>target.clientWidth&&/auto|scroll/.test(style.overflowX);
+      if(canY||canX){target.scrollBy({top:canY?amount.y:0,left:canX?amount.x:0,behavior:'instant'});return;}
+      if(target===modal)return;
+      target=target.parentElement;
+    }
+    if(!modal)window.scrollBy({top:amount.y,left:amount.x,behavior:'instant'});
+  }
   function focus(el){
     if(!el)return;
     if(lastFocus===el&&document.activeElement===el){el.classList.add('pad-focus');return;}
     lastFocus?.classList.remove('pad-focus');lastFocus=el;focusKey=key(el);
-    el.classList.add('pad-focus');el.focus({preventScroll:true});el.scrollIntoView({block:'nearest',inline:'nearest'});
+    el.classList.add('pad-focus');el.focus({preventScroll:true});reveal(el);
   }
   function current(){
     const items=candidates();
@@ -37,7 +58,7 @@ export function startInventoryGamepad(){
       return;
     }
     const rects=items.map(el=>{const r=el.getBoundingClientRect();return {x:r.x+r.width/2,y:r.y+r.height/2,width:r.width,height:r.height};});
-    const next=spatialTarget(rects,items.indexOf(active),direction);if(next>=0)focus(items[next]);
+    const next=spatialTarget(rects,items.indexOf(active),direction);if(next>=0)focus(items[next]);else reveal(active);
   }
   function select(){
     const active=current();if(!active)return;
@@ -66,6 +87,7 @@ export function startInventoryGamepad(){
   }
   function tick(now){
     if(!running)return;
+    const delta=lastTime===null?0:now-lastTime;lastTime=now;
     try{
       const pads=navigator.getGamepads?.()||[],available=[...pads].filter(p=>p&&p.connected!==false);
       const pad=available.find(p=>`${p.index}:${p.id}`===input.device)||available.find(p=>p.mapping==='standard');
@@ -74,19 +96,21 @@ export function startInventoryGamepad(){
       else{
         const actions=input.sample(pad,now,active);
         if(active){
-          hint.textContent=input.armed?'D-pad / LS move · South select · LB/RB tabs · LT/RT context':'Release controls to continue';
-          if(document.body.classList.contains('pad-mode')){
+          hint.textContent=input.armed?'D-pad / LS move · RS scroll · South select · LB/RB tabs · LT/RT context':'Release controls to continue';
+          if(document.body.classList.contains('pad-mode')&&lastFocus){
             // Recover logical focus after a view rebuild; keep modal focus trapped.
             current();
           }
           for(const action of actions){document.body.classList.add('pad-mode');if(['up','down','left','right'].includes(action))navigate(action);else if(action==='select')select();else tab(action);}
+          const amount=rightStickScroll(pad,delta,input.armed);
+          if(amount.x||amount.y){document.body.classList.add('pad-mode');scroll(amount);}
         }else{input.reset();nativeInput();}
       }
     }catch{input.reset();nativeInput();hint.textContent='Controller access unavailable in this browser';}
     frame=requestAnimationFrame(tick);
   }
   // Pointer/keyboard interaction keeps native behaviour and relinquishes controller focus.
-  function nativeInput(){document.body.classList.remove('pad-mode');lastFocus?.classList.remove('pad-focus');editing?.classList.remove('pad-editing');editing=null;focusKey=null;}
+  function nativeInput(){document.body.classList.remove('pad-mode');lastFocus?.classList.remove('pad-focus');lastFocus=null;editing?.classList.remove('pad-editing');editing=null;focusKey=null;}
   document.addEventListener('pointerdown',nativeInput);document.addEventListener('keydown',nativeInput);
   frame=requestAnimationFrame(tick);
   return ()=>{running=false;cancelAnimationFrame(frame);input.reset();document.removeEventListener('pointerdown',nativeInput);document.removeEventListener('keydown',nativeInput);nativeInput();};

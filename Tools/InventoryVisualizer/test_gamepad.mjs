@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {InventoryPadInput,spatialTarget} from './dist/gamepad-core.mjs';
+import {InventoryPadInput,spatialTarget,rightStickScroll,revealScroll} from './dist/gamepad-core.mjs';
 const pad=(buttons=[],axes=[0,0],overrides={})=>({index:0,id:'test-controller',mapping:'standard',connected:true,axes,buttons:Array.from({length:16},(_,i)=>({pressed:buttons.includes(i),value:buttons.includes(i)?1:0})),...overrides});
 function armed(){const input=new InventoryPadInput();assert.deepEqual(input.sample(pad(),0),[]);return input;}
 test('D-pad and dominant left stick use the same four navigation actions',()=>{
@@ -46,4 +46,31 @@ test('spatial navigation respects grid rows and crosses to another pane',()=>{
   assert.equal(spatialTarget(rects,0,'right'),1);assert.equal(spatialTarget(rects,0,'down'),2);
   assert.equal(spatialTarget(rects,3,'up'),1);assert.equal(spatialTarget(rects,1,'right'),4);
   assert.equal(spatialTarget(rects,0,'left'),-1);assert.equal(spatialTarget([],0,'down'),-1);
+});
+test('navigation includes controls below the viewport rather than stopping at the screen edge',()=>{
+  const rows=Array.from({length:30},(_,i)=>({x:100,y:50+i*90,width:180,height:70}));
+  assert.equal(spatialTarget(rows,7,'down'),8);assert.equal(spatialTarget(rows,28,'down'),29);
+});
+test('focus reveal accounts for the sticky footer, top margin and oversized controls',()=>{
+  assert.equal(revealScroll({top:620,bottom:700,height:80},720,80),76);
+  assert.equal(revealScroll({top:10,bottom:70,height:60},720,80),-6);
+  assert.equal(revealScroll({top:100,bottom:180,height:80},720,80),0);
+  assert.equal(revealScroll({top:900,bottom:1800,height:900},720,80),884);
+});
+test('right stick scroll is proportional, frame-rate independent and drift-free',()=>{
+  assert.deepEqual(rightStickScroll(pad([],[0,0,.2,-.2]),16),{x:0,y:0});
+  const down=rightStickScroll(pad([],[0,0,0,1]),20);
+  assert.equal(down.y,17);assert.equal(down.x,0);
+  assert.equal(rightStickScroll(pad([],[0,0,0,1]),10).y*2,down.y);
+  assert.ok(rightStickScroll(pad([],[0,0,0,.6]),20).y<down.y);
+  assert.equal(rightStickScroll(pad([],[0,0,-1,-1]),20).x,-17);
+  assert.equal(rightStickScroll(pad([],[0,0,0,1]),5000).y,42.5);
+  assert.deepEqual(rightStickScroll(pad([],[0,0,NaN,Infinity]),20),{x:0,y:0});
+  assert.deepEqual(rightStickScroll(pad([],[0,0,0,1]),20,false),{x:0,y:0});
+});
+test('right stick held on entry cannot bypass the neutral input barrier',()=>{
+  const input=new InventoryPadInput();input.sample(pad([],[0,0,0,1]),0);assert.equal(input.armed,false);
+  input.sample(pad(),1);assert.equal(input.armed,true);
+  input.sample(pad([0]),2);assert.equal(input.armed,false);
+  input.sample(pad([],[0,0,0,1]),3);assert.equal(input.armed,false);
 });

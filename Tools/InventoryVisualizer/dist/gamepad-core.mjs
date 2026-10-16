@@ -15,7 +15,8 @@ export class InventoryPadInput {
     if(dx||dy)direction=dy?(dy<0?'up':'down'):(dx<0?'left':'right');
     else if(Math.max(Math.abs(x),Math.abs(y))>.55)direction=Math.abs(x)>Math.abs(y)?(x<0?'left':'right'):(y<0?'up':'down');
     const held={select:pressed(0),previousTab:pressed(4),nextTab:pressed(5),previousContext:trigger(6),nextContext:trigger(7)};
-    const neutral=!direction&&!Object.values(held).some(Boolean);
+    const right=rightStickScroll(pad,16);
+    const neutral=!direction&&!Object.values(held).some(Boolean)&&!right.x&&!right.y;
     if(!this.armed){if(neutral)this.armed=true;this.held=held;this.direction=null;return [];}
     const edge=Object.keys(held).find(key=>held[key]&&!this.held[key]);
     this.held=held;
@@ -24,6 +25,25 @@ export class InventoryPadInput {
     if(direction&&now>=this.nextRepeat){this.nextRepeat=now+125;return [direction];}
     return [];
   }
+}
+
+// Frame-rate independent scrolling; a small dead zone removes right-stick drift.
+export function rightStickScroll(pad,deltaMs,active=true){
+  if(!active||!pad||pad.connected===false||pad.mapping!=='standard')return {x:0,y:0};
+  const axis=i=>{
+    const value=Number.isFinite(pad.axes?.[i])?Math.max(-1,Math.min(1,pad.axes[i])):0;
+    return Math.abs(value)<=.22?0:Math.sign(value)*(Math.abs(value)-.22)/.78;
+  };
+  const seconds=Math.max(0,Math.min(50,Number.isFinite(deltaMs)?deltaMs:0))/1000;
+  return {x:axis(2)*850*seconds,y:axis(3)*850*seconds};
+}
+
+export function revealScroll(rect,viewportHeight,footerHeight=0){
+  const top=16,bottom=Math.max(top+1,viewportHeight-footerHeight-16);
+  if(rect.height>bottom-top)return rect.top-top;
+  if(rect.bottom>bottom)return rect.bottom-bottom;
+  if(rect.top<top)return rect.top-top;
+  return 0;
 }
 
 export function spatialTarget(rects,current,direction){
