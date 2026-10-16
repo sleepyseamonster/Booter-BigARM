@@ -1,4 +1,4 @@
-"""Add the three author-selected salvage concepts through a preserving OOXML merge.
+"""Append author-requested catalog proposals through a preserving OOXML merge.
 
 Whole-workbook Artifact Tool import previously exhausted its heap. This uses the
 established narrow-edit fallback, preserving unrelated workbook parts and cells.
@@ -22,8 +22,9 @@ DATA = ROOT / 'Docs/Design/Items/ANCIENT_SALVAGE_PROPOSALS.json'
 OUT = ROOT / 'Logs/AncientSalvageThree'
 
 
-def build(snapshot):
-    spec = json.loads(DATA.read_text(encoding='utf-8'))
+def build(snapshot, spec=None):
+    spec = spec or json.loads(DATA.read_text(encoding='utf-8'))
+    count_added = len(spec['items'])
     w = openpyxl.load_workbook(BytesIO(snapshot), data_only=False)
     v = openpyxl.load_workbook(BytesIO(snapshot), data_only=True)
     ids = [r[0] for r in list(v['Items'].values)[5:] if r[0]]
@@ -31,7 +32,7 @@ def build(snapshot):
     assert not any(i['id'] in ids for i in spec['items']), 'Proposal already exists'
     assert not any(r[1] in {i['name'] for i in spec['items']} for r in list(v['Items'].values)[5:] if r[0]), 'Name already exists'
     last = int(re.search(r'\d+$', w['Items'].tables['ItemsTable'].ref).group())
-    assert last + 3 <= 1005, 'Master formula capacity exceeded'
+    assert last + count_added <= 1005, 'Master formula capacity exceeded'
     changed, new_rows, tables = {}, {}, {}
     summary = {}
     with ZipFile(BytesIO(snapshot)) as archive:
@@ -77,6 +78,7 @@ def build(snapshot):
             changed[parts[sheet]] = raw.encode('utf-8')
         items, uses, audits = [], [], []
         use_last = w['Item uses'].max_row
+        headers = list(w['Items'].values)[4]
         for offset, item in enumerate(spec['items'], 1):
             n = last + offset
             fields = [w['Items'].cell(631, c).value for c in range(1, 41)]
@@ -93,39 +95,55 @@ def build(snapshot):
                          31:'Author-selected brainstorm proposal; catalog creation does not establish functioning technology or a recipe.',
                          32:'T0 is the as-found recovery stage. Inspection and qualification of a compatible original would require a separate readiness record; rarity is independent of tier.',
                          33:'T0',34:'Component'}
+            if spec.get('defaults'):
+                overrides.update({headers.index(key): value for key, value in spec['defaults'].items()})
+                overrides.update({20:'Artwork direction: '+item['icon']+' Fit, safe use and manufacturing details remain proposals.',
+                                  21:item['name'].lower()+'; camp life; everyday object',22:spec['source']+' Setting constraints: Docs/WORLD_BASIS.md#material-culture.'})
+                overrides.update({headers.index(key): value for key, value in item.get('fields', {}).items()})
             for c, value in overrides.items():fields[c] = value
+            allowed = {}
+            for row in v['Taxonomy'].values:
+                if len(row)>1 and row[0] and row[1]:allowed.setdefault(row[0],set()).add(row[1])
+            for key, value in zip(headers, fields):
+                if key in allowed and value is not None:assert value in allowed[key], (item['id'], key, value)
             search = '; '.join(str(fields[c] or '') for c in [0,1,3,4,23,24,25,26,27,28,29,21,2,33,34]).lower()
-            caches = {31:search,36:0,37:0,38:0,39:'Raw entry feed; no production route',40:0}
+            caches = {31:search,36:0,37:0,38:0,39:'Raw entry feed; no production route' if fields[2]=='T0' else 'No production route listed',40:int(fields[2][1:])}
             items.append((n,row_xml('Items',631,n,fields,caches)))
             u = use_last + offset
             use_fields = [w['Item uses'].cell(use_last,c).value for c in range(1,7)]
             for c,value in enumerate(use_fields,1):
                 if isinstance(value,str) and value.startswith('='):use_fields[c-1]=Translator(value,origin=f'{openpyxl.utils.get_column_letter(c)}{use_last}').translate_formula(f'{openpyxl.utils.get_column_letter(c)}{u}')
-            use_fields[0]=item['id'];use_fields[5]='Author-selected salvage proposal; functional use awaits qualification.'
-            uses.append((u,row_xml('Item uses',use_last,u,use_fields,{2:item['name'],3:'Ancient salvage',5:item['use']})))
-            audit=[item['id'],f'=Items!B{n}',f'=Items!X{n}',f'=Items!C{n}','As-found ancient recovery',f'=Items!AJ{n}','No reproduction route established','Inspection equipment and compatibility criteria remain undefined.','Condition unknown; qualification required',fields[20]]
-            audits.append((n,row_xml('Craft audit',631,n,audit,{2:item['name'],3:'Machine part',4:'T0',6:0})))
+            use_fields[0]=item['id'];use_fields[5]='Author-requested catalog proposal; intended use, not an implemented action.'
+            uses.append((u,row_xml('Item uses',use_last,u,use_fields,{2:item['name'],3:fields[3],5:item['use']})))
+            audit=[item['id'],f'=Items!B{n}',f'=Items!X{n}',f'=Items!C{n}','Finished object proposal' if spec.get('defaults') else 'As-found ancient recovery',f'=Items!AJ{n}','No recipe established','Facilities and qualification criteria remain undefined.','Proposal; not qualified for crafting',fields[20]]
+            audits.append((n,row_xml('Craft audit',631,n,audit,{2:item['name'],3:fields[23],4:fields[2],6:0})))
         insert('Items',items);insert('Item uses',uses);insert('Craft audit',audits)
-        for sheet, table, end in [('Items','ItemsTable',last+3),('Item uses','ItemUseRelationships',use_last+3),('Craft audit','CraftAudit',last+3)]:
+        for sheet, table, end in [('Items','ItemsTable',last+count_added),('Item uses','ItemUseRelationships',use_last+count_added),('Craft audit','CraftAudit',last+count_added)]:
             oldref=w[sheet].tables[table].ref;newref=re.sub(r'\d+$',str(end),oldref)
             for member in archive.namelist():
                 if member.startswith('xl/tables/') and member.endswith('.xml'):
                     raw=archive.read(member).decode('utf-8')
                     if f'name="{table}"' in raw:
                         changed[member]=raw.replace(f'ref="{oldref}"',f'ref="{newref}"').encode('utf-8');tables[table]=newref
-        counts=Counter(r[3] for r in list(v['Items'].values)[5:] if r[0]);counts['Ancient salvage']+=3
+        added = [values for values, caches in new_rows['Items'].values()]
+        all_items = [r for r in list(v['Items'].values)[5:] if r[0]] + added
+        counts=Counter(r[3] for r in all_items)
         for r in w['Categories']:
-            if r[0].value=='Ancient salvage':summary.setdefault('Categories',{})[r[1].coordinate]=counts['Ancient salvage']
-            if r[0].value=='Ancient recovered items':summary.setdefault('Categories',{})[r[1].coordinate]=sum(1 for row in list(v['Items'].values)[5:] if row[0] and row[25]=='Ancient technology')+3
+            if r[0].value in {row[3] for row in added} and r[4].value=='Primary category':summary.setdefault('Categories',{})[r[1].coordinate]=counts[r[0].value]
+            if r[0].value=='Ancient recovered items' and any(row[25]=='Ancient technology' for row in added):summary.setdefault('Categories',{})[r[1].coordinate]=sum(row[25]=='Ancient technology' for row in all_items)
         for r in w['Collection targets']:
-            if r[0].value=='Machine parts':
-                count=sum(1 for row in list(v['Items'].values)[5:] if row[0] and row[23]=='Machine part' and row[29]!='Withheld assumption')+3
-                summary['Collection targets']={r[3].coordinate:count,r[4].coordinate:max(0,r[2].value-count)}
+            if r[1].value in {row[23] for row in added}:
+                # Preserve exact-ID exclusions in existing count formulas.
+                excluded = set(re.findall(r"'?Items'?!\$A\$6:\$A\$\d+,\"([^\"]+)\"", r[3].value or ''))
+                count=sum(row[23]==r[1].value and row[29]!='Withheld assumption' and row[0] not in excluded for row in all_items)
+                summary.setdefault('Collection targets',{}).update({r[3].coordinate:count,r[4].coordinate:max(0,r[2].value-count)})
         for sheet, cells in summary.items():changed[parts[sheet]]=patch_cells(archive.read(parts[sheet]).decode('utf-8'),cells).encode('utf-8')
         # Expand ID pickers without shifting any existing records.
         for sheet, part in parts.items():
             raw=changed.get(part,archive.read(part)).decode('utf-8')
-            updated=raw.replace(f'$A$6:$A${last}',f'$A$6:$A${last+3}')
+            def extend_picker(match):
+                return re.sub(r"('Items'!\$A\$6:\$A\$)\d+", lambda m: m.group(1)+str(last+count_added), match.group())
+            updated=re.sub(r'<(?:\w+:)?dataValidation\b[^>]*>.*?</(?:\w+:)?dataValidation>',extend_picker,raw,flags=re.S)
             if updated!=raw:changed[part]=updated.encode('utf-8')
         output=BytesIO()
         with ZipFile(output,'w') as target:

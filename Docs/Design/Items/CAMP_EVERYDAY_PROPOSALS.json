@@ -1,0 +1,81 @@
+{
+  "source": "Author requested seven more everyday camp-life objects, October 15, 2026. Specific designs remain brainstorming proposals.",
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Everyday objects",
+    "Subtype": "Camp household",
+    "Acquisition": "Proposed contemporary fabrication or trade; availability and manufacturing details remain open.",
+    "Crafting / processing": "Candidate finished object using qualified T1 stock; no quantities, recipe, production time or yield authored.",
+    "Limitations": "Dimensions, material grade, safe operating limits and compatibility remain design work. Food-heating concepts require a setting-compatible managed heat source; no free-water cooking, wooden parts or cloth assumed.",
+    "Rarity": null,
+    "Item type": "Household utensil",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Physical form": "Assembly",
+    "Classification basis": "Author-requested everyday camp-life expansion; organization and intended use are proposals, not implemented actions.",
+    "Tier basis": "Proposed T2 finished object using qualified T1 stock. A planning tier does not establish an executable recipe, material quantities, performance or availability.",
+    "Finished-item input tier": "T1",
+    "Crafting role": "Finished item"
+  },
+  "items": [
+    {
+      "id": "proposal.camp.divided_warming_pot",
+      "name": "Divided meal-warming pot",
+      "purpose": "Two removable ceramic meal cups sit in a shared metal cradle, keeping separate Phagia preparations apart while warming above a compatible managed heat source. Distinct from the catalog's single-chamber cooking pot; no water bath or ordinary fire assumed.",
+      "icon": "An oval metal cradle holding two round ceramic inserts, one lid tipped aside.",
+      "material": "Ceramic and metal",
+      "use": "Cooking"
+    },
+    {
+      "id": "proposal.camp.pot_lid_rest",
+      "name": "Folding pot-lid rest",
+      "purpose": "A low folding metal stand holds a removed cooking lid upright, keeping its inner surface away from ground grit. Fit and hot-contact stability need design.",
+      "icon": "A small crossed metal stand with two raised hooks supporting a round lid edge.",
+      "material": "Metal",
+      "use": "Food preparation"
+    },
+    {
+      "id": "proposal.camp.cam_tie_down_buckle",
+      "name": "Cam-lever tie-down buckle",
+      "purpose": "A broad metal cam lever grips a compatible existing camp binding to secure bundled gear or a shelter edge. It supplies a fastener, not extra line; holding force and binding compatibility remain undefined.",
+      "icon": "A flattened oval buckle with a lifted ribbed lever and two open binding slots.",
+      "material": "Metal",
+      "use": "Binding and construction",
+      "fields": {"Item type": "Shelter item"}
+    },
+    {
+      "id": "proposal.camp.guyline_tensioner",
+      "name": "Three-hole guyline tensioner",
+      "purpose": "A small perforated metal plate adjusts the working length of a compatible existing shelter line. Complements the existing guyline bundle and ground stakes; it is neither a new line supply nor a ground anchor.",
+      "icon": "A rounded triangular metal plate with three differently spaced holes and worn edges.",
+      "material": "Metal",
+      "use": "Binding and construction",
+      "fields": {"Item type": "Shelter item", "Physical form": "Solid part"}
+    },
+    {
+      "id": "proposal.camp.split_ring_hanging_hook",
+      "name": "Split-ring hanging hook",
+      "purpose": "A split metal ring and short hanging hook suspend a compatible utensil or small camp object from an existing rail or eye. This is domestic mounting hardware, separate from the grappling hook; it has no climbing rating.",
+      "icon": "A heavy open ring joined to a compact downward hook with a flattened stop.",
+      "material": "Metal",
+      "use": "Equipment mounting",
+      "fields": {"Item type": "Shelter item"}
+    },
+    {
+      "id": "proposal.camp.hinged_utensil_case",
+      "name": "Hinged camp utensil case",
+      "purpose": "A narrow metal case with internal dividers keeps eating tools together and separates their working ends from loose cargo grit. Closure details remain open; the case is not an airtight or sterile container.",
+      "icon": "A long shallow metal case opened to reveal three narrow utensil channels.",
+      "material": "Metal",
+      "use": "Cargo organization"
+    },
+    {
+      "id": "proposal.camp.folding_grit_pan",
+      "name": "Folding grit pan",
+      "purpose": "A shallow metal pan collects grit swept from camp surfaces with the existing dust brush. Its short hinged handle folds flat for packing; the pan is dedicated to cleaning rather than food service.",
+      "icon": "A broad shallow scoop with a straight lip and a short handle folded across its back.",
+      "material": "Metal",
+      "use": "Cleaning"
+    }
+  ]
+}
