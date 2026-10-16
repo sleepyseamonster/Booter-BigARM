@@ -1,0 +1,45 @@
+{
+  "source": "Author requested a husk hat, October 16, 2026. Local practical clothing proposal governed by Docs/WORLD_BASIS.md. Shaped shell construction avoids ordinary cloth and does not assume easy husk-fiber textile manufacture.",
+  "scope": "One separate Clothing item. No runtime equipment slot, world placement, streaming, saved-game changes or protection statistics.",
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Clothing",
+    "Subtype": "Husk headwear",
+    "Implementation scope": "Author-directed concept",
+    "Equipment slot": "Head / fit unresolved",
+    "Carrier metadata": "Booter-worn hat concept; fit, packing and canister clearance unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed shell-working craft or trade; availability and price unresolved.",
+    "Crafting / processing": "Candidate shaping and joining of selected thin husk-shell segments, smoothed edges and small metal fasteners. No wood, ordinary cloth or full textile process required by this design; exact inputs, joining and production remain unresolved.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Clothing, not a helmet. Fit, shade coverage, wind retention, wear and comfort remain proposals. No armor, storm resistance, electrical insulation, survival bonus or new equipment slot established.",
+    "Rarity": null,
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Item type": "Wearable",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Primary use": "Clothing",
+    "Material family": "Shell / chitin",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "Author-requested practical husk hat, separately listed from the elaborate husk-fiber fashion headdress and specialized headwear.",
+    "Tier basis": "Proposed T2 finished hat using selected, qualified T1 shell stock and supporting fittings. Exact preparation and construction remain unresolved.",
+    "Finished-item input tier": "T1",
+    "Crafting role": "Finished item"
+  },
+  "items": [
+    {
+      "id": "proposal.clothing.husk_hat",
+      "name": "Husk hat",
+      "purpose": "A plain low-crowned hat made from thin overlapping husk-shell segments, with a broad downturned brim and small metal joining tabs. Proposed as everyday headwear with a shaded silhouette; fitting and actual shade performance require design.",
+      "icon": "One plain amber-brown husk-shell hat with a low rounded segmented crown, broad downturned brim, visible growth lines and tiny metal joining tabs. No textile lining, decorative crest, wearer or armor helmet.",
+      "material": "Shell / chitin",
+      "use": "Clothing",
+      "fields": {"Search aliases": "husk hat; shell hat; chitin brim hat; everyday headwear", "Open design decisions": "Resolve shell thickness, edge finishing, joining, head fit, ventilation, wind retention and sight/hearing/canister clearance. Abundant raw husks do not establish cheap finished manufacture or a protective rating."}
+    }
+  ]
+}
