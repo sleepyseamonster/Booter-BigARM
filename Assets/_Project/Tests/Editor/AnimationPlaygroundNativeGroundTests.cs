@@ -26,7 +26,7 @@ namespace BooterBigArm.Tests
             foreach(var site in Sites)
             foreach(var facing in new[]{0f,90,180,270})
             foreach(var heading in new[]{0f,45,90,135,180,225,270,315})
-            foreach(var requested in new[]{1.1f,1.4f,3,5,6,6.15f})
+            foreach(var requested in new[]{1.1f,1.4f,3,4.9f,5,6,6.15f})
             {
                 f.Place(site,facing);var local=new Vector2(Mathf.Sin(heading*Mathf.Deg2Rad),Mathf.Cos(heading*Mathf.Deg2Rad));
                 var speed=Mathf.Min(requested,AnimationPlaygroundDirectionalMath.SpeedLimit(AnimationPlaygroundDirectionalTests.Profile(),local));
@@ -41,7 +41,7 @@ namespace BooterBigArm.Tests
                     Assert.That(f.Inner.Forward.Get<PlayableGraph>("playableGraph").GetOutputCount(),Is.EqualTo(1));
                     Assert.That(f.Inner.Driver.GarmentFloorExceeded,Is.False);
                     if(phase%2==0){var value=f.SoleMinimum();if(value<minimum){minimum=value;worstSole=$"{site}/{facing}/{heading}/{speed}/{phase}";}}
-                    if(phase==0 && heading%90==0 && (requested==3 || requested==6 || requested==6.15f))
+                    if(phase==0 && heading%90==0 && (requested==3 || requested==4.9f || requested==6 || requested==6.15f))
                     {var value=f.MeshMinimum(mesh);if(value<bodyMinimum){bodyMinimum=value;worstBody=$"{site}/{facing}/{heading}/{speed}/{phase}/{f.MinimumSkin}/{f.MinimumPoint}";}}
                 }
             }

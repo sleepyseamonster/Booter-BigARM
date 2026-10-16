@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-16",
+  "scope": "Fast-run movement pace in main CampLoopTesting native-ground study",
+  "before": {
+    "movementSpeed": 5.0,
+    "effectiveMetresPerCycle": 5.607321,
+    "bindingSprintSpeedField": 5.0
+  },
+  "after": {
+    "movementSpeed": 4.9,
+    "effectiveMetresPerCycle": 5.4951746,
+    "bindingSprintSpeedField": 4.9
+  },
+  "movementRatio": 0.98,
+  "targetForwardAnimationCadenceRatio": 1.0,
+  "derivation": "effective cycle = old effective cycle * (4.9 / 5); movement decreases by 2% while the pure fast-run source cadence remains constant",
+  "unchanged": {
+    "otherForwardSpeeds": [
+      1.4,
+      3,
+      4,
+      6.15
+    ],
+    "fullSprintCycle": 5.483365,
+    "directionalCaps": [
+      6.15,
+      5,
+      4
+    ],
+    "nativeAirLimit": 6.15,
+    "jumpGravityScale": 1.6,
+    "sourceClipGuid": "300a79ae2c1245c449943ca73927c14f",
+    "sourceCurvesContactMapsHeightMaps": "unchanged",
+    "profileMetadata": "unchanged"
+  },
+  "profiles": {
+    "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset": {
+      "beforeSha256": "399f48f964e944d5c074c3741dd5b74fa744335cf5e9eb7ccf5d86a764f7a0eb",
+      "afterSha256": "65dc1870300a44b94381397c8bddfca98633b52ad78ca30d169ae09ecc95edd0",
+      "metaSha256": "90f199a6130d2e73c8f24d24d3a6918629820f6a6a29804416e591154549ab0e"
+    },
+    "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset": {
+      "beforeSha256": "47e295de6bc34659e44a5ccb2bb5a4b1c6422419fcbddfa775fcbb8299e3c1c3",
+      "afterSha256": "3d1cb317f36a86c48cbd7168f61347361af43b3b883ec68b65eaa30664dd4a18",
+      "metaSha256": "017c05259c6ce9146eb61ed6e901e6e495f59e634c27d07576e171f97af77612"
+    }
+  },
+  "taskTestSourceSha256": {
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundExpandedGaitTests.cs": "6688586b06104257ca188fd1205c1dd8a928f17830e5d71c9563340914dd5550",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundNativeGroundTests.cs": "7d3bd3b1da6e11c38e2a4cde18afb460945b3f38c26a005b5408fb6e576fbe3e"
+  }
+}

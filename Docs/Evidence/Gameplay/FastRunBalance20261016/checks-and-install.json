@@ -1,0 +1,187 @@
+{
+  "passed": 15,
+  "tests": [
+    {
+      "suite": "expanded",
+      "summary": {
+        "total": 8,
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "durationSeconds": 33.76,
+      "results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.AnalogGaitsAreContinuousAndKeepTheMeasuredDistanceClock",
+          "Status": "Passed",
+          "Duration": 0.471581,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.BindingOverridePreparesSixChannelsWithoutRewritingTheSceneAndFailsVisiblyIfMissing",
+          "Status": "Passed",
+          "Duration": 2.2662458,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.CompleteSprintIsSeparateAndAcceptedFastRunIsRetained",
+          "Status": "Passed",
+          "Duration": 0.0164784,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.GamepadPaceUsesMoveDeviceAndRBBindingWithSafeNeutralAndKeyboardFallback",
+          "Status": "Passed",
+          "Duration": 0.1827949,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.SixActualGraphChannelsKeepEquippedBooterInsideTheFloorAndHeightEnvelope(OneBone)",
+          "Status": "Passed",
+          "Duration": 9.7824531,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.SixActualGraphChannelsKeepEquippedBooterInsideTheFloorAndHeightEnvelope(TwoBones)",
+          "Status": "Passed",
+          "Duration": 9.8358294,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.SixActualGraphChannelsKeepEquippedBooterInsideTheFloorAndHeightEnvelope(FourBones)",
+          "Status": "Passed",
+          "Duration": 10.139796,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.SixChannelStopAndResumePreservePoseAndDoNotInventDistance",
+          "Status": "Passed",
+          "Duration": 0.0007566,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    {
+      "suite": "native",
+      "summary": {
+        "total": 7,
+        "passed": 7,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "durationSeconds": 86.68,
+      "results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundNativeGroundTests.AcceptedFamilyAndDirectionalRunningRemainSelectedOnActualMainCampTerrain(OneBone)",
+          "Status": "Passed",
+          "Duration": 23.0675651,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundNativeGroundTests.AcceptedFamilyAndDirectionalRunningRemainSelectedOnActualMainCampTerrain(TwoBones)",
+          "Status": "Passed",
+          "Duration": 23.6589683,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundNativeGroundTests.AcceptedFamilyAndDirectionalRunningRemainSelectedOnActualMainCampTerrain(FourBones)",
+          "Status": "Passed",
+          "Duration": 23.5959252,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundNativeGroundTests.ALocalFootFailureDoesNotRejectTheWholeNativeTerrainTileOrTheForwardFamily",
+          "Status": "Passed",
+          "Duration": 0.0624971,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundNativeGroundTests.GroundedJumpAndLandingSourcesUseNativeFootSupportWithTheSameOutput(OneBone)",
+          "Status": "Passed",
+          "Duration": 5.1416387,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundNativeGroundTests.GroundedJumpAndLandingSourcesUseNativeFootSupportWithTheSameOutput(TwoBones)",
+          "Status": "Passed",
+          "Duration": 5.1996095,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundNativeGroundTests.GroundedJumpAndLandingSourcesUseNativeFootSupportWithTheSameOutput(FourBones)",
+          "Status": "Passed",
+          "Duration": 5.9276573,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    }
+  ],
+  "before": {
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "dirty": true,
+    "roots": "290296,290870,291378,292510,291874,292802,292068,-7441938",
+    "bindings": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset",
+    "forward": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset",
+    "directional": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/StandingDirectionalReview.asset",
+    "continuation": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampNativeMotionReview.asset",
+    "airborne": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/AirborneProfile.asset",
+    "sprint": 6.15,
+    "cycle": 5.483365,
+    "jumpGravity": 1.6,
+    "valid": true,
+    "reason": null
+  },
+  "authorInstall": {
+    "installed": true,
+    "fastRun": 4.9,
+    "bindingFastRun": 4.9,
+    "cycle": 5.49517441,
+    "cadenceRatio": 1.000000050770395,
+    "sprint": 6.15,
+    "sprintCycle": 5.483365,
+    "jumpGravity": 1.6,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "sceneDirty": true,
+    "roots": "290296,290870,291378,292510,291874,292802,292068,-7441938",
+    "valid": true
+  },
+  "candidateInputContract": {
+    "unchangedProtectedInputs": 170,
+    "candidateExactUnchangedFiles": 168,
+    "sceneFileExceptions": [
+      "Assets/_Project/Scenes/Production/GreaterWasteland.unity",
+      "Assets/_Project/Scenes/Reference/CampLoopTesting.unity"
+    ],
+    "nativeTerrainDataPairsMatchPriorSealedAudit": 9,
+    "priorNativeContract": "Docs/Evidence/Gameplay/SprintBalance20261016/candidate-input-contract.json"
+  },
+  "authorNativeInputReadback": {
+    "nativeTerrainCollidersMatched": 9,
+    "maximumMatrixDifferenceAllowed": 0.0001,
+    "terrainDataClean": true,
+    "sceneDirty": true,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity"
+  },
+  "protectedFilesUnchanged": 170,
+  "nativeFamilyPoses": 26880,
+  "nativeGroundedActionPoses": 840,
+  "validationEditorClosed": true,
+  "proofBoundary": "Focused EditMode command/state checks and offline equipped graph poses only. Actual movement/animation feel and physical traversal remain author-tested."
+}
