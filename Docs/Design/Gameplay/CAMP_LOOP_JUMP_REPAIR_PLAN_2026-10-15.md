@@ -1,8 +1,45 @@
 # Camp Loop jump repair plan — October 15, 2026
 
-Audit continuation only. This is a proposed implementation contract, not a completed repair or accepted tuning change. Read the [initial audit](CAMP_LOOP_JUMP_AUDIT_2026-10-15.md) for J01–J10 and the [continued study receipt](../../Evidence/Gameplay/JumpRepairStudy20261015/README.md) for new measurements and limitations.
+Planning only; implementation has not started. The author requested an implementation plan after the audit. This document defines the proposed work, defaults and completion gates. Read the [initial audit](CAMP_LOOP_JUMP_AUDIT_2026-10-15.md) for J01–J10 and the [continued study receipt](../../Evidence/Gameplay/JumpRepairStudy20261015/README.md) for measurements and limitations.
 
 The preferred repair is to make jumping a continuous locomotion policy inside the existing single Rigidbody owner, then rebuild its presentation around matching source phases. Keep the coordinator's ownership and once-only effects. Ordinary takeoff and landing must stop inheriting the braking rules of unrelated laboratory actions. Longer blends or additional animation downloads alone cannot fix those movement rules.
+
+## Execution checklist
+
+**Target behavior:** stationary, walking, running and LT directional jumps respond promptly, carry movement through the air, land on native terrain and return smoothly to the appropriate accepted gait. The main Camp Loop is the delivery target. Isolated platforms remain diagnostic aids.
+
+**Protected baseline:** preserve accepted forward and directional sources, speed bands, LT facing lock and camera look-ahead, input IDs, current jump impulse/gravity, fixed terrain and unrelated action behavior. Start with fixed-height jumping. Use 100 ms buffer/coyote windows and a maximum 100 ms eligible-request-to-impulse budget as provisional implementation targets, subject to author feel testing. These are planned values, not current settings or approved final tuning.
+
+1. **Freeze the baseline and isolate the jump policy.**
+   - [ ] Record current task inputs and main Camp Loop bindings; preserve unrelated dirty work and the author's unsaved scene.
+   - [ ] Add an explicit jump movement/ownership policy within the existing motor/coordinator. Keep one Rigidbody writer and leave default action stop semantics intact.
+   - **Exit:** the implementation boundary is limited to jumping and its locomotion handoffs; no package, world, gait-source or scene-regeneration changes are needed.
+2. **Repair momentum and physical support first.**
+   - [ ] Preserve completed planar velocity through accepted acquisition, rejected acquisition rollback and ordinary release.
+   - [ ] Continue grounded movement during short anticipation; distinguish walkable support from walls and retain valid wall/ceiling response.
+   - [ ] Separate completed observations from upcoming commands; keep the upward impulse once-only and gravity physically owned.
+   - **Exit:** focused command/ownership checks establish the new contract without changing other actions. Actual terrain trajectory acceptance remains a later gameplay gate; do not treat a mocked movement check as that proof.
+3. **Repair touchdown and moving run-out.**
+   - [ ] Confirm capsule-aware walkable contact once, using a contact-associated impact record for recovery/damage.
+   - [ ] Remove compulsory braking/full-clip/idle settle from ordinary moving landings; neutral landings use ordinary deceleration. Keep justified hard recovery separate.
+   - [ ] Hand motion, contacting-foot information and gait phase back to live locomotion; emit contact effects at touchdown.
+   - **Exit:** landing state/ownership/event checks pass, with no global change to roll or other Recovery-mode actions.
+4. **Rebuild the continuous jump presentation.**
+   - [ ] Reuse complete existing jump families, including their unused descent, with a shared height correction that preserves compression and absorption.
+   - [ ] Blend advancing poses, interpolate presentation between physics ticks and remove the airborne synthetic-floor correction.
+   - [ ] Measure final equipped output and locomotion re-entry. Obtain additional Mixamo motion only for a demonstrated responsiveness, directional or run-out gap.
+   - **Exit:** offline pose/transition checks cover all boundaries and supported skinning qualities; report remaining visual uncertainty explicitly.
+5. **Finish input and main-loop integration.**
+   - [ ] Implement bounded jump buffering/coyote acceptance, once-only consumption and reset/menu/device invalidation.
+   - [ ] Preserve held LT through the normal jump/landing handoff; separate preview selection from gameplay variant selection.
+   - [ ] Verify that the actual main Camp Loop uses the repaired path, with correct binding and lifecycle cleanup. Account for Greater Wasteland integration through the established production route.
+   - **Exit:** code, bindings and focused non-smoke checks are complete; accepted gait contracts still hold. Prepare the precise author test checklist and known limitations.
+6. **Author testing and final acceptance.**
+   - [ ] Test the main loop on native ground across the movement, contact, interruption and render-rate matrix below; record actual trajectory and visible transition results.
+   - [ ] Fix reproduced defects within the same scope and repeat only affected checks.
+   - **Exit:** the author accepts jump responsiveness, movement continuity and landing feel. Until then, report readiness for testing separately from gameplay acceptance.
+
+Keep implementation commits separated by coherent concern, with only verified task-owned files staged on `main`. Work in the background and preserve the user's foreground application. Automated gameplay smoke tests remain prohibited without an explicit request; author-owned gameplay testing is step 6. This planning request does not start any implementation or gameplay tests.
 
 ## What the continuation established
 
