@@ -1,0 +1,84 @@
+{
+  "success": true,
+  "command": "command test_status",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 27.29,
+      "summary": {
+        "total": 8,
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.AnalogGaitsAreContinuousAndKeepTheMeasuredDistanceClock",
+          "Status": "Passed",
+          "Duration": 0.0588177,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.BindingOverridePreparesSixChannelsWithoutRewritingTheSceneAndFailsVisiblyIfMissing",
+          "Status": "Passed",
+          "Duration": 0.1594388,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.CompleteSprintIsSeparateAndAcceptedFastRunIsRetained",
+          "Status": "Passed",
+          "Duration": 0.0063987,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.GamepadPaceUsesMoveDeviceAndRBBindingWithSafeNeutralAndKeyboardFallback",
+          "Status": "Passed",
+          "Duration": 0.1664809,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.SixActualGraphChannelsKeepEquippedBooterInsideTheFloorAndHeightEnvelope(OneBone)",
+          "Status": "Passed",
+          "Duration": 8.8012435,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.SixActualGraphChannelsKeepEquippedBooterInsideTheFloorAndHeightEnvelope(TwoBones)",
+          "Status": "Passed",
+          "Duration": 9.2291107,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.SixActualGraphChannelsKeepEquippedBooterInsideTheFloorAndHeightEnvelope(FourBones)",
+          "Status": "Passed",
+          "Duration": 8.8578774,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundExpandedGaitTests.SixChannelStopAndResumePreservePoseAndDoNotInventDistance",
+          "Status": "Passed",
+          "Duration": 0.0005218,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

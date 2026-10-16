@@ -1,0 +1,63 @@
+{
+  "success": true,
+  "command": "command test_status",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 0.42,
+      "summary": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.AuthoredLabBlocksRestoreAndAllCheckpointEntryPointsBeforeStartup",
+          "Status": "Passed",
+          "Duration": 0.2842018,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.EarlyAwakeLookupUsesTheRegisteredOwnerBeforeSceneLoaded",
+          "Status": "Passed",
+          "Duration": 0.1202316,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.ImportAndPreviewAreInsufficientForPhysicalEffects",
+          "Status": "Passed",
+          "Duration": 0.0005399,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.PolicyRequiresTheExactAuthoredSceneAndMarker",
+          "Status": "Passed",
+          "Duration": 0.0004219,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundSessionTests.SessionOutsideLabCannotAdvanceToPlayable",
+          "Status": "Passed",
+          "Duration": 0.004313,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

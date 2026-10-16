@@ -107,6 +107,12 @@ namespace BooterBigArm.TopDown3D
             LastPoseBlendGroundCorrection=0;
             var sampler=animationBodyProjection || poseBlendBodyProjection ? bodyProjectionSampler : footProjectionSampler;
             if(sampler==null)return;
+            if (!animationBodyProjection && !poseBlendBodyProjection
+                && TryEvaluateNativeCampGround(visualInstance.transform.localPosition.y-visualLocalPosition.y, out var nativeCorrection))
+            {
+                visualInstance.transform.localPosition = visualLocalPosition + Vector3.up * nativeCorrection;
+                return;
+            }
             playableGraph.Evaluate(0);
             var minimum=sampler.MinimumWorldY();
             var plane=transform.TransformPoint(Vector3.up*laboratoryFeetPlane).y;

@@ -1,0 +1,236 @@
+{
+  "state": "verified-source-bound-editmode-motion-review",
+  "fixtures": [
+    {
+      "fixture": "AnimationPlaygroundAirborneTests",
+      "total": 28,
+      "passed": 28,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundAirborneTests.json",
+      "sha256": "1f370b38a96e0b55561bf0addf3abca5c6781101e84751978b41367ee376720a"
+    },
+    {
+      "fixture": "AnimationPlaygroundContinuationTests",
+      "total": 27,
+      "passed": 27,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundContinuationTests.json",
+      "sha256": "17e3b94d19a1dbca9fa0937f2c8d5354ba73e7b795f2e3842f43e95257061721"
+    },
+    {
+      "fixture": "AnimationPlaygroundCrouchFacingTests",
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundCrouchFacingTests.json",
+      "sha256": "b9141314f3c518f3c53702caa3109174c8e85fe6b22e2c119cce9a855661e15b"
+    },
+    {
+      "fixture": "AnimationPlaygroundExpandedGaitTests",
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundExpandedGaitTests.json",
+      "sha256": "d4eee6c85952e2e83c274bc1f48eff6f82f95d702b346a15b5ed55cd83905cb9"
+    },
+    {
+      "fixture": "AnimationPlaygroundForwardLocomotionTests",
+      "total": 14,
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundForwardLocomotionTests.json",
+      "sha256": "04da07cd1890dc8a62cfba0b7e244e7834fcf356549ac80b2d6fe5a2f4c00564"
+    },
+    {
+      "fixture": "AnimationPlaygroundForwardPoseEnvelopeTests",
+      "total": 6,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundForwardPoseEnvelopeTests.json",
+      "sha256": "97a9f20c25869aa778bd90469c2eaaaf35b45617634a7a54dfe398a491206293"
+    },
+    {
+      "fixture": "AnimationPlaygroundForwardReviewTests",
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundForwardReviewTests.json",
+      "sha256": "03fe0f2fd553c82de465141a5992cb791abc6d4f8655a1d58b39d516b8b17f63"
+    },
+    {
+      "fixture": "AnimationPlaygroundInputTests",
+      "total": 5,
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundInputTests.json",
+      "sha256": "b2c2b1b86845682533d5a492c8dfa663f9db27a903981cc48b6b30c7e333e28b"
+    },
+    {
+      "fixture": "AnimationPlaygroundLowMotionControllerTests",
+      "total": 26,
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundLowMotionControllerTests.json",
+      "sha256": "2c970571ac8ca3829aedf3350ff2e3c3bc3f1e8e97a66793d6ef1e918a4c9831"
+    },
+    {
+      "fixture": "AnimationPlaygroundMotorTests",
+      "total": 10,
+      "passed": 10,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundMotorTests.json",
+      "sha256": "e2a94a76fe86f99b6c518cc06bae2a606767b81aceb79983382ee6c07584bc9c"
+    },
+    {
+      "fixture": "AnimationPlaygroundPlayerIntegrationTests",
+      "total": 11,
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundPlayerIntegrationTests.json",
+      "sha256": "9f438aeb757f342959ecb94adc59832cd3081e0fc772c8d14bfacf5ff9ce92e0"
+    },
+    {
+      "fixture": "AnimationPlaygroundPresentationTests",
+      "total": 9,
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundPresentationTests.json",
+      "sha256": "627e064deecbdd4870b04500924d95ec3a18eaaca36f1529f0a461a512d7cf8a"
+    },
+    {
+      "fixture": "AnimationPlaygroundResetTests",
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundResetTests.json",
+      "sha256": "1253b5ece8a9ccbb4a48929c9b422439353a19201a40c1d77968f85382632eb9"
+    },
+    {
+      "fixture": "AnimationPlaygroundSessionTests",
+      "total": 5,
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundSessionTests.json",
+      "sha256": "a96533010c42ad1c8ad4e288d016a326a2ea656d970683d7349af6db4c8d79f5"
+    },
+    {
+      "fixture": "AnimationPlaygroundStandingStrafeTests",
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundStandingStrafeTests.json",
+      "sha256": "0c6123e5f93d70685e4c843e94d0066c1722c3f965f644e8db39b2812bec91c0"
+    },
+    {
+      "fixture": "AnimationPlaygroundTangentFootPoseTests",
+      "total": 18,
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundTangentFootPoseTests.json",
+      "sha256": "867966ca52492c4fd24effea59079f2da43ad2c7dd04df88e0b2904a6f9e8785"
+    },
+    {
+      "fixture": "AnimationPlaygroundTerrainPoseTests",
+      "total": 19,
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundTerrainPoseTests.json",
+      "sha256": "56254511f67317038a17ead3ccc3d1c1c946e52701fa2b736c3e6bbbb872634a"
+    },
+    {
+      "fixture": "AnimationPlaygroundTurnProfileTests",
+      "total": 21,
+      "passed": 21,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundTurnProfileTests.json",
+      "sha256": "bf5f9362953131751d900ca6c627323e366d42cf085100a3a7e0e9172e153252"
+    },
+    {
+      "fixture": "TopDown3DPlayerLocomotionTests",
+      "total": 18,
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-TopDown3DPlayerLocomotionTests.json",
+      "sha256": "1b61d05b67baa3269d525a0cdb1a4e3154535d94a39a4655d5eb38bde9b4bbbe"
+    },
+    {
+      "fixture": "AnimationPlaygroundDirectionalTests",
+      "total": 13,
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundDirectionalTests.json",
+      "sha256": "f36eb1ea1683c43099aacffa9d82a5251c103aa2490a08e6b255931ca743b75e"
+    },
+    {
+      "fixture": "AnimationPlaygroundNativeGroundTests",
+      "total": 7,
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundNativeGroundTests.json",
+      "sha256": "40779e979d6b89a25298caba05afe24b0441dde8258b0f145cec3156e2f5a736"
+    },
+    {
+      "fixture": "AnimationPlaygroundGarmentFloorTests",
+      "total": 5,
+      "passed": 5,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "receipt": "tests-AnimationPlaygroundGarmentFloorTests.json",
+      "sha256": "7d1c00ee10ede7be9c9de1e84b024d61ee34b0155e99bb03ba45eced63f5967b"
+    }
+  ],
+  "total": 286,
+  "passed": 286,
+  "codeManifestSha256": "b8b2dcbdcd0c508df8d127073ae8e4a05ca4af2a0d90506a747187b33c348f9d",
+  "inputManifestSha256": "bfb1c37b1c33ee0ff3115c8c0599ae1816f28c1353e4738bc2ffd0900615df71",
+  "scope": "EditMode unit, owner, integration and offline equipped pose checks only. No Play Mode, physics stepping or gameplay smoke test.",
+  "privateCodeManifestSha256": "0e5994ba91563e5314f6294b9226ea421e7e0552f07e0a74b3adc6969727bc78",
+  "privateInputManifestSha256": "f868853be56430bef2bd39a076fb589680e19661dfd1730c6236a4215d5dba94",
+  "codeManifest": "complete-script-snapshot.json",
+  "inputManifest": "selected-inputs.json",
+  "taskManifest": "verified-code.json",
+  "publicSerialization": "UTF-8 LF JSON; private original manifest hashes retained above. Test receipt SHA256 values are unchanged."
+}

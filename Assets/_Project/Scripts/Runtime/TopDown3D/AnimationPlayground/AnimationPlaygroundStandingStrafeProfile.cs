@@ -12,8 +12,14 @@ namespace BooterBigArm.TopDown3D
         public AnimationPlaygroundFootProjection footProjection;
         public AnimationPlaygroundForwardGait left, right;
         public float maximumSpeed = .5f;
+        // Schema 2 is a distinct complete standing family. Schema 1 assets retain
+        // their original slow-review contract and are never migrated in place.
+        public AnimationPlaygroundForwardGait[] directionalGaits = Array.Empty<AnimationPlaygroundForwardGait>();
+        public float maximumLateralSpeed = 5, maximumBackwardSpeed = 4;
+        public bool AllDirections => schema == 2;
         public bool Validate(GameObject model, AnimationPlaygroundFootProjection projection, out string reason)
         {
+            if (AllDirections) return AnimationPlaygroundDirectionalMath.Validate(this, model, projection, out reason);
             reason = null;
             if (schema != 1 || targetModel == null || targetModel != model || footProjection == null || footProjection != projection
                 || !float.IsFinite(maximumSpeed) || maximumSpeed <= 0 || maximumSpeed > .6f)
@@ -51,7 +57,8 @@ namespace BooterBigArm.TopDown3D
         }
     }
 
-    public enum AnimationPlaygroundStandingTravel { Idle, Forward, Left, Right, Unsupported }
+    public enum AnimationPlaygroundStandingTravel { Idle, Forward, Left, Right, Unsupported,
+        Backward, ForwardLeft, ForwardRight, BackwardLeft, BackwardRight }
 
     public static class AnimationPlaygroundStandingStrafeMath
     {

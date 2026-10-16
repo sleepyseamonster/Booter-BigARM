@@ -16,7 +16,8 @@ namespace BooterBigArm.TopDown3D
         private AnimationPlaygroundJumpVariant variant;
         private Vector3 facing,planar;
         private bool launched,leftGround,disposed,landingContactPending;
-        private float impactSpeed,settleTime,launchSpeed,reviewAirSpeed;
+        private float impactSpeed,settleTime,launchSpeed,reviewAirSpeed,launchUpwardSpeed;
+        private bool directionalReview;
         private const float BlendSeconds=.12f;
         public AnimationPlaygroundAirborneState State {get;private set;}
         public bool Active=>State!=AnimationPlaygroundAirborneState.Standing;
@@ -28,6 +29,7 @@ namespace BooterBigArm.TopDown3D
             if (motor == null || Active || review == null || review.maximumAirSpeed != 6)
                 throw new InvalidOperationException("Configure airborne review before acquiring an action.");
             reviewAirSpeed = review.maximumAirSpeed;
+            directionalReview = review.NativeCampGround;
         }
         public string ResetId=>"CampLoop.Booter.Jump";
         public AnimationPlaygroundResetStage ResetStage=>AnimationPlaygroundResetStage.Actor;
@@ -52,10 +54,16 @@ namespace BooterBigArm.TopDown3D
             facing=reviewAirSpeed>0 ? Vector3.ProjectOnPlane(motor.transform.forward,Vector3.up).normalized : motor.FacingDirection;
             launchSpeed=planar.magnitude;
             variant=useUnarmed ? profile.unarmed : planar.magnitude>=profile.runningThreshold ? profile.running : profile.standing;
+            launchUpwardSpeed=variant.upwardSpeed;
+            // A forward running takeoff implies forward leg travel. For a
+            // facing-locked side/back launch, use the neutral jump poses while
+            // preserving the same physical launch momentum and impulse.
+            if(directionalReview && !useUnarmed && planar.sqrMagnitude>.0001f && Vector3.Dot(planar.normalized,facing)<.5f)
+                variant=profile.standing;
             launched=false;leftGround=false;impactSpeed=0;
             if(!Begin(variant.takeoff,AnimationPlaygroundMotionMode.Jump,AnimationPlaygroundAirborneState.Takeoff,false,
                 new[]{new AnimationPlaygroundMarker(1,variant.takeoff.length)},key=>{
-                    if(launched || !motor.TryAnimationTakeoff(coordinator,variant.upwardSpeed))return false;
+                    if(launched || !motor.TryAnimationTakeoff(coordinator,launchUpwardSpeed))return false;
                     launched=true;return true;
                 }))return Fail("The jump could not acquire the player.");
             return true;

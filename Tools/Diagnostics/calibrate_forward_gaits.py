@@ -13,7 +13,7 @@ SOURCES = (
 
 
 def calibrate(root, align_stance=False, sources=None, maximum_lift=.07, maximum_lowering=.03, maximum_native_speed=7, regularization=.5,
-              minimum_native_speed=.5):
+              minimum_native_speed=.5, contact_centres_only=False):
     if not (np.isfinite([maximum_lift, maximum_lowering, maximum_native_speed, regularization, minimum_native_speed]).all()
             and maximum_lift > 0 and maximum_lowering >= 0 and 0 <= minimum_native_speed < maximum_native_speed
             and 0 <= regularization <= 1):
@@ -110,7 +110,9 @@ def calibrate(root, align_stance=False, sources=None, maximum_lift=.07, maximum_
             p["warpedExcursion"] = float(np.abs(xyz[first:stop+1, vertex, 0] - xyz[first, vertex, 0]).max())
             p["warpedCumulativeTravel"] = float(np.abs(np.diff(xyz[first:stop+1, vertex, 0])).sum())
         knots.sort()
-        if np.any(np.diff(np.array(knots)[:, 0]) <= 0) or np.any(np.diff(np.array(knots)[:, 1]) <= 0):
+        if contact_centres_only:
+            knots = [(float(i * .25), float(phase)) for i, phase in enumerate(np.r_[contacts, contacts[0] + 1])]
+        elif np.any(np.diff(np.array(knots)[:, 0]) <= 0) or np.any(np.diff(np.array(knots)[:, 1]) <= 0):
             raise ValueError("The native source map must be strictly increasing.")
         # Regularize exact stance locking toward the native contact-centre map.
         # A rolling sole does not need mathematically zero drift at the cost of
@@ -163,6 +165,7 @@ def calibrate(root, align_stance=False, sources=None, maximum_lift=.07, maximum_
             p["medianDriftSpeed"] = float(np.median(travel / np.diff(times)))
             p["peakDriftSpeed"] = float(np.max(travel / np.diff(times)))
         reports.append(dict(role=role, source=data["path"], nominalSpeed=nominal, duration=period,
+            contactCentresOnly=contact_centres_only,
             regularization=regularization,
             nativeContactSpeed=speed, metresPerCycle=distance, nativeContacts=contacts.tolist(),
             sourceTimeMap=knots, pureMinimumEffectiveRate=float(native_rates.min()),

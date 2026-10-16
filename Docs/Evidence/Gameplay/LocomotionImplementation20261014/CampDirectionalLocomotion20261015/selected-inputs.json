@@ -1,0 +1,748 @@
+{
+  "utc": "2026-10-16T03:41:28.8718355Z",
+  "selectedDirectional": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/StandingDirectionalReview.asset",
+  "selectedNative": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampNativeMotionReview.asset",
+  "forwardSpeeds": [
+    1.4,
+    3.0,
+    4.0,
+    5.0,
+    6.0
+  ],
+  "qualified": false,
+  "terrainQualified": false,
+  "maximumLateralSpeed": 5.0,
+  "maximumBackwardSpeed": 4.0,
+  "soleVertices": 674,
+  "bodyVertices": 126,
+  "assemblies": [
+    {
+      "name": "BooterBigArm.TopDown3D.Runtime",
+      "module": "718f698a-2542-4ee1-90fd-9f980942746e",
+      "sha256": "253661e6fac86ec2dffc9ce2f1752cf1a57bdd878d9b981dd2e65faa2e4e1b66"
+    },
+    {
+      "name": "BooterBigArm.Editor.Tests",
+      "module": "c5be9c5e-2da1-4006-82e2-f91197adcee2",
+      "sha256": "0d0487bd12451a81a4bbf786b5f43664defbd2f73674dc3aa9b2f3c158efaa92"
+    }
+  ],
+  "inputs": [
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallAirborneIdlePhysicsLoop.anim",
+      "sha256": "93d5a476f3f1c49602c02185107ff7437dd2d53af994548577553a4e9c2caf37"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallAirborneIdlePhysicsLoop.anim.meta",
+      "sha256": "01e616362ec2aa0026cf8d0df027d784ff2786d87941814d18111be93f6812ff"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallLandingContactApproach.anim",
+      "sha256": "421721c7fe47fdb447b7287a8c30854eea944f062a0a14dd01abc3f7017d6fd2"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallLandingContactApproach.anim.meta",
+      "sha256": "1d83e913da0f877ee678cd1f67a2cec1c4733a411d4b8c0ffd7d4b36985f1df0"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallLandingContactRecovery.anim",
+      "sha256": "418fca15e4bfa12bb40f9bca84d64e971bf9e6c19ae0a69010a77ff6d01dbbfb"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallLandingContactRecovery.anim.meta",
+      "sha256": "c48f39bbdfa2c9f070214d74fb5e5f0703857c6be23ef368a16d054cc89a2e6f"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintStandardReview.anim",
+      "sha256": "db3fa37dcec840741ce332ff7fd7ff3273a098ca6a89020187e5ccc5be2a97d9"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintStandardReview.anim.meta",
+      "sha256": "e60bca4178534e3f0b4fc60f81c6845c67f6822b43f8e8b3ec7036402c7e7bfe"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/IdleBreathingLoop.anim",
+      "sha256": "85582e523e764ff48d750151a6dab0855ef19aaf460bd7d43d54cfecc948fe60"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/IdleBreathingLoop.anim.meta",
+      "sha256": "82f0563a201d1ea9ad92415e72fa12a14b695197e7475d849c6dc0e756b89717"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningLandingGrounded.anim",
+      "sha256": "4047f078ff45fab7e6fcce4f55a1e6b1ba5321257e6079f69a67c0026fc0d902"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningLandingGrounded.anim.meta",
+      "sha256": "4dd78536d9a8438f119a9f7e7a255bd6c73e88cd571453cafc590a7eea5e414b"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningRisingPose.anim",
+      "sha256": "78527e4f2d326ca9f535820b868b35c01a57d5b3d99338ecf49785a6364fc62a"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningRisingPose.anim.meta",
+      "sha256": "62b5c9c12d0023abc10a7e68acca8f4e137a23bd3948570478480027fc0ee4f4"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningTakeoffGrounded.anim",
+      "sha256": "3b0ea7725203d4d53c851f56fa341c398c20508e56dc7b5231f3d0476c5ab52d"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningTakeoffGrounded.anim.meta",
+      "sha256": "b19e3807fa3bf06f0349e7d0db93f83dc14396224f04c3106c1eb1904b338fe1"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingLandingGrounded.anim",
+      "sha256": "7db9b0c68cc446aa8c13f1f806b6975216c0d224ff8ff4545ecb846802ef2681"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingLandingGrounded.anim.meta",
+      "sha256": "0d6da9e0cc08f00654a6bc5f3ed2c7832869ee11e66bfe85d75745057dbbda5a"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingRisingPose.anim",
+      "sha256": "9814a0150820eb1c9b3c399d13699c55a5b4d69a5f0c7efe3754d29a3f6c4126"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingRisingPose.anim.meta",
+      "sha256": "36cc6bd12bdad427aaca86d3959f3e7bba862fdeddc6a3d22a3dc480fe609bb1"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingTakeoffGrounded.anim",
+      "sha256": "4596333e342baccb4a3e81758f83c9c8c29904a3bfe92642d627632475c68a88"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingTakeoffGrounded.anim.meta",
+      "sha256": "8c4569b0a1068744536be4a7b9e3dac4f9da2e0de37065558fd3c0e4034c5a9b"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedLandingGrounded.anim",
+      "sha256": "078d3c57efdedea3380b975b64a6d0a560c96ed5928f8011a029154d763ad5e3"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedLandingGrounded.anim.meta",
+      "sha256": "aa088be5411470e2720e27b5baa495f15be09c4ef82d42633a23a528dcc3b5ce"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedRisingPose.anim",
+      "sha256": "194f93177ce8a29c7226a2361da3ade17ce55257f2f58aae5d8396f7f32e4a11"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedRisingPose.anim.meta",
+      "sha256": "10de72b33418c0dec72296e68b0a78d5bf3fd5392a7b8723a2389481f50fb812"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedTakeoffGrounded.anim",
+      "sha256": "0c91bd8153a8f5d17243adb0e9557d2b14d84d03db90077bbef7b014abde24a7"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedTakeoffGrounded.anim.meta",
+      "sha256": "7500d8a24fcedd1c23fa11740a729438191093e6d0e65fb6e29cf45b32f5ac42"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollActiveEquippedGrounded.anim",
+      "sha256": "5768090bf0e4eea29ee67462479e4cc897d5290eb21a46d71619e68aad992dce"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollActiveEquippedGrounded.anim.meta",
+      "sha256": "4f267b9303d7ff09291b3ead346a5e7753faf1ce63867023e8d4fbf19984dcdb"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollContactEquippedGrounded.anim",
+      "sha256": "7bd0e7c28a3ae8bcc1d6fa27ceee615d89682548492e93176e1ea907f9d61488"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollContactEquippedGrounded.anim.meta",
+      "sha256": "7672c485325e0c75be9070b313d6f4132bc087badf23f84d6c5d5b4ad3d887c6"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollRecoverEquippedGrounded.anim",
+      "sha256": "e242b14678d102285d28ebd3a2d08811b7edbd052350d99fcf50dd9f556b49f2"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollRecoverEquippedGrounded.anim.meta",
+      "sha256": "dfb14882dfc08ad0e801e5fc3ca9f38219d4e664664d447d63835b9979f348f1"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideActiveEquippedGrounded.anim",
+      "sha256": "c36384135124f479ac902150cc978d4375b5ead9bc570ac13b04b158ef0d4ff7"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideActiveEquippedGrounded.anim.meta",
+      "sha256": "9baaedf755024cbe9a2f372f9c7f5d07e977bebeb4ac2f54ed5501c6d7c65189"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideEnterEquippedGrounded.anim",
+      "sha256": "06c12f4f3ea76a5f0c0c9d293144262e6c29ca5b4df86be710faad0c70237091"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideEnterEquippedGrounded.anim.meta",
+      "sha256": "21387a451bf29c95dad3aacfb18f3ee0968e7efa7b6228d32743e8d610552aa9"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideRecoverEquippedGrounded.anim",
+      "sha256": "978efa18ddc5a7c7f4a8b616b4851a087b7f1af733e3ad56a5a7f98f6d2272c1"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideRecoverEquippedGrounded.anim.meta",
+      "sha256": "0a656f3689472c27557963dae1f52823a9d403b44c9ce2f9234fcfe4e7fba89b"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim",
+      "sha256": "850c033b50a92b4e96cb08ad08efc09e8062f41d831c54aeb89fc52625b31d97"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim.meta",
+      "sha256": "308dbcc6dd59288a33e26ab7a7a34aa5bf3a713d9e7c4821519d6a93c576653e"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalRunBackward.anim",
+      "sha256": "855b98041e872529efdce44580bd15ad7c0128961952c5e3524e9a385a868014"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalRunBackward.anim.meta",
+      "sha256": "01b8713ffe5e7c4339f60803e9efa99d8ac448de8312be63d69f2a51ba34bc88"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalRunLeft.anim",
+      "sha256": "20820f39af35b2cfcc08dc94116b93a14963f596f26d3c8eaaa11e1333221239"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalRunLeft.anim.meta",
+      "sha256": "7fe5aabf370397f4ddb2729c50a76ccde4c978cdf306faa5d1081919aa7ace3d"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalRunRight.anim",
+      "sha256": "fd188057629eff5d6a6f1713b3a612653550e039675a8bf07afe61ded8f01d23"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalRunRight.anim.meta",
+      "sha256": "e850e5e12a33656a8ae65c98a0bb088e901102fd2d5b0fd5379c2860faa0c587"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalWalkBackward.anim",
+      "sha256": "1da6f54062e697d6da548f411d2a372c15fa4f0a2ff5a5f3935a4c056affad61"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalWalkBackward.anim.meta",
+      "sha256": "5694ce0ad2b05237a025ea3dfcdf53fd48b373d4c343760c0cc0a201869cd6e1"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalWalkLeft.anim",
+      "sha256": "dfe72745d0da4fd480d2f8953b9fdebb196bba567963964e322913658765d1a8"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalWalkLeft.anim.meta",
+      "sha256": "a4061311940815f728967063528d6079fac389a7bf53238bc8a49f13789971cd"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalWalkRight.anim",
+      "sha256": "5afe732d4b1607ff0d6c14f7dbc2e525b9c4af29e8482b103b74fabbb6e0d594"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalWalkRight.anim.meta",
+      "sha256": "c5555e42545cfe459a0d4058d7527332999a76656d55527ddb8b0e88559811a7"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015B.meta",
+      "sha256": "220c78e071f50ef3ce813afbfc0e418214ba4ec22cfaa2740513391572c6e2a6"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015B/ExistingRunLeftOriginalBaked.fbx",
+      "sha256": "d0ebacb98080968155ef8712770764dfd77be0196a77634238e28974aafe06af"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015B/ExistingRunLeftOriginalBaked.fbx.meta",
+      "sha256": "e4e5be274729f5fd24cfbe838b0bce700d3da9ff9f3d830d1f7bbb87d9a5d173"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015B/SidewaysWalkOriginalBaked.fbx",
+      "sha256": "7af1bbbcc8e3ad570defee8b635e3303121716039533de98163be3c2078e3792"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015B/SidewaysWalkOriginalBaked.fbx.meta",
+      "sha256": "36117355e779562a562954a2e9b7bb06c810d781f7906ee56f6fec2b0f20fec1"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015C.meta",
+      "sha256": "13c802f57bc7cd1de35010635246944f683ebc77bb8e62999ee7a67b1ff58982"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015C/BackwardRunOriginalBaked.fbx",
+      "sha256": "50c743c5586d9cd5aaae46d44979f51fa50247374e3fb725acfac630ae34702f"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015C/BackwardRunOriginalBaked.fbx.meta",
+      "sha256": "bb4c50867a6286bf99b1d5c5d3856649b0fa52de37bef3269ec3c41d0e65575d"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015C/ExistingRunLeftMirrorOriginalBaked.fbx",
+      "sha256": "d0ebacb98080968155ef8712770764dfd77be0196a77634238e28974aafe06af"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015C/ExistingRunLeftMirrorOriginalBaked.fbx.meta",
+      "sha256": "ca22eefb0aa2e50d3e3293965f1a154ca4e6b7e138375d87887355ba0bbe2590"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015C/SidewaysWalkMirrorOriginalBaked.fbx",
+      "sha256": "7af1bbbcc8e3ad570defee8b635e3303121716039533de98163be3c2078e3792"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015C/SidewaysWalkMirrorOriginalBaked.fbx.meta",
+      "sha256": "84fa7298405a49a519b3f3cab24ef91ecb0e2d9c5d2fb8c4f768404f82498939"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015E.meta",
+      "sha256": "f42a8655173293e82ca241bede499d4ea9fd4547ddbc4e8949b2ce09343aedaf"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015E/NeutralBackwardWalkOriginalBaked.fbx",
+      "sha256": "f4fc7a7b9342d7db9a6619b565a8125643bf50d8e454b5cc8bc38a8c9a16e826"
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015E/NeutralBackwardWalkOriginalBaked.fbx.meta",
+      "sha256": "30b86e906d7895d0794c6e2275e1b85609700658c938aa4757e7a641dfd19f7d"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshOriginalRig.fbx",
+      "sha256": "1563823a3d90a8024cccde2ce195215a42747aee127f2190725a709a3fad9536"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/MaleBaseMeshOriginalRig.fbx.meta",
+      "sha256": "84f652afa3d2658059a41eb596150dea5784a73103ef1cfeb3c412bfae06184c"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/RapidTurnNative.fbx",
+      "sha256": "ff7b61df0c00d94103f9c402ed13f64d345d2e274a3417b8ffc525e25c6473a7"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/RapidTurnNative.fbx.meta",
+      "sha256": "3625c06a128f6b80fc0af1db9a14e4b0b344f40834e83b3559822468eead541b"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_NoRM.FBX",
+      "sha256": "38039a18614857cbdd6cce42fc317ebc970c2d8829530cf97bc5b3ef6b714fab"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_NoRM.FBX.meta",
+      "sha256": "de14059a30686ae22dbee9eca7f0ea9236003b13c2e61e0155ec937b5e605076"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM.FBX",
+      "sha256": "2b25346e9842037c20d4bc356e98c8a505a7881a701779d4942ab3eeaa50b487"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM.FBX.meta",
+      "sha256": "ab8603837b517e9e30a0edd94539364029f5331fb4b9160a258d597a1aaaf1e2"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM_Mirror.FBX",
+      "sha256": "2b25346e9842037c20d4bc356e98c8a505a7881a701779d4942ab3eeaa50b487"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM_Mirror.FBX.meta",
+      "sha256": "ef2551d48c1e238033ef01b76b2dc58b2315bc6fc09d15f49225fb3a3c97438a"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Start_NoRM.FBX",
+      "sha256": "2a86c14532e41065c8fe515839b56bbb43e57d49cbff563d2f003f401de09b75"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Start_NoRM.FBX.meta",
+      "sha256": "1817a6226997dabae7fc221f3fb7d8d967319f9195b31be819c20d710d43567f"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Start_NoRM_Mirror.FBX",
+      "sha256": "2a86c14532e41065c8fe515839b56bbb43e57d49cbff563d2f003f401de09b75"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Start_NoRM_Mirror.FBX.meta",
+      "sha256": "bd35111d8914f6b7386a54c396e85bf9e95c8a0ae5c5d1eed71aaa93d86ce307"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Stop_NoRM.FBX",
+      "sha256": "0d0685adae814d11ac45ee453af0d33ea11b6db25dfca7f287210fb3f5c05619"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Stop_NoRM.FBX.meta",
+      "sha256": "dc169a3df3f2566539f90f1529bc5abb060ab374e225c4b38eff27e19b6fd5b1"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Stop_NoRM_Mirror.FBX",
+      "sha256": "0d0685adae814d11ac45ee453af0d33ea11b6db25dfca7f287210fb3f5c05619"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Stop_NoRM_Mirror.FBX.meta",
+      "sha256": "28d85cb1efe2a2826a9f411ffef4323ec870fe92b01f693fd5cdff559c31a87c"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_FwdLeft_NoRM.FBX",
+      "sha256": "d61a0c3796d01c4c617450a3f638ff6b9823088e21c8addbe62f43e533b6f21b"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_FwdLeft_NoRM.FBX.meta",
+      "sha256": "5864f3da8d87caecd1c92211f7128237780464fd3f11b51323f86f08aec4e482"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_FwdRight_NoRM.FBX",
+      "sha256": "2c0cc5c34b6b49743d19ec49716ddebce6565690e995f76e5b089aa84cc47276"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_FwdRight_NoRM.FBX.meta",
+      "sha256": "f51f2e5f0bdbd4917e71036ffa8ab47d4d3d75e977dc0ab816d61af73eb5cc7b"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Run_Fwd_NoRM.FBX",
+      "sha256": "17e73a6e4f05287e33bf753c1e9526949ac57a958549c0525e95468f9d21d721"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Run_Fwd_NoRM.FBX.meta",
+      "sha256": "0845593412268073f3f3c948dcdc484d676baf6e5f44eba9661fba725dacc0ac"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Walk_Fwd_NoRM.FBX",
+      "sha256": "0832e93fc931b80c11e12d82dfa2c6b42f1b104ad8818b31613ac24d234dad89"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Walk_Fwd_NoRM.FBX.meta",
+      "sha256": "21533eba755a8def837ce4af2ea65fcbf1c6505e127ecad0ff867a9457b6225a"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Backpack/BooterFramedBackpack.fbx",
+      "sha256": "adf355f68b6e7d672a0e50f7a411c002b75afa3492631848f4863ab886d4dbe7"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Backpack/BooterFramedBackpack.fbx.meta",
+      "sha256": "c0aef441420c5cb253176c303366e780710a9625cf482dcadcc38ba4936e4d87"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Booter_CampRest.anim",
+      "sha256": "6e5298abfc77a1dda5a7a3d2dc6525554c7f010e9d07b4996dd887383fb74b97"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Booter_CampRest.anim.meta",
+      "sha256": "cc64fbabf12193e7b5aa9cd47c41b2892710c2d04559ee97b2f9b3faa6ba51b4"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Booter_CampSetup.anim",
+      "sha256": "bcbfd4d74444b7e740b51f3c1f05cd6bdca7d6f2a1ba01358f1110089b11b80b"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Booter_CampSetup.anim.meta",
+      "sha256": "732d839749778ec8f7d0f00d926eed4ce2bc8c70ef4f7cb881de25ce1ffa76ae"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Booter_CampSleep.anim",
+      "sha256": "6af9af0642816f4a3648888bf502c7926b46a7dcda177a85725b58a4b390c992"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Booter_CampSleep.anim.meta",
+      "sha256": "ea53330230388225f8bd80c8b38cb26254aa1e6fde875fd93ea5d0c893fa1153"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Booter_CampWake.anim",
+      "sha256": "53e474e898bf5d48bc91e2536b90738b9b680aca5677ab1ad9037bb65fb2a4d7"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Booter_CampWake.anim.meta",
+      "sha256": "45d76de5a608bd61fdf8884363b7cc2e6a19649cf381fbc535375534d7568325"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Cloak_Blanket.fbx",
+      "sha256": "52b13a0af714da4b93a359c35c8ca28e188ea50152a26c6a33e374ebcd6eda22"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Cloak_Blanket.fbx.meta",
+      "sha256": "596d2adf15c6f1f192a75b033a7c264ca7276a6dacff4aa115239e6069b99f9a"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Cloak_Worn.fbx",
+      "sha256": "a515de9ab669080d7be2894db69f1131c083ca9121498d51c1d103cb87fe6793"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Cloak_Worn.fbx.meta",
+      "sha256": "2b6b7d43bf388ff31c3be718254c0695abc87266784e195c8459d8785537f251"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/defaultmale_rig.fbx",
+      "sha256": "e10aea1d9e6455ae097457ed5a1e73b9376f2338466a164ad5dd7e02b98005a0"
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/defaultmale_rig.fbx.meta",
+      "sha256": "c925463575c13b95a66197246b502d7002ce15b860f0fa9488f514906ed16f5e"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Camp/PopupShade_Deployed.fbx",
+      "sha256": "394b954784e9f585302276308898d5acebddb7358ecde4ce563838796a5a999a"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Camp/PopupShade_Deployed.fbx.meta",
+      "sha256": "be24be95563e82eda32d0f4f19df9c733c1d2bf01a12072d9ad5567d646f1b2d"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Camp/PopupShade_Packed.fbx",
+      "sha256": "dd96450c8af6687fd7dfd323ad8d727f38237b5528019d11a907f22498db8f66"
+    },
+    {
+      "path": "Assets/_Project/Art/Environment/Camp/PopupShade_Packed.fbx.meta",
+      "sha256": "f9f7ff9218bf1ba9e47efeae4f359351fd996d10b7d016ae520d7dfab3574e8c"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/CampCanvas.mat",
+      "sha256": "38ba55c8be61738a7568237d3ff3087a5cfab9f65103c0f3eca4ea8a61b6a003"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/CampCanvas.mat.meta",
+      "sha256": "3ee63c2afe708ae7496f33b319f505785dad08186e46dd7c0e8ddca1bcc17e65"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/CampCloak.mat",
+      "sha256": "82100ddd9884383a88a37fea33c05bd25a9cc36d5989985bb2348d9dc53ca92b"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/CampCloak.mat.meta",
+      "sha256": "5e30ae42e10513e829282267d4e7411ec70d4e8dc7134b402574bd5c2cb87041"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/CampFootprint.mat",
+      "sha256": "624957672de9620746e0372bfcaba12d0b6ed499c405f42575e2840060b537bc"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/CampFootprint.mat.meta",
+      "sha256": "10d47647c54a60ca769daa8f1f004376bd55dfc9fe1b0a6d3f12b4aadd831c24"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/CampIron.mat",
+      "sha256": "11c47b6e0b02001bf43c602e2150292855beeebb8810bd9222886c9524a229bd"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/CampIron.mat.meta",
+      "sha256": "b6ffa2f72ed870720a6521da5c187cb193565b396bfcab49c2ef6a451e1cdf98"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/PackCanvas.mat",
+      "sha256": "d6039fb40b253bdc117668d1f3125abcc8d089c8eb43d3aa33db18a64c1faa07"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/PackCanvas.mat.meta",
+      "sha256": "c4945204d40db573d3d10641fec11d2bb06686eb9e5eae510c449d45166b6c77"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/PackFrame.mat",
+      "sha256": "20de085bdcc7a61bee09d45f1eefce9816bafe54490582e0a1ca839b818fb061"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/PackFrame.mat.meta",
+      "sha256": "27f756a841e4e08be98a82d51dcb1708afdc01fccd5e8369d82c9151c359737f"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/PackWebbing.mat",
+      "sha256": "8c73f809c54054761719dee68ff91e32ddbd11ab3108da170b817dbc4abf2a6b"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Camp/PackWebbing.mat.meta",
+      "sha256": "ad36c43ef1cd72b64617a0865b0fbb04cff43398c7ef5ff8d80c09305909ca58"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Greybox_Booter.mat",
+      "sha256": "2476fc402094126f4af68951a4be13c6c4525071faa831d125ab75d6b0ed51b3"
+    },
+    {
+      "path": "Assets/_Project/Materials/TopDown3D/Greybox_Booter.mat.meta",
+      "sha256": "5fb6dbde0cfb8ab828ff80cf64db01d6efe7360380fdfda1ef9ebabee4272e94"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/Camp/FramedBackpack.prefab",
+      "sha256": "0a67a37da2685d03b8364805fd9b1fb0ee080beaf5cf229ad5adb8bac28f7b56"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/Camp/FramedBackpack.prefab.meta",
+      "sha256": "6ecf957dfd69b5cd742695fe1dc6ee69bdf569a77df0dd77a944c5e2a434359b"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/Camp/PackedShade.prefab",
+      "sha256": "54c053594bff3b016a87b5d077b07008f9a84c76252c52e7bc7a2050063df96f"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/Camp/PackedShade.prefab.meta",
+      "sha256": "e1c3aa5494ce340d937378ffac9efb95a22450f583d819b27d75287edf1b03d9"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/Camp/PopupShade.prefab",
+      "sha256": "db60c91cb8c2bc3d410232df95abb5d240de23695bd67e55b486b5959a0d0e1e"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/Camp/PopupShade.prefab.meta",
+      "sha256": "8f38d427697381568263538bc859b102c2610126eea71233174b32cbaf059dd4"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/Camp/SleepingCloak.prefab",
+      "sha256": "7a50d6299fa8f7a46b1c8534ea6ff9b97170bc726410de8524729b1a77724359"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/Camp/SleepingCloak.prefab.meta",
+      "sha256": "3de55a479497c6151e62c9614e004a0fab2dbe936eff174f5dcfbc9e36091a1f"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/Camp/WornCloak.prefab",
+      "sha256": "c3cae0a62bf08dccc658f57bb7d480117bcf4e4b0ad93965e71cb9313bb68daf"
+    },
+    {
+      "path": "Assets/_Project/Prefabs/TopDown3D/Environment/Camp/WornCloak.prefab.meta",
+      "sha256": "5ea9173da5f195cd6ec063647aac1328065be1c560585be89008d2f589c5e95e"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundAirborneProfile.cs",
+      "sha256": "18eb51ce56fa5f278bd6cb70ed39cae474f09775856024e3777f44762c0fc2d7"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundAirborneProfile.cs.meta",
+      "sha256": "1d659c77d54ee5e8d8bc440b5861e0d02bf5a7dc3aeb657c4bc3aa88e8f383af"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundContinuationProfile.cs",
+      "sha256": "270f0024c2cb0750dc0847d6707cc4db4751d34de4ded57eb7d104a2bb8d1ae1"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundContinuationProfile.cs.meta",
+      "sha256": "e748a81e9f09276ca7e9ce3794f6ebad606c19dc834b51f1b2d890134d767ea3"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundFootProjection.cs",
+      "sha256": "cacdd284fad51e25562bc3c257a63c24ff41fea2971b2f549e817f39f28fdd38"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundFootProjection.cs.meta",
+      "sha256": "92459e6c8bee5c9562e472d8f910b2a855c119ba5fc1bc1ae13166f0a6ee654b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardLocomotionProfile.cs",
+      "sha256": "5242a4f88d8fe5680318650b0b93b75e078c565675e7607280c6d8d704f660df"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundForwardLocomotionProfile.cs.meta",
+      "sha256": "b255476d10d7ac4669ab381a0a163a7c94a4c14b49fbba99aebd22e8eb278173"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundLowMotionProfile.cs",
+      "sha256": "27d7abde73a584beb5535dd594a78794d4d48f50abe4f8d6db2b4de0eaa162da"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundLowMotionProfile.cs.meta",
+      "sha256": "3d45403c6d8a95899cf4a3a55b400977279849cb675d99671a485fd525da3881"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundStandingStrafeProfile.cs",
+      "sha256": "829f53575979291f9c7d67d794fc382979cb3c79e0daaec8e3f88c079bad697d"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundStandingStrafeProfile.cs.meta",
+      "sha256": "60cb253c802ea70b9393ca1a3fa3fa386b58b761578ac048d6a717af9c07a343"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampSettings.cs",
+      "sha256": "7f6e62cc74bfaf7137c3b4e7c5e70163b44e9d2818728577e305b0f9b2f0362b"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampSettings.cs.meta",
+      "sha256": "b0718243aa06f8d3cfe372b422e003fc151f9febd5893dd6aa2f6ac24b4e064f"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampView.cs",
+      "sha256": "6037bdcc714e19a249b01bf106f61cbbb9765d22db10412adf7805b993bd91d0"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/Camping/TopDown3DCampView.cs.meta",
+      "sha256": "1e510304c98f0f626045ea4df4335c760042248d9e6c2077f9cefd9a2d642de4"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DLocomotionClipProfile.cs",
+      "sha256": "8f76e14d1217e7aa0057bdb5c6a1275967c5e53adbfe3ed76911937186d40a20"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DLocomotionClipProfile.cs.meta",
+      "sha256": "479c99b7cdcfefa26e1c408dcd240e111e44324d6be61532ffb5ca945f9dbd7a"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/AirborneProfile.asset",
+      "sha256": "777dfc1a2841ee64d750ac9c2e2981f50620d8de4e9b957996a83e485f852a24"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/AirborneProfile.asset.meta",
+      "sha256": "7acd83fbf737fad9c92865957d5a9576b4ac8059b9b23fb25e631b53eed19cde"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/BodyProjectionFitted.asset",
+      "sha256": "259fa33e438b0e607809fd290f38f57d553b2b51e80d05bd6a75029b472295c0"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/BodyProjectionFitted.asset.meta",
+      "sha256": "7ac0b10251167c5f77a03213c84eb80e235df14970727b3f20618ed745398225"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampNativeMotionReview.asset",
+      "sha256": "e812dfa2eee09ac13722ba49d0bab88631d1bdcd5673ae6f016653a750a72372"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampNativeMotionReview.asset.meta",
+      "sha256": "6fe0f24f6dd524faedddf4b89e05e04ad1ae912e2a9c4926ec3546e453165f5f"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset",
+      "sha256": "6ebbd3828a30f5de1936819963fe5177e7ca93c820df545cfd798a03f7e7fc31"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset.meta",
+      "sha256": "90f199a6130d2e73c8f24d24d3a6918629820f6a6a29804416e591154549ab0e"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/FootProjection.asset",
+      "sha256": "cc10cb12d372930d0c4a0a4603268c0cc71dc7114b41c5f066f921e3ffdb6fe2"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/FootProjection.asset.meta",
+      "sha256": "328df6d8ceb5e72c1915810db1285f61bd03eaf825512986260edce913a12854"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionClipsStageAlignedCandidate.asset",
+      "sha256": "38acc24cd0b7356d3fef8c01e7ffb098a3baa2947ecd6edf3ad70035443caaef"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionClipsStageAlignedCandidate.asset.meta",
+      "sha256": "462cafc86242373d78db4304d76974f510a4964957e6cfc43605bb5591eb77d3"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/LowMotionFittedProfile.asset",
+      "sha256": "3445b0fa10f0c22ff02737d6798fdd831906e3ffd709d2a04ce9c580d8704b81"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/LowMotionFittedProfile.asset.meta",
+      "sha256": "769776117e7358875d318d7c32857cfea729a6358657a84e156cefba8184c250"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset",
+      "sha256": "47e295de6bc34659e44a5ccb2bb5a4b1c6422419fcbddfa775fcbb8299e3c1c3"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset.meta",
+      "sha256": "017c05259c6ce9146eb61ed6e901e6e495f59e634c27d07576e171f97af77612"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/StandingDirectionalReview.asset",
+      "sha256": "19bc0105c4661d1c08a9a5adeaf8226efaec68bcfbfb12abaffe9596df6deaff"
+    },
+    {
+      "path": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/StandingDirectionalReview.asset.meta",
+      "sha256": "5d8f6a116581c2c31f8f38d3f09b26cb6ac2177fe09365b8aa91095f0f73e782"
+    },
+    {
+      "path": "Assets/_Project/Settings/Camping/Resources/TopDown3DCampSettings.asset",
+      "sha256": "e3dddc3a1c3d622f24cf6132f74327824487c86efa3ece5c94f5c3f3fd973a5b"
+    },
+    {
+      "path": "Assets/_Project/Settings/Camping/Resources/TopDown3DCampSettings.asset.meta",
+      "sha256": "9c32639287178b4f33a2b85cd8cae34d75972d41c81d344879db83fb4b834d68"
+    }
+  ]
+}

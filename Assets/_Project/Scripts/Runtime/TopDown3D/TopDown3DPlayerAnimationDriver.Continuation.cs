@@ -23,7 +23,7 @@ namespace BooterBigArm.TopDown3D
             && TryGetComponent<AnimationPlaygroundTurnController>(out var turn) && !string.IsNullOrEmpty(turn.LastFailure)
                 ? "\n"+turn.LastFailure : null;
         public void ResetLaboratoryContinuationReview()
-        {continuationRejectedSupport=null;LaboratoryContinuationFailure=null;}
+        {continuationRejectedSupport=null;LaboratoryContinuationFailure=null;LaboratoryNativeGroundAdapted=false;LaboratoryNativeGroundFailure=null;LaboratoryNativeBodyLift=0;}
         private readonly Vector2[] continuationFootprint = { new(-.3f,-.45f), new(.3f,-.45f), new(-.3f,.45f), new(.3f,.45f) };
         public bool LaboratoryContinuationConfigured => continuationReview != null;
         public bool LaboratoryTurnContactUnavailable => turnPoseOwner != null
@@ -37,6 +37,7 @@ namespace BooterBigArm.TopDown3D
                 throw new ArgumentException("Configure the paired Camp Loop continuation before visual startup.");
             continuationReview = profile;
             continuationJumpStation=Array.Find(forwardReviewSession.Stations,s=>s!=null && s.StationId=="AP04");
+            ConfigureNativeCampSupport();
         }
 
         private bool ContinuationSurface(Collider support) => support!=null && support.gameObject.scene==gameObject.scene
@@ -50,6 +51,7 @@ namespace BooterBigArm.TopDown3D
                 || !motor.TryGetLaboratorySupportPlane(out var plane,true)
                 || Vector3.Angle(plane.normal,Vector3.up) > continuationReview.maximumSlope+.001f) return false;
             var support = motor.LaboratorySupportCollider;
+            if (continuationReview.NativeCampGround && ContinuationSurface(support)) return true;
             if(support!=null && support==continuationRejectedSupport && support.transform.localToWorldMatrix==continuationRejectedMatrix)return false;
             if (!ContinuationSurface(support)) return false;
             // Reject uneven support and edges rather than projecting a uniform
@@ -89,6 +91,7 @@ namespace BooterBigArm.TopDown3D
             if(!Physics.Raycast(foot+Vector3.up*.25f,Vector3.down,out var hit,.55f,Physics.DefaultRaycastLayers,QueryTriggerInteraction.Ignore)
                 || !ContinuationSurface(hit.collider) || Vector3.Angle(hit.normal,Vector3.up)>continuationReview.maximumSlope+.001f)return false;
             plane=new Plane(hit.normal,hit.point);
+            if(continuationReview.NativeCampGround) { support=hit.collider; return true; }
             foreach(var offset in continuationFootprint)
             {
                 var point=foot+transform.right*offset.x+transform.forward*offset.y;

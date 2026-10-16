@@ -1,0 +1,98 @@
+{
+  "success": true,
+  "command": "command test_status",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 0.02,
+      "summary": {
+        "total": 10,
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.AirbornePauseRestoresVerticalVelocityOnResumeOrCancellation",
+          "Status": "Passed",
+          "Duration": 0.0014231,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.CompactShapeCannotBeLabelledStandingOrAnUnknownMode",
+          "Status": "Passed",
+          "Duration": 0.0006786,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.ControlledMotionAdvancesInsideTheExistingConstraintAndCannotBeStolen",
+          "Status": "Passed",
+          "Duration": 0.0009212,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.DisableReleasesOnlyOwnedStateAndPreservesTheOriginalGravitySetting",
+          "Status": "Passed",
+          "Duration": 0.0006069,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.FloorSupportDoesNotBlockPlanarMotionAndTakeoffReleasesSupport",
+          "Status": "Passed",
+          "Duration": 0.0008148,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.GroundDistanceRequiresTheLeaseAndMeasuresTheSurfaceBelowTheFeet",
+          "Status": "Passed",
+          "Duration": 0.0005995,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.PostureAnchorsFeetAndRefusesStandingThroughACeiling",
+          "Status": "Passed",
+          "Duration": 0.0010546,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.ResetRefusesOccupiedReturnAndNeverTakesAForeignLease",
+          "Status": "Passed",
+          "Duration": 0.0009387,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.ReviewedRadiusExpansionRequiresClearanceAndPreservesTheFootPlane",
+          "Status": "Passed",
+          "Duration": 0.0008844,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundMotorTests.SweepAndPauseConstrainMotionAndReleaseRestoresGravity",
+          "Status": "Passed",
+          "Duration": 0.0008984,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

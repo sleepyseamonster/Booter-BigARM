@@ -1,0 +1,111 @@
+{
+  "scope": "Selected complete private sources only. All source/model payloads remain local and ignored. Original FBX imports and older profiles are retained.",
+  "exportSettings": {
+    "service": "Mixamo",
+    "date": "2026-10-15",
+    "format": "FBX Binary",
+    "skin": "Without Skin",
+    "framesPerSecond": 60,
+    "keyReduction": "None",
+    "trim": "complete native take",
+    "inPlace": false,
+    "mirror": false
+  },
+  "selected": [
+    {
+      "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015B/SidewaysWalkOriginalBaked.fbx",
+      "name": "StandingDirectionalWalkLeft",
+      "originPhase": 0.904000000046667
+    },
+    {
+      "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015B/ExistingRunLeftOriginalBaked.fbx",
+      "name": "StandingDirectionalRunLeft",
+      "originPhase": 0.7399999818220909
+    },
+    {
+      "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015C/SidewaysWalkMirrorOriginalBaked.fbx",
+      "name": "StandingDirectionalWalkRight",
+      "originPhase": 0.36000000037917
+    },
+    {
+      "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015C/ExistingRunLeftMirrorOriginalBaked.fbx",
+      "name": "StandingDirectionalRunRight",
+      "originPhase": 0.20249999267834226
+    },
+    {
+      "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015E/NeutralBackwardWalkOriginalBaked.fbx",
+      "name": "StandingDirectionalWalkBackward",
+      "originPhase": 0.764657533073003
+    },
+    {
+      "source": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015C/BackwardRunOriginalBaked.fbx",
+      "name": "StandingDirectionalRunBackward",
+      "originPhase": 0.7620779002256852
+    }
+  ],
+  "derivation": "Original orientation baked in qualification imports; right lateral sources mirrored by Unity importer; full native take repeated twice with RootT X/Z removed; native unequal contact phase retained.",
+  "forward": "Exact accepted idle plus 1.4/3/4/5/6 profile and sources unchanged; no qualification flags changed.",
+  "calibrationProposalSha256": "a181cdac1396ae77a9ed3ee4772f9c66993110974bb92545dcdb8b7b40326644",
+  "calibration": [
+    {
+      "role": "WalkLeft",
+      "duration": 2.066666841506958,
+      "metresPerCycle": 3.2463070317717033,
+      "nominalSpeed": 1.4,
+      "contactCentresOnly": true,
+      "regularization": 0.08,
+      "minimumEffectiveRate": 0.773149214120594,
+      "maximumEffectiveRate": 1.0165480407881886
+    },
+    {
+      "role": "RunLeft",
+      "duration": 1.3333333730697632,
+      "metresPerCycle": 5.924479098800001,
+      "nominalSpeed": 3.0,
+      "contactCentresOnly": true,
+      "regularization": 0.08,
+      "minimumEffectiveRate": 0.6245274982939891,
+      "maximumEffectiveRate": 0.7258022277470687
+    },
+    {
+      "role": "WalkRight",
+      "duration": 2.066666841506958,
+      "metresPerCycle": 3.2546574870156606,
+      "nominalSpeed": 1.4,
+      "contactCentresOnly": true,
+      "regularization": 0.08,
+      "minimumEffectiveRate": 0.7997272368370637,
+      "maximumEffectiveRate": 0.9710973590164348
+    },
+    {
+      "role": "RunRight",
+      "duration": 1.3333333730697632,
+      "metresPerCycle": 5.906901099599998,
+      "nominalSpeed": 3.0,
+      "contactCentresOnly": true,
+      "regularization": 0.08,
+      "minimumEffectiveRate": 0.6433153440652917,
+      "maximumEffectiveRate": 0.7110327487037441
+    },
+    {
+      "role": "WalkBackward",
+      "duration": 2.433333396911621,
+      "metresPerCycle": 2.4661315282549445,
+      "nominalSpeed": 1.1,
+      "contactCentresOnly": false,
+      "regularization": 0.5,
+      "minimumEffectiveRate": 0.6117690705965002,
+      "maximumEffectiveRate": 1.559479516519153
+    },
+    {
+      "role": "RunBackward",
+      "duration": 1.2666667699813843,
+      "metresPerCycle": 4.0456970306325015,
+      "nominalSpeed": 1.8,
+      "contactCentresOnly": true,
+      "regularization": 0.08,
+      "minimumEffectiveRate": 0.5598783613345819,
+      "maximumEffectiveRate": 0.5746120024223342
+    }
+  ]
+}

@@ -10,7 +10,7 @@ namespace BooterBigArm.TopDown3D
         private const int StandingStrafeInputIndex = 25;
         private AnimationPlaygroundStandingStrafeProfile standingStrafeReview;
         private AnimationMixerPlayable standingStrafeMixer;
-        private readonly AnimationClipPlayable[] standingStrafeClips = new AnimationClipPlayable[3];
+        private AnimationClipPlayable[] standingStrafeClips = new AnimationClipPlayable[3];
         private readonly float[] standingStrafeBaseline = new float[ClipCount];
         private AnimationPlaygroundGaitClock standingStrafeClock;
         private AnimationPlaygroundGroundedMotion standingStrafeMotion;
@@ -26,6 +26,7 @@ namespace BooterBigArm.TopDown3D
         public bool LaboratoryStandingStrafeConfigured => standingStrafeReview != null;
         public bool LaboratoryStandingStrafeActive => standingStrafeRendered && standingStrafeOutputApplied;
         public string LaboratoryStandingStrafeStatus => !LaboratoryStandingStrafeConfigured ? null
+            : standingStrafeReview.AllDirections ? "LT: lock facing and move in every direction. Side run 5 m/s / backward run 4 m/s. Look-ahead retained."
             : standingStrafeMotionUnavailable && motor != null && motor.LaboratoryStandingLateral ? "LT review: completed travel left the lateral envelope; pose paused."
             : motor != null && motor.LaboratoryStandingDirectionUnsupported ? "LT review: diagonal/backward travel unavailable; release LT to steer normally."
             : motor != null && motor.LaboratoryStandingFacingLocked ? "LT facing locked: forward or slow left/right (0.5 m/s). Release LT to steer normally."
@@ -34,6 +35,7 @@ namespace BooterBigArm.TopDown3D
         public void ConfigureLaboratoryStandingStrafeReview(AnimationPlaygroundStandingStrafeProfile profile)
         {
             if (!LaboratoryForwardReviewConfigured || playableGraph.IsValid() || visualInstance != null || profile == null
+                || profile.AllDirections && !laboratoryForwardProfile.ExpandedReview
                 || !profile.Validate(humanoidPrefab, laboratoryFootProjection, out _))
                 throw new ArgumentException("Configure the paired standing strafe review after AP02 forward review and before visual startup.");
             standingStrafeReview = profile;
@@ -46,6 +48,7 @@ namespace BooterBigArm.TopDown3D
         private void InitializeStandingStrafeReviewInputs()
         {
             if (!LaboratoryStandingStrafeConfigured) return;
+            if (standingStrafeReview.AllDirections) { InitializeDirectionalInputs(); return; }
             if (mixer.GetInputCount() <= StandingStrafeInputIndex) mixer.SetInputCount(StandingStrafeInputIndex + 1);
             standingStrafeMixer = AnimationMixerPlayable.Create(playableGraph, 3);
             var clips = new[] { laboratoryForwardProfile.locomotion.GetRequiredEntry(TopDown3DLocomotionClipRole.Idle).Clip,
@@ -68,11 +71,12 @@ namespace BooterBigArm.TopDown3D
             standingStrafePlantStart = standingStrafePlantCount = 0; standingStrafeRendered = false;
             standingStrafeMotionUnavailable = false;
             standingStrafeIdleSeconds = 0;
+            ResetDirectionalPresentation();
         }
 
         private bool AdvanceStandingStrafeMotion(AnimationPlaygroundGroundedMotion sample)
         {
-            if (!LaboratoryStandingStrafeConfigured || !motor.LaboratoryStandingLateral) return false;
+            if (!LaboratoryStandingStrafeConfigured || standingStrafeReview.AllDirections || !motor.LaboratoryStandingLateral) return false;
             var side = motor.LaboratoryStandingTravel;
             if (standingStrafeSide != side) { ResetStandingStrafePresentation(); standingStrafeSide = side; }
             var gait = side == AnimationPlaygroundStandingTravel.Left ? standingStrafeReview.left : standingStrafeReview.right;
@@ -110,6 +114,7 @@ namespace BooterBigArm.TopDown3D
 
         private bool TryPresentStandingStrafe()
         {
+            if (standingStrafeReview != null && standingStrafeReview.AllDirections) return TryPresentDirectional();
             if (!StandingStrafeReviewSupportAvailable() || !motor.LaboratoryStandingLateral || !playableGraph.IsValid()
                 || motor.AnimationPosture != AnimationPlaygroundPosture.Standing || IsGathering || campIndex >= 0) return false;
             if (standingStrafeMotion.Epoch != motor.LaboratoryGroundedMotion.Epoch)
@@ -178,6 +183,7 @@ namespace BooterBigArm.TopDown3D
 
         private void EmitStandingStrafeFootEffects()
         {
+            if (standingStrafeReview != null && standingStrafeReview.AllDirections) return;
             if (!standingStrafeRendered || !StandingStrafeReviewSupportAvailable() || motor == null) return;
             var sample = motor.LaboratoryGroundedMotion;
             if (!sample.Available || sample.Tick != standingStrafeMotion.Tick || sample.Epoch != standingStrafeMotion.Epoch)

@@ -38,8 +38,10 @@ namespace BooterBigArm.TopDown3D
             LastGarmentFloorDisplacement=0;GarmentFloorExceeded=false;
             foreach(var garment in garmentFloors)
             {
-                garment.Apply(plane,forwardTerrainApplied ? .001f : garmentClearance,
-                    forwardTerrainApplied ? laboratoryForwardProfile.maximumTerrainGarmentDisplacement : garmentMaximum);
+                if(forwardTerrainApplied && LaboratoryNativeGroundAdapted && nativeGarmentHeight!=null)
+                    garment.ApplyTerrain(plane,.001f,laboratoryForwardProfile.maximumTerrainGarmentDisplacement,nativeGarmentHeight);
+                else garment.Apply(plane,forwardTerrainApplied ? .001f : garmentClearance,
+                        forwardTerrainApplied ? laboratoryForwardProfile.maximumTerrainGarmentDisplacement : garmentMaximum);
                 LastGarmentFloorDisplacement=Mathf.Max(LastGarmentFloorDisplacement,garment.MaximumDisplacement);
                 GarmentFloorExceeded|=garment.ExceededLimit;
             }

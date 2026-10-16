@@ -22,7 +22,9 @@ namespace BooterBigArm.TopDown3D
         public string LaboratoryForwardReviewStatus => (!LaboratoryForwardReviewConfigured ? null
             : LaboratoryForwardFailure != null ? "Forward gait review unavailable: " + LaboratoryForwardFailure
             : LaboratoryContinuationFailure != null ? "Motion review fallback: " + LaboratoryContinuationFailure
-            : LaboratoryContinuationConfigured ? "Experimental Camp Loop motions: static even slopes up to " + continuationReview.maximumSlope + " degrees; baseline beyond. A jump / B cancel."
+            : LaboratoryContinuationConfigured ? continuationReview.NativeCampGround
+                ? "Camp Loop native-ground motion review. A jump / B cancel." + (LaboratoryNativeGroundFailure == null ? null : "\n" + LaboratoryNativeGroundFailure)
+                : "Experimental Camp Loop motions: static even slopes up to " + continuationReview.maximumSlope + " degrees; baseline beyond. A jump / B cancel."
             : LaboratoryForwardReviewActive ? "Experimental forward gaits — AP02 flat deck"
             : "Experimental forward gaits available on AP02's flat deck. Baseline active elsewhere.")
             + (LaboratoryStandingStrafeConfigured ? "\n" + LaboratoryStandingStrafeStatus : null)+ContinuationTurnStatus;
@@ -49,7 +51,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (!LaboratoryForwardReviewConfigured) return true;
             var currentSupport=motor!=null ? motor.LaboratorySupportCollider : null;
-            if(continuationReview!=null && currentSupport!=null && currentSupport==continuationRejectedSupport
+            if(continuationReview!=null && !continuationReview.NativeCampGround && currentSupport!=null && currentSupport==continuationRejectedSupport
                 && currentSupport.transform.localToWorldMatrix==continuationRejectedMatrix)return false;
             if (ContinuationReviewSupportAvailable()) return true;
             if (forwardReviewStation == null || forwardReviewSession == null || !forwardReviewSession.isActiveAndEnabled

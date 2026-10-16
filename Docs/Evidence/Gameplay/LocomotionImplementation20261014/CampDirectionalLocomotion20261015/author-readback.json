@@ -1,0 +1,57 @@
+{
+  "state": "read-back-installed-directional-native-review",
+  "utc": "2026-10-16T03:46:04.6872451Z",
+  "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+  "isDirty": true,
+  "playing": false,
+  "compiling": false,
+  "compilationFailed": false,
+  "module": "c3a1e99e-5521-459a-82b2-8bd9717da120",
+  "directional": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/StandingDirectionalReview.asset",
+  "schema": 2,
+  "maximumSpeed": 6.0,
+  "maximumLateralSpeed": 5.0,
+  "maximumBackwardSpeed": 4.0,
+  "gaits": [
+    {
+      "nominalSpeed": 1.4,
+      "source": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalWalkLeft.anim"
+    },
+    {
+      "nominalSpeed": 3.0,
+      "source": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalRunLeft.anim"
+    },
+    {
+      "nominalSpeed": 1.4,
+      "source": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalWalkRight.anim"
+    },
+    {
+      "nominalSpeed": 3.0,
+      "source": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalRunRight.anim"
+    },
+    {
+      "nominalSpeed": 1.1,
+      "source": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalWalkBackward.anim"
+    },
+    {
+      "nominalSpeed": 1.8,
+      "source": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalRunBackward.anim"
+    }
+  ],
+  "native": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampNativeMotionReview.asset",
+  "nativeSchema": 2,
+  "maximumSlope": 40.0,
+  "maximumAirSpeed": 6.0,
+  "bodyVertices": 126,
+  "forward": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset",
+  "forwardSpeeds": [
+    1.4,
+    3.0,
+    4.0,
+    5.0,
+    6.0
+  ],
+  "qualified": false,
+  "terrainQualified": false,
+  "scope": "Read-only installed selection and compilation check. No scene save, reload, Play Mode or input."
+}

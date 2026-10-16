@@ -1,0 +1,20 @@
+{
+  "state": "installed-camp-directional-native-ground-review",
+  "utc": "2026-10-16T03:39:13.4949549Z",
+  "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+  "isDirty": true,
+  "sceneSha256": "c32df68c3039d0aee36013a43ce04daadd88e15c5cbf2ad6f9057d49a75cf9c5",
+  "bindingSha256": "47e295de6bc34659e44a5ccb2bb5a4b1c6422419fcbddfa775fcbb8299e3c1c3",
+  "profile": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampNativeMotionReview.asset",
+  "maximumSlope": 40.0,
+  "maximumAirSpeed": 6.0,
+  "directional": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/StandingDirectionalReview.asset",
+  "maximumLateralSpeed": 5.0,
+  "maximumBackwardSpeed": 4.0,
+  "privateFileCount": 31,
+  "forwardQualified": false,
+  "terrainQualified": false,
+  "module": "c3a1e99e-5521-459a-82b2-8bd9717da120",
+  "bindingOnlyDirectionalSelectionFieldsChanged": true,
+  "scope": "New private directional payload/metadata files and two existing profile selection fields only. No scene save/reload, Play Mode, input or foreground operation."
+}

@@ -1,0 +1,217 @@
+{
+  "success": true,
+  "command": "command test_status",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 59.7,
+      "summary": {
+        "total": 27,
+        "passed": 27,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.AdaptedTurnsRetainNativeDurationC1EndpointsAndExistingQualificationFlags",
+          "Status": "Passed",
+          "Duration": 0.3723265,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.AirControlRetainsNeutralAndAlignedLaunchMomentumAndBoundsCountersteering(0.0f)",
+          "Status": "Passed",
+          "Duration": 0.0010105,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.AirControlRetainsNeutralAndAlignedLaunchMomentumAndBoundsCountersteering(0.5f)",
+          "Status": "Passed",
+          "Duration": 0.0003825,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.AirControlRetainsNeutralAndAlignedLaunchMomentumAndBoundsCountersteering(1.4f)",
+          "Status": "Passed",
+          "Duration": 0.0005179,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.AirControlRetainsNeutralAndAlignedLaunchMomentumAndBoundsCountersteering(3.0f)",
+          "Status": "Passed",
+          "Duration": 0.0004647,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.AirControlRetainsNeutralAndAlignedLaunchMomentumAndBoundsCountersteering(4.0f)",
+          "Status": "Passed",
+          "Duration": 0.0003707,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.AirControlRetainsNeutralAndAlignedLaunchMomentumAndBoundsCountersteering(5.0f)",
+          "Status": "Passed",
+          "Duration": 0.0003786,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.AirControlRetainsNeutralAndAlignedLaunchMomentumAndBoundsCountersteering(6.0f)",
+          "Status": "Passed",
+          "Duration": 0.0003692,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.ContinuationSupportRejectsEdgesMovingSupportsAndUnmeasuredGradesAndResetClearsFallback",
+          "Status": "Passed",
+          "Duration": 2.2613668,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.ExpandedFamilyFitsMildPlanesAcrossAllHeadingsWithOneOutput(OneBone)",
+          "Status": "Passed",
+          "Duration": 8.2120818,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.ExpandedFamilyFitsMildPlanesAcrossAllHeadingsWithOneOutput(TwoBones)",
+          "Status": "Passed",
+          "Duration": 8.5181926,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.ExpandedFamilyFitsMildPlanesAcrossAllHeadingsWithOneOutput(FourBones)",
+          "Status": "Passed",
+          "Duration": 11.9971727,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.GroundedTakeoffAndLandingPosesShareMildSlopeOutputWithoutASecondRootWriter(OneBone)",
+          "Status": "Passed",
+          "Duration": 5.5453331,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.GroundedTakeoffAndLandingPosesShareMildSlopeOutputWithoutASecondRootWriter(TwoBones)",
+          "Status": "Passed",
+          "Duration": 4.2409423,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.GroundedTakeoffAndLandingPosesShareMildSlopeOutputWithoutASecondRootWriter(FourBones)",
+          "Status": "Passed",
+          "Duration": 4.3214821,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.RequiredContinuationCannotSilentlyLoseItsPrivateData",
+          "Status": "Passed",
+          "Duration": 0.0012219,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.ReversalBrakingRequiresTheSameReviewSupportAsItsTurnOwner",
+          "Status": "Passed",
+          "Duration": 0.057981,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.RuntimeTurnOwnerUsesAdaptedCurveAndBoundedTangentStageForBothCompleteSources(OneBone,False)",
+          "Status": "Passed",
+          "Duration": 0.2804793,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.RuntimeTurnOwnerUsesAdaptedCurveAndBoundedTangentStageForBothCompleteSources(TwoBones,False)",
+          "Status": "Passed",
+          "Duration": 0.304911,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.RuntimeTurnOwnerUsesAdaptedCurveAndBoundedTangentStageForBothCompleteSources(FourBones,False)",
+          "Status": "Passed",
+          "Duration": 0.2754284,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.RuntimeTurnOwnerUsesAdaptedCurveAndBoundedTangentStageForBothCompleteSources(OneBone,True)",
+          "Status": "Passed",
+          "Duration": 0.2656747,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.RuntimeTurnOwnerUsesAdaptedCurveAndBoundedTangentStageForBothCompleteSources(TwoBones,True)",
+          "Status": "Passed",
+          "Duration": 0.2725452,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.RuntimeTurnOwnerUsesAdaptedCurveAndBoundedTangentStageForBothCompleteSources(FourBones,True)",
+          "Status": "Passed",
+          "Duration": 0.2704761,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.SlowLateralFamilyFitsTheSameBoundedSlopeEnvelope(OneBone)",
+          "Status": "Passed",
+          "Duration": 4.0892043,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.SlowLateralFamilyFitsTheSameBoundedSlopeEnvelope(TwoBones)",
+          "Status": "Passed",
+          "Duration": 4.230189,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.SlowLateralFamilyFitsTheSameBoundedSlopeEnvelope(FourBones)",
+          "Status": "Passed",
+          "Duration": 4.0963558,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundContinuationTests.TurnCannotOverrideBusyMovingSlopedOrLockedPlayersAndResetReleasesEveryLease",
+          "Status": "Passed",
+          "Duration": 0.0572788,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

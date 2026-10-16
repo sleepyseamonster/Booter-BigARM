@@ -9,10 +9,11 @@ namespace BooterBigArm.TopDown3D
         private Func<bool> standingStrafeSupport;
         private Vector3 standingStrafeFacing;
         private bool standingStrafeLocked, standingStrafeAwaitRelease;
+        private Vector2 standingStrafeIntent;
         public AnimationPlaygroundStandingTravel LaboratoryStandingTravel { get; private set; }
         public bool LaboratoryStandingFacingLocked => standingStrafeLocked;
         public bool LaboratoryStandingLateral => standingStrafeLocked
-            && (LaboratoryStandingTravel == AnimationPlaygroundStandingTravel.Left || LaboratoryStandingTravel == AnimationPlaygroundStandingTravel.Right);
+            && LaboratoryStandingTravel != AnimationPlaygroundStandingTravel.Idle && LaboratoryStandingTravel != AnimationPlaygroundStandingTravel.Forward;
         public bool LaboratoryStandingDirectionUnsupported { get; private set; }
 
         public void ConfigureLaboratoryStandingStrafe(object owner, AnimationPlaygroundStandingStrafeProfile profile,
@@ -30,6 +31,7 @@ namespace BooterBigArm.TopDown3D
             standingStrafeLocked = false; standingStrafeAwaitRelease = awaitRelease;
             LaboratoryStandingTravel = AnimationPlaygroundStandingTravel.Idle;
             LaboratoryStandingDirectionUnsupported = false;
+            standingStrafeIntent = Vector2.zero;
         }
         private void ReleaseStandingStrafeReview()
         {
@@ -58,6 +60,20 @@ namespace BooterBigArm.TopDown3D
                 || AnimationPosture != AnimationPlaygroundPosture.Standing || !IsGrounded
                 || standingStrafeSupport?.Invoke() != true)
             { ResetStandingStrafe(held); return; }
+            if (standingStrafeProfile.AllDirections)
+            {
+                if (!held) { ResetStandingStrafe(false); return; }
+                if (!standingStrafeLocked)
+                {
+                    if (standingStrafeAwaitRelease) return;
+                    standingStrafeFacing = Vector3.ProjectOnPlane(body.rotation * Vector3.forward, Vector3.up).normalized;
+                    standingStrafeLocked = true;
+                }
+                standingStrafeIntent = AnimationPlaygroundDirectionalMath.Local(direction, standingStrafeFacing);
+                LaboratoryStandingTravel = AnimationPlaygroundDirectionalMath.Classify(standingStrafeIntent);
+                LaboratoryStandingDirectionUnsupported = false;
+                return; // Retain the complete slope tangent and analog magnitude.
+            }
             var speed = Vector3.ProjectOnPlane(body.linearVelocity, Vector3.up).magnitude;
             if (!standingStrafeLocked)
             {
@@ -81,7 +97,8 @@ namespace BooterBigArm.TopDown3D
             AnimationPlaygroundStandingStrafeMath.Classify(direction, standingStrafeFacing, out direction);
         }
 
-        private float StandingStrafeRequestedSpeed(float ordinary) => LaboratoryStandingLateral
-            ? Mathf.Min(ordinary, standingStrafeProfile.maximumSpeed) : ordinary;
+        private float StandingStrafeRequestedSpeed(float ordinary) => standingStrafeLocked && standingStrafeProfile != null && standingStrafeProfile.AllDirections
+            ? Mathf.Min(ordinary, AnimationPlaygroundDirectionalMath.SpeedLimit(standingStrafeProfile, standingStrafeIntent))
+            : LaboratoryStandingLateral ? Mathf.Min(ordinary, standingStrafeProfile.maximumSpeed) : ordinary;
     }
 }

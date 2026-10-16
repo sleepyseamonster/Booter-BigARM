@@ -22,6 +22,34 @@ namespace BooterBigArm.Tests
             Assert.That(point,Is.EqualTo(Vector3.down));
             Assert.That(AnimationPlaygroundGarmentFloor.TryProject(Vector3.zero,Matrix4x4.zero,new Plane(Vector3.up,0),0,.6f,out _,out _),Is.False);
         }
+        [TestCase(SkinQuality.Bone1)] [TestCase(SkinQuality.Bone2)]
+        public void NativeHeightProjectionKeepsBonesAndTheOriginalDisplacementCap(SkinQuality quality)
+        {
+            var actor=new GameObject("Native garment fixture");var chest=new GameObject("Chest");var hips=new GameObject("Hips");
+            chest.transform.SetParent(actor.transform,false);hips.transform.SetParent(actor.transform,false);
+            chest.transform.localPosition=Vector3.down*.2f;hips.transform.localPosition=Vector3.down*.4f;
+            var mesh=new Mesh();var source=new[]{Vector3.up*.5f,new Vector3(.1f,.5f,0),new Vector3(0,.5f,.1f)};
+            mesh.vertices=source;mesh.triangles=new[]{0,1,2};mesh.RecalculateNormals();mesh.bindposes=new[]{Matrix4x4.identity,Matrix4x4.identity};
+            var weight=new BoneWeight{boneIndex0=1,weight0=.8f,boneIndex1=0,weight1=.2f};mesh.boneWeights=new[]{weight,weight,weight};
+            var skin=actor.AddComponent<SkinnedMeshRenderer>();skin.sharedMesh=mesh;skin.bones=new[]{chest.transform,hips.transform};skin.quality=quality;
+            var floor=new AnimationPlaygroundGarmentFloor(skin);
+            try
+            {
+                float Height(Vector3 point)=>.2f+point.x*.5f;
+                floor.ApplyTerrain(new Plane(Vector3.up,0),.001f,.35f,p=>Height(p));
+                Assert.That(floor.ExceededLimit,Is.False);Assert.That(floor.MaximumDisplacement,Is.InRange(.05f,.2f));
+                var matrix=quality==SkinQuality.Bone1 ? hips.transform.localToWorldMatrix
+                    : AnimationPlaygroundGarmentFloor.Blend(chest.transform.localToWorldMatrix,hips.transform.localToWorldMatrix,.2f);
+                foreach(var vertex in mesh.vertices){var world=matrix.MultiplyPoint3x4(vertex);Assert.That(world.y,Is.EqualTo(Height(world)+.001f).Within(.00001f));}
+                Assert.That(chest.transform.localPosition.y,Is.EqualTo(-.2f));Assert.That(hips.transform.localPosition.y,Is.EqualTo(-.4f));
+                floor.ApplyTerrain(new Plane(Vector3.up,0),.001f,.35f,p=>1);
+                Assert.That(floor.ExceededLimit,Is.True);CollectionAssert.AreEqual(source,mesh.vertices);
+                floor.ApplyTerrain(new Plane(Vector3.up,0),.001f,.35f,p=>float.NaN);
+                Assert.That(floor.ExceededLimit,Is.True);CollectionAssert.AreEqual(source,mesh.vertices);
+                floor.Restore();CollectionAssert.AreEqual(source,mesh.vertices);
+            }
+            finally{Object.DestroyImmediate(mesh);Object.DestroyImmediate(actor);}
+        }
         [Test] public void RuntimeCopyRespectsSkinQualityAndRestoresItsOriginalGeometry()
         {
             var actor=new GameObject("Garment constraint fixture");var a=new GameObject("Chest");var b=new GameObject("Hips");

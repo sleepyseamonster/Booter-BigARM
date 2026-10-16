@@ -157,7 +157,9 @@ namespace BooterBigArm.Tests
             {
                 var session = TopDown3DAnimationPlaygroundSession.Find(scene);
                 draft=Object.Instantiate(session.Bindings);
-                if(!continuation){draft.continuationReview=null;draft.continuationReviewRequired=false;}
+                if(!continuation){draft.continuationReview=null;draft.continuationReviewRequired=false;
+                    draft.standingStrafeReview=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundStandingStrafeProfile>(
+                        "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/StandingStrafeReview.asset");}
                 else Assert.That(draft.continuationReview,Is.Not.Null,"Select the combined private candidate for this integration gate.");
                 session.Configure(draft);
                 session.ConfigureForwardReview(review ? AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(
@@ -185,6 +187,7 @@ namespace BooterBigArm.Tests
                 Assert.That(driver.LaboratoryForwardReviewConfigured, Is.EqualTo(review));
                 Assert.That(Field<AnimationPlaygroundTerrainPose>(driver, "forwardTerrainPose") != null, Is.EqualTo(terrain||continuation));
                 Assert.That(driver.LaboratoryContinuationConfigured,Is.EqualTo(continuation));
+                Assert.That(driver.LaboratoryDirectionalConfigured,Is.EqualTo(continuation));
                 Assert.That(player.GetComponent<AnimationPlaygroundTurnController>()!=null,Is.EqualTo(continuation));
                 Assert.That(session.Coordinator, Is.Not.Null); Assert.That(input.AnimationActionOwned, Is.Not.Null);
                 if (review)

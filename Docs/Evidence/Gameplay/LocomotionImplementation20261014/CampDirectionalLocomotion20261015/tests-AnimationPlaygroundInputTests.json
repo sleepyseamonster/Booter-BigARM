@@ -1,0 +1,63 @@
+{
+  "success": true,
+  "command": "command test_status",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 0.12,
+      "summary": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundInputTests.CompatibleOverridesAreCopiedWithoutMutatingTheSource",
+          "Status": "Passed",
+          "Duration": 0.0127561,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundInputTests.HeldJumpCannotLeakThroughModalReturnAndEastCancelWinsPickup",
+          "Status": "Passed",
+          "Duration": 0.0145025,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundInputTests.InitialPreferenceInheritanceDoesNotWriteEitherFileAndExistingLabDataWins",
+          "Status": "Passed",
+          "Duration": 0.0571768,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundInputTests.LabCoactiveBindingsRejectNewActionConflictsWithoutChangingProductionPolicy",
+          "Status": "Passed",
+          "Duration": 0.0101679,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundInputTests.OwnedAssetPreservesShippedIdsAndDeterministicLabBindings",
+          "Status": "Passed",
+          "Duration": 0.0201096,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

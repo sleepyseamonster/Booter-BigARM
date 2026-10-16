@@ -168,6 +168,26 @@ namespace BooterBigArm.Tests
             Assert.That(Vector3.Distance(before,after),Is.LessThanOrEqualTo(.4001f));
             Tick(100);Assert.That(airborne.Active,Is.False);Assert.That(motor.IsActionConstrained,Is.False);Assert.That(landings,Is.EqualTo(1));
         }
+        [TestCase(0f,6f)] [TestCase(45f,5f)] [TestCase(90f,5f)] [TestCase(135f,4f)]
+        [TestCase(180f,1.1f)] [TestCase(180f,4f)] [TestCase(225f,4f)] [TestCase(270f,5f)] [TestCase(315f,5f)]
+        public void NativeDirectionalLaunchRetainsFacingMomentumAndOneLanding(float heading,float speed)
+        {
+            var review=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundContinuationProfile>(AnimationPlaygroundDirectionalTests.NativePath);
+            Assert.That(review,Is.Not.Null);airborne.ConfigureContinuationReview(review);
+            var direction=Quaternion.Euler(0,heading,0)*Vector3.forward;motor.FacePlanarDirection(Vector3.forward);body.linearVelocity=direction*speed;
+            var landings=0;airborne.Landed+=value=>landings++;
+            Assert.That(airborne.TryJump(),Is.True,airborne.LastFailure);
+            var clip=((AnimationClipPlayable)typeof(TopDown3DPlayerAnimationDriver).GetField("animationActionPlayable",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(driver)).GetAnimationClip();
+            Assert.That(clip,Is.EqualTo(Vector3.Dot(direction,Vector3.forward)<.5f ? profile.standing.takeoff : profile.running.takeoff));
+            for(var i=0;i<100 && airborne.State==AnimationPlaygroundAirborneState.Takeoff;i++)Tick();
+            Assert.That(Vector3.Distance(Vector3.ProjectOnPlane(body.linearVelocity,Vector3.up),direction*speed),Is.LessThan(.0001f));
+            body.position=new Vector3(68000,1.91f,68000);body.linearVelocity=direction*speed+Vector3.up*4;Physics.SyncTransforms();Tick(20);
+            Assert.That(Vector3.Distance(Vector3.ProjectOnPlane(body.linearVelocity,Vector3.up),direction*speed),Is.LessThan(.0001f));
+            Assert.That(motor.FacingDirection,Is.EqualTo(Vector3.forward));
+            body.linearVelocity=direction*speed+Vector3.down*3;Tick();body.position=new Vector3(68000,.91f,68000);body.linearVelocity=direction*speed+Vector3.down*.1f;
+            Physics.SyncTransforms();Tick();Assert.That(landings,Is.EqualTo(1));Tick(100);
+            Assert.That(airborne.Active,Is.False);Assert.That(motor.IsActionConstrained,Is.False);Assert.That(landings,Is.EqualTo(1));
+        }
         [Test] public void ContinuationTakeoffLedgeLossCancelsItsImpulseAndRetainsFastFallMomentum()
         {
             airborne.ConfigureContinuationReview(AssetDatabase.LoadAssetAtPath<AnimationPlaygroundContinuationProfile>(

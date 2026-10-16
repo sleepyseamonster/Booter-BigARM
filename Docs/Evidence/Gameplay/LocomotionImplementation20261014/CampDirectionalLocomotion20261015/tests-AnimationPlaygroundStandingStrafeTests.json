@@ -1,0 +1,84 @@
+{
+  "success": true,
+  "command": "command test_status",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 15.2,
+      "summary": {
+        "total": 8,
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundStandingStrafeTests.ActualSingleGraphClearsEquippedBodyAndCapturesBothSides(OneBone)",
+          "Status": "Passed",
+          "Duration": 6.4784906,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundStandingStrafeTests.ActualSingleGraphClearsEquippedBodyAndCapturesBothSides(TwoBones)",
+          "Status": "Passed",
+          "Duration": 4.3845409,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundStandingStrafeTests.ActualSingleGraphClearsEquippedBodyAndCapturesBothSides(FourBones)",
+          "Status": "Passed",
+          "Duration": 4.2040796,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundStandingStrafeTests.CompletedLateralDistanceUsesNativeContactsAndSupportOwnershipVetoesPresentation",
+          "Status": "Passed",
+          "Duration": 0.0535573,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundStandingStrafeTests.FacingRelativeAxisConesPreserveAnalogMagnitudeAndRejectUncoveredTravel",
+          "Status": "Passed",
+          "Duration": 0.0019629,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundStandingStrafeTests.LTAlsoKeepsLookAheadAndRequiresNeutralAfterMenusAndDeviceRemoval",
+          "Status": "Passed",
+          "Duration": 0.0178572,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundStandingStrafeTests.MotorCapturesCompletedFacingBrakesAxisChangesAndReleasesAtOwnedBoundaries",
+          "Status": "Passed",
+          "Duration": 0.042449,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundStandingStrafeTests.PrivateReviewRetainsCompleteUnequalContactLoopsAndBoundedStrideRates",
+          "Status": "Passed",
+          "Duration": 0.0013276,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

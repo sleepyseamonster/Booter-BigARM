@@ -431,7 +431,7 @@ namespace BooterBigArm.TopDown3D
 
             ApplyStandingStrafeIntent(ref desiredDirection);
             ApplyLaboratoryTurnBraking(ref desiredDirection);
-            SprintActive = input.SprintHeld && !LaboratoryStandingLateral
+            SprintActive = input.SprintHeld && (!LaboratoryStandingLateral || standingStrafeProfile != null && standingStrafeProfile.AllDirections)
                 && AnimationPosture==AnimationPlaygroundPosture.Standing && !input.AnimationSlowWalkHeld
                 && desiredDirection.sqrMagnitude > 0.0001f
                 && traversalCooldownRemaining <= 0f;

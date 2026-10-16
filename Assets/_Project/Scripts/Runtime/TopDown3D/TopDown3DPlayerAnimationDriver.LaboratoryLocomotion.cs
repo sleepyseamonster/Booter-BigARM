@@ -108,7 +108,9 @@ namespace BooterBigArm.TopDown3D
                 forwardPlantStart = forwardPlantCount = 0; forwardPoseEnvelope.Reset(); return;
             }
             forwardPreviousSpeed = forwardSpeed;
-            var contacts = forwardClock.Advance(sample, laboratoryForwardProfile);
+            var directional = ObserveDirectionalMotion(sample);
+            var contacts = directional ? forwardClock.Advance(sample, DirectionalCycleDistance(sample.Speed))
+                : forwardClock.Advance(sample, laboratoryForwardProfile);
             forwardSpeed = forwardClock.Travelling && sample.Available ? sample.Speed : 0;
             if (sample.Rebased || !sample.Available)
             { LaboratoryDiscardedFootEffects += forwardPlantCount; forwardPlantCount = 0; forwardPlantStart = 0; return; }
@@ -129,6 +131,8 @@ namespace BooterBigArm.TopDown3D
 
         private void PrepareForwardGraphUpdate()
         {
+            if (AnimationPresentationOwned || CrouchPresentationOwned || PoseBlendOwned || motor != null && motor.IsActionConstrained)
+                ResetDirectionalPresentation();
             continuationActionTerrainApplied=false;
             RestoreStandingStrafeBaseline();
             RestoreForwardReviewBaseline();
@@ -221,6 +225,13 @@ namespace BooterBigArm.TopDown3D
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition + Vector3.up * correction,
                 Quaternion.Euler(visualLocalEulerAngles));
             var plane = transform.TransformPoint(Vector3.up * laboratoryFeetPlane).y;
+            if (TryEvaluateNativeCampGround(correction, out var nativeCorrection))
+            {
+                visualInstance.transform.localPosition = visualLocalPosition + Vector3.up * nativeCorrection;
+                LaboratoryForwardLift = nativeCorrection; LaboratoryRenderedCycles = cycles;
+                lastActionIndex = activeTransitionIndex = activeHardTurnIndex = -1;
+                return;
+            }
             forwardTerrainApplied = forwardTerrainPose != null && motor != null
                 && motor.TryGetLaboratorySupportPlane(out forwardTerrainPlane, true);
             if (forwardTerrainApplied)

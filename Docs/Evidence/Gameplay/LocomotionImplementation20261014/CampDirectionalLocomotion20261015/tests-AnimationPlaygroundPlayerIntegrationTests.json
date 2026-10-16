@@ -1,0 +1,105 @@
+{
+  "success": true,
+  "command": "command test_status",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 1.34,
+      "summary": {
+        "total": 11,
+        "passed": 11,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.AuthoredPlayerUsesOneGraphAndEquipmentHasIndependentMetreScale",
+          "Status": "Passed",
+          "Duration": 0.1707949,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.BindingRejectsBrokenColliderProfileAndSpeedContracts",
+          "Status": "Passed",
+          "Duration": 0.000725,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.FailedResetBlocksMovementAndActionsWhilePaletteRemainsAvailable",
+          "Status": "Passed",
+          "Duration": 0.0106484,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.PhysicsHierarchyRejectsScaledAncestorsAndMirrors",
+          "Status": "Passed",
+          "Duration": 0.0004351,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.PrivateBindingCoversEverySourceWithoutPromotingPhysicalReadiness",
+          "Status": "Passed",
+          "Duration": 0.4875275,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.ReturnAnchorsRequireNearbyWalkableSupport",
+          "Status": "Passed",
+          "Duration": 0.0010254,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(False,False,False,False)",
+          "Status": "Passed",
+          "Duration": 0.2017762,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(True,False,False,False)",
+          "Status": "Passed",
+          "Duration": 0.116458,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(True,True,False,False)",
+          "Status": "Passed",
+          "Duration": 0.1157479,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(False,False,True,False)",
+          "Status": "Passed",
+          "Duration": 0.1158316,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundPlayerIntegrationTests.SessionWiresExistingInputMenuPreviewAndOrderedPlayerReset(False,False,True,True)",
+          "Status": "Passed",
+          "Duration": 0.1114571,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

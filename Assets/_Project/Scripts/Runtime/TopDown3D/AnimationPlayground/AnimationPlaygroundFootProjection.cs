@@ -59,6 +59,13 @@ namespace BooterBigArm.TopDown3D
             public float MinimumWorldY(out int minimumVertex)=>MinimumDistance(new Plane(Vector3.up,0),out minimumVertex);
             public float MinimumDistance(Plane plane)=>MinimumDistance(plane,out _);
             public float MinimumDistance(Plane plane,out int minimumVertex)
+                =>MinimumDistance(plane,null,out minimumVertex);
+            public float MinimumTerrainDistance(Func<Vector3,float?> heightAt,out int minimumVertex)
+            {
+                if(heightAt==null)throw new ArgumentNullException(nameof(heightAt));
+                return MinimumDistance(new Plane(Vector3.up,0),heightAt,out minimumVertex);
+            }
+            private float MinimumDistance(Plane plane,Func<Vector3,float?> heightAt,out int minimumVertex)
             {
                 if(!float.IsFinite(plane.distance) || !float.IsFinite(plane.normal.sqrMagnitude)
                     || Mathf.Abs(plane.normal.sqrMagnitude-1)>.0001f)
@@ -93,6 +100,11 @@ namespace BooterBigArm.TopDown3D
                     }
                     point/=total;
                     var distance=plane.GetDistanceToPoint(point);
+                    if(heightAt!=null)
+                    {
+                        var height=heightAt(point);if(!height.HasValue)continue;
+                        distance=point.y-height.Value;
+                    }
                     if(!float.IsFinite(distance))throw new InvalidOperationException("The active foot projection is not finite.");
                     if(distance<minimum){minimum=distance;minimumVertex=vertexIndex;}
                 }

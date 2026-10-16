@@ -1,5 +1,7 @@
 # Camp Loop standing strafe slice
 
+**Current selection:** the [directional/native-ground continuation](CAMP_LOOP_DIRECTIONAL_LOCOMOTION_2026-10-15.md) supersedes this first slice's 0.5 m/s lateral cap, braking capture and unavailable diagonals/backward travel. Its [receipt](../../Evidence/Gameplay/LocomotionImplementation20261014/CampDirectionalLocomotion20261015/README.md) controls current installed behavior and verification. The original schema-1 assets remain preserved.
+
 **Latest continuation:** the author requested finishing the remaining motion families before returning for testing. The [combined review](../../Evidence/Gameplay/LocomotionImplementation20261014/CampMotionContinuation20261015/README.md) now owns that route and the airborne speed reconciliation. This document preserves the first lateral slice and its source limitations.
 
 October 15, 2026. Continues the [locomotion handoff](CAMP_LOOP_LOCOMOTION_CONTINUATION_HANDOFF_2026-10-15.md). The author chose **hold LT to lock facing and strafe, retaining camera look-ahead**. Forward gait anchors remain 1.4/3/4/5/6 m/s; the existing airborne 3.8 m/s control cap remains an audited mismatch for the later jumping slice.

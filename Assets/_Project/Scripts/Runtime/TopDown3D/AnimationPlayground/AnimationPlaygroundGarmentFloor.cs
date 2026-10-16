@@ -41,6 +41,13 @@ namespace BooterBigArm.TopDown3D
             return float.IsFinite(projected.x) && float.IsFinite(projected.y) && float.IsFinite(projected.z);
         }
         public void Apply(Plane plane,float clearance,float maximum)
+            => ApplySurface(plane,clearance,maximum,null);
+        public void ApplyTerrain(Plane plane,float clearance,float maximum,Func<Vector3,float?> heightAt)
+        {
+            if(heightAt==null)throw new ArgumentNullException(nameof(heightAt));
+            ApplySurface(plane,clearance,maximum,heightAt);
+        }
+        private void ApplySurface(Plane plane,float clearance,float maximum,Func<Vector3,float?> heightAt)
         {
             if(!float.IsFinite(clearance) || clearance<0 || !float.IsFinite(maximum) || maximum<=0)throw new ArgumentException("Bounded garment clearance is required.");
             MaximumDisplacement=0;ExceededLimit=false;inverses.Clear();
@@ -53,9 +60,21 @@ namespace BooterBigArm.TopDown3D
                 var chestWeight=limit==1 ? weight.boneIndex0==0 ? 1f : 0f
                     : (weight.boneIndex0==0 ? weight.weight0 : 0)+(weight.boneIndex1==0 ? weight.weight1 : 0);
                 var world=chest.MultiplyPoint3x4(original[i])*chestWeight+hips.MultiplyPoint3x4(original[i])*(1-chestWeight);
-                var distance=Mathf.Max(0,clearance-plane.GetDistanceToPoint(world));
-                MaximumDisplacement=Mathf.Max(MaximumDisplacement,distance);
                 positions[i]=original[i];if(normals.Length==positions.Length)normals[i]=originalNormals[i];
+                var distance=Mathf.Max(0,clearance-plane.GetDistanceToPoint(world));
+                var direction=plane.normal;
+                if(heightAt!=null)
+                {
+                    direction=Vector3.up;distance/=plane.normal.y;
+                    var height=heightAt(world);
+                    if(height.HasValue)
+                    {
+                        if(!float.IsFinite(height.Value)){ExceededLimit=true;continue;}
+                        distance=Mathf.Max(distance,height.Value+clearance-world.y);
+                    }
+                }
+                if(!float.IsFinite(distance)){ExceededLimit=true;continue;}
+                MaximumDisplacement=Mathf.Max(MaximumDisplacement,distance);
                 if(distance<=0)continue;
                 if(distance>maximum){ExceededLimit=true;continue;}
                 if(!inverses.TryGetValue(chestWeight,out var inverse))
@@ -64,8 +83,8 @@ namespace BooterBigArm.TopDown3D
                     if(Mathf.Abs(matrix.determinant)<.000001f){ExceededLimit=true;continue;}
                     inverse=matrix.inverse;inverses.Add(chestWeight,inverse);
                 }
-                positions[i]=inverse.MultiplyPoint3x4(world+plane.normal*distance);
-                if(normals.Length==positions.Length)normals[i]=inverse.MultiplyVector(plane.normal).normalized;
+                positions[i]=inverse.MultiplyPoint3x4(world+direction*distance);
+                if(normals.Length==positions.Length)normals[i]=inverse.MultiplyVector(direction).normalized;
             }
             mesh.vertices=positions;if(normals.Length==positions.Length)mesh.normals=normals;mesh.RecalculateBounds();
             var bounds=originalBounds;bounds.Encapsulate(mesh.bounds.min);bounds.Encapsulate(mesh.bounds.max);skin.localBounds=bounds;

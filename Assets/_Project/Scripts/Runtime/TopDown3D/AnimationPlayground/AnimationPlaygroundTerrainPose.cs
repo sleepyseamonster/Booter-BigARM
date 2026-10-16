@@ -11,7 +11,7 @@ namespace BooterBigArm.TopDown3D
     // or animation time and is inactive for every foreign presentation owner.
     public sealed class AnimationPlaygroundTerrainPose : IDisposable
     {
-        public const int ImplementationRevision = 13;
+        public const int ImplementationRevision = 14;
         public const float MaximumKneeFlexion = 150;
         private static readonly float KneeFlexionCosine = Mathf.Cos(MaximumKneeFlexion * Mathf.Deg2Rad);
         public struct Vertex { public int start, count, side; }
@@ -24,6 +24,8 @@ namespace BooterBigArm.TopDown3D
             public NativeArray<Matrix4x4> matrices;
             public TransformStreamHandle hips, leftHip, rightHip, leftKnee, rightKnee;
             public Plane plane;
+            public Plane leftPlane, rightPlane;
+            public bool individualSupport;
             public float flatY, maximumLowering, flatLift;
             public Vector3 characterRight;
             public Vector3 flatOrigin;
@@ -70,6 +72,14 @@ namespace BooterBigArm.TopDown3D
                     else rightMinimum = Mathf.Min(rightMinimum, p.y);
                 }
                 sourceMinimum = Mathf.Min(leftMinimum, rightMinimum);
+                if (individualSupport)
+                {
+                    ProcessIndividualSupport(stream, left, right, leftRotation, rightRotation,
+                        nativeLeftHip, nativeRightHip, nativeLeftKnee, nativeRightKnee,
+                        leftUpperRotation, rightUpperRotation, leftLowerRotation, rightLowerRotation,
+                        leftFootHandle, rightFootHandle, leftMinimum, rightMinimum);
+                    return;
+                }
                 flatLift = plane.normal.y > .999999f ? 0 : Mathf.Max(0, flatY - sourceMinimum);
                 leftMinimum += flatLift; rightMinimum += flatLift;
                 left += Vector3.up * flatLift; right += Vector3.up * flatLift;
@@ -138,6 +148,66 @@ namespace BooterBigArm.TopDown3D
                     Vector3.Lerp(right - Vector3.up * lowering, rightTarget, onset),
                     Quaternion.Slerp(rightRotation, rightDelta * rightRotation, onset), rightHint, out var rightResidual);
                 incompatibleReach = Mathf.Max(incompatibleReach, Mathf.Max(leftResidual, rightResidual));
+            }
+            private void ProcessIndividualSupport(AnimationStream stream, Vector3 left, Vector3 right,
+                Quaternion leftRotation, Quaternion rightRotation, Vector3 nativeLeftHip, Vector3 nativeRightHip,
+                Vector3 nativeLeftKnee, Vector3 nativeRightKnee, Quaternion leftUpperRotation, Quaternion rightUpperRotation,
+                Quaternion leftLowerRotation, Quaternion rightLowerRotation, TransformStreamHandle leftFootHandle,
+                TransformStreamHandle rightFootHandle, float leftMinimum, float rightMinimum)
+            {
+                // The source's calibrated host correction is already applied.
+                // Mixed directional poses can put a toe below that plane: solve
+                // the foot instead of lifting the entire character a second time.
+                flatLift = 0;
+                leftGap = Mathf.Max(0, leftMinimum + flatLift - flatY); rightGap = Mathf.Max(0, rightMinimum + flatLift - flatY);
+                leftWeight = SupportWeight(leftGap); rightWeight = SupportWeight(rightGap);
+                var leftDelta = Quaternion.FromToRotation(Vector3.up, leftPlane.normal);
+                var rightDelta = Quaternion.FromToRotation(Vector3.up, rightPlane.normal);
+                leftTarget = IndividualTarget(left, leftDelta, leftPlane, 0, leftGap);
+                rightTarget = IndividualTarget(right, rightDelta, rightPlane, 1, rightGap);
+                var leftUpper = Vector3.Distance(nativeLeftHip, nativeLeftKnee); var leftLower = Vector3.Distance(nativeLeftKnee, left);
+                var rightUpper = Vector3.Distance(nativeRightHip, nativeRightKnee); var rightLower = Vector3.Distance(nativeRightKnee, right);
+                requiredLowering = Mathf.Max(RequiredLowering(nativeLeftHip, leftTarget, leftUpper, leftLower),
+                    RequiredLowering(nativeRightHip, rightTarget, rightUpper, rightLower));
+                lowering = Mathf.Min(requiredLowering, maximumLowering); incompatibleReach = 0;
+                var shift = Vector3.up * (flatLift - lowering);
+                var leftBody = nativeLeftHip + shift; var rightBody = nativeRightHip + shift;
+                var leftFloor = leftPlane.GetDistanceToPoint(leftTarget) - leftGap;
+                var rightFloor = rightPlane.GetDistanceToPoint(rightTarget) - rightGap;
+                var bodyPlane = plane;
+                plane = leftPlane; leftTarget = Reachable(leftBody, leftTarget, leftUpper, leftLower,
+                    out leftReleased, out leftFlightLowering, out var leftConflict);
+                plane = rightPlane; rightTarget = Reachable(rightBody, rightTarget, rightUpper, rightLower,
+                    out rightReleased, out rightFlightLowering, out var rightConflict);
+                plane = bodyPlane;
+                // Preserve the floor while allowing the source's flight arc to
+                // compress at a bump. An unreachable planted foot may release
+                // by at most 80 mm; it never stretches a limb or enters terrain.
+                incompatibleReach = Mathf.Max(leftConflict, rightConflict);
+                incompatibleReach = Mathf.Max(incompatibleReach, Mathf.Max(leftFloor-leftPlane.GetDistanceToPoint(leftTarget),
+                    rightFloor-rightPlane.GetDistanceToPoint(rightTarget)));
+                incompatibleReach = Mathf.Max(incompatibleReach, Mathf.Max(leftReleased, rightReleased)-.08f);
+                if (requiredLowering > maximumLowering || incompatibleReach > .001f) return;
+                hips.SetPosition(stream, hips.GetPosition(stream) + shift);
+                leftSolvedKnee = SolveLeg(stream, leftHip, leftKnee, leftFootHandle, leftBody, nativeLeftKnee + shift, left + shift,
+                    leftUpperRotation, leftLowerRotation, leftTarget, leftDelta * leftRotation, nativeLeftKnee + shift, out var leftResidual);
+                rightSolvedKnee = SolveLeg(stream, rightHip, rightKnee, rightFootHandle, rightBody, nativeRightKnee + shift, right + shift,
+                    rightUpperRotation, rightLowerRotation, rightTarget, rightDelta * rightRotation, nativeRightKnee + shift, out var rightResidual);
+                incompatibleReach = Mathf.Max(incompatibleReach, Mathf.Max(leftResidual, rightResidual));
+            }
+            private Vector3 IndividualTarget(Vector3 foot, Quaternion rotation, Plane support, int side, float gap)
+            {
+                var minimum = float.PositiveInfinity;
+                for (var i = 0; i < vertices.Length; i++)
+                    if (vertices[i].side == side) minimum = Mathf.Min(minimum, support.GetDistanceToPoint(foot + rotation * (Point(i) - foot)));
+                return foot + Vector3.up * ((gap - minimum) / support.normal.y);
+            }
+            private float RequiredLowering(Vector3 hip, Vector3 target, float upper, float lower)
+            {
+                var horizontal = Vector3.ProjectOnPlane(target - hip, Vector3.up).sqrMagnitude;
+                var maximum = upper + lower - .006f;
+                if (horizontal >= maximum * maximum) return maximumLowering + 1;
+                return Mathf.Max(0, hip.y + flatLift - target.y - Mathf.Sqrt(maximum * maximum - horizontal));
             }
             private static Vector3 SolveLeg(AnimationStream stream, TransformStreamHandle upper, TransformStreamHandle lower, TransformStreamHandle foot,
                 Vector3 hip, Vector3 knee, Vector3 end, Quaternion upperRotation, Quaternion lowerRotation,
@@ -372,12 +442,20 @@ namespace BooterBigArm.TopDown3D
                 limit = quality;
             }
             if (limit < 1) throw new InvalidOperationException("A terrain cache requires an active skin.");
-            var data = node.GetJobData<ContactJob>(); data.enabled = true; data.plane = plane; data.flatY = flatY;
+            var data = node.GetJobData<ContactJob>(); data.enabled = true; data.individualSupport = false; data.plane = plane; data.flatY = flatY;
             data.characterRight = characterFrame.right;
             data.flatOrigin = new Vector3(characterFrame.position.x, flatY, characterFrame.position.z);
             data.visualHostPosition = visualHost.position;
             data.influenceLimit = limit; node.SetJobData(data);
         }
+        public void ConfigureFeet(Plane plane, float flatY, Plane left, Plane right)
+        {
+            Configure(plane, flatY);
+            if (!ValidFootPlane(left) || !ValidFootPlane(right)) throw new ArgumentException("Individual foot support must be finite and within 40 degrees.");
+            var data = node.GetJobData<ContactJob>(); data.individualSupport = true; data.leftPlane = left; data.rightPlane = right; node.SetJobData(data);
+        }
+        private static bool ValidFootPlane(Plane support) => float.IsFinite(support.distance + support.normal.sqrMagnitude)
+            && Mathf.Abs(support.normal.sqrMagnitude - 1) <= .0001f && support.normal.y >= .766f;
         public void Disable()
         {
             if (IsDisposed || !node.IsValid()) return;

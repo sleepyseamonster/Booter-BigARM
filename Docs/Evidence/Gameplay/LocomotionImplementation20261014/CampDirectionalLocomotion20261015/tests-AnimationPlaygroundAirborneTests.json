@@ -1,0 +1,224 @@
+{
+  "success": true,
+  "command": "command test_status",
+  "data": {
+    "command": "test_status",
+    "parameters": {},
+    "result": {
+      "status": "completed",
+      "duration": 3.64,
+      "summary": {
+        "total": 28,
+        "passed": 28,
+        "failed": 0,
+        "skipped": 0,
+        "inconclusive": 0
+      },
+      "results": [
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ADisappearingSurfaceReturnsApproachToFallingWithoutReleasingGravity",
+          "Status": "Passed",
+          "Duration": 0.2643918,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.AFailedPresentationStageReleasesOnlyItsOwnSequence",
+          "Status": "Passed",
+          "Duration": 0.0036276,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ContinuationLandingSupportLossReturnsToFallAndCountsTheNextDistinctImpactOnce",
+          "Status": "Passed",
+          "Duration": 0.0113594,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ContinuationRetainsEveryLaunchSpeedAndFacingThenBrakesIntoOneLanding(0.0f)",
+          "Status": "Passed",
+          "Duration": 0.0081817,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ContinuationRetainsEveryLaunchSpeedAndFacingThenBrakesIntoOneLanding(0.5f)",
+          "Status": "Passed",
+          "Duration": 0.0036053,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ContinuationRetainsEveryLaunchSpeedAndFacingThenBrakesIntoOneLanding(1.4f)",
+          "Status": "Passed",
+          "Duration": 0.0021774,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ContinuationRetainsEveryLaunchSpeedAndFacingThenBrakesIntoOneLanding(3.0f)",
+          "Status": "Passed",
+          "Duration": 0.0019241,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ContinuationRetainsEveryLaunchSpeedAndFacingThenBrakesIntoOneLanding(4.0f)",
+          "Status": "Passed",
+          "Duration": 0.0019601,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ContinuationRetainsEveryLaunchSpeedAndFacingThenBrakesIntoOneLanding(5.0f)",
+          "Status": "Passed",
+          "Duration": 0.0021706,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ContinuationRetainsEveryLaunchSpeedAndFacingThenBrakesIntoOneLanding(6.0f)",
+          "Status": "Passed",
+          "Duration": 0.0020072,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ContinuationTakeoffLedgeLossCancelsItsImpulseAndRetainsFastFallMomentum",
+          "Status": "Passed",
+          "Duration": 0.0023898,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ExternalCancellationCannotLeaveAStaleAirborneController",
+          "Status": "Passed",
+          "Duration": 0.0013716,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.JumpLaunchesOnceAndLandingRequiresSurfaceContactRatherThanClipEnd",
+          "Status": "Passed",
+          "Duration": 0.0040546,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.NativeDirectionalLaunchRetainsFacingMomentumAndOneLanding(0.0f,6.0f)",
+          "Status": "Passed",
+          "Duration": 0.0051906,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.NativeDirectionalLaunchRetainsFacingMomentumAndOneLanding(45.0f,5.0f)",
+          "Status": "Passed",
+          "Duration": 0.0019861,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.NativeDirectionalLaunchRetainsFacingMomentumAndOneLanding(90.0f,5.0f)",
+          "Status": "Passed",
+          "Duration": 0.0024746,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.NativeDirectionalLaunchRetainsFacingMomentumAndOneLanding(135.0f,4.0f)",
+          "Status": "Passed",
+          "Duration": 0.0024228,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.NativeDirectionalLaunchRetainsFacingMomentumAndOneLanding(180.0f,1.1f)",
+          "Status": "Passed",
+          "Duration": 0.0023377,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.NativeDirectionalLaunchRetainsFacingMomentumAndOneLanding(180.0f,4.0f)",
+          "Status": "Passed",
+          "Duration": 0.0023455,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.NativeDirectionalLaunchRetainsFacingMomentumAndOneLanding(225.0f,4.0f)",
+          "Status": "Passed",
+          "Duration": 0.0026414,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.NativeDirectionalLaunchRetainsFacingMomentumAndOneLanding(270.0f,5.0f)",
+          "Status": "Passed",
+          "Duration": 0.0027332,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.NativeDirectionalLaunchRetainsFacingMomentumAndOneLanding(315.0f,5.0f)",
+          "Status": "Passed",
+          "Duration": 0.0020911,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.PauseFreezesPoseAndCancelKeepsFallingPhysicsOwned",
+          "Status": "Passed",
+          "Duration": 0.0035082,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.PhysicalContactCanTransferToRollWithoutLosingTheMotorOrRepeatingLanding",
+          "Status": "Passed",
+          "Duration": 0.1187849,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.QualifiedRolesRetainHumanoidDataAndAirPosesHaveNoAnimatedVerticalArc",
+          "Status": "Passed",
+          "Duration": 3.1450215,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.ResetInvalidatesTheSequenceAndRestoresOnlyTheExistingActor",
+          "Status": "Passed",
+          "Duration": 0.0037228,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.UnavailableLandingDelegatePreservesDefaultRecoveryAndEmitsDamageOnce",
+          "Status": "Passed",
+          "Duration": 0.0025968,
+          "Message": null,
+          "StackTrace": null
+        },
+        {
+          "FullName": "BooterBigArm.Tests.AnimationPlaygroundAirborneTests.UnqualifiedAirborneProfileAndCrouchedPostureCannotLaunch",
+          "Status": "Passed",
+          "Duration": 0.0008128,
+          "Message": null,
+          "StackTrace": null
+        }
+      ]
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7801,
+      "projectPath": "D:\\BooterBigArmValidation\\AnimationPlayground20261013"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

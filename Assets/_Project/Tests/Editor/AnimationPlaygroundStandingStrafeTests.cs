@@ -213,7 +213,7 @@ namespace BooterBigArm.Tests
             f.Motor.EndActionConstraint(f);
         }
 
-        private sealed class InputFixture : IDisposable
+        internal sealed class InputFixture : IDisposable
         {
             private readonly InputSettings previous = InputSystem.settings;
             private readonly InputSettings settings;

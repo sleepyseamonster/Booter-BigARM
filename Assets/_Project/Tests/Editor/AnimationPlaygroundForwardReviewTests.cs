@@ -37,13 +37,25 @@ namespace BooterBigArm.Tests
         [Test, Category("PrivateAnimationQualification")]
         public void SessionPreparesTheExplicitReviewRouteWithoutReplacingItsPrivateBinding()
         {
-            using var f = new Fixture(false); var binding = f.Session.Bindings;
-            f.Session.ConfigureForwardReview(f.Policy); Assert.That(f.Session.CheckDependencies(), Is.True);
-            typeof(TopDown3DAnimationPlaygroundSession).GetMethod("PreparePlayer", Private).Invoke(f.Session, null);
-            Assert.That(f.Session.Readiness, Is.EqualTo(AnimationPlaygroundReadiness.DependenciesChecked), f.Session.UnavailableReason);
-            Assert.That(f.Driver.LaboratoryForwardReviewConfigured, Is.True);
-            Assert.That(f.Session.Bindings, Is.SameAs(binding));
-            Assert.That(f.Driver.LocomotionProfile, Is.SameAs(binding.locomotion));
+            using var f = new Fixture(false);
+            var binding = Object.Instantiate(f.Session.Bindings);
+            try
+            {
+                // This fixture explicitly exercises the retained three-gait review.
+                // Pair its legacy profiles independently of the current six-gait selection.
+                binding.standingStrafeReview = AssetDatabase.LoadAssetAtPath<AnimationPlaygroundStandingStrafeProfile>(
+                    "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/StandingStrafeReview.asset");
+                binding.continuationReview = AssetDatabase.LoadAssetAtPath<AnimationPlaygroundContinuationProfile>(
+                    "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampMotionContinuationReview.asset");
+                f.Session.Configure(binding);
+                f.Session.ConfigureForwardReview(f.Policy); Assert.That(f.Session.CheckDependencies(), Is.True);
+                typeof(TopDown3DAnimationPlaygroundSession).GetMethod("PreparePlayer", Private).Invoke(f.Session, null);
+                Assert.That(f.Session.Readiness, Is.EqualTo(AnimationPlaygroundReadiness.DependenciesChecked), f.Session.UnavailableReason);
+                Assert.That(f.Driver.LaboratoryForwardReviewConfigured, Is.True);
+                Assert.That(f.Session.Bindings, Is.SameAs(binding));
+                Assert.That(f.Driver.LocomotionProfile, Is.SameAs(binding.locomotion));
+            }
+            finally { Object.DestroyImmediate(binding); }
         }
 
         [Test, Category("PrivateAnimationQualification")]

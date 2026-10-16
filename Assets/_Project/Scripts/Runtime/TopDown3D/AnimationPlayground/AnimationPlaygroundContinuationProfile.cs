@@ -65,18 +65,22 @@ namespace BooterBigArm.TopDown3D
     public sealed class AnimationPlaygroundContinuationProfile : ScriptableObject
     {
         public int schema = 1;
+        public bool NativeCampGround => schema == 2;
         public GameObject targetModel;
         public AnimationPlaygroundFootProjection footProjection;
+        public AnimationPlaygroundFootProjection nativeBodyProjection;
         public float maximumSlope = 10, maximumSupportResidual = .015f, maximumAirSpeed = 6;
         public AnimationPlaygroundAdaptedTurn left = new(), right = new();
         public bool Validate(GameObject model, AnimationPlaygroundFootProjection projection, out string reason)
         {
             reason = null;
-            if (schema != 1 || targetModel != model || targetModel == null || footProjection != projection
+            if (schema != 1 && schema != 2 || targetModel != model || targetModel == null || footProjection != projection
                 || projection == null || !projection.Validate(model, out reason))
                 reason ??= "Restore the paired Camp Loop continuation review.";
+            else if (NativeCampGround && (nativeBodyProjection == null || !nativeBodyProjection.Validate(model,out reason)))
+                reason ??= "Native camp grounding requires the paired whole-body projection.";
             else if (!float.IsFinite(maximumSlope + maximumSupportResidual + maximumAirSpeed)
-                || maximumSlope < 0 || maximumSlope > 10 || maximumSupportResidual <= 0 || maximumSupportResidual > .015f
+                || maximumSlope < 0 || maximumSlope > (NativeCampGround ? 40 : 10) || maximumSupportResidual <= 0 || maximumSupportResidual > .015f
                 || maximumAirSpeed != 6 || left == null || right == null || left.clip == right.clip
                 || !left.Validate(projection) || !right.Validate(projection))
                 reason = "The continuation review exceeds its measured source/support bounds.";

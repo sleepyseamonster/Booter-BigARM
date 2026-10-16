@@ -1,5 +1,7 @@
 # Camp Loop combined motion review
 
+**Superseded selection:** the [directional/native-ground continuation](CAMP_LOOP_DIRECTIONAL_LOCOMOTION_2026-10-15.md) replaces this review's 0.5 m/s axis-only strafe and uniform 10-degree plane gate. Its [receipt](../../Evidence/Gameplay/LocomotionImplementation20261014/CampDirectionalLocomotion20261015/README.md) records the complete walking/running directional family and main-camp native support. This document preserves the preceding implementation checkpoint; its pivot and airborne contracts remain relevant.
+
 The author requested completion through the combined testable motion set, without stopping after each slice. Continue the accepted 1.4/3/4/5/6 m/s forward family, LT facing lock with camera look-ahead, and the existing A jump and B cancel controls. The existing slow left/right sources remain the bounded lateral family. Backward travel has no standing source; its input must brake visibly rather than playing forward running backwards. Diagonal source coverage remains explicit in review status.
 
 Implementation proceeds through the existing single-output graph and motor: complete slow lateral ownership, brake-to-pivot reversals using the complete adapted native 180-degree turns, add a separate mild-slope review envelope, and extend the existing airborne owner across all launch speeds. Smaller moving heading changes retain ordinary steering. Native turn time and the bounded C1 root curve are retained; collision/support loss cancels the turn and its tangent constraint.
