@@ -56,7 +56,7 @@ namespace BooterBigArm.TopDown3D
             playableGraph.Disconnect(mixer,AnimationActionIndex);playableGraph.Connect(replacement,0,mixer,AnimationActionIndex);
             playableGraph.DestroyPlayable(animationActionPlayable);animationActionPlayable=replacement;
             animationPresentationTime=0;jumpPreviousSourceTime=0;jumpPoseSampleTime=double.NegativeInfinity;
-            animationHeightCorrection=0;animationFootProjection=false;animationBodyProjection=false;animationGarmentFloor=false;return true;
+            animationHeightCorrection=0;animationFootProjection=false;animationBodyProjection=false;animationDodgeProjection=false;animationGarmentFloor=false;return true;
         }
 
         public bool SetAnimationHeightCorrection(object owner,float correction)
@@ -79,7 +79,7 @@ namespace BooterBigArm.TopDown3D
         public bool SetAnimationBodyProjection(object owner,AnimationPlaygroundFootProjection data)
         {
             if(owner==null || !ReferenceEquals(owner,animationPresentationOwner) || animationPreview)return false;
-            if(data==null){animationBodyProjection=false;return true;}
+            if(data==null){animationBodyProjection=false;animationDodgeProjection=false;return true;}
             if(laboratoryFootProjection==null || !data.Validate(laboratoryFootProjection.model,out _))return false;
             NormalizeCampSkinWeights();
             if(laboratoryBodyProjection!=data)
@@ -142,7 +142,7 @@ namespace BooterBigArm.TopDown3D
             animationPreview = false;
             animationHeightCorrection=0;
             animationFootProjection=false;
-            animationBodyProjection=false;
+            animationBodyProjection=false;animationDodgeProjection=false;
             animationGarmentFloor=false;
             jumpPresentation=false;jumpComposingUnderlay=false;jumpPoseSampleTime=double.NegativeInfinity;
             if(!poseBlendGarmentFloor)RestoreGarmentFloor();

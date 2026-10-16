@@ -22,7 +22,7 @@ namespace BooterBigArm.TopDown3D
         }
         private void ApplyGarmentFloor()
         {
-            if(forwardTerrainApplied && !ForwardTerrainPoseCurrent)
+            if(forwardTerrainApplied && !ForwardTerrainPoseCurrent && !DodgeGroundSupportCurrent)
             {forwardTerrainApplied=false;forwardTerrainPose?.Disable();RestoreGarmentFloor();return;}
             if(!animationGarmentFloor && !poseBlendGarmentFloor && !forwardTerrainApplied){RestoreGarmentFloor();return;}
             if(!cloakBound || visualInstance==null)return;
@@ -39,7 +39,7 @@ namespace BooterBigArm.TopDown3D
             foreach(var garment in garmentFloors)
             {
                 if(forwardTerrainApplied && LaboratoryNativeGroundAdapted && nativeGarmentHeight!=null)
-                    garment.ApplyTerrain(plane,.001f,laboratoryForwardProfile.maximumTerrainGarmentDisplacement,nativeGarmentHeight);
+                    garment.ApplyTerrain(plane,.001f,DodgeProjectionActive ? garmentMaximum : laboratoryForwardProfile.maximumTerrainGarmentDisplacement,nativeGarmentHeight);
                 else garment.Apply(plane,forwardTerrainApplied ? .001f : garmentClearance,
                         forwardTerrainApplied ? laboratoryForwardProfile.maximumTerrainGarmentDisplacement : garmentMaximum);
                 LastGarmentFloorDisplacement=Mathf.Max(LastGarmentFloorDisplacement,garment.MaximumDisplacement);

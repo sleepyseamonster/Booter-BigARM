@@ -5,7 +5,7 @@ namespace BooterBigArm.TopDown3D
 {
     public enum AnimationPlaygroundMotionMode { None, AlignedAction, Slide, Dodge, Ladder, Cover, Jump, Fall, Recovery, Dead, Turn }
     public enum AnimationPlaygroundPosture { Standing, Crouched, Prone }
-    public enum AnimationPlaygroundMotionPolicy { Action, JumpLocomotion }
+    public enum AnimationPlaygroundMotionPolicy { Action, JumpLocomotion, DodgeLocomotion }
     public readonly struct AnimationPlaygroundMotorIntent
     {
         public readonly Vector3 Velocity, Facing;
@@ -180,12 +180,13 @@ namespace BooterBigArm.TopDown3D
         {
             if(owner == null || mode == AnimationPlaygroundMotionMode.None || !Enum.IsDefined(typeof(AnimationPlaygroundMotionMode),mode)
                 || !Enum.IsDefined(typeof(AnimationPlaygroundMotionPolicy),policy) || animationMotionOwner != null)return false;
-            if(policy==AnimationPlaygroundMotionPolicy.JumpLocomotion ? !TryBeginJumpConstraint(owner) : !TryBeginActionConstraint(owner))return false;
+            if(policy==AnimationPlaygroundMotionPolicy.JumpLocomotion ? !TryBeginJumpConstraint(owner)
+                : policy==AnimationPlaygroundMotionPolicy.DodgeLocomotion ? !TryBeginDodgeConstraint(owner) : !TryBeginActionConstraint(owner))return false;
             EnsureAnimationShape();animationMotionOwner=owner;AnimationMotionMode=mode;
             animationMotionPolicy=policy;
             animationOriginalGravity=body.useGravity;animationGravity=!disableGravity;
             animationColliderEnabled=capsule.enabled;animationPreviousPosition=Position;
-            animationIntent=new AnimationPlaygroundMotorIntent(policy==AnimationPlaygroundMotionPolicy.JumpLocomotion ? body.linearVelocity : Vector3.zero,FacingDirection);
+            animationIntent=new AnimationPlaygroundMotorIntent(policy!=AnimationPlaygroundMotionPolicy.Action ? body.linearVelocity : Vector3.zero,FacingDirection);
             body.useGravity=animationGravity;
             return true;
         }
@@ -203,7 +204,8 @@ namespace BooterBigArm.TopDown3D
         public bool SetAnimationMotionPolicy(object owner,AnimationPlaygroundMotionPolicy policy)
         {
             if(!IsAnimationMotionOwner(owner) || !Enum.IsDefined(typeof(AnimationPlaygroundMotionPolicy),policy)
-                || policy==AnimationPlaygroundMotionPolicy.JumpLocomotion && !JumpLocomotionActive)return false;
+                || policy==AnimationPlaygroundMotionPolicy.JumpLocomotion && !JumpLocomotionActive
+                || policy==AnimationPlaygroundMotionPolicy.DodgeLocomotion && !DodgeLocomotionActive)return false;
             if(animationMotionPolicy!=policy)
             {animationMotionPolicy=policy;ResetStandingStrafe(true);ResetStandingMotionObservation();}
             return true;
@@ -325,7 +327,8 @@ namespace BooterBigArm.TopDown3D
             }
             var motion=animationIntent.OwnsVertical ? desired : Vector3.ProjectOnPlane(desired,Vector3.up);
             var blocked=false;
-            if(motion.sqrMagnitude>.0001f && body.SweepTest(motion.normalized,out var hit,motion.magnitude*Time.fixedDeltaTime+.025f,QueryTriggerInteraction.Ignore))
+            if(DodgeLocomotionActive)desired=ConstrainDodgeVelocity(desired,out blocked);
+            else if(motion.sqrMagnitude>.0001f && body.SweepTest(motion.normalized,out var hit,motion.magnitude*Time.fixedDeltaTime+.025f,QueryTriggerInteraction.Ignore))
             {
                 var permitted=Mathf.Max(0,hit.distance-.025f)/Mathf.Max(.0001f,Time.fixedDeltaTime);
                 var constrained=motion.normalized*Mathf.Min(motion.magnitude,permitted);
@@ -336,7 +339,7 @@ namespace BooterBigArm.TopDown3D
             body.linearVelocity=desired;body.angularVelocity=Vector3.zero;SprintActive=false;PlanarAcceleration=Vector3.zero;
             var supported=AnimationLowShapeActive ? TryGetAnimationLowGroundNormal(out var normal) : TryGetGroundNormal(out normal);
             if(animationSupportReleaseTicks>0){if(!animationIntent.Paused)animationSupportReleaseTicks--;supported=false;}
-            IsGrounded=supported && body.linearVelocity.y<=.1f;
+            IsGrounded=supported && (DodgeLocomotionActive || body.linearVelocity.y<=.1f);
             if(IsGrounded){stableGroundNormal=normal;hasStableGroundNormal=true;}
             var displacement=Position-animationPreviousPosition;animationPreviousPosition=Position;
             AnimationSnapshot=new AnimationPlaygroundMotorSnapshot(AnimationMotionMode,AnimationPosture,IsGrounded,blocked,body.linearVelocity,displacement,FacingDirection,Mathf.Clamp01(animationIntent.Phase));
@@ -347,11 +350,11 @@ namespace BooterBigArm.TopDown3D
         private void ReleaseAnimationMotionCore()
         {
             if(animationMotionOwner==null)return;
-            var jump=JumpLocomotionActive;
+            var jump=JumpLocomotionActive;var dodge=DodgeLocomotionActive;
             jumpPreserveGroundObservationOnRelease=jump && JumpUsesGroundedLocomotion;
             if(!jump || !JumpUsesGroundedLocomotion)ResetStandingMotionObservation();
             if(body!=null){body.useGravity=animationOriginalGravity;var velocity=animationWasPaused ? animationPausedVelocity : body.linearVelocity;
-                body.linearVelocity=jump ? velocity : Vector3.up*velocity.y;body.angularVelocity=Vector3.zero;}
+                body.linearVelocity=jump || dodge ? velocity : Vector3.up*velocity.y;body.angularVelocity=Vector3.zero;}
             if(capsule!=null)capsule.enabled=animationColliderEnabled;
             animationMotionOwner=null;animationMotionPolicy=AnimationPlaygroundMotionPolicy.Action;AnimationMotionMode=AnimationPlaygroundMotionMode.None;animationIntent=default;animationSupportReleaseTicks=0;animationWasPaused=false;animationPausedVelocity=default;AnimationSnapshot=default;
         }

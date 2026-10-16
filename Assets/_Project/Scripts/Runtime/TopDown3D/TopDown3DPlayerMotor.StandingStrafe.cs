@@ -43,7 +43,7 @@ namespace BooterBigArm.TopDown3D
         private void GuardStandingStrafeOwner()
         {
             if (standingStrafeProfile == null) return;
-            if (animationPostureOwner == null || IsMounted || IsActionConstrained && !JumpLocomotionActive || laboratoryPostureSuspended
+            if (animationPostureOwner == null || IsMounted || IsActionConstrained && !JumpLocomotionActive && !DodgeLocomotionActive || laboratoryPostureSuspended
                 || AnimationPosture != AnimationPlaygroundPosture.Standing || input == null
                 || input.Mode != TopDown3DInputMode.Gameplay || input.LaboratoryResetBlocked
                 || input.LaboratoryStandingFacingDisarmed

@@ -14,7 +14,7 @@ namespace BooterBigArm.TopDown3D
             airborne=player.gameObject.AddComponent<AnimationPlaygroundAirborneController>();
             airborne.Configure(player,presentation,coordinator,bindings.airborne,ResetRegistry,
                 ()=>!isActiveAndEnabled || !servicesBound || !PreviewReady || !Application.isFocused
-                    || playerInput.Mode!=TopDown3DInputMode.Gameplay,()=>playerAction.IsBusy || crouch!=null && crouch.Active || lowMotion!=null && lowMotion.Active);
+                    || playerInput.Mode!=TopDown3DInputMode.Gameplay,()=>playerAction.IsBusy || crouch!=null && crouch.Active || lowMotion!=null && lowMotion.Active || dodge!=null && dodge.Active);
             // Palette preview selection never changes the normal jump's landing policy.
             if(bindings.continuationReview!=null && presentation.LaboratoryContinuationConfigured)airborne.ConfigureContinuationReview(bindings.continuationReview);
             airborne.Landed+=CommitLandingDamage;

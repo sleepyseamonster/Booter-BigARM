@@ -83,7 +83,8 @@ namespace BooterBigArm.TopDown3D
                 || clock.Epoch!=registry.Epoch || !motor.IsAnimationMotionOwner(this)
                 || capturedTarget.HasValue && !capturedTarget.Value.IsValid)return false;
             if(policy.HasValue && (!Enum.IsDefined(typeof(AnimationPlaygroundMotionPolicy),policy.Value)
-                || policy.Value==AnimationPlaygroundMotionPolicy.JumpLocomotion && !motor.JumpLocomotionActive))return false;
+                || policy.Value==AnimationPlaygroundMotionPolicy.JumpLocomotion && !motor.JumpLocomotionActive
+                || policy.Value==AnimationPlaygroundMotionPolicy.DodgeLocomotion && !motor.DodgeLocomotionActive))return false;
             var next=new AnimationPlaygroundActionClock(++nextAction,registry.Epoch,binding.clip.length,1,markers);
             if(markers!=null && markers.Length>0 && commitEffect==null)throw new ArgumentException("Stage markers require an atomic commit adapter.");
             if(!presentation.TryReplaceAnimationPresentation(this,binding.clip))return false;
@@ -120,9 +121,9 @@ namespace BooterBigArm.TopDown3D
             AnimationPlaygroundMotionPolicy policy=AnimationPlaygroundMotionPolicy.Action)
         {
             // Jump rejection must not mutate the motor or its held-facing lease.
-            if(policy==AnimationPlaygroundMotionPolicy.JumpLocomotion)
+            if(policy==AnimationPlaygroundMotionPolicy.JumpLocomotion || policy==AnimationPlaygroundMotionPolicy.DodgeLocomotion)
             {
-                if(!motor.CanBeginJumpMotion(this))return false;
+                if(policy==AnimationPlaygroundMotionPolicy.DodgeLocomotion ? !motor.CanBeginDodgeMotion(this) : !motor.CanBeginJumpMotion(this))return false;
                 if(!presentation.TryBeginAnimationPresentation(this,clip,isPreview))return false;
                 if(motor.TryBeginAnimationMotion(this,mode,disableGravity,policy))return true;
                 presentation.EndAnimationPresentation(this);return false;

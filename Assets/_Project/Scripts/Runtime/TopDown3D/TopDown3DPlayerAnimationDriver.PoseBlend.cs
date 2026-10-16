@@ -51,9 +51,11 @@ namespace BooterBigArm.TopDown3D
             var height=advanceSources && JumpPresentationOwned ? jumpRawSourceHeight : visualInstance.transform.localPosition.y-visualLocalPosition.y;
             var bodyProjection=animationBodyProjection || poseBlendBodyProjection;
             var garmentFloor=animationGarmentFloor || poseBlendGarmentFloor;
+            var dodgeProjection=animationDodgeProjection || poseBlendDodgeProjection;
             ReleasePoseBlend();
             poseBlendBodyProjection=bodyProjection;
             poseBlendGarmentFloor=garmentFloor;
+            poseBlendDodgeProjection=dodgeProjection;
             poseBlendAdvanceSources=advanceSources;
             if(mixer.GetInputCount()<=PoseBlendInputIndex)mixer.SetInputCount(PoseBlendInputIndex+1);
             poseBlendSnapshot=AnimationMixerPlayable.Create(playableGraph,sources.Count);
@@ -119,6 +121,7 @@ namespace BooterBigArm.TopDown3D
         private void ProjectLaboratoryFootPlane()
         {
             LastPoseBlendGroundCorrection=0;
+            if(DodgeProjectionActive && TryProjectDodgeBody())return;
             if(JumpPresentationOwned && !jumpGrounded && !JumpPresentationSupportCurrent)return;
             var sampler=animationBodyProjection || poseBlendBodyProjection ? bodyProjectionSampler : footProjectionSampler;
             if(sampler==null)return;
@@ -139,6 +142,7 @@ namespace BooterBigArm.TopDown3D
         private bool PresentStandingPoseBlend()
         {
             if(poseBlendOwner==null)return false;
+            if(PresentDodgeRunOutBlend())return true;
             for(var i=0;i<mixer.GetInputCount();i++)mixer.SetInputWeight(i,i==IdleIndex ? 1 : 0);
             if(clipPlayables[IdleIndex].IsValid()){clipPlayables[IdleIndex].SetTime(0);clipPlayables[IdleIndex].SetSpeed(0);}
             var correction=locomotionEntries[IdleIndex]?.HeightCorrection(0) ?? 0;
@@ -156,7 +160,7 @@ namespace BooterBigArm.TopDown3D
             }
             poseBlendClips.Clear();poseBlendStartTimes.Clear();poseBlendSourceRates.Clear();poseBlendSnapshot=default;poseBlendOwner=null;poseBlendElapsed=0;
             poseBlendAdvanceSources=false;poseBlendPreviousElapsed=0;poseBlendSampleTime=double.NegativeInfinity;
-            poseBlendBodyProjection=false;
+            poseBlendBodyProjection=false;poseBlendDodgeProjection=false;
             poseBlendGarmentFloor=false;
             if(!animationGarmentFloor)RestoreGarmentFloor();
         }

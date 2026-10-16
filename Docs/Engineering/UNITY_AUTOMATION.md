@@ -4,6 +4,12 @@ The Windows checkout uses the Unity CLI and its pinned `com.unity.pipeline` pack
 
 ## Windows CLI connection
 
+### Camp Loop dodge preparation and fitting
+
+`BooterBigArm.Editor.AnimationPlaygroundDodgeAuthoring.Prepare` creates the private grounded roll derivative/profile and binds it only in the marked background animation-playground candidate. `AnimationPlaygroundDodgeFitting.Fit(worldPerUnit)` then fits the actual equipped source and creates a separate body projection; use the measured RootT.y response returned by preparation. Both tools refuse existing outputs and require batchmode Edit Mode. Preserve originals, metadata and failed candidate outputs.
+
+The [dodge implementation receipt](../Evidence/Gameplay/DodgeImplementation20261016/README.md) records the guarded private installation in the already open main CampLoopTesting slice, East/View/F9 control changes, 185 focused checks, exact preservation seals and recovery. Source/pose/command validation does not replace author-owned Play Mode traversal testing. Never run these candidate authoring tools in the author's Editor or save/reload its dirty scene.
+
 ### Camp Loop five resource sources
 
 `BooterBigArm.Editor.CampResourceStudyAuthoring.BuildFromCli` authors the five-source study only in a background candidate marked `.camp-resources-validation`. `ValidateFromCli` opens and validates CampLoopTesting; use the isolated candidate while the author works. `CaptureFromCli` captures the five blockouts offscreen without entering Play Mode. `FitGroundFromCli`, `RefineBlockoutFromCli` and `SealFromCli` are candidate-only authoring operations, not read-only validators.

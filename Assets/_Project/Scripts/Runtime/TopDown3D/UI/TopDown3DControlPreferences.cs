@@ -40,7 +40,7 @@ namespace BooterBigArm.TopDown3D
         private static readonly HashSet<string> PadButtons = new(StringComparer.OrdinalIgnoreCase)
         { "buttonWest", "buttonEast", "buttonNorth", "leftShoulder", "rightShoulder", "leftTrigger", "rightTrigger", "dpad/up", "dpad/down", "dpad/left", "dpad/right" };
         public static readonly string[] LabActions = { "Gameplay/Jump", "Gameplay/Attack", "Gameplay/Crouch",
-            "Gameplay/AnimationSlowWalk", "Gameplay/AnimationCancel", AnimationPlaygroundInputFactory.PalettePath };
+            "Gameplay/AnimationSlowWalk", "Gameplay/AnimationCancel", "Gameplay/AnimationDodge", AnimationPlaygroundInputFactory.PalettePath };
         private static bool IsActive(InputActionAsset asset,string path) => Active.Contains(path)
             || AnimationPlaygroundInputFactory.IsLabAsset(asset) && Array.IndexOf(LabActions,path)>=0;
         private static readonly HashSet<string> CardinalActions = new(StringComparer.Ordinal)
@@ -99,10 +99,27 @@ namespace BooterBigArm.TopDown3D
 
         public bool ValidateForAsset(InputActionAsset asset)
         {
+            accepted = AdaptDodgePreferences(accepted, asset);
             if (TryValidate(accepted, asset, out string error)) return CanSave;
             RetainForRecovery("Saved controls are incompatible with this version. Defaults are in use; the original file is preserved. " + error);
             accepted = new TopDown3DControlPreferences();
             return false;
+        }
+
+        // Adapt only the superseded lab defaults in memory. The original preference file remains recoverable.
+        private static TopDown3DControlPreferences AdaptDodgePreferences(TopDown3DControlPreferences source, InputActionAsset asset)
+        {
+            if (source == null || !AnimationPlaygroundInputFactory.IsLabAsset(asset)
+                || asset.FindAction("Gameplay/AnimationDodge", false) == null) return source;
+            var result = source.Clone();
+            result.bindings.RemoveAll(entry => (entry.actionPath == AnimationPlaygroundInputFactory.PalettePath
+                    && entry.path == "<Gamepad>/select" || entry.actionPath == "Gameplay/AnimationCancel"
+                    && entry.path == "<Gamepad>/buttonEast")
+                && FindBinding(asset.FindAction(entry.actionPath, false), entry.bindingId) < 0);
+            foreach (var entry in result.bindings)
+                if (entry.actionPath == "Gameplay/PickupCanister" && entry.path == "<Gamepad>/buttonEast")
+                    entry.path = "<Gamepad>/select";
+            return result;
         }
 
         public void RetainForRecovery(string notice)
@@ -111,6 +128,7 @@ namespace BooterBigArm.TopDown3D
         public bool TryAdoptInitial(TopDown3DControlPreferences source,InputActionAsset asset,out string error)
         {
             if(File.Exists(filePath) || !CanSave){error="Preserve the existing lab controls file.";return false;}
+            source = AdaptDodgePreferences(source, asset);
             if(!TryValidate(source,asset,out error)) return false;
             accepted=Normalize(source,asset);return true;
         }
@@ -136,6 +154,7 @@ namespace BooterBigArm.TopDown3D
             "Gameplay/AnimationSlowWalk" => "Slow walk",
             "Gameplay/AnimationCancel" => "Cancel animation action",
             "System/AnimationPalette" => "Animation palette",
+            "Gameplay/AnimationDodge" => "Dodge roll",
             _ => "another action"
         };
 
@@ -155,7 +174,7 @@ namespace BooterBigArm.TopDown3D
                 bool labPath=AnimationPlaygroundInputFactory.IsLabAsset(asset) &&
                     (Group(binding)=="Keyboard&Mouse" && entry.path == "<Keyboard>/space"
                     || Group(binding)=="Gamepad" && (entry.path == "<Gamepad>/buttonSouth"
-                    || entry.actionPath == AnimationPlaygroundInputFactory.PalettePath && entry.path == "<Gamepad>/select"
+                    || (entry.actionPath == AnimationPlaygroundInputFactory.PalettePath || entry.actionPath == "Gameplay/PickupCanister") && entry.path == "<Gamepad>/select"
                     || entry.actionPath == "Gameplay/Crouch" && entry.path == "<Gamepad>/leftStickPress"));
                 if (!AllowedPath(entry.path, Group(binding)) && !labPath) { error = "Choose a supported button or keyboard key. Menu and movement controls are reserved."; return false; }
                 if (entry.path.StartsWith("<Gamepad>/dpad/", StringComparison.OrdinalIgnoreCase) && !CardinalActions.Contains(entry.actionPath))
@@ -171,7 +190,7 @@ namespace BooterBigArm.TopDown3D
                 }
                 if (string.Equals(entry.path, "<Gamepad>/buttonEast", StringComparison.OrdinalIgnoreCase)
                     && !string.Equals(binding.path, entry.path, StringComparison.OrdinalIgnoreCase))
-                { error = "East is reserved for Back and canister pickup."; return false; }
+                { error = AnimationPlaygroundInputFactory.IsLabAsset(asset) ? "East is reserved for Back and dodge." : "East is reserved for Back and canister pickup."; return false; }
             }
             foreach (string group in new[] { "Gamepad", "Keyboard&Mouse" })
             {

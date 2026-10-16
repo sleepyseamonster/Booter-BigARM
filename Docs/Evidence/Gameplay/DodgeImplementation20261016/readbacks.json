@@ -1,0 +1,77 @@
+{
+  "author-install.json": {
+    "installed": true,
+    "newPrivateFiles": 8,
+    "qualified": true,
+    "duration": 0.95,
+    "distance": 2.4,
+    "bodyPoints": 399,
+    "fastRun": 4.9,
+    "sprint": 6.15,
+    "jumpGravity": 1.6,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "dirty": true,
+    "roots": "290296,290870,291378,292510,291874,292802,292068,-7441938",
+    "dependencies": true
+  },
+  "author-final-readback.json": {
+    "valid": true,
+    "reason": null,
+    "dodgeRequired": true,
+    "clip": "Assets/_Project/Art/Animations/Mixamo/Derived/CampDodgeRollGrounded.anim",
+    "duration": 0.95,
+    "profileDirty": false,
+    "bindingDirty": false,
+    "dodgePath": "<Gamepad>/buttonEast",
+    "pickupPath": "<Gamepad>/select",
+    "fastRun": 4.9,
+    "sprint": 6.15,
+    "jumpGravity": 1.6,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "dirty": true,
+    "roots": "290296,290870,291378,292510,291874,292802,292068,-7441938",
+    "playing": false
+  },
+  "author-after-final-compilation.json": {
+    "valid": true,
+    "reason": null,
+    "dodgeRequired": true,
+    "clip": "Assets/_Project/Art/Animations/Mixamo/Derived/CampDodgeRollGrounded.anim",
+    "duration": 0.95,
+    "bindingDirty": false,
+    "profileDirty": false,
+    "compiled": true,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "dirty": true,
+    "roots": "290296,290870,291378,292510,291874,292802,292068,-7441938",
+    "playing": false
+  },
+  "author-native-contract.json": {
+    "nativeTerrainCollidersMatched": 9,
+    "maximumMatrixDifferenceAllowed": 0.0001,
+    "terrainDataClean": true,
+    "sceneDirty": true,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity"
+  },
+  "candidate-native-contract.json": {
+    "nativeTerrainCollidersMatched": 9,
+    "maximumMatrixDifferenceAllowed": 0.0001,
+    "terrainDataClean": true,
+    "sceneDirty": false,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity"
+  },
+  "equipped-fit-result.json": {
+    "minimumFinal": 0.005999863,
+    "maximumLift": 0.510017157,
+    "fullVertices": 43488,
+    "reducedVertices": 399,
+    "length": 0.95
+  },
+  "author-guid-readback.json": {
+    "matchedSourceMetadataGuids": 23,
+    "compiled": true,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "sceneDirty": true,
+    "playing": false
+  }
+}

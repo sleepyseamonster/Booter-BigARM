@@ -72,7 +72,7 @@ namespace BooterBigArm.Tests
             finally{Object.DestroyImmediate(owned);}
         }
         [Test]
-        public void HeldJumpCannotLeakThroughModalReturnAndEastCancelWinsPickup()
+        public void HeldJumpAndDodgeCannotLeakThroughModalReturnAndViewPicksUpCanister()
         {
             var oldSettings=InputSystem.settings;var settings=Object.Instantiate(oldSettings);
             settings.SetInternalFeatureFlag("RUN_PLAYER_UPDATES_IN_EDIT_MODE",true);InputSystem.settings=settings;
@@ -83,8 +83,8 @@ namespace BooterBigArm.Tests
             try
             {
                 var router=root.AddComponent<TopDown3DInputRouter>();router.Configure(actions);Assert.That(router.Initialize(),Is.True);
-                var jumps=0;var cancels=0;var pickups=0;
-                router.AnimationJumpRequested+=()=>jumps++;router.AnimationCancelRequested+=()=>cancels++;router.PickupCanisterRequested+=()=>pickups++;
+                var jumps=0;var cancels=0;var pickups=0;var dodges=0;
+                router.AnimationJumpRequested+=()=>jumps++;router.AnimationCancelRequested+=()=>cancels++;router.PickupCanisterRequested+=()=>pickups++;router.AnimationDodgeRequested+=()=>dodges++;
                 InputSystem.QueueStateEvent(keyboard,new KeyboardState());InputSystem.QueueStateEvent(pad,new GamepadState());InputSystem.Update();
                 InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Space));InputSystem.Update();Assert.That(jumps,Is.EqualTo(1));
                 router.EnterSystemMenuMode();router.EnterGameplayMode();InputSystem.Update();Assert.That(jumps,Is.EqualTo(1));
@@ -93,10 +93,25 @@ namespace BooterBigArm.Tests
                 InputSystem.QueueStateEvent(keyboard,new KeyboardState());InputSystem.Update();
                 router.AnimationActionOwned=()=>true;
                 InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.East));InputSystem.Update();
-                Assert.That(cancels,Is.EqualTo(1));Assert.That(pickups,Is.EqualTo(0));
-                InputSystem.QueueStateEvent(pad,new GamepadState());InputSystem.Update();router.AnimationActionOwned=()=>false;
+                Assert.That(dodges,Is.EqualTo(1));Assert.That(cancels,Is.Zero);Assert.That(pickups,Is.Zero);
+                InputSystem.Update();Assert.That(dodges,Is.EqualTo(1),"Holding East must not repeat.");
+                router.EnterSystemMenuMode();router.EnterGameplayMode();InputSystem.Update();Assert.That(dodges,Is.EqualTo(1));
+                InputSystem.QueueStateEvent(pad,new GamepadState());InputSystem.Update();
                 InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.East));InputSystem.Update();
-                Assert.That(pickups,Is.EqualTo(1));Assert.That(cancels,Is.EqualTo(1));
+                Assert.That(dodges,Is.EqualTo(2));Assert.That(pickups,Is.Zero);
+                InputSystem.QueueStateEvent(pad,new GamepadState());InputSystem.Update();
+                InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.Select));InputSystem.Update();
+                Assert.That(pickups,Is.EqualTo(1));
+                InputSystem.QueueStateEvent(pad,new GamepadState());InputSystem.Update();
+                InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.East));InputSystem.Update();
+                Assert.That(dodges,Is.EqualTo(3)); InputSystem.RemoveDevice(pad);
+                pad=InputSystem.AddDevice<Gamepad>();
+                InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.East));InputSystem.Update();
+                Assert.That(dodges,Is.EqualTo(3),"A replacement device must return to neutral before dodging.");
+                InputSystem.QueueStateEvent(pad,new GamepadState());InputSystem.Update();
+                InputSystem.QueueStateEvent(pad,new GamepadState().WithButton(GamepadButton.East));InputSystem.Update();
+                Assert.That(dodges,Is.EqualTo(4));
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Backspace));InputSystem.Update();Assert.That(cancels,Is.EqualTo(1));
             }
             finally
             {
@@ -104,6 +119,25 @@ namespace BooterBigArm.Tests
                 InputSystem.settings=oldSettings;Object.DestroyImmediate(settings);
             }
         }
+        [Test]
+        public void OldEastPickupPreferenceAdaptsInMemoryAndTheSourceRemainsUnchanged()
+        {
+            var shipped=AssetDatabase.LoadAssetAtPath<InputActionAsset>("Assets/_Project/Settings/Input/InputSystem_Actions.inputactions");
+            var owned=AnimationPlaygroundInputFactory.Create(shipped);
+            try
+            {
+                var pickup=owned.FindAction("Gameplay/PickupCanister",true);var binding=System.Linq.Enumerable.Single(pickup.bindings,b=>b.groups=="Gamepad");
+                Assert.That(binding.path,Is.EqualTo("<Gamepad>/select"));
+                var old=new TopDown3DControlPreferences();old.bindings.Add(new TopDown3DControlBindingOverride{actionPath="Gameplay/PickupCanister",bindingId=binding.id.ToString(),path="<Gamepad>/buttonEast"});
+                var directory=Path.Combine(Path.GetTempPath(),"AnimationDodgePreferences",Guid.NewGuid().ToString("N"));
+                var service=new TopDown3DControlPreferencesService(directory);Assert.That(service.TryAdoptInitial(old,owned,out var reason),Is.True,reason);
+                Assert.That(old.bindings[0].path,Is.EqualTo("<Gamepad>/buttonEast"));Assert.That(Directory.Exists(directory),Is.False);
+                Assert.That(TopDown3DControlPreferencesService.TryValidate(service.Accepted,owned,out reason),Is.True,reason);
+                Assert.That(owned.FindAction("Gameplay/AnimationDodge",true).bindings[0].path,Is.EqualTo("<Gamepad>/buttonEast"));
+            }
+            finally{Object.DestroyImmediate(owned);}
+        }
+
         [Test]
         public void InitialPreferenceInheritanceDoesNotWriteEitherFileAndExistingLabDataWins()
         {

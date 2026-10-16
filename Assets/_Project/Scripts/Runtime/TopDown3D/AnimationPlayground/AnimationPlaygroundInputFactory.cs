@@ -25,14 +25,20 @@ namespace BooterBigArm.TopDown3D
                 AddButton(gameplay,"Attack","<Gamepad>/rightTrigger","Gamepad",replacementIds);
                 AddButton(gameplay,"AnimationSlowWalk","<Keyboard>/leftAlt","Keyboard&Mouse",replacementIds);
                 AddButton(gameplay,"AnimationCancel","<Keyboard>/backspace","Keyboard&Mouse",replacementIds);
-                AddButton(gameplay,"AnimationCancel","<Gamepad>/buttonEast","Gamepad",replacementIds);
+                AddButton(gameplay,"AnimationDodge","<Gamepad>/buttonEast","Gamepad",replacementIds);
+                var pickup=gameplay.FindAction("PickupCanister",true);
+                for(var i=0;i<pickup.bindings.Count;i++)
+                    if(pickup.bindings[i].path=="<Gamepad>/buttonEast")pickup.ChangeBinding(i).WithPath("<Gamepad>/select");
                 AddButton(system,"AnimationPalette","<Keyboard>/f9","Keyboard&Mouse",replacementIds);
-                AddButton(system,"AnimationPalette","<Gamepad>/select","Gamepad",replacementIds);
+
                 var json=working.ToJson();
                 foreach(var replacement in replacementIds) json=json.Replace(replacement.Key,replacement.Value);
                 var owned=InputActionAsset.FromJson(json);
                 owned.name=source.name+" (Animation Playground runtime)";
                 if(!string.IsNullOrEmpty(overrides)) owned.LoadBindingOverridesFromJson(overrides,false);
+                var ownedPickup=owned.FindAction("Gameplay/PickupCanister",true);
+                for(var i=0;i<ownedPickup.bindings.Count;i++)
+                    if(ownedPickup.bindings[i].effectivePath=="<Gamepad>/buttonEast")ownedPickup.RemoveBindingOverride(i);
                 return owned;
             }
             finally { if(Application.isPlaying) UnityEngine.Object.Destroy(working); else UnityEngine.Object.DestroyImmediate(working); }

@@ -7,10 +7,10 @@ namespace BooterBigArm.TopDown3D
     public sealed partial class TopDown3DInputRouter
     {
         private InputActionAsset ownedAnimationActions, authoredAnimationActions;
-        private InputAction animationJump, animationCrouch, animationAttack, animationCancel, animationPalette, animationWalk;
+        private InputAction animationJump, animationCrouch, animationAttack, animationCancel, animationPalette, animationWalk, animationDodge;
         private int animationRequests;
         private bool animationAwaitNeutral=true;
-        private InputDevice animationFacingDevice;
+        private InputDevice animationFacingDevice, animationCommandDevice;
         public bool AnimationSlowWalkHeld {get;private set;}
         public bool HasAnimationCommands => animationPalette != null;
         public bool LaboratoryStandingFacingDisarmed => HasAnimationCommands && animationAwaitNeutral;
@@ -21,7 +21,7 @@ namespace BooterBigArm.TopDown3D
             && inputUpdateMode == TopDown3DInputMode.Gameplay && (!Application.isPlaying || Application.isFocused);
         public Func<bool> AnimationActionOwned;
         public event Action AnimationJumpRequested, AnimationCrouchRequested, AnimationActionRequested,
-            AnimationCancelRequested, AnimationPaletteRequested;
+            AnimationCancelRequested, AnimationPaletteRequested, AnimationDodgeRequested;
 
         private void PrepareAnimationInput()
         {
@@ -39,7 +39,8 @@ namespace BooterBigArm.TopDown3D
             animationCancel=inputActions.FindAction("Gameplay/AnimationCancel",true);
             animationPalette=inputActions.FindAction(AnimationPlaygroundInputFactory.PalettePath,true);
             animationWalk=inputActions.FindAction("Gameplay/AnimationSlowWalk",true);
-            foreach(var action in new[]{animationJump,animationCrouch,animationAttack,animationCancel,animationPalette}) action.performed+=CaptureAnimationCommand;
+            animationDodge=inputActions.FindAction("Gameplay/AnimationDodge",true);
+            foreach(var action in new[]{animationJump,animationCrouch,animationAttack,animationCancel,animationPalette,animationDodge}) action.performed+=CaptureAnimationCommand;
             cameraLookAheadAction.performed += CaptureAnimationFacingDevice;
             InputSystem.onDeviceChange += HandleAnimationFacingDeviceLoss;
             DisarmAnimationCommands();
@@ -48,22 +49,23 @@ namespace BooterBigArm.TopDown3D
         {
             if (cameraLookAheadAction != null) cameraLookAheadAction.performed -= CaptureAnimationFacingDevice;
             InputSystem.onDeviceChange -= HandleAnimationFacingDeviceLoss;
-            foreach(var action in new[]{animationJump,animationCrouch,animationAttack,animationCancel,animationPalette})
+            foreach(var action in new[]{animationJump,animationCrouch,animationAttack,animationCancel,animationPalette,animationDodge})
                 if(action != null) action.performed-=CaptureAnimationCommand;
-            animationJump=animationCrouch=animationAttack=animationCancel=animationPalette=animationWalk=null;
+            animationJump=animationCrouch=animationAttack=animationCancel=animationPalette=animationWalk=animationDodge=null;
             DisarmAnimationCommands();
         }
         private void CaptureAnimationFacingDevice(InputAction.CallbackContext context) => animationFacingDevice = context.control.device;
         private void HandleAnimationFacingDeviceLoss(InputDevice device, InputDeviceChange change)
         {
-            if (device != animationFacingDevice || change != InputDeviceChange.Removed
+            if (device != animationFacingDevice && device != animationCommandDevice || change != InputDeviceChange.Removed
                 && change != InputDeviceChange.Disconnected && change != InputDeviceChange.Disabled) return;
             CameraLookAheadHeld = false; DisarmAnimationCommands();
         }
         private void CaptureAnimationCommand(InputAction.CallbackContext context)
         {
             if(animationAwaitNeutral || !(context.action == animationPalette ? CanCaptureAnimationPalette : CanCaptureGameplayCommand)) return;
-            animationRequests|=context.action == animationCancel ? 1 : context.action == animationPalette ? 2
+            animationCommandDevice=context.control.device;
+            animationRequests|=context.action == animationDodge ? 32 : context.action == animationCancel ? 1 : context.action == animationPalette ? 2
                 : context.action == animationCrouch ? 4 : context.action == animationJump ? 8 : 16;
         }
         private bool ResolveAnimationCommands(bool modalRequested)
@@ -75,7 +77,7 @@ namespace BooterBigArm.TopDown3D
             if(animationAwaitNeutral)
             {
                 if(!animationJump.IsPressed() && !animationCrouch.IsPressed() && !animationAttack.IsPressed()
-                    && !animationCancel.IsPressed() && !animationPalette.IsPressed() && !animationWalk.IsPressed()
+                    && !animationCancel.IsPressed() && !animationDodge.IsPressed() && !animationPalette.IsPressed() && !animationWalk.IsPressed()
                     && cameraLookAheadAction?.IsPressed()!=true) animationAwaitNeutral=false;
                 return false;
             }
@@ -84,12 +86,13 @@ namespace BooterBigArm.TopDown3D
             if((requests&2)!=0){AnimationPaletteRequested?.Invoke();return true;}
             if(LaboratoryResetBlocked) return true;
             if((requests&4)!=0){AnimationCrouchRequested?.Invoke();return true;}
+            if((requests&32)!=0){AnimationDodgeRequested?.Invoke();return true;}
             if((requests&8)!=0){AnimationJumpRequested?.Invoke();return true;}
             if((requests&16)!=0){AnimationActionRequested?.Invoke();return true;}
             return false;
         }
         public event Action AnimationCommandsDisarmed;
-        private void DisarmAnimationCommands(){animationRequests=0;animationAwaitNeutral=true;AnimationSlowWalkHeld=false;animationFacingDevice=null;AnimationCommandsDisarmed?.Invoke();}
+        private void DisarmAnimationCommands(){animationRequests=0;animationAwaitNeutral=true;AnimationSlowWalkHeld=false;animationFacingDevice=animationCommandDevice=null;AnimationCommandsDisarmed?.Invoke();}
         public void ClearAnimationCommandEdges()=>DisarmAnimationCommands();
         public void ClearLaboratoryIntent()
         {

@@ -35,6 +35,8 @@ namespace BooterBigArm.TopDown3D
         public AnimationPlaygroundFootProjection footProjection;
         public AnimationPlaygroundAirborneProfile airborne;
         public AnimationPlaygroundLowMotionProfile lowMotion;
+        public AnimationPlaygroundDodgeProfile dodge;
+        public bool dodgeRequired;
         public float visualScale = 1f;
         public Vector3 visualOffset;
         public Material bodyMaterial;
@@ -80,6 +82,9 @@ namespace BooterBigArm.TopDown3D
                 reason = "Laboratory locomotion speeds must be finite and ordered.";
             else if(standingStrafeReviewRequired && standingStrafeReview==null)
                 reason="Restore the required private standing strafe review.";
+            else if(dodgeRequired && dodge==null)
+                reason="Restore the required private dodge calibration.";
+            else if(dodge!=null && !dodge.Validate(targetModel,out reason))return false;
             else if(continuationReviewRequired && continuationReview==null)
                 reason="Restore the required private Camp Loop motion continuation.";
             else if(continuationReview!=null && (forwardReviewOverride==null || !forwardReviewOverride.ExpandedReview

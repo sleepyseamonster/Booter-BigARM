@@ -17,7 +17,7 @@ namespace BooterBigArm.TopDown3D
         private Func<bool> ownsInput;
         private string selectedSource;
         private DelegateResetParticipant legacyReset, vitalsReset, inputReset;
-        public bool IsBusy => coordinator != null && coordinator.IsBusy || crouch!=null && crouch.Transitioning || airborne!=null && airborne.Active || lowMotion!=null && lowMotion.Active || ResourceCombatBusy?.Invoke() == true;
+        public bool IsBusy => coordinator != null && coordinator.IsBusy || crouch!=null && crouch.Transitioning || airborne!=null && airborne.Active || lowMotion!=null && lowMotion.Active || dodge!=null && dodge.Active || ResourceCombatBusy?.Invoke() == true;
         public TopDown3DPlayerMotor Player => player;
         public AnimationPlaygroundActionCoordinator Coordinator => coordinator;
         public bool CrouchReady=>servicesBound && isActiveAndEnabled && PreviewReady && crouch!=null && bindings!=null
@@ -106,18 +106,19 @@ namespace BooterBigArm.TopDown3D
                         () => !Application.isFocused || playerInput.Mode != TopDown3DInputMode.Gameplay,() => playerAction.IsBusy);
                     playerInput.AnimationCrouchRequested+=ToggleCrouch;
                 }
-                BindLowMotion();BindAirborne();
+                BindLowMotion();BindAirborne();BindDodge();
                 if(bindings.continuationReview!=null && presentation.LaboratoryContinuationConfigured)
                 {
                     turning=player.gameObject.AddComponent<AnimationPlaygroundTurnController>();
                     turning.Configure(player,presentation,coordinator,bindings.continuationReview,ResetRegistry,
                         ()=>!Application.isFocused || playerInput.Mode!=TopDown3DInputMode.Gameplay || playerAction.IsBusy
-                            || crouch!=null && crouch.Active || lowMotion!=null && lowMotion.Active || airborne!=null && airborne.Active);
+                            || crouch!=null && crouch.Active || lowMotion!=null && lowMotion.Active || airborne!=null && airborne.Active || dodge!=null && dodge.Active);
                 }
                 ownsInput = () => IsBusy || crouch!=null && crouch.Active;
                 playerInput.AnimationActionOwned = ownsInput;
                 playerInput.AnimationCancelRequested += CancelOwnedAction;
                 playerInput.AnimationJumpRequested += RequestJump;
+                playerInput.AnimationDodgeRequested += RequestDodge;
                 playerInput.AnimationActionRequested += UnavailableAction;
                 menu.AnimationSelectionChanged += SelectMotion;
                 menu.AnimationPreviewRequested += PreviewMotion;
@@ -164,6 +165,7 @@ namespace BooterBigArm.TopDown3D
         }
         private void CancelOwnedAction()
         {
+            if(dodge!=null && dodge.Active){dodge.Cancel();return;}
             if(turning!=null && turning.Active){turning.Cancel("Turn cancelled; release the stick to rearm.");return;}
             if(lowMotion!=null && lowMotion.Active){lowMotion.TryCancel();return;}
             if(airborne!=null && airborne.Active){airborne.TryCancel();return;}
@@ -220,6 +222,7 @@ namespace BooterBigArm.TopDown3D
         {
             if(turning!=null){turning.DisposeOwnedServices();if(Application.isPlaying)Destroy(turning);else DestroyImmediate(turning);turning=null;}
             coordinator?.Cancel();
+            DetachDodge();
             DetachAirborne();
             DetachLowMotion();
             if(crouch!=null)
@@ -234,6 +237,7 @@ namespace BooterBigArm.TopDown3D
                 playerInput.AnimationCancelRequested -= CancelOwnedAction;
                 playerInput.AnimationCrouchRequested -= ToggleCrouch;
                 playerInput.AnimationJumpRequested -= RequestJump;
+                playerInput.AnimationDodgeRequested -= RequestDodge;
                 playerInput.AnimationActionRequested -= UnavailableAction;
                 if (ReferenceEquals(playerInput.AnimationActionOwned, ownsInput)) playerInput.AnimationActionOwned = null;
             }
