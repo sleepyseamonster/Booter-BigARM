@@ -4,13 +4,15 @@ Implementation steps 1–5 are complete and installed for author testing. Step 6
 
 The preferred repair is to make jumping a continuous locomotion policy inside the existing single Rigidbody owner, then rebuild its presentation around matching source phases. Keep the coordinator's ownership and once-only effects. Ordinary takeoff and landing must stop inheriting the braking rules of unrelated laboratory actions. Longer blends or additional animation downloads alone cannot fix those movement rules.
 
+On October 16 the author reported excessive float and hang time. The [weightier jump follow-up](../../Evidence/Gameplay/JumpWeightTuning20261016/README.md) is installed for retesting: jump-local gravity is 1.6×, with the existing impulse and world-gravity setting preserved. Its lower arc and shorter airtime supersede the original physical calibration without changing accepted grounded gaits.
+
 ## Execution checklist
 
 **Target behavior:** stationary, walking, running and LT directional jumps respond promptly, carry movement through the air, land on native terrain and return smoothly to the appropriate accepted gait. The main Camp Loop is the delivery target. Isolated platforms remain diagnostic aids.
 
 **Exact installation boundary:** the current delivery is `Assets/_Project/Scenes/Reference/CampLoopTesting.unity`, on its main native-ground camp area. Its session owns the accepted gait bindings and currently refuses other scene identities. Greater Wasteland remains the enabled production scene; promotion of this study's complete gait/session installation is not claimed here. Preserve the guard and production scene instead of silently copying the laboratory into it.
 
-**Protected baseline:** preserve accepted forward and directional sources, speed bands, LT facing lock and camera look-ahead, input IDs, current jump impulse/gravity, fixed terrain and unrelated action behavior. Start with fixed-height jumping. Use 100 ms buffer/coyote windows and a maximum 100 ms eligible-request-to-impulse budget as provisional implementation targets, subject to author feel testing. These provisional values are now implemented; final tuning awaits author testing. The visual entry blend takes 120 ms and may finish after the 80 ms impulse marker without delaying takeoff.
+**Protected baseline:** preserve accepted forward and directional sources, speed bands, LT facing lock and camera look-ahead, input IDs, current jump impulse and world gravity, fixed terrain and unrelated action behavior. Start with fixed-height jumping. Use 100 ms buffer/coyote windows and a maximum 100 ms eligible-request-to-impulse budget as provisional implementation targets, subject to author feel testing. These provisional values are now implemented; final tuning awaits author testing. The visual entry blend takes 120 ms and may finish after the 80 ms impulse marker without delaying takeoff.
 
 1. **Freeze the baseline and isolate the jump policy.**
    - [x] Record current task inputs and main Camp Loop bindings; preserve unrelated dirty work and the author's unsaved scene.

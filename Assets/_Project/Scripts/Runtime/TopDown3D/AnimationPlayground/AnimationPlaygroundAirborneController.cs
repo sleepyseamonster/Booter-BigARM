@@ -17,7 +17,7 @@ namespace BooterBigArm.TopDown3D
         private AnimationPlaygroundJumpVariant variant;
         private Vector3 facing,planar;
         private bool launched,disposed,genericFall,hardLanding,pendingJump;
-        private float launchSpeed,airLimit,flightPhase,impactSpeed;
+        private float launchSpeed,airLimit,flightPhase,impactSpeed,flightGravityScale=1;
         private double launchStageTime,fallStageTime,landingStageTime,lastGroundedTime=double.NegativeInfinity,pendingUntil;
         private ulong lastTouchdown;
         public AnimationPlaygroundAirborneState State {get;private set;}
@@ -96,6 +96,7 @@ namespace BooterBigArm.TopDown3D
             variant=useUnarmed ? profile.unarmed : launchSpeed>=profile.runningThreshold ? profile.running : profile.standing;
             if(!useUnarmed && planar.sqrMagnitude>.0001f && Vector3.Dot(planar.normalized,facing)<.5f)variant=profile.standing;
             launched=false;genericFall=false;hardLanding=false;flightPhase=0;impactSpeed=0;
+            flightGravityScale=profile.gravityScale;
             var markers=new[]{new AnimationPlaygroundMarker(1,AnimationPlaygroundJumpTiming.ImpulseMarkerSeconds(Time.fixedDeltaTime))};
             if(!Begin(variant.continuous,AnimationPlaygroundMotionMode.Jump,AnimationPlaygroundAirborneState.Takeoff,markers,key=>{
                 if(launched || !motor.TryAnimationTakeoff(coordinator,variant.upwardSpeed,acceptedCoyote:true))return false;
@@ -115,6 +116,8 @@ namespace BooterBigArm.TopDown3D
                 : coordinator.TryBeginPhysicalSequence(this,Binding(clip),mode,markers,Intent,effect,PoseTime,clip.isLooping,
                     policy:AnimationPlaygroundMotionPolicy.JumpLocomotion);
             if(!success){driver.EndPoseBlend(this);return false;}
+            if(!motor.SetJumpGravityScale(coordinator,flightGravityScale))
+            {coordinator.CancelPhysicalSequence(this);driver.EndPoseBlend(this);return false;}
             if(!driver.ConfigureJumpPresentation(coordinator,next==AnimationPlaygroundAirborneState.Takeoff ? 0 : 1,
                 next==AnimationPlaygroundAirborneState.Takeoff ? variant.liftTime : -1))
             {coordinator.CancelPhysicalSequence(this);driver.EndPoseBlend(this);return false;}
@@ -148,7 +151,7 @@ namespace BooterBigArm.TopDown3D
                 if(State==AnimationPlaygroundAirborneState.Falling && motor.TryPredictJumpSupport(coordinator,.65f,out var predicted))
                 {
                     var closing=-Vector3.Dot(motor.Velocity,predicted.normal)/Mathf.Max(.01f,predicted.normal.y);
-                    var remaining=AnimationPlaygroundJumpTiming.TimeToContact(predicted.distance,Mathf.Max(0,closing),Mathf.Max(.01f,-Physics.gravity.y));
+                    var remaining=AnimationPlaygroundJumpTiming.TimeToContact(predicted.distance,Mathf.Max(0,closing),motor.JumpGravityMagnitude);
                     var supportWeight=1-Mathf.SmoothStep(0,1,remaining/.08f);
                     driver.SetJumpSupportPrediction(coordinator,predicted.collider,new Plane(predicted.normal,predicted.point),supportWeight);
                 }
@@ -159,7 +162,7 @@ namespace BooterBigArm.TopDown3D
         private void AdvanceFlightPhase()
         {
             if(!launched || variant==null || State==AnimationPlaygroundAirborneState.Landing || genericFall)return;
-            var half=variant.upwardSpeed/Mathf.Max(.01f,-Physics.gravity.y);
+            var half=variant.upwardSpeed/motor.JumpGravityMagnitude;
             var elapsed=Mathf.Max(0,(float)(coordinator.PhysicalStageSeconds-launchStageTime));
             var progress=.5f*Mathf.Clamp01(1-motor.Velocity.y/variant.upwardSpeed);
             if(motor.Velocity.y<=0)
@@ -169,7 +172,7 @@ namespace BooterBigArm.TopDown3D
                 var falling=Mathf.Max(0,(float)(coordinator.PhysicalStageSeconds-fallStageTime));
                 if(motor.TryAnimationGroundDistance(coordinator,3,out var gap))
                 {
-                    var remaining=AnimationPlaygroundJumpTiming.TimeToContact(gap,Mathf.Max(0,-motor.Velocity.y),Mathf.Max(.01f,-Physics.gravity.y));
+                    var remaining=AnimationPlaygroundJumpTiming.TimeToContact(gap,Mathf.Max(0,-motor.Velocity.y),motor.JumpGravityMagnitude);
                     progress=.5f+.5f*falling/Mathf.Max(.0001f,falling+remaining);
                 }
                 else progress=Mathf.Min(.5f+falling/(2*half),.94f);
@@ -183,7 +186,7 @@ namespace BooterBigArm.TopDown3D
                 return Mathf.Clamp01((float)seconds/AnimationPlaygroundJumpTiming.AnticipationSeconds)*variant.liftTime;
             if(State==AnimationPlaygroundAirborneState.Landing)
                 return Math.Min(variant.continuous.length,variant.contactTime+Math.Max(0,seconds-landingStageTime));
-            return AnimationPlaygroundJumpTiming.FlightSourceSeconds(variant,flightPhase,variant.upwardSpeed/Mathf.Max(.01f,-Physics.gravity.y));
+            return AnimationPlaygroundJumpTiming.FlightSourceSeconds(variant,flightPhase,variant.upwardSpeed/motor.JumpGravityMagnitude);
         }
         private void ObserveMotion()
         {
@@ -262,7 +265,7 @@ namespace BooterBigArm.TopDown3D
         {
             planar=Vector3.ProjectOnPlane(motor.Velocity,Vector3.up);launchSpeed=planar.magnitude;facing=motor.JumpLaunchFacing;
             variant=null;genericFall=true;hardLanding=false;impactSpeed=0;
-            if(newDeparture || !Active)launched=false;
+            if(newDeparture || !Active || !launched){launched=false;flightGravityScale=1;}
             Begin(profile.falling,AnimationPlaygroundMotionMode.Fall,AnimationPlaygroundAirborneState.Falling,
                 transition:true);
         }

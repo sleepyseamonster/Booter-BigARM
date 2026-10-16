@@ -20,6 +20,8 @@ namespace BooterBigArm.TopDown3D
     {
         private bool jumpGroundedRequested,jumpLaunched,jumpDeparted,jumpPreserveGroundObservationOnRelease;
         private double jumpLaunchTime=double.NegativeInfinity,jumpContactTime=double.NegativeInfinity;
+        private float jumpGravityScale=1;
+        private double jumpGravityAppliedTime=double.NegativeInfinity;
         private Collider jumpSupportCollider;
         private Vector3 jumpSupportNormal,jumpSupportPoint;
         private float jumpContactDownwardSpeed;
@@ -30,6 +32,7 @@ namespace BooterBigArm.TopDown3D
         public bool JumpLocomotionActive=>animationMotionOwner!=null && animationMotionPolicy==AnimationPlaygroundMotionPolicy.JumpLocomotion;
         public bool JumpUsesGroundedLocomotion=>JumpLocomotionActive && jumpGroundedRequested;
         public Vector3 JumpControlVelocity=>animationWasPaused ? animationPausedVelocity : Velocity;
+        public float JumpGravityMagnitude=>Mathf.Max(.01f,-Physics.gravity.y*(JumpLocomotionActive && jumpLaunched ? jumpGravityScale : 1));
         public float JumpCapsuleRadius=>capsule!=null ? capsule.radius*Mathf.Max(Mathf.Abs(transform.lossyScale.x),Mathf.Abs(transform.lossyScale.z)) : 0;
         public Vector3 JumpLaunchFacing=>standingStrafeLocked ? standingStrafeFacing
             : body!=null ? Vector3.ProjectOnPlane(body.rotation*Vector3.forward,Vector3.up).normalized : FacingDirection;
@@ -104,6 +107,7 @@ namespace BooterBigArm.TopDown3D
             actionConstraintOwner=owner;
             jumpGroundedRequested=IsGrounded;jumpLaunched=false;jumpDeparted=!IsGrounded;
             jumpLaunchTime=double.NegativeInfinity;jumpPreserveGroundObservationOnRelease=false;
+            jumpGravityScale=1;jumpGravityAppliedTime=double.NegativeInfinity;
             JumpObservation=default;
             return true;
         }
@@ -112,6 +116,20 @@ namespace BooterBigArm.TopDown3D
         {
             if(!IsAnimationMotionOwner(owner) || !JumpLocomotionActive)return false;
             jumpGroundedRequested=grounded;return true;
+        }
+        public bool SetJumpGravityScale(object owner,float scale)
+        {
+            if(!IsAnimationMotionOwner(owner) || !JumpLocomotionActive || !float.IsFinite(scale) || scale<1 || scale>3)return false;
+            jumpGravityScale=scale;return true;
+        }
+        private void ApplyJumpGravity()
+        {
+            if(!JumpLocomotionActive || !jumpLaunched || !animationGravity || animationIntent.Paused || jumpGravityScale==1
+                || jumpGravityAppliedTime==Time.fixedTimeAsDouble)return;
+            // World gravity supplies the first 1x. Add only this jump's excess
+            // acceleration, once per simulation step, through the same body owner.
+            body.AddForce(Physics.gravity*(jumpGravityScale-1),ForceMode.Acceleration);
+            jumpGravityAppliedTime=Time.fixedTimeAsDouble;
         }
 
         // Physics callbacks collect completed contacts; they never write the body or commit gameplay effects.
@@ -208,6 +226,7 @@ namespace BooterBigArm.TopDown3D
                 // The existing continuous Rigidbody collision solver owns flight. A horizontal sweep
                 // cannot classify the walkable capsule support and must not erase the planar vector.
                 body.linearVelocity=desired;body.angularVelocity=Vector3.zero;
+                if(!supported)ApplyJumpGravity();
                 IsGrounded=supported;
                 if(supported)
                 {

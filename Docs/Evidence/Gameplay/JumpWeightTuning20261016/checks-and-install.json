@@ -1,0 +1,159 @@
+{
+  "utc": "2026-10-16T15:10:41.636181+00:00",
+  "status": "Installed in main CampLoopTesting for author retest",
+  "request": "Jumping feels too floaty; shorten airborne hang time and give it more weight",
+  "calibration": {
+    "launchSpeed": 4.6,
+    "worldGravityMagnitude": 9.81,
+    "jumpGravityScale": 1.6,
+    "effectiveJumpGravityMagnitude": 15.696000000000002,
+    "idealAirSecondsBefore": 0.9378185524974515,
+    "idealAirSecondsAfter": 0.5861365953109071,
+    "idealPeakMetresBefore": 1.078491335372069,
+    "idealPeakMetresAfter": 0.6740570846075431,
+    "airtimeReductionFraction": 0.375
+  },
+  "pairedCodeInputs": [
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundAirborneController.cs",
+      "sha256": "9346a0b6b5020ebcd59811e35f5e1ca9b0e3abdc71915830a4726117f3eab925",
+      "candidateSha256": "9346a0b6b5020ebcd59811e35f5e1ca9b0e3abdc71915830a4726117f3eab925"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundAirborneProfile.cs",
+      "sha256": "b84fd009e339febe3336c4ff9c84167a395dfb3b911ce142bd80f09cdc62b330",
+      "candidateSha256": "b84fd009e339febe3336c4ff9c84167a395dfb3b911ce142bd80f09cdc62b330"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.JumpLocomotion.cs",
+      "sha256": "d91b0439a36e204c875e9d1911b1068d415a3405c7ce4cdc7b6cd4cf969d5709",
+      "candidateSha256": "d91b0439a36e204c875e9d1911b1068d415a3405c7ce4cdc7b6cd4cf969d5709"
+    },
+    {
+      "path": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.AnimationPlayground.cs",
+      "sha256": "695e230d61bbae9330e5770405e2a1482f4bef5e053a4800985cc5037f914b2d",
+      "candidateSha256": "695e230d61bbae9330e5770405e2a1482f4bef5e053a4800985cc5037f914b2d"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundAirborneTests.cs",
+      "sha256": "7b785a7e278ef83fea42243976dcb02da005fb0c96f049aef9c86edaa7a9865e",
+      "candidateSha256": "7b785a7e278ef83fea42243976dcb02da005fb0c96f049aef9c86edaa7a9865e"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundMotorTests.cs",
+      "sha256": "45074bc4f5605aa9fb2f92755295c332b75bc3f642d4c051632dcf12a2cc91d5",
+      "candidateSha256": "45074bc4f5605aa9fb2f92755295c332b75bc3f642d4c051632dcf12a2cc91d5"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundJumpPresentationTests.cs",
+      "sha256": "b32cf6827fca6b48361f63abd40b35ded47abc891b619c7fa16ea717e4fd49c7",
+      "candidateSha256": "b32cf6827fca6b48361f63abd40b35ded47abc891b619c7fa16ea717e4fd49c7"
+    },
+    {
+      "path": "Assets/_Project/Tests/Editor/AnimationPlaygroundJumpTimingTests.cs",
+      "sha256": "8b192c0ea57cc02f45426128689a880292a0fea53aafa0eee4f00379d4c50f66",
+      "candidateSha256": "8b192c0ea57cc02f45426128689a880292a0fea53aafa0eee4f00379d4c50f66"
+    }
+  ],
+  "tests": [
+    {
+      "filter": "AnimationPlaygroundMotorTests",
+      "summary": {
+        "Total": 19,
+        "Passed": 19,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      }
+    },
+    {
+      "filter": "AnimationPlaygroundAirborneTests",
+      "summary": {
+        "Total": 36,
+        "Passed": 36,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      }
+    },
+    {
+      "filter": "AnimationPlaygroundJumpTimingTests",
+      "summary": {
+        "Total": 14,
+        "Passed": 14,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      }
+    },
+    {
+      "filter": "AnimationPlaygroundJumpPresentationTests",
+      "summary": {
+        "Total": 15,
+        "Passed": 15,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      }
+    },
+    {
+      "filter": "AnimationPlaygroundLowMotionControllerTests",
+      "summary": {
+        "Total": 26,
+        "Passed": 26,
+        "Failed": 0,
+        "Skipped": 0,
+        "Inconclusive": 0
+      }
+    }
+  ],
+  "totalPassing": 110,
+  "renderMeasurement": {
+    "scale": 1.6,
+    "impulse": 4.6,
+    "gravity": 9.81,
+    "metrics": "OneBone/30: 290 equipped poses, minimum collision gap 0.000888824463m; maximum source-relative joint speed 18.0467014m/s (JumpRunning/(0.00, 1.00)/(-1848.00, -1498.00)/LeftHand at 0.1s). Analytic root and supplied pose history, no physics trajectory.\nOneBone/60: 560 equipped poses, minimum collision gap 0.000888824463m; maximum source-relative joint speed 20.8685322m/s (JumpRunning/(0.00, 1.00)/(-1848.00, -1498.00)/LeftHand at 0.1s). Analytic root and supplied pose history, no physics trajectory.\nOneBone/120: 1100 equipped poses, minimum collision gap 0.000888824463m; maximum source-relative joint speed 21.6716423m/s (JumpRunning/(0.00, 1.00)/(-1848.00, -1498.00)/LeftHand at 0.1s). Analytic root and supplied pose history, no physics trajectory.\nTwoBones/30: 290 equipped poses, minimum collision gap 0.000888824463m; maximum source-relative joint speed 18.0467014m/s (JumpRunning/(0.00, 1.00)/(-1848.00, -1498.00)/LeftHand at 0.1s). Analytic root and supplied pose history, no physics trajectory.\nTwoBones/60: 560 equipped poses, minimum collision gap 0.000888824463m; maximum source-relative joint speed 20.8685322m/s (JumpRunning/(0.00, 1.00)/(-1848.00, -1498.00)/LeftHand at 0.1s). Analytic root and supplied pose history, no physics trajectory.\nTwoBones/120: 1100 equipped poses, minimum collision gap 0.000888824463m; maximum source-relative joint speed 21.6716423m/s (JumpRunning/(0.00, 1.00)/(-1848.00, -1498.00)/LeftHand at 0.1s). Analytic root and supplied pose history, no physics trajectory.\nFourBones/30: 290 equipped poses, minimum collision gap 0.000888824463m; maximum source-relative joint speed 18.0467014m/s (JumpRunning/(0.00, 1.00)/(-1848.00, -1498.00)/LeftHand at 0.1s). Analytic root and supplied pose history, no physics trajectory.\nFourBones/60: 560 equipped poses, minimum collision gap 0.000888824463m; maximum source-relative joint speed 20.8685322m/s (JumpRunning/(0.00, 1.00)/(-1848.00, -1498.00)/LeftHand at 0.1s). Analytic root and supplied pose history, no physics trajectory.\nFourBones/120: 1100 equipped poses, minimum collision gap 0.000888824463m; maximum source-relative joint speed 21.6716423m/s (JumpRunning/(0.00, 1.00)/(-1848.00, -1498.00)/LeftHand at 0.1s). Analytic root and supplied pose history, no physics trajectory.",
+    "module": "810ceb5c-7f6c-4bf5-8ffa-3b052a85d0a2"
+  },
+  "privateFullTestReceiptSha256": "6875fa8c0be880e5a9c1aba1bd18a720fe8f147170f2b9d1b822e2e052eb5f7d",
+  "privateRecoveryRoot": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-13\\ImportCheckpoints\\JumpWeightTuning20261016",
+  "previousProfileSha256": "fa913a74689a586cc71a191ee96204be052b00430164ff2dde920104cb8303ba",
+  "newProfileSha256": "36ef95fa9f0c00bc3d093623477d84754d6f2457e47a13bbfe030ce2e35cb830",
+  "protectedFileCount": 158,
+  "physicsSteppingOrPlayMode": false,
+  "candidateProcessId": 17808,
+  "candidateClosed": true,
+  "authorInstallation": {
+    "installed": true,
+    "gravityScale": 1.6,
+    "impulse": 4.6,
+    "gravityY": -9.81,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "sceneDirty": true,
+    "roots": "290296,290870,291378,292510,291874,292802,292068,-7441938",
+    "profileGuid": "3798b4f7c60dc644ca52844228053fc3",
+    "valid": true,
+    "module": "e8d78181-fcf1-42e9-8c10-a3ad65e2c928"
+  },
+  "protectedFilesUnchanged": true,
+  "privateProfileMetaSha256": "7acd83fbf737fad9c92865957d5a9576b4ac8059b9b23fb25e631b53eed19cde",
+  "authorCompilation": {
+    "sampledUtc": "2026-10-16T15:13:59.4590685Z",
+    "ageMs": 178,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 0,
+    "consoleWarnings": 138,
+    "consoleLogs": 0,
+    "seeded": true
+  },
+  "diskSpaceRecovery": {
+    "source": "D:\\BooterBigArmValidation\\AnimationPlayground20261013\\Logs\\forward-review-hydration-editor.log",
+    "destination": "C:\\BooterBigArmValidationRecovery\\2026-10-16\\Logs\\forward-review-hydration-editor.log",
+    "bytes": 4235335901,
+    "sha256": "290b31536b6f99e21e3bd11f0c15fae87767435da42ae9a42bac21b02137c541",
+    "verified": true,
+    "scope": "Closed validation log relocated intact to local C recovery; no production content or author scene changed"
+  },
+  "note": "The initial author code-import/readback requests timed out while a low-disk modal blocked the Editor. The author dismissed it after log relocation restored free space. Guarded installation and loaded API/profile/main-loop preservation checks then succeeded. Existing CLI timeout errors are transport diagnostics, not C# compilation failures."
+}

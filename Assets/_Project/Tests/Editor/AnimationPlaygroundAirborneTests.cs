@@ -204,6 +204,19 @@ namespace BooterBigArm.Tests
             Assert.That(motor.TrySetAnimationPosture(coordinator,AnimationPlaygroundPosture.Crouched,1.57f,.4f),Is.True);
             Assert.That(airborne.TryJump(),Is.False);Assert.That(coordinator.IsBusy,Is.False);
         }
+        [TestCase(float.NaN)] [TestCase(.9f)] [TestCase(3.1f)]
+        public void InvalidJumpGravityCannotQualify(float scale)
+        {
+            profile.gravityScale=scale;Assert.That(profile.Validate(out _),Is.False);Assert.That(airborne.TryJump(),Is.False);
+        }
+        [Test] public void ControllerUsesBoostedGravityForJumpAndRestoresWorldGravityForANewLedgeFall()
+        {
+            profile.gravityScale=1.6f;Launch(3);
+            Assert.That(motor.JumpGravityMagnitude,Is.EqualTo(-Physics.gravity.y*1.6f).Within(.00001f));
+            Land(3);recordedSupport=false;body.position+=Vector3.up*2;body.linearVelocity=Vector3.down;Tick();
+            Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Falling));
+            Assert.That(motor.JumpGravityMagnitude,Is.EqualTo(-Physics.gravity.y).Within(.00001f));
+        }
         [Test] public void PresentationLossReleasesOnlyTheJumpAndPreservesGravity()
         {
             Launch(3);Call(driver,"OnDestroy");Tick();

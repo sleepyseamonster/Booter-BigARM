@@ -2,6 +2,8 @@
 
 The [audited plan](../../../Design/Gameplay/CAMP_LOOP_JUMP_REPAIR_PLAN_2026-10-15.md), steps 1–5, is implemented and installed for **author testing in the main native-ground CampLoopTesting area**. Greater Wasteland remains the enabled production scene; this study repair does not promote the laboratory session into production. Gameplay acceptance is still plan step 6.
 
+The author's October 16 floatiness feedback is addressed by the [weightier jump follow-up](../JumpWeightTuning20261016/README.md). That follow-up supersedes this receipt's original 1× jump-gravity calibration; the measurements below remain the October 15 baseline.
+
 ## Result
 
 Jump acquisition, rejection and ordinary release preserve horizontal momentum. The existing single Rigidbody owner runs normal grounded movement during the short anticipation and ordinary landing run-out. Flight retains gravity and physical collision response, with bounded steering and recent wall-normal rejection. Non-jump actions retain their prior stop policy. Held LT retains facing lock and camera look-ahead through normal jump/landing; menu/device/reset neutral gates still disarm it.

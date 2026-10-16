@@ -63,6 +63,38 @@ namespace BooterBigArm.Tests
             motor.ReleaseAnimationMotion(owner);
             Assert.That(body.linearVelocity,Is.EqualTo(velocity));Assert.That(body.useGravity,Is.True);
         }
+        [TestCase(1f)] [TestCase(7f)]
+        public void LaunchedJumpAddsMassIndependentGravityOnceAndPauseAddsNone(float mass)
+        {
+            motor.TryBeginAnimationMotion(owner,AnimationPlaygroundMotionMode.Jump,policy:AnimationPlaygroundMotionPolicy.JumpLocomotion);
+            Assert.That(motor.SetJumpGravityScale(owner,1.6f),Is.True);body.mass=mass;
+            typeof(TopDown3DPlayerMotor).GetProperty("IsGrounded").SetValue(motor,true);
+            body.linearVelocity=Vector3.forward*3;
+            Assert.That(motor.TryAnimationTakeoff(owner,4.6f),Is.True);
+            var force=Physics.gravity*.6f*mass;
+            Assert.That(Vector3.Distance(body.GetAccumulatedForce(),force),Is.LessThan(.00001f));
+            Assert.That(body.linearVelocity,Is.EqualTo(new Vector3(0,4.6f,3)));
+            Assert.That(motor.JumpGravityMagnitude,Is.EqualTo(-Physics.gravity.y*1.6f).Within(.00001f));
+            motor.SetAnimationMotorIntent(owner,new AnimationPlaygroundMotorIntent(Vector3.forward*3,Vector3.forward));Tick(motor);
+            Assert.That(Vector3.Distance(body.GetAccumulatedForce(),force),Is.LessThan(.00001f),"A duplicate command in the same physics timestamp must not double the acceleration.");
+            motor.SetAnimationMotorIntent(owner,new AnimationPlaygroundMotorIntent(Vector3.zero,Vector3.forward,paused:true));Tick(motor);
+            Assert.That(Vector3.Distance(body.GetAccumulatedForce(),force),Is.LessThan(.00001f));Assert.That(body.useGravity,Is.False);
+            motor.ReleaseAnimationMotion(owner);Assert.That(motor.JumpGravityMagnitude,Is.EqualTo(-Physics.gravity.y).Within(.00001f));
+        }
+        [Test] public void PassiveFallAndForeignOrInvalidCalibrationCannotEnableJumpGravity()
+        {
+            Assert.That(motor.SetJumpGravityScale(owner,1.6f),Is.False);
+            motor.TryBeginAnimationMotion(owner,AnimationPlaygroundMotionMode.Fall,policy:AnimationPlaygroundMotionPolicy.JumpLocomotion);
+            Assert.That(motor.SetJumpGravityScale(new object(),1.6f),Is.False);
+            foreach(var scale in new[]{float.NaN,.9f,3.1f})Assert.That(motor.SetJumpGravityScale(owner,scale),Is.False);
+            Assert.That(motor.SetJumpGravityScale(owner,1.6f),Is.True);body.linearVelocity=Vector3.down*2;
+            motor.SetAnimationMotorIntent(owner,new AnimationPlaygroundMotorIntent(Vector3.forward*3,Vector3.forward));Tick(motor);
+            Assert.That(body.GetAccumulatedForce(),Is.EqualTo(Vector3.zero));
+            Assert.That(motor.JumpGravityMagnitude,Is.EqualTo(-Physics.gravity.y).Within(.00001f));
+            motor.ReleaseAnimationMotion(owner);motor.TryBeginAnimationMotion(owner,AnimationPlaygroundMotionMode.Jump,policy:AnimationPlaygroundMotionPolicy.JumpLocomotion);
+            typeof(TopDown3DPlayerMotor).GetProperty("IsGrounded").SetValue(motor,true);motor.TryAnimationTakeoff(owner,4.6f);
+            Assert.That(body.GetAccumulatedForce(),Is.EqualTo(Vector3.zero),"A new lease starts at world gravity until explicitly calibrated.");
+        }
         [Test] public void LandingForecastDoesNotDeclareContactOrChangePhysicalVelocity()
         {
             obstacle=new GameObject("Forecast floor");obstacle.transform.position=actor.transform.position+Vector3.down*1.05f;

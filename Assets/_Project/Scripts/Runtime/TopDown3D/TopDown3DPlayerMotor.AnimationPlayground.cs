@@ -279,7 +279,8 @@ namespace BooterBigArm.TopDown3D
             if(owner==null || !ReferenceEquals(owner,animationMotionOwner) || !IsGrounded && !(acceptedCoyote && JumpLocomotionActive)
                 || !float.IsFinite(upwardSpeed) || upwardSpeed<=0)return false;
             body.useGravity=true;animationGravity=true;body.linearVelocity=new Vector3(body.linearVelocity.x,upwardSpeed,body.linearVelocity.z);
-            if(JumpLocomotionActive){jumpLaunched=true;jumpGroundedRequested=false;jumpLaunchTime=Time.fixedTimeAsDouble;jumpDeparted=true;}
+            if(JumpLocomotionActive)
+            {jumpLaunched=true;jumpGroundedRequested=false;jumpLaunchTime=Time.fixedTimeAsDouble;jumpDeparted=true;ApplyJumpGravity();}
             animationSupportReleaseTicks=2;IsGrounded=false;return true;
         }
         private void EnsureAnimationShape()

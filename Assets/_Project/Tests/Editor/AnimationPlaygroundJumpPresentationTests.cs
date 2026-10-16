@@ -112,10 +112,11 @@ namespace BooterBigArm.Tests
             var profile=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundAirborneProfile>("Assets/_Project/Settings/AnimationPlayground/PrivateBindings/AirborneProfile.asset");
             var mesh=new Mesh();var frames=0;var minimum=float.PositiveInfinity;var maximumJointSpeed=0f;var peak="";
             var animator=f.Inner.Forward.Get<Animator>("humanoidAnimator");var bones=Joints.Select(animator.GetBoneTransform).ToArray();
-            var half=4.6f/9.81f;var contact=.08f+2*half;var end=contact+.24f;var step=Time.fixedDeltaTime;
+            var impulse=profile.standing.upwardSpeed;var gravity=-Physics.gravity.y*profile.gravityScale;
+            var half=impulse/gravity;var contact=.08f+2*half;var end=contact+.24f;var step=Time.fixedDeltaTime;
             var visual=f.Inner.Forward.Get<GameObject>("visualInstance");
             void Set(string name,object value)=>typeof(TopDown3DPlayerAnimationDriver).GetField(name,Private).SetValue(driver,value);
-            float Height(double t){var flight=Math.Max(0,t-.08);return t<contact ? Mathf.Max(0,(float)(4.6*flight-4.905*flight*flight)) : 0;}
+            float Height(double t){var flight=Math.Max(0,t-.08);return t<contact ? Mathf.Max(0,(float)(impulse*flight-.5*gravity*flight*flight)) : 0;}
             float Source(AnimationPlaygroundJumpVariant variant,double t)=>t<.08 ? variant.liftTime*(float)(t/.08)
                 : t<contact ? AnimationPlaygroundJumpTiming.FlightSourceSeconds(variant,(float)((t-.08)/(2*half)),half)
                 : Mathf.Min(variant.continuous.length,variant.contactTime+(float)(t-contact));

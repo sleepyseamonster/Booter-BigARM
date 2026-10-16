@@ -21,6 +21,7 @@ namespace BooterBigArm.TopDown3D
         public AnimationPlaygroundJumpVariant standing,running,unarmed;
         public AnimationClip falling,approach,hardLanding;
         public float runningThreshold=.6f,airControlAcceleration=3,maximumPlanarSpeed=3.8f;
+        public float gravityScale=1;
         public float anticipationDistance=.65f,contactDistance=.03f,hardLandingSpeed=6.5f;
         public float landingDamagePerSpeed=10f;
         public float LandingDamage(float downwardSpeed)=>float.IsFinite(downwardSpeed)
@@ -35,6 +36,8 @@ namespace BooterBigArm.TopDown3D
             {reason="The continuous jump sources and ordered landmarks are required.";return false;}
             foreach(var value in new[]{runningThreshold,airControlAcceleration,maximumPlanarSpeed,anticipationDistance,contactDistance,hardLandingSpeed,landingDamagePerSpeed})
                 if(!float.IsFinite(value) || value<=0){reason="Airborne calibration must be finite and positive.";return false;}
+            if(!float.IsFinite(gravityScale) || gravityScale<1 || gravityScale>3)
+            {reason="Jump gravity must be between one and three times world gravity.";return false;}
             if(contactDistance>=anticipationDistance || maximumPlanarSpeed>12 || airControlAcceleration>20)
             {reason="Airborne movement or contact calibration exceeds its reviewed range.";return false;}
             if(requireQualified && !qualified){reason="Jump and landing qualification is pending.";return false;}
