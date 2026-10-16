@@ -1,0 +1,555 @@
+{
+  "source": "Author requested five armor types with separate chest, legs, boots, arms and helmet entries, October 15, 2026. Plasteel, iron and chitin were requested examples; steel and ceramic-faced armor complete this first brainstorm. Docs/WORLD_BASIS.md controls material and ancient-recovery boundaries.",
+  "scope": "25 individual piece records across five design families. No whole-set inventory record, automatic full-set grant, set bonus, gameplay equipment slots, world placement, streaming or saved runtime deltas.",
+  "retiredAggregate": "proposal.gear.metal_armor_set",
+  "reusedIds": [
+    "proposal.gear.chest_armor",
+    "proposal.gear.leg_armor",
+    "proposal.gear.helmet"
+  ],
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Armor",
+    "Subtype": "Armor family piece",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "Unassigned; no new slot approved",
+    "Carrier metadata": "Booter-worn armor concept; fitting, packing and spare-cargo rules unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed contemporary fabrication or specialist trade; construction recipe unresolved.",
+    "Crafting / processing": "Separate fitted piece using selected qualified stock; no whole-set recipe, quantities, yield or production time authored.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Fit, coverage, articulation, mass, durability and protection remain proposals. No wood, ordinary cloth, free-water quenching, set bonuses or new equipment slots.",
+    "Rarity": null,
+    "Item type": "Armor",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Primary use": "Protection",
+    "Material family": "Metal",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "One independently listed armor piece. Family membership is a design grouping, never another inventory item or a set bonus.",
+    "Tier basis": "Proposed finished-piece planning tier; recipe and properties unresolved.",
+    "Finished-item input tier": "T1",
+    "Crafting role": "Finished item"
+  },
+  "groups": [
+    {
+      "family": "iron",
+      "label": "Iron",
+      "itemIds": [
+        "proposal.gear.chest_armor",
+        "proposal.gear.leg_armor",
+        "proposal.armor.iron.boots",
+        "proposal.armor.iron.arms",
+        "proposal.gear.helmet"
+      ],
+      "itemCount": 5
+    },
+    {
+      "family": "steel",
+      "label": "Steel",
+      "itemIds": [
+        "proposal.armor.steel.chest",
+        "proposal.armor.steel.legs",
+        "proposal.armor.steel.boots",
+        "proposal.armor.steel.arms",
+        "proposal.armor.steel.helmet"
+      ],
+      "itemCount": 5
+    },
+    {
+      "family": "chitin",
+      "label": "Chitin",
+      "itemIds": [
+        "proposal.armor.chitin.chest",
+        "proposal.armor.chitin.legs",
+        "proposal.armor.chitin.boots",
+        "proposal.armor.chitin.arms",
+        "proposal.armor.chitin.helmet"
+      ],
+      "itemCount": 5
+    },
+    {
+      "family": "ceramic",
+      "label": "Ceramic-faced",
+      "itemIds": [
+        "proposal.armor.ceramic.chest",
+        "proposal.armor.ceramic.legs",
+        "proposal.armor.ceramic.boots",
+        "proposal.armor.ceramic.arms",
+        "proposal.armor.ceramic.helmet"
+      ],
+      "itemCount": 5
+    },
+    {
+      "family": "plasteel",
+      "label": "Ancient plasteel",
+      "itemIds": [
+        "proposal.armor.plasteel.chest",
+        "proposal.armor.plasteel.legs",
+        "proposal.armor.plasteel.boots",
+        "proposal.armor.plasteel.arms",
+        "proposal.armor.plasteel.helmet"
+      ],
+      "itemCount": 5
+    }
+  ],
+  "items": [
+    {
+      "id": "proposal.gear.chest_armor",
+      "name": "Iron chestplate",
+      "purpose": "Iron armor family: individually listed chestplate. Torso and upper back; a chest piece does not include arm or leg pieces. Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Iron chestplate: Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Show only this piece, not a complete armor suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Metal",
+        "Subtype": "Iron armor / chest",
+        "Search aliases": "iron armor set; iron armor family; iron armor; chest; separate armor piece",
+        "Tier basis": "Proposed T2 finished piece using T1 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Torso and upper back; a chest piece does not include arm or leg pieces. Visual direction: Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.gear.leg_armor",
+      "name": "Iron leg guards",
+      "purpose": "Iron armor family: individually listed leg guards. Paired thigh, knee and shin guards; boots remain a separate item. Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Iron leg guards: Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Show only this piece, not a complete armor suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Metal",
+        "Subtype": "Iron armor / legs",
+        "Search aliases": "iron armor set; iron armor family; iron armor; legs; separate armor piece",
+        "Tier basis": "Proposed T2 finished piece using T1 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Paired thigh, knee and shin guards; boots remain a separate item. Visual direction: Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.iron.boots",
+      "name": "Iron armored boots",
+      "purpose": "Iron armor family: individually listed armored boots. A matched pair of armored foot coverings, separate from shin guards. Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Iron armored boots: Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Show only this piece, not a complete armor suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Metal",
+        "Subtype": "Iron armor / boots",
+        "Search aliases": "iron armor set; iron armor family; iron armor; boots; separate armor piece",
+        "Tier basis": "Proposed T2 finished piece using T1 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "A matched pair of armored foot coverings, separate from shin guards. Visual direction: Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.iron.arms",
+      "name": "Iron arm guards",
+      "purpose": "Iron armor family: individually listed arm guards. Paired upper-arm, elbow and forearm guards; no extra glove item or hand-protection claim. Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Iron arm guards: Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Show only this piece, not a complete armor suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Metal",
+        "Subtype": "Iron armor / arms",
+        "Search aliases": "iron armor set; iron armor family; iron armor; arms; separate armor piece",
+        "Tier basis": "Proposed T2 finished piece using T1 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Paired upper-arm, elbow and forearm guards; no extra glove item or hand-protection claim. Visual direction: Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.gear.helmet",
+      "name": "Iron helmet",
+      "purpose": "Iron armor family: individually listed helmet. Head covering with sight, hearing and canister clearance requiring design. Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Iron helmet: Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Show only this piece, not a complete armor suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Metal",
+        "Subtype": "Iron armor / helmet",
+        "Search aliases": "iron armor set; iron armor family; iron armor; helmet; separate armor piece",
+        "Tier basis": "Proposed T2 finished piece using T1 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Head covering with sight, hearing and canister clearance requiring design. Visual direction: Broad worked-iron plates with plain rolled edges and exposed metal fasteners. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.steel.chest",
+      "name": "Steel chestplate",
+      "purpose": "Steel armor family: individually listed chestplate. Torso and upper back; a chest piece does not include arm or leg pieces. Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Steel chestplate: Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Show only this piece, not a complete armor suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Metal",
+        "Subtype": "Steel armor / chest",
+        "Search aliases": "steel armor set; steel armor family; steel armor; chest; separate armor piece",
+        "Tier basis": "Proposed T3 finished piece using T2 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Torso and upper back; a chest piece does not include arm or leg pieces. Visual direction: Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.steel.legs",
+      "name": "Steel leg guards",
+      "purpose": "Steel armor family: individually listed leg guards. Paired thigh, knee and shin guards; boots remain a separate item. Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Steel leg guards: Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Show only this piece, not a complete armor suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Metal",
+        "Subtype": "Steel armor / legs",
+        "Search aliases": "steel armor set; steel armor family; steel armor; legs; separate armor piece",
+        "Tier basis": "Proposed T3 finished piece using T2 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Paired thigh, knee and shin guards; boots remain a separate item. Visual direction: Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.steel.boots",
+      "name": "Steel armored boots",
+      "purpose": "Steel armor family: individually listed armored boots. A matched pair of armored foot coverings, separate from shin guards. Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Steel armored boots: Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Show only this piece, not a complete armor suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Metal",
+        "Subtype": "Steel armor / boots",
+        "Search aliases": "steel armor set; steel armor family; steel armor; boots; separate armor piece",
+        "Tier basis": "Proposed T3 finished piece using T2 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "A matched pair of armored foot coverings, separate from shin guards. Visual direction: Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.steel.arms",
+      "name": "Steel arm guards",
+      "purpose": "Steel armor family: individually listed arm guards. Paired upper-arm, elbow and forearm guards; no extra glove item or hand-protection claim. Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Steel arm guards: Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Show only this piece, not a complete armor suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Metal",
+        "Subtype": "Steel armor / arms",
+        "Search aliases": "steel armor set; steel armor family; steel armor; arms; separate armor piece",
+        "Tier basis": "Proposed T3 finished piece using T2 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Paired upper-arm, elbow and forearm guards; no extra glove item or hand-protection claim. Visual direction: Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.steel.helmet",
+      "name": "Steel helmet",
+      "purpose": "Steel armor family: individually listed helmet. Head covering with sight, hearing and canister clearance requiring design. Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Steel helmet: Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Show only this piece, not a complete armor suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Metal",
+        "Subtype": "Steel armor / helmet",
+        "Search aliases": "steel armor set; steel armor family; steel armor; helmet; separate armor piece",
+        "Tier basis": "Proposed T3 finished piece using T2 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Head covering with sight, hearing and canister clearance requiring design. Visual direction: Closer-fitting steel plates with overlapping articulation and narrow reinforced edges. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.chitin.chest",
+      "name": "Chitin chestplate",
+      "purpose": "Chitin armor family: individually listed chestplate. Torso and upper back; a chest piece does not include arm or leg pieces. Layered curved shell plates with visible growth texture and small metal or tendon joining points. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Chitin chestplate: Layered curved shell plates with visible growth texture and small metal or tendon joining points. Show only this piece, not a complete armor suit.",
+      "material": "Shell / chitin",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Shell / chitin",
+        "Subtype": "Chitin armor / chest",
+        "Search aliases": "chitin armor set; chitin armor family; chitin armor; chest; separate armor piece",
+        "Tier basis": "Proposed T2 finished piece using T1 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Torso and upper back; a chest piece does not include arm or leg pieces. Visual direction: Layered curved shell plates with visible growth texture and small metal or tendon joining points. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.chitin.legs",
+      "name": "Chitin leg guards",
+      "purpose": "Chitin armor family: individually listed leg guards. Paired thigh, knee and shin guards; boots remain a separate item. Layered curved shell plates with visible growth texture and small metal or tendon joining points. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Chitin leg guards: Layered curved shell plates with visible growth texture and small metal or tendon joining points. Show only this piece, not a complete armor suit.",
+      "material": "Shell / chitin",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Shell / chitin",
+        "Subtype": "Chitin armor / legs",
+        "Search aliases": "chitin armor set; chitin armor family; chitin armor; legs; separate armor piece",
+        "Tier basis": "Proposed T2 finished piece using T1 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Paired thigh, knee and shin guards; boots remain a separate item. Visual direction: Layered curved shell plates with visible growth texture and small metal or tendon joining points. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.chitin.boots",
+      "name": "Chitin armored boots",
+      "purpose": "Chitin armor family: individually listed armored boots. A matched pair of armored foot coverings, separate from shin guards. Layered curved shell plates with visible growth texture and small metal or tendon joining points. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Chitin armored boots: Layered curved shell plates with visible growth texture and small metal or tendon joining points. Show only this piece, not a complete armor suit.",
+      "material": "Shell / chitin",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Shell / chitin",
+        "Subtype": "Chitin armor / boots",
+        "Search aliases": "chitin armor set; chitin armor family; chitin armor; boots; separate armor piece",
+        "Tier basis": "Proposed T2 finished piece using T1 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "A matched pair of armored foot coverings, separate from shin guards. Visual direction: Layered curved shell plates with visible growth texture and small metal or tendon joining points. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.chitin.arms",
+      "name": "Chitin arm guards",
+      "purpose": "Chitin armor family: individually listed arm guards. Paired upper-arm, elbow and forearm guards; no extra glove item or hand-protection claim. Layered curved shell plates with visible growth texture and small metal or tendon joining points. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Chitin arm guards: Layered curved shell plates with visible growth texture and small metal or tendon joining points. Show only this piece, not a complete armor suit.",
+      "material": "Shell / chitin",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Shell / chitin",
+        "Subtype": "Chitin armor / arms",
+        "Search aliases": "chitin armor set; chitin armor family; chitin armor; arms; separate armor piece",
+        "Tier basis": "Proposed T2 finished piece using T1 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Paired upper-arm, elbow and forearm guards; no extra glove item or hand-protection claim. Visual direction: Layered curved shell plates with visible growth texture and small metal or tendon joining points. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.chitin.helmet",
+      "name": "Chitin helmet",
+      "purpose": "Chitin armor family: individually listed helmet. Head covering with sight, hearing and canister clearance requiring design. Layered curved shell plates with visible growth texture and small metal or tendon joining points. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Chitin helmet: Layered curved shell plates with visible growth texture and small metal or tendon joining points. Show only this piece, not a complete armor suit.",
+      "material": "Shell / chitin",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Shell / chitin",
+        "Subtype": "Chitin armor / helmet",
+        "Search aliases": "chitin armor set; chitin armor family; chitin armor; helmet; separate armor piece",
+        "Tier basis": "Proposed T2 finished piece using T1 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Head covering with sight, hearing and canister clearance requiring design. Visual direction: Layered curved shell plates with visible growth texture and small metal or tendon joining points. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.ceramic.chest",
+      "name": "Ceramic-faced chestplate",
+      "purpose": "Ceramic-faced armor family: individually listed chestplate. Torso and upper back; a chest piece does not include arm or leg pieces. Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Ceramic-faced chestplate: Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Show only this piece, not a complete armor suit.",
+      "material": "Ceramic and metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Ceramic and metal",
+        "Subtype": "Ceramic-faced armor / chest",
+        "Search aliases": "ceramic armor set; ceramic armor family; ceramic-faced armor; chest; separate armor piece",
+        "Tier basis": "Proposed T3 finished piece using T2 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Torso and upper back; a chest piece does not include arm or leg pieces. Visual direction: Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.ceramic.legs",
+      "name": "Ceramic-faced leg guards",
+      "purpose": "Ceramic-faced armor family: individually listed leg guards. Paired thigh, knee and shin guards; boots remain a separate item. Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Ceramic-faced leg guards: Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Show only this piece, not a complete armor suit.",
+      "material": "Ceramic and metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Ceramic and metal",
+        "Subtype": "Ceramic-faced armor / legs",
+        "Search aliases": "ceramic armor set; ceramic armor family; ceramic-faced armor; legs; separate armor piece",
+        "Tier basis": "Proposed T3 finished piece using T2 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Paired thigh, knee and shin guards; boots remain a separate item. Visual direction: Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.ceramic.boots",
+      "name": "Ceramic-faced armored boots",
+      "purpose": "Ceramic-faced armor family: individually listed armored boots. A matched pair of armored foot coverings, separate from shin guards. Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Ceramic-faced armored boots: Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Show only this piece, not a complete armor suit.",
+      "material": "Ceramic and metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Ceramic and metal",
+        "Subtype": "Ceramic-faced armor / boots",
+        "Search aliases": "ceramic armor set; ceramic armor family; ceramic-faced armor; boots; separate armor piece",
+        "Tier basis": "Proposed T3 finished piece using T2 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "A matched pair of armored foot coverings, separate from shin guards. Visual direction: Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.ceramic.arms",
+      "name": "Ceramic-faced arm guards",
+      "purpose": "Ceramic-faced armor family: individually listed arm guards. Paired upper-arm, elbow and forearm guards; no extra glove item or hand-protection claim. Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Ceramic-faced arm guards: Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Show only this piece, not a complete armor suit.",
+      "material": "Ceramic and metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Ceramic and metal",
+        "Subtype": "Ceramic-faced armor / arms",
+        "Search aliases": "ceramic armor set; ceramic armor family; ceramic-faced armor; arms; separate armor piece",
+        "Tier basis": "Proposed T3 finished piece using T2 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Paired upper-arm, elbow and forearm guards; no extra glove item or hand-protection claim. Visual direction: Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.ceramic.helmet",
+      "name": "Ceramic-faced helmet",
+      "purpose": "Ceramic-faced armor family: individually listed helmet. Head covering with sight, hearing and canister clearance requiring design. Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Construction and protection are proposals; the five family pieces remain separate items.",
+      "icon": "Ceramic-faced helmet: Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Show only this piece, not a complete armor suit.",
+      "material": "Ceramic and metal",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Ceramic and metal",
+        "Subtype": "Ceramic-faced armor / helmet",
+        "Search aliases": "ceramic armor set; ceramic armor family; ceramic-faced armor; helmet; separate armor piece",
+        "Tier basis": "Proposed T3 finished piece using T2 inputs; material grade, fabrication and protection are unresolved.",
+        "Open design decisions": "Head covering with sight, hearing and canister clearance requiring design. Visual direction: Small replaceable ceramic faces carried on an articulated metal support, with visible gaps between tiles. Joining, fit, wearability and performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.plasteel.chest",
+      "name": "Ancient plasteel chestplate",
+      "purpose": "Extremely rare recovered ancient plasteel chestplate, listed as one separate armor item. Torso and upper back; a chest piece does not include arm or leg pieces. Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Presence does not establish contemporary manufacture or a usable fitted piece.",
+      "icon": "Ancient plasteel chestplate: Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Show only this piece, not a complete armor suit.",
+      "material": "Ancient composite",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T0",
+        "Finished-item input tier": "T0",
+        "Material family": "Ancient composite",
+        "Subtype": "Ancient plasteel armor / chest",
+        "Search aliases": "plasteel armor set; plasteel armor family; ancient plasteel armor; chest; separate armor piece",
+        "Tier basis": "T0 as found, independent of ancient complexity and extreme rarity. A compatible original would need a separate T1 qualification record before reuse.",
+        "Open design decisions": "Torso and upper back; a chest piece does not include arm or leg pieces. Visual direction: Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Joining, fit, wearability and performance require design.",
+        "Origin family": "Ancient technology",
+        "Processing stage": "Recovered part",
+        "Rarity": "Extremely rare",
+        "Acquisition": "Recover a surviving ancient armor piece from a proposed ruin or machine-age cache; sites and availability unresolved.",
+        "Crafting / processing": "Inspect and qualify a surviving original for fit and integrity. No contemporary plasteel manufacturing, internal repair or complete-set acquisition route established.",
+        "Limitations": "Extremely rare ancient recovery. Fit, integrity, joining and protection are unknown. No contemporary plasteel manufacture, guaranteed usable condition, set bonus or working protective effect."
+      }
+    },
+    {
+      "id": "proposal.armor.plasteel.legs",
+      "name": "Ancient plasteel leg guards",
+      "purpose": "Extremely rare recovered ancient plasteel leg guards, listed as one separate armor item. Paired thigh, knee and shin guards; boots remain a separate item. Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Presence does not establish contemporary manufacture or a usable fitted piece.",
+      "icon": "Ancient plasteel leg guards: Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Show only this piece, not a complete armor suit.",
+      "material": "Ancient composite",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T0",
+        "Finished-item input tier": "T0",
+        "Material family": "Ancient composite",
+        "Subtype": "Ancient plasteel armor / legs",
+        "Search aliases": "plasteel armor set; plasteel armor family; ancient plasteel armor; legs; separate armor piece",
+        "Tier basis": "T0 as found, independent of ancient complexity and extreme rarity. A compatible original would need a separate T1 qualification record before reuse.",
+        "Open design decisions": "Paired thigh, knee and shin guards; boots remain a separate item. Visual direction: Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Joining, fit, wearability and performance require design.",
+        "Origin family": "Ancient technology",
+        "Processing stage": "Recovered part",
+        "Rarity": "Extremely rare",
+        "Acquisition": "Recover a surviving ancient armor piece from a proposed ruin or machine-age cache; sites and availability unresolved.",
+        "Crafting / processing": "Inspect and qualify a surviving original for fit and integrity. No contemporary plasteel manufacturing, internal repair or complete-set acquisition route established.",
+        "Limitations": "Extremely rare ancient recovery. Fit, integrity, joining and protection are unknown. No contemporary plasteel manufacture, guaranteed usable condition, set bonus or working protective effect."
+      }
+    },
+    {
+      "id": "proposal.armor.plasteel.boots",
+      "name": "Ancient plasteel armored boots",
+      "purpose": "Extremely rare recovered ancient plasteel armored boots, listed as one separate armor item. A matched pair of armored foot coverings, separate from shin guards. Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Presence does not establish contemporary manufacture or a usable fitted piece.",
+      "icon": "Ancient plasteel armored boots: Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Show only this piece, not a complete armor suit.",
+      "material": "Ancient composite",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T0",
+        "Finished-item input tier": "T0",
+        "Material family": "Ancient composite",
+        "Subtype": "Ancient plasteel armor / boots",
+        "Search aliases": "plasteel armor set; plasteel armor family; ancient plasteel armor; boots; separate armor piece",
+        "Tier basis": "T0 as found, independent of ancient complexity and extreme rarity. A compatible original would need a separate T1 qualification record before reuse.",
+        "Open design decisions": "A matched pair of armored foot coverings, separate from shin guards. Visual direction: Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Joining, fit, wearability and performance require design.",
+        "Origin family": "Ancient technology",
+        "Processing stage": "Recovered part",
+        "Rarity": "Extremely rare",
+        "Acquisition": "Recover a surviving ancient armor piece from a proposed ruin or machine-age cache; sites and availability unresolved.",
+        "Crafting / processing": "Inspect and qualify a surviving original for fit and integrity. No contemporary plasteel manufacturing, internal repair or complete-set acquisition route established.",
+        "Limitations": "Extremely rare ancient recovery. Fit, integrity, joining and protection are unknown. No contemporary plasteel manufacture, guaranteed usable condition, set bonus or working protective effect."
+      }
+    },
+    {
+      "id": "proposal.armor.plasteel.arms",
+      "name": "Ancient plasteel arm guards",
+      "purpose": "Extremely rare recovered ancient plasteel arm guards, listed as one separate armor item. Paired upper-arm, elbow and forearm guards; no extra glove item or hand-protection claim. Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Presence does not establish contemporary manufacture or a usable fitted piece.",
+      "icon": "Ancient plasteel arm guards: Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Show only this piece, not a complete armor suit.",
+      "material": "Ancient composite",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T0",
+        "Finished-item input tier": "T0",
+        "Material family": "Ancient composite",
+        "Subtype": "Ancient plasteel armor / arms",
+        "Search aliases": "plasteel armor set; plasteel armor family; ancient plasteel armor; arms; separate armor piece",
+        "Tier basis": "T0 as found, independent of ancient complexity and extreme rarity. A compatible original would need a separate T1 qualification record before reuse.",
+        "Open design decisions": "Paired upper-arm, elbow and forearm guards; no extra glove item or hand-protection claim. Visual direction: Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Joining, fit, wearability and performance require design.",
+        "Origin family": "Ancient technology",
+        "Processing stage": "Recovered part",
+        "Rarity": "Extremely rare",
+        "Acquisition": "Recover a surviving ancient armor piece from a proposed ruin or machine-age cache; sites and availability unresolved.",
+        "Crafting / processing": "Inspect and qualify a surviving original for fit and integrity. No contemporary plasteel manufacturing, internal repair or complete-set acquisition route established.",
+        "Limitations": "Extremely rare ancient recovery. Fit, integrity, joining and protection are unknown. No contemporary plasteel manufacture, guaranteed usable condition, set bonus or working protective effect."
+      }
+    },
+    {
+      "id": "proposal.armor.plasteel.helmet",
+      "name": "Ancient plasteel helmet",
+      "purpose": "Extremely rare recovered ancient plasteel helmet, listed as one separate armor item. Head covering with sight, hearing and canister clearance requiring design. Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Presence does not establish contemporary manufacture or a usable fitted piece.",
+      "icon": "Ancient plasteel helmet: Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Show only this piece, not a complete armor suit.",
+      "material": "Ancient composite",
+      "use": "Protection",
+      "fields": {
+        "Tier": "T0",
+        "Finished-item input tier": "T0",
+        "Material family": "Ancient composite",
+        "Subtype": "Ancient plasteel armor / helmet",
+        "Search aliases": "plasteel armor set; plasteel armor family; ancient plasteel armor; helmet; separate armor piece",
+        "Tier basis": "T0 as found, independent of ancient complexity and extreme rarity. A compatible original would need a separate T1 qualification record before reuse.",
+        "Open design decisions": "Head covering with sight, hearing and canister clearance requiring design. Visual direction: Recovered pale composite segments with unfamiliar recessed fittings, wear and mismatched surviving surfaces. Joining, fit, wearability and performance require design.",
+        "Origin family": "Ancient technology",
+        "Processing stage": "Recovered part",
+        "Rarity": "Extremely rare",
+        "Acquisition": "Recover a surviving ancient armor piece from a proposed ruin or machine-age cache; sites and availability unresolved.",
+        "Crafting / processing": "Inspect and qualify a surviving original for fit and integrity. No contemporary plasteel manufacturing, internal repair or complete-set acquisition route established.",
+        "Limitations": "Extremely rare ancient recovery. Fit, integrity, joining and protection are unknown. No contemporary plasteel manufacture, guaranteed usable condition, set bonus or working protective effect."
+      }
+    }
+  ]
+}

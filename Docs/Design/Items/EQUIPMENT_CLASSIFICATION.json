@@ -3,12 +3,12 @@
   "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
   "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
   "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
-  "sourceHashAfter": "9afff4193dfb1e6627a8ae94c564f6f10fb6dd9818eb39c82e50125fe22a9fa1",
+  "sourceHashAfter": "941e79016c1e650fc68897a53f13b3e05c44c699847c149e9dd7866f8f578bde",
   "counts": {
     "Accessories": 7,
     "Clothing": 8,
     "Tools": 51,
-    "Armor": 36,
+    "Armor": 35,
     "Attachments": 4,
     "Workshop upgrades": 1,
     "Crafting stations": 2,
@@ -71,28 +71,22 @@
       "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
-      "id": "proposal.gear.metal_armor_set",
-      "name": "Assembled metal armor",
-      "category": "Armor",
-      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
-    },
-    {
       "id": "proposal.gear.chest_armor",
-      "name": "Chest armor",
+      "name": "Iron chestplate",
       "category": "Armor",
-      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+      "reason": "Generic armor piece refined into the iron family; ID retained."
     },
     {
       "id": "proposal.gear.helmet",
-      "name": "Helmet",
+      "name": "Iron helmet",
       "category": "Armor",
-      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+      "reason": "Generic armor piece refined into the iron family; ID retained."
     },
     {
       "id": "proposal.gear.leg_armor",
-      "name": "Leg armor",
+      "name": "Iron leg guards",
       "category": "Armor",
-      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+      "reason": "Generic armor piece refined into the iron family; ID retained."
     },
     {
       "id": "proposal.gear.boots",
@@ -868,6 +862,20 @@
       ],
       "sourceHashBefore": "f2b68bb4393fa0501d06dcf67c394f0fe38b11fb76e18e9ce370e1cc640663cf",
       "sourceHashAfter": "9afff4193dfb1e6627a8ae94c564f6f10fb6dd9818eb39c82e50125fe22a9fa1"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Replace counted whole-set concept with five individually listed armor families.",
+      "retiredIds": [
+        "proposal.gear.metal_armor_set"
+      ],
+      "reusedIds": [
+        "proposal.gear.chest_armor",
+        "proposal.gear.leg_armor",
+        "proposal.gear.helmet"
+      ],
+      "sourceHashBefore": "ee2150b0edf95fc20ecd45a96ad83d7e7b208bfb56bfbd734dc8f7906bde225d",
+      "sourceHashAfter": "941e79016c1e650fc68897a53f13b3e05c44c699847c149e9dd7866f8f578bde"
     }
   ]
 }
