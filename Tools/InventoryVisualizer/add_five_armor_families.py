@@ -105,7 +105,7 @@ def prepare():
     rows=parse_sheets(snapshot)['Items'][5:]
     assert {r[0] for r in rows if r[0]} >= {AGGREGATE,*REUSE.values()}
     if DATA.exists():assert json.loads(DATA.read_text(encoding='utf-8'))==spec,'Specification changed; review before preparing'
-    else:DATA.write_text(json.dumps(spec,indent=2)+'\n',encoding='utf-8')
+    else:DATA.write_text(json.dumps(spec,indent=2)+'\n',encoding='utf-8',newline='\n')
     (OUT/'before.xlsx').write_bytes(snapshot)
     (OUT/'manifest-before.json').write_bytes(MANIFEST.read_bytes())
     (OUT/'plan.json').write_text(json.dumps(dict(sourceHash=digest(snapshot),spec=spec),indent=2),encoding='utf-8')
