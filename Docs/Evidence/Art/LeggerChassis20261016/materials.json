@@ -1,0 +1,90 @@
+{
+  "input_prepared_sha256": "9488a0ae53016394b8660fb6f018556bd4910121a4137a0a76bd9a7eaa4b250d",
+  "input_forms_sha256": "38f0ee183b0a63b397d43529ca8f4638e1e2aba0940880e72701c480acce3bfc",
+  "candidate": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerChassis20261016\\Textured.blend",
+  "candidate_sha256": "788e4de73bac5a52b9853e0071b1df23b9433edc296b981468e2d991c2cd7f93",
+  "candidate_bytes": 745433568,
+  "materials": [
+    {
+      "key": "Frame",
+      "material": "Legger_Chassis_Frame_PBR",
+      "atlas": "Legger_Chassis_Frame_Atlas",
+      "resolution": 4096,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_Chassis_Frame_BaseColor",
+          "sha256": "432622f7ee2c005a336c40686ecdffbe4f2d5361e60c8df972084fab7c230f15",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_Chassis_Frame_Normal",
+          "sha256": "1bcefe53cb5dda75fd7a0c9448aaf84cad302226aedfa3c5e3ce284297f32d1d",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_Chassis_Frame_Roughness",
+          "sha256": "592cbf8dd21f769151b76bba133379518bb13c926efb85e99b15a80316e4707a",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_Chassis_Frame_Metallic",
+          "sha256": "5026e47c8d64849d536a876e128bea8a3e50081e487f33e902d1b4aaa6ce8bac",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_Chassis_Frame_AO",
+          "sha256": "6a4cdb10f163e5dbef03c2848d8cfa23ab17c0a68c1e32e7a6f38d9dfcec5a7d",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "Drive",
+      "material": "Legger_Chassis_Drive_PBR",
+      "atlas": "Legger_Chassis_Drive_Atlas",
+      "resolution": 4096,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_Chassis_Drive_BaseColor",
+          "sha256": "085ffc93f22ec1d21b3b5f63871e92a650ec2a11fdbc124db3dcb99171a6d933",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_Chassis_Drive_Normal",
+          "sha256": "ed62ac238f3cfadcdd141193561668cfb9e220a561ed5b3b12362e433ed387f0",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_Chassis_Drive_Roughness",
+          "sha256": "b4f6ec03ea7a2eb513ed7230ab615fb3f9b6eae5161aca9e2903937c4eb056cf",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_Chassis_Drive_Metallic",
+          "sha256": "f61cab721301f20a1f84d0cfd767cd2d41eb87b72ca1b0af9ab051c521e7698b",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_Chassis_Drive_AO",
+          "sha256": "e7946059b52ed9c5b9f3d9b59e85f63be55d90130fbf283b3ba9b6fb5fe1eff5",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    }
+  ],
+  "new_maps": 10,
+  "retained_maps": 45,
+  "major_meshes": 75,
+  "control_quads": 42552,
+  "evaluated_triangles": 136928
+}

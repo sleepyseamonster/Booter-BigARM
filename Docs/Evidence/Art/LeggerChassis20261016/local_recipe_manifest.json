@@ -1,0 +1,106 @@
+{
+  "recipes": [
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerChassis20261016\\audit.py",
+      "sha256": "5dd3377f119d9640fe059a1fefbed93dec737ab363cc82b63915347dd79e8659",
+      "bytes": 5537
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerChassis20261016\\build.py",
+      "sha256": "e7f2c98330562158aaa629a4fa4b7510517b6da6e18de37cb201e572bed84db2",
+      "bytes": 13129
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerChassis20261016\\prepare.py",
+      "sha256": "8343d1753d87a7ac793bb475e545018cc55eda092017674b403ab999c0989d4f",
+      "bytes": 4472
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerChassis20261016\\bake.py",
+      "sha256": "96cace016ad64e576f8f1ad479328e503da640da4f7a28b253be84051750126c",
+      "bytes": 4324
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerChassis20261016\\finalize.py",
+      "sha256": "5dc25bb400145d39e43e6cba6c8a4622605762c8fb806e2c980b59d40d962c10",
+      "bytes": 6606
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerChassis20261016\\qa.py",
+      "sha256": "f88b2f85d7c3b0cdbf631e0ecefed5772164716f59282167880482047549523a",
+      "bytes": 10519
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerChassis20261016\\texture_qa.py",
+      "sha256": "9d3b3b723ff6c9fdc08e9fe46f524154241292d17cb2f554b8bad387506d411d",
+      "bytes": 4359
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerChassis20261016\\review.py",
+      "sha256": "22e1eb22b594dc84df8cdcf3f3b62fe26882f0f7dbebe9c21453de47a101525f",
+      "bytes": 4129
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerChassis20261016\\compare.py",
+      "sha256": "c1d56db33f915780a00797956fe8b26af5b326778181323d7d3fd77978906a93",
+      "bytes": 1812
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerChassis20261016\\boards.py",
+      "sha256": "399b74f66860c4d73257064c272d9c1c9985c7a59a734fb8345053adbec49417",
+      "bytes": 3165
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerChassis20261016\\apply.py",
+      "sha256": "fab1d56216230170b7451a5d10beb82b39026abff7ef30d944ef9421c89a81ae",
+      "bytes": 3211
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerChassis20261016\\seal_records.py",
+      "sha256": "25c61893eb5ec8c42ac947db273a766169fce716d91284d8d46c5e8e7c0f2115",
+      "bytes": 4445
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerSciFi20261015\\forms.py",
+      "sha256": "5c203c6585408c89137a8ab649a2c5f1b86a126d62dade50c03b8114e73f545e"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerSciFi20261015\\fingerprint.py",
+      "sha256": "eb5f095437185432900cd31b2ed07feb3d55796db3dcd72eb7dc8c1a8f5bc86f"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Tools\\Art\\Blender\\inspect_blend.py",
+      "sha256": "72a570b58d8b0622dd5477f4a130b2a10e36b4840778dea14bad634273e9da20"
+    }
+  ],
+  "checkpoints": {
+    "Before.blend": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerChassis20261016\\Before.blend",
+      "sha256": "32e97e86658e12e5655b072c1de40863fdf4ef992ebcc43ed9c7f27fbc989b1d"
+    },
+    "Forms.blend": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerChassis20261016\\Forms.blend",
+      "sha256": "38f0ee183b0a63b397d43529ca8f4638e1e2aba0940880e72701c480acce3bfc"
+    },
+    "Prepared.blend": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerChassis20261016\\Prepared.blend",
+      "sha256": "9488a0ae53016394b8660fb6f018556bd4910121a4137a0a76bd9a7eaa4b250d"
+    },
+    "BakeSources.blend": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerChassis20261016\\BakeSources.blend",
+      "sha256": "931d5d0a7d31bc59029d41a941c12c8068a8285bcdebce9f135d374356143cf7"
+    },
+    "Textured.blend": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerChassis20261016\\Textured.blend",
+      "sha256": "788e4de73bac5a52b9853e0071b1df23b9433edc296b981468e2d991c2cd7f93"
+    }
+  },
+  "cache": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerChassis20261016",
+  "raw_uv_records_local_only": [
+    "D:\\Arc & Dust\\Project\\Logs\\LeggerChassis20261016\\control_uv.json",
+    "D:\\Arc & Dust\\Project\\Logs\\LeggerChassis20261016\\evaluated_uv.json.gz"
+  ],
+  "note": "Native geometry, baked map pixels and render pixels remain local. Text identity records only are committed."
+}

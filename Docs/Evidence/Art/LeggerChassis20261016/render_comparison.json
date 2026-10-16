@@ -1,0 +1,102 @@
+{
+  "source_sha256": "788e4de73bac5a52b9853e0071b1df23b9433edc296b981468e2d991c2cd7f93",
+  "forms_sha256": "38f0ee183b0a63b397d43529ca8f4638e1e2aba0940880e72701c480acce3bfc",
+  "geometry_to_pbr": [
+    {
+      "view": "assembled",
+      "mean_rgb_difference_8bit": 0.048146639033093214,
+      "p99_rgb_difference_8bit": 1.0,
+      "maximum_rgb_difference_8bit": 106,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "bare_front",
+      "mean_rgb_difference_8bit": 0.6114386337321498,
+      "p99_rgb_difference_8bit": 5.0,
+      "maximum_rgb_difference_8bit": 151,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "bare_oblique",
+      "mean_rgb_difference_8bit": 0.5027883141409184,
+      "p99_rgb_difference_8bit": 3.0,
+      "maximum_rgb_difference_8bit": 115,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "bare_rear",
+      "mean_rgb_difference_8bit": 0.4104481138036105,
+      "p99_rgb_difference_8bit": 3.0,
+      "maximum_rgb_difference_8bit": 153,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "bare_side",
+      "mean_rgb_difference_8bit": 0.4327048645119164,
+      "p99_rgb_difference_8bit": 3.0,
+      "maximum_rgb_difference_8bit": 104,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "bare_top",
+      "mean_rgb_difference_8bit": 0.5528742092141858,
+      "p99_rgb_difference_8bit": 3.0,
+      "maximum_rgb_difference_8bit": 105,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "bare_underside",
+      "mean_rgb_difference_8bit": 0.3754409041408897,
+      "p99_rgb_difference_8bit": 3.0,
+      "maximum_rgb_difference_8bit": 183,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "body_oblique",
+      "mean_rgb_difference_8bit": 0.053370365555519446,
+      "p99_rgb_difference_8bit": 1.0,
+      "maximum_rgb_difference_8bit": 108,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "body_side",
+      "mean_rgb_difference_8bit": 0.07842620498161107,
+      "p99_rgb_difference_8bit": 1.0,
+      "maximum_rgb_difference_8bit": 53,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "clay_assembled",
+      "mean_rgb_difference_8bit": 0.0022393590620682254,
+      "p99_rgb_difference_8bit": 0.0,
+      "maximum_rgb_difference_8bit": 7,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "frame_only",
+      "mean_rgb_difference_8bit": 0.5108357250439521,
+      "p99_rgb_difference_8bit": 4.0,
+      "maximum_rgb_difference_8bit": 109,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "full_side",
+      "mean_rgb_difference_8bit": 0.0743042532090601,
+      "p99_rgb_difference_8bit": 1.0,
+      "maximum_rgb_difference_8bit": 43,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "hip_interface",
+      "mean_rgb_difference_8bit": 0.3371819057086722,
+      "p99_rgb_difference_8bit": 3.0,
+      "maximum_rgb_difference_8bit": 142,
+      "maximum_alpha_difference": 0
+    }
+  ],
+  "limits": "Same camera, geometry, lights and exposure. This verifies bake reproduction in these offline views, not exact original-source equivalence, all mip levels or Unity performance.",
+  "native_to_candidate": {
+    "maximum_rgb_difference_8bit": 1,
+    "maximum_alpha_difference": 0
+  }
+}

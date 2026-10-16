@@ -1,0 +1,33 @@
+{
+  "source_sha256": "788e4de73bac5a52b9853e0071b1df23b9433edc296b981468e2d991c2cd7f93",
+  "reviewed": true,
+  "views": [
+    "assembled",
+    "bare_front",
+    "bare_oblique",
+    "bare_rear",
+    "bare_side",
+    "bare_top",
+    "bare_underside",
+    "body_oblique",
+    "body_side",
+    "clay_assembled",
+    "frame_only",
+    "full_side",
+    "hip_interface"
+  ],
+  "audit_views": 14,
+  "review_boards": [
+    "Legger_Chassis_Comparison.png",
+    "Legger_Chassis_Structure.png",
+    "Review_Contact.png",
+    "Audit_Contact.png"
+  ],
+  "findings": [
+    "Main diagonal, short forward yokes and upright footrest webs now follow the retained original design relationships.",
+    "Compact inboard/rearward drive housings restore open space around accepted upper legs.",
+    "Rear service arcs have fitted closed connectors; underside, front, rear, top and hip-interface views inspected.",
+    "Accepted legs, body panels, saddle, controls and cargo retain geometry and placement."
+  ],
+  "limits": "Original structure is fused and partly occluded; cuts are inspection aids, not true part segmentation. Retained body panels still differ from original and partly conceal forward yokes. These offline views do not prove rig motion, physical clearance, Unity appearance or performance; creative acceptance remains with author."
+}

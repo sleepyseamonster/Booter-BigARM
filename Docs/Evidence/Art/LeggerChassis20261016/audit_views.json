@@ -1,0 +1,436 @@
+{
+  "source_sha256": "32e97e86658e12e5655b072c1de40863fdf4ef992ebcc43ed9c7f27fbc989b1d",
+  "native_saved": false,
+  "views": [
+    {
+      "name": "original_side.png",
+      "center_m": [
+        0.0,
+        -0.03999999910593033,
+        1.690000057220459
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "scale_m": 1.66,
+      "parts": [
+        "Legger_DetailBake_Source"
+      ]
+    },
+    {
+      "name": "original_oblique.png",
+      "center_m": [
+        0.0,
+        -0.03999999910593033,
+        1.690000057220459
+      ],
+      "direction": [
+        3,
+        -4,
+        1.6
+      ],
+      "scale_m": 1.72,
+      "parts": [
+        "Legger_DetailBake_Source"
+      ]
+    },
+    {
+      "name": "original_rear.png",
+      "center_m": [
+        0.0,
+        0.07999999821186066,
+        1.690000057220459
+      ],
+      "direction": [
+        2,
+        4,
+        1.3
+      ],
+      "scale_m": 1.72,
+      "parts": [
+        "Legger_DetailBake_Source"
+      ]
+    },
+    {
+      "name": "original_underside.png",
+      "center_m": [
+        0.0,
+        -0.03999999910593033,
+        1.659999966621399
+      ],
+      "direction": [
+        2,
+        -2,
+        -4
+      ],
+      "scale_m": 1.72,
+      "parts": [
+        "Legger_DetailBake_Source"
+      ]
+    },
+    {
+      "name": "original_top.png",
+      "center_m": [
+        0.0,
+        -0.03999999910593033,
+        1.690000057220459
+      ],
+      "direction": [
+        0,
+        0,
+        4
+      ],
+      "scale_m": 1.72,
+      "parts": [
+        "Legger_DetailBake_Source"
+      ]
+    },
+    {
+      "name": "before_frame_side.png",
+      "center_m": [
+        0.0,
+        -0.03999999910593033,
+        1.690000057220459
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "scale_m": 1.66,
+      "parts": [
+        "Legger_Part_L_CargoRack",
+        "Legger_Part_R_CargoRack",
+        "Legger_Part_MainFrame",
+        "Legger_Part_SeatSubframe",
+        "Legger_Part_L_Footrest",
+        "Legger_Part_R_Footrest",
+        "Legger_Part_SteeringMount",
+        "Legger_Part_ServiceHarness",
+        "Legger_Part_L_HipMount",
+        "Legger_Part_R_HipMount",
+        "Legger_Part_DriveCore",
+        "Legger_Part_SpineHousing",
+        "Legger_Part_RearCoolingHousing",
+        "Legger_Part_L_DrivePod",
+        "Legger_Part_R_DrivePod"
+      ]
+    },
+    {
+      "name": "before_frame_oblique.png",
+      "center_m": [
+        0.0,
+        -0.03999999910593033,
+        1.690000057220459
+      ],
+      "direction": [
+        3,
+        -4,
+        1.6
+      ],
+      "scale_m": 1.72,
+      "parts": [
+        "Legger_Part_L_CargoRack",
+        "Legger_Part_R_CargoRack",
+        "Legger_Part_MainFrame",
+        "Legger_Part_SeatSubframe",
+        "Legger_Part_L_Footrest",
+        "Legger_Part_R_Footrest",
+        "Legger_Part_SteeringMount",
+        "Legger_Part_ServiceHarness",
+        "Legger_Part_L_HipMount",
+        "Legger_Part_R_HipMount",
+        "Legger_Part_DriveCore",
+        "Legger_Part_SpineHousing",
+        "Legger_Part_RearCoolingHousing",
+        "Legger_Part_L_DrivePod",
+        "Legger_Part_R_DrivePod"
+      ]
+    },
+    {
+      "name": "before_frame_rear.png",
+      "center_m": [
+        0.0,
+        0.07999999821186066,
+        1.690000057220459
+      ],
+      "direction": [
+        2,
+        4,
+        1.3
+      ],
+      "scale_m": 1.72,
+      "parts": [
+        "Legger_Part_L_CargoRack",
+        "Legger_Part_R_CargoRack",
+        "Legger_Part_MainFrame",
+        "Legger_Part_SeatSubframe",
+        "Legger_Part_L_Footrest",
+        "Legger_Part_R_Footrest",
+        "Legger_Part_SteeringMount",
+        "Legger_Part_ServiceHarness",
+        "Legger_Part_L_HipMount",
+        "Legger_Part_R_HipMount",
+        "Legger_Part_DriveCore",
+        "Legger_Part_SpineHousing",
+        "Legger_Part_RearCoolingHousing",
+        "Legger_Part_L_DrivePod",
+        "Legger_Part_R_DrivePod"
+      ]
+    },
+    {
+      "name": "before_frame_underside.png",
+      "center_m": [
+        0.0,
+        -0.03999999910593033,
+        1.659999966621399
+      ],
+      "direction": [
+        2,
+        -2,
+        -4
+      ],
+      "scale_m": 1.72,
+      "parts": [
+        "Legger_Part_L_CargoRack",
+        "Legger_Part_R_CargoRack",
+        "Legger_Part_MainFrame",
+        "Legger_Part_SeatSubframe",
+        "Legger_Part_L_Footrest",
+        "Legger_Part_R_Footrest",
+        "Legger_Part_SteeringMount",
+        "Legger_Part_ServiceHarness",
+        "Legger_Part_L_HipMount",
+        "Legger_Part_R_HipMount",
+        "Legger_Part_DriveCore",
+        "Legger_Part_SpineHousing",
+        "Legger_Part_RearCoolingHousing",
+        "Legger_Part_L_DrivePod",
+        "Legger_Part_R_DrivePod"
+      ]
+    },
+    {
+      "name": "before_frame_top.png",
+      "center_m": [
+        0.0,
+        -0.03999999910593033,
+        1.690000057220459
+      ],
+      "direction": [
+        0,
+        0,
+        4
+      ],
+      "scale_m": 1.72,
+      "parts": [
+        "Legger_Part_L_CargoRack",
+        "Legger_Part_R_CargoRack",
+        "Legger_Part_MainFrame",
+        "Legger_Part_SeatSubframe",
+        "Legger_Part_L_Footrest",
+        "Legger_Part_R_Footrest",
+        "Legger_Part_SteeringMount",
+        "Legger_Part_ServiceHarness",
+        "Legger_Part_L_HipMount",
+        "Legger_Part_R_HipMount",
+        "Legger_Part_DriveCore",
+        "Legger_Part_SpineHousing",
+        "Legger_Part_RearCoolingHousing",
+        "Legger_Part_L_DrivePod",
+        "Legger_Part_R_DrivePod"
+      ]
+    },
+    {
+      "name": "before_assembled_side.png",
+      "center_m": [
+        0.0,
+        -0.03999999910593033,
+        1.690000057220459
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "scale_m": 1.66,
+      "parts": [
+        "Legger_Part_L_CargoRack",
+        "Legger_Part_R_CargoRack",
+        "Legger_Part_MainFrame",
+        "Legger_Part_SeatSubframe",
+        "Legger_Part_L_Footrest",
+        "Legger_Part_R_Footrest",
+        "Legger_Part_SteeringMount",
+        "Legger_Part_ServiceHarness",
+        "Legger_Part_L_HipMount",
+        "Legger_Part_R_HipMount",
+        "Legger_Part_DriveCore",
+        "Legger_Part_SpineHousing",
+        "Legger_Part_RearCoolingHousing",
+        "Legger_Part_L_DrivePod",
+        "Legger_Part_R_DrivePod",
+        "Legger_Part_L_HipJoint",
+        "Legger_Part_L_KneeJoint",
+        "Legger_Part_L_HockJoint",
+        "Legger_Part_L_AnkleJoint",
+        "Legger_Part_L_UpperLinkFrame",
+        "Legger_Part_L_UpperLinkShell",
+        "Legger_Part_L_MiddleLinkFrame",
+        "Legger_Part_L_MiddleLinkShell",
+        "Legger_Part_L_MiddleLinkActuatorBarrel",
+        "Legger_Part_L_MiddleLinkActuatorRod",
+        "Legger_Part_L_LowerLinkFrame",
+        "Legger_Part_L_LowerLinkShell",
+        "Legger_Part_L_LowerLinkActuatorBarrel",
+        "Legger_Part_L_LowerLinkActuatorRod",
+        "Legger_Part_L_Foot",
+        "Legger_Part_R_HipJoint",
+        "Legger_Part_R_KneeJoint",
+        "Legger_Part_R_HockJoint",
+        "Legger_Part_R_AnkleJoint",
+        "Legger_Part_R_UpperLinkFrame",
+        "Legger_Part_R_UpperLinkShell",
+        "Legger_Part_R_MiddleLinkFrame",
+        "Legger_Part_R_MiddleLinkShell",
+        "Legger_Part_R_MiddleLinkActuatorBarrel",
+        "Legger_Part_R_MiddleLinkActuatorRod",
+        "Legger_Part_R_LowerLinkFrame",
+        "Legger_Part_R_LowerLinkShell",
+        "Legger_Part_R_LowerLinkActuatorBarrel",
+        "Legger_Part_R_LowerLinkActuatorRod",
+        "Legger_Part_R_Foot",
+        "Legger_Part_L_front_fairing",
+        "Legger_Part_L_upper_body_shroud",
+        "Legger_Part_L_tail_shroud",
+        "Legger_Part_R_front_fairing",
+        "Legger_Part_R_upper_body_shroud",
+        "Legger_Part_R_tail_shroud",
+        "Legger_Part_SaddleUpholstery",
+        "Legger_Part_SaddlePan",
+        "Legger_Part_SteeringStem",
+        "Legger_Part_Handlebar",
+        "Legger_Part_L_Grip",
+        "Legger_Part_L_BrakeLever",
+        "Legger_Part_R_Grip",
+        "Legger_Part_R_BrakeLever",
+        "Legger_Part_InstrumentGauge",
+        "Legger_Part_FrontControlPod",
+        "Legger_Part_Cargo_L_Main_Body",
+        "Legger_Part_Cargo_L_Main_Straps",
+        "Legger_Part_Cargo_L_Main_Lid",
+        "Legger_Part_Cargo_L_Aux_Body",
+        "Legger_Part_Cargo_L_Aux_Straps",
+        "Legger_Part_Cargo_L_Aux_Lid",
+        "Legger_Part_Cargo_R_Main_Body",
+        "Legger_Part_Cargo_R_Main_Straps",
+        "Legger_Part_Cargo_R_Main_Lid",
+        "Legger_Part_Cargo_R_Aux_Body",
+        "Legger_Part_Cargo_R_Aux_Straps",
+        "Legger_Part_Cargo_R_Aux_Lid"
+      ]
+    },
+    {
+      "name": "before_assembled_oblique.png",
+      "center_m": [
+        0.0,
+        -0.03999999910593033,
+        1.690000057220459
+      ],
+      "direction": [
+        3,
+        -4,
+        1.6
+      ],
+      "scale_m": 1.72,
+      "parts": [
+        "Legger_Part_L_CargoRack",
+        "Legger_Part_R_CargoRack",
+        "Legger_Part_MainFrame",
+        "Legger_Part_SeatSubframe",
+        "Legger_Part_L_Footrest",
+        "Legger_Part_R_Footrest",
+        "Legger_Part_SteeringMount",
+        "Legger_Part_ServiceHarness",
+        "Legger_Part_L_HipMount",
+        "Legger_Part_R_HipMount",
+        "Legger_Part_DriveCore",
+        "Legger_Part_SpineHousing",
+        "Legger_Part_RearCoolingHousing",
+        "Legger_Part_L_DrivePod",
+        "Legger_Part_R_DrivePod",
+        "Legger_Part_L_HipJoint",
+        "Legger_Part_L_KneeJoint",
+        "Legger_Part_L_HockJoint",
+        "Legger_Part_L_AnkleJoint",
+        "Legger_Part_L_UpperLinkFrame",
+        "Legger_Part_L_UpperLinkShell",
+        "Legger_Part_L_MiddleLinkFrame",
+        "Legger_Part_L_MiddleLinkShell",
+        "Legger_Part_L_MiddleLinkActuatorBarrel",
+        "Legger_Part_L_MiddleLinkActuatorRod",
+        "Legger_Part_L_LowerLinkFrame",
+        "Legger_Part_L_LowerLinkShell",
+        "Legger_Part_L_LowerLinkActuatorBarrel",
+        "Legger_Part_L_LowerLinkActuatorRod",
+        "Legger_Part_L_Foot",
+        "Legger_Part_R_HipJoint",
+        "Legger_Part_R_KneeJoint",
+        "Legger_Part_R_HockJoint",
+        "Legger_Part_R_AnkleJoint",
+        "Legger_Part_R_UpperLinkFrame",
+        "Legger_Part_R_UpperLinkShell",
+        "Legger_Part_R_MiddleLinkFrame",
+        "Legger_Part_R_MiddleLinkShell",
+        "Legger_Part_R_MiddleLinkActuatorBarrel",
+        "Legger_Part_R_MiddleLinkActuatorRod",
+        "Legger_Part_R_LowerLinkFrame",
+        "Legger_Part_R_LowerLinkShell",
+        "Legger_Part_R_LowerLinkActuatorBarrel",
+        "Legger_Part_R_LowerLinkActuatorRod",
+        "Legger_Part_R_Foot",
+        "Legger_Part_L_front_fairing",
+        "Legger_Part_L_upper_body_shroud",
+        "Legger_Part_L_tail_shroud",
+        "Legger_Part_R_front_fairing",
+        "Legger_Part_R_upper_body_shroud",
+        "Legger_Part_R_tail_shroud",
+        "Legger_Part_SaddleUpholstery",
+        "Legger_Part_SaddlePan",
+        "Legger_Part_SteeringStem",
+        "Legger_Part_Handlebar",
+        "Legger_Part_L_Grip",
+        "Legger_Part_L_BrakeLever",
+        "Legger_Part_R_Grip",
+        "Legger_Part_R_BrakeLever",
+        "Legger_Part_InstrumentGauge",
+        "Legger_Part_FrontControlPod",
+        "Legger_Part_Cargo_L_Main_Body",
+        "Legger_Part_Cargo_L_Main_Straps",
+        "Legger_Part_Cargo_L_Main_Lid",
+        "Legger_Part_Cargo_L_Aux_Body",
+        "Legger_Part_Cargo_L_Aux_Straps",
+        "Legger_Part_Cargo_L_Aux_Lid",
+        "Legger_Part_Cargo_R_Main_Body",
+        "Legger_Part_Cargo_R_Main_Straps",
+        "Legger_Part_Cargo_R_Main_Lid",
+        "Legger_Part_Cargo_R_Aux_Body",
+        "Legger_Part_Cargo_R_Aux_Straps",
+        "Legger_Part_Cargo_R_Aux_Lid"
+      ]
+    },
+    {
+      "name": "original_half_side.png",
+      "clip_start_m": 0.01,
+      "clip_end_m": 4.0,
+      "note": "Camera-side cross-section; cut surfaces not original structural boundaries."
+    },
+    {
+      "name": "original_center_slab.png",
+      "clip_start_m": 3.82,
+      "clip_end_m": 4.18,
+      "note": "Camera-side cross-section; cut surfaces not original structural boundaries."
+    }
+  ]
+}

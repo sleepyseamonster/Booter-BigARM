@@ -1,0 +1,220 @@
+{
+  "prepared_sha256": "9488a0ae53016394b8660fb6f018556bd4910121a4137a0a76bd9a7eaa4b250d",
+  "cases": [
+    {
+      "key": "Frame",
+      "resolution": 4096,
+      "control_uv_overlap_fraction": 0.0,
+      "control_core_covered_fraction": 0.999998039245482,
+      "evaluated_core_covered_fraction": 1.0,
+      "evaluated_core_texels": 1583253,
+      "control_faces_below_4px_or_eroded_skipped": 431,
+      "evaluated_triangles_below_4px_or_eroded_skipped": 12924,
+      "evaluated_zero_uv_area_triangles": 0,
+      "evaluated_zero_uv_area_surface_fraction": 0.0,
+      "maps": {
+        "BaseColor": {
+          "minimum_rgb": [
+            28,
+            33,
+            31
+          ],
+          "maximum_rgb": [
+            137,
+            144,
+            147
+          ],
+          "mean_rgb": [
+            54.316,
+            59.792,
+            61.495
+          ],
+          "sha256": "432622f7ee2c005a336c40686ecdffbe4f2d5361e60c8df972084fab7c230f15",
+          "empty_inner_texels": 0
+        },
+        "Normal": {
+          "minimum_rgb": [
+            47,
+            2,
+            0
+          ],
+          "maximum_rgb": [
+            192,
+            255,
+            255
+          ],
+          "mean_rgb": [
+            127.954,
+            128.001,
+            254.716
+          ],
+          "sha256": "1bcefe53cb5dda75fd7a0c9448aaf84cad302226aedfa3c5e3ce284297f32d1d",
+          "normalized_fraction_0_97_to_1_03": 0.99925341216981,
+          "negative_tangent_z_fraction": 0.0010517764871093667
+        },
+        "Roughness": {
+          "minimum_rgb": [
+            71,
+            71,
+            71
+          ],
+          "maximum_rgb": [
+            201,
+            201,
+            201
+          ],
+          "mean_rgb": [
+            132.48,
+            132.48,
+            132.48
+          ],
+          "sha256": "592cbf8dd21f769151b76bba133379518bb13c926efb85e99b15a80316e4707a"
+        },
+        "Metallic": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            242,
+            242,
+            242
+          ],
+          "mean_rgb": [
+            158.572,
+            158.572,
+            158.572
+          ],
+          "sha256": "5026e47c8d64849d536a876e128bea8a3e50081e487f33e902d1b4aaa6ce8bac"
+        },
+        "AO": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            255,
+            255,
+            255
+          ],
+          "mean_rgb": [
+            197.703,
+            197.703,
+            197.703
+          ],
+          "sha256": "6a4cdb10f163e5dbef03c2848d8cfa23ab17c0a68c1e32e7a6f38d9dfcec5a7d"
+        }
+      }
+    },
+    {
+      "key": "Drive",
+      "resolution": 4096,
+      "control_uv_overlap_fraction": 0.0,
+      "control_core_covered_fraction": 0.9998683425613704,
+      "evaluated_core_covered_fraction": 1.0,
+      "evaluated_core_texels": 8953255,
+      "control_faces_below_4px_or_eroded_skipped": 0,
+      "evaluated_triangles_below_4px_or_eroded_skipped": 1726,
+      "evaluated_zero_uv_area_triangles": 0,
+      "evaluated_zero_uv_area_surface_fraction": 0.0,
+      "maps": {
+        "BaseColor": {
+          "minimum_rgb": [
+            27,
+            33,
+            34
+          ],
+          "maximum_rgb": [
+            106,
+            117,
+            120
+          ],
+          "mean_rgb": [
+            52.752,
+            58.346,
+            60.35
+          ],
+          "sha256": "085ffc93f22ec1d21b3b5f63871e92a650ec2a11fdbc124db3dcb99171a6d933",
+          "empty_inner_texels": 0
+        },
+        "Normal": {
+          "minimum_rgb": [
+            114,
+            83,
+            247
+          ],
+          "maximum_rgb": [
+            144,
+            165,
+            255
+          ],
+          "mean_rgb": [
+            127.994,
+            127.993,
+            254.999
+          ],
+          "sha256": "ed62ac238f3cfadcdd141193561668cfb9e220a561ed5b3b12362e433ed387f0",
+          "normalized_fraction_0_97_to_1_03": 1.0,
+          "negative_tangent_z_fraction": 0.0
+        },
+        "Roughness": {
+          "minimum_rgb": [
+            91,
+            91,
+            91
+          ],
+          "maximum_rgb": [
+            200,
+            200,
+            200
+          ],
+          "mean_rgb": [
+            126.664,
+            126.664,
+            126.664
+          ],
+          "sha256": "b4f6ec03ea7a2eb513ed7230ab615fb3f9b6eae5161aca9e2903937c4eb056cf"
+        },
+        "Metallic": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            224,
+            224,
+            224
+          ],
+          "mean_rgb": [
+            171.637,
+            171.637,
+            171.637
+          ],
+          "sha256": "f61cab721301f20a1f84d0cfd767cd2d41eb87b72ca1b0af9ab051c521e7698b"
+        },
+        "AO": {
+          "minimum_rgb": [
+            0,
+            0,
+            0
+          ],
+          "maximum_rgb": [
+            255,
+            255,
+            255
+          ],
+          "mean_rgb": [
+            208.539,
+            208.539,
+            208.539
+          ],
+          "sha256": "e7946059b52ed9c5b9f3d9b59e85f63be55d90130fbf283b3ba9b6fb5fe1eff5"
+        }
+      }
+    }
+  ],
+  "limits": "Control and evaluated raster interiors exclude shared-edge aliases using 3x3 erosion; faces below 4 pixels or with no surviving interior are recorded but not certified. Coverage acceptance uses actual evaluated geometry because bevels remove unused control corners. Collapsed UV triangle count and surface fraction are explicit. This is not a proof of every mip level or runtime import."
+}

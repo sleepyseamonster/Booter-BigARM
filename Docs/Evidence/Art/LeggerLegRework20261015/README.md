@@ -1,5 +1,7 @@
 # Legger three-section leg rework
 
+**Subsequent checkpoint:** the [original-led chassis rebuild](../LeggerChassis20261016/README.md) identifies the current native source. It retains all thirty leg meshes, their UVs/materials/world placement and these joint targets while rebuilding Frame/Drive around them. This receipt's hash and whole-model counts describe the earlier leg checkpoint.
+
 October 15–16, 2026; completed October 16. **Applied and reopened successfully in the existing native scene.** Following the [original leg audit](../../../Design/Art/LEGGER_LEG_GEOMETRY_AUDIT.md), the author requested implementation to improve the legs. This pass restores the short upper section, alternating bends, narrower shafts, continuous ivory armor and broad arched feet while keeping a matched left/right rest stance. Creative acceptance remains with the author.
 
 ## Saved source
