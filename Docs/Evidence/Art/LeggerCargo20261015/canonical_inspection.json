@@ -1,0 +1,3661 @@
+{
+  "file_sha256": "9577d2c09ba8993c6789ea3501c2c81121d318bfd3c681b1c4b140c0760fe0aa",
+  "blender_version": "5.2.2 LTS",
+  "all_mesh_objects_in_file": 504,
+  "active_mesh_objects": 343,
+  "cargo_mesh_objects": 140,
+  "active_control_triangles": 24564,
+  "active_evaluated_triangles": 88420,
+  "cargo_control_triangles": 10616,
+  "cargo_evaluated_triangles": 26872,
+  "cargo_boundary_edges": 0,
+  "cargo_non_manifold_edges": 0,
+  "cargo_loose_vertices": 0,
+  "cargo_objects": [
+    {
+      "name": "Legger_L_Aux_case_body",
+      "source_triangles": 300,
+      "evaluated_triangles": 604,
+      "dimensions": [
+        0.145,
+        0.18,
+        0.4
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_buckle_end_0-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.046,
+        0.005
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_buckle_end_01",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.046,
+        0.005
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_buckle_side_0-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.005,
+        0.052
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_buckle_side_01",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.005,
+        0.052
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_buckle_tongue_0",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.007,
+        0.038,
+        0.004
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_h_-1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_h_-11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_h_1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_h_11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_rivet_-1-1",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_rivet_-11",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_rivet_1-1",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_rivet_11",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_v_-1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_v_-11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_v_1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_corner_v_11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_face_border",
+      "source_triangles": 140,
+      "evaluated_triangles": 380,
+      "dimensions": [
+        0.006,
+        0.1548,
+        0.34
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_face_insert",
+      "source_triangles": 124,
+      "evaluated_triangles": 348,
+      "dimensions": [
+        0.006,
+        0.1386,
+        0.3
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_hinge_0.11780000000000002",
+      "source_triangles": 96,
+      "evaluated_triangles": 160,
+      "dimensions": [
+        0.022,
+        0.046,
+        0.022
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_hinge_0.2222",
+      "source_triangles": 96,
+      "evaluated_triangles": 160,
+      "dimensions": [
+        0.022,
+        0.046,
+        0.022
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_leather_loop_0",
+      "source_triangles": 416,
+      "evaluated_triangles": 1248,
+      "dimensions": [
+        0.1666,
+        0.034,
+        0.4786
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "StrapParametric",
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_leather_tail_0",
+      "source_triangles": 12,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.004,
+        0.03,
+        0.088
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_lid_gasket",
+      "source_triangles": 12,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.147,
+        0.182,
+        0.008
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_lid_latch",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.018,
+        0.03,
+        0.048
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_separate_lid",
+      "source_triangles": 76,
+      "evaluated_triangles": 252,
+      "dimensions": [
+        0.157,
+        0.192,
+        0.055
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_strap_stud_0-0.04",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.005464,
+        0.005464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Aux_case_strap_stud_0-0.11",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.005464,
+        0.005464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_body",
+      "source_triangles": 768,
+      "evaluated_triangles": 1216,
+      "dimensions": [
+        0.17,
+        0.41,
+        0.56
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_end_0-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.046,
+        0.005
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_end_01",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.046,
+        0.005
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_end_1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.046,
+        0.005
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_end_11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.046,
+        0.005
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_side_0-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.005,
+        0.052
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_side_01",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.005,
+        0.052
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_side_1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.005,
+        0.052
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_side_11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.005,
+        0.052
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_tongue_0",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.007,
+        0.038,
+        0.004
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_buckle_tongue_1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.007,
+        0.038,
+        0.004
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_corner_h_-1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_corner_h_-11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_corner_h_1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_corner_h_11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_corner_rivet_-1-1",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_corner_rivet_-11",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_corner_rivet_1-1",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_corner_rivet_11",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_corner_v_-1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_corner_v_-11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_corner_v_1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_corner_v_11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_face_border",
+      "source_triangles": 428,
+      "evaluated_triangles": 796,
+      "dimensions": [
+        0.006,
+        0.3526,
+        0.476
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_face_insert",
+      "source_triangles": 316,
+      "evaluated_triangles": 636,
+      "dimensions": [
+        0.006,
+        0.3157,
+        0.42
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_grab_handle",
+      "source_triangles": 156,
+      "evaluated_triangles": 156,
+      "dimensions": [
+        0.016,
+        0.135876,
+        0.042314
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_handle_mount_-0.06",
+      "source_triangles": 12,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.05,
+        0.025,
+        0.02
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_handle_mount_0.06",
+      "source_triangles": 12,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.05,
+        0.025,
+        0.02
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_hinge_0.3811",
+      "source_triangles": 96,
+      "evaluated_triangles": 160,
+      "dimensions": [
+        0.022,
+        0.046,
+        0.022
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_hinge_0.6189",
+      "source_triangles": 96,
+      "evaluated_triangles": 160,
+      "dimensions": [
+        0.022,
+        0.046,
+        0.022
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_leather_loop_0",
+      "source_triangles": 512,
+      "evaluated_triangles": 1536,
+      "dimensions": [
+        0.1916,
+        0.034,
+        0.6536
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "StrapParametric",
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_leather_loop_1",
+      "source_triangles": 512,
+      "evaluated_triangles": 1536,
+      "dimensions": [
+        0.1916,
+        0.034,
+        0.6536
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "StrapParametric",
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_leather_tail_0",
+      "source_triangles": 12,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.004,
+        0.03,
+        0.088
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_leather_tail_1",
+      "source_triangles": 12,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.004,
+        0.03,
+        0.088
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_lid_gasket",
+      "source_triangles": 12,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.172,
+        0.412,
+        0.008
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_lid_latch",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.018,
+        0.03,
+        0.048
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_separate_lid",
+      "source_triangles": 248,
+      "evaluated_triangles": 536,
+      "dimensions": [
+        0.182,
+        0.422,
+        0.07
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_strap_stud_0-0.04",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.005464,
+        0.005464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_strap_stud_0-0.11",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.005464,
+        0.005464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_strap_stud_1-0.04",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.005464,
+        0.005464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_L_Main_case_strap_stud_1-0.11",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.005464,
+        0.005464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_L_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_body",
+      "source_triangles": 300,
+      "evaluated_triangles": 604,
+      "dimensions": [
+        0.145,
+        0.18,
+        0.4
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_buckle_end_0-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.046,
+        0.005
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_buckle_end_01",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.046,
+        0.005
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_buckle_side_0-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.005,
+        0.052
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_buckle_side_01",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.005,
+        0.052
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_buckle_tongue_0",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.007,
+        0.038,
+        0.004
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_h_-1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_h_-11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_h_1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_h_11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_rivet_-1-1",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_rivet_-11",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_rivet_1-1",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_rivet_11",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_v_-1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_v_-11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_v_1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_corner_v_11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_face_border",
+      "source_triangles": 140,
+      "evaluated_triangles": 380,
+      "dimensions": [
+        0.006,
+        0.1548,
+        0.34
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_face_insert",
+      "source_triangles": 124,
+      "evaluated_triangles": 348,
+      "dimensions": [
+        0.006,
+        0.1386,
+        0.3
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_hinge_0.11780000000000002",
+      "source_triangles": 96,
+      "evaluated_triangles": 160,
+      "dimensions": [
+        0.022,
+        0.046,
+        0.022
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_hinge_0.2222",
+      "source_triangles": 96,
+      "evaluated_triangles": 160,
+      "dimensions": [
+        0.022,
+        0.046,
+        0.022
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_leather_loop_0",
+      "source_triangles": 416,
+      "evaluated_triangles": 1248,
+      "dimensions": [
+        0.1666,
+        0.034,
+        0.4786
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "StrapParametric",
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_leather_tail_0",
+      "source_triangles": 12,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.004,
+        0.03,
+        0.088
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_lid_gasket",
+      "source_triangles": 12,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.147,
+        0.182,
+        0.008
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_lid_latch",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.018,
+        0.03,
+        0.048
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_separate_lid",
+      "source_triangles": 76,
+      "evaluated_triangles": 252,
+      "dimensions": [
+        0.157,
+        0.192,
+        0.055
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_strap_stud_0-0.04",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.005464,
+        0.005464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Aux_case_strap_stud_0-0.11",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.005464,
+        0.005464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Aux_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_body",
+      "source_triangles": 768,
+      "evaluated_triangles": 1216,
+      "dimensions": [
+        0.17,
+        0.41,
+        0.56
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_end_0-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.046,
+        0.005
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_end_01",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.046,
+        0.005
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_end_1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.046,
+        0.005
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_end_11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.046,
+        0.005
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_side_0-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.005,
+        0.052
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_side_01",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.005,
+        0.052
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_side_1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.005,
+        0.052
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_side_11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.009,
+        0.005,
+        0.052
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_tongue_0",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.007,
+        0.038,
+        0.004
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_buckle_tongue_1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.007,
+        0.038,
+        0.004
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_corner_h_-1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_corner_h_-11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_corner_h_1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_corner_h_11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.056,
+        0.018
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_corner_rivet_-1-1",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_corner_rivet_-11",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_corner_rivet_1-1",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_corner_rivet_11",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.006464,
+        0.006464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_corner_v_-1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_corner_v_-11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_corner_v_1-1",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_corner_v_11",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.008,
+        0.018,
+        0.064
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_face_border",
+      "source_triangles": 428,
+      "evaluated_triangles": 796,
+      "dimensions": [
+        0.006,
+        0.3526,
+        0.476
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_face_insert",
+      "source_triangles": 316,
+      "evaluated_triangles": 636,
+      "dimensions": [
+        0.006,
+        0.3157,
+        0.42
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_grab_handle",
+      "source_triangles": 156,
+      "evaluated_triangles": 156,
+      "dimensions": [
+        0.016,
+        0.135876,
+        0.042314
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_handle_mount_-0.06",
+      "source_triangles": 12,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.05,
+        0.025,
+        0.02
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_handle_mount_0.06",
+      "source_triangles": 12,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.05,
+        0.025,
+        0.02
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_hinge_0.3811",
+      "source_triangles": 96,
+      "evaluated_triangles": 160,
+      "dimensions": [
+        0.022,
+        0.046,
+        0.022
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_hinge_0.6189",
+      "source_triangles": 96,
+      "evaluated_triangles": 160,
+      "dimensions": [
+        0.022,
+        0.046,
+        0.022
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_leather_loop_0",
+      "source_triangles": 512,
+      "evaluated_triangles": 1536,
+      "dimensions": [
+        0.1916,
+        0.034,
+        0.6536
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "StrapParametric",
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_leather_loop_1",
+      "source_triangles": 512,
+      "evaluated_triangles": 1536,
+      "dimensions": [
+        0.1916,
+        0.034,
+        0.6536
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "StrapParametric",
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_leather_tail_0",
+      "source_triangles": 12,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.004,
+        0.03,
+        0.088
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_leather_tail_1",
+      "source_triangles": 12,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.004,
+        0.03,
+        0.088
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_lid_gasket",
+      "source_triangles": 12,
+      "evaluated_triangles": 108,
+      "dimensions": [
+        0.172,
+        0.412,
+        0.008
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_lid_latch",
+      "source_triangles": 12,
+      "evaluated_triangles": 44,
+      "dimensions": [
+        0.018,
+        0.03,
+        0.048
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_separate_lid",
+      "source_triangles": 248,
+      "evaluated_triangles": 536,
+      "dimensions": [
+        0.182,
+        0.422,
+        0.07
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_strap_stud_0-0.04",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.005464,
+        0.005464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_strap_stud_0-0.11",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.005464,
+        0.005464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_strap_stud_1-0.04",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.005464,
+        0.005464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    },
+    {
+      "name": "Legger_R_Main_case_strap_stud_1-0.11",
+      "source_triangles": 32,
+      "evaluated_triangles": 96,
+      "dimensions": [
+        0.006,
+        0.005464,
+        0.005464
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "uv_layers": [
+        "Legger_Cargo_R_Main_UV"
+      ],
+      "material_slots": 1,
+      "modifiers": [
+        "BEVEL",
+        "WEIGHTED_NORMAL"
+      ],
+      "boundary_edges": 0,
+      "non_manifold_edges": 0,
+      "loose_vertices": 0
+    }
+  ],
+  "scope": "Only the 343 rebuilt visible meshes are active totals; hidden original/generated and procedural cargo references excluded."
+}

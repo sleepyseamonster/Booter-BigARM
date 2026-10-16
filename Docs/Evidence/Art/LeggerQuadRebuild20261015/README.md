@@ -1,5 +1,7 @@
 # Legger clean quad rebuild
 
+Current continuation: the [separate cargo case receipt](../LeggerCargo20261015/README.md) records independently editable case assemblies, regular body/strap quads and dedicated packed PBR atlases in the same file. The visible asset now has 12,282 control quads and 88,420 evaluated triangles; the construction counts and material-bake deferral below describe this earlier checkpoint.
+
 October 15, 2026. Owner: Blender under Gottspan coordination. The author requested rigid-looking cargo cases with leather straps and better chassis/frame geometry, authorizing a rebuild from scratch. The author clarified that “polished” means mesh quality rather than a glossy finish, requested clean quads where practical, and explicitly retained the ivory/dark-metal/brown-leather palette with restrained wear.
 
 ## Current source and scope

@@ -1,0 +1,239 @@
+{
+  "file_sha256": "9577d2c09ba8993c6789ea3501c2c81121d318bfd3c681b1c4b140c0760fe0aa",
+  "materials": [
+    {
+      "key": "L_Main",
+      "material": "Legger_Cargo_L_Main_Baked_PBR",
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_Cargo_L_Main_BaseColor",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "color_space": "sRGB",
+          "packed": true,
+          "sha256": "d5c5e5347313929cbd4d6bc1ab704ccb463817d6ca6c6d4741ce168d7643343a"
+        },
+        "Normal": {
+          "name": "Legger_Cargo_L_Main_Normal",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "83e723f45dc0f4c34ca27960e58ae62ef20282c3fe1aa0192e9928187f2d68ea"
+        },
+        "Roughness": {
+          "name": "Legger_Cargo_L_Main_Roughness",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "fe741d16827607f2727f859741f928f61aba8a02d502bdea2f8bb08d3c0717e1"
+        },
+        "Metallic": {
+          "name": "Legger_Cargo_L_Main_Metallic",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "c31c1bf5cccc086d31c94b1d1b68e5f11b93ba27a4706eba878752a476277a94"
+        },
+        "AO": {
+          "name": "Legger_Cargo_L_Main_AO",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "fdcc34e188fd58469e35dec9de47b78dc3f25e7a32011a8494dd0e63e2b0ba31"
+        }
+      }
+    },
+    {
+      "key": "L_Aux",
+      "material": "Legger_Cargo_L_Aux_Baked_PBR",
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_Cargo_L_Aux_BaseColor",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "color_space": "sRGB",
+          "packed": true,
+          "sha256": "16881c8e41c81363c971f2723dba95bfb2c8f4c86468799356405491d122b867"
+        },
+        "Normal": {
+          "name": "Legger_Cargo_L_Aux_Normal",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "f64ea8367268714153955abbd38275d3353ce32c6822206874b48261e1ca185c"
+        },
+        "Roughness": {
+          "name": "Legger_Cargo_L_Aux_Roughness",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "4fd19be84290fb4433efffb45271c7f1ef7aecddd8075a32c6db9f926cb37e6b"
+        },
+        "Metallic": {
+          "name": "Legger_Cargo_L_Aux_Metallic",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "d60b77c2f66725977ce33826a536f9d71f5549925e8e547f58c450b8222104f5"
+        },
+        "AO": {
+          "name": "Legger_Cargo_L_Aux_AO",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "3b333f6c1fe86bff7a8f83a38d9dc09efea593441206c570d98c8aba10277957"
+        }
+      }
+    },
+    {
+      "key": "R_Main",
+      "material": "Legger_Cargo_R_Main_Baked_PBR",
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_Cargo_R_Main_BaseColor",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "color_space": "sRGB",
+          "packed": true,
+          "sha256": "76920e94abfde30c2e202ad648066d500d880c9c657262b352ec9113c057dc66"
+        },
+        "Normal": {
+          "name": "Legger_Cargo_R_Main_Normal",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "d9ecaee7f49775d9eb44eb38101b2196f363be0499dbbb16ddda3d6b95dfd90c"
+        },
+        "Roughness": {
+          "name": "Legger_Cargo_R_Main_Roughness",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "2ea29ec970987b94de2c7609ecad204dec6cf8670c81688ba1910653b971903e"
+        },
+        "Metallic": {
+          "name": "Legger_Cargo_R_Main_Metallic",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "413d36cc07a011a326db3bb3569742d08a5d5985dd6c1fef4cba75fc598f6b55"
+        },
+        "AO": {
+          "name": "Legger_Cargo_R_Main_AO",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "a962f60961635561384546c2f554538982121e47467612e844596c27d68d137d"
+        }
+      }
+    },
+    {
+      "key": "R_Aux",
+      "material": "Legger_Cargo_R_Aux_Baked_PBR",
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_Cargo_R_Aux_BaseColor",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "color_space": "sRGB",
+          "packed": true,
+          "sha256": "c8a4306cb37a54599e6e781d2f354312cd9fbfa8c14e37ee540905d8e0d80f45"
+        },
+        "Normal": {
+          "name": "Legger_Cargo_R_Aux_Normal",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "7fc0454ce73d8d9a7d99111efa055fe36d94acf9588aaf5dbc006d0da4135739"
+        },
+        "Roughness": {
+          "name": "Legger_Cargo_R_Aux_Roughness",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "3184a49ea03dff72413f48b40297717d9d5708f95c41d4617baafa751044eb90"
+        },
+        "Metallic": {
+          "name": "Legger_Cargo_R_Aux_Metallic",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "5b0457b7e717d364c65974a8a09e7ea298516828f511e0fac5174fec0dc4b400"
+        },
+        "AO": {
+          "name": "Legger_Cargo_R_Aux_AO",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "color_space": "Non-Color",
+          "packed": true,
+          "sha256": "8876361c3b549b274558838c6af5d2f019768fe7ba834ea32e8f9aedba44a559"
+        }
+      }
+    }
+  ],
+  "cargo_source_reference_objects": 140,
+  "working_scripts_sha256": {
+    "prepare.py": "8ab3f3843171a64f51da06030d64e59987dc3e0cd8784217fb922ece76e9a2df",
+    "bake.py": "5dc37f06de98b96751d9408061edacce3171d3aa7cf3cc77b2dbdfecb4973cd2",
+    "finalize.py": "da488f41f3afc88bbc0d10eac11028f36308a7dc405c308fda5b06016b566f13",
+    "qa.py": "8ec6899266bd466b4f7021f74935a9897eb1301b00a0f6f3b881a26b222692f5",
+    "texture_qa.py": "05672772c87e4427f8237ae725acbca041181138d9b9e9308cd3dcab7ad0541b",
+    "review.py": "61588dca9978b1eaacff27b273f6feb11eb564a6fb4f5294809ee573f3950563",
+    "apply_candidate.py": "dbaabb09865515ab95568f5119b2abb47452d1c3bd30e3bc739a772b8d93e9e4"
+  }
+}

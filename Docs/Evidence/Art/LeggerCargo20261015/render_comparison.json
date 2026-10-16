@@ -1,0 +1,20 @@
+{
+  "candidate_sha256": "9577d2c09ba8993c6789ea3501c2c81121d318bfd3c681b1c4b140c0760fe0aa",
+  "procedural_vs_baked_main_case": {
+    "mean_absolute_8bit_rgb": 0.5123752317777023,
+    "p99_absolute_8bit_channel": 2.0,
+    "maximum_absolute_8bit_channel": 29,
+    "silhouette_alpha_max_difference": 0,
+    "limit": "Same geometry and fixed lighting; this measures bake reproduction, not fidelity to the old generated mesh."
+  },
+  "native_saved_file_reproduction": {
+    "maximum_absolute_8bit_channel": 1,
+    "mean_absolute_8bit_channel": 2.0535714285714285e-05,
+    "shape": [
+      1400,
+      1600,
+      4
+    ],
+    "saved_source_sha256": "9577d2c09ba8993c6789ea3501c2c81121d318bfd3c681b1c4b140c0760fe0aa"
+  }
+}
