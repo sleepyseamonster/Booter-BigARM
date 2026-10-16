@@ -62,8 +62,8 @@ function renderItems(){
   if(!items.some(item=>id(item)===state.selected))state.selected=items.length?id(items[0]):null;
   $('#items').classList.toggle('list',state.list);
   $('#items').innerHTML=items.length?items.map(item=>{
-    const key=id(item),art=recordFor(key),kept=(state.protectedIds||[]).includes(key);
-    return `<article class="item-card ${state.selected===key?'selected':''} ${kept?'kept':''}"><button class="item-select" data-id="${esc(key)}" aria-label="Inspect ${esc(name(item))}" aria-pressed="${state.selected===key}"><div class="art">${imageFor(item)}<span class="art-badge">${tierLabel(item)}</span>${art.status!=='missing'||art.image?'<span class="art-status"></span>':''}${!art.image?'<span class="placeholder-tag">PLACEHOLDER</span>':''}</div><div class="card-copy"><strong>${esc(name(item))}</strong><small>${esc(item.Subtype||item.Category)}</small></div></button><div class="item-controls"><button class="keep-item ${kept?'checked':''}" data-action="protect" data-item="${esc(key)}" aria-label="${kept?'Unkeep':'Keep'} ${esc(name(item))}" aria-pressed="${kept}" title="${kept?'Kept · click to allow deletion':'Keep this item · prevent deletion'}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/>${kept?'<path d="m7 12 3.5 3.5 6.5-7"/>':''}</svg></button>${!kept?`<button class="delete-item" data-action="delete" data-item="${esc(key)}" aria-label="Delete ${esc(name(item))} from spreadsheet" title="Permanently delete from spreadsheet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7"/></svg></button>`:''}</div></article>`;
+    const key=id(item),art=recordFor(key),kept=(state.protectedIds||[]).includes(key),reviewed=(state.reviewIds||[]).includes(key);
+    return `<article class="item-card ${state.selected===key?'selected':''} ${kept?'kept':''} ${reviewed?'needs-review':''}"><button class="item-select" data-id="${esc(key)}" aria-label="Inspect ${esc(name(item))}" aria-pressed="${state.selected===key}"><div class="art">${imageFor(item)}<span class="art-badge">${tierLabel(item)}</span>${art.status!=='missing'||art.image?'<span class="art-status"></span>':''}${!art.image?'<span class="placeholder-tag">PLACEHOLDER</span>':''}</div><div class="card-copy"><strong>${esc(name(item))}</strong><small>${esc(item.Subtype||item.Category)}</small></div></button><div class="item-controls"><button class="review-item ${reviewed?'checked':''}" data-action="review" data-item="${esc(key)}" aria-label="${reviewed?'Unmark review for':'Mark for review:'} ${esc(name(item))}" aria-pressed="${reviewed}" title="${reviewed?'Marked for review · click to clear':'Mark this item for review'}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/>${reviewed?'<path d="m7 12 3.5 3.5 6.5-7"/>':''}</svg></button>${!reviewed?`<button class="keep-item ${kept?'checked':''}" data-action="protect" data-item="${esc(key)}" aria-label="${kept?'Unkeep':'Keep'} ${esc(name(item))}" aria-pressed="${kept}" title="${kept?'Kept · click to allow deletion':'Keep this item · prevent deletion'}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/>${kept?'<path d="m7 12 3.5 3.5 6.5-7"/>':''}</svg></button>`:''}${!kept?`<button class="delete-item" data-action="delete" data-item="${esc(key)}" aria-label="Delete ${esc(name(item))} from spreadsheet" title="Permanently delete from spreadsheet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7"/></svg></button>`:''}</div></article>`;
   }).join(''):'<div class="empty">No items match these filters.<br><br>Try another category or reset the filters.</div>';
   renderDetail();
 }
@@ -173,18 +173,20 @@ function syncStatus(message){$('#sync-status').textContent=message;}
 let syncBusy=false;
 async function reviewAction(action,key){
   if(syncBusy){toast('Spreadsheet action in progress · try again in a moment');return;}
-  const kept=(state.protectedIds||[]).includes(key);
+  const kept=(state.protectedIds||[]).includes(key),reviewed=(state.reviewIds||[]).includes(key);
   if(action==='delete'&&kept){toast('This item is kept. Uncheck it before deleting.');return;}
   syncBusy=true;
   try{
     const draft=$('#art-notes');
     if(draft&&state.selected&&draft.value!==(recordFor(state.selected).notes||''))await updateArt(state.selected,{notes:draft.value});
-    const response=await fetch(`/api/items/${action}`,{method:'POST',headers:{'Content-Type':'application/json','X-Inventory-Token':state.mutationToken||''},body:JSON.stringify({itemId:key,sourceHash:state.sourceHash,protected:!kept})});
+    const response=await fetch(`/api/items/${action}`,{method:'POST',headers:{'Content-Type':'application/json','X-Inventory-Token':state.mutationToken||''},body:JSON.stringify({itemId:key,sourceHash:state.sourceHash,protected:!kept,reviewed:!reviewed})});
     const result=await response.json();
     if(!response.ok)throw new Error(result.error||'Item could not be changed.');
-    state.protectedIds=result.protectedIds;state.reviewRevision=result.reviewRevision;
-    if(action==='protect'){
-      renderItems();toast(!kept?'Item kept · deletion disabled':'Keep removed · deletion allowed');
+    state.protectedIds=result.protectedIds;state.reviewIds=result.reviewIds||[];state.reviewRevision=result.reviewRevision;
+    if(action==='protect'||action==='review'){
+      renderItems();
+      [...document.querySelectorAll('#items [data-action]')].find(button=>button.dataset.action===action&&button.dataset.item===key)?.focus({preventScroll:true});
+      toast(action==='review'?(!reviewed?'Item marked for review':'Review mark cleared'):(!kept?'Item kept · deletion disabled':'Keep removed · deletion allowed'));
     }else{
       // A successful server response is required before the item disappears.
       if(database){try{await new Promise((resolve,reject)=>{const tx=database.transaction('art','readwrite');tx.objectStore('art').delete(key);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}catch{/* A local artwork cleanup failure cannot undo a committed workbook deletion. */}delete state.art[key];}
@@ -218,7 +220,7 @@ async function refreshCatalog(){
   const focusItem=focus?.dataset.id,focusCategory=focus?.dataset.category;
   const gridScroll=$('#items').scrollTop,detailScroll=$('#detail').scrollTop;
   const openDetails=[...document.querySelectorAll('#detail details[open]')].map(el=>el.querySelector('summary').textContent);
-  state.items=data.items;state.sourceHash=data.sha256;state.protectedIds=data.protectedIds||[];state.reviewRevision=data.reviewRevision;state.mutationToken=data.mutationToken;$('#total').textContent=state.items.length;
+  state.items=data.items;state.sourceHash=data.sha256;state.protectedIds=data.protectedIds||[];state.reviewIds=data.reviewIds||[];state.reviewRevision=data.reviewRevision;state.mutationToken=data.mutationToken;$('#total').textContent=state.items.length;
   for(const [selector,key,label]of [['#tier','Tier','All tiers'],['#design','Design status','All statuses']]){
     const selected=$(selector).value;
     const values=[...new Set(state.items.map(item=>item[key]).filter(Boolean))].sort();

@@ -30,10 +30,14 @@ def digest(data):
 
 def review_state(path):
     if not path.exists():
-        return {"version": 1, "protectedIds": []}
+        return {"version": 1, "protectedIds": [], "reviewIds": []}
     data = json.loads(path.read_text(encoding="utf-8"))
     if data.get("version") != 1 or not isinstance(data.get("protectedIds"), list):
         raise EditError("Item protection file is invalid; no changes were made.")
+    data.setdefault("reviewIds", [])
+    if any(not isinstance(data[key], list) or any(not isinstance(item, str) for item in data[key])
+           for key in ("protectedIds", "reviewIds")):
+        raise EditError("Item review file is invalid; no changes were made.")
     return data
 
 
@@ -176,22 +180,34 @@ def blank_cell(match):
     return "<" + opening.group(1) + attributes.rstrip("/") + "/>"
 
 
-def mutate(workbook_path, state_path, backup_dir, action, item_id, expected_hash, protected=None):
+def mutate(workbook_path, state_path, backup_dir, action, item_id, expected_hash, protected=None, reviewed=None):
+    if action not in {"protect", "review", "delete"}:
+        raise EditError("Unknown item action.", 400)
     with LOCK:
         snapshot = workbook_path.read_bytes()
         if digest(snapshot) != expected_hash:
             raise EditError("Spreadsheet changed. Reload it before changing this item.")
         data = review_state(state_path)
         kept = set(data["protectedIds"])
+        flagged = set(data["reviewIds"])
         if not any(row[0] == item_id for _, row in master_items(parse_sheets(snapshot))):
             raise EditError("This item is no longer in the spreadsheet.", 404)
-        if action == "protect":
-            if not isinstance(protected, bool):
-                raise EditError("Keep state must be true or false.", 400)
-            kept.add(item_id) if protected else kept.discard(item_id)
+        if action in {"protect", "review"}:
+            value = protected if action == "protect" else reviewed
+            if not isinstance(value, bool):
+                raise EditError("Keep/review state must be true or false.", 400)
+            if action == "protect":
+                if value and item_id in flagged:
+                    raise EditError("Unmark this item for review before keeping it.")
+                kept.add(item_id) if value else kept.discard(item_id)
+            else:
+                flagged.add(item_id) if value else flagged.discard(item_id)
+                if value:
+                    kept.discard(item_id)
             data["protectedIds"] = sorted(kept)
+            data["reviewIds"] = sorted(flagged)
             atomic_write(state_path, (json.dumps(data, indent=2) + "\n").encode("utf-8"))
-            return {"protectedIds": data["protectedIds"]}
+            return {"protectedIds": data["protectedIds"], "reviewIds": data["reviewIds"]}
         if item_id in kept:
             raise EditError("This item is kept. Uncheck its green circle before deleting it.")
         updated, receipt = build_deletion(snapshot, item_id)

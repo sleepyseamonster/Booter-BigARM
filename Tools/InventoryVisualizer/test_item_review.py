@@ -76,6 +76,30 @@ class ItemReviewTests(unittest.TestCase):
                     if not member.startswith("xl/worksheets/") and member != "xl/workbook.xml":
                         self.assertEqual(before.read(member), after.read(member), member)
 
+    def test_review_persists_and_replaces_keep_without_editing_workbook(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            path, review, backups = root / "book.xlsx", root / "review.json", root / "backups"
+            self.fixture(path)
+            original = path.read_bytes()
+            sha = edits.digest(original)
+            # Older state files remain readable and retain their keep choices.
+            review.write_text(json.dumps({"version": 1, "protectedIds": ["test.remove"]}))
+            self.assertEqual(edits.review_state(review)["reviewIds"], [])
+            result = edits.mutate(path, review, backups, "review", "test.remove", sha, reviewed=True)
+            self.assertEqual(result, {"protectedIds": [], "reviewIds": ["test.remove"]})
+            self.assertEqual(edits.review_state(review)["reviewIds"], ["test.remove"])
+            with self.assertRaisesRegex(edits.EditError, "Unmark"):
+                edits.mutate(path, review, backups, "protect", "test.remove", sha, True)
+            with self.assertRaises(edits.EditError):
+                edits.mutate(path, review, backups, "review", "test.remove", sha, reviewed="yes")
+            with self.assertRaises(edits.EditError):
+                edits.mutate(path, review, backups, "review", "test.retain", "stale", reviewed=True)
+            edits.mutate(path, review, backups, "review", "test.remove", sha, reviewed=False)
+            self.assertEqual(edits.review_state(review)["reviewIds"], [])
+            self.assertEqual(edits.review_state(review)["protectedIds"], [])
+            self.assertEqual(path.read_bytes(), original)
+
     def test_current_master_format_in_memory_only(self):
         # Includes shared strings, namespaced XML, cached formula links and tables.
         original = server.WORKBOOK.read_bytes()
@@ -119,6 +143,13 @@ class ItemReviewTests(unittest.TestCase):
                 self.assertEqual(post("protect", protected=True)[0], 200)
                 self.assertEqual(post("delete")[0], 409)
                 self.assertEqual(post("protect", protected=False)[0], 200)
+                status, result = post("review", reviewed=True)
+                self.assertEqual(status, 200)
+                self.assertEqual(result["reviewIds"], ["test.remove"])
+                with urlopen(base + "/api/catalog") as response:
+                    self.assertEqual(json.load(response)["reviewIds"], ["test.remove"])
+                self.assertEqual(post("protect", protected=True)[0], 409)
+                self.assertEqual(post("review", reviewed=False)[1]["reviewIds"], [])
                 self.assertEqual(post("delete", sourceHash="outdated")[0], 409)
                 self.assertEqual(post("delete")[0], 200)
                 self.assertEqual(len(edits.master_items(edits.parse_sheets(server.WORKBOOK.read_bytes()))), 1)

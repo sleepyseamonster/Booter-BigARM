@@ -24,6 +24,7 @@ TOKEN = secrets.token_urlsafe(32)
 def review_metadata():
     state = workbook_edits.review_state(REVIEW)
     return {"protectedIds": state["protectedIds"],
+            "reviewIds": state["reviewIds"],
             "reviewRevision": hashlib.sha256(json.dumps(state, sort_keys=True).encode()).hexdigest(),
             "mutationToken": TOKEN}
 
@@ -65,7 +66,7 @@ class Handler(SimpleHTTPRequestHandler):
             self.json_response(403, {"error": "Reload this local page before changing items."})
             return
         path = urlsplit(self.path).path
-        if path not in {"/api/items/protect", "/api/items/delete"}:
+        if path not in {"/api/items/protect", "/api/items/review", "/api/items/delete"}:
             self.json_response(404, {"error": "Unknown action"})
             return
         try:
@@ -76,7 +77,7 @@ class Handler(SimpleHTTPRequestHandler):
             if not isinstance(body.get("itemId"), str) or not isinstance(body.get("sourceHash"), str):
                 raise workbook_edits.EditError("Item ID and spreadsheet revision are required.", 400)
             result = workbook_edits.mutate(WORKBOOK, REVIEW, BACKUPS, path.rsplit("/", 1)[1],
-                                           body["itemId"], body["sourceHash"], body.get("protected"))
+                                           body["itemId"], body["sourceHash"], body.get("protected"), body.get("reviewed"))
             self.json_response(200, {**result, **review_metadata()})
         except workbook_edits.EditError as error:
             self.json_response(error.status, {"error": str(error)})
