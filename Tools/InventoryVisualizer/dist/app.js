@@ -28,6 +28,7 @@ function glyph(item){
   if(/container|consum|cooking ingredients|processing|atmospheric/i.test(category))shape='<path d="M35 30h31l8 14v34Q50 89 27 78V44Z" fill="currentColor" opacity=".25"/><path d="M35 30h31l8 14v34Q50 89 27 78V44Zm-8 14q24 13 47 0M35 30V20h31v10M38 59v14m6-16v18m16-18v18"/>';
   if(/equipment|supplies|armor|clothing/i.test(category))shape='<path d="m34 22 16 8 17-8 17 18-13 14-6-7v36H36V47l-7 7-13-14Z" fill="currentColor" opacity=".25"/><path d="m34 22 16 8 17-8 17 18-13 14-6-7v36H36V47l-7 7-13-14Zm16 8v53m-14-23h29"/>';
   if(category==='Tools')shape='<path d="m29 74 35-40 8 7-35 41Z" fill="currentColor" opacity=".3"/><path d="m29 74 35-40 8 7-35 41Zm18-48 12-12 27 24-12 12Z"/>';
+  if(category==='Crafting stations')shape='<path d="M23 82V39l13-17h28l13 17v43Z" fill="currentColor" opacity=".25"/><path d="M23 82V39l13-17h28l13 17v43Zm0-43h54M36 82V62a14 14 0 0 1 28 0v20M31 22h38M40 22V12h20v10M19 82h62"/>';
   if(category==='Accessories')shape='<path d="M28 35h44l5 46H23Z" fill="currentColor" opacity=".25"/><path d="M28 35h44l5 46H23Zm10 0V24q12-12 24 0v11M26 48h48M42 48v12h16V48"/>';
   if(/weapon/i.test(category))shape='<path d="m29 70 40-42 12-8-6 16-36 43Z" fill="currentColor" opacity=".3"/><path d="m29 70 40-42 12-8-6 16-36 43m-16-19 24 24m-14-10-13 14m-5-4 11 11"/>';
   return `<svg viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">${shape}</svg>`;

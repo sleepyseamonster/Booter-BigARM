@@ -3,14 +3,15 @@
   "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
   "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
   "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
-  "sourceHashAfter": "106e9aa6133379df609254844a60afd2cb3f9c5a67ce917188862df97aefe6b3",
+  "sourceHashAfter": "608994e360a6058e996e127a648ddc2ce655fa6e09c450a41db86e6a5961d1b9",
   "counts": {
     "Accessories": 7,
     "Clothing": 8,
-    "Tools": 52,
+    "Tools": 50,
     "Armor": 36,
     "Attachments": 16,
     "Workshop upgrades": 1,
+    "Crafting stations": 2,
     "Legger armor": 7
   },
   "items": [
@@ -263,8 +264,8 @@
     {
       "id": "proposal.fire.firebox",
       "name": "Managed cooking firebox",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Crafting stations",
+      "reason": "Complete managed cooking heat source, rather than a vessel or handling tool."
     },
     {
       "id": "proposal.fire.glow_holder",
@@ -545,8 +546,8 @@
     {
       "id": "proposal.forging.hearth",
       "name": "Forge hearth",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Crafting stations",
+      "reason": "Complete workshop heat source for metal forging."
     },
     {
       "id": "author.city_transport.carriage",
@@ -817,6 +818,17 @@
       ],
       "sourceHashBefore": "27f2ffa4bfe5ab4baebc6f741bace32e8a76a647413c74eee121b3c1b9cc167d",
       "sourceHashAfter": "106e9aa6133379df609254844a60afd2cb3f9c5a67ce917188862df97aefe6b3"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Separate complete crafting facilities from reusable tools.",
+      "movedIds": [
+        "proposal.forging.hearth",
+        "proposal.audit.controlled_heating_firing_kiln",
+        "proposal.fire.firebox"
+      ],
+      "sourceHashBefore": "fe5a39261b9e77ec866e23ce66ebae28a5bb5fe15d6b069cdbe152b8de091461",
+      "sourceHashAfter": "608994e360a6058e996e127a648ddc2ce655fa6e09c450a41db86e6a5961d1b9"
     }
   ]
 }
