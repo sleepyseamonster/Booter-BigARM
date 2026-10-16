@@ -87,11 +87,13 @@ Author direction recorded October 14, 2026:
 
 ### Material Refinement Tiers
 
-Author direction recorded October 14, 2026:
+Author direction clarified October 15, 2026, superseding the earlier material-only classification:
 
-- Raw crafting inputs are Tier 0. Refining or manufacturing raw inputs produces Tier 1 materials; further material transformations progress from Tier 1 to Tier 2, Tier 2 to Tier 3, and Tier 3 to Tier 4.
-- Finished items can be crafted directly from raw inputs or from materials at any of these tiers. A product does not need a four-tier crafting chain.
-- The [master item database](./Design/Items/MASTER_ITEM_DATABASE.xlsx) separates material tier from item rarity, quality and finished-product classification. Its specific tier assignments, candidate refinement routes and regional demand/fashion ideas remain brainstorming proposals; they do not establish recipes, prices, national customs or present-day ancient-material manufacture.
+- Tier 0 covers items as found, gathered, harvested or recovered from the world. A complex recovered mechanism can be T0 while its condition is unknown; finding it does not make it ready to use in crafting.
+- Tier 1 covers the first craft-ready form after the necessary selection, processing, refining, inspection or repair. An ancient part can reach this readiness stage only if a compatible original survives and can be qualified; this does not establish the ability to reproduce or repair its internal technology.
+- Tier 2 products use T1 inputs and can also use T0 inputs. Tier 3 products use T1/T2 inputs; Tier 4 products use T2/T3 inputs. Lower-tier supporting materials can accompany the required stage. Finished gear, materials and components all receive numeric planning tiers; rarity, original technological complexity, quality and item type remain separate classifications.
+- Products can finish at an earlier tier without a forced four-tier chain. As-found and qualified forms need distinct condition records when their crafting eligibility differs. Refilling, charging or packing existing items must preserve their physical identity and cannot create extra holders, contents or energy.
+- The working [master item database in Google Sheets](https://docs.google.com/spreadsheets/d/18Fw8qhdgbb-w_Y4L3iPn2NW7ag6nKWyE-AVYZ45ck5o/edit) records current tier assignments, source conditions and candidate routes. The [local workbook](./Design/Items/MASTER_ITEM_DATABASE.xlsx) is a separate retained artifact; synchronization must be deliberate. Grouping several preparation operations within a readiness stage, particular assignments, recipes and regional demand/fashion ideas remain design proposals. A numeric planning tier does not resolve a withheld biological premise, source uncertainty, operating performance or present-day ancient-material manufacture.
 
 ### Material Mark Currencies
 
