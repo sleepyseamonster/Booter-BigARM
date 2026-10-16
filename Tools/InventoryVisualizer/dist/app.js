@@ -100,6 +100,7 @@ function setView(view){
   if(!['menu','inventory','art','game'].includes(view))view='menu';state.view=view;
   $('#menu').hidden=view!=='menu';$('#workspace').hidden=view==='menu'||view==='game';
   $('#game-study').hidden=view!=='game';
+  document.body.classList.toggle('game-host',view==='game');
   if(view==='game'){const frame=$('#game-study iframe');if(!frame.getAttribute('src'))frame.src=frame.dataset.src;}
   document.querySelectorAll('nav [data-view]').forEach(button=>{button.classList.toggle('active',button.dataset.view===view);button.setAttribute('aria-current',button.dataset.view===view?'page':'false');});
   $('#view-title').textContent=view==='art'?'Artwork studio':'Inventory';

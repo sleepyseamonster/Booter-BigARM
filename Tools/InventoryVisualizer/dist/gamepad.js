@@ -7,7 +7,7 @@ export function startInventoryGamepad(){
   const scope=()=>document.querySelector('dialog[open]')||document.querySelector('.shell');
   const visible=el=>el.getClientRects().length>0&&!el.closest('[hidden]')&&getComputedStyle(el).visibility!=='hidden';
   const candidates=()=>[...scope().querySelectorAll(controls)].filter(visible);
-  const key=el=>el?.id?`#${CSS.escape(el.id)}`:['entry','owner','page','recipe','action','transfer','menu','near','project','radial','setting','reference','craftLink','remove','mapMarker','mapZoom'].map(k=>el?.dataset[k]!==undefined?`[data-${k.replace(/[A-Z]/g,c=>'-'+c.toLowerCase())}="${CSS.escape(el.dataset[k])}"]`:null).find(Boolean);
+  const key=el=>el?.id?`#${CSS.escape(el.id)}`:['entry','owner','page','recipe','action','transfer','menu','near','project','radial','setting','reference','craftLink','remove','mapMarker','mapZoom','turn'].map(k=>el?.dataset[k]!==undefined?`[data-${k.replace(/[A-Z]/g,c=>'-'+c.toLowerCase())}="${CSS.escape(el.dataset[k])}"]`:null).find(Boolean);
   function reveal(el){
     el.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
     const modal=document.querySelector('dialog[open]');

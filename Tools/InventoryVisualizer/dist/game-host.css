@@ -1,0 +1,11 @@
+/* Only the game prototype receives the compact host chrome. */
+body.game-host{overflow:hidden}
+body.game-host:before{display:none}
+.game-host>.app>header{height:40px;padding:0 18px;gap:20px;background:#0c1118}
+.game-host>.app>header .brand-mark,.game-host>.app>header .brand small,.game-host>.app>header>#appearance{display:none}
+.game-host>.app>header .brand{font:600 10px Segoe UI,sans-serif;letter-spacing:.16em}
+.game-host>.app>header nav{gap:24px}
+.game-host>.app>header nav button{font-size:11px;padding:12px 0}
+.game-host>.app>footer{display:none}
+.game-host #game-study iframe{height:calc(100dvh - 40px)!important;min-height:0!important}
+@media(max-width:600px){.game-host>.app>header{flex-wrap:nowrap;height:40px;padding:0 10px;gap:12px}.game-host>.app>header .brand{display:none}.game-host>.app>header nav{order:0;gap:20px;width:auto;justify-content:flex-start;white-space:nowrap}}

@@ -2,7 +2,21 @@
 
 Open **Game inventory** in the visualizer's top navigation, or visit `http://127.0.0.1:8087/#game`. The existing launcher and server serve the new files without a restart. `game.html` also works as a standalone study.
 
-This tab is separate from the catalogue/review/artwork workspace. Its iframe, JavaScript module, model and stylesheet are independent; the shared entry points only add navigation and lazy loading. It reads `/api/catalog` and never calls a mutation endpoint. No master item, review choice, artwork record, Unity asset or gameplay save is edited.
+This tab is separate from the catalogue/review/artwork workspace. Its iframe, JavaScript module, model and stylesheet are independent; the shared entry points integrate navigation, lazy loading and scoped host chrome. It reads `/api/catalog` and never calls a mutation endpoint. No master item, review choice, artwork record, Unity asset or gameplay save is edited.
+
+## Compact inventory iteration — October 15, 2026
+
+The author's supplied ARC Raiders and Starfield screenshots set the hierarchy: compact fixed gear slots and visible items first, a standing character viewer second. No reference-game artwork is copied into this tool. The new compact stylesheet removes the oversized headings, serif treatment, verbose inventory explanations and large generic cards. Six named Booter equipment slots and four supply pockets appear together, with original SVG item silhouettes and a concise inspector. Legger cargo and the camp chest show finite grids of 12 and 24 spaces. The reference library uses a dense icon grid. Prototype settings retain the explanatory/developer controls.
+
+The host navigation compacts only while Game inventory is active, removes the duplicate outer footer, and gives the embedded prototype the remaining viewport. Catalogue review, artwork and workbook editing retain their existing layout and storage. `/` opens Reference search from fixed-slot views.
+
+The character panel is an actual local WebGL mesh viewer: horizontal pointer drag and focusable rotate/reset buttons turn the standing figure, slot selection highlights its fitted gear, and approximate gear hit areas select the matching equipped item. Rotation survives selection changes. Removing fitted equipment removes its preview part. It uses one retained canvas/context and draws on interaction/resize, with a clear unavailable message if WebGL/assets fail. It creates no world entities, gameplay identity, terrain, streaming, save migration or runtime deltas.
+
+`export_character_preview.py` imports the existing Unity Standard Humanoid FBX and worn cloak into a hidden factory-startup Blender scene, bakes a neutral arms-down pose from the original arm-branch skin weights, and exports only `dist/preview/character.bin` and its provenance JSON. Source FBXs, metadata, Blender sources and Unity scenes are untouched. The existing character's [source and licence record](../../Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/README.md) remains controlling. The viewer's neutral material treatment and simple jacket/canister/grapple/tool proxies are presentation placeholders, not accepted final character/gear art. The cloak uses the project's existing mesh. Inspection hit areas are approximate, not exact mesh raycasts.
+
+Re-export only through hidden/background Blender with `--factory-startup --disable-autoexec --python-exit-code 1 --python <this-folder>/export_character_preview.py -- <checkout-root>`; Blender 5.2.2 LTS was used. No Blender file is saved. `node --test Tools/InventoryVisualizer/test_character_preview.mjs` checks finite geometry, triangle ranges, standing/centering bounds and the unchanged source hashes. Run alongside the existing controller/inventory tests (21 checks total).
+
+Visual review found and corrected an extended-arm FBX pose, gear alignment, and clipped viewer controls before the final review. Browser checks verified six equipment/four pocket addresses, button and drag rotation (342° → 34°), back-view cloak highlighting, and rotation retention during selection. Physical-controller feel and final character art remain separate acceptance.
 
 ## Included interactions
 
