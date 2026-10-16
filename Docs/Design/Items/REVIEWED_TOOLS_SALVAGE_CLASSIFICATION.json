@@ -1,0 +1,89 @@
+{
+  "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged.",
+  "items": [
+    {
+      "id": "proposal.canister.inspection_gauge",
+      "name": "Seal inspection gauge",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.wind.turbine",
+      "name": "Salvaged wind turbine",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.legger.grease_applicator",
+      "name": "Joint grease applicator",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.legger.bearing_puller",
+      "name": "Matched bearing-removal tool",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.legger.alignment_gauge",
+      "name": "Legger alignment gauge",
+      "previous": "Tools"
+    },
+    {
+      "id": "author.forging.hammer",
+      "name": "Forging hammer",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.forging.tongs",
+      "name": "Smithing tongs",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.forging.hot_cut",
+      "name": "Hot-cut chisel",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.forging.punch",
+      "name": "Forging punch",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.forging.drift",
+      "name": "Forming drift",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.forging.file",
+      "name": "Metalworking file",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.collection.hand_cranked_metal_drill",
+      "name": "Hand-cranked metal drill",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.collection.husk_sheet_cutting_shears",
+      "name": "Husk-sheet cutting shears",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.collection.shell_runner_cargo_sled",
+      "name": "Shell-runner cargo sled",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.audit.metalworking_hand_saw",
+      "name": "Metalworking hand saw",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.audit.metal_glassworking_blowpipe",
+      "name": "Metal glassworking blowpipe",
+      "previous": "Tools"
+    }
+  ],
+  "reviewSelectionHash": "93681ecddb2ee98352d73a389092b3aa3df06fbe50f13edf98c71a21333dc1dc",
+  "sourceHashBefore": "06134613cd3da3d64b1b1d9c6648cd9b15f976bd75077e659f567e203bb890ab",
+  "sourceHashAfter": "a799c8fb8ecc4f1d69f41bd994655511cc6d789bf31af09a6845d9f473e3aae4",
+  "scope": "Category and linked category/search/count updates only. Non-Tools review marks and all review/art state retained. No runtime world identity, streaming, placement or persisted gameplay changes."
+}

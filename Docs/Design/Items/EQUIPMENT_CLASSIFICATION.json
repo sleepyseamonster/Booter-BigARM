@@ -3,13 +3,14 @@
   "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
   "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
   "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
-  "sourceHashAfter": "78838e92c7a9744a04154895e9eb0440bbbf7cb70121b0dc5a27b80e2addf50b",
+  "sourceHashAfter": "a799c8fb8ecc4f1d69f41bd994655511cc6d789bf31af09a6845d9f473e3aae4",
   "counts": {
     "Accessories": 7,
     "Clothing": 8,
-    "Tools": 44,
+    "Tools": 28,
     "Armor": 35,
     "Attachments": 4,
+    "Salvage": 16,
     "Workshop upgrades": 1,
     "Camp items": 8,
     "Legger attachments": 11,
@@ -170,8 +171,8 @@
     {
       "id": "proposal.canister.inspection_gauge",
       "name": "Seal inspection gauge",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "proposal.ceramic.crucible",
@@ -272,8 +273,8 @@
     {
       "id": "proposal.wind.turbine",
       "name": "Salvaged wind turbine",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "proposal.wind.hand_sail",
@@ -368,8 +369,8 @@
     {
       "id": "proposal.legger.grease_applicator",
       "name": "Joint grease applicator",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "proposal.legger.service_pick",
@@ -380,14 +381,14 @@
     {
       "id": "proposal.legger.bearing_puller",
       "name": "Matched bearing-removal tool",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "proposal.legger.alignment_gauge",
       "name": "Legger alignment gauge",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "proposal.legger.spares_case",
@@ -488,8 +489,8 @@
     {
       "id": "author.forging.hammer",
       "name": "Forging hammer",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "author.forging.anvil",
@@ -500,8 +501,8 @@
     {
       "id": "proposal.forging.tongs",
       "name": "Smithing tongs",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "proposal.forging.sledge",
@@ -512,20 +513,20 @@
     {
       "id": "proposal.forging.hot_cut",
       "name": "Hot-cut chisel",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "proposal.forging.punch",
       "name": "Forging punch",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "proposal.forging.drift",
       "name": "Forming drift",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "proposal.forging.swage_block",
@@ -536,8 +537,8 @@
     {
       "id": "proposal.forging.file",
       "name": "Metalworking file",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "proposal.forging.hearth",
@@ -566,14 +567,14 @@
     {
       "id": "proposal.collection.hand_cranked_metal_drill",
       "name": "Hand-cranked metal drill",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "proposal.collection.husk_sheet_cutting_shears",
       "name": "Husk-sheet cutting shears",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "proposal.collection.husk_fiber_face_wrap",
@@ -626,8 +627,8 @@
     {
       "id": "proposal.collection.shell_runner_cargo_sled",
       "name": "Shell-runner cargo sled",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "proposal.collection.round_iron_buckler",
@@ -752,8 +753,8 @@
     {
       "id": "proposal.audit.metalworking_hand_saw",
       "name": "Metalworking hand saw",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     },
     {
       "id": "proposal.audit.workshop_winding_mandrel",
@@ -770,8 +771,8 @@
     {
       "id": "proposal.audit.metal_glassworking_blowpipe",
       "name": "Metal glassworking blowpipe",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
     }
   ],
   "revisions": [
@@ -939,6 +940,29 @@
       ],
       "sourceHashBefore": "2ef7f4fee50d0045820976b1044bc7b85f5f75ab1dc343440f38f51912da86c7",
       "sourceHashAfter": "78838e92c7a9744a04154895e9eb0440bbbf7cb70121b0dc5a27b80e2addf50b"
+    },
+    {
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged.",
+      "movedIds": [
+        "author.forging.hammer",
+        "proposal.audit.metal_glassworking_blowpipe",
+        "proposal.audit.metalworking_hand_saw",
+        "proposal.canister.inspection_gauge",
+        "proposal.collection.hand_cranked_metal_drill",
+        "proposal.collection.husk_sheet_cutting_shears",
+        "proposal.collection.shell_runner_cargo_sled",
+        "proposal.forging.drift",
+        "proposal.forging.file",
+        "proposal.forging.hot_cut",
+        "proposal.forging.punch",
+        "proposal.forging.tongs",
+        "proposal.legger.alignment_gauge",
+        "proposal.legger.bearing_puller",
+        "proposal.legger.grease_applicator",
+        "proposal.wind.turbine"
+      ],
+      "sourceHashBefore": "06134613cd3da3d64b1b1d9c6648cd9b15f976bd75077e659f567e203bb890ab",
+      "sourceHashAfter": "a799c8fb8ecc4f1d69f41bd994655511cc6d789bf31af09a6845d9f473e3aae4"
     }
   ]
 }
