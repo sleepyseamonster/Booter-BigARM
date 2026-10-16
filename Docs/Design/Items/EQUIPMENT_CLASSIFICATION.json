@@ -3,7 +3,7 @@
   "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
   "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
   "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
-  "sourceHashAfter": "c17efc713a1521718173e1a4a3f61fd29a9c12d3b21802b6c5141e99c3f111a1",
+  "sourceHashAfter": "d11d604e8a6fa6b97b706aff856ee81513fa478f0d7d501abf3f94c43c8bd883",
   "counts": {
     "Accessories": 7,
     "Clothing": 8,
@@ -140,9 +140,9 @@
     },
     {
       "id": "proposal.fashion.husk_garment",
-      "name": "Elaborate husk-fiber wear",
+      "name": "Pleated husk-fiber dress coat",
       "category": "Clothing",
-      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
+      "reason": "Individual garment refined within the requested clothing family; existing ID retained."
     },
     {
       "id": "proposal.fashion.fur_garment",
@@ -1007,6 +1007,14 @@
       ],
       "sourceHashBefore": "5891675c245560377f1224d12532e55c6105733bb08a55902af78dbf2aca9b58",
       "sourceHashAfter": "c17efc713a1521718173e1a4a3f61fd29a9c12d3b21802b6c5141e99c3f111a1"
+    },
+    {
+      "reason": "Five independently listed fancy husk-fiber garments: reuse the broad garment ID for a coat and add four pieces. No full-set inventory item, set bonus, faction dress code, new equipment slots, runtime world identity, streaming or saved-game changes.",
+      "reusedIds": [
+        "proposal.fashion.husk_garment"
+      ],
+      "sourceHashBefore": "a51665b73a89c2fc725e001b8802c3e527552dfbecc600bee69c197610348447",
+      "sourceHashAfter": "d11d604e8a6fa6b97b706aff856ee81513fa478f0d7d501abf3f94c43c8bd883"
     }
   ]
 }
