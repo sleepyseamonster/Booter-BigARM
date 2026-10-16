@@ -119,7 +119,7 @@ def build_deletion(snapshot, item_id):
                 number = int(re.search(r'\br="(\d+)"', row_xml).group(1))
                 if number in removed:
                     # Leave styled cells, table extents and all other row addresses intact.
-                    return re.sub(r"<(?:\w+:)?c\b[^>]*(?:/>|>.*?</(?:\w+:)?c>)", blank_cell, row_xml, flags=re.S)
+                    return re.sub(r"<(?:\w+:)?c\b[^>]*?(?:/>|>.*?</(?:\w+:)?c>)", blank_cell, row_xml, flags=re.S)
                 # Multi-item source lists retain the other candidates.
                 if item_id in row_xml or shared:
                     def edit_cell(cell_match):
@@ -143,7 +143,7 @@ def build_deletion(snapshot, item_id):
                         else:
                             cell = key_pattern.sub("[removed item]", cell)
                         return cell
-                    row_xml = re.sub(r"<(?:\w+:)?c\b[^>]*(?:/>|>.*?</(?:\w+:)?c>)", edit_cell, row_xml, flags=re.S)
+                    row_xml = re.sub(r"<(?:\w+:)?c\b[^>]*?(?:/>|>.*?</(?:\w+:)?c>)", edit_cell, row_xml, flags=re.S)
                 return row_xml
 
             updated = re.sub(r"<(?:\w+:)?row\b[^>]*>.*?</(?:\w+:)?row>", edit_row, raw, flags=re.S)

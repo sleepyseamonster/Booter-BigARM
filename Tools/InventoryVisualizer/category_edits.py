@@ -23,7 +23,9 @@ DEPENDENCIES = {
     "Material routes": [("Item ID", "Category")],
     "Crafting browser": [("Input item ID", "Input category"), ("Output item ID", "Output category")],
 }
-CELL = r'<(?:\w+:)?c\b[^>]*\br="([A-Z]+\d+)"[^>]*(?:/>|>.*?</(?:\w+:)?c>)'
+# Stop at the first closing token. A greedy attribute match can consume the
+# slash in a self-closing blank cell, then swallow the following populated cell.
+CELL = r'<(?:\w+:)?c\b[^>]*?\br="([A-Z]+\d+)"[^>]*?(?:/>|>.*?</(?:\w+:)?c>)'
 
 
 def registry(rows):

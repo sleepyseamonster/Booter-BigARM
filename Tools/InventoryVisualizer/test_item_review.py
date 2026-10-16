@@ -16,6 +16,20 @@ import server
 
 
 class ItemReviewTests(unittest.TestCase):
+    def test_retiring_row_preserves_adjacent_blank_cell_styles(self):
+        book=openpyxl.Workbook();sheet=book.active;sheet.title='Items'
+        sheet.append(['Item ID','Item name','Tier','Category'])
+        sheet.append(['test.retire','Retire me','T0','Armor'])
+        sheet['E2'].number_format='0.00';sheet['F2'].number_format='0%'
+        sheet['G2']='Retired note';sheet['G2'].font=openpyxl.styles.Font(bold=True)
+        snapshot=BytesIO();book.save(snapshot)
+        candidate,_=edits.build_deletion(snapshot.getvalue(),'test.retire')
+        after=openpyxl.load_workbook(BytesIO(candidate))
+        for address in ['E2','F2','G2']:
+            self.assertEqual(after['Items'][address].style_id,sheet[address].style_id)
+            self.assertIsNone(after['Items'][address].value)
+        book.close();after.close()
+
     def fixture(self, path):
         book = openpyxl.Workbook()
         items = book.active

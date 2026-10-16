@@ -1,5 +1,6 @@
 """Category writes use temporary fixtures; real-format validation stays in memory."""
 import json
+import re
 import tempfile
 import threading
 import unittest
@@ -44,6 +45,15 @@ def fixture(path):
 
 
 class CategoryTests(unittest.TestCase):
+    def test_adjacent_styled_blank_cells_are_not_combined(self):
+        raw='<worksheet><sheetData><row r="1"><c r="A1" s="1" /><c r="B1" s="2" /><c r="C1" s="3" t="inlineStr"><is><t>Keep</t></is></c></row></sheetData></worksheet>'
+        updated=edits.patch_cells(raw,{'A1':'New','B1':2})
+        cells={m[1]:m[0] for m in re.finditer(edits.CELL,updated,re.S)}
+        self.assertEqual(set(cells),{'A1','B1','C1'})
+        self.assertEqual(len(list(re.finditer(edits.CELL,updated,re.S))),3)
+        self.assertIn('s="1"',cells['A1']);self.assertIn('s="2"',cells['B1'])
+        self.assertIn('<t>Keep</t>',cells['C1'])
+
     def setUp(self):
         self.temp=tempfile.TemporaryDirectory(dir=server.ROOT/'Logs');self.root=Path(self.temp.name)
         self.book=self.root/'fixture.xlsx';self.backups=self.root/'backups';fixture(self.book)
