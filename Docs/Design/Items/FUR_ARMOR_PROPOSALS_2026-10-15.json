@@ -1,0 +1,115 @@
+{
+  "source": "Author requested a fur armor family matching the existing separate-piece armor families, October 15, 2026. Docs/WORLD_BASIS.md controls fur scarcity and no-cloth construction.",
+  "scope": "Five individual catalog entries. No aggregate suit, executable recipes, numerical protection, set bonus, new equipment slots, world placement, generated identities, streaming or persisted runtime changes.",
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Armor",
+    "Subtype": "Fur armor family piece",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "Unassigned; no new slot approved",
+    "Carrier metadata": "Booter-worn armor concept; fitting, packing and spare-cargo rules unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed furworking or specialist trade; sourcing, availability and recipe unresolved.",
+    "Crafting / processing": "One separately fitted piece made from prepared fur-bearing panels. Fur processing has extremely low usable yield; no ordinary cloth backing, preparation recipe, quantities, yield or production time established.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Fit, coverage, fastening, articulation, mass, durability, thermal behavior and protection remain proposals. Fur does not grant electrical insulation, storm immunity, set bonuses or additional equipment slots. No ordinary cloth or abundant processed fur supply assumed.",
+    "Rarity": null,
+    "Item type": "Armor",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Primary use": "Protection",
+    "Material family": "Fur",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "One independently listed piece in the author-requested fur armor family. Paired guards and boots are one named catalog item per coverage group, matching the existing armor families. No whole-set inventory item.",
+    "Tier basis": "Proposed T2 finished piece using qualified T1 fur stock; fur qualification, processing and construction remain unresolved. Tier does not establish protection or rarity.",
+    "Finished-item input tier": "T1",
+    "Crafting role": "Finished item",
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null
+  },
+  "groups": [
+    {
+      "family": "fur",
+      "label": "Fur",
+      "itemIds": [
+        "proposal.armor.fur.chest",
+        "proposal.armor.fur.legs",
+        "proposal.armor.fur.boots",
+        "proposal.armor.fur.arms",
+        "proposal.armor.fur.helmet"
+      ],
+      "itemCount": 5
+    }
+  ],
+  "items": [
+    {
+      "id": "proposal.armor.fur.chest",
+      "name": "Fur chest armor",
+      "purpose": "Fur armor family: independently listed protective piece. Torso and upper back; arm and leg protection remain separate. Uses prepared fur-bearing panels; construction and protection remain proposals. Does not include other family pieces.",
+      "icon": "Show only a fitted sleeveless torso piece with overlapping fur-bearing panels and simple fastening loops. No complete suit, wearer or ordinary cloth backing.",
+      "material": "Fur",
+      "use": "Protection",
+      "fields": {
+        "Subtype": "Fur armor / chest",
+        "Search aliases": "fur armor; fur armor set; fur armor family; chest; separate armor piece",
+        "Open design decisions": "Torso and upper back; arm and leg protection remain separate. Fur sourcing, extremely low processing yield, fastening, fit, wearability and protective performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.fur.legs",
+      "name": "Fur leg guards",
+      "purpose": "Fur armor family: independently listed protective piece. A matched pair of thigh, knee and shin coverings listed as one item; boots remain separate. Uses prepared fur-bearing panels; construction and protection remain proposals. Does not include other family pieces.",
+      "icon": "Show only a matched pair of shaped fur-bearing leg guards with visible panel joins. No complete suit, wearer or ordinary cloth backing.",
+      "material": "Fur",
+      "use": "Protection",
+      "fields": {
+        "Subtype": "Fur armor / legs",
+        "Search aliases": "fur armor; fur armor set; fur armor family; legs; separate armor piece",
+        "Open design decisions": "A matched pair of thigh, knee and shin coverings listed as one item; boots remain separate. Fur sourcing, extremely low processing yield, fastening, fit, wearability and protective performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.fur.boots",
+      "name": "Fur armored boots",
+      "purpose": "Fur armor family: independently listed protective piece. A matched pair of protective foot coverings listed as one item, separate from the leg guards. Uses prepared fur-bearing panels; construction and protection remain proposals. Does not include other family pieces.",
+      "icon": "Show only a matched pair of fitted fur-bearing boots with reinforced layered contact surfaces. No complete suit, wearer or ordinary cloth backing.",
+      "material": "Fur",
+      "use": "Protection",
+      "fields": {
+        "Subtype": "Fur armor / boots",
+        "Search aliases": "fur armor; fur armor set; fur armor family; boots; separate armor piece",
+        "Open design decisions": "A matched pair of protective foot coverings listed as one item, separate from the leg guards. Fur sourcing, extremely low processing yield, fastening, fit, wearability and protective performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.fur.arms",
+      "name": "Fur arm guards",
+      "purpose": "Fur armor family: independently listed protective piece. A matched pair of upper-arm, elbow and forearm coverings listed as one item; chest armor remains separate. Uses prepared fur-bearing panels; construction and protection remain proposals. Does not include other family pieces.",
+      "icon": "Show only a matched pair of shaped fur-bearing arm guards with flexible elbow openings. No complete suit, wearer or ordinary cloth backing.",
+      "material": "Fur",
+      "use": "Protection",
+      "fields": {
+        "Subtype": "Fur armor / arms",
+        "Search aliases": "fur armor; fur armor set; fur armor family; arms; separate armor piece",
+        "Open design decisions": "A matched pair of upper-arm, elbow and forearm coverings listed as one item; chest armor remains separate. Fur sourcing, extremely low processing yield, fastening, fit, wearability and protective performance require design."
+      }
+    },
+    {
+      "id": "proposal.armor.fur.helmet",
+      "name": "Fur helmet",
+      "purpose": "Fur armor family: independently listed protective piece. Head covering with an open face; neck coverage, hearing and fit remain unresolved. Uses prepared fur-bearing panels; construction and protection remain proposals. Does not include other family pieces.",
+      "icon": "Show only a fitted fur-bearing helmet with overlapping crown panels and an open face. No complete suit, wearer or ordinary cloth backing.",
+      "material": "Fur",
+      "use": "Protection",
+      "fields": {
+        "Subtype": "Fur armor / helmet",
+        "Search aliases": "fur armor; fur armor set; fur armor family; helmet; separate armor piece",
+        "Open design decisions": "Head covering with an open face; neck coverage, hearing and fit remain unresolved. Fur sourcing, extremely low processing yield, fastening, fit, wearability and protective performance require design."
+      }
+    }
+  ]
+}
