@@ -30,6 +30,8 @@ Artwork records are keyed by exact master item ID in IndexedDB; appearance prefe
 
 ## Scope and handoff
 
+Author correction, October 15: **Clothing (8)** now contains Cloak, Jacket, Hat, Mica-brim sun visor, Simple everyday wraps, Elaborate fur wear, Elaborate hide wear and Elaborate husk-fiber wear. These replace their initial Accessories assignments; **Accessories now has 7** entries. Eyeglasses and Specialized spectacles remain Accessories, and protective garments remain Armor. The per-item classification manifest and workbook category/taxonomy records reflect this correction. `split_clothing.py` applies the guarded one-time correction with the existing preserving merge and full unchanged-cell verification; local originals and receipts remain in `Logs/ClothingCategorySplit/`.
+
 This is browser presentation and item-review tooling under `Tools`, outside Unity's import boundary. It follows the accepted [menu direction](../../Docs/Design/Gameplay/MENU_SYSTEM_DIRECTION.md) as context; its appearance and screen composition remain proposals. Controller integration, Unity UI implementation, actual gameplay inventory transactions and creative acceptance are separate work. Browser keyboard support covers Tab focus, arrow movement within the grid, `/` search and Escape back to menu. This does not establish Unity or gamepad parity.
 
 Deterministic world identity, terrain/chunk streaming, generated-world objects and persisted gameplay deltas are not applicable: the tool creates no world objects, reads no live save, and issues no Unity commands. Existing master item IDs identify browser art and keep records. Greater Wasteland's authored constraints and always-loaded terrain remain untouched.

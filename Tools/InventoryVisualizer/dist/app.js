@@ -25,7 +25,7 @@ function glyph(item){
   let shape='<path d="m19 70 8-31 31-20 25 19 6 31-32 15Z" fill="currentColor" opacity=".32"/><path d="m19 70 38 14-9-32-21-13m21 13 10-33m-10 33 35-14m-35 14 41 17"/>';
   if(/component|mechanism|stock|salvage|attachments/i.test(category))shape='<path d="M20 37 65 22 85 38 40 55Z" fill="currentColor" opacity=".25"/><path d="M20 37v31l20 15V55m0 28 45-17V38L65 22 20 37l20 18 45-17M56 49v28M68 44v29"/><path d="m26 46 8 5m-8 9 8 5"/>';
   if(/container|consum|processing|atmospheric/i.test(category))shape='<path d="M35 30h31l8 14v34Q50 89 27 78V44Z" fill="currentColor" opacity=".25"/><path d="M35 30h31l8 14v34Q50 89 27 78V44Zm-8 14q24 13 47 0M35 30V20h31v10M38 59v14m6-16v18m16-18v18"/>';
-  if(/equipment|supplies|armor/i.test(category))shape='<path d="m34 22 16 8 17-8 17 18-13 14-6-7v36H36V47l-7 7-13-14Z" fill="currentColor" opacity=".25"/><path d="m34 22 16 8 17-8 17 18-13 14-6-7v36H36V47l-7 7-13-14Zm16 8v53m-14-23h29"/>';
+  if(/equipment|supplies|armor|clothing/i.test(category))shape='<path d="m34 22 16 8 17-8 17 18-13 14-6-7v36H36V47l-7 7-13-14Z" fill="currentColor" opacity=".25"/><path d="m34 22 16 8 17-8 17 18-13 14-6-7v36H36V47l-7 7-13-14Zm16 8v53m-14-23h29"/>';
   if(category==='Tools')shape='<path d="m29 74 35-40 8 7-35 41Z" fill="currentColor" opacity=".3"/><path d="m29 74 35-40 8 7-35 41Zm18-48 12-12 27 24-12 12Z"/>';
   if(category==='Accessories')shape='<path d="M28 35h44l5 46H23Z" fill="currentColor" opacity=".25"/><path d="M28 35h44l5 46H23Zm10 0V24q12-12 24 0v11M26 48h48M42 48v12h16V48"/>';
   if(/weapon/i.test(category))shape='<path d="m29 70 40-42 12-8-6 16-36 43Z" fill="currentColor" opacity=".3"/><path d="m29 70 40-42 12-8-6 16-36 43m-16-19 24 24m-14-10-13 14m-5-4 11 11"/>';
@@ -33,7 +33,7 @@ function glyph(item){
 }
 function imageFor(item,hero=false){const art=recordFor(id(item));return art.image?`<img src="${esc(art.image)}" alt="${esc(name(item))}" ${hero?'':'loading="lazy"'}>`:glyph(item);}
 function tierLabel(item){return /^T\d$/.test(item.Tier)?item.Tier:item.Tier==='Unassigned'?'T?':'—';}
-function ownerItems(){return state.items.filter(item=>state.owner==='booter'?/equipment|armor|tools|accessories|attachments|field supplies|consumables|containers/i.test(item.Category):state.owner==='legger'?!/booter only/i.test(item['Carrier metadata']||''):true);}
+function ownerItems(){return state.items.filter(item=>state.owner==='booter'?/equipment|armor|tools|accessories|attachments|clothing|field supplies|consumables|containers/i.test(item.Category):state.owner==='legger'?!/booter only/i.test(item['Carrier metadata']||''):true);}
 function visibleItems(){
   const query=$('#search').value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
   const tier=$('#tier').value,design=$('#design').value,artFilter=$('#art-filter').value;

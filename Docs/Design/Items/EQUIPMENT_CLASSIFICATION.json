@@ -3,9 +3,10 @@
   "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
   "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
   "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
-  "sourceHashAfter": "1a30e4b98f8da4e2d2722abb73f69a96c70750e81460b0cee396208a9310ccfc",
+  "sourceHashAfter": "1e948e4daa1668b00b38e11790167dc8e3f13cc7d9b6f22736ef21c885072f46",
   "counts": {
-    "Accessories": 15,
+    "Accessories": 7,
+    "Clothing": 8,
     "Tools": 52,
     "Armor": 43,
     "Attachments": 17
@@ -15,13 +16,13 @@
       "id": "equipment.algae_canister",
       "name": "Algae canister",
       "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "reason": "Eyewear, carried personal reserves, carriers and supporting utility gear; ordinary garments are classified as Clothing. No new slots or effects."
     },
     {
       "id": "equipment.cloak",
       "name": "Cloak",
-      "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "category": "Clothing",
+      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
     },
     {
       "id": "equipment.digging_tool",
@@ -44,8 +45,8 @@
     {
       "id": "equipment.jacket",
       "name": "Jacket",
-      "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "category": "Clothing",
+      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
     },
     {
       "id": "proposal.gear.magnets",
@@ -57,7 +58,7 @@
       "id": "proposal.gear.grounding_kit",
       "name": "Static grounding kit",
       "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "reason": "Eyewear, carried personal reserves, carriers and supporting utility gear; ordinary garments are classified as Clothing. No new slots or effects."
     },
     {
       "id": "proposal.gear.mail_shirt",
@@ -105,7 +106,7 @@
       "id": "proposal.gear.backpack",
       "name": "Backpack",
       "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "reason": "Eyewear, carried personal reserves, carriers and supporting utility gear; ordinary garments are classified as Clothing. No new slots or effects."
     },
     {
       "id": "proposal.gear.special_plates",
@@ -123,43 +124,43 @@
       "id": "proposal.fashion.special_spectacles",
       "name": "Specialized spectacles",
       "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "reason": "Eyewear, carried personal reserves, carriers and supporting utility gear; ordinary garments are classified as Clothing. No new slots or effects."
     },
     {
       "id": "proposal.fashion.eyeglasses",
       "name": "Eyeglasses",
       "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "reason": "Eyewear, carried personal reserves, carriers and supporting utility gear; ordinary garments are classified as Clothing. No new slots or effects."
     },
     {
       "id": "proposal.fashion.hat",
       "name": "Hat",
-      "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "category": "Clothing",
+      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
     },
     {
       "id": "proposal.fashion.husk_garment",
       "name": "Elaborate husk-fiber wear",
-      "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "category": "Clothing",
+      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
     },
     {
       "id": "proposal.fashion.fur_garment",
       "name": "Elaborate fur wear",
-      "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "category": "Clothing",
+      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
     },
     {
       "id": "proposal.fashion.hide_garment",
       "name": "Elaborate hide wear",
-      "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "category": "Clothing",
+      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
     },
     {
       "id": "proposal.gear.simple_wraps",
       "name": "Simple everyday wraps",
-      "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "category": "Clothing",
+      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
     },
     {
       "id": "proposal.canister.harness",
@@ -267,7 +268,7 @@
       "id": "proposal.fire.glow_holder",
       "name": "Shuttered glow-stone holder",
       "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "reason": "Eyewear, carried personal reserves, carriers and supporting utility gear; ordinary garments are classified as Clothing. No new slots or effects."
     },
     {
       "id": "proposal.wind.turbine",
@@ -435,7 +436,7 @@
       "id": "author.communication.crude_two_way_radio",
       "name": "Crude two-way radio",
       "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "reason": "Eyewear, carried personal reserves, carriers and supporting utility gear; ordinary garments are classified as Clothing. No new slots or effects."
     },
     {
       "id": "author.electrical.magnetic_disruptor",
@@ -608,8 +609,8 @@
     {
       "id": "proposal.collection.mica_brim_sun_visor",
       "name": "Mica-brim sun visor",
-      "category": "Accessories",
-      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+      "category": "Clothing",
+      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
     },
     {
       "id": "proposal.collection.cable_grip_canyon_ascender",
@@ -772,6 +773,24 @@
       "name": "Metal glassworking blowpipe",
       "category": "Tools",
       "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    }
+  ],
+  "revisions": [
+    {
+      "date": "2026-10-15",
+      "reason": "Author marked eight garments to move from Accessories into Clothing.",
+      "movedIds": [
+        "equipment.cloak",
+        "equipment.jacket",
+        "proposal.collection.mica_brim_sun_visor",
+        "proposal.fashion.fur_garment",
+        "proposal.fashion.hat",
+        "proposal.fashion.hide_garment",
+        "proposal.fashion.husk_garment",
+        "proposal.gear.simple_wraps"
+      ],
+      "sourceHashBefore": "f14c1ccda048918c8aa858d0d6e6f3b82b390be6c13b0dd4876c0f58d0f587ee",
+      "sourceHashAfter": "1e948e4daa1668b00b38e11790167dc8e3f13cc7d9b6f22736ef21c885072f46"
     }
   ]
 }
