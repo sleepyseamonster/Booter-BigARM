@@ -3,13 +3,15 @@
   "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
   "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
   "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
-  "sourceHashAfter": "1e948e4daa1668b00b38e11790167dc8e3f13cc7d9b6f22736ef21c885072f46",
+  "sourceHashAfter": "106e9aa6133379df609254844a60afd2cb3f9c5a67ce917188862df97aefe6b3",
   "counts": {
     "Accessories": 7,
     "Clothing": 8,
     "Tools": 52,
-    "Armor": 43,
-    "Attachments": 17
+    "Armor": 36,
+    "Attachments": 16,
+    "Workshop upgrades": 1,
+    "Legger armor": 7
   },
   "items": [
     {
@@ -64,43 +66,43 @@
       "id": "proposal.gear.mail_shirt",
       "name": "Chainmail shirt",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.gear.metal_armor_set",
       "name": "Assembled metal armor",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.gear.chest_armor",
       "name": "Chest armor",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.gear.helmet",
       "name": "Helmet",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.gear.leg_armor",
       "name": "Leg armor",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.gear.boots",
       "name": "Boots",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.gear.gloves",
       "name": "Gloves",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.gear.backpack",
@@ -118,7 +120,7 @@
       "id": "proposal.gear.shield",
       "name": "Shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.fashion.special_spectacles",
@@ -213,8 +215,8 @@
     {
       "id": "proposal.ceramic.grinding_disc",
       "name": "Ceramic abrasive disc",
-      "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "category": "Workshop upgrades",
+      "reason": "Upgrades and replaceable working parts fitted to workshop tools or stations."
     },
     {
       "id": "proposal.fire.striker",
@@ -303,26 +305,26 @@
     {
       "id": "proposal.legger.belly_pan",
       "name": "Legger chassis belly pan",
-      "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "category": "Legger armor",
+      "reason": "Protective guards, panels and chassis covers intended for the Legger, including recovered ancient variants. Fit and protection behavior remain proposals."
     },
     {
       "id": "proposal.legger.shell_guard",
       "name": "Chitin chassis guard",
-      "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "category": "Legger armor",
+      "reason": "Protective guards, panels and chassis covers intended for the Legger, including recovered ancient variants. Fit and protection behavior remain proposals."
     },
     {
       "id": "proposal.legger.iron_guard",
       "name": "Iron chassis guard",
-      "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "category": "Legger armor",
+      "reason": "Protective guards, panels and chassis covers intended for the Legger, including recovered ancient variants. Fit and protection behavior remain proposals."
     },
     {
       "id": "proposal.legger.joint_guard",
       "name": "Articulated joint guard",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.legger.ceramic_backing",
@@ -333,14 +335,14 @@
     {
       "id": "proposal.legger.nanocarbon_panel",
       "name": "Ancient nanocarbon armor panel",
-      "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "category": "Legger armor",
+      "reason": "Protective guards, panels and chassis covers intended for the Legger, including recovered ancient variants. Fit and protection behavior remain proposals."
     },
     {
       "id": "proposal.legger.ballistic_guard",
       "name": "Ancient ballistic-deflecting guard",
-      "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "category": "Legger armor",
+      "reason": "Protective guards, panels and chassis covers intended for the Legger, including recovered ancient variants. Fit and protection behavior remain proposals."
     },
     {
       "id": "proposal.legger.pannier_frame",
@@ -399,14 +401,14 @@
     {
       "id": "proposal.legger.edge_guard",
       "name": "Chassis leading-edge guard",
-      "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "category": "Legger armor",
+      "reason": "Protective guards, panels and chassis covers intended for the Legger, including recovered ancient variants. Fit and protection behavior remain proposals."
     },
     {
       "id": "proposal.legger.instrument_guard",
       "name": "Instrument-face guard",
-      "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "category": "Legger armor",
+      "reason": "Protective guards, panels and chassis covers intended for the Legger, including recovered ancient variants. Fit and protection behavior remain proposals."
     },
     {
       "id": "proposal.legger.seam_guard",
@@ -472,19 +474,19 @@
       "id": "author.electrical.insulated_suit",
       "name": "Electrical insulating suit",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "author.electrical.insulated_gloves",
       "name": "Electrical insulating gloves",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "author.electrical.insulated_boots",
       "name": "Electrical insulating boots",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "author.forging.hammer",
@@ -580,19 +582,19 @@
       "id": "proposal.collection.husk_fiber_face_wrap",
       "name": "Husk-fiber face wrap",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.chainmail_shoulder_mantle",
       "name": "Chainmail shoulder mantle",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.shell_rib_gaiters",
       "name": "Shell-rib gaiters",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.minimal_hide_tool_belt",
@@ -604,7 +606,7 @@
       "id": "proposal.collection.pressed_husk_apron",
       "name": "Pressed-husk apron",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.mica_brim_sun_visor",
@@ -634,121 +636,121 @@
       "id": "proposal.collection.round_iron_buckler",
       "name": "Round iron buckler",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.riveted_steel_round_shield",
       "name": "Riveted steel round shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.broad_chitin_shield",
       "name": "Broad chitin shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.shell_rib_oval_shield",
       "name": "Shell-rib oval shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.tall_iron_pavise",
       "name": "Tall iron pavise",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.folding_wing_frame_screen_shield",
       "name": "Folding wing-frame screen shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.ceramic_faced_shield",
       "name": "Ceramic-faced shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.layered_husk_shield",
       "name": "Layered husk shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.steel_rimmed_shell_shield",
       "name": "Steel-rimmed shell shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.hook_edged_catch_shield",
       "name": "Hook-edged catch shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.elbow_strapped_work_shield",
       "name": "Elbow-strapped work shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.knee_braced_ground_shield",
       "name": "Knee-braced ground shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.segmented_tower_shield",
       "name": "Segmented tower shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.mica_slit_observation_shield",
       "name": "Mica-slit observation shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.grit_shedding_curved_shield",
       "name": "Grit-shedding curved shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.insulated_handle_shield",
       "name": "Insulated-handle shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.ceremonial_inlay_shield",
       "name": "Ceremonial inlay shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.magnet_clamp_utility_shield",
       "name": "Magnet-clamp utility shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.replaceable_scale_shield",
       "name": "Replaceable-scale shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.collection.ancient_plasteel_guard_shield",
       "name": "Ancient plasteel guard shield",
       "category": "Armor",
-      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
     },
     {
       "id": "proposal.audit.metalworking_hand_saw",
@@ -791,6 +793,30 @@
       ],
       "sourceHashBefore": "f14c1ccda048918c8aa858d0d6e6f3b82b390be6c13b0dd4876c0f58d0f587ee",
       "sourceHashAfter": "1e948e4daa1668b00b38e11790167dc8e3f13cc7d9b6f22736ef21c885072f46"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Author moved Ceramic abrasive disc into new Workshop upgrades category.",
+      "movedIds": [
+        "proposal.ceramic.grinding_disc"
+      ],
+      "sourceHashBefore": "1e948e4daa1668b00b38e11790167dc8e3f13cc7d9b6f22736ef21c885072f46",
+      "sourceHashAfter": "27f2ffa4bfe5ab4baebc6f741bace32e8a76a647413c74eee121b3c1b9cc167d"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Author requested a separate category for Legger armor.",
+      "movedIds": [
+        "proposal.legger.ballistic_guard",
+        "proposal.legger.belly_pan",
+        "proposal.legger.edge_guard",
+        "proposal.legger.instrument_guard",
+        "proposal.legger.iron_guard",
+        "proposal.legger.nanocarbon_panel",
+        "proposal.legger.shell_guard"
+      ],
+      "sourceHashBefore": "27f2ffa4bfe5ab4baebc6f741bace32e8a76a647413c74eee121b3c1b9cc167d",
+      "sourceHashAfter": "106e9aa6133379df609254844a60afd2cb3f9c5a67ce917188862df97aefe6b3"
     }
   ]
 }

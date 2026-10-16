@@ -33,7 +33,7 @@ function glyph(item){
 }
 function imageFor(item,hero=false){const art=recordFor(id(item));return art.image?`<img src="${esc(art.image)}" alt="${esc(name(item))}" ${hero?'':'loading="lazy"'}>`:glyph(item);}
 function tierLabel(item){return /^T\d$/.test(item.Tier)?item.Tier:item.Tier==='Unassigned'?'T?':'—';}
-function ownerItems(){return state.items.filter(item=>state.owner==='booter'?/equipment|armor|tools|accessories|attachments|clothing|field supplies|consumables|containers/i.test(item.Category):state.owner==='legger'?!/booter only/i.test(item['Carrier metadata']||''):true);}
+function ownerItems(){return state.items.filter(item=>state.owner==='booter'?item.Category!=='Legger armor'&&/equipment|armor|tools|accessories|attachments|clothing|field supplies|consumables|containers/i.test(item.Category):state.owner==='legger'?!/booter only/i.test(item['Carrier metadata']||''):true);}
 function visibleItems(){
   const query=$('#search').value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
   const tier=$('#tier').value,design=$('#design').value,artFilter=$('#art-filter').value;
