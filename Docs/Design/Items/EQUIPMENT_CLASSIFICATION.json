@@ -3,15 +3,16 @@
   "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
   "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
   "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
-  "sourceHashAfter": "608994e360a6058e996e127a648ddc2ce655fa6e09c450a41db86e6a5961d1b9",
+  "sourceHashAfter": "d0c396bc0b5c92213ad95e1510efdfab7d4c3c451838824946fd8d286ec62b11",
   "counts": {
     "Accessories": 7,
     "Clothing": 8,
     "Tools": 50,
     "Armor": 36,
-    "Attachments": 16,
+    "Attachments": 4,
     "Workshop upgrades": 1,
     "Crafting stations": 2,
+    "Legger attachments": 12,
     "Legger armor": 7
   },
   "items": [
@@ -115,7 +116,7 @@
       "id": "proposal.gear.special_plates",
       "name": "Specialized armor plates",
       "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "reason": "General fitted mounts, harnesses, inserts and wearable add-ons. Companion-specific cargo fittings, cases and armor add-ons are Legger attachments; complete protective covers remain Legger armor."
     },
     {
       "id": "proposal.gear.shield",
@@ -169,7 +170,7 @@
       "id": "proposal.canister.harness",
       "name": "Fitted canister harness",
       "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "reason": "General fitted mounts, harnesses, inserts and wearable add-ons. Companion-specific cargo fittings, cases and armor add-ons are Legger attachments; complete protective covers remain Legger armor."
     },
     {
       "id": "proposal.canister.inspection_gauge",
@@ -211,7 +212,7 @@
       "id": "proposal.ceramic.armor_insert",
       "name": "Specialist ceramic armor insert",
       "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "reason": "General fitted mounts, harnesses, inserts and wearable add-ons. Companion-specific cargo fittings, cases and armor add-ons are Legger attachments; complete protective covers remain Legger armor."
     },
     {
       "id": "proposal.ceramic.grinding_disc",
@@ -294,14 +295,14 @@
     {
       "id": "proposal.legger.sling",
       "name": "Legger cargo sling",
-      "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
     },
     {
       "id": "proposal.legger.cradle",
       "name": "Legger rigid cargo cradle",
-      "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
     },
     {
       "id": "proposal.legger.belly_pan",
@@ -330,8 +331,8 @@
     {
       "id": "proposal.legger.ceramic_backing",
       "name": "Ceramic armor backing insert",
-      "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
     },
     {
       "id": "proposal.legger.nanocarbon_panel",
@@ -348,26 +349,26 @@
     {
       "id": "proposal.legger.pannier_frame",
       "name": "Legger side-pannier frame",
-      "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
     },
     {
       "id": "proposal.legger.sample_rack",
       "name": "Legger sample-vial rack",
-      "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
     },
     {
       "id": "proposal.legger.ore_bin",
       "name": "Legger removable ore bin",
-      "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
     },
     {
       "id": "proposal.legger.board_bracket",
       "name": "Legger dirtboard carrying bracket",
-      "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
     },
     {
       "id": "proposal.legger.grease_applicator",
@@ -396,8 +397,8 @@
     {
       "id": "proposal.legger.spares_case",
       "name": "Legger fitted spares case",
-      "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
     },
     {
       "id": "proposal.legger.edge_guard",
@@ -414,26 +415,26 @@
     {
       "id": "proposal.legger.seam_guard",
       "name": "Armor seam-cover strip",
-      "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
     },
     {
       "id": "proposal.legger.impact_cap",
       "name": "Sacrificial impact cap",
-      "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
     },
     {
       "id": "proposal.legger.fragment_liner",
       "name": "Pressed-husk fragment liner",
-      "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
     },
     {
       "id": "proposal.legger.impact_lattice",
       "name": "Ancient impact-lattice backing",
-      "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
     },
     {
       "id": "author.communication.crude_two_way_radio",
@@ -601,7 +602,7 @@
       "id": "proposal.collection.minimal_hide_tool_belt",
       "name": "Minimal-hide tool belt",
       "category": "Attachments",
-      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+      "reason": "General fitted mounts, harnesses, inserts and wearable add-ons. Companion-specific cargo fittings, cases and armor add-ons are Legger attachments; complete protective covers remain Legger armor."
     },
     {
       "id": "proposal.collection.pressed_husk_apron",
@@ -829,6 +830,26 @@
       ],
       "sourceHashBefore": "fe5a39261b9e77ec866e23ce66ebae28a5bb5fe15d6b069cdbe152b8de091461",
       "sourceHashAfter": "608994e360a6058e996e127a648ddc2ce655fa6e09c450a41db86e6a5961d1b9"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Author separated Legger attachments from general attachments.",
+      "movedIds": [
+        "proposal.legger.board_bracket",
+        "proposal.legger.ceramic_backing",
+        "proposal.legger.cradle",
+        "proposal.legger.fragment_liner",
+        "proposal.legger.impact_cap",
+        "proposal.legger.impact_lattice",
+        "proposal.legger.ore_bin",
+        "proposal.legger.pannier_frame",
+        "proposal.legger.sample_rack",
+        "proposal.legger.seam_guard",
+        "proposal.legger.sling",
+        "proposal.legger.spares_case"
+      ],
+      "sourceHashBefore": "fe88099e05c91cee1266b7639855cb5829374edebbe52037fedf9c29e245a35a",
+      "sourceHashAfter": "d0c396bc0b5c92213ad95e1510efdfab7d4c3c451838824946fd8d286ec62b11"
     }
   ]
 }
