@@ -1,0 +1,36 @@
+{
+  "source": "Author requested three more Legger armor items, October 15, 2026. New local brainstorming proposals grounded in Docs/WORLD_BASIS.md#the-legger and #material-culture.",
+  "scope": "Catalogue definitions only. No Unity equipment, world entities, chunk streaming, generated identities or persisted gameplay deltas are changed. Stable proposal IDs identify definitions, not owned physical items.",
+  "items": [
+    {
+      "id": "proposal.legger.articulated_joint_guards",
+      "name": "Articulated joint guards",
+      "purpose": "Overlapping curved metal scales cover the exposed outside of a Legger leg joint, opening and closing around its movement. Intended to take glancing scrapes while leaving the joint's working clearance open; distinct from a rigid chassis panel.",
+      "material": "Metal",
+      "form": "Assembly",
+      "limitations": "The overlap can trap grit or bind if fitted poorly. Joint travel, cleaning access, attachment points and added moving mass need qualification; no damage reduction or immunity established.",
+      "icon": "Three overlapping crescent-shaped metal scales around an open circular joint, with two visible hinge pins.",
+      "aliases": "legger; leger; joint armor; articulated scales; leg joint guards"
+    },
+    {
+      "id": "proposal.legger.cargo_flank_screens",
+      "name": "Cargo flank screens",
+      "purpose": "A paired set of bowed metal ribs stands outside the Legger's existing cargo mounts. Intended to intercept side contact before it reaches carried canisters or cases, with open gaps for checking bindings and unloading. These are guards, not new containers or cargo mounts.",
+      "material": "Metal",
+      "form": "Assembly",
+      "limitations": "Open ribs leave gaps in coverage and increase the carrier's width. Snagging, turning clearance, cargo access, mounting load and breakaway behavior need design. Storage capacity and remote access are unchanged; no ballistic rating established.",
+      "icon": "A matched pair of outward-bowed rib guards, each with three narrow vertical bars and a short upper mounting rail.",
+      "aliases": "legger; leger; cargo armor; flank screens; side guards; canister protection"
+    },
+    {
+      "id": "proposal.legger.dorsal_shingle_carapace",
+      "name": "Dorsal shingle carapace",
+      "purpose": "Overlapping worked chitin plates form a raised protective ridge over the upper chassis, with individually replaceable shingles and a lift-away section for service access. Intended for falling grit and glancing overhead contact, complementing the existing underside belly pan.",
+      "material": "Shell / chitin",
+      "form": "Assembly",
+      "limitations": "Cheap raw shell still requires careful shaping and mounting. Brittle edges, debris trapped beneath overlaps, available headroom, service access and interference with existing fittings need review. This is not a shelter, saddle or extra cargo surface; no protection values established.",
+      "icon": "Five broad overlapping shell shingles forming a shallow peaked ridge, with a narrow central seam and small metal fasteners.",
+      "aliases": "legger; leger; dorsal armor; shell shingles; upper chassis; carapace"
+    }
+  ]
+}
