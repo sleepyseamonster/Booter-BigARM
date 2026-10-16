@@ -17,6 +17,8 @@ MANIFEST=migration.ROOT/'Docs/Design/Items/EQUIPMENT_CLASSIFICATION.json'
 REASON='Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged.'
 # Set only for replaying the exact captured selection against the commit baseline.
 SELECTED=None
+SOURCE_CATEGORY='Tools'
+TARGET_CATEGORY='Salvage'
 
 
 def prepare():
@@ -27,7 +29,7 @@ def prepare():
     values=openpyxl.load_workbook(BytesIO(original),data_only=True)
     formulas=openpyxl.load_workbook(BytesIO(original),data_only=False)
     rows=list(values['Items'].values)
-    selected={r[0] for r in rows[5:] if r[0] in marked and r[3]=='Tools'}
+    selected={r[0] for r in rows[5:] if r[0] in marked and r[3]==SOURCE_CATEGORY}
     assert selected and (SELECTED is None or selected==set(SELECTED))
     changes=[]
     def change(sheet,address,value,cached=False,formula=None):
@@ -37,9 +39,9 @@ def prepare():
     for n,row in enumerate(rows[5:],6):
         if row[0] not in selected:continue
         items.append(dict(id=row[0],name=row[1],previous=row[3]))
-        change('Items',f'D{n}','Salvage')
+        change('Items',f'D{n}',TARGET_CATEGORY)
         change('Items',f'AF{n}',(row[31] or '')+' '+REASON)
-        search=list(row);search[3]='Salvage'
+        search=list(row);search[3]=TARGET_CATEGORY
         change('Items',f'AE{n}','; '.join(str(search[i] or '') for i in [0,1,3,4,23,24,25,26,27,28,29,21,2,33,34]).lower(),True)
     for sheet,mappings in DEPENDENCIES.items():
         data=list(values[sheet].values);headers=data[4]
@@ -48,18 +50,18 @@ def prepare():
             for n,row in enumerate(data[5:],6):
                 if row[ki] in selected:
                     address=f'{migration.col(ci)}{n}'
-                    change(sheet,address,'Salvage',formulas[sheet][address].data_type=='f')
-    counts=Counter('Salvage' if r[0] in selected else r[3] for r in rows[5:] if r[0])
+                    change(sheet,address,TARGET_CATEGORY,formulas[sheet][address].data_type=='f')
+    counts=Counter(TARGET_CATEGORY if r[0] in selected else r[3] for r in rows[5:] if r[0])
     for n,row in enumerate(values['Categories'].values,1):
         if len(row)>4 and row[4]=='Primary category':
             change('Categories',f'B{n}',counts[row[0]],formula=formulas['Categories'][f'B{n}'].value[1:])
-    plan=dict(sourceHash=digest(original),reviewHash=digest(review),target='Salvage',
+    plan=dict(sourceHash=digest(original),reviewHash=digest(review),target=TARGET_CATEGORY,
         items=items,changes=changes,counts=dict(counts),extendTables={})
     (OUT/'before.xlsx').write_bytes(original)
     (OUT/'review-before.json').write_bytes(review)
     (OUT/'plan.json').write_text(json.dumps(plan,indent=2),encoding='utf-8')
     values.close();formulas.close()
-    print('Prepared',len(items),'currently marked Tools for Salvage')
+    print('Prepared',len(items),SOURCE_CATEGORY,'entries for',TARGET_CATEGORY)
 
 
 def apply():
@@ -78,9 +80,9 @@ def apply():
     atomic_write(source,candidate,plan['sourceHash'])
     audit=dict(reason=REASON,items=plan['items'],reviewSelectionHash=plan['reviewHash'],
         sourceHashBefore=plan['sourceHash'],sourceHashAfter=digest(candidate),
-        scope='Category and linked category/search/count updates only. Non-Tools review marks and all review/art state retained. No runtime world identity, streaming, placement or persisted gameplay changes.')
+        scope='Category and linked category/search/count updates only. All review/art state retained. No runtime world identity, streaming, placement or persisted gameplay changes.')
     atomic_write(AUDIT,(json.dumps(audit,indent=2)+'\n').encode())
-    print('Moved',len(plan['items']),'marked Tools to Salvage; review marks retained.')
+    print('Moved',len(plan['items']),'entries to',TARGET_CATEGORY,'; review marks retained.')
 
 
 def update_manifest():
@@ -88,7 +90,7 @@ def update_manifest():
     original=MANIFEST.read_bytes();manifest=json.loads(original)
     selected={item['id'] for item in audit['items']}
     for item in manifest['items']:
-        if item['id'] in selected:item.update(category='Salvage',reason=REASON)
+        if item['id'] in selected:item.update(category=TARGET_CATEGORY,reason=REASON)
     manifest['counts']=dict(Counter(item['category'] for item in manifest['items']))
     manifest['sourceHashAfter']=audit['sourceHashAfter']
     manifest.setdefault('revisions',[]).append(dict(reason=REASON,movedIds=sorted(selected),
