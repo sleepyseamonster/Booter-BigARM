@@ -1,0 +1,17 @@
+import fs from 'node:fs/promises';
+import {Workbook,SpreadsheetFile} from '@oai/artifact-tool';
+const directory=process.argv[2];
+if(!directory)throw new Error('Provide the prepared operation directory.');
+const {spec}=JSON.parse(await fs.readFile(`${directory}/plan.json`,'utf8'));
+const wb=Workbook.create(),sheet=wb.worksheets.add('Station inputs');
+sheet.getRange(`A1:G${spec.items.length+1}`).values=[['ID','Name','Purpose','Icon direction','Material','Use','Specific fields'],...spec.items.map(i=>[i.id,i.name,i.purpose,i.icon,i.material,i.use,JSON.stringify(i.fields||{})])];
+const review=wb.worksheets.add('Review');
+review.getRange('A1:B11').values=[['Station','Classification'],...spec.items.map(i=>[i.name,i.fields?.['Design status']==='Author direction'?'Requested':'Proposal']),[spec.existingStationUpdate.name,'Expanded firebox entry']];
+review.getRange('A1:A11').format.columnWidth=48;
+review.getRange('B1:B11').format.columnWidth=28;
+review.getRange('A1:B11').format.rowHeight=25;
+wb.recalculate();
+await (await SpreadsheetFile.exportXlsx(wb)).save(`${directory}/authored.xlsx`);
+const img=await wb.render({sheetName:'Review',range:'A1:B11',scale:1.5,format:'png'});
+await fs.writeFile(`${directory}/review.png`,new Uint8Array(await img.arrayBuffer()));
+console.log('Authored and rendered camp station inputs.');
