@@ -1,0 +1,134 @@
+{
+  "recipes": [
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\build.py",
+      "bytes": 15205,
+      "sha256": "688cee35d81749343c2c2f76096518c42ea67b4fd3256fe646f29d96dc109c2b"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\prepare.py",
+      "bytes": 4505,
+      "sha256": "c0e528b5a9e80bafdc971854d8f4d91bc5dbe099e31fa8a879c62ffdf0b383a6"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\bake.py",
+      "bytes": 4328,
+      "sha256": "1e873842519a26cee2f13c535d4463203609382c3c0595ad6c41fd3c11d51e2d"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\finalize.py",
+      "bytes": 6516,
+      "sha256": "9afcfe3969b66e8a0625a949402ed0298f3151a96a9169dace3212b4a8a8b575"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\qa.py",
+      "bytes": 8926,
+      "sha256": "173de23e8bbfa7149659c85a8339b4626c7de5599b0d7167b2df353d8b9b6b61"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\metrics.py",
+      "bytes": 3688,
+      "sha256": "86a72c61e58bc1643b8bb901fb20851d97f1c24a6fcbe8d6e9565655555aebb2"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\texture_qa.py",
+      "bytes": 4361,
+      "sha256": "8075b36d2af9fa1a73b2d366914e5b0e056170a2fe9fe0cf4b0f4cfc5fdca4e5"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\review.py",
+      "bytes": 4149,
+      "sha256": "071d122b70810e56a0dd550baf8463ae7d6783a4a71573b7e810649aeeadde4b"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\compare.py",
+      "bytes": 1747,
+      "sha256": "a82f5655d1fb2d0b063b6683692b9fc1dbd55b39d6e4077e66ad0b31ab167e57"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\boards.py",
+      "bytes": 2999,
+      "sha256": "d56c808442e5a64ab6ffd6f178ae837fce98301508d9c45ed9438fb8aa2c355b"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\apply.py",
+      "bytes": 2938,
+      "sha256": "a6f8e62e4a26055928f73a226423175ec354776f3716afd697fc4d1056e2bcc9"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\seal_records.py",
+      "bytes": 4372,
+      "sha256": "b6b6b8890a78ff437d7e5e1a655063ccc5ad6ced7fe840a2adf191d1005cd3e8"
+    }
+  ],
+  "dependencies": [
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerSciFi20261015\\forms.py",
+      "sha256": "5c203c6585408c89137a8ab649a2c5f1b86a126d62dade50c03b8114e73f545e"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerSciFi20261015\\fingerprint.py",
+      "sha256": "eb5f095437185432900cd31b2ed07feb3d55796db3dcd72eb7dc8c1a8f5bc86f"
+    }
+  ],
+  "cache": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerLegRework20261015",
+  "intermediate_review_relocation": [
+    {
+      "from": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\GeometryReview_BeforeCoverClearance",
+      "to": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerLegRework20261015\\IntermediateReviews\\GeometryReview_BeforeCoverClearance",
+      "bytes": 13498327,
+      "verified_files": 12
+    },
+    {
+      "from": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\GeometryReview_CoverStandOff",
+      "to": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerLegRework20261015\\IntermediateReviews\\GeometryReview_CoverStandOff",
+      "bytes": 13528815,
+      "verified_files": 12
+    },
+    {
+      "from": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\GeometryReview_FirstPass",
+      "to": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerLegRework20261015\\IntermediateReviews\\GeometryReview_FirstPass",
+      "bytes": 13486424,
+      "verified_files": 12
+    },
+    {
+      "from": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\GeometryReview_NarrowStudy",
+      "to": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerLegRework20261015\\IntermediateReviews\\GeometryReview_NarrowStudy",
+      "bytes": 13512331,
+      "verified_files": 12
+    },
+    {
+      "from": "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\TexturedReview_NarrowStudy",
+      "to": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerLegRework20261015\\IntermediateReviews\\TexturedReview_NarrowStudy",
+      "bytes": 13515719,
+      "verified_files": 12
+    }
+  ],
+  "checkpoints": {
+    "Before.blend": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerLegRework20261015\\Before.blend",
+      "sha256": "fcb639d849c25866508a05b9546175140f44fadaa79a1ff177bc499dc08d1b1f"
+    },
+    "Forms.blend": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerLegRework20261015\\Forms.blend",
+      "sha256": "73acbd703f077e1da7fe030f09cafcae1dfc14e2bde6d840d86e0d2f98ca5ac3"
+    },
+    "Prepared.blend": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerLegRework20261015\\Prepared.blend",
+      "sha256": "07d3e9bd11c2b9f3877b541b4880565493eba4c03c9376b5df449af8e142fd7c"
+    },
+    "BakeSources.blend": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerLegRework20261015\\BakeSources.blend",
+      "sha256": "b6fc046b9d5b1a3b59ae1eead71b1281fce74356cd74a1244a37f02ce610700f"
+    },
+    "Textured.blend": {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerLegRework20261015\\Textured.blend",
+      "sha256": "32e97e86658e12e5655b072c1de40863fdf4ef992ebcc43ed9c7f27fbc989b1d"
+    }
+  },
+  "raw_uv_records_local_only": [
+    "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\control_uv.json",
+    "D:\\Arc & Dust\\Project\\Logs\\LeggerLegRework20261015\\evaluated_uv.json.gz"
+  ],
+  "note": "Exact native files, textures and rendered pixels remain local. Construction record is the untextured geometry checkpoint; materials and native records identify the applied textured source. The guarded apply recipe now uses the successful existing-allocation method; storage recovery history is retained in application.json."
+}

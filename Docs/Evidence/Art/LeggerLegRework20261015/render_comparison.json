@@ -1,0 +1,95 @@
+{
+  "source_sha256": "32e97e86658e12e5655b072c1de40863fdf4ef992ebcc43ed9c7f27fbc989b1d",
+  "forms_sha256": "73acbd703f077e1da7fe030f09cafcae1dfc14e2bde6d840d86e0d2f98ca5ac3",
+  "geometry_to_pbr": [
+    {
+      "view": "assembled",
+      "mean_rgb_difference_8bit": 0.1660601135666818,
+      "p99_rgb_difference_8bit": 2.0,
+      "maximum_rgb_difference_8bit": 92,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "body",
+      "mean_rgb_difference_8bit": 0.03750580303880549,
+      "p99_rgb_difference_8bit": 1.0,
+      "maximum_rgb_difference_8bit": 95,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "chassis",
+      "mean_rgb_difference_8bit": 0.06916274349237866,
+      "p99_rgb_difference_8bit": 1.0,
+      "maximum_rgb_difference_8bit": 51,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "clay_assembled",
+      "mean_rgb_difference_8bit": 0.004160289550170251,
+      "p99_rgb_difference_8bit": 0.0,
+      "maximum_rgb_difference_8bit": 19,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "cockpit",
+      "mean_rgb_difference_8bit": 0.00030826202675230844,
+      "p99_rgb_difference_8bit": 0.0,
+      "maximum_rgb_difference_8bit": 1,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "elevated",
+      "mean_rgb_difference_8bit": 0.1256947623518336,
+      "p99_rgb_difference_8bit": 1.0,
+      "maximum_rgb_difference_8bit": 55,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "feet",
+      "mean_rgb_difference_8bit": 0.3831582620414155,
+      "p99_rgb_difference_8bit": 2.0,
+      "maximum_rgb_difference_8bit": 109,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "front",
+      "mean_rgb_difference_8bit": 0.24380077719611185,
+      "p99_rgb_difference_8bit": 2.0,
+      "maximum_rgb_difference_8bit": 72,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "legs",
+      "mean_rgb_difference_8bit": 0.4417230058523546,
+      "p99_rgb_difference_8bit": 2.0,
+      "maximum_rgb_difference_8bit": 95,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "rear",
+      "mean_rgb_difference_8bit": 0.22227590766749253,
+      "p99_rgb_difference_8bit": 2.0,
+      "maximum_rgb_difference_8bit": 89,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "side",
+      "mean_rgb_difference_8bit": 0.12421478397428874,
+      "p99_rgb_difference_8bit": 1.0,
+      "maximum_rgb_difference_8bit": 84,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "underside",
+      "mean_rgb_difference_8bit": 0.09172662236352579,
+      "p99_rgb_difference_8bit": 1.0,
+      "maximum_rgb_difference_8bit": 104,
+      "maximum_alpha_difference": 0
+    }
+  ],
+  "limits": "Same camera, geometry, lights and exposure. This verifies bake reproduction in these offline views, not exact original-source equivalence, all mip levels or Unity performance.",
+  "native_to_candidate": {
+    "maximum_rgb_difference_8bit": 1,
+    "maximum_alpha_difference": 0
+  }
+}

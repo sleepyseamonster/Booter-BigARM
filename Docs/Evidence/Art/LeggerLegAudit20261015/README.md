@@ -1,5 +1,7 @@
 # Legger original leg audit evidence
 
+**Subsequent implementation:** the author later authorized the [applied three-section leg rework](../LeggerLegRework20261015/README.md), which identifies the current source and new joint targets. This receipt remains the historical read-only audit; its source identity and comparisons refer to the pre-rework baseline.
+
 October 15, 2026. The author requested an audit of original leg geometry, height/width ratios and angles before any rework. **No `.blend` was saved or modified.** Only new audit artifacts and this documentation were written. Existing model plans and prior receipts were not edited. The [leg geometry audit and future brief](../../../Design/Art/LEGGER_LEG_GEOMETRY_AUDIT.md) report the conclusions and measurement limits.
 
 The inspected source remains `SourceArt/Blender/Studies/Legger/Legger_Topology_Iteration04.blend`, **810,807,494 bytes**, SHA-256 **`fcb639d849c25866508a05b9546175140f44fadaa79a1ff177bc499dc08d1b1f`** before and after inspection. [Verification](verification.json) seals this identity and records the read-only boundary. This is the [applied sci-fi checkpoint](../LeggerSciFi20261015/README.md), with one scene/view layer, 67 visible major meshes, 36,302 stored quads and 123,664 evaluated triangles. Counts are not an additional modeling change.

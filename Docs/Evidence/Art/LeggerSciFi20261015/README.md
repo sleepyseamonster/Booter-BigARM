@@ -1,5 +1,7 @@
 # Legger sci-fi form refinement
 
+**Subsequent checkpoint:** the [three-section leg rework](../LeggerLegRework20261015/README.md), completed October 16, identifies the current native source. It replaces this pass's two-link leg geometry and numeric targets while retaining mirrored stance, overall height and the other major forms. This receipt's hashes, counts and preservation statements describe the earlier sci-fi checkpoint.
+
 October 15, 2026. **Applied and verified in the existing authoring file.** The author requested implementation of the [form overhaul brief](../../../Design/Art/LEGGER_SCI_FI_OVERHAUL_AUDIT.md), bringing the overly simple modular model closer to the retained original futuristic design. This pass rebuilds 53 major meshes, rebakes seven affected texture modules and preserves the [neutral leg alignment](../LeggerLegAlignment20261015/README.md). Creative acceptance remains with the author.
 
 ## Saved source and organization

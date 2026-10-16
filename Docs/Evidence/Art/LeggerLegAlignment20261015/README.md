@@ -1,6 +1,6 @@
 # Legger neutral leg alignment
 
-**Subsequent form refinement:** the [applied sci-fi pass](../LeggerSciFi20261015/README.md) identifies the current native source. It preserves every neutral joint target below while rebuilding the major forms and affected atlases. This receipt's hashes, counts and unchanged-body statements describe the earlier alignment-only checkpoint.
+**Subsequent checkpoints:** the [sci-fi pass](../LeggerSciFi20261015/README.md) initially preserved every neutral target below. The later [three-section leg rework](../LeggerLegRework20261015/README.md) identifies the current native source and deliberately replaces those old two-link numeric targets with hip/knee/hock/ankle positions. Matching left/right geometry, equal segment lengths, shared bends and forward feet remain the rest-stance requirement. This receipt's hashes, counts and unchanged-body statements describe the earlier alignment-only checkpoint.
 
 October 15, 2026. The author requested that both legs line up to make rigging easier. This supersedes preservation of the previous staggered leg pose and its joint coordinates. The [sci-fi form audit](../LeggerSciFiAudit20261015/README.md) is complete; the broader shape overhaul remains separate from this applied alignment pass.
 

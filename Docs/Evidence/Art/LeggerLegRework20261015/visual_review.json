@@ -1,0 +1,25 @@
+{
+  "source_sha256": "32e97e86658e12e5655b072c1de40863fdf4ef992ebcc43ed9c7f27fbc989b1d",
+  "reviewed": true,
+  "views": [
+    "assembled",
+    "side",
+    "body",
+    "legs",
+    "cockpit",
+    "front",
+    "rear",
+    "elevated",
+    "chassis",
+    "underside",
+    "feet",
+    "clay_assembled"
+  ],
+  "review_images": [
+    "Legger_ThreeLink_Rework.png",
+    "Legger_ThreeLink_Side_Comparison.png",
+    "Legger_ThreeLink_Details.png",
+    "Final_Review_Contact.png"
+  ],
+  "method": "Inspected matched geometry/PBR review boards and contact sheet covering twelve saved-candidate views. No foreground application interaction. Source angles are audited design estimates, not recovered rig axes."
+}

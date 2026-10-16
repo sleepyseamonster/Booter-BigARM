@@ -1,0 +1,128 @@
+{
+  "input_prepared_sha256": "07d3e9bd11c2b9f3877b541b4880565493eba4c03c9376b5df449af8e142fd7c",
+  "input_forms_sha256": "73acbd703f077e1da7fe030f09cafcae1dfc14e2bde6d840d86e0d2f98ca5ac3",
+  "candidate": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerLegRework20261015\\Textured.blend",
+  "candidate_sha256": "32e97e86658e12e5655b072c1de40863fdf4ef992ebcc43ed9c7f27fbc989b1d",
+  "candidate_bytes": 845205300,
+  "materials": [
+    {
+      "key": "Frame",
+      "material": "Legger_ThreeLink_Frame_PBR",
+      "atlas": "Legger_ThreeLink_Frame_Atlas",
+      "resolution": 4096,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_ThreeLink_Frame_BaseColor",
+          "sha256": "8dccebb84ae2a616a8a1c7cb33afb170b651643ca871fa4c247aaaad50626179",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_ThreeLink_Frame_Normal",
+          "sha256": "c2ef64aa69d18f8ee5713b0077bb7b0687353a2da75bf5dc878ec8652fe88af1",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_ThreeLink_Frame_Roughness",
+          "sha256": "d443ea69fa8c2398dd0f218e991718e2081785c78dc0356df1911173b971ab0a",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_ThreeLink_Frame_Metallic",
+          "sha256": "1e3b4a0f6c2d5e76844032b9be5f4e8562ebd3301e80dc694068537113a585b3",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ThreeLink_Frame_AO",
+          "sha256": "5a004fb0bba03f7ba63455062c7042373f8ea35947c7f22b77976823f9b3c07e",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "LeftLeg",
+      "material": "Legger_ThreeLink_LeftLeg_PBR",
+      "atlas": "Legger_ThreeLink_LeftLeg_Atlas",
+      "resolution": 4096,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_ThreeLink_LeftLeg_BaseColor",
+          "sha256": "e6dd94688daca923752ead96cc2af33422a3a111409acf6b465fa48209e7a04c",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_ThreeLink_LeftLeg_Normal",
+          "sha256": "2405e1e91491d5d3f5cf0bd4a7496a246ab86ad15839ace63cc423376acb94d6",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_ThreeLink_LeftLeg_Roughness",
+          "sha256": "bc8a5ffb813485bc7b9458e6222b8ff00550961e7876886fd51707e9bbace5fd",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_ThreeLink_LeftLeg_Metallic",
+          "sha256": "62d5cf2550dc087d7b5b4bd2c2ebea95eb328799316a48cc179ce0f77569c744",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ThreeLink_LeftLeg_AO",
+          "sha256": "bc8332728d922a3ff6e17806ee41770dc42bde438652a6f033c356309551c6f6",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "RightLeg",
+      "material": "Legger_ThreeLink_RightLeg_PBR",
+      "atlas": "Legger_ThreeLink_RightLeg_Atlas",
+      "resolution": 4096,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_ThreeLink_RightLeg_BaseColor",
+          "sha256": "7c8adbf04837c47e36da54f79383978bba25ee00b955a4423e53a858b9c4d7c9",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_ThreeLink_RightLeg_Normal",
+          "sha256": "25171fbac0d41f92cf6d2b277d46cd3cc64edd1c1104e57283c5304a72bf01ce",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_ThreeLink_RightLeg_Roughness",
+          "sha256": "c20ba4b55a890d20ffcd6cff67af6608c04b26b1e634eaadd9a7b8da825e95fd",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_ThreeLink_RightLeg_Metallic",
+          "sha256": "c76e961a8d2c3031df2df87591f14dc3525d7854dbe0f4e41fafe081ba87a93d",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ThreeLink_RightLeg_AO",
+          "sha256": "1ccf8ffa41045adbe5b533d66aa1d21e52b31f70325fe5f563c4344903f56685",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    }
+  ],
+  "new_maps": 15,
+  "retained_maps": 40,
+  "major_meshes": 73,
+  "control_quads": 35934,
+  "evaluated_triangles": 120056
+}
