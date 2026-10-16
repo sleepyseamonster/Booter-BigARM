@@ -1,0 +1,93 @@
+{
+  "source": "Author requested eight more Manufactured stock items, October 15, 2026. Specific materials, processing stages and uses remain design proposals.",
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Manufactured stock",
+    "Subtype": "Fabrication stock",
+    "Acquisition": "Proposed workshop manufacture or trade in prepared stock; regional access and availability remain undefined.",
+    "Crafting / processing": "Candidate intermediate stock for later fitted fabrication. Processing inputs and planning stage are proposed; no executable recipe, material quantity, yield or manufacturing time is authored.",
+    "Limitations": "Dimensions, material grade, tolerances, service conditions and compatibility remain open. A shaped blank does not grant a fitted component, certified protection or an operating machine.",
+    "Rarity": null,
+    "Item type": "Processed material",
+    "Processing stage": "Processed intermediate",
+    "Origin family": "Manufactured / unresolved",
+    "Physical form": "Sheet",
+    "Classification basis": "Author-requested expansion of manufactured stock: worked materials awaiting fitted fabrication, separate from finished equipment and as-found salvage.",
+    "Tier basis": "Proposed T2 stock using qualified T1 metal or ceramic feed. The planning stage does not establish a recipe, production access or material performance.",
+    "Finished-item input tier": "T1",
+    "Crafting role": "Material"
+  },
+  "items": [
+    {
+      "id": "proposal.stock.perforated_iron_sheet",
+      "name": "Perforated iron sheet stock",
+      "purpose": "Worked iron sheet with a repeating pattern of punched openings, intended for ventilation faces, sorting screens or protective equipment covers. Hole pattern and useful clearances await design; this is stock rather than a finished filter.",
+      "icon": "A slightly curved iron sheet with rows of punched holes and an unfinished edge.",
+      "material": "Metal",
+      "use": "Fabrication"
+    },
+    {
+      "id": "proposal.stock.flanged_iron_channel",
+      "name": "Flanged iron channel stock",
+      "purpose": "Lengths of worked iron folded into a shallow channel with outward mounting lips. Candidate stock for lightweight frames, camp fittings and casing supports; it needs cutting and fitting before assembly.",
+      "icon": "Three staggered lengths of shallow U-shaped iron channel with flat outward lips.",
+      "material": "Metal",
+      "use": "Equipment fabrication",
+      "fields": {"Physical form": "Solid piece"}
+    },
+    {
+      "id": "proposal.stock.corrugated_steel_sheet",
+      "name": "Corrugated steel sheet stock",
+      "purpose": "Prepared steel sheet formed into parallel ridges for proposed housings, stiffened covers or wind-facing panels. It remains an unfitted sheet; strength, weight and acceptable forming methods are undecided.",
+      "icon": "A short steel sheet with five broad corrugations and uneven cut ends.",
+      "material": "Metal",
+      "use": "Equipment fabrication",
+      "fields": {"Tier": "T3", "Finished-item input tier": "T2", "Tier basis": "Proposed T3 forming stock using T2 steel stock. Forming sequence, tooling and resulting properties remain proposals."}
+    },
+    {
+      "id": "proposal.stock.hollow_ceramic_tube_blanks",
+      "name": "Hollow ceramic tube blanks",
+      "purpose": "Unfitted fired ceramic tube lengths for selected spacers, protected guides or candidate nonconductive passages. Cutting, bore finish and service qualification remain necessary; no voltage, heat or chemical rating is assigned.",
+      "icon": "Three thick-walled ceramic tubes of different lengths, their rough open bores visible.",
+      "material": "Ceramic",
+      "use": "Fabrication",
+      "fields": {"Physical form": "Solid piece"}
+    },
+    {
+      "id": "proposal.stock.fired_ceramic_ring_blanks",
+      "name": "Fired ceramic ring blanks",
+      "purpose": "Rough fired ceramic rings awaiting grinding and matching to a particular assembly. They supply stock for potential collars or spacers, distinct from the catalog's fitted insulating spacer and matched spacer sets.",
+      "icon": "A small stack of thick ceramic rings with rough rims and mismatched inner openings.",
+      "material": "Ceramic",
+      "use": "Fabrication",
+      "fields": {"Physical form": "Solid piece"}
+    },
+    {
+      "id": "proposal.stock.laminated_mica_shims",
+      "name": "Laminated mica shim stock",
+      "purpose": "Thin layered mica strips proposed for fitted gap adjustment and separation between compatible surfaces. Thickness, binder choice and useful insulating behavior require qualification; this is not a guaranteed electrical barrier.",
+      "icon": "A fan of thin amber-grey mineral strips showing layered edges and staggered lengths.",
+      "material": "Mineral",
+      "use": "Equipment fabrication",
+      "fields": {"Tier": "T3", "Finished-item input tier": "T2", "Physical form": "Strip", "Tier basis": "Proposed T3 finishing and thickness-selection stage using T2 mica composite sheet. Composition, separation method and tolerances remain unresolved."}
+    },
+    {
+      "id": "proposal.stock.copper_capillary_tube",
+      "name": "Copper capillary tube stock",
+      "purpose": "Fine-bore copper tubing proposed for fitted instrument passages or the controlled transfer of compatible contained substances. It does not imply a water system, safe biological contact or a particular flow rate; bore consistency and cleaning remain open.",
+      "icon": "A loose coil of narrow copper tube with two short straight offcuts showing tiny open bores.",
+      "material": "Metal",
+      "use": "Equipment fabrication",
+      "fields": {"Tier": "T3", "Finished-item input tier": "T2", "Physical form": "Solid piece", "Tier basis": "Proposed T3 fine forming from T2 drawn copper stock. Tooling, bore control and process qualification are not established."}
+    },
+    {
+      "id": "proposal.stock.hammered_bronze_foil",
+      "name": "Hammered bronze foil stock",
+      "purpose": "Very thin worked bronze sheets proposed for decorative cladding, shaped labels or selected fitted metal layers. Thickness, alloy, joining and durability remain undecided; it is distinct from thicker drawn bronze strip stock.",
+      "icon": "Several thin warm-brown metal leaves with curled corners and small hammer facets.",
+      "material": "Metal",
+      "use": "Fabrication",
+      "fields": {"Tier": "T3", "Finished-item input tier": "T2", "Tier basis": "Proposed T3 thinning and finishing using T2 bronze stock. Annealing, hammering sequence, usable thickness and yield remain design work."}
+    }
+  ]
+}

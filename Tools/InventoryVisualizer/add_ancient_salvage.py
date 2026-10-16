@@ -98,7 +98,7 @@ def build(snapshot, spec=None):
             if spec.get('defaults'):
                 overrides.update({headers.index(key): value for key, value in spec['defaults'].items()})
                 overrides.update({20:'Artwork direction: '+item['icon']+' Fit, safe use and manufacturing details remain proposals.',
-                                  21:item['name'].lower()+'; camp life; everyday object',22:spec['source']+' Setting constraints: Docs/WORLD_BASIS.md#material-culture.'})
+                                  21:item['name'].lower()+'; '+str(overrides.get(3,'')).lower()+'; '+str(overrides.get(4,'')).lower(),22:spec['source']+' Setting constraints: Docs/WORLD_BASIS.md#material-culture.'})
                 overrides.update({headers.index(key): value for key, value in item.get('fields', {}).items()})
             for c, value in overrides.items():fields[c] = value
             allowed = {}
@@ -116,6 +116,7 @@ def build(snapshot, spec=None):
             use_fields[0]=item['id'];use_fields[5]='Author-requested catalog proposal; intended use, not an implemented action.'
             uses.append((u,row_xml('Item uses',use_last,u,use_fields,{2:item['name'],3:fields[3],5:item['use']})))
             access = ('As-found ancient recovery' if fields[25]=='Ancient technology' else 'As-found salvage') if fields[2]=='T0' else 'Finished object proposal'
+            if fields[34]=='Material':access='Intermediate stock proposal'
             audit=[item['id'],f'=Items!B{n}',f'=Items!X{n}',f'=Items!C{n}',access,f'=Items!AJ{n}','No recipe established','Facilities and qualification criteria remain undefined.','Proposal; not qualified for crafting',fields[20]]
             audits.append((n,row_xml('Craft audit',631,n,audit,{2:item['name'],3:fields[23],4:fields[2],6:0})))
         insert('Items',items);insert('Item uses',uses);insert('Craft audit',audits)
