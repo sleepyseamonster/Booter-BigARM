@@ -10,6 +10,8 @@ Open **http://127.0.0.1:8087**. Stop with Ctrl+C in the server terminal. Optiona
 
 ## Current proposal
 
+- Food organization, October 15: **Cooking ingredients** contains 23 culinary source stocks and intermediate ingredients, including the selected edible-fauna fractions previously in Biological resources. **Consumables** retains 31 finished servings and consumables: meals, bars, drinks and the existing livestock-feed block. Cooking tools keep their equipment classification. Item types, recipes, nutrition/edibility caveats, tiers, stable IDs and review choices are unchanged. The per-item move record is `Docs/Design/Items/FOOD_CATEGORY_SPLIT_2026-10-15.json`.
+
 - Yellow item-review circle: toggle to flag an item for review. A marked item keeps its yellow check visible and hides the green Keep button. Marking a kept item clears Keep; clearing review reveals an unchecked Keep button. Trash remains available during review. Review flags persist by item ID in `ITEM_REVIEW_STATE.json`, separately from artwork status, without changing the master workbook.
 
 - Compact entry menu, category rail, item grid/list, and persistent inspection panel. Hover an item (or focus it with Tab) to reveal its trash button and green keep circle. Touch layouts show the controls directly. Click the empty circle to keep/protect the item; its check stays visible and the trash button disappears. Click the check to unkeep it.

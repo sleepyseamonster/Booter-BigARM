@@ -1,0 +1,132 @@
+{
+  "date": "2026-10-15",
+  "category": "Cooking ingredients",
+  "definitions": {
+    "Cooking ingredients": "Culinary source stocks, selected edible fauna fractions, seasonings and prepared ingredients intended for making food or drinks. Ready-to-consume servings remain Consumables. Cooking tools stay in their equipment categories.",
+    "Consumables": "Ready-to-consume meals, bars and drinks, plus the existing finished livestock-feed consumable. Ingredients used to prepare meals or drinks are classified separately.",
+    "Biological resources": "Harvested fauna materials and contained industrial Phagia byproducts; culinary ingredient entries are classified separately. No general edibility claim."
+  },
+  "movedItems": [
+    {
+      "id": "proposal.bio.edible_fraction",
+      "name": "Edible fauna fraction (species TBD)",
+      "fromCategory": "Biological resources"
+    },
+    {
+      "id": "proposal.food.edible_flakes",
+      "name": "Prepared edible-fauna flakes",
+      "fromCategory": "Biological resources"
+    },
+    {
+      "id": "proposal.food.edible_paste",
+      "name": "Prepared edible-fauna paste",
+      "fromCategory": "Biological resources"
+    },
+    {
+      "id": "proposal.collection.contained_culinary_phagia_culture",
+      "name": "Contained culinary Phagia culture",
+      "fromCategory": "Biological resources"
+    },
+    {
+      "id": "proposal.collection.selected_edible_fauna_gland_tissue",
+      "name": "Selected edible-fauna gland tissue",
+      "fromCategory": "Biological resources"
+    },
+    {
+      "id": "proposal.collection.drained_culinary_phagia_curd",
+      "name": "Drained culinary Phagia curd",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.culinary_phagia_liquid_fraction",
+      "name": "Culinary Phagia liquid fraction",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.fine_culinary_phagia_meal",
+      "name": "Fine culinary Phagia meal",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.pressed_culinary_phagia_flakes",
+      "name": "Pressed culinary Phagia flakes",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.toasted_culinary_phagia_crumbs",
+      "name": "Toasted culinary Phagia crumbs",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.culinary_phagia_binding_paste",
+      "name": "Culinary Phagia binding paste",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.controlled_sour_phagia_base",
+      "name": "Controlled-sour Phagia base",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.reduced_culinary_phagia_concentrate",
+      "name": "Reduced culinary Phagia concentrate",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.aerated_culinary_phagia_curd",
+      "name": "Aerated culinary Phagia curd",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.food_grade_mineral_seasoning",
+      "name": "Food-grade mineral seasoning",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.selected_edible_fauna_gel",
+      "name": "Selected edible-fauna gel",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.dried_edible_fauna_granules",
+      "name": "Dried edible-fauna granules",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.strained_edible_fauna_broth_base",
+      "name": "Strained edible-fauna broth base",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.selected_edible_fauna_roe",
+      "name": "Selected edible-fauna roe",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.cooked_edible_fauna_morsels",
+      "name": "Cooked edible-fauna morsels",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.culinary_fauna_aroma_fraction",
+      "name": "Culinary fauna aroma fraction",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.collection.phagia_fauna_savory_filling",
+      "name": "Phagia-fauna savory filling",
+      "fromCategory": "Consumables"
+    },
+    {
+      "id": "proposal.audit.selected_edible_fauna_reproductive_mass",
+      "name": "Selected edible-fauna reproductive mass",
+      "fromCategory": "Biological resources"
+    }
+  ],
+  "boundary": "Catalog classification only. No world objects, terrain/chunk streaming, generated identities or gameplay persistence are affected. Existing IDs, item types, food-safety caveats, tiers, recipes and review choices are retained.",
+  "countsAfter": {
+    "Consumables": 31,
+    "Cooking ingredients": 23,
+    "Biological resources": 44
+  }
+}
