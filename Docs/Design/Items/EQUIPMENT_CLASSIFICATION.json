@@ -1,0 +1,777 @@
+{
+  "date": "2026-10-15",
+  "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
+  "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
+  "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
+  "sourceHashAfter": "1a30e4b98f8da4e2d2722abb73f69a96c70750e81460b0cee396208a9310ccfc",
+  "counts": {
+    "Accessories": 15,
+    "Tools": 52,
+    "Armor": 43,
+    "Attachments": 17
+  },
+  "items": [
+    {
+      "id": "equipment.algae_canister",
+      "name": "Algae canister",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "equipment.cloak",
+      "name": "Cloak",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "equipment.digging_tool",
+      "name": "Digging shovel axe",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "tool.micro_dust_harvester",
+      "name": "Dust canister",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "equipment.grappling_hook",
+      "name": "Grappling hook",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "equipment.jacket",
+      "name": "Jacket",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "proposal.gear.magnets",
+      "name": "Field magnets",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.gear.grounding_kit",
+      "name": "Static grounding kit",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "proposal.gear.mail_shirt",
+      "name": "Chainmail shirt",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.gear.metal_armor_set",
+      "name": "Assembled metal armor",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.gear.chest_armor",
+      "name": "Chest armor",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.gear.helmet",
+      "name": "Helmet",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.gear.leg_armor",
+      "name": "Leg armor",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.gear.boots",
+      "name": "Boots",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.gear.gloves",
+      "name": "Gloves",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.gear.backpack",
+      "name": "Backpack",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "proposal.gear.special_plates",
+      "name": "Specialized armor plates",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.gear.shield",
+      "name": "Shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.fashion.special_spectacles",
+      "name": "Specialized spectacles",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "proposal.fashion.eyeglasses",
+      "name": "Eyeglasses",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "proposal.fashion.hat",
+      "name": "Hat",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "proposal.fashion.husk_garment",
+      "name": "Elaborate husk-fiber wear",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "proposal.fashion.fur_garment",
+      "name": "Elaborate fur wear",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "proposal.fashion.hide_garment",
+      "name": "Elaborate hide wear",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "proposal.gear.simple_wraps",
+      "name": "Simple everyday wraps",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "proposal.canister.harness",
+      "name": "Fitted canister harness",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.canister.inspection_gauge",
+      "name": "Seal inspection gauge",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.ceramic.crucible",
+      "name": "Ceramic crucible",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.ceramic.casting_mold",
+      "name": "Ceramic casting mold",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.ceramic.mortar",
+      "name": "Ceramic grinding mortar",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.ceramic.pestle",
+      "name": "Ceramic pestle",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.ceramic.firing_tray",
+      "name": "Ceramic firing tray",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.ceramic.armor_insert",
+      "name": "Specialist ceramic armor insert",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.ceramic.grinding_disc",
+      "name": "Ceramic abrasive disc",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.fire.striker",
+      "name": "Flint striking tool",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.fire.cooking_pot",
+      "name": "Ceramic cooking pot",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.fire.cooking_slab",
+      "name": "Cooking stone slab",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.fire.lidded_pan",
+      "name": "Lidded cooking pan",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.fire.rack",
+      "name": "Cooking rack",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.fire.pot_stand",
+      "name": "Cooking pot stand",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.fire.tongs",
+      "name": "Cooking tongs",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.fire.firebox",
+      "name": "Managed cooking firebox",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.fire.glow_holder",
+      "name": "Shuttered glow-stone holder",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "proposal.wind.turbine",
+      "name": "Salvaged wind turbine",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.wind.hand_sail",
+      "name": "Collapsible handheld wind sail",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.wind.dirtboard",
+      "name": "Four-wheel all-terrain dirtboard",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.legger.sling",
+      "name": "Legger cargo sling",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.legger.cradle",
+      "name": "Legger rigid cargo cradle",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.legger.belly_pan",
+      "name": "Legger chassis belly pan",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.legger.shell_guard",
+      "name": "Chitin chassis guard",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.legger.iron_guard",
+      "name": "Iron chassis guard",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.legger.joint_guard",
+      "name": "Articulated joint guard",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.legger.ceramic_backing",
+      "name": "Ceramic armor backing insert",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.legger.nanocarbon_panel",
+      "name": "Ancient nanocarbon armor panel",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.legger.ballistic_guard",
+      "name": "Ancient ballistic-deflecting guard",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.legger.pannier_frame",
+      "name": "Legger side-pannier frame",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.legger.sample_rack",
+      "name": "Legger sample-vial rack",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.legger.ore_bin",
+      "name": "Legger removable ore bin",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.legger.board_bracket",
+      "name": "Legger dirtboard carrying bracket",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.legger.grease_applicator",
+      "name": "Joint grease applicator",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.legger.service_pick",
+      "name": "Joint-service cleaning pick",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.legger.bearing_puller",
+      "name": "Matched bearing-removal tool",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.legger.alignment_gauge",
+      "name": "Legger alignment gauge",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.legger.spares_case",
+      "name": "Legger fitted spares case",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.legger.edge_guard",
+      "name": "Chassis leading-edge guard",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.legger.instrument_guard",
+      "name": "Instrument-face guard",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.legger.seam_guard",
+      "name": "Armor seam-cover strip",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.legger.impact_cap",
+      "name": "Sacrificial impact cap",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.legger.fragment_liner",
+      "name": "Pressed-husk fragment liner",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.legger.impact_lattice",
+      "name": "Ancient impact-lattice backing",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "author.communication.crude_two_way_radio",
+      "name": "Crude two-way radio",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "author.electrical.magnetic_disruptor",
+      "name": "Magnetic field disruptor",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "author.electrical.magnetic_inhibitor",
+      "name": "Magnetic field inhibitor",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "author.electrical.magnetic_enhancer",
+      "name": "Magnetic field enhancer",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "author.electrical.static_enhancer",
+      "name": "Static-electricity field enhancer",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "author.electrical.static_disruptor",
+      "name": "Static-electricity field disruptor",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "author.electrical.insulated_suit",
+      "name": "Electrical insulating suit",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "author.electrical.insulated_gloves",
+      "name": "Electrical insulating gloves",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "author.electrical.insulated_boots",
+      "name": "Electrical insulating boots",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "author.forging.hammer",
+      "name": "Forging hammer",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "author.forging.anvil",
+      "name": "Anvil",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.forging.tongs",
+      "name": "Smithing tongs",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.forging.sledge",
+      "name": "Forging sledge",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.forging.hot_cut",
+      "name": "Hot-cut chisel",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.forging.punch",
+      "name": "Forging punch",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.forging.drift",
+      "name": "Forming drift",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.forging.swage_block",
+      "name": "Swage block",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.forging.file",
+      "name": "Metalworking file",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.forging.hearth",
+      "name": "Forge hearth",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "author.city_transport.carriage",
+      "name": "Inner-city carriage",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "author.city_transport.car",
+      "name": "Inner-city car",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.lore.shell_scraper",
+      "name": "Domestic shell-trimming scraper",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.collection.hand_cranked_metal_drill",
+      "name": "Hand-cranked metal drill",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.collection.husk_sheet_cutting_shears",
+      "name": "Husk-sheet cutting shears",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.collection.husk_fiber_face_wrap",
+      "name": "Husk-fiber face wrap",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.chainmail_shoulder_mantle",
+      "name": "Chainmail shoulder mantle",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.shell_rib_gaiters",
+      "name": "Shell-rib gaiters",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.minimal_hide_tool_belt",
+      "name": "Minimal-hide tool belt",
+      "category": "Attachments",
+      "reason": "Fitted mounts, cargo rigging, inserts, backing, liners and replaceable add-ons that serve another piece of equipment."
+    },
+    {
+      "id": "proposal.collection.pressed_husk_apron",
+      "name": "Pressed-husk apron",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.mica_brim_sun_visor",
+      "name": "Mica-brim sun visor",
+      "category": "Accessories",
+      "reason": "General clothing, eyewear, carried personal reserves, carriers and supporting utility gear; no new equipment slots or effects."
+    },
+    {
+      "id": "proposal.collection.cable_grip_canyon_ascender",
+      "name": "Cable-grip canyon ascender",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.collection.braked_canyon_descent_trolley",
+      "name": "Braked canyon descent trolley",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.collection.shell_runner_cargo_sled",
+      "name": "Shell-runner cargo sled",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.collection.round_iron_buckler",
+      "name": "Round iron buckler",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.riveted_steel_round_shield",
+      "name": "Riveted steel round shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.broad_chitin_shield",
+      "name": "Broad chitin shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.shell_rib_oval_shield",
+      "name": "Shell-rib oval shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.tall_iron_pavise",
+      "name": "Tall iron pavise",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.folding_wing_frame_screen_shield",
+      "name": "Folding wing-frame screen shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.ceramic_faced_shield",
+      "name": "Ceramic-faced shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.layered_husk_shield",
+      "name": "Layered husk shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.steel_rimmed_shell_shield",
+      "name": "Steel-rimmed shell shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.hook_edged_catch_shield",
+      "name": "Hook-edged catch shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.elbow_strapped_work_shield",
+      "name": "Elbow-strapped work shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.knee_braced_ground_shield",
+      "name": "Knee-braced ground shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.segmented_tower_shield",
+      "name": "Segmented tower shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.mica_slit_observation_shield",
+      "name": "Mica-slit observation shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.grit_shedding_curved_shield",
+      "name": "Grit-shedding curved shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.insulated_handle_shield",
+      "name": "Insulated-handle shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.ceremonial_inlay_shield",
+      "name": "Ceremonial inlay shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.magnet_clamp_utility_shield",
+      "name": "Magnet-clamp utility shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.replaceable_scale_shield",
+      "name": "Replaceable-scale shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.ancient_plasteel_guard_shield",
+      "name": "Ancient plasteel guard shield",
+      "category": "Armor",
+      "reason": "Complete protective wear, shields and guards. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.audit.metalworking_hand_saw",
+      "name": "Metalworking hand saw",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.audit.workshop_winding_mandrel",
+      "name": "Workshop winding mandrel",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.audit.food_preparation_screen",
+      "name": "Food preparation screen",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.audit.metal_glassworking_blowpipe",
+      "name": "Metal glassworking blowpipe",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    }
+  ]
+}
