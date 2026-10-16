@@ -1,7 +1,6 @@
 import {IDS,EQUIPMENT,OWNERS,RECIPES,freshState,restoreState,accessible,amount,load,transfer,craft,craftBlocker} from './game-model.mjs';
 import {startInventoryGamepad} from './gamepad.js';
 import {itemIcon} from './item-icons.mjs';
-import {StandingCharacterViewer} from './character-viewer.js';
 
 const $=s=>document.querySelector(s),html=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const SAVE='arc-dust-game-inventory-v1',PREFS='arc-dust-game-settings-v1';
@@ -12,7 +11,6 @@ const mapPlaces=[{id:'booter',label:'Booter',x:34,y:59,icon:'●',description:'P
 let mapSelection='booter',waypoint=null,mapZoom=1;
 const itemName=id=>catalog.get(id)?.['Item name']||id;
 const symbol=id=>id===IDS.ore?'⬡':id===IDS.dust||id===IDS.algae?'◉':id===IDS.empty?'▥':id===IDS.charged?'ϟ':id===IDS.cloak||id===IDS.jacket?'⋈':id===IDS.grapple?'⌁':id===IDS.dig?'⚒':id===IDS.camp?'△':'◇';
-const characterViewer=new StandingCharacterViewer(id=>{const entry=state.entries.find(e=>e.owner==='booter'&&e.item===id);if(entry){selected=entry.key;render();}});
 const say=text=>{$('#message').textContent=text;};
 function persist(){if(saveBlocked)return;try{localStorage.setItem(SAVE,JSON.stringify(state));}catch{say('Browser storage is unavailable. This session works, but changes will not survive a reload.');}}
 function commit(next,message){state=next;render();say(message);persist();}
@@ -27,7 +25,7 @@ function rail(kind='owners'){
 function tools(reference=false){const categories=[...new Set((reference?[...catalog.values()]:state.entries.filter(e=>e.owner===owner).map(e=>catalog.get(e.item)).filter(Boolean)).map(i=>i.Category))].sort();return `<div class="toolbar"><input id="game-search" type="search" aria-label="Search ${reference?'reference':'possessions'}" placeholder="Search ${reference?'all definitions':'this inventory'}…" value="${html(search)}"><select id="game-filter" aria-label="Filter items"><option value="">All categories</option>${categories.map(c=>`<option ${filter===c?'selected':''}>${html(c)}</option>`).join('')}<option value="favourite" ${filter==='favourite'?'selected':''}>Favourites</option><option value="protected" ${filter==='protected'?'selected':''}>Protected</option></select><select id="game-sort" aria-label="Sort view"><option value="name" ${sort==='name'?'selected':''}>Name A–Z</option><option value="quantity" ${sort==='quantity'?'selected':''}>Quantity</option></select></div>`;}
 function matches(item,entry){return (!search||[item?.['Item name'],item?.Category,item?.Purpose,item?.['Search terms'],entry?.item].join(' ').toLowerCase().includes(search.toLowerCase()))&&(!filter||(filter==='favourite'?state.favourites.includes(entry?.key):filter==='protected'?state.protected.includes(entry?.key):item?.Category===filter));}
 function row(entry){return `<button data-entry="${html(entry.key)}" class="${selected===entry.key?'selected':''}" aria-pressed="${selected===entry.key}"><span class="symbol" aria-hidden="true">${symbol(entry.item)}</span><span><strong>${html(itemName(entry.item))}</strong><small>${html(catalog.get(entry.item)?.Category||'Definition unavailable')}${entry.dust?` · ${entry.dust} contained dust`:''}${state.protected.includes(entry.key)?' · Protected':''}${state.favourites.includes(entry.key)?' · Favourite':''}</small></span><span class="quantity">${entry.qty}<small>${entry.instance?'INSTANCE':'UNITS'}</small></span></button>`;}
-function portrait(){return `<aside class="character-panel"><div class="section-label">CHARACTER <span>BOOTER</span></div><div class="character-stage" id="character-stage"><div class="viewer-halo"></div><span class="viewer-model-label">PROTOTYPE MODEL</span><span class="viewer-angle">342°</span><div class="viewer-state">Loading character…</div></div><div class="rotate-controls"><button data-turn="-30" aria-label="Rotate character left">↶</button><span>ROTATE CHARACTER</span><button data-turn="30" aria-label="Rotate character right">↷</button><button data-turn="front" class="reset-view" aria-label="Reset character view">Front</button></div><div class="character-caption"><strong>Booter</strong><span>Expedition loadout</span></div></aside>`;}
+function portrait(){return `<aside class="character-panel"><div class="section-label">CHARACTER <span>BOOTER</span></div><div class="character-stage empty-character-stage"><svg class="character-outline" viewBox="0 0 200 400" aria-hidden="true" fill="none"><path class="character-guide" d="M35 30H20v30m145-30h15v30M35 365H20v-30m145 30h15v-30M100 20v360"/><path class="character-body" d="M100 42c-15 0-24 11-24 27 0 14 7 25 14 28v13l-30 10c-9 3-15 11-17 22l-17 91c-2 9 1 16 7 17 7 2 11-3 13-11l20-76 3 58-7 65-4 65c0 7-8 12-8 18 0 4 4 6 10 6h20c5 0 8-3 8-8l8-74 4-40 4 40 8 74c0 5 3 8 8 8h20c6 0 10-2 10-6 0-6-8-11-8-18l-4-65-7-65 3-58 20 76c2 8 6 13 13 11 6-1 9-8 7-17l-17-91c-2-11-8-19-17-22l-30-10V97c7-3 14-14 14-28 0-16-9-27-24-27Z"/></svg><span class="empty-character-label">EMPTY CHARACTER SPACE</span></div><div class="character-caption"><strong>Booter</strong><span>Expedition loadout</span></div></aside>`;}
 function slot(index,label){
   const e=state.entries.find(e=>e.owner==='booter'&&e.slot===index);
   return `<button class="gear-tile ${e?'':'empty-slot'} ${e?.key===selected?'selected':''}" ${e?`data-entry="${html(e.key)}" aria-pressed="${e.key===selected}" aria-label="Inspect ${html(itemName(e.item))}"`:'disabled'}><span class="slot-label">${html(label)}</span><span class="tile-icon">${itemIcon(e?.item||EQUIPMENT[index]?.[1]||'empty')}</span><span class="tile-name">${e?html(itemName(e.item)):'Empty'}</span>${e?`<span class="tile-count">${state.protected.includes(e.key)?'◆':index<6?'FITTED':'×'+e.qty}</span>`:''}</button>`;
@@ -68,10 +66,8 @@ function render(){
   if(!loaded)return;
   const searchFocus=document.activeElement?.id==='game-search',position=searchFocus?document.activeElement.selectionStart:null;
   const prototypeOpen=$('#prototype-controls')?.open,mapViewport=$('.map-viewport'),mapPosition=mapViewport?{left:mapViewport.scrollLeft,top:mapViewport.scrollTop}:null;
-  characterViewer.canvas.remove();
   document.body.dataset.screen=page;
   $('#content').innerHTML=ownerPages[page]?inventory():page==='crafting'?crafting():page==='projects'?projects():page==='map'?mapView():page==='settings'?settingsView():reference();
-  if($('#character-stage'))characterViewer.mount($('#character-stage'),state.entries.filter(e=>e.owner==='booter'&&e.slot<6).map(e=>e.item),state.entries.find(e=>e.key===selected)?.item);
   if(prototypeOpen&&$('#prototype-controls'))$('#prototype-controls').open=true;
   if(mapPosition&&$('.map-viewport'))$('.map-viewport').scrollTo(mapPosition);
   document.querySelectorAll('[data-page]').forEach(b=>{b.classList.toggle('active',b.dataset.page===page);b.setAttribute('aria-current',b.dataset.page===page?'page':'false');});
@@ -89,7 +85,6 @@ function leaveStudy(){if(window.parent!==window)window.parent.location.hash='inv
 document.addEventListener('click',event=>run(()=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
   const d=button.dataset;
-  if(d.turn){characterViewer.turn(d.turn==='front'?null:Number(d.turn));return;}
   if(d.page){go(d.page);return;}
   if(d.owner){go(Object.keys(ownerPages).find(p=>ownerPages[p]===d.owner)||'inventory');return;}
   if(d.mapMarker){mapSelection=d.mapMarker;render();document.querySelector(`[data-map-marker="${CSS.escape(mapSelection)}"]`)?.focus();return;}
