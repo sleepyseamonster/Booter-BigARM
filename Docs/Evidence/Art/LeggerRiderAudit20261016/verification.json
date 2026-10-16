@@ -1,0 +1,46 @@
+{
+  "native_before_sha256": "788e4de73bac5a52b9853e0071b1df23b9433edc296b981468e2d991c2cd7f93",
+  "native_after": {
+    "path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration04.blend",
+    "bytes": 745433568,
+    "sha256": "788e4de73bac5a52b9853e0071b1df23b9433edc296b981468e2d991c2cd7f93"
+  },
+  "prototype_after": {
+    "path": "D:\\Arc & Dust\\Project\\Assets\\_Project\\Art\\Characters\\Prototype\\UnityStandardHumanoid\\defaultmale_rig.fbx",
+    "bytes": 701440,
+    "sha256": "e10aea1d9e6455ae097457ed5a1e73b9376f2338466a164ad5dd7e02b98005a0"
+  },
+  "native_saved": false,
+  "native_modified": false,
+  "blender": "5.2.2 LTS",
+  "active_major_meshes": 75,
+  "unchanged_checkpoint_counts": {
+    "quad_controls": 42552,
+    "evaluated_triangles": 136928,
+    "basis": "Prior chassis checkpoint + unchanged whole-native SHA, not a new topology pass."
+  },
+  "native_views": 18,
+  "proxy_and_cut_views": 8,
+  "total_local_images": 31,
+  "reach_sensitivity_cases": 54,
+  "render_workers_completed": [
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderAudit20261016\\extract3.log",
+      "bytes": 4010,
+      "sha256": "5b61eb9dad5c7bebcf3af1703663013a22063b3aa4be70c17557c4d8c4d89dab"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderAudit20261016\\capture.log",
+      "bytes": 2598,
+      "sha256": "233056d97601c8ab47e4469e048b5eede0f7376b2af91654b730f4dddda59cc9"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderAudit20261016\\pose2.log",
+      "bytes": 1427,
+      "sha256": "6df4cc6736624af836b4358e40fcd4c2325a44793d466d48ec69401761ddd2da"
+    }
+  ],
+  "warnings": "Blender 6.0 future node API deprecations; FBX short user-property metadata unsupported. No task worker failure or geometry-import failure.",
+  "app_interaction": "Hidden task workers only; no foreground app activation, GUI reload or native save.",
+  "scope": "Read-only native audit; documentation/evidence only. No Unity import, gameplay smoke test, runtime or texture edits."
+}

@@ -1,0 +1,368 @@
+{
+  "native": {
+    "source_sha256": "788e4de73bac5a52b9853e0071b1df23b9433edc296b981468e2d991c2cd7f93",
+    "views": [
+      {
+        "image": "original_side.png",
+        "center_m": [
+          0.0,
+          0.019999999552965164,
+          1.9199999570846558
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.52,
+        "clay": false
+      },
+      {
+        "image": "original_top.png",
+        "center_m": [
+          0.0,
+          0.009999999776482582,
+          1.9800000190734863
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.4,
+        "clay": false
+      },
+      {
+        "image": "original_rear_oblique.png",
+        "center_m": [
+          0.0,
+          0.009999999776482582,
+          1.9800000190734863
+        ],
+        "direction": [
+          2.8,
+          3.5,
+          2.8
+        ],
+        "ortho_scale_m": 1.44,
+        "clay": false
+      },
+      {
+        "image": "original_front_oblique.png",
+        "center_m": [
+          0.0,
+          0.009999999776482582,
+          1.9800000190734863
+        ],
+        "direction": [
+          2.8,
+          -3.5,
+          2.8
+        ],
+        "ortho_scale_m": 1.44,
+        "clay": false
+      },
+      {
+        "image": "original_seat_close.png",
+        "center_m": [
+          0.0,
+          0.05999999865889549,
+          2.0250000953674316
+        ],
+        "direction": [
+          3,
+          1,
+          1.2
+        ],
+        "ortho_scale_m": 1.06,
+        "clay": false
+      },
+      {
+        "image": "original_knee_close.png",
+        "center_m": [
+          0.0,
+          -0.14000000059604645,
+          1.909999966621399
+        ],
+        "direction": [
+          2,
+          2,
+          3
+        ],
+        "ortho_scale_m": 0.96,
+        "clay": false
+      },
+      {
+        "image": "original_grip_close.png",
+        "center_m": [
+          0.3400000035762787,
+          -0.4300000071525574,
+          2.1600000858306885
+        ],
+        "direction": [
+          2,
+          -1,
+          1
+        ],
+        "ortho_scale_m": 0.48,
+        "clay": false
+      },
+      {
+        "image": "original_clay_top.png",
+        "center_m": [
+          0.0,
+          0.009999999776482582,
+          1.9800000190734863
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.4,
+        "clay": true
+      },
+      {
+        "image": "original_clay_seat.png",
+        "center_m": [
+          0.0,
+          0.05999999865889549,
+          2.0250000953674316
+        ],
+        "direction": [
+          3,
+          1,
+          1.2
+        ],
+        "ortho_scale_m": 1.06,
+        "clay": true
+      },
+      {
+        "image": "current_side.png",
+        "center_m": [
+          0.0,
+          0.019999999552965164,
+          1.9199999570846558
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.52,
+        "clay": false
+      },
+      {
+        "image": "current_top.png",
+        "center_m": [
+          0.0,
+          0.009999999776482582,
+          1.9800000190734863
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.4,
+        "clay": false
+      },
+      {
+        "image": "current_rear_oblique.png",
+        "center_m": [
+          0.0,
+          0.009999999776482582,
+          1.9800000190734863
+        ],
+        "direction": [
+          2.8,
+          3.5,
+          2.8
+        ],
+        "ortho_scale_m": 1.44,
+        "clay": false
+      },
+      {
+        "image": "current_front_oblique.png",
+        "center_m": [
+          0.0,
+          0.009999999776482582,
+          1.9800000190734863
+        ],
+        "direction": [
+          2.8,
+          -3.5,
+          2.8
+        ],
+        "ortho_scale_m": 1.44,
+        "clay": false
+      },
+      {
+        "image": "current_seat_close.png",
+        "center_m": [
+          0.0,
+          0.05999999865889549,
+          2.0250000953674316
+        ],
+        "direction": [
+          3,
+          1,
+          1.2
+        ],
+        "ortho_scale_m": 1.06,
+        "clay": false
+      },
+      {
+        "image": "current_knee_close.png",
+        "center_m": [
+          0.0,
+          -0.14000000059604645,
+          1.909999966621399
+        ],
+        "direction": [
+          2,
+          2,
+          3
+        ],
+        "ortho_scale_m": 0.96,
+        "clay": false
+      },
+      {
+        "image": "current_grip_close.png",
+        "center_m": [
+          0.3400000035762787,
+          -0.4300000071525574,
+          2.1600000858306885
+        ],
+        "direction": [
+          2,
+          -1,
+          1
+        ],
+        "ortho_scale_m": 0.48,
+        "clay": false
+      },
+      {
+        "image": "current_clay_top.png",
+        "center_m": [
+          0.0,
+          0.009999999776482582,
+          1.9800000190734863
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.4,
+        "clay": true
+      },
+      {
+        "image": "current_clay_seat.png",
+        "center_m": [
+          0.0,
+          0.05999999865889549,
+          2.0250000953674316
+        ],
+        "direction": [
+          3,
+          1,
+          1.2
+        ],
+        "ortho_scale_m": 1.06,
+        "clay": true
+      }
+    ],
+    "native_saved": false,
+    "native_modified": false,
+    "scope": "Read-only original/current rider-area captures; camera/light/material overrides only in process memory."
+  },
+  "proxy_and_foot_cut": {
+    "source_sha256": "788e4de73bac5a52b9853e0071b1df23b9433edc296b981468e2d991c2cd7f93",
+    "views": [
+      {
+        "image": "original_proxy_side.png",
+        "center_m": [
+          0.0,
+          -0.03999999910593033,
+          2.0999999046325684
+        ],
+        "ortho_scale_m": 2.0,
+        "note": "Temporary proportional joint proxy; original-led comparison, not final rider mesh or animation."
+      },
+      {
+        "image": "original_proxy_oblique.png",
+        "center_m": [
+          0.0,
+          -0.03999999910593033,
+          2.0999999046325684
+        ],
+        "ortho_scale_m": 2.0,
+        "note": "Temporary proportional joint proxy; original-led comparison, not final rider mesh or animation."
+      },
+      {
+        "image": "original_proxy_front.png",
+        "center_m": [
+          0.0,
+          -0.03999999910593033,
+          2.0999999046325684
+        ],
+        "ortho_scale_m": 2.0,
+        "note": "Temporary proportional joint proxy; original-led comparison, not final rider mesh or animation."
+      },
+      {
+        "image": "current_proxy_side.png",
+        "center_m": [
+          0.0,
+          -0.03999999910593033,
+          2.0999999046325684
+        ],
+        "ortho_scale_m": 2.0,
+        "note": "Temporary proportional joint proxy; original-led comparison, not final rider mesh or animation."
+      },
+      {
+        "image": "current_proxy_oblique.png",
+        "center_m": [
+          0.0,
+          -0.03999999910593033,
+          2.0999999046325684
+        ],
+        "ortho_scale_m": 2.0,
+        "note": "Temporary proportional joint proxy; original-led comparison, not final rider mesh or animation."
+      },
+      {
+        "image": "current_proxy_front.png",
+        "center_m": [
+          0.0,
+          -0.03999999910593033,
+          2.0999999046325684
+        ],
+        "ortho_scale_m": 2.0,
+        "note": "Temporary proportional joint proxy; original-led comparison, not final rider mesh or animation."
+      },
+      {
+        "image": "original_foot_contact_cut.png",
+        "center_m": [
+          0.30000001192092896,
+          -0.009999999776482582,
+          1.4800000190734863
+        ],
+        "ortho_scale_m": 0.44,
+        "clip_start_m": 3.92,
+        "note": "Top inspection camera cut at Z=1.56 m; cut surfaces are not native holes."
+      },
+      {
+        "image": "current_foot_contact_cut.png",
+        "center_m": [
+          0.30000001192092896,
+          -0.009999999776482582,
+          1.4800000190734863
+        ],
+        "ortho_scale_m": 0.44,
+        "clip_start_m": 3.92,
+        "note": "Top inspection camera cut at Z=1.56 m; cut surfaces are not native holes."
+      }
+    ],
+    "native_saved": false
+  }
+}

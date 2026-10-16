@@ -1,0 +1,836 @@
+{
+  "source_sha256": "788e4de73bac5a52b9853e0071b1df23b9433edc296b981468e2d991c2cd7f93",
+  "coordinate_convention": "Blender metres: width X, forward -Y, up Z. Original manual transform retained.",
+  "authority": "Original Legger rider geometry per author; current mesh is comparison, prototype is sensitivity only.",
+  "seat_contact_samples": [
+    {
+      "case": "original",
+      "y_m": -0.18,
+      "center_z_m": 2.0240471363067627,
+      "upper_contact_band_width_m": 0.125,
+      "center_above_mean_flank_60mm_m": 0.016041278839111328
+    },
+    {
+      "case": "original",
+      "y_m": -0.14,
+      "center_z_m": 2.0018560886383057,
+      "upper_contact_band_width_m": 0.165,
+      "center_above_mean_flank_60mm_m": 0.008713304996490479
+    },
+    {
+      "case": "original",
+      "y_m": -0.1,
+      "center_z_m": 2.002145767211914,
+      "upper_contact_band_width_m": 0.175,
+      "center_above_mean_flank_60mm_m": 0.010670900344848633
+    },
+    {
+      "case": "original",
+      "y_m": -0.06,
+      "center_z_m": 2.009281635284424,
+      "upper_contact_band_width_m": 0.185,
+      "center_above_mean_flank_60mm_m": 0.01103132963180542
+    },
+    {
+      "case": "original",
+      "y_m": 0,
+      "center_z_m": 2.0327908992767334,
+      "upper_contact_band_width_m": 0.195,
+      "center_above_mean_flank_60mm_m": 0.008682966232299805
+    },
+    {
+      "case": "original",
+      "y_m": 0.06,
+      "center_z_m": 2.0562589168548584,
+      "upper_contact_band_width_m": 0.22999999999999998,
+      "center_above_mean_flank_60mm_m": 0.005396723747253418
+    },
+    {
+      "case": "original",
+      "y_m": 0.1,
+      "center_z_m": 2.075880765914917,
+      "upper_contact_band_width_m": 0.235,
+      "center_above_mean_flank_60mm_m": 0.005955696105957031
+    },
+    {
+      "case": "original",
+      "y_m": 0.14,
+      "center_z_m": 2.091101884841919,
+      "upper_contact_band_width_m": 0.235,
+      "center_above_mean_flank_60mm_m": 0.005427002906799316
+    },
+    {
+      "case": "current_saddle",
+      "y_m": -0.18,
+      "center_z_m": 1.9861488342285156,
+      "upper_contact_band_width_m": 0.2,
+      "center_above_mean_flank_60mm_m": -0.01231849193572998
+    },
+    {
+      "case": "current_saddle",
+      "y_m": -0.14,
+      "center_z_m": 1.9849575757980347,
+      "upper_contact_band_width_m": 0.22,
+      "center_above_mean_flank_60mm_m": -0.012147247791290283
+    },
+    {
+      "case": "current_saddle",
+      "y_m": -0.1,
+      "center_z_m": 1.986208200454712,
+      "upper_contact_band_width_m": 0.23,
+      "center_above_mean_flank_60mm_m": -0.012032389640808105
+    },
+    {
+      "case": "current_saddle",
+      "y_m": -0.06,
+      "center_z_m": 1.9885344505310059,
+      "upper_contact_band_width_m": 0.24,
+      "center_above_mean_flank_60mm_m": -0.011526942253112793
+    },
+    {
+      "case": "current_saddle",
+      "y_m": 0,
+      "center_z_m": 1.993485927581787,
+      "upper_contact_band_width_m": 0.25,
+      "center_above_mean_flank_60mm_m": -0.010702133178710938
+    },
+    {
+      "case": "current_saddle",
+      "y_m": 0.06,
+      "center_z_m": 1.9998160600662231,
+      "upper_contact_band_width_m": 0.26,
+      "center_above_mean_flank_60mm_m": -0.010210156440734863
+    },
+    {
+      "case": "current_saddle",
+      "y_m": 0.1,
+      "center_z_m": 2.0048673152923584,
+      "upper_contact_band_width_m": 0.26,
+      "center_above_mean_flank_60mm_m": -0.010110616683959961
+    },
+    {
+      "case": "current_saddle",
+      "y_m": 0.14,
+      "center_z_m": 2.0108699798583984,
+      "upper_contact_band_width_m": 0.26,
+      "center_above_mean_flank_60mm_m": -0.010146498680114746
+    }
+  ],
+  "seat_band_method": "Contiguous top-ray stations around X=0 within +/-30mm of center height, X grid 5mm. Contact-band width is not full upholstery width; fused original body surfaces can contribute. Selected pocket stations only.",
+  "rear_centerline_average_slope_deg_y_neg006_to_pos014": {
+    "original": 22.249531096118268,
+    "current_saddle": 6.372253988673037
+  },
+  "rear_top_envelope_crests": {
+    "original": {
+      "y_m": 0.28,
+      "z_m": 2.200868606567383,
+      "scope": "Rear top-envelope crest, original can include raised back support / grab structure; not isolated cushion."
+    },
+    "current_saddle": {
+      "y_m": 0.49,
+      "z_m": 2.1940276622772217,
+      "scope": "Rear top-envelope crest, original can include raised back support / grab structure; not isolated cushion."
+    }
+  },
+  "grip_comparison": [
+    {
+      "side": "L",
+      "original_m": [
+        -0.356,
+        -0.2644966114146843,
+        2.1853051319387222
+      ],
+      "current_m": [
+        -0.356,
+        -0.443,
+        2.105
+      ],
+      "current_minus_original_m": [
+        0.0,
+        -0.17850338858531573,
+        -0.08030513193872224
+      ]
+    },
+    {
+      "side": "R",
+      "original_m": [
+        0.356,
+        -0.2730363229910534,
+        2.180975286430783
+      ],
+      "current_m": [
+        0.356,
+        -0.443,
+        2.105
+      ],
+      "current_minus_original_m": [
+        0.0,
+        -0.1699636770089466,
+        -0.07597528643078322
+      ]
+    }
+  ],
+  "grip_contact_interpretation_uncertainty_m": 0.01,
+  "knee_envelope_selected": [
+    {
+      "y_m": -0.3,
+      "z_m": 1.8,
+      "original": {
+        "L": {
+          "outer_x_m": -0.1498979926109314,
+          "object": "Legger_DetailBake_Source"
+        },
+        "R": {
+          "outer_x_m": 0.1569209098815918,
+          "object": "Legger_DetailBake_Source"
+        }
+      },
+      "current": {
+        "L": {
+          "outer_x_m": -0.18045371770858765,
+          "object": "Legger_Part_MainFrame"
+        },
+        "R": {
+          "outer_x_m": 0.18045374751091003,
+          "object": "Legger_Part_MainFrame"
+        }
+      },
+      "right_outward_change_m": 0.023532837629318237
+    },
+    {
+      "y_m": -0.25,
+      "z_m": 1.85,
+      "original": {
+        "L": {
+          "outer_x_m": -0.13228946924209595,
+          "object": "Legger_DetailBake_Source"
+        },
+        "R": {
+          "outer_x_m": 0.13932384550571442,
+          "object": "Legger_DetailBake_Source"
+        }
+      },
+      "current": {
+        "L": null,
+        "R": null
+      },
+      "right_outward_change_m": null
+    },
+    {
+      "y_m": -0.2,
+      "z_m": 1.9,
+      "original": {
+        "L": {
+          "outer_x_m": -0.14196287095546722,
+          "object": "Legger_DetailBake_Source"
+        },
+        "R": {
+          "outer_x_m": 0.14834155142307281,
+          "object": "Legger_DetailBake_Source"
+        }
+      },
+      "current": {
+        "L": {
+          "outer_x_m": -0.1768357902765274,
+          "object": "Legger_Part_L_upper_body_shroud"
+        },
+        "R": {
+          "outer_x_m": 0.17624829709529877,
+          "object": "Legger_Part_R_upper_body_shroud"
+        }
+      },
+      "right_outward_change_m": 0.027906745672225952
+    },
+    {
+      "y_m": -0.15,
+      "z_m": 1.9,
+      "original": {
+        "L": {
+          "outer_x_m": -0.13903433084487915,
+          "object": "Legger_DetailBake_Source"
+        },
+        "R": {
+          "outer_x_m": 0.1456225961446762,
+          "object": "Legger_DetailBake_Source"
+        }
+      },
+      "current": {
+        "L": {
+          "outer_x_m": -0.17873428761959076,
+          "object": "Legger_Part_L_upper_body_shroud"
+        },
+        "R": {
+          "outer_x_m": 0.17931528389453888,
+          "object": "Legger_Part_R_upper_body_shroud"
+        }
+      },
+      "right_outward_change_m": 0.03369268774986267
+    },
+    {
+      "y_m": -0.1,
+      "z_m": 1.95,
+      "original": {
+        "L": {
+          "outer_x_m": -0.10357923060655594,
+          "object": "Legger_DetailBake_Source"
+        },
+        "R": {
+          "outer_x_m": 0.10833902657032013,
+          "object": "Legger_DetailBake_Source"
+        }
+      },
+      "current": {
+        "L": {
+          "outer_x_m": -0.15962998569011688,
+          "object": "Legger_Part_L_upper_body_shroud"
+        },
+        "R": {
+          "outer_x_m": 0.159831240773201,
+          "object": "Legger_Part_R_upper_body_shroud"
+        }
+      },
+      "right_outward_change_m": 0.05149221420288086
+    },
+    {
+      "y_m": -0.05,
+      "z_m": 1.85,
+      "original": {
+        "L": {
+          "outer_x_m": -0.09032338112592697,
+          "object": "Legger_DetailBake_Source"
+        },
+        "R": {
+          "outer_x_m": 0.09647970646619797,
+          "object": "Legger_DetailBake_Source"
+        }
+      },
+      "current": {
+        "L": {
+          "outer_x_m": -0.1821550875902176,
+          "object": "Legger_Part_L_upper_body_shroud"
+        },
+        "R": {
+          "outer_x_m": 0.18158487975597382,
+          "object": "Legger_Part_R_upper_body_shroud"
+        }
+      },
+      "right_outward_change_m": 0.08510517328977585
+    },
+    {
+      "y_m": 0,
+      "z_m": 1.8,
+      "original": {
+        "L": {
+          "outer_x_m": -0.1379549354314804,
+          "object": "Legger_DetailBake_Source"
+        },
+        "R": {
+          "outer_x_m": 0.14318610727787018,
+          "object": "Legger_DetailBake_Source"
+        }
+      },
+      "current": {
+        "L": {
+          "outer_x_m": -0.17370228469371796,
+          "object": "Legger_Part_L_upper_body_shroud"
+        },
+        "R": {
+          "outer_x_m": 0.1718648225069046,
+          "object": "Legger_Part_R_upper_body_shroud"
+        }
+      },
+      "right_outward_change_m": 0.028678715229034424
+    }
+  ],
+  "knee_method": "Outside-in X ray at fixed Y,Z. Current excludes robot legs. Null means no ray hit, never zero width. Envelope difference is not measured rider clearance.",
+  "original_outer_foot_rail_samples": [
+    {
+      "side": "L",
+      "abs_x_m": 0.33,
+      "y_window_m": [
+        -0.03,
+        0.01
+      ],
+      "top_z_min_m": 1.5090774297714233,
+      "top_z_max_m": 1.510142207145691,
+      "median_z_m": 1.509926676750183
+    },
+    {
+      "side": "R",
+      "abs_x_m": 0.33,
+      "y_window_m": [
+        -0.03,
+        0.01
+      ],
+      "top_z_min_m": 1.5067907571792603,
+      "top_z_max_m": 1.510108232498169,
+      "median_z_m": 1.509382963180542
+    }
+  ],
+  "foot_comparison": {
+    "original_proxy_support_R_m": [
+      0.33,
+      -0.005,
+      1.51
+    ],
+    "original_interpretation_uncertainty_m": 0.015,
+    "current_pad_center_R_m": [
+      0.25,
+      -0.01,
+      1.4765
+    ],
+    "current_outer_guard_top_at_x029_y_neg001_m": 1.5189,
+    "interpretation": "Original is open loop/rail. Current has tread pad plus higher perimeter guard. Comparing rail to pad gives 80mm inward and about 33mm lower, but guard is near original rail height. Final boot contact requires geometry/rig review; not an automatic 33mm lowering instruction."
+  },
+  "reach_sensitivity_summary": [
+    {
+      "case": "original",
+      "body_scale": 0.9,
+      "reachable_leans_deg": [
+        0.0,
+        5.0,
+        10.0,
+        14.999999999999998,
+        20.0,
+        25.0,
+        29.999999999999996,
+        35.0,
+        40.0
+      ],
+      "unreachable_leans_deg": []
+    },
+    {
+      "case": "original",
+      "body_scale": 1,
+      "reachable_leans_deg": [
+        0.0,
+        5.0,
+        10.0,
+        14.999999999999998,
+        20.0,
+        25.0,
+        29.999999999999996,
+        35.0,
+        40.0
+      ],
+      "unreachable_leans_deg": []
+    },
+    {
+      "case": "original",
+      "body_scale": 1.1,
+      "reachable_leans_deg": [
+        0.0,
+        5.0,
+        10.0,
+        14.999999999999998,
+        20.0,
+        25.0,
+        29.999999999999996,
+        35.0,
+        40.0
+      ],
+      "unreachable_leans_deg": []
+    },
+    {
+      "case": "current",
+      "body_scale": 0.9,
+      "reachable_leans_deg": [
+        20.0,
+        25.0,
+        29.999999999999996,
+        35.0,
+        40.0
+      ],
+      "unreachable_leans_deg": [
+        0.0,
+        5.0,
+        10.0,
+        14.999999999999998
+      ]
+    },
+    {
+      "case": "current",
+      "body_scale": 1,
+      "reachable_leans_deg": [
+        14.999999999999998,
+        20.0,
+        25.0,
+        29.999999999999996,
+        35.0,
+        40.0
+      ],
+      "unreachable_leans_deg": [
+        0.0,
+        5.0,
+        10.0
+      ]
+    },
+    {
+      "case": "current",
+      "body_scale": 1.1,
+      "reachable_leans_deg": [
+        10.0,
+        14.999999999999998,
+        20.0,
+        25.0,
+        29.999999999999996,
+        35.0,
+        40.0
+      ],
+      "unreachable_leans_deg": [
+        0.0,
+        5.0
+      ]
+    }
+  ],
+  "fixed_proxy_comparison": [
+    {
+      "case": "original",
+      "torso_lean_deg": 14.999999999999998,
+      "body_scale": 1.0,
+      "angles": {
+        "L": {
+          "knee_internal_deg": 85.01810350500588,
+          "elbow_internal_deg": 97.18229475639424,
+          "hip_to_ankle_m": 0.5815710466142249,
+          "shoulder_to_grip_m": 0.43131948084979854
+        },
+        "R": {
+          "knee_internal_deg": 85.01810350500588,
+          "elbow_internal_deg": 98.64990433354406,
+          "hip_to_ankle_m": 0.5815710466142249,
+          "shoulder_to_grip_m": 0.4360814701369195
+        }
+      },
+      "surface_approaches": [
+        {
+          "side": "L",
+          "segment": "thigh",
+          "assumed_radius_m": 0.065,
+          "centerline_distance_m": 0.04262111270549649,
+          "radius_subtracted_gap_m": -0.022378887294503512,
+          "t": 0.4015625,
+          "point_m": [
+            -0.17433829605579376,
+            -0.18375155329704285,
+            1.9715731143951416
+          ],
+          "surface_point_m": [
+            -0.13687850534915924,
+            -0.19866061210632324,
+            1.9577512741088867
+          ],
+          "surface": "Legger_DetailBake_Source"
+        },
+        {
+          "side": "L",
+          "segment": "shin",
+          "assumed_radius_m": 0.045,
+          "centerline_distance_m": 0.09394524946899639,
+          "radius_subtracted_gap_m": 0.048945249468996394,
+          "t": 0.9,
+          "point_m": [
+            -0.32700252532958984,
+            0.03664356842637062,
+            1.6180181503295898
+          ],
+          "surface_point_m": [
+            -0.2388353794813156,
+            0.06653151661157608,
+            1.6054096221923828
+          ],
+          "surface": "Legger_DetailBake_Source"
+        },
+        {
+          "side": "L",
+          "segment": "upper_arm",
+          "assumed_radius_m": 0.04,
+          "centerline_distance_m": 0.29106528053348474,
+          "radius_subtracted_gap_m": 0.25106528053348476,
+          "t": 0.9,
+          "point_m": [
+            -0.3681667447090149,
+            -0.12575654685497284,
+            2.4707765579223633
+          ],
+          "surface_point_m": [
+            -0.39498308300971985,
+            -0.23542998731136322,
+            2.2025012969970703
+          ],
+          "surface": "Legger_DetailBake_Source"
+        },
+        {
+          "side": "L",
+          "segment": "forearm",
+          "assumed_radius_m": 0.03,
+          "centerline_distance_m": 0.04414117308570168,
+          "radius_subtracted_gap_m": 0.014141173085701682,
+          "t": 0.8,
+          "point_m": [
+            -0.3623850345611572,
+            -0.23445111513137817,
+            2.2399284839630127
+          ],
+          "surface_point_m": [
+            -0.371635764837265,
+            -0.24896347522735596,
+            2.1992805004119873
+          ],
+          "surface": "Legger_DetailBake_Source"
+        },
+        {
+          "side": "R",
+          "segment": "thigh",
+          "assumed_radius_m": 0.065,
+          "centerline_distance_m": 0.036250378869998975,
+          "radius_subtracted_gap_m": -0.028749621130001027,
+          "t": 0.41171874999999997,
+          "point_m": [
+            0.17647135257720947,
+            -0.18586978316307068,
+            1.968325138092041
+          ],
+          "surface_point_m": [
+            0.1457330882549286,
+            -0.19848527014255524,
+            1.953830361366272
+          ],
+          "surface": "Legger_DetailBake_Source"
+        },
+        {
+          "side": "R",
+          "segment": "shin",
+          "assumed_radius_m": 0.045,
+          "centerline_distance_m": 0.09147172658004214,
+          "radius_subtracted_gap_m": 0.046471726580042144,
+          "t": 0.9,
+          "point_m": [
+            0.32700252532958984,
+            0.03664356842637062,
+            1.6180181503295898
+          ],
+          "surface_point_m": [
+            0.24150846898555756,
+            0.06648538261651993,
+            1.6050833463668823
+          ],
+          "surface": "Legger_DetailBake_Source"
+        },
+        {
+          "side": "R",
+          "segment": "upper_arm",
+          "assumed_radius_m": 0.04,
+          "centerline_distance_m": 0.2858541750434946,
+          "radius_subtracted_gap_m": 0.24585417504349458,
+          "t": 0.9,
+          "point_m": [
+            0.3672462999820709,
+            -0.1303562968969345,
+            2.4652631282806396
+          ],
+          "surface_point_m": [
+            0.39643433690071106,
+            -0.23458565771579742,
+            2.2006938457489014
+          ],
+          "surface": "Legger_DetailBake_Source"
+        },
+        {
+          "side": "R",
+          "segment": "forearm",
+          "assumed_radius_m": 0.03,
+          "centerline_distance_m": 0.037958713048228246,
+          "radius_subtracted_gap_m": 0.007958713048228247,
+          "t": 0.8,
+          "point_m": [
+            0.3621805012226105,
+            -0.24230505526065826,
+            2.235239267349243
+          ],
+          "surface_point_m": [
+            0.36846065521240234,
+            -0.25459542870521545,
+            2.199878692626953
+          ],
+          "surface": "Legger_DetailBake_Source"
+        }
+      ]
+    },
+    {
+      "case": "current",
+      "torso_lean_deg": 14.999999999999998,
+      "body_scale": 1.0,
+      "angles": {
+        "L": {
+          "knee_internal_deg": 85.15744619426331,
+          "elbow_internal_deg": 146.01175426492227,
+          "hip_to_ankle_m": 0.5823418873178074,
+          "shoulder_to_grip_m": 0.5483417239203621
+        },
+        "R": {
+          "knee_internal_deg": 85.15744619426331,
+          "elbow_internal_deg": 146.01175426492227,
+          "hip_to_ankle_m": 0.5823418873178074,
+          "shoulder_to_grip_m": 0.5483417239203621
+        }
+      },
+      "surface_approaches": [
+        {
+          "side": "L",
+          "segment": "thigh",
+          "assumed_radius_m": 0.065,
+          "centerline_distance_m": 0.0005247322662033316,
+          "radius_subtracted_gap_m": -0.06447526773379667,
+          "t": 0.46249999999999997,
+          "point_m": [
+            -0.16417326033115387,
+            -0.19764982163906097,
+            1.9400558471679688
+          ],
+          "surface_point_m": [
+            -0.16468603909015656,
+            -0.1976962834596634,
+            1.9401570558547974
+          ],
+          "surface": "Legger_Part_L_upper_body_shroud"
+        },
+        {
+          "side": "L",
+          "segment": "shin",
+          "assumed_radius_m": 0.045,
+          "centerline_distance_m": 0.023308722393519436,
+          "radius_subtracted_gap_m": -0.021691277606480562,
+          "t": 0.8,
+          "point_m": [
+            -0.25007492303848267,
+            -0.006226945668458939,
+            1.6040350198745728
+          ],
+          "surface_point_m": [
+            -0.22677931189537048,
+            -0.005789794027805328,
+            1.6046830415725708
+          ],
+          "surface": "Legger_Part_L_Footrest"
+        },
+        {
+          "side": "L",
+          "segment": "upper_arm",
+          "assumed_radius_m": 0.04,
+          "centerline_distance_m": 0.31388400239892433,
+          "radius_subtracted_gap_m": 0.27388400239892435,
+          "t": 0.9,
+          "point_m": [
+            -0.31274327635765076,
+            -0.26562604308128357,
+            2.3861091136932373
+          ],
+          "surface_point_m": [
+            -0.2679141163825989,
+            -0.4402416944503784,
+            2.129159927368164
+          ],
+          "surface": "Legger_Part_Handlebar"
+        },
+        {
+          "side": "L",
+          "segment": "forearm",
+          "assumed_radius_m": 0.03,
+          "centerline_distance_m": 0.043171294931944625,
+          "radius_subtracted_gap_m": 0.013171294931944626,
+          "t": 0.8,
+          "point_m": [
+            -0.35006871819496155,
+            -0.40833592414855957,
+            2.156869411468506
+          ],
+          "surface_point_m": [
+            -0.3517459034919739,
+            -0.4331749379634857,
+            2.1215994358062744
+          ],
+          "surface": "Legger_Part_L_Grip"
+        },
+        {
+          "side": "R",
+          "segment": "thigh",
+          "assumed_radius_m": 0.065,
+          "centerline_distance_m": 0.00022368497131531126,
+          "radius_subtracted_gap_m": -0.0647763150286847,
+          "t": 0.53359375,
+          "point_m": [
+            0.1755749136209488,
+            -0.21266019344329834,
+            1.915469765663147
+          ],
+          "surface_point_m": [
+            0.17535299062728882,
+            -0.21263742446899414,
+            1.9154534339904785
+          ],
+          "surface": "Legger_Part_R_upper_body_shroud"
+        },
+        {
+          "side": "R",
+          "segment": "shin",
+          "assumed_radius_m": 0.045,
+          "centerline_distance_m": 0.023308722393519436,
+          "radius_subtracted_gap_m": -0.021691277606480562,
+          "t": 0.8,
+          "point_m": [
+            0.25007492303848267,
+            -0.006226945668458939,
+            1.6040350198745728
+          ],
+          "surface_point_m": [
+            0.22677931189537048,
+            -0.005789794027805328,
+            1.6046830415725708
+          ],
+          "surface": "Legger_Part_R_Footrest"
+        },
+        {
+          "side": "R",
+          "segment": "upper_arm",
+          "assumed_radius_m": 0.04,
+          "centerline_distance_m": 0.31388400239892433,
+          "radius_subtracted_gap_m": 0.27388400239892435,
+          "t": 0.9,
+          "point_m": [
+            0.31274327635765076,
+            -0.26562604308128357,
+            2.3861091136932373
+          ],
+          "surface_point_m": [
+            0.2679141163825989,
+            -0.4402416944503784,
+            2.129159927368164
+          ],
+          "surface": "Legger_Part_Handlebar"
+        },
+        {
+          "side": "R",
+          "segment": "forearm",
+          "assumed_radius_m": 0.03,
+          "centerline_distance_m": 0.043171294931944625,
+          "radius_subtracted_gap_m": 0.013171294931944626,
+          "t": 0.8,
+          "point_m": [
+            0.35006871819496155,
+            -0.40833592414855957,
+            2.156869411468506
+          ],
+          "surface_point_m": [
+            0.3517459034919739,
+            -0.4331749379634857,
+            2.1215994358062744
+          ],
+          "surface": "Legger_Part_R_Grip"
+        }
+      ]
+    }
+  ],
+  "limitations": "Rigid two-link reach and local sampled centerline-to-surface proximity only. Capsule radii, palm/ankle offsets, pelvis anchor and bend planes are explicit analytical assumptions. Soft-tissue/seat contact, joint limits, wrist roll, clothing and live rider mesh/rig deformation are not solved. A negative radius-subtracted gap means nearby surface within the proxy radius, not a certified signed collision depth. Generated original is fused. Native source is never saved."
+}

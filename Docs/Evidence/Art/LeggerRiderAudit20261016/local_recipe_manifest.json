@@ -1,0 +1,72 @@
+{
+  "recipes": [
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderAudit20261016\\extract.py",
+      "bytes": 6627,
+      "sha256": "fd8f8b0b16de57603c79501a617865e642332959ccb3f6cc499e5e0eb21bbf30"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderAudit20261016\\capture.py",
+      "bytes": 4055,
+      "sha256": "f2917efcd393acd150bb2354d5e241e7df01d6c756d22a55aa62d0dc5d0cd908"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderAudit20261016\\pose_check.py",
+      "bytes": 8960,
+      "sha256": "755930c3de86093a5943197cf41759ae106190ac882f56aecf207cf2467de95a"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderAudit20261016\\analyze.py",
+      "bytes": 4749,
+      "sha256": "e384230b868a06b3ae4d661e08f4c8a6ca42a2aebe17c082e8ae4219fe03fc07"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderAudit20261016\\review_boards.py",
+      "bytes": 1460,
+      "sha256": "947dabdae05c35bd8580aaa9e72fc9ccf020d80fc73c9929e5bac55ac8dc7371"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderAudit20261016\\deliver_boards.py",
+      "bytes": 5958,
+      "sha256": "b1cc675c20e07beeb2370fe9755f4495f63f0a901fbc1adf1d278b0a80dcef9d"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderAudit20261016\\seal_evidence.py",
+      "bytes": 4440,
+      "sha256": "869f43db5bb992d55aa16dcb7b7c375388b6a8538c6e4017306af2a9a38485dc"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerSciFi20261015\\fingerprint.py",
+      "bytes": 1762,
+      "sha256": "eb5f095437185432900cd31b2ed07feb3d55796db3dcd72eb7dc8c1a8f5bc86f"
+    }
+  ],
+  "raw_local_data": [
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderAudit20261016\\seat_surfaces.json",
+      "bytes": 418748,
+      "sha256": "83275cd377f401873fa3ebe4e3cb51fa80c52420f1aa6622467246adf28bd8b0"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderAudit20261016\\knee_envelopes.json",
+      "bytes": 92261,
+      "sha256": "368f420b5fd8f80d331f40a228e47ab48760372e213ff4c530daaa4dce8c1d98"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderAudit20261016\\foot_pad_surfaces.json",
+      "bytes": 82527,
+      "sha256": "0a573316385be7643d50875fc53cee09f3388c3ad524a0a066167a3eb4bc394d"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerRiderAudit20261016\\prototype_rig.json",
+      "bytes": 19347,
+      "sha256": "15a607f4f21a3a7d84d45033c6d4e596ba1f85e3af0f1e688f9e5ff649cafd09"
+    },
+    {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerRiderAudit20261016\\original_contact_points.npz",
+      "bytes": 264777,
+      "sha256": "56948de4a1cd45284a56ca6e7f06935070cd4fc332125a729aaa4fb524b2403f"
+    }
+  ],
+  "limits": "Recipes and raw extracts are local recovery/reproducibility inputs; not production tooling or portable native-source publication."
+}
