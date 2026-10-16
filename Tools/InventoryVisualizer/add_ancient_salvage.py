@@ -115,7 +115,8 @@ def build(snapshot, spec=None):
                 if isinstance(value,str) and value.startswith('='):use_fields[c-1]=Translator(value,origin=f'{openpyxl.utils.get_column_letter(c)}{use_last}').translate_formula(f'{openpyxl.utils.get_column_letter(c)}{u}')
             use_fields[0]=item['id'];use_fields[5]='Author-requested catalog proposal; intended use, not an implemented action.'
             uses.append((u,row_xml('Item uses',use_last,u,use_fields,{2:item['name'],3:fields[3],5:item['use']})))
-            audit=[item['id'],f'=Items!B{n}',f'=Items!X{n}',f'=Items!C{n}','Finished object proposal' if spec.get('defaults') else 'As-found ancient recovery',f'=Items!AJ{n}','No recipe established','Facilities and qualification criteria remain undefined.','Proposal; not qualified for crafting',fields[20]]
+            access = ('As-found ancient recovery' if fields[25]=='Ancient technology' else 'As-found salvage') if fields[2]=='T0' else 'Finished object proposal'
+            audit=[item['id'],f'=Items!B{n}',f'=Items!X{n}',f'=Items!C{n}',access,f'=Items!AJ{n}','No recipe established','Facilities and qualification criteria remain undefined.','Proposal; not qualified for crafting',fields[20]]
             audits.append((n,row_xml('Craft audit',631,n,audit,{2:item['name'],3:fields[23],4:fields[2],6:0})))
         insert('Items',items);insert('Item uses',uses);insert('Craft audit',audits)
         for sheet, table, end in [('Items','ItemsTable',last+count_added),('Item uses','ItemUseRelationships',use_last+count_added),('Craft audit','CraftAudit',last+count_added)]:
@@ -144,6 +145,8 @@ def build(snapshot, spec=None):
             def extend_picker(match):
                 return re.sub(r"('Items'!\$A\$6:\$A\$)\d+", lambda m: m.group(1)+str(last+count_added), match.group())
             updated=re.sub(r'<(?:\w+:)?dataValidation\b[^>]*>.*?</(?:\w+:)?dataValidation>',extend_picker,raw,flags=re.S)
+            if sheet=='Item uses' and use_last+count_added>1005:
+                updated=updated.replace('sqref="D6:D1005"',f'sqref="D6:D{use_last+count_added}"')
             if updated!=raw:changed[part]=updated.encode('utf-8')
         output=BytesIO()
         with ZipFile(output,'w') as target:
