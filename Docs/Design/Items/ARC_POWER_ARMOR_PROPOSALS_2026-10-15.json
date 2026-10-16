@@ -1,0 +1,81 @@
+{
+  "source": "Author requested an Arc power armor family, October 15, 2026. Earlier author direction requires chest, legs, boots, arms and helmet to be separate catalog items. Docs/WORLD_BASIS.md controls setting and material boundaries. Powered joints and Arc Battery integration below are design proposals.",
+  "scope": "Five separate Armor items, no counted full-set item, set bonus or implemented equipment system. No world placement, deterministic world identity, streaming or persisted gameplay changes.",
+  "defaults": {
+    "Tier": "T4",
+    "Category": "Armor",
+    "Subtype": "Arc power armor",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "Unassigned; no new slot approved",
+    "Carrier metadata": "Booter-worn powered armor concept; fitting, canister clearance, packing and spare-cargo rules unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed specialist assembly or trade; no acquisition site, availability or complete-set grant established.",
+    "Crafting / processing": "Candidate assembly of qualified metal plates, articulated supports and compatible powered joints. Existing Charged Arc Battery is a proposed supply, not a new battery item or a committed recipe. No quantities, yield, charging, production or repair procedure authored.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Protection, powered assistance, battery fit, consumption, heat, controls and unpowered mobility remain unresolved. No electrical immunity, sealed atmosphere, strength bonus or set bonus established. No wood, ordinary cloth, natural water or reproducible ancient composites assumed.",
+    "Rarity": null,
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Item type": "Armor",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Primary use": "Protection",
+    "Material family": "Metal",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "Individually listed piece of the author-requested Arc power armor family. Family membership is a design grouping, not another inventory item or a set bonus.",
+    "Tier basis": "Proposed T4 assembly using qualified T3 subassemblies and compatible supporting inputs. Numeric planning tier does not approve a recipe, functioning powered assistance or contemporary ancient-material manufacture.",
+    "Finished-item input tier": "T3",
+    "Crafting role": "Finished item"
+  },
+  "items": [
+    {
+      "id": "proposal.armor.arc_power.chest",
+      "name": "Arc power chestplate",
+      "purpose": "Separate torso and upper-back piece for the Arc power armor family. A rigid metal chest frame carries overlapping plates and a proposed protected battery connection; power distribution and fitting remain design work. Does not include the other armor pieces or supply a battery.",
+      "icon": "One heavy metal chestplate with a narrow rear support spine, recessed battery connection and guarded shoulder joints. Rust-dark plates and small amber indicator details; no complete suit or wearer.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {"Subtype": "Arc power armor / chest", "Search aliases": "arc power armor; arc powered armor; powered chest armor; torso; separate armor piece", "Open design decisions": "Torso coverage, battery mounting and access, electrical isolation, canister clearance, joint attachment and power distribution remain proposals. Battery is a separate existing item; no energy or duplicate holder is granted."}
+    },
+    {
+      "id": "proposal.armor.arc_power.legs",
+      "name": "Arc power leg guards",
+      "purpose": "One separately listed matched pair of thigh, knee and shin guards for the Arc power armor family. External articulated supports and guarded joint housings suggest powered movement assistance; performance is unresolved. Boots remain a separate item.",
+      "icon": "Only a matched pair of heavy plated leg guards with exposed outer support rails, guarded knee joints and broad shin faces. No boots, torso or complete suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {"Subtype": "Arc power armor / legs", "Search aliases": "arc power armor; arc powered armor; powered leg armor; thigh knee shin guards; separate armor piece", "Open design decisions": "Hip and knee articulation, load transfer, wearer fit, battery connection and behavior without power remain unresolved. No movement or carrying-capacity bonus assigned."}
+    },
+    {
+      "id": "proposal.armor.arc_power.boots",
+      "name": "Arc power armored boots",
+      "purpose": "One separately listed matched pair of armored boots for the Arc power armor family. Broad segmented soles and guarded ankle interfaces provide the visual foundation for the powered frame; grip, insulation and load support remain proposals.",
+      "icon": "Only a matched pair of heavy metal armored boots with broad segmented soles and guarded ankle couplings. Rust-dark finish with recessed insulating inserts; no leg guards or full suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {"Subtype": "Arc power armor / boots", "Search aliases": "arc power armor; arc powered armor; powered armored boots; feet; separate armor piece", "Open design decisions": "Sole construction, ankle range, traction, electrical isolation, leg-frame compatibility and unpowered walking remain unresolved. No storm grounding or electrical immunity established."}
+    },
+    {
+      "id": "proposal.armor.arc_power.arms",
+      "name": "Arc power arm guards",
+      "purpose": "One separately listed matched pair of upper-arm, elbow and forearm guards for the Arc power armor family. External support ribs and guarded powered-joint housings carry its industrial silhouette. Hands and gloves are outside this piece's defined coverage.",
+      "icon": "Only a matched pair of heavy articulated metal arm guards with broad forearm shells and enclosed elbow housings. Show no gloves, weapon, torso or complete suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {"Subtype": "Arc power armor / arms", "Search aliases": "arc power armor; arc powered armor; powered arm armor; bracers; separate armor piece", "Open design decisions": "Shoulder and elbow fit, controls, hand clearance, tool handling, joint power and safe unpowered movement remain proposals. No strength or attack bonus assigned."}
+    },
+    {
+      "id": "proposal.armor.arc_power.helmet",
+      "name": "Arc power helmet",
+      "purpose": "Separate head piece for the Arc power armor family. An angular metal shell, recessed viewing opening and protected connection points match the powered frame. Vision, hearing, controls and life-support clearance remain unresolved; the helmet supplies no atmosphere.",
+      "icon": "One angular heavy metal helmet with a narrow recessed viewing opening, protected side connection points and a small amber indicator. No wearer, chestplate, glowing shield or full suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {"Subtype": "Arc power armor / helmet", "Search aliases": "arc power armor; arc powered armor; powered armor helmet; head; separate armor piece", "Open design decisions": "Viewing material, visibility, hearing, head fit, cabling, controls and canister interface remain open. No enhanced optics, sealed breathing system or automatic targeting established."}
+    }
+  ]
+}
