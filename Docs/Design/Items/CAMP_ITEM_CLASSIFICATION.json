@@ -1,0 +1,318 @@
+{
+  "date": "2026-10-15",
+  "definition": "Camp shelter, rest, cooking, food service/storage, cleaning, grooming and everyday records. Dedicated crafting stations, worn clothing, personal accessories, raw feeds and damaged recovered finds retain their own categories. Organization does not assign gameplay capacity, slots or effects.",
+  "items": [
+    {
+      "id": "tool.popup_camp",
+      "name": "Pop-up camp",
+      "previous": "Field supplies",
+      "previousSubtype": "Camp bundle",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.container.field_chest",
+      "name": "Locking field chest",
+      "previous": "Containers",
+      "previousSubtype": "Storage object candidate",
+      "group": "Food service & storage"
+    },
+    {
+      "id": "proposal.bio.wing_panel",
+      "name": "Prepared wing shade panel",
+      "previous": "Crafting components",
+      "previousSubtype": "Wing material",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.culture.bowl",
+      "name": "Everyday shell bowl",
+      "previous": "Everyday objects",
+      "previousSubtype": "Everyday household",
+      "group": "Food service & storage"
+    },
+    {
+      "id": "proposal.culture.spoon",
+      "name": "Algae spoon / scraper",
+      "previous": "Everyday objects",
+      "previousSubtype": "Everyday household",
+      "group": "Food service & storage"
+    },
+    {
+      "id": "proposal.culture.brush",
+      "name": "Dust brush",
+      "previous": "Everyday objects",
+      "previousSubtype": "Everyday household",
+      "group": "Cleaning & personal care"
+    },
+    {
+      "id": "proposal.culture.comb",
+      "name": "Shell comb",
+      "previous": "Everyday objects",
+      "previousSubtype": "Everyday household",
+      "group": "Cleaning & personal care"
+    },
+    {
+      "id": "proposal.culture.tablet",
+      "name": "Reusable tally tablet",
+      "previous": "Everyday objects",
+      "previousSubtype": "Everyday household",
+      "group": "Camp records"
+    },
+    {
+      "id": "proposal.culture.stylus",
+      "name": "Marking stylus",
+      "previous": "Everyday objects",
+      "previousSubtype": "Everyday household",
+      "group": "Camp records"
+    },
+    {
+      "id": "proposal.ceramic.bowl",
+      "name": "Plain ceramic eating bowl",
+      "previous": "Everyday objects",
+      "previousSubtype": "Ceramic household",
+      "group": "Food service & storage"
+    },
+    {
+      "id": "proposal.ceramic.cup",
+      "name": "Small ceramic cup",
+      "previous": "Everyday objects",
+      "previousSubtype": "Ceramic household",
+      "group": "Food service & storage"
+    },
+    {
+      "id": "proposal.ceramic.plate",
+      "name": "Ceramic serving plate",
+      "previous": "Everyday objects",
+      "previousSubtype": "Ceramic household",
+      "group": "Food service & storage"
+    },
+    {
+      "id": "proposal.ceramic.storage_crock",
+      "name": "Ceramic dry-storage crock",
+      "previous": "Containers",
+      "previousSubtype": "Ceramic storage",
+      "group": "Food service & storage"
+    },
+    {
+      "id": "proposal.fire.striker",
+      "name": "Flint striking tool",
+      "previous": "Tools",
+      "previousSubtype": "Ignition tool",
+      "group": "Cooking & ignition"
+    },
+    {
+      "id": "proposal.fire.cooking_pot",
+      "name": "Ceramic cooking pot",
+      "previous": "Salvage",
+      "previousSubtype": "Cooking vessel",
+      "group": "Cooking & ignition"
+    },
+    {
+      "id": "proposal.fire.lidded_pan",
+      "name": "Lidded cooking pan",
+      "previous": "Tools",
+      "previousSubtype": "Cooking vessel",
+      "group": "Cooking & ignition"
+    },
+    {
+      "id": "proposal.fire.rack",
+      "name": "Cooking rack",
+      "previous": "Salvage",
+      "previousSubtype": "Cooking tool",
+      "group": "Cooking & ignition"
+    },
+    {
+      "id": "proposal.fire.pot_stand",
+      "name": "Cooking pot stand",
+      "previous": "Salvage",
+      "previousSubtype": "Cooking tool",
+      "group": "Cooking & ignition"
+    },
+    {
+      "id": "proposal.fire.tongs",
+      "name": "Cooking tongs",
+      "previous": "Tools",
+      "previousSubtype": "Cooking tool",
+      "group": "Cooking & ignition"
+    },
+    {
+      "id": "proposal.food.drink_flask",
+      "name": "Reusable Phagia drinking flask",
+      "previous": "Containers",
+      "previousSubtype": "Food packaging",
+      "group": "Food service & storage"
+    },
+    {
+      "id": "proposal.food.bar_case",
+      "name": "Phagia ration-bar case",
+      "previous": "Containers",
+      "previousSubtype": "Food packaging",
+      "group": "Food service & storage"
+    },
+    {
+      "id": "proposal.collection.long_handled_meal_ladle",
+      "name": "Long-handled meal ladle",
+      "previous": "Everyday objects",
+      "previousSubtype": "Household utensil",
+      "group": "Food service & storage"
+    },
+    {
+      "id": "proposal.collection.ceramic_portion_scoop",
+      "name": "Ceramic portion scoop",
+      "previous": "Everyday objects",
+      "previousSubtype": "Household utensil",
+      "group": "Food service & storage"
+    },
+    {
+      "id": "proposal.collection.shell_serving_tray",
+      "name": "Shell serving tray",
+      "previous": "Everyday objects",
+      "previousSubtype": "Household utensil",
+      "group": "Food service & storage"
+    },
+    {
+      "id": "proposal.collection.metal_eating_tongs",
+      "name": "Metal eating tongs",
+      "previous": "Everyday objects",
+      "previousSubtype": "Household utensil",
+      "group": "Food service & storage"
+    },
+    {
+      "id": "proposal.collection.folding_vertical_wing_shade",
+      "name": "Folding vertical wing shade",
+      "previous": "Field supplies",
+      "previousSubtype": "Proposed shelter kit content",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.collection.low_wing_roof_panel",
+      "name": "Low wing-roof panel",
+      "previous": "Field supplies",
+      "previousSubtype": "Proposed shelter kit content",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.collection.segmented_shelter_pole_set",
+      "name": "Segmented shelter pole set",
+      "previous": "Field supplies",
+      "previousSubtype": "Proposed shelter kit content",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.collection.ground_anchor_stake_set",
+      "name": "Ground-anchor stake set",
+      "previous": "Field supplies",
+      "previousSubtype": "Proposed shelter kit content",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.collection.tendon_guyline_bundle",
+      "name": "Tendon guyline bundle",
+      "previous": "Field supplies",
+      "previousSubtype": "Proposed shelter kit content",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.collection.husk_sheet_grit_screen",
+      "name": "Husk-sheet grit screen",
+      "previous": "Field supplies",
+      "previousSubtype": "Proposed shelter kit content",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.collection.shell_ground_rest_panel",
+      "name": "Shell ground-rest panel",
+      "previous": "Field supplies",
+      "previousSubtype": "Proposed shelter kit content",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.collection.folding_privacy_partition",
+      "name": "Folding privacy partition",
+      "previous": "Field supplies",
+      "previousSubtype": "Proposed shelter kit content",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.collection.canister_shelter_docking_stand",
+      "name": "Canister shelter docking stand",
+      "previous": "Field supplies",
+      "previousSubtype": "Proposed shelter kit content",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.collection.shelter_repair_patch_roll",
+      "name": "Shelter repair patch roll",
+      "previous": "Field supplies",
+      "previousSubtype": "Proposed shelter kit content",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.audit.food_preparation_screen",
+      "name": "Food preparation screen",
+      "previous": "Salvage",
+      "previousSubtype": "Crafting audit support item",
+      "group": "Cooking & ignition"
+    },
+    {
+      "id": "proposal.camp.divided_warming_pot",
+      "name": "Divided meal-warming pot",
+      "previous": "Everyday objects",
+      "previousSubtype": "Camp household",
+      "group": "Cooking & ignition"
+    },
+    {
+      "id": "proposal.camp.pot_lid_rest",
+      "name": "Folding pot-lid rest",
+      "previous": "Everyday objects",
+      "previousSubtype": "Camp household",
+      "group": "Cooking & ignition"
+    },
+    {
+      "id": "proposal.camp.cam_tie_down_buckle",
+      "name": "Cam-lever tie-down buckle",
+      "previous": "Everyday objects",
+      "previousSubtype": "Camp household",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.camp.guyline_tensioner",
+      "name": "Three-hole guyline tensioner",
+      "previous": "Everyday objects",
+      "previousSubtype": "Camp household",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.camp.split_ring_hanging_hook",
+      "name": "Split-ring hanging hook",
+      "previous": "Everyday objects",
+      "previousSubtype": "Camp household",
+      "group": "Shelter & rest"
+    },
+    {
+      "id": "proposal.camp.hinged_utensil_case",
+      "name": "Hinged camp utensil case",
+      "previous": "Everyday objects",
+      "previousSubtype": "Camp household",
+      "group": "Food service & storage"
+    },
+    {
+      "id": "proposal.camp.folding_grit_pan",
+      "name": "Folding grit pan",
+      "previous": "Everyday objects",
+      "previousSubtype": "Camp household",
+      "group": "Cleaning & personal care"
+    }
+  ],
+  "groups": {
+    "Shelter & rest": 15,
+    "Cooking & ignition": 9,
+    "Food service & storage": 14,
+    "Cleaning & personal care": 3,
+    "Camp records": 2
+  },
+  "sourceHashBefore": "11a058df8b95a07e6894ded29aaea0775592cdf7f5c0970aae27bca620c08d21",
+  "sourceHashAfter": "55d340ea8203f33cc2ce8700d7c906fc1e6a770046b7a47a12da95e846b93396",
+  "retiredCategory": "Everyday objects",
+  "scope": "Catalog only; preserve IDs, art/review state, tiers, types, purposes, recipes, fitments, deterministic world identity, terrain, streaming and persisted gameplay deltas."
+}

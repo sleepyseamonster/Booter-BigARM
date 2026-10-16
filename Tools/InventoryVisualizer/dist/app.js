@@ -29,13 +29,14 @@ function glyph(item){
   if(/equipment|supplies|armor|clothing/i.test(category))shape='<path d="m34 22 16 8 17-8 17 18-13 14-6-7v36H36V47l-7 7-13-14Z" fill="currentColor" opacity=".25"/><path d="m34 22 16 8 17-8 17 18-13 14-6-7v36H36V47l-7 7-13-14Zm16 8v53m-14-23h29"/>';
   if(category==='Tools')shape='<path d="m29 74 35-40 8 7-35 41Z" fill="currentColor" opacity=".3"/><path d="m29 74 35-40 8 7-35 41Zm18-48 12-12 27 24-12 12Z"/>';
   if(category==='Crafting stations')shape='<path d="M23 82V39l13-17h28l13 17v43Z" fill="currentColor" opacity=".25"/><path d="M23 82V39l13-17h28l13 17v43Zm0-43h54M36 82V62a14 14 0 0 1 28 0v20M31 22h38M40 22V12h20v10M19 82h62"/>';
+  if(category==='Camp items')shape='<path d="m15 80 35-58 35 58Z" fill="currentColor" opacity=".25"/><path d="m15 80 35-58 35 58Zm35-58v58m0-35L34 80m16-35 16 35M10 80h80M23 53l-9-7m63 7 9-7"/>';
   if(category==='Accessories')shape='<path d="M28 35h44l5 46H23Z" fill="currentColor" opacity=".25"/><path d="M28 35h44l5 46H23Zm10 0V24q12-12 24 0v11M26 48h48M42 48v12h16V48"/>';
   if(/weapon/i.test(category))shape='<path d="m29 70 40-42 12-8-6 16-36 43Z" fill="currentColor" opacity=".3"/><path d="m29 70 40-42 12-8-6 16-36 43m-16-19 24 24m-14-10-13 14m-5-4 11 11"/>';
   return `<svg viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">${shape}</svg>`;
 }
 function imageFor(item,hero=false){const art=recordFor(id(item));return art.image?`<img draggable="false" src="${esc(art.image)}" alt="${esc(name(item))}" ${hero?'':'loading="lazy"'}>`:glyph(item);}
 function tierLabel(item){return /^T\d$/.test(item.Tier)?item.Tier:item.Tier==='Unassigned'?'T?':'—';}
-function ownerItems(){return state.items.filter(item=>state.owner==='booter'?!['Legger armor','Legger attachments'].includes(item.Category)&&/equipment|armor|tools|accessories|attachments|clothing|field supplies|consumables|cooking ingredients|containers/i.test(item.Category):state.owner==='legger'?!/booter only/i.test(item['Carrier metadata']||''):true);}
+function ownerItems(){return state.items.filter(item=>state.owner==='booter'?!['Legger armor','Legger attachments'].includes(item.Category)&&/equipment|armor|tools|accessories|attachments|clothing|field supplies|camp items|consumables|cooking ingredients|containers/i.test(item.Category):state.owner==='legger'?!/booter only/i.test(item['Carrier metadata']||''):true);}
 function visibleItems(){
   const query=$('#search').value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
   const tier=$('#tier').value,design=$('#design').value,artFilter=$('#art-filter').value;
@@ -60,6 +61,11 @@ function renderCategories(){
 }
 function renderItems(){
   const items=visibleItems();
+  if(state.category==='Camp items'){
+    const groups=['Shelter & rest','Cooking & ignition','Food service & storage','Cleaning & personal care','Camp records'];
+    const order=item=>{const n=groups.indexOf(item.Subtype);return n<0?groups.length:n;};
+    items.sort((a,b)=>order(a)-order(b));
+  }
   $('#result-count').textContent=`${items.length} items${state.category?' / '+state.category:''}`;
   $('#queue-filtered').disabled=!items.length;
   if(!items.some(item=>id(item)===state.selected))state.selected=items.length?id(items[0]):null;
@@ -67,6 +73,10 @@ function renderItems(){
   $('#items').innerHTML=items.length?items.map(item=>{
     const key=id(item),art=recordFor(key),kept=(state.protectedIds||[]).includes(key),reviewed=(state.reviewIds||[]).includes(key);
     return `<article class="item-card ${state.selected===key?'selected':''} ${kept?'kept':''} ${reviewed?'needs-review':''}" data-move-item="${esc(key)}" draggable="${state.owner==='catalog'&&state.view==='inventory'&&state.categoryEditing===true}"><button class="item-select" data-id="${esc(key)}" aria-label="Inspect ${esc(name(item))}" aria-pressed="${state.selected===key}"><div class="art">${imageFor(item)}<span class="art-badge">${tierLabel(item)}</span>${art.status!=='missing'||art.image?'<span class="art-status"></span>':''}${!art.image?'<span class="placeholder-tag">PLACEHOLDER</span>':''}</div><div class="card-copy"><strong>${esc(name(item))}</strong><small>${esc(item.Subtype||item.Category)}</small></div></button><div class="item-controls"><button class="review-item ${reviewed?'checked':''}" data-action="review" data-item="${esc(key)}" aria-label="${reviewed?'Unmark review for':'Mark for review:'} ${esc(name(item))}" aria-pressed="${reviewed}" title="${reviewed?'Marked for review · click to clear':'Mark this item for review'}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/>${reviewed?'<path d="m7 12 3.5 3.5 6.5-7"/>':''}</svg></button>${!reviewed?`<button class="keep-item ${kept?'checked':''}" data-action="protect" data-item="${esc(key)}" aria-label="${kept?'Unkeep':'Keep'} ${esc(name(item))}" aria-pressed="${kept}" title="${kept?'Kept · click to allow deletion':'Keep this item · prevent deletion'}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/>${kept?'<path d="m7 12 3.5 3.5 6.5-7"/>':''}</svg></button>`:''}${!kept?`<button class="delete-item" data-action="delete" data-item="${esc(key)}" aria-label="Delete ${esc(name(item))} from spreadsheet" title="Permanently delete from spreadsheet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7"/></svg></button>`:''}</div></article>`;
+  }).map((card,index)=>{
+    if(state.category!=='Camp items'||(index>0&&items[index-1].Subtype===items[index].Subtype))return card;
+    const group=items[index].Subtype||'Other camp items',count=items.filter(item=>(item.Subtype||'Other camp items')===group).length;
+    return `<h2 class="camp-group-heading">${esc(group)}<small>${count} items</small></h2>`+card;
   }).join(''):'<div class="empty">No items match these filters.<br><br>Try another category or reset the filters.</div>';
   renderDetail();
 }

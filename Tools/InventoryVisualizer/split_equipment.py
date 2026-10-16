@@ -11,6 +11,7 @@ from xml.sax.saxutils import escape
 from zipfile import ZipFile
 
 import openpyxl
+from category_edits import CELL
 from workbook_edits import atomic_write
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -166,7 +167,7 @@ def apply():
                 continue
             raw = archive.read(part).decode("utf-8")
             prefix = re.search(r'<((?:\w+:)?)worksheet\b', raw).group(1)
-            original_cells = {m.group(1): m.group(0) for m in re.finditer(r'<(?:\w+:)?c\b[^>]*\br="([A-Z]+\d+)"[^>]*(?:/>|>.*?</(?:\w+:)?c>)', raw, re.S)}
+            original_cells = {m.group(1): m.group(0) for m in re.finditer(CELL, raw, re.S)}
             for change in selected:
                 address = change["address"]
                 old = original_cells.get(address)

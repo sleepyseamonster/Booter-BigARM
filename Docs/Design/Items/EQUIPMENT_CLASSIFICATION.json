@@ -3,14 +3,15 @@
   "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
   "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
   "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
-  "sourceHashAfter": "941e79016c1e650fc68897a53f13b3e05c44c699847c149e9dd7866f8f578bde",
+  "sourceHashAfter": "55d340ea8203f33cc2ce8700d7c906fc1e6a770046b7a47a12da95e846b93396",
   "counts": {
     "Accessories": 7,
     "Clothing": 8,
-    "Tools": 51,
+    "Tools": 44,
     "Armor": 35,
     "Attachments": 4,
     "Workshop upgrades": 1,
+    "Camp items": 7,
     "Crafting stations": 2,
     "Legger attachments": 11,
     "Legger armor": 7
@@ -217,14 +218,14 @@
     {
       "id": "proposal.fire.striker",
       "name": "Flint striking tool",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Camp items",
+      "reason": "Author camp organization: Cooking & ignition."
     },
     {
       "id": "proposal.fire.cooking_pot",
       "name": "Ceramic cooking pot",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Camp items",
+      "reason": "Author camp organization: Cooking & ignition."
     },
     {
       "id": "proposal.fire.cooking_slab",
@@ -235,26 +236,26 @@
     {
       "id": "proposal.fire.lidded_pan",
       "name": "Lidded cooking pan",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Camp items",
+      "reason": "Author camp organization: Cooking & ignition."
     },
     {
       "id": "proposal.fire.rack",
       "name": "Cooking rack",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Camp items",
+      "reason": "Author camp organization: Cooking & ignition."
     },
     {
       "id": "proposal.fire.pot_stand",
       "name": "Cooking pot stand",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Camp items",
+      "reason": "Author camp organization: Cooking & ignition."
     },
     {
       "id": "proposal.fire.tongs",
       "name": "Cooking tongs",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Camp items",
+      "reason": "Author camp organization: Cooking & ignition."
     },
     {
       "id": "proposal.fire.firebox",
@@ -763,8 +764,8 @@
     {
       "id": "proposal.audit.food_preparation_screen",
       "name": "Food preparation screen",
-      "category": "Tools",
-      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+      "category": "Camp items",
+      "reason": "Author camp organization: Cooking & ignition."
     },
     {
       "id": "proposal.audit.metal_glassworking_blowpipe",
@@ -876,6 +877,57 @@
       ],
       "sourceHashBefore": "ee2150b0edf95fc20ecd45a96ad83d7e7b208bfb56bfbd734dc8f7906bde225d",
       "sourceHashAfter": "941e79016c1e650fc68897a53f13b3e05c44c699847c149e9dd7866f8f578bde"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Organize camp items and everyday goods into five camp groups.",
+      "movedIds": [
+        "tool.popup_camp",
+        "proposal.container.field_chest",
+        "proposal.bio.wing_panel",
+        "proposal.culture.bowl",
+        "proposal.culture.spoon",
+        "proposal.culture.brush",
+        "proposal.culture.comb",
+        "proposal.culture.tablet",
+        "proposal.culture.stylus",
+        "proposal.ceramic.bowl",
+        "proposal.ceramic.cup",
+        "proposal.ceramic.plate",
+        "proposal.ceramic.storage_crock",
+        "proposal.fire.striker",
+        "proposal.fire.cooking_pot",
+        "proposal.fire.lidded_pan",
+        "proposal.fire.rack",
+        "proposal.fire.pot_stand",
+        "proposal.fire.tongs",
+        "proposal.food.drink_flask",
+        "proposal.food.bar_case",
+        "proposal.collection.long_handled_meal_ladle",
+        "proposal.collection.ceramic_portion_scoop",
+        "proposal.collection.shell_serving_tray",
+        "proposal.collection.metal_eating_tongs",
+        "proposal.collection.folding_vertical_wing_shade",
+        "proposal.collection.low_wing_roof_panel",
+        "proposal.collection.segmented_shelter_pole_set",
+        "proposal.collection.ground_anchor_stake_set",
+        "proposal.collection.tendon_guyline_bundle",
+        "proposal.collection.husk_sheet_grit_screen",
+        "proposal.collection.shell_ground_rest_panel",
+        "proposal.collection.folding_privacy_partition",
+        "proposal.collection.canister_shelter_docking_stand",
+        "proposal.collection.shelter_repair_patch_roll",
+        "proposal.audit.food_preparation_screen",
+        "proposal.camp.divided_warming_pot",
+        "proposal.camp.pot_lid_rest",
+        "proposal.camp.cam_tie_down_buckle",
+        "proposal.camp.guyline_tensioner",
+        "proposal.camp.split_ring_hanging_hook",
+        "proposal.camp.hinged_utensil_case",
+        "proposal.camp.folding_grit_pan"
+      ],
+      "sourceHashBefore": "11a058df8b95a07e6894ded29aaea0775592cdf7f5c0970aae27bca620c08d21",
+      "sourceHashAfter": "55d340ea8203f33cc2ce8700d7c906fc1e6a770046b7a47a12da95e846b93396"
     }
   ]
 }
