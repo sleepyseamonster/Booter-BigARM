@@ -29,6 +29,7 @@ function glyph(item){
   if(/equipment|supplies|armor|clothing/i.test(category))shape='<path d="m34 22 16 8 17-8 17 18-13 14-6-7v36H36V47l-7 7-13-14Z" fill="currentColor" opacity=".25"/><path d="m34 22 16 8 17-8 17 18-13 14-6-7v36H36V47l-7 7-13-14Zm16 8v53m-14-23h29"/>';
   if(category==='Tools')shape='<path d="m29 74 35-40 8 7-35 41Z" fill="currentColor" opacity=".3"/><path d="m29 74 35-40 8 7-35 41Zm18-48 12-12 27 24-12 12Z"/>';
   if(category==='Crafting stations')shape='<path d="M23 82V39l13-17h28l13 17v43Z" fill="currentColor" opacity=".25"/><path d="M23 82V39l13-17h28l13 17v43Zm0-43h54M36 82V62a14 14 0 0 1 28 0v20M31 22h38M40 22V12h20v10M19 82h62"/>';
+  if(category==='Ammunition')shape='<path d="M26 77V39l9-17 9 17v38Zm30 0V39l9-17 9 17v38Z" fill="currentColor" opacity=".25"/><path d="M26 77V39l9-17 9 17v38Zm30 0V39l9-17 9 17v38ZM26 41h18M56 41h18M23 77h24M53 77h24"/>';
   if(category==='Camp items')shape='<path d="m15 80 35-58 35 58Z" fill="currentColor" opacity=".25"/><path d="m15 80 35-58 35 58Zm35-58v58m0-35L34 80m16-35 16 35M10 80h80M23 53l-9-7m63 7 9-7"/>';
   if(category==='Accessories')shape='<path d="M28 35h44l5 46H23Z" fill="currentColor" opacity=".25"/><path d="M28 35h44l5 46H23Zm10 0V24q12-12 24 0v11M26 48h48M42 48v12h16V48"/>';
   if(/weapon/i.test(category))shape='<path d="m29 70 40-42 12-8-6 16-36 43Z" fill="currentColor" opacity=".3"/><path d="m29 70 40-42 12-8-6 16-36 43m-16-19 24 24m-14-10-13 14m-5-4 11 11"/>';
@@ -36,7 +37,7 @@ function glyph(item){
 }
 function imageFor(item,hero=false){const art=recordFor(id(item));return art.image?`<img draggable="false" src="${esc(art.image)}" alt="${esc(name(item))}" ${hero?'':'loading="lazy"'}>`:glyph(item);}
 function tierLabel(item){return /^T\d$/.test(item.Tier)?item.Tier:item.Tier==='Unassigned'?'T?':'—';}
-function ownerItems(){return state.items.filter(item=>state.owner==='booter'?!['Legger armor','Legger attachments'].includes(item.Category)&&/equipment|armor|tools|accessories|attachments|clothing|field supplies|camp items|consumables|cooking ingredients|containers/i.test(item.Category):state.owner==='legger'?!/booter only/i.test(item['Carrier metadata']||''):true);}
+function ownerItems(){return state.items.filter(item=>state.owner==='booter'?!['Legger armor','Legger attachments'].includes(item.Category)&&/equipment|armor|tools|accessories|attachments|clothing|field supplies|camp items|ammunition|consumables|cooking ingredients|containers/i.test(item.Category):state.owner==='legger'?!/booter only/i.test(item['Carrier metadata']||''):true);}
 function visibleItems(){
   const query=$('#search').value.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
   const tier=$('#tier').value,design=$('#design').value,artFilter=$('#art-filter').value;

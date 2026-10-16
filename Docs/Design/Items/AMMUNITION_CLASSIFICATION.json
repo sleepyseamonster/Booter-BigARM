@@ -1,0 +1,78 @@
+{
+  "reason": "Author direction October 15: weapon ammunition belongs in its own Ammunition category. Weapon projectiles, rockets and matched weapon-specific power feeds. Launchers and other weapons remain Weapons. Classification does not establish interchangeability, consumption, recovery, charge or combat behavior.",
+  "items": [
+    {
+      "id": "author.ancient.rocket",
+      "name": "Rocket",
+      "previous": "Weapons"
+    },
+    {
+      "id": "proposal.collection.shaped_stone_sling_pellet",
+      "name": "Shaped stone sling pellet",
+      "previous": "Weapons"
+    },
+    {
+      "id": "proposal.collection.steel_broadhead_bolt",
+      "name": "Steel broadhead bolt",
+      "previous": "Weapons"
+    },
+    {
+      "id": "proposal.collection.heavy_siege_bolt",
+      "name": "Heavy siege bolt",
+      "previous": "Weapons"
+    },
+    {
+      "id": "proposal.collection.pressure_launcher_rivet_round",
+      "name": "Pressure-launcher rivet round",
+      "previous": "Weapons"
+    },
+    {
+      "id": "proposal.collection.magnetic_projector_dart",
+      "name": "Magnetic projector dart",
+      "previous": "Weapons"
+    },
+    {
+      "id": "proposal.collection.coil_carbine_slug",
+      "name": "Coil-carbine slug",
+      "previous": "Weapons"
+    },
+    {
+      "id": "proposal.collection.arc_gun_discharge_cartridge",
+      "name": "Arc-gun discharge cartridge",
+      "previous": "Weapons"
+    },
+    {
+      "id": "proposal.collection.laser_blaster_power_cassette",
+      "name": "Laser-blaster power cassette",
+      "previous": "Weapons"
+    },
+    {
+      "id": "proposal.collection.laser_sword_energy_insert",
+      "name": "Laser-sword energy insert",
+      "previous": "Weapons"
+    },
+    {
+      "id": "proposal.collection.ancient_pulse_rifle_cell",
+      "name": "Ancient pulse-rifle cell",
+      "previous": "Weapons"
+    },
+    {
+      "id": "proposal.collection.ancient_plasma_lance_charge",
+      "name": "Ancient plasma-lance charge",
+      "previous": "Weapons"
+    },
+    {
+      "id": "proposal.collection.ancient_microrocket_cluster",
+      "name": "Ancient microrocket cluster",
+      "previous": "Weapons"
+    },
+    {
+      "id": "proposal.collection.ancient_sonic_pulse_pack",
+      "name": "Ancient sonic pulse pack",
+      "previous": "Weapons"
+    }
+  ],
+  "sourceHashBefore": "8b34486536e6ffc1c9aec04ee3a439f1ea062bd9e5f433601454c7b44e8ba26b",
+  "sourceHashAfter": "6f047bf9bec96bd4d600e7abe8bd533c5b4d5ee8e3365b16fe3659c1bf964ce5",
+  "scope": "Catalog only. IDs, names, tiers, types, properties, recipes, review/art state, world identity, streaming and saved gameplay unchanged."
+}
