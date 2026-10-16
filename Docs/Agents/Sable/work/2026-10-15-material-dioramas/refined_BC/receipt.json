@@ -1,0 +1,412 @@
+{
+  "source": "SourceArt\\Blender\\Studies\\Sable\\MaterialDioramas20261015\\MaterialDioramas.blend",
+  "source_sha256": "0882fb7dde27529244cc152a661fa2f12ab79313003b604f9d65061b2364b335",
+  "script_sha256": "7ddc0a61dc00a1943943b4cd997d45a30a0f7e0968cf8c805d9cbb25c731e0f3",
+  "native": "SourceArt\\Blender\\Studies\\Sable\\MaterialDioramas20261015\\Refined_BC.blend",
+  "native_sha256": "d4a333b9a11ec896f0b1d3cc64241b1129e926ab188f08d72f6c9dacb660aa42",
+  "materials": [
+    {
+      "id": "M01",
+      "method": "B roughness, metallic, relief, wear coverage and coatings; C pigment on exposed planes",
+      "color_weight_range": [
+        0.18000000715255737,
+        0.41999998688697815
+      ]
+    },
+    {
+      "id": "M02",
+      "method": "B roughness, metallic, relief, wear coverage and coatings; C pigment on exposed planes",
+      "color_weight_range": [
+        0.18000000715255737,
+        0.41999998688697815
+      ]
+    },
+    {
+      "id": "M03",
+      "method": "B roughness, metallic, relief, wear coverage and coatings; C pigment on exposed planes",
+      "color_weight_range": [
+        0.18000000715255737,
+        0.41999998688697815
+      ]
+    },
+    {
+      "id": "M04",
+      "method": "B roughness, metallic, relief, wear coverage and coatings; C pigment on exposed planes",
+      "color_weight_range": [
+        0.18000000715255737,
+        0.41999998688697815
+      ]
+    },
+    {
+      "id": "M05",
+      "method": "B roughness, metallic, relief, wear coverage and coatings; C pigment on exposed planes",
+      "color_weight_range": [
+        0.18000000715255737,
+        0.41999998688697815
+      ]
+    },
+    {
+      "id": "M06",
+      "method": "B roughness, metallic, relief, wear coverage and coatings; C pigment on exposed planes",
+      "color_weight_range": [
+        0.18000000715255737,
+        0.41999998688697815
+      ]
+    },
+    {
+      "id": "S01",
+      "method": "B roughness, metallic, relief, wear coverage and coatings; C pigment on exposed planes",
+      "color_weight_range": [
+        0.2800000011920929,
+        0.5799999833106995
+      ]
+    },
+    {
+      "id": "S02",
+      "method": "B roughness, metallic, relief, wear coverage and coatings; C pigment on exposed planes",
+      "color_weight_range": [
+        0.2800000011920929,
+        0.5799999833106995
+      ]
+    },
+    {
+      "id": "S03",
+      "method": "B roughness, metallic, relief, wear coverage and coatings; C pigment on exposed planes",
+      "color_weight_range": [
+        0.2800000011920929,
+        0.5799999833106995
+      ]
+    },
+    {
+      "id": "S04",
+      "method": "B roughness, metallic, relief, wear coverage and coatings; C pigment on exposed planes",
+      "color_weight_range": [
+        0.2800000011920929,
+        0.5799999833106995
+      ]
+    },
+    {
+      "id": "G01",
+      "method": "Exact existing B material; no changes"
+    },
+    {
+      "id": "G02",
+      "method": "Exact existing B material; no changes"
+    },
+    {
+      "id": "G03",
+      "method": "Exact existing B material; no changes"
+    },
+    {
+      "id": "O01",
+      "method": "B roughness, metallic, relief, wear coverage and coatings; C pigment on exposed planes",
+      "color_weight_range": [
+        0.2800000011920929,
+        0.5799999833106995
+      ]
+    },
+    {
+      "id": "C01",
+      "method": "B roughness, metallic, relief, wear coverage and coatings; C pigment on exposed planes",
+      "color_weight_range": [
+        0.18000000715255737,
+        0.41999998688697815
+      ]
+    }
+  ],
+  "ground": "Exact B G01/G02/G03 and faded deposits, unchanged",
+  "geometry_unchanged": true,
+  "samples": 64,
+  "renders": [
+    {
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\refined_BC\\yard_E_sunset_close.png",
+      "sha256": "adfee76cf7181d8fda3ec09abfd30d5e6e3044cc266b87075033bf25179541c7",
+      "camera": {
+        "view": "close",
+        "distance": 10.5,
+        "pitch": 34,
+        "yaw": 15,
+        "target": [
+          1.0,
+          0.25,
+          1.0
+        ],
+        "matrix": [
+          [
+            0.9659258127212524,
+            -0.14472971856594086,
+            0.2145707607269287,
+            3.2529923915863037
+          ],
+          [
+            0.258819043636322,
+            0.5401387214660645,
+            -0.8007888793945312,
+            -8.158282279968262
+          ],
+          [
+            -1.511274483334546e-08,
+            0.8290376663208008,
+            0.5591927766799927,
+            6.871525287628174
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "vertical_fov": 48,
+        "aspect": 1.7777777777777777
+      },
+      "scene": "yard",
+      "light": "sunset",
+      "view": "close",
+      "group": null,
+      "seconds": 20.123088359832764
+    },
+    {
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\refined_BC\\yard_E_sunset_gameplay.png",
+      "sha256": "b8dfc36016f1396b2c466f70dc8cc63d8e3020983acfaa33b0cc79fd19a7e3c0",
+      "camera": {
+        "view": "gameplay",
+        "distance": 22,
+        "pitch": 50,
+        "yaw": 40,
+        "target": [
+          0.0,
+          0.0,
+          1.149999976158142
+        ],
+        "matrix": [
+          [
+            0.7660444378852844,
+            -0.49240386486053467,
+            0.4131759703159332,
+            9.08987045288086
+          ],
+          [
+            0.6427876353263855,
+            0.5868240594863892,
+            -0.49240386486053467,
+            -10.8328857421875
+          ],
+          [
+            -2.1603581146223405e-08,
+            0.6427876353263855,
+            0.7660444378852844,
+            18.00297737121582
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "vertical_fov": 48,
+        "aspect": 1.7777777777777777
+      },
+      "scene": "yard",
+      "light": "sunset",
+      "view": "gameplay",
+      "group": null,
+      "seconds": 19.290634632110596
+    },
+    {
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\refined_BC\\yard_E_twilight_close.png",
+      "sha256": "b762587421164f73f6b13694ba6ac84580097652a0e5c0713a717549d04ec7a6",
+      "camera": {
+        "view": "close",
+        "distance": 10.5,
+        "pitch": 34,
+        "yaw": 15,
+        "target": [
+          1.0,
+          0.25,
+          1.0
+        ],
+        "matrix": [
+          [
+            0.9659258127212524,
+            -0.14472971856594086,
+            0.2145707607269287,
+            3.2529923915863037
+          ],
+          [
+            0.258819043636322,
+            0.5401387214660645,
+            -0.8007888793945312,
+            -8.158282279968262
+          ],
+          [
+            -1.511274483334546e-08,
+            0.8290376663208008,
+            0.5591927766799927,
+            6.871525287628174
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "vertical_fov": 48,
+        "aspect": 1.7777777777777777
+      },
+      "scene": "yard",
+      "light": "twilight",
+      "view": "close",
+      "group": null,
+      "seconds": 20.874797105789185
+    },
+    {
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\refined_BC\\yard_E_neutral_gameplay.png",
+      "sha256": "e54e2a774c2718e72967403661ed0230a1a3d829e2b3e8e3c938fdca69fe3588",
+      "camera": {
+        "view": "gameplay",
+        "distance": 22,
+        "pitch": 50,
+        "yaw": 40,
+        "target": [
+          0.0,
+          0.0,
+          1.149999976158142
+        ],
+        "matrix": [
+          [
+            0.7660444378852844,
+            -0.49240386486053467,
+            0.4131759703159332,
+            9.08987045288086
+          ],
+          [
+            0.6427876353263855,
+            0.5868240594863892,
+            -0.49240386486053467,
+            -10.8328857421875
+          ],
+          [
+            -2.1603581146223405e-08,
+            0.6427876353263855,
+            0.7660444378852844,
+            18.00297737121582
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "vertical_fov": 48,
+        "aspect": 1.7777777777777777
+      },
+      "scene": "yard",
+      "light": "neutral",
+      "view": "gameplay",
+      "group": null,
+      "seconds": 20.094955921173096
+    },
+    {
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\refined_BC\\plates_E_neutral_plate_metal.png",
+      "sha256": "28c979442e8b60b2966239f0a27c868ddb431a9cadbc9757d1aae288ed389684",
+      "camera": {
+        "view": "plate",
+        "distance": 11.8,
+        "pitch": 65,
+        "yaw": 0,
+        "target": [
+          0.0,
+          0.0,
+          0.10000000149011612
+        ],
+        "matrix": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.9063078165054321,
+            -0.42261821031570435,
+            -4.986895561218262
+          ],
+          [
+            0.0,
+            0.42261821031570435,
+            0.9063078165054321,
+            10.794432640075684
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "vertical_fov": 48,
+        "aspect": 1.7777777777777777
+      },
+      "scene": "plates",
+      "light": "neutral",
+      "view": "plate",
+      "group": "metal",
+      "seconds": 15.595544815063477
+    },
+    {
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\refined_BC\\plates_E_neutral_plate_stone.png",
+      "sha256": "c0c45448d8b8c95936f9104c87fc2aab04ba2ff2733f852e3a48ad299cd69e93",
+      "camera": {
+        "view": "plate",
+        "distance": 11.8,
+        "pitch": 65,
+        "yaw": 0,
+        "target": [
+          0.0,
+          0.0,
+          0.10000000149011612
+        ],
+        "matrix": [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.9063078165054321,
+            -0.42261821031570435,
+            -4.986895561218262
+          ],
+          [
+            0.0,
+            0.42261821031570435,
+            0.9063078165054321,
+            10.794432640075684
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "vertical_fov": 48,
+        "aspect": 1.7777777777777777
+      },
+      "scene": "plates",
+      "light": "neutral",
+      "view": "plate",
+      "group": "stone",
+      "seconds": 15.396281719207764
+    }
+  ],
+  "unity_proof": false,
+  "complete": true
+}

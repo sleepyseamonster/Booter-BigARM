@@ -1,0 +1,88 @@
+{
+  "geometry_and_transforms_match": true,
+  "exact_B_ground_graphs": {
+    "B_G01": "cbcc7011c52b1998d5d16c5edd97d2dccfcea299775275c44c3d3b4694fe232f",
+    "B_G02": "321b48dfd2d7979b789e553e5377d9ed91c055f3f5ed3c78d2f35fa44cd31cad",
+    "B_G02 faded deposits": "680b9bd3a6354145c030930b717dfd716cf965d21819e082e0bafa3418552a68",
+    "B_G03": "134ea8927c13a78b286d705b8cce2694671a2148aee6e19d67c3d13f093a0f77",
+    "B_G03 faded deposits": "b974120bbc5c48a340f2193d66ab413f5d02a7d56f1361736f61be2b3e951a64"
+  },
+  "B_response_preserved_on_all_12_other_surfaces": true,
+  "response_inputs": [
+    "Metallic",
+    "Roughness",
+    "Normal",
+    "Coat Weight",
+    "Anisotropic"
+  ],
+  "C_pigment_groups": 12,
+  "packed_images": [
+    {
+      "name": "B_subtle_atlas.png",
+      "packed": true
+    },
+    {
+      "name": "C_painterly_atlas.png",
+      "packed": true
+    },
+    {
+      "name": "SculptedBasalt01_BaseColor",
+      "packed": true
+    },
+    {
+      "name": "SculptedBasalt01_Normal",
+      "packed": true
+    },
+    {
+      "name": "SculptedBasalt01_Roughness",
+      "packed": true
+    }
+  ],
+  "yard_material_assignments_verified": true,
+  "source_and_native_hashes_match": true,
+  "reopened_render": "outputs\\Sable\\MaterialDioramas20261015\\refined_BC\\reopened_close.png",
+  "unity_proof": false,
+  "reopened_pixel_comparison": {
+    "identical": false,
+    "mean_absolute_rgb": [
+      7.297092013888888e-05,
+      4.4487847222222224e-05,
+      6.700303819444444e-05
+    ],
+    "max_channel_error": 1
+  },
+  "review_assets": [
+    {
+      "file": "yard_E_sunset_close.jpg",
+      "sha256": "7267c356d303cb9ec2433b77ee6ec15fd1e9656181ebeceae7404fb6fb12bb85"
+    },
+    {
+      "file": "yard_E_sunset_gameplay.jpg",
+      "sha256": "54b35db0bc1977c8c5f5ef9d433a99345cc0d6fc21117712e78fc40f6a9c952b"
+    },
+    {
+      "file": "yard_E_twilight_close.jpg",
+      "sha256": "2035b3e306a7b28f5286d18200433526dcbcb0f5fe3bcab26b6bae390423fd5b"
+    },
+    {
+      "file": "yard_E_neutral_gameplay.jpg",
+      "sha256": "3edf1e03db89138d6ed0e4a3df197d5994e736882040310b8da3b7e69fe65351"
+    },
+    {
+      "file": "plates_E_neutral_plate_metal.jpg",
+      "sha256": "9144010eb5fe604bb1b54e6c89828fd0ea0a8a45b2bfabc49f213ce72643aeec"
+    },
+    {
+      "file": "plates_E_neutral_plate_stone.jpg",
+      "sha256": "758a9f622b68a5737c82e9a95e32b91ad874ab745b766a180517c3e26ce05d35"
+    },
+    {
+      "file": "comparison_close.jpg",
+      "sha256": "748d0249b7dc297505a1ab644dbcd93dfef9135648c094adec4138bfe8ae95c0"
+    },
+    {
+      "file": "comparison_gameplay.jpg",
+      "sha256": "59cc1d408f13aa7cbc37a4118e2ee111c631dd6e47cb049c937854d89acbd21c"
+    }
+  ]
+}

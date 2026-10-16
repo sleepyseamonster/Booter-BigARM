@@ -37,6 +37,7 @@ Shared accepted art standards belong in the established topic-owned `Docs/` loca
 
 - [Stylized realism art direction research](work/2026-10-15-stylized-realism/README.md) — the author's Arcane and No Rest for the Wicked direction, additional influences, resource catalogue, and proposed comparison study.
 - [Material diorama results and viewer](work/2026-10-15-material-dioramas/RESULTS.md) — implemented three-scene, four-treatment study: 97 captures, fifteen surface conditions, original B ground control, form pilot and native-source verification. New candidates await creative selection.
+- [Refined B–C workyard](work/2026-10-15-material-dioramas/refined_BC/README.md) — combined candidate with exact B ground and material response, selective C painted accents, six captures and direct B / combined / C boards.
 
 ## Completion standard
 
