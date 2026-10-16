@@ -1,3 +1,4 @@
+import {installCategoryMoves} from './category-moves.js';
 const $ = selector => document.querySelector(selector);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const state = {items:[], art:{}, category:'', owner:'catalog', selected:null, view:'menu', list:false};
@@ -31,7 +32,7 @@ function glyph(item){
   if(/weapon/i.test(category))shape='<path d="m29 70 40-42 12-8-6 16-36 43Z" fill="currentColor" opacity=".3"/><path d="m29 70 40-42 12-8-6 16-36 43m-16-19 24 24m-14-10-13 14m-5-4 11 11"/>';
   return `<svg viewBox="0 0 100 100" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">${shape}</svg>`;
 }
-function imageFor(item,hero=false){const art=recordFor(id(item));return art.image?`<img src="${esc(art.image)}" alt="${esc(name(item))}" ${hero?'':'loading="lazy"'}>`:glyph(item);}
+function imageFor(item,hero=false){const art=recordFor(id(item));return art.image?`<img draggable="false" src="${esc(art.image)}" alt="${esc(name(item))}" ${hero?'':'loading="lazy"'}>`:glyph(item);}
 function tierLabel(item){return /^T\d$/.test(item.Tier)?item.Tier:item.Tier==='Unassigned'?'T?':'—';}
 function ownerItems(){return state.items.filter(item=>state.owner==='booter'?item.Category!=='Legger armor'&&/equipment|armor|tools|accessories|attachments|clothing|field supplies|consumables|containers/i.test(item.Category):state.owner==='legger'?!/booter only/i.test(item['Carrier metadata']||''):true);}
 function visibleItems(){
@@ -53,6 +54,7 @@ function visibleItems(){
 }
 function renderCategories(){
   const items=ownerItems();const counts={};for(const item of items)counts[item.Category]=(counts[item.Category]||0)+1;
+  if(state.owner==='catalog')for(const category of state.categories||[])counts[category]??=0;
   $('#categories').innerHTML=`<button data-category="" class="${!state.category?'active':''}"><span>All items</span><small>${items.length}</small></button>`+Object.keys(counts).sort().map(category=>`<button data-category="${esc(category)}" class="${state.category===category?'active':''}"><span>${esc(category)}</span><small>${counts[category]}</small></button>`).join('');
 }
 function renderItems(){
@@ -63,7 +65,7 @@ function renderItems(){
   $('#items').classList.toggle('list',state.list);
   $('#items').innerHTML=items.length?items.map(item=>{
     const key=id(item),art=recordFor(key),kept=(state.protectedIds||[]).includes(key),reviewed=(state.reviewIds||[]).includes(key);
-    return `<article class="item-card ${state.selected===key?'selected':''} ${kept?'kept':''} ${reviewed?'needs-review':''}"><button class="item-select" data-id="${esc(key)}" aria-label="Inspect ${esc(name(item))}" aria-pressed="${state.selected===key}"><div class="art">${imageFor(item)}<span class="art-badge">${tierLabel(item)}</span>${art.status!=='missing'||art.image?'<span class="art-status"></span>':''}${!art.image?'<span class="placeholder-tag">PLACEHOLDER</span>':''}</div><div class="card-copy"><strong>${esc(name(item))}</strong><small>${esc(item.Subtype||item.Category)}</small></div></button><div class="item-controls"><button class="review-item ${reviewed?'checked':''}" data-action="review" data-item="${esc(key)}" aria-label="${reviewed?'Unmark review for':'Mark for review:'} ${esc(name(item))}" aria-pressed="${reviewed}" title="${reviewed?'Marked for review · click to clear':'Mark this item for review'}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/>${reviewed?'<path d="m7 12 3.5 3.5 6.5-7"/>':''}</svg></button>${!reviewed?`<button class="keep-item ${kept?'checked':''}" data-action="protect" data-item="${esc(key)}" aria-label="${kept?'Unkeep':'Keep'} ${esc(name(item))}" aria-pressed="${kept}" title="${kept?'Kept · click to allow deletion':'Keep this item · prevent deletion'}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/>${kept?'<path d="m7 12 3.5 3.5 6.5-7"/>':''}</svg></button>`:''}${!kept?`<button class="delete-item" data-action="delete" data-item="${esc(key)}" aria-label="Delete ${esc(name(item))} from spreadsheet" title="Permanently delete from spreadsheet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7"/></svg></button>`:''}</div></article>`;
+    return `<article class="item-card ${state.selected===key?'selected':''} ${kept?'kept':''} ${reviewed?'needs-review':''}" data-move-item="${esc(key)}" draggable="${state.owner==='catalog'&&state.view==='inventory'&&state.categoryEditing===true}"><button class="item-select" data-id="${esc(key)}" aria-label="Inspect ${esc(name(item))}" aria-pressed="${state.selected===key}"><div class="art">${imageFor(item)}<span class="art-badge">${tierLabel(item)}</span>${art.status!=='missing'||art.image?'<span class="art-status"></span>':''}${!art.image?'<span class="placeholder-tag">PLACEHOLDER</span>':''}</div><div class="card-copy"><strong>${esc(name(item))}</strong><small>${esc(item.Subtype||item.Category)}</small></div></button><div class="item-controls"><button class="review-item ${reviewed?'checked':''}" data-action="review" data-item="${esc(key)}" aria-label="${reviewed?'Unmark review for':'Mark for review:'} ${esc(name(item))}" aria-pressed="${reviewed}" title="${reviewed?'Marked for review · click to clear':'Mark this item for review'}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/>${reviewed?'<path d="m7 12 3.5 3.5 6.5-7"/>':''}</svg></button>${!reviewed?`<button class="keep-item ${kept?'checked':''}" data-action="protect" data-item="${esc(key)}" aria-label="${kept?'Unkeep':'Keep'} ${esc(name(item))}" aria-pressed="${kept}" title="${kept?'Kept · click to allow deletion':'Keep this item · prevent deletion'}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/>${kept?'<path d="m7 12 3.5 3.5 6.5-7"/>':''}</svg></button>`:''}${!kept?`<button class="delete-item" data-action="delete" data-item="${esc(key)}" aria-label="Delete ${esc(name(item))} from spreadsheet" title="Permanently delete from spreadsheet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7"/></svg></button>`:''}</div></article>`;
   }).join(''):'<div class="empty">No items match these filters.<br><br>Try another category or reset the filters.</div>';
   renderDetail();
 }
@@ -74,6 +76,7 @@ function renderDetail(){
   const field=(label,value)=>`<dt>${esc(label)}</dt><dd>${esc(value??'Not defined')}</dd>`;
   const extra=(title,text)=>text?`<details><summary>${esc(title)}</summary><p>${esc(text)}</p></details>`:'';
   $('#detail').innerHTML=`<div class="detail-top"><span>ITEM INSPECTION</span><span>${esc(tierLabel(item))} / ${art.image?'IMAGE':'NO IMAGE'}</span></div><div class="detail-hero">${imageFor(item,true)}${!art.image?'<span class="placeholder-tag">CATEGORY PLACEHOLDER · NOT ITEM ART</span>':''}</div><div class="detail-body"><div class="eyebrow">${esc(item.Category)}</div><h2>${esc(name(item))}</h2><div class="pills"><span class="pill">${esc(item.Tier)}</span><span class="pill">${esc(item['Design status']||'Unspecified')}</span></div><p class="description">${esc(item.Purpose||'No description in the master register.')}</p><dl>${field('Material',item['Material family'])}${field('Form',item['Physical form'])}${field('Primary use',item['Primary use'])}${field('Stage',item['Processing stage'])}${field('Rarity',item.Rarity)}${field('Scope',item['Implementation scope'])}${field('Carrier',item['Carrier metadata'])}${field('Stack limit',item['Stack limit'])}${field('Mass (game units)',item['Mass (game units)'])}</dl>${extra('Acquisition & processing',[item.Acquisition,item['Crafting / processing']].filter(Boolean).join(' · '))}${extra('Tier reasoning',item['Tier basis'])}${extra('Supported behavior & limits',[item['Supported behavior'],item.Limitations].filter(Boolean).join(' · '))}${extra('Open design decisions',item['Open design decisions'])}<section class="art-tools"><h3>Artwork workspace</h3><label class="button">＋ Attach item image<input id="image-upload" type="file" accept="image/png,image/jpeg,image/webp" hidden></label><label>Art status<select id="art-status"><option value="missing">Not started</option><option value="queued">Queued for generation</option><option value="review">In review</option><option value="approved">Approved artwork</option></select></label><label>Art notes<textarea id="art-notes" placeholder="Silhouette, material, framing, changes…">${esc(art.notes||'')}</textarea></label><div class="row"><button id="prompt">Copy draft prompt</button><button id="remove-image" ${!art.image?'disabled':''}>Remove image</button></div><small>Saved in this browser. Export a workspace backup to keep images and notes portable.</small></section><p class="item-id">${esc(id(item))}</p>${extra('Database sources',item.Sources)}</div>`;
+  $('#detail .description').insertAdjacentHTML('beforebegin',categoryMoves.controls(item));
   $('#art-status').value=art.status;
   const key=id(item);
   $('#art-status').onchange=safeRun(async event=>{await updateArt(key,{status:event.target.value});renderItems();});
@@ -104,6 +107,9 @@ function setView(view){
   if(view==='art'&&state.owner!=='catalog')setOwner('catalog');
   $('#queue-filtered').hidden=view!=='art';
   document.body.classList.toggle('studio-mode',view==='art');
+  document.querySelector('.category-drag-hint')?.remove();
+  if(view==='inventory'&&state.owner==='catalog')document.querySelector('.review-hint')?.insertAdjacentHTML('beforeend','<span class="category-drag-hint"> · Drag an item onto a category to move it.</span>');
+  renderItems();
   if(location.hash!==`#${view}`)history.replaceState(null,'',`#${view}`);
 }
 function setOwner(owner){
@@ -111,6 +117,8 @@ function setOwner(owner){
   document.querySelectorAll('[data-owner]').forEach(button=>{button.classList.toggle('active',button.dataset.owner===owner);button.setAttribute('aria-pressed',button.dataset.owner===owner);});
   $('#loadout').hidden=owner!=='booter';
   $('#owner-note').textContent=owner==='booter'?'Candidate library for equipment and supplies; eligibility is not simulated.':owner==='legger'?'Cargo browsing study. No live cargo, transfer, range or capacity simulation.':'Browse the complete item register.';
+  document.querySelector('.category-drag-hint')?.remove();
+  if(state.view==='inventory'&&owner==='catalog')document.querySelector('.review-hint')?.insertAdjacentHTML('beforeend','<span class="category-drag-hint"> · Drag an item onto a category to move it.</span>');
   renderCategories();renderItems();
 }
 function download(filename,content,type='application/json'){const url=URL.createObjectURL(new Blob([content],{type}));const a=document.createElement('a');a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
@@ -172,6 +180,7 @@ async function init(){
 function syncStatus(message){$('#sync-status').textContent=message;}
 let syncBusy=false;
 async function reviewAction(action,key){
+  if(categoryMoves.pending()){toast('Check the pending category save before changing another item.');return;}
   if(syncBusy){toast('Spreadsheet action in progress · try again in a moment');return;}
   const kept=(state.protectedIds||[]).includes(key),reviewed=(state.reviewIds||[]).includes(key);
   if(action==='delete'&&kept){toast('This item is kept. Uncheck it before deleting.');return;}
@@ -204,12 +213,13 @@ $('#reload-data').onclick=safeRun(async()=>{
   }catch(error){syncStatus('Spreadsheet unavailable · retrying; keeping current items');throw error;}
   finally{syncBusy=false;$('#reload-data').disabled=false;}
 });
-async function refreshCatalog(){
+async function refreshCatalog(force=false){
+  if(!force&&(state.categoryDrag||state.categorySaving))return;
   const response=await fetch('/api/catalog',{cache:'no-store'});
   if(!response.ok)throw new Error('The master workbook could not be loaded.');
   const data=await response.json();
   // Never rebuild the inspector while its notes or file controls are in use.
-  if(document.activeElement?.closest('#detail') || $('#settings').open || ['tier','design'].includes(document.activeElement?.id)){
+  if(!force&&(state.categoryDrag||state.categorySaving||document.activeElement?.closest('#detail') || $('#settings').open || ['tier','design'].includes(document.activeElement?.id))){
     syncStatus('Spreadsheet update ready · waiting for editing to finish');return;
   }
   if(!Array.isArray(data.items)||typeof data.sha256!=='string')throw new Error('Invalid catalog response.');
@@ -220,14 +230,14 @@ async function refreshCatalog(){
   const focusItem=focus?.dataset.id,focusCategory=focus?.dataset.category;
   const gridScroll=$('#items').scrollTop,detailScroll=$('#detail').scrollTop;
   const openDetails=[...document.querySelectorAll('#detail details[open]')].map(el=>el.querySelector('summary').textContent);
-  state.items=data.items;state.sourceHash=data.sha256;state.protectedIds=data.protectedIds||[];state.reviewIds=data.reviewIds||[];state.reviewRevision=data.reviewRevision;state.mutationToken=data.mutationToken;$('#total').textContent=state.items.length;
+  state.items=data.items;state.categories=data.categories||[];state.categoryEditing=data.categoryEditing===true;state.sourceHash=data.sha256;state.protectedIds=data.protectedIds||[];state.reviewIds=data.reviewIds||[];state.reviewRevision=data.reviewRevision;state.mutationToken=data.mutationToken;$('#total').textContent=state.items.length;
   for(const [selector,key,label]of [['#tier','Tier','All tiers'],['#design','Design status','All statuses']]){
     const selected=$(selector).value;
     const values=[...new Set(state.items.map(item=>item[key]).filter(Boolean))].sort();
     $(selector).innerHTML=`<option value="">${label}</option>`+values.map(value=>`<option value="${esc(value)}">${esc(value)}</option>`).join('');
     $(selector).value=values.includes(selected)?selected:'';
   }
-  if(!ownerItems().some(item=>item.Category===state.category))state.category='';
+  if(!(state.owner==='catalog'?state.categories.includes(state.category):ownerItems().some(item=>item.Category===state.category)))state.category='';
   renderCategories();renderItems();renderProgress();
   $('#items').scrollTop=gridScroll;$('#detail').scrollTop=detailScroll;
   document.querySelectorAll('#detail details').forEach(el=>{el.open=openDetails.includes(el.querySelector('summary').textContent);});
@@ -239,7 +249,7 @@ async function refreshCatalog(){
   if(changed)toast('Spreadsheet updated · item library refreshed');
 }
 async function checkSpreadsheet(){
-  if(syncBusy||document.hidden)return;
+  if(syncBusy||state.categoryDrag||state.categorySaving||document.hidden)return;
   syncBusy=true;
   try{
     const response=await fetch('/api/revision',{cache:'no-store'});
@@ -250,7 +260,8 @@ async function checkSpreadsheet(){
   }catch{syncStatus('Spreadsheet unavailable · retrying; keeping current items');}
   finally{syncBusy=false;}
 }
-init().catch(error=>{$('#result-count').textContent=error.message;report(error);}).finally(()=>{
+const categoryMoves=installCategoryMoves({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy,setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:async()=>{const draft=$('#art-notes');if(draft&&state.selected&&draft.value!==(recordFor(state.selected).notes||''))await updateArt(state.selected,{notes:draft.value});}});
+init().then(()=>categoryMoves.restore()).catch(error=>{$('#result-count').textContent=error.message;report(error);}).finally(()=>{
   $('#reload-data').disabled=false;
   setInterval(checkSpreadsheet,3000);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkSpreadsheet();});
