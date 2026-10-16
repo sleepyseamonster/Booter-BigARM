@@ -7,7 +7,7 @@ namespace BooterBigArm.TopDown3D
         private AnimationPlaygroundAirborneController airborne;
         private AnimationPlaygroundTurnController turning;
         public bool JumpReady=>servicesBound && isActiveAndEnabled && PreviewReady && airborne!=null && bindings!=null
-            && bindings.airborne!=null && bindings.airborne.qualified && bindings.footProjection!=null;
+            && airborne.Ready && bindings.footProjection!=null;
         private void BindAirborne()
         {
             if(bindings.airborne==null)return;
@@ -15,9 +15,10 @@ namespace BooterBigArm.TopDown3D
             airborne.Configure(player,presentation,coordinator,bindings.airborne,ResetRegistry,
                 ()=>!isActiveAndEnabled || !servicesBound || !PreviewReady || !Application.isFocused
                     || playerInput.Mode!=TopDown3DInputMode.Gameplay,()=>playerAction.IsBusy || crouch!=null && crouch.Active || lowMotion!=null && lowMotion.Active);
-            airborne.LandingRecovery=TrySelectedRollLanding;
+            // Palette preview selection never changes the normal jump's landing policy.
             if(bindings.continuationReview!=null && presentation.LaboratoryContinuationConfigured)airborne.ConfigureContinuationReview(bindings.continuationReview);
             airborne.Landed+=CommitLandingDamage;
+            playerInput.AnimationCommandsDisarmed+=airborne.DisarmJumpRequest;
         }
         private void CommitLandingDamage(float speed)
         {
@@ -30,13 +31,12 @@ namespace BooterBigArm.TopDown3D
         private void RequestJump()
         {
             if(!JumpReady){playerAction?.ReportFeedback("Jump and landing qualification is still pending.");return;}
-            var selected=bindings.Find(selectedSource);
-            var unarmed=selected?.CanPreview==true && selected.clip.name==bindings.airborne.unarmed.sourceId;
-            if(!airborne.TryJump(unarmed))playerAction.ReportFeedback(airborne.LastFailure);
+            if(!airborne.QueueJumpRequest())playerAction.ReportFeedback(airborne.LastFailure);
         }
         private void DetachAirborne()
         {
             if(airborne==null)return;
+            if(playerInput!=null)playerInput.AnimationCommandsDisarmed-=airborne.DisarmJumpRequest;
             airborne.Landed-=CommitLandingDamage;
             airborne.DisposeOwnedServices();
             if(Application.isPlaying)Destroy(airborne);else DestroyImmediate(airborne);

@@ -42,8 +42,8 @@ namespace BooterBigArm.TopDown3D
         }
 
         public bool StandingStrafeReviewSupportAvailable() => LaboratoryStandingStrafeConfigured && LaboratoryForwardReady
-            && ForwardReviewSupportAvailable() && !AnimationPresentationOwned && !CrouchPresentationOwned && !PoseBlendOwned
-            && motor != null && !motor.IsMounted && !motor.IsActionConstrained;
+            && ForwardReviewSupportAvailable() && (JumpPresentationOwned || !AnimationPresentationOwned && !PoseBlendOwned) && !CrouchPresentationOwned
+            && motor != null && !motor.IsMounted && (!motor.IsActionConstrained || motor.JumpUsesGroundedLocomotion);
 
         private void InitializeStandingStrafeReviewInputs()
         {

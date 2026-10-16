@@ -19,6 +19,10 @@ namespace BooterBigArm.TopDown3D
         private AnimationPlaygroundFootProjection laboratoryBodyProjection;
         private AnimationPlaygroundFootProjection.Sampler bodyProjectionSampler;
         private bool poseBlendBodyProjection;
+        private bool poseBlendAdvanceSources;
+        private readonly List<double> poseBlendStartTimes=new();
+        private readonly List<float> poseBlendSourceRates=new();
+        private double poseBlendPreviousElapsed,poseBlendSampleTime=double.NegativeInfinity;
         public float LastPoseBlendGroundCorrection {get;private set;}
         public bool PoseBlendOwned=>poseBlendOwner!=null;
         public bool TransferPoseBlendOwner(object owner,object successor)
@@ -35,7 +39,7 @@ namespace BooterBigArm.TopDown3D
             public readonly float Weight;
             public PoseSource(AnimationClip clip,double time,float weight){Clip=clip;Time=time;Weight=weight;}
         }
-        public bool TryCapturePoseBlend(object owner,float seconds)
+        public bool TryCapturePoseBlend(object owner,float seconds,bool advanceSources=false)
         {
             if(owner==null || !float.IsFinite(seconds) || seconds<=0 || seconds>1 || !playableGraph.IsValid()
                 || !mixer.IsValid() || visualInstance==null || crouchRecoveryOwned || IsGathering || campIndex>=0
@@ -44,12 +48,13 @@ namespace BooterBigArm.TopDown3D
             else if(crouchPresentationOwner!=null)PresentCrouchPose();
             var sources=new List<PoseSource>();
             if(!CollectPoseSources(mixer,1,sources,0) || sources.Count==0)return false;
-            var height=visualInstance.transform.localPosition.y-visualLocalPosition.y;
+            var height=advanceSources && JumpPresentationOwned ? jumpRawSourceHeight : visualInstance.transform.localPosition.y-visualLocalPosition.y;
             var bodyProjection=animationBodyProjection || poseBlendBodyProjection;
             var garmentFloor=animationGarmentFloor || poseBlendGarmentFloor;
             ReleasePoseBlend();
             poseBlendBodyProjection=bodyProjection;
             poseBlendGarmentFloor=garmentFloor;
+            poseBlendAdvanceSources=advanceSources;
             if(mixer.GetInputCount()<=PoseBlendInputIndex)mixer.SetInputCount(PoseBlendInputIndex+1);
             poseBlendSnapshot=AnimationMixerPlayable.Create(playableGraph,sources.Count);
             try
@@ -60,6 +65,7 @@ namespace BooterBigArm.TopDown3D
                     var source=sources[i];var clip=AnimationClipPlayable.Create(playableGraph,source.Clip);
                     clip.SetApplyFootIK(false);clip.SetApplyPlayableIK(false);clip.SetSpeed(0);clip.SetTime(source.Time);
                     playableGraph.Connect(clip,0,poseBlendSnapshot,i);poseBlendSnapshot.SetInputWeight(i,source.Weight/total);poseBlendClips.Add(clip);
+                    poseBlendStartTimes.Add(source.Time);poseBlendSourceRates.Add(JumpSnapshotRate(source.Clip));
                 }
                 playableGraph.Connect(poseBlendSnapshot,0,mixer,PoseBlendInputIndex);mixer.SetInputWeight(PoseBlendInputIndex,0);
                 poseBlendOwner=owner;poseBlendDuration=seconds;poseBlendElapsed=0;poseBlendSourceHeight=height;return true;
@@ -84,27 +90,36 @@ namespace BooterBigArm.TopDown3D
         public bool SetPoseBlendElapsed(object owner,double seconds)
         {
             if(owner==null || !ReferenceEquals(owner,poseBlendOwner) || !double.IsFinite(seconds) || seconds<poseBlendElapsed)return false;
+            if(poseBlendSampleTime!=Time.fixedTimeAsDouble)
+            {poseBlendPreviousElapsed=poseBlendElapsed;poseBlendSampleTime=Time.fixedTimeAsDouble;}
             poseBlendElapsed=seconds;return true;
         }
         public bool EndPoseBlend(object owner)
         {if(owner==null || !ReferenceEquals(owner,poseBlendOwner))return false;ReleasePoseBlend();return true;}
-        private void ApplyPoseBlend()
+        private void ApplyPoseBlend(bool deferGrounding=false)
         {
             if(poseBlendOwner==null)return;
             if(poseBlendOwner is UnityEngine.Object owner && owner==null){ReleasePoseBlend();return;}
-            var amount=Mathf.SmoothStep(0,1,Mathf.Clamp01((float)(poseBlendElapsed/poseBlendDuration)));
+            var elapsed=poseBlendAdvanceSources ? Math.Max(0,poseBlendPreviousElapsed+(poseBlendElapsed-poseBlendPreviousElapsed)*JumpRenderAlpha()) : poseBlendElapsed;
+            if(poseBlendAdvanceSources)
+                for(var i=0;i<poseBlendClips.Count;i++)
+                {
+                    var clip=poseBlendClips[i].GetAnimationClip();var time=poseBlendStartTimes[i]+elapsed*poseBlendSourceRates[i];
+                    poseBlendClips[i].SetTime(clip.isLooping ? time%clip.length : Math.Min(time,clip.length));
+                }
+            var amount=Mathf.SmoothStep(0,1,Mathf.Clamp01((float)(elapsed/poseBlendDuration)));
             for(var i=0;i<mixer.GetInputCount();i++)
                 if(i!=PoseBlendInputIndex)mixer.SetInputWeight(i,mixer.GetInputWeight(i)*amount);
             mixer.SetInputWeight(PoseBlendInputIndex,1-amount);
             var height=Mathf.Lerp(poseBlendSourceHeight,visualInstance.transform.localPosition.y-visualLocalPosition.y,amount);
             visualInstance.transform.localPosition=visualLocalPosition+Vector3.up*height;
-            ProjectLaboratoryFootPlane();
-            ApplyGarmentFloor();
+            if(!deferGrounding){ProjectLaboratoryFootPlane();ApplyGarmentFloor();}
             if(amount>=1)ReleasePoseBlend();
         }
         private void ProjectLaboratoryFootPlane()
         {
             LastPoseBlendGroundCorrection=0;
+            if(JumpPresentationOwned && !jumpGrounded && !JumpPresentationSupportCurrent)return;
             var sampler=animationBodyProjection || poseBlendBodyProjection ? bodyProjectionSampler : footProjectionSampler;
             if(sampler==null)return;
             if (!animationBodyProjection && !poseBlendBodyProjection
@@ -139,7 +154,8 @@ namespace BooterBigArm.TopDown3D
                 foreach(var clip in poseBlendClips)if(clip.IsValid())playableGraph.DestroyPlayable(clip);
                 if(poseBlendSnapshot.IsValid())playableGraph.DestroyPlayable(poseBlendSnapshot);
             }
-            poseBlendClips.Clear();poseBlendSnapshot=default;poseBlendOwner=null;poseBlendElapsed=0;
+            poseBlendClips.Clear();poseBlendStartTimes.Clear();poseBlendSourceRates.Clear();poseBlendSnapshot=default;poseBlendOwner=null;poseBlendElapsed=0;
+            poseBlendAdvanceSources=false;poseBlendPreviousElapsed=0;poseBlendSampleTime=double.NegativeInfinity;
             poseBlendBodyProjection=false;
             poseBlendGarmentFloor=false;
             if(!animationGarmentFloor)RestoreGarmentFloor();

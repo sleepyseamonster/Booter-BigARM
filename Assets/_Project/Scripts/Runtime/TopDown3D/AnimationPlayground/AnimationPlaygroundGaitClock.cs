@@ -38,6 +38,12 @@ namespace BooterBigArm.TopDown3D
             lastTick = -1; motionEpoch = -1; contactEpoch++;
             previousCycles = Cycles; Travelling = false;
         }
+        public void RebaseContact(TopDown3DFootSide side)
+        {
+            var phase=side==TopDown3DFootSide.Left ? .25 : 0;
+            var next=Math.Floor(Cycles)+phase;if(next<Cycles)next++;
+            Cycles=previousCycles=next;lastTick=-1;motionEpoch=-1;contactEpoch++;Travelling=false;
+        }
 
         public AnimationPlaygroundGaitContacts Advance(AnimationPlaygroundGroundedMotion sample, double metresPerCycle)
             => Advance(sample, metresPerCycle, null);

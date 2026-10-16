@@ -200,6 +200,14 @@ namespace BooterBigArm.TopDown3D
                 || !Enum.IsDefined(typeof(AnimationPlaygroundMotionMode),mode))return false;
             AnimationMotionMode=mode;animationGravity=!disableGravity;return true;
         }
+        public bool SetAnimationMotionPolicy(object owner,AnimationPlaygroundMotionPolicy policy)
+        {
+            if(!IsAnimationMotionOwner(owner) || !Enum.IsDefined(typeof(AnimationPlaygroundMotionPolicy),policy)
+                || policy==AnimationPlaygroundMotionPolicy.JumpLocomotion && !JumpLocomotionActive)return false;
+            if(animationMotionPolicy!=policy)
+            {animationMotionPolicy=policy;ResetStandingStrafe(true);ResetStandingMotionObservation();}
+            return true;
+        }
         public bool ReleaseAnimationMotion(object owner)
         {
             if(owner==null || !ReferenceEquals(owner,animationMotionOwner))return false;

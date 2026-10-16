@@ -88,7 +88,8 @@ namespace BooterBigArm.TopDown3D
             if((requests&16)!=0){AnimationActionRequested?.Invoke();return true;}
             return false;
         }
-        private void DisarmAnimationCommands(){animationRequests=0;animationAwaitNeutral=true;AnimationSlowWalkHeld=false;animationFacingDevice=null;}
+        public event Action AnimationCommandsDisarmed;
+        private void DisarmAnimationCommands(){animationRequests=0;animationAwaitNeutral=true;AnimationSlowWalkHeld=false;animationFacingDevice=null;AnimationCommandsDisarmed?.Invoke();}
         public void ClearAnimationCommandEdges()=>DisarmAnimationCommands();
         public void ClearLaboratoryIntent()
         {

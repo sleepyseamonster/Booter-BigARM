@@ -29,7 +29,68 @@ namespace BooterBigArm.TopDown3D
         private int jumpBlockingCount;
         public bool JumpLocomotionActive=>animationMotionOwner!=null && animationMotionPolicy==AnimationPlaygroundMotionPolicy.JumpLocomotion;
         public bool JumpUsesGroundedLocomotion=>JumpLocomotionActive && jumpGroundedRequested;
+        public Vector3 JumpControlVelocity=>animationWasPaused ? animationPausedVelocity : Velocity;
+        public float JumpCapsuleRadius=>capsule!=null ? capsule.radius*Mathf.Max(Mathf.Abs(transform.lossyScale.x),Mathf.Abs(transform.lossyScale.z)) : 0;
+        public Vector3 JumpLaunchFacing=>standingStrafeLocked ? standingStrafeFacing
+            : body!=null ? Vector3.ProjectOnPlane(body.rotation*Vector3.forward,Vector3.up).normalized : FacingDirection;
         public AnimationPlaygroundJumpObservation JumpObservation {get;private set;}
+
+        // Presentation forecast only. This query never declares support, changes velocity,
+        // or commits landing. Use the actual rounded capsule rather than a centre-foot ray.
+        public bool TryPredictJumpSupport(object owner,float distance,out RaycastHit support)
+        {
+            support=default;
+            if(!IsAnimationMotionOwner(owner) || !JumpLocomotionActive || !float.IsFinite(distance) || distance<=0 || distance>1)return false;
+            GetWorldCapsule(body.position,1,out var top,out var bottom,out var radius);
+            int count;
+            while(true)
+            {
+                count=Physics.CapsuleCastNonAlloc(top,bottom,radius,Vector3.down,animationReturnHits,distance,groundMask,QueryTriggerInteraction.Ignore);
+                if(count<animationReturnHits.Length)break;
+                if(animationReturnHits.Length>=4096)return false;
+                Array.Resize(ref animationReturnHits,animationReturnHits.Length*2);
+            }
+            var nearest=float.PositiveInfinity;
+            for(var i=0;i<count;i++)
+            {
+                var hit=animationReturnHits[i];
+                if(hit.collider==null || hit.collider.transform.IsChildOf(transform) || hit.distance>=nearest
+                    || hit.collider.GetComponentInParent<TopDown3DGroundSurface>()==null)continue;
+                // An initial overlap can report the cast's inverse direction as its normal.
+                if(hit.distance<.0001f)
+                {
+                    if(!TryReadTrueSurfaceNormal(AnimationCurrentFootPoint()+Vector3.up*.2f,.5f,hit.collider,out var normal,out var point))continue;
+                    hit.normal=normal;hit.point=point;
+                }
+                else if(TryReadTrueSurfaceNormal(AnimationCurrentFootPoint()+Vector3.up*.25f,distance+.35f,hit.collider,out var trueNormal,out var truePoint))
+                {hit.normal=trueNormal;hit.point=truePoint;}
+                if(Vector3.Angle(hit.normal,Vector3.up)>maxWalkableSlope)continue;
+                nearest=hit.distance;support=hit;
+            }
+            if(support.collider!=null)return true;
+            // Capsule casts omit colliders already overlapping their starting shape.
+            // A true-normal centre probe supplies a presentation-only forecast there;
+            // rounded-capsule contact can sit above that ray's floor on a slope.
+            while(true)
+            {
+                count=Physics.RaycastNonAlloc(AnimationCurrentFootPoint()+Vector3.up*.25f,Vector3.down,
+                    animationReturnHits,distance+.35f,groundMask,QueryTriggerInteraction.Ignore);
+                if(count<animationReturnHits.Length)break;
+                if(animationReturnHits.Length>=4096)return false;
+                Array.Resize(ref animationReturnHits,animationReturnHits.Length*2);
+            }
+            for(var i=0;i<count;i++)
+            {
+                var hit=animationReturnHits[i];
+                if(hit.collider==null || hit.collider.transform.IsChildOf(transform)
+                    || hit.collider.GetComponentInParent<TopDown3DGroundSurface>()==null
+                    || Vector3.Angle(hit.normal,Vector3.up)>maxWalkableSlope)continue;
+                var gap=Mathf.Max(0,hit.distance-.25f-radius*(1/Mathf.Max(.01f,hit.normal.y)-1));
+                if(gap>distance || gap>=nearest)continue;
+                nearest=gap;hit.distance=gap;support=hit;
+            }
+            return support.collider!=null;
+        }
 
         public bool CanBeginJumpMotion(object owner)
             =>owner!=null && ReferenceEquals(owner,animationPostureOwner) && animationMotionOwner==null && actionConstraintOwner==null
@@ -86,6 +147,7 @@ namespace BooterBigArm.TopDown3D
         private bool AdvanceJumpLocomotion()
         {
             if(!JumpLocomotionActive)return false;
+            GuardStandingStrafeOwner();
             if(animationMotionOwner is UnityEngine.Object owner && owner==null)
             {ReleaseAnimationMotionCore();actionConstraintOwner=null;return false;}
             if(!ReferenceEquals(actionConstraintOwner,animationMotionOwner))throw new InvalidOperationException("Jump motion lost its motor lease.");

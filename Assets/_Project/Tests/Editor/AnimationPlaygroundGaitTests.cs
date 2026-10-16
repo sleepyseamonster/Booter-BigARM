@@ -10,6 +10,15 @@ namespace BooterBigArm.Tests
 {
     public sealed class AnimationPlaygroundGaitTests
     {
+        [Test] public void LandingPhaseRebaseSelectsTheContactSideWithoutEmittingDistanceContacts()
+        {
+            var clock=new AnimationPlaygroundGaitClock();var count=clock.ContactCount;
+            clock.RebaseContact(TopDown3DFootSide.Left);
+            Assert.That(clock.Cycles-Math.Floor(clock.Cycles),Is.EqualTo(.25).Within(.000001));
+            clock.RebaseContact(TopDown3DFootSide.Right);
+            Assert.That(clock.Cycles-Math.Floor(clock.Cycles),Is.EqualTo(0).Within(.000001));
+            Assert.That(clock.ContactCount,Is.EqualTo(count));Assert.That(clock.Travelling,Is.False);
+        }
         [Test] public void HeightCorrectionPreservesFlightAndRejectsBrokenRetargeting()
         {
             var measurement=new AnimationPlaygroundMotionSampler.MotionMeasurement{finite=true,seconds=1,frames=new[]{

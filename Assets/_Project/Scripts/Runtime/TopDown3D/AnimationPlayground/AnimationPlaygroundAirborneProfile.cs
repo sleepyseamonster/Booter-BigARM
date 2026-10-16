@@ -8,6 +8,11 @@ namespace BooterBigArm.TopDown3D
         public string sourceId;
         public AnimationClip takeoff,rising,landing;
         public float upwardSpeed=4.6f;
+        public AnimationClip continuous;
+        public float liftTime,apexTime,contactTime;
+        public bool HasContinuousSource=>continuous!=null && continuous.isHumanMotion && !continuous.isLooping
+            && float.IsFinite(liftTime+apexTime+contactTime) && liftTime>0 && liftTime<=.10001f
+            && apexTime>liftTime && contactTime>apexTime && continuous.length>contactTime;
     }
     public sealed class AnimationPlaygroundAirborneProfile : ScriptableObject
     {
@@ -23,9 +28,11 @@ namespace BooterBigArm.TopDown3D
         public bool Validate(out string reason,bool requireQualified=true)
         {
             reason=null;
-            if(schema!=1 || !Valid(standing) || !Valid(running) || !Valid(unarmed)
+            if(schema!=1 && schema!=2 || !Valid(standing) || !Valid(running) || !Valid(unarmed)
                 || !Human(falling) || !falling.isLooping || !Human(approach) || !Human(hardLanding))
             {reason="A complete paired airborne profile is required.";return false;}
+            if(schema==2 && (!standing.HasContinuousSource || !running.HasContinuousSource || !unarmed.HasContinuousSource))
+            {reason="The continuous jump sources and ordered landmarks are required.";return false;}
             foreach(var value in new[]{runningThreshold,airControlAcceleration,maximumPlanarSpeed,anticipationDistance,contactDistance,hardLandingSpeed,landingDamagePerSpeed})
                 if(!float.IsFinite(value) || value<=0){reason="Airborne calibration must be finite and positive.";return false;}
             if(contactDistance>=anticipationDistance || maximumPlanarSpeed>12 || airControlAcceleration>20)

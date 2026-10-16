@@ -35,7 +35,15 @@ namespace BooterBigArm.TopDown3D
 
         public bool SetAnimationPresentationTime(object owner, double seconds)
         {
-            if (owner == null || !ReferenceEquals(owner, animationPresentationOwner) || !double.IsFinite(seconds) || seconds < 0) return false;
+            if (owner == null || !ReferenceEquals(owner, animationPresentationOwner) || !playableGraph.IsValid()
+                || !animationActionPlayable.IsValid() || !double.IsFinite(seconds) || seconds < 0) return false;
+            if(JumpPresentationOwned && jumpPoseSampleTime!=Time.fixedTimeAsDouble)
+            {
+                jumpPreviousSourceTime=animationPresentationTime;jumpPoseSampleTime=Time.fixedTimeAsDouble;
+                var delta=seconds-animationPresentationTime;var clip=animationActionPlayable.GetAnimationClip();
+                if(clip.isLooping && delta<0)delta+=clip.length;
+                jumpSourceRate=Mathf.Clamp((float)(delta/Math.Max(.0001,Time.fixedDeltaTime)),0,3);
+            }
             animationPresentationTime = seconds;
             return true;
         }
@@ -47,7 +55,8 @@ namespace BooterBigArm.TopDown3D
             replacement.SetApplyFootIK(false);replacement.SetApplyPlayableIK(false);replacement.SetSpeed(0);replacement.SetTime(0);
             playableGraph.Disconnect(mixer,AnimationActionIndex);playableGraph.Connect(replacement,0,mixer,AnimationActionIndex);
             playableGraph.DestroyPlayable(animationActionPlayable);animationActionPlayable=replacement;
-            animationPresentationTime=0;animationHeightCorrection=0;animationFootProjection=false;animationBodyProjection=false;animationGarmentFloor=false;return true;
+            animationPresentationTime=0;jumpPreviousSourceTime=0;jumpPoseSampleTime=double.NegativeInfinity;
+            animationHeightCorrection=0;animationFootProjection=false;animationBodyProjection=false;animationGarmentFloor=false;return true;
         }
 
         public bool SetAnimationHeightCorrection(object owner,float correction)
@@ -83,6 +92,7 @@ namespace BooterBigArm.TopDown3D
             if (animationPresentationOwner == null) return false;
             if (animationPresentationOwner is UnityEngine.Object owner && owner == null)
             { ReleaseAnimationPresentation(); return false; }
+            if(JumpPresentationOwned)return PresentJumpAction();
             animationActionPlayable.SetTime(animationPresentationTime);
             if(mixer.GetInputCount()>CrouchInputIndex)mixer.SetInputWeight(CrouchInputIndex,0);
             for (var i = 0; i < ClipCount; i++) mixer.SetInputWeight(i, i == AnimationActionIndex ? 1 : 0);
@@ -110,6 +120,7 @@ namespace BooterBigArm.TopDown3D
         private void ReleaseAnimationPresentation()
         {
             if (animationPresentationOwner == null) return;
+            var wasJump=JumpPresentationOwned;
             ReleaseAdaptedTurnPose();
             continuationActionTerrainApplied=false;forwardTerrainApplied=false;forwardTerrainPose?.Disable();
             if (playableGraph.IsValid())
@@ -117,7 +128,13 @@ namespace BooterBigArm.TopDown3D
                 playableGraph.Disconnect(mixer, AnimationActionIndex);
                 if (animationActionPlayable.IsValid()) playableGraph.DestroyPlayable(animationActionPlayable);
                 mixer.SetInputWeight(AnimationActionIndex, 0);
-                mixer.SetInputWeight(IdleIndex, 1);
+                if(!wasJump)mixer.SetInputWeight(IdleIndex, 1);
+                else
+                {
+                    var total=0f;for(var i=0;i<mixer.GetInputCount();i++)total+=mixer.GetInputWeight(i);
+                    if(total<.00001f)mixer.SetInputWeight(IdleIndex,1);
+                    else for(var i=0;i<mixer.GetInputCount();i++)mixer.SetInputWeight(i,mixer.GetInputWeight(i)/total);
+                }
             }
             animationPresentationOwner = null;
             animationActionPlayable = default;
@@ -127,10 +144,9 @@ namespace BooterBigArm.TopDown3D
             animationFootProjection=false;
             animationBodyProjection=false;
             animationGarmentFloor=false;
+            jumpPresentation=false;jumpComposingUnderlay=false;jumpPoseSampleTime=double.NegativeInfinity;
             if(!poseBlendGarmentFloor)RestoreGarmentFloor();
-            ResetTransitionState(TopDown3DLocomotionState.Idle);
-            locomotionPhase = 0;
-            smoothedPlanarSpeed = 0;
+            if(!wasJump){ResetTransitionState(TopDown3DLocomotionState.Idle);locomotionPhase = 0;smoothedPlanarSpeed = 0;}
             lastActionIndex = -1;
             oneShotContactEmitted = false;
         }

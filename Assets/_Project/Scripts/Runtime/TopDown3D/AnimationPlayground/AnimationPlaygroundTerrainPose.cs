@@ -38,6 +38,10 @@ namespace BooterBigArm.TopDown3D
             public float sourceFootError;
             public Vector3 leftSolvedKnee, rightSolvedKnee, leftNativeKnee;
             public bool enabled;
+            public bool releaseOnly,hasReleasePose,blendSupport;
+            public float supportBlend;
+            public Quaternion releaseLeftHip,releaseRightHip,releaseLeftKnee,releaseRightKnee,releaseLeftFoot,releaseRightFoot;
+            public Vector3 releaseHipsDelta,releaseLeftFootDelta,releaseRightFootDelta;
             public Vector3 leftTarget, rightTarget;
             public float leftGap, rightGap, leftWeight, rightWeight, lowering, requiredLowering, incompatibleReach;
             public float sourceMinimum;
@@ -46,6 +50,49 @@ namespace BooterBigArm.TopDown3D
             public void ProcessAnimation(AnimationStream stream)
             {
                 if (!enabled || !stream.isHumanStream) return;
+                var leftHandle=bones[leftFootCacheBone].handle;var rightHandle=bones[rightFootCacheBone].handle;
+                if(releaseOnly)
+                {
+                    if(hasReleasePose)ApplySupportDelta(stream,leftHandle,rightHandle,supportBlend);
+                    return;
+                }
+                var hipPosition=hips.GetLocalPosition(stream);
+                var leftHipRotation=leftHip.GetLocalRotation(stream);var rightHipRotation=rightHip.GetLocalRotation(stream);
+                var leftKneeRotation=leftKnee.GetLocalRotation(stream);var rightKneeRotation=rightKnee.GetLocalRotation(stream);
+                var leftFootRotation=leftHandle.GetLocalRotation(stream);var rightFootRotation=rightHandle.GetLocalRotation(stream);
+                var leftPosition=leftHandle.GetLocalPosition(stream);var rightPosition=rightHandle.GetLocalPosition(stream);
+                ProcessSupportedAnimation(stream);
+                releaseHipsDelta=hips.GetLocalPosition(stream)-hipPosition;
+                releaseLeftHip=leftHip.GetLocalRotation(stream)*Quaternion.Inverse(leftHipRotation);
+                releaseRightHip=rightHip.GetLocalRotation(stream)*Quaternion.Inverse(rightHipRotation);
+                releaseLeftKnee=leftKnee.GetLocalRotation(stream)*Quaternion.Inverse(leftKneeRotation);
+                releaseRightKnee=rightKnee.GetLocalRotation(stream)*Quaternion.Inverse(rightKneeRotation);
+                releaseLeftFoot=leftHandle.GetLocalRotation(stream)*Quaternion.Inverse(leftFootRotation);
+                releaseRightFoot=rightHandle.GetLocalRotation(stream)*Quaternion.Inverse(rightFootRotation);
+                releaseLeftFootDelta=leftHandle.GetLocalPosition(stream)-leftPosition;
+                releaseRightFootDelta=rightHandle.GetLocalPosition(stream)-rightPosition;hasReleasePose=true;
+                if(!blendSupport || supportBlend>=.999999f)return;
+                hips.SetLocalPosition(stream,hipPosition);
+                leftHip.SetLocalRotation(stream,leftHipRotation);rightHip.SetLocalRotation(stream,rightHipRotation);
+                leftKnee.SetLocalRotation(stream,leftKneeRotation);rightKnee.SetLocalRotation(stream,rightKneeRotation);
+                leftHandle.SetLocalRotation(stream,leftFootRotation);rightHandle.SetLocalRotation(stream,rightFootRotation);
+                leftHandle.SetLocalPosition(stream,leftPosition);rightHandle.SetLocalPosition(stream,rightPosition);
+                ApplySupportDelta(stream,leftHandle,rightHandle,supportBlend);
+            }
+            private void ApplySupportDelta(AnimationStream stream,TransformStreamHandle leftHandle,TransformStreamHandle rightHandle,float weight)
+            {
+                hips.SetLocalPosition(stream,hips.GetLocalPosition(stream)+releaseHipsDelta*weight);
+                leftHip.SetLocalRotation(stream,Quaternion.Slerp(Quaternion.identity,releaseLeftHip,weight)*leftHip.GetLocalRotation(stream));
+                rightHip.SetLocalRotation(stream,Quaternion.Slerp(Quaternion.identity,releaseRightHip,weight)*rightHip.GetLocalRotation(stream));
+                leftKnee.SetLocalRotation(stream,Quaternion.Slerp(Quaternion.identity,releaseLeftKnee,weight)*leftKnee.GetLocalRotation(stream));
+                rightKnee.SetLocalRotation(stream,Quaternion.Slerp(Quaternion.identity,releaseRightKnee,weight)*rightKnee.GetLocalRotation(stream));
+                leftHandle.SetLocalRotation(stream,Quaternion.Slerp(Quaternion.identity,releaseLeftFoot,weight)*leftHandle.GetLocalRotation(stream));
+                rightHandle.SetLocalRotation(stream,Quaternion.Slerp(Quaternion.identity,releaseRightFoot,weight)*rightHandle.GetLocalRotation(stream));
+                leftHandle.SetLocalPosition(stream,leftHandle.GetLocalPosition(stream)+releaseLeftFootDelta*weight);
+                rightHandle.SetLocalPosition(stream,rightHandle.GetLocalPosition(stream)+releaseRightFootDelta*weight);
+            }
+            private void ProcessSupportedAnimation(AnimationStream stream)
+            {
                 evaluations++;
                 var human = stream.AsHuman();
                 var left = human.GetGoalPositionFromPose(AvatarIKGoal.LeftFoot);
@@ -442,7 +489,8 @@ namespace BooterBigArm.TopDown3D
                 limit = quality;
             }
             if (limit < 1) throw new InvalidOperationException("A terrain cache requires an active skin.");
-            var data = node.GetJobData<ContactJob>(); data.enabled = true; data.individualSupport = false; data.plane = plane; data.flatY = flatY;
+            var data = node.GetJobData<ContactJob>(); data.enabled = true; data.releaseOnly=false;data.blendSupport=false;data.supportBlend=1;
+            data.individualSupport = false; data.plane = plane; data.flatY = flatY;
             data.characterRight = characterFrame.right;
             data.flatOrigin = new Vector3(characterFrame.position.x, flatY, characterFrame.position.z);
             data.visualHostPosition = visualHost.position;
@@ -461,6 +509,18 @@ namespace BooterBigArm.TopDown3D
             if (IsDisposed || !node.IsValid()) return;
             var data = node.GetJobData<ContactJob>(); data.enabled = false; data.flatLift = data.lowering = 0;
             node.SetJobData(data);
+        }
+        public bool ReleaseSupport(float weight)
+        {
+            if(IsDisposed || !node.IsValid() || !float.IsFinite(weight) || weight<0 || weight>1)return false;
+            var data=node.GetJobData<ContactJob>();if(!data.hasReleasePose)return false;
+            data.enabled=weight>0;data.releaseOnly=true;data.blendSupport=true;data.supportBlend=weight;node.SetJobData(data);return true;
+        }
+        public void SetSupportBlend(float weight)
+        {
+            if(!float.IsFinite(weight) || weight<0 || weight>1)throw new ArgumentException("Support blend must be normalized.");
+            if(IsDisposed || !node.IsValid())return;
+            var data=node.GetJobData<ContactJob>();data.blendSupport=true;data.supportBlend=weight;node.SetJobData(data);
         }
         public void Dispose()
         {

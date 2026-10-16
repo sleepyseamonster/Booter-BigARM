@@ -109,6 +109,8 @@ namespace BooterBigArm.TopDown3D
             playableGraph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
             for (var i = 0; i < clipPlayables.Length; i++) if (clipPlayables[i].IsValid()) clipPlayables[i].SetSpeed(0);
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition + Vector3.up * correction, Quaternion.Euler(visualLocalEulerAngles));
+            if(jumpComposingUnderlay)
+            {LaboratoryForwardLift=correction;LaboratoryRenderedCycles=cycles;standingStrafeRendered=standingStrafeOutputApplied=forwardPoseRenderedThisFrame=true;return;}
             if (!TryEvaluateNativeCampGround(correction, out correction, true))
             {
                 forwardTerrainApplied = forwardTerrainPose != null && motor.TryGetLaboratorySupportPlane(out forwardTerrainPlane, true);

@@ -71,21 +71,25 @@ namespace BooterBigArm.TopDown3D
         private void PrepareContinuationActionTerrain()
         {
             continuationActionTerrainApplied=false;
-            if(continuationReview==null || forwardTerrainPose==null || !animationFootProjection
-                || turnPoseOwner!=null || motor==null || !motor.IsGrounded
+            if(continuationReview==null || forwardTerrainPose==null || !animationFootProjection && !JumpPresentationSupportCurrent
+                || turnPoseOwner!=null || motor==null || !motor.IsGrounded && !JumpPresentationSupportCurrent
                 || motor.AnimationPosture!=AnimationPlaygroundPosture.Standing
-                || motor.AnimationMotionMode!=AnimationPlaygroundMotionMode.Jump && motor.AnimationMotionMode!=AnimationPlaygroundMotionMode.Recovery)return;
+                || motor.AnimationMotionMode!=AnimationPlaygroundMotionMode.Jump && motor.AnimationMotionMode!=AnimationPlaygroundMotionMode.Recovery
+                    && !(JumpPresentationOwned && motor.AnimationMotionMode==AnimationPlaygroundMotionMode.Fall))return;
             if(!TryContinuationActionSupport(out var plane,out var support))return;
             var foot=transform.TransformPoint(Vector3.up*laboratoryFeetPlane);
             continuationActionTerrainApplied=forwardTerrainApplied=true;forwardTerrainPlane=plane;
             continuationActionTerrainOwner=animationPresentationOwner;continuationActionSupport=support;
             continuationActionSupportMatrix=support.transform.localToWorldMatrix;continuationActionFrame=Time.frameCount;
-            forwardTerrainPose.Configure(plane,foot.y);
+            forwardTerrainPose.Configure(plane,JumpFeetReferenceY(foot.y));
+            if(JumpPresentationOwned)forwardTerrainPose.SetSupportBlend(jumpSupportBlend);
         }
         public bool TryGetContinuationLandingPlane(out Plane plane)=>TryContinuationActionSupport(out plane,out _);
         private bool TryContinuationActionSupport(out Plane plane,out Collider support)
         {
             plane=default;support=null;
+            if(JumpPredictionCurrent){plane=jumpPredictionPlane;support=jumpPredictionCollider;return true;}
+            if(JumpPresentationSupportCurrent && jumpRenderGroundBoundary){plane=jumpLastSupportPlane;support=jumpLastSupportCollider;return true;}
             if(continuationReview==null || motor==null || !motor.IsGrounded)return false;
             var foot=transform.TransformPoint(Vector3.up*laboratoryFeetPlane);
             if(!Physics.Raycast(foot+Vector3.up*.25f,Vector3.down,out var hit,.55f,Physics.DefaultRaycastLayers,QueryTriggerInteraction.Ignore)
@@ -103,7 +107,7 @@ namespace BooterBigArm.TopDown3D
         }
         private bool ContinuationActionTerrainCurrent => continuationActionTerrainApplied && AnimationPresentationOwned
             && ReferenceEquals(continuationActionTerrainOwner,animationPresentationOwner) && continuationActionFrame==Time.frameCount
-            && motor.IsGrounded && continuationActionSupport!=null && continuationActionSupport.enabled
+            && (motor.IsGrounded || JumpPresentationSupportCurrent) && continuationActionSupport!=null && continuationActionSupport.enabled
             && continuationActionSupport.gameObject.activeInHierarchy && continuationActionSupport.attachedRigidbody==null
             && continuationActionSupport.transform.localToWorldMatrix==continuationActionSupportMatrix;
 

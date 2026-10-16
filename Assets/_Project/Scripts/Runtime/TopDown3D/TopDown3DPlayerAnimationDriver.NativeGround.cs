@@ -43,7 +43,7 @@ namespace BooterBigArm.TopDown3D
         private bool TryEvaluateNativeCampGround(float sourceCorrection, out float correction, bool directionalPose = false)
         {
             correction = sourceCorrection; LaboratoryNativeGroundAdapted = false; LaboratoryNativeBodyLift = 0;
-            if (continuationReview == null || !continuationReview.NativeCampGround || forwardTerrainPose == null || motor == null || !motor.IsGrounded) return false;
+            if (continuationReview == null || !continuationReview.NativeCampGround || forwardTerrainPose == null || motor == null || !motor.IsGrounded && !JumpPresentationSupportCurrent) return false;
             var standing = motor.TryGetLaboratorySupportPlane(out var plane, true);
             var support = standing ? motor.LaboratorySupportCollider : continuationActionSupport;
             if (!standing && !ContinuationActionTerrainCurrent || !ContinuationSurface(support)) return false;
@@ -52,8 +52,10 @@ namespace BooterBigArm.TopDown3D
             forwardTerrainPose.Disable(); forwardTerrainApplied = false; playableGraph.Evaluate(0);
             if (!TrySampleNativeFoot(leftFoot, out var left) || !TrySampleNativeFoot(rightFoot, out var right))
             { LaboratoryNativeGroundFailure = "Foot support unavailable; retaining the accepted source pose."; return true; }
-            var flat = transform.TransformPoint(Vector3.up * laboratoryFeetPlane).y;
-            forwardTerrainPose.ConfigureFeet(plane, flat, left, right); playableGraph.Evaluate(0);
+            var flat = JumpFeetReferenceY(transform.TransformPoint(Vector3.up * laboratoryFeetPlane).y);
+            forwardTerrainPose.ConfigureFeet(plane, flat, left, right);
+            if(JumpPresentationOwned)forwardTerrainPose.SetSupportBlend(jumpSupportBlend);
+            playableGraph.Evaluate(0);
             var sample = forwardTerrainPose.Sample;
             if (!float.IsFinite(sample.requiredLowering) || sample.requiredLowering > laboratoryForwardProfile.maximumTerrainBodyLowering + .00001f
                 || sample.incompatibleReach > .001f || correction + sample.flatLift > (AnimationPresentationOwned ? .18001f : .08001f))
@@ -61,7 +63,8 @@ namespace BooterBigArm.TopDown3D
                 LaboratoryNativeGroundFailure = $"Foot reach unavailable (lowering {sample.requiredLowering:R}, reach {sample.incompatibleReach:R}); retaining the accepted source pose.";
                 forwardTerrainPose.Disable(); playableGraph.Evaluate(0); return true;
             }
-            if (AnimationPresentationOwned && (motor.AnimationMotionMode == AnimationPlaygroundMotionMode.Jump || motor.AnimationMotionMode == AnimationPlaygroundMotionMode.Recovery))
+            if (AnimationPresentationOwned && (motor.AnimationMotionMode == AnimationPlaygroundMotionMode.Jump || motor.AnimationMotionMode == AnimationPlaygroundMotionMode.Recovery
+                || JumpPredictionCurrent && motor.AnimationMotionMode==AnimationPlaygroundMotionMode.Fall))
             {
                 nativeBodySampler ??= continuationReview.nativeBodyProjection.Bind(visualInstance.transform);
                 for (var iteration = 0; iteration < 3; iteration++)
@@ -81,7 +84,9 @@ namespace BooterBigArm.TopDown3D
                     visualInstance.transform.localPosition = visualLocalPosition + Vector3.up * correction;
                     // Raising the visual host must not turn a planted foot into
                     // a flying foot. Retain its original source-relative gap.
-                    forwardTerrainPose.ConfigureFeet(plane,flat + LaboratoryNativeBodyLift,left,right); playableGraph.Evaluate(0);
+                    forwardTerrainPose.ConfigureFeet(plane,flat + LaboratoryNativeBodyLift,left,right);
+                    if(JumpPresentationOwned)forwardTerrainPose.SetSupportBlend(jumpSupportBlend);
+                    playableGraph.Evaluate(0);
                 }
                 sample = forwardTerrainPose.Sample;
                 if (sample.incompatibleReach > .001f || sample.requiredLowering > laboratoryForwardProfile.maximumTerrainBodyLowering + .00001f

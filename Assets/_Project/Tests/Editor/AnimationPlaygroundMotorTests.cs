@@ -63,6 +63,16 @@ namespace BooterBigArm.Tests
             motor.ReleaseAnimationMotion(owner);
             Assert.That(body.linearVelocity,Is.EqualTo(velocity));Assert.That(body.useGravity,Is.True);
         }
+        [Test] public void LandingForecastDoesNotDeclareContactOrChangePhysicalVelocity()
+        {
+            obstacle=new GameObject("Forecast floor");obstacle.transform.position=actor.transform.position+Vector3.down*1.05f;
+            obstacle.AddComponent<BoxCollider>().size=new Vector3(10,.1f,10);obstacle.AddComponent<TopDown3DGroundSurface>();Physics.SyncTransforms();
+            var velocity=new Vector3(3,-2,0);body.linearVelocity=velocity;
+            motor.TryBeginAnimationMotion(owner,AnimationPlaygroundMotionMode.Fall,policy:AnimationPlaygroundMotionPolicy.JumpLocomotion);
+            Assert.That(motor.TryPredictJumpSupport(owner,.65f,out var predicted),Is.True);
+            Assert.That(predicted.distance,Is.LessThan(.01f));Assert.That(body.linearVelocity,Is.EqualTo(velocity));
+            Assert.That(motor.JumpObservation.Supported,Is.False);Assert.That(motor.JumpObservation.TouchdownId,Is.Zero);
+        }
         [Test] public void JumpRejectionCannotStealAnotherActionsLeaseOrVelocity()
         {
             var foreign=new object();motor.TryBeginActionConstraint(foreign);body.linearVelocity=Vector3.right*5;

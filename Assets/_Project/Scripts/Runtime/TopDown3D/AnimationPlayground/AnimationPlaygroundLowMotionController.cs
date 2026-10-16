@@ -90,7 +90,7 @@ namespace BooterBigArm.TopDown3D
             if(!driver.TryCapturePoseBlend(this,BlendSeconds))return Fail("The low-motion snapshot is unavailable.");
             var success=coordinator.IsSequenceOwner(this)
                 ? coordinator.TrySwitchPhysicalSequence(this,Binding(value.clip),roll ? AnimationPlaygroundMotionMode.Recovery : AnimationPlaygroundMotionMode.Slide,
-                    null,Intent,null,time=>poseTime,true)
+                    null,Intent,null,time=>poseTime,true,policy:AnimationPlaygroundMotionPolicy.Action)
                 : coordinator.TryBeginPhysicalSequence(this,Binding(value.clip),roll ? AnimationPlaygroundMotionMode.Recovery : AnimationPlaygroundMotionMode.Slide,
                     null,Intent,null,time=>poseTime,true);
             if(!success){driver.EndPoseBlend(this);return Fail("The low-motion stage lost its player lease.");}

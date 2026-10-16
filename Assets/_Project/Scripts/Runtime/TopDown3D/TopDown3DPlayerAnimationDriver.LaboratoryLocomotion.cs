@@ -94,6 +94,8 @@ namespace BooterBigArm.TopDown3D
         private void AdvanceForwardMotion(AnimationPlaygroundGroundedMotion sample)
         {
             if (!LaboratoryForwardReady || !isActiveAndEnabled) return;
+            if(JumpPresentationOwned && !motor.JumpUsesGroundedLocomotion)
+            {LaboratoryDiscardedFootEffects+=forwardPlantCount;forwardPlantCount=forwardPlantStart=0;return;}
             if (!ForwardReviewSupportAvailable())
             {
                 if (LaboratoryStandingStrafeConfigured) ResetStandingStrafePresentation();
@@ -131,7 +133,7 @@ namespace BooterBigArm.TopDown3D
 
         private void PrepareForwardGraphUpdate()
         {
-            if (AnimationPresentationOwned || CrouchPresentationOwned || PoseBlendOwned || motor != null && motor.IsActionConstrained)
+            if (!JumpPresentationOwned && (AnimationPresentationOwned || CrouchPresentationOwned || PoseBlendOwned || motor != null && motor.IsActionConstrained))
                 ResetDirectionalPresentation();
             continuationActionTerrainApplied=false;
             RestoreStandingStrafeBaseline();
@@ -224,6 +226,7 @@ namespace BooterBigArm.TopDown3D
             }
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition + Vector3.up * correction,
                 Quaternion.Euler(visualLocalEulerAngles));
+            if(jumpComposingUnderlay){LaboratoryForwardLift=correction;LaboratoryRenderedCycles=cycles;return;}
             var plane = transform.TransformPoint(Vector3.up * laboratoryFeetPlane).y;
             if (TryEvaluateNativeCampGround(correction, out var nativeCorrection))
             {

@@ -75,16 +75,24 @@ namespace BooterBigArm.TopDown3D
         }
         public bool TrySwitchPhysicalSequence(object owner,AnimationPlaygroundMotionBinding binding,AnimationPlaygroundMotionMode mode,
             AnimationPlaygroundMarker[] markers,Func<double,AnimationPlaygroundMotorIntent> motionAtTime,
-            Func<AnimationPlaygroundEffectKey,bool> commitEffect,Func<double,double> poseAtTime=null,bool looping=false)
+            Func<AnimationPlaygroundEffectKey,bool> commitEffect,Func<double,double> poseAtTime=null,bool looping=false,
+            AnimationPlaygroundMotionPolicy? policy=null)
         {
             if(!IsSequenceOwner(owner) || binding==null || !binding.CanPerform || motionAtTime==null
                 || mode==AnimationPlaygroundMotionMode.None || !Enum.IsDefined(typeof(AnimationPlaygroundMotionMode),mode)
                 || clock.Epoch!=registry.Epoch || !motor.IsAnimationMotionOwner(this)
                 || capturedTarget.HasValue && !capturedTarget.Value.IsValid)return false;
+            if(policy.HasValue && (!Enum.IsDefined(typeof(AnimationPlaygroundMotionPolicy),policy.Value)
+                || policy.Value==AnimationPlaygroundMotionPolicy.JumpLocomotion && !motor.JumpLocomotionActive))return false;
             var next=new AnimationPlaygroundActionClock(++nextAction,registry.Epoch,binding.clip.length,1,markers);
             if(markers!=null && markers.Length>0 && commitEffect==null)throw new ArgumentException("Stage markers require an atomic commit adapter.");
             if(!presentation.TryReplaceAnimationPresentation(this,binding.clip))return false;
             if(!motor.SetAnimationMotionMode(this,mode))throw new InvalidOperationException("The physical sequence lost its motor lease.");
+            if(policy.HasValue)
+            {
+                if(!motor.SetAnimationMotionPolicy(this,policy.Value))throw new InvalidOperationException("The sequence lost its motion policy.");
+                if(policy.Value==AnimationPlaygroundMotionPolicy.Action)presentation.EndJumpPresentationMode(this);
+            }
             clock.Cancel();clock=next;motion=motionAtTime;effect=commitEffect;stageSeconds=0;physicalPoseTime=0;
             presentationAtTime=poseAtTime;loopPresentation=looping;holdAtEnd=true;completionSent=false;return true;
         }
@@ -154,7 +162,8 @@ namespace BooterBigArm.TopDown3D
             if(!double.IsFinite(pose) || pose<0 || pose>clock.ClipDuration+.000001)
             {Cancel("The physical stage supplied an invalid pose time.");return;}
             physicalPoseTime=pose;
-            presentation.SetAnimationPresentationTime(this,pose);
+            if(presentation==null || !presentation.SetAnimationPresentationTime(this,pose))
+                Cancel("The physical presentation is unavailable.");
         }
 
         private void CommitEffects()
