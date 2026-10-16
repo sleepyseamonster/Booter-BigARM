@@ -2,6 +2,8 @@
 
 October 15, 2026. The author rejected the overly simplistic major forms of the modular rebuild, identified the crates as its strongest remaining area, and requested an overhaul toward the retained original futuristic sci-fi design. The requested audit is complete. [Findings, part decisions and execution brief](../../../Design/Art/LEGGER_SCI_FI_OVERHAUL_AUDIT.md) distinguish the completed audit from the next modeling pass, which has not been applied.
 
+Later the author requested a matching neutral leg stance for rigging. The [applied alignment receipt](../LeggerLegAlignment20261015/README.md) identifies the current saved source. This audit's hashes, counts and images remain the pre-alignment snapshot; the old staggered pose is not the next-pass target.
+
 ## Source and cleanup
 
 The sole active native source remains `SourceArt/Blender/Studies/Legger/Legger_Topology_Iteration04.blend`, 747,805,680 bytes. SHA-256 before and after both background inspection processes is `c5eadd0501631bbace05551e1453c43a14db55df1365b07a77755cbf80b51be5`. No native file was saved or created by the audit. One scene (`Legger`), one saved view layer (`LEGGER - COMPLETE`) and the complete assembled default remain intact. Prior references were revealed only in process memory to obtain their real transforms and renders.

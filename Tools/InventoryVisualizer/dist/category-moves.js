@@ -1,14 +1,16 @@
 // Catalogue editing only. Physical inventory transfers live in the separate game study.
 export function installCategoryMoves({state, esc, refresh, toast, busy, setBusy, saveDraft}) {
   let dragging=null, suppressClickUntil=0, pending=null, undo=null;
+  let messageTimer;
+  const feedbackDuration=8000;
   const pendingKey='arc-dust-category-pending', undoKey='arc-dust-category-undo';
   const panel=document.createElement('div');panel.className='category-feedback';panel.hidden=true;
   panel.setAttribute('role','status');panel.setAttribute('aria-live','polite');document.body.append(panel);
   function remember(key,value){try{value?sessionStorage.setItem(key,JSON.stringify(value)):sessionStorage.removeItem(key);}catch{/* Current session still retains the operation. */}}
-  function message(text,button,action){panel.replaceChildren();const span=document.createElement('span');span.textContent=text;panel.append(span);if(button){const b=document.createElement('button');b.textContent=button;b.onclick=action;panel.append(b);}panel.hidden=false;}
+  function message(text,button,action,duration=0,onExpire){clearTimeout(messageTimer);panel.replaceChildren();const span=document.createElement('span');span.textContent=text;panel.append(span);if(button){const b=document.createElement('button');b.textContent=button;b.onclick=action;panel.append(b);}panel.hidden=false;if(duration>0)messageTimer=setTimeout(()=>{panel.hidden=true;onExpire?.();},duration);}
   function clearDrag(){dragging=null;state.categoryDrag=false;document.body.classList.remove('category-dragging');document.querySelectorAll('.drop-target,.drag-source').forEach(e=>e.classList.remove('drop-target','drag-source'));if(!busy()&&!pending){panel.hidden=true;if(undo)showUndo();}}
-  function showUndo(){if(undo)message(`${undo.itemName} moved to ${undo.toCategory}.`,'Undo',()=>run({itemId:undo.itemId,fromCategory:undo.toCategory,toCategory:undo.fromCategory,undoOf:undo.operationId}));}
-  function saveUndo(receipt){undo=receipt.noop||receipt.undoOf?null:receipt;remember(undoKey,undo);if(undo)showUndo();else message(receipt.noop?'Already in that category.':`${receipt.itemName} moved back to ${receipt.toCategory}.`);}
+  function showUndo(){if(!undo)return;undo.expiresAt??=Date.now()+feedbackDuration;const remaining=undo.expiresAt-Date.now();if(remaining<=0){undo=null;remember(undoKey,null);panel.hidden=true;return;}remember(undoKey,undo);message(`${undo.itemName} moved to ${undo.toCategory}.`,'Undo',()=>run({itemId:undo.itemId,fromCategory:undo.toCategory,toCategory:undo.fromCategory,undoOf:undo.operationId}),remaining,()=>{undo=null;remember(undoKey,null);});}
+  function saveUndo(receipt){undo=receipt.noop||receipt.undoOf?null:{...receipt,expiresAt:Date.now()+feedbackDuration};remember(undoKey,undo);if(undo)showUndo();else message(receipt.noop?'Already in that category.':`${receipt.itemName} moved back to ${receipt.toCategory}.`,null,null,feedbackDuration);}
   async function finish(receipt){pending=null;remember(pendingKey,null);saveUndo(receipt);try{await refresh(true);}catch{message('Category saved. Reload the spreadsheet to refresh this view.','Reload',()=>refresh(true).catch(e=>toast(e.message)));}}
   async function reconcile(reason=''){
     if(!pending)return;

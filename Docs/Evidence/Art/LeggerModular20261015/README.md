@@ -4,6 +4,8 @@ October 15, 2026. The author requested an independently modeled chassis, extende
 
 Subsequent author review: the rebuild is too simplistic outside the crates and needs an overhaul toward the original futuristic design. The [form audit](../LeggerSciFiAudit20261015/README.md) closes this technical lane and records the replacement modeling direction. The counts and verification below remain facts about the unchanged technical baseline; they do not establish final visual acceptance.
 
+The author then requested aligned legs for rigging. The [neutral alignment receipt](../LeggerLegAlignment20261015/README.md) identifies the current source and supersedes this checkpoint's staggered-pose coordinates while retaining its topology budget and packed maps.
+
 ## Current authoring file
 
 `SourceArt/Blender/Studies/Legger/Legger_Topology_Iteration04.blend` remains the sole active native file. Scene `Legger` and its only view layer, `LEGGER - COMPLETE`, open on the complete assembled vehicle. Collection `LEGGER - ASSEMBLED MODEL` contains the active parts. `90 - References - hidden` retains prior geometry and procedural bake sources outside the intended export hierarchy. No exploded arrangement or isolated chassis replaces the assembled default.

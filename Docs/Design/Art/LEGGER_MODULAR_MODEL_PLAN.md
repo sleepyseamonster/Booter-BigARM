@@ -1,6 +1,6 @@
 # Legger modular model and texture plan
 
-The Legger will be one assembled model in one Blender scene, organized into independently editable major components. The author approved implementation on October 15, 2026. Preserve the current manually chosen scale, staggered leg pose, joint locations, rider contact points and ivory, dark-metal and brown-leather palette. Group small fittings with their parent components rather than creating an object for each nut or bolt.
+The Legger will be one assembled model in one Blender scene, organized into independently editable major components. The author approved implementation on October 15, 2026. Preserve the current manually chosen scale, author-requested neutral leg alignment, documented joint targets, rider contact points and ivory, dark-metal and brown-leather palette. Group small fittings with their parent components rather than creating an object for each nut or bolt. The later [neutral alignment receipt](../../Evidence/Art/LeggerLegAlignment20261015/README.md) supersedes the original staggered-pose constraint and identifies the current source.
 
 Implementation checkpoint: all six phases below are complete in the same native file. The [verified modular assembly receipt](../../Evidence/Art/LeggerModular20261015/README.md) records one scene/view layer, 67 visible major meshes, 21,396 quad control faces, 86,072 evaluated triangles and 55 packed maps across 11 texture sets. The earlier source geometry remains hidden for reference; visual acceptance and later Unity integration remain separate.
 
