@@ -62,11 +62,6 @@ function renderCategories(){
 }
 function renderItems(){
   const items=visibleItems();
-  if(state.category==='Camp items'){
-    const groups=['Shelter & rest','Cooking & ignition','Food service & storage','Cleaning & personal care','Camp records'];
-    const order=item=>{const n=groups.indexOf(item.Subtype);return n<0?groups.length:n;};
-    items.sort((a,b)=>order(a)-order(b));
-  }
   $('#result-count').textContent=`${items.length} items${state.category?' / '+state.category:''}`;
   $('#queue-filtered').disabled=!items.length;
   if(!items.some(item=>id(item)===state.selected))state.selected=items.length?id(items[0]):null;
@@ -74,10 +69,6 @@ function renderItems(){
   $('#items').innerHTML=items.length?items.map(item=>{
     const key=id(item),art=recordFor(key),kept=(state.protectedIds||[]).includes(key),reviewed=(state.reviewIds||[]).includes(key);
     return `<article class="item-card ${state.selected===key?'selected':''} ${kept?'kept':''} ${reviewed?'needs-review':''}" data-move-item="${esc(key)}" draggable="${state.owner==='catalog'&&state.view==='inventory'&&state.categoryEditing===true}"><button class="item-select" data-id="${esc(key)}" aria-label="Inspect ${esc(name(item))}" aria-pressed="${state.selected===key}"><div class="art">${imageFor(item)}<span class="art-badge">${tierLabel(item)}</span>${art.status!=='missing'||art.image?'<span class="art-status"></span>':''}${!art.image?'<span class="placeholder-tag">PLACEHOLDER</span>':''}</div><div class="card-copy"><strong>${esc(name(item))}</strong><small>${esc(item.Subtype||item.Category)}</small></div></button><div class="item-controls"><button class="review-item ${reviewed?'checked':''}" data-action="review" data-item="${esc(key)}" aria-label="${reviewed?'Unmark review for':'Mark for review:'} ${esc(name(item))}" aria-pressed="${reviewed}" title="${reviewed?'Marked for review · click to clear':'Mark this item for review'}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/>${reviewed?'<path d="m7 12 3.5 3.5 6.5-7"/>':''}</svg></button>${!reviewed?`<button class="keep-item ${kept?'checked':''}" data-action="protect" data-item="${esc(key)}" aria-label="${kept?'Unkeep':'Keep'} ${esc(name(item))}" aria-pressed="${kept}" title="${kept?'Kept · click to allow deletion':'Keep this item · prevent deletion'}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/>${kept?'<path d="m7 12 3.5 3.5 6.5-7"/>':''}</svg></button>`:''}${!kept?`<button class="delete-item" data-action="delete" data-item="${esc(key)}" aria-label="Delete ${esc(name(item))} from spreadsheet" title="Permanently delete from spreadsheet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7"/></svg></button>`:''}</div></article>`;
-  }).map((card,index)=>{
-    if(state.category!=='Camp items'||(index>0&&items[index-1].Subtype===items[index].Subtype))return card;
-    const group=items[index].Subtype||'Other camp items',count=items.filter(item=>(item.Subtype||'Other camp items')===group).length;
-    return `<h2 class="camp-group-heading">${esc(group)}<small>${count} items</small></h2>`+card;
   }).join(''):'<div class="empty">No items match these filters.<br><br>Try another category or reset the filters.</div>';
   renderDetail();
 }
