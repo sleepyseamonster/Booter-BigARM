@@ -1,0 +1,1016 @@
+{
+  "status": "Audit recommendations; no native edits applied. Author requested full sci-fi overhaul, with crates retained as the starting baseline.",
+  "source_sha256": "c5eadd0501631bbace05551e1453c43a14db55df1365b07a77755cbf80b51be5",
+  "scope_counts": {
+    "rebuild_form": 37,
+    "refine_supporting": 16,
+    "retain_initially": 14
+  },
+  "parts": [
+    {
+      "name": "Legger_Part_MainFrame",
+      "module": "Frame",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Replace exposed generic cage/flat mounts with tapered structural members and integrated hip/steering transitions.",
+      "verification": "Bare structure/underside and fully assembled side/three-quarter.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 5748,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_SeatSubframe",
+      "module": "Frame",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Retain useful support/routing interfaces, refine shaped mounts and termini to fit the new body.",
+      "verification": "Bare chassis and complete assembly.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 2516,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_CargoRack",
+      "module": "Frame",
+      "action": "retain_initially",
+      "priority": "P2",
+      "proposal": "Retain inboard rack and support logic; adapt only where new bodywork needs clearance.",
+      "verification": "Assembled rear and underside.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 2896,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_HipMount",
+      "module": "Frame",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Replace exposed generic cage/flat mounts with tapered structural members and integrated hip/steering transitions.",
+      "verification": "Bare structure/underside and fully assembled side/three-quarter.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 484,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_Footrest",
+      "module": "Frame",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Retain useful support/routing interfaces, refine shaped mounts and termini to fit the new body.",
+      "verification": "Bare chassis and complete assembly.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 648,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_ServiceHarness",
+      "module": "Frame",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Retain useful support/routing interfaces, refine shaped mounts and termini to fit the new body.",
+      "verification": "Bare chassis and complete assembly.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 2480,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_CargoRack",
+      "module": "Frame",
+      "action": "retain_initially",
+      "priority": "P2",
+      "proposal": "Retain inboard rack and support logic; adapt only where new bodywork needs clearance.",
+      "verification": "Assembled rear and underside.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 2896,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_HipMount",
+      "module": "Frame",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Replace exposed generic cage/flat mounts with tapered structural members and integrated hip/steering transitions.",
+      "verification": "Bare structure/underside and fully assembled side/three-quarter.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 484,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_Footrest",
+      "module": "Frame",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Retain useful support/routing interfaces, refine shaped mounts and termini to fit the new body.",
+      "verification": "Bare chassis and complete assembly.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 648,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_SteeringMount",
+      "module": "Frame",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Replace exposed generic cage/flat mounts with tapered structural members and integrated hip/steering transitions.",
+      "verification": "Bare structure/underside and fully assembled side/three-quarter.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 452,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_DriveCore",
+      "module": "Drive",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Shape housing shoulders and recessed service/cooling layers within the revised body and frame.",
+      "verification": "Bare core and assembled side/three-quarter.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 1188,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_SpineHousing",
+      "module": "Drive",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Shape housing shoulders and recessed service/cooling layers within the revised body and frame.",
+      "verification": "Bare core and assembled side/three-quarter.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 720,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_RearCoolingHousing",
+      "module": "Drive",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Shape housing shoulders and recessed service/cooling layers within the revised body and frame.",
+      "verification": "Bare core and assembled side/three-quarter.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 1100,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_DrivePod",
+      "module": "Drive",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Shape housing shoulders and recessed service/cooling layers within the revised body and frame.",
+      "verification": "Bare core and assembled side/three-quarter.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 1768,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_DrivePod",
+      "module": "Drive",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Shape housing shoulders and recessed service/cooling layers within the revised body and frame.",
+      "verification": "Bare core and assembled side/three-quarter.",
+      "current_pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "current_evaluated_triangles": 1768,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_HipJoint",
+      "module": "LeftLeg",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Replace plain drum outline with layered stepped/dished bearing covers and integrated clevis transitions.",
+      "verification": "Front width, side connection and leg close view.",
+      "current_pivot_m": [
+        -0.22499999403953552,
+        -0.25,
+        1.3200000524520874
+      ],
+      "current_evaluated_triangles": 732,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_KneeJoint",
+      "module": "LeftLeg",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Replace plain drum outline with layered stepped/dished bearing covers and integrated clevis transitions.",
+      "verification": "Front width, side connection and leg close view.",
+      "current_pivot_m": [
+        -0.25999999046325684,
+        0.23000001907348633,
+        0.800000011920929
+      ],
+      "current_evaluated_triangles": 732,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_AnkleJoint",
+      "module": "LeftLeg",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Replace plain drum outline with layered stepped/dished bearing covers and integrated clevis transitions.",
+      "verification": "Front width, side connection and leg close view.",
+      "current_pivot_m": [
+        -0.2750000059604645,
+        0.3100000023841858,
+        0.16999995708465576
+      ],
+      "current_evaluated_triangles": 732,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_ThighFrame",
+      "module": "LeftLeg",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Use changing crowned/wrapped armor sections and shaped structural cores, tapering into joint recesses.",
+      "verification": "Whole chain from side/front and isolated three-quarter.",
+      "current_pivot_m": [
+        -0.22499999403953552,
+        -0.25,
+        1.3200000524520874
+      ],
+      "current_evaluated_triangles": 1528,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_ThighShell",
+      "module": "LeftLeg",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Use changing crowned/wrapped armor sections and shaped structural cores, tapering into joint recesses.",
+      "verification": "Whole chain from side/front and isolated three-quarter.",
+      "current_pivot_m": [
+        -0.22499999403953552,
+        -0.25,
+        1.3200000524520874
+      ],
+      "current_evaluated_triangles": 2100,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_ThighActuatorBarrel",
+      "module": "LeftLeg",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Preserve rod/barrel separation and axis, refine shoulder/collar and clevis seating after shell reconstruction.",
+      "verification": "Isolated chain then fitted assembly; motion not certified.",
+      "current_pivot_m": [
+        -0.17989999055862427,
+        -0.14023344218730927,
+        1.2864922285079956
+      ],
+      "current_evaluated_triangles": 256,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_ThighActuatorRod",
+      "module": "LeftLeg",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Preserve rod/barrel separation and axis, refine shoulder/collar and clevis seating after shell reconstruction.",
+      "verification": "Isolated chain then fitted assembly; motion not certified.",
+      "current_pivot_m": [
+        -0.20579998195171356,
+        0.2149665653705597,
+        0.9016922116279602
+      ],
+      "current_evaluated_triangles": 108,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_ShinFrame",
+      "module": "LeftLeg",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Use changing crowned/wrapped armor sections and shaped structural cores, tapering into joint recesses.",
+      "verification": "Whole chain from side/front and isolated three-quarter.",
+      "current_pivot_m": [
+        -0.25999999046325684,
+        0.23000001907348633,
+        0.800000011920929
+      ],
+      "current_evaluated_triangles": 1480,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_ShinShell",
+      "module": "LeftLeg",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Use changing crowned/wrapped armor sections and shaped structural cores, tapering into joint recesses.",
+      "verification": "Whole chain from side/front and isolated three-quarter.",
+      "current_pivot_m": [
+        -0.25999999046325684,
+        0.23000001907348633,
+        0.800000011920929
+      ],
+      "current_evaluated_triangles": 2064,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_ShinActuatorBarrel",
+      "module": "LeftLeg",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Preserve rod/barrel separation and axis, refine shoulder/collar and clevis seating after shell reconstruction.",
+      "verification": "Isolated chain then fitted assembly; motion not certified.",
+      "current_pivot_m": [
+        -0.21209998428821564,
+        0.29872190952301025,
+        0.7191044092178345
+      ],
+      "current_evaluated_triangles": 256,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_ShinActuatorRod",
+      "module": "LeftLeg",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Preserve rod/barrel separation and axis, refine shoulder/collar and clevis seating after shell reconstruction.",
+      "verification": "Isolated chain then fitted assembly; motion not certified.",
+      "current_pivot_m": [
+        -0.2232000082731247,
+        0.35792189836502075,
+        0.25290441513061523
+      ],
+      "current_evaluated_triangles": 108,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_Foot",
+      "module": "LeftLeg",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Replace straight rake-like rails with ankle cradle, arched tapering split toes and shaped heel.",
+      "verification": "Side/front/underside and retained ground plane.",
+      "current_pivot_m": [
+        -0.2750000059604645,
+        0.3100000023841858,
+        0.16999995708465576
+      ],
+      "current_evaluated_triangles": 1348,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_HipJoint",
+      "module": "RightLeg",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Replace plain drum outline with layered stepped/dished bearing covers and integrated clevis transitions.",
+      "verification": "Front width, side connection and leg close view.",
+      "current_pivot_m": [
+        0.22499999403953552,
+        -0.3499999940395355,
+        1.3200000524520874
+      ],
+      "current_evaluated_triangles": 732,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_KneeJoint",
+      "module": "RightLeg",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Replace plain drum outline with layered stepped/dished bearing covers and integrated clevis transitions.",
+      "verification": "Front width, side connection and leg close view.",
+      "current_pivot_m": [
+        0.25999999046325684,
+        -0.24500000476837158,
+        0.800000011920929
+      ],
+      "current_evaluated_triangles": 732,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_AnkleJoint",
+      "module": "RightLeg",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Replace plain drum outline with layered stepped/dished bearing covers and integrated clevis transitions.",
+      "verification": "Front width, side connection and leg close view.",
+      "current_pivot_m": [
+        0.2750000059604645,
+        -0.5,
+        0.16999995708465576
+      ],
+      "current_evaluated_triangles": 732,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_ThighFrame",
+      "module": "RightLeg",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Use changing crowned/wrapped armor sections and shaped structural cores, tapering into joint recesses.",
+      "verification": "Whole chain from side/front and isolated three-quarter.",
+      "current_pivot_m": [
+        0.22499999403953552,
+        -0.3499999940395355,
+        1.3200000524520874
+      ],
+      "current_evaluated_triangles": 1336,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_ThighShell",
+      "module": "RightLeg",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Use changing crowned/wrapped armor sections and shaped structural cores, tapering into joint recesses.",
+      "verification": "Whole chain from side/front and isolated three-quarter.",
+      "current_pivot_m": [
+        0.22499999403953552,
+        -0.3499999940395355,
+        1.3200000524520874
+      ],
+      "current_evaluated_triangles": 1832,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_ThighActuatorBarrel",
+      "module": "RightLeg",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Preserve rod/barrel separation and axis, refine shoulder/collar and clevis seating after shell reconstruction.",
+      "verification": "Isolated chain then fitted assembly; motion not certified.",
+      "current_pivot_m": [
+        0.17989999055862427,
+        -0.2785707712173462,
+        1.2586549520492554
+      ],
+      "current_evaluated_triangles": 256,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_ThighActuatorRod",
+      "module": "RightLeg",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Preserve rod/barrel separation and axis, refine shoulder/collar and clevis seating after shell reconstruction.",
+      "verification": "Isolated chain then fitted assembly; motion not certified.",
+      "current_pivot_m": [
+        0.20579998195171356,
+        -0.20087078213691711,
+        0.87385493516922
+      ],
+      "current_evaluated_triangles": 108,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_ShinFrame",
+      "module": "RightLeg",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Use changing crowned/wrapped armor sections and shaped structural cores, tapering into joint recesses.",
+      "verification": "Whole chain from side/front and isolated three-quarter.",
+      "current_pivot_m": [
+        0.25999999046325684,
+        -0.24500000476837158,
+        0.800000011920929
+      ],
+      "current_evaluated_triangles": 1528,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_ShinShell",
+      "module": "RightLeg",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Use changing crowned/wrapped armor sections and shaped structural cores, tapering into joint recesses.",
+      "verification": "Whole chain from side/front and isolated three-quarter.",
+      "current_pivot_m": [
+        0.25999999046325684,
+        -0.24500000476837158,
+        0.800000011920929
+      ],
+      "current_evaluated_triangles": 2100,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_ShinActuatorBarrel",
+      "module": "RightLeg",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Preserve rod/barrel separation and axis, refine shoulder/collar and clevis seating after shell reconstruction.",
+      "verification": "Isolated chain then fitted assembly; motion not certified.",
+      "current_pivot_m": [
+        0.21209998428821564,
+        -0.22695016860961914,
+        0.6900441646575928
+      ],
+      "current_evaluated_triangles": 256,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_ShinActuatorRod",
+      "module": "RightLeg",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Preserve rod/barrel separation and axis, refine shoulder/collar and clevis seating after shell reconstruction.",
+      "verification": "Isolated chain then fitted assembly; motion not certified.",
+      "current_pivot_m": [
+        0.2232000082731247,
+        -0.4156501591205597,
+        0.22384417057037354
+      ],
+      "current_evaluated_triangles": 108,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_Foot",
+      "module": "RightLeg",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Replace straight rake-like rails with ankle cradle, arched tapering split toes and shaped heel.",
+      "verification": "Side/front/underside and retained ground plane.",
+      "current_pivot_m": [
+        0.2750000059604645,
+        -0.5,
+        0.16999995708465576
+      ],
+      "current_evaluated_triangles": 1348,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_front_fairing",
+      "module": "BodyArmor",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Reconstruct crowned, swept, tapered shells with wrapping thickness and deliberate overlap; replace the pointed shroud gap.",
+      "verification": "Front, side, elevated and clay body close view.",
+      "current_pivot_m": [
+        -0.1615000069141388,
+        -0.44600003957748413,
+        1.783000111579895
+      ],
+      "current_evaluated_triangles": 736,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_tail_shroud",
+      "module": "BodyArmor",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Reconstruct crowned, swept, tapered shells with wrapping thickness and deliberate overlap; replace the pointed shroud gap.",
+      "verification": "Front, side, elevated and clay body close view.",
+      "current_pivot_m": [
+        -0.13600003719329834,
+        0.4699999988079071,
+        1.8883336782455444
+      ],
+      "current_evaluated_triangles": 456,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_front_fairing",
+      "module": "BodyArmor",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Reconstruct crowned, swept, tapered shells with wrapping thickness and deliberate overlap; replace the pointed shroud gap.",
+      "verification": "Front, side, elevated and clay body close view.",
+      "current_pivot_m": [
+        0.1615000069141388,
+        -0.44600003957748413,
+        1.783000111579895
+      ],
+      "current_evaluated_triangles": 736,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_tail_shroud",
+      "module": "BodyArmor",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Reconstruct crowned, swept, tapered shells with wrapping thickness and deliberate overlap; replace the pointed shroud gap.",
+      "verification": "Front, side, elevated and clay body close view.",
+      "current_pivot_m": [
+        0.13600003719329834,
+        0.4700000286102295,
+        1.8883335590362549
+      ],
+      "current_evaluated_triangles": 456,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_upper_body_shroud",
+      "module": "BodyArmor",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Reconstruct crowned, swept, tapered shells with wrapping thickness and deliberate overlap; replace the pointed shroud gap.",
+      "verification": "Front, side, elevated and clay body close view.",
+      "current_pivot_m": [
+        -0.15224994719028473,
+        0.03999998793005943,
+        1.883750319480896
+      ],
+      "current_evaluated_triangles": 252,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_upper_body_shroud",
+      "module": "BodyArmor",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Reconstruct crowned, swept, tapered shells with wrapping thickness and deliberate overlap; replace the pointed shroud gap.",
+      "verification": "Front, side, elevated and clay body close view.",
+      "current_pivot_m": [
+        0.15224994719028473,
+        0.03999999165534973,
+        1.8837502002716064
+      ],
+      "current_evaluated_triangles": 252,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_SaddleUpholstery",
+      "module": "Saddle",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Recover scooped rider pocket, narrower nose, fuller bolster and rear support; fit the pan to bodywork.",
+      "verification": "Side and elevated; rider contact height accounted for.",
+      "current_pivot_m": [
+        0.0,
+        0.11999999731779099,
+        1.9700000286102295
+      ],
+      "current_evaluated_triangles": 2388,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_SaddlePan",
+      "module": "Saddle",
+      "action": "rebuild_form",
+      "priority": "P0",
+      "proposal": "Recover scooped rider pocket, narrower nose, fuller bolster and rear support; fit the pan to bodywork.",
+      "verification": "Side and elevated; rider contact height accounted for.",
+      "current_pivot_m": [
+        0.0,
+        0.11999999731779099,
+        1.9500000476837158
+      ],
+      "current_evaluated_triangles": 1064,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_SteeringStem",
+      "module": "Steering",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Integrate swept stem/bar bridge and compact tapered cockpit/pod housings into front bodywork.",
+      "verification": "Front, elevated and rider-side view.",
+      "current_pivot_m": [
+        0.0,
+        -0.4050000011920929,
+        1.9900000095367432
+      ],
+      "current_evaluated_triangles": 260,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_Handlebar",
+      "module": "Steering",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Integrate swept stem/bar bridge and compact tapered cockpit/pod housings into front bodywork.",
+      "verification": "Front, elevated and rider-side view.",
+      "current_pivot_m": [
+        0.0,
+        -0.49000000953674316,
+        2.1449999809265137
+      ],
+      "current_evaluated_triangles": 1676,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_Grip",
+      "module": "Steering",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Refine grip/control/lever transitions while preserving useful rider interfaces; texture fine surface detail.",
+      "verification": "Cockpit close view and grip/lever clearance.",
+      "current_pivot_m": [
+        -0.30000001192092896,
+        -0.4480000138282776,
+        2.1050000190734863
+      ],
+      "current_evaluated_triangles": 320,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_L_BrakeLever",
+      "module": "Steering",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Refine grip/control/lever transitions while preserving useful rider interfaces; texture fine surface detail.",
+      "verification": "Cockpit close view and grip/lever clearance.",
+      "current_pivot_m": [
+        -0.28200000524520874,
+        -0.5009999871253967,
+        2.0999999046325684
+      ],
+      "current_evaluated_triangles": 248,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_Grip",
+      "module": "Steering",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Refine grip/control/lever transitions while preserving useful rider interfaces; texture fine surface detail.",
+      "verification": "Cockpit close view and grip/lever clearance.",
+      "current_pivot_m": [
+        0.30000001192092896,
+        -0.4480000138282776,
+        2.1050000190734863
+      ],
+      "current_evaluated_triangles": 320,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_R_BrakeLever",
+      "module": "Steering",
+      "action": "refine_supporting",
+      "priority": "P2",
+      "proposal": "Refine grip/control/lever transitions while preserving useful rider interfaces; texture fine surface detail.",
+      "verification": "Cockpit close view and grip/lever clearance.",
+      "current_pivot_m": [
+        0.28200000524520874,
+        -0.5009999871253967,
+        2.0999999046325684
+      ],
+      "current_evaluated_triangles": 248,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_InstrumentGauge",
+      "module": "Steering",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Integrate swept stem/bar bridge and compact tapered cockpit/pod housings into front bodywork.",
+      "verification": "Front, elevated and rider-side view.",
+      "current_pivot_m": [
+        0.0,
+        -0.5270000100135803,
+        2.1700000762939453
+      ],
+      "current_evaluated_triangles": 792,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_FrontControlPod",
+      "module": "Steering",
+      "action": "rebuild_form",
+      "priority": "P1",
+      "proposal": "Integrate swept stem/bar bridge and compact tapered cockpit/pod housings into front bodywork.",
+      "verification": "Front, elevated and rider-side view.",
+      "current_pivot_m": [
+        0.0,
+        -0.5680000185966492,
+        1.909999966621399
+      ],
+      "current_evaluated_triangles": 688,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Body",
+      "module": "Cargo_L_Main",
+      "action": "retain_initially",
+      "priority": "P2",
+      "proposal": "Preserve fitted container/lid/strap baseline and maps; refine seating, seal and strap compression only after the major overhaul.",
+      "verification": "Rear three-quarter and fitted side; lid/support clearance.",
+      "current_pivot_m": [
+        -0.31999996304512024,
+        0.5,
+        1.7899999618530273
+      ],
+      "current_evaluated_triangles": 3384,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Straps",
+      "module": "Cargo_L_Main",
+      "action": "retain_initially",
+      "priority": "P2",
+      "proposal": "Preserve fitted container/lid/strap baseline and maps; refine seating, seal and strap compression only after the major overhaul.",
+      "verification": "Rear three-quarter and fitted side; lid/support clearance.",
+      "current_pivot_m": [
+        -0.31999996304512024,
+        0.5,
+        1.7899999618530273
+      ],
+      "current_evaluated_triangles": 4112,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Lid",
+      "module": "Cargo_L_Main",
+      "action": "retain_initially",
+      "priority": "P2",
+      "proposal": "Preserve fitted container/lid/strap baseline and maps; refine seating, seal and strap compression only after the major overhaul.",
+      "verification": "Rear three-quarter and fitted side; lid/support clearance.",
+      "current_pivot_m": [
+        -0.23000000417232513,
+        0.5,
+        2.069999933242798
+      ],
+      "current_evaluated_triangles": 1380,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Body",
+      "module": "Cargo_L_Aux",
+      "action": "retain_initially",
+      "priority": "P2",
+      "proposal": "Preserve fitted container/lid/strap baseline and maps; refine seating, seal and strap compression only after the major overhaul.",
+      "verification": "Rear three-quarter and fitted side; lid/support clearance.",
+      "current_pivot_m": [
+        -0.30500003695487976,
+        0.16999998688697815,
+        1.7350001335144043
+      ],
+      "current_evaluated_triangles": 2068,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Straps",
+      "module": "Cargo_L_Aux",
+      "action": "retain_initially",
+      "priority": "P2",
+      "proposal": "Preserve fitted container/lid/strap baseline and maps; refine seating, seal and strap compression only after the major overhaul.",
+      "verification": "Rear three-quarter and fitted side; lid/support clearance.",
+      "current_pivot_m": [
+        -0.30500003695487976,
+        0.16999998688697815,
+        1.7350001335144043
+      ],
+      "current_evaluated_triangles": 1768,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Lid",
+      "module": "Cargo_L_Aux",
+      "action": "retain_initially",
+      "priority": "P2",
+      "proposal": "Preserve fitted container/lid/strap baseline and maps; refine seating, seal and strap compression only after the major overhaul.",
+      "verification": "Rear three-quarter and fitted side; lid/support clearance.",
+      "current_pivot_m": [
+        -0.22750000655651093,
+        0.17000000178813934,
+        1.934999942779541
+      ],
+      "current_evaluated_triangles": 724,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Body",
+      "module": "Cargo_R_Main",
+      "action": "retain_initially",
+      "priority": "P2",
+      "proposal": "Preserve fitted container/lid/strap baseline and maps; refine seating, seal and strap compression only after the major overhaul.",
+      "verification": "Rear three-quarter and fitted side; lid/support clearance.",
+      "current_pivot_m": [
+        0.3199999928474426,
+        0.5,
+        1.7899999618530273
+      ],
+      "current_evaluated_triangles": 3384,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Straps",
+      "module": "Cargo_R_Main",
+      "action": "retain_initially",
+      "priority": "P2",
+      "proposal": "Preserve fitted container/lid/strap baseline and maps; refine seating, seal and strap compression only after the major overhaul.",
+      "verification": "Rear three-quarter and fitted side; lid/support clearance.",
+      "current_pivot_m": [
+        0.3199999928474426,
+        0.5,
+        1.7899999618530273
+      ],
+      "current_evaluated_triangles": 4112,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Lid",
+      "module": "Cargo_R_Main",
+      "action": "retain_initially",
+      "priority": "P2",
+      "proposal": "Preserve fitted container/lid/strap baseline and maps; refine seating, seal and strap compression only after the major overhaul.",
+      "verification": "Rear three-quarter and fitted side; lid/support clearance.",
+      "current_pivot_m": [
+        0.23000000417232513,
+        0.5,
+        2.069999933242798
+      ],
+      "current_evaluated_triangles": 1380,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Body",
+      "module": "Cargo_R_Aux",
+      "action": "retain_initially",
+      "priority": "P2",
+      "proposal": "Preserve fitted container/lid/strap baseline and maps; refine seating, seal and strap compression only after the major overhaul.",
+      "verification": "Rear three-quarter and fitted side; lid/support clearance.",
+      "current_pivot_m": [
+        0.30500003695487976,
+        0.16999998688697815,
+        1.7350001335144043
+      ],
+      "current_evaluated_triangles": 2068,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Straps",
+      "module": "Cargo_R_Aux",
+      "action": "retain_initially",
+      "priority": "P2",
+      "proposal": "Preserve fitted container/lid/strap baseline and maps; refine seating, seal and strap compression only after the major overhaul.",
+      "verification": "Rear three-quarter and fitted side; lid/support clearance.",
+      "current_pivot_m": [
+        0.30500003695487976,
+        0.16999998688697815,
+        1.7350001335144043
+      ],
+      "current_evaluated_triangles": 1768,
+      "applied": false
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Lid",
+      "module": "Cargo_R_Aux",
+      "action": "retain_initially",
+      "priority": "P2",
+      "proposal": "Preserve fitted container/lid/strap baseline and maps; refine seating, seal and strap compression only after the major overhaul.",
+      "verification": "Rear three-quarter and fitted side; lid/support clearance.",
+      "current_pivot_m": [
+        0.22750000655651093,
+        0.17000000178813934,
+        1.934999942779541
+      ],
+      "current_evaluated_triangles": 724,
+      "applied": false
+    }
+  ]
+}

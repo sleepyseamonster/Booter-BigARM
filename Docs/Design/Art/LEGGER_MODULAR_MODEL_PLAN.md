@@ -4,6 +4,8 @@ The Legger will be one assembled model in one Blender scene, organized into inde
 
 Implementation checkpoint: all six phases below are complete in the same native file. The [verified modular assembly receipt](../../Evidence/Art/LeggerModular20261015/README.md) records one scene/view layer, 67 visible major meshes, 21,396 quad control faces, 86,072 evaluated triangles and 55 packed maps across 11 texture sets. The earlier source geometry remains hidden for reference; visual acceptance and later Unity integration remain separate.
 
+Author review after this checkpoint: the major forms are too simplistic; the crates are the strongest remaining area. The [sci-fi form audit and overhaul brief](LEGGER_SCI_FI_OVERHAUL_AUDIT.md) now controls the next modeling pass. It supersedes the instruction below to preserve existing fairing shapes and directs reconstruction toward the retained original. This plan remains the completed technical baseline, not visual approval of the current model. The audit itself did not modify the native source.
+
 ## Scene organization
 
 Keep `SourceArt/Blender/Studies/Legger/Legger_Topology_Iteration04.blend` as the sole active native file. Its default scene and view layer show the complete assembled machine. Geometry stays in its fitted position; an exploded view is not the authoring default. Each assembly has a named root and clearly named mesh parts. Hidden references live together outside the visible export hierarchy.

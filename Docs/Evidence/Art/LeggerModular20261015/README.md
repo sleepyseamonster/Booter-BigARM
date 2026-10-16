@@ -2,6 +2,8 @@
 
 October 15, 2026. The author requested an independently modeled chassis, extended the work to the legs, saddle and handlebars, then authorized a complete modular model with separate textures, an audited plan and one organized scene. The [plan and audit](../../../Design/Art/LEGGER_MODULAR_MODEL_PLAN.md) govern this checkpoint. Small fixed fittings are grouped into their parent parts.
 
+Subsequent author review: the rebuild is too simplistic outside the crates and needs an overhaul toward the original futuristic design. The [form audit](../LeggerSciFiAudit20261015/README.md) closes this technical lane and records the replacement modeling direction. The counts and verification below remain facts about the unchanged technical baseline; they do not establish final visual acceptance.
+
 ## Current authoring file
 
 `SourceArt/Blender/Studies/Legger/Legger_Topology_Iteration04.blend` remains the sole active native file. Scene `Legger` and its only view layer, `LEGGER - COMPLETE`, open on the complete assembled vehicle. Collection `LEGGER - ASSEMBLED MODEL` contains the active parts. `90 - References - hidden` retains prior geometry and procedural bake sources outside the intended export hierarchy. No exploded arrangement or isolated chassis replaces the assembled default.
