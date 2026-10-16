@@ -4,6 +4,8 @@ October 15, 2026. Sable. The author requested worn leather, cloth, bone, chitin 
 
 **Delivered: five material families, three treatments each, twenty-five seamless 2K PBR maps and fifteen ready-to-assign URP/Lit materials.** These are original authored procedural materials baked to ordinary textures. No external asset purchase, new image generation, custom runtime shader or package dependency is required.
 
+**Lore correction, October 15:** technical Unity readiness does not establish game suitability. Wood and cloth are excluded from the game palette, rather than awaiting availability decisions. Keep their existing studies as historical references only. Continue with chitin and the game's scarce hide allowance; bone remains an anatomy-dependent candidate. See [lore alignment](LORE_ALIGNMENT.md) for the verified source records and boundaries.
+
 Open [the comparison gallery](review.html). The [overview](E_overview.jpg) and five comparison boards show actual imported Unity URP materials. Additional Blender views show flat, curved and simple context forms. All variants within a family share the same normal, roughness/smoothness and cavity response; only the painted color treatment changes. R is restrained realism, E continues the working combined direction, and P tests broader painted accents. They are comparison candidates, not three new approved directions.
 
 ![Combined-direction Unity materials](E_overview.jpg)
@@ -11,7 +13,7 @@ Open [the comparison gallery](review.html). The [overview](E_overview.jpg) and f
 ## Use in Unity
 
 1. Open `Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/` in the Project window.
-2. Start with `WornLeather_E`, `Cloth_E`, `Bone_E`, `Chitin_E` or `AgedWood_E`. Drag the material onto a UV-mapped mesh or assign it to the renderer's material slot. R/P alternatives are beside each E material.
+2. For lore-compatible development, start with `Chitin_E`; `WornLeather_E` is a candidate for the game's extremely scarce processed hides. `Bone_E` needs species/anatomy qualification. Do not use `Cloth_*` or `AgedWood_*` in game content. The retained files are technical comparison references. Drag an appropriate material onto a UV-mapped mesh or assign it to its renderer; R/P alternatives are beside each E material.
 3. Use the material's Base Map tiling to control density. One UV tile is authored as a nominal one-metre material patch; the mesh's UV layout determines its actual world scale. Keep tangents and UVs on the target mesh. Wood grain runs along V; rotate the mesh UVs to align it with a board or handle.
 
 Materials use stock **Universal Render Pipeline/Lit**, opaque metallic workflow, with instancing enabled. The set is imported and rendered in the pinned Unity **6000.4.0f1**, URP **17.4.0** project, on the StandaloneWindows64 target. Existing scenes, renderer assets and packages were not edited by this task.
@@ -40,7 +42,7 @@ Variants share maps to avoid duplicating physical detail. All twenty-five textur
 
 All five Unity comparison boards, the E overview, representative larger Unity images and Blender flat/context views were inspected. E is the recommended starting set; the more painted P versions remain useful boundaries. The differences are intentionally selective color changes, not wholesale replacements of surface response. These tiles are reusable material bases: they do not encode every condition or replace asset-specific wear authoring.
 
-Cloth and aged wood were explicitly requested as visual studies. The world basis currently states no ordinary cloth and no plant life; their imported availability as study materials does not establish their availability in game lore. Hide processing has extremely low yield; chitin and husk-derived materials are recognized. Bone/chitin examples establish visual surface tests, not a new species anatomy or crafting recipe. No world or item canon was changed.
+The author's subsequent correction makes wood and cloth excluded materials, not open availability questions. Hide processing has extremely low yield; chitin and husk-derived materials are recognized. Generic bone needs anatomy qualification. The initial study should have applied these constraints before texture authoring. Retaining existing comparison files does not authorize their use or establish new species anatomy or crafting recipes.
 
 ## Verification and scope
 

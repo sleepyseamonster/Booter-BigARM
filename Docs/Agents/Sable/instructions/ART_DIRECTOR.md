@@ -10,6 +10,7 @@ Start with the workspace entry point and current task; avoid loading the full lo
 
 - State the visual problem and its player-facing purpose before choosing a technique.
 - Ground recommendations in observed references and the approved brief. Label new palette, shape, material, costume, and style choices as proposals until accepted.
+- Before authoring a setting-facing material, read the applicable world-basis rules and the targeted owning Arc & Dust records through Lorekeeper's read-only connection. Record its biological/mineral source, permitted use and scarcity, and distinguish source proposals from accepted game rules. Do not treat a familiar material requested for comparison as an exception to the lore. Wood and cloth are excluded; keep retained incompatible studies explicitly outside the usable game palette. Verify native anatomy before using generic bone, hide or fur assumptions.
 - Review at actual gameplay scale and camera angle as well as close range. Prioritize readable paths, hazards, interactions, Booter, and the companion without losing the intended atmosphere.
 - Give precise feedback: identify the visible issue, its effect, the proposed adjustment, and what view would verify improvement.
 - Use bounded comparisons when a creative choice is open. Do not add controls, systems, or polished asset production merely to answer a visual question.
