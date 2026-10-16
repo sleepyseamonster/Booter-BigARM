@@ -1,0 +1,194 @@
+{
+  "reason": "Author direction October 15: all Processing agents belong in Crafting components; retire the separate Processing agents section. Identity, condition, tiers, properties and recipe roles remain unchanged.",
+  "items": [
+    {
+      "id": "proposal.lubricant.base",
+      "name": "Clarified faunal lubricant base",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lubricant.thickener",
+      "name": "Prepared secretion thickener",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lubricant.joint_grease",
+      "name": "Faunal joint grease",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lubricant.dust_film",
+      "name": "Dust-shedding lubricant film",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lubricant.seal_paste",
+      "name": "Seal-conditioning paste",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lubricant.graphite_grease",
+      "name": "Graphite faunal grease",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lubricant.insulating_grease",
+      "name": "Electrically insulating grease",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lubricant.precision_oil",
+      "name": "Fine mechanism oil",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.t1.faunal_carrier",
+      "name": "Selected faunal carrier fraction",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.t1.shell_adhesive",
+      "name": "Prepared shell-binding adhesive",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.t1.clot_seal",
+      "name": "Prepared clot-seal compound",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "author.corrosion.advanced_remover",
+      "name": "Advanced rust-removal compound",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.corrosion.converter",
+      "name": "Rust-conversion treatment",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.corrosion.inhibitor",
+      "name": "Corrosion-inhibiting finish",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.branch.flux",
+      "name": "Prepared metallurgical flux",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.branch.flex_binder",
+      "name": "Prepared flexible faunal binder",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.branch.etchant",
+      "name": "Conditioned faunal etchant",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.branch.filled_seal",
+      "name": "Filled faunal seal compound",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.branch.flex_bond",
+      "name": "Flexible membrane-bonding compound",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.branch.filled_binder",
+      "name": "Filled shell-binding compound",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.t3.service_grease",
+      "name": "Conditioned mechanism-service grease",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.review.oxide_reactive_fraction",
+      "name": "Selected oxide-reactive faunal fraction",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lore.alkali_concentrate",
+      "name": "Prepared alkaline mineral concentrate",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lore.sulfur_charge",
+      "name": "Prepared sulfur process charge",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lore.phagia_enzyme",
+      "name": "Selected Phagia enzyme fraction",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lore.phagia_acid",
+      "name": "Selected Phagia mild-acid fraction",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lore.phagia_adhesive",
+      "name": "Concentrated Phagia adhesive base",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lore.shell_cleaning_charge",
+      "name": "Chitin-cleaning process charge",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lore.chitin_binder_residue",
+      "name": "Concentrated chitin binder residue",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lore.membrane_bond",
+      "name": "Rendered membrane bonding stock",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.lore.ichor_sediment",
+      "name": "Separated ichor mineral sediment",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.collection.glass_joint_bedding_paste",
+      "name": "Glass-joint bedding paste",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.collection.husk_paper_surface_sizing",
+      "name": "Husk-paper surface sizing",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.collection.shell_pigment_suspension",
+      "name": "Shell-pigment suspension",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.collection.mineral_contact_cleaning_charge",
+      "name": "Mineral contact-cleaning charge",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.audit.mineral_cell_electrolyte_candidate",
+      "name": "Mineral-cell electrolyte candidate",
+      "previous": "Processing agents"
+    },
+    {
+      "id": "proposal.audit.husk_paper_writing_pigment",
+      "name": "Husk-paper writing pigment",
+      "previous": "Processing agents"
+    }
+  ],
+  "retiredCategory": "Processing agents",
+  "sourceHashBefore": "6f047bf9bec96bd4d600e7abe8bd533c5b4d5ee8e3365b16fe3659c1bf964ce5",
+  "sourceHashAfter": "46c91c71e23631549c9381ce79a6f28ac63bb9330871c3fa5da974e6e28e86d8",
+  "scope": "Catalog classification only; IDs, properties, recipes, review/art state, world identity, fixed terrain, streaming and persisted runtime deltas unchanged."
+}
