@@ -1,0 +1,38 @@
+{
+  "success": true,
+  "command": "command console_status",
+  "data": {
+    "command": "console_status",
+    "parameters": {},
+    "result": {
+      "entries": [],
+      "cursor": 7750,
+      "session": "3556564e7660432fa8d8201f899bd256",
+      "returned": 0,
+      "dropped": false,
+      "reset": false,
+      "counts": {
+        "error": 27,
+        "warn": 1780,
+        "log": 193
+      },
+      "groundTruth": {
+        "sampledUtc": "2026-10-16T04:22:23.4210207Z",
+        "ageMs": 296,
+        "compilationFailed": false,
+        "compiling": false,
+        "consoleErrors": 5,
+        "consoleWarnings": 0,
+        "consoleLogs": 20,
+        "seeded": true
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\Arc & Dust\\Project"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}

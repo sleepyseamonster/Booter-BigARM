@@ -1,0 +1,204 @@
+{
+  "scope": "Read-only current RootT.y curves and endpoint offsets in Humanoid root curve units before retargeting, projection and crossfade. These are not measured rendered discontinuities or world-space jerk. Body-muscle measurements are in muscle-channel-endpoints.json.",
+  "clips": [
+    {
+      "clip": "JumpStandingTakeoffGrounded",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingTakeoffGrounded.anim",
+      "duration": 0.6333333,
+      "frameRate": 60.0,
+      "isLooping": false,
+      "rootYFirst": 0.9013187,
+      "rootYLast": 1.01084566,
+      "rootYMinimum": 0.6735833,
+      "rootYMaximum": 1.01084566
+    },
+    {
+      "clip": "JumpStandingRisingPose",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingRisingPose.anim",
+      "duration": 0.333333373,
+      "frameRate": 60.0,
+      "isLooping": false,
+      "rootYFirst": 1.10277808,
+      "rootYLast": 1.11895323,
+      "rootYMinimum": 1.08155262,
+      "rootYMaximum": 1.11991107
+    },
+    {
+      "clip": "JumpStandingLandingGrounded",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingLandingGrounded.anim",
+      "duration": 0.950000048,
+      "frameRate": 60.0,
+      "isLooping": false,
+      "rootYFirst": 0.9314964,
+      "rootYLast": 0.944176733,
+      "rootYMinimum": 0.629937,
+      "rootYMaximum": 0.945958734
+    },
+    {
+      "clip": "JumpRunningTakeoffGrounded",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningTakeoffGrounded.anim",
+      "duration": 0.098,
+      "frameRate": 60.0,
+      "isLooping": false,
+      "rootYFirst": 0.838822544,
+      "rootYLast": 1.07545185,
+      "rootYMinimum": 0.838822544,
+      "rootYMaximum": 1.07545185
+    },
+    {
+      "clip": "JumpRunningRisingPose",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningRisingPose.anim",
+      "duration": 0.278,
+      "frameRate": 60.0,
+      "isLooping": false,
+      "rootYFirst": 1.08492637,
+      "rootYLast": 1.10342693,
+      "rootYMinimum": 1.08492637,
+      "rootYMaximum": 1.11510932
+    },
+    {
+      "clip": "JumpRunningLandingGrounded",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningLandingGrounded.anim",
+      "duration": 0.294999957,
+      "frameRate": 60.0,
+      "isLooping": false,
+      "rootYFirst": 0.990224361,
+      "rootYLast": 0.8381014,
+      "rootYMinimum": 0.814397037,
+      "rootYMaximum": 0.990224361
+    },
+    {
+      "clip": "JumpUnarmedTakeoffGrounded",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedTakeoffGrounded.anim",
+      "duration": 0.5666666,
+      "frameRate": 60.0,
+      "isLooping": false,
+      "rootYFirst": 0.9437022,
+      "rootYLast": 1.01630521,
+      "rootYMinimum": 0.754778564,
+      "rootYMaximum": 1.01630521
+    },
+    {
+      "clip": "JumpUnarmedRisingPose",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedRisingPose.anim",
+      "duration": 0.333333433,
+      "frameRate": 60.0,
+      "isLooping": false,
+      "rootYFirst": 1.06761408,
+      "rootYLast": 1.12357783,
+      "rootYMinimum": 1.06761408,
+      "rootYMaximum": 1.13443327
+    },
+    {
+      "clip": "JumpUnarmedLandingGrounded",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedLandingGrounded.anim",
+      "duration": 0.866666555,
+      "frameRate": 60.0,
+      "isLooping": false,
+      "rootYFirst": 0.9511979,
+      "rootYLast": 0.954271257,
+      "rootYMinimum": 0.652007,
+      "rootYMaximum": 0.954271257
+    },
+    {
+      "clip": "FallAirborneIdlePhysicsLoop",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallAirborneIdlePhysicsLoop.anim",
+      "duration": 0.7,
+      "frameRate": 60.0,
+      "isLooping": true,
+      "rootYFirst": 1.05434287,
+      "rootYLast": 1.05434287,
+      "rootYMinimum": 1.05118465,
+      "rootYMaximum": 1.05499661
+    },
+    {
+      "clip": "FallLandingContactApproach",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallLandingContactApproach.anim",
+      "duration": 0.2666667,
+      "frameRate": 60.0,
+      "isLooping": false,
+      "rootYFirst": 0.588363647,
+      "rootYLast": 0.9529729,
+      "rootYMinimum": 0.588363647,
+      "rootYMaximum": 0.9930601
+    },
+    {
+      "clip": "FallLandingContactRecovery",
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallLandingContactRecovery.anim",
+      "duration": 0.8,
+      "frameRate": 60.0,
+      "isLooping": false,
+      "rootYFirst": 0.9529729,
+      "rootYLast": 0.929331839,
+      "rootYMinimum": 0.5815523,
+      "rootYMaximum": 0.9529729
+    }
+  ],
+  "transitions": [
+    {
+      "from": "JumpStandingTakeoffGrounded",
+      "to": "JumpStandingRisingPose",
+      "rootYDelta": 0.091932416
+    },
+    {
+      "from": "JumpStandingRisingPose",
+      "to": "FallAirborneIdlePhysicsLoop",
+      "rootYDelta": -0.06461036
+    },
+    {
+      "from": "FallLandingContactApproach",
+      "to": "JumpStandingLandingGrounded",
+      "rootYDelta": -0.0214765072
+    },
+    {
+      "from": "JumpStandingLandingGrounded",
+      "to": "IdleBreathingLoop",
+      "rootYDelta": -0.00773024559
+    },
+    {
+      "from": "JumpRunningTakeoffGrounded",
+      "to": "JumpRunningRisingPose",
+      "rootYDelta": 0.009474516
+    },
+    {
+      "from": "JumpRunningRisingPose",
+      "to": "FallAirborneIdlePhysicsLoop",
+      "rootYDelta": -0.0490840673
+    },
+    {
+      "from": "FallLandingContactApproach",
+      "to": "JumpRunningLandingGrounded",
+      "rootYDelta": 0.0372514725
+    },
+    {
+      "from": "JumpRunningLandingGrounded",
+      "to": "IdleBreathingLoop",
+      "rootYDelta": 0.0983451
+    },
+    {
+      "from": "JumpUnarmedTakeoffGrounded",
+      "to": "JumpUnarmedRisingPose",
+      "rootYDelta": 0.05130887
+    },
+    {
+      "from": "JumpUnarmedRisingPose",
+      "to": "FallAirborneIdlePhysicsLoop",
+      "rootYDelta": -0.06923497
+    },
+    {
+      "from": "FallLandingContactApproach",
+      "to": "JumpUnarmedLandingGrounded",
+      "rootYDelta": -0.00177496672
+    },
+    {
+      "from": "JumpUnarmedLandingGrounded",
+      "to": "IdleBreathingLoop",
+      "rootYDelta": -0.017824769
+    },
+    {
+      "from": "FallAirborneIdlePhysicsLoop",
+      "to": "FallLandingContactApproach",
+      "rootYDelta": -0.465979218
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+{
+  "scope": "Read-only endpoint differences in exact HumanTrait.MuscleName channels only. Auxiliary quaternion/translation channels excluded; quaternion component differences are not pose distances. Not final retargeted/rendered continuity or world-space jerk.",
+  "transitions": [
+    {
+      "from": "JumpStandingTakeoffGrounded",
+      "to": "JumpStandingRisingPose",
+      "channels": 55,
+      "meanAbsoluteMuscleDelta": 0.0,
+      "largest": [
+        {
+          "channel": "Spine Front-Back",
+          "delta": 0.0
+        },
+        {
+          "channel": "Spine Left-Right",
+          "delta": 0.0
+        },
+        {
+          "channel": "Spine Twist Left-Right",
+          "delta": 0.0
+        },
+        {
+          "channel": "Chest Front-Back",
+          "delta": 0.0
+        },
+        {
+          "channel": "Chest Left-Right",
+          "delta": 0.0
+        }
+      ]
+    },
+    {
+      "from": "JumpStandingRisingPose",
+      "to": "FallAirborneIdlePhysicsLoop",
+      "channels": 55,
+      "meanAbsoluteMuscleDelta": 0.276727051,
+      "largest": [
+        {
+          "channel": "Left Shoulder Front-Back",
+          "delta": 1.13276207
+        },
+        {
+          "channel": "Right Arm Down-Up",
+          "delta": 1.13115215
+        },
+        {
+          "channel": "Right Forearm Stretch",
+          "delta": 1.06693578
+        },
+        {
+          "channel": "Left Forearm Stretch",
+          "delta": 1.057433
+        },
+        {
+          "channel": "UpperChest Front-Back",
+          "delta": 1.04635167
+        }
+      ]
+    },
+    {
+      "from": "FallLandingContactApproach",
+      "to": "JumpStandingLandingGrounded",
+      "channels": 55,
+      "meanAbsoluteMuscleDelta": 0.286479652,
+      "largest": [
+        {
+          "channel": "Left Forearm Stretch",
+          "delta": 1.03437185
+        },
+        {
+          "channel": "Right Upper Leg Twist In-Out",
+          "delta": 0.891741037
+        },
+        {
+          "channel": "Right Forearm Stretch",
+          "delta": 0.884836555
+        },
+        {
+          "channel": "Right Upper Leg Front-Back",
+          "delta": 0.8096776
+        },
+        {
+          "channel": "Left Arm Down-Up",
+          "delta": 0.7367084
+        }
+      ]
+    },
+    {
+      "from": "JumpStandingLandingGrounded",
+      "to": "IdleBreathingLoop",
+      "channels": 55,
+      "meanAbsoluteMuscleDelta": 0.250404626,
+      "largest": [
+        {
+          "channel": "Left Shoulder Front-Back",
+          "delta": 1.20451462
+        },
+        {
+          "channel": "Right Forearm Stretch",
+          "delta": 1.03025615
+        },
+        {
+          "channel": "Right Arm Twist In-Out",
+          "delta": 0.7456573
+        },
+        {
+          "channel": "Head Turn Left-Right",
+          "delta": 0.68716985
+        },
+        {
+          "channel": "Neck Turn Left-Right",
+          "delta": 0.684402168
+        }
+      ]
+    },
+    {
+      "from": "JumpRunningTakeoffGrounded",
+      "to": "JumpRunningRisingPose",
+      "channels": 55,
+      "meanAbsoluteMuscleDelta": 0.0,
+      "largest": [
+        {
+          "channel": "Spine Front-Back",
+          "delta": 0.0
+        },
+        {
+          "channel": "Spine Left-Right",
+          "delta": 0.0
+        },
+        {
+          "channel": "Spine Twist Left-Right",
+          "delta": 0.0
+        },
+        {
+          "channel": "Chest Front-Back",
+          "delta": 0.0
+        },
+        {
+          "channel": "Chest Left-Right",
+          "delta": 0.0
+        }
+      ]
+    },
+    {
+      "from": "JumpRunningRisingPose",
+      "to": "FallAirborneIdlePhysicsLoop",
+      "channels": 55,
+      "meanAbsoluteMuscleDelta": 0.281822115,
+      "largest": [
+        {
+          "channel": "UpperChest Front-Back",
+          "delta": 1.40026653
+        },
+        {
+          "channel": "Left Lower Leg Stretch",
+          "delta": 0.9747454
+        },
+        {
+          "channel": "Left Foot Twist In-Out",
+          "delta": 0.9468757
+        },
+        {
+          "channel": "Right Foot Twist In-Out",
+          "delta": 0.796976566
+        },
+        {
+          "channel": "Head Turn Left-Right",
+          "delta": 0.7251096
+        }
+      ]
+    },
+    {
+      "from": "FallLandingContactApproach",
+      "to": "JumpRunningLandingGrounded",
+      "channels": 55,
+      "meanAbsoluteMuscleDelta": 0.3065986,
+      "largest": [
+        {
+          "channel": "Right Shoulder Front-Back",
+          "delta": 1.241899
+        },
+        {
+          "channel": "Right Upper Leg Front-Back",
+          "delta": 1.02569962
+        },
+        {
+          "channel": "Right Foot Twist In-Out",
+          "delta": 0.863280833
+        },
+        {
+          "channel": "Right Hand In-Out",
+          "delta": 0.787984
+        },
+        {
+          "channel": "Right Arm Down-Up",
+          "delta": 0.7790637
+        }
+      ]
+    },
+    {
+      "from": "JumpRunningLandingGrounded",
+      "to": "IdleBreathingLoop",
+      "channels": 55,
+      "meanAbsoluteMuscleDelta": 0.292797863,
+      "largest": [
+        {
+          "channel": "Left Lower Leg Stretch",
+          "delta": 1.54085875
+        },
+        {
+          "channel": "Left Hand In-Out",
+          "delta": 1.11778533
+        },
+        {
+          "channel": "Head Nod Down-Up",
+          "delta": 0.8271262
+        },
+        {
+          "channel": "Left Shoulder Front-Back",
+          "delta": 0.763772249
+        },
+        {
+          "channel": "Right Toes Up-Down",
+          "delta": 0.743048
+        }
+      ]
+    },
+    {
+      "from": "JumpUnarmedTakeoffGrounded",
+      "to": "JumpUnarmedRisingPose",
+      "channels": 55,
+      "meanAbsoluteMuscleDelta": 0.0,
+      "largest": [
+        {
+          "channel": "Spine Front-Back",
+          "delta": 0.0
+        },
+        {
+          "channel": "Spine Left-Right",
+          "delta": 0.0
+        },
+        {
+          "channel": "Spine Twist Left-Right",
+          "delta": 0.0
+        },
+        {
+          "channel": "Chest Front-Back",
+          "delta": 0.0
+        },
+        {
+          "channel": "Chest Left-Right",
+          "delta": 0.0
+        }
+      ]
+    },
+    {
+      "from": "JumpUnarmedRisingPose",
+      "to": "FallAirborneIdlePhysicsLoop",
+      "channels": 55,
+      "meanAbsoluteMuscleDelta": 0.2878173,
+      "largest": [
+        {
+          "channel": "Right Shoulder Front-Back",
+          "delta": 2.107986
+        },
+        {
+          "channel": "UpperChest Front-Back",
+          "delta": 1.420662
+        },
+        {
+          "channel": "Left Shoulder Front-Back",
+          "delta": 1.38042378
+        },
+        {
+          "channel": "Right Foot Up-Down",
+          "delta": 0.8825269
+        },
+        {
+          "channel": "Left Forearm Stretch",
+          "delta": 0.700837851
+        }
+      ]
+    },
+    {
+      "from": "FallLandingContactApproach",
+      "to": "JumpUnarmedLandingGrounded",
+      "channels": 55,
+      "meanAbsoluteMuscleDelta": 0.238884792,
+      "largest": [
+        {
+          "channel": "Right Shoulder Front-Back",
+          "delta": 1.25830185
+        },
+        {
+          "channel": "Left Forearm Stretch",
+          "delta": 1.00535464
+        },
+        {
+          "channel": "Head Nod Down-Up",
+          "delta": 0.884125769
+        },
+        {
+          "channel": "UpperChest Front-Back",
+          "delta": 0.777359366
+        },
+        {
+          "channel": "Right Upper Leg Front-Back",
+          "delta": 0.613544345
+        }
+      ]
+    },
+    {
+      "from": "JumpUnarmedLandingGrounded",
+      "to": "IdleBreathingLoop",
+      "channels": 55,
+      "meanAbsoluteMuscleDelta": 0.108723864,
+      "largest": [
+        {
+          "channel": "Left Shoulder Front-Back",
+          "delta": 0.4977211
+        },
+        {
+          "channel": "UpperChest Front-Back",
+          "delta": 0.494668484
+        },
+        {
+          "channel": "Left Hand In-Out",
+          "delta": 0.3350824
+        },
+        {
+          "channel": "Right Hand In-Out",
+          "delta": 0.330757082
+        },
+        {
+          "channel": "UpperChest Twist Left-Right",
+          "delta": 0.317651868
+        }
+      ]
+    },
+    {
+      "from": "FallAirborneIdlePhysicsLoop",
+      "to": "FallLandingContactApproach",
+      "channels": 55,
+      "meanAbsoluteMuscleDelta": 0.00229400652,
+      "largest": [
+        {
+          "channel": "Right Upper Leg Twist In-Out",
+          "delta": 0.02059403
+        },
+        {
+          "channel": "Spine Left-Right",
+          "delta": 0.015313223
+        },
+        {
+          "channel": "Right Upper Leg In-Out",
+          "delta": 0.0135868192
+        },
+        {
+          "channel": "Right Lower Leg Twist In-Out",
+          "delta": 0.0135417283
+        },
+        {
+          "channel": "Right Lower Leg Stretch",
+          "delta": 0.0108549595
+        }
+      ]
+    }
+  ]
+}

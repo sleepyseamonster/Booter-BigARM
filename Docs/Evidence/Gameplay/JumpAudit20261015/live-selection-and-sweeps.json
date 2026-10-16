@@ -1,0 +1,149 @@
+{
+  "utc": "2026-10-16T04:20:40.0336842Z",
+  "scope": "Read-only live Editor selection and current capsule sweeps only. No movement, physics stepping, graph evaluation, input or scene writes.",
+  "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+  "dirty": true,
+  "playing": false,
+  "compiling": false,
+  "module": "c3a1e99e-5521-459a-82b2-8bd9717da120",
+  "position": [
+    -1848.0,
+    -47.3860435,
+    -1498.0
+  ],
+  "capsule": {
+    "height": 1.82,
+    "radius": 0.2,
+    "center": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "scale": [
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "airborne": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/AirborneProfile.asset",
+  "native": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/CampNativeMotionReview.asset",
+  "runningThreshold": 0.6,
+  "airControlAcceleration": 3.0,
+  "maximumPlanarSpeed": 3.8,
+  "anticipationDistance": 0.65,
+  "contactDistance": 0.03,
+  "hardLandingSpeed": 6.5,
+  "reviewAirSpeed": 6.0,
+  "variants": [
+    {
+      "sourceId": "JumpStanding",
+      "upwardSpeed": 4.6,
+      "takeoff": "JumpStandingTakeoffGrounded",
+      "takeoffDuration": 0.6333333,
+      "riseDuration": 0.333333373,
+      "landing": "JumpStandingLandingGrounded",
+      "landingDuration": 0.950000048
+    },
+    {
+      "sourceId": "JumpRunning",
+      "upwardSpeed": 4.6,
+      "takeoff": "JumpRunningTakeoffGrounded",
+      "takeoffDuration": 0.098,
+      "riseDuration": 0.278,
+      "landing": "JumpRunningLandingGrounded",
+      "landingDuration": 0.294999957
+    },
+    {
+      "sourceId": "JumpUnarmed",
+      "upwardSpeed": 4.6,
+      "takeoff": "JumpUnarmedTakeoffGrounded",
+      "takeoffDuration": 0.5666666,
+      "riseDuration": 0.333333433,
+      "landing": "JumpUnarmedLandingGrounded",
+      "landingDuration": 0.866666555
+    }
+  ],
+  "fallDuration": 0.7,
+  "approachDuration": 0.2666667,
+  "hardLandingDuration": 0.8,
+  "gravity": [
+    0.0,
+    -9.81,
+    0.0
+  ],
+  "fixedDelta": 0.0199999921,
+  "sweeps": [
+    {
+      "angle": 0,
+      "hit": false,
+      "distance": null,
+      "collider": null,
+      "normal": null,
+      "walkable": false,
+      "permittedSpeed": 5.0
+    },
+    {
+      "angle": 45,
+      "hit": false,
+      "distance": null,
+      "collider": null,
+      "normal": null,
+      "walkable": false,
+      "permittedSpeed": 5.0
+    },
+    {
+      "angle": 90,
+      "hit": false,
+      "distance": null,
+      "collider": null,
+      "normal": null,
+      "walkable": false,
+      "permittedSpeed": 5.0
+    },
+    {
+      "angle": 135,
+      "hit": false,
+      "distance": null,
+      "collider": null,
+      "normal": null,
+      "walkable": false,
+      "permittedSpeed": 5.0
+    },
+    {
+      "angle": 180,
+      "hit": false,
+      "distance": null,
+      "collider": null,
+      "normal": null,
+      "walkable": false,
+      "permittedSpeed": 5.0
+    },
+    {
+      "angle": 225,
+      "hit": false,
+      "distance": null,
+      "collider": null,
+      "normal": null,
+      "walkable": false,
+      "permittedSpeed": 5.0
+    },
+    {
+      "angle": 270,
+      "hit": false,
+      "distance": null,
+      "collider": null,
+      "normal": null,
+      "walkable": false,
+      "permittedSpeed": 5.0
+    },
+    {
+      "angle": 315,
+      "hit": false,
+      "distance": null,
+      "collider": null,
+      "normal": null,
+      "walkable": false,
+      "permittedSpeed": 5.0
+    }
+  ]
+}

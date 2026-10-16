@@ -1,0 +1,57 @@
+{
+  "scope": "Offline calculations from the inspected profile and static read-only geometry. Ideal flight excludes collisions/integration/windup. Clip+blend budgets are nominal; fixed-step rounding and event order shift observed boundaries. No gameplay simulation.",
+  "variants": [
+    {
+      "source": "JumpStanding",
+      "takeoffClipSeconds": 0.6333333,
+      "takeoffFixedTicks": 32,
+      "takeoffFixedSeconds": 0.6399997472,
+      "landingClipSeconds": 0.950000048,
+      "idealApexHeight": 1.078491335372069,
+      "idealSameHeightFlightSeconds": 0.9378185524974515,
+      "nominalLandingPlusSettleSeconds": 1.070000048
+    },
+    {
+      "source": "JumpRunning",
+      "takeoffClipSeconds": 0.098,
+      "takeoffFixedTicks": 5,
+      "takeoffFixedSeconds": 0.0999999605,
+      "landingClipSeconds": 0.294999957,
+      "idealApexHeight": 1.078491335372069,
+      "idealSameHeightFlightSeconds": 0.9378185524974515,
+      "nominalLandingPlusSettleSeconds": 0.414999957
+    },
+    {
+      "source": "JumpUnarmed",
+      "takeoffClipSeconds": 0.5666666,
+      "takeoffFixedTicks": 29,
+      "takeoffFixedSeconds": 0.5799997709,
+      "landingClipSeconds": 0.866666555,
+      "idealApexHeight": 1.078491335372069,
+      "idealSameHeightFlightSeconds": 0.9378185524974515,
+      "nominalLandingPlusSettleSeconds": 0.986666555
+    }
+  ],
+  "probeSummary": [
+    {
+      "tangent": false,
+      "casts": 480,
+      "walkableHits": 119,
+      "zeroPermittedSpeed": 27,
+      "positiveHitDistances": 119
+    },
+    {
+      "tangent": true,
+      "casts": 480,
+      "walkableHits": 74,
+      "zeroPermittedSpeed": 6,
+      "positiveHitDistances": 74
+    }
+  ],
+  "landingDeceleration": 20,
+  "stopTimeFrom5MetresPerSecond": 0.25,
+  "standingBlendSeconds": 0.12,
+  "physicsPoseUpdatesPerSecond": 50.0000197500078,
+  "slopeCentreFootGapAt40Degrees": 0.06108145786645572,
+  "slopeAtWhichCentreFootGapExceedsContactDistance": 29.591845793950736
+}

@@ -1,0 +1,61 @@
+{
+  "scope": "Five most recent error entries from the bridge tail; match the current visible error count. Earlier historical bridge/compiler/inventory entries are excluded from current jump diagnosis.",
+  "rawTailSha256": "12e24784f7d9897012352088944bbeeca54cd1b446bacce2750908fe98171226",
+  "groundTruth": {
+    "sampledUtc": "2026-10-16T04:22:23.7452192Z",
+    "ageMs": 244,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 5,
+    "consoleWarnings": 0,
+    "consoleLogs": 20,
+    "seeded": true
+  },
+  "entries": [
+    {
+      "seq": 7733,
+      "timestampUtc": "2026-10-16T04:15:07.7765892Z",
+      "level": "error",
+      "logType": "Exception",
+      "message": "IndexOutOfRangeException: Index was outside the bounds of the array.",
+      "stackTrace": "UnityEngine.InputSystem.InputAction+CallbackContext.get_control () (at ./Library/PackageCache/com.unity.inputsystem@21a28c3a6c83/InputSystem/Actions/InputAction.cs:2140)\nUnityEngine.InputSystem.UI.InputSystemUIInputModule.OnSubmitCancelCallback (UnityEngine.InputSystem.InputAction+CallbackContext context) (at ./Library/PackageCache/com.unity.inputsystem@21a28c3a6c83/InputSystem/Plugins/UI/InputSystemUIInputModule.cs:2262)\nUnityEngine.InputSystem.Utilities.DelegateHelpers.InvokeCallbacksSafe[TValue] (UnityEngine.InputSystem.Utilities.CallbackArray`1[System.Action`1[TValue]]& callbacks, TValue argument, System.String callbackName, System.Object context) (at ./Library/PackageCache/com.unity.inputsystem@21a28c3a6c83/InputSystem/Utilities/DelegateHelpers.cs:46)\nUnityEngine.InputSystem.LowLevel.<>c__DisplayClass7_0:<set_onUpdate>b__0(NativeInputUpdateType, NativeInputEventBuffer*)\nUnityEngineInternal.Input.NativeInputSystem:NotifyUpdate(NativeInputUpdateType, IntPtr)\n",
+      "seeded": false
+    },
+    {
+      "seq": 7734,
+      "timestampUtc": "2026-10-16T04:15:07.7780919Z",
+      "level": "error",
+      "logType": "Error",
+      "message": "IndexOutOfRangeException while executing 'performed' callbacks of 'UI/Cancel[/Keyboard/escape,/DualSenseGamepadHID/buttonEast,/XInputControllerWindows/buttonEast]'",
+      "stackTrace": "UnityEngine.InputSystem.LowLevel.NativeInputRuntime/<>c__DisplayClass7_0:<set_onUpdate>b__0 (UnityEngineInternal.Input.NativeInputUpdateType,UnityEngineInternal.Input.NativeInputEventBuffer*)\nUnityEngineInternal.Input.NativeInputSystem:NotifyUpdate (UnityEngineInternal.Input.NativeInputUpdateType,intptr)\n",
+      "seeded": false
+    },
+    {
+      "seq": 7746,
+      "timestampUtc": "2026-10-16T04:15:59.8309428Z",
+      "level": "error",
+      "logType": "Exception",
+      "message": "IndexOutOfRangeException: Index was outside the bounds of the array.",
+      "stackTrace": "UnityEngine.InputSystem.InputAction+CallbackContext.get_control () (at ./Library/PackageCache/com.unity.inputsystem@21a28c3a6c83/InputSystem/Actions/InputAction.cs:2140)\nUnityEngine.InputSystem.UI.InputSystemUIInputModule.OnSubmitCancelCallback (UnityEngine.InputSystem.InputAction+CallbackContext context) (at ./Library/PackageCache/com.unity.inputsystem@21a28c3a6c83/InputSystem/Plugins/UI/InputSystemUIInputModule.cs:2262)\nUnityEngine.InputSystem.Utilities.DelegateHelpers.InvokeCallbacksSafe[TValue] (UnityEngine.InputSystem.Utilities.CallbackArray`1[System.Action`1[TValue]]& callbacks, TValue argument, System.String callbackName, System.Object context) (at ./Library/PackageCache/com.unity.inputsystem@21a28c3a6c83/InputSystem/Utilities/DelegateHelpers.cs:46)\nUnityEngine.InputSystem.LowLevel.<>c__DisplayClass7_0:<set_onUpdate>b__0(NativeInputUpdateType, NativeInputEventBuffer*)\nUnityEngineInternal.Input.NativeInputSystem:NotifyUpdate(NativeInputUpdateType, IntPtr)\n",
+      "seeded": false
+    },
+    {
+      "seq": 7747,
+      "timestampUtc": "2026-10-16T04:15:59.8314465Z",
+      "level": "error",
+      "logType": "Error",
+      "message": "IndexOutOfRangeException while executing 'performed' callbacks of 'UI/Cancel[/Keyboard/escape,/DualSenseGamepadHID/buttonEast,/XInputControllerWindows/buttonEast]'",
+      "stackTrace": "UnityEngine.InputSystem.LowLevel.NativeInputRuntime/<>c__DisplayClass7_0:<set_onUpdate>b__0 (UnityEngineInternal.Input.NativeInputUpdateType,UnityEngineInternal.Input.NativeInputEventBuffer*)\nUnityEngineInternal.Input.NativeInputSystem:NotifyUpdate (UnityEngineInternal.Input.NativeInputUpdateType,intptr)\n",
+      "seeded": false
+    },
+    {
+      "seq": 7750,
+      "timestampUtc": "2026-10-16T04:16:10.0407021Z",
+      "level": "error",
+      "logType": "Exception",
+      "message": "MissingReferenceException: The object of type 'BooterBigArm.TopDown3D.TopDown3DPlayerAnimationDriver' has been destroyed but you are still trying to access it.\nYour script should either check if it is null or you should not destroy the object.",
+      "stackTrace": "UnityEngine.Object+MarshalledUnityObject.TryThrowEditorNullExceptionObject (UnityEngine.Object unityObj, System.String parameterName) (at <5ea200363ab142a582463089d51cabd3>:0)\nUnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException (System.Object obj) (at <5ea200363ab142a582463089d51cabd3>:0)\nUnityEngine.Component.get_gameObject () (at <5ea200363ab142a582463089d51cabd3>:0)\nUnityEngine.Component.TryGetComponent[T] (T& component) (at <5ea200363ab142a582463089d51cabd3>:0)\nBooterBigArm.TopDown3D.TopDown3DPlayerAnimationDriver.get_ContinuationTurnStatus () (at Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.Continuation.cs:22)\nBooterBigArm.TopDown3D.TopDown3DPlayerAnimationDriver.get_LaboratoryForwardReviewStatus () (at Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.ForwardReview.cs:22)\nBooterBigArm.TopDown3D.TopDown3DAnimationPlaygroundSession.get_ForwardReviewStatus () (at Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.cs:24)\nBooterBigArm.TopDown3D.TopDown3DAnimationPlaygroundStation.RefreshStatus () (at Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundStation.cs:89)\nBooterBigArm.TopDown3D.TopDown3DAnimationPlaygroundSession.SetReadiness (BooterBigArm.TopDown3D.AnimationPlaygroundReadiness value, System.String reason) (at Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.cs:86)\nBooterBigArm.TopDown3D.TopDown3DAnimationPlaygroundSession.OnDisable () (at Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.cs:91)\n",
+      "seeded": false
+    }
+  ]
+}
