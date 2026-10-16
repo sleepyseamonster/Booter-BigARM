@@ -1,0 +1,54 @@
+{
+  "reason": "Author correction October 15: dirtboard parts and sail components in Tools move to Salvage, including supporting bracket, running-gear kit and named lane snag bar. The complete dirtboard and handheld dirtboard sail remain Tools. Category does not change IDs, tiers, recipe roles or gameplay behavior.",
+  "items": [
+    {
+      "id": "proposal.wind.sail_panel",
+      "name": "Prepared insect-wing sail panel",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.wind.folding_frame",
+      "name": "Collapsible sail frame",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.wind.sail_grip",
+      "name": "Hand-sail grip assembly",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.wind.wheel",
+      "name": "Dirtboard wheel assembly",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.legger.board_bracket",
+      "name": "Legger dirtboard carrying bracket",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.t4.spar_joint",
+      "name": "Collapsible sail-spar joint kit",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.t4.wheel_hub",
+      "name": "Dirtboard wheel-hub core",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.collection.dirtboard_running_gear_kit",
+      "name": "Dirtboard running-gear kit",
+      "previous": "Tools"
+    },
+    {
+      "id": "proposal.collection.dirtboard_lane_snag_bar",
+      "name": "Dirtboard lane snag bar",
+      "previous": "Tools"
+    }
+  ],
+  "reviewSelectionHash": "93681ecddb2ee98352d73a389092b3aa3df06fbe50f13edf98c71a21333dc1dc",
+  "sourceHashBefore": "77014fcb8184aaa34fcba3de809793b01c9d3f21122be5a44c4a6344edce0dc3",
+  "sourceHashAfter": "c6bf94e9cabf37237aeb94d68f0714a0a83dcb0c155b80d0810434dd73ffc686",
+  "scope": "Category and linked category/search/count updates only. Non-Tools review marks and all review/art state retained. No runtime world identity, streaming, placement or persisted gameplay changes."
+}

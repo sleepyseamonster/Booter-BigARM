@@ -3,14 +3,14 @@
   "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
   "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
   "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
-  "sourceHashAfter": "a799c8fb8ecc4f1d69f41bd994655511cc6d789bf31af09a6845d9f473e3aae4",
+  "sourceHashAfter": "c6bf94e9cabf37237aeb94d68f0714a0a83dcb0c155b80d0810434dd73ffc686",
   "counts": {
     "Accessories": 7,
     "Clothing": 8,
-    "Tools": 28,
+    "Tools": 27,
     "Armor": 35,
     "Attachments": 4,
-    "Salvage": 16,
+    "Salvage": 17,
     "Workshop upgrades": 1,
     "Camp items": 8,
     "Legger attachments": 11,
@@ -363,8 +363,8 @@
     {
       "id": "proposal.legger.board_bracket",
       "name": "Legger dirtboard carrying bracket",
-      "category": "Tools",
-      "reason": "Author correction: dedicated dirtboard and handheld-sail items belong in Tools, including their parts, service kit, carrying bracket and named lane snag bar. Category does not change item type, tier, recipe role or gameplay behavior."
+      "category": "Salvage",
+      "reason": "Author correction October 15: dirtboard parts and sail components in Tools move to Salvage, including supporting bracket, running-gear kit and named lane snag bar. The complete dirtboard and handheld dirtboard sail remain Tools. Category does not change IDs, tiers, recipe roles or gameplay behavior."
     },
     {
       "id": "proposal.legger.grease_applicator",
@@ -963,6 +963,22 @@
       ],
       "sourceHashBefore": "06134613cd3da3d64b1b1d9c6648cd9b15f976bd75077e659f567e203bb890ab",
       "sourceHashAfter": "a799c8fb8ecc4f1d69f41bd994655511cc6d789bf31af09a6845d9f473e3aae4"
+    },
+    {
+      "reason": "Author correction October 15: dirtboard parts and sail components in Tools move to Salvage, including supporting bracket, running-gear kit and named lane snag bar. The complete dirtboard and handheld dirtboard sail remain Tools. Category does not change IDs, tiers, recipe roles or gameplay behavior.",
+      "movedIds": [
+        "proposal.collection.dirtboard_lane_snag_bar",
+        "proposal.collection.dirtboard_running_gear_kit",
+        "proposal.legger.board_bracket",
+        "proposal.t4.spar_joint",
+        "proposal.t4.wheel_hub",
+        "proposal.wind.folding_frame",
+        "proposal.wind.sail_grip",
+        "proposal.wind.sail_panel",
+        "proposal.wind.wheel"
+      ],
+      "sourceHashBefore": "77014fcb8184aaa34fcba3de809793b01c9d3f21122be5a44c4a6344edce0dc3",
+      "sourceHashAfter": "c6bf94e9cabf37237aeb94d68f0714a0a83dcb0c155b80d0810434dd73ffc686"
     }
   ]
 }
