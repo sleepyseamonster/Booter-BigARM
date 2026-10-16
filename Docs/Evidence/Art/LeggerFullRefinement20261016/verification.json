@@ -1,0 +1,54 @@
+{
+  "source_sha256": "d5e676a6b5c0cf03c0608acef0b1efee9360997337bb0ed5a2481aa267dfc226",
+  "native": {
+    "path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration04.blend",
+    "sha256": "d5e676a6b5c0cf03c0608acef0b1efee9360997337bb0ed5a2481aa267dfc226",
+    "bytes": 796129451
+  },
+  "recovery": {
+    "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\Before.blend",
+    "sha256": "9f47958a59cde1ff245825f5d2a569dfda6fa611e7981f56488208f374171b13",
+    "bytes": 768933496
+  },
+  "major_meshes": 76,
+  "quad_controls": 45762,
+  "evaluated_triangles": 146264,
+  "active_maps": 55,
+  "new_packed_maps": 25,
+  "retained_active_maps": 30,
+  "preserved_prepass_meshes": 909,
+  "preserved_prepass_packed_images": 166,
+  "saved_total_mesh_objects": 971,
+  "saved_total_packed_images": 191,
+  "geometry_exact_active_parts": 64,
+  "fully_exact_cargo_and_saddle_parts": 14,
+  "all_control_connectivity_uv_coordinates_and_modifiers_unchanged": true,
+  "all_active_transforms_and_joints_unchanged": true,
+  "bounds_m": [
+    [
+      -0.43299999833106995,
+      -0.8400000333786011,
+      1.4901161193847656e-08
+    ],
+    [
+      0.43299999833106995,
+      0.8038591146469116,
+      2.2146799564361572
+    ]
+  ],
+  "final_review_images": 60,
+  "background_only": true,
+  "unity_changes": false,
+  "export_or_rig": false,
+  "visual_acceptance": "Modeling next pass inspected offline; final author selection and runtime/rig acceptance remain separate.",
+  "checks": [
+    "Source/recovery SHA guards; atomic replacement",
+    "All 909 prior mesh fingerprints and 166 packed payloads retained",
+    "76 closed nondegenerate all-quad controls; exact topology/UV/modifier/transform comparisons",
+    "Eight mirrored pairs, joint pivots and eleven independent module roots",
+    "Six atlas raster checks: full sampled evaluated coverage, nonempty inner albedo, normalized normal lengths",
+    "Authored joined bake geometry matches native evaluated vertices within 1 micrometre",
+    "Matched authored/PBR renders and independent native render comparison"
+  ],
+  "diagnostics": "Gauge atlas repair reran the same strict texture gates. Verification harness fixes handle Blender string RNA properties and update newly linked library world matrices before comparing. Authored-join alpha differences are bounded to one sample quantum on fewer than 1e-5 pixels, supported by explicit geometry equality; native-to-candidate alpha remains exact."
+}

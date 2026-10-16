@@ -1,0 +1,218 @@
+{
+  "source_sha256": "d5e676a6b5c0cf03c0608acef0b1efee9360997337bb0ed5a2481aa267dfc226",
+  "views": [
+    {
+      "image": "current_assembled.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        3,
+        -4,
+        1.5
+      ],
+      "ortho_scale_m": 2.68,
+      "clay": false
+    },
+    {
+      "image": "current_side.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 2.68,
+      "clay": false
+    },
+    {
+      "image": "current_front.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        0,
+        -4,
+        0.2
+      ],
+      "ortho_scale_m": 2.68,
+      "clay": false
+    },
+    {
+      "image": "current_rear.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        0,
+        4,
+        0.2
+      ],
+      "ortho_scale_m": 2.68,
+      "clay": false
+    },
+    {
+      "image": "current_top.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.149999976158142
+      ],
+      "direction": [
+        0,
+        0,
+        4
+      ],
+      "ortho_scale_m": 1.9,
+      "clay": false
+    },
+    {
+      "image": "current_underside.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.25
+      ],
+      "direction": [
+        2,
+        1,
+        -4
+      ],
+      "ortho_scale_m": 2.4,
+      "clay": false
+    },
+    {
+      "image": "current_leg_close.png",
+      "center_m": [
+        0.23499999940395355,
+        -0.2800000011920929,
+        0.9200000166893005
+      ],
+      "direction": [
+        3,
+        -4,
+        0.8
+      ],
+      "ortho_scale_m": 1.2,
+      "clay": false
+    },
+    {
+      "image": "current_foot_close.png",
+      "center_m": [
+        0.2849999964237213,
+        -0.5299999713897705,
+        0.11999999731779099
+      ],
+      "direction": [
+        3,
+        -3,
+        2
+      ],
+      "ortho_scale_m": 0.9,
+      "clay": false
+    },
+    {
+      "image": "current_cockpit.png",
+      "center_m": [
+        0.0,
+        -0.20000000298023224,
+        2.0299999713897705
+      ],
+      "direction": [
+        3,
+        2,
+        3
+      ],
+      "ortho_scale_m": 1.3,
+      "clay": false
+    },
+    {
+      "image": "current_controls.png",
+      "center_m": [
+        0.20000000298023224,
+        -0.3499999940395355,
+        2.1600000858306885
+      ],
+      "direction": [
+        2,
+        2,
+        2.2
+      ],
+      "ortho_scale_m": 0.75,
+      "clay": false
+    },
+    {
+      "image": "current_stirrup.png",
+      "center_m": [
+        0.2849999964237213,
+        -0.02500000037252903,
+        1.5700000524520874
+      ],
+      "direction": [
+        3,
+        -3,
+        2
+      ],
+      "ortho_scale_m": 0.65,
+      "clay": false
+    },
+    {
+      "image": "current_cargo_mount.png",
+      "center_m": [
+        0.27000001072883606,
+        0.4000000059604645,
+        1.7599999904632568
+      ],
+      "direction": [
+        3,
+        3,
+        1.5
+      ],
+      "ortho_scale_m": 1.25,
+      "clay": false
+    },
+    {
+      "image": "current_bare_frame_side.png",
+      "center_m": [
+        0.0,
+        -0.05000000074505806,
+        1.8300000429153442
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 1.7,
+      "clay": false
+    },
+    {
+      "image": "current_bare_frame_oblique.png",
+      "center_m": [
+        0.0,
+        -0.05000000074505806,
+        1.8300000429153442
+      ],
+      "direction": [
+        3,
+        -4,
+        1.5
+      ],
+      "ortho_scale_m": 1.7,
+      "clay": false
+    }
+  ],
+  "native_saved": false,
+  "native_modified": false,
+  "scope": "Read-only original/current rider-area captures; camera/light/material overrides only in process memory."
+}

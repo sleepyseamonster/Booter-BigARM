@@ -1,0 +1,1677 @@
+{
+  "file_sha256": "d5e676a6b5c0cf03c0608acef0b1efee9360997337bb0ed5a2481aa267dfc226",
+  "blender": "5.2.2 LTS",
+  "scenes": 1,
+  "view_layers": 1,
+  "major_meshes": 76,
+  "control_quads": 45762,
+  "evaluated_triangles": 146264,
+  "all_control_topology_and_uv_coordinates_unchanged": true,
+  "all_active_transforms_unchanged": true,
+  "all_modifier_parameters_unchanged": true,
+  "shape_edits": [
+    {
+      "name": "Legger_Part_L_UpperLinkShell",
+      "method": "Flatten existing C-section spans into deliberate armor planes; retain section anchors and thickness",
+      "maximum_vertex_displacement_m": 0.004253663953945046
+    },
+    {
+      "name": "Legger_Part_L_MiddleLinkShell",
+      "method": "Flatten existing C-section spans into deliberate armor planes; retain section anchors and thickness",
+      "maximum_vertex_displacement_m": 0.003930713226262942
+    },
+    {
+      "name": "Legger_Part_L_LowerLinkShell",
+      "method": "Flatten existing C-section spans into deliberate armor planes; retain section anchors and thickness",
+      "maximum_vertex_displacement_m": 0.0030625980369190643
+    },
+    {
+      "name": "Legger_Part_R_UpperLinkShell",
+      "method": "Flatten existing C-section spans into deliberate armor planes; retain section anchors and thickness",
+      "maximum_vertex_displacement_m": 0.004253663953945046
+    },
+    {
+      "name": "Legger_Part_R_MiddleLinkShell",
+      "method": "Flatten existing C-section spans into deliberate armor planes; retain section anchors and thickness",
+      "maximum_vertex_displacement_m": 0.003930713226262942
+    },
+    {
+      "name": "Legger_Part_R_LowerLinkShell",
+      "method": "Flatten existing C-section spans into deliberate armor planes; retain section anchors and thickness",
+      "maximum_vertex_displacement_m": 0.0030625980369190643
+    },
+    {
+      "name": "Legger_Part_L_upper_body_shroud",
+      "method": "Reduce inflated crown into broad center plane and angled shoulders using existing vertices",
+      "maximum_vertex_displacement_m": 0.0030000000530562825
+    },
+    {
+      "name": "Legger_Part_L_front_fairing",
+      "method": "Reduce inflated crown into broad center plane and angled shoulders using existing vertices",
+      "maximum_vertex_displacement_m": 0.0049999999368446875
+    },
+    {
+      "name": "Legger_Part_R_upper_body_shroud",
+      "method": "Reduce inflated crown into broad center plane and angled shoulders using existing vertices",
+      "maximum_vertex_displacement_m": 0.0030000000530562825
+    },
+    {
+      "name": "Legger_Part_R_front_fairing",
+      "method": "Reduce inflated crown into broad center plane and angled shoulders using existing vertices",
+      "maximum_vertex_displacement_m": 0.0049999999368446875
+    },
+    {
+      "name": "Legger_Part_FrontControlPod",
+      "method": "Reduce inflated crown into broad center plane and angled shoulders using existing vertices",
+      "maximum_vertex_displacement_m": 0.006000000106112565
+    },
+    {
+      "name": "Legger_Part_InstrumentGauge",
+      "method": "Expose existing display face 11 mm along rider-facing normal; keep its back embedded in gauge housing",
+      "maximum_vertex_displacement_m": 0.011
+    }
+  ],
+  "geometry_exact_active_parts": [
+    "Legger_Part_L_CargoRack",
+    "Legger_Part_R_CargoRack",
+    "Legger_Part_L_FrontYoke",
+    "Legger_Part_L_HipMount",
+    "Legger_Part_R_FrontYoke",
+    "Legger_Part_R_HipMount",
+    "Legger_Part_MainFrame",
+    "Legger_Part_SeatSubframe",
+    "Legger_Part_SteeringMount",
+    "Legger_Part_L_Footrest",
+    "Legger_Part_R_Footrest",
+    "Legger_Part_ServiceHarness",
+    "Legger_Part_DriveCore",
+    "Legger_Part_SpineHousing",
+    "Legger_Part_L_DrivePod",
+    "Legger_Part_R_DrivePod",
+    "Legger_Part_RearCoolingHousing",
+    "Legger_Part_L_HipJoint",
+    "Legger_Part_L_KneeJoint",
+    "Legger_Part_L_HockJoint",
+    "Legger_Part_L_AnkleJoint",
+    "Legger_Part_L_UpperLinkFrame",
+    "Legger_Part_L_MiddleLinkFrame",
+    "Legger_Part_L_MiddleLinkActuatorBarrel",
+    "Legger_Part_L_MiddleLinkActuatorRod",
+    "Legger_Part_L_LowerLinkFrame",
+    "Legger_Part_L_LowerLinkActuatorBarrel",
+    "Legger_Part_L_LowerLinkActuatorRod",
+    "Legger_Part_L_Foot",
+    "Legger_Part_R_HipJoint",
+    "Legger_Part_R_KneeJoint",
+    "Legger_Part_R_HockJoint",
+    "Legger_Part_R_AnkleJoint",
+    "Legger_Part_R_UpperLinkFrame",
+    "Legger_Part_R_MiddleLinkFrame",
+    "Legger_Part_R_MiddleLinkActuatorBarrel",
+    "Legger_Part_R_MiddleLinkActuatorRod",
+    "Legger_Part_R_LowerLinkFrame",
+    "Legger_Part_R_LowerLinkActuatorBarrel",
+    "Legger_Part_R_LowerLinkActuatorRod",
+    "Legger_Part_R_Foot",
+    "Legger_Part_L_tail_shroud",
+    "Legger_Part_R_tail_shroud",
+    "Legger_Part_FrontTankCowling",
+    "Legger_Part_SaddleUpholstery",
+    "Legger_Part_SaddlePan",
+    "Legger_Part_SteeringStem",
+    "Legger_Part_L_Grip",
+    "Legger_Part_L_BrakeLever",
+    "Legger_Part_R_Grip",
+    "Legger_Part_R_BrakeLever",
+    "Legger_Part_Handlebar",
+    "Legger_Part_Cargo_L_Main_Body",
+    "Legger_Part_Cargo_L_Main_Straps",
+    "Legger_Part_Cargo_L_Main_Lid",
+    "Legger_Part_Cargo_L_Aux_Body",
+    "Legger_Part_Cargo_L_Aux_Straps",
+    "Legger_Part_Cargo_L_Aux_Lid",
+    "Legger_Part_Cargo_R_Main_Body",
+    "Legger_Part_Cargo_R_Main_Straps",
+    "Legger_Part_Cargo_R_Main_Lid",
+    "Legger_Part_Cargo_R_Aux_Body",
+    "Legger_Part_Cargo_R_Aux_Straps",
+    "Legger_Part_Cargo_R_Aux_Lid"
+  ],
+  "bounds_m": [
+    [
+      -0.43299999833106995,
+      -0.8400000333786011,
+      1.4901161193847656e-08
+    ],
+    [
+      0.43299999833106995,
+      0.8038591146469116,
+      2.2146799564361572
+    ]
+  ],
+  "objects": [
+    {
+      "name": "Legger_Part_L_CargoRack",
+      "module": "Frame",
+      "root": "Legger_Chassis_ROOT",
+      "pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "quads": 824,
+      "vertices": 852,
+      "evaluated_triangles": 2896,
+      "material": "Legger_FullRefine_Frame_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_CargoRack",
+      "module": "Frame",
+      "root": "Legger_Chassis_ROOT",
+      "pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "quads": 824,
+      "vertices": 852,
+      "evaluated_triangles": 2896,
+      "material": "Legger_FullRefine_Frame_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_FrontYoke",
+      "module": "Frame",
+      "root": "Legger_Chassis_ROOT",
+      "pivot_m": [
+        -0.14000000059604645,
+        -0.5099999904632568,
+        1.6799999475479126
+      ],
+      "quads": 490,
+      "vertices": 498,
+      "evaluated_triangles": 1244,
+      "material": "Legger_FullRefine_Frame_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_HipMount",
+      "module": "Frame",
+      "root": "Legger_Chassis_ROOT",
+      "pivot_m": [
+        -0.17499999701976776,
+        -0.2549999952316284,
+        1.4600000381469727
+      ],
+      "quads": 300,
+      "vertices": 306,
+      "evaluated_triangles": 788,
+      "material": "Legger_FullRefine_Frame_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_FrontYoke",
+      "module": "Frame",
+      "root": "Legger_Chassis_ROOT",
+      "pivot_m": [
+        0.14000000059604645,
+        -0.5099999904632568,
+        1.6799999475479126
+      ],
+      "quads": 490,
+      "vertices": 498,
+      "evaluated_triangles": 1244,
+      "material": "Legger_FullRefine_Frame_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_HipMount",
+      "module": "Frame",
+      "root": "Legger_Chassis_ROOT",
+      "pivot_m": [
+        0.17499999701976776,
+        -0.2549999952316284,
+        1.4600000381469727
+      ],
+      "quads": 300,
+      "vertices": 306,
+      "evaluated_triangles": 788,
+      "material": "Legger_FullRefine_Frame_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_MainFrame",
+      "module": "Frame",
+      "root": "Legger_Chassis_ROOT",
+      "pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "quads": 2224,
+      "vertices": 2248,
+      "evaluated_triangles": 5432,
+      "material": "Legger_FullRefine_Frame_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_SeatSubframe",
+      "module": "Frame",
+      "root": "Legger_Chassis_ROOT",
+      "pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "quads": 1128,
+      "vertices": 1152,
+      "evaluated_triangles": 3312,
+      "material": "Legger_FullRefine_Frame_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_SteeringMount",
+      "module": "Frame",
+      "root": "Legger_Chassis_ROOT",
+      "pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "quads": 322,
+      "vertices": 328,
+      "evaluated_triangles": 1012,
+      "material": "Legger_FullRefine_Frame_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_Footrest",
+      "module": "Frame",
+      "root": "Legger_Chassis_ROOT",
+      "pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "quads": 670,
+      "vertices": 688,
+      "evaluated_triangles": 1964,
+      "material": "Legger_FullRefine_Frame_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_Footrest",
+      "module": "Frame",
+      "root": "Legger_Chassis_ROOT",
+      "pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "quads": 670,
+      "vertices": 688,
+      "evaluated_triangles": 1964,
+      "material": "Legger_FullRefine_Frame_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_ServiceHarness",
+      "module": "Frame",
+      "root": "Legger_Chassis_ROOT",
+      "pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "quads": 4144,
+      "vertices": 4184,
+      "evaluated_triangles": 11424,
+      "material": "Legger_FullRefine_Frame_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_DriveCore",
+      "module": "Drive",
+      "root": "Legger_Drive_ROOT",
+      "pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "quads": 444,
+      "vertices": 456,
+      "evaluated_triangles": 1296,
+      "material": "Legger_FullRefine_Drive_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_SpineHousing",
+      "module": "Drive",
+      "root": "Legger_Drive_ROOT",
+      "pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "quads": 486,
+      "vertices": 508,
+      "evaluated_triangles": 1644,
+      "material": "Legger_FullRefine_Drive_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_DrivePod",
+      "module": "Drive",
+      "root": "Legger_Drive_ROOT",
+      "pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "quads": 576,
+      "vertices": 584,
+      "evaluated_triangles": 1646,
+      "material": "Legger_FullRefine_Drive_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_DrivePod",
+      "module": "Drive",
+      "root": "Legger_Drive_ROOT",
+      "pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "quads": 576,
+      "vertices": 584,
+      "evaluated_triangles": 1646,
+      "material": "Legger_FullRefine_Drive_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_RearCoolingHousing",
+      "module": "Drive",
+      "root": "Legger_Drive_ROOT",
+      "pivot_m": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "quads": 428,
+      "vertices": 448,
+      "evaluated_triangles": 1252,
+      "material": "Legger_FullRefine_Drive_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_HipJoint",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.17499999701976776,
+        -0.2549999952316284,
+        1.4600000381469727
+      ],
+      "quads": 592,
+      "vertices": 598,
+      "evaluated_triangles": 1552,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_KneeJoint",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.20499999821186066,
+        -0.39500001072883606,
+        1.2050000429153442
+      ],
+      "quads": 774,
+      "vertices": 784,
+      "evaluated_triangles": 2058,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_HockJoint",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.2549999952316284,
+        -0.20999999344348907,
+        0.6800000071525574
+      ],
+      "quads": 592,
+      "vertices": 598,
+      "evaluated_triangles": 1552,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_AnkleJoint",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.2849999964237213,
+        -0.5,
+        0.23500001430511475
+      ],
+      "quads": 592,
+      "vertices": 598,
+      "evaluated_triangles": 1552,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_UpperLinkFrame",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.17499999701976776,
+        -0.2549999952316284,
+        1.4600000381469727
+      ],
+      "quads": 148,
+      "vertices": 152,
+      "evaluated_triangles": 408,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_UpperLinkShell",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.17499999701976776,
+        -0.2549999952316284,
+        1.4600000381469727
+      ],
+      "quads": 538,
+      "vertices": 540,
+      "evaluated_triangles": 1568,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_MiddleLinkFrame",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.20499999821186066,
+        -0.39500001072883606,
+        1.2050000429153442
+      ],
+      "quads": 430,
+      "vertices": 444,
+      "evaluated_triangles": 1228,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_MiddleLinkShell",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.20499999821186066,
+        -0.39500001072883606,
+        1.2050000429153442
+      ],
+      "quads": 706,
+      "vertices": 710,
+      "evaluated_triangles": 2260,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_MiddleLinkActuatorBarrel",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.1920761913061142,
+        -0.3052709996700287,
+        1.1639935970306396
+      ],
+      "quads": 170,
+      "vertices": 172,
+      "evaluated_triangles": 380,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_MiddleLinkActuatorRod",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.22957618534564972,
+        -0.16652098298072815,
+        0.7702437043190002
+      ],
+      "quads": 112,
+      "vertices": 116,
+      "evaluated_triangles": 352,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_LowerLinkFrame",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.2549999952316284,
+        -0.20999999344348907,
+        0.6800000071525574
+      ],
+      "quads": 422,
+      "vertices": 436,
+      "evaluated_triangles": 1212,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_LowerLinkShell",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.2549999952316284,
+        -0.20999999344348907,
+        0.6800000071525574
+      ],
+      "quads": 676,
+      "vertices": 680,
+      "evaluated_triangles": 2184,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_LowerLinkActuatorBarrel",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.23963023722171783,
+        -0.18590132892131805,
+        0.5869377851486206
+      ],
+      "quads": 170,
+      "vertices": 172,
+      "evaluated_triangles": 380,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_LowerLinkActuatorRod",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.2621302306652069,
+        -0.40340134501457214,
+        0.2531876564025879
+      ],
+      "quads": 112,
+      "vertices": 116,
+      "evaluated_triangles": 352,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_Foot",
+      "module": "LeftLeg",
+      "root": "Legger_LeftLeg_ROOT",
+      "pivot_m": [
+        -0.2849999964237213,
+        -0.5,
+        0.23500001430511475
+      ],
+      "quads": 1318,
+      "vertices": 1358,
+      "evaluated_triangles": 3812,
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_HipJoint",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.17499999701976776,
+        -0.2549999952316284,
+        1.4600000381469727
+      ],
+      "quads": 592,
+      "vertices": 598,
+      "evaluated_triangles": 1552,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_KneeJoint",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.20499999821186066,
+        -0.39500001072883606,
+        1.2050000429153442
+      ],
+      "quads": 774,
+      "vertices": 784,
+      "evaluated_triangles": 2058,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_HockJoint",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.2549999952316284,
+        -0.20999999344348907,
+        0.6800000071525574
+      ],
+      "quads": 592,
+      "vertices": 598,
+      "evaluated_triangles": 1552,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_AnkleJoint",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.2849999964237213,
+        -0.5,
+        0.23500001430511475
+      ],
+      "quads": 592,
+      "vertices": 598,
+      "evaluated_triangles": 1552,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_UpperLinkFrame",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.17499999701976776,
+        -0.2549999952316284,
+        1.4600000381469727
+      ],
+      "quads": 148,
+      "vertices": 152,
+      "evaluated_triangles": 408,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_UpperLinkShell",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.17499999701976776,
+        -0.2549999952316284,
+        1.4600000381469727
+      ],
+      "quads": 538,
+      "vertices": 540,
+      "evaluated_triangles": 1568,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_MiddleLinkFrame",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.20499999821186066,
+        -0.39500001072883606,
+        1.2050000429153442
+      ],
+      "quads": 430,
+      "vertices": 444,
+      "evaluated_triangles": 1228,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_MiddleLinkShell",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.20499999821186066,
+        -0.39500001072883606,
+        1.2050000429153442
+      ],
+      "quads": 706,
+      "vertices": 710,
+      "evaluated_triangles": 2260,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_MiddleLinkActuatorBarrel",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.1920761913061142,
+        -0.3052709996700287,
+        1.1639935970306396
+      ],
+      "quads": 170,
+      "vertices": 172,
+      "evaluated_triangles": 380,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_MiddleLinkActuatorRod",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.22957618534564972,
+        -0.16652098298072815,
+        0.7702437043190002
+      ],
+      "quads": 112,
+      "vertices": 116,
+      "evaluated_triangles": 352,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_LowerLinkFrame",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.2549999952316284,
+        -0.20999999344348907,
+        0.6800000071525574
+      ],
+      "quads": 422,
+      "vertices": 436,
+      "evaluated_triangles": 1212,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_LowerLinkShell",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.2549999952316284,
+        -0.20999999344348907,
+        0.6800000071525574
+      ],
+      "quads": 676,
+      "vertices": 680,
+      "evaluated_triangles": 2184,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_LowerLinkActuatorBarrel",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.23963023722171783,
+        -0.18590132892131805,
+        0.5869377851486206
+      ],
+      "quads": 170,
+      "vertices": 172,
+      "evaluated_triangles": 380,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_LowerLinkActuatorRod",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.2621302306652069,
+        -0.40340134501457214,
+        0.2531876564025879
+      ],
+      "quads": 112,
+      "vertices": 116,
+      "evaluated_triangles": 352,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_Foot",
+      "module": "RightLeg",
+      "root": "Legger_RightLeg_ROOT",
+      "pivot_m": [
+        0.2849999964237213,
+        -0.5,
+        0.23500001430511475
+      ],
+      "quads": 1318,
+      "vertices": 1358,
+      "evaluated_triangles": 3812,
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_tail_shroud",
+      "module": "BodyArmor",
+      "root": "Legger_BodyArmor_ROOT",
+      "pivot_m": [
+        -0.13600003719329834,
+        0.4699999988079071,
+        1.8883336782455444
+      ],
+      "quads": 428,
+      "vertices": 432,
+      "evaluated_triangles": 1530,
+      "material": "Legger_FullRefine_BodyArmor_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_tail_shroud",
+      "module": "BodyArmor",
+      "root": "Legger_BodyArmor_ROOT",
+      "pivot_m": [
+        0.13600003719329834,
+        0.4700000286102295,
+        1.8883335590362549
+      ],
+      "quads": 428,
+      "vertices": 432,
+      "evaluated_triangles": 1530,
+      "material": "Legger_FullRefine_BodyArmor_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_upper_body_shroud",
+      "module": "BodyArmor",
+      "root": "Legger_BodyArmor_ROOT",
+      "pivot_m": [
+        -0.15224994719028473,
+        0.03999998793005943,
+        1.883750319480896
+      ],
+      "quads": 1318,
+      "vertices": 1324,
+      "evaluated_triangles": 4348,
+      "material": "Legger_FullRefine_BodyArmor_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_front_fairing",
+      "module": "BodyArmor",
+      "root": "Legger_BodyArmor_ROOT",
+      "pivot_m": [
+        -0.1615000069141388,
+        -0.44600003957748413,
+        1.783000111579895
+      ],
+      "quads": 830,
+      "vertices": 838,
+      "evaluated_triangles": 3044,
+      "material": "Legger_FullRefine_BodyArmor_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_upper_body_shroud",
+      "module": "BodyArmor",
+      "root": "Legger_BodyArmor_ROOT",
+      "pivot_m": [
+        0.15224994719028473,
+        0.03999999165534973,
+        1.8837502002716064
+      ],
+      "quads": 1318,
+      "vertices": 1324,
+      "evaluated_triangles": 4348,
+      "material": "Legger_FullRefine_BodyArmor_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_front_fairing",
+      "module": "BodyArmor",
+      "root": "Legger_BodyArmor_ROOT",
+      "pivot_m": [
+        0.1615000069141388,
+        -0.44600003957748413,
+        1.783000111579895
+      ],
+      "quads": 830,
+      "vertices": 838,
+      "evaluated_triangles": 3044,
+      "material": "Legger_FullRefine_BodyArmor_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_FrontTankCowling",
+      "module": "BodyArmor",
+      "root": "Legger_BodyArmor_ROOT",
+      "pivot_m": [
+        0.0,
+        -0.3100000023841858,
+        2.009999990463257
+      ],
+      "quads": 452,
+      "vertices": 456,
+      "evaluated_triangles": 1756,
+      "material": "Legger_FullRefine_BodyArmor_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_SaddleUpholstery",
+      "module": "Saddle",
+      "root": "Legger_Saddle_ROOT",
+      "pivot_m": [
+        0.0,
+        0.11999999731779099,
+        1.9700000286102295
+      ],
+      "quads": 1226,
+      "vertices": 1232,
+      "evaluated_triangles": 2944,
+      "material": "Legger_Rider_Saddle_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_SaddlePan",
+      "module": "Saddle",
+      "root": "Legger_Saddle_ROOT",
+      "pivot_m": [
+        0.0,
+        0.11999999731779099,
+        1.9500000476837158
+      ],
+      "quads": 1432,
+      "vertices": 1442,
+      "evaluated_triangles": 4240,
+      "material": "Legger_Rider_Saddle_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_FrontControlPod",
+      "module": "Steering",
+      "root": "Legger_Steering_ROOT",
+      "pivot_m": [
+        0.0,
+        -0.5680000185966492,
+        1.9099998474121094
+      ],
+      "quads": 696,
+      "vertices": 706,
+      "evaluated_triangles": 2912,
+      "material": "Legger_FullRefine_Steering_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_SteeringStem",
+      "module": "Steering",
+      "root": "Legger_Steering_ROOT",
+      "pivot_m": [
+        0.0,
+        -0.4049999713897705,
+        1.9899998903274536
+      ],
+      "quads": 220,
+      "vertices": 226,
+      "evaluated_triangles": 632,
+      "material": "Legger_FullRefine_Steering_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_Grip",
+      "module": "Steering",
+      "root": "Legger_Steering_ROOT",
+      "pivot_m": [
+        -0.30000001192092896,
+        -0.3019999563694,
+        2.183000087738037
+      ],
+      "quads": 374,
+      "vertices": 378,
+      "evaluated_triangles": 1148,
+      "material": "Legger_FullRefine_Steering_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_BrakeLever",
+      "module": "Steering",
+      "root": "Legger_Steering_ROOT",
+      "pivot_m": [
+        -0.28200000524520874,
+        -0.5009999871253967,
+        2.0999999046325684
+      ],
+      "quads": 126,
+      "vertices": 130,
+      "evaluated_triangles": 402,
+      "material": "Legger_FullRefine_Steering_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_Grip",
+      "module": "Steering",
+      "root": "Legger_Steering_ROOT",
+      "pivot_m": [
+        0.30000001192092896,
+        -0.3019999563694,
+        2.183000087738037
+      ],
+      "quads": 374,
+      "vertices": 378,
+      "evaluated_triangles": 1148,
+      "material": "Legger_FullRefine_Steering_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_BrakeLever",
+      "module": "Steering",
+      "root": "Legger_Steering_ROOT",
+      "pivot_m": [
+        0.28200000524520874,
+        -0.5009999871253967,
+        2.0999999046325684
+      ],
+      "quads": 126,
+      "vertices": 130,
+      "evaluated_triangles": 402,
+      "material": "Legger_FullRefine_Steering_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_InstrumentGauge",
+      "module": "Steering",
+      "root": "Legger_Steering_ROOT",
+      "pivot_m": [
+        0.0,
+        -0.5269999504089355,
+        2.1700000762939453
+      ],
+      "quads": 190,
+      "vertices": 198,
+      "evaluated_triangles": 604,
+      "material": "Legger_FullRefine_Steering_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Handlebar",
+      "module": "Steering",
+      "root": "Legger_Steering_ROOT",
+      "pivot_m": [
+        0.0,
+        -0.49000000953674316,
+        2.1449999809265137
+      ],
+      "quads": 486,
+      "vertices": 500,
+      "evaluated_triangles": 1212,
+      "material": "Legger_FullRefine_Steering_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Body",
+      "module": "Cargo_L_Main",
+      "root": "Legger_Cargo_L_Main_ROOT",
+      "pivot_m": [
+        -0.31999996304512024,
+        0.5,
+        1.7899999618530273
+      ],
+      "quads": 868,
+      "vertices": 898,
+      "evaluated_triangles": 3384,
+      "material": "Legger_Cargo_L_Main_Baked_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Straps",
+      "module": "Cargo_L_Main",
+      "root": "Legger_Cargo_L_Main_ROOT",
+      "pivot_m": [
+        -0.31999996304512024,
+        0.5,
+        1.7899999618530273
+      ],
+      "quads": 648,
+      "vertices": 680,
+      "evaluated_triangles": 4112,
+      "material": "Legger_Cargo_L_Main_Baked_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Lid",
+      "module": "Cargo_L_Main",
+      "root": "Legger_Cargo_L_Main_ROOT",
+      "pivot_m": [
+        -0.23000000417232513,
+        0.5,
+        2.069999933242798
+      ],
+      "quads": 322,
+      "vertices": 338,
+      "evaluated_triangles": 1380,
+      "material": "Legger_Cargo_L_Main_Baked_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Body",
+      "module": "Cargo_L_Aux",
+      "root": "Legger_Cargo_L_Aux_ROOT",
+      "pivot_m": [
+        -0.30500003695487976,
+        0.16999998688697815,
+        1.7350001335144043
+      ],
+      "quads": 394,
+      "vertices": 424,
+      "evaluated_triangles": 2068,
+      "material": "Legger_Cargo_L_Aux_Baked_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Straps",
+      "module": "Cargo_L_Aux",
+      "root": "Legger_Cargo_L_Aux_ROOT",
+      "pivot_m": [
+        -0.30500003695487976,
+        0.16999998688697815,
+        1.7350001335144043
+      ],
+      "quads": 276,
+      "vertices": 292,
+      "evaluated_triangles": 1768,
+      "material": "Legger_Cargo_L_Aux_Baked_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Lid",
+      "module": "Cargo_L_Aux",
+      "root": "Legger_Cargo_L_Aux_ROOT",
+      "pivot_m": [
+        -0.22750000655651093,
+        0.17000000178813934,
+        1.934999942779541
+      ],
+      "quads": 146,
+      "vertices": 156,
+      "evaluated_triangles": 724,
+      "material": "Legger_Cargo_L_Aux_Baked_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Body",
+      "module": "Cargo_R_Main",
+      "root": "Legger_Cargo_R_Main_ROOT",
+      "pivot_m": [
+        0.3199999928474426,
+        0.5,
+        1.7899999618530273
+      ],
+      "quads": 868,
+      "vertices": 898,
+      "evaluated_triangles": 3384,
+      "material": "Legger_Cargo_R_Main_Baked_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Straps",
+      "module": "Cargo_R_Main",
+      "root": "Legger_Cargo_R_Main_ROOT",
+      "pivot_m": [
+        0.3199999928474426,
+        0.5,
+        1.7899999618530273
+      ],
+      "quads": 648,
+      "vertices": 680,
+      "evaluated_triangles": 4112,
+      "material": "Legger_Cargo_R_Main_Baked_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Lid",
+      "module": "Cargo_R_Main",
+      "root": "Legger_Cargo_R_Main_ROOT",
+      "pivot_m": [
+        0.23000000417232513,
+        0.5,
+        2.069999933242798
+      ],
+      "quads": 322,
+      "vertices": 338,
+      "evaluated_triangles": 1380,
+      "material": "Legger_Cargo_R_Main_Baked_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Body",
+      "module": "Cargo_R_Aux",
+      "root": "Legger_Cargo_R_Aux_ROOT",
+      "pivot_m": [
+        0.30500003695487976,
+        0.16999998688697815,
+        1.7350001335144043
+      ],
+      "quads": 394,
+      "vertices": 424,
+      "evaluated_triangles": 2068,
+      "material": "Legger_Cargo_R_Aux_Baked_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Straps",
+      "module": "Cargo_R_Aux",
+      "root": "Legger_Cargo_R_Aux_ROOT",
+      "pivot_m": [
+        0.30500003695487976,
+        0.16999998688697815,
+        1.7350001335144043
+      ],
+      "quads": 276,
+      "vertices": 292,
+      "evaluated_triangles": 1768,
+      "material": "Legger_Cargo_R_Aux_Baked_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Lid",
+      "module": "Cargo_R_Aux",
+      "root": "Legger_Cargo_R_Aux_ROOT",
+      "pivot_m": [
+        0.22750000655651093,
+        0.17000000178813934,
+        1.934999942779541
+      ],
+      "quads": 146,
+      "vertices": 156,
+      "evaluated_triangles": 724,
+      "material": "Legger_Cargo_R_Aux_Baked_PBR",
+      "boundary_edges": 0,
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "prior_meshes_preserved": 909,
+  "prior_packed_images_byte_identical": 166,
+  "independent_roots_passed": [
+    "Legger_Chassis_ROOT",
+    "Legger_Drive_ROOT",
+    "Legger_LeftLeg_ROOT",
+    "Legger_RightLeg_ROOT",
+    "Legger_BodyArmor_ROOT",
+    "Legger_Saddle_ROOT",
+    "Legger_Steering_ROOT",
+    "Legger_Cargo_L_Main_ROOT",
+    "Legger_Cargo_L_Aux_ROOT",
+    "Legger_Cargo_R_Main_ROOT",
+    "Legger_Cargo_R_Aux_ROOT"
+  ],
+  "joint_targets": {
+    "L": {
+      "Hip": [
+        -0.17499999701976776,
+        -0.2549999952316284,
+        1.4600000381469727
+      ],
+      "Knee": [
+        -0.20499999821186066,
+        -0.39500001072883606,
+        1.2050000429153442
+      ],
+      "Hock": [
+        -0.2549999952316284,
+        -0.20999999344348907,
+        0.6800000071525574
+      ],
+      "Ankle": [
+        -0.2849999964237213,
+        -0.5,
+        0.23499999940395355
+      ]
+    },
+    "R": {
+      "Hip": [
+        0.17499999701976776,
+        -0.2549999952316284,
+        1.4600000381469727
+      ],
+      "Knee": [
+        0.20499999821186066,
+        -0.39500001072883606,
+        1.2050000429153442
+      ],
+      "Hock": [
+        0.2549999952316284,
+        -0.20999999344348907,
+        0.6800000071525574
+      ],
+      "Ankle": [
+        0.2849999964237213,
+        -0.5,
+        0.23499999940395355
+      ]
+    }
+  },
+  "mirrored_pairs": [
+    {
+      "part": "front_fairing",
+      "maximum_vertex_error_m": 0
+    },
+    {
+      "part": "upper_body_shroud",
+      "maximum_vertex_error_m": 7.450580596923828e-09
+    },
+    {
+      "part": "UpperLinkShell",
+      "maximum_vertex_error_m": 0
+    },
+    {
+      "part": "MiddleLinkShell",
+      "maximum_vertex_error_m": 0
+    },
+    {
+      "part": "LowerLinkShell",
+      "maximum_vertex_error_m": 0
+    },
+    {
+      "part": "Footrest",
+      "maximum_vertex_error_m": 0
+    },
+    {
+      "part": "Grip",
+      "maximum_vertex_error_m": 0
+    },
+    {
+      "part": "BrakeLever",
+      "maximum_vertex_error_m": 0
+    }
+  ],
+  "active_packed_maps": [
+    "Legger_Cargo_L_Aux_AO",
+    "Legger_Cargo_L_Aux_BaseColor",
+    "Legger_Cargo_L_Aux_Metallic",
+    "Legger_Cargo_L_Aux_Normal",
+    "Legger_Cargo_L_Aux_Roughness",
+    "Legger_Cargo_L_Main_AO",
+    "Legger_Cargo_L_Main_BaseColor",
+    "Legger_Cargo_L_Main_Metallic",
+    "Legger_Cargo_L_Main_Normal",
+    "Legger_Cargo_L_Main_Roughness",
+    "Legger_Cargo_R_Aux_AO",
+    "Legger_Cargo_R_Aux_BaseColor",
+    "Legger_Cargo_R_Aux_Metallic",
+    "Legger_Cargo_R_Aux_Normal",
+    "Legger_Cargo_R_Aux_Roughness",
+    "Legger_Cargo_R_Main_AO",
+    "Legger_Cargo_R_Main_BaseColor",
+    "Legger_Cargo_R_Main_Metallic",
+    "Legger_Cargo_R_Main_Normal",
+    "Legger_Cargo_R_Main_Roughness",
+    "Legger_Chassis_Drive_AO",
+    "Legger_FullRefine_BodyArmor_BaseColor",
+    "Legger_FullRefine_BodyArmor_Metallic",
+    "Legger_FullRefine_BodyArmor_Normal",
+    "Legger_FullRefine_BodyArmor_Roughness",
+    "Legger_FullRefine_Drive_BaseColor",
+    "Legger_FullRefine_Drive_Metallic",
+    "Legger_FullRefine_Drive_Normal",
+    "Legger_FullRefine_Drive_Roughness",
+    "Legger_FullRefine_Frame_BaseColor",
+    "Legger_FullRefine_Frame_Metallic",
+    "Legger_FullRefine_Frame_Normal",
+    "Legger_FullRefine_Frame_Roughness",
+    "Legger_FullRefine_LeftLeg_BaseColor",
+    "Legger_FullRefine_LeftLeg_Metallic",
+    "Legger_FullRefine_LeftLeg_Normal",
+    "Legger_FullRefine_LeftLeg_Roughness",
+    "Legger_FullRefine_RightLeg_BaseColor",
+    "Legger_FullRefine_RightLeg_Metallic",
+    "Legger_FullRefine_RightLeg_Normal",
+    "Legger_FullRefine_RightLeg_Roughness",
+    "Legger_FullRefine_Steering_AO",
+    "Legger_FullRefine_Steering_BaseColor",
+    "Legger_FullRefine_Steering_Metallic",
+    "Legger_FullRefine_Steering_Normal",
+    "Legger_FullRefine_Steering_Roughness",
+    "Legger_Rider_BodyArmor_AO",
+    "Legger_Rider_Frame_AO",
+    "Legger_Rider_Saddle_AO",
+    "Legger_Rider_Saddle_BaseColor",
+    "Legger_Rider_Saddle_Metallic",
+    "Legger_Rider_Saddle_Normal",
+    "Legger_Rider_Saddle_Roughness",
+    "Legger_ThreeLink_LeftLeg_AO",
+    "Legger_ThreeLink_RightLeg_AO"
+  ],
+  "all_packed_images": 191,
+  "all_mesh_objects": 971,
+  "limits": "Static native art checks. No full Boolean/self-intersection certification, final rider clothing fit, animated steering/joint sweep or Unity validation."
+}

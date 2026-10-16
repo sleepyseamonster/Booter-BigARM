@@ -1,0 +1,81 @@
+{
+  "source_sha256": "d5e676a6b5c0cf03c0608acef0b1efee9360997337bb0ed5a2481aa267dfc226",
+  "authored_to_pbr": [
+    {
+      "view": "current_assembled",
+      "alpha_maximum_delta": 13,
+      "alpha_changed_pixels": 1,
+      "alpha_changed_fraction": 6.944444444444445e-07,
+      "mean_rgb_delta_0_255": 0.21145241844986104,
+      "p99_rgb_delta_0_255": 4.0,
+      "source_sha256": "018ac42ef1e26d417bef9528409e4ae5ad95dd69e993892b3eb2255fe98c868a",
+      "baked_sha256": "2fd99d562241629ac64e9b3d0d24c1603c1ae8bdda34cc10a928a0f7a101dde7"
+    },
+    {
+      "view": "current_bare_frame_oblique",
+      "alpha_maximum_delta": 0,
+      "alpha_changed_pixels": 0,
+      "alpha_changed_fraction": 0.0,
+      "mean_rgb_delta_0_255": 0.23538671976171976,
+      "p99_rgb_delta_0_255": 3.0,
+      "source_sha256": "4dbab9026086b52e95e66fbe9ae36117ec0b29f0a9bd8a0a108e09240bc929d5",
+      "baked_sha256": "4eca008609b84c3b04c702865740852d62fb085dc27eb1cfc811639b78c2964e"
+    },
+    {
+      "view": "current_cargo_mount",
+      "alpha_maximum_delta": 0,
+      "alpha_changed_pixels": 0,
+      "alpha_changed_fraction": 0.0,
+      "mean_rgb_delta_0_255": 0.11264156752198108,
+      "p99_rgb_delta_0_255": 2.0,
+      "source_sha256": "f41e1b49a2486c503d0760356fffe863041683caad8c7123d2c9281b72c4a90f",
+      "baked_sha256": "478bfe0faff159625b6a98906a83bfac46408fe86d69486d6bb1a15599b6273c"
+    },
+    {
+      "view": "current_controls",
+      "alpha_maximum_delta": 13,
+      "alpha_changed_pixels": 3,
+      "alpha_changed_fraction": 2.0833333333333334e-06,
+      "mean_rgb_delta_0_255": 0.2334206072614267,
+      "p99_rgb_delta_0_255": 4.0,
+      "source_sha256": "7527841d221dc2c6b1a9af74edbedf91e24950a10630b56fd05661c6ecccba2e",
+      "baked_sha256": "f2b40c8bbbc6b1161ff8be855e59bfbff13f48e23e03df85f03db60847d06f43"
+    },
+    {
+      "view": "current_foot_close",
+      "alpha_maximum_delta": 13,
+      "alpha_changed_pixels": 4,
+      "alpha_changed_fraction": 2.777777777777778e-06,
+      "mean_rgb_delta_0_255": 0.16435289296672764,
+      "p99_rgb_delta_0_255": 3.0,
+      "source_sha256": "78dabb4d70cc3f44b05d500af13aaabc78b41129fac618e1ea13bc48ddaa765b",
+      "baked_sha256": "f67a0c82ad5a1fd3e21a1a9c3e8f3a31482c31826939ff2eb44e92debf3568ee"
+    },
+    {
+      "view": "current_leg_close",
+      "alpha_maximum_delta": 0,
+      "alpha_changed_pixels": 0,
+      "alpha_changed_fraction": 0.0,
+      "mean_rgb_delta_0_255": 0.21782471368294154,
+      "p99_rgb_delta_0_255": 5.0,
+      "source_sha256": "04672e3c30acb911b5776e3b371dab811c706337512bb3cb64bf74d54ff5c8ab",
+      "baked_sha256": "221b2a06c6ce6d62df0a3f3145b97479da73a328c7b5ed9446daadc2a5fb7962"
+    },
+    {
+      "view": "current_stirrup",
+      "alpha_maximum_delta": 0,
+      "alpha_changed_pixels": 0,
+      "alpha_changed_fraction": 0.0,
+      "mean_rgb_delta_0_255": 0.12822298874914323,
+      "p99_rgb_delta_0_255": 2.0,
+      "source_sha256": "2546f8eecd392f2d2ff11d2627a17a9c5dd02d1da062de40f35c3b0586a5d4ec",
+      "baked_sha256": "94d8ddf0a8fdb0ec4dea13bd8cbb8556866ec409e4b8900aef3ba12e2c0011e3"
+    }
+  ],
+  "native_to_candidate": {
+    "mean_delta": 7.4652777777777775e-06,
+    "maximum_delta": 1,
+    "alpha_maximum_delta": 0
+  },
+  "limits": "Equal offline cameras, exposure and lights. Joined authored versus native evaluated vertices agree within 1 micrometre. Up to one 20-sample alpha coverage quantum (13/255) on fewer than 1e-5 pixels is allowed for joined-mesh floating point differences. Pixel differences measure atlas filtering/bake approximation; this is not runtime validation."
+}

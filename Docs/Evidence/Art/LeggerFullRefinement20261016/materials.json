@@ -1,0 +1,321 @@
+{
+  "candidate": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\Textured.blend",
+  "candidate_sha256": "d5e676a6b5c0cf03c0608acef0b1efee9360997337bb0ed5a2481aa267dfc226",
+  "candidate_bytes": 796129451,
+  "input_prepared_sha256": "89f5688a07b79844070012411ee6faea4188bf79257ad2886f0f927f46e4d41e",
+  "major_meshes": 76,
+  "control_quads": 45762,
+  "evaluated_triangles": 146264,
+  "materials": [
+    {
+      "key": "Frame",
+      "atlas": "Legger_Rider_Frame_Atlas",
+      "resolution": 4096,
+      "parts": [
+        "Legger_Part_L_CargoRack",
+        "Legger_Part_R_CargoRack",
+        "Legger_Part_L_FrontYoke",
+        "Legger_Part_L_HipMount",
+        "Legger_Part_R_FrontYoke",
+        "Legger_Part_R_HipMount",
+        "Legger_Part_MainFrame",
+        "Legger_Part_SeatSubframe",
+        "Legger_Part_SteeringMount",
+        "Legger_Part_L_Footrest",
+        "Legger_Part_R_Footrest",
+        "Legger_Part_ServiceHarness"
+      ],
+      "material": "Legger_FullRefine_Frame_PBR",
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_FullRefine_Frame_BaseColor",
+          "sha256": "f684e15cf5bea2e89c99628d19e2e63957a79e4d32b037747b6fef4ab6394858",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_FullRefine_Frame_Normal",
+          "sha256": "5903b0932ba381a5e9f29740849a135a15365157ff12e791124c14fbcc61f94c",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_FullRefine_Frame_Roughness",
+          "sha256": "38b1cc77c69937c5344a0b5a7efb39bb194506e935a5185f964d869a04e3f70c",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_FullRefine_Frame_Metallic",
+          "sha256": "626dce31c964a951f7a888bc7c4e338d4dd1624bc2d802621e2f673dc4744173",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_Rider_Frame_AO",
+          "sha256": "ff7e61f8cff88b66193ce51ea87480915c256bb70972eee50ad343f36895d299",
+          "color_space": "Non-Color",
+          "packed": true,
+          "retained": true
+        }
+      }
+    },
+    {
+      "key": "Drive",
+      "atlas": "Legger_Chassis_Drive_Atlas",
+      "resolution": 4096,
+      "parts": [
+        "Legger_Part_DriveCore",
+        "Legger_Part_SpineHousing",
+        "Legger_Part_L_DrivePod",
+        "Legger_Part_R_DrivePod",
+        "Legger_Part_RearCoolingHousing"
+      ],
+      "material": "Legger_FullRefine_Drive_PBR",
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_FullRefine_Drive_BaseColor",
+          "sha256": "b75ff798efc2399e03ebce7bd22d97bbd3ee80210833b5d87d35f4d2fe36503f",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_FullRefine_Drive_Normal",
+          "sha256": "649735e985d3eb3c9670b0fc028b23f8f57e356b736686c67cf8a27149572454",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_FullRefine_Drive_Roughness",
+          "sha256": "83bbb2f19cf77af6bcc3aba659396d80cbfc2c2c11b167aa97f78f6828237ece",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_FullRefine_Drive_Metallic",
+          "sha256": "f61cab721301f20a1f84d0cfd767cd2d41eb87b72ca1b0af9ab051c521e7698b",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_Chassis_Drive_AO",
+          "sha256": "e7946059b52ed9c5b9f3d9b59e85f63be55d90130fbf283b3ba9b6fb5fe1eff5",
+          "color_space": "Non-Color",
+          "packed": true,
+          "retained": true
+        }
+      }
+    },
+    {
+      "key": "LeftLeg",
+      "atlas": "Legger_ThreeLink_LeftLeg_Atlas",
+      "resolution": 4096,
+      "parts": [
+        "Legger_Part_L_HipJoint",
+        "Legger_Part_L_KneeJoint",
+        "Legger_Part_L_HockJoint",
+        "Legger_Part_L_AnkleJoint",
+        "Legger_Part_L_UpperLinkFrame",
+        "Legger_Part_L_UpperLinkShell",
+        "Legger_Part_L_MiddleLinkFrame",
+        "Legger_Part_L_MiddleLinkShell",
+        "Legger_Part_L_MiddleLinkActuatorBarrel",
+        "Legger_Part_L_MiddleLinkActuatorRod",
+        "Legger_Part_L_LowerLinkFrame",
+        "Legger_Part_L_LowerLinkShell",
+        "Legger_Part_L_LowerLinkActuatorBarrel",
+        "Legger_Part_L_LowerLinkActuatorRod",
+        "Legger_Part_L_Foot"
+      ],
+      "material": "Legger_FullRefine_LeftLeg_PBR",
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_FullRefine_LeftLeg_BaseColor",
+          "sha256": "1781400605087dff9d9fc604f5c7f181ffd9070a280e3b32afe24ef72e14320e",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_FullRefine_LeftLeg_Normal",
+          "sha256": "0c9b2c8bbcb01185c1786576b60c73dbd6c6eb2e20222a6305385842b6d1f438",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_FullRefine_LeftLeg_Roughness",
+          "sha256": "bb4adf2aa4f95840491f8366061e43e1915fdd4dbbb04e743a1cb29843a4a950",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_FullRefine_LeftLeg_Metallic",
+          "sha256": "c8ffd3776d9c6bba93a122ccbea8946bd01deafae05c01da7140873dd8a49c97",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ThreeLink_LeftLeg_AO",
+          "sha256": "bc8332728d922a3ff6e17806ee41770dc42bde438652a6f033c356309551c6f6",
+          "color_space": "Non-Color",
+          "packed": true,
+          "retained": true
+        }
+      }
+    },
+    {
+      "key": "RightLeg",
+      "atlas": "Legger_ThreeLink_RightLeg_Atlas",
+      "resolution": 4096,
+      "parts": [
+        "Legger_Part_R_HipJoint",
+        "Legger_Part_R_KneeJoint",
+        "Legger_Part_R_HockJoint",
+        "Legger_Part_R_AnkleJoint",
+        "Legger_Part_R_UpperLinkFrame",
+        "Legger_Part_R_UpperLinkShell",
+        "Legger_Part_R_MiddleLinkFrame",
+        "Legger_Part_R_MiddleLinkShell",
+        "Legger_Part_R_MiddleLinkActuatorBarrel",
+        "Legger_Part_R_MiddleLinkActuatorRod",
+        "Legger_Part_R_LowerLinkFrame",
+        "Legger_Part_R_LowerLinkShell",
+        "Legger_Part_R_LowerLinkActuatorBarrel",
+        "Legger_Part_R_LowerLinkActuatorRod",
+        "Legger_Part_R_Foot"
+      ],
+      "material": "Legger_FullRefine_RightLeg_PBR",
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_FullRefine_RightLeg_BaseColor",
+          "sha256": "2a6e5efcb050eb92287baf89330f85971827fc30151826d3240cb476202fd62e",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_FullRefine_RightLeg_Normal",
+          "sha256": "3cc56d93c779a066565d35bd261938a8500223e8125afb9efaf3cd320af2035b",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_FullRefine_RightLeg_Roughness",
+          "sha256": "78804915350475d50c23148f5bceacf8a5696eee2e948b075f986649e535b7ef",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_FullRefine_RightLeg_Metallic",
+          "sha256": "e3c3d2d5ebd411796d348aec4572f27cb639ab8110ee47cdad42d9de337b1317",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ThreeLink_RightLeg_AO",
+          "sha256": "1ccf8ffa41045adbe5b533d66aa1d21e52b31f70325fe5f563c4344903f56685",
+          "color_space": "Non-Color",
+          "packed": true,
+          "retained": true
+        }
+      }
+    },
+    {
+      "key": "BodyArmor",
+      "atlas": "Legger_Rider_BodyArmor_Atlas",
+      "resolution": 4096,
+      "parts": [
+        "Legger_Part_L_tail_shroud",
+        "Legger_Part_R_tail_shroud",
+        "Legger_Part_L_upper_body_shroud",
+        "Legger_Part_L_front_fairing",
+        "Legger_Part_R_upper_body_shroud",
+        "Legger_Part_R_front_fairing",
+        "Legger_Part_FrontTankCowling"
+      ],
+      "material": "Legger_FullRefine_BodyArmor_PBR",
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_FullRefine_BodyArmor_BaseColor",
+          "sha256": "3ea1cb4cc84c659d7dbdcefc6190495352cd5fb7d9bc7ddc4e9c540e1abf3335",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_FullRefine_BodyArmor_Normal",
+          "sha256": "433528c2b169a12d3a13676f21fcc34d7cda411e88c96b8df6293e1ae01eadde",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_FullRefine_BodyArmor_Roughness",
+          "sha256": "38fd69e20b7824df5915f0e6fe474465ac8c3d19db732030356465a98e35498d",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_FullRefine_BodyArmor_Metallic",
+          "sha256": "5d5b69bb0e8fbd917c28d1c597b708a99761eb6e766fb8e044c655245fe22d1d",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_Rider_BodyArmor_AO",
+          "sha256": "5c19ac90ae6ad605df583f954179627ec8076a29c7fa868b8a776c854522a83d",
+          "color_space": "Non-Color",
+          "packed": true,
+          "retained": true
+        }
+      }
+    },
+    {
+      "key": "Steering",
+      "atlas": "Legger_Rider_Steering_Atlas",
+      "resolution": 2048,
+      "parts": [
+        "Legger_Part_FrontControlPod",
+        "Legger_Part_SteeringStem",
+        "Legger_Part_L_Grip",
+        "Legger_Part_L_BrakeLever",
+        "Legger_Part_R_Grip",
+        "Legger_Part_R_BrakeLever",
+        "Legger_Part_InstrumentGauge",
+        "Legger_Part_Handlebar"
+      ],
+      "material": "Legger_FullRefine_Steering_PBR",
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_FullRefine_Steering_BaseColor",
+          "sha256": "0b39472c04af907a6d7c197fd04791075bcc391e46c27173949679242b789f5a",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_FullRefine_Steering_Normal",
+          "sha256": "5927361aee78994d624609ce28a07a9345d90b0484045932b86de21cbaa4b553",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_FullRefine_Steering_Roughness",
+          "sha256": "dfc30ab036b36cac63c0d4aa2418a4a397ebd7e83145377a2824d6d647965b89",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_FullRefine_Steering_Metallic",
+          "sha256": "a375bbe896faa81463b7f3840ff10b093d2ed88734124f9c214fba37f04fa578",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_FullRefine_Steering_AO",
+          "sha256": "1a147ca6d6ec4809ad8a431c527020ab67ea3dece05f655124d524bca192685a",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    }
+  ],
+  "new_packed_maps": 25,
+  "retained_active_maps": 30,
+  "active_maps": 55
+}

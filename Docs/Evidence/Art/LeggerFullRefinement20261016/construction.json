@@ -1,0 +1,698 @@
+{
+  "source_sha256": "9f47958a59cde1ff245825f5d2a569dfda6fa611e7981f56488208f374171b13",
+  "sets": [
+    {
+      "key": "Frame",
+      "atlas": "Legger_Rider_Frame_Atlas",
+      "resolution": 4096,
+      "parts": [
+        "Legger_Part_L_CargoRack",
+        "Legger_Part_R_CargoRack",
+        "Legger_Part_L_FrontYoke",
+        "Legger_Part_L_HipMount",
+        "Legger_Part_R_FrontYoke",
+        "Legger_Part_R_HipMount",
+        "Legger_Part_MainFrame",
+        "Legger_Part_SeatSubframe",
+        "Legger_Part_SteeringMount",
+        "Legger_Part_L_Footrest",
+        "Legger_Part_R_Footrest",
+        "Legger_Part_ServiceHarness"
+      ]
+    },
+    {
+      "key": "Drive",
+      "atlas": "Legger_Chassis_Drive_Atlas",
+      "resolution": 4096,
+      "parts": [
+        "Legger_Part_DriveCore",
+        "Legger_Part_SpineHousing",
+        "Legger_Part_L_DrivePod",
+        "Legger_Part_R_DrivePod",
+        "Legger_Part_RearCoolingHousing"
+      ]
+    },
+    {
+      "key": "LeftLeg",
+      "atlas": "Legger_ThreeLink_LeftLeg_Atlas",
+      "resolution": 4096,
+      "parts": [
+        "Legger_Part_L_HipJoint",
+        "Legger_Part_L_KneeJoint",
+        "Legger_Part_L_HockJoint",
+        "Legger_Part_L_AnkleJoint",
+        "Legger_Part_L_UpperLinkFrame",
+        "Legger_Part_L_UpperLinkShell",
+        "Legger_Part_L_MiddleLinkFrame",
+        "Legger_Part_L_MiddleLinkShell",
+        "Legger_Part_L_MiddleLinkActuatorBarrel",
+        "Legger_Part_L_MiddleLinkActuatorRod",
+        "Legger_Part_L_LowerLinkFrame",
+        "Legger_Part_L_LowerLinkShell",
+        "Legger_Part_L_LowerLinkActuatorBarrel",
+        "Legger_Part_L_LowerLinkActuatorRod",
+        "Legger_Part_L_Foot"
+      ]
+    },
+    {
+      "key": "RightLeg",
+      "atlas": "Legger_ThreeLink_RightLeg_Atlas",
+      "resolution": 4096,
+      "parts": [
+        "Legger_Part_R_HipJoint",
+        "Legger_Part_R_KneeJoint",
+        "Legger_Part_R_HockJoint",
+        "Legger_Part_R_AnkleJoint",
+        "Legger_Part_R_UpperLinkFrame",
+        "Legger_Part_R_UpperLinkShell",
+        "Legger_Part_R_MiddleLinkFrame",
+        "Legger_Part_R_MiddleLinkShell",
+        "Legger_Part_R_MiddleLinkActuatorBarrel",
+        "Legger_Part_R_MiddleLinkActuatorRod",
+        "Legger_Part_R_LowerLinkFrame",
+        "Legger_Part_R_LowerLinkShell",
+        "Legger_Part_R_LowerLinkActuatorBarrel",
+        "Legger_Part_R_LowerLinkActuatorRod",
+        "Legger_Part_R_Foot"
+      ]
+    },
+    {
+      "key": "BodyArmor",
+      "atlas": "Legger_Rider_BodyArmor_Atlas",
+      "resolution": 4096,
+      "parts": [
+        "Legger_Part_L_tail_shroud",
+        "Legger_Part_R_tail_shroud",
+        "Legger_Part_L_upper_body_shroud",
+        "Legger_Part_L_front_fairing",
+        "Legger_Part_R_upper_body_shroud",
+        "Legger_Part_R_front_fairing",
+        "Legger_Part_FrontTankCowling"
+      ]
+    },
+    {
+      "key": "Steering",
+      "atlas": "Legger_Rider_Steering_Atlas",
+      "resolution": 2048,
+      "parts": [
+        "Legger_Part_FrontControlPod",
+        "Legger_Part_SteeringStem",
+        "Legger_Part_L_Grip",
+        "Legger_Part_L_BrakeLever",
+        "Legger_Part_R_Grip",
+        "Legger_Part_R_BrakeLever",
+        "Legger_Part_InstrumentGauge",
+        "Legger_Part_Handlebar"
+      ]
+    }
+  ],
+  "geometry_edits": [
+    {
+      "name": "Legger_Part_L_UpperLinkShell",
+      "method": "Flatten existing C-section spans into deliberate armor planes; retain section anchors and thickness",
+      "maximum_vertex_displacement_m": 0.004253663953945046
+    },
+    {
+      "name": "Legger_Part_L_MiddleLinkShell",
+      "method": "Flatten existing C-section spans into deliberate armor planes; retain section anchors and thickness",
+      "maximum_vertex_displacement_m": 0.003930713226262942
+    },
+    {
+      "name": "Legger_Part_L_LowerLinkShell",
+      "method": "Flatten existing C-section spans into deliberate armor planes; retain section anchors and thickness",
+      "maximum_vertex_displacement_m": 0.0030625980369190643
+    },
+    {
+      "name": "Legger_Part_R_UpperLinkShell",
+      "method": "Flatten existing C-section spans into deliberate armor planes; retain section anchors and thickness",
+      "maximum_vertex_displacement_m": 0.004253663953945046
+    },
+    {
+      "name": "Legger_Part_R_MiddleLinkShell",
+      "method": "Flatten existing C-section spans into deliberate armor planes; retain section anchors and thickness",
+      "maximum_vertex_displacement_m": 0.003930713226262942
+    },
+    {
+      "name": "Legger_Part_R_LowerLinkShell",
+      "method": "Flatten existing C-section spans into deliberate armor planes; retain section anchors and thickness",
+      "maximum_vertex_displacement_m": 0.0030625980369190643
+    },
+    {
+      "name": "Legger_Part_L_upper_body_shroud",
+      "method": "Reduce inflated crown into broad center plane and angled shoulders using existing vertices",
+      "maximum_vertex_displacement_m": 0.0030000000530562825
+    },
+    {
+      "name": "Legger_Part_L_front_fairing",
+      "method": "Reduce inflated crown into broad center plane and angled shoulders using existing vertices",
+      "maximum_vertex_displacement_m": 0.0049999999368446875
+    },
+    {
+      "name": "Legger_Part_R_upper_body_shroud",
+      "method": "Reduce inflated crown into broad center plane and angled shoulders using existing vertices",
+      "maximum_vertex_displacement_m": 0.0030000000530562825
+    },
+    {
+      "name": "Legger_Part_R_front_fairing",
+      "method": "Reduce inflated crown into broad center plane and angled shoulders using existing vertices",
+      "maximum_vertex_displacement_m": 0.0049999999368446875
+    },
+    {
+      "name": "Legger_Part_FrontControlPod",
+      "method": "Reduce inflated crown into broad center plane and angled shoulders using existing vertices",
+      "maximum_vertex_displacement_m": 0.006000000106112565
+    },
+    {
+      "name": "Legger_Part_InstrumentGauge",
+      "method": "Expose existing display face 11 mm along rider-facing normal; keep its back embedded in gauge housing",
+      "maximum_vertex_displacement_m": 0.011
+    }
+  ],
+  "authored_sources": {
+    "Legger_Part_L_CargoRack": "Legger_Part_L_CargoRack",
+    "Legger_Part_R_CargoRack": "Legger_Part_R_CargoRack",
+    "Legger_Part_L_FrontYoke": "REFERENCE_RiderProcedural_Legger_Part_L_FrontYoke",
+    "Legger_Part_L_HipMount": "REFERENCE_RiderProcedural_Legger_Part_L_HipMount",
+    "Legger_Part_R_FrontYoke": "REFERENCE_RiderProcedural_Legger_Part_R_FrontYoke",
+    "Legger_Part_R_HipMount": "REFERENCE_RiderProcedural_Legger_Part_R_HipMount",
+    "Legger_Part_MainFrame": "REFERENCE_RiderProcedural_Legger_Part_MainFrame",
+    "Legger_Part_SeatSubframe": "REFERENCE_RiderProcedural_Legger_Part_SeatSubframe",
+    "Legger_Part_SteeringMount": "REFERENCE_RiderProcedural_Legger_Part_SteeringMount",
+    "Legger_Part_L_Footrest": "REFERENCE_RiderProcedural_Legger_Part_L_Footrest",
+    "Legger_Part_R_Footrest": "REFERENCE_RiderProcedural_Legger_Part_R_Footrest",
+    "Legger_Part_ServiceHarness": "REFERENCE_RiderProcedural_Legger_Part_ServiceHarness",
+    "Legger_Part_DriveCore": "REFERENCE_ChassisProcedural_Legger_Part_DriveCore",
+    "Legger_Part_SpineHousing": "REFERENCE_ChassisProcedural_Legger_Part_SpineHousing",
+    "Legger_Part_L_DrivePod": "REFERENCE_ChassisProcedural_Legger_Part_L_DrivePod",
+    "Legger_Part_R_DrivePod": "REFERENCE_ChassisProcedural_Legger_Part_R_DrivePod",
+    "Legger_Part_RearCoolingHousing": "REFERENCE_ChassisProcedural_Legger_Part_RearCoolingHousing",
+    "Legger_Part_L_HipJoint": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_HipJoint",
+    "Legger_Part_L_KneeJoint": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_KneeJoint",
+    "Legger_Part_L_HockJoint": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_HockJoint",
+    "Legger_Part_L_AnkleJoint": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_AnkleJoint",
+    "Legger_Part_L_UpperLinkFrame": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_UpperLinkFrame",
+    "Legger_Part_L_UpperLinkShell": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_UpperLinkShell",
+    "Legger_Part_L_MiddleLinkFrame": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_MiddleLinkFrame",
+    "Legger_Part_L_MiddleLinkShell": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_MiddleLinkShell",
+    "Legger_Part_L_MiddleLinkActuatorBarrel": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_MiddleLinkActuatorBarrel",
+    "Legger_Part_L_MiddleLinkActuatorRod": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_MiddleLinkActuatorRod",
+    "Legger_Part_L_LowerLinkFrame": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_LowerLinkFrame",
+    "Legger_Part_L_LowerLinkShell": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_LowerLinkShell",
+    "Legger_Part_L_LowerLinkActuatorBarrel": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_LowerLinkActuatorBarrel",
+    "Legger_Part_L_LowerLinkActuatorRod": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_LowerLinkActuatorRod",
+    "Legger_Part_L_Foot": "REFERENCE_ThreeLinkProcedural_Legger_Part_L_Foot",
+    "Legger_Part_R_HipJoint": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_HipJoint",
+    "Legger_Part_R_KneeJoint": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_KneeJoint",
+    "Legger_Part_R_HockJoint": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_HockJoint",
+    "Legger_Part_R_AnkleJoint": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_AnkleJoint",
+    "Legger_Part_R_UpperLinkFrame": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_UpperLinkFrame",
+    "Legger_Part_R_UpperLinkShell": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_UpperLinkShell",
+    "Legger_Part_R_MiddleLinkFrame": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_MiddleLinkFrame",
+    "Legger_Part_R_MiddleLinkShell": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_MiddleLinkShell",
+    "Legger_Part_R_MiddleLinkActuatorBarrel": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_MiddleLinkActuatorBarrel",
+    "Legger_Part_R_MiddleLinkActuatorRod": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_MiddleLinkActuatorRod",
+    "Legger_Part_R_LowerLinkFrame": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_LowerLinkFrame",
+    "Legger_Part_R_LowerLinkShell": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_LowerLinkShell",
+    "Legger_Part_R_LowerLinkActuatorBarrel": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_LowerLinkActuatorBarrel",
+    "Legger_Part_R_LowerLinkActuatorRod": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_LowerLinkActuatorRod",
+    "Legger_Part_R_Foot": "REFERENCE_ThreeLinkProcedural_Legger_Part_R_Foot",
+    "Legger_Part_L_tail_shroud": "REFERENCE_SciFiProcedural_Legger_Part_L_tail_shroud",
+    "Legger_Part_R_tail_shroud": "REFERENCE_SciFiProcedural_Legger_Part_R_tail_shroud",
+    "Legger_Part_L_upper_body_shroud": "REFERENCE_RiderProcedural_Legger_Part_L_upper_body_shroud",
+    "Legger_Part_L_front_fairing": "REFERENCE_RiderProcedural_Legger_Part_L_front_fairing",
+    "Legger_Part_R_upper_body_shroud": "REFERENCE_RiderProcedural_Legger_Part_R_upper_body_shroud",
+    "Legger_Part_R_front_fairing": "REFERENCE_RiderProcedural_Legger_Part_R_front_fairing",
+    "Legger_Part_FrontTankCowling": "REFERENCE_RiderProcedural_Legger_Part_FrontTankCowling",
+    "Legger_Part_FrontControlPod": "REFERENCE_RiderProcedural_Legger_Part_FrontControlPod",
+    "Legger_Part_SteeringStem": "REFERENCE_RiderProcedural_Legger_Part_SteeringStem",
+    "Legger_Part_L_Grip": "REFERENCE_RiderProcedural_Legger_Part_L_Grip",
+    "Legger_Part_L_BrakeLever": "REFERENCE_RiderProcedural_Legger_Part_L_BrakeLever",
+    "Legger_Part_R_Grip": "REFERENCE_RiderProcedural_Legger_Part_R_Grip",
+    "Legger_Part_R_BrakeLever": "REFERENCE_RiderProcedural_Legger_Part_R_BrakeLever",
+    "Legger_Part_InstrumentGauge": "REFERENCE_RiderProcedural_Legger_Part_InstrumentGauge",
+    "Legger_Part_Handlebar": "REFERENCE_RiderProcedural_Legger_Part_Handlebar"
+  },
+  "objects": [
+    {
+      "name": "Legger_Part_L_CargoRack",
+      "module": "Frame",
+      "quads": 824,
+      "evaluated_triangles": 2896
+    },
+    {
+      "name": "Legger_Part_R_CargoRack",
+      "module": "Frame",
+      "quads": 824,
+      "evaluated_triangles": 2896
+    },
+    {
+      "name": "Legger_Part_L_FrontYoke",
+      "module": "Frame",
+      "quads": 490,
+      "evaluated_triangles": 1244
+    },
+    {
+      "name": "Legger_Part_L_HipMount",
+      "module": "Frame",
+      "quads": 300,
+      "evaluated_triangles": 788
+    },
+    {
+      "name": "Legger_Part_R_FrontYoke",
+      "module": "Frame",
+      "quads": 490,
+      "evaluated_triangles": 1244
+    },
+    {
+      "name": "Legger_Part_R_HipMount",
+      "module": "Frame",
+      "quads": 300,
+      "evaluated_triangles": 788
+    },
+    {
+      "name": "Legger_Part_MainFrame",
+      "module": "Frame",
+      "quads": 2224,
+      "evaluated_triangles": 5432
+    },
+    {
+      "name": "Legger_Part_SeatSubframe",
+      "module": "Frame",
+      "quads": 1128,
+      "evaluated_triangles": 3312
+    },
+    {
+      "name": "Legger_Part_SteeringMount",
+      "module": "Frame",
+      "quads": 322,
+      "evaluated_triangles": 1012
+    },
+    {
+      "name": "Legger_Part_L_Footrest",
+      "module": "Frame",
+      "quads": 670,
+      "evaluated_triangles": 1964
+    },
+    {
+      "name": "Legger_Part_R_Footrest",
+      "module": "Frame",
+      "quads": 670,
+      "evaluated_triangles": 1964
+    },
+    {
+      "name": "Legger_Part_ServiceHarness",
+      "module": "Frame",
+      "quads": 4144,
+      "evaluated_triangles": 11424
+    },
+    {
+      "name": "Legger_Part_DriveCore",
+      "module": "Drive",
+      "quads": 444,
+      "evaluated_triangles": 1296
+    },
+    {
+      "name": "Legger_Part_SpineHousing",
+      "module": "Drive",
+      "quads": 486,
+      "evaluated_triangles": 1644
+    },
+    {
+      "name": "Legger_Part_L_DrivePod",
+      "module": "Drive",
+      "quads": 576,
+      "evaluated_triangles": 1646
+    },
+    {
+      "name": "Legger_Part_R_DrivePod",
+      "module": "Drive",
+      "quads": 576,
+      "evaluated_triangles": 1646
+    },
+    {
+      "name": "Legger_Part_RearCoolingHousing",
+      "module": "Drive",
+      "quads": 428,
+      "evaluated_triangles": 1252
+    },
+    {
+      "name": "Legger_Part_L_HipJoint",
+      "module": "LeftLeg",
+      "quads": 592,
+      "evaluated_triangles": 1552
+    },
+    {
+      "name": "Legger_Part_L_KneeJoint",
+      "module": "LeftLeg",
+      "quads": 774,
+      "evaluated_triangles": 2058
+    },
+    {
+      "name": "Legger_Part_L_HockJoint",
+      "module": "LeftLeg",
+      "quads": 592,
+      "evaluated_triangles": 1552
+    },
+    {
+      "name": "Legger_Part_L_AnkleJoint",
+      "module": "LeftLeg",
+      "quads": 592,
+      "evaluated_triangles": 1552
+    },
+    {
+      "name": "Legger_Part_L_UpperLinkFrame",
+      "module": "LeftLeg",
+      "quads": 148,
+      "evaluated_triangles": 408
+    },
+    {
+      "name": "Legger_Part_L_UpperLinkShell",
+      "module": "LeftLeg",
+      "quads": 538,
+      "evaluated_triangles": 1568
+    },
+    {
+      "name": "Legger_Part_L_MiddleLinkFrame",
+      "module": "LeftLeg",
+      "quads": 430,
+      "evaluated_triangles": 1228
+    },
+    {
+      "name": "Legger_Part_L_MiddleLinkShell",
+      "module": "LeftLeg",
+      "quads": 706,
+      "evaluated_triangles": 2260
+    },
+    {
+      "name": "Legger_Part_L_MiddleLinkActuatorBarrel",
+      "module": "LeftLeg",
+      "quads": 170,
+      "evaluated_triangles": 380
+    },
+    {
+      "name": "Legger_Part_L_MiddleLinkActuatorRod",
+      "module": "LeftLeg",
+      "quads": 112,
+      "evaluated_triangles": 352
+    },
+    {
+      "name": "Legger_Part_L_LowerLinkFrame",
+      "module": "LeftLeg",
+      "quads": 422,
+      "evaluated_triangles": 1212
+    },
+    {
+      "name": "Legger_Part_L_LowerLinkShell",
+      "module": "LeftLeg",
+      "quads": 676,
+      "evaluated_triangles": 2184
+    },
+    {
+      "name": "Legger_Part_L_LowerLinkActuatorBarrel",
+      "module": "LeftLeg",
+      "quads": 170,
+      "evaluated_triangles": 380
+    },
+    {
+      "name": "Legger_Part_L_LowerLinkActuatorRod",
+      "module": "LeftLeg",
+      "quads": 112,
+      "evaluated_triangles": 352
+    },
+    {
+      "name": "Legger_Part_L_Foot",
+      "module": "LeftLeg",
+      "quads": 1318,
+      "evaluated_triangles": 3812
+    },
+    {
+      "name": "Legger_Part_R_HipJoint",
+      "module": "RightLeg",
+      "quads": 592,
+      "evaluated_triangles": 1552
+    },
+    {
+      "name": "Legger_Part_R_KneeJoint",
+      "module": "RightLeg",
+      "quads": 774,
+      "evaluated_triangles": 2058
+    },
+    {
+      "name": "Legger_Part_R_HockJoint",
+      "module": "RightLeg",
+      "quads": 592,
+      "evaluated_triangles": 1552
+    },
+    {
+      "name": "Legger_Part_R_AnkleJoint",
+      "module": "RightLeg",
+      "quads": 592,
+      "evaluated_triangles": 1552
+    },
+    {
+      "name": "Legger_Part_R_UpperLinkFrame",
+      "module": "RightLeg",
+      "quads": 148,
+      "evaluated_triangles": 408
+    },
+    {
+      "name": "Legger_Part_R_UpperLinkShell",
+      "module": "RightLeg",
+      "quads": 538,
+      "evaluated_triangles": 1568
+    },
+    {
+      "name": "Legger_Part_R_MiddleLinkFrame",
+      "module": "RightLeg",
+      "quads": 430,
+      "evaluated_triangles": 1228
+    },
+    {
+      "name": "Legger_Part_R_MiddleLinkShell",
+      "module": "RightLeg",
+      "quads": 706,
+      "evaluated_triangles": 2260
+    },
+    {
+      "name": "Legger_Part_R_MiddleLinkActuatorBarrel",
+      "module": "RightLeg",
+      "quads": 170,
+      "evaluated_triangles": 380
+    },
+    {
+      "name": "Legger_Part_R_MiddleLinkActuatorRod",
+      "module": "RightLeg",
+      "quads": 112,
+      "evaluated_triangles": 352
+    },
+    {
+      "name": "Legger_Part_R_LowerLinkFrame",
+      "module": "RightLeg",
+      "quads": 422,
+      "evaluated_triangles": 1212
+    },
+    {
+      "name": "Legger_Part_R_LowerLinkShell",
+      "module": "RightLeg",
+      "quads": 676,
+      "evaluated_triangles": 2184
+    },
+    {
+      "name": "Legger_Part_R_LowerLinkActuatorBarrel",
+      "module": "RightLeg",
+      "quads": 170,
+      "evaluated_triangles": 380
+    },
+    {
+      "name": "Legger_Part_R_LowerLinkActuatorRod",
+      "module": "RightLeg",
+      "quads": 112,
+      "evaluated_triangles": 352
+    },
+    {
+      "name": "Legger_Part_R_Foot",
+      "module": "RightLeg",
+      "quads": 1318,
+      "evaluated_triangles": 3812
+    },
+    {
+      "name": "Legger_Part_L_tail_shroud",
+      "module": "BodyArmor",
+      "quads": 428,
+      "evaluated_triangles": 1530
+    },
+    {
+      "name": "Legger_Part_R_tail_shroud",
+      "module": "BodyArmor",
+      "quads": 428,
+      "evaluated_triangles": 1530
+    },
+    {
+      "name": "Legger_Part_L_upper_body_shroud",
+      "module": "BodyArmor",
+      "quads": 1318,
+      "evaluated_triangles": 4348
+    },
+    {
+      "name": "Legger_Part_L_front_fairing",
+      "module": "BodyArmor",
+      "quads": 830,
+      "evaluated_triangles": 3044
+    },
+    {
+      "name": "Legger_Part_R_upper_body_shroud",
+      "module": "BodyArmor",
+      "quads": 1318,
+      "evaluated_triangles": 4348
+    },
+    {
+      "name": "Legger_Part_R_front_fairing",
+      "module": "BodyArmor",
+      "quads": 830,
+      "evaluated_triangles": 3044
+    },
+    {
+      "name": "Legger_Part_FrontTankCowling",
+      "module": "BodyArmor",
+      "quads": 452,
+      "evaluated_triangles": 1756
+    },
+    {
+      "name": "Legger_Part_SaddleUpholstery",
+      "module": "Saddle",
+      "quads": 1226,
+      "evaluated_triangles": 2944
+    },
+    {
+      "name": "Legger_Part_SaddlePan",
+      "module": "Saddle",
+      "quads": 1432,
+      "evaluated_triangles": 4240
+    },
+    {
+      "name": "Legger_Part_FrontControlPod",
+      "module": "Steering",
+      "quads": 696,
+      "evaluated_triangles": 2912
+    },
+    {
+      "name": "Legger_Part_SteeringStem",
+      "module": "Steering",
+      "quads": 220,
+      "evaluated_triangles": 632
+    },
+    {
+      "name": "Legger_Part_L_Grip",
+      "module": "Steering",
+      "quads": 374,
+      "evaluated_triangles": 1148
+    },
+    {
+      "name": "Legger_Part_L_BrakeLever",
+      "module": "Steering",
+      "quads": 126,
+      "evaluated_triangles": 402
+    },
+    {
+      "name": "Legger_Part_R_Grip",
+      "module": "Steering",
+      "quads": 374,
+      "evaluated_triangles": 1148
+    },
+    {
+      "name": "Legger_Part_R_BrakeLever",
+      "module": "Steering",
+      "quads": 126,
+      "evaluated_triangles": 402
+    },
+    {
+      "name": "Legger_Part_InstrumentGauge",
+      "module": "Steering",
+      "quads": 190,
+      "evaluated_triangles": 604
+    },
+    {
+      "name": "Legger_Part_Handlebar",
+      "module": "Steering",
+      "quads": 486,
+      "evaluated_triangles": 1212
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Body",
+      "module": "Cargo_L_Main",
+      "quads": 868,
+      "evaluated_triangles": 3384
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Straps",
+      "module": "Cargo_L_Main",
+      "quads": 648,
+      "evaluated_triangles": 4112
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Lid",
+      "module": "Cargo_L_Main",
+      "quads": 322,
+      "evaluated_triangles": 1380
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Body",
+      "module": "Cargo_L_Aux",
+      "quads": 394,
+      "evaluated_triangles": 2068
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Straps",
+      "module": "Cargo_L_Aux",
+      "quads": 276,
+      "evaluated_triangles": 1768
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Lid",
+      "module": "Cargo_L_Aux",
+      "quads": 146,
+      "evaluated_triangles": 724
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Body",
+      "module": "Cargo_R_Main",
+      "quads": 868,
+      "evaluated_triangles": 3384
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Straps",
+      "module": "Cargo_R_Main",
+      "quads": 648,
+      "evaluated_triangles": 4112
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Lid",
+      "module": "Cargo_R_Main",
+      "quads": 322,
+      "evaluated_triangles": 1380
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Body",
+      "module": "Cargo_R_Aux",
+      "quads": 394,
+      "evaluated_triangles": 2068
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Straps",
+      "module": "Cargo_R_Aux",
+      "quads": 276,
+      "evaluated_triangles": 1768
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Lid",
+      "module": "Cargo_R_Aux",
+      "quads": 146,
+      "evaluated_triangles": 724
+    }
+  ],
+  "control_quads": 45762,
+  "evaluated_triangles": 146264,
+  "candidate_sha256": "89f5688a07b79844070012411ee6faea4188bf79257ad2886f0f927f46e4d41e",
+  "candidate_bytes": 773431551,
+  "bake_library_sha256": "a8b0bab725eae74e76dfd56c83264263e2b32f4dd25a1049d0df2f4b4817a0b0"
+}

@@ -1,0 +1,155 @@
+{
+  "prepared_sha256": "89f5688a07b79844070012411ee6faea4188bf79257ad2886f0f927f46e4d41e",
+  "cases": [
+    {
+      "key": "Frame",
+      "raw": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\MapsRepaired\\Frame\\Normal.png",
+        "sha256": "58fa50b9b9ad25473534396688517b3ce731550a0d85b672fa196639e202cbea",
+        "bytes": 2708825,
+        "resolution": [
+          4096,
+          4096
+        ],
+        "color_space": "Non-Color"
+      },
+      "normalized": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\NormalizedNormals\\Frame\\Normal.png",
+        "sha256": "5903b0932ba381a5e9f29740849a135a15365157ff12e791124c14fbcc61f94c",
+        "bytes": 2712199,
+        "resolution": [
+          4096,
+          4096
+        ],
+        "color_space": "Non-Color"
+      },
+      "zero_vectors_replaced": 0,
+      "operation": "Decode tangent vector, normalize its length without changing nonzero direction, re-encode as Non-Color PNG. Raw bakes retained. Normal-map data preparation, no geometry/color/roughness edits."
+    },
+    {
+      "key": "Drive",
+      "raw": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\MapsRepaired\\Drive\\Normal.png",
+        "sha256": "1a2390d1968fdb08fc7c0be057c3260439ca63cda2c563b6e09e0b22c2f5f2c3",
+        "bytes": 1644894,
+        "resolution": [
+          4096,
+          4096
+        ],
+        "color_space": "Non-Color"
+      },
+      "normalized": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\NormalizedNormals\\Drive\\Normal.png",
+        "sha256": "649735e985d3eb3c9670b0fc028b23f8f57e356b736686c67cf8a27149572454",
+        "bytes": 1641925,
+        "resolution": [
+          4096,
+          4096
+        ],
+        "color_space": "Non-Color"
+      },
+      "zero_vectors_replaced": 0,
+      "operation": "Decode tangent vector, normalize its length without changing nonzero direction, re-encode as Non-Color PNG. Raw bakes retained. Normal-map data preparation, no geometry/color/roughness edits."
+    },
+    {
+      "key": "LeftLeg",
+      "raw": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\MapsRepaired\\LeftLeg\\Normal.png",
+        "sha256": "a64c3ebcbbab6c5b423a78a43515e8d72a2d3273b21ed645fa4847d1a9299003",
+        "bytes": 2031577,
+        "resolution": [
+          4096,
+          4096
+        ],
+        "color_space": "Non-Color"
+      },
+      "normalized": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\NormalizedNormals\\LeftLeg\\Normal.png",
+        "sha256": "0c9b2c8bbcb01185c1786576b60c73dbd6c6eb2e20222a6305385842b6d1f438",
+        "bytes": 2032425,
+        "resolution": [
+          4096,
+          4096
+        ],
+        "color_space": "Non-Color"
+      },
+      "zero_vectors_replaced": 0,
+      "operation": "Decode tangent vector, normalize its length without changing nonzero direction, re-encode as Non-Color PNG. Raw bakes retained. Normal-map data preparation, no geometry/color/roughness edits."
+    },
+    {
+      "key": "RightLeg",
+      "raw": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\MapsRepaired\\RightLeg\\Normal.png",
+        "sha256": "bafff2c338fe424ad17112d38e2cc41476231b938cf5fc0694ecde3f942046e1",
+        "bytes": 2037575,
+        "resolution": [
+          4096,
+          4096
+        ],
+        "color_space": "Non-Color"
+      },
+      "normalized": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\NormalizedNormals\\RightLeg\\Normal.png",
+        "sha256": "3cc56d93c779a066565d35bd261938a8500223e8125afb9efaf3cd320af2035b",
+        "bytes": 2039487,
+        "resolution": [
+          4096,
+          4096
+        ],
+        "color_space": "Non-Color"
+      },
+      "zero_vectors_replaced": 0,
+      "operation": "Decode tangent vector, normalize its length without changing nonzero direction, re-encode as Non-Color PNG. Raw bakes retained. Normal-map data preparation, no geometry/color/roughness edits."
+    },
+    {
+      "key": "BodyArmor",
+      "raw": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\MapsRepaired\\BodyArmor\\Normal.png",
+        "sha256": "5cf6d938ea0b350d0d3968c69dd9b57079901329e0bfa6fccb71562eaa3f466a",
+        "bytes": 2406351,
+        "resolution": [
+          4096,
+          4096
+        ],
+        "color_space": "Non-Color"
+      },
+      "normalized": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\NormalizedNormals\\BodyArmor\\Normal.png",
+        "sha256": "433528c2b169a12d3a13676f21fcc34d7cda411e88c96b8df6293e1ae01eadde",
+        "bytes": 2411457,
+        "resolution": [
+          4096,
+          4096
+        ],
+        "color_space": "Non-Color"
+      },
+      "zero_vectors_replaced": 0,
+      "operation": "Decode tangent vector, normalize its length without changing nonzero direction, re-encode as Non-Color PNG. Raw bakes retained. Normal-map data preparation, no geometry/color/roughness edits."
+    },
+    {
+      "key": "Steering",
+      "raw": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\MapsRepaired\\Steering\\Normal.png",
+        "sha256": "8c8e66fd0a93568716faa5b399741b8032c92be10984d835bacec3ee5b830264",
+        "bytes": 758339,
+        "resolution": [
+          2048,
+          2048
+        ],
+        "color_space": "Non-Color"
+      },
+      "normalized": {
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\NormalizedNormals\\Steering\\Normal.png",
+        "sha256": "5927361aee78994d624609ce28a07a9345d90b0484045932b86de21cbaa4b553",
+        "bytes": 758161,
+        "resolution": [
+          2048,
+          2048
+        ],
+        "color_space": "Non-Color"
+      },
+      "zero_vectors_replaced": 0,
+      "operation": "Decode tangent vector, normalize its length without changing nonzero direction, re-encode as Non-Color PNG. Raw bakes retained. Normal-map data preparation, no geometry/color/roughness edits."
+    }
+  ]
+}

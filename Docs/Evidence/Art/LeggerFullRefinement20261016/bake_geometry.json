@@ -1,0 +1,61 @@
+{
+  "source_sha256": "d5e676a6b5c0cf03c0608acef0b1efee9360997337bb0ed5a2481aa267dfc226",
+  "source_library_sha256": "a8b0bab725eae74e76dfd56c83264263e2b32f4dd25a1049d0df2f4b4817a0b0",
+  "cases": [
+    {
+      "module": "Frame",
+      "evaluated_vertices_each": 17696,
+      "evaluated_triangles_each": 34964,
+      "bidirectional_maximum_nearest_vertex_error_m": [
+        1.1920928955078125e-07,
+        1.1920928955078125e-07
+      ]
+    },
+    {
+      "module": "Drive",
+      "evaluated_vertices_each": 3812,
+      "evaluated_triangles_each": 7484,
+      "bidirectional_maximum_nearest_vertex_error_m": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "module": "LeftLeg",
+      "evaluated_vertices_each": 10547,
+      "evaluated_triangles_each": 20850,
+      "bidirectional_maximum_nearest_vertex_error_m": [
+        1.2287812012345967e-07,
+        1.2287812012345967e-07
+      ]
+    },
+    {
+      "module": "RightLeg",
+      "evaluated_vertices_each": 10547,
+      "evaluated_triangles_each": 20850,
+      "bidirectional_maximum_nearest_vertex_error_m": [
+        1.2287812012345967e-07,
+        1.2287812012345967e-07
+      ]
+    },
+    {
+      "module": "BodyArmor",
+      "evaluated_vertices_each": 9840,
+      "evaluated_triangles_each": 19600,
+      "bidirectional_maximum_nearest_vertex_error_m": [
+        2.4586915969848633e-07,
+        2.4586915969848633e-07
+      ]
+    },
+    {
+      "module": "Steering",
+      "evaluated_vertices_each": 4284,
+      "evaluated_triangles_each": 8460,
+      "bidirectional_maximum_nearest_vertex_error_m": [
+        2.4027400513659813e-07,
+        2.4027400513659813e-07
+      ]
+    }
+  ],
+  "purpose": "Confirm joined authored bake geometry and native evaluated geometry agree within 1 micrometre; tiny alpha differences may arise from one 20-sample coverage decision after joining."
+}

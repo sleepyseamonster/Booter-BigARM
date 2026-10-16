@@ -1,0 +1,7 @@
+{
+  "issue": "Moving buried gauge face exposed housing regions with empty inherited BaseColor atlas texels. New native geometry is valid; inherited surface samples require original authored material input.",
+  "empty_eroded_coverage_texels": 4520,
+  "empty_sampled_evaluated_core_texels": 1130,
+  "part": "Legger_Part_InstrumentGauge",
+  "repair": "Replace only the gauge bake input with its preserved original procedural materials by category. Rebuild source library and rebake all six sets against new guarded prepared/library hashes. Retain earlier maps and reviews; rerun unchanged strict QA. Rebake Steering AO for the newly exposed surface; retain five other AO maps."
+}

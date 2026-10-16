@@ -1,0 +1,95 @@
+{
+  "recipes": [
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\apply.py",
+      "sha256": "caa44a4246834eaaa92324c5276d8c1c46462fecdc27466400304c976d219fc4"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\bake.py",
+      "sha256": "9480883bfea3d34224d9c2e1ea07d04c25d0d4e4f7995c0f0f222c21148139f1"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\bake_geometry_qa.py",
+      "sha256": "0f0fc2023180c9a92d7117f59426c67a7254700ac0081c0d675185042ce32e97"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\baseline.py",
+      "sha256": "232a53adfa5b19abbba54d45111231d531e56b5f96960365e2a074ec690f1ea3"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\boards.py",
+      "sha256": "02966398568f9afa944a8173bae0f69c62c4e0ea0f8b3356c52516142969edd5"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\capture.py",
+      "sha256": "5482d81995e25c165f5f23d1f7db3473fe9ae909f6811fabff3ad621dd674bea"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\capture_author.py",
+      "sha256": "b7967c3ce7484b19088948dd1fa2d0b25bc1ee96cffd312bbc027317d8de9c78"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\commit_records.py",
+      "sha256": "d771dad042fe1e620363e0ebbf008edda6970c882c3e1f351064827bb2ee5d5b"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\compare.py",
+      "sha256": "271a5b7cf5320b009bd9ccc41eedd5d0fbe201a20be64254ff8315f6a8a4680b"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\finalize.py",
+      "sha256": "d09f676ac42af204eee5975d7d27c632c32eb06ddfcf8b82acaa61d79d8073ce"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\normalize_normals.py",
+      "sha256": "abef78e2bcc070c559cbc10a6335ebd7a3c42b48999e5b2632f8f33bf21697c0"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\prepare.py",
+      "sha256": "bcd08960c8ba5924843d8c93e5ddc0ac37461b4d8fff4b4a5c893fa14fe39445"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\qa.py",
+      "sha256": "640b6d83eac23989f7a6bbff0439c0e6687f812a05dde38c660bb971913b919c"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\seal_records.py",
+      "sha256": "42282d975f4298534c73f3d086a282c62e9f0ecdf39a63c61263207655a36d41"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\texture_qa.py",
+      "sha256": "f4c8898bc08727894632e2c83bac94ae90982aeddc2bc24640bf7b6b75c58ea1"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\validate_records.py",
+      "sha256": "a0c3e71b415e335a53f50bd21ead801397e30f2d7dd1293baee31a28d65e49f2"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerFullRefinement20261016\\write_receipt.py",
+      "sha256": "6be56c820aeb71e430ef9669d4373e514f742a83cf09070d6160ffd6cc99b2a9"
+    }
+  ],
+  "checkpoints": [
+    {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\Before.blend",
+      "sha256": "9f47958a59cde1ff245825f5d2a569dfda6fa611e7981f56488208f374171b13",
+      "bytes": 768933496
+    },
+    {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\Prepared.blend",
+      "sha256": "89f5688a07b79844070012411ee6faea4188bf79257ad2886f0f927f46e4d41e",
+      "bytes": 773431551
+    },
+    {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\BakeSources.blend",
+      "sha256": "a8b0bab725eae74e76dfd56c83264263e2b32f4dd25a1049d0df2f4b4817a0b0",
+      "bytes": 56621714
+    },
+    {
+      "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFullRefinement20261016\\Textured.blend",
+      "sha256": "d5e676a6b5c0cf03c0608acef0b1efee9360997337bb0ed5a2481aa267dfc226",
+      "bytes": 796129451
+    }
+  ],
+  "source_policy": "Local-only recipes/checkpoints referenced by identity; no native binary or review pixels in Git."
+}
