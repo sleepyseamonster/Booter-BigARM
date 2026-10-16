@@ -53,7 +53,7 @@ def prepare():
                     change(sheet, address, TARGET, formulas[sheet][address].data_type == 'f')
     counts = Counter(TARGET if r[0] in selected else r[3] for r in rows[5:] if r[0])
     categories = list(values['Categories'].values)
-    retired = 'Retired primary category: all remaining entries are Crafting components. Retained as a historical label only.'
+    retired = f'Retired primary category: all remaining entries are {TARGET}. Retained as a historical label only.'
     for n, row in enumerate(categories, 1):
         if len(row) > 4 and row[4] == 'Primary category':
             change('Categories', f'B{n}', counts[row[0]], formula=formulas['Categories'][f'B{n}'].value[1:])
@@ -75,7 +75,7 @@ def prepare():
     (OUT / 'plan.json').write_text(json.dumps(plan, indent=2), encoding='utf-8')
     values.close()
     formulas.close()
-    print('Prepared', len(items), 'component classifications and category retirement.')
+    print('Prepared', len(items), TARGET, 'classifications and category retirement.')
 
 
 def apply():
@@ -120,7 +120,7 @@ def apply():
                  scope='Catalog classification only; IDs, properties, recipes, review/art state, world identity, fixed terrain, streaming and persisted runtime deltas unchanged.')
     atomic_write(AUDIT, (json.dumps(audit, indent=2) + '\n').encode())
     (OUT / 'after.xlsx').write_bytes(candidate)
-    print('Verified', len(plan['items']), 'moves; Field supplies retired.')
+    print('Verified', len(plan['items']), f'moves; {OLD} retired.')
 
 
 if __name__ == '__main__':

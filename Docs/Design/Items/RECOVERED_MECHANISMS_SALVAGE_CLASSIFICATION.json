@@ -1,0 +1,44 @@
+{
+  "reason": "Author direction October 15: all Recovered mechanisms entries belong in Salvage; retire the separate Recovered mechanisms section. Identity, condition, tiers, properties and recipe roles remain unchanged.",
+  "items": [
+    {
+      "id": "lab.salvage.drive_assembly",
+      "name": "Drive Assembly",
+      "previous": "Recovered mechanisms"
+    },
+    {
+      "id": "lab.salvage.metal_plate",
+      "name": "Metal Plate",
+      "previous": "Recovered mechanisms"
+    },
+    {
+      "id": "lab.salvage.wire_bundle",
+      "name": "Wire Bundle",
+      "previous": "Recovered mechanisms"
+    },
+    {
+      "id": "proposal.wind.rotor",
+      "name": "Salvaged turbine rotor assembly",
+      "previous": "Recovered mechanisms"
+    },
+    {
+      "id": "proposal.wind.generator",
+      "name": "Salvaged generator assembly",
+      "previous": "Recovered mechanisms"
+    },
+    {
+      "id": "proposal.audit.recovered_radio_detector_element",
+      "name": "Recovered radio detector element",
+      "previous": "Recovered mechanisms"
+    },
+    {
+      "id": "proposal.audit.recovered_acoustic_receiver_capsule",
+      "name": "Recovered acoustic receiver capsule",
+      "previous": "Recovered mechanisms"
+    }
+  ],
+  "retiredCategory": "Recovered mechanisms",
+  "sourceHashBefore": "1d7b5f6375758053c2bdbfded3548f32e14c9e2ab256209dedeb636b8654c0f7",
+  "sourceHashAfter": "8b34486536e6ffc1c9aec04ee3a439f1ea062bd9e5f433601454c7b44e8ba26b",
+  "scope": "Catalog classification only; IDs, properties, recipes, review/art state, world identity, fixed terrain, streaming and persisted runtime deltas unchanged."
+}
