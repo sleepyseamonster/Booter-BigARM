@@ -3,7 +3,7 @@
   "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
   "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
   "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
-  "sourceHashAfter": "55d340ea8203f33cc2ce8700d7c906fc1e6a770046b7a47a12da95e846b93396",
+  "sourceHashAfter": "78838e92c7a9744a04154895e9eb0440bbbf7cb70121b0dc5a27b80e2addf50b",
   "counts": {
     "Accessories": 7,
     "Clothing": 8,
@@ -11,10 +11,10 @@
     "Armor": 35,
     "Attachments": 4,
     "Workshop upgrades": 1,
-    "Camp items": 7,
-    "Crafting stations": 2,
+    "Camp items": 8,
     "Legger attachments": 11,
-    "Legger armor": 7
+    "Legger armor": 7,
+    "Crafting stations": 1
   },
   "items": [
     {
@@ -260,8 +260,8 @@
     {
       "id": "proposal.fire.firebox",
       "name": "Managed cooking firebox",
-      "category": "Crafting stations",
-      "reason": "Complete managed cooking heat source, rather than a vessel or handling tool."
+      "category": "Camp items",
+      "reason": "Author correction: all cooking equipment and related household food-preparation records belong in Camp items, including the cooking station and damaged cooking vessels. Classification does not repair salvage or establish working equipment."
     },
     {
       "id": "proposal.fire.glow_holder",
@@ -928,6 +928,17 @@
       ],
       "sourceHashBefore": "11a058df8b95a07e6894ded29aaea0775592cdf7f5c0970aae27bca620c08d21",
       "sourceHashAfter": "55d340ea8203f33cc2ce8700d7c906fc1e6a770046b7a47a12da95e846b93396"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Author correction: all cooking equipment and related household food-preparation records belong in Camp items, including the cooking station and damaged cooking vessels. Classification does not repair salvage or establish working equipment.",
+      "movedIds": [
+        "proposal.fire.firebox",
+        "proposal.salvage.expedition_cookpot",
+        "proposal.collection.household_meal_ledger"
+      ],
+      "sourceHashBefore": "2ef7f4fee50d0045820976b1044bc7b85f5f75ab1dc343440f38f51912da86c7",
+      "sourceHashAfter": "78838e92c7a9744a04154895e9eb0440bbbf7cb70121b0dc5a27b80e2addf50b"
     }
   ]
 }
