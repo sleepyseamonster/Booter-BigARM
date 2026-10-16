@@ -1,0 +1,142 @@
+{
+  "maps": 25,
+  "materials": 15,
+  "resolution": [
+    2048,
+    2048
+  ],
+  "seam_test": "wrap-step mean <= 1.6 * interior neighbor mean + 0.1 per axis; all maps pass",
+  "packed_channels_valid": true,
+  "normal_vectors": [
+    {
+      "family": "WornLeather",
+      "normal_length_mean": 1.0004893943776623,
+      "normal_blue_min": 247
+    },
+    {
+      "family": "Cloth",
+      "normal_length_mean": 1.0002203705963297,
+      "normal_blue_min": 250
+    },
+    {
+      "family": "Bone",
+      "normal_length_mean": 1.0002710153975536,
+      "normal_blue_min": 247
+    },
+    {
+      "family": "Chitin",
+      "normal_length_mean": 1.000651920994026,
+      "normal_blue_min": 252
+    },
+    {
+      "family": "AgedWood",
+      "normal_length_mean": 1.0003703528466952,
+      "normal_blue_min": 245
+    }
+  ],
+  "native_asset_meta_pairs": 40,
+  "unique_asset_guids": 40,
+  "GUID_collisions_elsewhere_in_Assets": 0,
+  "delivered_texture_hashes": [
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/WornLeather_BaseColor_R.png",
+      "sha256": "17959c15e0fae951e5283db662c0ab712709c9189eac9fbcba7f84734f8cebd8"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/WornLeather_BaseColor_E.png",
+      "sha256": "eb4c2ec62b7fdd91e62f42ccbacdcae018eec3c092afb0ece9dad2cb07638c5f"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/WornLeather_BaseColor_P.png",
+      "sha256": "7f4924141da2f999c16f6e4a40ddfed311d61f09dc65865f385765908160d0bc"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/WornLeather_Normal.png",
+      "sha256": "b2b4c68cc7d7006b106ab8437aab1a62c8d6413bd4e604140d33253c6820b5ff"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/WornLeather_Mask.png",
+      "sha256": "aef535e90e09d82783a31198292ba5b941268fa85a37792ccd8bda3b7c2ca3d3"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Cloth_BaseColor_R.png",
+      "sha256": "3e65dac0ccf671d6872fc44b3944800a6f2fe73888c2fb816f13f994dbb9ba25"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Cloth_BaseColor_E.png",
+      "sha256": "fb55d5a38ecd3b84d8d5f1bd0b5fb9c7b2c6563fbd3e97fbbea1b961eee698bd"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Cloth_BaseColor_P.png",
+      "sha256": "dfe7afa44babb27ca8a6d17f2911ffecec9075e2cbb2d4f8d347a2a89c8c85ef"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Cloth_Normal.png",
+      "sha256": "a372e2a25cf46a606571f3535734ab1faffe9e0536cf00ba1294167787312a52"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Cloth_Mask.png",
+      "sha256": "5c82a3d20865ae34f529595b3278ad0b436d896381b84ed566e1eafc962000a9"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Bone_BaseColor_R.png",
+      "sha256": "c70dcf9992c60df1493d6270d7fd372a2cd77f3284705c7cdb16e098d90675f2"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Bone_BaseColor_E.png",
+      "sha256": "3e2ec5e1c57fd61050f05b64cc8cad2d60eb5d12e7cab7930b626466b27000ee"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Bone_BaseColor_P.png",
+      "sha256": "1a413cc52a537b802386d5cb017c797a800e6d2fd2dfe00cacd70899622487a0"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Bone_Normal.png",
+      "sha256": "3448e1c081eb71879a4c1721df9b6b522615928c5fb9ffdbf025035c1bdba4e0"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Bone_Mask.png",
+      "sha256": "bb6f769bf938ce9b4fd070ceac8055666d1005ddaadd02bc4d890dc096717616"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Chitin_BaseColor_R.png",
+      "sha256": "3f1cfe5c46d5b2d545e9556106bf69ab2124569af71e71f6a6f7056b2d53aa72"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Chitin_BaseColor_E.png",
+      "sha256": "705422a15d28153f333995d41c7b7f0b45846436d9a2506779bfcbf17df3eca5"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Chitin_BaseColor_P.png",
+      "sha256": "80ad20b94fe93683ee46e38307b52b9dc5ca6da3edefadfd64512779e85af533"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Chitin_Normal.png",
+      "sha256": "9382017975ebb6563808e63b9175ef3943650fc3e23cb26d1c58f959820c3b74"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Chitin_Mask.png",
+      "sha256": "83346321cc10c4b6c74e589614ae193c18a4639a5ee314561811cd03abac7876"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/AgedWood_BaseColor_R.png",
+      "sha256": "0cd51d09393a3029909ff4d9e14cd0f9f69699aed16fdd69814df28d5d63f4f0"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/AgedWood_BaseColor_E.png",
+      "sha256": "e54a133723b6f1d4e5820ea1c082407537b1b7bb74729dacd5d9a579d65e078d"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/AgedWood_BaseColor_P.png",
+      "sha256": "c2ed7568663ce3ef8e71c93dc78a4925ccebf4ae5e3abf34ebd256fd0e49286b"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/AgedWood_Normal.png",
+      "sha256": "c97ec7cc9e01277067ee877097f59a6c4c8c4da91e0f2fb831a565d979e51a00"
+    },
+    {
+      "file": "Assets/_Project/Art/Textures/OrganicLibrary20261015/AgedWood_Mask.png",
+      "sha256": "7e593770c2233d63ab5ab843d46a60a71d40368b71346384a1597ec92d3cc582"
+    }
+  ]
+}

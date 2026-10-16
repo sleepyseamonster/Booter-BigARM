@@ -1,0 +1,18 @@
+{
+  "native_hash_match": true,
+  "packed_images": 25,
+  "authoring_materials": 5,
+  "baked_materials": 15,
+  "reopened_capture": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\reopened.png",
+  "reference": "WornLeather_E.png",
+  "local_source": "SourceArt\\Blender\\Studies\\Sable\\MaterialDioramas20261015\\OrganicLibrary.blend",
+  "pixel_comparison": {
+    "identical": false,
+    "max_channel_error": 1,
+    "mean_absolute_rgb": [
+      6.25e-05,
+      4.270833333333333e-05,
+      5.3125e-05
+    ]
+  }
+}

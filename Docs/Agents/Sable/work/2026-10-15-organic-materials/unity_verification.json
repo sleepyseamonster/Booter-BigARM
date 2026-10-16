@@ -1,0 +1,405 @@
+{
+  "unity": "6000.4.0f1",
+  "activeBuildTarget": "StandaloneWindows64",
+  "materials": 15,
+  "textures": 25,
+  "families": [
+    {
+      "family": "WornLeather",
+      "textures": [
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/WornLeather_BaseColor_R.png",
+          "guid": "322173e8a5aaf814f979ed58d2086ce1",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/WornLeather_BaseColor_E.png",
+          "guid": "a178ae28980e8604ba778b1d05684845",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/WornLeather_BaseColor_P.png",
+          "guid": "3471db959ef05b54aa7ae6d9679c2632",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/WornLeather_Normal.png",
+          "guid": "a2daa5811881e2340bbd7828235cdddd",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC5",
+          "runtimeBytes": 7035128,
+          "sRGB": false
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/WornLeather_Mask.png",
+          "guid": "b1b16a9ff20df8c449e19de6b3c642c6",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": false
+        }
+      ],
+      "materials": [
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/WornLeather_R.mat",
+          "guid": "f219a470972e92e46af6303424af1c0a",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "WornLeather_Normal",
+          "mask": "WornLeather_Mask"
+        },
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/WornLeather_E.mat",
+          "guid": "41fdd733e156c1f488d58e44d0754065",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "WornLeather_Normal",
+          "mask": "WornLeather_Mask"
+        },
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/WornLeather_P.mat",
+          "guid": "53fad474d1cf2d0478b643016fcbc804",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "WornLeather_Normal",
+          "mask": "WornLeather_Mask"
+        }
+      ]
+    },
+    {
+      "family": "Cloth",
+      "textures": [
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Cloth_BaseColor_R.png",
+          "guid": "6447a189e6c8cfa48a6320bec55398be",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Cloth_BaseColor_E.png",
+          "guid": "a3e80e83898b3164d8a18806dad98ebc",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Cloth_BaseColor_P.png",
+          "guid": "d5cfdf71ed28b6f45a4efbc4bc8bf1ce",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Cloth_Normal.png",
+          "guid": "442fcaebc577b9740a7b1bd2304ce4c7",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC5",
+          "runtimeBytes": 7035128,
+          "sRGB": false
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Cloth_Mask.png",
+          "guid": "f3fa2cbb80e10694088310d3ceafc761",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": false
+        }
+      ],
+      "materials": [
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/Cloth_R.mat",
+          "guid": "8bc9b6fa1ea2405469b4278506a0e67c",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "Cloth_Normal",
+          "mask": "Cloth_Mask"
+        },
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/Cloth_E.mat",
+          "guid": "5b2c74d8f1c1cb64eaf7d32fc723e91a",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "Cloth_Normal",
+          "mask": "Cloth_Mask"
+        },
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/Cloth_P.mat",
+          "guid": "af5b56dbd445e9d459c7ee95e9ffe784",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "Cloth_Normal",
+          "mask": "Cloth_Mask"
+        }
+      ]
+    },
+    {
+      "family": "Bone",
+      "textures": [
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Bone_BaseColor_R.png",
+          "guid": "f3e482e8fe5c53040a2b6238af472134",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Bone_BaseColor_E.png",
+          "guid": "38f8004f9f6a5f440a74652c9a27ab3c",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Bone_BaseColor_P.png",
+          "guid": "97d41a2f35fdc2a46a8aea0e0893afb6",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Bone_Normal.png",
+          "guid": "a9e9764c0d0ec2f4d8ca7108aa071b10",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC5",
+          "runtimeBytes": 7035128,
+          "sRGB": false
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Bone_Mask.png",
+          "guid": "3f5eaf6c289c9c741b8e0438e439c2f9",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": false
+        }
+      ],
+      "materials": [
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/Bone_R.mat",
+          "guid": "03423240a666a8e48ba3c056a9b4241d",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "Bone_Normal",
+          "mask": "Bone_Mask"
+        },
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/Bone_E.mat",
+          "guid": "0fb2ced0b2fa33c4abecb1f36f4fe1ec",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "Bone_Normal",
+          "mask": "Bone_Mask"
+        },
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/Bone_P.mat",
+          "guid": "0f0debe8cb2123648a7f526fe9da50b9",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "Bone_Normal",
+          "mask": "Bone_Mask"
+        }
+      ]
+    },
+    {
+      "family": "Chitin",
+      "textures": [
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Chitin_BaseColor_R.png",
+          "guid": "7e9115532c64ebf4592659032cc3aebb",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Chitin_BaseColor_E.png",
+          "guid": "63754cf1b2d1d6e41a12934612d4162a",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Chitin_BaseColor_P.png",
+          "guid": "381db4ffbdd96a14f98d9be2f9115a7c",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Chitin_Normal.png",
+          "guid": "80c3b6b2166d1134bb2b93c0f26c1cdd",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC5",
+          "runtimeBytes": 7035128,
+          "sRGB": false
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/Chitin_Mask.png",
+          "guid": "e406c1ebe81061c49b5b9a05a2ca0ba2",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": false
+        }
+      ],
+      "materials": [
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/Chitin_R.mat",
+          "guid": "dfd1589eff5df0f45a3f317e8d2730fe",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "Chitin_Normal",
+          "mask": "Chitin_Mask"
+        },
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/Chitin_E.mat",
+          "guid": "32b125b12f1a693429a965654f224c79",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "Chitin_Normal",
+          "mask": "Chitin_Mask"
+        },
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/Chitin_P.mat",
+          "guid": "14b55f4e1f4404c4cb317ca1751168ee",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "Chitin_Normal",
+          "mask": "Chitin_Mask"
+        }
+      ]
+    },
+    {
+      "family": "AgedWood",
+      "textures": [
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/AgedWood_BaseColor_R.png",
+          "guid": "51b09c433051144458cdc0ecc8ccd4a6",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/AgedWood_BaseColor_E.png",
+          "guid": "f715b2c3ecc2ce348a84076de2e16a78",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/AgedWood_BaseColor_P.png",
+          "guid": "3c6262e5e96663d479ea5df0b2802b34",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": true
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/AgedWood_Normal.png",
+          "guid": "5c3d0d0500a78a14c9836555eb5e7cb1",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC5",
+          "runtimeBytes": 7035128,
+          "sRGB": false
+        },
+        {
+          "path": "Assets/_Project/Art/Textures/OrganicLibrary20261015/AgedWood_Mask.png",
+          "guid": "38a2f4fc2ad0f674c90415029cf20ede",
+          "width": 2048,
+          "height": 2048,
+          "mips": 12,
+          "format": "BC7",
+          "runtimeBytes": 7035128,
+          "sRGB": false
+        }
+      ],
+      "materials": [
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/AgedWood_R.mat",
+          "guid": "af7708f73002f2343a1d661095730c54",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "AgedWood_Normal",
+          "mask": "AgedWood_Mask"
+        },
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/AgedWood_E.mat",
+          "guid": "1808be39d65e8ac4f9f53bfa82149bec",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "AgedWood_Normal",
+          "mask": "AgedWood_Mask"
+        },
+        {
+          "path": "Assets/_Project/Materials/SurfaceLibrary/OrganicLibrary20261015/AgedWood_P.mat",
+          "guid": "f384e183a7e1ebb469926fad705817c8",
+          "shader": "Universal Render Pipeline/Lit",
+          "normal": "AgedWood_Normal",
+          "mask": "AgedWood_Mask"
+        }
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "path": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+      "dirty": true
+    }
+  ],
+  "playModeEntered": false
+}

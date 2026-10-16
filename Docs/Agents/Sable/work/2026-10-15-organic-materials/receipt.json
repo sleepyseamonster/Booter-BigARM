@@ -1,0 +1,278 @@
+{
+  "resolution": 2048,
+  "tile_span_metres": 1,
+  "normal_convention": "Tangent-space +Y/OpenGL; Unity normal import, flipGreenChannel=false",
+  "mask": "R metallic=0, G intrinsic cavity occlusion, B reserved=1, A smoothness",
+  "styles": {
+    "R": [
+      "Restrained realism",
+      0.12
+    ],
+    "E": [
+      "Combined direction",
+      0.38
+    ],
+    "P": [
+      "Broader painted accents",
+      0.68
+    ]
+  },
+  "families": {
+    "WornLeather": "Worn leather",
+    "Cloth": "Cloth \u2014 visual reference",
+    "Bone": "Weathered bone",
+    "Chitin": "Layered chitin",
+    "AgedWood": "Aged wood \u2014 visual reference"
+  },
+  "maps": [
+    {
+      "family": "WornLeather",
+      "kind": "BaseColor_R",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\WornLeather_BaseColor_R.png",
+      "sha256": "17959c15e0fae951e5283db662c0ab712709c9189eac9fbcba7f84734f8cebd8"
+    },
+    {
+      "family": "WornLeather",
+      "kind": "BaseColor_E",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\WornLeather_BaseColor_E.png",
+      "sha256": "eb4c2ec62b7fdd91e62f42ccbacdcae018eec3c092afb0ece9dad2cb07638c5f"
+    },
+    {
+      "family": "WornLeather",
+      "kind": "BaseColor_P",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\WornLeather_BaseColor_P.png",
+      "sha256": "7f4924141da2f999c16f6e4a40ddfed311d61f09dc65865f385765908160d0bc"
+    },
+    {
+      "family": "WornLeather",
+      "kind": "Normal",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\WornLeather_Normal.png",
+      "sha256": "b2b4c68cc7d7006b106ab8437aab1a62c8d6413bd4e604140d33253c6820b5ff"
+    },
+    {
+      "family": "WornLeather",
+      "kind": "Mask",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\WornLeather_Mask.png",
+      "sha256": "aef535e90e09d82783a31198292ba5b941268fa85a37792ccd8bda3b7c2ca3d3"
+    },
+    {
+      "family": "Cloth",
+      "kind": "BaseColor_R",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Cloth_BaseColor_R.png",
+      "sha256": "3e65dac0ccf671d6872fc44b3944800a6f2fe73888c2fb816f13f994dbb9ba25"
+    },
+    {
+      "family": "Cloth",
+      "kind": "BaseColor_E",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Cloth_BaseColor_E.png",
+      "sha256": "fb55d5a38ecd3b84d8d5f1bd0b5fb9c7b2c6563fbd3e97fbbea1b961eee698bd"
+    },
+    {
+      "family": "Cloth",
+      "kind": "BaseColor_P",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Cloth_BaseColor_P.png",
+      "sha256": "dfe7afa44babb27ca8a6d17f2911ffecec9075e2cbb2d4f8d347a2a89c8c85ef"
+    },
+    {
+      "family": "Cloth",
+      "kind": "Normal",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Cloth_Normal.png",
+      "sha256": "a372e2a25cf46a606571f3535734ab1faffe9e0536cf00ba1294167787312a52"
+    },
+    {
+      "family": "Cloth",
+      "kind": "Mask",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Cloth_Mask.png",
+      "sha256": "5c82a3d20865ae34f529595b3278ad0b436d896381b84ed566e1eafc962000a9"
+    },
+    {
+      "family": "Bone",
+      "kind": "BaseColor_R",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Bone_BaseColor_R.png",
+      "sha256": "c70dcf9992c60df1493d6270d7fd372a2cd77f3284705c7cdb16e098d90675f2"
+    },
+    {
+      "family": "Bone",
+      "kind": "BaseColor_E",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Bone_BaseColor_E.png",
+      "sha256": "3e2ec5e1c57fd61050f05b64cc8cad2d60eb5d12e7cab7930b626466b27000ee"
+    },
+    {
+      "family": "Bone",
+      "kind": "BaseColor_P",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Bone_BaseColor_P.png",
+      "sha256": "1a413cc52a537b802386d5cb017c797a800e6d2fd2dfe00cacd70899622487a0"
+    },
+    {
+      "family": "Bone",
+      "kind": "Normal",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Bone_Normal.png",
+      "sha256": "3448e1c081eb71879a4c1721df9b6b522615928c5fb9ffdbf025035c1bdba4e0"
+    },
+    {
+      "family": "Bone",
+      "kind": "Mask",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Bone_Mask.png",
+      "sha256": "bb6f769bf938ce9b4fd070ceac8055666d1005ddaadd02bc4d890dc096717616"
+    },
+    {
+      "family": "Chitin",
+      "kind": "BaseColor_R",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Chitin_BaseColor_R.png",
+      "sha256": "3f1cfe5c46d5b2d545e9556106bf69ab2124569af71e71f6a6f7056b2d53aa72"
+    },
+    {
+      "family": "Chitin",
+      "kind": "BaseColor_E",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Chitin_BaseColor_E.png",
+      "sha256": "705422a15d28153f333995d41c7b7f0b45846436d9a2506779bfcbf17df3eca5"
+    },
+    {
+      "family": "Chitin",
+      "kind": "BaseColor_P",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Chitin_BaseColor_P.png",
+      "sha256": "80ad20b94fe93683ee46e38307b52b9dc5ca6da3edefadfd64512779e85af533"
+    },
+    {
+      "family": "Chitin",
+      "kind": "Normal",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Chitin_Normal.png",
+      "sha256": "9382017975ebb6563808e63b9175ef3943650fc3e23cb26d1c58f959820c3b74"
+    },
+    {
+      "family": "Chitin",
+      "kind": "Mask",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\Chitin_Mask.png",
+      "sha256": "83346321cc10c4b6c74e589614ae193c18a4639a5ee314561811cd03abac7876"
+    },
+    {
+      "family": "AgedWood",
+      "kind": "BaseColor_R",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\AgedWood_BaseColor_R.png",
+      "sha256": "0cd51d09393a3029909ff4d9e14cd0f9f69699aed16fdd69814df28d5d63f4f0"
+    },
+    {
+      "family": "AgedWood",
+      "kind": "BaseColor_E",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\AgedWood_BaseColor_E.png",
+      "sha256": "e54a133723b6f1d4e5820ea1c082407537b1b7bb74729dacd5d9a579d65e078d"
+    },
+    {
+      "family": "AgedWood",
+      "kind": "BaseColor_P",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\AgedWood_BaseColor_P.png",
+      "sha256": "c2ed7568663ce3ef8e71c93dc78a4925ccebf4ae5e3abf34ebd256fd0e49286b"
+    },
+    {
+      "family": "AgedWood",
+      "kind": "Normal",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\AgedWood_Normal.png",
+      "sha256": "c97ec7cc9e01277067ee877097f59a6c4c8c4da91e0f2fb831a565d979e51a00"
+    },
+    {
+      "family": "AgedWood",
+      "kind": "Mask",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Textures\\AgedWood_Mask.png",
+      "sha256": "7e593770c2233d63ab5ab843d46a60a71d40368b71346384a1597ec92d3cc582"
+    }
+  ],
+  "renders": [
+    {
+      "family": "WornLeather",
+      "style": "R",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\WornLeather_R.png",
+      "sha256": "5096f0d0616ea27f2b3dee2c41bd02654e2e0ce68afae72d5075487c78b9f91d"
+    },
+    {
+      "family": "WornLeather",
+      "style": "E",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\WornLeather_E.png",
+      "sha256": "20b727a76074add785f30673edaa88f63666291b3c430e47fd8ffb003679fff5"
+    },
+    {
+      "family": "WornLeather",
+      "style": "P",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\WornLeather_P.png",
+      "sha256": "82d3dc984fd79535af032222f0b081c9c28f21cbec6ea3d67b3924fc269642b5"
+    },
+    {
+      "family": "Cloth",
+      "style": "R",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Cloth_R.png",
+      "sha256": "f5afe13052c9406a405a0100ed4a7e72faac532c70d7a015af21f92921df9727"
+    },
+    {
+      "family": "Cloth",
+      "style": "E",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Cloth_E.png",
+      "sha256": "05122acd3d6b09fe556d8153c232ffb383d03a4f2b1e481fc3d6006c56638f83"
+    },
+    {
+      "family": "Cloth",
+      "style": "P",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Cloth_P.png",
+      "sha256": "2cd5276143ccb0b53ba51d63c78593dfc12dd34303c171bb1e9ae2d7bbbfc48b"
+    },
+    {
+      "family": "Bone",
+      "style": "R",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Bone_R.png",
+      "sha256": "155288f29b0e90d6f956a737c4524b93127900491a85913b35e6bc4ff63c77de"
+    },
+    {
+      "family": "Bone",
+      "style": "E",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Bone_E.png",
+      "sha256": "7883891baa64af01a1819be805ce8bac9820b6695dcc8b4c6959ce19a44ba20d"
+    },
+    {
+      "family": "Bone",
+      "style": "P",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Bone_P.png",
+      "sha256": "baf01a61938fb7b3cfd7ebab2e2a4777342ce847a0ade3533020261877040eee"
+    },
+    {
+      "family": "Chitin",
+      "style": "R",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Chitin_R.png",
+      "sha256": "6a6c258d3fb537781db1f909ac4ad67b781374362b580ff47c9dba9ad468c132"
+    },
+    {
+      "family": "Chitin",
+      "style": "E",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Chitin_E.png",
+      "sha256": "784493363dc9b8ce8de30c7ad0e2f7b76813cd85281996aaa153b04469892162"
+    },
+    {
+      "family": "Chitin",
+      "style": "P",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\Chitin_P.png",
+      "sha256": "be52f02f8a0a6c991e2836ff5b9da0908096c90cd96b3383b1aa9ad0736ef3ba"
+    },
+    {
+      "family": "AgedWood",
+      "style": "R",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\AgedWood_R.png",
+      "sha256": "07e999f1f2b9317548832caac642bc0a56d720f26e6587d080743eb5a729469d"
+    },
+    {
+      "family": "AgedWood",
+      "style": "E",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\AgedWood_E.png",
+      "sha256": "b3f46ead46d788c8f1bb748b59cdd89b30c999899e24f93446b60af3f510e6db"
+    },
+    {
+      "family": "AgedWood",
+      "style": "P",
+      "file": "outputs\\Sable\\MaterialDioramas20261015\\OrganicLibrary\\AgedWood_P.png",
+      "sha256": "81e22cb7f5fcf2e910e34e3ebd5c53d6d394664b5f6ff6c0fe696db50ba4966b"
+    }
+  ],
+  "script_sha256": "348569ce074086fe0654e009a7129b4aece57e3cdbf0938760dff0599677a6c3",
+  "unity_proof": false,
+  "refinement": "Aged wood: irregular multi-frequency grain, two elongated knot fields and desaturated weathering. Other families retain their prior maps/captures.",
+  "previous_script_sha256": "169d098bd0da9b3fb36c76da573fb6cf48e93f0970fec238413a8d4b353afe64",
+  "native": "SourceArt\\Blender\\Studies\\Sable\\MaterialDioramas20261015\\OrganicLibrary.blend",
+  "native_sha256": "1d0872cdc6e0aa8d4d827a84c8f2dac6a227c163a6ce5de5d1871723377d2b98",
+  "complete": true
+}
