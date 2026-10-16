@@ -274,7 +274,8 @@ namespace BooterBigArm.TopDown3D
             }
 
             if(ReferenceEquals(animationMotionOwner,owner))ReleaseAnimationMotionCore();
-            if (actionConstraintOwner != null) ResetStandingMotionObservation();
+            if (actionConstraintOwner != null && !jumpPreserveGroundObservationOnRelease) ResetStandingMotionObservation();
+            jumpPreserveGroundObservationOnRelease=false;
             actionConstraintOwner = null;
             campApproaching = false;
             waypointTravelActive = false;
@@ -315,11 +316,11 @@ namespace BooterBigArm.TopDown3D
         private void FixedUpdate()
         {
             laboratoryGroundSupport = null;
-            try { AdvanceMotorFixedTick(); }
+            try { if (!AdvanceJumpLocomotion()) AdvanceMotorFixedTick(); }
             finally { ObserveCompletedLaboratoryMotion(); }
         }
 
-        private void AdvanceMotorFixedTick()
+        private void AdvanceMotorFixedTick(bool jumpGroundedLocomotion = false)
         {
             GuardStandingStrafeOwner();
             if (YieldMountedMotor()) return;
@@ -336,7 +337,7 @@ namespace BooterBigArm.TopDown3D
                 return; // Includes traversal, climb, waypoint and camp timers; resume instead of consuming an unready move.
             }
             traversalCooldownRemaining = Mathf.Max(0f, traversalCooldownRemaining - Time.fixedDeltaTime);
-            if (IsActionConstrained)
+            if (IsActionConstrained && !jumpGroundedLocomotion)
             {
                 if(AdvanceAnimationMotion())return;
                 if (waypointTravelActive) { AdvanceWaypointTravel(); return; }

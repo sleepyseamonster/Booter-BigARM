@@ -43,7 +43,7 @@ namespace BooterBigArm.TopDown3D
         private void GuardStandingStrafeOwner()
         {
             if (standingStrafeProfile == null) return;
-            if (animationPostureOwner == null || IsMounted || IsActionConstrained || laboratoryPostureSuspended
+            if (animationPostureOwner == null || IsMounted || IsActionConstrained && !JumpLocomotionActive || laboratoryPostureSuspended
                 || AnimationPosture != AnimationPlaygroundPosture.Standing || input == null
                 || input.Mode != TopDown3DInputMode.Gameplay || input.LaboratoryResetBlocked
                 || input.LaboratoryStandingFacingDisarmed
@@ -56,7 +56,7 @@ namespace BooterBigArm.TopDown3D
             if (standingStrafeProfile == null) return;
             var held = input != null && input.LaboratoryStandingFacingHeld;
             if (!held) standingStrafeAwaitRelease = false;
-            if (animationPostureOwner == null || IsActionConstrained || laboratoryPostureSuspended
+            if (animationPostureOwner == null || IsActionConstrained && !JumpUsesGroundedLocomotion || laboratoryPostureSuspended
                 || AnimationPosture != AnimationPlaygroundPosture.Standing || !IsGrounded
                 || standingStrafeSupport?.Invoke() != true)
             { ResetStandingStrafe(held); return; }

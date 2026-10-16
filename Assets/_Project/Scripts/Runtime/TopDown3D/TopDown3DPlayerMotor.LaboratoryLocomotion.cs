@@ -81,8 +81,8 @@ namespace BooterBigArm.TopDown3D
             hasCompletedLaboratoryGroundPlane = false;
             if (animationPostureOwner == null) return;
             var support = laboratoryGroundSupport;
-            var eligible = body != null && IsGrounded && !IsMounted && !IsActionConstrained
-                && !WaitingForPopulation && !laboratoryPostureSuspended && animationMotionOwner == null
+            var eligible = body != null && IsGrounded && !IsMounted && (!IsActionConstrained || JumpUsesGroundedLocomotion)
+                && !WaitingForPopulation && !laboratoryPostureSuspended && (animationMotionOwner == null || JumpUsesGroundedLocomotion)
                 && AnimationPosture == AnimationPlaygroundPosture.Standing
                 && ActiveTraversal == TopDown3DTraversalMove.None && climbMode < TopDown3DClimbMode.Scramble
                 && support != null && support.attachedRigidbody == null;

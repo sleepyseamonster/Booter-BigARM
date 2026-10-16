@@ -1,12 +1,14 @@
 # Camp Loop jump repair plan — October 15, 2026
 
-Planning only; implementation has not started. The author requested an implementation plan after the audit. This document defines the proposed work, defaults and completion gates. Read the [initial audit](CAMP_LOOP_JUMP_AUDIT_2026-10-15.md) for J01–J10 and the [continued study receipt](../../Evidence/Gameplay/JumpRepairStudy20261015/README.md) for measurements and limitations.
+Implementation authorized after the plan audit; work is in progress. This document defines the work, defaults and completion gates. Read the [initial audit](CAMP_LOOP_JUMP_AUDIT_2026-10-15.md) for J01–J10 and the [continued study receipt](../../Evidence/Gameplay/JumpRepairStudy20261015/README.md) for measurements and limitations.
 
 The preferred repair is to make jumping a continuous locomotion policy inside the existing single Rigidbody owner, then rebuild its presentation around matching source phases. Keep the coordinator's ownership and once-only effects. Ordinary takeoff and landing must stop inheriting the braking rules of unrelated laboratory actions. Longer blends or additional animation downloads alone cannot fix those movement rules.
 
 ## Execution checklist
 
 **Target behavior:** stationary, walking, running and LT directional jumps respond promptly, carry movement through the air, land on native terrain and return smoothly to the appropriate accepted gait. The main Camp Loop is the delivery target. Isolated platforms remain diagnostic aids.
+
+**Exact installation boundary:** the current delivery is `Assets/_Project/Scenes/Reference/CampLoopTesting.unity`, on its main native-ground camp area. Its session owns the accepted gait bindings and currently refuses other scene identities. Greater Wasteland remains the enabled production scene; promotion of this study's complete gait/session installation is not claimed here. Preserve the guard and production scene instead of silently copying the laboratory into it.
 
 **Protected baseline:** preserve accepted forward and directional sources, speed bands, LT facing lock and camera look-ahead, input IDs, current jump impulse/gravity, fixed terrain and unrelated action behavior. Start with fixed-height jumping. Use 100 ms buffer/coyote windows and a maximum 100 ms eligible-request-to-impulse budget as provisional implementation targets, subject to author feel testing. These are planned values, not current settings or approved final tuning.
 
@@ -18,7 +20,7 @@ The preferred repair is to make jumping a continuous locomotion policy inside th
    - [ ] Preserve completed planar velocity through accepted acquisition, rejected acquisition rollback and ordinary release.
    - [ ] Continue grounded movement during short anticipation; distinguish walkable support from walls and retain valid wall/ceiling response.
    - [ ] Separate completed observations from upcoming commands; keep the upward impulse once-only and gravity physically owned.
-   - **Exit:** focused command/ownership checks establish the new contract without changing other actions. Actual terrain trajectory acceptance remains a later gameplay gate; do not treat a mocked movement check as that proof.
+   - **Exit:** focused command/ownership checks establish the new contract without changing other actions. Actual terrain trajectory acceptance belongs to step 6; do not treat a mocked movement check as that proof.
 3. **Repair touchdown and moving run-out.**
    - [ ] Confirm capsule-aware walkable contact once, using a contact-associated impact record for recovery/damage.
    - [ ] Remove compulsory braking/full-clip/idle settle from ordinary moving landings; neutral landings use ordinary deceleration. Keep justified hard recovery separate.
@@ -39,7 +41,15 @@ The preferred repair is to make jumping a continuous locomotion policy inside th
    - [ ] Fix reproduced defects within the same scope and repeat only affected checks.
    - **Exit:** the author accepts jump responsiveness, movement continuity and landing feel. Until then, report readiness for testing separately from gameplay acceptance.
 
-Keep implementation commits separated by coherent concern, with only verified task-owned files staged on `main`. Work in the background and preserve the user's foreground application. Automated gameplay smoke tests remain prohibited without an explicit request; author-owned gameplay testing is step 6. This planning request does not start any implementation or gameplay tests.
+Keep implementation commits separated by coherent concern, with only verified task-owned files staged on `main`. Work in the background and preserve the user's foreground application. Automated gameplay smoke tests remain prohibited without an explicit request; author-owned gameplay testing is step 6. Implementation readiness is compilation/import plus the focused command, ownership and offline pose gates. Real trajectories and feel are accepted only after step 6; they are not required as an unowned prerequisite before author handoff.
+
+### Plan-audit corrections governing implementation
+
+- Landing identity is **per distinct touchdown**, with a new contact ID after actual support departure, within the session epoch. Landing, losing support and falling again must permit another impact; sustained contact must not repeat it.
+- Damage keeps the existing **vertical** incoming-speed metric and the existing threshold/multiplier. Use the fresh walkable-contact collision record's relative vertical magnitude on fixed terrain, gated by departure/touchdown; do not replace the metric with contact-normal speed or use the flight's peak. The completed-contact/solver timing remains part of the author trajectory evidence.
+- Validate short-anticipation source feasibility before binding the replacement. The preferred bounded experiment trims the existing take's prelaunch lead-in rather than speeding its whole anticipation eightfold; use a different source if equipped transition evidence rejects that window.
+- Reauthor private animation/profile data only in the marked candidate with explicit source importer hashes. Invalidate qualification while authoring, replace the legacy exact-flat-hip assertion with the shared-source-height/continuity contract, and restore readiness only against the new candidate evidence. Preserve asset GUIDs and retain paired recovery bytes before author installation.
+- The table below lists source boundaries and final claims, not additional physical-test gates before step 6. Every pre-handoff claim must name its static, command or offline pose proof boundary.
 
 ## What the continuation established
 
@@ -114,23 +124,23 @@ Additional Mixamo assets are conditional. Seek a short neutral anticipation, dir
 
 ## Bounded implementation sequence
 
-| Slice | Likely file boundary | Completion evidence required before widening scope |
+| Slice | Likely file boundary | Contract to establish; physical acceptance is step 6 |
 | --- | --- | --- |
 | 1. Jump ownership and motion | `AnimationPlaygroundActionCoordinator`, `TopDown3DPlayerMotor.AnimationPlayground`, `AnimationPlaygroundAirborneController`; narrowly shared motor support helpers | Acquisition/rejection/release preserve expected momentum; one Rigidbody writer; native support cannot cause an artificial stop; walls/ceilings still block. Defaults for unrelated actions unchanged. |
 | 2. Completed contact and run-out | Same motor/controller boundary; `TopDown3DPlayerMotor.LaboratoryLocomotion`, `AnimationPlaygroundGroundedMotion` | Confirmed contact once; no peak-speed damage error; moving soft landing continues; neutral landing decelerates normally; correct gait observation and contact-foot handoff. |
 | 3. Source and rendering | `AnimationPlaygroundAirborneAuthoring`, `AnimationPlaygroundClipDerivatives`, airborne profile/contiguous derivatives, driver `PoseBlend`, `AnimationPlayground`, `LaboratoryLocomotion`, `Directional`, `NativeGround` partials | Shared source-height reference; advancing blend inputs; render interpolation; no airborne synthetic floor; actual equipped final-pose continuity. Preserve existing asset GUIDs and grounded gait policy. |
 | 4. Input and integration | `TopDown3DInputRouter.AnimationPlayground`, session airborne/low-motion routing and controller request handling | Buffer/coyote once-only; preview selection isolated; LT continuation; interruption/reset cleanup; no leaked gravity/owner/effects. |
-| 5. Qualification and handoff | Relevant existing Editor tests/evidence and the main Camp Loop binding | Full physics/contact and rendered transition evidence, regression checks, then author-owned feel testing in the main loop. Isolated platforms are diagnostic only. |
+| 5. Qualification and handoff | Relevant existing Editor tests/evidence and the main Camp Loop binding | Compilation/import, focused command/ownership regressions and offline equipped transition evidence establish readiness for testing. Author-owned main-loop trajectory/feel testing establishes final acceptance. Isolated platforms are diagnostic only. |
 
 Avoid broad refactors, package upgrades, scene regeneration, or new movement assemblies. Camp interactions, turns, crouch/slide/roll, cover/traversal, mounted controls, menu ownership and reset remain explicit regression boundaries. The current UI/Cancel and destroyed-driver errors need separate lifecycle triage; they are not proof of the jump's root cause.
 
 ## Acceptance gates for the later implementation
 
 - **Motion:** real Rigidbody trajectories through impulse, flight, contact and locomotion re-entry. Held unobstructed movement must not acquire a zero planar frame at acquisition, uphill support, normal touchdown or release. Compare against the existing grounded slope policy, not a claim of constant world speed on every incline. Include a wall glance with preserved tangent and a ceiling interruption.
-- **Contact:** native uphill/downhill/sidehill, crest/ledge loss and permitted steep support, plus hard drops and compound wall/ground contact. Landing/damage/contact effects occur once per jump/epoch from confirmed contact, with no early prediction effects or arbitrary 30 mm slope veto.
+- **Contact:** native uphill/downhill/sidehill, crest/ledge loss and permitted steep support, plus hard drops and compound wall/ground contact. Landing/damage/contact effects occur once per distinct touchdown within the epoch, including a second impact after support loss, with no early prediction effects or arbitrary 30 mm slope veto.
 - **Pose:** measure same-timestamp stage-switch continuity on the final equipped rig, including root/hip/feet/hands/equipment and correction outputs. An initial switch-discontinuity target is 1–2 mm, subject to sampling precision and source qualification. Compare velocity continuity with the expected advancing source/blend envelope; never demand zero natural joint velocity. Verify 30/60/120 Hz rendering with the current 50 Hz fixed step.
 - **Controls:** stationary, walk/jog/run/fast run/sprint; LT left/right/back/diagonal jumps; stick hold/release/reversal, near-contact presses, consecutive jumps, coyote exit, pause/world-speed changes, cancel/device/reset and failed presentation acquisition. Preserve input IDs, accepted speed bands, camera look-ahead and LT semantics.
-- **Scope:** validate the actual main Camp Loop on native ground with current bindings. Keep production Greater Wasteland integration accounted for without replacing its fixed terrain or copying an old generated-world service. A test-platform pass is insufficient.
+- **Scope:** validate the actual main Camp Loop native-ground area in CampLoopTesting with current bindings. Preserve the separate Greater Wasteland production installation; this study repair does not claim promotion of its laboratory-only session/gaits. A test-platform pass is insufficient.
 
 Future automated trajectory tests must be explicitly authorized; the repository reserves gameplay smoke/feel testing for the author. Existing manually posed FixedUpdate tests and isolated mesh sweeps can remain useful, but cannot serve as trajectory proof. No such gameplay tests ran in this continued audit.
 

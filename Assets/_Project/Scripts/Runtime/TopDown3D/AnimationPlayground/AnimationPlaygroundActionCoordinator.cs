@@ -52,13 +52,14 @@ namespace BooterBigArm.TopDown3D
         public bool TryBeginPhysical(AnimationPlaygroundMotionBinding binding,AnimationPlaygroundMotionMode mode,
             AnimationPlaygroundMarker[] markers,Func<double,AnimationPlaygroundMotorIntent> motionAtTime,
             Func<AnimationPlaygroundEffectKey,bool> commitEffect,TopDown3DInteractionTarget? target=null,
-            int cycles=1,bool disableGravity=false,bool terminalHold=false)
+            int cycles=1,bool disableGravity=false,bool terminalHold=false,
+            AnimationPlaygroundMotionPolicy policy=AnimationPlaygroundMotionPolicy.Action)
         {
             if(binding==null || !binding.CanPerform || IsBusy || motor==null || motionAtTime==null || target.HasValue && !target.Value.IsValid)
                 return false;
             var candidate=new AnimationPlaygroundActionClock(++nextAction,registry.Epoch,binding.clip.length,cycles,markers);
             if(markers!=null && markers.Length>0 && commitEffect==null)throw new ArgumentException("Effect markers require an atomic idempotent commit adapter.");
-            if(!Acquire(binding.clip,mode,disableGravity,false))return false;
+            if(!Acquire(binding.clip,mode,disableGravity,false,policy))return false;
             clock=candidate;motion=motionAtTime;effect=commitEffect;capturedTarget=target;
             stageSeconds=0;physicalPoseTime=0;sequenceOwner=null;loopPresentation=false;presentationAtTime=null;
             holdAtEnd=terminalHold;completionSent=false;LastFailure=null;return true;
@@ -66,9 +67,10 @@ namespace BooterBigArm.TopDown3D
         public bool TryBeginPhysicalSequence(object owner,AnimationPlaygroundMotionBinding binding,AnimationPlaygroundMotionMode mode,
             AnimationPlaygroundMarker[] markers,Func<double,AnimationPlaygroundMotorIntent> motionAtTime,
             Func<AnimationPlaygroundEffectKey,bool> commitEffect,Func<double,double> poseAtTime=null,
-            bool looping=false,TopDown3DInteractionTarget? target=null)
+            bool looping=false,TopDown3DInteractionTarget? target=null,
+            AnimationPlaygroundMotionPolicy policy=AnimationPlaygroundMotionPolicy.Action)
         {
-            if(owner==null || !TryBeginPhysical(binding,mode,markers,motionAtTime,commitEffect,target,terminalHold:true))return false;
+            if(owner==null || !TryBeginPhysical(binding,mode,markers,motionAtTime,commitEffect,target,terminalHold:true,policy:policy))return false;
             sequenceOwner=owner;loopPresentation=looping;presentationAtTime=poseAtTime;return true;
         }
         public bool TrySwitchPhysicalSequence(object owner,AnimationPlaygroundMotionBinding binding,AnimationPlaygroundMotionMode mode,
@@ -106,8 +108,17 @@ namespace BooterBigArm.TopDown3D
             previewTime=Math.Min(seconds,preview.clip.length);return presentation.SetAnimationPresentationTime(this,previewTime);
         }
 
-        private bool Acquire(AnimationClip clip,AnimationPlaygroundMotionMode mode,bool disableGravity,bool isPreview)
+        private bool Acquire(AnimationClip clip,AnimationPlaygroundMotionMode mode,bool disableGravity,bool isPreview,
+            AnimationPlaygroundMotionPolicy policy=AnimationPlaygroundMotionPolicy.Action)
         {
+            // Jump rejection must not mutate the motor or its held-facing lease.
+            if(policy==AnimationPlaygroundMotionPolicy.JumpLocomotion)
+            {
+                if(!motor.CanBeginJumpMotion(this))return false;
+                if(!presentation.TryBeginAnimationPresentation(this,clip,isPreview))return false;
+                if(motor.TryBeginAnimationMotion(this,mode,disableGravity,policy))return true;
+                presentation.EndAnimationPresentation(this);return false;
+            }
             if(!motor.TryBeginAnimationMotion(this,mode,disableGravity))return false;
             if(presentation.TryBeginAnimationPresentation(this,clip,isPreview))return true;
             motor.ReleaseAnimationMotion(this);return false;

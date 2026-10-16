@@ -57,6 +57,30 @@ namespace BooterBigArm.Tests
             Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Rising));Assert.That(body.linearVelocity.y,Is.EqualTo(profile.standing.upwardSpeed));
             body.position=new Vector3(68000,1.91f,68000);body.linearVelocity=Vector3.up*4;Physics.SyncTransforms();Tick();
         }
+        [Test] public void JumpPresentationRejectionLeavesRunningVelocityAndMotorOwnershipIntact()
+        {
+            var foreign=new object();
+            Assert.That(driver.TryBeginAnimationPresentation(foreign,profile.standing.takeoff),Is.True);
+            body.linearVelocity=Vector3.forward*5;
+            var binding=new AnimationPlaygroundMotionBinding{sourceId="Jump rollback contract",clip=profile.standing.takeoff,
+                readiness=AnimationPlaygroundMotionReadiness.PhysicalQualified};
+            Assert.That(coordinator.TryBeginPhysicalSequence(airborne,binding,AnimationPlaygroundMotionMode.Jump,null,
+                time=>new AnimationPlaygroundMotorIntent(Vector3.forward*5,Vector3.forward),null,
+                policy:AnimationPlaygroundMotionPolicy.JumpLocomotion),Is.False);
+            Assert.That(body.linearVelocity,Is.EqualTo(Vector3.forward*5));Assert.That(motor.IsActionConstrained,Is.False);
+            Assert.That(driver.IsAnimationPresentationOwner(foreign),Is.True);driver.EndAnimationPresentation(foreign);
+        }
+        [Test] public void JumpMotorRejectionDoesNotAcquireOrResetPresentation()
+        {
+            var foreign=new object();motor.TryBeginActionConstraint(foreign);body.linearVelocity=Vector3.right*4;
+            var binding=new AnimationPlaygroundMotionBinding{sourceId="Busy motor contract",clip=profile.standing.takeoff,
+                readiness=AnimationPlaygroundMotionReadiness.PhysicalQualified};
+            Assert.That(coordinator.TryBeginPhysicalSequence(airborne,binding,AnimationPlaygroundMotionMode.Jump,null,
+                time=>new AnimationPlaygroundMotorIntent(Vector3.right*4,Vector3.forward),null,
+                policy:AnimationPlaygroundMotionPolicy.JumpLocomotion),Is.False);
+            Assert.That(driver.AnimationPresentationOwned,Is.False);Assert.That(body.linearVelocity,Is.EqualTo(Vector3.right*4));
+            Assert.That(motor.IsActionConstrained,Is.True);motor.EndActionConstraint(foreign);
+        }
         [Test] public void JumpLaunchesOnceAndLandingRequiresSurfaceContactRatherThanClipEnd()
         {
             var landings=0;airborne.Landed+=speed=>landings++;Launch();Tick(60);

@@ -5,6 +5,7 @@ namespace BooterBigArm.TopDown3D
 {
     public enum AnimationPlaygroundMotionMode { None, AlignedAction, Slide, Dodge, Ladder, Cover, Jump, Fall, Recovery, Dead, Turn }
     public enum AnimationPlaygroundPosture { Standing, Crouched, Prone }
+    public enum AnimationPlaygroundMotionPolicy { Action, JumpLocomotion }
     public readonly struct AnimationPlaygroundMotorIntent
     {
         public readonly Vector3 Velocity, Facing;
@@ -27,6 +28,7 @@ namespace BooterBigArm.TopDown3D
     public sealed partial class TopDown3DPlayerMotor
     {
         private object animationMotionOwner,animationPostureOwner;
+        private AnimationPlaygroundMotionPolicy animationMotionPolicy;
         private AnimationPlaygroundMotorIntent animationIntent;
         private bool animationGravity,animationColliderEnabled,animationOriginalGravity;
         private bool animationWasPaused;
@@ -173,14 +175,17 @@ namespace BooterBigArm.TopDown3D
             if(animationPostureOwner==null)return normalSpeed;
             return input!=null && input.AnimationSlowWalkHeld ? animationWalkSpeed : normalSpeed;
         }
-        public bool TryBeginAnimationMotion(object owner,AnimationPlaygroundMotionMode mode,bool disableGravity=false)
+        public bool TryBeginAnimationMotion(object owner,AnimationPlaygroundMotionMode mode,bool disableGravity=false,
+            AnimationPlaygroundMotionPolicy policy=AnimationPlaygroundMotionPolicy.Action)
         {
             if(owner == null || mode == AnimationPlaygroundMotionMode.None || !Enum.IsDefined(typeof(AnimationPlaygroundMotionMode),mode)
-                || animationMotionOwner != null || !TryBeginActionConstraint(owner))return false;
+                || !Enum.IsDefined(typeof(AnimationPlaygroundMotionPolicy),policy) || animationMotionOwner != null)return false;
+            if(policy==AnimationPlaygroundMotionPolicy.JumpLocomotion ? !TryBeginJumpConstraint(owner) : !TryBeginActionConstraint(owner))return false;
             EnsureAnimationShape();animationMotionOwner=owner;AnimationMotionMode=mode;
+            animationMotionPolicy=policy;
             animationOriginalGravity=body.useGravity;animationGravity=!disableGravity;
             animationColliderEnabled=capsule.enabled;animationPreviousPosition=Position;
-            animationIntent=new AnimationPlaygroundMotorIntent(Vector3.zero,FacingDirection);
+            animationIntent=new AnimationPlaygroundMotorIntent(policy==AnimationPlaygroundMotionPolicy.JumpLocomotion ? body.linearVelocity : Vector3.zero,FacingDirection);
             body.useGravity=animationGravity;
             return true;
         }
@@ -261,10 +266,12 @@ namespace BooterBigArm.TopDown3D
             FacePlanarDirection(facing);
             return true;
         }
-        public bool TryAnimationTakeoff(object owner,float upwardSpeed)
+        public bool TryAnimationTakeoff(object owner,float upwardSpeed,bool acceptedCoyote=false)
         {
-            if(owner==null || !ReferenceEquals(owner,animationMotionOwner) || !IsGrounded || !float.IsFinite(upwardSpeed) || upwardSpeed<=0)return false;
+            if(owner==null || !ReferenceEquals(owner,animationMotionOwner) || !IsGrounded && !(acceptedCoyote && JumpLocomotionActive)
+                || !float.IsFinite(upwardSpeed) || upwardSpeed<=0)return false;
             body.useGravity=true;animationGravity=true;body.linearVelocity=new Vector3(body.linearVelocity.x,upwardSpeed,body.linearVelocity.z);
+            if(JumpLocomotionActive){jumpLaunched=true;jumpGroundedRequested=false;jumpLaunchTime=Time.fixedTimeAsDouble;jumpDeparted=true;}
             animationSupportReleaseTicks=2;IsGrounded=false;return true;
         }
         private void EnsureAnimationShape()
@@ -331,10 +338,13 @@ namespace BooterBigArm.TopDown3D
         private void ReleaseAnimationMotionCore()
         {
             if(animationMotionOwner==null)return;
-            ResetStandingMotionObservation();
-            if(body!=null){body.useGravity=animationOriginalGravity;body.linearVelocity=Vector3.up*(animationWasPaused ? animationPausedVelocity.y : body.linearVelocity.y);body.angularVelocity=Vector3.zero;}
+            var jump=JumpLocomotionActive;
+            jumpPreserveGroundObservationOnRelease=jump && JumpUsesGroundedLocomotion;
+            if(!jump || !JumpUsesGroundedLocomotion)ResetStandingMotionObservation();
+            if(body!=null){body.useGravity=animationOriginalGravity;var velocity=animationWasPaused ? animationPausedVelocity : body.linearVelocity;
+                body.linearVelocity=jump ? velocity : Vector3.up*velocity.y;body.angularVelocity=Vector3.zero;}
             if(capsule!=null)capsule.enabled=animationColliderEnabled;
-            animationMotionOwner=null;AnimationMotionMode=AnimationPlaygroundMotionMode.None;animationIntent=default;animationSupportReleaseTicks=0;animationWasPaused=false;animationPausedVelocity=default;AnimationSnapshot=default;
+            animationMotionOwner=null;animationMotionPolicy=AnimationPlaygroundMotionPolicy.Action;AnimationMotionMode=AnimationPlaygroundMotionMode.None;animationIntent=default;animationSupportReleaseTicks=0;animationWasPaused=false;animationPausedVelocity=default;AnimationSnapshot=default;
         }
         private void DisableAnimationCapability()
         {

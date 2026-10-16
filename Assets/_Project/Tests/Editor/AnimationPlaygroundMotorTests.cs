@@ -33,6 +33,59 @@ namespace BooterBigArm.Tests
             Assert.That(motor.AnimationSnapshot.Phase,Is.EqualTo(.5f));
             motor.EndActionConstraint(owner);Assert.That(motor.IsActionConstrained,Is.False);Assert.That(motor.AnimationMotionMode,Is.EqualTo(AnimationPlaygroundMotionMode.None));
         }
+        [Test] public void JumpPolicyPreservesMomentumWhileLegacyRecoveryStillStops()
+        {
+            var velocity=new Vector3(4,-2,3);body.linearVelocity=velocity;
+            Assert.That(motor.TryBeginAnimationMotion(owner,AnimationPlaygroundMotionMode.Jump,
+                policy:AnimationPlaygroundMotionPolicy.JumpLocomotion),Is.True);
+            Assert.That(body.linearVelocity,Is.EqualTo(velocity));
+            Assert.That(motor.ReleaseAnimationMotion(owner),Is.True);
+            Assert.That(body.linearVelocity,Is.EqualTo(velocity));Assert.That(motor.IsActionConstrained,Is.False);
+            Assert.That(motor.TryBeginAnimationMotion(owner,AnimationPlaygroundMotionMode.Recovery),Is.True);
+            Assert.That(body.linearVelocity,Is.EqualTo(Vector3.down*2));
+        }
+        [Test] public void JumpSnapshotSeparatesCompletedVelocityFromTheUpcomingCommand()
+        {
+            body.linearVelocity=new Vector3(3,-2,1);
+            motor.TryBeginAnimationMotion(owner,AnimationPlaygroundMotionMode.Fall,policy:AnimationPlaygroundMotionPolicy.JumpLocomotion);
+            motor.SetJumpGroundedLocomotion(owner,false);
+            motor.SetAnimationMotorIntent(owner,new AnimationPlaygroundMotorIntent(Vector3.right*4,Vector3.forward));Tick(motor);
+            Assert.That(motor.JumpObservation.Velocity,Is.EqualTo(new Vector3(3,-2,1)));
+            Assert.That(motor.AnimationSnapshot.Velocity,Is.EqualTo(motor.JumpObservation.Velocity));
+            Assert.That(body.linearVelocity,Is.EqualTo(new Vector3(4,-2,0)));
+        }
+        [Test] public void JumpPauseAndReleaseRestoreTheEntireRetainedVelocity()
+        {
+            var velocity=new Vector3(4,-3,2);body.linearVelocity=velocity;
+            motor.TryBeginAnimationMotion(owner,AnimationPlaygroundMotionMode.Fall,policy:AnimationPlaygroundMotionPolicy.JumpLocomotion);
+            motor.SetAnimationMotorIntent(owner,new AnimationPlaygroundMotorIntent(Vector3.zero,Vector3.forward,paused:true));Tick(motor);
+            Assert.That(body.linearVelocity,Is.EqualTo(Vector3.zero));Assert.That(body.useGravity,Is.False);
+            motor.ReleaseAnimationMotion(owner);
+            Assert.That(body.linearVelocity,Is.EqualTo(velocity));Assert.That(body.useGravity,Is.True);
+        }
+        [Test] public void JumpRejectionCannotStealAnotherActionsLeaseOrVelocity()
+        {
+            var foreign=new object();motor.TryBeginActionConstraint(foreign);body.linearVelocity=Vector3.right*5;
+            Assert.That(motor.TryBeginAnimationMotion(owner,AnimationPlaygroundMotionMode.Jump,
+                policy:AnimationPlaygroundMotionPolicy.JumpLocomotion),Is.False);
+            Assert.That(body.linearVelocity,Is.EqualTo(Vector3.right*5));Assert.That(motor.IsActionConstrained,Is.True);
+            motor.EndActionConstraint(foreign);
+        }
+        [Test] public void DistinctCompletedSupportEpisodesGetDistinctTouchdownIds()
+        {
+            // Inject completed contact observations, not a simulated physics trajectory.
+            obstacle=new GameObject("Recorded walkable contact");var contact=obstacle.AddComponent<BoxCollider>();
+            motor.TryBeginAnimationMotion(owner,AnimationPlaygroundMotionMode.Fall,policy:AnimationPlaygroundMotionPolicy.JumpLocomotion);
+            void Set(string name,object value)=>typeof(TopDown3DPlayerMotor).GetField(name,BindingFlags.Instance|BindingFlags.NonPublic).SetValue(motor,value);
+            Set("jumpContactTime",Time.fixedTimeAsDouble);Set("jumpSupportCollider",contact);Set("jumpSupportNormal",Vector3.up);
+            Set("jumpContactDownwardSpeed",4f);Tick(motor);
+            var first=motor.JumpObservation.TouchdownId;
+            Assert.That(motor.JumpObservation.Touchdown,Is.True);Assert.That(motor.JumpObservation.DownwardImpactSpeed,Is.EqualTo(4));
+            Tick(motor);Assert.That(motor.JumpObservation.Touchdown,Is.False);
+            Set("jumpSupportCollider",null);Tick(motor);
+            Set("jumpSupportCollider",contact);Tick(motor);
+            Assert.That(motor.JumpObservation.Touchdown,Is.True);Assert.That(motor.JumpObservation.TouchdownId,Is.EqualTo(first+1));
+        }
         [Test] public void SweepAndPauseConstrainMotionAndReleaseRestoresGravity()
         {
             Assert.That(motor.TryBeginAnimationMotion(owner,AnimationPlaygroundMotionMode.Ladder,true),Is.True);Assert.That(body.useGravity,Is.False);
