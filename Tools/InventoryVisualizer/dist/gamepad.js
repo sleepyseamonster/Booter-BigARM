@@ -3,16 +3,18 @@ import {InventoryPadInput,spatialTarget,rightStickScroll,revealScroll} from './g
 export function startInventoryGamepad(){
   const input=new InventoryPadInput(),hint=document.querySelector('#pad-status');
   let lastFocus=null,editing=null,focusKey=null,running=true,frame,lastTime=null;
-  const controls='button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),a[href]';
+  const controls='button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),a[href],summary';
   const scope=()=>document.querySelector('dialog[open]')||document.querySelector('.shell');
   const visible=el=>el.getClientRects().length>0&&!el.closest('[hidden]')&&getComputedStyle(el).visibility!=='hidden';
   const candidates=()=>[...scope().querySelectorAll(controls)].filter(visible);
-  const key=el=>el?.id?`#${CSS.escape(el.id)}`:['entry','owner','page','recipe','action','transfer','menu','near','project','radial','setting','reference','craftLink','remove'].map(k=>el?.dataset[k]!==undefined?`[data-${k.replace(/[A-Z]/g,c=>'-'+c.toLowerCase())}="${CSS.escape(el.dataset[k])}"]`:null).find(Boolean);
+  const key=el=>el?.id?`#${CSS.escape(el.id)}`:['entry','owner','page','recipe','action','transfer','menu','near','project','radial','setting','reference','craftLink','remove','mapMarker','mapZoom'].map(k=>el?.dataset[k]!==undefined?`[data-${k.replace(/[A-Z]/g,c=>'-'+c.toLowerCase())}="${CSS.escape(el.dataset[k])}"]`:null).find(Boolean);
   function reveal(el){
     el.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
     const modal=document.querySelector('dialog[open]');
     const footer=modal?0:document.querySelector('footer')?.getBoundingClientRect().height||0;
-    const dy=revealScroll(el.getBoundingClientRect(),window.innerHeight,footer);
+    const tabs=document.querySelector('.game-tabs'),tabRect=tabs?.getBoundingClientRect();
+    const header=!modal&&tabs&&!tabs.contains(el)&&tabRect.top<=1?tabRect.height:0;
+    const dy=revealScroll(el.getBoundingClientRect(),window.innerHeight,footer,header);
     if(dy){if(modal)modal.scrollBy({top:dy,behavior:'instant'});else window.scrollBy({top:dy,behavior:'instant'});}
   }
   function scroll(amount){
@@ -74,7 +76,7 @@ export function startInventoryGamepad(){
   function tab(action){
     if(document.querySelector('dialog[open]'))return;
     editing?.classList.remove('pad-editing');editing=null;
-    const main=action.endsWith('Tab'),selector=main?'nav [data-page]':'.rail [data-owner],.rail [data-recipe]';
+    const selector='nav [data-page]';
     const items=[...document.querySelectorAll(selector)].filter(visible);if(!items.length)return;
     const at=items.findIndex(el=>el.classList.contains('active')),delta=action.startsWith('previous')?-1:1;
     const next=items[(Math.max(0,at)+delta+items.length)%items.length];next.click();
@@ -96,7 +98,7 @@ export function startInventoryGamepad(){
       else{
         const actions=input.sample(pad,now,active);
         if(active){
-          hint.textContent=input.armed?'D-pad / LS move · RS scroll · South select · LB/RB tabs · LT/RT context':'Release controls to continue';
+          hint.textContent=input.armed?'D-pad / LS move · RS scroll · South select · LB/RB or LT/RT tabs':'Release controls to continue';
           if(document.body.classList.contains('pad-mode')&&lastFocus){
             // Recover logical focus after a view rebuild; keep modal focus trapped.
             current();

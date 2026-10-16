@@ -14,7 +14,7 @@ export class InventoryPadInput {
     let direction=null;
     if(dx||dy)direction=dy?(dy<0?'up':'down'):(dx<0?'left':'right');
     else if(Math.max(Math.abs(x),Math.abs(y))>.55)direction=Math.abs(x)>Math.abs(y)?(x<0?'left':'right'):(y<0?'up':'down');
-    const held={select:pressed(0),previousTab:pressed(4),nextTab:pressed(5),previousContext:trigger(6),nextContext:trigger(7)};
+    const held={select:pressed(0),previousTab:pressed(4)||trigger(6),nextTab:pressed(5)||trigger(7)};
     const right=rightStickScroll(pad,16);
     const neutral=!direction&&!Object.values(held).some(Boolean)&&!right.x&&!right.y;
     if(!this.armed){if(neutral)this.armed=true;this.held=held;this.direction=null;return [];}
@@ -38,8 +38,8 @@ export function rightStickScroll(pad,deltaMs,active=true){
   return {x:axis(2)*850*seconds,y:axis(3)*850*seconds};
 }
 
-export function revealScroll(rect,viewportHeight,footerHeight=0){
-  const top=16,bottom=Math.max(top+1,viewportHeight-footerHeight-16);
+export function revealScroll(rect,viewportHeight,footerHeight=0,headerHeight=0){
+  const top=headerHeight+16,bottom=Math.max(top+1,viewportHeight-footerHeight-16);
   if(rect.height>bottom-top)return rect.top-top;
   if(rect.bottom>bottom)return rect.bottom-bottom;
   if(rect.top<top)return rect.top-top;

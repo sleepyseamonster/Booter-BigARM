@@ -22,11 +22,11 @@ test('South is one selection per release, including while another control remain
   assert.deepEqual(input.sample(pad([0]),1400),['select']);
 });
 test('bumpers and analog triggers tab independently and never repeat while held',()=>{
-  for(const [button,action]of [[4,'previousTab'],[5,'nextTab'],[6,'previousContext'],[7,'nextContext']]){
+  for(const [button,action]of [[4,'previousTab'],[5,'nextTab'],[6,'previousTab'],[7,'nextTab']]){
     const input=armed();assert.deepEqual(input.sample(pad([button]),1),[action]);assert.deepEqual(input.sample(pad([button]),1000),[]);
   }
   const input=armed(),partial=pad();partial.buttons[7]={pressed:true,value:.3};assert.deepEqual(input.sample(partial,1),[]);
-  partial.buttons[7].value=.7;assert.deepEqual(input.sample(partial,2),['nextContext']);
+  partial.buttons[7].value=.7;assert.deepEqual(input.sample(partial,2),['nextTab']);
 });
 test('connect, focus loss, reconnect and device changes require a neutral frame',()=>{
   const input=new InventoryPadInput();assert.deepEqual(input.sample(pad([0]),1),[]);input.sample(pad(),2);
@@ -56,6 +56,7 @@ test('focus reveal accounts for the sticky footer, top margin and oversized cont
   assert.equal(revealScroll({top:10,bottom:70,height:60},720,80),-6);
   assert.equal(revealScroll({top:100,bottom:180,height:80},720,80),0);
   assert.equal(revealScroll({top:900,bottom:1800,height:900},720,80),884);
+  assert.equal(revealScroll({top:35,bottom:95,height:60},720,80,65),-46);
 });
 test('right stick scroll is proportional, frame-rate independent and drift-free',()=>{
   assert.deepEqual(rightStickScroll(pad([],[0,0,.2,-.2]),16),{x:0,y:0});
