@@ -3,16 +3,16 @@
   "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
   "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
   "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
-  "sourceHashAfter": "d0c396bc0b5c92213ad95e1510efdfab7d4c3c451838824946fd8d286ec62b11",
+  "sourceHashAfter": "9afff4193dfb1e6627a8ae94c564f6f10fb6dd9818eb39c82e50125fe22a9fa1",
   "counts": {
     "Accessories": 7,
     "Clothing": 8,
-    "Tools": 50,
+    "Tools": 51,
     "Armor": 36,
     "Attachments": 4,
     "Workshop upgrades": 1,
     "Crafting stations": 2,
-    "Legger attachments": 12,
+    "Legger attachments": 11,
     "Legger armor": 7
   },
   "items": [
@@ -367,8 +367,8 @@
     {
       "id": "proposal.legger.board_bracket",
       "name": "Legger dirtboard carrying bracket",
-      "category": "Legger attachments",
-      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
+      "category": "Tools",
+      "reason": "Author correction: dedicated dirtboard and handheld-sail items belong in Tools, including their parts, service kit, carrying bracket and named lane snag bar. Category does not change item type, tier, recipe role or gameplay behavior."
     },
     {
       "id": "proposal.legger.grease_applicator",
@@ -850,6 +850,24 @@
       ],
       "sourceHashBefore": "fe88099e05c91cee1266b7639855cb5829374edebbe52037fedf9c29e245a35a",
       "sourceHashAfter": "d0c396bc0b5c92213ad95e1510efdfab7d4c3c451838824946fd8d286ec62b11"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Author correction: dedicated dirtboard and handheld-sail items belong in Tools, including their parts, service kit, carrying bracket and named lane snag bar. Category does not change item type, tier, recipe role or gameplay behavior.",
+      "movedIds": [
+        "proposal.collection.dirtboard_lane_snag_bar",
+        "proposal.collection.dirtboard_running_gear_kit",
+        "proposal.legger.board_bracket",
+        "proposal.t4.spar_joint",
+        "proposal.t4.wheel_hub",
+        "proposal.wind.folding_frame",
+        "proposal.wind.sail_grip",
+        "proposal.wind.sail_panel",
+        "proposal.wind.truck",
+        "proposal.wind.wheel"
+      ],
+      "sourceHashBefore": "f2b68bb4393fa0501d06dcf67c394f0fe38b11fb76e18e9ce370e1cc640663cf",
+      "sourceHashAfter": "9afff4193dfb1e6627a8ae94c564f6f10fb6dd9818eb39c82e50125fe22a9fa1"
     }
   ]
 }
