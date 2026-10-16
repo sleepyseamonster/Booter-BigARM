@@ -1,0 +1,504 @@
+{
+  "schema_version": 1,
+  "subject": "ARC Raiders item management and crafting",
+  "research_cutoff": "2026-10-15",
+  "timezone": "America/Phoenix",
+  "release_baseline": "2.1.0, released 2026-10-13",
+  "report": "ARC_RAIDERS_ITEM_MANAGEMENT_AND_CRAFTING_AUDIT_2026-10-15.md",
+  "scope": "Publicly documented mechanics and selected checked recipes, not a complete data export or hands-on game audit",
+  "source_count": 47,
+  "evidence_precedence": [
+    "Current developer release notes",
+    "Developer explanations and help within their dated scope",
+    "Developer interviews",
+    "Community transcriptions and screenshot-backed observations"
+  ],
+  "exclusions": [
+    "Search snippets used only to locate sources",
+    "Uncorroborated SEO guides",
+    "Exploit procedures",
+    "Claims of undisclosed probabilities or backend implementation"
+  ],
+  "unresolved": [
+    "Complete current recipe and trader stock snapshot",
+    "Crafting timers and transaction output destination",
+    "Overflow restrictions by action",
+    "Research output learning semantics",
+    "Furniture compatibility and resource accessibility",
+    "Exact durability and repair rounding",
+    "Current default controls and sort persistence",
+    "Disconnect and inventory compensation edge cases"
+  ],
+  "sources": [
+    {
+      "url": "https://arcraiders.com/it/news/riven-tides-patch-notes-1-26-0",
+      "title_as_cited": "Riven Tides notes",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2026-04-28",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news",
+      "title_as_cited": "official news index",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.com/news/everything-you-need-to-know",
+      "title_as_cited": "game overview",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2025-10-13",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/expedition-project",
+      "title_as_cited": "original Expedition explanation",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Historical reset design; scheduling, rewards, vault and quest-reset exceptions are superseded by later announcements.",
+      "source_date": "2025-10-09",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/frozen-trail-2-0-update",
+      "title_as_cited": "Frozen Trail release notes",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2026-10-08",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/frozen-trail-content-preview",
+      "title_as_cited": "Frozen Trail preview",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2026-09-23",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/frozen-trail-reward-pass",
+      "title_as_cited": "Reward Pass explanation",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2026-09-28",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/live-update-1-33-0",
+      "title_as_cited": "1.33.0 update",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2026-06-16",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/meet-the-new-trader",
+      "title_as_cited": "Nomadic Envoy announcement",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2026-05-19",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/north-line-patch-notes",
+      "title_as_cited": "1.2.0 notes",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2025-11-13",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/patch-notes-1-18-0",
+      "title_as_cited": "Official 1.18.0 notes",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2026-03-03",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/patch-notes-1-22-0",
+      "title_as_cited": "Flashpoint notes",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2026-03-31",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/patch-notes-1-29-0",
+      "title_as_cited": "May 1.29.0 notes",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2026-05-19",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/pve-toggle-what-to-know",
+      "title_as_cited": "Official beta explanation",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2026-10-12",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/shrouded-sky-patch-notes-1-17-0",
+      "title_as_cited": "Shrouded Sky notes",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2026-02-24",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/store-update-2-1-0",
+      "title_as_cited": "2.1.0 notes",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2026-10-13",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/the-5th-expedition",
+      "title_as_cited": "fifth Expedition announcement",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2026-08-21",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.com/news/user-experience-improvements",
+      "title_as_cited": "Reducing friction in ARC Raiders",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2026-04-04",
+      "date_kind": "published"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Advanced_Mechanical_Components",
+      "title_as_cited": "Advanced Mechanical Components",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Augments",
+      "title_as_cited": "augment tables",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Bandage",
+      "title_as_cited": "Bandage",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Blueprints",
+      "title_as_cited": "Blueprint distribution reference",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Furniture",
+      "title_as_cited": "furniture table",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Game_UI",
+      "title_as_cited": "Game UI reference",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Items",
+      "title_as_cited": "item catalogue",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Light_Ammo",
+      "title_as_cited": "Light Ammo record",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Loadout",
+      "title_as_cited": "free-loadout documentation",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Looting_Mk._3_%28Safekeeper%29",
+      "title_as_cited": "Safekeeper item record",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Mechanical_Components",
+      "title_as_cited": "Mechanical Components",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Outpost",
+      "title_as_cited": "Outpost reference",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Raider_Hatch_Key",
+      "title_as_cited": "Raider Hatch Key",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Research_Points",
+      "title_as_cited": "Research Points table",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Scrappy",
+      "title_as_cited": "Scrappy reference",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Skills",
+      "title_as_cited": "current skill descriptions",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Stash",
+      "title_as_cited": "Speranza stash table",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Traders",
+      "title_as_cited": "trader reference",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Weapon_Stencils",
+      "title_as_cited": "Stencil reference",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Weapons",
+      "title_as_cited": "weapon reference",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Wolfpack",
+      "title_as_cited": "Wolfpack",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraiders.wiki/wiki/Workshop",
+      "title_as_cited": "Workshop table",
+      "source_type": "community_transcription",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Community transcription; current-client and complete-catalogue accuracy are not independently proven. Displayed modification dates may not date embedded templates.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://arcraidershub.com/guides/amplified-weapons-guide",
+      "title_as_cited": "screenshot-backed amplification study",
+      "source_type": "community_observations_and_game_file_interpretation",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Use only for the attributed interview or observed behavior; not an official complete specification.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://ardb.tools/recycling",
+      "title_as_cited": "recycling database",
+      "source_type": "community_item_database",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Use only for the attributed interview or observed behavior; not an official complete specification.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://id.embark.games/arc-raiders/support/faq/139-game-progression-1759329960",
+      "title_as_cited": "progression article",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2025-10-29",
+      "date_kind": "last_updated"
+    },
+    {
+      "url": "https://id.embark.games/arc-raiders/support/faq/140-gearing-up",
+      "title_as_cited": "Gearing up help article",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2025-10-27",
+      "date_kind": "last_updated"
+    },
+    {
+      "url": "https://id.embark.games/arc-raiders/support/faq/141-field-crafting-1759329975",
+      "title_as_cited": "Official field-crafting help",
+      "source_type": "developer_primary",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Publication describes its dated state; later patches supersede older rules.",
+      "source_date": "2025-10-27",
+      "date_kind": "last_updated"
+    },
+    {
+      "url": "https://www.gamesradar.com/games/third-person-shooter/arc-raiders-will-finally-let-players-unlock-weapons-and-items-without-hunting-down-blueprints/",
+      "title_as_cited": "Developer interview at GamesRadar",
+      "source_type": "developer_interview_reporting",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Use only for the attributed interview or observed behavior; not an official complete specification.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    },
+    {
+      "url": "https://www.pcgamer.com/games/third-person-shooter/dont-neglect-crafting-furniture-in-your-arc-raiders-outpost-it-unlocks-100s-of-extra-storage-slots/",
+      "title_as_cited": "PC Gamer furniture guide",
+      "source_type": "hands_on_press_guide",
+      "accessed_on": "2026-10-15",
+      "access": "Full page or relevant section retrieved through web research",
+      "limitation": "Use only for the attributed interview or observed behavior; not an official complete specification.",
+      "source_date": null,
+      "date_kind": "not_recorded"
+    }
+  ]
+}

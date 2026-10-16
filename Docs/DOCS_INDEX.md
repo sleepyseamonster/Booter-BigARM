@@ -253,6 +253,9 @@ These describe current repo state rather than durable design truth.
 
 These are intentionally non-canonical. They preserve ideas, research, or working context that may later be refined, replaced, or discarded.
 
+- [ARC Raiders item management and crafting audit](./Research/Gameplay/ARC_RAIDERS_ITEM_MANAGEMENT_AND_CRAFTING_AUDIT_2026-10-15.md)
+  October 15 public-source audit covering inventory, loss protection, stash and furniture storage, crafting gates, refining, blueprints, research, amplification, traders and recovery; includes dated evidence conflicts and current-client verification limits.
+
 - [Sable's stylized realism research](./Agents/Sable/work/2026-10-15-stylized-realism/README.md)
   Arcane and No Rest for the Wicked as primary influences, Wayfinder and Ori supporting references, comparable styles, a resource catalogue, and a proposed comparison study. The author's broad preference guides research; specific treatments remain proposals.
 
