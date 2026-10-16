@@ -1,0 +1,543 @@
+{
+  "source": "Author requested hide, fur, delicate chainmail, insulated and chitin clothing families as separate individual garments, October 15, 2026. Docs/WORLD_BASIS.md controls no-cloth/no-wood and low-yield hide/fur rules. Existing electrical clothing IDs reused; generic suit refined to one jacket.",
+  "scope": "25 separate clothing pieces across five families: 22 new entries and three reused electrical-wear IDs. No counted full-set item, set bonus, runtime equipment, world identity, streaming or saved gameplay changes.",
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Clothing",
+    "Subtype": "Clothing family piece",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "Unassigned; no new slot approved",
+    "Carrier metadata": "Booter-worn garment concept; fit, packing and canister clearance unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed garment craft or trade; availability and price unresolved.",
+    "Crafting / processing": "Candidate construction from qualified stock and compatible joining parts. No full-set recipe, quantities, yield or crafting time assigned.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Fit, comfort, flexibility, mass, wear and protective performance require design. No wood, ordinary cloth, conventional abundant hide/fur supply, free-water treatment, set bonus or new equipment slots.",
+    "Rarity": null,
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Item type": "Wearable",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Primary use": "Clothing",
+    "Material family": "Hide",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "Independently listed clothing piece. Family membership is an organizational grouping, not another counted inventory item or a set bonus.",
+    "Tier basis": "Proposed finished-garment planning tier; recipe and performance unresolved.",
+    "Finished-item input tier": "T1",
+    "Crafting role": "Finished item"
+  },
+  "reusedIds": [
+    "author.electrical.insulated_suit",
+    "author.electrical.insulated_gloves",
+    "author.electrical.insulated_boots"
+  ],
+  "groups": [
+    {
+      "family": "hide",
+      "itemIds": [
+        "proposal.clothing.hide.top",
+        "proposal.clothing.hide.legs",
+        "proposal.clothing.hide.boots",
+        "proposal.clothing.hide.gloves",
+        "proposal.clothing.hide.head"
+      ],
+      "itemCount": 5
+    },
+    {
+      "family": "fur",
+      "itemIds": [
+        "proposal.clothing.fur.top",
+        "proposal.clothing.fur.legs",
+        "proposal.clothing.fur.boots",
+        "proposal.clothing.fur.gloves",
+        "proposal.clothing.fur.head"
+      ],
+      "itemCount": 5
+    },
+    {
+      "family": "fine_chainmail",
+      "itemIds": [
+        "proposal.clothing.fine_chainmail.top",
+        "proposal.clothing.fine_chainmail.legs",
+        "proposal.clothing.fine_chainmail.boots",
+        "proposal.clothing.fine_chainmail.gloves",
+        "proposal.clothing.fine_chainmail.head"
+      ],
+      "itemCount": 5
+    },
+    {
+      "family": "insulated",
+      "itemIds": [
+        "author.electrical.insulated_suit",
+        "proposal.clothing.insulated.legs",
+        "author.electrical.insulated_boots",
+        "author.electrical.insulated_gloves",
+        "proposal.clothing.insulated.head"
+      ],
+      "itemCount": 5
+    },
+    {
+      "family": "chitin",
+      "itemIds": [
+        "proposal.clothing.chitin.top",
+        "proposal.clothing.chitin.legs",
+        "proposal.clothing.chitin.boots",
+        "proposal.clothing.chitin.gloves",
+        "proposal.clothing.chitin.head"
+      ],
+      "itemCount": 5
+    }
+  ],
+  "items": [
+    {
+      "id": "proposal.clothing.hide.top",
+      "name": "Hide jacket",
+      "purpose": "Hide clothing family: one separately listed jacket. One upper-body garment; no trousers, gloves, footwear or headwear included. Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Functions and performance remain proposals.",
+      "icon": "Hide jacket. Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Hide",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Hide clothing / top",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Hide",
+        "Search aliases": "hide clothing; hide clothing family; top; separate garment",
+        "Open design decisions": "One upper-body garment; no trousers, gloves, footwear or headwear included. Appearance: Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.hide.legs",
+      "name": "Hide trousers",
+      "purpose": "Hide clothing family: one separately listed trousers. One lower-body garment; footwear remains separate. Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Functions and performance remain proposals.",
+      "icon": "Hide trousers. Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Hide",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Hide clothing / legs",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Hide",
+        "Search aliases": "hide clothing; hide clothing family; legs; separate garment",
+        "Open design decisions": "One lower-body garment; footwear remains separate. Appearance: Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.hide.boots",
+      "name": "Hide boots",
+      "purpose": "Hide clothing family: one separately listed boots. One matched pair of footwear; no leggings or trousers included. Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Functions and performance remain proposals.",
+      "icon": "Hide boots. Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Hide",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Hide clothing / boots",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Hide",
+        "Search aliases": "hide clothing; hide clothing family; boots; separate garment",
+        "Open design decisions": "One matched pair of footwear; no leggings or trousers included. Appearance: Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.hide.gloves",
+      "name": "Hide gloves",
+      "purpose": "Hide clothing family: one separately listed gloves. One matched pair of hand coverings; sleeves and upper-body garment remain separate. Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Functions and performance remain proposals.",
+      "icon": "Hide gloves. Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Hide",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Hide clothing / gloves",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Hide",
+        "Search aliases": "hide clothing; hide clothing family; gloves; separate garment",
+        "Open design decisions": "One matched pair of hand coverings; sleeves and upper-body garment remain separate. Appearance: Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.hide.head",
+      "name": "Hide hood",
+      "purpose": "Hide clothing family: one separately listed hood. One head covering; face, sight, hearing and personal canister clearance require design. Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Functions and performance remain proposals.",
+      "icon": "Hide hood. Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Hide",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Hide clothing / head",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Hide",
+        "Search aliases": "hide clothing; hide clothing family; head; separate garment",
+        "Open design decisions": "One head covering; face, sight, hearing and personal canister clearance require design. Appearance: Small fitted hide panels, overlapped seams and simple metal closures. Usable hide yields are extremely low. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.fur.top",
+      "name": "Fur jacket",
+      "purpose": "Fur clothing family: one separately listed jacket. One upper-body garment; no trousers, gloves, footwear or headwear included. Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Functions and performance remain proposals.",
+      "icon": "Fur jacket. Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Fur",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Fur clothing / top",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Fur",
+        "Search aliases": "fur clothing; fur clothing family; top; separate garment",
+        "Open design decisions": "One upper-body garment; no trousers, gloves, footwear or headwear included. Appearance: Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.fur.legs",
+      "name": "Fur trousers",
+      "purpose": "Fur clothing family: one separately listed trousers. One lower-body garment; footwear remains separate. Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Functions and performance remain proposals.",
+      "icon": "Fur trousers. Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Fur",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Fur clothing / legs",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Fur",
+        "Search aliases": "fur clothing; fur clothing family; legs; separate garment",
+        "Open design decisions": "One lower-body garment; footwear remains separate. Appearance: Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.fur.boots",
+      "name": "Fur boots",
+      "purpose": "Fur clothing family: one separately listed boots. One matched pair of footwear; no leggings or trousers included. Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Functions and performance remain proposals.",
+      "icon": "Fur boots. Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Fur",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Fur clothing / boots",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Fur",
+        "Search aliases": "fur clothing; fur clothing family; boots; separate garment",
+        "Open design decisions": "One matched pair of footwear; no leggings or trousers included. Appearance: Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.fur.gloves",
+      "name": "Fur gloves",
+      "purpose": "Fur clothing family: one separately listed gloves. One matched pair of hand coverings; sleeves and upper-body garment remain separate. Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Functions and performance remain proposals.",
+      "icon": "Fur gloves. Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Fur",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Fur clothing / gloves",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Fur",
+        "Search aliases": "fur clothing; fur clothing family; gloves; separate garment",
+        "Open design decisions": "One matched pair of hand coverings; sleeves and upper-body garment remain separate. Appearance: Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.fur.head",
+      "name": "Fur hood",
+      "purpose": "Fur clothing family: one separately listed hood. One head covering; face, sight, hearing and personal canister clearance require design. Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Functions and performance remain proposals.",
+      "icon": "Fur hood. Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Fur",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Fur clothing / head",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Fur",
+        "Search aliases": "fur clothing; fur clothing family; head; separate garment",
+        "Open design decisions": "One head covering; face, sight, hearing and personal canister clearance require design. Appearance: Carefully joined fur-bearing hide patches with restrained trim. Usable fur yields are extremely low; no abundant fur supply assumed. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.fine_chainmail.top",
+      "name": "Delicate chainmail jacket",
+      "purpose": "Delicate chainmail clothing family: one separately listed jacket. One upper-body garment; no trousers, gloves, footwear or headwear included. Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Functions and performance remain proposals.",
+      "icon": "Delicate chainmail jacket. Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Metal",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Delicate chainmail clothing / top",
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Metal",
+        "Search aliases": "fine chainmail clothing; delicate chainmail clothing family; top; separate garment",
+        "Open design decisions": "One upper-body garment; no trousers, gloves, footwear or headwear included. Appearance: Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T3 garment assembly using T2 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.fine_chainmail.legs",
+      "name": "Delicate chainmail trousers",
+      "purpose": "Delicate chainmail clothing family: one separately listed trousers. One lower-body garment; footwear remains separate. Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Functions and performance remain proposals.",
+      "icon": "Delicate chainmail trousers. Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Metal",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Delicate chainmail clothing / legs",
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Metal",
+        "Search aliases": "fine chainmail clothing; delicate chainmail clothing family; legs; separate garment",
+        "Open design decisions": "One lower-body garment; footwear remains separate. Appearance: Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T3 garment assembly using T2 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.fine_chainmail.boots",
+      "name": "Delicate chainmail boots",
+      "purpose": "Delicate chainmail clothing family: one separately listed boots. One matched pair of footwear; no leggings or trousers included. Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Functions and performance remain proposals.",
+      "icon": "Delicate chainmail boots. Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Metal",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Delicate chainmail clothing / boots",
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Metal",
+        "Search aliases": "fine chainmail clothing; delicate chainmail clothing family; boots; separate garment",
+        "Open design decisions": "One matched pair of footwear; no leggings or trousers included. Appearance: Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T3 garment assembly using T2 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.fine_chainmail.gloves",
+      "name": "Delicate chainmail gloves",
+      "purpose": "Delicate chainmail clothing family: one separately listed gloves. One matched pair of hand coverings; sleeves and upper-body garment remain separate. Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Functions and performance remain proposals.",
+      "icon": "Delicate chainmail gloves. Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Metal",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Delicate chainmail clothing / gloves",
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Metal",
+        "Search aliases": "fine chainmail clothing; delicate chainmail clothing family; gloves; separate garment",
+        "Open design decisions": "One matched pair of hand coverings; sleeves and upper-body garment remain separate. Appearance: Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T3 garment assembly using T2 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.fine_chainmail.head",
+      "name": "Delicate chainmail coif",
+      "purpose": "Delicate chainmail clothing family: one separately listed coif. One head covering; face, sight, hearing and personal canister clearance require design. Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Functions and performance remain proposals.",
+      "icon": "Delicate chainmail coif. Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Metal",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Delicate chainmail clothing / head",
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Metal",
+        "Search aliases": "fine chainmail clothing; delicate chainmail clothing family; head; separate garment",
+        "Open design decisions": "One head covering; face, sight, hearing and personal canister clearance require design. Appearance: Fine small metal rings with a light drape and narrow rolled edges; no textile backing. Fine-ring work is a labor-intensive proposal. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T3 garment assembly using T2 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "author.electrical.insulated_suit",
+      "name": "Electrical insulating jacket",
+      "purpose": "Electrical insulating clothing family: one separately listed jacket. One upper-body garment; no trousers, gloves, footwear or headwear included. Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Functions and performance remain proposals.",
+      "icon": "Electrical insulating jacket. Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Mixed / unresolved",
+      "use": "Electrical insulation",
+      "fields": {
+        "Subtype": "Electrical insulating clothing / top",
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Mixed / unresolved",
+        "Search aliases": "insulated clothing; electrical insulating clothing family; top; separate garment",
+        "Open design decisions": "One upper-body garment; no trousers, gloves, footwear or headwear included. Appearance: Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T3 garment assembly using T2 inputs. Quantities, stock qualification and recipe remain unresolved.",
+        "Primary use": "Electrical insulation",
+        "Implementation scope": "Author-directed concept",
+        "Limitations": "Electrical insulation is an intended use, not a qualified safety rating or immunity. Fit, isolation, joins, service limits, wear and performance remain unresolved. No ordinary cloth, wood, sealed breathing system, set bonus or new slots.",
+        "Equipment slot": "Torso / fit unresolved"
+      }
+    },
+    {
+      "id": "proposal.clothing.insulated.legs",
+      "name": "Electrical insulating trousers",
+      "purpose": "Electrical insulating clothing family: one separately listed trousers. One lower-body garment; footwear remains separate. Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Functions and performance remain proposals.",
+      "icon": "Electrical insulating trousers. Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Mixed / unresolved",
+      "use": "Electrical insulation",
+      "fields": {
+        "Subtype": "Electrical insulating clothing / legs",
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Mixed / unresolved",
+        "Search aliases": "insulated clothing; electrical insulating clothing family; legs; separate garment",
+        "Open design decisions": "One lower-body garment; footwear remains separate. Appearance: Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T3 garment assembly using T2 inputs. Quantities, stock qualification and recipe remain unresolved.",
+        "Primary use": "Electrical insulation",
+        "Implementation scope": "Author-directed concept",
+        "Limitations": "Electrical insulation is an intended use, not a qualified safety rating or immunity. Fit, isolation, joins, service limits, wear and performance remain unresolved. No ordinary cloth, wood, sealed breathing system, set bonus or new slots.",
+        "Equipment slot": "Unassigned; no new slot approved"
+      }
+    },
+    {
+      "id": "author.electrical.insulated_boots",
+      "name": "Electrical insulating boots",
+      "purpose": "Electrical insulating clothing family: one separately listed boots. One matched pair of footwear; no leggings or trousers included. Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Functions and performance remain proposals.",
+      "icon": "Electrical insulating boots. Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Mixed / unresolved",
+      "use": "Electrical insulation",
+      "fields": {
+        "Subtype": "Electrical insulating clothing / boots",
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Mixed / unresolved",
+        "Search aliases": "insulated clothing; electrical insulating clothing family; boots; separate garment",
+        "Open design decisions": "One matched pair of footwear; no leggings or trousers included. Appearance: Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T3 garment assembly using T2 inputs. Quantities, stock qualification and recipe remain unresolved.",
+        "Primary use": "Electrical insulation",
+        "Implementation scope": "Author-directed concept",
+        "Limitations": "Electrical insulation is an intended use, not a qualified safety rating or immunity. Fit, isolation, joins, service limits, wear and performance remain unresolved. No ordinary cloth, wood, sealed breathing system, set bonus or new slots.",
+        "Equipment slot": "Feet / fit unresolved"
+      }
+    },
+    {
+      "id": "author.electrical.insulated_gloves",
+      "name": "Electrical insulating gloves",
+      "purpose": "Electrical insulating clothing family: one separately listed gloves. One matched pair of hand coverings; sleeves and upper-body garment remain separate. Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Functions and performance remain proposals.",
+      "icon": "Electrical insulating gloves. Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Mixed / unresolved",
+      "use": "Electrical insulation",
+      "fields": {
+        "Subtype": "Electrical insulating clothing / gloves",
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Mixed / unresolved",
+        "Search aliases": "insulated clothing; electrical insulating clothing family; gloves; separate garment",
+        "Open design decisions": "One matched pair of hand coverings; sleeves and upper-body garment remain separate. Appearance: Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T3 garment assembly using T2 inputs. Quantities, stock qualification and recipe remain unresolved.",
+        "Primary use": "Electrical insulation",
+        "Implementation scope": "Author-directed concept",
+        "Limitations": "Electrical insulation is an intended use, not a qualified safety rating or immunity. Fit, isolation, joins, service limits, wear and performance remain unresolved. No ordinary cloth, wood, sealed breathing system, set bonus or new slots.",
+        "Equipment slot": "Hands / fit unresolved"
+      }
+    },
+    {
+      "id": "proposal.clothing.insulated.head",
+      "name": "Electrical insulating hood",
+      "purpose": "Electrical insulating clothing family: one separately listed hood. One head covering; face, sight, hearing and personal canister clearance require design. Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Functions and performance remain proposals.",
+      "icon": "Electrical insulating hood. Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Mixed / unresolved",
+      "use": "Electrical insulation",
+      "fields": {
+        "Subtype": "Electrical insulating clothing / head",
+        "Tier": "T3",
+        "Finished-item input tier": "T2",
+        "Material family": "Mixed / unresolved",
+        "Search aliases": "insulated clothing; electrical insulating clothing family; head; separate garment",
+        "Open design decisions": "One head covering; face, sight, hearing and personal canister clearance require design. Appearance: Overlapping qualified husk/hide-derived insulating layers, guarded joins and rigid shell spacers. Specific dielectric materials and service limits remain unresolved. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T3 garment assembly using T2 inputs. Quantities, stock qualification and recipe remain unresolved.",
+        "Primary use": "Electrical insulation",
+        "Implementation scope": "Author-directed concept",
+        "Limitations": "Electrical insulation is an intended use, not a qualified safety rating or immunity. Fit, isolation, joins, service limits, wear and performance remain unresolved. No ordinary cloth, wood, sealed breathing system, set bonus or new slots.",
+        "Equipment slot": "Unassigned; no new slot approved"
+      }
+    },
+    {
+      "id": "proposal.clothing.chitin.top",
+      "name": "Chitin jacket",
+      "purpose": "Chitin clothing family: one separately listed jacket. One upper-body garment; no trousers, gloves, footwear or headwear included. Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Functions and performance remain proposals.",
+      "icon": "Chitin jacket. Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Shell / chitin",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Chitin clothing / top",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Shell / chitin",
+        "Search aliases": "chitin clothing; chitin clothing family; top; separate garment",
+        "Open design decisions": "One upper-body garment; no trousers, gloves, footwear or headwear included. Appearance: Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.chitin.legs",
+      "name": "Chitin trousers",
+      "purpose": "Chitin clothing family: one separately listed trousers. One lower-body garment; footwear remains separate. Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Functions and performance remain proposals.",
+      "icon": "Chitin trousers. Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Shell / chitin",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Chitin clothing / legs",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Shell / chitin",
+        "Search aliases": "chitin clothing; chitin clothing family; legs; separate garment",
+        "Open design decisions": "One lower-body garment; footwear remains separate. Appearance: Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.chitin.boots",
+      "name": "Chitin boots",
+      "purpose": "Chitin clothing family: one separately listed boots. One matched pair of footwear; no leggings or trousers included. Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Functions and performance remain proposals.",
+      "icon": "Chitin boots. Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Shell / chitin",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Chitin clothing / boots",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Shell / chitin",
+        "Search aliases": "chitin clothing; chitin clothing family; boots; separate garment",
+        "Open design decisions": "One matched pair of footwear; no leggings or trousers included. Appearance: Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.chitin.gloves",
+      "name": "Chitin gloves",
+      "purpose": "Chitin clothing family: one separately listed gloves. One matched pair of hand coverings; sleeves and upper-body garment remain separate. Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Functions and performance remain proposals.",
+      "icon": "Chitin gloves. Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Shell / chitin",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Chitin clothing / gloves",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Shell / chitin",
+        "Search aliases": "chitin clothing; chitin clothing family; gloves; separate garment",
+        "Open design decisions": "One matched pair of hand coverings; sleeves and upper-body garment remain separate. Appearance: Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    },
+    {
+      "id": "proposal.clothing.chitin.head",
+      "name": "Chitin cap",
+      "purpose": "Chitin clothing family: one separately listed cap. One head covering; face, sight, hearing and personal canister clearance require design. Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Functions and performance remain proposals.",
+      "icon": "Chitin cap. Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Show only this garment or matched pair; no full outfit or wearer.",
+      "material": "Shell / chitin",
+      "use": "Clothing",
+      "fields": {
+        "Subtype": "Chitin clothing / head",
+        "Tier": "T2",
+        "Finished-item input tier": "T1",
+        "Material family": "Shell / chitin",
+        "Search aliases": "chitin clothing; chitin clothing family; head; separate garment",
+        "Open design decisions": "One head covering; face, sight, hearing and personal canister clearance require design. Appearance: Thin overlapping chitin scales, smooth turned edges and small metal joining points. A flexible clothing silhouette rather than heavy armor plating. Joining, sizing, service life and useful performance require design.",
+        "Tier basis": "Proposed T2 garment assembly using T1 inputs. Quantities, stock qualification and recipe remain unresolved."
+      }
+    }
+  ]
+}

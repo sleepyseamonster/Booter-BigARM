@@ -3,7 +3,7 @@
   "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
   "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
   "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
-  "sourceHashAfter": "c6bf94e9cabf37237aeb94d68f0714a0a83dcb0c155b80d0810434dd73ffc686",
+  "sourceHashAfter": "1d7b5f6375758053c2bdbfded3548f32e14c9e2ab256209dedeb636b8654c0f7",
   "counts": {
     "Accessories": 7,
     "Clothing": 8,
@@ -470,21 +470,21 @@
     },
     {
       "id": "author.electrical.insulated_suit",
-      "name": "Electrical insulating suit",
+      "name": "Electrical insulating jacket",
       "category": "Armor",
-      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+      "reason": "Individual electrical-insulating garment in the five clothing families; existing ID retained."
     },
     {
       "id": "author.electrical.insulated_gloves",
       "name": "Electrical insulating gloves",
       "category": "Armor",
-      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+      "reason": "Individual electrical-insulating garment in the five clothing families; existing ID retained."
     },
     {
       "id": "author.electrical.insulated_boots",
       "name": "Electrical insulating boots",
       "category": "Armor",
-      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+      "reason": "Individual electrical-insulating garment in the five clothing families; existing ID retained."
     },
     {
       "id": "author.forging.hammer",
@@ -979,6 +979,16 @@
       ],
       "sourceHashBefore": "77014fcb8184aaa34fcba3de809793b01c9d3f21122be5a44c4a6344edce0dc3",
       "sourceHashAfter": "c6bf94e9cabf37237aeb94d68f0714a0a83dcb0c155b80d0810434dd73ffc686"
+    },
+    {
+      "reason": "Complete five clothing families as individual pieces; refine generic insulating suit to a jacket.",
+      "reusedIds": [
+        "author.electrical.insulated_suit",
+        "author.electrical.insulated_boots",
+        "author.electrical.insulated_gloves"
+      ],
+      "sourceHashBefore": "31744495fedb62c5110a9d44ea6b695ea332f428d4898ba51d105d777b37c630",
+      "sourceHashAfter": "1d7b5f6375758053c2bdbfded3548f32e14c9e2ab256209dedeb636b8654c0f7"
     }
   ]
 }
