@@ -1,0 +1,60 @@
+{
+  "source_sha256": "fcb639d849c25866508a05b9546175140f44fadaa79a1ff177bc499dc08d1b1f",
+  "modules": {
+    "Frame": {
+      "major_meshes": 10,
+      "control_quads": 5320,
+      "evaluated_triangles": 17328
+    },
+    "Drive": {
+      "major_meshes": 5,
+      "control_quads": 2246,
+      "evaluated_triangles": 7064
+    },
+    "LeftLeg": {
+      "major_meshes": 12,
+      "control_quads": 7536,
+      "evaluated_triangles": 22606
+    },
+    "RightLeg": {
+      "major_meshes": 12,
+      "control_quads": 7536,
+      "evaluated_triangles": 22606
+    },
+    "BodyArmor": {
+      "major_meshes": 6,
+      "control_quads": 4196,
+      "evaluated_triangles": 14564
+    },
+    "Saddle": {
+      "major_meshes": 2,
+      "control_quads": 2362,
+      "evaluated_triangles": 6124
+    },
+    "Steering": {
+      "major_meshes": 8,
+      "control_quads": 1798,
+      "evaluated_triangles": 6500
+    },
+    "Cargo_L_Main": {
+      "major_meshes": 3,
+      "control_quads": 1838,
+      "evaluated_triangles": 8876
+    },
+    "Cargo_L_Aux": {
+      "major_meshes": 3,
+      "control_quads": 816,
+      "evaluated_triangles": 4560
+    },
+    "Cargo_R_Main": {
+      "major_meshes": 3,
+      "control_quads": 1838,
+      "evaluated_triangles": 8876
+    },
+    "Cargo_R_Aux": {
+      "major_meshes": 3,
+      "control_quads": 816,
+      "evaluated_triangles": 4560
+    }
+  }
+}

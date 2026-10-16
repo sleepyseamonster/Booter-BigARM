@@ -1,0 +1,280 @@
+{
+  "input_prepared_sha256": "7946a0955e4ba16d79bcf0d4b54796f6643eee2c2a83401082d067bcd6d9e158",
+  "input_forms_sha256": "341acfb22d3ffaab6a467da819aa50c832eb36dca91952f5a5fe11e568372d44",
+  "candidate": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerSciFi20261015\\Textured.blend",
+  "candidate_sha256": "fcb639d849c25866508a05b9546175140f44fadaa79a1ff177bc499dc08d1b1f",
+  "candidate_bytes": 810807494,
+  "materials": [
+    {
+      "key": "Frame",
+      "material": "Legger_SciFi_Frame_PBR",
+      "atlas": "Legger_SciFi_Frame_Atlas",
+      "resolution": 4096,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_SciFi_Frame_BaseColor",
+          "sha256": "eab86ba1a6240150cce706b520e41986a46c008fb4f832807a3951354ad00f4a",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_SciFi_Frame_Normal",
+          "sha256": "051b9d37c11ec382651d95bfc72f6b50defe756d9fa24a43b4509684b5ea85d5",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_SciFi_Frame_Roughness",
+          "sha256": "712c91dc47086fc968d2cb7c19be0910fc478596381d2e4399899246c6c562be",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_SciFi_Frame_Metallic",
+          "sha256": "86d44388cb899709f62c502cc0596a98a12882aa65751103079a9a8f1e54cdf3",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_SciFi_Frame_AO",
+          "sha256": "564f35d87a71c8d754a2aa0c9b581e064aa7b2433f64b7d329ce4630ffb96e89",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "Drive",
+      "material": "Legger_SciFi_Drive_PBR",
+      "atlas": "Legger_SciFi_Drive_Atlas",
+      "resolution": 4096,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_SciFi_Drive_BaseColor",
+          "sha256": "3e59dad25899e6b38efb7b8723811cf0243b5ce18cb1635b808c0c558d2a290d",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_SciFi_Drive_Normal",
+          "sha256": "08b5d8d46b08e553739ba4cc03610b5356c832e326a69c7fe77259aa6f907346",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_SciFi_Drive_Roughness",
+          "sha256": "364f226d497f31282d746748a33f489d8f0f3a9781d6a3929f0e8daf6ba46a0b",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_SciFi_Drive_Metallic",
+          "sha256": "cc1cd4898930491609cad3dd5468976e7a0ec221988e68f1cfdd7d84c86e7f81",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_SciFi_Drive_AO",
+          "sha256": "57bae824dcaa10e8ff8c472cf55a24a1179b5a49540c81fd4b8761ef071b5559",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "LeftLeg",
+      "material": "Legger_SciFi_LeftLeg_PBR",
+      "atlas": "Legger_SciFi_LeftLeg_Atlas",
+      "resolution": 4096,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_SciFi_LeftLeg_BaseColor",
+          "sha256": "d82d2d5f50242fd691d8cd4da4c31adf6f61d93782e806bc099291ce9dbcb47b",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_SciFi_LeftLeg_Normal",
+          "sha256": "988572f5db82fff818c061561b5bf1b36a486fd18bb98986a0781c057ff14290",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_SciFi_LeftLeg_Roughness",
+          "sha256": "364893167546aa3ae8929eba95f845d856b3cc898e4d88861e6aee26c67ade65",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_SciFi_LeftLeg_Metallic",
+          "sha256": "bdb7822fd82a5a937c9a0445b6ccbeac97112bc0f965349c7d9b0fb262ec7fe6",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_SciFi_LeftLeg_AO",
+          "sha256": "eff74fcc523e476e61b619540b135dcbdfa0d738d1e3769842a146a475285872",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "RightLeg",
+      "material": "Legger_SciFi_RightLeg_PBR",
+      "atlas": "Legger_SciFi_RightLeg_Atlas",
+      "resolution": 4096,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_SciFi_RightLeg_BaseColor",
+          "sha256": "bd21f67bbcc9bf5388da0fa9b93f4e608c6060e7139d10d4381a5b60f619500c",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_SciFi_RightLeg_Normal",
+          "sha256": "858df975bb82fd71e7c604b94cc3f8eb85f72cb0a43282985ed7533944c39f42",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_SciFi_RightLeg_Roughness",
+          "sha256": "344f33d529c2ce3b7c7096202949172a707f339497ca421d7919ed2ef6c9b93d",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_SciFi_RightLeg_Metallic",
+          "sha256": "2d2ef4ee5dae21e142046ce679779c651fe90cec0170ada6c47c6b67da74a830",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_SciFi_RightLeg_AO",
+          "sha256": "5bdfb96c98f2dafa1487594c7f81e432b29b6b5189b35e506420d50c85b060ae",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "BodyArmor",
+      "material": "Legger_SciFi_BodyArmor_PBR",
+      "atlas": "Legger_SciFi_BodyArmor_Atlas",
+      "resolution": 4096,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_SciFi_BodyArmor_BaseColor",
+          "sha256": "3ee718f1b130953c9246107710bd8d8bd71439f3641a57af6e01315e6fe15759",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_SciFi_BodyArmor_Normal",
+          "sha256": "18a18e5c9d9a140016e7228a1ee164f59d9ebcaf4fefeefdecbef428f8d2672d",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_SciFi_BodyArmor_Roughness",
+          "sha256": "4e10d3b164e04d8f42b9a745902d2c2a16f25b94fba3bbf0f9bceda7b31e96b9",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_SciFi_BodyArmor_Metallic",
+          "sha256": "1cf97d311ed4b18b45d60aee57d5c33f7fbb16f119306ad8c7ce7bf23bcbf79b",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_SciFi_BodyArmor_AO",
+          "sha256": "15107e9d56caa1ff230dc92b89b1f0a65f33b64d4b14032b86b7c6d5f444de81",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "Saddle",
+      "material": "Legger_SciFi_Saddle_PBR",
+      "atlas": "Legger_SciFi_Saddle_Atlas",
+      "resolution": 2048,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_SciFi_Saddle_BaseColor",
+          "sha256": "ce91b63a1b797d10562b646a23825f366698c60e926f0e3dda864cbc67484684",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_SciFi_Saddle_Normal",
+          "sha256": "813fa96df044630be2a7cff436fb1f2d7f753af2499d49a99d1764cf5352ada6",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_SciFi_Saddle_Roughness",
+          "sha256": "f51d566b6c255820eb12ce8aacb25adcc347a28188ca012985508145075654dc",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_SciFi_Saddle_Metallic",
+          "sha256": "0a01f317f99a4507f9b7d85d739e226a8040a71458680b7c2dfd3f3fd7f618ab",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_SciFi_Saddle_AO",
+          "sha256": "392ec68dc4a9236d5570fecdd2e0a0d6587b183a896376e36de8bdc3afe236ac",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "Steering",
+      "material": "Legger_SciFi_Steering_PBR",
+      "atlas": "Legger_SciFi_Steering_Atlas",
+      "resolution": 2048,
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_SciFi_Steering_BaseColor",
+          "sha256": "3e7268e8b774ea1ef3cce707b6dc33894455bdb64883a15ffa44b10f7f122133",
+          "color_space": "sRGB",
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_SciFi_Steering_Normal",
+          "sha256": "398cd06105647a3070ef0ce84dcce5dade3386e2aabf8a98f23486abd31e0bfd",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_SciFi_Steering_Roughness",
+          "sha256": "05e1e6b0617b6b811b31eaefa594c48c9382cbbeddf52340619c0d64b5d06692",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_SciFi_Steering_Metallic",
+          "sha256": "60c648d57f1f3484efc0ce4ce07ec81b015a5ded7370293f30a0bb771efab37e",
+          "color_space": "Non-Color",
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_SciFi_Steering_AO",
+          "sha256": "5415d168e79a533b5c25c3f2a1feb8b39511a254caa7ede32dd23ffcb264cce9",
+          "color_space": "Non-Color",
+          "packed": true
+        }
+      }
+    }
+  ],
+  "new_maps": 35,
+  "retained_cargo_maps": 20,
+  "major_meshes": 67,
+  "control_quads": 36302,
+  "evaluated_triangles": 123664
+}

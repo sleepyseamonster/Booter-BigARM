@@ -1,0 +1,1001 @@
+{
+  "source_sha256": "fa71944d8d6292448418810cce37c89b4997cf565b23192dabd656f251a20538",
+  "recovery": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerSciFi20261015\\Before.blend",
+  "recovery_sha256": "fa71944d8d6292448418810cce37c89b4997cf565b23192dabd656f251a20538",
+  "blender": "5.2.2 LTS",
+  "rebuilt_meshes": 53,
+  "retained_meshes": {
+    "Legger_Part_L_CargoRack": "4be2d14010c6797dbeb9ed26bf7e4660d1f6f935736ab3c1b3c0ed7fd588c9ce",
+    "Legger_Part_R_CargoRack": "70f5e9b4c92118bd18793bbe39ba1e55c97e3909bc0426b11a7c761fc6aa5e92",
+    "Legger_Part_Cargo_L_Main_Body": "a06e9ea31f2a336c1cf4c6e995874a3ea14d8bf290592f1a950f7e9ee4911ccd",
+    "Legger_Part_Cargo_L_Main_Straps": "f6c02b491f537bd11cca05601d4b316d3f0d7bfbc48cd90214f21d70884a71ee",
+    "Legger_Part_Cargo_L_Main_Lid": "e95bc58fd4d398fd9ced33c8b6c957d3b592012b2c922594444d366487aa748b",
+    "Legger_Part_Cargo_L_Aux_Body": "7814ad7b2cca6a3bda6bfb95b6df4adc86307c2644d351b21dfd088547053087",
+    "Legger_Part_Cargo_L_Aux_Straps": "242b197a12a5db2f25e216ebc1754c6c4050c9e7023c8d3e41971eae269a9a77",
+    "Legger_Part_Cargo_L_Aux_Lid": "b8d8b809b0962038cb548f4e2ba0ade607713623b834bd753dd6a172282f4566",
+    "Legger_Part_Cargo_R_Main_Body": "0980e43121cf286b2c4627671202aeb51a3b5690f7ff62c1bb680184f7d3d730",
+    "Legger_Part_Cargo_R_Main_Straps": "847ad0cc959cd971493eb17b0640bcfa2b557dea8fc608427e9c6fa34287758d",
+    "Legger_Part_Cargo_R_Main_Lid": "eabbd7b8c5520f5e9002c8b95473b06d0a7822c8e059f30d7e62efae6ce4fb8a",
+    "Legger_Part_Cargo_R_Aux_Body": "32496a20a506968842891b0ad9f5fff07083f4b570b758dd7f06910dd4cc72dd",
+    "Legger_Part_Cargo_R_Aux_Straps": "2e51b0eeec07c24a6d2e13e30ca66f2cca57b4c5de885091f6bd1c6d04905c4f",
+    "Legger_Part_Cargo_R_Aux_Lid": "69ad77aebfe2545d659ca899437c791019cc23f3e30f21df1f25139fb4a68dd4"
+  },
+  "objects": [
+    {
+      "name": "Legger_Part_L_CargoRack",
+      "module": "Frame",
+      "quads": 824,
+      "evaluated_triangles": 2896,
+      "pivot": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_CargoRack",
+      "module": "Frame",
+      "quads": 824,
+      "evaluated_triangles": 2896,
+      "pivot": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_MainFrame",
+      "module": "Frame",
+      "quads": 1336,
+      "evaluated_triangles": 3728,
+      "pivot": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_SeatSubframe",
+      "module": "Frame",
+      "quads": 732,
+      "evaluated_triangles": 2392,
+      "pivot": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_HipMount",
+      "module": "Frame",
+      "quads": 220,
+      "evaluated_triangles": 648,
+      "pivot": [
+        -0.22499999403953552,
+        -0.30000001192092896,
+        1.3200000524520874
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_Footrest",
+      "module": "Frame",
+      "quads": 68,
+      "evaluated_triangles": 328,
+      "pivot": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_HipMount",
+      "module": "Frame",
+      "quads": 220,
+      "evaluated_triangles": 648,
+      "pivot": [
+        0.22499999403953552,
+        -0.30000001192092896,
+        1.3200000524520874
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_Footrest",
+      "module": "Frame",
+      "quads": 68,
+      "evaluated_triangles": 328,
+      "pivot": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_SteeringMount",
+      "module": "Frame",
+      "quads": 172,
+      "evaluated_triangles": 600,
+      "pivot": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_ServiceHarness",
+      "module": "Frame",
+      "quads": 856,
+      "evaluated_triangles": 2864,
+      "pivot": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_DriveCore",
+      "module": "Drive",
+      "quads": 188,
+      "evaluated_triangles": 638,
+      "pivot": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_SpineHousing",
+      "module": "Drive",
+      "quads": 350,
+      "evaluated_triangles": 1244,
+      "pivot": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_RearCoolingHousing",
+      "module": "Drive",
+      "quads": 116,
+      "evaluated_triangles": 462,
+      "pivot": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_DrivePod",
+      "module": "Drive",
+      "quads": 796,
+      "evaluated_triangles": 2360,
+      "pivot": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_DrivePod",
+      "module": "Drive",
+      "quads": 796,
+      "evaluated_triangles": 2360,
+      "pivot": [
+        0.0,
+        0.10000000149011612,
+        1.649999976158142
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_HipJoint",
+      "module": "LeftLeg",
+      "quads": 728,
+      "evaluated_triangles": 1872,
+      "pivot": [
+        -0.22499999403953552,
+        -0.30000001192092896,
+        1.3200000524520874
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_KneeJoint",
+      "module": "LeftLeg",
+      "quads": 728,
+      "evaluated_triangles": 1872,
+      "pivot": [
+        -0.25999999046325684,
+        -0.24500000476837158,
+        0.800000011920929
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_AnkleJoint",
+      "module": "LeftLeg",
+      "quads": 728,
+      "evaluated_triangles": 1936,
+      "pivot": [
+        -0.2750000059604645,
+        -0.30000001192092896,
+        0.16999995708465576
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_ThighFrame",
+      "module": "LeftLeg",
+      "quads": 452,
+      "evaluated_triangles": 1320,
+      "pivot": [
+        -0.22499999403953552,
+        -0.30000001192092896,
+        1.3200000524520874
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_ThighShell",
+      "module": "LeftLeg",
+      "quads": 1436,
+      "evaluated_triangles": 4784,
+      "pivot": [
+        -0.22499999403953552,
+        -0.30000001192092896,
+        1.3200000524520874
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_ThighActuatorBarrel",
+      "module": "LeftLeg",
+      "quads": 250,
+      "evaluated_triangles": 740,
+      "pivot": [
+        -0.18324998021125793,
+        -0.35638946294784546,
+        1.2351632118225098
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_ThighActuatorRod",
+      "module": "LeftLeg",
+      "quads": 160,
+      "evaluated_triangles": 480,
+      "pivot": [
+        -0.20845001935958862,
+        -0.316789448261261,
+        0.8607631325721741
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_ShinFrame",
+      "module": "LeftLeg",
+      "quads": 484,
+      "evaluated_triangles": 1384,
+      "pivot": [
+        -0.25999999046325684,
+        -0.24500000476837158,
+        0.800000011920929
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_ShinShell",
+      "module": "LeftLeg",
+      "quads": 1518,
+      "evaluated_triangles": 5028,
+      "pivot": [
+        -0.25999999046325684,
+        -0.24500000476837158,
+        0.800000011920929
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_ShinActuatorBarrel",
+      "module": "LeftLeg",
+      "quads": 250,
+      "evaluated_triangles": 700,
+      "pivot": [
+        -0.21525001525878906,
+        -0.31800371408462524,
+        0.7111530900001526
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_ShinActuatorRod",
+      "module": "LeftLeg",
+      "quads": 160,
+      "evaluated_triangles": 480,
+      "pivot": [
+        -0.2260500192642212,
+        -0.3576037287712097,
+        0.2575531005859375
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_Foot",
+      "module": "LeftLeg",
+      "quads": 642,
+      "evaluated_triangles": 2010,
+      "pivot": [
+        -0.2750000059604645,
+        -0.30000001192092896,
+        0.16999995708465576
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_HipJoint",
+      "module": "RightLeg",
+      "quads": 728,
+      "evaluated_triangles": 1872,
+      "pivot": [
+        0.22499999403953552,
+        -0.30000001192092896,
+        1.3200000524520874
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_KneeJoint",
+      "module": "RightLeg",
+      "quads": 728,
+      "evaluated_triangles": 1872,
+      "pivot": [
+        0.25999999046325684,
+        -0.24500000476837158,
+        0.800000011920929
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_AnkleJoint",
+      "module": "RightLeg",
+      "quads": 728,
+      "evaluated_triangles": 1936,
+      "pivot": [
+        0.2750000059604645,
+        -0.30000001192092896,
+        0.16999995708465576
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_ThighFrame",
+      "module": "RightLeg",
+      "quads": 452,
+      "evaluated_triangles": 1320,
+      "pivot": [
+        0.22499999403953552,
+        -0.30000001192092896,
+        1.3200000524520874
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_ThighShell",
+      "module": "RightLeg",
+      "quads": 1436,
+      "evaluated_triangles": 4784,
+      "pivot": [
+        0.22499999403953552,
+        -0.30000001192092896,
+        1.3200000524520874
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_ThighActuatorBarrel",
+      "module": "RightLeg",
+      "quads": 250,
+      "evaluated_triangles": 740,
+      "pivot": [
+        0.18324998021125793,
+        -0.35638946294784546,
+        1.2351632118225098
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_ThighActuatorRod",
+      "module": "RightLeg",
+      "quads": 160,
+      "evaluated_triangles": 480,
+      "pivot": [
+        0.20845001935958862,
+        -0.316789448261261,
+        0.8607631325721741
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_ShinFrame",
+      "module": "RightLeg",
+      "quads": 484,
+      "evaluated_triangles": 1384,
+      "pivot": [
+        0.25999999046325684,
+        -0.24500000476837158,
+        0.800000011920929
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_ShinShell",
+      "module": "RightLeg",
+      "quads": 1518,
+      "evaluated_triangles": 5028,
+      "pivot": [
+        0.25999999046325684,
+        -0.24500000476837158,
+        0.800000011920929
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_ShinActuatorBarrel",
+      "module": "RightLeg",
+      "quads": 250,
+      "evaluated_triangles": 700,
+      "pivot": [
+        0.21525001525878906,
+        -0.31800371408462524,
+        0.7111530900001526
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_ShinActuatorRod",
+      "module": "RightLeg",
+      "quads": 160,
+      "evaluated_triangles": 480,
+      "pivot": [
+        0.2260500192642212,
+        -0.3576037287712097,
+        0.2575531005859375
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_Foot",
+      "module": "RightLeg",
+      "quads": 642,
+      "evaluated_triangles": 2010,
+      "pivot": [
+        0.2750000059604645,
+        -0.30000001192092896,
+        0.16999995708465576
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_front_fairing",
+      "module": "BodyArmor",
+      "quads": 722,
+      "evaluated_triangles": 2512,
+      "pivot": [
+        -0.1615000069141388,
+        -0.44600003957748413,
+        1.783000111579895
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_upper_body_shroud",
+      "module": "BodyArmor",
+      "quads": 948,
+      "evaluated_triangles": 3238,
+      "pivot": [
+        -0.15224994719028473,
+        0.03999998793005943,
+        1.883750319480896
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_tail_shroud",
+      "module": "BodyArmor",
+      "quads": 428,
+      "evaluated_triangles": 1530,
+      "pivot": [
+        -0.13600003719329834,
+        0.4699999988079071,
+        1.8883336782455444
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_front_fairing",
+      "module": "BodyArmor",
+      "quads": 722,
+      "evaluated_triangles": 2512,
+      "pivot": [
+        0.1615000069141388,
+        -0.44600003957748413,
+        1.783000111579895
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_upper_body_shroud",
+      "module": "BodyArmor",
+      "quads": 948,
+      "evaluated_triangles": 3242,
+      "pivot": [
+        0.15224994719028473,
+        0.03999999165534973,
+        1.8837502002716064
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_tail_shroud",
+      "module": "BodyArmor",
+      "quads": 428,
+      "evaluated_triangles": 1530,
+      "pivot": [
+        0.13600003719329834,
+        0.4700000286102295,
+        1.8883335590362549
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_SaddleUpholstery",
+      "module": "Saddle",
+      "quads": 1274,
+      "evaluated_triangles": 3148,
+      "pivot": [
+        0.0,
+        0.11999999731779099,
+        1.9700000286102295
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_SaddlePan",
+      "module": "Saddle",
+      "quads": 1088,
+      "evaluated_triangles": 2976,
+      "pivot": [
+        0.0,
+        0.11999999731779099,
+        1.9500000476837158
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_SteeringStem",
+      "module": "Steering",
+      "quads": 140,
+      "evaluated_triangles": 488,
+      "pivot": [
+        0.0,
+        -0.4050000011920929,
+        1.9900000095367432
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Handlebar",
+      "module": "Steering",
+      "quads": 270,
+      "evaluated_triangles": 876,
+      "pivot": [
+        0.0,
+        -0.49000000953674316,
+        2.1449999809265137
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_Grip",
+      "module": "Steering",
+      "quads": 336,
+      "evaluated_triangles": 1056,
+      "pivot": [
+        -0.30000001192092896,
+        -0.4480000138282776,
+        2.1050000190734863
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_L_BrakeLever",
+      "module": "Steering",
+      "quads": 110,
+      "evaluated_triangles": 348,
+      "pivot": [
+        -0.28200000524520874,
+        -0.5009999871253967,
+        2.0999999046325684
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_Grip",
+      "module": "Steering",
+      "quads": 336,
+      "evaluated_triangles": 1056,
+      "pivot": [
+        0.30000001192092896,
+        -0.4480000138282776,
+        2.1050000190734863
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_R_BrakeLever",
+      "module": "Steering",
+      "quads": 110,
+      "evaluated_triangles": 348,
+      "pivot": [
+        0.28200000524520874,
+        -0.5009999871253967,
+        2.0999999046325684
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_InstrumentGauge",
+      "module": "Steering",
+      "quads": 156,
+      "evaluated_triangles": 544,
+      "pivot": [
+        0.0,
+        -0.5270000100135803,
+        2.1700000762939453
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_FrontControlPod",
+      "module": "Steering",
+      "quads": 340,
+      "evaluated_triangles": 1784,
+      "pivot": [
+        0.0,
+        -0.5680000185966492,
+        1.909999966621399
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Body",
+      "module": "Cargo_L_Main",
+      "quads": 868,
+      "evaluated_triangles": 3384,
+      "pivot": [
+        -0.31999996304512024,
+        0.5,
+        1.7899999618530273
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Straps",
+      "module": "Cargo_L_Main",
+      "quads": 648,
+      "evaluated_triangles": 4112,
+      "pivot": [
+        -0.31999996304512024,
+        0.5,
+        1.7899999618530273
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Lid",
+      "module": "Cargo_L_Main",
+      "quads": 322,
+      "evaluated_triangles": 1380,
+      "pivot": [
+        -0.23000000417232513,
+        0.5,
+        2.069999933242798
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Body",
+      "module": "Cargo_L_Aux",
+      "quads": 394,
+      "evaluated_triangles": 2068,
+      "pivot": [
+        -0.30500003695487976,
+        0.16999998688697815,
+        1.7350001335144043
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Straps",
+      "module": "Cargo_L_Aux",
+      "quads": 276,
+      "evaluated_triangles": 1768,
+      "pivot": [
+        -0.30500003695487976,
+        0.16999998688697815,
+        1.7350001335144043
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Lid",
+      "module": "Cargo_L_Aux",
+      "quads": 146,
+      "evaluated_triangles": 724,
+      "pivot": [
+        -0.22750000655651093,
+        0.17000000178813934,
+        1.934999942779541
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Body",
+      "module": "Cargo_R_Main",
+      "quads": 868,
+      "evaluated_triangles": 3384,
+      "pivot": [
+        0.3199999928474426,
+        0.5,
+        1.7899999618530273
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Straps",
+      "module": "Cargo_R_Main",
+      "quads": 648,
+      "evaluated_triangles": 4112,
+      "pivot": [
+        0.3199999928474426,
+        0.5,
+        1.7899999618530273
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Lid",
+      "module": "Cargo_R_Main",
+      "quads": 322,
+      "evaluated_triangles": 1380,
+      "pivot": [
+        0.23000000417232513,
+        0.5,
+        2.069999933242798
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Body",
+      "module": "Cargo_R_Aux",
+      "quads": 394,
+      "evaluated_triangles": 2068,
+      "pivot": [
+        0.30500003695487976,
+        0.16999998688697815,
+        1.7350001335144043
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Straps",
+      "module": "Cargo_R_Aux",
+      "quads": 276,
+      "evaluated_triangles": 1768,
+      "pivot": [
+        0.30500003695487976,
+        0.16999998688697815,
+        1.7350001335144043
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Lid",
+      "module": "Cargo_R_Aux",
+      "quads": 146,
+      "evaluated_triangles": 724,
+      "pivot": [
+        0.22750000655651093,
+        0.17000000178813934,
+        1.934999942779541
+      ],
+      "nonmanifold_edges": 0,
+      "loose_vertices": 0,
+      "degenerate_faces": 0
+    }
+  ],
+  "neutral_joint_targets": {
+    "L_Hip": [
+      -0.22499999403953552,
+      -0.30000001192092896,
+      1.3200000524520874
+    ],
+    "L_Knee": [
+      -0.25999999046325684,
+      -0.24500000476837158,
+      0.800000011920929
+    ],
+    "L_Ankle": [
+      -0.2750000059604645,
+      -0.30000001192092896,
+      0.16999995708465576
+    ],
+    "R_Hip": [
+      0.22499999403953552,
+      -0.30000001192092896,
+      1.3200000524520874
+    ],
+    "R_Knee": [
+      0.25999999046325684,
+      -0.24500000476837158,
+      0.800000011920929
+    ],
+    "R_Ankle": [
+      0.2750000059604645,
+      -0.30000001192092896,
+      0.16999995708465576
+    ]
+  },
+  "sets": [],
+  "control_quads": 36302,
+  "evaluated_triangles": 123664,
+  "candidate": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerSciFi20261015\\Forms.blend",
+  "candidate_sha256": "341acfb22d3ffaab6a467da819aa50c832eb36dca91952f5a5fe11e568372d44",
+  "candidate_bytes": 752222141
+}

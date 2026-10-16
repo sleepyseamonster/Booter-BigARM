@@ -1,8 +1,8 @@
 # Legger sci-fi form audit evidence
 
-October 15, 2026. The author rejected the overly simplistic major forms of the modular rebuild, identified the crates as its strongest remaining area, and requested an overhaul toward the retained original futuristic sci-fi design. The requested audit is complete. [Findings, part decisions and execution brief](../../../Design/Art/LEGGER_SCI_FI_OVERHAUL_AUDIT.md) distinguish the completed audit from the next modeling pass, which has not been applied.
+October 15, 2026. The author rejected the overly simplistic major forms of the modular rebuild, identified the crates as its strongest remaining area, and requested an overhaul toward the retained original futuristic sci-fi design. The requested audit is complete. [Findings, part decisions and execution brief](../../../Design/Art/LEGGER_SCI_FI_OVERHAUL_AUDIT.md) guided the subsequent [applied sci-fi refinement](../LeggerSciFi20261015/README.md), which now identifies the current native file. This audit's counts, hashes, captures and read-only statements remain historical evidence of the pre-alignment snapshot.
 
-Later the author requested a matching neutral leg stance for rigging. The [applied alignment receipt](../LeggerLegAlignment20261015/README.md) identifies the current saved source. This audit's hashes, counts and images remain the pre-alignment snapshot; the old staggered pose is not the next-pass target.
+Later the author requested a matching neutral leg stance for rigging. The [applied alignment receipt](../LeggerLegAlignment20261015/README.md) records the neutral targets retained by the sci-fi refinement. The old staggered pose was deliberately not restored.
 
 ## Source and cleanup
 

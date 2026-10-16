@@ -1,10 +1,12 @@
 # Legger modular assembly and textures
 
+**Later applied checkpoint:** the [sci-fi form refinement](../LeggerSciFi20261015/README.md) now identifies the active native file, with 53 rebuilt major meshes, 36,302 control quads and 123,664 evaluated triangles. It preserves the subsequent neutral leg targets, retained cargo and one-scene organization. Counts, hashes and original pose statements below remain this earlier technical checkpoint's evidence.
+
 October 15, 2026. The author requested an independently modeled chassis, extended the work to the legs, saddle and handlebars, then authorized a complete modular model with separate textures, an audited plan and one organized scene. The [plan and audit](../../../Design/Art/LEGGER_MODULAR_MODEL_PLAN.md) govern this checkpoint. Small fixed fittings are grouped into their parent parts.
 
 Subsequent author review: the rebuild is too simplistic outside the crates and needs an overhaul toward the original futuristic design. The [form audit](../LeggerSciFiAudit20261015/README.md) closes this technical lane and records the replacement modeling direction. The counts and verification below remain facts about the unchanged technical baseline; they do not establish final visual acceptance.
 
-The author then requested aligned legs for rigging. The [neutral alignment receipt](../LeggerLegAlignment20261015/README.md) identifies the current source and supersedes this checkpoint's staggered-pose coordinates while retaining its topology budget and packed maps.
+The author then requested aligned legs for rigging. The [neutral alignment receipt](../LeggerLegAlignment20261015/README.md) superseded this checkpoint's staggered-pose coordinates while retaining its topology budget and packed maps at that time. The later sci-fi refinement above retains those neutral coordinates and changes the forms and affected atlases.
 
 ## Current authoring file
 

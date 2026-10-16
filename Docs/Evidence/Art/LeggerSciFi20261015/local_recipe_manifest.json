@@ -1,0 +1,22 @@
+{
+  "root": "Logs/LeggerSciFi20261015",
+  "recipes_sha256": {
+    "apply.py": "0559d4528988a4d1cf20494097d44b7b67d7244233b83e8ac5912095228dcaee",
+    "bake.py": "af744951811fd288055ff8af0f320d880ae255d3425e695e940fcb5f8833fc49",
+    "baseline.py": "c9a41ff21eb7eecb48e82675a53cb4d22e7b44f9bdcb205b3ed8c65dc96a945f",
+    "boards.py": "5c5a45d2aa7aa65dd1e9ad5875a567d1238fcd3c4c92dad631f832a75e4c9654",
+    "build.py": "13457b56c05612d82a61c850908da7d3e8010beac3035ac0fef01b076eda46a2",
+    "finalize.py": "ba7781236bd9402026fdcf7617a2f5d8b31bf8e0ed0dc30539d1947fe33feb94",
+    "fingerprint.py": "eb5f095437185432900cd31b2ed07feb3d55796db3dcd72eb7dc8c1a8f5bc86f",
+    "forms.py": "5c203c6585408c89137a8ab649a2c5f1b86a126d62dade50c03b8114e73f545e",
+    "prepare.py": "91201add5f59438a6a5cbf9d661643e58d726152f3b84dad809ccfa98d532d1a",
+    "qa.py": "c7f2fc8668e25212e56f2b6daff48500c7df4c4bc8656a1610f82a4bfdc4c0ea",
+    "review.py": "87606b67284168fddb8c7b48695e4fbeec014a5f7c2f3f2b2e9e7357e1e1b097",
+    "texture_qa.py": "09d930e1535f235034d0769da051dd942e833bc081e8c92a40d6c5c906093e98"
+  },
+  "cache": "C:/Users/kbkno/.codex/art-cache/LeggerSciFi20261015",
+  "forms_sha256": "341acfb22d3ffaab6a467da819aa50c832eb36dca91952f5a5fe11e568372d44",
+  "prepared_sha256": "7946a0955e4ba16d79bcf0d4b54796f6643eee2c2a83401082d067bcd6d9e158",
+  "final_sha256": "fcb639d849c25866508a05b9546175140f44fadaa79a1ff177bc499dc08d1b1f",
+  "note": "Local construction/bake recipes and native caches are preserved, not published. Source and final native identities are authoritative."
+}

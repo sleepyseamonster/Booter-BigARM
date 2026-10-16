@@ -1,0 +1,54 @@
+{
+  "geometry_to_pbr": [
+    {
+      "view": "assembled",
+      "mean_rgb_difference_8bit": 0.23857909746686798,
+      "p99_rgb_difference_8bit": 2.0,
+      "maximum_rgb_difference_8bit": 72,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "side",
+      "mean_rgb_difference_8bit": 0.238863091163611,
+      "p99_rgb_difference_8bit": 2.0,
+      "maximum_rgb_difference_8bit": 38,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "body",
+      "mean_rgb_difference_8bit": 0.20998415493014114,
+      "p99_rgb_difference_8bit": 2.0,
+      "maximum_rgb_difference_8bit": 98,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "legs",
+      "mean_rgb_difference_8bit": 0.320199393701087,
+      "p99_rgb_difference_8bit": 2.0,
+      "maximum_rgb_difference_8bit": 35,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "cockpit",
+      "mean_rgb_difference_8bit": 0.32954171158988294,
+      "p99_rgb_difference_8bit": 2.0,
+      "maximum_rgb_difference_8bit": 89,
+      "maximum_alpha_difference": 0
+    },
+    {
+      "view": "clay_assembled",
+      "mean_rgb_difference_8bit": 0.006772353631940949,
+      "p99_rgb_difference_8bit": 0.0,
+      "maximum_rgb_difference_8bit": 14,
+      "maximum_alpha_difference": 0
+    }
+  ],
+  "limits": "Pixel comparisons verify texture bake appearance under the specified offline views. They are not a source-original silhouette equivalence or Unity visual/performance result.",
+  "saved_native_to_candidate": {
+    "view": "assembled",
+    "source_sha256": "fcb639d849c25866508a05b9546175140f44fadaa79a1ff177bc499dc08d1b1f",
+    "mean_rgb_difference_8bit": 3.856733035298134e-05,
+    "maximum_rgb_difference_8bit": 1,
+    "maximum_alpha_difference": 0
+  }
+}
