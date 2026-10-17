@@ -121,6 +121,8 @@ Author direction recorded October 14, 2026:
 
 ### Field Control And Electrical Protection
 
+Author direction October 16, 2026: people of this world have created **magnetic rail guns**, establishing a contemporary manufactured weapon family alongside ancient and reverse-engineered weapons. Rail gun ammunition and missing weapon-specific crafting components may be cataloged. The [local catalog review and proposals](Design/Items/RAIL_GUN_ITEMS_2026-10-16.json) reuse existing copper conductor, insulation, contact, magnetic and energy-storage families where appropriate. Specific parts, projectile forms, tier assignments, power supplies, compatibility, recipes and performance remain design proposals. Existing magnets or capacitor packs are not automatically qualified weapon inputs, and coil-weapon ammunition is not automatically interchangeable.
+
 Author direction recorded October 14, 2026:
 
 - Equipment families include magnetic field disruptors, inhibitors and enhancers, plus static-electricity field enhancers and disruptors. Their mechanisms, field strength, range, power supplies and targets remain open; the functional distinction between a magnetic inhibitor and disruptor is not yet defined.

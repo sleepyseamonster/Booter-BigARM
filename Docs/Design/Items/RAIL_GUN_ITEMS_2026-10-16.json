@@ -1,0 +1,93 @@
+{
+  "source": "Author direction October 16, 2026: people in the world have created magnetic rail guns; add a weapon, related crafting components where missing, and rail gun ammunition. Contemporary rail gun existence is author direction. Particular silhouettes, parts, ammunition and tier assignments below are local game catalog proposals.",
+  "scope": "Four catalog entries, reusing the existing general electrical/material families. No real construction specification, executable recipe, dimensions, electrical parameters or weapon performance. World identity, streaming/unload/reload, stable generated-object identity, authored placement constraints and persisted runtime deltas are not applicable: no runtime objects, spawning, terrain or save systems change.",
+  "existingCatalogReview": [
+    {"id": "proposal.branch.drawn_copper", "name": "Drawn copper wire stock", "decision": "Reuse as candidate general conductor stock; no duplicate copper wire."},
+    {"id": "proposal.t3.grounding_braid", "name": "Braided copper conductor stock", "decision": "Existing flexible conductor family; suitability for any rail gun service remains unqualified."},
+    {"id": "proposal.gear.magnets", "name": "Field magnets", "decision": "Existing magnetic tool family; no new generic magnet. Ownership does not make this tool an approved rail gun input or establish a permanent-magnet propulsion requirement."},
+    {"id": "proposal.raw.magnet_fragments", "name": "Broken magnet fragments", "decision": "Existing magnetic salvage; no duplicate. As-found fragments are not qualified weapon components."},
+    {"id": "proposal.natural.ceramic", "name": "Fired insulating ceramic blanks", "decision": "Reuse as candidate separator stock without a service rating."},
+    {"id": "proposal.ceramic.spacer", "name": "Ceramic insulating spacer", "decision": "Existing fitted insulation family; rail gun compatibility remains to be designed."},
+    {"id": "proposal.collection.mica_plate_capacitor_pack", "name": "Mica-plate capacitor pack", "decision": "Existing energy-storage candidate; do not add a duplicate or assume it meets weapon requirements."},
+    {"id": "proposal.collection.glass_jar_capacitor_bank", "name": "Glass-jar capacitor bank", "decision": "Existing alternative storage architecture; no rail gun power supply is selected."},
+    {"id": "proposal.audit.ceramic_backed_control_switch", "name": "Ceramic-backed control switch", "decision": "Existing general control component; no weapon-duty switching qualification implied."},
+    {"id": "proposal.t4.contact_block", "name": "Serviceable insulated contact block", "decision": "Existing general electrical interface; suitability remains unresolved."},
+    {"id": "proposal.collection.magnetic_dart_projector", "name": "Magnetic dart projector", "decision": "Retain the existing unspecified field-driven dart concept; do not silently redefine it as the new rail gun."},
+    {"id": "proposal.collection.magnetic_projector_dart", "name": "Magnetic projector dart", "decision": "Retain its existing ammunition identity; no rail gun interchangeability implied."},
+    {"id": "proposal.collection.coil_carbine_slug", "name": "Coil-carbine slug", "decision": "Retain coil-weapon ammunition separately; not automatically interchangeable with the new rail gun slug."}
+  ],
+  "defaults": {
+    "Tier": "T3",
+    "Category": "Crafting components",
+    "Subtype": "Rail gun component",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "None; compatibility unresolved",
+    "Carrier metadata": "Separate physical inventory item; size, mass, packing and compatibility unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed contemporary specialist workshop craft or trade; availability and price unresolved.",
+    "Crafting / processing": "Game catalog concept only. Existing metal, copper conductor, ceramic insulation, contact and energy-storage families are candidate resources, not a qualified bill of materials. No construction procedure, quantities, service parameters, yield or recipe established.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Compatibility, condition, maintenance and service life require design. No numerical weapon performance, approved power supply, guaranteed electrical compatibility or working crafting route is assigned.",
+    "Rarity": null, "Trade value": null, "Damage": null, "Protection": null, "Durability": null,
+    "Item type": "Crafting component",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Primary use": "Equipment fabrication",
+    "Material family": "Metal",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "New weapon-specific fitted component absent from the reviewed general electrical stock and component families. Listed separately from the complete weapon and ammunition.",
+    "Tier basis": "Proposed T3 fitted component using T1/T2 stock; exact input eligibility and manufacture remain unresolved.",
+    "Finished-item input tier": "T2",
+    "Crafting role": "Component"
+  },
+  "items": [
+    {
+      "id": "author.weapon.magnetic_rail_gun",
+      "name": "Magnetic rail gun",
+      "purpose": "A locally manufactured ranged weapon that uses electromagnetic force to launch a matched solid slug. A long squared forebody, exposed service covers and a heavy metal receiver give it the appearance of workshop-built machinery adapted for carrying. It represents the rail gun technology created by people of this world; its power source, handling and combat performance remain to be designed.",
+      "icon": "Fictional workshop-built rail gun with long squared forebody, worn metal receiver, ceramic-colored inset panels and plain service covers; no schematic, cutaway, wiring detail, dimensions or wearer.",
+      "material": "Ceramic and metal", "use": "Offensive combat",
+      "fields": {
+        "Tier": "T4", "Category": "Weapons", "Subtype": "Magnetic rail gun", "Implementation scope": "Author-directed concept",
+        "Item type": "Weapon", "Primary use": "Offensive combat", "Material family": "Ceramic and metal", "Design status": "Author direction", "Crafting role": "Finished item", "Finished-item input tier": "T3",
+        "Search aliases": "rail gun; railgun; magnetic rail gun; electromagnetic weapon; contemporary weapon",
+        "Classification basis": "Author establishes contemporary manufactured rail guns as weapons. The detailed weapon design is a proposal, distinct from ancient recovered weapons and the unspecified magnetic dart projector.",
+        "Tier basis": "Proposed T4 completed weapon integrating T2/T3 component families; author direction establishes its existence, not a recipe or numerical performance.",
+        "Open design decisions": "Resolve carrying form, compatible slug family, power supply, maintenance, availability and combat role. Existing storage items do not automatically power this weapon; battery charging preserves holder identity. Detailed engineering and stats remain unassigned."
+      }
+    },
+    {
+      "id": "proposal.ammunition.rail_gun_slug",
+      "name": "Rail gun slug",
+      "purpose": "A compact solid metal projectile proposed as the standard ammunition item for a compatible magnetic rail gun. Its plain, unadorned form makes it easy to distinguish from the finned magnetic projector dart and the separately matched coil-carbine slug. A slug supplies the projectile only; it contains no propellant, stored charge or explosive filling.",
+      "icon": "One plain fictional solid metal rail gun slug with a blunt utilitarian silhouette and worn finish; no dimensions, sectional diagram, propellant, explosive filling or weapon.",
+      "material": "Metal", "use": "Offensive combat",
+      "fields": {
+        "Tier": "T2", "Category": "Ammunition", "Subtype": "Rail gun ammunition", "Item type": "Ammunition", "Primary use": "Offensive combat", "Physical form": "Solid piece", "Crafting role": "Finished item", "Finished-item input tier": "T1",
+        "Search aliases": "rail gun ammo; railgun ammunition; rail gun slug; solid projectile",
+        "Crafting / processing": "Proposed ammunition from qualified metal stock. Composition, forming, acceptance criteria and the compatible weapon remain design work; no dimensions, tooling procedure or executable recipe assigned.",
+        "Classification basis": "Separate rail gun projectile family; no automatic compatibility with magnetic projector darts or coil-carbine slugs. Weapon energy supply remains separate from ammunition.",
+        "Tier basis": "Proposed T2 finished ammunition using qualified T1 metal stock; exact material and processing remain unresolved.",
+        "Open design decisions": "Resolve visual form, composition, compatible weapon, stack size, mass, recovery and consumption rules. Damage, penetration, velocity and range remain unassigned."
+      }
+    },
+    {
+      "id": "proposal.component.rail_gun_rail_cassette",
+      "name": "Rail gun rail cassette",
+      "purpose": "A replaceable internal rail assembly proposed for the rail gun's long forebody. It groups the weapon's paired conducting rails and their separating supports into one named service component, distinct from loose copper wire or general insulating stock. Wear and compatibility determine whether a cassette can be fitted to a particular gun.",
+      "icon": "Fictional sealed elongated service cassette with two metal end faces and ceramic-colored separating panels; exterior item view only, no internal diagram, measurements or connections.",
+      "material": "Ceramic and metal", "use": "Equipment fabrication",
+      "fields": {"Material family": "Ceramic and metal", "Search aliases": "rail gun component; railgun rails; rail cassette; replacement rail assembly", "Open design decisions": "Resolve external visual design, compatibility, condition and replacement role. Materials, interfaces, construction and operating parameters remain unspecified."}
+    },
+    {
+      "id": "proposal.component.rail_gun_receiver_frame",
+      "name": "Rail gun receiver frame",
+      "purpose": "A rigid metal body proposed to hold the rail gun's fitted assemblies and service covers in a single carrying structure. Its broad mounting faces and reinforced outer ribs give the weapon a sturdy workshop-made appearance. An empty frame is a fabrication component, without ammunition, power storage or a working launch assembly.",
+      "icon": "Fictional empty dark metal receiver frame with broad outer ribs, plain service-cover recesses and a worn workshop finish; no internal mechanism, assembly drawing, dimensions or wiring.",
+      "material": "Metal", "use": "Equipment fabrication",
+      "fields": {"Search aliases": "rail gun component; railgun chassis; receiver frame; weapon frame", "Open design decisions": "Resolve exterior shape, carrying fit, compatible assemblies, mass and fabrication identity. No mechanical dimensions, construction procedure or functional receiver design established."}
+    }
+  ]
+}
