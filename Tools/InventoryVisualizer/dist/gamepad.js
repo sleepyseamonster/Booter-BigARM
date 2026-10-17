@@ -75,9 +75,9 @@ export function startInventoryGamepad(){
   }
   function tab(action){
     if(document.querySelector('dialog[open]'))return;
-    editing?.classList.remove('pad-editing');editing=null;
-    const selector='nav [data-page]';
+    const selector=action.endsWith('Subtab')?'[data-subtabs] [data-subtab]':'.game-tabs [data-page]';
     const items=[...document.querySelectorAll(selector)].filter(visible);if(!items.length)return;
+    editing?.classList.remove('pad-editing');editing=null;
     const at=items.findIndex(el=>el.classList.contains('active')),delta=action.startsWith('previous')?-1:1;
     const next=items[(Math.max(0,at)+delta+items.length)%items.length];next.click();
     const replacement=key(next);focus(replacement?document.querySelector(replacement):next);
@@ -98,7 +98,7 @@ export function startInventoryGamepad(){
       else{
         const actions=input.sample(pad,now,active);
         if(active){
-          hint.textContent=input.armed?'D-pad / LS move · RS scroll · South select · East back · LB/RB or LT/RT tabs':'Release controls to continue';
+          hint.textContent=input.armed?'D-pad / LS move · RS scroll · South select · East back · LB/RB primary tabs · LT/RT sub-tabs':'Release controls to continue';
           if(document.body.classList.contains('pad-mode')&&lastFocus){
             // Recover logical focus after a view rebuild; keep modal focus trapped.
             current();

@@ -14,7 +14,7 @@ export class InventoryPadInput {
     let direction=null;
     if(dx||dy)direction=dy?(dy<0?'up':'down'):(dx<0?'left':'right');
     else if(Math.max(Math.abs(x),Math.abs(y))>.55)direction=Math.abs(x)>Math.abs(y)?(x<0?'left':'right'):(y<0?'up':'down');
-    const held={select:pressed(0),back:pressed(1),previousTab:pressed(4)||trigger(6),nextTab:pressed(5)||trigger(7)};
+    const held={select:pressed(0),back:pressed(1),previousTab:pressed(4),nextTab:pressed(5),previousSubtab:trigger(6),nextSubtab:trigger(7)};
     const right=rightStickScroll(pad,16);
     const neutral=!direction&&!Object.values(held).some(Boolean)&&!right.x&&!right.y;
     if(!this.armed){if(neutral)this.armed=true;this.held=held;this.direction=null;return [];}

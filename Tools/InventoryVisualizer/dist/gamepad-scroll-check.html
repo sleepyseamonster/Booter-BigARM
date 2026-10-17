@@ -1,14 +1,24 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inventory scrolling check</title><link rel="icon" href="data:,"><style>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inventory navigation and scrolling check</title><link rel="icon" href="data:,"><style>
 body{font:16px sans-serif;margin:20px;background:#192019;color:#eee}button{padding:20px;background:#303d30;color:#fff;border:1px solid #899a80}#rows{display:grid;gap:8px;max-width:500px;margin-top:20px}footer{position:fixed;bottom:0;left:0;right:0;padding:20px;background:#4a4231;min-height:40px}.pad-focus{outline:4px solid #edc47a}#result{position:fixed;right:20px;top:20px;max-width:280px;background:#233526;padding:20px;z-index:5}body{padding-bottom:120px}
 </style></head><body>
-<button id="run">Run synthetic scrolling check</button><p>Disposable DOM fixture. Uses synthetic gamepad frames; never reads the workbook or gameplay save.</p>
-<div class="shell"><nav><button data-page="inventory" class="active">Booter inventory</button><button data-page="legger">Legger loadout</button><button data-page="storage">Camp storage</button><button data-page="crafting">Crafting</button><button data-page="projects">Projects</button><button data-page="map">Map</button><button data-page="reference">Reference</button><button data-page="settings">Settings</button></nav><main><div id="rows"></div></main><footer><span id="pad-status"></span></footer></div>
+<button id="run">Run synthetic navigation check</button><p>Disposable DOM fixture. Uses synthetic gamepad frames; never reads the workbook or gameplay save.</p>
+<div class="shell"><nav class="game-tabs"><button data-page="inventory" class="active">Inventory</button><button data-page="crafting">Crafting</button><button data-page="storage">Storage</button><button data-page="map">Map</button><button data-page="reference">Reference</button><button data-page="settings">Settings</button></nav><main><div id="subtabs"></div><div id="rows"></div></main><footer><span id="pad-status"></span></footer></div>
+<dialog id="modal"><button>Modal action</button></dialog>
 <output id="result">Not run</output>
 <script type="module">
 import {startInventoryGamepad} from './gamepad.js';
+import {subTabs} from './menu-tabs.mjs';
+import {CAMP_SERVICES} from './game-camp.mjs';
 document.querySelector('#rows').innerHTML=Array.from({length:40},(_,i)=>`<button data-entry="row-${i}">Sample item ${i+1}</button>`).join('');
-document.querySelector('nav').onclick=event=>{const button=event.target.closest('[data-page]');if(button)document.querySelectorAll('[data-page]').forEach(el=>el.classList.toggle('active',el===button));};
+let page='inventory';const selected={inventory:'booter',crafting:'workstations'};
+function renderTabs(){
+  const items=page==='inventory'?[{id:'booter',name:'Booter'},{id:'legger',name:'Legger'}]:page==='crafting'?CAMP_SERVICES:[];
+  document.querySelector('#subtabs').innerHTML=items.length?subTabs({label:page,prefix:'fixture',panel:'rows',attribute:'data-view',items,active:selected[page]}):'';
+}
+renderTabs();
+document.querySelector('nav').onclick=event=>{const button=event.target.closest('[data-page]');if(button){page=button.dataset.page;document.querySelectorAll('[data-page]').forEach(el=>el.classList.toggle('active',el===button));renderTabs();}};
+document.querySelector('#subtabs').onclick=event=>{const button=event.target.closest('[data-subtab]');if(button){selected[page]=button.dataset.view;renderTabs();}};
 const pad={id:'synthetic-scroll-fixture',index:0,mapping:'standard',connected:true,axes:[0,0,0,0],buttons:Array.from({length:16},()=>({pressed:false,value:0}))};
 Object.defineProperty(navigator,'getGamepads',{value:()=>[pad]});
 // The fixture runs in a background browser without changing OS foreground focus.
@@ -19,10 +29,31 @@ document.querySelector('#run').onclick=async()=>{
   const stop=startInventoryGamepad();
   try{
     await frames(3);
-    for(const [button,expected] of [[5,'legger'],[7,'storage'],[6,'legger'],[4,'inventory'],[6,'settings'],[5,'inventory']]){
-      pad.buttons[button]={pressed:true,value:1};await frames(2);pad.buttons[button]={pressed:false,value:0};await frames(2);
-      if(document.querySelector('nav .active').dataset.page!==expected)throw Error('Bumpers/triggers did not cycle the shared top tab row.');
-    }
+    const pulse=async button=>{pad.buttons[button]={pressed:true,value:1};await frames(2);pad.buttons[button]={pressed:false,value:0};await frames(2);};
+    const expect=(primary,secondary)=>{
+      if(document.querySelector('.game-tabs .active').dataset.page!==primary)throw Error('Wrong primary tab.');
+      const tab=document.querySelector('[data-subtabs] .active');
+      if((tab?.dataset.view||null)!==secondary)throw Error('Wrong sub-tab.');
+      if(secondary&&document.activeElement!==tab)throw Error('Sub-tab focus was lost after rebuilding the row.');
+    };
+    await pulse(7);expect('inventory','legger');
+    await pulse(7);expect('inventory','booter');
+    await pulse(6);expect('inventory','legger');
+    await pulse(5); // Crafting; bumpers must leave its remembered service alone.
+    if(page!=='crafting'||selected.inventory!=='legger')throw Error('Primary switch changed the loadout.');
+    for(const service of ['projects','reference','storage','inventory','legger','workstations']){await pulse(7);expect('crafting',service);}
+    for(const service of ['legger','inventory','storage','reference','projects','workstations']){await pulse(6);expect('crafting',service);}
+    await pulse(4);
+    if(page!=='inventory'||selected.inventory!=='legger')throw Error('Loadout did not survive primary navigation.');
+    await pulse(4);expect('settings',null); // primary backward wrap
+    await pulse(6);expect('settings',null);await pulse(7);expect('settings',null);
+    document.querySelector('#modal').showModal();
+    for(const button of [4,5,6,7]){await pulse(button);expect('settings',null);}
+    document.querySelector('#modal').close();
+    await pulse(5); // primary forward wrap
+    if(page!=='inventory'||selected.inventory!=='legger')throw Error('Primary forward wrap failed.');
+    // Start scrolling from a known item, away from either navigation row.
+    document.querySelector('[data-entry="row-0"]').focus();
     for(let i=0;i<22;i++){pad.buttons[13]={pressed:true,value:1};await frames(2);pad.buttons[13]={pressed:false,value:0};await frames(2);}
     const focus=document.activeElement,rect=focus.getBoundingClientRect(),footer=document.querySelector('footer').getBoundingClientRect();
     if(window.scrollY<=500||rect.bottom>footer.top-15||rect.top<15)throw Error('D-pad did not reveal the offscreen item above the footer.');
@@ -34,7 +65,7 @@ document.querySelector('#run').onclick=async()=>{
     if(window.scrollY>=scrolled-100)throw Error('Right stick failed to scroll upward.');
     pad.buttons[13]={pressed:true,value:1};await frames(2);pad.buttons[13]={pressed:false,value:0};await frames(2);
     const final=document.activeElement.getBoundingClientRect();if(final.bottom>footer.top-15||final.top<15)throw Error('Navigation failed to reveal focus after manual scrolling.');
-    result.textContent=`PASS · Both shoulder pairs cycled top tabs and wrapped; D-pad revealed ${focus.textContent}; right stick scrolled ${Math.round(scrolled-down)}px without moving focus or snapping back; navigation restored visibility.`;
+    result.textContent=`PASS · LB/RB cycled primary tabs; LT/RT cycled both sub-tab rows and wrapped; pages without sub-tabs and modal blocking passed; D-pad revealed ${focus.textContent}; right stick scrolled ${Math.round(scrolled-down)}px without moving focus or snapping back; navigation restored visibility.`;
   }catch(error){result.textContent='FAIL · '+error.message;}finally{stop();}
 };
 </script></body></html>

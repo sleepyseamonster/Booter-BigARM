@@ -33,11 +33,19 @@ test('East backs out once per release and cannot bypass neutral rearming',()=>{
   assert.deepEqual(input.sample(pad([1]),800),['back']);
 });
 test('bumpers and analog triggers tab independently and never repeat while held',()=>{
-  for(const [button,action]of [[4,'previousTab'],[5,'nextTab'],[6,'previousTab'],[7,'nextTab']]){
+  for(const [button,action]of [[4,'previousTab'],[5,'nextTab'],[6,'previousSubtab'],[7,'nextSubtab']]){
     const input=armed();assert.deepEqual(input.sample(pad([button]),1),[action]);assert.deepEqual(input.sample(pad([button]),1000),[]);
   }
   const input=armed(),partial=pad();partial.buttons[7]={pressed:true,value:.3};assert.deepEqual(input.sample(partial,1),[]);
-  partial.buttons[7].value=.7;assert.deepEqual(input.sample(partial,2),['nextTab']);
+  partial.buttons[7].value=.7;assert.deepEqual(input.sample(partial,2),['nextSubtab']);
+});
+test('switching tiers requires release of all shoulders before another action',()=>{
+  const input=armed();assert.deepEqual(input.sample(pad([5]),1),['nextTab']);
+  assert.deepEqual(input.sample(pad([5,7]),2),[]);
+  assert.deepEqual(input.sample(pad([7]),3),[]);
+  input.sample(pad(),4);assert.deepEqual(input.sample(pad([7]),5),['nextSubtab']);
+  assert.deepEqual(input.sample(pad([4]),6),[]);
+  input.sample(pad(),7);assert.deepEqual(input.sample(pad([4]),8),['previousTab']);
 });
 test('connect, focus loss, reconnect and device changes require a neutral frame',()=>{
   const input=new InventoryPadInput();assert.deepEqual(input.sample(pad([0]),1),[]);input.sample(pad(),2);
