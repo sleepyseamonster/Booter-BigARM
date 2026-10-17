@@ -1,0 +1,68 @@
+{
+  "source_sha256": "cb63818312443226502d02ca7ed76498e985d4b556205a3b60d8f122b5a26071",
+  "passed": true,
+  "atlas_size": [
+    2048,
+    2048
+  ],
+  "checked_outside_pixels": 3861098,
+  "mask_dilation_px": 8,
+  "maps": {
+    "BaseColor": {
+      "sha256": "882c9922569449d72c935c92202119f24a4bb1d6b39532040d83676bcc1bc9a4",
+      "maximum_channel_delta_outside_patch_8px_margin": 0,
+      "pixels_over_1_LSB_outside_patch": 0,
+      "inside_region_mean_RGB_8bit": {
+        "head": [
+          69.04334046859513,
+          71.7535461140587,
+          69.86092486319454
+        ],
+        "lens": [
+          130.0,
+          152.0,
+          160.25018099079531
+        ]
+      },
+      "changed_pixels": 262740
+    },
+    "Roughness": {
+      "sha256": "fb5ab69b689d3a983d4f6cf1a721d085438321e7f7a908ebe349078b097a3559",
+      "maximum_channel_delta_outside_patch_8px_margin": 0,
+      "pixels_over_1_LSB_outside_patch": 0,
+      "inside_region_mean_RGB_8bit": {
+        "head": [
+          108.26885083415931,
+          108.26885083415931,
+          108.26885083415931
+        ],
+        "lens": [
+          57.0,
+          57.0,
+          57.0
+        ]
+      },
+      "changed_pixels": 262740
+    },
+    "Metallic": {
+      "sha256": "d118fa1919a6c5560a6c79fdb7e6d78b8fba2c91eaaaf0d4bf92d2a67ed1f64e",
+      "maximum_channel_delta_outside_patch_8px_margin": 0,
+      "pixels_over_1_LSB_outside_patch": 0,
+      "inside_region_mean_RGB_8bit": {
+        "head": [
+          169.0158627697587,
+          169.0158627697587,
+          169.0158627697587
+        ],
+        "lens": [
+          70.0,
+          70.0,
+          70.0
+        ]
+      },
+      "changed_pixels": 262740
+    }
+  },
+  "retained_normal_AO": true,
+  "method": "Read-only decoded PNG comparison outside rasterized repurposed head/lens face UVs plus 8px guard. At most 1/255 serialization rounding allowed."
+}

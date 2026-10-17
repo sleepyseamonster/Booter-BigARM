@@ -1,0 +1,545 @@
+{
+  "source_sha256": "cb63818312443226502d02ca7ed76498e985d4b556205a3b60d8f122b5a26071",
+  "original_before": {
+    "source_sha256": "49a8a0e4322fc388ea2cfbb3d3ede9b94323109aa41e1573020d0fd5f88a6a17",
+    "views": [
+      {
+        "image": "original_front.png",
+        "center_m": [
+          0.0,
+          -0.46000000834465027,
+          1.9800000190734863
+        ],
+        "direction": [
+          0,
+          -4,
+          0.05
+        ],
+        "ortho_scale_m": 0.9,
+        "clay": false
+      },
+      {
+        "image": "original_side.png",
+        "center_m": [
+          0.0,
+          -0.4000000059604645,
+          1.9800000190734863
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.0,
+        "clay": false
+      },
+      {
+        "image": "original_top.png",
+        "center_m": [
+          0.0,
+          -0.4300000071525574,
+          1.9900000095367432
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.02,
+        "clay": false
+      },
+      {
+        "image": "original_front_oblique.png",
+        "center_m": [
+          0.0,
+          -0.4000000059604645,
+          1.9800000190734863
+        ],
+        "direction": [
+          3,
+          -4,
+          1.6
+        ],
+        "ortho_scale_m": 1.04,
+        "clay": false
+      },
+      {
+        "image": "original_low_front.png",
+        "center_m": [
+          0.0,
+          -0.46000000834465027,
+          1.8600000143051147
+        ],
+        "direction": [
+          2,
+          -4,
+          -1
+        ],
+        "ortho_scale_m": 0.95,
+        "clay": false
+      },
+      {
+        "image": "original_rider_front.png",
+        "center_m": [
+          0.0,
+          -0.4399999976158142,
+          2.0399999618530273
+        ],
+        "direction": [
+          2,
+          4,
+          1.5
+        ],
+        "ortho_scale_m": 1.04,
+        "clay": false
+      },
+      {
+        "image": "original_clay_front.png",
+        "center_m": [
+          0.0,
+          -0.46000000834465027,
+          1.9800000190734863
+        ],
+        "direction": [
+          0,
+          -4,
+          0.05
+        ],
+        "ortho_scale_m": 0.9,
+        "clay": true
+      },
+      {
+        "image": "original_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      },
+      {
+        "image": "before_front.png",
+        "center_m": [
+          0.0,
+          -0.46000000834465027,
+          1.9800000190734863
+        ],
+        "direction": [
+          0,
+          -4,
+          0.05
+        ],
+        "ortho_scale_m": 0.9,
+        "clay": false
+      },
+      {
+        "image": "before_side.png",
+        "center_m": [
+          0.0,
+          -0.4000000059604645,
+          1.9800000190734863
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.0,
+        "clay": false
+      },
+      {
+        "image": "before_top.png",
+        "center_m": [
+          0.0,
+          -0.4300000071525574,
+          1.9900000095367432
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.02,
+        "clay": false
+      },
+      {
+        "image": "before_front_oblique.png",
+        "center_m": [
+          0.0,
+          -0.4000000059604645,
+          1.9800000190734863
+        ],
+        "direction": [
+          3,
+          -4,
+          1.6
+        ],
+        "ortho_scale_m": 1.04,
+        "clay": false
+      },
+      {
+        "image": "before_low_front.png",
+        "center_m": [
+          0.0,
+          -0.46000000834465027,
+          1.8600000143051147
+        ],
+        "direction": [
+          2,
+          -4,
+          -1
+        ],
+        "ortho_scale_m": 0.95,
+        "clay": false
+      },
+      {
+        "image": "before_rider_front.png",
+        "center_m": [
+          0.0,
+          -0.4399999976158142,
+          2.0399999618530273
+        ],
+        "direction": [
+          2,
+          4,
+          1.5
+        ],
+        "ortho_scale_m": 1.04,
+        "clay": false
+      },
+      {
+        "image": "before_clay_front.png",
+        "center_m": [
+          0.0,
+          -0.46000000834465027,
+          1.9800000190734863
+        ],
+        "direction": [
+          0,
+          -4,
+          0.05
+        ],
+        "ortho_scale_m": 0.9,
+        "clay": true
+      },
+      {
+        "image": "before_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      }
+    ],
+    "native_saved": false,
+    "native_modified": false,
+    "scope": "Read-only original front silhouette, panel and nose comparison; temporary overrides, no saved camera/visibility edits."
+  },
+  "first_checkpoint": {
+    "source_sha256": "a6d8a02ceea4750dcf4cdd927f349feedd47ccf0a0e0c0e2147027f4dfeb30f5",
+    "views": [
+      {
+        "image": "current_front.png",
+        "center_m": [
+          0.0,
+          -0.46000000834465027,
+          1.9800000190734863
+        ],
+        "direction": [
+          0,
+          -4,
+          0.05
+        ],
+        "ortho_scale_m": 0.9,
+        "clay": false
+      },
+      {
+        "image": "current_side.png",
+        "center_m": [
+          0.0,
+          -0.4000000059604645,
+          1.9800000190734863
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.0,
+        "clay": false
+      },
+      {
+        "image": "current_top.png",
+        "center_m": [
+          0.0,
+          -0.4300000071525574,
+          1.9900000095367432
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.02,
+        "clay": false
+      },
+      {
+        "image": "current_front_oblique.png",
+        "center_m": [
+          0.0,
+          -0.4000000059604645,
+          1.9800000190734863
+        ],
+        "direction": [
+          3,
+          -4,
+          1.6
+        ],
+        "ortho_scale_m": 1.04,
+        "clay": false
+      },
+      {
+        "image": "current_low_front.png",
+        "center_m": [
+          0.0,
+          -0.46000000834465027,
+          1.8600000143051147
+        ],
+        "direction": [
+          2,
+          -4,
+          -1
+        ],
+        "ortho_scale_m": 0.95,
+        "clay": false
+      },
+      {
+        "image": "current_rider_front.png",
+        "center_m": [
+          0.0,
+          -0.4399999976158142,
+          2.0399999618530273
+        ],
+        "direction": [
+          2,
+          4,
+          1.5
+        ],
+        "ortho_scale_m": 1.04,
+        "clay": false
+      },
+      {
+        "image": "current_clay_front.png",
+        "center_m": [
+          0.0,
+          -0.46000000834465027,
+          1.9800000190734863
+        ],
+        "direction": [
+          0,
+          -4,
+          0.05
+        ],
+        "ortho_scale_m": 0.9,
+        "clay": true
+      },
+      {
+        "image": "current_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      }
+    ],
+    "native_saved": false,
+    "native_modified": false,
+    "scope": "Read-only original front silhouette, panel and nose comparison; temporary overrides, no saved camera/visibility edits."
+  },
+  "corrected_candidate": {
+    "source_sha256": "cb63818312443226502d02ca7ed76498e985d4b556205a3b60d8f122b5a26071",
+    "views": [
+      {
+        "image": "current_front.png",
+        "center_m": [
+          0.0,
+          -0.46000000834465027,
+          1.9800000190734863
+        ],
+        "direction": [
+          0,
+          -4,
+          0.05
+        ],
+        "ortho_scale_m": 0.9,
+        "clay": false
+      },
+      {
+        "image": "current_side.png",
+        "center_m": [
+          0.0,
+          -0.4000000059604645,
+          1.9800000190734863
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.0,
+        "clay": false
+      },
+      {
+        "image": "current_top.png",
+        "center_m": [
+          0.0,
+          -0.4300000071525574,
+          1.9900000095367432
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.02,
+        "clay": false
+      },
+      {
+        "image": "current_front_oblique.png",
+        "center_m": [
+          0.0,
+          -0.4000000059604645,
+          1.9800000190734863
+        ],
+        "direction": [
+          3,
+          -4,
+          1.6
+        ],
+        "ortho_scale_m": 1.04,
+        "clay": false
+      },
+      {
+        "image": "current_low_front.png",
+        "center_m": [
+          0.0,
+          -0.46000000834465027,
+          1.8600000143051147
+        ],
+        "direction": [
+          2,
+          -4,
+          -1
+        ],
+        "ortho_scale_m": 0.95,
+        "clay": false
+      },
+      {
+        "image": "current_rider_front.png",
+        "center_m": [
+          0.0,
+          -0.4399999976158142,
+          2.0399999618530273
+        ],
+        "direction": [
+          2,
+          4,
+          1.5
+        ],
+        "ortho_scale_m": 1.04,
+        "clay": false
+      },
+      {
+        "image": "current_clay_front.png",
+        "center_m": [
+          0.0,
+          -0.46000000834465027,
+          1.9800000190734863
+        ],
+        "direction": [
+          0,
+          -4,
+          0.05
+        ],
+        "ortho_scale_m": 0.9,
+        "clay": true
+      },
+      {
+        "image": "current_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      }
+    ],
+    "native_saved": false,
+    "native_modified": false,
+    "scope": "Read-only original front silhouette, panel and nose comparison; temporary overrides, no saved camera/visibility edits."
+  },
+  "native": {
+    "source_sha256": "cb63818312443226502d02ca7ed76498e985d4b556205a3b60d8f122b5a26071",
+    "views": [
+      {
+        "image": "current_front_oblique.png",
+        "center_m": [
+          0.0,
+          -0.4000000059604645,
+          1.9800000190734863
+        ],
+        "direction": [
+          3,
+          -4,
+          1.6
+        ],
+        "ortho_scale_m": 1.04,
+        "clay": false
+      },
+      {
+        "image": "current_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      }
+    ],
+    "native_saved": false,
+    "native_modified": false,
+    "scope": "Read-only original front silhouette, panel and nose comparison; temporary overrides, no saved camera/visibility edits."
+  }
+}

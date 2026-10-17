@@ -1,0 +1,226 @@
+{
+  "source_sha256": "cb63818312443226502d02ca7ed76498e985d4b556205a3b60d8f122b5a26071",
+  "local_files": [
+    {
+      "path": "Logs/LeggerFront20261016/application.json",
+      "sha256": "6383ac10f850de29a8085f7d498c40c9dcc85e14dd701e1c6805b2152f5fac29",
+      "bytes": 807
+    },
+    {
+      "path": "Logs/LeggerFront20261016/apply.py",
+      "sha256": "4cc5df79bb1e34ad476e153afe554591647b556bb0402c1b82e318cdb1ebb676",
+      "bytes": 2313
+    },
+    {
+      "path": "Logs/LeggerFront20261016/baseline.json",
+      "sha256": "8f178fea69966aef41afc3fa32a63b64f8588065ec1b0a5ca14f30f9f32fa3ad",
+      "bytes": 243085
+    },
+    {
+      "path": "Logs/LeggerFront20261016/baseline.py",
+      "sha256": "702ec1b409f20d6c27bf2a57022e189fb05641c8fb6e23df999a3d22e7184fc9",
+      "bytes": 2457
+    },
+    {
+      "path": "Logs/LeggerFront20261016/boards.py",
+      "sha256": "328498bed973e93e1df4029b761f53c2041e755d89eaa57973f9d3d5bdee7a4e",
+      "bytes": 1465
+    },
+    {
+      "path": "Logs/LeggerFront20261016/brief.md",
+      "sha256": "a286ef2f913a12a69e92abaf7e5d52bf7b8f24841b78342327178a2578e8e3dc",
+      "bytes": 1350
+    },
+    {
+      "path": "Logs/LeggerFront20261016/build.json",
+      "sha256": "fcb56c3fdb40848c445b9f7150f61779aa62e1bf3523d93cfcda9a78dac78afe",
+      "bytes": 11043
+    },
+    {
+      "path": "Logs/LeggerFront20261016/build.py",
+      "sha256": "d35b1065a72efc9ebca24448569def4854aa55e8d1a899ea2c6ad6669d9213b2",
+      "bytes": 8967
+    },
+    {
+      "path": "Logs/LeggerFront20261016/candidate_canonical.json",
+      "sha256": "8c7f8e20ec02d696fb8c54145ee83d333c710b321afce29db1e4599907ca34e0",
+      "bytes": 41974
+    },
+    {
+      "path": "Logs/LeggerFront20261016/candidate_qa.json",
+      "sha256": "d72741ae15af031df952655eb36ca1a89de92778f579a3ab5c4a793051873748",
+      "bytes": 72025
+    },
+    {
+      "path": "Logs/LeggerFront20261016/capture.py",
+      "sha256": "c07737ea5b8dbebff6cdb338ef2ec0b1fce07a6829a08448b937cb635ecafc13",
+      "bytes": 4963
+    },
+    {
+      "path": "Logs/LeggerFront20261016/capture_audit.json",
+      "sha256": "9dae46505189b2a1b617d4c94087f95a24c06411c3720c890b0745da2c12e072",
+      "bytes": 4471
+    },
+    {
+      "path": "Logs/LeggerFront20261016/capture_checkpoint01.json",
+      "sha256": "dbd046abb6150b23264948572ba8f26f5679cf202c8d5fc05e05ac3678a56e5b",
+      "bytes": 2382
+    },
+    {
+      "path": "Logs/LeggerFront20261016/capture_native.json",
+      "sha256": "1fbe2918fd9d4b59a902f4d9c1e84e2e51755b2fc2c6fbf84b871b44324bb221",
+      "bytes": 811
+    },
+    {
+      "path": "Logs/LeggerFront20261016/capture_texture.json",
+      "sha256": "f3a0bb05902bbdf94ef9d89d58ce5129517b65796d741a3855fafe73cfd9d2e0",
+      "bytes": 2382
+    },
+    {
+      "path": "Logs/LeggerFront20261016/checkpoint01_build.json",
+      "sha256": "073740f46607715021016efc89c67b95ec4689f1d34d36c7bd7a2b5c78f5d05d",
+      "bytes": 10725
+    },
+    {
+      "path": "Logs/LeggerFront20261016/checkpoint01_qa.json",
+      "sha256": "a5bbd6ff40f0b3963c01633f964683f052e8f6c22eb4a5c1d0f40407859ace2d",
+      "bytes": 69428
+    },
+    {
+      "path": "Logs/LeggerFront20261016/commit_records.py",
+      "sha256": "033aed9d5584c77c4e46b3b2486b7b70a87475831fc17ab147649079f8bf48b0",
+      "bytes": 2340
+    },
+    {
+      "path": "Logs/LeggerFront20261016/components.json",
+      "sha256": "a4e63f6bc66ebd42262dcb5624b743144adc37b44d1781af2f97d20da56017c8",
+      "bytes": 37182
+    },
+    {
+      "path": "Logs/LeggerFront20261016/components.py",
+      "sha256": "65e44239e62b645d55ec30660ba06c6ae40f323c425080e399626acd47cc892d",
+      "bytes": 1009
+    },
+    {
+      "path": "Logs/LeggerFront20261016/front_probe.json",
+      "sha256": "b0a4bc7e2e3035aa0c25ac64591a101bf345e6bca55a2be734d19ed9152cfdd9",
+      "bytes": 6318
+    },
+    {
+      "path": "Logs/LeggerFront20261016/front_probe.py",
+      "sha256": "16ff016a63ba44a880fdfabfb07a7b44046a66d2f3ec84a8001c30d1f2aaf94a",
+      "bytes": 2755
+    },
+    {
+      "path": "Logs/LeggerFront20261016/gpu_trial.json",
+      "sha256": "aad9eed1c10144220c872dbff2cec078f803a5ac3a14ffe58d594b94001eb899",
+      "bytes": 10725
+    },
+    {
+      "path": "Logs/LeggerFront20261016/native_canonical.json",
+      "sha256": "8c7f8e20ec02d696fb8c54145ee83d333c710b321afce29db1e4599907ca34e0",
+      "bytes": 41974
+    },
+    {
+      "path": "Logs/LeggerFront20261016/native_qa.json",
+      "sha256": "d72741ae15af031df952655eb36ca1a89de92778f579a3ab5c4a793051873748",
+      "bytes": 72025
+    },
+    {
+      "path": "Logs/LeggerFront20261016/original_front_points.npz",
+      "sha256": "48de46b71dd8e2512501780b46c79e3840a7a9510b30bd4ed3c22a0ce6bc91e8",
+      "bytes": 1952319
+    },
+    {
+      "path": "Logs/LeggerFront20261016/original_front_samples.json",
+      "sha256": "162380f27fc019b05e41021c32727a2ab58cddf0f7939e1824fea76995c1ef12",
+      "bytes": 233
+    },
+    {
+      "path": "Logs/LeggerFront20261016/original_ivory_front.npz",
+      "sha256": "85d780f4922d76bece7c7377c29980d46b70b4d541f58ba3c1ff542a85a25a32",
+      "bytes": 243796
+    },
+    {
+      "path": "Logs/LeggerFront20261016/patch_uv.json",
+      "sha256": "e53378f29152eda024cda9a03ec7f10b458c0c8bd844c44ff50425039dececd4",
+      "bytes": 83257
+    },
+    {
+      "path": "Logs/LeggerFront20261016/qa.py",
+      "sha256": "34678184d469cc0150e870ce0eca2267c0e15b58f28304ca97b1d73205f0d018",
+      "bytes": 9445
+    },
+    {
+      "path": "Logs/LeggerFront20261016/refine.py",
+      "sha256": "5fb8d12f3e22b77e0ae0ddedcd20ca4f010dcf46a876d36cff05adef2c68ec03",
+      "bytes": 2840
+    },
+    {
+      "path": "Logs/LeggerFront20261016/render_comparison.json",
+      "sha256": "eab1b916e36ccd62994ad6506ea10057e936d2b521e0f819c33381bec0c0f649",
+      "bytes": 545
+    },
+    {
+      "path": "Logs/LeggerFront20261016/seal_records.py",
+      "sha256": "27bf12f0f57054fedfc6eafc25ac22af84fc187b822139ab4d1422c1498778cb",
+      "bytes": 5323
+    },
+    {
+      "path": "Logs/LeggerFront20261016/source_preservation.json",
+      "sha256": "00b8b9013ef0955d857ac3a9388a0a998d2d478e432e687ae5b20905ba238c7a",
+      "bytes": 241356
+    },
+    {
+      "path": "Logs/LeggerFront20261016/surface.py",
+      "sha256": "ea8408aa24de1e3d318e304c4621c9f7f44e86fa9308211358577eebd2ae3764",
+      "bytes": 7812
+    },
+    {
+      "path": "Logs/LeggerFront20261016/texture_patch_qa.json",
+      "sha256": "5db8a3c7fdcf1147c0ac02a55ee911c960183222492ec1fe11879f1cdb5fdc16",
+      "bytes": 1880
+    },
+    {
+      "path": "Logs/LeggerFront20261016/texture_patch_qa.py",
+      "sha256": "a8637dacef6face25ee0f4ff67c6194769eedc8588ee25a7f10e8fe27dcc1b34",
+      "bytes": 2002
+    },
+    {
+      "path": "Logs/LeggerFront20261016/validate_records.py",
+      "sha256": "890fd8a9cbacdca7879d23330d29e3dbf7647e2c669c3ad9a695c7259c781074",
+      "bytes": 2557
+    },
+    {
+      "path": "Logs/LeggerFront20261016/views.json",
+      "sha256": "c574ac9e4d4e7acdbba3760b12159c48a5b57b27b392cbb2b82c2170a7f83f63",
+      "bytes": 11296
+    },
+    {
+      "path": "Logs/LeggerFront20261016/visual_review.json",
+      "sha256": "7e671311079f1d38a04480a37c6fdce4827193ae714e98418e6c4dc28cc107ac",
+      "bytes": 1331
+    },
+    {
+      "path": "Logs/LeggerFront20261016/write_receipt.py",
+      "sha256": "a08cbb70ff362ea396dd106a49726e04dc1dbd71526af629637839d25d9a5a4c",
+      "bytes": 6548
+    },
+    {
+      "path": "Logs/LeggerSciFi20261015/fingerprint.py",
+      "sha256": "eb5f095437185432900cd31b2ed07feb3d55796db3dcd72eb7dc8c1a8f5bc86f",
+      "bytes": 1762
+    },
+    {
+      "path": "Logs/LeggerSciFi20261015/forms.py",
+      "sha256": "5c203c6585408c89137a8ab649a2c5f1b86a126d62dade50c03b8114e73f545e",
+      "bytes": 9219
+    },
+    {
+      "path": "Tools/Art/Blender/inspect_blend.py",
+      "sha256": "72a570b58d8b0622dd5477f4a130b2a10e36b4840778dea14bad634273e9da20",
+      "bytes": 2394
+    }
+  ],
+  "scope": "Ignored local recipes, measured inputs, and intermediate trials. Failed/OOM trials are not final proof; final bake is isolated CPU. Native checkpoints and pixels have separate hashes."
+}
