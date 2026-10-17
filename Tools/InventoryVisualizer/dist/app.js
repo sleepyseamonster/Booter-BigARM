@@ -68,11 +68,22 @@ function renderItems(){
   // Keep category totals visible even when search or filters narrow the grid.
   const sectionItems=ownerItems().filter(item=>!state.category||item.Category===state.category);
   const tierCounts=new Map();
-  for(const item of sectionItems){const tier=item.Tier||'Unassigned';tierCounts.set(tier,(tierCounts.get(tier)||0)+1);}
+  const tierRarities=new Map();
+  for(const item of sectionItems){
+    const tier=item.Tier||'Unassigned';tierCounts.set(tier,(tierCounts.get(tier)||0)+1);
+    const rarity=!item.Rarity?'Unassigned':Object.hasOwn(RARITY_COLORS,item.Rarity)?item.Rarity:'Other / legacy';
+    if(!tierRarities.has(tier))tierRarities.set(tier,new Map());
+    const counts=tierRarities.get(tier);counts.set(rarity,(counts.get(rarity)||0)+1);
+  }
   const sectionTiers=[...new Set([...(state.tierChoices||[]),...tierCounts.keys()])];
   const numericTiers=sectionTiers.filter(tier=>/^T\d+$/.test(tier)).sort((a,b)=>Number(a.slice(1))-Number(b.slice(1)));
   const otherTiers=sectionTiers.filter(tier=>!/^T\d+$/.test(tier)&&tierCounts.has(tier)).sort();
-  $('#tier-distribution').innerHTML=`<span class="tier-distribution-label">${esc(state.category||'All items')} · tier distribution</span><dl>${[...numericTiers,...otherTiers].map(tier=>`<div><dt>${esc(tier)}</dt><dd>${tierCounts.get(tier)||0}</dd></div>`).join('')}</dl>`;
+  const rarityOrder=[...Object.keys(RARITY_COLORS),'Unassigned','Other / legacy'];
+  $('#tier-distribution').innerHTML=`<span class="tier-distribution-label">${esc(state.category||'All items')} · tier distribution</span><dl>${[...numericTiers,...otherTiers].map(tier=>{
+    const counts=tierRarities.get(tier)||new Map();
+    const breakdown=rarityOrder.filter(rarity=>counts.has(rarity)).map(rarity=>`<span class="tier-rarity-count" role="img" aria-label="${esc(`${tier}: ${counts.get(rarity)} ${rarity} items`)}" title="${esc(rarity)}: ${counts.get(rarity)}"><span class="rarity-key${Object.hasOwn(RARITY_COLORS,rarity)?'':' rarity-key-unknown'}"${Object.hasOwn(RARITY_COLORS,rarity)?` style="--rarity-color:${RARITY_COLORS[rarity]}"`:''} aria-hidden="true"></span>${counts.get(rarity)}</span>`).join('');
+    return `<div><dt>${esc(tier)}</dt><dd class="tier-total"><span>${tierCounts.get(tier)||0}</span>${breakdown?`<span class="tier-rarity-breakdown">${breakdown}</span>`:''}</dd></div>`;
+  }).join('')}</dl>`;
   const rarityCounts=new Map([...Object.keys(RARITY_COLORS),'Unassigned'].map(rarity=>[rarity,0]));
   for(const item of sectionItems){
     const rarity=!item.Rarity?'Unassigned':Object.hasOwn(RARITY_COLORS,item.Rarity)?item.Rarity:'Other / legacy';
