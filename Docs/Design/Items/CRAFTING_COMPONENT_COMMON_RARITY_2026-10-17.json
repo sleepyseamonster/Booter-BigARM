@@ -1,0 +1,316 @@
+{
+  "date": "2026-10-17",
+  "instruction": "Set all currently Junk crafting components to Common.",
+  "changedItemCount": 43,
+  "items": [
+    {
+      "id": "proposal.bio.laminate",
+      "name": "Shell laminate",
+      "cell": "P48",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.bio.brush",
+      "name": "Bristle brush strips",
+      "cell": "P50",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.bio.insert",
+      "name": "Jaw cutting insert",
+      "cell": "P52",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.bio.wax",
+      "name": "Unverified wax-like faunal solid",
+      "cell": "P54",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.canister.mount",
+      "name": "Canister mounting bracket",
+      "cell": "P151",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.canister.maker_plate",
+      "name": "Canister maker plate",
+      "cell": "P155",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.ceramic.unfired_blank",
+      "name": "Unfired shaped ceramic blank",
+      "cell": "P185",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.ceramic.pour_spout",
+      "name": "Ceramic pouring spout",
+      "cell": "P202",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.ceramic.fastener",
+      "name": "Ceramic toggle fastener",
+      "cell": "P208",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.legger.anchors",
+      "name": "Legger lashing-anchor set",
+      "cell": "P247",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.legger.crossbrace",
+      "name": "Chassis crossbrace",
+      "cell": "P250",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.legger.joint_shroud",
+      "name": "Joint dust shroud",
+      "cell": "P257",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.legger.grease_cup",
+      "name": "Fitted joint lubricant cup",
+      "cell": "P258",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.legger.fastener_pack",
+      "name": "Legger service fastener pack",
+      "cell": "P260",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.legger.fracture_patch",
+      "name": "Iron chassis fracture patch",
+      "cell": "P277",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.legger.alignment_shims",
+      "name": "Chassis alignment-shim set",
+      "cell": "P280",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.legger.thrust_washer",
+      "name": "Joint thrust washer",
+      "cell": "P282",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.legger.scraper_ring",
+      "name": "Joint grit-scraper ring",
+      "cell": "P286",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.legger.service_adapter",
+      "name": "Lubricant service-port adapter",
+      "cell": "P288",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.t1.faunal_carrier",
+      "name": "Selected faunal carrier liquid",
+      "cell": "P376",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.review.oxide_reactive_fraction",
+      "name": "Selected oxide-reactive faunal fraction",
+      "cell": "P488",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.lore.phagia_acid",
+      "name": "Selected Phagia mild-acid fraction",
+      "cell": "P502",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.lore.phagia_adhesive",
+      "name": "Concentrated Phagia adhesive base",
+      "cell": "P503",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.lore.shell_cleaning_charge",
+      "name": "Chitin-cleaning process charge",
+      "cell": "P504",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.lore.chitin_binder_residue",
+      "name": "Concentrated chitin binder residue",
+      "cell": "P505",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.lore.ichor_sediment",
+      "name": "Separated ichor mineral sediment",
+      "cell": "P507",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.lore.fastener_set",
+      "name": "Matched metal fastener set",
+      "cell": "P518",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.lore.assay_packet",
+      "name": "Growth assay reference packet",
+      "cell": "P520",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.collection.dense_heat_holding_stone",
+      "name": "Dense heat-holding stone",
+      "cell": "P533",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.collection.glass_joint_bedding_paste",
+      "name": "Glass-joint bedding paste",
+      "cell": "P544",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.collection.shell_pigment_suspension",
+      "name": "Shell-pigment suspension",
+      "cell": "P546",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.collection.mineral_contact_cleaning_charge",
+      "name": "Mineral contact-cleaning charge",
+      "cell": "P547",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.collection.vial_neck_locking_clip",
+      "name": "Vial neck locking clip",
+      "cell": "P555",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.collection.flywheel_rim_segment",
+      "name": "Flywheel rim segment",
+      "cell": "P599",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.collection.brake_lining_shoe",
+      "name": "Brake lining shoe",
+      "cell": "P602",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.collection.counterweight_chain_link",
+      "name": "Counterweight chain link",
+      "cell": "P603",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.collection.braided_iron_signal_lead",
+      "name": "Braided iron signal lead",
+      "cell": "P615",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.collection.packed_stone_thermal_block",
+      "name": "Packed-stone thermal block",
+      "cell": "P692",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.collection.magnetic_salvage_catch_plate",
+      "name": "Magnetic salvage catch plate",
+      "cell": "P779",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.audit.mineral_cell_electrolyte_candidate",
+      "name": "Mineral-cell electrolyte candidate",
+      "cell": "P803",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.audit.shaped_metal_grip_blank",
+      "name": "Shaped metal grip blank",
+      "cell": "P806",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.audit.small_metal_hinge_pair",
+      "name": "Small metal hinge pair",
+      "cell": "P808",
+      "before": "Junk",
+      "after": "Common"
+    },
+    {
+      "id": "proposal.audit.valve_poppet_blank",
+      "name": "Valve poppet blank",
+      "cell": "P821",
+      "before": "Junk",
+      "after": "Common"
+    }
+  ],
+  "rarityCountsAfter": {
+    "Common": 101,
+    "Rare": 51,
+    "Uncommon": 48
+  },
+  "sourceHash": "c444a2ae967e0cdada8fca7a838471e270452d61323660f03ed7b87466e1ef76",
+  "resultHash": "3b250171f5ce81cdb6b52c6d303ba04951d9e50244288bf3560ac001b7260fc2",
+  "verification": "Only the listed Items.Rarity cells changed; all other workbook content, formulas and formatting preserved."
+}
