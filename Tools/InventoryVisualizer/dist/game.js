@@ -2,12 +2,14 @@ import {IDS,EQUIPMENT,OWNERS,RECIPES,freshState,restoreState,accessible,amount,l
 import {startInventoryGamepad} from './gamepad.js';
 import {itemIcon} from './item-icons.mjs';
 import {CAMP_SERVICES,campStations,resolveCampStation,campView} from './game-camp.mjs';
+import {DISCOVERY_SAVE,restoreDiscoveries,discoverOwned,almanacIndex,almanacView} from './game-almanac.mjs';
 
 const $=s=>document.querySelector(s),html=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const SAVE='arc-dust-game-inventory-v1',PREFS='arc-dust-game-settings-v1';
 let state=freshState(),catalog=new Map(),page='inventory',owner='booter',selected='fitted-0',recipe='battery',search='',filter='',sort='name',referenceId=null,saveBlocked=false;
 let settings={large:false,motion:false},loaded=false;
 let inventoryOwner='booter';
+let discovered=new Set(),discoveryBlocked=false,discoveryNotice='',almanacCategory='',almanacStatus='all',almanacOrder='discovered',almanacPage=0;
 let campService='overview',campStation='author.station.workbench',campExitPage='inventory';
 const ownerPages={inventory:'booter',legger:'legger',storage:'chest'},ownerSelections={};
 const mapPlaces=[{id:'booter',label:'Booter',x:34,y:59,icon:'●',description:'Player marker. Position is illustrative; the browser has no live world connection.'},{id:'legger',label:'The Legger',x:46,y:64,icon:'◇',description:'Companion marker. This diagram does not establish actual range, routes or physical access.'},{id:'camp',label:'Camp',x:66,y:34,icon:'△',description:'Sample camp marker. Storage and workstation contents remain owned by their existing sample systems.'}];
@@ -16,7 +18,12 @@ const itemName=id=>catalog.get(id)?.['Item name']||id;
 const symbol=id=>id===IDS.ore?'⬡':id===IDS.dust||id===IDS.algae?'◉':id===IDS.empty?'▥':id===IDS.charged?'ϟ':id===IDS.cloak||id===IDS.jacket?'⋈':id===IDS.grapple?'⌁':id===IDS.dig?'⚒':id===IDS.camp?'△':'◇';
 const say=text=>{$('#message').textContent=text;};
 function persist(){if(saveBlocked)return;try{localStorage.setItem(SAVE,JSON.stringify(state));}catch{say('Browser storage is unavailable. This session works, but changes will not survive a reload.');}}
-function commit(next,message){state=next;render();say(message);persist();}
+function persistDiscoveries(){
+  if(discoveryBlocked)return;
+  try{localStorage.setItem(DISCOVERY_SAVE,JSON.stringify({version:1,ids:[...discovered]}));}
+  catch{discoveryNotice='Almanac discoveries are session-only because browser storage is unavailable.';say(discoveryNotice);}
+}
+function commit(next,message){state=next;discovered=discoverOwned(discovered,state);render();say(message);persist();persistDiscoveries();}
 function run(action){try{action();}catch(error){say(error.message);}}
 function heading(kicker,title,description,tag='SAMPLE EXPEDITION'){return `<div class="heading"><div><div class="eyebrow">${html(kicker)}</div><h1>${html(title)}</h1><p>${html(description)}</p></div><span class="tag">${tag}</span></div>`;}
 function accessControls(){return `<div class="access"><div class="eyebrow">STUDY ACCESS CONTROLS</div>${[['legger','Legger nearby'],['chest','Chest nearby'],['station','Station nearby']].map(([id,label])=>`<label><input type="checkbox" data-near="${id}" ${state.near[id]?'checked':''}>${label}</label>`).join('')}<p>Toggle proximity to explore availability. Inspection never grants access.</p></div>`;}
@@ -56,13 +63,22 @@ function projects(){
   const oreHere=state.entries.filter(e=>e.owner==='chest'&&e.item===IDS.ore&&accessible(state,e.owner)&&!state.protected.includes(e.key)).reduce((n,e)=>n+e.qty,0),dustHere=state.entries.filter(e=>accessible(state,e.owner)&&!state.protected.includes(e.key)).reduce((n,e)=>n+(e.dust||0),0);
   return heading('EXPEDITION / PROJECTS','A reason to gather.','Tracked quantities mean additional outputs to make. Tracking never reserves or consumes stock.')+`<div class="workspace">${rail()}<section>${state.projects.map(p=>{const r=RECIPES.find(r=>r.id===p.recipe);return `<article class="project"><div class="eyebrow">${r.station} / TRACKED</div><h2>${r.name}</h2><label>Make <input type="number" min="1" max="99" value="${p.qty}" data-project="${p.recipe}" aria-label="Quantity for ${r.name}"> more</label><p>${p.recipe==='battery'?`${p.qty*4} Ironstone Ore from the camp chest`:`${p.qty} empty batteries and ${p.qty*10} contained dust`}</p><div class="actions"><button data-craft-link="${p.recipe}">View recipe</button><button data-remove="${p.recipe}">Untrack</button></div></article>`;}).join('')||'<p class="empty">No tracked projects yet.<br>Open Crafting and choose Track project to build a gathering list.</p>'}</section><aside class="panel"><div class="eyebrow">COMBINED DIRECT REQUIREMENTS</div><h2>Gathering list</h2>${[[IDS.ore,oreNeed,oreHere],[IDS.empty,emptyNeed,amount(state,IDS.empty,true)]].filter(([,need])=>need).map(([id,need,here])=>`<div class="requirements"><span>${html(itemName(id))}<br><small>${here} eligible · ${amount(state,id)} known owned</small></span><strong>${Math.max(0,need-here)} missing<br><small>${need} required</small></strong></div>`).join('')}${dustNeed?`<div class="requirements"><span>Contained dust<br><small>${dustHere} eligible</small></span><strong>${Math.max(0,dustNeed-dustHere)} missing<br><small>${dustNeed} required</small></strong></div>`:''}<p class="notice">Counts combine each selected route once. Empty batteries allocated to charging are not assumed to exist until actually crafted. Each charge also needs 10 dust in a single canister; the total alone cannot prove readiness.</p><p class="notice">After a successful craft, the tracked remaining output count decreases by one.</p></aside></div>`;
 }
-function reference(){const items=[...catalog.values()].filter(item=>matches(item,null)).sort((a,b)=>itemName(a['Item ID']).localeCompare(itemName(b['Item ID']))),item=catalog.get(referenceId),uses=RECIPES.filter(r=>r.output===referenceId||r.id==='battery'&&referenceId===IDS.ore||r.id==='charge'&&[IDS.empty,IDS.dust].includes(referenceId));return heading('KNOWLEDGE / ITEM REFERENCE','Understand the haul.','All catalogue definitions for this design study. Listed items are not automatically owned or craftable.','READ ONLY')+`<div class="workspace">${rail()}<section>${tools(true)}<p class="reference-count">${items.length} definitions · Tier is not rarity · Showing up to 100 matches</p><div class="manifest">${items.slice(0,100).map(i=>`<button data-reference="${html(i['Item ID'])}" class="${referenceId===i['Item ID']?'selected':''}"><span class="tile-icon">${itemIcon(i['Item ID'])}</span><span><strong>${html(i['Item name'])}</strong><small>${html(i.Category)} · ${html(i.Tier||'Unassigned')}</small></span><span class="quantity">${amount(state,i['Item ID'])}<small>OWNED</small></span></button>`).join('')||'<p class="empty">No definitions match these filters.</p>'}</div></section><aside class="panel"><div class="eyebrow">CATALOGUE / INFORMATION</div>${item?`<h2>${html(item['Item name'])}</h2><p>${html(item.Purpose||'No purpose recorded.')}</p><dl><dt>Known owned</dt><dd>${amount(state,referenceId)}</dd><dt>Accessible, unprotected</dt><dd>${amount(state,referenceId,true)}</dd><dt>Material tier</dt><dd>${html(item.Tier||'Unassigned')}</dd></dl>${state.entries.filter(e=>e.item===referenceId).map(e=>`<p>${html(OWNERS[e.owner])} · ${e.qty}${accessible(state,e.owner)?'':' · out of reach'}</p>`).join('')}${uses.map(r=>`<button class="help-link" data-craft-link="${r.id}">${r.output===referenceId?'How to make':'Used to make'}: ${r.name} ↗</button>`).join('')}${!uses.length?'<p class="notice">No qualified recipe is included for this item in this study. Catalogue route descriptions are not executable recipes.</p>':''}`:'<p class="empty">Select a definition to inspect its purpose and known locations.</p>'}<p class="notice">Reference only. No workbook deletion, review, artwork editing, item spawning or global storage actions exist in this tab.</p></aside></div>`;}
+function reference(){
+  const selectedSlot=referenceId===null?null:[...catalog.keys()].indexOf(referenceId);
+  return almanacView({catalog,discovered,state,selectedSlot,options:{category:almanacCategory,status:almanacStatus,order:almanacOrder,page:almanacPage,query:search}});
+}
+function openReference(id){
+  referenceId=id;almanacCategory=catalog.get(id)?.Category||'';almanacStatus='all';
+  const slot=[...catalog.keys()].indexOf(id);
+  almanacPage=almanacIndex(catalog,discovered,{category:almanacCategory,order:almanacOrder,locateSlot:slot}).page;
+  if(page==='crafting')campNavigate('reference');else go('reference');
+}
 function mapView(){
   const place=mapPlaces.find(p=>p.id===mapSelection);
   return heading('EXPEDITION / MAP','Know the way back.','A schematic map mockup. These markers are illustrative, not live world positions.','MAP STUDY')+`<div class="map-layout"><section><div class="map-toolbar"><span class="eyebrow">LOCAL AREA / SCHEMATIC</span><div class="actions"><button data-map-zoom="out" ${mapZoom<=1?'disabled':''} aria-label="Zoom map out">−</button><span>${Math.round(mapZoom*100)}%</span><button data-map-zoom="in" ${mapZoom>=2?'disabled':''} aria-label="Zoom map in">+</button></div></div><div class="map-viewport" aria-label="Schematic map"><div class="map-sheet" style="width:${mapZoom*100}%"><svg viewBox="0 0 1000 650" preserveAspectRatio="none" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M-40 170Q190 90 330 220T650 270T1040 80M-40 200Q190 120 330 250T650 300T1040 110M-40 230Q190 150 330 280T650 330T1040 140M-40 260Q190 180 330 310T650 360T1040 170M-40 290Q190 210 330 340T650 390T1040 200M-40 320Q190 240 330 370T650 420T1040 230M-40 350Q190 270 330 400T650 450T1040 260M-40 380Q190 300 330 430T650 480T1040 290M-40 410Q190 330 330 460T650 510T1040 320M-40 440Q190 360 330 490T650 540T1040 350M-40 470Q190 390 330 520T650 570T1040 380"/></g></svg><span class="map-north">N ↑</span>${mapPlaces.map(p=>`<button data-map-marker="${p.id}" class="map-marker ${mapSelection===p.id?'selected':''}" style="left:${p.x}%;top:${p.y}%" aria-pressed="${mapSelection===p.id}"><strong>${p.icon}</strong><span>${html(p.label)}${waypoint===p.id?' · WAYPOINT':''}</span></button>`).join('')}<span class="map-note">SCHEMATIC ONLY / NO TERRAIN OR DISTANCE DATA</span></div></div><p class="notice">Select a marker to inspect it. Zoom for a closer view; the right stick pans the scrollable map when a marker has focus.</p></section><aside class="panel"><div class="eyebrow">MAP / SELECTED MARKER</div><h2>${html(place.label)}</h2><p>${place.description}</p><div class="actions"><button data-action="waypoint">Mark waypoint</button><button data-action="clear-waypoint" ${waypoint?'':'disabled'}>Clear waypoint</button></div><p class="notice">${waypoint?'Waypoint: '+html(mapPlaces.find(p=>p.id===waypoint).label):'No waypoint selected.'} This marker is local to the mockup and does not command movement.</p></aside></div>`;
 }
 function settingsView(){
-  return heading('SYSTEM / SETTINGS','Make it yours.','Adjust the interface, arrange your shortcuts, and return to the expedition.')+`<div class="settings-page"><section class="panel"><div class="eyebrow">INTERFACE / ACCESSIBILITY</div><h2>Readability</h2><label><input type="checkbox" data-setting="large" ${settings.large?'checked':''}>Larger interface text</label><label><input type="checkbox" data-setting="motion" ${settings.motion?'checked':''}>Reduce interface motion</label><p>These preferences apply to this game-menu study.</p><div class="notice">D-pad / left stick: navigate<br>South: select<br>LB / RB or LT / RT: previous / next top tab<br>Right stick: scroll</div></section><section class="panel"><div class="eyebrow">CONTROLS / QUICK ACTIONS</div><h2>Radial shortcuts</h2>${state.radial.map((value,i)=>`<label>Direction ${['↑','→','↓','←'][i]}<select data-radial="${i}">${['Inventory','Crafting','Projects','Deploy dust canister','Make camp','Algae reserve'].map(action=>`<option ${value===action?'selected':''}>${action}</option>`).join('')}</select></label>`).join('')}<p class="notice">Shortcut assignments are saved in this study. Gameplay actions are placeholders.</p></section><section class="panel prototype-settings"><details id="prototype-controls"><summary>Prototype controls</summary><p class="notice">Explore inventory availability without a running game. These switches are study controls.</p>${accessControls()}<button class="reset-button" data-action="reset">Reset sample expedition…</button></details></section></div>`;
+  return heading('SYSTEM / SETTINGS','Make it yours.','Adjust the interface, arrange your shortcuts, and return to the expedition.')+`<div class="settings-page"><section class="panel"><div class="eyebrow">INTERFACE / ACCESSIBILITY</div><h2>Readability</h2><label><input type="checkbox" data-setting="large" ${settings.large?'checked':''}>Larger interface text</label><label><input type="checkbox" data-setting="motion" ${settings.motion?'checked':''}>Reduce interface motion</label><p>These preferences apply to this game-menu study.</p><div class="notice">D-pad / left stick: navigate<br>South: select<br>LB / RB or LT / RT: previous / next top tab<br>Right stick: scroll</div></section><section class="panel"><div class="eyebrow">CONTROLS / QUICK ACTIONS</div><h2>Radial shortcuts</h2>${state.radial.map((value,i)=>`<label>Direction ${['↑','→','↓','←'][i]}<select data-radial="${i}">${['Inventory','Crafting','Projects','Deploy dust canister','Make camp','Algae reserve'].map(action=>`<option ${value===action?'selected':''}>${action}</option>`).join('')}</select></label>`).join('')}<p class="notice">Shortcut assignments are saved in this study. Gameplay actions are placeholders.</p></section><section class="panel prototype-settings"><details id="prototype-controls"><summary>Prototype controls</summary><p class="notice">Explore inventory availability without a running game. These switches are study controls.</p>${accessControls()}<div class="almanac-prototype"><h3>Almanac discovery preview</h3><p class="notice">Sample possessions and crafted items reveal entries automatically. These controls change only this browser’s discovery record.</p><button data-action="almanac-reveal" ${discoveryBlocked?'disabled':''}>Reveal all entries</button><button data-action="almanac-reset">Reset discovery to current possessions</button>${discoveryBlocked?'<p class="notice blocked">Saved discoveries could not be read. The original is preserved. Use Reset discovery to replace it explicitly.</p>':''}</div><button class="reset-button" data-action="reset">Reset sample expedition…</button></details></section></div>`;
 }
 function render(){
   if(!loaded)return;
@@ -115,6 +131,11 @@ function leaveStudy(){if(window.parent!==window)window.parent.location.hash='inv
 document.addEventListener('click',event=>run(()=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
   const d=button.dataset;
+  if(d.almanacCategory!==undefined){almanacCategory=d.almanacCategory;almanacPage=0;referenceId=null;render();return;}
+  if(d.almanacSlot!==undefined){const slot=Number(d.almanacSlot);if(!Number.isInteger(slot)||slot<0||slot>=catalog.size)return;referenceId=[...catalog.keys()][slot];render();document.getElementById(`almanac-entry-${slot}`)?.focus({preventScroll:true});return;}
+  if(d.almanacPage!==undefined){const next=Number(d.almanacPage);if(!Number.isInteger(next)||next<0)return;almanacPage=next;referenceId=null;render();document.querySelector('.almanac-grid button')?.focus({preventScroll:true});return;}
+  if(d.action==='almanac-reveal'){if(discoveryBlocked)throw Error('Reset the unreadable discovery record explicitly before saving new discoveries.');discovered=new Set([...discovered,...catalog.keys()]);render();say('All entries revealed in the browser preview. Possessions are unchanged.');persistDiscoveries();return;}
+  if(d.action==='almanac-reset'){discovered=discoverOwned(new Set(),state);discoveryBlocked=false;discoveryNotice='';render();say('Discovery reset to current sample possessions. Possessions are unchanged.');persistDiscoveries();return;}
   if(d.loadout){inventoryOwner=d.loadout;go('inventory');document.getElementById(`loadout-${inventoryOwner}`)?.focus();return;}
   if(d.campService){campNavigate(d.campService);return;}
   if(d.campStation){const station=campStations(catalog).find(s=>s.id===d.campStation);if(!station)return;campStation=station.id;if(station.recipe)recipe=station.recipe;render();return;}
@@ -127,7 +148,7 @@ document.addEventListener('click',event=>run(()=>{
   if(d.action==='clear-waypoint'){waypoint=null;render();say('Schematic waypoint cleared.');return;}
   if(d.entry){selected=d.entry;render();document.querySelector(`[data-entry="${CSS.escape(selected)}"]`)?.focus();return;}
   if(d.craftLink){openRecipe(d.craftLink);return;}
-  if(d.reference){referenceId=d.reference;if(page==='crafting'){if(campService==='reference')render();else campNavigate('reference');}else go('reference');return;}
+  if(d.reference){openReference(d.reference);return;}
   if(d.transfer){if(state.entries.find(e=>e.key===selected)?.item===IDS.algae)throw Error('The living algae attachment cannot be removed.');const next=transfer(state,selected,d.transfer,catalog);commit(next,`Transferred to ${OWNERS[d.transfer]}.`);return;}
   if(d.action==='protect'||d.action==='favourite'){
     const key=d.action==='protect'?'protected':'favourites';if(!state.entries.some(e=>e.key===selected))return;
@@ -146,9 +167,12 @@ document.addEventListener('click',event=>run(()=>{
   if(d.menu==='radial'||d.menu==='settings'){$('#menu').close();go('settings');return;}
   if(d.menu==='exit'){leaveStudy();return;}
 }));
-document.addEventListener('input',event=>{if(event.target.id==='game-search'){search=event.target.value;render();}});
+document.addEventListener('input',event=>{if(event.target.id==='game-search'){search=event.target.value;almanacPage=0;render();}});
 document.addEventListener('change',event=>run(()=>{
   const target=event.target,d=target.dataset;
+  if(target.id==='almanac-status'){almanacStatus=target.value;almanacPage=0;referenceId=null;render();return;}
+  if(target.id==='almanac-order'){almanacOrder=target.value;almanacPage=0;referenceId=null;render();return;}
+  if(target.id==='almanac-category-picker'){almanacCategory=target.value;almanacPage=0;referenceId=null;render();return;}
   if(d.campStationSelect!==undefined){const station=campStations(catalog).find(s=>s.id===target.value);if(station){campStation=station.id;if(station.recipe)recipe=station.recipe;render();}return;}
   if(d.near){state.near[d.near]=target.checked;render();persist();say('Access updated. Quantities and ownership are unchanged.');}
   if(target.id==='game-filter'){filter=target.value;render();}
@@ -159,7 +183,7 @@ document.addEventListener('change',event=>run(()=>{
 }));
 $('#open-menu').onclick=()=>$('#menu').showModal();
 $('#cancel-reset').onclick=()=>$('#reset').close();
-$('#confirm-reset').onclick=()=>{$('#reset').close();saveBlocked=false;state=freshState();inventoryOwner='booter';owner='booter';selected='fitted-0';go('inventory');persist();say('Sample expedition reset. The item database is unchanged.');};
+$('#confirm-reset').onclick=()=>{$('#reset').close();saveBlocked=false;state=freshState();discovered=discoverOwned(new Set(),state);discoveryBlocked=false;discoveryNotice='';persistDiscoveries();inventoryOwner='booter';owner='booter';selected='fitted-0';go('inventory');persist();say('Sample expedition reset. The item database is unchanged.');};
 document.addEventListener('keydown',event=>{
   if(document.querySelector('dialog[open]'))return;
   if(event.key==='Escape'){event.preventDefault();back();return;}
@@ -175,8 +199,11 @@ async function init(){
   let recovery='';
   try{const saved=localStorage.getItem(SAVE);if(saved)state=restoreState(JSON.parse(saved));}catch{saveBlocked=true;recovery='Saved study data could not be read. It has been preserved; reset the sample explicitly to replace it.';}
   try{const saved=JSON.parse(localStorage.getItem(PREFS)||'null');if(saved)settings={large:saved.large===true,motion:saved.motion===true};}catch{}
+  try{const saved=localStorage.getItem(DISCOVERY_SAVE);if(saved)discovered=restoreDiscoveries(JSON.parse(saved));}
+  catch{discoveryBlocked=true;discoveryNotice='Saved almanac discoveries could not be read. They are preserved; reset discovery in Settings to replace them.';}
+  discovered=discoverOwned(discovered,state);persistDiscoveries();
   applySettings();
-  try{const response=await fetch('/api/catalog');if(!response.ok)throw Error('The item catalogue is unavailable.');const data=await response.json();catalog=new Map(data.items.map(item=>[item['Item ID'],item]));loaded=true;if(['#camp','#crafting'].includes(location.hash))go('crafting');else render();say(recovery||'Loadout ready.');}
+  try{const response=await fetch('/api/catalog');if(!response.ok)throw Error('The item catalogue is unavailable.');const data=await response.json();catalog=new Map(data.items.map(item=>[item['Item ID'],item]));loaded=true;if(['#camp','#crafting'].includes(location.hash))go('crafting');else render();say(recovery||discoveryNotice||'Loadout ready.');}
   catch(error){$('#content').innerHTML='<p class="empty">Could not read the item catalogue. Keep the local visualizer server running, then reload this tab.</p>';say(error.message);}
 }
 init().then(()=>{if(loaded)startInventoryGamepad();});

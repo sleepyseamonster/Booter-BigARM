@@ -4,6 +4,24 @@ Open **Game inventory** in the visualizer's top navigation, or visit `http://127
 
 This tab is separate from the catalogue/review/artwork workspace. Its iframe, JavaScript module, model and stylesheet are independent; the shared entry points integrate navigation, lazy loading and scoped host chrome. It reads `/api/catalog` and never calls a mutation endpoint. No master item, review choice, artwork record, Unity asset or gameplay save is edited.
 
+## Discovery almanac — October 17, 2026
+
+**Reference** is now an **Item almanac** covering the entire current item catalogue, also accessible through **Crafting → Item almanac**. At verification it contained 887 definitions in 19 categories. Category progress, All/Discovered/Undiscovered filters, discovery-safe search, category ordering and 36-entry pagination replace the old 100-result reference list. Every catalogue entry is reachable; definitions are not granted as possessions.
+
+Discovered cards show their name and icon. Their records include the available description, category/type, rarity, value tier, mass, stack limit, current ownership, acquisition, processing and limitations. Qualified sample recipe links appear when their output is discovered. Contained Arc Dust is counted in its actual canister location rather than represented as extra loose inventory.
+
+Undiscovered cards and records display **? / ???**. Names, IDs, icons, rarity, purpose, acquisition and processing details are omitted from their rendered data, HTML and accessible labels. Search matches discovered records only, so guessing a hidden name or alias cannot uncover an entry through search results. Category names, category totals and record positions remain visible. This is presentation concealment in a local prototype; the catalogue is still fetched by the browser, not a server-side secrecy system.
+
+The study initially discovers its current sample possessions and their contained dust. Successful inventory commands accumulate newly owned/crafted item IDs; consuming or transferring an item does not erase its discovery. Earlier acquisitions absent from the current sample cannot be reconstructed. Stable catalogue IDs keep knowledge across name/category changes and temporary missing definitions. There is no Unity progression, world/chunk identity, terrain, streaming, production save or runtime-delta change.
+
+Discovery uses its own localStorage record, `arc-dust-game-almanac-v1`, independently of the unchanged inventory save schema and workbook/review/artwork data. Unreadable discovery data is preserved and automatic writes to that record are blocked until an explicit discovery reset. Storage failures leave the current session usable with a notice. Inventory sample reset now explicitly includes discoveries in its confirmation text. Under **Settings → Prototype controls**, **Reveal all entries** previews a complete almanac and **Reset discovery to current possessions** restores the owned-only baseline; these controls affect only local discovery knowledge. Discovery navigation/filter selections are session UI state. Multi-tab coordination remains unimplemented.
+
+Verification: `node --test Tools/InventoryVisualizer/test_almanac.mjs Tools/InventoryVisualizer/test_camp_menu.mjs Tools/InventoryVisualizer/test_game_inventory.mjs Tools/InventoryVisualizer/test_gamepad.mjs` passes **28 checks**. Six new checks cover hidden metadata/HTML, search/ordering concealment, exhaustive pagination and deep-link location, cumulative discovery after crafting/consumption, malformed discovery records, escaped text and contained-dust accounting. Changed modules pass syntax checks; documentation links and Git whitespace checks pass.
+
+Background browser review passed for discovered/unknown inspection, known-item search, hidden-name search rejection, category changes, a 200-item category's pagination, discovery preview/reset, inventory-to-record links, persisted discovery on reload, and the same almanac inside Crafting and the existing inventory iframe. At 520px, category selection and larger text were checked with no document horizontal overflow. Readability settings and discovery baseline were restored after review. Console warnings/errors were empty. Physical controller feel remains unverified; native button/control addresses use the existing controller adapter. No Unity launch, smoke test, workbook mutation or external publication occurred.
+
+Evidence: [desktop almanac](../../Docs/Evidence/UI/Almanac20261017/almanac-desktop.png), [concealed record](../../Docs/Evidence/UI/Almanac20261017/undiscovered-desktop.png), [mobile almanac](../../Docs/Evidence/UI/Almanac20261017/almanac-mobile.png). Earlier reference descriptions below are historical where they describe unrestricted catalogue search.
+
 ## Unified crafting — October 17, 2026
 
 The author combined Camp and Crafting into one **Crafting** top-level tab. Open **Game inventory → Crafting**, choose **Crafting** in the Game menu, or interact with the camp item. Direct entry is `http://127.0.0.1:8087/game.html#crafting`; the previous `#camp` entry remains compatible.
@@ -82,7 +100,7 @@ Map is an explicitly schematic mockup with Booter, Legger and camp markers, mark
 - Explicit Legger/chest/station proximity controls. Distant belongings remain inspectable; transfers and crafting check access again.
 - Two explicit Camp Loop operations: four chest ore make an empty battery; ten dust in one accessible canister plus an empty battery make a charged battery. Outputs require a free Booter pocket. Failed operations preserve all inputs. Refining retains the canister identity and leftover contents.
 - Tracked additional output quantities, combined direct requirements, accessible versus known stock, shortages, and progress reduced on successful crafting. No automatic intermediate crafting or resource reservation.
-- Read-only reference search over the full current catalogue, known locations and links to the two supported operations. Up to 100 search matches are shown; narrow the search to find more. Other design routes are not executable.
+- Discovery-based Item almanac over the full current catalogue, category progress, discovery filters, safe search, complete pagination, owned locations and qualified recipe links. Undiscovered entries are question marks; known records persist after their stock is gone. Other design routes remain non-executable.
 - Game menu, shortcut configuration, larger text and reduced motion, explicit two-step sample reset, and return to the existing workspace. Keyboard navigation uses native buttons and controls; Escape opens the game menu and closes dialogs, `/` focuses search, `I` opens inventory.
 
 ## Controller controls
