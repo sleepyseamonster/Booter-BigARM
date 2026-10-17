@@ -7,6 +7,7 @@ const $=s=>document.querySelector(s),html=s=>String(s??'').replace(/[&<>"']/g,c=
 const SAVE='arc-dust-game-inventory-v1',PREFS='arc-dust-game-settings-v1';
 let state=freshState(),catalog=new Map(),page='inventory',owner='booter',selected='fitted-0',recipe='battery',search='',filter='',sort='name',referenceId=null,saveBlocked=false;
 let settings={large:false,motion:false},loaded=false;
+let inventoryOwner='booter';
 let campService='overview',campStation='author.station.workbench',campExitPage='inventory';
 const ownerPages={inventory:'booter',legger:'legger',storage:'chest'},ownerSelections={};
 const mapPlaces=[{id:'booter',label:'Booter',x:34,y:59,icon:'●',description:'Player marker. Position is illustrative; the browser has no live world connection.'},{id:'legger',label:'The Legger',x:46,y:64,icon:'◇',description:'Companion marker. This diagram does not establish actual range, routes or physical access.'},{id:'camp',label:'Camp',x:66,y:34,icon:'△',description:'Sample camp marker. Storage and workstation contents remain owned by their existing sample systems.'}];
@@ -33,13 +34,16 @@ function slot(index,label){
   return `<button class="gear-tile ${e?'':'empty-slot'} ${e?.key===selected?'selected':''}" ${e?`data-entry="${html(e.key)}" aria-pressed="${e.key===selected}" aria-label="Inspect ${html(itemName(e.item))}"`:'disabled'}><span class="slot-label">${html(label)}</span><span class="tile-icon">${itemIcon(e?.item||EQUIPMENT[index]?.[1]||'empty')}</span><span class="tile-name">${e?html(itemName(e.item)):'Empty'}</span>${e?`<span class="tile-count">${state.protected.includes(e.key)?'◆':index<6?'FITTED':'×'+e.qty}</span>`:''}</button>`;
 }
 function cargoTile(e,index){return e?`<button class="gear-tile cargo-tile ${selected===e.key?'selected':''}" data-entry="${html(e.key)}" aria-pressed="${selected===e.key}" aria-label="Inspect ${html(itemName(e.item))}"><span class="slot-label">${String(index+1).padStart(2,'0')}</span><span class="tile-icon">${itemIcon(e.item)}</span><span class="tile-name">${html(itemName(e.item))}</span><span class="tile-count">${e.dust?e.dust+' DUST':'×'+e.qty}${state.protected.includes(e.key)?' ◆':''}</span></button>`:`<div class="gear-tile empty-slot cargo-tile" aria-label="Empty cargo space"><span class="slot-label">${String(index+1).padStart(2,'0')}</span><span class="empty-plus">+</span></div>`;}
+function loadoutTabs(){
+  return `<div class="inventory-tabs" role="tablist" aria-label="Inventory loadout">${[['booter','Booter'],['legger','Legger']].map(([id,label])=>`<button id="loadout-${id}" data-loadout="${id}" role="tab" aria-selected="${inventoryOwner===id}" aria-controls="inventory-loadout" tabindex="${inventoryOwner===id?0:-1}" class="${inventoryOwner===id?'active':''}">${label}</button>`).join('')}</div>`;
+}
 function inventory(){
   const entries=state.entries.filter(e=>e.owner===owner&&matches(catalog.get(e.item),e)).sort((a,b)=>sort==='quantity'?b.qty-a.qty||itemName(a.item).localeCompare(itemName(b.item)):itemName(a.item).localeCompare(itemName(b.item)));
   const l=load(state,owner,catalog),capacity=owner==='booter'?10:owner==='legger'?12:24,all=state.entries.filter(e=>e.owner===owner);
-  const title=owner==='booter'?'Booter inventory':owner==='legger'?'Legger loadout':'Camp storage';
+  const title=page==='inventory'?'Inventory':owner==='booter'?'Booter inventory':owner==='legger'?'Legger loadout':'Camp storage';
   const equipped=owner==='booter'&&!search&&!filter;
   const left=owner==='booter'?portrait():`<aside class="storage-overview"><div class="section-label">${owner==='legger'?'COMPANION':'CAMP'}</div><div class="storage-emblem">${owner==='legger'?'♜':'▤'}</div><h2>${owner==='legger'?'The Legger':'Camp chest'}</h2><div class="load-number">${all.length}<span> / ${capacity}</span></div><span class="muted">cargo spaces used</span>${owner==='legger'?`<div class="load-mass">${l.mass.toFixed(1)}${l.unknown?' + ?':''}<small> / 92 MASS</small></div>`:''}<div class="meter"><span style="width:${owner==='legger'?Math.min(100,l.mass/92*100):all.length/capacity*100}%"></span></div><span class="access-tag ${accessible(state,owner)?'good':'blocked'}">${accessible(state,owner)?'● WITHIN REACH':'○ INSPECTION ONLY'}</span></aside>`;
-  return heading('',title,'')+`<div class="inventory-workspace">${left}<section class="gear-area">${owner==='booter'?'':tools()}${!accessible(state,owner)?'<p class="notice blocked">Out of reach. Inspection only.</p>':''}${equipped?`<div class="section-label">EQUIPMENT <span>6 DESIGNATED SLOTS</span></div><div class="equipment-grid">${EQUIPMENT.map(([label],i)=>slot(i,label)).join('')}</div><div class="section-label supplies-label">SUPPLIES <span>${all.filter(e=>e.slot>=6).length} / 4</span></div><div class="supply-grid">${[6,7,8,9].map((i)=>slot(i,`Pocket ${i-5}`)).join('')}</div>`:`<div class="section-label">${owner==='booter'?'SUPPLIES':'CARGO'} <span>${all.length} / ${capacity}</span></div><div class="cargo-grid ${owner==='chest'?'chest-grid':''}">${(search||filter?entries:Array.from({length:capacity},(_,i)=>entries[i])).map(cargoTile).join('')||'<p class="empty">No matching items.</p>'}</div>`}<div class="inventory-receipt">${owner==='booter'?'Personal gear and field supplies':owner==='legger'?'Finite cargo · physical access required':'Local storage'}<span>${accessible(state,owner)?'ACCESSIBLE':'OUT OF REACH'}</span></div></section>${inspect()}</div>`;
+  return heading('',title,'')+`${page==='inventory'?loadoutTabs():''}<div class="inventory-workspace" ${page==='inventory'?`id="inventory-loadout" role="tabpanel" aria-labelledby="loadout-${inventoryOwner}"`:''}>${left}<section class="gear-area">${owner==='booter'?'':tools()}${!accessible(state,owner)?'<p class="notice blocked">Out of reach. Inspection only.</p>':''}${equipped?`<div class="section-label">EQUIPMENT <span>6 DESIGNATED SLOTS</span></div><div class="equipment-grid">${EQUIPMENT.map(([label],i)=>slot(i,label)).join('')}</div><div class="section-label supplies-label">SUPPLIES <span>${all.filter(e=>e.slot>=6).length} / 4</span></div><div class="supply-grid">${[6,7,8,9].map((i)=>slot(i,`Pocket ${i-5}`)).join('')}</div>`:`<div class="section-label">${owner==='booter'?'SUPPLIES':'CARGO'} <span>${all.length} / ${capacity}</span></div><div class="cargo-grid ${owner==='chest'?'chest-grid':''}">${(search||filter?entries:Array.from({length:capacity},(_,i)=>entries[i])).map(cargoTile).join('')||'<p class="empty">No matching items.</p>'}</div>`}<div class="inventory-receipt">${owner==='booter'?'Personal gear and field supplies':owner==='legger'?'Finite cargo · physical access required':'Local storage'}<span>${accessible(state,owner)?'ACCESSIBLE':'OUT OF REACH'}</span></div></section>${inspect()}</div>`;
 }
 function inspect(){
   const entry=state.entries.find(e=>e.key===selected&&e.owner===owner);
@@ -84,9 +88,10 @@ function render(){
 }
 function go(next){
   if(state.entries.some(e=>e.key===selected&&e.owner===owner))ownerSelections[owner]=selected;
+  if(next==='legger'){inventoryOwner='legger';next='inventory';}
   if(next==='camp'&&page!=='camp'){campExitPage=page;campService='overview';}
   page=next;search='';filter='';
-  if(ownerPages[page]){owner=ownerPages[page];selected=state.entries.find(e=>e.key===ownerSelections[owner]&&e.owner===owner)?.key||state.entries.find(e=>e.owner===owner)?.key;}
+  if(ownerPages[page]){owner=page==='inventory'?inventoryOwner:ownerPages[page];selected=state.entries.find(e=>e.key===ownerSelections[owner]&&e.owner===owner)?.key||state.entries.find(e=>e.owner===owner)?.key;}
   render();window.scrollTo({top:0,behavior:'instant'});
 }
 function campNavigate(service){
@@ -115,6 +120,7 @@ function leaveStudy(){if(window.parent!==window)window.parent.location.hash='inv
 document.addEventListener('click',event=>run(()=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
   const d=button.dataset;
+  if(d.loadout){inventoryOwner=d.loadout;go('inventory');document.getElementById(`loadout-${inventoryOwner}`)?.focus();return;}
   if(d.campService){campNavigate(d.campService);return;}
   if(d.campStation){const station=campStations(catalog).find(s=>s.id===d.campStation);if(!station)return;campStation=station.id;if(station.recipe)recipe=station.recipe;render();return;}
   if(d.campExit!==undefined){go(campExitPage);document.querySelector('[data-page="camp"]')?.focus();say('Camp menu closed.');return;}
@@ -159,10 +165,13 @@ document.addEventListener('change',event=>run(()=>{
 }));
 $('#open-menu').onclick=()=>$('#menu').showModal();
 $('#cancel-reset').onclick=()=>$('#reset').close();
-$('#confirm-reset').onclick=()=>{$('#reset').close();saveBlocked=false;state=freshState();owner='booter';selected='fitted-0';go('inventory');persist();say('Sample expedition reset. The item database is unchanged.');};
+$('#confirm-reset').onclick=()=>{$('#reset').close();saveBlocked=false;state=freshState();inventoryOwner='booter';owner='booter';selected='fitted-0';go('inventory');persist();say('Sample expedition reset. The item database is unchanged.');};
 document.addEventListener('keydown',event=>{
   if(document.querySelector('dialog[open]'))return;
   if(event.key==='Escape'){event.preventDefault();back();return;}
+  if(event.target.matches('[data-loadout]')&&['ArrowLeft','ArrowRight','Home','End'].includes(event.key)){
+    event.preventDefault();const next=event.key==='Home'?'booter':event.key==='End'?'legger':inventoryOwner==='booter'?'legger':'booter';document.getElementById(`loadout-${next}`)?.click();return;
+  }
   if(/INPUT|SELECT|TEXTAREA/.test(event.target.tagName))return;
   if(event.key==='/'){event.preventDefault();if(!$('#game-search')){if(page==='camp')campNavigate('reference');else go('reference');}$('#game-search')?.focus();}
   if(event.key.toLowerCase()==='i')go('inventory');

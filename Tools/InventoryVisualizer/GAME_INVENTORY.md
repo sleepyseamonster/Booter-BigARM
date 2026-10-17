@@ -4,13 +4,19 @@ Open **Game inventory** in the visualizer's top navigation, or visit `http://127
 
 This tab is separate from the catalogue/review/artwork workspace. Its iframe, JavaScript module, model and stylesheet are independent; the shared entry points integrate navigation, lazy loading and scoped host chrome. It reads `/api/catalog` and never calls a mutation endpoint. No master item, review choice, artwork record, Unity asset or gameplay save is edited.
 
+## Inventory sub-tabs — October 17, 2026
+
+The author requested a single **Inventory** top-level destination with **Booter** and **Legger** loadout sub-tabs. Each carrier retains its selected item; the Inventory page remembers its active carrier across other game pages and camp service visits for the current page session. This navigation state adds no saved ownership or schema changes. Left/Right and Home/End switch the focused sub-tab; controller users can select either sub-tab through ordinary focus/South. Bumpers and triggers continue cycling only the top row. Camp retains its existing direct equipment/cargo services.
+
+Browser verification passed for both carrier views, arrow/Home/End navigation and returning to the selected Legger loadout after visiting Booter equipment in camp. Existing 22 camp/inventory/controller checks and module syntax checks pass. [Current inventory screenshot](../../Docs/Evidence/UI/CampMenu20261017/inventory-subtabs.png). Earlier screenshots below preserve the previous top-row layout.
+
 ## Pop-up camp menu — October 17, 2026
 
 Open **Game inventory → Camp**, choose **Enter camp** in the Game menu, or inspect the Pop-up camp item and choose **Interact with camp**. Direct entry is `http://127.0.0.1:8087/game.html#camp`.
 
 This implements the author's narrowed browser/menu-only request. The Camp Loop Unity scene and runtime are unchanged. The browser remains the design workspace for camp and eventual town menus; a complete town economy, vendors and additional production recipes are not implemented here.
 
-The persistent camp service menu contains Overview, Item box, Booter equipment, Legger cargo, Workstations, Tracked projects and Item reference. Inventory, inspection, transfers, protection, crafting and tracking use the existing sample ownership and transaction functions. Opening a menu never changes proximity or supplies resources. Escape/East backs from a service to camp overview, then leaves camp for the prior game tab. Escape outside camp opens the existing Game menu. Modal dialogs retain their existing close behavior. Bumpers/triggers cycle the nine top tabs; camp service buttons are separate from that cycle.
+The persistent camp service menu contains Overview, Item box, Booter equipment, Legger cargo, Workstations, Tracked projects and Item reference. Inventory, inspection, transfers, protection, crafting and tracking use the existing sample ownership and transaction functions. Opening a menu never changes proximity or supplies resources. Escape/East backs from a service to camp overview, then leaves camp for the prior game tab. Escape outside camp opens the existing Game menu. Modal dialogs retain their existing close behavior. Bumpers/triggers cycle the eight top tabs; camp service buttons are separate from that cycle.
 
 Workstations includes every current catalogue definition in **Crafting stations** (11 at verification), plus a Cooking station menu address when its definition is absent. The cooking fallback follows [the author-directed station brief](../../Docs/Design/Items/CAMP_CRAFTING_STATION_PROPOSALS.json); it does not create an item, inventory instance or recipe. Workbench and Dust refinery execute the two existing sample operations. Ironstone refinery, Cooking and proposal facilities open inspectable details with unavailable recipe actions. No new costs, yields, construction, food effects, power sources or crafting routes are invented. The active station ID and recipe resolve together if a catalogue definition is missing, and overview readiness counts only recipes with available station menus.
 
@@ -56,7 +62,7 @@ Historical viewer review found and corrected an extended-arm FBX pose, gear alig
 
 ## Included interactions
 
-The sticky top menu has nine peer tabs: **Booter inventory**, **Legger loadout**, **Camp**, **Camp storage**, **Crafting**, **Projects**, **Map**, **Reference**, and **Settings**. Inventory ownership is selected by those top tabs or the Camp service menu; the old left-hand owner switcher is removed. Each owner remembers its valid item selection during tab changes. The left panel summarizes the current carrier; crafting still has its station picker within the Crafting tab.
+The sticky top menu has eight peer tabs: **Inventory**, **Camp**, **Camp storage**, **Crafting**, **Projects**, **Map**, **Reference**, and **Settings**. Inventory contains two loadout sub-tabs, **Booter** and **Legger**; Legger is no longer a separate top-level page. Inventory ownership is selected by these sub-tabs or the Camp service menu; the old left-hand owner switcher is removed. Each owner remembers its valid item selection during tab changes. The left panel summarizes the current carrier; crafting still has its station picker within the Crafting tab.
 
 Top-menu follow-up, October 15, 2026: all eight pages were checked in the browser, including Legger ownership, map waypoint interaction, and Settings/radial/prototype controls. The synthetic browser fixture verified both bumpers and both triggers cycle the same top row and wrap at its ends, with the existing long-list navigation/right-stick scrolling checks still passing. The 18 automated inventory/controller checks pass, including clearance beneath the sticky menu. Hardware acceptance remains separate.
 
@@ -73,7 +79,7 @@ Map is an explicitly schematic mockup with Booter, Legger and camp markers, mark
 
 ## Controller controls
 
-Use a browser-standard mapped gamepad and press a button while the visualizer has focus. The browser may require this before exposing the device. D-pad or left stick moves visible focus; South selects the focused control; East backs out. **LB/RB and LT/RT both cycle the same nine top-level tabs**, wrapping at either end. Neither pair changes tabs behind an open dialog. Workbench/Refinery selection uses ordinary focus and South within Crafting or Camp.
+Use a browser-standard mapped gamepad and press a button while the visualizer has focus. The browser may require this before exposing the device. D-pad or left stick moves visible focus; South selects the focused control; East backs out. **LB/RB and LT/RT both cycle the same eight top-level tabs**, wrapping at either end. Neither pair changes tabs behind an open dialog. Workbench/Refinery selection uses ordinary focus and South within Crafting or Camp.
 
 D-pad/left-stick navigation includes offscreen controls and scrolls the new focus into view with clearance below the sticky menu and above the sticky footer. The right stick scrolls vertically or horizontally without changing selection: a 0.22 dead zone removes drift, deflection scales speed up to 850 pixels/second, and frame time is capped at 50ms to prevent resume jumps. It scrolls the focused control's nearest scrollable pane, including the schematic map, or the study document; an open dialog confines scrolling to itself. Right-stick scrolling does not continually snap back to the focused item. Returning to navigation reveals focus again. Hidden/inactive study tabs and disconnected controllers cannot scroll the page.
 
