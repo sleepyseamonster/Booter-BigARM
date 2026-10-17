@@ -1,0 +1,53 @@
+{
+  "source": "Author requested four canister-related Salvage items, including an empty algae canister, empty dust farming canister and high-quality canister parts, October 16, 2026. The particular recovered forms and value ranks below are local catalog proposals under Docs/WORLD_BASIS.md.",
+  "scope": "Four new Salvage entries. Existing filled/working canisters, service kits and fitted component designs retain their identities. World identity, streaming/unload/reload, stable generated-object identity, authored placement constraints and persisted runtime deltas are not applicable because this edits catalog data only, without runtime objects, placement, charging or crafting recipes.",
+  "defaults": {
+    "Tier": "T2", "Category": "Salvage", "Subtype": "Recovered canister salvage", "Implementation scope": "New proposal",
+    "Equipment slot": "None; fit and condition unresolved", "Carrier metadata": "Separate recovered cargo item; mass, packing and attachment compatibility unresolved.",
+    "Stack limit": null, "Mass (game units)": null,
+    "Acquisition": "Recover from abandoned equipment, discarded canisters or workshop remnants. Locations, frequency and price remain proposals.",
+    "Crafting / processing": "Inspect the original vessel or part and assess its service-specific condition before reuse. Cleaning, fitting, repairs, recovery yields and recipes remain unresolved; no usable contents or qualified replacement part is supplied automatically.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "As-found salvage. Empty vessels contain no usable algae reserve or collectible Arc Dust. Appearance and apparent workmanship do not establish hygiene, sealing, operation, pressure suitability or compatibility. Existing holder identity must be retained if later serviced or refilled.",
+    "Rarity": null, "Trade value": null, "Damage": null, "Protection": null, "Durability": null,
+    "Item type": "Container part", "Processing stage": "Recovered part", "Origin family": "Industrial salvage",
+    "Primary use": "Equipment repair", "Material family": "Mixed / unresolved", "Physical form": "Assembly", "Design status": "Proposal",
+    "Classification basis": "Recovered canister-related salvage, separate from operating personal reserves, deployed dust collectors and newly fitted workshop components. High quality describes apparent retained workmanship, not qualified service condition.",
+    "Tier basis": "Proposed T2 practical-worth band for a substantial reusable vessel or fitted donor part. Value is independent of crafting readiness and any stored contents.",
+    "Finished-item input tier": "Unassigned", "Crafting role": "Component"
+  },
+  "items": [
+    {
+      "id": "proposal.salvage.empty_algae_canister",
+      "name": "Empty algae canister",
+      "purpose": "A recovered personal algae canister with a closed mouthpiece housing, worn carrying lugs and residue along its inner viewing strip. Its living reserve is gone, leaving only the vessel and surviving fittings for inspection. It may be worth servicing or reclaiming, but does not supply food, drink, healing material or a ready replacement for Booter's working Phagia canister.",
+      "icon": "One empty worn personal algae canister with closed mouthpiece housing, carrying lugs and a narrow dull viewing strip with dried residue; no living contents, drink, wearer or separate spare parts.",
+      "material": "Mixed / unresolved", "use": "Equipment repair",
+      "fields": {"Tier": "T1", "Item type": "Container", "Search aliases": "canister salvage; empty algae canister; depleted phagia vessel; recovered canister", "Tier basis": "Proposed T1 practical-worth band: an ordinary depleted vessel with potential reusable fittings, offset by unknown hygiene and condition. No living reserve or service-ready canister included.", "Open design decisions": "Resolve contamination, retained fittings, viewing-strip condition, inspection and refilling requirements. This is a separate recovered empty vessel, not a change to Booter's existing working canister or reserve."}
+    },
+    {
+      "id": "proposal.salvage.empty_dust_farming_canister",
+      "name": "Empty dust farming canister",
+      "purpose": "A recovered dust farming canister with a broad collection collar, grit-scored outer casing and a capped transfer opening. Its collection chamber has been emptied, though stray grit may remain in the seams. The surviving collector fittings make it a useful restoration or donor candidate; finding it grants neither Arc Dust nor a working automatic dust farm.",
+      "icon": "One empty squat dust farming canister with broad collection collar, grit-scored casing and capped transfer port; no glowing dust, deployed collector field, charged battery or separate machine.",
+      "material": "Mixed / unresolved", "use": "Equipment repair",
+      "fields": {"Item type": "Container", "Search aliases": "canister salvage; empty dust farming canister; depleted arc dust collector; recovered canister", "Tier basis": "Proposed T2 practical-worth band: surviving specialist collection and transfer fittings offer more potential reuse than a plain empty vessel. No stored Arc Dust or functioning collector is included.", "Open design decisions": "Resolve collector condition, residue, closure integrity, service needs and compatibility. Any later collection or transfer retains the same physical canister and accounts for its actual contents."}
+    },
+    {
+      "id": "proposal.salvage.high_quality_canister_valve_core",
+      "name": "High-quality canister valve core",
+      "purpose": "A finely worked valve core recovered from a canister closure, with a smooth stem, closely fitted metal surfaces and little visible edge damage. Its retained workmanship makes it an attractive donor for a compatible service assembly. Hidden wear, residue and the original working medium still need assessment before the core can be treated as a usable valve.",
+      "icon": "One compact recovered canister valve core with smooth metal stem, clean concentric shoulders and minor surface wear; closed exterior item view, no internal schematic or pressure markings.",
+      "material": "Metal", "use": "Equipment repair",
+      "fields": {"Tier": "T3", "Material family": "Metal", "Search aliases": "canister salvage; high quality canister part; recovered valve core; precision valve donor", "Tier basis": "Proposed T3 practical-worth band: precision retained fitting and low apparent wear make replacement difficult relative to ordinary empty bodies. Hidden condition and compatibility remain unresolved.", "Open design decisions": "Resolve wear, residue, matching valve housing and service compatibility. Distinct from the fitted canister valve-core assembly: this is an as-found donor core, not a complete qualified assembly or universal pressure part."}
+    },
+    {
+      "id": "proposal.salvage.high_quality_canister_seal_collar",
+      "name": "High-quality canister seal collar",
+      "purpose": "A carefully finished metal collar recovered from a canister mouth, with a smooth sealing seat and an even retaining rim. The part shows less distortion than a typical discarded closure, preserving a useful fitted surface for inspection. It is a high-quality donor candidate rather than a complete closure, and supplies no fresh seal, cap or guaranteed leak-tight joint.",
+      "icon": "One recovered metal canister mouth collar with smooth recessed sealing seat, even retaining rim and light wear; no separate seal ring, cap, vessel or construction diagram.",
+      "material": "Metal", "use": "Equipment repair",
+      "fields": {"Tier": "T3", "Material family": "Metal", "Physical form": "Solid part", "Search aliases": "canister salvage; high quality canister part; recovered seal collar; precision closure donor", "Tier basis": "Proposed T3 practical-worth band: a well-preserved fitted sealing surface can save difficult replacement work, subject to inspection and a compatible host. No seal performance or fixed sale price assigned.", "Open design decisions": "Resolve seat wear, corrosion, matching mouth and closure, retained geometry and service-specific reuse. Distinct from generic seal stock, the fitted seal seat and replaceable seal-carrier assembly; no universal fit or new sealing material."}
+    }
+  ]
+}

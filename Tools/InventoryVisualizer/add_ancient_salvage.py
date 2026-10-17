@@ -22,6 +22,34 @@ DATA = ROOT / 'Docs/Design/Items/ANCIENT_SALVAGE_PROPOSALS.json'
 OUT = ROOT / 'Logs/AncientSalvageThree'
 
 
+def reserve_catalog_rows(book, last, count, capacity=1005):
+    """Use the remaining tail, then cleared master/audit pairs without shifting IDs."""
+    assert count > 0 and last <= capacity, 'Invalid master capacity or proposal count'
+    tail_count = min(count, capacity - last)
+    needed = count - tail_count
+    if not needed:
+        return list(range(last + 1, last + count + 1))
+    free = []
+    item_rows = book['Items'].iter_rows(min_row=6, max_row=last)
+    audit_rows = book['Craft audit'].iter_rows(min_row=6, max_row=last)
+    for number, (item, audit) in enumerate(zip(item_rows, audit_rows), 6):
+        if all(cell.value is None for cell in item) and all(cell.value is None for cell in audit):
+            free.append(number)
+    assert len(free) >= needed, 'No empty master/audit slots remain within formula capacity'
+    return free[-needed:] + list(range(last + 1, last + tail_count + 1))
+
+
+def replace_sheet_row(raw, number, content, prefix):
+    """Keep adjacent cells and row ordering intact for sparse recycled slots."""
+    pattern = rf'<(?:\w+:)?row\b[^>]*\br="{number}"[^>]*?(?:/>|>.*?</(?:\w+:)?row>)'
+    if re.search(pattern, raw, re.S):
+        return re.sub(pattern, lambda m: content, raw, count=1, flags=re.S)
+    for row in re.finditer(r'<(?:\w+:)?row\b[^>]*\br="(\d+)"', raw):
+        if int(row.group(1)) > number:
+            return raw[:row.start()] + content + raw[row.start():]
+    return raw.replace(f'</{prefix}sheetData>', content + f'</{prefix}sheetData>')
+
+
 def build(snapshot, spec=None):
     spec = spec or json.loads(DATA.read_text(encoding='utf-8'))
     count_added = len(spec['items'])
@@ -32,7 +60,8 @@ def build(snapshot, spec=None):
     assert not any(i['id'] in ids for i in spec['items']), 'Proposal already exists'
     assert not any(r[1] in {i['name'] for i in spec['items']} for r in list(v['Items'].values)[5:] if r[0]), 'Name already exists'
     last = int(re.search(r'\d+$', w['Items'].tables['ItemsTable'].ref).group())
-    assert last + count_added <= 1005, 'Master formula capacity exceeded'
+    destinations = reserve_catalog_rows(w, last, count_added)
+    table_end = max(last, max(destinations))
     changed, new_rows, tables = {}, {}, {}
     summary = {}
     with ZipFile(BytesIO(snapshot)) as archive:
@@ -66,9 +95,7 @@ def build(snapshot, spec=None):
             prefix = re.search(r'<((?:\w+:)?)worksheet\b', raw).group(1)
             for number, content in rows:
                 assert not any(c.value is not None for c in w[sheet][number]), (sheet, number, 'occupied row')
-                pattern = rf'<(?:\w+:)?row\b[^>]*\br="{number}"[^>]*(?:/>|>.*?</(?:\w+:)?row>)'
-                if re.search(pattern, raw, re.S):raw = re.sub(pattern, lambda m: content, raw, count=1, flags=re.S)
-                else:raw = raw.replace(f'</{prefix}sheetData>', content + f'</{prefix}sheetData>')
+                raw = replace_sheet_row(raw, number, content, prefix)
             dimension = re.search(r'(<(?:\w+:)?dimension\b[^>]*\bref=")([^"]+)', raw)
             if dimension:
                 old_ref = dimension.group(2)
@@ -80,7 +107,7 @@ def build(snapshot, spec=None):
         use_last = w['Item uses'].max_row
         headers = list(w['Items'].values)[4]
         for offset, item in enumerate(spec['items'], 1):
-            n = last + offset
+            n = destinations[offset - 1]
             fields = [w['Items'].cell(631, c).value for c in range(1, 41)]
             for c, value in enumerate(fields, 1):
                 if isinstance(value, str) and value.startswith('='):
@@ -120,7 +147,7 @@ def build(snapshot, spec=None):
             audit=[item['id'],f'=Items!B{n}',f'=Items!X{n}',f'=Items!C{n}',access,f'=Items!AJ{n}','No recipe established','Facilities and qualification criteria remain undefined.','Proposal; not qualified for crafting',fields[20]]
             audits.append((n,row_xml('Craft audit',631,n,audit,{2:item['name'],3:fields[23],4:fields[2],6:0})))
         insert('Items',items);insert('Item uses',uses);insert('Craft audit',audits)
-        for sheet, table, end in [('Items','ItemsTable',last+count_added),('Item uses','ItemUseRelationships',use_last+count_added),('Craft audit','CraftAudit',last+count_added)]:
+        for sheet, table, end in [('Items','ItemsTable',table_end),('Item uses','ItemUseRelationships',use_last+count_added),('Craft audit','CraftAudit',table_end)]:
             oldref=w[sheet].tables[table].ref;newref=re.sub(r'\d+$',str(end),oldref)
             for member in archive.namelist():
                 if member.startswith('xl/tables/') and member.endswith('.xml'):
@@ -144,10 +171,11 @@ def build(snapshot, spec=None):
         for sheet, part in parts.items():
             raw=changed.get(part,archive.read(part)).decode('utf-8')
             def extend_picker(match):
-                return re.sub(r"('Items'!\$A\$6:\$A\$)\d+", lambda m: m.group(1)+str(last+count_added), match.group())
+                updated = re.sub(r"('Items'!\$A\$6:\$A\$)\d+", lambda m: m.group(1)+str(table_end), match.group())
+                if sheet == 'Item uses':
+                    updated = re.sub(r'(sqref="D6:D)(\d+)(")', lambda m: m.group(1)+str(max(int(m.group(2)),use_last+count_added))+m.group(3), updated)
+                return updated
             updated=re.sub(r'<(?:\w+:)?dataValidation\b[^>]*>.*?</(?:\w+:)?dataValidation>',extend_picker,raw,flags=re.S)
-            if sheet=='Item uses' and use_last+count_added>1005:
-                updated=updated.replace('sqref="D6:D1005"',f'sqref="D6:D{use_last+count_added}"')
             if updated!=raw:changed[part]=updated.encode('utf-8')
         output=BytesIO()
         with ZipFile(output,'w') as target:
@@ -163,14 +191,16 @@ def build(snapshot, spec=None):
                 assert after[sheet.title][cell.coordinate].value==cell.value,(sheet.title,cell.coordinate)
         for address,value in summary.get(sheet.title,{}).items():assert cached[sheet.title][address].value==value
     after_ids=[r[0] for r in list(cached['Items'].values)[5:] if r[0]]
-    assert after_ids==ids+[i['id'] for i in spec['items']]
+    added_ids = [i['id'] for i in spec['items']]
+    assert [key for key in after_ids if key not in added_ids] == ids
+    assert [key for key in after_ids if key in added_ids] == added_ids
     for sheet, rows in new_rows.items():
         for n,(values,caches) in rows.items():
             for c,value in enumerate(values,1):
                 assert after[sheet].cell(n,c).value==value,(sheet,n,c)
                 assert cached[sheet].cell(n,c).value==caches.get(c,value),(sheet,n,c,'cache')
     for book in [w,v,after,cached]:book.close()
-    return candidate,{'sourceHash':digest(snapshot),'resultHash':digest(candidate),'items':[i['id'] for i in spec['items']],'tables':tables,'summaryCaches':summary}
+    return candidate,{'sourceHash':digest(snapshot),'resultHash':digest(candidate),'items':added_ids,'itemRows':dict(zip(added_ids,destinations)),'tables':tables,'summaryCaches':summary}
 
 
 if __name__=='__main__':
