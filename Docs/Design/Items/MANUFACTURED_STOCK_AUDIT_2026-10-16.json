@@ -1,0 +1,1118 @@
+{
+  "date": "2026-10-16",
+  "authority": "Author requested an audit of Manufactured stock, revisions to names/descriptions, and proposals rather than deletion for nonqualifying items.",
+  "criterion": "A retained stock entry identifies a tangible selected, processed or shaped material form that is prepared for further fabrication. It may be a powder, feed grade, billet, blank, sheet, strip, length or unfitted composite. A name alone does not establish craft readiness, a production recipe or service performance. Unqualified byproducts, finished animal feed, recovered discrete parts and redundant umbrella entries require separate review.",
+  "scope": "Local catalog editorial iteration. Preserve item IDs, categories, tiers, quantities, recipe topology, review/art choices and Unity source definitions. Proposed descriptions do not install mechanics or establish material ratings. World identity, streaming/unload/reload, generated-object identity, authored placement and persisted runtime deltas are not applicable because no world/runtime content changes.",
+  "counts": {
+    "reviewed": 100,
+    "retained": 94,
+    "renamed": 85,
+    "descriptions": 94,
+    "removalProposals": 6
+  },
+  "decisions": [
+    {
+      "id": "lab.ironstone.aggregate",
+      "previousName": "Coarse Aggregate",
+      "previousDescription": "The coarse granular fraction left by dry sorting Ironstone. Its larger pieces form a separate stock from the sand, mineral fines and iron-rich concentrate; downstream uses and recovery yields remain to be designed.",
+      "decision": "propose removal",
+      "name": "Coarse Aggregate",
+      "description": "The coarse granular fraction left by dry sorting Ironstone. Its larger pieces form a separate stock from the sand, mineral fines and iron-rich concentrate; downstream uses and recovery yields remain to be designed.",
+      "reason": "An authored dry-sorting byproduct with Primary use still unresolved, rather than a defined fabrication stock grade. A proposed beetle-feed ingredient link alone does not establish a stock application. Preserve the existing Unity variant and dry-sort recipe until a separate decision defines relocation or removal.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "lab.ironstone.concentrate",
+      "previousName": "Iron-rich Concentrate",
+      "previousDescription": "The iron-rich fraction separated during dry sorting of Ironstone. It concentrates candidate metal-bearing feed for later refining, without implying that sorting has already produced usable iron metal.",
+      "decision": "retain and refine",
+      "name": "Sorted Ironstone concentrate",
+      "description": "Iron-bearing granules separated from Ironstone by the existing dry-sorting process. This concentrated mineral fraction is feed for later metal refining; it has not yet been reduced to usable iron. Its Ironstone source distinguishes it from the separately proposed selected iron-ore furnace feed.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "lab.ironstone.mineral_dust",
+      "previousName": "Mineral Dust",
+      "previousDescription": "Fine mineral particles separated during dry sorting of Ironstone. This is ordinary mineral stock with an unresolved downstream use, not the airborne energy-bearing dust accepted by the Arc refinery.",
+      "decision": "propose removal",
+      "name": "Mineral Dust",
+      "description": "Fine mineral particles separated during dry sorting of Ironstone. This is ordinary mineral stock with an unresolved downstream use, not the airborne energy-bearing dust accepted by the Arc refinery.",
+      "reason": "An authored sorting byproduct whose downstream use is unresolved. No composition or useful stock grade distinguishes it beyond particle size. It is ordinary mineral fines, not Airborne Dust. Removal requires review of its existing Unity variant and multi-output dry-sort recipe.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "lab.ironstone.sand",
+      "previousName": "Mineral Sand",
+      "previousDescription": "The sand-sized fraction separated during dry sorting of Ironstone. It is stored independently from coarse aggregate and mineral dust so later processing can use the appropriate grain size; a specific downstream recipe is not yet assigned.",
+      "decision": "propose removal",
+      "name": "Mineral Sand",
+      "description": "The sand-sized fraction separated during dry sorting of Ironstone. It is stored independently from coarse aggregate and mineral dust so later processing can use the appropriate grain size; a specific downstream recipe is not yet assigned.",
+      "reason": "An authored sand-sized sorting fraction with no selected fabrication use or qualified grade. Do not invent a glassmaking composition from grain size. Removal requires review of its existing Unity variant and multi-output dry-sort recipe.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.natural.iron_feed",
+      "previousName": "Iron-rich mineral feed",
+      "previousDescription": "Intermediate feed for an eventual furnace. It is intended to enter a controlled metal-preparation or refining process; the feed material is distinct from the usable metal eventually produced.",
+      "decision": "retain and refine",
+      "name": "Selected iron-ore furnace feed",
+      "description": "Iron-bearing mineral feed selected and prepared from the magnetite-rich stone or hematite routes under consideration. It is a furnace input awaiting reduction, not metal stock. Keep it distinct from the existing Ironstone concentrate only while its source preparation remains a meaningful separate design choice.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.natural.iron_stock",
+      "previousName": "Worked iron stock",
+      "previousDescription": "Repair stock, fasteners and structural tool parts. It provides candidate material or a shaped starting piece for making other objects, with the final form set by the receiving design.",
+      "decision": "retain and refine",
+      "name": "Consolidated iron bar stock",
+      "description": "Worked iron consolidated into unfitted bars for fasteners, tool bodies and structural fittings. It is the metal-working stage after an iron bloom or selected ore has been processed, rather than another grade of loose ore. Final section, grade and forging conditions remain to be chosen.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {
+        "Material family": "Metal",
+        "Subtype": "Metal stock"
+      }
+    },
+    {
+      "id": "proposal.natural.abrasive",
+      "previousName": "Graded abrasive grit",
+      "previousDescription": "Tool sharpening and surface preparation. It is intended to prepare or change a workpiece\u2019s surface before a later fitting, coating or use; the treatment must suit that material.",
+      "decision": "retain and refine",
+      "name": "Graded sharpening grit",
+      "description": "Selected abrasive mineral grains sorted into a working size range for sharpening and surface preparation. The loose grit can be used in a compatible finishing process or incorporated into a bonded abrasive blank; grain composition and useful cutting behavior still require qualification.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.natural.ceramic",
+      "previousName": "Insulating ceramic blanks",
+      "previousDescription": "Grounding-kit spacers and heat-resistant fixtures. It is intended to separate conductive parts or support them without a direct conducting path. No voltage or thermal rating follows from that proposed role.",
+      "decision": "retain and refine",
+      "name": "Fired insulating ceramic blanks",
+      "description": "Rough fired ceramic pieces reserved for later grinding into spacers, separators and supporting fittings. They are general blanks rather than fitted components. Their intended electrical-separation role does not assign a voltage, heat or chemical-service rating.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.natural.lime",
+      "previousName": "Calcined mineral binder",
+      "previousDescription": "Dry composite repair and construction. It is intended to join, reinforce or support other parts, with the bond or fastening chosen for the materials and loads involved.",
+      "decision": "retain and refine",
+      "name": "Calcined mineral binder powder",
+      "description": "A prepared mineral powder obtained by controlled treatment of carbonate feed. It is proposed as an input to dry composite and construction-binder development; its name does not assume free water, a conventional mortar recipe or a qualified bond.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.natural.carbon",
+      "previousName": "Graded graphite flakes",
+      "previousDescription": "Dry lubricant; conductive composite ingredient. It is intended to reduce friction at a matched contact surface; dust behavior and material compatibility require qualification.",
+      "decision": "retain and refine",
+      "name": "Graded graphite flake stock",
+      "description": "Graphite-bearing feed prepared into selected flakes for dry-lubricant mixtures and conductive-material development. This is loose carbon stock, distinct from the later bonded electrode plates. Purity, flake size and the receiving formulation remain design choices.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.natural.charcoal",
+      "previousName": "Charcoal",
+      "previousDescription": "Solid carbon fuel and possible metallurgical feedstock. It is proposed as a material energy input for controlled hot work. The receiving process must establish ignition, handling and a suitable working atmosphere.",
+      "decision": "propose removal",
+      "name": "Charcoal",
+      "description": "Solid carbon fuel and possible metallurgical feedstock. It is proposed as a material energy input for controlled hot work. The receiving process must establish ignition, handling and a suitable working atmosphere.",
+      "reason": "The generic charcoal record overlaps the retained, explicitly sourced Chitin-char entry: both proposed routes carbonize shell-derived feed. A separate tendon-based carbon grade is not yet justified. Propose removing or consolidating this umbrella row only after its ingredient links are redirected; no wood source is permitted.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.ceramic.grog",
+      "previousName": "Crushed fired ceramic grit",
+      "previousDescription": "Selected broken fired ceramic, sorted and crushed for candidate body mixes. It is intended for a matched glassworking or ceramic process, with composition, forming and controlled heat determining the useful result.",
+      "decision": "retain and refine",
+      "name": "Graded fired-ceramic grog",
+      "description": "Selected broken fired ceramic crushed and graded into reusable ceramic-body aggregate. It provides a prepared granular addition to a chosen body mix, rather than an intact ceramic fitting. Composition, grain range and the mixture receiving it remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.ceramic.body_feed",
+      "previousName": "Prepared ceramic body feed",
+      "previousDescription": "Selected mineral feed blended for a chosen ceramic product. It is intended for a matched glassworking or ceramic process, with composition, forming and controlled heat determining the useful result.",
+      "decision": "retain and refine",
+      "name": "Blended ceramic forming feed",
+      "description": "A measured candidate blend of prepared mineral ingredients for shaping a chosen ceramic body. It is unfired feed whose recipe must suit the intended vessel, blank or panel. This broad forming blend remains distinct from the more specific fine kaolin formulation.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.ceramic.glaze_feed",
+      "previousName": "Prepared glaze feed",
+      "previousDescription": "Selected mineral finishing feed for compatible ceramic surfaces. It is intended for a matched glassworking or ceramic process, with composition, forming and controlled heat determining the useful result.",
+      "decision": "retain and refine",
+      "name": "Prepared ceramic glaze powder",
+      "description": "A blended mineral finishing powder proposed for application to a compatible ceramic surface before controlled firing. It supplies an unfused surface-treatment feed, not an already glazed object. Formulation, application medium, firing conditions and contents compatibility remain open.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.fire.chitin_char",
+      "previousName": "Chitin-char",
+      "previousDescription": "Carbonized chitin material described in the chitin source record. It is proposed as a material energy input for controlled hot work. The receiving process must establish ignition, handling and a suitable working atmosphere.",
+      "decision": "retain and refine",
+      "name": "Carbonized husk char",
+      "description": "Carbonized chitin-bearing husk pieces proposed as a prepared carbon input for hot-work and fuel research. The biological source distinguishes this material from wood charcoal, which the setting does not supply. Conversion conditions, usable carbon grade and behavior in the atmosphere still require design.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.iron_bloom",
+      "previousName": "Smelted iron bloom",
+      "previousDescription": "Prepared metal stock in the form of smelted iron bloom, intended as an input to further making or assembly. It is intended to enter a controlled metal-preparation or refining process; the feed material is distinct from the usable metal eventually produced.",
+      "decision": "retain and refine",
+      "name": "Unconsolidated iron bloom",
+      "description": "A rough mass of iron-bearing metal from the proposed smelting stage, awaiting consolidation into usable working stock. It precedes the consolidated iron bars and steel-making branches. Metal yield, entrained residue and the required working process remain unqualified.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.copper_cake",
+      "previousName": "Refined copper cake",
+      "previousDescription": "Prepared metal stock in the form of refined copper cake, intended as an input to further making or assembly. It is intended to form part of a continuous conducting path, with section, joints and protection matched to the receiving circuit.",
+      "decision": "retain and refine",
+      "name": "Refined copper cake",
+      "description": "Copper gathered into a compact rough cake after the proposed first refining stage. The cake is working feed for drawing or forming conductors and small metal parts, rather than finished wire. Purity and later forming conditions remain to be established.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.brass_billet",
+      "previousName": "Reclaimed brass billet",
+      "previousDescription": "Prepared metal stock in the form of reclaimed brass billet, intended as an input to further making or assembly. It provides candidate material or a shaped starting piece for making other objects, with the final form set by the receiving design.",
+      "decision": "retain and refine",
+      "name": "Reclaimed brass billet",
+      "description": "Recovered brass selected and consolidated into an unfitted billet for later shaping. It provides a coherent working blank instead of a mixed handful of scrap. Alloy consistency, contamination and the practical reclaiming process remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.bronze_billet",
+      "previousName": "Reclaimed bronze billet",
+      "previousDescription": "Prepared metal stock in the form of reclaimed bronze billet, intended as an input to further making or assembly. It provides candidate material or a shaped starting piece for making other objects, with the final form set by the receiving design.",
+      "decision": "retain and refine",
+      "name": "Reclaimed bronze billet",
+      "description": "Recovered bronze prepared as a solid working billet for strips, bearing blanks and other shaped parts. It remains bulk metal stock with no fitted interfaces. The recovered alloy must be identified before a particular forming process or service use is chosen.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.opaque_glass",
+      "previousName": "Opaque mineral-glass stock",
+      "previousDescription": "Prepared glass stock in the form of opaque mineral-glass stock, intended as an input to further making or assembly. It is intended for a matched glassworking or ceramic process, with composition, forming and controlled heat determining the useful result.",
+      "decision": "retain and refine",
+      "name": "Unformed opaque glass stock",
+      "description": "Opaque glass prepared as rough solid stock for subsequent forming into sheets, linings or other glass blanks. This is the unshaped stage before the flat opaque-sheet entry. Composition, reheating conditions and usable material yield remain open.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.clear_glass_blank",
+      "previousName": "Rough clear-glass blank",
+      "previousDescription": "Prepared glass stock in the form of rough clear-glass blank, intended as an input to further making or assembly. It supports looking at or examining a workpiece, with the useful view determined by its optical and mechanical arrangement.",
+      "decision": "retain and refine",
+      "name": "Rough transparent glass blanks",
+      "description": "Rough glass pieces selected for possible transparent viewing elements. They precede sized viewing blanks and ground optics, with surfaces and shape still unfinished. Transparency is a selection aim, not a guarantee of optical quality or corrective performance.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.dressed_stone",
+      "previousName": "Dressed building-stone stock",
+      "previousDescription": "Prepared mineral stock in the form of dressed building-stone stock, intended as an input to further making or assembly. It is intended to join, reinforce or support other parts, with the bond or fastening chosen for the materials and loads involved.",
+      "decision": "retain and refine",
+      "name": "Dressed stone blocks",
+      "description": "Stone worked into rough blocks with usable faces for later fitted construction or mounting work. Dressing supplies a manageable stock form without making every block interchangeable. Source stone, dimensions, joining method and load suitability remain to be selected.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.resonant_blank",
+      "previousName": "Selected resonant-stone blank",
+      "previousDescription": "Prepared mineral stock in the form of selected resonant-stone blank, intended as an input to further making or assembly. Its recorded physical form is intended to produce, control or support sound in a musical instrument; tuning and playable dimensions remain open.",
+      "decision": "retain and refine",
+      "name": "Selected resonant stone blanks",
+      "description": "Stone pieces selected as candidate sound-producing blanks before final shaping and acoustic matching. They provide the starting stock for tuned stone bars or instrument elements. Mineral choice, defects and useful sound response remain to be assessed.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.pigment_powder",
+      "previousName": "Prepared mineral pigment powder",
+      "previousDescription": "Prepared mineral stock in the form of prepared mineral pigment powder, intended as an input to further making or assembly. It supplies a visible ornamental surface or detail, with its placement and cultural meaning left to the receiving object\u2019s design.",
+      "decision": "retain and refine",
+      "name": "Ground mineral pigment stock",
+      "description": "Mineral colorant ground into a prepared powder for decorative coatings and marking mixtures. It supplies the solid pigment fraction before a compatible carrier is added. Color consistency, particle grade and application properties remain design questions.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.mineral_filler",
+      "previousName": "Graded mineral filler",
+      "previousDescription": "Prepared mineral stock in the form of graded mineral filler, intended as an input to further making or assembly. It is intended to join, reinforce or support other parts, with the bond or fastening chosen for the materials and loads involved.",
+      "decision": "retain and refine",
+      "name": "Graded mineral filler powder",
+      "description": "Selected mineral particles prepared as a controlled filler for candidate binders and composite mixes. The filler changes the body of a receiving formulation rather than acting as a complete adhesive itself. Grain range, composition and the intended mix remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.glass_feed",
+      "previousName": "Sorted glass remelt feed",
+      "previousDescription": "Prepared glass stock in the form of sorted glass remelt feed, intended as an input to further making or assembly. It is intended for a matched glassworking or ceramic process, with composition, forming and controlled heat determining the useful result.",
+      "decision": "retain and refine",
+      "name": "Sorted glass cullet",
+      "description": "Broken glass selected and sorted into remelt feed for a compatible glass batch. It is prepared secondary material rather than reusable intact glazing. Mixed compositions, coatings and contamination must be resolved before a batch can be treated as a useful grade.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.mica_flakes",
+      "previousName": "Separated mica flake grade",
+      "previousDescription": "Prepared mineral stock in the form of separated mica flake grade, intended as an input to further making or assembly. It provides candidate material or a shaped starting piece for making other objects, with the final form set by the receiving design.",
+      "decision": "retain and refine",
+      "name": "Separated mica flake stock",
+      "description": "Mica separated into loose flakes for composite sheets and other layered-material trials. This is particulate mineral feed before bonding, distinct from intact mica viewing sheets. Flake size, binder choice and the resulting material behavior remain open.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.husk_pulp",
+      "previousName": "Prepared husk-fiber pulp",
+      "previousDescription": "Prepared husk fiber stock in the form of prepared husk-fiber pulp, intended as an input to further making or assembly. It supplies candidate fibers or prepared feed for husk-based paper, which must still be processed and formed into a usable sheet.",
+      "decision": "retain and refine",
+      "name": "Prepared husk-fiber paper furnish",
+      "description": "Scraped husk fibers cleaned and conditioned into feed ready for a proposed paper-forming process. It identifies the prepared fiber stage without assuming a water-based slurry. Sheet formation, compatible processing medium and yield remain to be designed.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.bristle_bundle",
+      "previousName": "Clean graded bristle bundles",
+      "previousDescription": "Prepared faunal fiber stock in the form of clean graded bristle bundles, intended as an input to further making or assembly. It is intended to obstruct grit at an opening or moving interface. Its fit and wear must be qualified before any exclusion or filtration performance is assigned.",
+      "decision": "retain and refine",
+      "name": "Cleaned brush-bristle bundles",
+      "description": "Faunal bristles cleaned, sorted and bundled as feed for brush strips and grit-exclusion fittings. Their useful form is a controlled set of working fibers rather than loose gathered bristles. Retention, stiffness and wear require qualification in the receiving assembly.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.shell_lamina",
+      "previousName": "Separated shell lamina stock",
+      "previousDescription": "Prepared shell / chitin stock in the form of separated shell lamina stock, intended as an input to further making or assembly. It provides candidate stock for a protective assembly, with coverage, joining and backing still determining the finished protection.",
+      "decision": "retain and refine",
+      "name": "Separated shell lamina sheets",
+      "description": "Thin layers separated and prepared from bulk shell husks for later lamination or shaping. These sheets are intermediate shell stock, distinct from assembled armor panels and from loose raw plates. Thickness, preparation and bonding remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.hardpart_blank",
+      "previousName": "Shaped fauna hard-part blanks",
+      "previousDescription": "Prepared faunal hard tissue stock in the form of shaped fauna hard-part blanks, intended as an input to further making or assembly. It supplies a candidate working blank, edge or fitted part for a tool; shaping and mounting depend on the intended job.",
+      "decision": "retain and refine",
+      "name": "Shaped faunal hard-part blanks",
+      "description": "Faunal hard tissue selected and roughly shaped into solid blanks for tool edges, wear inserts or small fittings. Each blank still needs a chosen working profile and mounting. Source anatomy and useful material behavior remain subject to the existing biological limits.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.process_salts",
+      "previousName": "Graded process salts",
+      "previousDescription": "Prepared mineral stock in the form of graded process salts, intended as an input to further making or assembly. It is a candidate industrial input or process aid. Its composition, containment and compatible treatment must be established; usefulness does not imply edibility.",
+      "decision": "retain and refine",
+      "name": "Graded industrial salt feed",
+      "description": "Mineral salts selected and graded for proposed industrial processing mixtures. This is a controlled feed grade rather than an unidentified raw salt crust. Composition and process compatibility remain unresolved, and this entry supplies no food-grade or edible-salt claim.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.gem_preform",
+      "previousName": "Cut gemstone preform",
+      "previousDescription": "Prepared gemstone stock in the form of cut gemstone preform, intended as an input to further making or assembly. It supplies a visible ornamental surface or detail, with its placement and cultural meaning left to the receiving object\u2019s design.",
+      "decision": "retain and refine",
+      "name": "Rough-cut gemstone blanks",
+      "description": "Gemstone pieces cut into rough preforms for later polishing, setting or inlay work. The cutting stage establishes a usable starting shape while leaving the final finish and fitting unfinished. Gem grade, loss during working and individual dimensions remain open.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.gem_chips",
+      "previousName": "Graded stone inlay chips",
+      "previousDescription": "Prepared gemstone stock in the form of graded stone inlay chips, intended as an input to further making or assembly. It supplies a visible ornamental surface or detail, with its placement and cultural meaning left to the receiving object\u2019s design.",
+      "decision": "retain and refine",
+      "name": "Graded gemstone inlay chips",
+      "description": "Small stone fragments selected by workable size for decorative inlay mixtures and fitted patterns. They are loose ornamental stock rather than finished jewelry or set panels. Color selection, setting method and compatible binding material remain undecided.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.shell_inlay",
+      "previousName": "Burnished shell inlay scales",
+      "previousDescription": "Prepared shell / chitin stock in the form of burnished shell inlay scales, intended as an input to further making or assembly. It supplies a visible ornamental surface or detail, with its placement and cultural meaning left to the receiving object\u2019s design.",
+      "decision": "retain and refine",
+      "name": "Burnished shell inlay blanks",
+      "description": "Thin shell pieces with prepared visible faces, reserved for cutting and fitting into ornamental surfaces. They remain loose inlay stock before a pattern or receiving object is chosen. Final dimensions, retention and surface finish remain design work.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t1.mica_window",
+      "previousName": "Sized mica viewing sheet",
+      "previousDescription": "Prepared mineral stock in the form of sized mica viewing sheet, intended as an input to further making or assembly. It supports looking at or examining a workpiece, with the useful view determined by its optical and mechanical arrangement.",
+      "decision": "retain and refine",
+      "name": "Sized mica viewing sheets",
+      "description": "Intact mica sheets selected and cut to manageable sizes for proposed viewing openings. They retain their natural layered form instead of being reduced to flakes and rebound. Usable clarity, mounting, thickness and service conditions remain unqualified.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "author.electrical.insulation_stock",
+      "previousName": "Prepared electrical insulation stock",
+      "previousDescription": "Prepared insulating material family for electrical equipment and protective wear; composition unresolved.",
+      "decision": "retain and refine",
+      "name": "Composite insulation blanks",
+      "description": "Unfitted composite blanks proposed from prepared mica layers, ceramic pieces and compatible binding material. They provide stock for later electrical separators or shaped barriers, giving the insulation family a concrete intermediate form. Composition, geometry and electrical or thermal ratings remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "author.metallurgy.steel_stock",
+      "previousName": "Steel stock",
+      "previousDescription": "Manufactured steel stock for later fabrication. It provides candidate material or a shaped starting piece for making other objects, with the final form set by the receiving design.",
+      "decision": "retain and refine",
+      "name": "Unfitted steel stock",
+      "description": "Steel prepared as general working stock for subsequent forming into parts, sheets and specialist grades. It is distinct from consolidated iron and from later spring-grade or finished-section steel. Exact composition, supplied section and production conditions remain to be chosen.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.refractory_feed",
+      "previousName": "Graded refractory mineral feed",
+      "previousDescription": "Prepared mineral stock in the form of graded refractory mineral feed, intended as an input to further making or assembly. It is intended for a matched glassworking or ceramic process, with composition, forming and controlled heat determining the useful result.",
+      "decision": "retain and refine",
+      "name": "Graded refractory mineral powder",
+      "description": "Selected heat-work mineral feed ground and graded before forming a refractory body. It supplies a prepared input to ceramic linings and hot-work blanks, not an already fired protective part. Composition and performance at the intended service conditions remain unqualified.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.manganese_feed",
+      "previousName": "Manganese-bearing alloy feed",
+      "previousDescription": "Prepared mineral stock in the form of manganese-bearing alloy feed, intended as an input to further making or assembly. It is intended to enter a controlled metal-preparation or refining process; the feed material is distinct from the usable metal eventually produced.",
+      "decision": "retain and refine",
+      "name": "Selected manganese mineral feed",
+      "description": "Manganese-bearing mineral material selected into a candidate refining and alloy-preparation feed. It precedes the prepared metal alloying addition, so collecting this stock does not supply alloy-ready manganese metal. Source composition and extraction remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.alloy_addition",
+      "previousName": "Prepared manganese alloying stock",
+      "previousDescription": "Prepared metal stock in the form of prepared manganese alloying stock, intended as an input to further making or assembly. It is intended to enter a controlled metal-preparation or refining process; the feed material is distinct from the usable metal eventually produced.",
+      "decision": "retain and refine",
+      "name": "Prepared manganese alloying addition",
+      "description": "A processed metal-bearing addition prepared from the selected manganese-feed route for a proposed steel-making batch. It is a controlled alloy input rather than raw mineral feed or finished steel. Actual composition, addition rate and process compatibility remain undecided.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.drawn_copper",
+      "previousName": "Drawn copper stock",
+      "previousDescription": "Prepared metal stock in the form of drawn copper stock, intended as an input to further making or assembly. It is intended to form part of a continuous conducting path, with section, joints and protection matched to the receiving circuit.",
+      "decision": "retain and refine",
+      "name": "Drawn copper wire stock",
+      "description": "Copper formed into continuous unfitted wire lengths for conductors, windings and later braiding or mesh work. The lengths have no terminals or installed circuit role. Wire section, purity, forming process and useful electrical loading remain to be selected.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.bearing_bronze",
+      "previousName": "Prepared bronze bearing stock",
+      "previousDescription": "Prepared metal stock in the form of prepared bronze bearing stock, intended as an input to further making or assembly. It is intended to replace, support or service a matching machine part; useful fit depends on the host mechanism.",
+      "decision": "retain and refine",
+      "name": "Bronze bearing blanks",
+      "description": "Bronze stock shaped into rough blanks intended for later boring and fitting as bearing surfaces. These are machining inputs rather than working bearings. Alloy, clearance, lubrication and the load of the receiving mechanism remain unqualified.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.refractory_ceramic",
+      "previousName": "Refractory ceramic stock",
+      "previousDescription": "Prepared ceramic stock in the form of refractory ceramic stock, intended as an input to further making or assembly. It is intended to contain, separate or manage heat in a controlled hot-work arrangement, with service conditions matched to its material.",
+      "decision": "retain and refine",
+      "name": "Fired refractory ceramic blanks",
+      "description": "Prepared refractory feed formed and fired into rough blanks for hot-work linings and supports. This is the fired stock stage after the graded mineral powder, before a final fitting is made. Heat cycling, atmosphere and useful service limits require qualification.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.opaque_sheet",
+      "previousName": "Formed opaque glass sheet",
+      "previousDescription": "Prepared glass stock in the form of formed opaque glass sheet, intended as an input to further making or assembly. It is intended for a matched glassworking or ceramic process, with composition, forming and controlled heat determining the useful result.",
+      "decision": "retain and refine",
+      "name": "Formed opaque glass sheets",
+      "description": "Opaque glass stock formed into flat unfitted sheets for later panel, cover or lining work. The sheet form distinguishes it from the rough bulk glass feed. Thickness, cutting, edge preparation and compatibility with its eventual use remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.viewing_glass",
+      "previousName": "Selected viewing-glass stock",
+      "previousDescription": "Prepared glass stock in the form of selected viewing-glass stock, intended as an input to further making or assembly. It supports the positioning or preparation of a viewing element. Useful clarity, alignment or correction must be established for the actual optics.",
+      "decision": "retain and refine",
+      "name": "Selected viewing-glass blanks",
+      "description": "Transparent glass blanks selected and sized for an intended viewing element before optical grinding. They are a later preparation of rough transparent glass, with a useful starting shape but no final optical surface. Clarity, fit and the chosen application remain open.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.husk_sheet",
+      "previousName": "Bonded husk sheet",
+      "previousDescription": "Prepared husk fiber stock in the form of bonded husk sheet, intended as an input to further making or assembly. It supplies a candidate fastening, panel or material for clothing; cutting, joining and fit remain part of the finished garment\u2019s design.",
+      "decision": "retain and refine",
+      "name": "Bonded husk-fiber sheets",
+      "description": "Prepared husk-fiber material bonded into unfitted sheets for later clothing panels and other shaped work. The sheets remain difficult processed biological material rather than ordinary woven cloth. Thickness, flexibility, joining and usable yield require design.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.wing_membrane",
+      "previousName": "Reinforced wing membrane",
+      "previousDescription": "Prepared wing membrane stock in the form of reinforced wing membrane, intended as an input to further making or assembly. It is intended to transmit wind force through a fitted sail or wing arrangement, with the support structure and control method designed together.",
+      "decision": "retain and refine",
+      "name": "Reinforced wing-membrane sheets",
+      "description": "Prepared insect-wing membrane strengthened with candidate biological bindings and edge reinforcement. It is stock for later fitted sails or wind-facing panels, without the joints and supports of a complete assembly. Useful size, joining and wind loads remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.pigment_coating",
+      "previousName": "Mineral pigment coating",
+      "previousDescription": "Prepared biological and mineral mixture stock in the form of mineral pigment coating, intended as an input to further making or assembly. It supplies a visible ornamental surface or detail, with its placement and cultural meaning left to the receiving object\u2019s design.",
+      "decision": "retain and refine",
+      "name": "Prepared mineral pigment coating mix",
+      "description": "Ground mineral pigment combined with a candidate faunal carrier into a coating mixture. It is an application-ready stock concept rather than an already decorated object. Carrier chemistry, preparation, adhesion and wear remain to be established.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.mica_sheet",
+      "previousName": "Mica composite sheet",
+      "previousDescription": "Prepared mixed / unresolved stock in the form of mica composite sheet, intended as an input to further making or assembly. It is intended to separate conductive parts or support them without a direct conducting path. No voltage or thermal rating follows from that proposed role.",
+      "decision": "retain and refine",
+      "name": "Bonded mica composite sheets",
+      "description": "Separated mica flakes bonded into coherent unfitted sheets. This makes a formed composite stock distinct from both loose mica flakes and intact natural viewing sheets. Binder choice, thickness and useful insulating behavior remain unqualified.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.tuned_stone",
+      "previousName": "Tuned stone stock",
+      "previousDescription": "Prepared mineral stock in the form of tuned stone stock, intended as an input to further making or assembly. Its recorded physical form is intended to produce, control or support sound in a musical instrument; tuning and playable dimensions remain open.",
+      "decision": "retain and refine",
+      "name": "Shaped resonant stone bars",
+      "description": "Selected resonant-stone blanks worked into candidate bar forms for later acoustic matching and instrument fitting. Shaping is a material preparation stage; it does not supply a complete tuned instrument. Bar dimensions and useful sound response remain design work.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.polished_gem",
+      "previousName": "Polished gemstone blanks",
+      "previousDescription": "Prepared gemstone stock in the form of polished gemstone blanks, intended as an input to further making or assembly. It supplies a visible ornamental surface or detail, with its placement and cultural meaning left to the receiving object\u2019s design.",
+      "decision": "retain and refine",
+      "name": "Polished gemstone setting blanks",
+      "description": "Rough-cut gemstone blanks brought to a prepared visible finish for later setting or inlay. They remain loose stock without a mounting or finished jewelry form. Final dimensions, compatible setting and acceptable finish are still to be chosen.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.steel_shell",
+      "previousName": "Steel-faced shell composite",
+      "previousDescription": "Prepared mixed / unresolved stock in the form of steel-faced shell composite, intended as an input to further making or assembly. It provides candidate stock for a protective assembly, with coverage, joining and backing still determining the finished protection.",
+      "decision": "retain and refine",
+      "name": "Steel-faced shell laminate sheets",
+      "description": "Shell laminate bonded to a prepared steel face as composite sheet stock for later protective fittings. The metal face and shell backing remain an unfitted material combination, rather than a complete guard. Bonding, shaping and protective behavior require qualification.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.spring_steel",
+      "previousName": "Spring-grade steel stock",
+      "previousDescription": "Prepared metal stock in the form of spring-grade steel stock, intended as an input to further making or assembly. It is intended to replace, support or service a matching machine part; useful fit depends on the host mechanism.",
+      "decision": "retain and refine",
+      "name": "Spring-grade steel blanks",
+      "description": "Steel prepared as candidate resilient blanks for later forming into springs or flexing parts. This is a proposed material grade before a particular spring geometry is chosen. Composition, heat treatment, working deflection and fatigue behavior remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.insulated_conductor",
+      "previousName": "Insulated conductor stock",
+      "previousDescription": "Prepared mixed / unresolved stock in the form of insulated conductor stock, intended as an input to further making or assembly. It is intended to form part of a continuous conducting path, with section, joints and protection matched to the receiving circuit.",
+      "decision": "retain and refine",
+      "name": "Insulation-wrapped copper lengths",
+      "description": "Drawn copper lengths combined with candidate mica-based and flexible insulating material. They are unfinished conductor stock awaiting cutting, termination and fitting. The wrapped form does not establish a voltage rating, weather seal or storm protection.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.ceramic_shell",
+      "previousName": "Bonded ceramic-shell composite",
+      "previousDescription": "Prepared mixed / unresolved stock in the form of bonded ceramic-shell composite, intended as an input to further making or assembly. It provides candidate stock for a protective assembly, with coverage, joining and backing still determining the finished protection.",
+      "decision": "retain and refine",
+      "name": "Ceramic-faced shell laminate panels",
+      "description": "Prepared ceramic faces bonded to shell laminate as unfitted composite panels. The panels are material blanks for later protection or enclosure work, not finished armor. Layer geometry, bonding, impact behavior and useful service limits remain unqualified.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.optical_glass",
+      "previousName": "Ground optical glass stock",
+      "previousDescription": "Prepared glass stock in the form of ground optical glass stock, intended as an input to further making or assembly. It supports the positioning or preparation of a viewing element. Useful clarity, alignment or correction must be established for the actual optics.",
+      "decision": "retain and refine",
+      "name": "Ground optical glass blanks",
+      "description": "Selected viewing-glass blanks with surfaces ground for a proposed optical element. This is prepared optical stock before a final prescription, alignment or mounting is chosen. Surface accuracy, optical behavior and useful application remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.husk_composite",
+      "previousName": "Layered husk composite stock",
+      "previousDescription": "Prepared husk fiber stock in the form of layered husk composite stock, intended as an input to further making or assembly. It is intended to join, reinforce or support other parts, with the bond or fastening chosen for the materials and loads involved.",
+      "decision": "retain and refine",
+      "name": "Layered husk-composite sheets",
+      "description": "Multiple bonded husk sheets built into thicker composite stock for shaped structural or casing work. This layered material is distinct from the simpler single-sheet clothing feed. Binder, layer arrangement, shaping and useful strength remain to be established.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.sealing_sheet",
+      "previousName": "Reinforced sealing sheet",
+      "previousDescription": "Prepared mixed / unresolved stock in the form of reinforced sealing sheet, intended as an input to further making or assembly. It is intended to close a selected joint or patch an interface. Contents compatibility, movement and service conditions must be checked before a seal is relied on.",
+      "decision": "retain and refine",
+      "name": "Reinforced seal-sheet stock",
+      "description": "A candidate seal compound supported with prepared mineral and flexible binding layers as cuttable sheet stock. It awaits the outline and contact geometry of a particular joint. Chemical compatibility, compression behavior and any pressure or dust seal require qualification.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.decorative_husk",
+      "previousName": "Finished decorative husk stock",
+      "previousDescription": "Prepared husk fiber stock in the form of finished decorative husk stock, intended as an input to further making or assembly. It supplies a visible ornamental surface or detail, with its placement and cultural meaning left to the receiving object\u2019s design.",
+      "decision": "retain and refine",
+      "name": "Surface-finished husk sheets",
+      "description": "Prepared husk sheet brought to a decorative visible finish before cutting into trim or ornament. It is unfinished stock for a receiving object rather than a complete clothing or display item. Surface treatment, joining and durability remain open.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.protective_stock",
+      "previousName": "Layered protective composite stock",
+      "previousDescription": "Prepared mixed / unresolved stock in the form of layered protective composite stock, intended as an input to further making or assembly. It provides candidate stock for a protective assembly, with coverage, joining and backing still determining the finished protection.",
+      "decision": "retain and refine",
+      "name": "Layered protective panel blanks",
+      "description": "Steel-faced and ceramic-faced shell materials combined into unfitted layered panel blanks. They supply a composite starting form for later guards or covers. Layer arrangement, attachment, coverage and actual protective performance remain design questions.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.encapsulated_conductor",
+      "previousName": "Encapsulated conductor stock",
+      "previousDescription": "Prepared mixed / unresolved stock in the form of encapsulated conductor stock, intended as an input to further making or assembly. It is intended to form part of a continuous conducting path, with section, joints and protection matched to the receiving circuit.",
+      "decision": "retain and refine",
+      "name": "Encased conductor lengths",
+      "description": "Insulation-wrapped conductor stock enclosed with candidate sealing layers and ceramic support pieces. It is supplied as unfitted lengths before terminals and equipment interfaces are added, rather than a complete wiring harness. Enclosure geometry, continuity and service qualification remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.branch.sealed_casing",
+      "previousName": "Sealed composite casing stock",
+      "previousDescription": "Prepared mixed / unresolved stock in the form of sealed composite casing stock, intended as an input to further making or assembly. It provides a candidate part for constructing equipment; matching interfaces and final assembly are still required.",
+      "decision": "retain and refine",
+      "name": "Husk-composite casing blanks",
+      "description": "Layered husk-composite stock prepared with candidate seal-sheet interfaces as rough enclosure blanks. Openings, mounting points and final joints still need fitting to the intended equipment. The blank is not a finished container and carries no guaranteed dust, pressure or chemical seal.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t3.precision_tube",
+      "previousName": "Drawn steel tube stock",
+      "previousDescription": "Prepared intermediate for fabrication. T4 opportunity: Sail-spar joint or valve-body subassembly; pressure and structural services need different qualification.",
+      "decision": "retain and refine",
+      "name": "Drawn steel tube lengths",
+      "description": "Steel formed into unfitted hollow lengths for later joint, guide or valve-body fabrication. The tube is a prepared section rather than a complete pressure part. Bore consistency, wall geometry, cutting and the requirements of each structural or pressure application remain separate design work.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t3.grounding_braid",
+      "previousName": "Braided copper grounding stock",
+      "previousDescription": "Prepared intermediate for electrical conduction. T4 opportunity: Grounding lead subassembly with fitted terminals; grounding never implies insulation or storm immunity.",
+      "decision": "retain and refine",
+      "name": "Braided copper conductor stock",
+      "description": "Drawn copper strands braided into flexible unfitted conducting lengths. The braid can feed a later grounding lead with matched terminals, but it has no installed charge path by itself. Section, joins and grounding behavior remain unqualified; it is not insulation.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t3.copper_mesh",
+      "previousName": "Woven copper mesh stock",
+      "previousDescription": "Prepared intermediate for electrical conduction. T4 opportunity: Screened radio enclosure insert; shielding behavior, joints and frequency range unresolved.",
+      "decision": "retain and refine",
+      "name": "Woven copper mesh sheets",
+      "description": "Drawn copper wire woven into unfitted open mesh sheets for later electrical-screening assemblies. The sheet still needs a chosen aperture, supporting frame and continuous fitted joints. No shielding frequency range or protection rating is established.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t3.reflector_stock",
+      "previousName": "Polished copper reflector blanks",
+      "previousDescription": "Prepared intermediate for vision. T4 opportunity: Aligned optical subassembly using the existing optical branch; reflection quality remains a proposal.",
+      "decision": "retain and refine",
+      "name": "Polished copper reflector blanks",
+      "description": "Copper blanks worked to a proposed reflective visible surface for later optical assemblies. They remain loose unfinished reflectors awaiting a chosen outline, support and alignment. Surface quality and useful reflection behavior require qualification.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t3.packing_stock",
+      "previousName": "Husk-reinforced packing stock",
+      "previousDescription": "Prepared intermediate for sealing. T4 opportunity: Dust-exclusion gland subassembly; this is not automatically a pressure seal or a canister-safe material.",
+      "decision": "retain and refine",
+      "name": "Husk-reinforced packing lengths",
+      "description": "Prepared husk material combined with candidate sealing compounds into lengths intended for later gland packing. The stock must be cut and fitted around a particular interface. Working movement, wear, contents compatibility and any pressure or dust exclusion remain unqualified.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t3.wing_seam",
+      "previousName": "Bonded wing-seam reinforcement strips",
+      "previousDescription": "Prepared intermediate for wind propulsion. T4 opportunity: Jointed sail-panel subassembly; attachment geometry and wind loads remain to be designed.",
+      "decision": "retain and refine",
+      "name": "Bonded wing-seam strips",
+      "description": "Reinforced wing-membrane stock prepared as narrow strips for joining or strengthening a later sail-panel seam. It is a supply of unfitted reinforcement rather than a completed sail joint. Bonding, edge retention and the eventual wind load remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t3.husk_joint",
+      "previousName": "Flexible husk joint strips",
+      "previousDescription": "Prepared intermediate for binding and construction. T4 opportunity: Articulated casing subassembly; no ordinary cloth, cheap textile supply or guaranteed fatigue life.",
+      "decision": "retain and refine",
+      "name": "Flexible husk-composite strips",
+      "description": "Bonded husk sheet prepared with a flexible candidate binder as narrow jointing strips. They provide stock for later articulated covers or composite joins without introducing ordinary cloth. Useful bending range, retention and repeated-flex behavior remain unqualified.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t3.abrasive_stock",
+      "previousName": "Bonded abrasive-faced stock",
+      "previousDescription": "Prepared intermediate for surface finishing. T4 opportunity: Matched finishing-tool head; workshop tools are reusable prerequisites in other recipes, not consumed tier inputs.",
+      "decision": "retain and refine",
+      "name": "Abrasive-faced steel blanks",
+      "description": "Steel blanks carrying a bonded abrasive working layer for later finishing-tool heads. They are unfinished tool-face stock before shaping and mounting. Grain grade, binder behavior, cutting action and safe operating conditions remain to be established.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t3.inlay_stock",
+      "previousName": "Gem-inlaid metal panel blanks",
+      "previousDescription": "Prepared intermediate for decoration. T4 opportunity: Fitted ceremonial or civic display subassembly; no invented national preference or automatic gemstone power.",
+      "decision": "retain and refine",
+      "name": "Gem-inlaid metal panel blanks",
+      "description": "Metal panels carrying prepared gemstone inlay, retained as unfitted decorative stock. They still need cutting, edge work and attachment to a chosen object. Pattern, setting method and durability remain proposals, with no gemstone power or assigned cultural meaning.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t3.lining_stock",
+      "previousName": "Bonded glass-ceramic lining stock",
+      "previousDescription": "Prepared intermediate for chemical processing. T4 opportunity: Fitted chemical-vessel insert subassembly; not every faunal liquid is compatible and thermal service is separate.",
+      "decision": "retain and refine",
+      "name": "Bonded glass-ceramic lining panels",
+      "description": "Prepared glass and ceramic layers bonded into unfitted lining panels for a later vessel insert. They are lining stock rather than a ready chemical container. Contents compatibility, joints, support and thermal behavior must be selected for the receiving vessel.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t4.insulating_board",
+      "previousName": "Pressed mineral-husk insulating board",
+      "previousDescription": "Prepared intermediate for electrical insulation. Intended downstream use: Fitted enclosure barriers and insulating panels; no electrical, thermal or fire-resistance rating assigned.",
+      "decision": "retain and refine",
+      "name": "Pressed mineral-husk barrier boards",
+      "description": "Layered husk, mica and candidate sealing materials pressed into unfitted barrier boards. The boards provide stock for later enclosure separators or insulating panels. Layer construction, machining and electrical, thermal or fire performance remain unqualified.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.t4.decorative_veneer",
+      "previousName": "Layered ceremonial inlay stock",
+      "previousDescription": "Prepared intermediate for decoration. Intended downstream use: Rare ceremonial trim, civic plates or costly dress fittings; no ordinary cloth or invented national preference.",
+      "decision": "retain and refine",
+      "name": "Layered inlay veneer sheets",
+      "description": "Decorative husk material and gem-inlaid panel stock combined into thin composite trim sheets. The material awaits cutting and mounting on a chosen display, civic object or dress fitting. Manufacture, layer thickness and attachment remain proposals without a fixed cultural association.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.lore.assayed_growth",
+      "previousName": "Assayed Iron Growth feedstock",
+      "previousDescription": "Intended use: metal refining. Select and prepare a composition-identified feed lot; analytical tools and acceptance limits remain unspecified.",
+      "decision": "retain and refine",
+      "name": "Assay-selected Iron Growth feed",
+      "description": "Iron Growth pieces grouped into a composition-identified working lot before alloy preparation. Selection gives the feed a defined processing purpose without turning source age or depth into a material tier. Sampling, acceptance limits and available analytical tools remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.lore.growth_alloy",
+      "previousName": "Canister-grade Growth alloy stock",
+      "previousDescription": "Intended use: fabrication. Explore a contemporary selected Growth-alloy grade from assayed feed; proposed additives, compatibility and service properties require qualification.",
+      "decision": "retain and refine",
+      "name": "Worked Growth-alloy blanks",
+      "description": "Prepared Iron Growth feed proposed as worked alloy blanks for later canister-related fittings and other selected parts. The blank form avoids claiming a certified canister grade. Composition, additives, forming process and service compatibility still require qualification.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.lore.dried_fiber",
+      "previousName": "Dried electroactive-fiber reinforcement stock",
+      "previousDescription": "Intended use: binding and construction. Explore conditioning for passive reinforcement; preserved motion or electrical activity is not assumed.",
+      "decision": "retain and refine",
+      "name": "Conditioned faunal reinforcement fibers",
+      "description": "Harvested electroactive-fiber material dried and prepared as passive reinforcing bundles for candidate composites. It is a material input rather than a preserved biological actuator. Preparation, bonding and useful reinforcing behavior remain unresolved, with no retained motion or electrical activity assumed.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.lore.feedstone_mix",
+      "previousName": "Graded domestic-beetle feedstone mix",
+      "previousDescription": "Intended use: animal husbandry. Blend a species- and lineage-specific mineral feed candidate; ratios, trace compounds and animal suitability remain open. Not human food.",
+      "decision": "propose removal",
+      "name": "Graded domestic-beetle feedstone mix",
+      "description": "Intended use: animal husbandry. Blend a species- and lineage-specific mineral feed candidate; ratios, trace compounds and animal suitability remain open. Not human food.",
+      "reason": "A prepared domestic-beetle ration is an animal-husbandry consumable, not stock awaiting equipment or material fabrication. Its species suitability also remains unverified. Propose removing it from this stock register; retain elsewhere only if the author wants the feeding concept, with its recipe dependencies reviewed first.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.lore.iron_conductor",
+      "previousName": "Drawn iron conductor stock",
+      "previousDescription": "Intended use: electrical conduction. Prepare selected iron into conductor feed; intended for bulky practical systems. No current capacity or efficiency assigned.",
+      "decision": "retain and refine",
+      "name": "Drawn iron wire stock",
+      "description": "Selected iron prepared as unfitted conductor wire for bulky electrical assemblies. It is a separate metal feed from the copper-wire branch and still needs a chosen section and connections. Current capacity, losses, protection and service behavior remain unqualified.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.lore.rivet_stock",
+      "previousName": "Rough iron rivet stock",
+      "previousDescription": "Intended use: fabrication. Form first iron stock into unfinished rivet feed; grade, dimensions and subsequent fitting remain open.",
+      "decision": "retain and refine",
+      "name": "Unheaded iron rivet blanks",
+      "description": "Short iron blanks prepared as feed for later rivet forming and fitting. They are unfinished fastener stock before the final head, length and joint are chosen. Grade, forming method and the receiving assembly\u2019s requirements remain open.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.collection.sorted_nickel_alloying_feed",
+      "previousName": "Sorted nickel alloying feed",
+      "previousDescription": "Selected alloying fraction, composition unresolved. It provides candidate material or a shaped starting piece for making other objects, with the final form set by the receiving design.",
+      "decision": "retain and refine",
+      "name": "Selected nickel-bearing alloy feed",
+      "description": "Nickel-bearing mineral material sorted into a selected refining feed for possible alloy production. It remains mineral stock rather than pure nickel or an alloy-ready metal addition. Composition, extraction and the alloy application still require design.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.collection.sorted_tin_smelter_feed",
+      "previousName": "Sorted tin smelter feed",
+      "previousDescription": "Concentrated candidate bronze feed. It provides candidate material or a shaped starting piece for making other objects, with the final form set by the receiving design.",
+      "decision": "retain and refine",
+      "name": "Selected tin-bearing smelter feed",
+      "description": "Tin-bearing mineral material prepared as a selected smelting feed for the proposed bronze branch. The feed is distinct from tin metal and from an already combined bronze billet. Mineral grade, recovery and batch composition remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.collection.prepared_kaolin_body_stock",
+      "previousName": "Prepared kaolin body stock",
+      "previousDescription": "Fine ceramic shaping mixture. It provides candidate material or a shaped starting piece for making other objects, with the final form set by the receiving design.",
+      "decision": "retain and refine",
+      "name": "Fine kaolin ceramic-body mix",
+      "description": "A selected fine kaolin-based forming mixture proposed for ceramic work that needs a more specific feed than the broad blended body entry. It is unfired prepared material awaiting a chosen shape and firing process. Composition, preparation and useful product properties remain open.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.collection.graded_magnesite_refractory_meal",
+      "previousName": "Graded magnesite refractory meal",
+      "previousDescription": "Candidate high-temperature vessel feed. It provides candidate material or a shaped starting piece for making other objects, with the final form set by the receiving design.",
+      "decision": "retain and refine",
+      "name": "Graded magnesite refractory feed",
+      "description": "Magnesite-bearing mineral material prepared as a graded feed for candidate refractory bodies. Its selected mineral branch distinguishes it from the broader refractory-powder entry. Composition, forming method and high-temperature service remain unqualified.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.collection.drawn_bronze_strip_stock",
+      "previousName": "Drawn bronze strip stock",
+      "previousDescription": "Spring, decorative and contact stock distinct from bearing bronze. It provides candidate material or a shaped starting piece for making other objects, with the final form set by the receiving design.",
+      "decision": "retain and refine",
+      "name": "Worked bronze strip stock",
+      "description": "Bronze billet stock formed into long flat strips for later contact pieces, decorative fittings or other shaped metal parts. It is distinct from thicker bearing blanks and the later thin-foil form. Alloy, thickness and any resilient or electrical service must be chosen for the application.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.collection.annealed_iron_sheet_stock",
+      "previousName": "Annealed iron sheet stock",
+      "previousDescription": "Thin sheet for housings, utensils and instruments. It provides candidate material or a shaped starting piece for making other objects, with the final form set by the receiving design.",
+      "decision": "retain and refine",
+      "name": "Annealed iron sheet stock",
+      "description": "Worked iron formed and annealed as unfitted sheet for housings, utensils and instrument bodies. It supplies a flat metal working form rather than a finished cover or vessel. Thickness, forming sequence and final material behavior remain to be established.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.collection.pressed_chitin_friction_stock",
+      "previousName": "Pressed chitin friction stock",
+      "previousDescription": "Replaceable dry friction surface for brakes and clutches. It provides candidate material or a shaped starting piece for making other objects, with the final form set by the receiving design.",
+      "decision": "retain and refine",
+      "name": "Pressed shell-mineral friction blanks",
+      "description": "Shell lamina, selected mineral filler and candidate binder pressed into rough working blanks for later friction surfaces. They are material stock before fitting to a brake or clutch. Friction behavior, wear, heat response and mounting remain unqualified.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.audit.screened_remanent_magnet_pieces",
+      "previousName": "Screened remanent magnet pieces",
+      "previousDescription": "Sort still-magnetized salvage; this is not magnet creation by smelting magnetite. It is intended for a compatible magnetic holding or collection arrangement. Useful magnetism and mechanical retention must be checked independently.",
+      "decision": "propose removal",
+      "name": "Screened remanent magnet pieces",
+      "description": "Sort still-magnetized salvage; this is not magnet creation by smelting magnetite. It is intended for a compatible magnetic holding or collection arrangement. Useful magnetism and mechanical retention must be checked independently.",
+      "reason": "These are recovered magnet fragments selected for surviving magnetism, not a newly manufactured material or standardized stock form. They fit the recovered Salvage lane more directly. Propose removing this row from the manufactured-stock register or retaining it as a qualified salvage variant after checking its dependent routes.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.audit.pressed_hide_fastening_strips",
+      "previousName": "Pressed hide fastening strips",
+      "previousDescription": "Narrow strips of scarce processed hide intended for garment fastenings and flexible retaining ties. They join clothing pieces where a rigid metal fitting would be awkward; strip dimensions, attachment method and working strength remain open.",
+      "decision": "retain and refine",
+      "name": "Pressed hide fastening strips",
+      "description": "Scarce processed hide pressed and cut into unfitted fastening strips for later garment ties and retainers. The strips remain a supply of flexible material before particular fittings are made. Joining, dimensions and usable strength require design, and the very low hide yield remains in force.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.audit.drawn_steel_music_wire_stock",
+      "previousName": "Drawn steel music-wire stock",
+      "previousDescription": "Drawn steel wire stock proposed for strings and other tensioned parts in musical instruments. It provides a candidate alternative to scarce biological strings; wire grade, working tension and acoustic tuning still require design.",
+      "decision": "retain and refine",
+      "name": "Fine steel music-wire stock",
+      "description": "Spring-grade steel drawn into fine unfitted wire for later instrument strings and other selected tensioned parts. This is prepared stock before a working length, mounting and tuning are chosen. Wire grade, working tension and acoustic behavior remain unqualified.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.audit.graphite_electrode_plate_stock",
+      "previousName": "Graphite electrode plate stock",
+      "previousDescription": "Graphite stock prepared as flat electrode blanks for electrical assemblies. The plates provide candidate conductive surfaces that can be fitted into a designed cell or contact arrangement; chemistry, connections and operating ratings remain unresolved.",
+      "decision": "retain and refine",
+      "name": "Bonded graphite electrode blanks",
+      "description": "Selected graphite flakes bonded into rough plate blanks for later electrode shaping and fitting. They are a formed carbon material rather than a complete cell or battery. Composition, connections, chemical compatibility and useful electrical service remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.stock.perforated_iron_sheet",
+      "previousName": "Perforated iron sheet stock",
+      "previousDescription": "Worked iron sheet with a repeating pattern of punched openings, intended for ventilation faces, sorting screens or protective equipment covers. Hole pattern and useful clearances await design; this is stock rather than a finished filter.",
+      "decision": "retain and refine",
+      "name": "Punched iron screen stock",
+      "description": "Worked iron sheet punched with a repeating pattern of openings before final cutting and mounting. It supplies stock for ventilation faces, sorting screens or equipment covers. Hole geometry and service fit remain to be chosen; the sheet is not a finished or rated filter.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.stock.flanged_iron_channel",
+      "previousName": "Flanged iron channel stock",
+      "previousDescription": "Lengths of worked iron folded into a shallow channel with outward mounting lips. Candidate stock for lightweight frames, camp fittings and casing supports; it needs cutting and fitting before assembly.",
+      "decision": "retain and refine",
+      "name": "Flanged iron channel lengths",
+      "description": "Worked iron formed into shallow channel lengths with outward lips for later mounting and joining. The unfitted sections can supply candidate frame members or casing supports. Cutting, joint geometry and useful loading remain to be designed.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.stock.corrugated_steel_sheet",
+      "previousName": "Corrugated steel sheet stock",
+      "previousDescription": "Prepared steel sheet formed into parallel ridges for proposed housings, stiffened covers or wind-facing panels. It remains an unfitted sheet; strength, weight and acceptable forming methods are undecided.",
+      "decision": "retain and refine",
+      "name": "Corrugated steel sheet stock",
+      "description": "Prepared steel sheet formed into parallel ridges before cutting into covers or wind-facing panels. The corrugated section gives this stock a distinct forming stage from plain steel sheet. Thickness, joining, forming conditions and useful stiffness remain unqualified.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.stock.hollow_ceramic_tube_blanks",
+      "previousName": "Hollow ceramic tube blanks",
+      "previousDescription": "Unfitted fired ceramic tube lengths for selected spacers, protected guides or candidate nonconductive passages. Cutting, bore finish and service qualification remain necessary; no voltage, heat or chemical rating is assigned.",
+      "decision": "retain and refine",
+      "name": "Fired ceramic tube lengths",
+      "description": "Rough fired ceramic tube lengths awaiting cutting, grinding and matching to a selected guide, spacer or passage. They are unfitted hollow stock rather than a complete insulated or chemical-service fitting. Bore finish, fragility and all service ratings remain unresolved.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.stock.fired_ceramic_ring_blanks",
+      "previousName": "Fired ceramic ring blanks",
+      "previousDescription": "Rough fired ceramic rings awaiting grinding and matching to a particular assembly. They supply stock for potential collars or spacers, distinct from the catalog's fitted insulating spacer and matched spacer sets.",
+      "decision": "retain and refine",
+      "name": "Rough-fired ceramic ring blanks",
+      "description": "Ceramic rings formed and fired as unfinished stock for later collars, spacers or other matched parts. Their inner and outer surfaces still need grinding and fitting to a chosen assembly. No precise dimension, electrical rating or installed component function is assigned.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.stock.laminated_mica_shims",
+      "previousName": "Laminated mica shim stock",
+      "previousDescription": "Thin layered mica strips proposed for fitted gap adjustment and separation between compatible surfaces. Thickness, binder choice and useful insulating behavior require qualification; this is not a guaranteed electrical barrier.",
+      "decision": "retain and refine",
+      "name": "Laminated mica shim strips",
+      "description": "Layered mica-composite stock prepared as thin strips for later gap adjustment and separation of fitted surfaces. These are uncut shim blanks rather than a matched spacer set. Thickness selection, binder behavior and useful insulating performance require qualification.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.stock.copper_capillary_tube",
+      "previousName": "Copper capillary tube stock",
+      "previousDescription": "Fine-bore copper tubing proposed for fitted instrument passages or the controlled transfer of compatible contained substances. It does not imply a water system, safe biological contact or a particular flow rate; bore consistency and cleaning remain open.",
+      "decision": "retain and refine",
+      "name": "Fine-bore copper tube stock",
+      "description": "Copper formed into narrow-bore unfitted tubing for later instrument passages or controlled transfer of compatible contained substances. It is distinct from solid copper wire. Bore consistency, cleaning, fittings and material compatibility remain open, with no water system or flow rating implied.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    },
+    {
+      "id": "proposal.stock.hammered_bronze_foil",
+      "previousName": "Hammered bronze foil stock",
+      "previousDescription": "Very thin worked bronze sheets proposed for decorative cladding, shaped labels or selected fitted metal layers. Thickness, alloy, joining and durability remain undecided; it is distinct from thicker drawn bronze strip stock.",
+      "decision": "retain and refine",
+      "name": "Hammered bronze foil stock",
+      "description": "Bronze strip or billet feed worked into very thin unfitted sheets for later cladding, labels and selected metal layers. The foil form distinguishes it from the thicker bronze strips. Thickness control, joining and durability remain to be established.",
+      "reason": "Retain a specific prepared material form for subsequent fitting or fabrication.",
+      "metadataCorrections": {}
+    }
+  ],
+  "removalProposals": [
+    {
+      "id": "lab.ironstone.aggregate",
+      "name": "Coarse Aggregate",
+      "reason": "An authored dry-sorting byproduct with Primary use still unresolved, rather than a defined fabrication stock grade. A proposed beetle-feed ingredient link alone does not establish a stock application. Preserve the existing Unity variant and dry-sort recipe until a separate decision defines relocation or removal.",
+      "exactIdReferenceRows": {
+        "Variants": 1,
+        "Recipes": 1,
+        "Item uses": 1,
+        "Material routes": 2,
+        "Crafting browser": 2,
+        "Tier review": 1,
+        "Craft audit": 1
+      }
+    },
+    {
+      "id": "lab.ironstone.mineral_dust",
+      "name": "Mineral Dust",
+      "reason": "An authored sorting byproduct whose downstream use is unresolved. No composition or useful stock grade distinguishes it beyond particle size. It is ordinary mineral fines, not Airborne Dust. Removal requires review of its existing Unity variant and multi-output dry-sort recipe.",
+      "exactIdReferenceRows": {
+        "Variants": 1,
+        "Recipes": 1,
+        "Item uses": 1,
+        "Material routes": 1,
+        "Crafting browser": 1,
+        "Tier review": 1,
+        "Craft audit": 1
+      }
+    },
+    {
+      "id": "lab.ironstone.sand",
+      "name": "Mineral Sand",
+      "reason": "An authored sand-sized sorting fraction with no selected fabrication use or qualified grade. Do not invent a glassmaking composition from grain size. Removal requires review of its existing Unity variant and multi-output dry-sort recipe.",
+      "exactIdReferenceRows": {
+        "Variants": 1,
+        "Recipes": 1,
+        "Item uses": 1,
+        "Material routes": 1,
+        "Crafting browser": 1,
+        "Tier review": 1,
+        "Craft audit": 1
+      }
+    },
+    {
+      "id": "proposal.natural.charcoal",
+      "name": "Charcoal",
+      "reason": "The generic charcoal record overlaps the retained, explicitly sourced Chitin-char entry: both proposed routes carbonize shell-derived feed. A separate tendon-based carbon grade is not yet justified. Propose removing or consolidating this umbrella row only after its ingredient links are redirected; no wood source is permitted.",
+      "exactIdReferenceRows": {
+        "Resource chains": 1,
+        "Item uses": 2,
+        "Material routes": 2,
+        "Crafting browser": 2,
+        "Tier review": 1,
+        "Craft audit": 1
+      }
+    },
+    {
+      "id": "proposal.lore.feedstone_mix",
+      "name": "Graded domestic-beetle feedstone mix",
+      "reason": "A prepared domestic-beetle ration is an animal-husbandry consumable, not stock awaiting equipment or material fabrication. Its species suitability also remains unverified. Propose removing it from this stock register; retain elsewhere only if the author wants the feeding concept, with its recipe dependencies reviewed first.",
+      "exactIdReferenceRows": {
+        "Item uses": 1,
+        "Material routes": 1,
+        "Crafting browser": 4,
+        "Craft audit": 1
+      }
+    },
+    {
+      "id": "proposal.audit.screened_remanent_magnet_pieces",
+      "name": "Screened remanent magnet pieces",
+      "reason": "These are recovered magnet fragments selected for surviving magnetism, not a newly manufactured material or standardized stock form. They fit the recovered Salvage lane more directly. Propose removing this row from the manufactured-stock register or retaining it as a qualified salvage variant after checking its dependent routes.",
+      "exactIdReferenceRows": {
+        "Item uses": 1,
+        "Material routes": 2,
+        "Crafting browser": 2,
+        "Craft audit": 1
+      }
+    }
+  ],
+  "sourceHashBefore": "a29bcf48014b3a02ae917dfb39973c78feb8d1f99ff5b2b9a60f1ad5db87d274",
+  "sourceHashAfter": "06cf01022a9f143e0049922221370e1bb1a2124dbd862479bd94a2fa9167969f",
+  "validation": {
+    "allItemIdsAndOrderPreserved": true,
+    "allCategoriesAndTiersPreserved": true,
+    "removalCandidatesUnchanged": true,
+    "reviewStateUnchanged": true,
+    "unrelatedCellsAndZipParts": "Byte-identical; formulas and edited-cell styles preserved.",
+    "changedCellsBySheet": {
+      "Items": 351,
+      "Item uses": 103,
+      "Material routes": 605,
+      "Tier review": 60,
+      "Craft audit": 85,
+      "Crafting browser": 660,
+      "Material branches": 37
+    },
+    "linkedNameCellsChecked": 1575,
+    "browser": "Manufactured stock remains 100. Revised iron-bar name/description and T2 tier visible; searching Worked iron stock still finds the renamed record. No console errors."
+  },
+  "unityBoundary": "Variants.Authored name and authored description remain imported Unity source facts; no source assets or definitions are renamed. Earlier source/proposal documents retain their historical labels. Old catalog names are searchable aliases."
+}
