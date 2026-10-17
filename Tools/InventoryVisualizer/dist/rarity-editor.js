@@ -1,5 +1,5 @@
 // Rarity edits persist to the same catalog workbook used by every view.
-export const RARITY_COLORS={Junk:'#90949b',Common:'#f3f1e9',Uncommon:'#65c879',Rare:'#559fff',Epic:'#db63cf',Legendary:'#f5a532'};
+export const RARITY_COLORS={Junk:'#666a70e6',Common:'#f3f1e9',Uncommon:'#65c879',Rare:'#559fff',Epic:'#db63cf',Legendary:'#f5a532'};
 export function rarityMarker(item,esc){
   const rarity=item.Rarity;
   return Object.hasOwn(RARITY_COLORS,rarity)?`<span class="rarity-corner" style="--rarity-color:${RARITY_COLORS[rarity]}" role="img" aria-label="Rarity: ${esc(rarity)}" title="Rarity: ${esc(rarity)}"></span>`:'';
