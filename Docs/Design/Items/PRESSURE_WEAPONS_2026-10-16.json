@@ -1,0 +1,114 @@
+{
+  "source": "Author direction October 16, 2026: high-powered pressure weapons, including single-shot and double-shot launchers, with pressurized canisters and related equipment. The weapon family and desired variants are author direction; particular forms, canister states, compatibility and tiers below are local catalog proposals.",
+  "scope": "Refine the existing pressure launcher and rivet round while retaining their IDs, and add a double-shot launcher plus empty/pressurized states of one reusable canister design. Catalog only: no runtime weapons, recipe, pressure simulation, placement or save changes. Deterministic world identity, streaming/unload/reload, stable generated-object identity, authored placement constraints and persisted runtime deltas are not applicable because no world objects or runtime systems change.",
+  "reusedIds": ["proposal.collection.pressure_rivet_launcher", "proposal.collection.pressure_launcher_rivet_round"],
+  "canisterStates": {
+    "family": "Launcher pressure canister",
+    "empty": "proposal.pressure.launcher_canister_empty",
+    "pressurized": "proposal.pressure.launcher_canister_pressurized",
+    "rule": "Alternative charge states of the same physical vessel. Charging requires an existing compatible empty vessel, a selected working medium and an energy source; discharge consumes stored pressure, retains the vessel and accounts for remaining contents. These records do not create duplicate holders or assign shot counts."
+  },
+  "existingCatalogReview": [
+    {"id": "proposal.collection.sealed_pressure_accumulator", "name": "Sealed pressure accumulator", "decision": "Retain general machinery storage; launcher canister is a distinct weapon-feed proposal with explicit reusable charge states."},
+    {"id": "proposal.canister.body_blank", "name": "Canister body blank", "decision": "Existing general body component; candidate only, without pressure qualification."},
+    {"id": "proposal.canister.seal_ring", "name": "Replacement seal ring", "decision": "Reuse the fitted-seal family; no duplicate generic seal or automatic launcher compatibility."},
+    {"id": "proposal.canister.seal_seat", "name": "Fitted seal seat", "decision": "Existing seal-support family; service-specific design remains open."},
+    {"id": "proposal.canister.sealant", "name": "Canister joint sealant", "decision": "Existing joint material; do not assume pressure-service suitability."},
+    {"id": "proposal.t4.valve_core", "name": "Fitted canister valve-core assembly", "decision": "Existing valve family; no duplicate generic valve or approved weapon interface."},
+    {"id": "proposal.collection.spring_seated_check_valve", "name": "Spring-seated check valve", "decision": "Existing flow-control concept; compatibility is unresolved."},
+    {"id": "proposal.audit.fitted_pressure_barrel_module", "name": "Fitted pressure-barrel module", "decision": "Existing pressure-weapon component; retain without duplicating or selecting a construction specification."},
+    {"id": "proposal.t4.seal_carrier", "name": "Replaceable seal-carrier assembly", "decision": "Existing replaceable sealing component; suitability remains unresolved."},
+    {"id": "proposal.canister.mount", "name": "Canister mounting bracket", "decision": "Existing mounting family; no new equipment slot or universal attachment fit."},
+    {"id": "proposal.collection.pressure_bellows_capsule", "name": "Pressure bellows capsule", "decision": "Retain its general machinery role; no complete pressure gauge or control system implied."}
+  ],
+  "defaults": {
+    "Tier": "T3", "Category": "Crafting components", "Subtype": "Pressure launcher canister",
+    "Implementation scope": "New proposal", "Equipment slot": "None; compatibility unresolved",
+    "Carrier metadata": "Separate physical inventory item; carrying fit, mass, packing and compatible equipment unresolved.",
+    "Stack limit": null, "Mass (game units)": null,
+    "Acquisition": "Proposed contemporary specialist workshop craft or trade; availability and price unresolved.",
+    "Crafting / processing": "Catalog proposal only. Existing canister bodies, seals, valves, mounting and pressure-barrel families are candidate resources, without a selected bill of materials or qualified compatibility. Exact materials, quantities, processes and recipes remain unassigned.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Working medium, pressure service, compatibility, maintenance, recoil, reload behavior and useful performance require design. No pressure rating, construction specification, numerical damage or range is assigned.",
+    "Rarity": null, "Trade value": null, "Damage": null, "Protection": null, "Durability": null,
+    "Item type": "Energy storage", "Processing stage": "Finished item", "Origin family": "Manufactured / unresolved",
+    "Primary use": "Energy storage", "Material family": "Metal", "Physical form": "Assembly", "Design status": "Proposal",
+    "Classification basis": "Dedicated reusable launcher pressure vessel, distinct from general machinery accumulators and personal algae/dust canisters. Charge states describe the same physical holder.",
+    "Tier basis": "Proposed T3 fitted vessel using T1/T2 stock. Pressurization changes stored energy rather than manufacturing tier; materials and construction remain unresolved.",
+    "Finished-item input tier": "T2", "Crafting role": "Component"
+  },
+  "items": [
+    {
+      "id": "proposal.collection.pressure_rivet_launcher",
+      "name": "Single-shot pressure launcher",
+      "purpose": "A high-powered pressure weapon carrying one loaded projectile at a time. Its squat forward housing, broad receiver and separate pressure-canister connection give it a heavy industrial appearance. It launches a matched rivet round using stored pressure, then needs another projectile loaded before firing again. The reusable canister supplies the driving energy separately from the ammunition.",
+      "icon": "Fictional single-shot pressure launcher with a squat forward housing, broad worn metal receiver, ceramic-colored panels and a separate closed canister silhouette; exterior only, no cutaway or construction drawing.",
+      "material": "Ceramic and metal", "use": "Offensive combat",
+      "fields": {
+        "Tier": "T4", "Category": "Weapons", "Subtype": "Single-shot pressure launcher", "Implementation scope": "Author-directed concept", "Design status": "Author direction",
+        "Item type": "Weapon", "Primary use": "Offensive combat", "Material family": "Ceramic and metal", "Crafting role": "Finished item", "Finished-item input tier": "T3",
+        "Search aliases": "pressure launcher; pressure weapon; single shot; pressure rivet launcher; high-powered launcher",
+        "Classification basis": "Author-requested single-shot pressure weapon; refines the existing Pressure rivet launcher and retains its catalog ID, linked routes, review and artwork identity.",
+        "Tier basis": "Proposed T4 finished launcher integrating T2/T3 component families; exact eligible inputs and construction remain unresolved.",
+        "Open design decisions": "Resolve carrying form, pressure supply, matched rivet round, maintenance, handling and combat role. One loaded projectile defines single-shot capacity; it does not assign canister endurance, damage, range or reload timing. Existing candidate routes remain provisional."
+      }
+    },
+    {
+      "id": "proposal.collection.pressure_launcher_rivet_round",
+      "name": "Pressure-launcher rivet round",
+      "purpose": "A solid, non-explosive projectile with a broad rivet-like head, intended for a compatible pressure launcher. It is the proposed shared ammunition family for the single-shot and double-shot designs, with final fit still to be chosen. Each round is a separate projectile; it contains no pressure charge, propellant or explosive filling.",
+      "icon": "One fictional solid metal rivet-like projectile with a broad blunt head and plain worn finish; no dimensions, sectional drawing, explosive filling or launcher.",
+      "material": "Metal", "use": "Offensive combat",
+      "fields": {
+        "Category": "Ammunition", "Subtype": "Pressure launcher projectile", "Item type": "Ammunition", "Primary use": "Offensive combat", "Physical form": "Solid piece", "Crafting role": "Finished item",
+        "Search aliases": "pressure launcher ammo; pressure-launcher rivet round; pressure weapon projectile; rivet round",
+        "Crafting / processing": "Existing ammunition concept refined for this family. A proposed T3 finished projectile uses selected T2 stock; exact metal, forming and acceptance criteria remain unresolved. No construction dimensions or executable recipe assigned.",
+        "Classification basis": "Retain the existing pressure-launcher ammunition ID and candidate routes; proposed compatibility across both launcher variants, separate from reusable pressure storage.",
+        "Tier basis": "Proposed T3 finished projectile using the existing T2 input planning stage; recipe completeness and compatibility remain unresolved.",
+        "Open design decisions": "Resolve final visual form, compatible launcher fit, material, mass, stack size and projectile consumption/recovery. No automatic damage, penetration, velocity or range assigned."
+      }
+    },
+    {
+      "id": "author.weapon.double_shot_pressure_launcher",
+      "name": "Double-shot pressure launcher",
+      "purpose": "A high-powered pressure weapon that holds two projectiles ready before a full reload. Its broader paired forward housings distinguish it from the single-shot launcher, while a separate reusable pressure canister supplies the driving energy. The proposed combat identity is two available shots in a bulky industrial weapon; the firing sequence and whether both shots can be released together remain open.",
+      "icon": "Fictional heavy double-shot pressure launcher with paired squat forward housings, broad metal body, ceramic-colored panels and a separate closed canister silhouette; exterior only, no internal mechanism or construction drawing.",
+      "material": "Ceramic and metal", "use": "Offensive combat",
+      "fields": {
+        "Tier": "T4", "Category": "Weapons", "Subtype": "Double-shot pressure launcher", "Implementation scope": "Author-directed concept", "Design status": "Author direction",
+        "Item type": "Weapon", "Primary use": "Offensive combat", "Material family": "Ceramic and metal", "Crafting role": "Finished item", "Finished-item input tier": "T3",
+        "Search aliases": "pressure launcher; pressure weapon; double shot; two-shot launcher; high-powered launcher",
+        "Classification basis": "Author-requested double-shot variant, separately listed from the existing launcher refined into the single-shot form. Two-projectile ready capacity is the intended distinction.",
+        "Tier basis": "Proposed T4 finished launcher integrating T2/T3 component families; capacity alone grants no additional damage or manufacturing route.",
+        "Open design decisions": "Resolve firing sequence, carrying form, compatible rounds and canister, handling, maintenance and reload behavior. Two ready projectiles does not determine canister endurance or imply simultaneous discharge."
+      }
+    },
+    {
+      "id": "proposal.pressure.launcher_canister_empty",
+      "name": "Empty launcher pressure canister",
+      "purpose": "A reusable metal pressure vessel with a guarded closure and a distinct launcher-feed fitting, shown in its depleted state. It is the physical holder retained after stored pressure is spent, awaiting inspection and charging with a selected compatible working medium. It supplies no usable pressure by itself and is separate from personal algae and dust canisters.",
+      "icon": "One fictional squat metal launcher canister with guarded closed fitting, plain retaining collar and empty-state tag; no readable pressure values, internal diagram or weapon.",
+      "material": "Metal", "use": "Energy storage",
+      "fields": {
+        "Search aliases": "pressure launcher canister; empty pressure canister; depleted launcher vessel; reusable reservoir",
+        "Crafting / processing": "Manufacturing and charging are separate proposals. Charging requires this existing compatible vessel, an identified working medium and an energy source, and returns the same physical vessel pressurized. Materials, process and quantities remain unresolved.",
+        "Open design decisions": "Resolve medium, external form, compatible closure and launcher, vessel condition and charging access. Depleted means no usable driving pressure, not necessarily a vacuum or an absence of residual contents."
+      }
+    },
+    {
+      "id": "proposal.pressure.launcher_canister_pressurized",
+      "name": "Pressurized launcher canister",
+      "purpose": "The charged state of the reusable launcher pressure canister, containing a finite reserve of a selected working medium under pressure. It feeds a compatible pressure launcher while the rivet rounds remain separate ammunition items. Spending the reserve leaves the same vessel depleted; swapping or charging it does not create another canister.",
+      "icon": "The same fictional squat metal launcher canister, guarded closed fitting and retaining collar as the empty state, with a clearly different charged-state tag; no pressure values, internal diagram or weapon.",
+      "material": "Metal", "use": "Energy storage",
+      "fields": {
+        "Category": "Ammunition", "Subtype": "Pressure launcher energy feed", "Crafting role": "Finished item",
+        "Acquisition": "Proposed charging service or trade in an existing compatible reusable vessel; working medium, energy source, availability and price unresolved.",
+        "Crafting / processing": "Charge-state proposal for an existing empty launcher pressure canister. Account for supplied medium and energy, remaining contents and the retained holder. No recipe, charging method or operating values assigned.",
+        "Search aliases": "pressure launcher canister; pressurized canister; charged pressure canister; pressure weapon feed",
+        "Classification basis": "Weapon-specific stored-pressure feed belongs in Ammunition alongside matched weapon energy feeds. Item type remains Energy storage; this is a reusable vessel state, separate from the projectile.",
+        "Open design decisions": "Resolve working medium, charging source, compatibility, reserve tracking, residual contents and return to depleted state. No fixed shots per canister, automatic refill or supply of free water or breathable gas is established."
+      }
+    }
+  ]
+}

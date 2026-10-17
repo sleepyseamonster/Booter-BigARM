@@ -121,6 +121,8 @@ Author direction recorded October 14, 2026:
 
 ### Field Control And Electrical Protection
 
+Author direction October 16, 2026: **high-powered pressure weapons**, including single-shot and double-shot launchers, are part of the setting, with pressurized canisters supplying their driving energy. The [pressure-weapon catalog proposal](Design/Items/PRESSURE_WEAPONS_2026-10-16.json) develops the existing pressure launcher and non-explosive rivet round, adds the second launcher variant, and distinguishes empty and pressurized states of a reusable launcher canister. Particular working media, charging sources, mechanisms, compatibility, endurance, tiers, recipes and performance remain design work. Single-shot and double-shot describe intended ready-projectile capacity; firing sequence and simultaneous discharge remain unresolved. Charging and discharge preserve the physical vessel and account for its remaining contents and stored energy.
+
 Author direction October 16, 2026: people of this world have created **magnetic rail guns**, establishing a contemporary manufactured weapon family alongside ancient and reverse-engineered weapons. Rail gun ammunition and missing weapon-specific crafting components may be cataloged. The [local catalog review and proposals](Design/Items/RAIL_GUN_ITEMS_2026-10-16.json) reuse existing copper conductor, insulation, contact, magnetic and energy-storage families where appropriate. Specific parts, projectile forms, tier assignments, power supplies, compatibility, recipes and performance remain design proposals. Existing magnets or capacitor packs are not automatically qualified weapon inputs, and coil-weapon ammunition is not automatically interchangeable.
 
 Author direction recorded October 14, 2026:
