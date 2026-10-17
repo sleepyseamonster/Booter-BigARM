@@ -1,0 +1,62 @@
+{
+  "source": "Author requested two Tier 1 / Uncommon mineral salvage items, then clarified that they must be actual minerals rather than worked objects, October 16, 2026. Local mineral proposals under Docs/WORLD_BASIS.md.",
+  "scope": "Append two Salvage definitions only. Existing items and manual edits remain intact. Tier measures practical worth independently of rarity or crafting qualification. World identity, streaming/unload/reload, generated-object identity, authored placement constraints and persisted runtime deltas are not applicable because no runtime objects, placement, recipes or save systems change.",
+  "defaults": {
+    "Tier": "T1",
+    "Category": "Salvage",
+    "Subtype": "Recovered mineral pieces",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "None; recovered mineral",
+    "Carrier metadata": "Solid mineral salvage; dimensions, carrying mass and packing remain undefined.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Recover identifiable mineral pieces from discarded mineral stock, sorting rejects or abandoned collection caches. Exact sites, frequency and collection requirements remain design work.",
+    "Crafting / processing": "Identify, clean and assess the mineral before selecting a suitable processing route. No purity, recovery yield or qualified industrial grade is established.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "As-found mineral material. Tier and rarity do not certify purity, chemical safety, a processing recipe or ready-to-use refined material.",
+    "Rarity": "Uncommon",
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Item type": "Raw material",
+    "Processing stage": "Recovered material",
+    "Origin family": "Geological",
+    "Primary use": "Chemical processing",
+    "Material family": "Mineral",
+    "Physical form": "Solid piece",
+    "Design status": "Proposal",
+    "Classification basis": "Actual mineral pieces recovered as salvage, rather than tools, manufactured objects or refined products.",
+    "Finished-item input tier": "Unassigned",
+    "Crafting role": "Material"
+  },
+  "items": [
+    {
+      "id": "proposal.salvage.pyrite_chunks",
+      "name": "Pyrite chunks",
+      "purpose": "Small brassy-yellow pieces of pyrite with angular crystal faces, dark tarnish and patches of adhering rock. This iron-sulfide mineral is proposed as a modest specialist feed for composition testing or controlled chemical-processing research. Its metallic appearance does not make it gold or usable iron metal.",
+      "icon": "Several small brassy-yellow pyrite chunks with angular crystal faces, dark tarnished patches and a little gray host rock; no gold coins, worked object or refined metal.",
+      "material": "Mineral",
+      "use": "Chemical processing",
+      "fields": {
+        "Search aliases": "pyrite; iron sulfide mineral; brassy mineral chunks; recovered sulfide pieces",
+        "Tier basis": "T1 practical worth: identifiable mineral feed offers ordinary specialist processing potential, limited by small quantity, mixed host rock and unverified composition.",
+        "Open design decisions": "Uncommon rarity: recognizable recoverable pyrite pieces are less routine than mixed mineral rubble in the proposed salvage pool. Resolve host rock, contamination, containment and processing options. No gold content, refined iron, guaranteed sulfur yield, edibility or chemical-processing performance is established."
+      }
+    },
+    {
+      "id": "proposal.salvage.kaolinite_clods",
+      "name": "Kaolinite clods",
+      "purpose": "Pale compact clods of kaolinite clay mineral recovered from a discarded mineral stockpile. Their fine, earthy material is proposed as a ceramic-body feed after identification, cleaning and grading. Grit, staining and mixed minerals keep the find below a qualified prepared clay body.",
+      "icon": "A few pale cream kaolinite clods with matte earthy fracture faces, light staining and loose powder; no fired pot, tool or polished gemstone.",
+      "material": "Mineral",
+      "use": "Glass and ceramics",
+      "fields": {
+        "Primary use": "Glass and ceramics",
+        "Search aliases": "kaolinite; kaolin mineral; pale clay clods; recovered ceramic mineral feed",
+        "Tier basis": "T1 practical worth: an identifiable candidate ceramic feed with ordinary fabrication utility, offset by impurities and the preparation still required.",
+        "Open design decisions": "Uncommon rarity: relatively clean identifiable kaolinite clods are less frequent than undifferentiated dusty rubble in the proposed salvage pool. Resolve mineral composition, contamination, grading and compatible ceramic process. No approved deposit, pure kaolin grade, firing recipe or heat behavior is established."
+      }
+    }
+  ]
+}
