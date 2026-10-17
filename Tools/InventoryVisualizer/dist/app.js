@@ -1,6 +1,6 @@
 import {installCategoryMoves} from './category-moves.js';
 import {installTierEditor} from './tier-editor.js';
-import {installRarityEditor,rarityMarker} from './rarity-editor.js';
+import {installRarityEditor,rarityMarker,RARITY_COLORS} from './rarity-editor.js';
 const $ = selector => document.querySelector(selector);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const state = {items:[], art:{}, category:'', owner:'catalog', selected:null, view:'menu', list:false};
@@ -73,6 +73,12 @@ function renderItems(){
   const numericTiers=sectionTiers.filter(tier=>/^T\d+$/.test(tier)).sort((a,b)=>Number(a.slice(1))-Number(b.slice(1)));
   const otherTiers=sectionTiers.filter(tier=>!/^T\d+$/.test(tier)&&tierCounts.has(tier)).sort();
   $('#tier-distribution').innerHTML=`<span class="tier-distribution-label">${esc(state.category||'All items')} · tier distribution</span><dl>${[...numericTiers,...otherTiers].map(tier=>`<div><dt>${esc(tier)}</dt><dd>${tierCounts.get(tier)||0}</dd></div>`).join('')}</dl>`;
+  const rarityCounts=new Map([...Object.keys(RARITY_COLORS),'Unassigned'].map(rarity=>[rarity,0]));
+  for(const item of sectionItems){
+    const rarity=!item.Rarity?'Unassigned':Object.hasOwn(RARITY_COLORS,item.Rarity)?item.Rarity:'Other / legacy';
+    rarityCounts.set(rarity,(rarityCounts.get(rarity)||0)+1);
+  }
+  $('#rarity-distribution').innerHTML=`<span class="tier-distribution-label">${esc(state.category||'All items')} · rarity distribution</span><dl>${[...rarityCounts].map(([rarity,count])=>`<div><dt>${Object.hasOwn(RARITY_COLORS,rarity)?`<span class="rarity-key" style="--rarity-color:${RARITY_COLORS[rarity]}" aria-hidden="true"></span>`:''}${esc(rarity)}</dt><dd>${count}</dd></div>`).join('')}</dl>`;
   $('#queue-filtered').disabled=!items.length;
   if(!items.some(item=>id(item)===state.selected))state.selected=items.length?id(items[0]):null;
   $('#items').classList.toggle('list',state.list);
