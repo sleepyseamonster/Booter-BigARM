@@ -15,31 +15,31 @@ MonoBehaviour:
   version: 1
   opticsEnabled: 1
   collectDiagnostics: 0
-  postExposure: 1
+  postExposure: 1.7
   tonemapping: 1
   bloomEnabled: 1
-  bloomIntensity: 0.18
-  bloomThreshold: 1
-  bloomScatter: 0.65
+  bloomIntensity: 0.95
+  bloomThreshold: 0.18
+  bloomScatter: 0.608
   highQualityBloom: 1
+  bloomFilter: 0
+  bloomDownscale: 0
+  bloomMaxIterations: 6
   dirtTexture: {fileID: 2800000, guid: 101878730e4abe94d9602e301709c572, type: 3}
-  dirtIntensity: 0.3
+  dirtIntensity: 0.69
   depthMode: 1
+  gaussianBeforeLens: 1
+  gaussianHighQualitySampling: 1
   focusDistance: 20
   followPlayerFocus: 1
   focusSmoothingSeconds: 0.25
   readableFarPadding: 5
-  farBlurTransition: 45
+  farBlurTransition: 44.95
   farStart: 25
   farEnd: 70
-  aperture: 8
+  aperture: 7.7
   focalLength: 50
-  gaussianRadius: 0.6
+  gaussianRadius: 1.7
   sunAngularDiameterDegrees: 0.7
   flareVisibilityAttackSeconds: 0.06
   flareVisibilityReleaseSeconds: 0.12
-  gaussianBeforeLens: 1
-  gaussianHighQualitySampling: 1
-  bloomFilter: 0
-  bloomDownscale: 0
-  bloomMaxIterations: 6
