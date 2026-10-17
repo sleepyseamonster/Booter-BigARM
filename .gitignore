@@ -72,3 +72,6 @@ __pycache__/
 /Assets/_Project/Settings/AnimationPlayground/PrivateBindings/*.asset
 /Assets/_Project/Settings/AnimationPlayground/PrivateBindings/*.asset.meta
 /SourceArt/Animation/Mixamo/Reference/*.fbx
+
+# Local inventory preview captures, exporter logs, and workbook inspection output.
+/outputs/
