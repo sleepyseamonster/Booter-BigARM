@@ -97,6 +97,12 @@ Author direction clarified October 15, 2026, superseding the earlier material-on
 
 Salvage exception, author direction October 16, 2026: the local catalog's 200 **Salvage** entries use T0 through T4 as relative practical-worth bands, with exactly 40 items in each tier. These assignments supersede their earlier refinement-tier labels only within Salvage. Recoverable utility, replacement labor, scarcity, condition and plausible demand determine the value bands; an item's value tier does not qualify it for crafting, certify its operation or establish a reproduction process. The [per-item salvage value audit](Design/Items/SALVAGE_VALUE_TIERS_2026-10-16.json) records every assignment and reason. This change is in the local master workbook; the separate Google Sheet has not been synchronized.
 
+### Catalog Value Tiers
+
+Author direction October 16, 2026 extends practical-worth tiers to the other catalog sections and permits names and item forms to be refined where that makes them clearer. Outside **Salvage** and **Ancient salvage**, the local catalog now uses T0 for common, low-cost goods, T1 for ordinary useful goods, T2 for specialist goods, T3 for high-value preparation or assemblies, and T4 for exceptional scarcity or replacement difficulty. Utility, material scarcity, processing loss, fabrication effort, condition and plausible demand inform these planning judgments. Counts decrease at each tier across the audited sections, rather than imposing equal quotas on every category. The [catalog balance audit](Design/Items/CATALOG_VALUE_BALANCE_2026-10-16.json) records every assignment and refinement.
+
+These value ranks supersede the earlier item-tier assignments only in the audited sections. They do not grant crafting readiness, validate a refinement-stage progression, resolve withheld anatomy, certify performance, set currency exchange rates or supply stored contents or energy. Earlier refinement proposals and prior assignments remain historical manufacturing guidance; they are separate from current value ranks. Both salvage sections are explicitly excluded from this continuation and remain under the author's ongoing review. Changes are confined to the local workbook; the separate Google Sheet is unsynchronized.
+
 ### Material Mark Currencies
 
 Author direction recorded October 15, 2026:
