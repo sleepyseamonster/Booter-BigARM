@@ -170,7 +170,7 @@ def build_move(snapshot, item_id, destination, expected_from):
     return candidate, {"itemId": item_id, "itemName": item[1], "fromCategory": previous, "toCategory": destination, "noop": False}
 
 
-def verify_move(before, after, changes):
+def verify_move(before, after, changes, category_contract=True):
     """Verify untouched bytes and changed values/formulas/styles without full exports."""
     try:
         with ZipFile(BytesIO(before)) as original, ZipFile(BytesIO(after)) as candidate:
@@ -207,9 +207,10 @@ def verify_move(before, after, changes):
                               else cell.find('s:v', NS).text)
                     assert actual == str(expected), (sheet,address,'value/cache')
             wb = ET.fromstring(candidate.read('xl/workbook.xml'))
-            assert any(n.attrib.get('name') == 'InventoryCategoryChoices' for n in wb.findall('s:definedNames/s:definedName', NS))
-            items = ET.fromstring(candidate.read(parts['Items']))
-            assert any(n.attrib.get('sqref') == 'D6:D1005' and n.find('s:formula1', NS).text == 'InventoryCategoryChoices' for n in items.findall('s:dataValidations/s:dataValidation', NS))
+            if category_contract:
+                assert any(n.attrib.get('name') == 'InventoryCategoryChoices' for n in wb.findall('s:definedNames/s:definedName', NS))
+                items = ET.fromstring(candidate.read(parts['Items']))
+                assert any(n.attrib.get('sqref') == 'D6:D1005' and n.find('s:formula1', NS).text == 'InventoryCategoryChoices' for n in items.findall('s:dataValidations/s:dataValidation', NS))
     except (AssertionError, ET.ParseError, AttributeError) as error:
         raise EditError(f"Category verification failed; no workbook changes were saved: {error}") from error
 

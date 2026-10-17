@@ -12,6 +12,7 @@ from pathlib import Path
 import openpyxl
 import workbook_edits
 import category_edits
+import tier_edits
 
 ROOT = Path(__file__).resolve().parents[2]
 WEB = Path(__file__).resolve().parent / "dist"
@@ -43,7 +44,9 @@ def catalog():
             raise ValueError("Duplicate item IDs in master workbook")
         categories = (category_edits.registry(list(book['Categories'].values)) if 'Categories' in book.sheetnames
                       else sorted({item['Category'] for item in items if item.get('Category')}))
+        tiers = tier_edits.tier_choices({'Taxonomy': list(book['Taxonomy'].values)}) if 'Taxonomy' in book.sheetnames else []
         return {"items": items, "categories": categories, "categoryEditing": 'Categories' in book.sheetnames,
+                "tierChoices": tiers, "tierEditing": bool(tiers),
                 "source": str(WORKBOOK.relative_to(ROOT)),
                 "sha256": hashlib.sha256(snapshot).hexdigest(), **review_metadata()}
     finally:
@@ -70,7 +73,7 @@ class Handler(SimpleHTTPRequestHandler):
             self.json_response(403, {"error": "Reload this local page before changing items."})
             return
         path = urlsplit(self.path).path
-        if path not in {"/api/items/protect", "/api/items/review", "/api/items/delete", "/api/items/category"}:
+        if path not in {"/api/items/protect", "/api/items/review", "/api/items/delete", "/api/items/category", "/api/items/tier"}:
             self.json_response(404, {"error": "Unknown action"})
             return
         try:
@@ -82,7 +85,11 @@ class Handler(SimpleHTTPRequestHandler):
                 raise workbook_edits.EditError("A JSON object is required.", 400)
             if not isinstance(body.get("itemId"), str) or not isinstance(body.get("sourceHash"), str):
                 raise workbook_edits.EditError("Item ID and spreadsheet revision are required.", 400)
-            if path == '/api/items/category':
+            if path == '/api/items/tier':
+                if not all(isinstance(body.get(key),str) for key in ['fromTier','toTier']):
+                    raise workbook_edits.EditError('Source and destination tiers are required.',400)
+                result = tier_edits.update(WORKBOOK, BACKUPS, body)
+            elif path == '/api/items/category':
                 if not all(isinstance(body.get(key), str) for key in ['toCategory', 'fromCategory']):
                     raise workbook_edits.EditError("Source and destination categories are required.", 400)
                 result = category_edits.move(WORKBOOK, BACKUPS, body)
@@ -104,6 +111,14 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = self.path.split("?", 1)[0]
+        if path.startswith('/api/tier-operations/'):
+            try:
+                self.json_response(200, tier_edits.operation_status(WORKBOOK, BACKUPS, path.rsplit('/',1)[1]))
+            except workbook_edits.EditError as error:
+                self.json_response(error.status, {'error':str(error)})
+            except OSError:
+                self.json_response(423, {'error':'Spreadsheet unavailable; save outcome could not be checked.'})
+            return
         if path.startswith('/api/category-operations/'):
             try:
                 self.json_response(200, category_edits.operation_status(WORKBOOK, BACKUPS, path.rsplit('/', 1)[1]))

@@ -1,4 +1,5 @@
 import {installCategoryMoves} from './category-moves.js';
+import {installTierEditor} from './tier-editor.js';
 const $ = selector => document.querySelector(selector);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const state = {items:[], art:{}, category:'', owner:'catalog', selected:null, view:'menu', list:false};
@@ -80,6 +81,13 @@ function renderDetail(){
   const extra=(title,text)=>text?`<details><summary>${esc(title)}</summary><p>${esc(text)}</p></details>`:'';
   $('#detail').innerHTML=`<div class="detail-top"><span>ITEM INSPECTION</span><span>${esc(tierLabel(item))} / ${art.image?'IMAGE':'NO IMAGE'}</span></div><div class="detail-hero">${imageFor(item,true)}${!art.image?'<span class="placeholder-tag">CATEGORY PLACEHOLDER · NOT ITEM ART</span>':''}</div><div class="detail-body"><div class="eyebrow">${esc(item.Category)}</div><h2>${esc(name(item))}</h2><div class="pills"><span class="pill">${esc(item.Tier)}</span><span class="pill">${esc(item['Design status']||'Unspecified')}</span></div><section class="item-description" aria-label="Item description"><h3>Description</h3><p class="description">${esc(item.Purpose||'Description not yet recorded in the master register.')}</p></section><dl>${field('Material',item['Material family'])}${field('Form',item['Physical form'])}${field('Primary use',item['Primary use'])}${field('Stage',item['Processing stage'])}${field('Rarity',item.Rarity)}${field('Scope',item['Implementation scope'])}${field('Carrier',item['Carrier metadata'])}${field('Stack limit',item['Stack limit'])}${field('Mass (game units)',item['Mass (game units)'])}</dl>${extra('Acquisition & processing',[item.Acquisition,item['Crafting / processing']].filter(Boolean).join(' · '))}${extra('Tier reasoning',item['Tier basis'])}${extra('Supported behavior & limits',[item['Supported behavior'],item.Limitations].filter(Boolean).join(' · '))}${extra('Open design decisions',item['Open design decisions'])}<section class="art-tools"><h3>Artwork workspace</h3><label class="button">＋ Attach item image<input id="image-upload" type="file" accept="image/png,image/jpeg,image/webp" hidden></label><label>Art status<select id="art-status"><option value="missing">Not started</option><option value="queued">Queued for generation</option><option value="review">In review</option><option value="approved">Approved artwork</option></select></label><label>Art notes<textarea id="art-notes" placeholder="Silhouette, material, framing, changes…">${esc(art.notes||'')}</textarea></label><div class="row"><button id="prompt">Copy draft prompt</button><button id="remove-image" ${!art.image?'disabled':''}>Remove image</button></div><small>Saved in this browser. Export a workspace backup to keep images and notes portable.</small></section><p class="item-id">${esc(id(item))}</p>${extra('Database sources',item.Sources)}</div>`;
   $('#detail .item-description').insertAdjacentHTML('afterend',categoryMoves.controls(item));
+  $('#detail .item-description').insertAdjacentHTML('beforebegin',tierEditor.controls(item));
+  const description=$('#detail .item-description');
+  for(const [label,text]of [['Use',item['Primary use']],['Behavior',item['Supported behavior']],['Limits',item.Limitations]]){
+    if(!text)continue;
+    const p=document.createElement('p');p.className='description-detail';
+    const strong=document.createElement('strong');strong.textContent=`${label}: `;p.append(strong,document.createTextNode(text));description.append(p);
+  }
   if($('#detail').dataset.itemId!==id(item))$('#detail').scrollTop=0;
   $('#detail').dataset.itemId=id(item);
   $('#art-status').value=art.status;
@@ -186,7 +194,7 @@ async function init(){
 function syncStatus(message){$('#sync-status').textContent=message;}
 let syncBusy=false;
 async function reviewAction(action,key){
-  if(categoryMoves.pending()){toast('Check the pending category save before changing another item.');return;}
+  if(categoryMoves.pending()||tierEditor.pending()){toast('Check the pending spreadsheet save before changing another item.');return;}
   if(syncBusy){toast('Spreadsheet action in progress · try again in a moment');return;}
   const kept=(state.protectedIds||[]).includes(key),reviewed=(state.reviewIds||[]).includes(key);
   if(action==='delete'&&kept){toast('This item is kept. Uncheck it before deleting.');return;}
@@ -237,6 +245,7 @@ async function refreshCatalog(force=false){
   const gridScroll=$('#items').scrollTop,detailScroll=$('#detail').scrollTop;
   const openDetails=[...document.querySelectorAll('#detail details[open]')].map(el=>el.querySelector('summary').textContent);
   state.items=data.items;state.categories=data.categories||[];state.categoryEditing=data.categoryEditing===true;state.sourceHash=data.sha256;state.protectedIds=data.protectedIds||[];state.reviewIds=data.reviewIds||[];state.reviewRevision=data.reviewRevision;state.mutationToken=data.mutationToken;$('#total').textContent=state.items.length;
+  state.tierChoices=data.tierChoices||[];state.tierEditing=data.tierEditing===true;
   for(const [selector,key,label]of [['#tier','Tier','All tiers'],['#design','Design status','All statuses']]){
     const selected=$(selector).value;
     const values=[...new Set(state.items.map(item=>item[key]).filter(Boolean))].sort();
@@ -266,8 +275,10 @@ async function checkSpreadsheet(){
   }catch{syncStatus('Spreadsheet unavailable · retrying; keeping current items');}
   finally{syncBusy=false;}
 }
-const categoryMoves=installCategoryMoves({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy,setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:async()=>{const draft=$('#art-notes');if(draft&&state.selected&&draft.value!==(recordFor(state.selected).notes||''))await updateArt(state.selected,{notes:draft.value});}});
-init().then(()=>categoryMoves.restore()).catch(error=>{$('#result-count').textContent=error.message;report(error);}).finally(()=>{
+const saveArtDraft=async()=>{const draft=$('#art-notes');if(draft&&state.selected&&draft.value!==(recordFor(state.selected).notes||''))await updateArt(state.selected,{notes:draft.value});};
+const categoryMoves=installCategoryMoves({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||tierEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:saveArtDraft});
+const tierEditor=installTierEditor({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||categoryMoves.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:saveArtDraft});
+init().then(async()=>{await categoryMoves.restore();await tierEditor.restore();}).catch(error=>{$('#result-count').textContent=error.message;report(error);}).finally(()=>{
   $('#reload-data').disabled=false;
   setInterval(checkSpreadsheet,3000);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkSpreadsheet();});
