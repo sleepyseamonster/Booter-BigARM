@@ -4,6 +4,10 @@ Open **Game inventory** in the visualizer's top navigation, or visit `http://127
 
 This tab is separate from the catalogue/review/artwork workspace. Its iframe, JavaScript module, model and stylesheet are independent; the shared entry points integrate navigation, lazy loading and scoped host chrome. It reads `/api/catalog` and never calls a mutation endpoint. No master item, review choice, artwork record, Unity asset or gameplay save is edited.
 
+## Crafting Local Access block removed — October 17, 2026
+
+Removed the Local Access summary (Camp chest, Legger cargo and Workstations proximity indicators) and its Adjust study access link from Crafting. The underlying access rules and Settings prototype controls retain their behavior. Camp view checks, module syntax and browser review passed; no Local Access block remains in the rendered Crafting hub. [Current view](../../Docs/Evidence/UI/CampMenu20261017/crafting-without-local-access.png).
+
 ## Reference removed from Crafting — October 17, 2026
 
 Crafting now has five sub-tabs: Item box, Booter equipment, Legger cargo, Workstations and Tracked projects. The author removed its duplicate Item almanac/Reference section. Item **Reference & uses** links now open the primary **Reference** tab, and `/` does the same when the current Crafting panel has no search field. Existing possession search stays in its panel. LT/RT wrap across the five remaining services.
@@ -12,7 +16,7 @@ Verification: 29 focused checks passed. Browser review confirmed the five sub-ta
 
 ## Two-level menu navigation — October 17, 2026
 
-Crafting's former left service rail is now a horizontal sub-tab row above the content: **Item box**, **Booter equipment**, **Legger cargo**, **Workstations**, and **Tracked projects**. Inventory uses the same row component for **Booter** and **Legger**. Local access status sits below Crafting's content. The removed Overview stays removed.
+Crafting's former left service rail is now a horizontal sub-tab row above the content: **Item box**, **Booter equipment**, **Legger cargo**, **Workstations**, and **Tracked projects**. Inventory uses the same row component for **Booter** and **Legger**. The removed Overview stays removed.
 
 **LB/RB** cycle the six primary tabs; **LT/RT** cycle the active page's sub-tabs. Both rows wrap in either direction. Triggers do nothing on pages without sub-tabs, and neither pair navigates behind an open dialog. Shoulder actions remain one per full release, including switching between navigation tiers. Keyboard Left/Right and Home/End operate the focused sub-tab row. Selected sub-tabs retain focus after the content rebuilds; narrow screens scroll the row to reveal the selected tab. Workstation selection remains within Workstations, using ordinary navigation or the mobile station picker.
 
