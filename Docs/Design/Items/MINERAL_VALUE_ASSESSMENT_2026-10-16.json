@@ -1,0 +1,497 @@
+{
+  "scope": "All 50 current Mineral resources records; tiers and editable rarity defaults only.",
+  "sourceRevision": "f6f98515c005dc3c73cccd9cbc031691745740c6",
+  "remoteHeadVerified": "2026-10-16; authenticated git ls-remote origin HEAD matches inspected cache HEAD",
+  "method": "Relative gameplay value from useful applications, available material fraction, replacement effort and lore-supported scarcity. Raw state alone does not force T0. No quota per tier. Rarity is seeded from tier once and remains manually editable.",
+  "rarityDefaults": {
+    "T0": "Junk",
+    "T1": "Common",
+    "T2": "Uncommon",
+    "T3": "Rare",
+    "T4": "Epic"
+  },
+  "tier4Decision": "No current mineral record specifies an exceptional qualified grade or unique find strongly enough to justify T4/Epic. Reserve it for explicitly authored exceptional mineral grades rather than promoting every named gemstone.",
+  "boundaries": "All six external material/economy records are canon_status proposal, status draft. Their economic patterns inform provisional local catalog assignments. Specific terrestrial minerals, deposits, abundance, prices, optical grades and recipes remain proposals. Existing game rules and author-established resource families take precedence. No source-repository writes or gameplay/recipe changes.",
+  "sources": {
+    "WLD-0132": {
+      "path": "02-Arc-Dust-Worldbuilding/world/materials/industrial-material-palette.md",
+      "status": "Source proposal; draft",
+      "url": "https://github.com/sleepyseamonster/Arc-Dust/blob/f6f98515c005dc3c73cccd9cbc031691745740c6/02-Arc-Dust-Worldbuilding/world/materials/industrial-material-palette.md"
+    },
+    "WLD-0060": {
+      "path": "02-Arc-Dust-Worldbuilding/world/materials/canyon-depth-geology.md",
+      "status": "Source proposal; draft",
+      "url": "https://github.com/sleepyseamonster/Arc-Dust/blob/f6f98515c005dc3c73cccd9cbc031691745740c6/02-Arc-Dust-Worldbuilding/world/materials/canyon-depth-geology.md"
+    },
+    "WLD-0061": {
+      "path": "02-Arc-Dust-Worldbuilding/world/materials/chemical-processing-agents.md",
+      "status": "Source proposal; draft",
+      "url": "https://github.com/sleepyseamonster/Arc-Dust/blob/f6f98515c005dc3c73cccd9cbc031691745740c6/02-Arc-Dust-Worldbuilding/world/materials/chemical-processing-agents.md"
+    },
+    "WLD-0058": {
+      "path": "02-Arc-Dust-Worldbuilding/world/materials/iron-growth-stages.md",
+      "status": "Source proposal; draft",
+      "url": "https://github.com/sleepyseamonster/Arc-Dust/blob/f6f98515c005dc3c73cccd9cbc031691745740c6/02-Arc-Dust-Worldbuilding/world/materials/iron-growth-stages.md"
+    },
+    "WLD-0028": {
+      "path": "02-Arc-Dust-Worldbuilding/world/economy/iron-mineral-economy.md",
+      "status": "Source proposal; draft",
+      "url": "https://github.com/sleepyseamonster/Arc-Dust/blob/f6f98515c005dc3c73cccd9cbc031691745740c6/02-Arc-Dust-Worldbuilding/world/economy/iron-mineral-economy.md"
+    },
+    "WLD-0059": {
+      "path": "02-Arc-Dust-Worldbuilding/world/materials/glass.md",
+      "status": "Source proposal; draft",
+      "url": "https://github.com/sleepyseamonster/Arc-Dust/blob/f6f98515c005dc3c73cccd9cbc031691745740c6/02-Arc-Dust-Worldbuilding/world/materials/glass.md"
+    },
+    "game-world": {
+      "path": "Docs/WORLD_BASIS.md",
+      "status": "Game canon; author-established resource families and value-tier scope, specific mineral roster remains proposal"
+    },
+    "existing-item": {
+      "path": "Docs/Design/Items/MASTER_ITEM_DATABASE.xlsx / Items",
+      "status": "Existing local item proposal; use and recovery description, not accepted deposit canon"
+    }
+  },
+  "items": [
+    {
+      "id": "resource.ironstone_ore",
+      "tier": "T0",
+      "reason": "Abundant mixed iron-bearing cargo in an iron-rich world; transport, sorting and refining dominate its modest value.",
+      "sources": [
+        "WLD-0132",
+        "WLD-0028"
+      ]
+    },
+    {
+      "id": "proposal.natural.magnetite",
+      "tier": "T1",
+      "reason": "Useful iron feed and magnetic research material has routine industrial demand, but abundant iron prevents a scarcity premium.",
+      "sources": [
+        "WLD-0132"
+      ]
+    },
+    {
+      "id": "proposal.natural.silica",
+      "tier": "T0",
+      "reason": "Ordinary grit is abundant bulk abrasive and silicate feed; no clean crystal or optical grade is specified.",
+      "sources": [
+        "WLD-0059"
+      ]
+    },
+    {
+      "id": "proposal.natural.alumina",
+      "tier": "T2",
+      "reason": "Candidate hard ceramic and electrical-insulation feed serves specialist heat and isolation needs; value comes from intended industrial use, pending composition qualification.",
+      "sources": [
+        "WLD-0132"
+      ]
+    },
+    {
+      "id": "proposal.natural.carbonate",
+      "tier": "T1",
+      "reason": "Carbonate feed supports widely needed lime, binders and settlement construction; broad demand raises it above undifferentiated rubble without making it scarce.",
+      "sources": [
+        "WLD-0061"
+      ]
+    },
+    {
+      "id": "proposal.natural.salts",
+      "tier": "T1",
+      "reason": "Useful selected mineral feed has routine processing demand; culture compatibility remains unresolved and no nutrition or survival performance is certified.",
+      "sources": [
+        "WLD-0060",
+        "WLD-0061",
+        "game-world"
+      ]
+    },
+    {
+      "id": "proposal.natural.graphite",
+      "tier": "T2",
+      "reason": "The roster specifies sparse seams and candidate dry lubrication/conductive composites, giving specialist utility beyond ordinary rock; no ready conductor grade is implied.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.natural.copper_stone",
+      "tier": "T2",
+      "reason": "Better-conductor sources are strategically limited in this iron-rich world; unsorted copper-bearing rock has specialist prospecting value despite gangue and uncertain recovery.",
+      "sources": [
+        "WLD-0132"
+      ]
+    },
+    {
+      "id": "proposal.natural.copper_ore",
+      "tier": "T3",
+      "reason": "Sorting concentrates a scarce better-conductor source for coils, contacts and control equipment, reducing useless cargo and making this high-value industrial feed.",
+      "sources": [
+        "WLD-0132"
+      ]
+    },
+    {
+      "id": "proposal.natural.raw_copper",
+      "tier": "T3",
+      "reason": "Unworked copper metal addresses the conductor bottleneck more directly than mineral feed; its useful metal fraction supports valuable specialist electrical stock, pending qualification.",
+      "sources": [
+        "WLD-0132"
+      ]
+    },
+    {
+      "id": "proposal.natural.tungsten_ore",
+      "tier": "T2",
+      "reason": "Candidate wear-resistant material feed fills a specialist fabrication need; the lore does not establish a uniquely scarce tungsten deposit or a ready high-performance alloy.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.natural.magnesium_rock",
+      "tier": "T1",
+      "reason": "Identified magnesium-compound feed has ordinary refining potential, while uncertain grade and difficult recovery prevent a specialist-metal premium.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.natural.raw_magnesium",
+      "tier": "T2",
+      "reason": "Manufactured unworked metal embodies specialist refining effort beyond raw compounds; intended fabrication value remains conditional on handling and material suitability.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.natural.hematite",
+      "tier": "T0",
+      "reason": "An identified iron mineral still competes with abundant iron-bearing material; a species name alone gives no premium purity, yield or alloy performance.",
+      "sources": [
+        "WLD-0132"
+      ]
+    },
+    {
+      "id": "proposal.natural.sulfur",
+      "tier": "T1",
+      "reason": "A broadly useful and relatively available industrial chemistry source supports separation, treatment and processing; utility is high but scarcity is modest.",
+      "sources": [
+        "WLD-0061",
+        "WLD-0132"
+      ]
+    },
+    {
+      "id": "proposal.natural.gypsum",
+      "tier": "T1",
+      "reason": "Accessible evaporite feed supports molds and mineral products with ordinary workshop demand; no rare formation or premium grade is specified.",
+      "sources": [
+        "WLD-0060",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.natural.talc",
+      "tier": "T1",
+      "reason": "Candidate powders and ceramic feed have practical routine workshop uses, without evidence of exceptional scarcity or a finished-material premium.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.natural.lead_ore",
+      "tier": "T1",
+      "reason": "Identified heavy-metal feed has industrial utility but remains unrefined bulk cargo; no particular strategic application or rich grade is established.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.natural.zinc_ore",
+      "tier": "T2",
+      "reason": "Candidate alloying and protective-coating feed supports specialist material durability work; the rank reflects that use rather than an invented local deposit rarity.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.natural.silver_ore",
+      "tier": "T3",
+      "reason": "The roster targets a high-grade seam for specialist contacts; scarce better-conductor supply gives it high industrial value beyond its ornamental or trade appeal.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.natural.gold_rock",
+      "tier": "T3",
+      "reason": "The roster explicitly proposes scarce feed for specialist components and trade; limited precision/contact material and desirability support high value without assigning an Earth-market price.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.natural.fluorite",
+      "tier": "T2",
+      "reason": "Specialist ceramic and metallurgical processing feed can enable controlled material work; exact mineral chemistry and recipes remain proposals.",
+      "sources": [
+        "WLD-0061",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.natural.antimony_ore",
+      "tier": "T2",
+      "reason": "Candidate specialist alloy feed has more focused industrial value than common iron cargo; neither deposit scarcity nor a finished alloy is certified.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.gem.clear_quartz",
+      "tier": "T2",
+      "reason": "Clear crystal offers selected ornamental and premium clear-stone potential beyond bulk silicate; it is not assumed large, flawless or qualified for precision optics.",
+      "sources": [
+        "WLD-0060",
+        "WLD-0059",
+        "game-world"
+      ]
+    },
+    {
+      "id": "proposal.gem.smoky_quartz",
+      "tier": "T1",
+      "reason": "The current use is dark ornament and contrasting inlay; color alone does not establish scarcity, optical performance or high-value gem grade.",
+      "sources": [
+        "game-world",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.gem.garnet",
+      "tier": "T2",
+      "reason": "Distinctive selected gem material supports detailed settings and inlay; specialist ornamental value is provisional, with local abundance and cutting yield still open.",
+      "sources": [
+        "game-world",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.gem.spinel",
+      "tier": "T2",
+      "reason": "Selected hard-looking ornamental material is intended for polished accents and settings; provisional value follows that craft demand, not an assumed terrestrial rarity or special power.",
+      "sources": [
+        "game-world",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.gem.peridot",
+      "tier": "T2",
+      "reason": "Distinctive green ornamental material offers specialist decorative demand; deposit abundance and actual gem grade remain unapproved.",
+      "sources": [
+        "game-world",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.gem.tourmaline",
+      "tier": "T2",
+      "reason": "Candidate multicolor material serves distinctive regional ornament and settings; no additional electrical property or uniquely rare deposit is inferred.",
+      "sources": [
+        "game-world",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.gem.zircon",
+      "tier": "T2",
+      "reason": "Candidate brilliant accents and fine settings justify a selected ornamental-material band, while local abundance, clarity and cutting yield remain open.",
+      "sources": [
+        "game-world",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.fire.oxygen_stone",
+      "tier": "T3",
+      "reason": "The author-established oxygen-releasing family has potentially high survival utility in the low-oxygen setting; this is a provisional value rank while output, depletion, activation and actual scarcity remain undefined.",
+      "sources": [
+        "game-world"
+      ]
+    },
+    {
+      "id": "proposal.fire.glow_stone",
+      "tier": "T2",
+      "reason": "The author-established light-emitting family has specialist portable-lighting utility; output, duration and abundance are unresolved, and light does not establish heat or fuel.",
+      "sources": [
+        "game-world"
+      ]
+    },
+    {
+      "id": "proposal.fire.flint",
+      "tier": "T1",
+      "reason": "Candidate sparking and worked-edge uses make this a useful everyday resource; appropriate fuel and atmospheric conditions are still required.",
+      "sources": [
+        "game-world"
+      ]
+    },
+    {
+      "id": "proposal.raw.feldspar",
+      "tier": "T1",
+      "reason": "Useful glass and ceramic batch feed has routine kiln demand; no exceptional purity or deep-crystal grade is specified.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.raw.obsidian",
+      "tier": "T1",
+      "reason": "Potential cutting and scraping blanks offer immediate shaping utility above rubble; brittleness, selection and mounting limit their value.",
+      "sources": [
+        "existing-item",
+        "WLD-0060"
+      ]
+    },
+    {
+      "id": "proposal.raw.emery",
+      "tier": "T2",
+      "reason": "Candidate abrasive grains support specialist finishing and repair; grade, hardness and contamination must still be checked before use.",
+      "sources": [
+        "existing-item",
+        "WLD-0132"
+      ]
+    },
+    {
+      "id": "proposal.raw.barite",
+      "tier": "T1",
+      "reason": "A dense fabrication feed is useful cargo, but weight alone and an unresolved application do not justify a strategic-material premium.",
+      "sources": [
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.lore.young_growth",
+      "tier": "T0",
+      "reason": "Young surface Growth is plentiful and easy to recover, with porous low-density material suited to analysis or processing rather than structural stock.",
+      "sources": [
+        "WLD-0058"
+      ]
+    },
+    {
+      "id": "proposal.lore.mature_growth",
+      "tier": "T1",
+      "reason": "Mature Growth is the standard commercial industrial source, with real infrastructure demand and extraction effort but widespread bulk supply.",
+      "sources": [
+        "WLD-0058",
+        "WLD-0028"
+      ]
+    },
+    {
+      "id": "proposal.lore.old_growth",
+      "tier": "T3",
+      "reason": "Centuries-old dense cores require costly depth access and offer premium composition-sensitive feed and research value; no particular core is certified as a master seal alloy or ancient synthetic.",
+      "sources": [
+        "WLD-0058",
+        "WLD-0028",
+        "WLD-0060"
+      ]
+    },
+    {
+      "id": "proposal.lore.alkaline_crust",
+      "tier": "T2",
+      "reason": "Alkaline deposits are less abundant than sulfur and constrain useful cleaning, chitin processing and glaze chemistry; raw crust still requires assay and controlled preparation.",
+      "sources": [
+        "WLD-0061"
+      ]
+    },
+    {
+      "id": "proposal.collection.nickel_bearing_nodules",
+      "tier": "T2",
+      "reason": "The roster explicitly proposes scarce specialty-steel and electrical-contact feed; focused industrial utility justifies a specialist band without claiming a qualified alloy.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.collection.tin_bearing_gravel",
+      "tier": "T2",
+      "reason": "Candidate bronze alloying feed enables a specialist material route distinct from abundant iron; yield and deposit frequency remain proposals.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.collection.chromite_rich_stone",
+      "tier": "T2",
+      "reason": "Candidate alloying and refractory uses support specialist heat and wear applications; the raw stone is not already a performance alloy or certified refractory.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.collection.ilmenite_rich_sand",
+      "tier": "T1",
+      "reason": "The stated purpose is pigment and unspecified specialist mineral feed; no titanium-metal recovery process or exceptional deposit grade is established to justify a higher band.",
+      "sources": [
+        "WLD-0132",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.collection.dolomite_fragments",
+      "tier": "T1",
+      "reason": "Candidate lime and kiln-flux feed has broad practical demand but belongs to routine industrial mineral supply.",
+      "sources": [
+        "WLD-0061",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.collection.halite_chunks",
+      "tier": "T1",
+      "reason": "Salt is abundant bulk evaporite cargo with useful industrial chemistry demand; it has no rare-crystal premium and is distinct from culinary-qualified salt.",
+      "sources": [
+        "WLD-0060",
+        "WLD-0061"
+      ]
+    },
+    {
+      "id": "proposal.collection.agate_nodule",
+      "tier": "T1",
+      "reason": "Candidate beads and small inlays provide ordinary ornamental value; a banded appearance alone does not prove rarity or exceptional gem quality.",
+      "sources": [
+        "game-world",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.collection.chalcedony_seam_stone",
+      "tier": "T1",
+      "reason": "Candidate carving and inlay material offers everyday decorative utility; translucency alone does not establish rare optical grade.",
+      "sources": [
+        "game-world",
+        "existing-item"
+      ]
+    },
+    {
+      "id": "proposal.audit.selected_culinary_salt_crystals",
+      "tier": "T1",
+      "reason": "Selection for a dietary candidate creates practical food-preparation interest beyond industrial salt, while composition and food suitability remain unverified.",
+      "sources": [
+        "WLD-0060",
+        "game-world",
+        "existing-item"
+      ]
+    }
+  ]
+}
