@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "command": "command eval",
+  "data": {
+    "command": "eval",
+    "parameters": {
+      "code": "var b=UnityEditor.AssetDatabase.LoadAssetAtPath<BooterBigArm.TopDown3D.TopDown3DAnimationPlaygroundBindings>(\"Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset\");return new {valid=b.ValidatePlayer(out var reason),reason,playing=UnityEditor.EditorApplication.isPlaying,compiling=UnityEditor.EditorApplication.isCompiling,failed=UnityEditor.EditorUtility.scriptCompilationFailed,scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().path,dirty=UnityEngine.SceneManagement.SceneManager.GetActiveScene().isDirty,crouch=b.crouch.contactsQualified && b.crouch.groundingQualified,jump=b.airborne.qualified,slide=b.lowMotion.qualified,dodge=b.dodge.qualified,sprintEntryWeight=b.forwardReviewOverride.PoseWeights(4.90125f)[5]};",
+      "timeout": "15000"
+    },
+    "result": {
+      "output": null,
+      "diagnostics": [],
+      "success": true,
+      "result": {
+        "valid": true,
+        "reason": null,
+        "playing": false,
+        "compiling": false,
+        "failed": false,
+        "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+        "dirty": false,
+        "crouch": true,
+        "jump": true,
+        "slide": true,
+        "dodge": true,
+        "sprintEntryWeight": 0.00000299699423
+      }
+    },
+    "target": {
+      "host": "127.0.0.1",
+      "port": 7800,
+      "projectPath": "D:\\Arc & Dust\\Project"
+    }
+  },
+  "errors": [],
+  "warnings": []
+}
