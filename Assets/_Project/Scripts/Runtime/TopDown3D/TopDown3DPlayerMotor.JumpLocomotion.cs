@@ -58,7 +58,7 @@ namespace BooterBigArm.TopDown3D
             {
                 var hit=animationReturnHits[i];
                 if(hit.collider==null || hit.collider.transform.IsChildOf(transform) || hit.distance>=nearest
-                    || hit.collider.GetComponentInParent<TopDown3DGroundSurface>()==null)continue;
+                    || !CanUsePhysicalGroundCollider(hit.collider))continue;
                 // An initial overlap can report the cast's inverse direction as its normal.
                 if(hit.distance<.0001f)
                 {
@@ -86,7 +86,7 @@ namespace BooterBigArm.TopDown3D
             {
                 var hit=animationReturnHits[i];
                 if(hit.collider==null || hit.collider.transform.IsChildOf(transform)
-                    || hit.collider.GetComponentInParent<TopDown3DGroundSurface>()==null
+                    || !CanUsePhysicalGroundCollider(hit.collider)
                     || Vector3.Angle(hit.normal,Vector3.up)>maxWalkableSlope)continue;
                 var gap=Mathf.Max(0,hit.distance-.25f-radius*(1/Mathf.Max(.01f,hit.normal.y)-1));
                 if(gap>distance || gap>=nearest)continue;
@@ -150,7 +150,7 @@ namespace BooterBigArm.TopDown3D
             {
                 var point=jumpContacts[i];var normal=point.normal;
                 if(Vector3.Angle(normal,Vector3.up)<=maxWalkableSlope
-                    && collision.collider.GetComponentInParent<TopDown3DGroundSurface>()!=null)
+                    && CanUsePhysicalGroundCollider(collision.collider))
                 {
                     if(jumpSupportCollider==null || normal.y>jumpSupportNormal.y)
                     {jumpSupportCollider=collision.collider;jumpSupportNormal=normal;jumpSupportPoint=point.point;}

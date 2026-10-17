@@ -316,9 +316,10 @@ namespace BooterBigArm.TopDown3D
 
         private void FixedUpdate()
         {
+            var completedPosition = Position;
             laboratoryGroundSupport = null;
             try { if (!AdvanceJumpLocomotion()) AdvanceMotorFixedTick(); }
-            finally { ObserveCompletedLaboratoryMotion(); }
+            finally { ObserveCompletedLaboratoryMotionAtPosition(Time.fixedTimeAsDouble, completedPosition); }
         }
 
         private void AdvanceMotorFixedTick(bool jumpGroundedLocomotion = false)
@@ -471,6 +472,7 @@ namespace BooterBigArm.TopDown3D
             }
             PlanarAcceleration = (nextPlanar - currentPlanar) / Mathf.Max(0.0001f, Time.fixedDeltaTime);
 
+            TryApplyLaboratoryGroundStep(nextPlanar);
             var verticalVelocity = currentVelocity.y;
             if (IsGrounded)
             {
@@ -1107,110 +1109,60 @@ namespace BooterBigArm.TopDown3D
 
         private bool TryGetGroundNormal(out Vector3 normal)
         {
-            normal = Vector3.up;
-            if (capsule == null)
-            {
-                return false;
-            }
-
+            normal = Vector3.up; laboratoryGroundSupport = null;
+            if (capsule == null) return false;
             var scale = transform.lossyScale;
-            var radius = capsule.radius * Mathf.Max(Mathf.Abs(scale.x), Mathf.Abs(scale.z)) * 0.88f;
-            var halfHeight = Mathf.Max(radius, capsule.height * Mathf.Abs(scale.y) * 0.5f);
-            // Lab support and completed travel must refer to the same Rigidbody
-            // sample, including while its rendered Transform is interpolated.
+            var radius = capsule.radius * Mathf.Max(Mathf.Abs(scale.x), Mathf.Abs(scale.z)) * .88f;
+            var halfHeight = Mathf.Max(radius, capsule.height * Mathf.Abs(scale.y) * .5f);
             var center = animationPostureOwner != null && body != null
-                ? body.position + body.rotation * Vector3.Scale(capsule.center, transform.lossyScale)
+                ? body.position + body.rotation * Vector3.Scale(capsule.center, scale)
                 : transform.TransformPoint(capsule.center);
-            var distance = Mathf.Max(0f, halfHeight - radius) + groundProbeDistance;
-            var hitCount = Physics.SphereCastNonAlloc(
-                center,
-                radius,
-                Vector3.down,
-                groundHits,
-                distance,
-                groundMask,
-                QueryTriggerInteraction.Ignore);
-
-            var nearestDistance = float.PositiveInfinity;
-            var proximityPoint = Vector3.zero;
-            Collider proximityCollider = null;
-            for (var i = 0; i < hitCount; i++)
+            var distance = Mathf.Max(0, halfHeight - radius) + groundProbeDistance;
+            int count;
+            while (true)
             {
-                var hit = groundHits[i];
-                if (hit.collider == null
-                    || hit.collider.transform.IsChildOf(transform)
-                    || hit.collider.GetComponentInParent<TopDown3DGroundSurface>() == null
-                    || hit.distance >= nearestDistance)
-                {
-                    continue;
-                }
-
-                nearestDistance = hit.distance;
-                proximityPoint = hit.point;
-                proximityCollider = hit.collider;
+                count = Physics.SphereCastNonAlloc(center, radius, Vector3.down, groundProbeHits,
+                    distance, groundMask, QueryTriggerInteraction.Ignore);
+                if (count < groundProbeHits.Length) break;
+                if (groundProbeHits.Length >= 4096) return false;
+                Array.Resize(ref groundProbeHits, groundProbeHits.Length * 2);
             }
-
-            if (proximityCollider == null)
+            var nearest = float.PositiveInfinity; var found = false;
+            for (var i = 0; i < count; i++)
             {
-                return false;
+                var hit = groundProbeHits[i];
+                if (hit.collider == null || hit.collider.transform.IsChildOf(transform) || hit.distance >= nearest
+                    || !CanUsePhysicalGroundCollider(hit.collider)) continue;
+                if (!TryReadTrueSurfaceNormal(center + Vector3.up * GroundNormalRayLift,
+                        halfHeight + GroundNormalRayLift + groundProbeDistance, hit.collider, out var face, out var point)
+                    && !TryReadTrueSurfaceNormal(hit.point + Vector3.up * GroundNormalRayLift,
+                        GroundNormalRayLift * 2 + groundProbeDistance, hit.collider, out face, out point)) continue;
+                if (!TopDown3DSlopeMath.IsWalkable(face, maxWalkableSlope)) continue;
+                nearest = hit.distance; normal = face; found = true;
+                laboratoryGroundSupport = hit.collider; laboratoryGroundPlane = new Plane(face, point);
             }
-
-            var centerRayOrigin = center + Vector3.up * GroundNormalRayLift;
-            var centerRayDistance = halfHeight + GroundNormalRayLift + groundProbeDistance;
-            if (!TryReadTrueSurfaceNormal(
-                    centerRayOrigin,
-                    centerRayDistance,
-                    proximityCollider,
-                    out normal, out var supportPoint)
-                && !TryReadTrueSurfaceNormal(
-                    proximityPoint + Vector3.up * GroundNormalRayLift,
-                    GroundNormalRayLift * 2f + groundProbeDistance,
-                    proximityCollider,
-                    out normal, out supportPoint))
-            {
-                return false;
-            }
-
-            var walkable = TopDown3DSlopeMath.IsWalkable(normal, maxWalkableSlope);
-            if (walkable)
-            {
-                laboratoryGroundSupport = proximityCollider;
-                laboratoryGroundPlane = new Plane(normal, supportPoint);
-            }
-            return walkable;
+            return found;
         }
 
-        private bool TryReadTrueSurfaceNormal(
-            Vector3 rayOrigin,
-            float rayDistance,
-            Collider expectedCollider,
+        private bool TryReadTrueSurfaceNormal(Vector3 origin, float distance, Collider expected,
             out Vector3 normal, out Vector3 point)
         {
-            normal = Vector3.up;
-            point = Vector3.zero;
-            var hitCount = Physics.RaycastNonAlloc(
-                rayOrigin,
-                Vector3.down,
-                groundHits,
-                rayDistance,
-                groundMask,
-                QueryTriggerInteraction.Ignore);
-            var nearestDistance = float.PositiveInfinity;
-            var found = false;
-            for (var i = 0; i < hitCount; i++)
+            normal = Vector3.up; point = Vector3.zero; int count;
+            while (true)
             {
-                var hit = groundHits[i];
-                if (hit.collider != expectedCollider || hit.distance >= nearestDistance)
-                {
-                    continue;
-                }
-
-                nearestDistance = hit.distance;
-                normal = hit.normal;
-                point = hit.point;
-                found = true;
+                count = Physics.RaycastNonAlloc(origin, Vector3.down, trueSurfaceHits, distance,
+                    groundMask, QueryTriggerInteraction.Ignore);
+                if (count < trueSurfaceHits.Length) break;
+                if (trueSurfaceHits.Length >= 4096) return false;
+                Array.Resize(ref trueSurfaceHits, trueSurfaceHits.Length * 2);
             }
-
+            var nearest = float.PositiveInfinity; var found = false;
+            for (var i = 0; i < count; i++)
+            {
+                var hit = trueSurfaceHits[i];
+                if (hit.collider != expected || hit.distance >= nearest) continue;
+                nearest = hit.distance; normal = hit.normal; point = hit.point; found = true;
+            }
             return found;
         }
 

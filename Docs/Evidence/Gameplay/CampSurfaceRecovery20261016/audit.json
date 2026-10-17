@@ -1,0 +1,281 @@
+{
+  "stations": 12,
+  "stationSolids": 254,
+  "unmarkedStationSolids": 240,
+  "unmarkedStationRoots": 11,
+  "unmarkedOtherCampSolids": 39,
+  "otherSolids": [
+    {
+      "name": "Slalom blocker 1",
+      "parent": "Riding terrain corridor",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Slalom blocker 2",
+      "parent": "Riding terrain corridor",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Slalom blocker 3",
+      "parent": "Riding terrain corridor",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Rider headroom boundary",
+      "parent": "Riding terrain corridor",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Collision",
+      "parent": "Camp Rock 01 \u00b7 ArtistVolcanicRock01",
+      "type": "MeshCollider",
+      "layer": 0
+    },
+    {
+      "name": "Collision",
+      "parent": "Camp Rock 02 \u00b7 ArtistFlatVolcanicRock02",
+      "type": "MeshCollider",
+      "layer": 0
+    },
+    {
+      "name": "Collision",
+      "parent": "Camp Rock 03 \u00b7 ArtistVolcanicRock03",
+      "type": "MeshCollider",
+      "layer": 0
+    },
+    {
+      "name": "Collision",
+      "parent": "Camp Rock 04 \u00b7 ArtistVolcanicRock04",
+      "type": "MeshCollider",
+      "layer": 0
+    },
+    {
+      "name": "Collision",
+      "parent": "Camp Rock 05 \u00b7 ArtistVolcanicRock05",
+      "type": "MeshCollider",
+      "layer": 0
+    },
+    {
+      "name": "Collision",
+      "parent": "Camp Rock 06 \u00b7 ArtistVolcanicRock06",
+      "type": "MeshCollider",
+      "layer": 0
+    },
+    {
+      "name": "Collision",
+      "parent": "Camp Rock 07 \u00b7 ArtistVolcanicRock07",
+      "type": "MeshCollider",
+      "layer": 0
+    },
+    {
+      "name": "Ironstone 01",
+      "parent": "Greater Wasteland Ironstone",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Ironstone 02",
+      "parent": "Greater Wasteland Ironstone",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Ironstone 03",
+      "parent": "Greater Wasteland Ironstone",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Ironstone 04",
+      "parent": "Greater Wasteland Ironstone",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Ironstone 05",
+      "parent": "Greater Wasteland Ironstone",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Ironstone 06",
+      "parent": "Greater Wasteland Ironstone",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Ironstone 07",
+      "parent": "Greater Wasteland Ironstone",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Ironstone 08",
+      "parent": "Greater Wasteland Ironstone",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Ironstone 09",
+      "parent": "Greater Wasteland Ironstone",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Ironstone 10",
+      "parent": "Greater Wasteland Ironstone",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Ironstone 11",
+      "parent": "Greater Wasteland Ironstone",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Ironstone 12",
+      "parent": "Greater Wasteland Ironstone",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "GreaterWastelandResourceCache",
+      "parent": "World",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Collapsed spine",
+      "parent": "Structural carcass",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Empty sensor head",
+      "parent": "Structural carcass",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Work Surface",
+      "parent": "CampWorkbench",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Bench Leg",
+      "parent": "CampWorkbench",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Bench Leg",
+      "parent": "CampWorkbench",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Bench Leg",
+      "parent": "CampWorkbench",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Bench Leg",
+      "parent": "CampWorkbench",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Refinery Body",
+      "parent": "DustRefinery",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Crusher Housing",
+      "parent": "IronstoneProcessor",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Eight-slot Output Tray",
+      "parent": "IronstoneProcessor",
+      "type": "BoxCollider",
+      "layer": 0
+    },
+    {
+      "name": "Rock Body",
+      "parent": "Visuals",
+      "type": "SphereCollider",
+      "layer": 0
+    },
+    {
+      "name": "Shelter stone",
+      "parent": "Visuals",
+      "type": "SphereCollider",
+      "layer": 0
+    },
+    {
+      "name": "Shelter stone",
+      "parent": "Visuals",
+      "type": "SphereCollider",
+      "layer": 0
+    },
+    {
+      "name": "Shelter stone",
+      "parent": "Visuals",
+      "type": "SphereCollider",
+      "layer": 0
+    },
+    {
+      "name": "Broken frame",
+      "parent": "Visuals",
+      "type": "BoxCollider",
+      "layer": 0
+    }
+  ],
+  "baselineRegression": {
+    "name": "BooterBigArm.Tests.AnimationPlaygroundSurfaceRecoveryTests.PreparationRegistersEveryStaticStationSolid",
+    "summary": {
+      "total": 1,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "inconclusive": 0
+    },
+    "failure": "  A solid station surface must support the same ground/landing contract as AP02.\r\n  Expected: <empty>\r\n  But was:  < \"Flat deck\", \"Terminal pedestal\", \"Terminal pedestal\", \"One metre gauge\", \"Ramp\", \"Support leg\", \"Support leg\", \"Support leg\", \"Support leg\", \"Deck perimeter guard\"... >\r\n"
+  },
+  "checkpoint": "D:\\BooterBigArmPrivateAssets\\CampLoop\\2026-10-16\\SurfaceRecovery",
+  "movableStationSolids": [
+    {
+      "station": "AP05",
+      "name": "Body"
+    },
+    {
+      "station": "AP05",
+      "name": "Body"
+    },
+    {
+      "station": "AP05",
+      "name": "Body"
+    },
+    {
+      "station": "AP06",
+      "name": "Body"
+    },
+    {
+      "station": "AP07",
+      "name": "Handle"
+    },
+    {
+      "station": "AP07",
+      "name": "Blunt head"
+    }
+  ]
+}

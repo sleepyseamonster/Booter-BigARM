@@ -77,6 +77,9 @@ namespace BooterBigArm.TopDown3D
             => ObserveCompletedLaboratoryMotionAt(Time.fixedTimeAsDouble);
 
         private void ObserveCompletedLaboratoryMotionAt(double completedTime)
+            => ObserveCompletedLaboratoryMotionAtPosition(completedTime, Position);
+
+        private void ObserveCompletedLaboratoryMotionAtPosition(double completedTime, Vector3 completedPosition)
         {
             hasCompletedLaboratoryGroundPlane = false;
             if (animationPostureOwner == null) return;
@@ -89,13 +92,21 @@ namespace BooterBigArm.TopDown3D
             if (support != null)
             {
                 var matrix = support.transform.localToWorldMatrix;
-                if (observedGroundSupport == support && matrix != observedSupportMatrix) eligible = false;
+                if (!ReferenceEquals(observedGroundSupport, null) && (observedGroundSupport == null
+                    || !observedGroundSupport.enabled || !observedGroundSupport.gameObject.activeInHierarchy
+                    || observedGroundSupport.attachedRigidbody != null
+                    || observedGroundSupport.transform.localToWorldMatrix != observedSupportMatrix)) eligible = false;
                 observedGroundSupport = support; observedSupportMatrix = matrix;
             }
-            // This executes after motor commands, before the next physics step.
-            // Rigidbody.position is still the completed prior step; Transform may be interpolated.
-            LaboratoryGroundedMotion = groundedMotionTracker.Observe(Position, completedTime,
-                eligible, support != null ? support.GetInstanceID() : 0,
+            // Support is resolved after motor commands, but distance uses the
+            // position captured at fixed-tick entry, before bounded step writes.
+            // The rendered Transform may be interpolated and is never sampled.
+            var supportIdentity = support != null ? support.GetInstanceID() : 0;
+            var session = TopDown3DAnimationPlaygroundSession.Find(gameObject.scene);
+            if (session != null && session.TryGetStaticStationSupportIdentity(support, out var stationIdentity))
+                supportIdentity = stationIdentity;
+            LaboratoryGroundedMotion = groundedMotionTracker.Observe(completedPosition, completedTime,
+                eligible, supportIdentity,
                 hasStableGroundNormal ? stableGroundNormal : Vector3.up);
             if (eligible && (LaboratoryGroundedMotion.Available || LaboratoryGroundedMotion.Rebased))
             {

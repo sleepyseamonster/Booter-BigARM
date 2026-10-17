@@ -1,0 +1,72 @@
+{
+  "code": [
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.Player.cs",
+      "sha256": "04605b7b70563323c517552e64fdcce6083277030dcba5796eaa1a4fc1f8f73a",
+      "bytes": 17414
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.Stations.cs",
+      "sha256": "bedea630e746d93094938570e1e91e53b66f914776c1f48b1c94afa227cba43e",
+      "bytes": 5867
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.cs",
+      "sha256": "f18abb8bd7f0b4957188e8c8e13aea5053fed38be690ee24917f8139a7012727",
+      "bytes": 64171
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.LaboratoryLocomotion.cs",
+      "sha256": "c3b90be15c0de620ef1714aaa825d2e5a3e396dced58c87953413f3d2ea36c44",
+      "bytes": 8279
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.SurfaceSteps.cs",
+      "sha256": "0df7b193ec6e377db3b9c5c9994bcbe8df553b54a1d32b78458703afc8e42c2f",
+      "bytes": 8522
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.SurfaceSteps.cs.meta",
+      "sha256": "163a8349e4db5fb565bc07b5feb16d046daff949889db59f0c62b361baeed6fd",
+      "bytes": 60
+    },
+    {
+      "relative": "Assets/_Project/Tests/Editor/AnimationPlaygroundSurfaceRecoveryTests.cs",
+      "sha256": "711580959b28088672e20abeb46c2d4f53fe941fe973c9756b110b98141799da",
+      "bytes": 11956
+    },
+    {
+      "relative": "Assets/_Project/Tests/Editor/AnimationPlaygroundSurfaceRecoveryTests.cs.meta",
+      "sha256": "5f98005fca83ede984dc7df74c4a6e5a14e021e444ecaeabf4e189a15e2b09d2",
+      "bytes": 60
+    },
+    {
+      "relative": "Assets/_Project/Tests/Editor/AnimationPlaygroundSurfaceStepTests.cs",
+      "sha256": "4d68636625cc7f698a6d16593566fe69134a58396531828e989490ba16c348c3",
+      "bytes": 11433
+    },
+    {
+      "relative": "Assets/_Project/Tests/Editor/AnimationPlaygroundSurfaceStepTests.cs.meta",
+      "sha256": "e8bfa565cce216b326b4e725437070535ac163a756b0416c4fd951da4356688b",
+      "bytes": 60
+    },
+    {
+      "relative": "Assets/_Project/Tests/Editor/AnimationPlaygroundPlayerIntegrationTests.cs",
+      "sha256": "6e88c3fe6a249d9e81b79b211b538aca15438f3c3ee36925e19957337ffe10be",
+      "bytes": 21265
+    },
+    {
+      "relative": "Assets/_Project/Tests/Editor/AnimationPlaygroundForwardLocomotionTests.cs",
+      "sha256": "b4cf2b0b8fc868c32a585d8c9e9a2103819a1054a0ec8fd20bca25ef76f83e5d",
+      "bytes": 30949
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerMotor.JumpLocomotion.cs",
+      "sha256": "a8b0e285df4f656309fd7c76f70a4b7ac5179bfaa050acc1eb96f2950048a9db",
+      "bytes": 14428
+    }
+  ],
+  "runtimeMvid": "7cb4f4c8-a8b1-4568-9d86-2afad262c05c",
+  "fixtureCorrection": "Historical three-gait integration cases pair their cloned speeds and optional moving-turn data to their own retained profile; shipped bindings unchanged.",
+  "completedMotionBoundary": "Fixed-tick entry position is captured before step corrections; the resulting support query and completed position are committed afterward."
+}

@@ -158,6 +158,17 @@ namespace BooterBigArm.Tests
                 var session = TopDown3DAnimationPlaygroundSession.Find(scene);
                 draft=Object.Instantiate(session.Bindings);
                 if(!continuation){draft.continuationReview=null;draft.continuationReviewRequired=false;
+                    // Historical three-gait cases pair their own calibration and
+                    // must not inherit the selected five-band turn review.
+                    draft.movingTurns=null;draft.movingTurnsRequired=false;
+                    if(measuredForward || review)
+                    {
+                        var legacy=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(
+                            "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset");
+                        draft.slowWalkSpeed=legacy.gaits[0].nominalSpeed;
+                        draft.runSpeed=legacy.gaits[1].nominalSpeed;
+                        draft.sprintSpeed=legacy.gaits[^1].nominalSpeed;
+                    }
                     draft.standingStrafeReview=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundStandingStrafeProfile>(
                         "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/StandingStrafeReview.asset");}
                 else Assert.That(draft.continuationReview,Is.Not.Null,"Select the combined private candidate for this integration gate.");

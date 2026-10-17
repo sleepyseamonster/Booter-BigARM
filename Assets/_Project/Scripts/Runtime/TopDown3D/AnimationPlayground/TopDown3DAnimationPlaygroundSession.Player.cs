@@ -33,6 +33,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (player == null) { Fail("The authored playground player is missing."); return; }
             if (!bindings.ValidatePlayer(out var reason)) { Fail(reason); return; }
+            RegisterStaticCampGround();
             var capsule = player.GetComponent<CapsuleCollider>();
             if (!HasUnitPhysicsHierarchy(player.transform) || capsule == null || capsule.direction != 1
                 || (capsule.center - Vector3.zero).sqrMagnitude > .000001f

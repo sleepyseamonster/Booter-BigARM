@@ -1,0 +1,281 @@
+{
+  "date": "2026-10-16",
+  "scope": "Focused EditMode held controller/query/startup/animation tests; no gameplay smoke test, Play Mode run or physics simulation.",
+  "totalTests": 570,
+  "passedTests": 570,
+  "failedTests": 0,
+  "skippedTests": 0,
+  "inconclusiveTests": 0,
+  "newSurfaceCases": 46,
+  "suites": [
+    {
+      "filter": "AnimationPlaygroundAirborneTests",
+      "total": 37,
+      "passed": 37,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 2.84,
+      "receiptSha256": "ca2cffee1d915e98d14293d6cb7dd21ee0f98a908555e1797b2e073b903ca46f"
+    },
+    {
+      "filter": "AnimationPlaygroundContinuationTests",
+      "total": 28,
+      "passed": 28,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 59.01,
+      "receiptSha256": "727722cd80f2ddd56154878c60d451c646eb97f5a3dc5490bb1f67158d56fcc9"
+    },
+    {
+      "filter": "AnimationPlaygroundCrouchControllerTests",
+      "total": 13,
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.3,
+      "receiptSha256": "3e1c37cb4b1a8bc482f4dbe5dc41babdf3e1b199630edcbdeca7bdf67b7e03ce"
+    },
+    {
+      "filter": "AnimationPlaygroundDirectionalTests",
+      "total": 13,
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 18.07,
+      "receiptSha256": "30bd0b7a331c06330e625ed9b02c033c34320dcd42aba9fc8b3044520088b955"
+    },
+    {
+      "filter": "AnimationPlaygroundDodge",
+      "total": 55,
+      "passed": 55,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 204.59,
+      "receiptSha256": "e8cda3ac3eef1e6eba7ff5e1cd26de48cc65de10d38cf4340195511f6d81931a"
+    },
+    {
+      "filter": "AnimationPlaygroundExpandedGaitTests",
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 32.97,
+      "receiptSha256": "76614726ac4d45a661f00598e3dbc6f5ecb70d77814d4292618fc80f43e30c90"
+    },
+    {
+      "filter": "AnimationPlaygroundForwardLocomotionTests",
+      "total": 14,
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 1.2,
+      "receiptSha256": "e2aefe8f17fbe38b6aa059ee795fb0995c5be6c9e8417103989ce17b0067df6f"
+    },
+    {
+      "filter": "AnimationPlaygroundForwardPoseEnvelopeTests",
+      "total": 6,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.01,
+      "receiptSha256": "d56bbb64f252e66f09bd102615bde4236bce78ee4efd5a65d15c471feaa2f618"
+    },
+    {
+      "filter": "AnimationPlaygroundForwardReviewTests",
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 5.27,
+      "receiptSha256": "99de3efc667fe62b38003d1b5b0663d0e2bb7649a0e29f6c29e4a3881c92706e"
+    },
+    {
+      "filter": "AnimationPlaygroundInputTests",
+      "total": 6,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.14,
+      "receiptSha256": "bdf572d505a4094044f330a4a5d6d451c5b75ce7d53cda36ec36f189072f3667"
+    },
+    {
+      "filter": "AnimationPlaygroundJump",
+      "total": 29,
+      "passed": 29,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 23.43,
+      "receiptSha256": "599abc2b8d9b22ee90f1171c32008ec7370fe9a28b05f82805fef7e083c32251"
+    },
+    {
+      "filter": "AnimationPlaygroundLowMotionControllerTests",
+      "total": 26,
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.39,
+      "receiptSha256": "4eeab821e578c66434e46c8e66abd33818b432c607faa4501639c6e02b786e3c"
+    },
+    {
+      "filter": "AnimationPlaygroundMotorTests",
+      "total": 19,
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.03,
+      "receiptSha256": "d598e6a56b9be71451ff0d467bdac43ecaa60b69e4b84b1bf4cec37f6eb87c2d"
+    },
+    {
+      "filter": "AnimationPlaygroundMovingTurn",
+      "total": 212,
+      "passed": 212,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 16.6,
+      "receiptSha256": "54ded650c6be84bc6bb919d3f2c75b60cc091e316331402b81047556225b9752"
+    },
+    {
+      "filter": "AnimationPlaygroundNativeGroundTests",
+      "total": 7,
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 92.56,
+      "receiptSha256": "6c846784482c45740b495d33272c4316aa1af43d89ac49fcc0fbf08b569819b5"
+    },
+    {
+      "filter": "AnimationPlaygroundPlayerIntegrationTests",
+      "total": 11,
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 1.85,
+      "receiptSha256": "fce1241ed0eff83680a0ebb98fe28944248199ff98ab17c23680e154bb9ea245"
+    },
+    {
+      "filter": "AnimationPlaygroundPresentationTests",
+      "total": 9,
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.03,
+      "receiptSha256": "c0bd733faab125ae3fff9d6a98c3a18cffb0fb1958c66561424be866c7916d08"
+    },
+    {
+      "filter": "AnimationPlaygroundResetTests",
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.04,
+      "receiptSha256": "f37ce77b7e0a406b4cb4f2516551b48f60ec4f6463c9c54f7d20cd6ce115b27b"
+    },
+    {
+      "filter": "AnimationPlaygroundSurface",
+      "total": 46,
+      "passed": 46,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 6.17,
+      "receiptSha256": "83f646b8590708d562f06a3e32e4b7a582949a71878f61a37eb87501696577fe"
+    },
+    {
+      "filter": "TopDown3DPlayerSlopeTests",
+      "total": 6,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.01,
+      "receiptSha256": "6fa868df3bcfdaeb6ffa7f97e8e6440f832265fc89e5e31849024dca33691ea1"
+    }
+  ],
+  "candidateRuntimeMvid": "7cb4f4c8-a8b1-4568-9d86-2afad262c05c",
+  "authorRuntimeMvid": "4b880f9b-d55c-4946-a18c-245bafa928cb",
+  "sealedCodeFiles": 13,
+  "protectedInputsUnchanged": 2641,
+  "unchangedCandidateCodeInputs": 1533,
+  "newCodeMetadataPairs": 3,
+  "authorReadback": {
+    "playing": false,
+    "compiling": false,
+    "compilationFailed": false,
+    "bindingDirty": false,
+    "bindingHash": "9b30b645f7ed2d99f71cd460c6b079f7dba97e7e92601c9ddbda7baa5694b9a9",
+    "bindingUnchanged": true,
+    "movingTurns": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/MovingTurnReview.asset",
+    "movingTurnsRequired": true,
+    "gaits": [
+      {
+        "role": 1,
+        "nominalSpeed": 1.4,
+        "metresPerCycle": 3.22170615,
+        "source": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Walk_Fwd_NoRM.FBX",
+        "sha256": "0832e93fc931b80c11e12d82dfa2c6b42f1b104ad8818b31613ac24d234dad89"
+      },
+      {
+        "role": 2,
+        "nominalSpeed": 3.0,
+        "metresPerCycle": 4.36681175,
+        "source": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_NoRM.FBX",
+        "sha256": "38039a18614857cbdd6cce42fc317ebc970c2d8829530cf97bc5b3ef6b714fab"
+      },
+      {
+        "role": 3,
+        "nominalSpeed": 4.0,
+        "metresPerCycle": 5.592029,
+        "source": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Run_Fwd_NoRM.FBX",
+        "sha256": "17e73a6e4f05287e33bf753c1e9526949ac57a958549c0525e95468f9d21d721"
+      },
+      {
+        "role": 3,
+        "nominalSpeed": 4.9,
+        "metresPerCycle": 5.49517441,
+        "source": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim",
+        "sha256": "850c033b50a92b4e96cb08ad08efc09e8062f41d831c54aeb89fc52625b31d97"
+      },
+      {
+        "role": 3,
+        "nominalSpeed": 6.15,
+        "metresPerCycle": 5.483365,
+        "source": "Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintStandardReview.anim",
+        "sha256": "db3fa37dcec840741ce332ff7fd7ff3273a098ca6a89020187e5ccc5be2a97d9"
+      }
+    ],
+    "gaitsUnchanged": true,
+    "sceneRootsDirtyStateDiskAndTerrainUnchanged": true,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "sceneSha256": "fdeffc4d00ba053d00f345ae587627edf1e8ba01f54d0904dc850536d1484544",
+    "terrainTiles": 9
+  },
+  "fixtureCorrections": [
+    "Legacy integration cases pair cloned speeds to their retained three-gait profile and clear the optional five-band turn selection.",
+    "Legacy qualified-forward fixtures pair cloned speeds to their own calibration; existing assertions and shipped assets unchanged."
+  ],
+  "reviewCorrections": [
+    "Movable props use physical landing/re-jump support independent of static gait/foot qualification.",
+    "Fixed-tick entry position is captured before step commands; sloped observation regression excludes synthetic step distance."
+  ],
+  "toolDiagnostics": "Installer/readback compile and execute successfully; pinned Unity instance-ID API reports its known deprecation warning.",
+  "checkpoint": "D:\\BooterBigArmPrivateAssets\\CampLoop\\2026-10-16\\SurfaceRecovery",
+  "remainingAcceptance": "Author fresh Play test of ramps/stairs, platform/camp-surface landing, LT, jump and dodge transitions."
+}

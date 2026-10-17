@@ -13,6 +13,33 @@ namespace BooterBigArm.TopDown3D
             if (servicesBound) throw new InvalidOperationException("Author stations before player startup.");
             stations = values == null ? Array.Empty<TopDown3DAnimationPlaygroundStation>() : (TopDown3DAnimationPlaygroundStation[])values.Clone();
         }
+        // Scene-local runtime ground classification. Rocks, work surfaces and
+        // station fixtures must share the terrain's physical landing contract.
+        private void RegisterStaticCampGround()
+        {
+            if (!IsLab || player == null) return;
+            foreach (var root in gameObject.scene.GetRootGameObjects())
+                foreach (var solid in root.GetComponentsInChildren<Collider>(true))
+                    if (solid.enabled && solid.gameObject.activeInHierarchy && !solid.isTrigger
+                        && solid.attachedRigidbody == null && (player.GroundMask.value & (1 << solid.gameObject.layer)) != 0
+                        && solid.GetComponentInParent<TopDown3DGroundSurface>() == null)
+                        solid.gameObject.AddComponent<TopDown3DGroundSurface>();
+        }
+
+        public bool TryGetStaticStationSupportIdentity(Collider support, out int identity)
+        {
+            identity = 0;
+            if (!IsLab || !isActiveAndEnabled || support == null || !support.enabled || !support.gameObject.activeInHierarchy
+                || support.isTrigger || support.attachedRigidbody != null || support.gameObject.scene != gameObject.scene
+                || support.GetComponentInParent<TopDown3DGroundSurface>() == null) return false;
+            var station = support.GetComponentInParent<TopDown3DAnimationPlaygroundStation>();
+            if (station == null || !station.isActiveAndEnabled || !station.transform.IsChildOf(transform)
+                || Array.IndexOf(stations, station) < 0) return false;
+            // Observation continuity only; actual collider/matrix checks remain
+            // authoritative, and this process-local ID is never persisted.
+            identity = station.GetInstanceID(); return true;
+        }
+
         private void BindStations()
         {
             if (stations.Length == 0) return; // A player-only checkpoint remains usable before LAB1.

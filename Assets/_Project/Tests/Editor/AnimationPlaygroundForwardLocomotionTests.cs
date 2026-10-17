@@ -15,6 +15,15 @@ namespace BooterBigArm.Tests
     public sealed class AnimationPlaygroundForwardLocomotionTests
     {
         private const BindingFlags Private = BindingFlags.Instance | BindingFlags.NonPublic;
+        private static void PairLegacySpeeds(TopDown3DAnimationPlaygroundBindings bindings, AnimationPlaygroundForwardLocomotionProfile policy)
+        {
+            // These tests qualify the retained three-gait source, independently
+            // of the current five-band review selected on the author's binding.
+            bindings.slowWalkSpeed = policy.gaits[0].nominalSpeed;
+            bindings.runSpeed = policy.gaits[1].nominalSpeed;
+            bindings.sprintSpeed = policy.gaits[^1].nominalSpeed;
+            bindings.movingTurns = null; bindings.movingTurnsRequired = false;
+        }
         private static AnimationPlaygroundForwardLocomotionProfile Policy()
         {
             var policy = AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(
@@ -81,7 +90,7 @@ namespace BooterBigArm.Tests
                 "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset"));
             try
             {
-                policy.qualified = false; bindings.locomotion = policy.locomotion; bindings.forwardLocomotion = policy;
+                policy.qualified = false; PairLegacySpeeds(bindings, policy); bindings.locomotion = policy.locomotion; bindings.forwardLocomotion = policy;
                 Assert.That(bindings.ValidatePlayer(out var reason), Is.False);
                 Assert.That(reason, Does.Contain("awaiting"));
                 policy.qualified = true;
@@ -236,7 +245,7 @@ namespace BooterBigArm.Tests
             var bindings = Object.Instantiate(TopDown3DAnimationPlaygroundSession.Find(scene).Bindings);
             try
             {
-                bindings.locomotion = policy.locomotion; bindings.forwardLocomotion = policy;
+                PairLegacySpeeds(bindings, policy); bindings.locomotion = policy.locomotion; bindings.forwardLocomotion = policy;
                 actor = new GameObject("Forward frame lifecycle"); actor.SetActive(false); SceneManager.MoveGameObjectToScene(actor, preview);
                 var motor = actor.AddComponent<TopDown3DPlayerMotor>(); var driver = actor.AddComponent<TopDown3DPlayerAnimationDriver>();
                 EditorUtility.CopySerialized(TopDown3DAnimationPlaygroundSession.Find(scene).Player.GetComponent<TopDown3DPlayerAnimationDriver>(), driver);
@@ -349,7 +358,7 @@ namespace BooterBigArm.Tests
             var bindings = Object.Instantiate(TopDown3DAnimationPlaygroundSession.Find(scene).Bindings);
             try
             {
-                bindings.locomotion = policy.locomotion; bindings.forwardLocomotion = policy;
+                PairLegacySpeeds(bindings, policy); bindings.locomotion = policy.locomotion; bindings.forwardLocomotion = policy;
                 actor = new GameObject("Completed tick trace"); actor.SetActive(false); SceneManager.MoveGameObjectToScene(actor, preview);
                 var motor = actor.AddComponent<TopDown3DPlayerMotor>(); var driver = actor.AddComponent<TopDown3DPlayerAnimationDriver>();
                 EditorUtility.CopySerialized(TopDown3DAnimationPlaygroundSession.Find(scene).Player.GetComponent<TopDown3DPlayerAnimationDriver>(), driver);
