@@ -1,0 +1,41 @@
+{
+  "install": {
+    "target": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration04.blend",
+    "recovery": "D:\\BooterBigArmPrivateAssets\\Legger\\ModelRefinement20261016\\Before.blend",
+    "before_sha256": "90757f7efa6811fbfd9c82c93b08a98d254f60d13d15e447e5eeab03f2db6304",
+    "installed_sha256": "87ba450b0f957e8f71924bb50ed73ae7aec1f20efa8b215cefdfffb121b78eea",
+    "candidate": "D:\\BooterBigArmPrivateAssets\\Legger\\ModelRefinement20261016\\RefinedFixed.blend",
+    "bytes": 897922001,
+    "installed_at": "2026-10-17T05:17:43.747890+00:00",
+    "guarded_atomic_replacement": true,
+    "foreground_apps_untouched": true,
+    "GUI_reopen_required_before_author_save": true
+  },
+  "raw_validation_paths": {
+    "candidate": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\candidate_qa.json",
+    "native": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\native_qa.json",
+    "canonical": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\native_canonical.json"
+  },
+  "matched_render_comparison": {
+    "source_sha256": "87ba450b0f957e8f71924bb50ed73ae7aec1f20efa8b215cefdfffb121b78eea",
+    "matched_views": [
+      {
+        "view": "oblique",
+        "maximum_8bit_channel_difference": 1.0,
+        "RMS_8bit_channel_difference": 0.0024494897427831783,
+        "fraction_of_channels_different": 6e-06
+      },
+      {
+        "view": "foot",
+        "maximum_8bit_channel_difference": 1.0,
+        "RMS_8bit_channel_difference": 0.00239791576165636,
+        "fraction_of_channels_different": 5.75e-06
+      }
+    ],
+    "method": "Identical camera, lighting, exposure and source bytes; compare saved RGBA pixels from candidate and independent installed-native reopen.",
+    "pass": true
+  },
+  "candidate_validation_sha256": "b320cec9fbb2eed95cfcdab2ff4b9feed07b8321f5082a9be6360e661629fc55",
+  "native_validation_sha256": "ee70d1eab3c248df0d820b00bfe45911d6880286b730319433bf96614b0972bf",
+  "canonical_inspector_sha256": "82f105434740ccb31fda5ec8af1a79ad5c7e45c0ef9881e962ea601f8629209d"
+}

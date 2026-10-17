@@ -1,0 +1,2439 @@
+{
+  "source_sha256": "87ba450b0f957e8f71924bb50ed73ae7aec1f20efa8b215cefdfffb121b78eea",
+  "method": "All control quads split on the source FIXED diagonal. Compare 3D area and UV area; singular values of UV-to-world Jacobians measure local anisotropy. Bevel microfaces excluded from this control-surface assessment.",
+  "parts": [
+    {
+      "part": "Legger_Part_L_CargoRack",
+      "module": "Frame",
+      "case": "before",
+      "surface_area_m2": 0.29784882068634033,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        755.7889648911249,
+        884.3219802826912,
+        965.9872340458938
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1531701084576311,
+        1.5435914502514696
+      ]
+    },
+    {
+      "part": "Legger_Part_L_CargoRack",
+      "module": "Frame",
+      "case": "current",
+      "surface_area_m2": 0.29784882068634033,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        639.5966288879105,
+        761.3606243372371,
+        790.7229327606402
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0827577266142658,
+        1.534235842022968
+      ]
+    },
+    {
+      "part": "Legger_Part_R_CargoRack",
+      "module": "Frame",
+      "case": "before",
+      "surface_area_m2": 0.29785603284835815,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        760.4198684693998,
+        884.5124199425428,
+        948.7941864280118
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1560470241092125,
+        1.533710295208478
+      ]
+    },
+    {
+      "part": "Legger_Part_R_CargoRack",
+      "module": "Frame",
+      "case": "current",
+      "surface_area_m2": 0.29785603284835815,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        639.173747232268,
+        763.9438480646622,
+        791.217046468556
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0754446201034147,
+        1.5362803045773095
+      ]
+    },
+    {
+      "part": "Legger_Part_L_FrontYoke",
+      "module": "Frame",
+      "case": "before",
+      "surface_area_m2": 0.10614337027072906,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        770.5863538268004,
+        905.7720672181774,
+        922.5593681278684
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0405045610168835,
+        1.437619620745096
+      ]
+    },
+    {
+      "part": "Legger_Part_L_FrontYoke",
+      "module": "Frame",
+      "case": "current",
+      "surface_area_m2": 0.10614337027072906,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        669.8502128865672,
+        782.3245906139463,
+        791.6782271795566
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0254995535721663,
+        1.3988035444392075
+      ]
+    },
+    {
+      "part": "Legger_Part_L_HipMount",
+      "module": "Frame",
+      "case": "before",
+      "surface_area_m2": 0.12061601877212524,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        760.6315228793718,
+        884.6354691046042,
+        922.5552625931861
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.090845671685703,
+        1.475549811416216
+      ]
+    },
+    {
+      "part": "Legger_Part_L_HipMount",
+      "module": "Frame",
+      "case": "current",
+      "surface_area_m2": 0.12061601877212524,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        678.6532452060561,
+        733.0879883726309,
+        791.6371646909538
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1678882412613663,
+        1.3627572914210069
+      ]
+    },
+    {
+      "part": "Legger_Part_R_FrontYoke",
+      "module": "Frame",
+      "case": "before",
+      "surface_area_m2": 0.10614337027072906,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        776.9315005161261,
+        904.7609508555869,
+        922.792681119909
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0428629843092763,
+        1.414285508204984
+      ]
+    },
+    {
+      "part": "Legger_Part_R_FrontYoke",
+      "module": "Frame",
+      "case": "current",
+      "surface_area_m2": 0.10614337027072906,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        669.4844738409769,
+        781.8895979816306,
+        791.9696265765865
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0266538898701212,
+        1.4003516668329228
+      ]
+    },
+    {
+      "part": "Legger_Part_R_HipMount",
+      "module": "Frame",
+      "case": "before",
+      "surface_area_m2": 0.12061601877212524,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        760.5627959713865,
+        885.5109305106068,
+        922.551451892165
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.088694851372531,
+        1.4757842651509683
+      ]
+    },
+    {
+      "part": "Legger_Part_R_HipMount",
+      "module": "Frame",
+      "case": "current",
+      "surface_area_m2": 0.12061601877212524,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        679.5932657150064,
+        733.0837859027802,
+        791.6322064314251
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1679057049553603,
+        1.358991160411289
+      ]
+    },
+    {
+      "part": "Legger_Part_MainFrame",
+      "module": "Frame",
+      "case": "before",
+      "surface_area_m2": 1.2030401229858398,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        781.6849597318061,
+        889.6426797047795,
+        923.1051928215448
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0886532411570673,
+        1.3943360884587996
+      ]
+    },
+    {
+      "part": "Legger_Part_MainFrame",
+      "module": "Frame",
+      "case": "current",
+      "surface_area_m2": 1.2177608013153076,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        680.0198306921457,
+        752.3940965771359,
+        791.7903100342412
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1087223236078376,
+        1.3572823836095895
+      ]
+    },
+    {
+      "part": "Legger_Part_SeatSubframe",
+      "module": "Frame",
+      "case": "before",
+      "surface_area_m2": 0.2977204918861389,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        554.3965418323947,
+        863.9314952486418,
+        974.4948954646056
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1943140368258407,
+        2.8134634464977726
+      ]
+    },
+    {
+      "part": "Legger_Part_SeatSubframe",
+      "module": "Frame",
+      "case": "current",
+      "surface_area_m2": 0.2977204918861389,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        676.4932901880258,
+        755.6626933146181,
+        791.6075050706297
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.099144424473474,
+        1.3714633567220782
+      ]
+    },
+    {
+      "part": "Legger_Part_SteeringMount",
+      "module": "Frame",
+      "case": "before",
+      "surface_area_m2": 0.09540938585996628,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        779.3211624038186,
+        889.6228168042855,
+        922.5529022460499
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0786506332350068,
+        1.4055733940619655
+      ]
+    },
+    {
+      "part": "Legger_Part_SteeringMount",
+      "module": "Frame",
+      "case": "current",
+      "surface_area_m2": 0.09540938585996628,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        657.3404271869051,
+        780.4227595855898,
+        791.6272848916992
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0305091242055164,
+        1.452553377431057
+      ]
+    },
+    {
+      "part": "Legger_Part_L_Footrest",
+      "module": "Frame",
+      "case": "before",
+      "surface_area_m2": 0.114616259932518,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        743.2721240575335,
+        900.5958574369439,
+        921.6312276737452
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0525046624658927,
+        1.5452619380440973
+      ]
+    },
+    {
+      "part": "Legger_Part_L_Footrest",
+      "module": "Frame",
+      "case": "current",
+      "surface_area_m2": 0.114616259932518,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        630.5501156006562,
+        772.6983423408685,
+        789.141478530989
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0512102784726873,
+        1.5785969803962698
+      ]
+    },
+    {
+      "part": "Legger_Part_R_Footrest",
+      "module": "Frame",
+      "case": "before",
+      "surface_area_m2": 0.114616259932518,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        749.3555922599629,
+        899.90653674139,
+        917.8876279729305
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0541219124800274,
+        1.5202539167903133
+      ]
+    },
+    {
+      "part": "Legger_Part_R_Footrest",
+      "module": "Frame",
+      "case": "current",
+      "surface_area_m2": 0.114616259932518,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        632.6114900808799,
+        776.8657058969426,
+        791.3601931063091
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0399633725792863,
+        1.5683209852596016
+      ]
+    },
+    {
+      "part": "Legger_Part_ServiceHarness",
+      "module": "Frame",
+      "case": "before",
+      "surface_area_m2": 0.4510048031806946,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        555.248564695915,
+        802.3679163184147,
+        1208.8665013389586
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.331103498546101,
+        2.4499257477351586
+      ]
+    },
+    {
+      "part": "Legger_Part_ServiceHarness",
+      "module": "Frame",
+      "case": "current",
+      "surface_area_m2": 0.45119524002075195,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        651.5200556583751,
+        748.0195099935383,
+        789.5553978149262
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1217214104556046,
+        1.4786098821381577
+      ]
+    },
+    {
+      "part": "Legger_Part_DriveCore",
+      "module": "Drive",
+      "case": "before",
+      "surface_area_m2": 0.514621913433075,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2168.518467798935,
+        2604.298784567036,
+        2631.144363254429
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0207289136245934,
+        1.472196010186131
+      ]
+    },
+    {
+      "part": "Legger_Part_DriveCore",
+      "module": "Drive",
+      "case": "current",
+      "surface_area_m2": 0.6599342226982117,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1953.6240945266318,
+        2282.8284504300873,
+        2303.9933285831326
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0186615472239198,
+        1.3908960141537403
+      ]
+    },
+    {
+      "part": "Legger_Part_SpineHousing",
+      "module": "Drive",
+      "case": "before",
+      "surface_area_m2": 0.44054001569747925,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2228.4281042270754,
+        2619.2441047206257,
+        2629.1570403942032
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.009112173254969,
+        1.3941051493372405
+      ]
+    },
+    {
+      "part": "Legger_Part_SpineHousing",
+      "module": "Drive",
+      "case": "current",
+      "surface_area_m2": 0.44054001569747925,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1954.4520999156925,
+        2294.5711902442313,
+        2303.4704162006783
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0082682343258171,
+        1.3897172008385228
+      ]
+    },
+    {
+      "part": "Legger_Part_L_DrivePod",
+      "module": "Drive",
+      "case": "before",
+      "surface_area_m2": 0.13514068722724915,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2217.7358402059344,
+        2618.6491508760328,
+        2631.1401233868746
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0095687691683894,
+        1.4075197006673392
+      ]
+    },
+    {
+      "part": "Legger_Part_L_DrivePod",
+      "module": "Drive",
+      "case": "current",
+      "surface_area_m2": 0.13514068722724915,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1942.5021518612598,
+        2293.411911617359,
+        2303.993710098668
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0092787094199756,
+        1.4068657308781174
+      ]
+    },
+    {
+      "part": "Legger_Part_R_DrivePod",
+      "module": "Drive",
+      "case": "before",
+      "surface_area_m2": 0.13514068722724915,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2217.7358402059344,
+        2618.647478995794,
+        2631.141499672404
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0095700965147048,
+        1.4075197006673392
+      ]
+    },
+    {
+      "part": "Legger_Part_R_DrivePod",
+      "module": "Drive",
+      "case": "current",
+      "surface_area_m2": 0.13514068722724915,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1942.5021518612598,
+        2293.4135809352906,
+        2303.9926562146816
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.009290251174141,
+        1.4068665951635377
+      ]
+    },
+    {
+      "part": "Legger_Part_RearCoolingHousing",
+      "module": "Drive",
+      "case": "before",
+      "surface_area_m2": 0.35583847761154175,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2091.5777019000316,
+        2456.792814566903,
+        3039.7765300319033
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.270660635516904,
+        1.645190861907008
+      ]
+    },
+    {
+      "part": "Legger_Part_RearCoolingHousing",
+      "module": "Drive",
+      "case": "current",
+      "surface_area_m2": 0.5122360587120056,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1981.4189937338965,
+        2197.8378945958557,
+        2301.843001014799
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0989633090284516,
+        1.3521484699302244
+      ]
+    },
+    {
+      "part": "Legger_Part_L_HipJoint",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.10831986367702484,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1619.6845229878995,
+        1875.1764519352014,
+        1885.8663110749876
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.024614821639256,
+        1.3733456160513549
+      ]
+    },
+    {
+      "part": "Legger_Part_L_HipJoint",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.10902753472328186,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1500.0417985598344,
+        1776.0801099971193,
+        1788.0868891453226
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0138241097328888,
+        1.4212710512930313
+      ]
+    },
+    {
+      "part": "Legger_Part_L_KneeJoint",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.1023302674293518,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1612.556824548458,
+        1876.7054394829315,
+        1892.7399473485452
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0229498152845033,
+        1.385535004762564
+      ]
+    },
+    {
+      "part": "Legger_Part_L_KneeJoint",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.1028919368982315,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1504.4977226526526,
+        1777.4320581628501,
+        1788.0849029462338
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0122612671103397,
+        1.4128706919643612
+      ]
+    },
+    {
+      "part": "Legger_Part_L_HockJoint",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.12107735872268677,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1624.6641836831277,
+        1876.2878620576066,
+        1886.1134193217417
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0234078456777644,
+        1.3649606450773364
+      ]
+    },
+    {
+      "part": "Legger_Part_L_HockJoint",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.12178969383239746,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1542.340129772146,
+        1777.956516731389,
+        1788.0859178215553
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0116804178186807,
+        1.3443930266419455
+      ]
+    },
+    {
+      "part": "Legger_Part_L_AnkleJoint",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.07745392620563507,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1620.9523723482419,
+        1870.1281536560261,
+        1886.138787776977
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0301519997265918,
+        1.371221986966764
+      ]
+    },
+    {
+      "part": "Legger_Part_L_AnkleJoint",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.07799572497606277,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1542.3399422717437,
+        1775.129967864349,
+        1788.0858807676548
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0149035229906942,
+        1.3443543580568387
+      ]
+    },
+    {
+      "part": "Legger_Part_L_UpperLinkFrame",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.09839843213558197,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1529.1363761038117,
+        1739.4099593995384,
+        1887.017750632619
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1908123095330772,
+        1.54083122100134
+      ]
+    },
+    {
+      "part": "Legger_Part_L_UpperLinkFrame",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.09839843213558197,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1460.9604030289283,
+        1629.5752436075827,
+        1786.8967276827848
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2043170951045938,
+        1.4983783137697637
+      ]
+    },
+    {
+      "part": "Legger_Part_L_UpperLinkShell",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.17295825481414795,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1587.7765236183634,
+        1766.8556952080603,
+        1917.158875687176
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1792570738936954,
+        1.4331169624073983
+      ]
+    },
+    {
+      "part": "Legger_Part_L_UpperLinkShell",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.15895801782608032,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1403.546671051176,
+        1696.743128443708,
+        1754.5469344013254
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1108404394687534,
+        1.6234305222935073
+      ]
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkFrame",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.2045878916978836,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1374.2619863872094,
+        1827.8763709863454,
+        1879.2364565206924
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0775930765622186,
+        1.4344499837548002
+      ]
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkFrame",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.20752838253974915,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1476.7014571393447,
+        1710.4092934591104,
+        1785.3031341591745
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0931618411688624,
+        1.4665559121652934
+      ]
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkShell",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.2266101837158203,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1603.5471649663791,
+        1774.0114307599965,
+        1914.113993074981
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1844206114701754,
+        1.3997817659940712
+      ]
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkShell",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.2122761309146881,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1392.2343097868604,
+        1667.5043625785,
+        1751.1562824321304
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1501411667033998,
+        1.6499141936436015
+      ]
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkActuatorBarrel",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.03030369058251381,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1588.042027788361,
+        1823.0027175889254,
+        1883.8901903735734
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0841029914337734,
+        1.4286591392118788
+      ]
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkActuatorBarrel",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.048411741852760315,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1452.381297267558,
+        1691.03589865214,
+        1774.843430296353
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.118352419378784,
+        1.5160809954464045
+      ]
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkActuatorRod",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.009650304913520813,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1568.804970312426,
+        1857.461019737414,
+        1866.0278746153078
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0442531041376908,
+        1.4638823378387908
+      ]
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkActuatorRod",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.013496501371264458,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1507.8997463900225,
+        1744.7538722678767,
+        1753.581950489958
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.050545979537221,
+        1.406488037647405
+      ]
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkFrame",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.19600482285022736,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1380.53094264435,
+        1705.134105973144,
+        1889.310881580846
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2209791406415502,
+        1.5594991712649593
+      ]
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkFrame",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.1986217349767685,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1458.3318678552896,
+        1628.7472124782585,
+        1786.3248557716083
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2055253758099478,
+        1.5037488025053645
+      ]
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkShell",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.1670387089252472,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1564.105907848911,
+        1727.9915469049142,
+        1908.7141668255024
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.227383715975762,
+        1.472788362217494
+      ]
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkShell",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.15400654077529907,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1362.5531347180768,
+        1655.9674616197462,
+        1741.454517495571
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1662245563533966,
+        1.7225632952262444
+      ]
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkActuatorBarrel",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.02893374301493168,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1547.9692279894325,
+        1704.3820182305149,
+        1879.460498824962
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2402647184781332,
+        1.503568566773386
+      ]
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkActuatorBarrel",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.04616770148277283,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1430.046776669494,
+        1605.6556984110111,
+        1774.1198451979317
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2404545290613065,
+        1.563790964507525
+      ]
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkActuatorRod",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.009306732565164566,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1626.5913425266117,
+        1704.344564657265,
+        1862.4210062160978
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.240294551265018,
+        1.3617154320339835
+      ]
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkActuatorRod",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.012967928312718868,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1505.4346174622553,
+        1618.5892366808175,
+        1767.2437521900201
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2207062536418802,
+        1.411108792585563
+      ]
+    },
+    {
+      "part": "Legger_Part_L_Foot",
+      "module": "LeftLeg",
+      "case": "before",
+      "surface_area_m2": 0.5859548449516296,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1556.6429951623459,
+        1753.0105263568094,
+        1896.519653405068
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.172403944447093,
+        1.4868637471077562
+      ]
+    },
+    {
+      "part": "Legger_Part_L_Foot",
+      "module": "LeftLeg",
+      "case": "current",
+      "surface_area_m2": 0.5910477638244629,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1467.0317089635917,
+        1663.479025828114,
+        1787.5593684138046
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1557096299196248,
+        1.4859611617659265
+      ]
+    },
+    {
+      "part": "Legger_Part_R_HipJoint",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.10831986367702484,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1619.6620145495217,
+        1875.1792214647578,
+        1885.8654800585298
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.024617088214686,
+        1.3733545297944676
+      ]
+    },
+    {
+      "part": "Legger_Part_R_HipJoint",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.10902753472328186,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1490.3329610237051,
+        1751.8897899318044,
+        1767.6147114206
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0184770315881448,
+        1.4073572598918764
+      ]
+    },
+    {
+      "part": "Legger_Part_R_KneeJoint",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.1023302674293518,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1612.5569077764962,
+        1876.7072391267782,
+        1892.7416780449098
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.022949808623169,
+        1.385535552496612
+      ]
+    },
+    {
+      "part": "Legger_Part_R_KneeJoint",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.1028919368982315,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1495.1175708590326,
+        1755.188048392044,
+        1767.6147177757166
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0147005664813595,
+        1.3983396158576318
+      ]
+    },
+    {
+      "part": "Legger_Part_R_HockJoint",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.12107735872268677,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1624.6637547396026,
+        1876.2897837072146,
+        1886.1134193217417
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0234047232996732,
+        1.3649563244512173
+      ]
+    },
+    {
+      "part": "Legger_Part_R_HockJoint",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.12178969383239746,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1499.451629970703,
+        1752.3459696467062,
+        1767.6155860662482
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0179458777390038,
+        1.3902295973665566
+      ]
+    },
+    {
+      "part": "Legger_Part_R_AnkleJoint",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.07745392620563507,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1620.951327421084,
+        1870.1315163179913,
+        1886.0864763589943
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0301513044587187,
+        1.3712281864956954
+      ]
+    },
+    {
+      "part": "Legger_Part_R_AnkleJoint",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.07799572497606277,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1503.459215564665,
+        1750.392412119476,
+        1767.6141022229872
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0202210183690201,
+        1.3828804278076985
+      ]
+    },
+    {
+      "part": "Legger_Part_R_UpperLinkFrame",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.09839843213558197,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1529.1370754317318,
+        1739.4092079913266,
+        1887.01774729789
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1908093786688934,
+        1.540828153055748
+      ]
+    },
+    {
+      "part": "Legger_Part_R_UpperLinkFrame",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.09839843213558197,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1420.8851707441343,
+        1624.7802578129022,
+        1758.2325683792274
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1840619876484442,
+        1.5482867751931293
+      ]
+    },
+    {
+      "part": "Legger_Part_R_UpperLinkShell",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.17295825481414795,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1587.7821859377411,
+        1766.8561191611782,
+        1917.158875687176
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1792564019022687,
+        1.433118204187686
+      ]
+    },
+    {
+      "part": "Legger_Part_R_UpperLinkShell",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.15895801782608032,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1267.3463637886957,
+        1647.7764874713635,
+        1758.3801092175952
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1512408608066165,
+        1.9461201034234248
+      ]
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkFrame",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.2045878916978836,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1374.2620092116902,
+        1827.8714948228546,
+        1879.2362245253423
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.077593736707049,
+        1.4344507332894185
+      ]
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkFrame",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.20752838253974915,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1421.8409076667135,
+        1705.8651327546718,
+        1765.379746374971
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0741638550367125,
+        1.546185989398258
+      ]
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkShell",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.2266101837158203,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1603.5433229318176,
+        1774.0109029059863,
+        1914.1138448966065
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1844152359312028,
+        1.3997800317106701
+      ]
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkShell",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.2122761309146881,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1343.8717645590186,
+        1692.5264946033296,
+        1731.6223140804616
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0911731983605784,
+        1.730806401529673
+      ]
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkActuatorBarrel",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.03030369058251381,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1588.051872807828,
+        1822.9988805621792,
+        1883.8900109557862
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.084110918561203,
+        1.4286241448031967
+      ]
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkActuatorBarrel",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.048411741852760315,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1313.459014687604,
+        1683.8842434165672,
+        1759.2343895097883
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1024082540333122,
+        1.8118779401312977
+      ]
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkActuatorRod",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.009650304913520813,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1568.8046855027442,
+        1857.4607900979731,
+        1866.0288845099226
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.044253435201834,
+        1.4638872309755653
+      ]
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkActuatorRod",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.013496501371264458,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1474.0744597854452,
+        1731.2681170672608,
+        1732.1627182972145
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0428852762031422,
+        1.4386340222545413
+      ]
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkFrame",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.19600482285022736,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1380.5258867310797,
+        1705.1309694782142,
+        1889.3043103612292
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2209461237194728,
+        1.5595013787367729
+      ]
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkFrame",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.1986217349767685,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1365.7195620276725,
+        1623.8684549800932,
+        1765.7282105020158
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.185392323307724,
+        1.6758838992112153
+      ]
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkShell",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.1670387089252472,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1564.1032184220444,
+        1727.9889958281758,
+        1908.7155549882568
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2273764733663397,
+        1.4727794133879324
+      ]
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkShell",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.15400654077529907,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1270.3085471434401,
+        1613.0606366237112,
+        1751.2478144299748
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2013316726500158,
+        1.9370625492427131
+      ]
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkActuatorBarrel",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.02893374301493168,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1547.9664414308613,
+        1704.3756509348466,
+        1879.4509996075237
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2402635863391849,
+        1.503534516392287
+      ]
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkActuatorBarrel",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.04616770148277283,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1343.8811609368315,
+        1586.5715532331878,
+        1760.530911628797
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2417687606527634,
+        1.73080536342631
+      ]
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkActuatorRod",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.009306732565164566,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1626.6156119949605,
+        1704.344550398469,
+        1862.423026927983
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2402936017875734,
+        1.3616868854060407
+      ]
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkActuatorRod",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.012967928312718868,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1422.6427612553089,
+        1586.5716452515396,
+        1734.854426984803
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2417865991062835,
+        1.544464726349328
+      ]
+    },
+    {
+      "part": "Legger_Part_R_Foot",
+      "module": "RightLeg",
+      "case": "before",
+      "surface_area_m2": 0.5859548449516296,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1556.6236527920837,
+        1753.0105033895034,
+        1896.5192657909113
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1724040606357258,
+        1.4868881414416482
+      ]
+    },
+    {
+      "part": "Legger_Part_R_Foot",
+      "module": "RightLeg",
+      "case": "current",
+      "surface_area_m2": 0.5910477638244629,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1443.13770363397,
+        1629.5616909871073,
+        1766.2809166980219
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.177123639527395,
+        1.5009031245675037
+      ]
+    },
+    {
+      "part": "Legger_Part_L_tail_shroud",
+      "module": "BodyArmor",
+      "case": "before",
+      "surface_area_m2": 0.24733665585517883,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1799.4303615548858,
+        2010.1477868420507,
+        2168.2183217059
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2077112173462075,
+        1.473700399151681
+      ]
+    },
+    {
+      "part": "Legger_Part_L_tail_shroud",
+      "module": "BodyArmor",
+      "case": "current",
+      "surface_area_m2": 0.2468922734260559,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1803.2515731639696,
+        2010.129614554824,
+        2191.0000496719053
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.212032186969346,
+        1.4829844669843697
+      ]
+    },
+    {
+      "part": "Legger_Part_R_tail_shroud",
+      "module": "BodyArmor",
+      "case": "before",
+      "surface_area_m2": 0.24741899967193604,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1797.1306233098433,
+        2010.276466223051,
+        2168.218368056074
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2102521844364684,
+        1.4801773359899117
+      ]
+    },
+    {
+      "part": "Legger_Part_R_tail_shroud",
+      "module": "BodyArmor",
+      "case": "current",
+      "surface_area_m2": 0.24695754051208496,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1803.940681036938,
+        2010.2300329131867,
+        2190.9886482208703
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.222215036282992,
+        1.4936463029153675
+      ]
+    },
+    {
+      "part": "Legger_Part_L_upper_body_shroud",
+      "module": "BodyArmor",
+      "case": "before",
+      "surface_area_m2": 0.2801870107650757,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2037.558991782605,
+        2155.907661653912,
+        2171.8619587088647
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0168766289776359,
+        1.158231325743597
+      ]
+    },
+    {
+      "part": "Legger_Part_L_upper_body_shroud",
+      "module": "BodyArmor",
+      "case": "current",
+      "surface_area_m2": 0.27987241744995117,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2071.1514497104054,
+        2155.768170163167,
+        2171.655265760888
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.017440292390347,
+        1.1080629249965166
+      ]
+    },
+    {
+      "part": "Legger_Part_L_front_fairing",
+      "module": "BodyArmor",
+      "case": "before",
+      "surface_area_m2": 0.31042927503585815,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1083.9923850160924,
+        1968.4275432726172,
+        2726.375710757456
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.7515895888933808,
+        5.1303240112559605
+      ]
+    },
+    {
+      "part": "Legger_Part_L_front_fairing",
+      "module": "BodyArmor",
+      "case": "current",
+      "surface_area_m2": 0.31033268570899963,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1083.9939810715837,
+        1970.2919276811185,
+        2726.3720093627076
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.750593501504363,
+        5.057511499707702
+      ]
+    },
+    {
+      "part": "Legger_Part_R_upper_body_shroud",
+      "module": "BodyArmor",
+      "case": "before",
+      "surface_area_m2": 0.2801870107650757,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2037.6800417037553,
+        2156.1304643223402,
+        2171.903201779005
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0168455661867881,
+        1.1594324377824874
+      ]
+    },
+    {
+      "part": "Legger_Part_R_upper_body_shroud",
+      "module": "BodyArmor",
+      "case": "current",
+      "surface_area_m2": 0.27987241744995117,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2071.314400866644,
+        2155.904205779282,
+        2171.781353573918
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0174022089458266,
+        1.1092687810881237
+      ]
+    },
+    {
+      "part": "Legger_Part_R_front_fairing",
+      "module": "BodyArmor",
+      "case": "before",
+      "surface_area_m2": 0.31042927503585815,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1083.9159761977278,
+        1968.7929807139435,
+        2726.9367556555912
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.7522166427909558,
+        5.12844778382584
+      ]
+    },
+    {
+      "part": "Legger_Part_R_front_fairing",
+      "module": "BodyArmor",
+      "case": "current",
+      "surface_area_m2": 0.31033268570899963,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1083.9175721541146,
+        1970.768910610991,
+        2726.933053496715
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.7505575535480355,
+        5.060352238517188
+      ]
+    },
+    {
+      "part": "Legger_Part_FrontTankCowling",
+      "module": "BodyArmor",
+      "case": "before",
+      "surface_area_m2": 0.3143109381198883,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1130.7694479761767,
+        1717.5059528731003,
+        2212.589718887227
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.6103314450364565,
+        3.8281496556090984
+      ]
+    },
+    {
+      "part": "Legger_Part_FrontTankCowling",
+      "module": "BodyArmor",
+      "case": "current",
+      "surface_area_m2": 0.3143109381198883,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1130.7694479761767,
+        1717.5059528731003,
+        2212.589718887227
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.6103314450364565,
+        3.8281496556090984
+      ]
+    },
+    {
+      "part": "Legger_Part_SaddleUpholstery",
+      "module": "Saddle",
+      "case": "before",
+      "surface_area_m2": 0.31660783290863037,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        834.5195698030598,
+        1358.4984661973226,
+        1499.4265343543586
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1997388252501708,
+        2.5815497765878272
+      ]
+    },
+    {
+      "part": "Legger_Part_SaddleUpholstery",
+      "module": "Saddle",
+      "case": "current",
+      "surface_area_m2": 0.31660783290863037,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        834.5195698030598,
+        1358.4984661973226,
+        1499.4265343543586
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1997388252501708,
+        2.5815497765878272
+      ]
+    },
+    {
+      "part": "Legger_Part_SaddlePan",
+      "module": "Saddle",
+      "case": "before",
+      "surface_area_m2": 0.36650514602661133,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        811.9415063600753,
+        1388.2510587323172,
+        1560.5831930603904
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.246119871265888,
+        2.6635399910998614
+      ]
+    },
+    {
+      "part": "Legger_Part_SaddlePan",
+      "module": "Saddle",
+      "case": "current",
+      "surface_area_m2": 0.36650514602661133,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        811.9415063600753,
+        1388.2510587323172,
+        1560.5831930603904
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.246119871265888,
+        2.6635399910998614
+      ]
+    },
+    {
+      "part": "Legger_Part_FrontControlPod",
+      "module": "Steering",
+      "case": "before",
+      "surface_area_m2": 0.5253874063491821,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        876.6296366598243,
+        1589.4830242675807,
+        2077.840521517475
+      ],
+      "mapping_anisotropy_p50_p95": [
+        2.515115686846193,
+        5.041858391484542
+      ]
+    },
+    {
+      "part": "Legger_Part_FrontControlPod",
+      "module": "Steering",
+      "case": "current",
+      "surface_area_m2": 0.548467755317688,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1454.1699980762264,
+        1563.7357171858562,
+        1702.879913276026
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1862029810207089,
+        1.3716869109085135
+      ]
+    },
+    {
+      "part": "Legger_Part_SteeringStem",
+      "module": "Steering",
+      "case": "before",
+      "surface_area_m2": 0.04258432239294052,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1586.2877749097356,
+        1753.1391011642795,
+        1977.1592281447063
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.3042491409084356,
+        1.5930372539451716
+      ]
+    },
+    {
+      "part": "Legger_Part_SteeringStem",
+      "module": "Steering",
+      "case": "current",
+      "surface_area_m2": 0.04258432239294052,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1420.4014298798313,
+        1500.5267280864823,
+        1693.4725360509115
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.288213234454672,
+        1.4376921179959794
+      ]
+    },
+    {
+      "part": "Legger_Part_L_Grip",
+      "module": "Steering",
+      "case": "before",
+      "surface_area_m2": 0.022340625524520874,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1662.1236303317553,
+        1842.13360271176,
+        1937.8893103216228
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1812670220353614,
+        1.4509866149898014
+      ]
+    },
+    {
+      "part": "Legger_Part_L_Grip",
+      "module": "Steering",
+      "case": "current",
+      "surface_area_m2": 0.022340625524520874,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1447.1885854547472,
+        1583.8805561853014,
+        1654.0300871443267
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1562184236017736,
+        1.3849512320319337
+      ]
+    },
+    {
+      "part": "Legger_Part_L_BrakeLever",
+      "module": "Steering",
+      "case": "before",
+      "surface_area_m2": 0.006954146549105644,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1609.1549632363717,
+        1746.9666831560091,
+        1947.3776322111376
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.3134774189081204,
+        1.5481015783174383
+      ]
+    },
+    {
+      "part": "Legger_Part_L_BrakeLever",
+      "module": "Steering",
+      "case": "current",
+      "surface_area_m2": 0.006991792935878038,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1380.371972511443,
+        1526.1816078398715,
+        1659.3505398838017
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.245297058560492,
+        1.522305779268175
+      ]
+    },
+    {
+      "part": "Legger_Part_R_Grip",
+      "module": "Steering",
+      "case": "before",
+      "surface_area_m2": 0.022340625524520874,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1700.2851265528343,
+        1869.513180286854,
+        1974.0027962242032
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1469178869759746,
+        1.3865737856114018
+      ]
+    },
+    {
+      "part": "Legger_Part_R_Grip",
+      "module": "Steering",
+      "case": "current",
+      "surface_area_m2": 0.022340625524520874,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1447.1929044957574,
+        1584.0053349169482,
+        1654.026705523489
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1560388518235225,
+        1.384958312823612
+      ]
+    },
+    {
+      "part": "Legger_Part_R_BrakeLever",
+      "module": "Steering",
+      "case": "before",
+      "surface_area_m2": 0.006954146549105644,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1604.5416490107098,
+        1746.9609131666975,
+        1949.9430490708407
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.3134805819329531,
+        1.5570124189247698
+      ]
+    },
+    {
+      "part": "Legger_Part_R_BrakeLever",
+      "module": "Steering",
+      "case": "current",
+      "surface_area_m2": 0.006991792935878038,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1380.3713616179664,
+        1526.1808986942501,
+        1659.3537188319835
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2452961456574607,
+        1.52231558150232
+      ]
+    },
+    {
+      "part": "Legger_Part_InstrumentGauge",
+      "module": "Steering",
+      "case": "before",
+      "surface_area_m2": 0.06595791131258011,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1679.4456651985047,
+        2000.8222649310605,
+        2001.9867394853832
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0013213689752636,
+        1.4212149862373311
+      ]
+    },
+    {
+      "part": "Legger_Part_InstrumentGauge",
+      "module": "Steering",
+      "case": "current",
+      "surface_area_m2": 0.06595791131258011,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1474.535722772362,
+        1700.3254480399369,
+        1702.8073419046066
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.0032798251014183,
+        1.3340624037488737
+      ]
+    },
+    {
+      "part": "Legger_Part_Handlebar",
+      "module": "Steering",
+      "case": "before",
+      "surface_area_m2": 0.08486901968717575,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1673.0788971003553,
+        1832.2103564114125,
+        1989.4191842175526
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1941006190279997,
+        1.4320465954460704
+      ]
+    },
+    {
+      "part": "Legger_Part_Handlebar",
+      "module": "Steering",
+      "case": "current",
+      "surface_area_m2": 0.08486901968717575,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1401.8755041048164,
+        1551.7447688058674,
+        1684.1348196657304
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.2046079918839832,
+        1.4759322200061686
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Main_Body",
+      "module": "Cargo_L_Main",
+      "case": "before",
+      "surface_area_m2": 0.8517621159553528,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2644.465551526382,
+        2856.3528112252284,
+        2856.363728121595
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1111094422926089,
+        1.166668295714766
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Main_Body",
+      "module": "Cargo_L_Main",
+      "case": "current",
+      "surface_area_m2": 0.8517621159553528,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2644.465551526382,
+        2856.3528112252284,
+        2856.363728121595
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1111094422926089,
+        1.166668295714766
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Main_Straps",
+      "module": "Cargo_L_Main",
+      "case": "before",
+      "surface_area_m2": 0.16277745366096497,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2584.3129189372053,
+        2644.5481960642237,
+        2856.3648544037324
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.111099361508462,
+        1.1875160559512616
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Main_Straps",
+      "module": "Cargo_L_Main",
+      "case": "current",
+      "surface_area_m2": 0.16277745366096497,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2584.3129189372053,
+        2644.5481960642237,
+        2856.3648544037324
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.111099361508462,
+        1.1875160559512616
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Main_Lid",
+      "module": "Cargo_L_Main",
+      "case": "before",
+      "surface_area_m2": 0.25543078780174255,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2558.801925634352,
+        2713.1162197142567,
+        2856.3567392819195
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1177401364376878,
+        1.3423555463301668
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Main_Lid",
+      "module": "Cargo_L_Main",
+      "case": "current",
+      "surface_area_m2": 0.25543078780174255,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2558.801925634352,
+        2713.1162197142567,
+        2856.3567392819195
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1177401364376878,
+        1.3423555463301668
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Aux_Body",
+      "module": "Cargo_L_Aux",
+      "case": "before",
+      "surface_area_m2": 0.7132505178451538,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1503.1842538782053,
+        1503.1896142574515,
+        1614.683374730915
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.043481616701125,
+        1.2046596922145059
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Aux_Body",
+      "module": "Cargo_L_Aux",
+      "case": "current",
+      "surface_area_m2": 0.7132505178451538,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1503.1842538782053,
+        1503.1896142574515,
+        1614.683374730915
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.043481616701125,
+        1.2046596922145059
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Aux_Straps",
+      "module": "Cargo_L_Aux",
+      "case": "before",
+      "surface_area_m2": 0.14282092452049255,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1417.5875855739087,
+        1580.6833846325635,
+        1614.6999240653506
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1057678056511984,
+        1.2046210303475078
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Aux_Straps",
+      "module": "Cargo_L_Aux",
+      "case": "current",
+      "surface_area_m2": 0.14282092452049255,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1417.5875855739087,
+        1580.6833846325635,
+        1614.6999240653506
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1057678056511984,
+        1.2046210303475078
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Aux_Lid",
+      "module": "Cargo_L_Aux",
+      "case": "before",
+      "surface_area_m2": 0.21611571311950684,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1396.8768877352302,
+        1614.6529298551018,
+        1614.6960659611486
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1057718102398633,
+        1.1538470647802783
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Aux_Lid",
+      "module": "Cargo_L_Aux",
+      "case": "current",
+      "surface_area_m2": 0.21611571311950684,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1396.8768877352302,
+        1614.6529298551018,
+        1614.6960659611486
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1057718102398633,
+        1.1538470647802783
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Main_Body",
+      "module": "Cargo_R_Main",
+      "case": "before",
+      "surface_area_m2": 0.8517621159553528,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2644.46448738604,
+        2856.352770829941,
+        2856.363725760383
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1111094888673225,
+        1.1666689101037342
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Main_Body",
+      "module": "Cargo_R_Main",
+      "case": "current",
+      "surface_area_m2": 0.8517621159553528,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2644.46448738604,
+        2856.352770829941,
+        2856.363725760383
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1111094888673225,
+        1.1666689101037342
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Main_Straps",
+      "module": "Cargo_R_Main",
+      "case": "before",
+      "surface_area_m2": 0.16277745366096497,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2584.3155005236404,
+        2644.5510415718472,
+        2856.366822760745
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.111092790266103,
+        1.1875159867336935
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Main_Straps",
+      "module": "Cargo_R_Main",
+      "case": "current",
+      "surface_area_m2": 0.16277745366096497,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2584.3155005236404,
+        2644.5510415718472,
+        2856.366822760745
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.111092790266103,
+        1.1875159867336935
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Main_Lid",
+      "module": "Cargo_R_Main",
+      "case": "before",
+      "surface_area_m2": 0.25543078780174255,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2558.7898886038806,
+        2713.11488421904,
+        2856.3567392819195
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1177336984555486,
+        1.3423564084239274
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Main_Lid",
+      "module": "Cargo_R_Main",
+      "case": "current",
+      "surface_area_m2": 0.25543078780174255,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        2558.7898886038806,
+        2713.11488421904,
+        2856.3567392819195
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1177336984555486,
+        1.3423564084239274
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Aux_Body",
+      "module": "Cargo_R_Aux",
+      "case": "before",
+      "surface_area_m2": 0.7132505178451538,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1503.1836616454311,
+        1503.1895736325641,
+        1614.6833284047864
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.04348149172757,
+        1.2046598182720716
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Aux_Body",
+      "module": "Cargo_R_Aux",
+      "case": "current",
+      "surface_area_m2": 0.7132505178451538,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1503.1836616454311,
+        1503.1895736325641,
+        1614.6833284047864
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.04348149172757,
+        1.2046598182720716
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Aux_Straps",
+      "module": "Cargo_R_Aux",
+      "case": "before",
+      "surface_area_m2": 0.14282092452049255,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1417.5889430859381,
+        1580.683269820052,
+        1614.7006974064018
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1057662839874847,
+        1.2046190403008885
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Aux_Straps",
+      "module": "Cargo_R_Aux",
+      "case": "current",
+      "surface_area_m2": 0.14282092452049255,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1417.5889430859381,
+        1580.683269820052,
+        1614.7006974064018
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1057662839874847,
+        1.2046190403008885
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Aux_Lid",
+      "module": "Cargo_R_Aux",
+      "case": "before",
+      "surface_area_m2": 0.21611571311950684,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1396.879618977949,
+        1614.658875177313,
+        1614.6985470136685
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1057717648747747,
+        1.153846893612993
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Aux_Lid",
+      "module": "Cargo_R_Aux",
+      "case": "current",
+      "surface_area_m2": 0.21611571311950684,
+      "degenerate_UV_surface_area_fraction": 0.0,
+      "texels_per_metre_p05_p50_p95": [
+        1396.879618977949,
+        1614.658875177313,
+        1614.6985470136685
+      ],
+      "mapping_anisotropy_p50_p95": [
+        1.1057717648747747,
+        1.153846893612993
+      ]
+    }
+  ],
+  "limits": "Density varies across parts within each fixed-resolution module. Source PBR/distance renders check appearance; target compression and game-camera mip behavior remain Unity checks."
+}

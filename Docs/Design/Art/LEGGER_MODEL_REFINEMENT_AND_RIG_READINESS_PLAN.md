@@ -1,12 +1,12 @@
 # Legger model refinement and rig readiness plan
 
-October 16, 2026. **Proposed plan.** The author requested a plan following the visual audit and modeling brainstorm. Implementation has not started under this plan. Refine the Legger into a convincing distant-future machine through stronger forms, fitted mechanical connections and restrained surface detail, while preparing the assembly for later rigging and animation.
+October 16, 2026. **Source modeling implementation complete and independently verified.** The author requested execution after auditing this plan. Refine the Legger into a convincing distant-future machine through stronger forms, fitted mechanical connections and restrained surface detail, while preparing the assembly for later rigging and animation. The audit corrections below governed execution. The [saved-source receipt](../../Evidence/Art/LeggerModelRefinement20261016/README.md) and [rigging handoff](LEGGER_MODEL_REFINEMENT_HANDOFF.md) record the installed result; production rigging, animation and Unity validation remain the later slice.
 
 The recommended direction is layered ivory armor over a compact dark mechanical core, with precise panel transitions and selected exposed structure. Preserve the original's recognizable design and the accepted clean reconstruction. Use the original's fused details as visual references, rather than mechanical specifications.
 
 ## Scope and responsibilities
 
-The next implementation slice covers source modeling, articulation preparation, UV and material repairs caused by that modeling, and verified native saving. A disposable articulation study checks whether proposed forms can move; a production rig, animation clips, Unity installation, gameplay integration and performance acceptance belong to subsequent work.
+This implementation slice covers source modeling, articulation preparation, UV and material repairs caused by that modeling, and verified native saving. A disposable articulation study checks whether proposed forms can move; a production rig, animation clips, Unity installation, gameplay integration and performance acceptance belong to subsequent work.
 
 Gottspan coordinates the batch; Blender owns source geometry and preparation; Sable reviews the visual result; Babineaux owns the later Unity handoff. These are responsibility boundaries, not instructions to start other agents. The user retains creative authority. Continue in the existing `main` checkout, with background workers that preserve the user's foreground application.
 
@@ -43,6 +43,14 @@ Use the [modular model plan](LEGGER_MODULAR_MODEL_PLAN.md) for the existing asse
 | Surface language | Use a small consistent family of panel corners, chamfers, service recesses and finishes. Concentrate wear at credible contact locations. | Geometry carries silhouette and substantial parallax. Maps carry grain, shallow seams, small hardware and finish variation. Preserve broad quiet surfaces between detailed areas. |
 
 ## Execution sequence
+
+### Audit corrections governing execution
+
+- Treat module roots as authoring groups, not qualified motion roots. The expanded `Legger_Part_FrontControlPod` stays fixed to the body; the stem, handlebar, grips and gauge form the steering group. Brake levers require geometry-derived hinge guides because their existing object origins are not verified hinges. Preserve source transforms and store the motion map separately from those authoring groups.
+- Use diagnostic target displacements from the accepted neutral pose: foot lift 0.20 m with 0.15 m forward travel; forward and rearward travel 0.20 m with 0.06 m lift; body lowering 0.15 m with planted feet; near-extension through 0.05 m body rise; steering +/-20 degrees. These are modeling study targets, not approved gameplay stride or joint limits. Preserve rigid segment lengths to 10 micrometres; never use bone stretch to reach a target. Test intermediate poses. An unreachable target or unresolved interference is reported, not silently replaced with an easier pass.
+- Preserve root/part matrices and protected anchor coordinates within 1 micrometre, protected grip orientation within 0.001 degree, and unchanged mesh/UV/image data exactly by fingerprint. Preserve the main saddle pocket through Y=0.14 m and all cargo and footrest vertices. Protect foot contact vertices below Z=0.028 m. Clearance checks distinguish intentional assembled overlaps from unintended moving-part intersections and report both the pair and pose.
+- Keep a source bake contract recording evaluated triangulation and normals. These bakes remain source-qualified until the later Unity import validates its tangent handling; an exporter/importer mismatch requires a derived-mesh correction and affected rebake. No production export or Unity import is added to this slice.
+- Frame each complete reviewed component with a margin before locking matched cameras. Validate the projected union of original/before/candidate bounds; never reuse the cropped foot-top setup as a full-foot comparison. Label any deliberate near/far clipping.
 
 ### Phase 1 Seal the baseline and map movement
 
@@ -139,3 +147,16 @@ No Unity assets, metadata, scenes, packages, settings or gameplay smoke tests ar
 | Existing source budgets could be mistaken for performance proof | Preserve the ceilings now; measure the actual exported render and skinning costs in the later Unity slice. |
 | Historical measurements could reverse completed improvements | Bind work to the current source identity and use the later rework/rider/mounting receipts as the accepted baseline. |
 | A modeling plan could silently expand into gameplay implementation | Keep production rigging, clips, exports and Unity integration as the explicitly separated subsequent slice. |
+
+## Completion audit — October 16, 2026
+
+| Phase | Verified result |
+| --- | --- |
+| 1 Baseline and movement map | Verified recovery copy; all preceding mesh/image identities preserved; every active island has a guide carrier and all protected transforms/contacts pass. |
+| 2 Articulation envelopes | 58 repaired-geometry samples, link/stroke/hose measurements, steering/lever checks and a retained rider proxy; limiting pose renders are recorded. |
+| 3 Primary forms | Regional clay and textured comparisons against the original and accepted input; local form/fitting changes in 41 meshes with unchanged source ceilings. |
+| 4 Cleanup and structure | Closed nondegenerate quads, positive edited-island volumes, corrected mirrored cable winding, independent hidden recovery roots and a native geometry allowlist. |
+| 5 Surfaces | Five repaired atlases, 55 active packed maps at existing resolutions, density/distortion comparison, derived triangulation/normal contract, isolated AO and distance-view review. |
+| 6 Save and handoff | Guarded installation into the same native; independent reopen/inspection and matched renders; [receipt](../../Evidence/Art/LeggerModelRefinement20261016/README.md) and [later rigging handoff](LEGGER_MODEL_REFINEMENT_HANDOFF.md). |
+
+Author visual acceptance, production deform weights and controls, clips, export and Unity cost/material/tangent checks remain separately named dependencies. They are not claimed by this source modeling completion.

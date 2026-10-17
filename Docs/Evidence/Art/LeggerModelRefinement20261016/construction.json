@@ -1,0 +1,279 @@
+{
+  "before_sha256": "90757f7efa6811fbfd9c82c93b08a98d254f60d13d15e447e5eeab03f2db6304",
+  "after_sha256": "87ba450b0f957e8f71924bb50ed73ae7aec1f20efa8b215cefdfffb121b78eea",
+  "native_path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration04.blend",
+  "recovery": "D:\\BooterBigArmPrivateAssets\\Legger\\ModelRefinement20261016\\Before.blend",
+  "changed_geometry": [
+    {
+      "name": "Legger_Part_MainFrame",
+      "maximum_vertex_displacement_m": 0.0008030197350308299
+    },
+    {
+      "name": "Legger_Part_ServiceHarness",
+      "maximum_vertex_displacement_m": 0.32337984442710876
+    },
+    {
+      "name": "Legger_Part_DriveCore",
+      "maximum_vertex_displacement_m": 0.2648649215698242
+    },
+    {
+      "name": "Legger_Part_RearCoolingHousing",
+      "maximum_vertex_displacement_m": 0.3152896463871002
+    },
+    {
+      "name": "Legger_Part_L_HipJoint",
+      "maximum_vertex_displacement_m": 0.0014999955892562866
+    },
+    {
+      "name": "Legger_Part_L_KneeJoint",
+      "maximum_vertex_displacement_m": 0.0015000104904174805
+    },
+    {
+      "name": "Legger_Part_L_HockJoint",
+      "maximum_vertex_displacement_m": 0.0015000104904174805
+    },
+    {
+      "name": "Legger_Part_L_AnkleJoint",
+      "maximum_vertex_displacement_m": 0.0015000104904174805
+    },
+    {
+      "name": "Legger_Part_L_UpperLinkShell",
+      "maximum_vertex_displacement_m": 0.03443385330707206
+    },
+    {
+      "name": "Legger_Part_L_MiddleLinkFrame",
+      "maximum_vertex_displacement_m": 0.18352528577442664
+    },
+    {
+      "name": "Legger_Part_L_MiddleLinkShell",
+      "maximum_vertex_displacement_m": 0.014549783281864223
+    },
+    {
+      "name": "Legger_Part_L_MiddleLinkActuatorBarrel",
+      "maximum_vertex_displacement_m": 0.1841395443746304
+    },
+    {
+      "name": "Legger_Part_L_MiddleLinkActuatorRod",
+      "maximum_vertex_displacement_m": 0.1050510887982682
+    },
+    {
+      "name": "Legger_Part_L_LowerLinkFrame",
+      "maximum_vertex_displacement_m": 0.1751908067308647
+    },
+    {
+      "name": "Legger_Part_L_LowerLinkShell",
+      "maximum_vertex_displacement_m": 0.013719672682078929
+    },
+    {
+      "name": "Legger_Part_L_LowerLinkActuatorBarrel",
+      "maximum_vertex_displacement_m": 0.17471356546468703
+    },
+    {
+      "name": "Legger_Part_L_LowerLinkActuatorRod",
+      "maximum_vertex_displacement_m": 0.09996646225415672
+    },
+    {
+      "name": "Legger_Part_L_Foot",
+      "maximum_vertex_displacement_m": 0.04732106507194733
+    },
+    {
+      "name": "Legger_Part_R_HipJoint",
+      "maximum_vertex_displacement_m": 0.0014999955892562866
+    },
+    {
+      "name": "Legger_Part_R_KneeJoint",
+      "maximum_vertex_displacement_m": 0.0015000104904174805
+    },
+    {
+      "name": "Legger_Part_R_HockJoint",
+      "maximum_vertex_displacement_m": 0.0015000104904174805
+    },
+    {
+      "name": "Legger_Part_R_AnkleJoint",
+      "maximum_vertex_displacement_m": 0.0015000104904174805
+    },
+    {
+      "name": "Legger_Part_R_UpperLinkShell",
+      "maximum_vertex_displacement_m": 0.03443385288119316
+    },
+    {
+      "name": "Legger_Part_R_MiddleLinkFrame",
+      "maximum_vertex_displacement_m": 0.18352527916431427
+    },
+    {
+      "name": "Legger_Part_R_MiddleLinkShell",
+      "maximum_vertex_displacement_m": 0.014549783430993557
+    },
+    {
+      "name": "Legger_Part_R_MiddleLinkActuatorBarrel",
+      "maximum_vertex_displacement_m": 0.18413954973220825
+    },
+    {
+      "name": "Legger_Part_R_MiddleLinkActuatorRod",
+      "maximum_vertex_displacement_m": 0.10505108535289764
+    },
+    {
+      "name": "Legger_Part_R_LowerLinkFrame",
+      "maximum_vertex_displacement_m": 0.17519080638885498
+    },
+    {
+      "name": "Legger_Part_R_LowerLinkShell",
+      "maximum_vertex_displacement_m": 0.013719672337174416
+    },
+    {
+      "name": "Legger_Part_R_LowerLinkActuatorBarrel",
+      "maximum_vertex_displacement_m": 0.17471356689929962
+    },
+    {
+      "name": "Legger_Part_R_LowerLinkActuatorRod",
+      "maximum_vertex_displacement_m": 0.09996646642684937
+    },
+    {
+      "name": "Legger_Part_R_Foot",
+      "maximum_vertex_displacement_m": 0.04732106626033783
+    },
+    {
+      "name": "Legger_Part_L_tail_shroud",
+      "maximum_vertex_displacement_m": 0.0015544065972790122
+    },
+    {
+      "name": "Legger_Part_R_tail_shroud",
+      "maximum_vertex_displacement_m": 0.001551806926727295
+    },
+    {
+      "name": "Legger_Part_L_upper_body_shroud",
+      "maximum_vertex_displacement_m": 0.0012657670304179192
+    },
+    {
+      "name": "Legger_Part_L_front_fairing",
+      "maximum_vertex_displacement_m": 0.0007649939507246017
+    },
+    {
+      "name": "Legger_Part_R_upper_body_shroud",
+      "maximum_vertex_displacement_m": 0.0012657670304179192
+    },
+    {
+      "name": "Legger_Part_R_front_fairing",
+      "maximum_vertex_displacement_m": 0.0007649939507246017
+    },
+    {
+      "name": "Legger_Part_FrontControlPod",
+      "maximum_vertex_displacement_m": 0.021161526441574097
+    },
+    {
+      "name": "Legger_Part_L_BrakeLever",
+      "maximum_vertex_displacement_m": 0.01399993896484375,
+      "method": "Lower the lever finger blade progressively by up to 14 mm, preserving its hinge, to clear the unchanged grip through the full diagnostic 12 degree pull"
+    },
+    {
+      "name": "Legger_Part_R_BrakeLever",
+      "maximum_vertex_displacement_m": 0.01399993896484375,
+      "method": "Lower the lever finger blade progressively by up to 14 mm, preserving its hinge, to clear the unchanged grip through the full diagnostic 12 degree pull"
+    }
+  ],
+  "foot_brace_fits": [
+    {
+      "component": 3,
+      "old_free_end_m": [
+        0.23499999940395355,
+        -0.5649999976158142,
+        0.05100001394748688
+      ],
+      "new_embedded_end_m": [
+        0.25002989172935486,
+        -0.5906618237495422,
+        0.08780838549137115
+      ],
+      "nearest_control_surface_distance_before_m": 0.04434759169816971,
+      "inset_m": 0.003
+    },
+    {
+      "component": 5,
+      "old_free_end_m": [
+        0.2549999952316284,
+        -0.3800000250339508,
+        0.03800000995397568
+      ],
+      "new_embedded_end_m": [
+        0.2549999952316284,
+        -0.4004559814929962,
+        0.06157619506120682
+      ],
+      "nearest_control_surface_distance_before_m": 0.02821352705359459,
+      "inset_m": 0.003
+    },
+    {
+      "component": 11,
+      "old_free_end_m": [
+        0.3349999785423279,
+        -0.5649999976158142,
+        0.05100001394748688
+      ],
+      "new_embedded_end_m": [
+        0.31997016072273254,
+        -0.590661883354187,
+        0.08780837804079056
+      ],
+      "nearest_control_surface_distance_before_m": 0.04434758424758911,
+      "inset_m": 0.003
+    },
+    {
+      "component": 13,
+      "old_free_end_m": [
+        0.3149999976158142,
+        -0.37999996542930603,
+        0.03800000995397568
+      ],
+      "new_embedded_end_m": [
+        0.3149999976158142,
+        -0.4004560112953186,
+        0.061576224863529205
+      ],
+      "nearest_control_surface_distance_before_m": 0.02821354940533638,
+      "inset_m": 0.003
+    }
+  ],
+  "actuator_construction": [
+    {
+      "link": "Middle",
+      "barrel_mouth_fraction": 0.78,
+      "bore_bottom_fraction": 0.26,
+      "rod_inner_fraction_neutral": 0.4,
+      "bracket_base_shift_m": [
+        0.0,
+        -0.007333129644393921,
+        0.007333159446716309
+      ],
+      "stroke_method": "Independent rigid barrel and rod aimed between parent/child clevises; no length scale"
+    },
+    {
+      "link": "Lower",
+      "barrel_mouth_fraction": 0.78,
+      "bore_bottom_fraction": 0.26,
+      "rod_inner_fraction_neutral": 0.4,
+      "bracket_base_shift_m": [
+        -2.9802322387695312e-08,
+        -0.0009041130542755127,
+        -0.007026731967926025
+      ],
+      "stroke_method": "Independent rigid barrel and rod aimed between parent/child clevises; no length scale"
+    }
+  ],
+  "orientation_repairs": [
+    {
+      "part": "Legger_Part_ServiceHarness",
+      "reversed_islands": [
+        0,
+        1,
+        2
+      ],
+      "positions_unchanged": true,
+      "UV_vertex_correspondence_unchanged": true
+    }
+  ],
+  "active_meshes": 76,
+  "control_quads": 45762,
+  "evaluated_triangles": 146264,
+  "native_mesh_objects": 1097,
+  "packed_images_including_history": 258
+}

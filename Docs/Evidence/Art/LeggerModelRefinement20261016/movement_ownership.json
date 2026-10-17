@@ -1,0 +1,4142 @@
+{
+  "after_sha256": "87ba450b0f957e8f71924bb50ed73ae7aec1f20efa8b215cefdfffb121b78eea",
+  "purpose": "Unique guide selections and motion ownership, not final deform weights",
+  "parts": [
+    {
+      "part": "Legger_Part_L_CargoRack",
+      "module": "Frame",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 709,
+          "vertex_count": 710
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 710,
+          "last_vertex": 717,
+          "vertex_count": 8
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 718,
+          "last_vertex": 725,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 726,
+          "last_vertex": 733,
+          "vertex_count": 8
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 734,
+          "last_vertex": 741,
+          "vertex_count": 8
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 742,
+          "last_vertex": 749,
+          "vertex_count": 8
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 750,
+          "last_vertex": 757,
+          "vertex_count": 8
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 758,
+          "last_vertex": 765,
+          "vertex_count": 8
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 766,
+          "last_vertex": 773,
+          "vertex_count": 8
+        },
+        {
+          "island": 9,
+          "carrier": "Body",
+          "first_vertex": 774,
+          "last_vertex": 781,
+          "vertex_count": 8
+        },
+        {
+          "island": 10,
+          "carrier": "Body",
+          "first_vertex": 782,
+          "last_vertex": 789,
+          "vertex_count": 8
+        },
+        {
+          "island": 11,
+          "carrier": "Body",
+          "first_vertex": 790,
+          "last_vertex": 797,
+          "vertex_count": 8
+        },
+        {
+          "island": 12,
+          "carrier": "Body",
+          "first_vertex": 798,
+          "last_vertex": 815,
+          "vertex_count": 18
+        },
+        {
+          "island": 13,
+          "carrier": "Body",
+          "first_vertex": 816,
+          "last_vertex": 833,
+          "vertex_count": 18
+        },
+        {
+          "island": 14,
+          "carrier": "Body",
+          "first_vertex": 834,
+          "last_vertex": 851,
+          "vertex_count": 18
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_CargoRack",
+      "module": "Frame",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 709,
+          "vertex_count": 710
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 710,
+          "last_vertex": 717,
+          "vertex_count": 8
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 718,
+          "last_vertex": 725,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 726,
+          "last_vertex": 733,
+          "vertex_count": 8
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 734,
+          "last_vertex": 741,
+          "vertex_count": 8
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 742,
+          "last_vertex": 749,
+          "vertex_count": 8
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 750,
+          "last_vertex": 757,
+          "vertex_count": 8
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 758,
+          "last_vertex": 765,
+          "vertex_count": 8
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 766,
+          "last_vertex": 773,
+          "vertex_count": 8
+        },
+        {
+          "island": 9,
+          "carrier": "Body",
+          "first_vertex": 774,
+          "last_vertex": 781,
+          "vertex_count": 8
+        },
+        {
+          "island": 10,
+          "carrier": "Body",
+          "first_vertex": 782,
+          "last_vertex": 789,
+          "vertex_count": 8
+        },
+        {
+          "island": 11,
+          "carrier": "Body",
+          "first_vertex": 790,
+          "last_vertex": 797,
+          "vertex_count": 8
+        },
+        {
+          "island": 12,
+          "carrier": "Body",
+          "first_vertex": 798,
+          "last_vertex": 815,
+          "vertex_count": 18
+        },
+        {
+          "island": 13,
+          "carrier": "Body",
+          "first_vertex": 816,
+          "last_vertex": 833,
+          "vertex_count": 18
+        },
+        {
+          "island": 14,
+          "carrier": "Body",
+          "first_vertex": 834,
+          "last_vertex": 851,
+          "vertex_count": 18
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_FrontYoke",
+      "module": "Frame",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 95,
+          "vertex_count": 96
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 96,
+          "last_vertex": 247,
+          "vertex_count": 152
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 248,
+          "last_vertex": 399,
+          "vertex_count": 152
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 400,
+          "last_vertex": 497,
+          "vertex_count": 98
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_HipMount",
+      "module": "Frame",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 103,
+          "vertex_count": 104
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 104,
+          "last_vertex": 207,
+          "vertex_count": 104
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 208,
+          "last_vertex": 305,
+          "vertex_count": 98
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_FrontYoke",
+      "module": "Frame",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 95,
+          "vertex_count": 96
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 96,
+          "last_vertex": 247,
+          "vertex_count": 152
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 248,
+          "last_vertex": 399,
+          "vertex_count": 152
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 400,
+          "last_vertex": 497,
+          "vertex_count": 98
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_HipMount",
+      "module": "Frame",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 103,
+          "vertex_count": 104
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 104,
+          "last_vertex": 207,
+          "vertex_count": 104
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 208,
+          "last_vertex": 305,
+          "vertex_count": 98
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_MainFrame",
+      "module": "Frame",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 239,
+          "vertex_count": 240
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 240,
+          "last_vertex": 379,
+          "vertex_count": 140
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 380,
+          "last_vertex": 747,
+          "vertex_count": 368
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 748,
+          "last_vertex": 979,
+          "vertex_count": 232
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 980,
+          "last_vertex": 1219,
+          "vertex_count": 240
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 1220,
+          "last_vertex": 1359,
+          "vertex_count": 140
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 1360,
+          "last_vertex": 1727,
+          "vertex_count": 368
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 1728,
+          "last_vertex": 1959,
+          "vertex_count": 232
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 1960,
+          "last_vertex": 2031,
+          "vertex_count": 72
+        },
+        {
+          "island": 9,
+          "carrier": "Body",
+          "first_vertex": 2032,
+          "last_vertex": 2103,
+          "vertex_count": 72
+        },
+        {
+          "island": 10,
+          "carrier": "Body",
+          "first_vertex": 2104,
+          "last_vertex": 2175,
+          "vertex_count": 72
+        },
+        {
+          "island": 11,
+          "carrier": "Body",
+          "first_vertex": 2176,
+          "last_vertex": 2247,
+          "vertex_count": 72
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_SeatSubframe",
+      "module": "Frame",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 247,
+          "vertex_count": 248
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 248,
+          "last_vertex": 375,
+          "vertex_count": 128
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 376,
+          "last_vertex": 425,
+          "vertex_count": 50
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 426,
+          "last_vertex": 475,
+          "vertex_count": 50
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 476,
+          "last_vertex": 525,
+          "vertex_count": 50
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 526,
+          "last_vertex": 773,
+          "vertex_count": 248
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 774,
+          "last_vertex": 901,
+          "vertex_count": 128
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 902,
+          "last_vertex": 951,
+          "vertex_count": 50
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 952,
+          "last_vertex": 1001,
+          "vertex_count": 50
+        },
+        {
+          "island": 9,
+          "carrier": "Body",
+          "first_vertex": 1002,
+          "last_vertex": 1051,
+          "vertex_count": 50
+        },
+        {
+          "island": 10,
+          "carrier": "Body",
+          "first_vertex": 1052,
+          "last_vertex": 1101,
+          "vertex_count": 50
+        },
+        {
+          "island": 11,
+          "carrier": "Body",
+          "first_vertex": 1102,
+          "last_vertex": 1151,
+          "vertex_count": 50
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_SteeringMount",
+      "module": "Frame",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 71,
+          "vertex_count": 72
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 72,
+          "last_vertex": 143,
+          "vertex_count": 72
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 144,
+          "last_vertex": 255,
+          "vertex_count": 112
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 256,
+          "last_vertex": 327,
+          "vertex_count": 72
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_Footrest",
+      "module": "Frame",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 251,
+          "vertex_count": 252
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 252,
+          "last_vertex": 311,
+          "vertex_count": 60
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 312,
+          "last_vertex": 407,
+          "vertex_count": 96
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 408,
+          "last_vertex": 647,
+          "vertex_count": 240
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 648,
+          "last_vertex": 655,
+          "vertex_count": 8
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 656,
+          "last_vertex": 663,
+          "vertex_count": 8
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 664,
+          "last_vertex": 671,
+          "vertex_count": 8
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 672,
+          "last_vertex": 679,
+          "vertex_count": 8
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 680,
+          "last_vertex": 687,
+          "vertex_count": 8
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_Footrest",
+      "module": "Frame",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 251,
+          "vertex_count": 252
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 252,
+          "last_vertex": 311,
+          "vertex_count": 60
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 312,
+          "last_vertex": 407,
+          "vertex_count": 96
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 408,
+          "last_vertex": 647,
+          "vertex_count": 240
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 648,
+          "last_vertex": 655,
+          "vertex_count": 8
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 656,
+          "last_vertex": 663,
+          "vertex_count": 8
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 664,
+          "last_vertex": 671,
+          "vertex_count": 8
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 672,
+          "last_vertex": 679,
+          "vertex_count": 8
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 680,
+          "last_vertex": 687,
+          "vertex_count": 8
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_ServiceHarness",
+      "module": "Frame",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_SteeringBodyFlex",
+          "first_vertex": 0,
+          "last_vertex": 269,
+          "vertex_count": 270
+        },
+        {
+          "island": 1,
+          "carrier": "Steering",
+          "first_vertex": 270,
+          "last_vertex": 333,
+          "vertex_count": 64
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 334,
+          "last_vertex": 397,
+          "vertex_count": 64
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 398,
+          "last_vertex": 717,
+          "vertex_count": 320
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 718,
+          "last_vertex": 781,
+          "vertex_count": 64
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 782,
+          "last_vertex": 845,
+          "vertex_count": 64
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 846,
+          "last_vertex": 895,
+          "vertex_count": 50
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 896,
+          "last_vertex": 945,
+          "vertex_count": 50
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 946,
+          "last_vertex": 1295,
+          "vertex_count": 350
+        },
+        {
+          "island": 9,
+          "carrier": "Body",
+          "first_vertex": 1296,
+          "last_vertex": 1359,
+          "vertex_count": 64
+        },
+        {
+          "island": 10,
+          "carrier": "Body",
+          "first_vertex": 1360,
+          "last_vertex": 1423,
+          "vertex_count": 64
+        },
+        {
+          "island": 11,
+          "carrier": "Body",
+          "first_vertex": 1424,
+          "last_vertex": 1473,
+          "vertex_count": 50
+        },
+        {
+          "island": 12,
+          "carrier": "Body",
+          "first_vertex": 1474,
+          "last_vertex": 1523,
+          "vertex_count": 50
+        },
+        {
+          "island": 13,
+          "carrier": "Body",
+          "first_vertex": 1524,
+          "last_vertex": 1863,
+          "vertex_count": 340
+        },
+        {
+          "island": 14,
+          "carrier": "Body",
+          "first_vertex": 1864,
+          "last_vertex": 1927,
+          "vertex_count": 64
+        },
+        {
+          "island": 15,
+          "carrier": "Body",
+          "first_vertex": 1928,
+          "last_vertex": 1991,
+          "vertex_count": 64
+        },
+        {
+          "island": 16,
+          "carrier": "Body",
+          "first_vertex": 1992,
+          "last_vertex": 2041,
+          "vertex_count": 50
+        },
+        {
+          "island": 17,
+          "carrier": "Body",
+          "first_vertex": 2042,
+          "last_vertex": 2091,
+          "vertex_count": 50
+        },
+        {
+          "island": 18,
+          "carrier": "R_SteeringBodyFlex",
+          "first_vertex": 2092,
+          "last_vertex": 2361,
+          "vertex_count": 270
+        },
+        {
+          "island": 19,
+          "carrier": "Steering",
+          "first_vertex": 2362,
+          "last_vertex": 2425,
+          "vertex_count": 64
+        },
+        {
+          "island": 20,
+          "carrier": "Body",
+          "first_vertex": 2426,
+          "last_vertex": 2489,
+          "vertex_count": 64
+        },
+        {
+          "island": 21,
+          "carrier": "Body",
+          "first_vertex": 2490,
+          "last_vertex": 2809,
+          "vertex_count": 320
+        },
+        {
+          "island": 22,
+          "carrier": "Body",
+          "first_vertex": 2810,
+          "last_vertex": 2873,
+          "vertex_count": 64
+        },
+        {
+          "island": 23,
+          "carrier": "Body",
+          "first_vertex": 2874,
+          "last_vertex": 2937,
+          "vertex_count": 64
+        },
+        {
+          "island": 24,
+          "carrier": "Body",
+          "first_vertex": 2938,
+          "last_vertex": 2987,
+          "vertex_count": 50
+        },
+        {
+          "island": 25,
+          "carrier": "Body",
+          "first_vertex": 2988,
+          "last_vertex": 3037,
+          "vertex_count": 50
+        },
+        {
+          "island": 26,
+          "carrier": "Body",
+          "first_vertex": 3038,
+          "last_vertex": 3387,
+          "vertex_count": 350
+        },
+        {
+          "island": 27,
+          "carrier": "Body",
+          "first_vertex": 3388,
+          "last_vertex": 3451,
+          "vertex_count": 64
+        },
+        {
+          "island": 28,
+          "carrier": "Body",
+          "first_vertex": 3452,
+          "last_vertex": 3515,
+          "vertex_count": 64
+        },
+        {
+          "island": 29,
+          "carrier": "Body",
+          "first_vertex": 3516,
+          "last_vertex": 3565,
+          "vertex_count": 50
+        },
+        {
+          "island": 30,
+          "carrier": "Body",
+          "first_vertex": 3566,
+          "last_vertex": 3615,
+          "vertex_count": 50
+        },
+        {
+          "island": 31,
+          "carrier": "Body",
+          "first_vertex": 3616,
+          "last_vertex": 3955,
+          "vertex_count": 340
+        },
+        {
+          "island": 32,
+          "carrier": "Body",
+          "first_vertex": 3956,
+          "last_vertex": 4019,
+          "vertex_count": 64
+        },
+        {
+          "island": 33,
+          "carrier": "Body",
+          "first_vertex": 4020,
+          "last_vertex": 4083,
+          "vertex_count": 64
+        },
+        {
+          "island": 34,
+          "carrier": "Body",
+          "first_vertex": 4084,
+          "last_vertex": 4133,
+          "vertex_count": 50
+        },
+        {
+          "island": 35,
+          "carrier": "Body",
+          "first_vertex": 4134,
+          "last_vertex": 4183,
+          "vertex_count": 50
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_DriveCore",
+      "module": "Drive",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 167,
+          "vertex_count": 168
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 168,
+          "last_vertex": 255,
+          "vertex_count": 88
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 256,
+          "last_vertex": 305,
+          "vertex_count": 50
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 306,
+          "last_vertex": 355,
+          "vertex_count": 50
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 356,
+          "last_vertex": 405,
+          "vertex_count": 50
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 406,
+          "last_vertex": 455,
+          "vertex_count": 50
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_SpineHousing",
+      "module": "Drive",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 207,
+          "vertex_count": 208
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 208,
+          "last_vertex": 237,
+          "vertex_count": 30
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 238,
+          "last_vertex": 267,
+          "vertex_count": 30
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 268,
+          "last_vertex": 297,
+          "vertex_count": 30
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 298,
+          "last_vertex": 327,
+          "vertex_count": 30
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 328,
+          "last_vertex": 357,
+          "vertex_count": 30
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 358,
+          "last_vertex": 387,
+          "vertex_count": 30
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 388,
+          "last_vertex": 417,
+          "vertex_count": 30
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 418,
+          "last_vertex": 447,
+          "vertex_count": 30
+        },
+        {
+          "island": 9,
+          "carrier": "Body",
+          "first_vertex": 448,
+          "last_vertex": 477,
+          "vertex_count": 30
+        },
+        {
+          "island": 10,
+          "carrier": "Body",
+          "first_vertex": 478,
+          "last_vertex": 507,
+          "vertex_count": 30
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_DrivePod",
+      "module": "Drive",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 209,
+          "vertex_count": 210
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 210,
+          "last_vertex": 427,
+          "vertex_count": 218
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 428,
+          "last_vertex": 523,
+          "vertex_count": 96
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 524,
+          "last_vertex": 553,
+          "vertex_count": 30
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 554,
+          "last_vertex": 583,
+          "vertex_count": 30
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_DrivePod",
+      "module": "Drive",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 209,
+          "vertex_count": 210
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 210,
+          "last_vertex": 427,
+          "vertex_count": 218
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 428,
+          "last_vertex": 523,
+          "vertex_count": 96
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 524,
+          "last_vertex": 553,
+          "vertex_count": 30
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 554,
+          "last_vertex": 583,
+          "vertex_count": 30
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_RearCoolingHousing",
+      "module": "Drive",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 135,
+          "vertex_count": 136
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 136,
+          "last_vertex": 143,
+          "vertex_count": 8
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 144,
+          "last_vertex": 151,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 152,
+          "last_vertex": 159,
+          "vertex_count": 8
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 160,
+          "last_vertex": 167,
+          "vertex_count": 8
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 168,
+          "last_vertex": 223,
+          "vertex_count": 56
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 224,
+          "last_vertex": 279,
+          "vertex_count": 56
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 280,
+          "last_vertex": 335,
+          "vertex_count": 56
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 336,
+          "last_vertex": 391,
+          "vertex_count": 56
+        },
+        {
+          "island": 9,
+          "carrier": "Body",
+          "first_vertex": 392,
+          "last_vertex": 447,
+          "vertex_count": 56
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_HipJoint",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 323,
+          "vertex_count": 324
+        },
+        {
+          "island": 1,
+          "carrier": "L_Upper",
+          "first_vertex": 324,
+          "last_vertex": 435,
+          "vertex_count": 112
+        },
+        {
+          "island": 2,
+          "carrier": "L_Upper",
+          "first_vertex": 436,
+          "last_vertex": 485,
+          "vertex_count": 50
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 486,
+          "last_vertex": 597,
+          "vertex_count": 112
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_KneeJoint",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_Upper",
+          "first_vertex": 0,
+          "last_vertex": 323,
+          "vertex_count": 324
+        },
+        {
+          "island": 1,
+          "carrier": "L_Middle",
+          "first_vertex": 324,
+          "last_vertex": 435,
+          "vertex_count": 112
+        },
+        {
+          "island": 2,
+          "carrier": "L_Middle",
+          "first_vertex": 436,
+          "last_vertex": 485,
+          "vertex_count": 50
+        },
+        {
+          "island": 3,
+          "carrier": "L_Upper",
+          "first_vertex": 486,
+          "last_vertex": 597,
+          "vertex_count": 112
+        },
+        {
+          "island": 4,
+          "carrier": "L_Middle",
+          "first_vertex": 598,
+          "last_vertex": 759,
+          "vertex_count": 162
+        },
+        {
+          "island": 5,
+          "carrier": "L_Middle",
+          "first_vertex": 760,
+          "last_vertex": 783,
+          "vertex_count": 24
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_HockJoint",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_Middle",
+          "first_vertex": 0,
+          "last_vertex": 323,
+          "vertex_count": 324
+        },
+        {
+          "island": 1,
+          "carrier": "L_Lower",
+          "first_vertex": 324,
+          "last_vertex": 435,
+          "vertex_count": 112
+        },
+        {
+          "island": 2,
+          "carrier": "L_Lower",
+          "first_vertex": 436,
+          "last_vertex": 485,
+          "vertex_count": 50
+        },
+        {
+          "island": 3,
+          "carrier": "L_Middle",
+          "first_vertex": 486,
+          "last_vertex": 597,
+          "vertex_count": 112
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_AnkleJoint",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_Lower",
+          "first_vertex": 0,
+          "last_vertex": 323,
+          "vertex_count": 324
+        },
+        {
+          "island": 1,
+          "carrier": "L_Foot",
+          "first_vertex": 324,
+          "last_vertex": 435,
+          "vertex_count": 112
+        },
+        {
+          "island": 2,
+          "carrier": "L_Foot",
+          "first_vertex": 436,
+          "last_vertex": 485,
+          "vertex_count": 50
+        },
+        {
+          "island": 3,
+          "carrier": "L_Lower",
+          "first_vertex": 486,
+          "last_vertex": 597,
+          "vertex_count": 112
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_UpperLinkFrame",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_Upper",
+          "first_vertex": 0,
+          "last_vertex": 87,
+          "vertex_count": 88
+        },
+        {
+          "island": 1,
+          "carrier": "L_Upper",
+          "first_vertex": 88,
+          "last_vertex": 151,
+          "vertex_count": 64
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_UpperLinkShell",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_Upper",
+          "first_vertex": 0,
+          "last_vertex": 539,
+          "vertex_count": 540
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkFrame",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_Middle",
+          "first_vertex": 0,
+          "last_vertex": 143,
+          "vertex_count": 144
+        },
+        {
+          "island": 1,
+          "carrier": "L_Middle",
+          "first_vertex": 144,
+          "last_vertex": 239,
+          "vertex_count": 96
+        },
+        {
+          "island": 2,
+          "carrier": "L_Upper",
+          "first_vertex": 240,
+          "last_vertex": 263,
+          "vertex_count": 24
+        },
+        {
+          "island": 3,
+          "carrier": "L_Upper",
+          "first_vertex": 264,
+          "last_vertex": 313,
+          "vertex_count": 50
+        },
+        {
+          "island": 4,
+          "carrier": "L_Middle",
+          "first_vertex": 314,
+          "last_vertex": 337,
+          "vertex_count": 24
+        },
+        {
+          "island": 5,
+          "carrier": "L_Middle",
+          "first_vertex": 338,
+          "last_vertex": 387,
+          "vertex_count": 50
+        },
+        {
+          "island": 6,
+          "carrier": "L_MiddleHose",
+          "first_vertex": 388,
+          "last_vertex": 443,
+          "vertex_count": 56
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkShell",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_Middle",
+          "first_vertex": 0,
+          "last_vertex": 629,
+          "vertex_count": 630
+        },
+        {
+          "island": 1,
+          "carrier": "L_Middle",
+          "first_vertex": 630,
+          "last_vertex": 709,
+          "vertex_count": 80
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkActuatorBarrel",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_MiddleActuatorBarrel",
+          "first_vertex": 0,
+          "last_vertex": 171,
+          "vertex_count": 172
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkActuatorRod",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_MiddleActuatorRod",
+          "first_vertex": 0,
+          "last_vertex": 49,
+          "vertex_count": 50
+        },
+        {
+          "island": 1,
+          "carrier": "L_MiddleActuatorRod",
+          "first_vertex": 50,
+          "last_vertex": 115,
+          "vertex_count": 66
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkFrame",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_Lower",
+          "first_vertex": 0,
+          "last_vertex": 135,
+          "vertex_count": 136
+        },
+        {
+          "island": 1,
+          "carrier": "L_Lower",
+          "first_vertex": 136,
+          "last_vertex": 231,
+          "vertex_count": 96
+        },
+        {
+          "island": 2,
+          "carrier": "L_Middle",
+          "first_vertex": 232,
+          "last_vertex": 255,
+          "vertex_count": 24
+        },
+        {
+          "island": 3,
+          "carrier": "L_Middle",
+          "first_vertex": 256,
+          "last_vertex": 305,
+          "vertex_count": 50
+        },
+        {
+          "island": 4,
+          "carrier": "L_Lower",
+          "first_vertex": 306,
+          "last_vertex": 329,
+          "vertex_count": 24
+        },
+        {
+          "island": 5,
+          "carrier": "L_Lower",
+          "first_vertex": 330,
+          "last_vertex": 379,
+          "vertex_count": 50
+        },
+        {
+          "island": 6,
+          "carrier": "L_LowerHose",
+          "first_vertex": 380,
+          "last_vertex": 435,
+          "vertex_count": 56
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkShell",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_Lower",
+          "first_vertex": 0,
+          "last_vertex": 599,
+          "vertex_count": 600
+        },
+        {
+          "island": 1,
+          "carrier": "L_Lower",
+          "first_vertex": 600,
+          "last_vertex": 679,
+          "vertex_count": 80
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkActuatorBarrel",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_LowerActuatorBarrel",
+          "first_vertex": 0,
+          "last_vertex": 171,
+          "vertex_count": 172
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkActuatorRod",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_LowerActuatorRod",
+          "first_vertex": 0,
+          "last_vertex": 49,
+          "vertex_count": 50
+        },
+        {
+          "island": 1,
+          "carrier": "L_LowerActuatorRod",
+          "first_vertex": 50,
+          "last_vertex": 115,
+          "vertex_count": 66
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_Foot",
+      "module": "LeftLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_Foot",
+          "first_vertex": 0,
+          "last_vertex": 111,
+          "vertex_count": 112
+        },
+        {
+          "island": 1,
+          "carrier": "L_Foot",
+          "first_vertex": 112,
+          "last_vertex": 247,
+          "vertex_count": 136
+        },
+        {
+          "island": 2,
+          "carrier": "L_Foot",
+          "first_vertex": 248,
+          "last_vertex": 255,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "L_Foot",
+          "first_vertex": 256,
+          "last_vertex": 311,
+          "vertex_count": 56
+        },
+        {
+          "island": 4,
+          "carrier": "L_Foot",
+          "first_vertex": 312,
+          "last_vertex": 439,
+          "vertex_count": 128
+        },
+        {
+          "island": 5,
+          "carrier": "L_Foot",
+          "first_vertex": 440,
+          "last_vertex": 487,
+          "vertex_count": 48
+        },
+        {
+          "island": 6,
+          "carrier": "L_Foot",
+          "first_vertex": 488,
+          "last_vertex": 535,
+          "vertex_count": 48
+        },
+        {
+          "island": 7,
+          "carrier": "L_Foot",
+          "first_vertex": 536,
+          "last_vertex": 543,
+          "vertex_count": 8
+        },
+        {
+          "island": 8,
+          "carrier": "L_Foot",
+          "first_vertex": 544,
+          "last_vertex": 615,
+          "vertex_count": 72
+        },
+        {
+          "island": 9,
+          "carrier": "L_Foot",
+          "first_vertex": 616,
+          "last_vertex": 751,
+          "vertex_count": 136
+        },
+        {
+          "island": 10,
+          "carrier": "L_Foot",
+          "first_vertex": 752,
+          "last_vertex": 759,
+          "vertex_count": 8
+        },
+        {
+          "island": 11,
+          "carrier": "L_Foot",
+          "first_vertex": 760,
+          "last_vertex": 815,
+          "vertex_count": 56
+        },
+        {
+          "island": 12,
+          "carrier": "L_Foot",
+          "first_vertex": 816,
+          "last_vertex": 943,
+          "vertex_count": 128
+        },
+        {
+          "island": 13,
+          "carrier": "L_Foot",
+          "first_vertex": 944,
+          "last_vertex": 991,
+          "vertex_count": 48
+        },
+        {
+          "island": 14,
+          "carrier": "L_Foot",
+          "first_vertex": 992,
+          "last_vertex": 1039,
+          "vertex_count": 48
+        },
+        {
+          "island": 15,
+          "carrier": "L_Foot",
+          "first_vertex": 1040,
+          "last_vertex": 1047,
+          "vertex_count": 8
+        },
+        {
+          "island": 16,
+          "carrier": "L_Foot",
+          "first_vertex": 1048,
+          "last_vertex": 1119,
+          "vertex_count": 72
+        },
+        {
+          "island": 17,
+          "carrier": "L_Foot",
+          "first_vertex": 1120,
+          "last_vertex": 1127,
+          "vertex_count": 8
+        },
+        {
+          "island": 18,
+          "carrier": "L_Foot",
+          "first_vertex": 1128,
+          "last_vertex": 1177,
+          "vertex_count": 50
+        },
+        {
+          "island": 19,
+          "carrier": "L_Foot",
+          "first_vertex": 1178,
+          "last_vertex": 1357,
+          "vertex_count": 180
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_HipJoint",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 323,
+          "vertex_count": 324
+        },
+        {
+          "island": 1,
+          "carrier": "R_Upper",
+          "first_vertex": 324,
+          "last_vertex": 435,
+          "vertex_count": 112
+        },
+        {
+          "island": 2,
+          "carrier": "R_Upper",
+          "first_vertex": 436,
+          "last_vertex": 485,
+          "vertex_count": 50
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 486,
+          "last_vertex": 597,
+          "vertex_count": 112
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_KneeJoint",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_Upper",
+          "first_vertex": 0,
+          "last_vertex": 323,
+          "vertex_count": 324
+        },
+        {
+          "island": 1,
+          "carrier": "R_Middle",
+          "first_vertex": 324,
+          "last_vertex": 435,
+          "vertex_count": 112
+        },
+        {
+          "island": 2,
+          "carrier": "R_Middle",
+          "first_vertex": 436,
+          "last_vertex": 485,
+          "vertex_count": 50
+        },
+        {
+          "island": 3,
+          "carrier": "R_Upper",
+          "first_vertex": 486,
+          "last_vertex": 597,
+          "vertex_count": 112
+        },
+        {
+          "island": 4,
+          "carrier": "R_Middle",
+          "first_vertex": 598,
+          "last_vertex": 759,
+          "vertex_count": 162
+        },
+        {
+          "island": 5,
+          "carrier": "R_Middle",
+          "first_vertex": 760,
+          "last_vertex": 783,
+          "vertex_count": 24
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_HockJoint",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_Middle",
+          "first_vertex": 0,
+          "last_vertex": 323,
+          "vertex_count": 324
+        },
+        {
+          "island": 1,
+          "carrier": "R_Lower",
+          "first_vertex": 324,
+          "last_vertex": 435,
+          "vertex_count": 112
+        },
+        {
+          "island": 2,
+          "carrier": "R_Lower",
+          "first_vertex": 436,
+          "last_vertex": 485,
+          "vertex_count": 50
+        },
+        {
+          "island": 3,
+          "carrier": "R_Middle",
+          "first_vertex": 486,
+          "last_vertex": 597,
+          "vertex_count": 112
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_AnkleJoint",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_Lower",
+          "first_vertex": 0,
+          "last_vertex": 323,
+          "vertex_count": 324
+        },
+        {
+          "island": 1,
+          "carrier": "R_Foot",
+          "first_vertex": 324,
+          "last_vertex": 435,
+          "vertex_count": 112
+        },
+        {
+          "island": 2,
+          "carrier": "R_Foot",
+          "first_vertex": 436,
+          "last_vertex": 485,
+          "vertex_count": 50
+        },
+        {
+          "island": 3,
+          "carrier": "R_Lower",
+          "first_vertex": 486,
+          "last_vertex": 597,
+          "vertex_count": 112
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_UpperLinkFrame",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_Upper",
+          "first_vertex": 0,
+          "last_vertex": 87,
+          "vertex_count": 88
+        },
+        {
+          "island": 1,
+          "carrier": "R_Upper",
+          "first_vertex": 88,
+          "last_vertex": 151,
+          "vertex_count": 64
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_UpperLinkShell",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_Upper",
+          "first_vertex": 0,
+          "last_vertex": 539,
+          "vertex_count": 540
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkFrame",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_Middle",
+          "first_vertex": 0,
+          "last_vertex": 143,
+          "vertex_count": 144
+        },
+        {
+          "island": 1,
+          "carrier": "R_Middle",
+          "first_vertex": 144,
+          "last_vertex": 239,
+          "vertex_count": 96
+        },
+        {
+          "island": 2,
+          "carrier": "R_Upper",
+          "first_vertex": 240,
+          "last_vertex": 263,
+          "vertex_count": 24
+        },
+        {
+          "island": 3,
+          "carrier": "R_Upper",
+          "first_vertex": 264,
+          "last_vertex": 313,
+          "vertex_count": 50
+        },
+        {
+          "island": 4,
+          "carrier": "R_Middle",
+          "first_vertex": 314,
+          "last_vertex": 337,
+          "vertex_count": 24
+        },
+        {
+          "island": 5,
+          "carrier": "R_Middle",
+          "first_vertex": 338,
+          "last_vertex": 387,
+          "vertex_count": 50
+        },
+        {
+          "island": 6,
+          "carrier": "R_MiddleHose",
+          "first_vertex": 388,
+          "last_vertex": 443,
+          "vertex_count": 56
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkShell",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_Middle",
+          "first_vertex": 0,
+          "last_vertex": 629,
+          "vertex_count": 630
+        },
+        {
+          "island": 1,
+          "carrier": "R_Middle",
+          "first_vertex": 630,
+          "last_vertex": 709,
+          "vertex_count": 80
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkActuatorBarrel",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_MiddleActuatorBarrel",
+          "first_vertex": 0,
+          "last_vertex": 171,
+          "vertex_count": 172
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkActuatorRod",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_MiddleActuatorRod",
+          "first_vertex": 0,
+          "last_vertex": 49,
+          "vertex_count": 50
+        },
+        {
+          "island": 1,
+          "carrier": "R_MiddleActuatorRod",
+          "first_vertex": 50,
+          "last_vertex": 115,
+          "vertex_count": 66
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkFrame",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_Lower",
+          "first_vertex": 0,
+          "last_vertex": 135,
+          "vertex_count": 136
+        },
+        {
+          "island": 1,
+          "carrier": "R_Lower",
+          "first_vertex": 136,
+          "last_vertex": 231,
+          "vertex_count": 96
+        },
+        {
+          "island": 2,
+          "carrier": "R_Middle",
+          "first_vertex": 232,
+          "last_vertex": 255,
+          "vertex_count": 24
+        },
+        {
+          "island": 3,
+          "carrier": "R_Middle",
+          "first_vertex": 256,
+          "last_vertex": 305,
+          "vertex_count": 50
+        },
+        {
+          "island": 4,
+          "carrier": "R_Lower",
+          "first_vertex": 306,
+          "last_vertex": 329,
+          "vertex_count": 24
+        },
+        {
+          "island": 5,
+          "carrier": "R_Lower",
+          "first_vertex": 330,
+          "last_vertex": 379,
+          "vertex_count": 50
+        },
+        {
+          "island": 6,
+          "carrier": "R_LowerHose",
+          "first_vertex": 380,
+          "last_vertex": 435,
+          "vertex_count": 56
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkShell",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_Lower",
+          "first_vertex": 0,
+          "last_vertex": 599,
+          "vertex_count": 600
+        },
+        {
+          "island": 1,
+          "carrier": "R_Lower",
+          "first_vertex": 600,
+          "last_vertex": 679,
+          "vertex_count": 80
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkActuatorBarrel",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_LowerActuatorBarrel",
+          "first_vertex": 0,
+          "last_vertex": 171,
+          "vertex_count": 172
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkActuatorRod",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_LowerActuatorRod",
+          "first_vertex": 0,
+          "last_vertex": 49,
+          "vertex_count": 50
+        },
+        {
+          "island": 1,
+          "carrier": "R_LowerActuatorRod",
+          "first_vertex": 50,
+          "last_vertex": 115,
+          "vertex_count": 66
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_Foot",
+      "module": "RightLeg",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_Foot",
+          "first_vertex": 0,
+          "last_vertex": 111,
+          "vertex_count": 112
+        },
+        {
+          "island": 1,
+          "carrier": "R_Foot",
+          "first_vertex": 112,
+          "last_vertex": 247,
+          "vertex_count": 136
+        },
+        {
+          "island": 2,
+          "carrier": "R_Foot",
+          "first_vertex": 248,
+          "last_vertex": 255,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "R_Foot",
+          "first_vertex": 256,
+          "last_vertex": 311,
+          "vertex_count": 56
+        },
+        {
+          "island": 4,
+          "carrier": "R_Foot",
+          "first_vertex": 312,
+          "last_vertex": 439,
+          "vertex_count": 128
+        },
+        {
+          "island": 5,
+          "carrier": "R_Foot",
+          "first_vertex": 440,
+          "last_vertex": 487,
+          "vertex_count": 48
+        },
+        {
+          "island": 6,
+          "carrier": "R_Foot",
+          "first_vertex": 488,
+          "last_vertex": 535,
+          "vertex_count": 48
+        },
+        {
+          "island": 7,
+          "carrier": "R_Foot",
+          "first_vertex": 536,
+          "last_vertex": 543,
+          "vertex_count": 8
+        },
+        {
+          "island": 8,
+          "carrier": "R_Foot",
+          "first_vertex": 544,
+          "last_vertex": 615,
+          "vertex_count": 72
+        },
+        {
+          "island": 9,
+          "carrier": "R_Foot",
+          "first_vertex": 616,
+          "last_vertex": 751,
+          "vertex_count": 136
+        },
+        {
+          "island": 10,
+          "carrier": "R_Foot",
+          "first_vertex": 752,
+          "last_vertex": 759,
+          "vertex_count": 8
+        },
+        {
+          "island": 11,
+          "carrier": "R_Foot",
+          "first_vertex": 760,
+          "last_vertex": 815,
+          "vertex_count": 56
+        },
+        {
+          "island": 12,
+          "carrier": "R_Foot",
+          "first_vertex": 816,
+          "last_vertex": 943,
+          "vertex_count": 128
+        },
+        {
+          "island": 13,
+          "carrier": "R_Foot",
+          "first_vertex": 944,
+          "last_vertex": 991,
+          "vertex_count": 48
+        },
+        {
+          "island": 14,
+          "carrier": "R_Foot",
+          "first_vertex": 992,
+          "last_vertex": 1039,
+          "vertex_count": 48
+        },
+        {
+          "island": 15,
+          "carrier": "R_Foot",
+          "first_vertex": 1040,
+          "last_vertex": 1047,
+          "vertex_count": 8
+        },
+        {
+          "island": 16,
+          "carrier": "R_Foot",
+          "first_vertex": 1048,
+          "last_vertex": 1119,
+          "vertex_count": 72
+        },
+        {
+          "island": 17,
+          "carrier": "R_Foot",
+          "first_vertex": 1120,
+          "last_vertex": 1127,
+          "vertex_count": 8
+        },
+        {
+          "island": 18,
+          "carrier": "R_Foot",
+          "first_vertex": 1128,
+          "last_vertex": 1177,
+          "vertex_count": 50
+        },
+        {
+          "island": 19,
+          "carrier": "R_Foot",
+          "first_vertex": 1178,
+          "last_vertex": 1357,
+          "vertex_count": 180
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_tail_shroud",
+      "module": "BodyArmor",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 215,
+          "vertex_count": 216
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 216,
+          "last_vertex": 431,
+          "vertex_count": 216
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_tail_shroud",
+      "module": "BodyArmor",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 215,
+          "vertex_count": 216
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 216,
+          "last_vertex": 431,
+          "vertex_count": 216
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_upper_body_shroud",
+      "module": "BodyArmor",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 611,
+          "vertex_count": 612
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 612,
+          "last_vertex": 1223,
+          "vertex_count": 612
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 1224,
+          "last_vertex": 1323,
+          "vertex_count": 100
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_front_fairing",
+      "module": "BodyArmor",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 373,
+          "vertex_count": 374
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 374,
+          "last_vertex": 747,
+          "vertex_count": 374
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 748,
+          "last_vertex": 807,
+          "vertex_count": 60
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 808,
+          "last_vertex": 837,
+          "vertex_count": 30
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_upper_body_shroud",
+      "module": "BodyArmor",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 611,
+          "vertex_count": 612
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 612,
+          "last_vertex": 1223,
+          "vertex_count": 612
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 1224,
+          "last_vertex": 1323,
+          "vertex_count": 100
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_front_fairing",
+      "module": "BodyArmor",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 373,
+          "vertex_count": 374
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 374,
+          "last_vertex": 747,
+          "vertex_count": 374
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 748,
+          "last_vertex": 807,
+          "vertex_count": 60
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 808,
+          "last_vertex": 837,
+          "vertex_count": 30
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_FrontTankCowling",
+      "module": "BodyArmor",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 239,
+          "vertex_count": 240
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 240,
+          "last_vertex": 455,
+          "vertex_count": 216
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_SaddleUpholstery",
+      "module": "Saddle",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 623,
+          "vertex_count": 624
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 624,
+          "last_vertex": 927,
+          "vertex_count": 304
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 928,
+          "last_vertex": 1231,
+          "vertex_count": 304
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_SaddlePan",
+      "module": "Saddle",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 769,
+          "vertex_count": 770
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 770,
+          "last_vertex": 1017,
+          "vertex_count": 248
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 1018,
+          "last_vertex": 1105,
+          "vertex_count": 88
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 1106,
+          "last_vertex": 1353,
+          "vertex_count": 248
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 1354,
+          "last_vertex": 1441,
+          "vertex_count": 88
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_FrontControlPod",
+      "module": "Steering",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 175,
+          "vertex_count": 176
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 176,
+          "last_vertex": 527,
+          "vertex_count": 352
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 528,
+          "last_vertex": 625,
+          "vertex_count": 98
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 626,
+          "last_vertex": 665,
+          "vertex_count": 40
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 666,
+          "last_vertex": 705,
+          "vertex_count": 40
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_SteeringStem",
+      "module": "Steering",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Steering",
+          "first_vertex": 0,
+          "last_vertex": 97,
+          "vertex_count": 98
+        },
+        {
+          "island": 1,
+          "carrier": "Steering",
+          "first_vertex": 98,
+          "last_vertex": 161,
+          "vertex_count": 64
+        },
+        {
+          "island": 2,
+          "carrier": "Steering",
+          "first_vertex": 162,
+          "last_vertex": 225,
+          "vertex_count": 64
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_Grip",
+      "module": "Steering",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Steering",
+          "first_vertex": 0,
+          "last_vertex": 183,
+          "vertex_count": 184
+        },
+        {
+          "island": 1,
+          "carrier": "Steering",
+          "first_vertex": 184,
+          "last_vertex": 281,
+          "vertex_count": 98
+        },
+        {
+          "island": 2,
+          "carrier": "Steering",
+          "first_vertex": 282,
+          "last_vertex": 377,
+          "vertex_count": 96
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_L_BrakeLever",
+      "module": "Steering",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "L_LeverBlade",
+          "first_vertex": 0,
+          "last_vertex": 79,
+          "vertex_count": 80
+        },
+        {
+          "island": 1,
+          "carrier": "Steering",
+          "first_vertex": 80,
+          "last_vertex": 129,
+          "vertex_count": 50
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_Grip",
+      "module": "Steering",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Steering",
+          "first_vertex": 0,
+          "last_vertex": 183,
+          "vertex_count": 184
+        },
+        {
+          "island": 1,
+          "carrier": "Steering",
+          "first_vertex": 184,
+          "last_vertex": 281,
+          "vertex_count": 98
+        },
+        {
+          "island": 2,
+          "carrier": "Steering",
+          "first_vertex": 282,
+          "last_vertex": 377,
+          "vertex_count": 96
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_R_BrakeLever",
+      "module": "Steering",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "R_LeverBlade",
+          "first_vertex": 0,
+          "last_vertex": 79,
+          "vertex_count": 80
+        },
+        {
+          "island": 1,
+          "carrier": "Steering",
+          "first_vertex": 80,
+          "last_vertex": 129,
+          "vertex_count": 50
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_InstrumentGauge",
+      "module": "Steering",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Steering",
+          "first_vertex": 0,
+          "last_vertex": 7,
+          "vertex_count": 8
+        },
+        {
+          "island": 1,
+          "carrier": "Steering",
+          "first_vertex": 8,
+          "last_vertex": 133,
+          "vertex_count": 126
+        },
+        {
+          "island": 2,
+          "carrier": "Steering",
+          "first_vertex": 134,
+          "last_vertex": 165,
+          "vertex_count": 32
+        },
+        {
+          "island": 3,
+          "carrier": "Steering",
+          "first_vertex": 166,
+          "last_vertex": 197,
+          "vertex_count": 32
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_Handlebar",
+      "module": "Steering",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Steering",
+          "first_vertex": 0,
+          "last_vertex": 419,
+          "vertex_count": 420
+        },
+        {
+          "island": 1,
+          "carrier": "Steering",
+          "first_vertex": 420,
+          "last_vertex": 427,
+          "vertex_count": 8
+        },
+        {
+          "island": 2,
+          "carrier": "Steering",
+          "first_vertex": 428,
+          "last_vertex": 451,
+          "vertex_count": 24
+        },
+        {
+          "island": 3,
+          "carrier": "Steering",
+          "first_vertex": 452,
+          "last_vertex": 459,
+          "vertex_count": 8
+        },
+        {
+          "island": 4,
+          "carrier": "Steering",
+          "first_vertex": 460,
+          "last_vertex": 467,
+          "vertex_count": 8
+        },
+        {
+          "island": 5,
+          "carrier": "Steering",
+          "first_vertex": 468,
+          "last_vertex": 491,
+          "vertex_count": 24
+        },
+        {
+          "island": 6,
+          "carrier": "Steering",
+          "first_vertex": 492,
+          "last_vertex": 499,
+          "vertex_count": 8
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Main_Body",
+      "module": "Cargo_L_Main",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 385,
+          "vertex_count": 386
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 386,
+          "last_vertex": 393,
+          "vertex_count": 8
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 394,
+          "last_vertex": 401,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 402,
+          "last_vertex": 409,
+          "vertex_count": 8
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 410,
+          "last_vertex": 417,
+          "vertex_count": 8
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 418,
+          "last_vertex": 435,
+          "vertex_count": 18
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 436,
+          "last_vertex": 453,
+          "vertex_count": 18
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 454,
+          "last_vertex": 471,
+          "vertex_count": 18
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 472,
+          "last_vertex": 489,
+          "vertex_count": 18
+        },
+        {
+          "island": 9,
+          "carrier": "Body",
+          "first_vertex": 490,
+          "last_vertex": 497,
+          "vertex_count": 8
+        },
+        {
+          "island": 10,
+          "carrier": "Body",
+          "first_vertex": 498,
+          "last_vertex": 505,
+          "vertex_count": 8
+        },
+        {
+          "island": 11,
+          "carrier": "Body",
+          "first_vertex": 506,
+          "last_vertex": 513,
+          "vertex_count": 8
+        },
+        {
+          "island": 12,
+          "carrier": "Body",
+          "first_vertex": 514,
+          "last_vertex": 521,
+          "vertex_count": 8
+        },
+        {
+          "island": 13,
+          "carrier": "Body",
+          "first_vertex": 522,
+          "last_vertex": 737,
+          "vertex_count": 216
+        },
+        {
+          "island": 14,
+          "carrier": "Body",
+          "first_vertex": 738,
+          "last_vertex": 897,
+          "vertex_count": 160
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Main_Straps",
+      "module": "Cargo_L_Main",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 7,
+          "vertex_count": 8
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 8,
+          "last_vertex": 15,
+          "vertex_count": 8
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 16,
+          "last_vertex": 23,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 24,
+          "last_vertex": 31,
+          "vertex_count": 8
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 32,
+          "last_vertex": 39,
+          "vertex_count": 8
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 40,
+          "last_vertex": 47,
+          "vertex_count": 8
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 48,
+          "last_vertex": 55,
+          "vertex_count": 8
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 56,
+          "last_vertex": 63,
+          "vertex_count": 8
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 64,
+          "last_vertex": 71,
+          "vertex_count": 8
+        },
+        {
+          "island": 9,
+          "carrier": "Body",
+          "first_vertex": 72,
+          "last_vertex": 79,
+          "vertex_count": 8
+        },
+        {
+          "island": 10,
+          "carrier": "Body",
+          "first_vertex": 80,
+          "last_vertex": 335,
+          "vertex_count": 256
+        },
+        {
+          "island": 11,
+          "carrier": "Body",
+          "first_vertex": 336,
+          "last_vertex": 591,
+          "vertex_count": 256
+        },
+        {
+          "island": 12,
+          "carrier": "Body",
+          "first_vertex": 592,
+          "last_vertex": 599,
+          "vertex_count": 8
+        },
+        {
+          "island": 13,
+          "carrier": "Body",
+          "first_vertex": 600,
+          "last_vertex": 607,
+          "vertex_count": 8
+        },
+        {
+          "island": 14,
+          "carrier": "Body",
+          "first_vertex": 608,
+          "last_vertex": 625,
+          "vertex_count": 18
+        },
+        {
+          "island": 15,
+          "carrier": "Body",
+          "first_vertex": 626,
+          "last_vertex": 643,
+          "vertex_count": 18
+        },
+        {
+          "island": 16,
+          "carrier": "Body",
+          "first_vertex": 644,
+          "last_vertex": 661,
+          "vertex_count": 18
+        },
+        {
+          "island": 17,
+          "carrier": "Body",
+          "first_vertex": 662,
+          "last_vertex": 679,
+          "vertex_count": 18
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Main_Lid",
+      "module": "Cargo_L_Main",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 79,
+          "vertex_count": 80
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 80,
+          "last_vertex": 87,
+          "vertex_count": 8
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 88,
+          "last_vertex": 95,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 96,
+          "last_vertex": 145,
+          "vertex_count": 50
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 146,
+          "last_vertex": 195,
+          "vertex_count": 50
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 196,
+          "last_vertex": 203,
+          "vertex_count": 8
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 204,
+          "last_vertex": 211,
+          "vertex_count": 8
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 212,
+          "last_vertex": 337,
+          "vertex_count": 126
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Aux_Body",
+      "module": "Cargo_L_Aux",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 151,
+          "vertex_count": 152
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 152,
+          "last_vertex": 159,
+          "vertex_count": 8
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 160,
+          "last_vertex": 167,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 168,
+          "last_vertex": 175,
+          "vertex_count": 8
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 176,
+          "last_vertex": 183,
+          "vertex_count": 8
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 184,
+          "last_vertex": 201,
+          "vertex_count": 18
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 202,
+          "last_vertex": 219,
+          "vertex_count": 18
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 220,
+          "last_vertex": 237,
+          "vertex_count": 18
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 238,
+          "last_vertex": 255,
+          "vertex_count": 18
+        },
+        {
+          "island": 9,
+          "carrier": "Body",
+          "first_vertex": 256,
+          "last_vertex": 263,
+          "vertex_count": 8
+        },
+        {
+          "island": 10,
+          "carrier": "Body",
+          "first_vertex": 264,
+          "last_vertex": 271,
+          "vertex_count": 8
+        },
+        {
+          "island": 11,
+          "carrier": "Body",
+          "first_vertex": 272,
+          "last_vertex": 279,
+          "vertex_count": 8
+        },
+        {
+          "island": 12,
+          "carrier": "Body",
+          "first_vertex": 280,
+          "last_vertex": 287,
+          "vertex_count": 8
+        },
+        {
+          "island": 13,
+          "carrier": "Body",
+          "first_vertex": 288,
+          "last_vertex": 359,
+          "vertex_count": 72
+        },
+        {
+          "island": 14,
+          "carrier": "Body",
+          "first_vertex": 360,
+          "last_vertex": 423,
+          "vertex_count": 64
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Aux_Straps",
+      "module": "Cargo_L_Aux",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 7,
+          "vertex_count": 8
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 8,
+          "last_vertex": 15,
+          "vertex_count": 8
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 16,
+          "last_vertex": 23,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 24,
+          "last_vertex": 31,
+          "vertex_count": 8
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 32,
+          "last_vertex": 39,
+          "vertex_count": 8
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 40,
+          "last_vertex": 247,
+          "vertex_count": 208
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 248,
+          "last_vertex": 255,
+          "vertex_count": 8
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 256,
+          "last_vertex": 273,
+          "vertex_count": 18
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 274,
+          "last_vertex": 291,
+          "vertex_count": 18
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Aux_Lid",
+      "module": "Cargo_L_Aux",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 49,
+          "vertex_count": 50
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 50,
+          "last_vertex": 99,
+          "vertex_count": 50
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 100,
+          "last_vertex": 107,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 108,
+          "last_vertex": 115,
+          "vertex_count": 8
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 116,
+          "last_vertex": 155,
+          "vertex_count": 40
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Main_Body",
+      "module": "Cargo_R_Main",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 385,
+          "vertex_count": 386
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 386,
+          "last_vertex": 393,
+          "vertex_count": 8
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 394,
+          "last_vertex": 401,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 402,
+          "last_vertex": 409,
+          "vertex_count": 8
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 410,
+          "last_vertex": 417,
+          "vertex_count": 8
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 418,
+          "last_vertex": 435,
+          "vertex_count": 18
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 436,
+          "last_vertex": 453,
+          "vertex_count": 18
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 454,
+          "last_vertex": 471,
+          "vertex_count": 18
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 472,
+          "last_vertex": 489,
+          "vertex_count": 18
+        },
+        {
+          "island": 9,
+          "carrier": "Body",
+          "first_vertex": 490,
+          "last_vertex": 497,
+          "vertex_count": 8
+        },
+        {
+          "island": 10,
+          "carrier": "Body",
+          "first_vertex": 498,
+          "last_vertex": 505,
+          "vertex_count": 8
+        },
+        {
+          "island": 11,
+          "carrier": "Body",
+          "first_vertex": 506,
+          "last_vertex": 513,
+          "vertex_count": 8
+        },
+        {
+          "island": 12,
+          "carrier": "Body",
+          "first_vertex": 514,
+          "last_vertex": 521,
+          "vertex_count": 8
+        },
+        {
+          "island": 13,
+          "carrier": "Body",
+          "first_vertex": 522,
+          "last_vertex": 737,
+          "vertex_count": 216
+        },
+        {
+          "island": 14,
+          "carrier": "Body",
+          "first_vertex": 738,
+          "last_vertex": 897,
+          "vertex_count": 160
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Main_Straps",
+      "module": "Cargo_R_Main",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 7,
+          "vertex_count": 8
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 8,
+          "last_vertex": 15,
+          "vertex_count": 8
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 16,
+          "last_vertex": 23,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 24,
+          "last_vertex": 31,
+          "vertex_count": 8
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 32,
+          "last_vertex": 39,
+          "vertex_count": 8
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 40,
+          "last_vertex": 47,
+          "vertex_count": 8
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 48,
+          "last_vertex": 55,
+          "vertex_count": 8
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 56,
+          "last_vertex": 63,
+          "vertex_count": 8
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 64,
+          "last_vertex": 71,
+          "vertex_count": 8
+        },
+        {
+          "island": 9,
+          "carrier": "Body",
+          "first_vertex": 72,
+          "last_vertex": 79,
+          "vertex_count": 8
+        },
+        {
+          "island": 10,
+          "carrier": "Body",
+          "first_vertex": 80,
+          "last_vertex": 335,
+          "vertex_count": 256
+        },
+        {
+          "island": 11,
+          "carrier": "Body",
+          "first_vertex": 336,
+          "last_vertex": 591,
+          "vertex_count": 256
+        },
+        {
+          "island": 12,
+          "carrier": "Body",
+          "first_vertex": 592,
+          "last_vertex": 599,
+          "vertex_count": 8
+        },
+        {
+          "island": 13,
+          "carrier": "Body",
+          "first_vertex": 600,
+          "last_vertex": 607,
+          "vertex_count": 8
+        },
+        {
+          "island": 14,
+          "carrier": "Body",
+          "first_vertex": 608,
+          "last_vertex": 625,
+          "vertex_count": 18
+        },
+        {
+          "island": 15,
+          "carrier": "Body",
+          "first_vertex": 626,
+          "last_vertex": 643,
+          "vertex_count": 18
+        },
+        {
+          "island": 16,
+          "carrier": "Body",
+          "first_vertex": 644,
+          "last_vertex": 661,
+          "vertex_count": 18
+        },
+        {
+          "island": 17,
+          "carrier": "Body",
+          "first_vertex": 662,
+          "last_vertex": 679,
+          "vertex_count": 18
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Main_Lid",
+      "module": "Cargo_R_Main",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 79,
+          "vertex_count": 80
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 80,
+          "last_vertex": 87,
+          "vertex_count": 8
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 88,
+          "last_vertex": 95,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 96,
+          "last_vertex": 145,
+          "vertex_count": 50
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 146,
+          "last_vertex": 195,
+          "vertex_count": 50
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 196,
+          "last_vertex": 203,
+          "vertex_count": 8
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 204,
+          "last_vertex": 211,
+          "vertex_count": 8
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 212,
+          "last_vertex": 337,
+          "vertex_count": 126
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Aux_Body",
+      "module": "Cargo_R_Aux",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 151,
+          "vertex_count": 152
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 152,
+          "last_vertex": 159,
+          "vertex_count": 8
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 160,
+          "last_vertex": 167,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 168,
+          "last_vertex": 175,
+          "vertex_count": 8
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 176,
+          "last_vertex": 183,
+          "vertex_count": 8
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 184,
+          "last_vertex": 201,
+          "vertex_count": 18
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 202,
+          "last_vertex": 219,
+          "vertex_count": 18
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 220,
+          "last_vertex": 237,
+          "vertex_count": 18
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 238,
+          "last_vertex": 255,
+          "vertex_count": 18
+        },
+        {
+          "island": 9,
+          "carrier": "Body",
+          "first_vertex": 256,
+          "last_vertex": 263,
+          "vertex_count": 8
+        },
+        {
+          "island": 10,
+          "carrier": "Body",
+          "first_vertex": 264,
+          "last_vertex": 271,
+          "vertex_count": 8
+        },
+        {
+          "island": 11,
+          "carrier": "Body",
+          "first_vertex": 272,
+          "last_vertex": 279,
+          "vertex_count": 8
+        },
+        {
+          "island": 12,
+          "carrier": "Body",
+          "first_vertex": 280,
+          "last_vertex": 287,
+          "vertex_count": 8
+        },
+        {
+          "island": 13,
+          "carrier": "Body",
+          "first_vertex": 288,
+          "last_vertex": 359,
+          "vertex_count": 72
+        },
+        {
+          "island": 14,
+          "carrier": "Body",
+          "first_vertex": 360,
+          "last_vertex": 423,
+          "vertex_count": 64
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Aux_Straps",
+      "module": "Cargo_R_Aux",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 7,
+          "vertex_count": 8
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 8,
+          "last_vertex": 15,
+          "vertex_count": 8
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 16,
+          "last_vertex": 23,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 24,
+          "last_vertex": 31,
+          "vertex_count": 8
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 32,
+          "last_vertex": 39,
+          "vertex_count": 8
+        },
+        {
+          "island": 5,
+          "carrier": "Body",
+          "first_vertex": 40,
+          "last_vertex": 247,
+          "vertex_count": 208
+        },
+        {
+          "island": 6,
+          "carrier": "Body",
+          "first_vertex": 248,
+          "last_vertex": 255,
+          "vertex_count": 8
+        },
+        {
+          "island": 7,
+          "carrier": "Body",
+          "first_vertex": 256,
+          "last_vertex": 273,
+          "vertex_count": 18
+        },
+        {
+          "island": 8,
+          "carrier": "Body",
+          "first_vertex": 274,
+          "last_vertex": 291,
+          "vertex_count": 18
+        }
+      ]
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Aux_Lid",
+      "module": "Cargo_R_Aux",
+      "islands": [
+        {
+          "island": 0,
+          "carrier": "Body",
+          "first_vertex": 0,
+          "last_vertex": 49,
+          "vertex_count": 50
+        },
+        {
+          "island": 1,
+          "carrier": "Body",
+          "first_vertex": 50,
+          "last_vertex": 99,
+          "vertex_count": 50
+        },
+        {
+          "island": 2,
+          "carrier": "Body",
+          "first_vertex": 100,
+          "last_vertex": 107,
+          "vertex_count": 8
+        },
+        {
+          "island": 3,
+          "carrier": "Body",
+          "first_vertex": 108,
+          "last_vertex": 115,
+          "vertex_count": 8
+        },
+        {
+          "island": 4,
+          "carrier": "Body",
+          "first_vertex": 116,
+          "last_vertex": 155,
+          "vertex_count": 40
+        }
+      ]
+    }
+  ],
+  "endpoint_guides": [
+    {
+      "part": "Legger_Part_L_MiddleLinkFrame",
+      "hose": {
+        "start_carrier": "Upper",
+        "end_carrier": "MiddleActuatorBarrel",
+        "start_world_m": [
+          -0.14975979924201965,
+          -0.3922801651060581,
+          1.2037569284439087
+        ],
+        "end_world_m": [
+          -0.1284511461853981,
+          -0.2816835306584835,
+          1.0970561504364014
+        ],
+        "centerline_length_m": 0.1985887166253457,
+        "study_deformation": "Constant discrete centerline length with inboard slack bow; no longitudinal scale"
+      }
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkFrame",
+      "hose": {
+        "start_carrier": "Middle",
+        "end_carrier": "LowerActuatorBarrel",
+        "start_world_m": [
+          -0.17932971380650997,
+          -0.2092525027692318,
+          0.6771133542060852
+        ],
+        "end_world_m": [
+          -0.17345523461699486,
+          -0.22287631407380104,
+          0.5302002429962158
+        ],
+        "centerline_length_m": 0.18900524544384967,
+        "study_deformation": "Constant discrete centerline length with inboard slack bow; no longitudinal scale"
+      }
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkFrame",
+      "hose": {
+        "start_carrier": "Upper",
+        "end_carrier": "MiddleActuatorBarrel",
+        "start_world_m": [
+          0.14975979924201965,
+          -0.3922801613807678,
+          1.2037569284439087
+        ],
+        "end_world_m": [
+          0.1284511536359787,
+          -0.2816835343837738,
+          1.0970561504364014
+        ],
+        "centerline_length_m": 0.19858866930007935,
+        "study_deformation": "Constant discrete centerline length with inboard slack bow; no longitudinal scale"
+      }
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkFrame",
+      "hose": {
+        "start_carrier": "Middle",
+        "end_carrier": "LowerActuatorBarrel",
+        "start_world_m": [
+          0.17932972311973572,
+          -0.2092524915933609,
+          0.6771133542060852
+        ],
+        "end_world_m": [
+          0.17345522344112396,
+          -0.22287632524967194,
+          0.5302002429962158
+        ],
+        "centerline_length_m": 0.18900524079799652,
+        "study_deformation": "Constant discrete centerline length with inboard slack bow; no longitudinal scale"
+      }
+    },
+    {
+      "part": "Legger_Part_ServiceHarness",
+      "runs": [
+        {
+          "island": 0,
+          "start_m": [
+            -0.28299981355667114,
+            -0.32500016689300537,
+            2.180999279022217
+          ],
+          "end_m": [
+            -0.10004298388957977,
+            -0.42100009322166443,
+            1.9930003881454468
+          ],
+          "centerline_length_m": 0.4469500184059143,
+          "owners": [
+            "Steering",
+            "Body"
+          ],
+          "rigid_endpoint_rings_each": 4
+        },
+        {
+          "island": 3,
+          "start_m": [
+            -0.1550000011920929,
+            0.015000000596046448,
+            1.6019998788833618
+          ],
+          "end_m": [
+            -0.19300001859664917,
+            0.5680000185966492,
+            1.8140003681182861
+          ],
+          "centerline_length_m": 1.2380131483078003,
+          "owners": [
+            "Body",
+            "Body"
+          ],
+          "rigid_endpoint_rings_each": null
+        },
+        {
+          "island": 8,
+          "start_m": [
+            -0.15000002086162567,
+            0.08299999684095383,
+            1.6390001773834229
+          ],
+          "end_m": [
+            -0.15699999034404755,
+            0.5799999833106995,
+            1.8720000982284546
+          ],
+          "centerline_length_m": 1.1679623126983643,
+          "owners": [
+            "Body",
+            "Body"
+          ],
+          "rigid_endpoint_rings_each": null
+        },
+        {
+          "island": 13,
+          "start_m": [
+            -0.14000001549720764,
+            0.18000000715255737,
+            1.6740000247955322
+          ],
+          "end_m": [
+            -0.11999998986721039,
+            0.5849999189376831,
+            1.9300000667572021
+          ],
+          "centerline_length_m": 1.1962435245513916,
+          "owners": [
+            "Body",
+            "Body"
+          ],
+          "rigid_endpoint_rings_each": null
+        },
+        {
+          "island": 18,
+          "start_m": [
+            0.28299981355667114,
+            -0.32500016689300537,
+            2.180999279022217
+          ],
+          "end_m": [
+            0.10004298388957977,
+            -0.42100009322166443,
+            1.9930003881454468
+          ],
+          "centerline_length_m": 0.4469500184059143,
+          "owners": [
+            "Steering",
+            "Body"
+          ],
+          "rigid_endpoint_rings_each": 4
+        },
+        {
+          "island": 21,
+          "start_m": [
+            0.1550000011920929,
+            0.015000000596046448,
+            1.6019999980926514
+          ],
+          "end_m": [
+            0.19300001859664917,
+            0.5679999589920044,
+            1.814000129699707
+          ],
+          "centerline_length_m": 1.2380130290985107,
+          "owners": [
+            "Body",
+            "Body"
+          ],
+          "rigid_endpoint_rings_each": null
+        },
+        {
+          "island": 26,
+          "start_m": [
+            0.15000000596046448,
+            0.08300001174211502,
+            1.6390001773834229
+          ],
+          "end_m": [
+            0.15700002014636993,
+            0.5799999237060547,
+            1.871999740600586
+          ],
+          "centerline_length_m": 1.167961835861206,
+          "owners": [
+            "Body",
+            "Body"
+          ],
+          "rigid_endpoint_rings_each": null
+        },
+        {
+          "island": 31,
+          "start_m": [
+            0.13999998569488525,
+            0.18000002205371857,
+            1.6740000247955322
+          ],
+          "end_m": [
+            0.12000000476837158,
+            0.5849999785423279,
+            1.9299997091293335
+          ],
+          "centerline_length_m": 1.1962430477142334,
+          "owners": [
+            "Body",
+            "Body"
+          ],
+          "rigid_endpoint_rings_each": null
+        }
+      ]
+    }
+  ],
+  "native_handoff_text": "Legger_ModelRefinement_RigHandoff.json",
+  "hidden_recovery_roots": {
+    "Legger_Chassis_ROOT": "REFERENCE_PreModelRefinementRoot_Legger_Chassis_ROOT",
+    "Legger_Rebuild_ROOT": "REFERENCE_PreModelRefinementRoot_Legger_Rebuild_ROOT",
+    "Legger_Drive_ROOT": "REFERENCE_PreModelRefinementRoot_Legger_Drive_ROOT",
+    "Legger_LeftLeg_ROOT": "REFERENCE_PreModelRefinementRoot_Legger_LeftLeg_ROOT",
+    "Legger_RightLeg_ROOT": "REFERENCE_PreModelRefinementRoot_Legger_RightLeg_ROOT",
+    "Legger_BodyArmor_ROOT": "REFERENCE_PreModelRefinementRoot_Legger_BodyArmor_ROOT",
+    "Legger_Saddle_ROOT": "REFERENCE_PreModelRefinementRoot_Legger_Saddle_ROOT",
+    "Legger_Steering_ROOT": "REFERENCE_PreModelRefinementRoot_Legger_Steering_ROOT",
+    "Legger_Cargo_L_Main_ROOT": "REFERENCE_PreModelRefinementRoot_Legger_Cargo_L_Main_ROOT",
+    "Legger_Cargo_L_Aux_ROOT": "REFERENCE_PreModelRefinementRoot_Legger_Cargo_L_Aux_ROOT",
+    "Legger_Cargo_R_Main_ROOT": "REFERENCE_PreModelRefinementRoot_Legger_Cargo_R_Main_ROOT",
+    "Legger_Cargo_R_Aux_ROOT": "REFERENCE_PreModelRefinementRoot_Legger_Cargo_R_Aux_ROOT"
+  }
+}

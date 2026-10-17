@@ -1,0 +1,2159 @@
+{
+  "after_sha256": "87ba450b0f957e8f71924bb50ed73ae7aec1f20efa8b215cefdfffb121b78eea",
+  "materials": [
+    {
+      "key": "BodyArmor",
+      "atlas": "Legger_Rider_BodyArmor_Atlas",
+      "resolution": 4096,
+      "material": "Legger_ModelRefinement_BodyArmor_PBR",
+      "parts": [
+        "Legger_Part_L_tail_shroud",
+        "Legger_Part_R_tail_shroud",
+        "Legger_Part_L_upper_body_shroud",
+        "Legger_Part_L_front_fairing",
+        "Legger_Part_R_upper_body_shroud",
+        "Legger_Part_R_front_fairing",
+        "Legger_Part_FrontTankCowling"
+      ],
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_ModelRefinement_BodyArmor_BaseColor",
+          "sha256": "25e0f491df1286916fd071716e2dfd6638681d9efb4802761f283485c80d6c41",
+          "color_space": "sRGB",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_ModelRefinement_BodyArmor_Normal",
+          "sha256": "1f957613fb332e65528ecf08bc155f0281ea7b827f16eb1d66f3a6ebfb82aa35",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_ModelRefinement_BodyArmor_Roughness",
+          "sha256": "78e77ef002b01f43ff912cde3716eb8d4a5dea5d939f9b9db3c4a85d5837e853",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_ModelRefinement_BodyArmor_Metallic",
+          "sha256": "6b4cc28976a3054bb1b41e18f9f53a4f0c7bbec4ff03d73e23b9d6522a91088f",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ModelRefinement_BodyArmor_AO",
+          "sha256": "623d3d782315394b0f2be3438c020bc7c3ce886c7299ace35a5f6cffc5e433a8",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "Cargo_L_Aux",
+      "atlas": "Legger_Cargo_L_Aux_UV",
+      "resolution": 2048,
+      "material": "Legger_ModelRefinement_Cargo_L_Aux_PBR",
+      "parts": [
+        "Legger_Part_Cargo_L_Aux_Body",
+        "Legger_Part_Cargo_L_Aux_Straps",
+        "Legger_Part_Cargo_L_Aux_Lid"
+      ],
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_ModelRefinement_Cargo_L_Aux_BaseColor",
+          "sha256": "3da780fc7abb997c446373e7951da9d5d0af7fd406e35f21c1987f97574854a0",
+          "color_space": "sRGB",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_ModelRefinement_Cargo_L_Aux_Normal",
+          "sha256": "3248ffeff6cf98e5661927e808dd557add5eb808160d2876c28b10450b0ce90a",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_ModelRefinement_Cargo_L_Aux_Roughness",
+          "sha256": "61cf19bfbaa0ff62fdacf9d2465122c1e1e4239b630121d3c279cfb2902213ba",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_ModelRefinement_Cargo_L_Aux_Metallic",
+          "sha256": "2752efc970a824792f4fcaaef67d1f2645623dfef2bf621c3e14df67ec6b1d23",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ModelRefinement_Cargo_L_Aux_AO",
+          "sha256": "76eff1b1c32c3d14eb807d22765f6ee4033d1ecbbc5204a4ec82e1a807cf4d92",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "Cargo_L_Main",
+      "atlas": "Legger_Cargo_L_Main_UV",
+      "resolution": 4096,
+      "material": "Legger_ModelRefinement_Cargo_L_Main_PBR",
+      "parts": [
+        "Legger_Part_Cargo_L_Main_Body",
+        "Legger_Part_Cargo_L_Main_Straps",
+        "Legger_Part_Cargo_L_Main_Lid"
+      ],
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_ModelRefinement_Cargo_L_Main_BaseColor",
+          "sha256": "8a46d96a149cb35808a66aa4a813bc1b5a859b20840ae5dff41a403c46b844d7",
+          "color_space": "sRGB",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_ModelRefinement_Cargo_L_Main_Normal",
+          "sha256": "e1c737d9c31965dab4ce0ee2b30bbae54c4195be0936302e621b0f8d557247f5",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_ModelRefinement_Cargo_L_Main_Roughness",
+          "sha256": "3bc22f7f26983d9404f4348675302189e36ecca4c3751a70299be0d100c583d3",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_ModelRefinement_Cargo_L_Main_Metallic",
+          "sha256": "4437cc50b3aa774900eee631aae20556c19601bbd243837881d4a469fcd93da0",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ModelRefinement_Cargo_L_Main_AO",
+          "sha256": "fab21dd5dd0d993c84dc09e92152d4eb4d757b76f834ef57f07c73771f322549",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "Cargo_R_Aux",
+      "atlas": "Legger_Cargo_R_Aux_UV",
+      "resolution": 2048,
+      "material": "Legger_ModelRefinement_Cargo_R_Aux_PBR",
+      "parts": [
+        "Legger_Part_Cargo_R_Aux_Body",
+        "Legger_Part_Cargo_R_Aux_Straps",
+        "Legger_Part_Cargo_R_Aux_Lid"
+      ],
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_ModelRefinement_Cargo_R_Aux_BaseColor",
+          "sha256": "c1c13ea8915bdd99bd4b49b5eeb9f4737d0ae414fe11c1de54f2e791a9652aef",
+          "color_space": "sRGB",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_ModelRefinement_Cargo_R_Aux_Normal",
+          "sha256": "7379517968b6ff15e1faf349ab493ed665e65d6e70fcf8a3036d93ecf71e9456",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_ModelRefinement_Cargo_R_Aux_Roughness",
+          "sha256": "89e10aa7662533232e194d687b1c0304fbf1d5f250e7f84cbc9dfe22cbd43e05",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_ModelRefinement_Cargo_R_Aux_Metallic",
+          "sha256": "2e36a09954d663e468e406815af5b39dd20bbf90b1d17d1fc1b643e52112e90e",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ModelRefinement_Cargo_R_Aux_AO",
+          "sha256": "a149509d9fb47662949cac28c0288b83883f21a58d9e515b312f19248c1a77ed",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "Cargo_R_Main",
+      "atlas": "Legger_Cargo_R_Main_UV",
+      "resolution": 4096,
+      "material": "Legger_ModelRefinement_Cargo_R_Main_PBR",
+      "parts": [
+        "Legger_Part_Cargo_R_Main_Body",
+        "Legger_Part_Cargo_R_Main_Straps",
+        "Legger_Part_Cargo_R_Main_Lid"
+      ],
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_ModelRefinement_Cargo_R_Main_BaseColor",
+          "sha256": "39559abd971cbfa6172cb51f9b0c2c4a79da93f251ca2b3025bc18c3b0fb692b",
+          "color_space": "sRGB",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_ModelRefinement_Cargo_R_Main_Normal",
+          "sha256": "bc7f792b3d895ddd103ffdebb654207bab16d6dff641c1a7a4bcea0b6a60eb2f",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_ModelRefinement_Cargo_R_Main_Roughness",
+          "sha256": "49b59c52725b43d4d30f1107512eb3728a3174d6062289ba8670837591d27338",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_ModelRefinement_Cargo_R_Main_Metallic",
+          "sha256": "b9ecb910b6f64a815a29ed872130fa5d8d8ccf8bfde31dcad6fd1f330a3ed426",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ModelRefinement_Cargo_R_Main_AO",
+          "sha256": "2c39600688767f3480f92c07c01c355c206b35a53216f8e2e5f283e04c49cdc4",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "Drive",
+      "atlas": "Legger_Chassis_Drive_Atlas",
+      "resolution": 4096,
+      "material": "Legger_ModelRefinement_Drive_PBR",
+      "parts": [
+        "Legger_Part_DriveCore",
+        "Legger_Part_SpineHousing",
+        "Legger_Part_L_DrivePod",
+        "Legger_Part_R_DrivePod",
+        "Legger_Part_RearCoolingHousing"
+      ],
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_ModelRefinement_Drive_BaseColor",
+          "sha256": "e0b3d7df39ae03ea4eaee12083d1b71fe98c79089ebea76612089201f3437c0d",
+          "color_space": "sRGB",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_ModelRefinement_Drive_Normal",
+          "sha256": "47021b44fd7e9a1eff6b462d5ddea44b2b5f0a0abf22464bdbcb47f170e6b8e2",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_ModelRefinement_Drive_Roughness",
+          "sha256": "1dc8aeeac4c17a6c6794e1fba787b10b895027f57ca4975eb6900e3b0f50bfbc",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_ModelRefinement_Drive_Metallic",
+          "sha256": "71227ec6a6b5984fc312bebb2da35dbee6e9f09c3f7636fbd0b5143bf9b46058",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ModelRefinement_Drive_AO",
+          "sha256": "7a2ee932a58eab51e52a2c8232c6614a05234b50e7ae2d2a3bc7b79ee8bd35f7",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "Frame",
+      "atlas": "Legger_Rider_Frame_Atlas",
+      "resolution": 4096,
+      "material": "Legger_ModelRefinement_FrameFixed_PBR",
+      "parts": [
+        "Legger_Part_L_CargoRack",
+        "Legger_Part_R_CargoRack",
+        "Legger_Part_L_FrontYoke",
+        "Legger_Part_L_HipMount",
+        "Legger_Part_R_FrontYoke",
+        "Legger_Part_R_HipMount",
+        "Legger_Part_MainFrame",
+        "Legger_Part_SeatSubframe",
+        "Legger_Part_SteeringMount",
+        "Legger_Part_L_Footrest",
+        "Legger_Part_R_Footrest",
+        "Legger_Part_ServiceHarness"
+      ],
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_ModelRefinement_FrameFixed_BaseColor",
+          "sha256": "1020f129b85106d8b5d81fa34ae8afd9872d2eb7b98513cf4058a8af725a6fa3",
+          "color_space": "sRGB",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_ModelRefinement_FrameFixed_Normal",
+          "sha256": "7e877b47980a176010330ffc39348a18f9ad700164ba83ea2fb0ac13ea003cbf",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_ModelRefinement_FrameFixed_Roughness",
+          "sha256": "a641ed1f6f45bee4b1bc8482c9682902ad996777030722537cb0c2cd6acc4eac",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_ModelRefinement_FrameFixed_Metallic",
+          "sha256": "f8b2095801c1f6cbffb6694f5ee17e8acfaf2fb7b85f124ac7f6ea21ce54bf82",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ModelRefinement_FrameFixed_AO",
+          "sha256": "5e0711bace3b32dc6381f824fb90687e1fc20d1c5be8b6e807f598880db58c4e",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "LeftLeg",
+      "atlas": "Legger_ThreeLink_LeftLeg_Atlas",
+      "resolution": 4096,
+      "material": "Legger_ModelRefinement_LeftLeg_PBR",
+      "parts": [
+        "Legger_Part_L_HipJoint",
+        "Legger_Part_L_KneeJoint",
+        "Legger_Part_L_HockJoint",
+        "Legger_Part_L_AnkleJoint",
+        "Legger_Part_L_UpperLinkFrame",
+        "Legger_Part_L_UpperLinkShell",
+        "Legger_Part_L_MiddleLinkFrame",
+        "Legger_Part_L_MiddleLinkShell",
+        "Legger_Part_L_MiddleLinkActuatorBarrel",
+        "Legger_Part_L_MiddleLinkActuatorRod",
+        "Legger_Part_L_LowerLinkFrame",
+        "Legger_Part_L_LowerLinkShell",
+        "Legger_Part_L_LowerLinkActuatorBarrel",
+        "Legger_Part_L_LowerLinkActuatorRod",
+        "Legger_Part_L_Foot"
+      ],
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_ModelRefinement_LeftLeg_BaseColor",
+          "sha256": "2b2fb4c9c2ad6af3003c4d2b184d9ece260c681dfcda404d5e9e609929db9f6f",
+          "color_space": "sRGB",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_ModelRefinement_LeftLeg_Normal",
+          "sha256": "ec64925aa533443460658b4f39f4a48d9ce65a171a4dbe184988f28403754500",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_ModelRefinement_LeftLeg_Roughness",
+          "sha256": "a857cf2a00aad365b0756ea150b13f66aca2c41c6945f3626198e52fdf70f8e4",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_ModelRefinement_LeftLeg_Metallic",
+          "sha256": "ce7e854d37f0a92ddcb91471403efb347549f5ded23e1bcc529030e274d1d230",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ModelRefinement_LeftLeg_AO",
+          "sha256": "5e86fe99caf7f8caa649146699e3b0f657da4ef1e44dbf31eec3a3fa1738fe48",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "RightLeg",
+      "atlas": "Legger_ThreeLink_RightLeg_Atlas",
+      "resolution": 4096,
+      "material": "Legger_ModelRefinement_RightLeg_PBR",
+      "parts": [
+        "Legger_Part_R_HipJoint",
+        "Legger_Part_R_KneeJoint",
+        "Legger_Part_R_HockJoint",
+        "Legger_Part_R_AnkleJoint",
+        "Legger_Part_R_UpperLinkFrame",
+        "Legger_Part_R_UpperLinkShell",
+        "Legger_Part_R_MiddleLinkFrame",
+        "Legger_Part_R_MiddleLinkShell",
+        "Legger_Part_R_MiddleLinkActuatorBarrel",
+        "Legger_Part_R_MiddleLinkActuatorRod",
+        "Legger_Part_R_LowerLinkFrame",
+        "Legger_Part_R_LowerLinkShell",
+        "Legger_Part_R_LowerLinkActuatorBarrel",
+        "Legger_Part_R_LowerLinkActuatorRod",
+        "Legger_Part_R_Foot"
+      ],
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_ModelRefinement_RightLeg_BaseColor",
+          "sha256": "bc12f86e2819e7687074811c1c7b1c75e267a588f25bd7438e1c4e2fff84c57e",
+          "color_space": "sRGB",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_ModelRefinement_RightLeg_Normal",
+          "sha256": "99e97d10bdafd1e412a33eae204d0474a9e6d782686bcf121e6f092541f3847c",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_ModelRefinement_RightLeg_Roughness",
+          "sha256": "007100ada2edc69fed026d38bcb5e34d5078a3ce4031fbf978cb9ae8232a325e",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_ModelRefinement_RightLeg_Metallic",
+          "sha256": "52d677ac5ea3eee027ba1375d568c21e284ae38232aa36d1e7d5ea0aeca2125e",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ModelRefinement_RightLeg_AO",
+          "sha256": "50c0d2584c886da82e1d48b343cea36aca2a9a3459519ba9e7fb97c1d07ee149",
+          "color_space": "Non-Color",
+          "resolution": [
+            4096,
+            4096
+          ],
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "Saddle",
+      "atlas": "Legger_Rider_Saddle_Atlas",
+      "resolution": 2048,
+      "material": "Legger_ModelRefinement_Saddle_PBR",
+      "parts": [
+        "Legger_Part_SaddleUpholstery",
+        "Legger_Part_SaddlePan"
+      ],
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_ModelRefinement_Saddle_BaseColor",
+          "sha256": "0e98aade6a8bc03480baaba82a69697a9ed4542adec3054ef5f2196e9368b634",
+          "color_space": "sRGB",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_ModelRefinement_Saddle_Normal",
+          "sha256": "bdb8f6dd51cf3667386ba857c6a15ec83b11488801629922e950db8f313e2083",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_ModelRefinement_Saddle_Roughness",
+          "sha256": "b3ff17f73b90d4f8267de632b41c1fcd4cdfb1c1c6a628727fb0d5954ff4eee4",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_ModelRefinement_Saddle_Metallic",
+          "sha256": "d2b741afec1be96a5ea6f7870368a57fbd75d67cabfeadddf58d4a519453ba45",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ModelRefinement_Saddle_AO",
+          "sha256": "8d30383be53eb5374dc0d9a76e2731c376b00ab72095d9fd47618212cff22563",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        }
+      }
+    },
+    {
+      "key": "Steering",
+      "atlas": "Legger_Rider_Steering_Atlas",
+      "resolution": 2048,
+      "material": "Legger_ModelRefinement_Steering_PBR",
+      "parts": [
+        "Legger_Part_FrontControlPod",
+        "Legger_Part_SteeringStem",
+        "Legger_Part_L_Grip",
+        "Legger_Part_L_BrakeLever",
+        "Legger_Part_R_Grip",
+        "Legger_Part_R_BrakeLever",
+        "Legger_Part_InstrumentGauge",
+        "Legger_Part_Handlebar"
+      ],
+      "maps": {
+        "BaseColor": {
+          "name": "Legger_ModelRefinement_Steering_BaseColor",
+          "sha256": "40dec5c3ddf938bcd1d37b8885708ee2dd816ffbed873ed63e2477f7c2a29083",
+          "color_space": "sRGB",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "Normal": {
+          "name": "Legger_ModelRefinement_Steering_Normal",
+          "sha256": "9334572ed20ba6d51f9cd54ca858ce14e0b03b8b1fc4859d44885e65557501c7",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "Roughness": {
+          "name": "Legger_ModelRefinement_Steering_Roughness",
+          "sha256": "554be32126203da6e3e3456ccda9c15f651ca161644788e60adcf31ce3dc4c8e",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "Metallic": {
+          "name": "Legger_ModelRefinement_Steering_Metallic",
+          "sha256": "6e5029261121761d5ae77fde7c52c36d5b62921b17b8d079693c9ce0bedc682b",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        },
+        "AO": {
+          "name": "Legger_ModelRefinement_Steering_AO",
+          "sha256": "ada615f4cf18af35d06b773b1ab42d160777c9e3f1b054629673b84fe9a26e97",
+          "color_space": "Non-Color",
+          "resolution": [
+            2048,
+            2048
+          ],
+          "packed": true
+        }
+      }
+    }
+  ],
+  "UV_repairs": [
+    {
+      "module": "Frame",
+      "atlas": "Legger_Rider_Frame_Atlas",
+      "method": "Repack affected surfaces after sectional reshaping and blind bore extension; 66 degree smart projection; normalized 0.006 island margin",
+      "parts": [
+        "Legger_Part_L_CargoRack",
+        "Legger_Part_L_Footrest",
+        "Legger_Part_L_FrontYoke",
+        "Legger_Part_L_HipMount",
+        "Legger_Part_MainFrame",
+        "Legger_Part_R_CargoRack",
+        "Legger_Part_R_Footrest",
+        "Legger_Part_R_FrontYoke",
+        "Legger_Part_R_HipMount",
+        "Legger_Part_SeatSubframe",
+        "Legger_Part_ServiceHarness",
+        "Legger_Part_SteeringMount"
+      ]
+    },
+    {
+      "module": "Drive",
+      "atlas": "Legger_Chassis_Drive_Atlas",
+      "method": "Repack affected surfaces after sectional reshaping and blind bore extension; 66 degree smart projection; normalized 0.006 island margin",
+      "parts": [
+        "Legger_Part_DriveCore",
+        "Legger_Part_L_DrivePod",
+        "Legger_Part_R_DrivePod",
+        "Legger_Part_RearCoolingHousing",
+        "Legger_Part_SpineHousing"
+      ]
+    },
+    {
+      "module": "LeftLeg",
+      "atlas": "Legger_ThreeLink_LeftLeg_Atlas",
+      "method": "Repack affected surfaces after sectional reshaping and blind bore extension; 66 degree smart projection; normalized 0.006 island margin",
+      "parts": [
+        "Legger_Part_L_AnkleJoint",
+        "Legger_Part_L_Foot",
+        "Legger_Part_L_HipJoint",
+        "Legger_Part_L_HockJoint",
+        "Legger_Part_L_KneeJoint",
+        "Legger_Part_L_LowerLinkActuatorBarrel",
+        "Legger_Part_L_LowerLinkActuatorRod",
+        "Legger_Part_L_LowerLinkFrame",
+        "Legger_Part_L_LowerLinkShell",
+        "Legger_Part_L_MiddleLinkActuatorBarrel",
+        "Legger_Part_L_MiddleLinkActuatorRod",
+        "Legger_Part_L_MiddleLinkFrame",
+        "Legger_Part_L_MiddleLinkShell",
+        "Legger_Part_L_UpperLinkFrame",
+        "Legger_Part_L_UpperLinkShell"
+      ]
+    },
+    {
+      "module": "RightLeg",
+      "atlas": "Legger_ThreeLink_RightLeg_Atlas",
+      "method": "Repack affected surfaces after sectional reshaping and blind bore extension; 66 degree smart projection; normalized 0.006 island margin",
+      "parts": [
+        "Legger_Part_R_AnkleJoint",
+        "Legger_Part_R_Foot",
+        "Legger_Part_R_HipJoint",
+        "Legger_Part_R_HockJoint",
+        "Legger_Part_R_KneeJoint",
+        "Legger_Part_R_LowerLinkActuatorBarrel",
+        "Legger_Part_R_LowerLinkActuatorRod",
+        "Legger_Part_R_LowerLinkFrame",
+        "Legger_Part_R_LowerLinkShell",
+        "Legger_Part_R_MiddleLinkActuatorBarrel",
+        "Legger_Part_R_MiddleLinkActuatorRod",
+        "Legger_Part_R_MiddleLinkFrame",
+        "Legger_Part_R_MiddleLinkShell",
+        "Legger_Part_R_UpperLinkFrame",
+        "Legger_Part_R_UpperLinkShell"
+      ]
+    },
+    {
+      "module": "Steering",
+      "atlas": "Legger_Rider_Steering_Atlas",
+      "method": "Repack affected surfaces after sectional reshaping and blind bore extension; 66 degree smart projection; normalized 0.006 island margin",
+      "parts": [
+        "Legger_Part_FrontControlPod",
+        "Legger_Part_Handlebar",
+        "Legger_Part_InstrumentGauge",
+        "Legger_Part_L_BrakeLever",
+        "Legger_Part_L_Grip",
+        "Legger_Part_R_BrakeLever",
+        "Legger_Part_R_Grip",
+        "Legger_Part_SteeringStem"
+      ]
+    }
+  ],
+  "derived_surface_contract": "Final evaluated Triangulate modifier FIXED quads / CLIP ngons; split normals retained where supported; same modifier sequence for source render, bake and later derived export. Unity tangents unvalidated.",
+  "derived_mesh_fingerprints": [
+    {
+      "part": "Legger_Part_L_tail_shroud",
+      "vertices": 769,
+      "triangles": 1530,
+      "positions_sha256": "f4a5a68276015fa76abfdc4865c5b40bd9ef20ee2eca2bec3cc5e5a7ffeafac7",
+      "indices_sha256": "fa1e229811ca4242a34472f73dba4aba99d2f83b99611f335ea1edc5ad45d187",
+      "split_normals_sha256": "5c2d8fa24c71aac6baa0d0d585749b180af99423b08d7988e74843c19752e668",
+      "UV_sha256": "3f96749830c01a85221eb55dafdf3e6f8eb87a9cc6fa643dd11f1330d11b46b6"
+    },
+    {
+      "part": "Legger_Part_R_tail_shroud",
+      "vertices": 769,
+      "triangles": 1530,
+      "positions_sha256": "090fe27b7c04c7ab16aaee8c8c565fdd9fd9831131cf3bf6dcefde40e0138e99",
+      "indices_sha256": "fa1e229811ca4242a34472f73dba4aba99d2f83b99611f335ea1edc5ad45d187",
+      "split_normals_sha256": "994379ca01d735df474c7516b6eae50df40157341d1591fad6a9bab218178326",
+      "UV_sha256": "e79e33f2bef1155f5d3d1f715f5c1f2f17f3b67a7d23ef14ee2d2a8bd9d87b47"
+    },
+    {
+      "part": "Legger_Part_L_upper_body_shroud",
+      "vertices": 2180,
+      "triangles": 4348,
+      "positions_sha256": "d4dbb20850db8fdc5410a02598a25a56986478f857114830d6aeaca3139972ab",
+      "indices_sha256": "cdbf61f9a4dce9734e2c0c6817b97c436c80607f9b3c95240fd37e76b9f79eba",
+      "split_normals_sha256": "8bd7f048284278d7937e66c0f961a42cd69c3cd5e662b98139f8f532fc62bb34",
+      "UV_sha256": "2df0d6007bd053f48f3d4510358e9a9d10f9ed48f18390d539b0075f6e497094"
+    },
+    {
+      "part": "Legger_Part_L_front_fairing",
+      "vertices": 1530,
+      "triangles": 3044,
+      "positions_sha256": "8a4e4bb3d21e244c1b73323524d3aa0538d7f97de15433cfb99ca0e10147d42b",
+      "indices_sha256": "df6673e7b2e446349dc02d233a02eda726f65e26cf849679f937eed087905b83",
+      "split_normals_sha256": "41f18e7797bb26c3bfce004bd6fcd10f41be8d24a8e7ca3f6686e006e5fce5b5",
+      "UV_sha256": "d9c58207a469ce848c755ac28621e704de97d18eefcd2943de226e140ed8e18f"
+    },
+    {
+      "part": "Legger_Part_R_upper_body_shroud",
+      "vertices": 2180,
+      "triangles": 4348,
+      "positions_sha256": "159a2fe8a04e8cf3f81fc773d0f284972c2bf674f55efb34edb2f60972f51f6a",
+      "indices_sha256": "ec384782f5541330376dd529dff9ea800e7be4505b5565697e949370522fa7ac",
+      "split_normals_sha256": "0ce58f05fdf15e1b0b5a7773a7b7106e889d235ba8d3c59f734945663c3a8449",
+      "UV_sha256": "52b46b7a9db925f59d865ed9d603eab4e836253478036082b71f73fb84f2ee1a"
+    },
+    {
+      "part": "Legger_Part_R_front_fairing",
+      "vertices": 1530,
+      "triangles": 3044,
+      "positions_sha256": "1dce28ca02d0701e4fb7859d04e938507c22c98495f3b4b78199070e257a80c5",
+      "indices_sha256": "afe8b4f4f4fb2aa4007989aaccebfeb114ea9e300bb3520b9d92b9ad1b5f5675",
+      "split_normals_sha256": "927901f3ba7086a83f8f2813873e0deedd7afe64f32251e5cf968e7b969d0070",
+      "UV_sha256": "644562953c21ec9c71b72bfcb7b8c4520ca2b3ba0b7b5207eb8c0c3b77c0237f"
+    },
+    {
+      "part": "Legger_Part_FrontTankCowling",
+      "vertices": 882,
+      "triangles": 1756,
+      "positions_sha256": "301a8a1ea63a216ff23c2a4f0f6f7fb0cd8ecdabb33cfca552499068eb0341fb",
+      "indices_sha256": "9a9785d8b25cba19a63c472d6ab37901d79748f839b0fb8010b0f3d460d1c9cf",
+      "split_normals_sha256": "1dcf244cefffb2c4904faad6b6fdff0ed104a7d43bd0720a9bf994ebe7da3147",
+      "UV_sha256": "9643385d1ea721ad5c4619014e2478a0a57b56532f0841f52349eb2f9e9bcdf9"
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Aux_Body",
+      "vertices": 1064,
+      "triangles": 2068,
+      "positions_sha256": "08fcc70dd60a76af021317863b4f790c116c4eceba42ac4b8989008f5b8bb2b4",
+      "indices_sha256": "73fd628508d3f8b8c84f91a215b4b7b2480671fa01686d7fdd466b6a9541dfc8",
+      "split_normals_sha256": "54471230a487496ea19e8c3f37a79282f2ffbe23d3a1c4d4f455db8c2ccf177b",
+      "UV_sha256": "6a796402d6c751f31a99b84fc71aeee063cd7618651e7f0ab52c1fbc2d74432e"
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Aux_Straps",
+      "vertices": 900,
+      "triangles": 1768,
+      "positions_sha256": "75e6237b44e1bb8517d2a9d5f45f1877cc49645f56af1f929c507f3386e08e8e",
+      "indices_sha256": "91c7bba6b5de0ec667110e8ab67716bcb8313dc466e8d752c80407dd5d421c0a",
+      "split_normals_sha256": "75a36c888c4bf5c090fba7af8e275e57318cf7568fa513c7c8cddd5f02fdc80d",
+      "UV_sha256": "87b0936d1639e23e51c44a411573a114173fd906a5580f645cfb582a71a63b3a"
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Aux_Lid",
+      "vertices": 372,
+      "triangles": 724,
+      "positions_sha256": "b0a61cdd6fa1f1cc7c5969c12fefda57b9cbc90fd0820347f6b24a8a00b055ec",
+      "indices_sha256": "8b95c295c3b6e962ef5d6245b148756600e83c3ecbc8fa5b1477fab5083f4550",
+      "split_normals_sha256": "5168d7f70ae83a4adc5a67ed87d3f80aaea2da45e4f9a69e4035d28be396d732",
+      "UV_sha256": "f03f41eab67c11f47062ba931a1279427d68062bee99d45f940252c4cc0c1641"
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Main_Body",
+      "vertices": 1722,
+      "triangles": 3384,
+      "positions_sha256": "ee12ec9662eed41ab3a4107649816c4b6a966bd78cabbf9be6bfa63dcd6b215d",
+      "indices_sha256": "cb16cb355283c917b578419c2fc3f6f8f5f81667bda715b26a9ecf91d0c6d358",
+      "split_normals_sha256": "df54a6c82a1a1b3de43490487ab728dd769c06c4ecbdbf2e452d4cad940dba81",
+      "UV_sha256": "af24f6f67ecce4ff404669e18aecee6e51b50c2a5e8a69e354e8cbb38c11ef46"
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Main_Straps",
+      "vertices": 2088,
+      "triangles": 4112,
+      "positions_sha256": "ef5f62788f53fc8d60713c6f5a9dd5e150cf07656d2865fe9135cfd7706a33c5",
+      "indices_sha256": "dcaaffcea48618d7220d825c89cb36d5c6a8825ade8cc7c4785800884c6dddd1",
+      "split_normals_sha256": "c4a5459438baa3f7906224a892137383037af805821d10f91077d2fd8b3aed09",
+      "UV_sha256": "ff17692f50b3aebd4e5fa9d760acd8196d6bf9999835af993b3950dbb3627e98"
+    },
+    {
+      "part": "Legger_Part_Cargo_L_Main_Lid",
+      "vertices": 706,
+      "triangles": 1380,
+      "positions_sha256": "79d2b1814065b064ae91f6d493c165ac03d8460a15f1b109867fe133e4329528",
+      "indices_sha256": "c7cfc472abbbace66aeefa5caa1a8173ae612e5be4fd1cf39e30bd4de30c970f",
+      "split_normals_sha256": "de457fba2620d199e1e53ee37c3896af2caa4ecf38eaa53021ae7e5eba0834b0",
+      "UV_sha256": "abd1952c5ffa70552aa2f0119616cddcfaa0a49fdf2c302c50f4266260f2a04f"
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Aux_Body",
+      "vertices": 1064,
+      "triangles": 2068,
+      "positions_sha256": "62bb25c24666a83ac5ef003c6b4c680572e55f41b0f63b1dd8b2ae56cf183202",
+      "indices_sha256": "73fd628508d3f8b8c84f91a215b4b7b2480671fa01686d7fdd466b6a9541dfc8",
+      "split_normals_sha256": "54bc96c4a397a8403a745919de38aa6868eb15d71d4cff19b63e80f54e1429a9",
+      "UV_sha256": "50060e14f76ec260efd8e8ca7afdfc88203140147c70049c5839bb6f0fc5795e"
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Aux_Straps",
+      "vertices": 900,
+      "triangles": 1768,
+      "positions_sha256": "7acf00348cecb4abcabb7174000705e06d586b148047a29f56e3f2152b8a3775",
+      "indices_sha256": "91c7bba6b5de0ec667110e8ab67716bcb8313dc466e8d752c80407dd5d421c0a",
+      "split_normals_sha256": "aa326bd9793607406ab1e018240a8ca04d5f0431fa6d16c7687dac200d153be7",
+      "UV_sha256": "033bed0beec84bde4264f9310abf0d0da883ae914ca9b2bdfb24e9c0cfebd04c"
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Aux_Lid",
+      "vertices": 372,
+      "triangles": 724,
+      "positions_sha256": "491f0449bab41a9a31fc7e0ceda12b4c06db83db5448afb8380daef24b4071d8",
+      "indices_sha256": "8b95c295c3b6e962ef5d6245b148756600e83c3ecbc8fa5b1477fab5083f4550",
+      "split_normals_sha256": "b68520bf6f1233aefe24cd30c1703042ec5729556f8f8515ab55ed498fdae170",
+      "UV_sha256": "ee86c88b67a9750122469e725d1172f5f3b2f10d6e95c3021aa0132fc77a6614"
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Main_Body",
+      "vertices": 1722,
+      "triangles": 3384,
+      "positions_sha256": "b879c009cc2ff2de67673c3fbadff53b6af7ea06488b35acffcc6ac12f1aad75",
+      "indices_sha256": "cb16cb355283c917b578419c2fc3f6f8f5f81667bda715b26a9ecf91d0c6d358",
+      "split_normals_sha256": "cd204fbf6af072ac6c876034cf5a8a8a5956359f926a73017069c6d1af437567",
+      "UV_sha256": "b88818cb482285eb08bf05219eade26ddf2552f2f6059536ddbfeff327fc0e2a"
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Main_Straps",
+      "vertices": 2088,
+      "triangles": 4112,
+      "positions_sha256": "3440fc12ff9702e025de41c1919f93c6bf69a7d31d2add98f2aa8c4bb854d9cc",
+      "indices_sha256": "dcaaffcea48618d7220d825c89cb36d5c6a8825ade8cc7c4785800884c6dddd1",
+      "split_normals_sha256": "849f87561da5f08f61caa88ecdda700cf9201fefbe3092ce4a9bb6bdd3a06198",
+      "UV_sha256": "3edd03f732c84924544aa77589a1334994474156105a56654b65fa6d640b88b7"
+    },
+    {
+      "part": "Legger_Part_Cargo_R_Main_Lid",
+      "vertices": 706,
+      "triangles": 1380,
+      "positions_sha256": "ea73fda84c20a678fe37004d0764cc7ecfc07825e4ae7cd6d996af43931d3a89",
+      "indices_sha256": "c7cfc472abbbace66aeefa5caa1a8173ae612e5be4fd1cf39e30bd4de30c970f",
+      "split_normals_sha256": "ac59276346550342a0f2acee528c765ac39bb32b9e973b39ae16be7581f0e58c",
+      "UV_sha256": "337eab2976f1a242c31037c015fd97c243b2cc98190591e24963c83c05f245ce"
+    },
+    {
+      "part": "Legger_Part_DriveCore",
+      "vertices": 660,
+      "triangles": 1296,
+      "positions_sha256": "bc1600317a5d1c30e0e686ea355c932419f4ebe4093511b006a47b8cfc281d5f",
+      "indices_sha256": "3b768fa0ba7c08c0e94a8b7257d590a7c85c5aa64e2d0c357e6edaaefb52253b",
+      "split_normals_sha256": "ff02db97965ffc3bb3c0cbb04b964940335d20379f4fff7b9827a260305352bc",
+      "UV_sha256": "b06f1737df107076ccb9e31a3518ff29b4e0bc10c801ef55c637edaf3670d2aa"
+    },
+    {
+      "part": "Legger_Part_SpineHousing",
+      "vertices": 844,
+      "triangles": 1644,
+      "positions_sha256": "c7943c5b90104b0b214d7bc62da432fc26a88c32094b0a2312898eea3a70c4fd",
+      "indices_sha256": "dcacbaaa0615a8820a56a8deb89d99a7cad1df98807b954e64d96bd7e0dd2d18",
+      "split_normals_sha256": "3d7a99382736f2809827a2b7bed94cbe92d24a0d10c6d71436f53969b6d0162f",
+      "UV_sha256": "9aa67354f590be272265663d6c45bbd39d49087a4f7436b4add1182a8dabe819"
+    },
+    {
+      "part": "Legger_Part_L_DrivePod",
+      "vertices": 831,
+      "triangles": 1646,
+      "positions_sha256": "6060f2876c97222f6c1621e0eb2617102978324b7a1cca8b868a6cb7faf71e98",
+      "indices_sha256": "0fbccc5029b22c7422d737031cd2b24ef823603efc68b1cb73d8c65eca5cd6b4",
+      "split_normals_sha256": "00a00e6bcf7b9da301a582b372c9fa4522501ca36d4c89eba789aea20815b418",
+      "UV_sha256": "b8b385f075b7df09429642c512094d8bb072d1a1ec0151cb1c17463c9556dcff"
+    },
+    {
+      "part": "Legger_Part_R_DrivePod",
+      "vertices": 831,
+      "triangles": 1646,
+      "positions_sha256": "d429859cfbc5cf83b098d3739c16adb8152dcb9f6c195c09de6f6381a69471a9",
+      "indices_sha256": "2dac1ef2d9fee34c3ecfea2c642b6219efe8d1371ac80459bbd168b23f740deb",
+      "split_normals_sha256": "0355d0c6ad39118726755a9eb416b1c3be7e862043ad3c9ec153f7b64c3ff8b9",
+      "UV_sha256": "4a874ea90a65e1b5af84d32e9599d45a4b527032a46ff27bf46a406b917de329"
+    },
+    {
+      "part": "Legger_Part_RearCoolingHousing",
+      "vertices": 646,
+      "triangles": 1252,
+      "positions_sha256": "da211c81f3764f7e36a02a62a874ccc3fef11eeb22dc2395438de7ec72f36e38",
+      "indices_sha256": "185f846543040875eb556a7b89c6a822389af98781b69712140158c8d8e4171a",
+      "split_normals_sha256": "eda3ba7d638da8c6c80be8b7d94ee44f32dabc907f65a72984757e1047881b9a",
+      "UV_sha256": "c6b72ac824bba0f7b15536a54e860794211613eaa574fbecacd70cc2f4ca9c7f"
+    },
+    {
+      "part": "Legger_Part_L_CargoRack",
+      "vertices": 1476,
+      "triangles": 2896,
+      "positions_sha256": "d8ace1ffbb59d7ba5b959b07758609cb0a8cdf03edc432009793b05263b1875c",
+      "indices_sha256": "36a813fbbcb6835cbbeee2053cd74dfefea0ca44024fcef1d3580dbfe3513fb6",
+      "split_normals_sha256": "897e92b1cc3bed127afc4ec8ed9ae8dc27a9b8cd2867aa526a5869919c41edbc",
+      "UV_sha256": "b344cc0089c470e6fb64f39fda2643faca47dc7797c91917dc73475762ad0d5c"
+    },
+    {
+      "part": "Legger_Part_R_CargoRack",
+      "vertices": 1476,
+      "triangles": 2896,
+      "positions_sha256": "aa9e7681a82ff16b6c2182430c7f4e213b0b9415a464c4fa99e79b46023c7000",
+      "indices_sha256": "36a813fbbcb6835cbbeee2053cd74dfefea0ca44024fcef1d3580dbfe3513fb6",
+      "split_normals_sha256": "fc658a5c7b592fcb7b516ade75cf2823fa7905557986076006117c5930b63b59",
+      "UV_sha256": "d0b1752f8ab573dc23faf204870015bd720fd98287c1e8b9d424547439e906cd"
+    },
+    {
+      "part": "Legger_Part_L_FrontYoke",
+      "vertices": 630,
+      "triangles": 1244,
+      "positions_sha256": "4beb91e61a79f4128c1e4eca96c37055fd9cc6ccab01333d426e6d3edbaa1418",
+      "indices_sha256": "3aa1d40a0af20a96471ef0cddccd022025a3f5dd1904b5fe4bb56f3062402923",
+      "split_normals_sha256": "3d58f631b1a0816e3aa625c3a8609bc02bfcb133b423b0c06182ff17aaea3108",
+      "UV_sha256": "0cdb7adbf1fb4d119edebe4f3351d81b3a5442fc2b8a44e0faa13c47c5837d85"
+    },
+    {
+      "part": "Legger_Part_L_HipMount",
+      "vertices": 400,
+      "triangles": 788,
+      "positions_sha256": "cccf6e12a76cd459fd38f41fb4a218cc5983783266341fc2c23e17a230ea18bf",
+      "indices_sha256": "c01e22f3bc358353810ee1d0cb7ac063a3f804ae91297cead4c3d8f4aaaa5bdb",
+      "split_normals_sha256": "60e62e89b2338105b8f606c535beeb1c8c89cb52e9910cf34328be8c869f4532",
+      "UV_sha256": "ebf197fbcb236dc0992661d472b890d48ff24223038ff845022feea29a4f0b94"
+    },
+    {
+      "part": "Legger_Part_R_FrontYoke",
+      "vertices": 630,
+      "triangles": 1244,
+      "positions_sha256": "cc7ab8fc8579f77d46a9d73d2e714ee17caf5026d80701f193b48402ea007755",
+      "indices_sha256": "ade726143657c5f6936371cddc14d38c18ec641534aba9235b57b0e2ecaba1f7",
+      "split_normals_sha256": "250e87a01402a6652d866271a2abc9adbd27a0b5824083b1cba1478a3a41f7e3",
+      "UV_sha256": "cee9a18f11fc195c977b37d2ff754afe2c67f0c536c255057930c23e27fdd5f6"
+    },
+    {
+      "part": "Legger_Part_R_HipMount",
+      "vertices": 400,
+      "triangles": 788,
+      "positions_sha256": "56929c7382d18f2f6eb0fe0c447d923836a19d2453b48ab906fbd4938c12352e",
+      "indices_sha256": "3e0b4edd3a5e2ccdbd6ba0673aade3bce77a5e7a22a77e9f41a3dd55a9a15f33",
+      "split_normals_sha256": "b9191f54aae8002ea67afd2cef0bfce6f27c11f1f0904d48e7346c98c3c2257a",
+      "UV_sha256": "e8751a11f7f7a12d05b8a1d1c6b099c25e1514e7e8adfd7b9da4f5704523e5ca"
+    },
+    {
+      "part": "Legger_Part_MainFrame",
+      "vertices": 2740,
+      "triangles": 5432,
+      "positions_sha256": "2e5f37a849254144ec9f8d4b77a40e3655be37cda62dd5838f3663a38a061fa5",
+      "indices_sha256": "9a06e4a65e9f517f71a4e19e1f40acc232a268815aaaa07cc6b8bc0061f64809",
+      "split_normals_sha256": "cedb55a542dd5167e221e69bdca2683e52a941d9dbfb7417b5c0b2d061f90908",
+      "UV_sha256": "8dcbafc5c970fc6a557b6a52a43e83557a654a90b7408e6f8b5e3d44bd9b9b19"
+    },
+    {
+      "part": "Legger_Part_SeatSubframe",
+      "vertices": 1680,
+      "triangles": 3312,
+      "positions_sha256": "d79f63964508e2350f656549fcb98c9f41c995c31facd2e260ce3d3499b5fc81",
+      "indices_sha256": "ec57054a257518ca4303ea0b09e94227f1c8b75468237852aa56779e963b71f9",
+      "split_normals_sha256": "44330d5e069069198e0e18969f4845f6246935bf6feda7868bb3dd93cc51d9ff",
+      "UV_sha256": "3757a00fc46e6794d731dd85c906d0e411102b91cd416384eb25d15ca03cd110"
+    },
+    {
+      "part": "Legger_Part_SteeringMount",
+      "vertices": 512,
+      "triangles": 1012,
+      "positions_sha256": "eab9af08951731135be4cacc4bcf7840119245e49e5c2d52f8885132e6bdd038",
+      "indices_sha256": "937ee157a455a3d7137b3016f20d96c9be134b311c7cddf1d94b1b1ea726a36d",
+      "split_normals_sha256": "221ccd106667d58e6e19534a1ca01aeb297e293c5ce04d5f10ed26092dd8d65a",
+      "UV_sha256": "668ccf262fa40d792b30abee76f30def9a785213b59add1a663c769c31e1488c"
+    },
+    {
+      "part": "Legger_Part_L_Footrest",
+      "vertices": 1000,
+      "triangles": 1964,
+      "positions_sha256": "1aeee7a919461eef79a9cf61553f3521af345f4651bed9ec43c17ae753e27866",
+      "indices_sha256": "ae8a7b777d17e4e3681cab01dfc1a2ea8a2513e8c9dff10c5995ff5e50a77271",
+      "split_normals_sha256": "669bafab4078e3f1dc8f6ca4f6338c7dc88ac9330e32de1d59f9c53690fb1352",
+      "UV_sha256": "059a2460a3969677573736fd5fa81d586e47537e157cf0d42f7020a783781ad9"
+    },
+    {
+      "part": "Legger_Part_R_Footrest",
+      "vertices": 1000,
+      "triangles": 1964,
+      "positions_sha256": "a340d2a3e7d9c02f3eb0cbd5162fe04bfd389112e3511d8ee52bd3498fc2ad1a",
+      "indices_sha256": "783ee2c41107f228f995ac7839fc03c3dd0d93cda66c1856c330ebb6cb93a4b7",
+      "split_normals_sha256": "c868c682749c3a5385ea2a792513609cd4ab6486570fac5d5de4f7e3dc158109",
+      "UV_sha256": "d818d11c7758073b6b79c816a6a8dcfb1f86472bf3547cccc020aba341e76c6c"
+    },
+    {
+      "part": "Legger_Part_ServiceHarness",
+      "vertices": 5752,
+      "triangles": 11424,
+      "positions_sha256": "a0379ecb5e706015102147cef700038399df5c6b869239367a5ceec327580f56",
+      "indices_sha256": "939424259f3fb7c6bbc8c1acbbec75483574b00ceb41f033f56c689213b31207",
+      "split_normals_sha256": "dd09556b0360d38766b1809076667fed5ae8a859d8912f557170264647077d42",
+      "UV_sha256": "d18b51a337260f5e571cef1456f87e5ed58e8cd9c248c666289b4fda7a7ab7b9"
+    },
+    {
+      "part": "Legger_Part_L_HipJoint",
+      "vertices": 782,
+      "triangles": 1552,
+      "positions_sha256": "466ec557803378b8d3058038e62a0b690f278da06e5060aaed6e0d65c71e2c01",
+      "indices_sha256": "b7c29daa64c34e0f55389ff441807d335295b0bbe2c7e80ea680d30b464b1f65",
+      "split_normals_sha256": "d8b078e5e2a9955f5ce9dd7ca008533455ae0da37679583cb0b4fb813e65df67",
+      "UV_sha256": "3f3bdc393a27c014e106f1fa80f12bb1fffdfeb3409cc9531e74bd7b513ba9d2"
+    },
+    {
+      "part": "Legger_Part_L_KneeJoint",
+      "vertices": 1039,
+      "triangles": 2058,
+      "positions_sha256": "70e6b8b18cfa39c10bb5e16b2f79979b181820034014bd5bc8c62c8de846bce7",
+      "indices_sha256": "7674a06a364ab0c3dec7b4a46e2287c784d4fd6e87cc2279a7bc7549250a1afb",
+      "split_normals_sha256": "a20fafe4f0798c53baf97f97fbcae93fe595391aa8013c145d94531559def10c",
+      "UV_sha256": "b884f950bc86c2db17d4788481471d15f9191d0ccc958c62eeccf20dc80c30fc"
+    },
+    {
+      "part": "Legger_Part_L_HockJoint",
+      "vertices": 782,
+      "triangles": 1552,
+      "positions_sha256": "d6cfc9c017151963db6378e88f5523279aeb7cf98dede321042aa05484daf425",
+      "indices_sha256": "b7c29daa64c34e0f55389ff441807d335295b0bbe2c7e80ea680d30b464b1f65",
+      "split_normals_sha256": "583c5eb96b8a3d49fbc6f888d549c62263e9915a4fae8eba4b0867a1ca8feefa",
+      "UV_sha256": "5052f5db281efb0a828361afbf9c3ace50221b0bd480d7f31f6ee16fd110663a"
+    },
+    {
+      "part": "Legger_Part_L_AnkleJoint",
+      "vertices": 782,
+      "triangles": 1552,
+      "positions_sha256": "b4afc301ded95ba08db6f92b8d9ad75b8a14395460213b0b7bb10bb19a841bb5",
+      "indices_sha256": "b7c29daa64c34e0f55389ff441807d335295b0bbe2c7e80ea680d30b464b1f65",
+      "split_normals_sha256": "d5235846597435b3aed273c46846317a1a1331b9e12bd1efbe96c3cfb5c1ddc2",
+      "UV_sha256": "854dffbc5fd6f09b988c45bffadb200e4a2173b3e68b5a97298673646906e281"
+    },
+    {
+      "part": "Legger_Part_L_UpperLinkFrame",
+      "vertices": 208,
+      "triangles": 408,
+      "positions_sha256": "bd2f6159b4fc94cddef7fc2ecca67a0262ecbc1747a8c7b107b52291abd5cb1b",
+      "indices_sha256": "5a5561eaff82e34277bd6fe125c311dd9835f18ac742fbe7436c9deb75e0de62",
+      "split_normals_sha256": "10b83f2dcf41cf3be13b8baab384a28921099d332b9720d914fa60a79ef28c24",
+      "UV_sha256": "db06996c219bc7e54cd2319d767df5a631819965d0c016e2245bd659154604fa"
+    },
+    {
+      "part": "Legger_Part_L_UpperLinkShell",
+      "vertices": 786,
+      "triangles": 1568,
+      "positions_sha256": "ea5654df1ad04a5f867936aeb5dd0e09c64f8ea340aca640f7db94ceaf2c2f10",
+      "indices_sha256": "4c88bdfbe4d36f0bf1c3e8d7105c5ab10afa526f2836c1844d60b06814dbaaf5",
+      "split_normals_sha256": "407a4f1b5701ea0f127109e742f40e88f3de5ea67b52c0e6ba7ef0f477177bf0",
+      "UV_sha256": "b56878690c84ee796221b04657e8ac53a398c64cd72e2400fed491e7b2d5e580"
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkFrame",
+      "vertices": 628,
+      "triangles": 1228,
+      "positions_sha256": "509efff574c6af503230928efdbb2fbfe67865f8b3c7e05c1540ed1ff7da0681",
+      "indices_sha256": "fe07f660c711cbf32c5231ffc10ee48a827aa3da48b9f7ddf0e76c42c6d10ef3",
+      "split_normals_sha256": "95890b00cc0d2930ca332f8f8d03209cc517bf08faf4b4834c4754a051378e8b",
+      "UV_sha256": "025e19120cfa46b3cface1224169de50827dd4d8f6a5ba6d19126e47f9a84683"
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkShell",
+      "vertices": 1134,
+      "triangles": 2260,
+      "positions_sha256": "3126837f2f2db9330fafddac00ebbe5c8ffab6ccb9eec50b3f65c72870f3f0a8",
+      "indices_sha256": "f052abc9dd9e88ea4d5b84d4e5822bbc0c7587bd22f80454c3a8a96ad7f88456",
+      "split_normals_sha256": "03d306b8e2d649f092fccb2e9ffe3f0cecdd46a16d4555fe02d65ed4bf1ded67",
+      "UV_sha256": "b2ff7d752d6a429aa4b200f7b98794b7973aefbe3e866c3274cd6b3f975d4387"
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkActuatorBarrel",
+      "vertices": 192,
+      "triangles": 380,
+      "positions_sha256": "3845ab6c394a391e46097e492f76316f66b423a3cc7ed8711a3c9efa6cdb3d65",
+      "indices_sha256": "f7d7a3c4afa934e39413acd0878e50ced4db1481713d4b2a67cba726eac853d4",
+      "split_normals_sha256": "022e56709e74192f9b209391c4d4ae26c741b68f0450e770649612ddc175a766",
+      "UV_sha256": "c997c058ca09d654c8c6ffcf5b3898a9114985d1461354d6be7c08dd09b25410"
+    },
+    {
+      "part": "Legger_Part_L_MiddleLinkActuatorRod",
+      "vertices": 180,
+      "triangles": 352,
+      "positions_sha256": "e8fc1029da63e0f71fccbd8646bbac419025fa7597f9a1ae70951aa827fc34cd",
+      "indices_sha256": "95d6c6824106921f56c5efba68317baba3211af2c1c17fad8dcbea3241171a5c",
+      "split_normals_sha256": "917bf0e4b1c8586576105ca4d883add306527c5e1e7e344daa484153663e5caf",
+      "UV_sha256": "049fcf759436f547cd8279e7b67fe34111c67888c201c4f1cfac0a91566fd503"
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkFrame",
+      "vertices": 620,
+      "triangles": 1212,
+      "positions_sha256": "fc7693cdae5a8609435a85a0d33e08b9811c52f0205d89eca9a25d859d580514",
+      "indices_sha256": "f086301dee60d541109be193dd4e57f64e3f86b3f6b7c9b6be4e485103f8aa22",
+      "split_normals_sha256": "38563453719a228b99a8118fe70bc8196ead1a9c667826354ad3873cca370378",
+      "UV_sha256": "abac18be942993989d6f58e63b6581bbd58690af0cc9211a664199214989887d"
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkShell",
+      "vertices": 1096,
+      "triangles": 2184,
+      "positions_sha256": "abcffbc5660b81d44288009183bca456ade61c6275995c3cf200aac61ad64904",
+      "indices_sha256": "e811c8a649744d697f6fdba87a1cf2735b16f57d7f44e69000956505ed73b32f",
+      "split_normals_sha256": "dc09d8e0a187d6e0dc879b1215596d32d707db859c562fac4abb36bfe4e55137",
+      "UV_sha256": "4b60d0c9021b83cca466c2ca9df711746b1c3d71dee8ef2881217ff8c6b9eba0"
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkActuatorBarrel",
+      "vertices": 192,
+      "triangles": 380,
+      "positions_sha256": "de7895517b9d7063dd75ea2c4f2303315ada674472fe2a3c0685846e34412fa5",
+      "indices_sha256": "f7d7a3c4afa934e39413acd0878e50ced4db1481713d4b2a67cba726eac853d4",
+      "split_normals_sha256": "b021bc0fa853787cb426410a1d2bc634c3dff1159a0ef3230d556e9b1ab19a88",
+      "UV_sha256": "6ba4c56ce587fa4a85ce5eaeaf766a6cef182d8ac0358f63e9034630bf787186"
+    },
+    {
+      "part": "Legger_Part_L_LowerLinkActuatorRod",
+      "vertices": 180,
+      "triangles": 352,
+      "positions_sha256": "90ce2e87ad4a4ce241389323454a9665b46c183f14618d8b9226565be2fdecd0",
+      "indices_sha256": "95d6c6824106921f56c5efba68317baba3211af2c1c17fad8dcbea3241171a5c",
+      "split_normals_sha256": "1bf276b100e27b1ecc3ef6da3a17b598edd4e7f81835d92f05131868025ef883",
+      "UV_sha256": "c53fa7f8049dfc0e24c25eca4477219c6cbfcaf81a03c195f13ad8ab8b87aafd"
+    },
+    {
+      "part": "Legger_Part_L_Foot",
+      "vertices": 1946,
+      "triangles": 3812,
+      "positions_sha256": "259dc06048b91efa8bc25d2a476adc4368f0d7f6d0e388bbdce94d909d2d3f3d",
+      "indices_sha256": "34b4dba163051ba812aa1fa16674f79fef8428801166d922ca78fa7a35b2a60f",
+      "split_normals_sha256": "d8e6089902e0323b48318951c1f3ae0925b12d27252bd575d0a73a66f3cf24a7",
+      "UV_sha256": "b90b035cb8cf3f9a4c080fca4950661644ae43a51a47393ec81751b43b806993"
+    },
+    {
+      "part": "Legger_Part_R_HipJoint",
+      "vertices": 782,
+      "triangles": 1552,
+      "positions_sha256": "d1d883e4b75f484d3736e871c72414428bfbd1714b3dee6aee7a3c9412a0ad93",
+      "indices_sha256": "b086715ba7f89d094406ba2f88922e14fd923432cfe55df609ad2857e0252870",
+      "split_normals_sha256": "64360ed76c73f70b69fa9eab357c20490a79ccc21f6c3e3952ee3bd92ef7a732",
+      "UV_sha256": "841b546d02ee2263b2d9f3d1459a736773227d8041365e0e0be8e74545425f72"
+    },
+    {
+      "part": "Legger_Part_R_KneeJoint",
+      "vertices": 1039,
+      "triangles": 2058,
+      "positions_sha256": "574ea7678619cda75fd0d8353c1a3e01a8f10ce33a685df6b16373952f3463d5",
+      "indices_sha256": "83a8a895cbf4d41dff2c529fba93a2d97956c13818cdb1ae35acb6a7d98add12",
+      "split_normals_sha256": "dd4674327b0e32b23509e1ee32cb15a0d01613975d5510c5edd91abb2b5ca3a4",
+      "UV_sha256": "6ec82f87be8a2286784e035976b14837587f5c64ebe7c3b4d003e0827d3ed890"
+    },
+    {
+      "part": "Legger_Part_R_HockJoint",
+      "vertices": 782,
+      "triangles": 1552,
+      "positions_sha256": "3808507d338147ac46e148cdf3290579f22c118dda783a8f34f58dfb373cd212",
+      "indices_sha256": "b086715ba7f89d094406ba2f88922e14fd923432cfe55df609ad2857e0252870",
+      "split_normals_sha256": "ee3881e358b9df70c086f8d7b00f6b0ef9743614f968c67c5ea7e8736c2bab14",
+      "UV_sha256": "36cd6039a0ffe35aa6ba02233a6018b7953d9b9db4ff1a8abc6f256ce2ae85bc"
+    },
+    {
+      "part": "Legger_Part_R_AnkleJoint",
+      "vertices": 782,
+      "triangles": 1552,
+      "positions_sha256": "68f839c2adb9dc984943b7d1658b2ff72463cbc400c460703b0dd08da4e18b25",
+      "indices_sha256": "b086715ba7f89d094406ba2f88922e14fd923432cfe55df609ad2857e0252870",
+      "split_normals_sha256": "e979f58b042f670752c040c5809282b8edec4d7f9198e52f70182537669e857b",
+      "UV_sha256": "271bee2089085d45aace6aee6bdf2894069fed092e2629af6827856bd70627e8"
+    },
+    {
+      "part": "Legger_Part_R_UpperLinkFrame",
+      "vertices": 208,
+      "triangles": 408,
+      "positions_sha256": "d666f6bd2f8dcb943928f25bff96ebe8b86cbfbebefe3537848b6f2758cf142c",
+      "indices_sha256": "8393bcbed8d30999b186651e9db7d4ebb019156f3b071a2c8169c99a4457be8d",
+      "split_normals_sha256": "13f9b21daf7d00a2b38b4e5c6b914465cb4d4ffa03046251899b1cc93c1acb64",
+      "UV_sha256": "512c758d91e76810f140a9c76bf7c866414184e2d16fc2249980fa6a498bd53a"
+    },
+    {
+      "part": "Legger_Part_R_UpperLinkShell",
+      "vertices": 786,
+      "triangles": 1568,
+      "positions_sha256": "c5859d75f8c6719e80551ad7706210d521c8f3ec6e446959a7fad42651b9c352",
+      "indices_sha256": "a7c221bdc6b80ffe3bf2f8a49e360259427eeccff82ce1951ff69c9a5e26f020",
+      "split_normals_sha256": "187c4dcd6b36135709ca9141a02e1362259ef0591a784803c43c59a3b0794e11",
+      "UV_sha256": "1932ce23a7e178a8d7b71001312adbe9fb3b1cde5e824e1f8fa586f0099955a8"
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkFrame",
+      "vertices": 628,
+      "triangles": 1228,
+      "positions_sha256": "3646b14d2942397136bead48c351a7daed030895938b8123c8b761ca4fa6fd27",
+      "indices_sha256": "12265e336c030f64558460f17bc52b0baab21e706e17fc2609c085362e570aa0",
+      "split_normals_sha256": "8018a25d05b17e2a16ca18c0572e01ecaccf205108b8c0320094eb1fc4b9b3e6",
+      "UV_sha256": "d40643d9542bc709e8b0464b367ddfa82cd13bf83d4aa1b5b746f61d40e32915"
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkShell",
+      "vertices": 1134,
+      "triangles": 2260,
+      "positions_sha256": "0d5c80d02e2f0346ae9964621945e83024af20868546c854baa870754587629f",
+      "indices_sha256": "7a5ecdff834940063a1fb4ffa5b7005de43848af3878b38abb5a74d6817fcde2",
+      "split_normals_sha256": "6ea68e21a3ed23cfc9c5c0ff7397ec6bfd9fb61114ef91dffdb6acef30c67850",
+      "UV_sha256": "7087a80193d9488f2418c3625871f71fa7c212f03a21bdc05b8ff6927dbb08c4"
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkActuatorBarrel",
+      "vertices": 192,
+      "triangles": 380,
+      "positions_sha256": "e06f5ad95971748924c9317626df03a50ce8e8d1514d4b071ba3b75b9404f8d7",
+      "indices_sha256": "fb0fafbcca6f802b69c62da5c5baeda1ea31f8e1eadf662081986b6578b4b252",
+      "split_normals_sha256": "0e7bf44ab3996c584a588e69be702312c5cd4fed6c0a6b064aa6f72249a7ab70",
+      "UV_sha256": "906016ecaf245a7d749ee86d7596aa03c6b49322fc8b1e4065a1c1a027e108c8"
+    },
+    {
+      "part": "Legger_Part_R_MiddleLinkActuatorRod",
+      "vertices": 180,
+      "triangles": 352,
+      "positions_sha256": "67bb38e743a14ad32b8e174dddcec2e3070299ffc4cdf0365c5dc3e533347e3d",
+      "indices_sha256": "83062697b3a3d3731243a70e3b0e9aca27fa78db625bc39eedab83155eb30e26",
+      "split_normals_sha256": "8b7f8e0c7221f3d75d00c9176957d1172176aa1acfccdde5ead28357f8f8355e",
+      "UV_sha256": "d8aa0f7c94b5cc93e2b4fa1d8899e9c4e2bf51b3aa9c1368d4d59d89562b52c9"
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkFrame",
+      "vertices": 620,
+      "triangles": 1212,
+      "positions_sha256": "7b8f5fed56ba6ae2a594d3cfeab8cfd2576f131441b8f5ea930a7ad4cad0ec70",
+      "indices_sha256": "891caf63d47d25038e8c921a0eef800e94c302df40b1677c7dfa4cf60a6a6116",
+      "split_normals_sha256": "9a50e186d37dc5a94795d1212ce811f092648149a0903d74d37566ac0aad91bc",
+      "UV_sha256": "6acd5b4ad39d80a4a49e2c8d0d05e0a5feeaa4dd43c22ab850f5389deb135ec9"
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkShell",
+      "vertices": 1096,
+      "triangles": 2184,
+      "positions_sha256": "e5f8c5c78cbed57146da679fad445445bcb963de88a57bddf4f6b5dc63731355",
+      "indices_sha256": "dca8e5c1a1a422555fbed8af264cc47a3e87f669bb3757de8cd4eacd0c8bebc5",
+      "split_normals_sha256": "6bc5f0eddddb0d295f1c84c7347d3f805ff55e77ea87e5dedb645cda4262c551",
+      "UV_sha256": "b1edf515abf186498d3123f2197cd25f2fe1d24391c036a63dbf540053104488"
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkActuatorBarrel",
+      "vertices": 192,
+      "triangles": 380,
+      "positions_sha256": "aad477897ad58d1f461d8b3a28c1d5a4537b75dd2477f493e4386bfaec13d1b7",
+      "indices_sha256": "fb0fafbcca6f802b69c62da5c5baeda1ea31f8e1eadf662081986b6578b4b252",
+      "split_normals_sha256": "7eeffc5d2485f128618ca4b76f012690eddf31483440d7c945ab57697e937d29",
+      "UV_sha256": "b15a772812e297bc7dd6f6710dd3b2b301f3155e786a7cb46980366a8c14ecd7"
+    },
+    {
+      "part": "Legger_Part_R_LowerLinkActuatorRod",
+      "vertices": 180,
+      "triangles": 352,
+      "positions_sha256": "a350d1de97a89d3c4b856daaa39d8fede53cc96094f47b2b3ecbf16d9739d523",
+      "indices_sha256": "83062697b3a3d3731243a70e3b0e9aca27fa78db625bc39eedab83155eb30e26",
+      "split_normals_sha256": "db5546bc7f8a22e24e6b3775ad2fe1c97a33ca7f5345899877d4480fe57a65f6",
+      "UV_sha256": "6b86f953613b0303a75b5a1c40d35214e7917eb616a104037e0a4c4f5e403cdf"
+    },
+    {
+      "part": "Legger_Part_R_Foot",
+      "vertices": 1946,
+      "triangles": 3812,
+      "positions_sha256": "628e80f9b8beb1a7a98d478d8117abe8534328364f4ad3a0f57b2ba5fd2a3a87",
+      "indices_sha256": "83273ea8a51ca6ebdf6b3d8269de5077c0b042c34f6742177d2b486d1bd35d74",
+      "split_normals_sha256": "16d7bf15e71dfb4fde180c199654583eb6a1876b0df6ca07219a52f6f97e439b",
+      "UV_sha256": "77e01695543ff0a4dd0f136101a864ee841fb462d5ec6085c8ea1dbb07af2a24"
+    },
+    {
+      "part": "Legger_Part_SaddleUpholstery",
+      "vertices": 1478,
+      "triangles": 2944,
+      "positions_sha256": "3fdfecf8893620e60dc06a4457e68242426c678a502ed29dc629ae9f71fa279c",
+      "indices_sha256": "ee9558d9aabc9124a1d27dfd23cfd34fc7b07558f79e2bf6271092669b3bd444",
+      "split_normals_sha256": "aedeaff0250e59a503c6792cf530c85fed8bacb2a1dc7171ef2c5ebe590a9492",
+      "UV_sha256": "a10434fbfd3a4e48233eaaef9ba5692bc057c4e979a8ea93930ea29e91502c4a"
+    },
+    {
+      "part": "Legger_Part_SaddlePan",
+      "vertices": 2130,
+      "triangles": 4240,
+      "positions_sha256": "f81b94593bb20fc34188dfda92682e45cb512b3ef4773dbbe45b275cdd5afdaa",
+      "indices_sha256": "af77ff99b03b423aeef77f5b0be2f9340241af702377ee4c3ba2890ad6a8cd78",
+      "split_normals_sha256": "9abc6040e244e3599393d948464e70faca91564463c7732e61a102d143bbb9fe",
+      "UV_sha256": "08e56e1d5d265613c8855ad10f7eafd363165d4613ff8df6951f4dd05386876f"
+    },
+    {
+      "part": "Legger_Part_FrontControlPod",
+      "vertices": 1466,
+      "triangles": 2912,
+      "positions_sha256": "113e43fe8f8e475729762e59a9ee0bce6286188d1e192148ee82af61a9ac20b5",
+      "indices_sha256": "2867b25ceb35541b6ccc34b2857a06de127e2afb312465cdf166a3aa4bd97aae",
+      "split_normals_sha256": "b7b4d688f983db6092873b2089fcdf28db3a9955e56b9c1adc7233f873e32d1e",
+      "UV_sha256": "1eafd91dc879e1d5f23e4870cbcca249895aa8f7ebb0fb752e4ef5e4248e193c"
+    },
+    {
+      "part": "Legger_Part_SteeringStem",
+      "vertices": 322,
+      "triangles": 632,
+      "positions_sha256": "d949763f50013c94eb7b17ca8598b7d2205ca4d734aa893139ac59a66a236fbb",
+      "indices_sha256": "683c6129e686070c7302c9706cabca6f853d738242343b870d95cc48981d88d9",
+      "split_normals_sha256": "ffa22b501a75bb608f6353dee9364bb43ed0b00e51bd82e8984431e64346a1eb",
+      "UV_sha256": "76ceff6a4d12ecee8b4bbe940d79f6126fc99844febb9702bdec2f17c83714c7"
+    },
+    {
+      "part": "Legger_Part_L_Grip",
+      "vertices": 578,
+      "triangles": 1148,
+      "positions_sha256": "ac377b93df0e4580eab128c4c023d80d82a13038c9f075f068843e07c83343c2",
+      "indices_sha256": "24b91d94511a800c0a1bfd45b88936b2ea413e75f8b5460cf373e6b9ff4027ba",
+      "split_normals_sha256": "f80af80cd43ff3a67782d43e0ecb6e6a36942a79302616c5bdb0f0adfcae3843",
+      "UV_sha256": "85b065e973d37d19dd0384db3f74b36990164f5eee40b5240856d2706e3d78ec"
+    },
+    {
+      "part": "Legger_Part_L_BrakeLever",
+      "vertices": 205,
+      "triangles": 402,
+      "positions_sha256": "ce8327acb23ec9c3476d7a857481bbc32ecb6c3f3ec15cafedf4a2428648dac7",
+      "indices_sha256": "6f8fe098a38af5676e77c580c83879ef8063f1d4b07458392b6a4a5efdf08094",
+      "split_normals_sha256": "0540f7de5df449c6c33a0af2f251c685e500a0875f06e6e6c62019ea0ca45c09",
+      "UV_sha256": "626658b3b9e498cb81663542deaed43043244d97b206f2609545fd5d31610fa8"
+    },
+    {
+      "part": "Legger_Part_R_Grip",
+      "vertices": 578,
+      "triangles": 1148,
+      "positions_sha256": "915d9dd50381afdd2f017c1b0dec43d4410c33eb146b75245a31507a8a332378",
+      "indices_sha256": "6b38a8547daacde0d72eb23f6c8965f58ec7431af5c05735520f30f7078383f0",
+      "split_normals_sha256": "a76b97f9fe354e60b0768e2ba1b98a72c7a6d590ab210ec5dbf65876dd86836f",
+      "UV_sha256": "22c9944f169659182ffbcbd5f04cc920a5a1b0157a4053d672b043bf2ecf5392"
+    },
+    {
+      "part": "Legger_Part_R_BrakeLever",
+      "vertices": 205,
+      "triangles": 402,
+      "positions_sha256": "91ace6a80d37318cc65bf16e7abf573b314efe303e12cbaa30cea9d9ec69970e",
+      "indices_sha256": "0468e81f7296631cd271f71fe2a49dde258d758871ae425a5ee88bed9c0c135f",
+      "split_normals_sha256": "c9bd2730cd832671f9da0f21d94371ed886e98fca4911410aaa361e4b5604187",
+      "UV_sha256": "cb6365623eec71aa8c80d636cc881e646c9a87180721bb55c10688e6fd3ee487"
+    },
+    {
+      "part": "Legger_Part_InstrumentGauge",
+      "vertices": 310,
+      "triangles": 604,
+      "positions_sha256": "439e67af1d4668e38bc27e40d3ae7a7b1afbda88e252bba7bfd63b0fd6cb6728",
+      "indices_sha256": "7abec3be357f5847316325bba639a20ac49db3dd9cdc710d3cc4c485640a43e9",
+      "split_normals_sha256": "b1f1ab876b4e5ab9998ab256ce941a8d54e18ab12f620b7c5efb51c75a22eed0",
+      "UV_sha256": "794aaed9a4dedb5bca881d2255c40c5bb98548118b1e096db35d10d00f6c3156"
+    },
+    {
+      "part": "Legger_Part_Handlebar",
+      "vertices": 620,
+      "triangles": 1212,
+      "positions_sha256": "54ae5847bae1ba7da592df5458d67beb87fd19084726afaef325e83fb1e20129",
+      "indices_sha256": "ac2c9f39af9435351ae818624025c9b917431ae223cdc00e0cd5311a0e5636dd",
+      "split_normals_sha256": "adad87699119031d8b6efc75aef8c50828caa40053e4493224f69998e78288d3",
+      "UV_sha256": "7d3d21cb69663631c11eaa31787d4255cff0ee07abfdaccccac8912a42fd9298"
+    }
+  ],
+  "texture_validation": {
+    "source_sha256": "87ba450b0f957e8f71924bb50ed73ae7aec1f20efa8b215cefdfffb121b78eea",
+    "maps": [
+      {
+        "module": "BodyArmor",
+        "map": "BaseColor",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 9159117,
+        "min_mapped": 0.125490203499794,
+        "max_mapped": 0.8235294222831726
+      },
+      {
+        "module": "BodyArmor",
+        "map": "Normal",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 9159117,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0,
+        "maximum_quantized_unit_vector_error": 0.005041539669036865,
+        "negative_tangent_z_fraction": 9.214862087688147e-05
+      },
+      {
+        "module": "BodyArmor",
+        "map": "Roughness",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 9159117,
+        "min_mapped": 0.25882354378700256,
+        "max_mapped": 0.6274510025978088
+      },
+      {
+        "module": "BodyArmor",
+        "map": "Metallic",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 9159117,
+        "min_mapped": 0.10196078568696976,
+        "max_mapped": 0.9686274528503418
+      },
+      {
+        "module": "BodyArmor",
+        "map": "AO",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 9159117,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0
+      },
+      {
+        "module": "Cargo_L_Aux",
+        "map": "BaseColor",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 3198442,
+        "min_mapped": 0.09803921729326248,
+        "max_mapped": 0.6901960968971252
+      },
+      {
+        "module": "Cargo_L_Aux",
+        "map": "Normal",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 3198442,
+        "min_mapped": 0.0117647061124444,
+        "max_mapped": 1.0,
+        "maximum_quantized_unit_vector_error": 0.0041283369064331055,
+        "negative_tangent_z_fraction": 0.0
+      },
+      {
+        "module": "Cargo_L_Aux",
+        "map": "Roughness",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 3198442,
+        "min_mapped": 0.27843138575553894,
+        "max_mapped": 0.7803921699523926
+      },
+      {
+        "module": "Cargo_L_Aux",
+        "map": "Metallic",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 3198442,
+        "min_mapped": 0.0,
+        "max_mapped": 0.9490196108818054
+      },
+      {
+        "module": "Cargo_L_Aux",
+        "map": "AO",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 3198442,
+        "min_mapped": 0.1882352977991104,
+        "max_mapped": 1.0
+      },
+      {
+        "module": "Cargo_L_Main",
+        "map": "BaseColor",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 11953851,
+        "min_mapped": 0.0941176488995552,
+        "max_mapped": 0.6941176652908325
+      },
+      {
+        "module": "Cargo_L_Main",
+        "map": "Normal",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 11953851,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0,
+        "maximum_quantized_unit_vector_error": 0.004005789756774902,
+        "negative_tangent_z_fraction": 3.296008959790448e-05
+      },
+      {
+        "module": "Cargo_L_Main",
+        "map": "Roughness",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 11953851,
+        "min_mapped": 0.27843138575553894,
+        "max_mapped": 0.7803921699523926
+      },
+      {
+        "module": "Cargo_L_Main",
+        "map": "Metallic",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 11953851,
+        "min_mapped": 0.0,
+        "max_mapped": 0.9490196108818054
+      },
+      {
+        "module": "Cargo_L_Main",
+        "map": "AO",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 11953851,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0
+      },
+      {
+        "module": "Cargo_R_Aux",
+        "map": "BaseColor",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 3198480,
+        "min_mapped": 0.0941176488995552,
+        "max_mapped": 0.6901960968971252
+      },
+      {
+        "module": "Cargo_R_Aux",
+        "map": "Normal",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 3198480,
+        "min_mapped": 0.2705882489681244,
+        "max_mapped": 1.0,
+        "maximum_quantized_unit_vector_error": 0.004128456115722656,
+        "negative_tangent_z_fraction": 0.0
+      },
+      {
+        "module": "Cargo_R_Aux",
+        "map": "Roughness",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 3198480,
+        "min_mapped": 0.27843138575553894,
+        "max_mapped": 0.7803921699523926
+      },
+      {
+        "module": "Cargo_R_Aux",
+        "map": "Metallic",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 3198480,
+        "min_mapped": 0.0,
+        "max_mapped": 0.9490196108818054
+      },
+      {
+        "module": "Cargo_R_Aux",
+        "map": "AO",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 3198480,
+        "min_mapped": 0.3764705955982208,
+        "max_mapped": 1.0
+      },
+      {
+        "module": "Cargo_R_Main",
+        "map": "BaseColor",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 11953566,
+        "min_mapped": 0.09803921729326248,
+        "max_mapped": 0.6941176652908325
+      },
+      {
+        "module": "Cargo_R_Main",
+        "map": "Normal",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 11953566,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0,
+        "maximum_quantized_unit_vector_error": 0.004067182540893555,
+        "negative_tangent_z_fraction": 3.296087544085171e-05
+      },
+      {
+        "module": "Cargo_R_Main",
+        "map": "Roughness",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 11953566,
+        "min_mapped": 0.27843138575553894,
+        "max_mapped": 0.7803921699523926
+      },
+      {
+        "module": "Cargo_R_Main",
+        "map": "Metallic",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 11953566,
+        "min_mapped": 0.0,
+        "max_mapped": 0.9490196108818054
+      },
+      {
+        "module": "Cargo_R_Main",
+        "map": "AO",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 11953566,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0
+      },
+      {
+        "module": "Drive",
+        "map": "BaseColor",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 10935417,
+        "min_mapped": 0.08235294371843338,
+        "max_mapped": 0.6078431606292725
+      },
+      {
+        "module": "Drive",
+        "map": "Normal",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 10935417,
+        "min_mapped": 0.34117648005485535,
+        "max_mapped": 1.0,
+        "maximum_quantized_unit_vector_error": 0.003944516181945801,
+        "negative_tangent_z_fraction": 0.0
+      },
+      {
+        "module": "Drive",
+        "map": "Roughness",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 10935417,
+        "min_mapped": 0.2549019753932953,
+        "max_mapped": 0.772549033164978
+      },
+      {
+        "module": "Drive",
+        "map": "Metallic",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 10935417,
+        "min_mapped": 0.0,
+        "max_mapped": 0.9686274528503418
+      },
+      {
+        "module": "Drive",
+        "map": "AO",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 10935417,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0
+      },
+      {
+        "module": "Frame",
+        "map": "BaseColor",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 4781152,
+        "min_mapped": 0.08235294371843338,
+        "max_mapped": 0.6078431606292725
+      },
+      {
+        "module": "Frame",
+        "map": "Normal",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 4781152,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0,
+        "maximum_quantized_unit_vector_error": 0.005969345569610596,
+        "negative_tangent_z_fraction": 0.0030611869273346674
+      },
+      {
+        "module": "Frame",
+        "map": "Roughness",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 4781152,
+        "min_mapped": 0.2549019753932953,
+        "max_mapped": 0.7764706015586853
+      },
+      {
+        "module": "Frame",
+        "map": "Metallic",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 4781152,
+        "min_mapped": 0.0,
+        "max_mapped": 0.9686274528503418
+      },
+      {
+        "module": "Frame",
+        "map": "AO",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 4781152,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0
+      },
+      {
+        "module": "LeftLeg",
+        "map": "BaseColor",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 8701185,
+        "min_mapped": 0.062745101749897,
+        "max_mapped": 0.8235294222831726
+      },
+      {
+        "module": "LeftLeg",
+        "map": "Normal",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 8701185,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0,
+        "maximum_quantized_unit_vector_error": 0.005536258220672607,
+        "negative_tangent_z_fraction": 0.0008121882249371781
+      },
+      {
+        "module": "LeftLeg",
+        "map": "Roughness",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 8701185,
+        "min_mapped": 0.1882352977991104,
+        "max_mapped": 0.7764706015586853
+      },
+      {
+        "module": "LeftLeg",
+        "map": "Metallic",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 8701185,
+        "min_mapped": 0.0,
+        "max_mapped": 0.9686274528503418
+      },
+      {
+        "module": "LeftLeg",
+        "map": "AO",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 8701185,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0
+      },
+      {
+        "module": "RightLeg",
+        "map": "BaseColor",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 8558757,
+        "min_mapped": 0.062745101749897,
+        "max_mapped": 0.8235294222831726
+      },
+      {
+        "module": "RightLeg",
+        "map": "Normal",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 8558757,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0,
+        "maximum_quantized_unit_vector_error": 0.0051081180572509766,
+        "negative_tangent_z_fraction": 0.0008241851007103017
+      },
+      {
+        "module": "RightLeg",
+        "map": "Roughness",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 8558757,
+        "min_mapped": 0.1882352977991104,
+        "max_mapped": 0.7764706015586853
+      },
+      {
+        "module": "RightLeg",
+        "map": "Metallic",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 8558757,
+        "min_mapped": 0.0,
+        "max_mapped": 0.9686274528503418
+      },
+      {
+        "module": "RightLeg",
+        "map": "AO",
+        "resolution": [
+          4096,
+          4096
+        ],
+        "covered_pixels_including_margin": 8558757,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0
+      },
+      {
+        "module": "Saddle",
+        "map": "BaseColor",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 1742453,
+        "min_mapped": 0.1411764770746231,
+        "max_mapped": 0.4627451002597809
+      },
+      {
+        "module": "Saddle",
+        "map": "Normal",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 1742453,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0,
+        "maximum_quantized_unit_vector_error": 0.0051081180572509766,
+        "negative_tangent_z_fraction": 5.509474287111331e-05
+      },
+      {
+        "module": "Saddle",
+        "map": "Roughness",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 1742453,
+        "min_mapped": 0.3607843220233917,
+        "max_mapped": 0.6784313917160034
+      },
+      {
+        "module": "Saddle",
+        "map": "Metallic",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 1742453,
+        "min_mapped": 0.0,
+        "max_mapped": 0.8784313797950745
+      },
+      {
+        "module": "Saddle",
+        "map": "AO",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 1742453,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0
+      },
+      {
+        "module": "Steering",
+        "map": "BaseColor",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 2796548,
+        "min_mapped": 0.06666667014360428,
+        "max_mapped": 0.8196078538894653
+      },
+      {
+        "module": "Steering",
+        "map": "Normal",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 2796548,
+        "min_mapped": 0.25882354378700256,
+        "max_mapped": 1.0,
+        "maximum_quantized_unit_vector_error": 0.00429987907409668,
+        "negative_tangent_z_fraction": 0.0
+      },
+      {
+        "module": "Steering",
+        "map": "Roughness",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 2796548,
+        "min_mapped": 0.1882352977991104,
+        "max_mapped": 0.7764706015586853
+      },
+      {
+        "module": "Steering",
+        "map": "Metallic",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 2796548,
+        "min_mapped": 0.0,
+        "max_mapped": 0.9686274528503418
+      },
+      {
+        "module": "Steering",
+        "map": "AO",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "covered_pixels_including_margin": 2796548,
+        "min_mapped": 0.0,
+        "max_mapped": 1.0
+      }
+    ],
+    "map_count": 55,
+    "island_margin_pixels": 12,
+    "source_color_space_contract": "sRGB albedo, Non-Color normal/roughness/metallic/AO; AO remains auxiliary",
+    "limits": "PNG/mapped-region checks and offline appearance. Lower mip island overlap, target GPU compression and Unity material behavior require runtime import validation."
+  },
+  "bake_source_library_sha256": "0946e64dcacd650a41a72f6516fced9ebdbb4269693173912d9ba34e8f555076",
+  "orientation_repair_library_sha256": "9ea8551b261cbfe6ae845db29b1bd01cc8255cc168c6c021affe29707e6cb3c7",
+  "AO_isolation": "Per rigid carrier or separate independently moving/flexible element; Frame fixed body grouped together, steering fittings and two control leads isolated; levers isolated from bars/grips. AO auxiliary."
+}

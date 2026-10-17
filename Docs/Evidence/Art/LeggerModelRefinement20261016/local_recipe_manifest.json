@@ -1,0 +1,112 @@
+{
+  "sources_local_only": true,
+  "tools": [
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\archive_probe.py",
+      "sha256": "38ea70677839f6e50ea9077f5645acf5992578327f78c0386f8c61ccfc29be1c"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\bake.py",
+      "sha256": "2a6c02b5b9ccaaaa904d9a2099d30467f3bc80869ea6b73dda513306dcd10837"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\bake_frame.py",
+      "sha256": "7b60d4c6128d81e714e19967c618bba80788b49e4f35a1a6864d1fbe746da314"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\baseline.py",
+      "sha256": "56460f287ce1c268004516a2cc2bc0b66153123272d25b09d91ff5111fb0a63e"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\boards.py",
+      "sha256": "5d4322bfd08706f97bab16594a4772316545acf6cc6845d10ecdf95db5a52975"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\capture.py",
+      "sha256": "c62d9297a5feb839497722fbee4de2e2a51a69f153c46b0a3598fac62a35e1f4"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\capture_rider.py",
+      "sha256": "18ffdc02cc7e00dc2cfac766909508d81266fde1340bc5ccddb79cfc0979c09f"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\extended.py",
+      "sha256": "5095f6ac1246115739bbd81bb3dea3df1605ed2be4e2567bfd9ccb9c5dc087a2"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\extract_uv.py",
+      "sha256": "c19866188aadc0a3258b64ac49d2c2b0428c2eceb51da54a8980e72f962799c8"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\finalize.py",
+      "sha256": "0efc63b015d428e932dd6f262f1ac3d365c6956a43eeaf5b95bda84b0ac6a1d4"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\finalize_fixed.py",
+      "sha256": "d20b56a85a94329e3224e439b4b9130d51fed7f2f688355d3f54f2f7b40d82f4"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\geometry.py",
+      "sha256": "8618d7067db3a380b375e4e53cb1ed5c6ced0dbfbb31776d9f700cf92384699b"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\lever_patch.py",
+      "sha256": "81fed9b7b3e2641aa305288c01eec69accd26b02c8b17a6058913824e235a986"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\motion.py",
+      "sha256": "04cc4c8ec2f4e28b203d45fc9bc6af4d4127e6a94b078c5d150d38f4d78b1e79"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\orientation_probe.py",
+      "sha256": "425d46004d024d8e8db867e531f9fc8b99073a15184f702ee4648b42c526dacd"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\pose_study.py",
+      "sha256": "d1e8bd10cd863a675f09cf03b84e4163ce8653cb5fd8d2046bb570e1f1cc6b2e"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\prepare.py",
+      "sha256": "73a46bc6b06c954c0a8ae9c876f935658e4dbd6597f09ba194969b05e90d1f61"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\prepare_frame.py",
+      "sha256": "81c8268cd3debaa17ff16cd36e8f0887d2f1359820fa4b6c4837e525ddcfcc0d"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\qa.py",
+      "sha256": "84e313ba889492211e1e494a4866788f842d2ff6ad8812c36f5803e7cf3482de"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\rider_controls.py",
+      "sha256": "9ff771ec416c920ae5f7fa310b833378a39cfb5ce7cfd56821087883a6d69497"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\seal.py",
+      "sha256": "49a1f6c30465a8cdd3c739f6830307bc67db47363c0a4bde4694f47f8de356e6"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\surface.py",
+      "sha256": "5f8c351bd78670892c00a5da0ab0f196987b53d5e99f1e99f9b78b5c1f481772"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\texture_qa.py",
+      "sha256": "a4e18aee7f1d97ac5eb5f895d2ed5acbb0ec67d34b6952bbeb0920aa894399c5"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\uv_density.py",
+      "sha256": "896598c1f9b5cebd090550fe54bb7b7f7e2e2694e6d48fd860a03cee0c2ee492"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\uv_eval_probe.py",
+      "sha256": "de1593797a0260c182bd19d383c9d0027fae9078a5204f59cfd791ed6cf8cb05"
+    },
+    {
+      "path": "D:\\Arc & Dust\\Project\\Logs\\LeggerModelRefinement20261016\\uv_probe.py",
+      "sha256": "bf7d1fba25980a3e0e78c28517bbaecd0b7cd16192ce92258895fbffa8a79fc2"
+    }
+  ],
+  "native_before_sha256": "90757f7efa6811fbfd9c82c93b08a98d254f60d13d15e447e5eeab03f2db6304",
+  "native_after_sha256": "87ba450b0f957e8f71924bb50ed73ae7aec1f20efa8b215cefdfffb121b78eea",
+  "source_policy": "Only documentation and verification records are committed; native files, raw maps, review pixels and data arrays remain local."
+}
