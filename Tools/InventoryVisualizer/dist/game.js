@@ -77,7 +77,6 @@ function render(){
   if(prototypeOpen&&$('#prototype-controls'))$('#prototype-controls').open=true;
   if(mapPosition&&$('.map-viewport'))$('.map-viewport').scrollTo(mapPosition);
   document.querySelectorAll('[data-page]').forEach(b=>{b.classList.toggle('active',b.dataset.page===page);b.setAttribute('aria-current',b.dataset.page===page?'page':'false');});
-  $('#project-count').textContent=state.projects.length;
   if(searchFocus&&$('#game-search')){$('#game-search').focus();try{$('#game-search').setSelectionRange(position,position);}catch{}}
   else if(focusId)document.getElementById(focusId)?.focus({preventScroll:true});
   else if(focusSelector){const target=document.querySelector(focusSelector);if(target&&!target.disabled)target.focus({preventScroll:true});else if(page==='crafting')document.getElementById(`camp-station-${campStation}`)?.focus({preventScroll:true});}
