@@ -1,0 +1,1599 @@
+{
+  "clips": 177,
+  "scope": "30Hz minimum whole-range finite Humanoid retarget screen, no physics or Play Mode; no contact/feel acceptance",
+  "rows": [
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnSprintRightUpperBodySource.anim",
+      "name": "MovingTurnSprintRightUpperBodySource",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.369266868,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Punch/PunchHook.fbx",
+      "name": "PunchHook",
+      "samples": 66,
+      "finite": true,
+      "maximumBoneStep": 0.26084584,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchEnterQualifiedRange.anim",
+      "name": "CrouchEnterQualifiedRange",
+      "samples": 46,
+      "finite": true,
+      "maximumBoneStep": 0.05590484,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim",
+      "name": "SprintArmDriveReview",
+      "samples": 38,
+      "finite": true,
+      "maximumBoneStep": 0.2201557,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalWalkLeft.anim",
+      "name": "StandingDirectionalWalkLeft",
+      "samples": 64,
+      "finite": true,
+      "maximumBoneStep": 0.138221413,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitSmallLeft.fbx",
+      "name": "HitSmallLeft",
+      "samples": 37,
+      "finite": true,
+      "maximumBoneStep": 0.0471140034,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchEnter.fbx",
+      "name": "CrouchEnter",
+      "samples": 124,
+      "finite": true,
+      "maximumBoneStep": 0.0909704044,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Pickup/PickupOneHand.fbx",
+      "name": "PickupOneHand",
+      "samples": 104,
+      "finite": true,
+      "maximumBoneStep": 0.07823176,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedTakeoffGrounded.anim",
+      "name": "JumpUnarmedTakeoffGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.1185824,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Mining/MiningReferenceDownwardToolSwing.fbx",
+      "name": "MiningReferenceDownwardToolSwing",
+      "samples": 70,
+      "finite": true,
+      "maximumBoneStep": 0.380269736,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/CoverIdle.fbx",
+      "name": "CoverIdle",
+      "samples": 79,
+      "finite": true,
+      "maximumBoneStep": 0.00166087237,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitSmallRight.fbx",
+      "name": "HitSmallRight",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.025919,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderStart.fbx",
+      "name": "LadderStart",
+      "samples": 63,
+      "finite": true,
+      "maximumBoneStep": 0.236306518,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Button/ButtonPress.fbx",
+      "name": "ButtonPress",
+      "samples": 99,
+      "finite": true,
+      "maximumBoneStep": 0.07063126,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpUnarmed.fbx",
+      "name": "JumpUnarmed",
+      "samples": 72,
+      "finite": true,
+      "maximumBoneStep": 0.223395064,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sleep/SleepingIdleSleepingDeeply.fbx",
+      "name": "SleepingIdleSleepingDeeply",
+      "samples": 207,
+      "finite": true,
+      "maximumBoneStep": 0.00232943683,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Slide/RunningSlide.fbx",
+      "name": "RunningSlide",
+      "samples": 48,
+      "finite": true,
+      "maximumBoneStep": 0.3816809,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sit/SittingIdleChair.fbx",
+      "name": "SittingIdleChair",
+      "samples": 91,
+      "finite": true,
+      "maximumBoneStep": 0.000403465267,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Booter_CampSleep.anim",
+      "name": "Booter_CampSleep",
+      "samples": 61,
+      "finite": true,
+      "maximumBoneStep": 0.000133854817,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnFastRunLeftUpperBodySource.anim",
+      "name": "MovingTurnFastRunLeftUpperBodySource",
+      "samples": 35,
+      "finite": true,
+      "maximumBoneStep": 0.31515035,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollRecoverEquippedGrounded.anim",
+      "name": "RollRecoverEquippedGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.10964331,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/TwoCycleSprint.fbx",
+      "name": "TwoCycleSprint",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.271982074,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Stop_NoRM.FBX",
+      "name": "MCU_am_Loco_Jog_Fwd_Stop_NoRM",
+      "samples": 56,
+      "finite": true,
+      "maximumBoneStep": 0.180381969,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_FwdRight_NoRM.FBX",
+      "name": "MCU_am_Loco_Jog_FwdRight_NoRM",
+      "samples": 44,
+      "finite": true,
+      "maximumBoneStep": 0.161266819,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchLeftOriginalFacingLoop.anim",
+      "name": "CrouchLeftOriginalFacingLoop",
+      "samples": 72,
+      "finite": true,
+      "maximumBoneStep": 0.19246313,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Start_NoRM_Mirror.FBX",
+      "name": "MCU_am_Loco_Jog_Fwd_Start_NoRM_Mirror",
+      "samples": 55,
+      "finite": true,
+      "maximumBoneStep": 0.1488123,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/BreathingIdle.fbx",
+      "name": "BreathingIdle",
+      "samples": 299,
+      "finite": true,
+      "maximumBoneStep": 0.00741879875,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/DirectionalStrafeRightTwoCycles.anim",
+      "name": "DirectionalStrafeRightTwoCycles",
+      "samples": 41,
+      "finite": true,
+      "maximumBoneStep": 0.176995084,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Death/DeathFallingForward.fbx",
+      "name": "DeathFallingForward",
+      "samples": 79,
+      "finite": true,
+      "maximumBoneStep": 0.172272012,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchEnterOriginalFacingRange.anim",
+      "name": "CrouchEnterOriginalFacingRange",
+      "samples": 46,
+      "finite": true,
+      "maximumBoneStep": 0.05113233,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/LeftCoverSneak.fbx",
+      "name": "LeftCoverSneak",
+      "samples": 36,
+      "finite": true,
+      "maximumBoneStep": 0.100795574,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideEnterEquippedGrounded.anim",
+      "name": "SlideEnterEquippedGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.11052075,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Death/ReferenceOnlyCrouchedDeathWeaponPose.fbx",
+      "name": "ReferenceOnlyCrouchedDeathWeaponPose",
+      "samples": 72,
+      "finite": true,
+      "maximumBoneStep": 0.299474984,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderTopExit.fbx",
+      "name": "LadderTopExit",
+      "samples": 121,
+      "finite": true,
+      "maximumBoneStep": 0.136940509,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Evade/DodgeBackward.fbx",
+      "name": "DodgeBackward",
+      "samples": 81,
+      "finite": true,
+      "maximumBoneStep": 0.242855251,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchIdleTwoCycles.anim",
+      "name": "CrouchIdleTwoCycles",
+      "samples": 43,
+      "finite": true,
+      "maximumBoneStep": 0.0121270632,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintTwoCycles.anim",
+      "name": "SprintTwoCycles",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.271982044,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_NoRM.FBX",
+      "name": "MCU_am_Loco_Jog_Fwd_NoRM",
+      "samples": 44,
+      "finite": true,
+      "maximumBoneStep": 0.164017245,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/DirectionalStrafeLeftTwoCycles.anim",
+      "name": "DirectionalStrafeLeftTwoCycles",
+      "samples": 41,
+      "finite": true,
+      "maximumBoneStep": 0.222034216,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CampDodgeRollGrounded.anim",
+      "name": "CampDodgeRollGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.862279654,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushCycle.fbx",
+      "name": "PushCycle",
+      "samples": 81,
+      "finite": true,
+      "maximumBoneStep": 0.0702077,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideEnterBodyGrounded.anim",
+      "name": "SlideEnterBodyGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.112204991,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpRunning.fbx",
+      "name": "JumpRunning",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.2822099,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningLandingGrounded.anim",
+      "name": "JumpRunningLandingGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.08801266,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedRisingPose.anim",
+      "name": "JumpUnarmedRisingPose",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.034087196,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015C/BackwardRunOriginalBaked.fbx",
+      "name": "BackwardRunOriginalBaked",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.13620156,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintStandardReview.anim",
+      "name": "FullSprintStandardReview",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.30581972,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalRunRight.anim",
+      "name": "StandingDirectionalRunRight",
+      "samples": 41,
+      "finite": true,
+      "maximumBoneStep": 0.270600736,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/StandardWalk.fbx",
+      "name": "StandardWalk",
+      "samples": 37,
+      "finite": true,
+      "maximumBoneStep": 0.1126797,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideActiveBodyGrounded.anim",
+      "name": "SlideActiveBodyGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.04015865,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitLargeRight.fbx",
+      "name": "HitLargeRight",
+      "samples": 51,
+      "finite": true,
+      "maximumBoneStep": 0.176408887,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Booter_CampRest.anim",
+      "name": "Booter_CampRest",
+      "samples": 61,
+      "finite": true,
+      "maximumBoneStep": 9.65492363E-05,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderTwoSteps.fbx",
+      "name": "LadderTwoSteps",
+      "samples": 91,
+      "finite": true,
+      "maximumBoneStep": 0.09216242,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchExitOriginalFacingRange.anim",
+      "name": "CrouchExitOriginalFacingRange",
+      "samples": 79,
+      "finite": true,
+      "maximumBoneStep": 0.034854,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingStrafeWalkRightReview.anim",
+      "name": "StandingStrafeWalkRightReview",
+      "samples": 89,
+      "finite": true,
+      "maximumBoneStep": 0.07641354,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchBackwardOriginalFacingLoop.anim",
+      "name": "CrouchBackwardOriginalFacingLoop",
+      "samples": 75,
+      "finite": true,
+      "maximumBoneStep": 0.1368077,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingContinuousPhysicsV1.anim",
+      "name": "JumpStandingContinuousPhysicsV1",
+      "samples": 50,
+      "finite": true,
+      "maximumBoneStep": 0.176966012,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideActiveEquippedGrounded.anim",
+      "name": "SlideActiveEquippedGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.0401585959,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchForwardMappedTwoCycles.anim",
+      "name": "CrouchForwardMappedTwoCycles",
+      "samples": 70,
+      "finite": true,
+      "maximumBoneStep": 0.129519939,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitLargeBack.fbx",
+      "name": "HitLargeBack",
+      "samples": 52,
+      "finite": true,
+      "maximumBoneStep": 0.19576548,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkBackward.fbx",
+      "name": "CrouchWalkBackward",
+      "samples": 38,
+      "finite": true,
+      "maximumBoneStep": 0.137751743,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@SprintForwards.fbx",
+      "name": "SprintForwards",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.156729609,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@StrafeRightRunForwards.fbx",
+      "name": "StrafeRightRunForwards",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.095549725,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingStrafeWalkLeftReview.anim",
+      "name": "StandingStrafeWalkLeftReview",
+      "samples": 89,
+      "finite": true,
+      "maximumBoneStep": 0.07633491,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnRunLeftUpperBodySource.anim",
+      "name": "MovingTurnRunLeftUpperBodySource",
+      "samples": 43,
+      "finite": true,
+      "maximumBoneStep": 0.194368377,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollActiveEquippedGrounded.anim",
+      "name": "RollActiveEquippedGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.227612063,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@RunForwards.fbx",
+      "name": "RunForwards",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.106649376,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchExit.fbx",
+      "name": "CrouchExit",
+      "samples": 79,
+      "finite": true,
+      "maximumBoneStep": 0.04103477,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollRecoverBodyGrounded.anim",
+      "name": "RollRecoverBodyGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.109651521,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015C/SidewaysWalkMirrorOriginalBaked.fbx",
+      "name": "SidewaysWalkMirrorOriginalBaked",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.135561585,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnJogLeftUpperBodySource.anim",
+      "name": "MovingTurnJogLeftUpperBodySource",
+      "samples": 45,
+      "finite": true,
+      "maximumBoneStep": 0.179807276,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunRight.fbx",
+      "name": "StrafeRunRight",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.113145009,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingLandingGrounded.anim",
+      "name": "JumpStandingLandingGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.16036579,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/WalkTwoCycles.anim",
+      "name": "WalkTwoCycles",
+      "samples": 72,
+      "finite": true,
+      "maximumBoneStep": 0.114238463,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningTakeoffGrounded.anim",
+      "name": "JumpRunningTakeoffGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.04253889,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkLeft.fbx",
+      "name": "CrouchWalkLeft",
+      "samples": 37,
+      "finite": true,
+      "maximumBoneStep": 0.169503748,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/RightCoverSneak.fbx",
+      "name": "RightCoverSneak",
+      "samples": 36,
+      "finite": true,
+      "maximumBoneStep": 0.09960106,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkForward.fbx",
+      "name": "CrouchWalkForward",
+      "samples": 36,
+      "finite": true,
+      "maximumBoneStep": 0.127647758,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingTakeoffGrounded.anim",
+      "name": "JumpStandingTakeoffGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.108682051,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@Idle.fbx",
+      "name": "Idle",
+      "samples": 92,
+      "finite": true,
+      "maximumBoneStep": 0.00155935378,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitSmallFront.fbx",
+      "name": "HitSmallFront",
+      "samples": 37,
+      "finite": true,
+      "maximumBoneStep": 0.0566529781,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@RapidTurningLeft.fbx",
+      "name": "RapidTurningRight_Mirror",
+      "samples": 47,
+      "finite": true,
+      "maximumBoneStep": 0.0452592745,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@RapidTurningLeft.fbx",
+      "name": "RapidTurningLeft",
+      "samples": 47,
+      "finite": true,
+      "maximumBoneStep": 0.045284532,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideRecoverEquippedGrounded.anim",
+      "name": "SlideRecoverEquippedGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.278003782,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchRightOriginalFacingLoop.anim",
+      "name": "CrouchRightOriginalFacingLoop",
+      "samples": 78,
+      "finite": true,
+      "maximumBoneStep": 0.122322291,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Stop_NoRM_Mirror.FBX",
+      "name": "MCU_am_Loco_Jog_Fwd_Stop_NoRM_Mirror",
+      "samples": 56,
+      "finite": true,
+      "maximumBoneStep": 0.180048183,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningRisingPose.anim",
+      "name": "JumpRunningRisingPose",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.07343801,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Booter_CampWake.anim",
+      "name": "Booter_CampWake",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.000276934326,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchIdle.fbx",
+      "name": "CrouchIdle",
+      "samples": 43,
+      "finite": true,
+      "maximumBoneStep": 0.0121709909,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015B/SidewaysWalkOriginalBaked.fbx",
+      "name": "SidewaysWalkOriginalBaked",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.1357841,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Pickup/PickupAndExamine.fbx",
+      "name": "PickupAndExamine",
+      "samples": 218,
+      "finite": true,
+      "maximumBoneStep": 0.0486819446,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpRunningContinuousPhysicsV1.anim",
+      "name": "JumpRunningContinuousPhysicsV1",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.2546641,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollContactEquippedGrounded.anim",
+      "name": "RollContactEquippedGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.0517918952,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalWalkBackward.anim",
+      "name": "StandingDirectionalWalkBackward",
+      "samples": 74,
+      "finite": true,
+      "maximumBoneStep": 0.09879674,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnWalkRightUpperBodySource.anim",
+      "name": "MovingTurnWalkRightUpperBodySource",
+      "samples": 71,
+      "finite": true,
+      "maximumBoneStep": 0.119344242,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnJogRightUpperBodySource.anim",
+      "name": "MovingTurnJogRightUpperBodySource",
+      "samples": 45,
+      "finite": true,
+      "maximumBoneStep": 0.191400886,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RunTwoCycles.anim",
+      "name": "RunTwoCycles",
+      "samples": 45,
+      "finite": true,
+      "maximumBoneStep": 0.216839448,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/Booter_GatherIronstone.anim",
+      "name": "Booter_GatherIronstone",
+      "samples": 34,
+      "finite": true,
+      "maximumBoneStep": 0.09833358,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnSprintLeftUpperBodySource.anim",
+      "name": "MovingTurnSprintLeftUpperBodySource",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.394308448,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Walk_Fwd_NoRM.FBX",
+      "name": "MCU_am_Loco_Walk_Fwd_NoRM",
+      "samples": 65,
+      "finite": true,
+      "maximumBoneStep": 0.12478333,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015E/NeutralBackwardWalkOriginalBaked.fbx",
+      "name": "NeutralBackwardWalkOriginalBaked",
+      "samples": 38,
+      "finite": true,
+      "maximumBoneStep": 0.09838801,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallLandingContactRecovery.anim",
+      "name": "FallLandingContactRecovery",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.198025376,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchIdleOriginalFacingLoop.anim",
+      "name": "CrouchIdleOriginalFacingLoop",
+      "samples": 43,
+      "finite": true,
+      "maximumBoneStep": 0.0114291692,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnWalkLeftUpperBodySource.anim",
+      "name": "MovingTurnWalkLeftUpperBodySource",
+      "samples": 71,
+      "finite": true,
+      "maximumBoneStep": 0.1222693,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitBody.fbx",
+      "name": "HitBody",
+      "samples": 50,
+      "finite": true,
+      "maximumBoneStep": 0.126985177,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Reference/Locomotion/SprintForwardTravelAlternative.fbx",
+      "name": "SprintForwardTravelAlternative",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.136601508,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Crouch/CrouchWalkRight.fbx",
+      "name": "CrouchWalkRight",
+      "samples": 40,
+      "finite": true,
+      "maximumBoneStep": 0.120871969,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallAirborneIdlePhysicsLoop.anim",
+      "name": "FallAirborneIdlePhysicsLoop",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.0100150006,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/SlideRecoverBodyGrounded.anim",
+      "name": "SlideRecoverBodyGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.277944058,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeRunLeft.fbx",
+      "name": "StrafeRunLeft",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.1651408,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Evade/DodgeRight.fbx",
+      "name": "DodgeRight",
+      "samples": 44,
+      "finite": true,
+      "maximumBoneStep": 0.1787203,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Jump/JumpStanding.fbx",
+      "name": "JumpStanding",
+      "samples": 72,
+      "finite": true,
+      "maximumBoneStep": 0.141263038,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnRunRightUpperBodySource.anim",
+      "name": "MovingTurnRunRightUpperBodySource",
+      "samples": 43,
+      "finite": true,
+      "maximumBoneStep": 0.18373996,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/StandardRun.fbx",
+      "name": "StandardRun",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.1516058,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallLanding.fbx",
+      "name": "FallLanding",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.1900861,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkRight.fbx",
+      "name": "StrafeWalkRight",
+      "samples": 45,
+      "finite": true,
+      "maximumBoneStep": 0.07641354,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollActiveBodyGrounded.anim",
+      "name": "RollActiveBodyGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.17262052,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/RollContactBodyGrounded.anim",
+      "name": "RollContactBodyGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.0522170775,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchBackwardMappedTwoCycles.anim",
+      "name": "CrouchBackwardMappedTwoCycles",
+      "samples": 75,
+      "finite": true,
+      "maximumBoneStep": 0.1377523,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchExitQualifiedRange.anim",
+      "name": "CrouchExitQualifiedRange",
+      "samples": 79,
+      "finite": true,
+      "maximumBoneStep": 0.03976956,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM.FBX",
+      "name": "MCU_am_Loco_Jog_Fwd_Pivot_NoRM",
+      "samples": 82,
+      "finite": true,
+      "maximumBoneStep": 0.172430471,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_FwdLeft_NoRM.FBX",
+      "name": "MCU_am_Loco_Jog_FwdLeft_NoRM",
+      "samples": 44,
+      "finite": true,
+      "maximumBoneStep": 0.166459322,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Start_NoRM.FBX",
+      "name": "MCU_am_Loco_Jog_Fwd_Start_NoRM",
+      "samples": 55,
+      "finite": true,
+      "maximumBoneStep": 0.14848958,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedContinuousPhysicsV1.anim",
+      "name": "JumpUnarmedContinuousPhysicsV1",
+      "samples": 49,
+      "finite": true,
+      "maximumBoneStep": 0.16706948,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sit/SitDownChair.fbx",
+      "name": "SitDownChair",
+      "samples": 134,
+      "finite": true,
+      "maximumBoneStep": 0.0463037975,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/RapidTurnNative.fbx",
+      "name": "RapidTurningLeft",
+      "samples": 47,
+      "finite": true,
+      "maximumBoneStep": 0.0381411724,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/AnimationPlayground/Qualification/RapidTurnNative.fbx",
+      "name": "RapidTurningRight_Mirror",
+      "samples": 47,
+      "finite": true,
+      "maximumBoneStep": 0.03811614,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallAirborneIdle.fbx",
+      "name": "FallAirborneIdle",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.009656412,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchLeftMappedTwoCycles.anim",
+      "name": "CrouchLeftMappedTwoCycles",
+      "samples": 72,
+      "finite": true,
+      "maximumBoneStep": 0.190453187,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Kick/KickSide.fbx",
+      "name": "KickSide",
+      "samples": 61,
+      "finite": true,
+      "maximumBoneStep": 0.331329465,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalRunBackward.anim",
+      "name": "StandingDirectionalRunBackward",
+      "samples": 40,
+      "finite": true,
+      "maximumBoneStep": 0.221377,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_Pivot_NoRM_Mirror.FBX",
+      "name": "MCU_am_Loco_Jog_Fwd_Pivot_NoRM_Mirror",
+      "samples": 82,
+      "finite": true,
+      "maximumBoneStep": 0.172124222,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Punch/PunchJab.fbx",
+      "name": "PunchJab",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.189985693,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderOneStep.fbx",
+      "name": "LadderOneStep",
+      "samples": 48,
+      "finite": true,
+      "maximumBoneStep": 0.08130043,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnFastRunRightUpperBodySource.anim",
+      "name": "MovingTurnFastRunRightUpperBodySource",
+      "samples": 35,
+      "finite": true,
+      "maximumBoneStep": 0.310516745,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Kick/KickMmaLow.fbx",
+      "name": "KickMmaLow",
+      "samples": 47,
+      "finite": true,
+      "maximumBoneStep": 0.338854462,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Recovery/GetUpStomach.fbx",
+      "name": "GetUpStomach",
+      "samples": 259,
+      "finite": true,
+      "maximumBoneStep": 0.09564798,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Recovery/GetUpBack.fbx",
+      "name": "GetUpBack",
+      "samples": 252,
+      "finite": true,
+      "maximumBoneStep": 0.142943963,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchRightMappedTwoCycles.anim",
+      "name": "CrouchRightMappedTwoCycles",
+      "samples": 78,
+      "finite": true,
+      "maximumBoneStep": 0.122381277,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalWalkRight.anim",
+      "name": "StandingDirectionalWalkRight",
+      "samples": 64,
+      "finite": true,
+      "maximumBoneStep": 0.138039052,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpUnarmedLandingGrounded.anim",
+      "name": "JumpUnarmedLandingGrounded",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.138891086,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/FallLandingContactApproach.anim",
+      "name": "FallLandingContactApproach",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.0489980131,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@RunForwardsJump_Frame01.fbx",
+      "name": "RunForwardsJump_Frame01",
+      "samples": 41,
+      "finite": true,
+      "maximumBoneStep": 0.009260716,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@RunForwardsJump_Frame01.fbx",
+      "name": "RunForwardsJump_Frame01_Mirror",
+      "samples": 41,
+      "finite": true,
+      "maximumBoneStep": 0.0092602605,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Evade/DuckFromStanding.fbx",
+      "name": "DuckFromStanding",
+      "samples": 48,
+      "finite": true,
+      "maximumBoneStep": 0.1964837,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/IdleBreathingLoop.anim",
+      "name": "IdleBreathingLoop",
+      "samples": 299,
+      "finite": true,
+      "maximumBoneStep": 0.00741891935,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Run_Fwd_NoRM.FBX",
+      "name": "MCU_am_Loco_Run_Fwd_NoRM",
+      "samples": 38,
+      "finite": true,
+      "maximumBoneStep": 0.220254943,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015B/ExistingRunLeftOriginalBaked.fbx",
+      "name": "ExistingRunLeftOriginalBaked",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.177086279,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@StrafeLeftRunForwards.fbx",
+      "name": "StrafeLeftRunForwards",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.0954358056,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Fall/FallRollLanding.fbx",
+      "name": "FallRollLanding",
+      "samples": 65,
+      "finite": true,
+      "maximumBoneStep": 0.5303031,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Kick/KickThrust.fbx",
+      "name": "KickThrust",
+      "samples": 66,
+      "finite": true,
+      "maximumBoneStep": 0.222953811,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@WalkForwards.fbx",
+      "name": "WalkForwards",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.117974177,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/StandingDirectionalRunLeft.anim",
+      "name": "StandingDirectionalRunLeft",
+      "samples": 41,
+      "finite": true,
+      "maximumBoneStep": 0.2620091,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/JumpStandingRisingPose.anim",
+      "name": "JumpStandingRisingPose",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.0426764935,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowAlternate.fbx",
+      "name": "ThrowAlternate",
+      "samples": 169,
+      "finite": true,
+      "maximumBoneStep": 0.204749987,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Punch/PunchCross.fbx",
+      "name": "PunchCross",
+      "samples": 61,
+      "finite": true,
+      "maximumBoneStep": 0.206836015,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Evade/StandToRollSource.fbx",
+      "name": "mixamo.com",
+      "samples": 72,
+      "finite": true,
+      "maximumBoneStep": 0.497547537,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Death/DeathFallingBackward.fbx",
+      "name": "DeathFallingBackward",
+      "samples": 80,
+      "finite": true,
+      "maximumBoneStep": 0.288136423,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Derived/CrouchForwardOriginalFacingLoop.anim",
+      "name": "CrouchForwardOriginalFacingLoop",
+      "samples": 70,
+      "finite": true,
+      "maximumBoneStep": 0.128782853,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Stand_Idle_01.FBX",
+      "name": "MCU_am_Stand_Idle_01",
+      "samples": 173,
+      "finite": true,
+      "maximumBoneStep": 0.001117546,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Booter/Cloak/Booter_CampSetup.anim",
+      "name": "Booter_CampSetup",
+      "samples": 61,
+      "finite": true,
+      "maximumBoneStep": 0.000147447528,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowStandard.fbx",
+      "name": "ThrowStandard",
+      "samples": 67,
+      "finite": true,
+      "maximumBoneStep": 0.410774559,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Ladder/LadderClimb.fbx",
+      "name": "LadderClimb",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.09048158,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushStop.fbx",
+      "name": "PushStop",
+      "samples": 80,
+      "finite": true,
+      "maximumBoneStep": 0.16719906,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Sit/SittingIdleGround.fbx",
+      "name": "SittingIdleGround",
+      "samples": 327,
+      "finite": true,
+      "maximumBoneStep": 0.0009090948,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Death/DeathStandingBackward.fbx",
+      "name": "DeathStandingBackward",
+      "samples": 110,
+      "finite": true,
+      "maximumBoneStep": 0.226793766,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Qualification/Directional20261015C/ExistingRunLeftMirrorOriginalBaked.fbx",
+      "name": "ExistingRunLeftMirrorOriginalBaked",
+      "samples": 33,
+      "finite": true,
+      "maximumBoneStep": 0.176761568,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Throw/ThrowPickupAndThrow.fbx",
+      "name": "ThrowPickupAndThrow",
+      "samples": 147,
+      "finite": true,
+      "maximumBoneStep": 0.473309219,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@SprintForwardsJump_Frame01.fbx",
+      "name": "SprintForwardsJump_Frame01",
+      "samples": 41,
+      "finite": true,
+      "maximumBoneStep": 0.0102832653,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@SprintForwardsJump_Frame01.fbx",
+      "name": "SprintForwardsJump_Frame01_Mirror",
+      "samples": 41,
+      "finite": true,
+      "maximumBoneStep": 0.0103012268,
+      "isLooping": true,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Kick/KickFrontSnap.fbx",
+      "name": "KickFrontSnap",
+      "samples": 50,
+      "finite": true,
+      "maximumBoneStep": 0.342123181,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitLargeFront.fbx",
+      "name": "HitLargeFront",
+      "samples": 43,
+      "finite": true,
+      "maximumBoneStep": 0.170258433,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitLargeLeft.fbx",
+      "name": "HitLargeLeft",
+      "samples": 48,
+      "finite": true,
+      "maximumBoneStep": 0.1528853,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Combat/Hurt/HitSmallBack.fbx",
+      "name": "HitSmallBack",
+      "samples": 40,
+      "finite": true,
+      "maximumBoneStep": 0.0614053719,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Traversal/Cover/StandToCover.fbx",
+      "name": "StandToCover",
+      "samples": 40,
+      "finite": true,
+      "maximumBoneStep": 0.189701766,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Interactions/Push/PushStart.fbx",
+      "name": "PushStart",
+      "samples": 143,
+      "finite": true,
+      "maximumBoneStep": 0.117844261,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    },
+    {
+      "path": "Assets/_Project/Art/Animations/Mixamo/Locomotion/Strafe/StrafeWalkLeft.fbx",
+      "name": "StrafeWalkLeft",
+      "samples": 45,
+      "finite": true,
+      "maximumBoneStep": 0.07633488,
+      "isLooping": false,
+      "note": "Raw retargeted pose screen; action arcs and source floor height are intentional until fitted by their runtime profile."
+    }
+  ]
+}

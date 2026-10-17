@@ -213,4 +213,67 @@ public static class CampAnimationAudit
         File.WriteAllText(receipt, JsonConvert.SerializeObject(new { scope = "Actual equipped graph on virtual flat paths, fixed sole identities over 33.4ms; no physics or Play Mode", rows }, Formatting.Indented));
         return receipt;
     }
+
+    public static string CaptureSources(string inventory, string directory)
+    {
+        Offline(Path.Combine(directory, "captures.json"));
+        if (SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Null)
+            throw new InvalidOperationException("Use hidden batchmode with graphics for offscreen source captures.");
+        if (Directory.Exists(directory)) throw new IOException("Preserve previous captures.");
+        Directory.CreateDirectory(directory);
+        var input = Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(inventory));
+        var binding = AssetDatabase.LoadAssetAtPath<TopDown3DAnimationPlaygroundBindings>(
+            "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset");
+        var preview = new PreviewRenderUtility(); PlayableGraph graph = default;
+        Material material = null; var rows = new List<object>();
+        try
+        {
+            var actor = PrefabUtility.InstantiatePrefab(binding.targetModel, preview.camera.gameObject.scene) as GameObject;
+            preview.AddSingleGO(actor); actor.transform.localScale = Vector3.one * binding.visualScale;
+            actor.transform.localPosition = binding.visualOffset;
+            material = new Material(Shader.Find("Universal Render Pipeline/Lit")); material.color = new Color(.65f, .58f, .45f);
+            foreach (var skin in actor.GetComponentsInChildren<SkinnedMeshRenderer>(true))
+            { skin.sharedMaterials = Enumerable.Repeat(material, skin.sharedMaterials.Length).ToArray(); skin.updateWhenOffscreen = true; }
+            var animator = actor.GetComponentInChildren<Animator>(); animator.avatar = binding.targetAvatar;
+            animator.applyRootMotion = false; animator.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+            graph = PlayableGraph.Create("Offline animation contact sheets"); graph.SetTimeUpdateMode(DirectorUpdateMode.Manual);
+            var output = AnimationPlayableOutput.Create(graph, "Source", animator); graph.Play();
+            preview.camera.orthographic = true; preview.camera.nearClipPlane = .01f; preview.camera.farClipPlane = 30;
+            preview.camera.clearFlags = CameraClearFlags.Color; preview.camera.backgroundColor = new Color(.08f, .09f, .1f);
+            preview.lights[0].intensity = 1.4f; preview.lights[0].transform.rotation = Quaternion.Euler(35, 35, 0);
+            preview.lights[1].intensity = .65f; preview.lights[1].transform.rotation = Quaternion.Euler(320, 210, 0);
+            preview.ambientColor = new Color(.25f, .25f, .25f);
+            var index = 0;
+            foreach (var item in input["clips"])
+            {
+                var path = (string)item["path"]; var name = (string)item["name"];
+                if (Hash(path) != (string)item["sha256"]) throw new InvalidDataException("Source changed: " + path);
+                var clip = AssetDatabase.LoadAllAssetsAtPath(path).OfType<AnimationClip>().Single(c => c.name == name);
+                var playable = AnimationClipPlayable.Create(graph, clip); playable.SetSpeed(0);
+                playable.SetApplyFootIK(false); playable.SetApplyPlayableIK(false); output.SetSourcePlayable(playable);
+                for (var frame = 0; frame < 4; frame++)
+                {
+                    var phase = (frame + .25f) / 4; playable.SetTime(phase * clip.length); graph.Evaluate(0);
+                    var bounds = new Bounds(new Vector3(0, -.05f, 0), new Vector3(.8f, 1.8f, .8f));
+                    foreach (var skin in actor.GetComponentsInChildren<SkinnedMeshRenderer>(true)) bounds.Encapsulate(skin.bounds);
+                    preview.camera.orthographicSize = Mathf.Max(1.1f, bounds.size.y * .6f, bounds.size.x * .6f);
+                    preview.camera.transform.position = bounds.center + new Vector3(3, 1.2f, 5);
+                    preview.camera.transform.LookAt(bounds.center);
+                    preview.BeginStaticPreview(new Rect(0, 0, 192, 192)); preview.Render(true, true);
+                    var image = preview.EndStaticPreview();
+                    try { File.WriteAllBytes(Path.Combine(directory, $"{index:D3}-{frame}.png"), image.EncodeToPNG()); }
+                    finally { UnityEngine.Object.DestroyImmediate(image); }
+                }
+                rows.Add(new { index, path, name }); index++; graph.DestroyPlayable(playable);
+            }
+            var receipt = Path.Combine(directory, "captures.json");
+            File.WriteAllText(receipt, JsonConvert.SerializeObject(new { scope = "Four raw retarget poses per complete source; no equipment, runtime grounding or gameplay acceptance", rows }, Formatting.Indented));
+            return receipt;
+        }
+        finally
+        {
+            if (graph.IsValid()) graph.Destroy(); preview.Cleanup();
+            if (material != null) UnityEngine.Object.DestroyImmediate(material);
+        }
+    }
 }
