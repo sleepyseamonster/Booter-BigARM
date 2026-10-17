@@ -1,0 +1,301 @@
+{
+  "date": "2026-10-16",
+  "scope": "Background EditMode, offline pose geometry and guarded author install. No gameplay simulation or hands-on smoke test.",
+  "candidateRuntimeMvid": "ee658133-9a78-4d08-af94-69ec8de4a402",
+  "authorRuntimeMvid": "e8888b39-a3ee-4aa8-bc17-dd034a6f35ac",
+  "sourceInputParityCount": 891,
+  "protectedInputsUnchanged": 190,
+  "installedSealedFiles": 42,
+  "suites": [
+    {
+      "filter": "AnimationPlaygroundAirborneTests",
+      "total": 37,
+      "passed": 37,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 3.28,
+      "receiptSha256": "d8148592bf9bbf929e4fcac91a561ffd139ffbc35da807d72742b30ae511f86f"
+    },
+    {
+      "filter": "AnimationPlaygroundCrouchControllerTests",
+      "total": 13,
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.25,
+      "receiptSha256": "8b5b8a3f20dc13bb3489996be7311fd7529cf10fc9ee28bd243ae236718f13af"
+    },
+    {
+      "filter": "AnimationPlaygroundDirectionalTests",
+      "total": 13,
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 17.9,
+      "receiptSha256": "20fd8577539ab94570c5e2271e8cb9c2c56e99d8918c2649776427976c8306fc"
+    },
+    {
+      "filter": "AnimationPlaygroundDodge",
+      "total": 55,
+      "passed": 55,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 217.28,
+      "receiptSha256": "23f903dab6ec4d18833946fbb206357fbe6649cbc94c834b3a0dd671fee965b9"
+    },
+    {
+      "filter": "AnimationPlaygroundExpandedGaitTests",
+      "total": 8,
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 31.31,
+      "receiptSha256": "13d3b7de331849358e285388b6bb825293d66a7c60fc531115527a89f452dcf5"
+    },
+    {
+      "filter": "AnimationPlaygroundForwardPoseEnvelopeTests",
+      "total": 6,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.01,
+      "receiptSha256": "d57a6ee0ca2c5d88837cd68b17469f8b3059ab36789e25349aa4b32c64df1bb3"
+    },
+    {
+      "filter": "AnimationPlaygroundForwardReviewTests",
+      "total": 22,
+      "passed": 22,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 6.06,
+      "receiptSha256": "df5b665ed8c5f46c92bf8e02386f192a9b4350b9a64a79fecea1908cdcbef48c"
+    },
+    {
+      "filter": "AnimationPlaygroundInputTests",
+      "total": 6,
+      "passed": 6,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.16,
+      "receiptSha256": "f6b28b948a03e7eff1c2866e2f62da863c8e2364233e6ef30fed57ab6853c602"
+    },
+    {
+      "filter": "AnimationPlaygroundJump",
+      "total": 29,
+      "passed": 29,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 23.7,
+      "receiptSha256": "690af8fb80f66928bb62b2ffa580318772caa615bab8bf03c712341799d02238"
+    },
+    {
+      "filter": "AnimationPlaygroundLowMotionControllerTests",
+      "total": 26,
+      "passed": 26,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.4,
+      "receiptSha256": "85af8de17e66c1c2643a26233d553f2c789f93f4b8e2fb4cf3f194d36759f9ca"
+    },
+    {
+      "filter": "AnimationPlaygroundMotorTests",
+      "total": 19,
+      "passed": 19,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.03,
+      "receiptSha256": "4d2836a6e7a82da0571058f7cfb7bb5ce549d025b4fec67be3a3518a41f7d692"
+    },
+    {
+      "filter": "AnimationPlaygroundMovingTurn",
+      "total": 212,
+      "passed": 212,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 24.24,
+      "receiptSha256": "845211bed8bca8b376109ff0309f4c03668eafb09f64de95404ad0d4e4f6de19"
+    },
+    {
+      "filter": "AnimationPlaygroundNativeGroundTests",
+      "total": 7,
+      "passed": 7,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 88.28,
+      "receiptSha256": "f52eaeb696dae4b32cf6c716e74dac33e32326f1d29c6e17fc6398365be9fc82"
+    },
+    {
+      "filter": "AnimationPlaygroundPresentationTests",
+      "total": 9,
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.06,
+      "receiptSha256": "524a321a3085d8372d325578851833b891b66f2b9b1b61d26572c7a67d61f547"
+    },
+    {
+      "filter": "AnimationPlaygroundResetTests",
+      "total": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "inconclusive": 0,
+      "durationSeconds": 0.01,
+      "receiptSha256": "eff40078dc5b52990007eb920719afda9ebfcc5ad613ad1b378df03095837ac0"
+    }
+  ],
+  "totalTests": 465,
+  "passedTests": 465,
+  "failedTests": 0,
+  "skippedTests": 0,
+  "nativePoseMatrix": {
+    "skinWeightSettings": 3,
+    "sites": 3,
+    "facings": 2,
+    "speeds": 9,
+    "curvatures": 3,
+    "phases": 8,
+    "poses": 3888
+  },
+  "contactComparison": {
+    "windows": 216,
+    "nonzeroCurvaturePairs": 72,
+    "maximumAbsoluteExcursionDelta": 0.0,
+    "maximumAbsoluteGapDelta": 0.0,
+    "baselineWindowFailures": 18,
+    "scope": "Exact same curved trajectory; upper layer enabled versus disabled. Existing baseline absolute limits are not new qualifications."
+  },
+  "candidateMainSession": {
+    "scope": "Held EditMode main Camp Loop preparation; no gameplay or physics simulation",
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "movingTurnsConfigured": true,
+    "forwardConfigured": true,
+    "binding": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset",
+    "sourceRequired": true
+  },
+  "authorReadback": {
+    "playing": false,
+    "compiling": false,
+    "compilationFailed": false,
+    "bindingDirty": false,
+    "movingTurns": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/MovingTurnReview.asset",
+    "movingTurnsRequired": true,
+    "gaits": [
+      {
+        "role": 1,
+        "nominalSpeed": 1.4,
+        "metresPerCycle": 3.22170615,
+        "source": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Walk_Fwd_NoRM.FBX",
+        "sha256": "0832e93fc931b80c11e12d82dfa2c6b42f1b104ad8818b31613ac24d234dad89"
+      },
+      {
+        "role": 2,
+        "nominalSpeed": 3.0,
+        "metresPerCycle": 4.36681175,
+        "source": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Jog_Fwd_NoRM.FBX",
+        "sha256": "38039a18614857cbdd6cce42fc317ebc970c2d8829530cf97bc5b3ef6b714fab"
+      },
+      {
+        "role": 3,
+        "nominalSpeed": 4.0,
+        "metresPerCycle": 5.592029,
+        "source": "Assets/_Project/Art/Characters/Animations/MoCapCentral/CoreMotion/Locomotion/MCU_am_Loco_Run_Fwd_NoRM.FBX",
+        "sha256": "17e73a6e4f05287e33bf753c1e9526949ac57a958549c0525e95468f9d21d721"
+      },
+      {
+        "role": 3,
+        "nominalSpeed": 4.9,
+        "metresPerCycle": 5.49517441,
+        "source": "Assets/_Project/Art/Animations/Mixamo/Derived/SprintArmDriveReview.anim",
+        "sha256": "850c033b50a92b4e96cb08ad08efc09e8062f41d831c54aeb89fc52625b31d97"
+      },
+      {
+        "role": 3,
+        "nominalSpeed": 6.15,
+        "metresPerCycle": 5.483365,
+        "source": "Assets/_Project/Art/Animations/Mixamo/Derived/FullSprintStandardReview.anim",
+        "sha256": "db3fa37dcec840741ce332ff7fd7ff3273a098ca6a89020187e5ccc5be2a97d9"
+      }
+    ],
+    "sceneRootsDirtyStateDiskAndTerrainUnchanged": true,
+    "terrainTiles": 9,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "sceneSha256": "fdeffc4d00ba053d00f345ae587627edf1e8ba01f54d0904dc850536d1484544"
+  },
+  "metadata": {
+    "newCodeGuidPairs": 6,
+    "newPrivateGuidPairs": 11,
+    "exactSealedBytes": true,
+    "privatePayloadsIgnored": true
+  },
+  "installCorrection": "Initial Code helper directly imported .meta paths, removing new metadata. Assets hash gate stopped before binding/private changes. Helper corrected to import paired assets only; exact six candidate metadata files restored, compiled, and all 42 final files reverified.",
+  "remainingAcceptance": "Author Play Mode feel testing in the current main Camp Loop.",
+  "checkpoint": "D:\\BooterBigArmPrivateAssets\\Mixamo\\2026-10-16\\ImportCheckpoints\\MovingTurnArcs20261016",
+  "formattingCorrection": {
+    "relative": "Assets/_Project/Tests/Editor/AnimationPlaygroundMovingTurnPoseTests.cs",
+    "before": "4677e1b46ee15d2a2528505ee18e83a544c65c346f19bd9d2d6e9c3690fdecee",
+    "after": "508b42ee579fcf67bcc8e84b36c739485f7743138f790df16f53d667c5a9275f",
+    "scope": "Removed spaces on empty line 54 only; executable source text unchanged.",
+    "poseTestsRerun": 24,
+    "passed": 24,
+    "resultSha256": "11a2d980041c77f1f3ebc3e61eb0b04343abee9b8810ec7e468f957c8249d4d1"
+  },
+  "releaseFreeze": "release-candidate-freeze.json",
+  "releaseInstallationPlan": "installation-plan-release.json",
+  "diagnosticTools": [
+    {
+      "path": "Tools/Diagnostics/CampMovingTurnAuthoring.cs",
+      "sha256": "3038f6655755619652ad954524557d87937102b5728eedf295592fd8b23bb7fe"
+    },
+    {
+      "path": "Tools/Diagnostics/CampMovingTurnComposition.cs",
+      "sha256": "ee37dce45131f64374efbc0786b016918047e7a299a2ecd2bdc8beb5fb67f6f1"
+    },
+    {
+      "path": "Tools/Diagnostics/CampMovingTurnContactQualification.cs",
+      "sha256": "0c5879b0678a59daf4cff3ba9a3a81a4204731826349218379837a0273ef7bff"
+    },
+    {
+      "path": "Tools/Diagnostics/CampMovingTurnInstallation.cs",
+      "sha256": "1bbc5b611897448f6e1091cc6b379cf9deafb32e4b5f788ca4eba1baaf73b2c1"
+    },
+    {
+      "path": "Tools/Diagnostics/CampMovingTurnPoseAuthoring.cs",
+      "sha256": "e125c74eb89038383a5532026f8e672c8fe364d886bce6e4ca058619d9fe57a2"
+    },
+    {
+      "path": "Tools/Diagnostics/CampMovingTurnPreparation.cs",
+      "sha256": "59c1b4feefa4e4aacf457a8f47b8a11ddfef7402e8af856ced7fba373d898b56"
+    },
+    {
+      "path": "Tools/Diagnostics/CampMovingTurnReadback.cs",
+      "sha256": "6582ca7e2875a9e00f62bbac328db8899f43b3fe8ec9ea59bc7de12df66d8fe9"
+    },
+    {
+      "path": "Tools/Diagnostics/Run-CampMovingTurnChecks.ps1",
+      "sha256": "bdd8c5192a46b9c2381a6fa553b15ab6d511424485b342a3deba363b0aa958f0"
+    },
+    {
+      "path": "Tools/Diagnostics/calibrate_moving_turns.py",
+      "sha256": "4d7d398ca4cc0d64366cc9aa7c3cc328645a10c8182085b0f45cf3d19e3e003b"
+    }
+  ],
+  "toolCompilation": "Seven current C# tools compiled through run_script; corrected installer executed successfully in author Editor. Python AST and PowerShell parser checks passed. Readback uses the pinned Editor instance-ID API with a known deprecation warning.",
+  "privateCheckpointRetained": true,
+  "taskCandidateClosed": true,
+  "authorEditorRetained": true
+}

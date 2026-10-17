@@ -31,6 +31,8 @@ namespace BooterBigArm.TopDown3D
         public bool standingStrafeReviewRequired;
         public AnimationPlaygroundContinuationProfile continuationReview;
         public bool continuationReviewRequired;
+        public AnimationPlaygroundMovingTurnProfile movingTurns;
+        public bool movingTurnsRequired;
         public AnimationPlaygroundCrouchProfile crouch;
         public AnimationPlaygroundFootProjection footProjection;
         public AnimationPlaygroundAirborneProfile airborne;
@@ -82,6 +84,9 @@ namespace BooterBigArm.TopDown3D
                 reason = "Laboratory locomotion speeds must be finite and ordered.";
             else if(standingStrafeReviewRequired && standingStrafeReview==null)
                 reason="Restore the required private standing strafe review.";
+            else if(movingTurnsRequired && movingTurns==null)
+                reason="Restore the required private moving-turn calibration.";
+            else if(movingTurns!=null && !movingTurns.Validate(forwardReviewOverride,out reason))return false;
             else if(dodgeRequired && dodge==null)
                 reason="Restore the required private dodge calibration.";
             else if(dodge!=null && !dodge.Validate(targetModel,out reason))return false;

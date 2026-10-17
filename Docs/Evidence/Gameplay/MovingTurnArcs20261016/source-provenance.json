@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-16",
+  "sources": [
+    {
+      "title": "Running Right Turn",
+      "description": "Turning Right While Running",
+      "sourceUrl": "https://www.mixamo.com/#/?page=1&query=run+turn",
+      "sha256": "daa27f76b3b97619b696f39f17bdeccab07f07b861092ca56a5fa0f2b3be3ac9",
+      "bytes": 238480,
+      "format": "FBX for Unity",
+      "skin": "Without Skin",
+      "fps": 60,
+      "keyframeReduction": "none",
+      "trim": [
+        0,
+        100
+      ],
+      "overdrive": 50,
+      "armSpace": 50,
+      "mirror": false
+    },
+    {
+      "title": "Sprint Turn",
+      "description": "Turning While Sprinting",
+      "sourceUrl": "https://www.mixamo.com/#/?page=1&query=run+turn",
+      "sha256": "0a06ebe81e25d0fa4316f284e0427263c66b93eb26455431899db7e4b1d740b6",
+      "bytes": 256304,
+      "format": "FBX for Unity",
+      "skin": "Without Skin",
+      "fps": 60,
+      "keyframeReduction": "none",
+      "trim": [
+        0,
+        100
+      ],
+      "overdrive": 50,
+      "armSpace": 50,
+      "mirror": false
+    },
+    {
+      "title": "Walking Left Turn",
+      "description": "Turning Left While Walking",
+      "sourceUrl": "https://www.mixamo.com/#/?page=1&query=walk+turn",
+      "sha256": "d8dfc168a0275a1c8670e4832bbe69a0c276edfca9472228ebb3a0d1a428f61d",
+      "bytes": 291824,
+      "format": "FBX for Unity",
+      "skin": "Without Skin",
+      "fps": 60,
+      "keyframeReduction": "none",
+      "trim": [
+        0,
+        100
+      ],
+      "overdrive": 50,
+      "armSpace": 50,
+      "mirror": false
+    }
+  ],
+  "coverage": {
+    "walk": "Walking Left Turn",
+    "jog": "Running Right Turn",
+    "run": "Running Right Turn",
+    "fastRun": "Sprint Turn",
+    "sprint": "Sprint Turn"
+  },
+  "oppositeSides": "Intentionally mirrored and contact-phase aligned",
+  "catalogGap": "No separate neutral jogging-labelled turn exposed in the audited jog turn / jog arc searches.",
+  "exportLocation": "Private local checkpoint SourceOriginals; original Downloads retained."
+}

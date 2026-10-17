@@ -43,6 +43,10 @@ namespace BooterBigArm.Tests
             {
                 // This fixture explicitly exercises the retained three-gait review.
                 // Pair its legacy profiles independently of the current six-gait selection.
+                binding.movingTurns = null; binding.movingTurnsRequired = false;
+                binding.slowWalkSpeed = f.Policy.gaits[0].nominalSpeed;
+                binding.runSpeed = f.Policy.gaits[1].nominalSpeed;
+                binding.sprintSpeed = f.Policy.gaits[^1].nominalSpeed;
                 binding.standingStrafeReview = AssetDatabase.LoadAssetAtPath<AnimationPlaygroundStandingStrafeProfile>(
                     "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/StandingStrafeReview.asset");
                 binding.continuationReview = AssetDatabase.LoadAssetAtPath<AnimationPlaygroundContinuationProfile>(

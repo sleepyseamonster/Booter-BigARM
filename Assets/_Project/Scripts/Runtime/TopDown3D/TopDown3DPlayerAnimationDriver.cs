@@ -123,6 +123,7 @@ namespace BooterBigArm.TopDown3D
 
         private void LateUpdate()
         {
+            ApplyMovingTurnBones();
             EmitStandingStrafeFootEffects();
             EmitForwardFootEffectsForRenderedPose();
             if (forwardTerrainApplied) ApplyGarmentFloor();
@@ -236,6 +237,7 @@ namespace BooterBigArm.TopDown3D
             laboratoryFootProjection=value.footProjection;
             laboratoryForwardProfile=value.forwardLocomotion;
             forwardReviewConfigured=false; forwardReviewStation=null; forwardReviewSession=null;
+            movingTurnProfile=null; ResetMovingTurns();
             standingStrafeReview=null;continuationReview=null;continuationJumpStation=null;
             continuationRejectedSupport=null;LaboratoryContinuationFailure=null;
             equipmentScale = value.bodyHeight / value.equipmentModelHeight;

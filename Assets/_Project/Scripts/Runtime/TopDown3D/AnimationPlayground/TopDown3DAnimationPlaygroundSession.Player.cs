@@ -59,6 +59,7 @@ namespace BooterBigArm.TopDown3D
                     presentation.ConfigureLaboratoryForwardReview(review, station);
                     if (bindings.standingStrafeReview != null) presentation.ConfigureLaboratoryStandingStrafeReview(bindings.standingStrafeReview);
                     if (bindings.continuationReview != null) presentation.ConfigureLaboratoryContinuation(bindings.continuationReview);
+                    if (bindings.movingTurns != null) presentation.ConfigureLaboratoryMovingTurns(bindings.movingTurns);
                     if (Mathf.Abs(review.gaits[0].nominalSpeed - bindings.slowWalkSpeed) > .0001f
                         || Mathf.Abs(review.gaits[1].nominalSpeed - bindings.runSpeed) > .0001f
                         || Mathf.Abs(review.gaits[review.FastRunIndex].nominalSpeed - bindings.sprintSpeed) > .0001f)

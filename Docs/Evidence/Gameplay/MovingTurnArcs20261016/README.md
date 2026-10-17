@@ -1,0 +1,36 @@
+# Camp Loop moving-turn arcs — 2026-10-16
+
+The main Camp Loop selects left/right moving-turn poses across walk, jog, run, fast run and sprint. The accepted forward sources, five speeds (1.4 / 3 / 4 / 4.9 / 6.15 m/s), distance clocks, cadence/contact maps and native-ground output are preserved. This receipt accompanies the [implementation plan](../../../Design/Gameplay/CAMP_LOOP_MOVING_TURN_ARCS_PLAN_2026-10-16.md).
+
+## Sources and final composition
+
+The signed-in [Mixamo catalog](https://www.mixamo.com/) supplied Walking Left Turn, Running Right Turn and Sprint Turn. The [source manifest](source-provenance.json) records export settings and immutable hashes. Walking uses the walking source; jog/run share the neutral running source; fast run/sprint share the sprint source. Opposite directions are intentionally mirrored and phase aligned. Audited `jog turn` / `jog arc` searches did not expose a distinct neutral jogging turn. Weapon, catwalk, injured, drunk and 180-degree action variants were excluded.
+
+Full-body mixer trials altered retargeted hips/feet and increased contact drift. Those trials were rejected. The final implementation extracts local rotations for thirteen allowed torso/arm bones, transfers source root lean into spine/chest offline, and blends these tapes after the accepted supported pose. It leaves root/hips/legs, the six-input single-output graph, native support correction and garment-floor order intact. Maximum source weight is 0.45 for walking and 0.5 for the other bands. Source rates fade out at the approved mixed-rate bounds.
+
+Signed curvature comes from valid completed-motion tangents on their support plane, with tick/epoch guards, a minimum speed and 100 ms smoothing. Camera yaw and LT facing lock do not create live arc demand. Normal supported release eases over 80 ms. Airborne, dodge, crouch, traversal, mounting, constraints, gathering and camp ownership suppress live arcs. Existing action snapshots capture the displayed local rotation delta and fade it with their pose blend; hard resets, disable/unbind and unsupported ownership clear stale deltas. Captured action handoffs preserve their snapshot through locomotion rebases.
+
+The feature changes transient actor presentation on fixed, always-loaded terrain. It creates no generated identities, chunks, terrain streaming or persisted deltas. Existing motor, collision and authored terrain constraints remain authoritative.
+
+## Verification and installation
+
+All **465 focused checks across fifteen suites passed**, including 212 new moving-turn checks. After a whitespace-only test cleanup, the 24 affected pose tests passed again. [Verification and author readback](verification.json) record the exact results. The [sealed manifest](sealed-candidate.json) identifies every final code/private input and the candidate runtime assembly. Checks use the marked hidden batchmode candidate, held EditMode actors, offline virtual curved trajectories and existing native terrain geometry. They do not enter Play Mode or simulate a gameplay run.
+
+The new turn coverage includes invalid/duplicate/epoch observations, signed lean in all five bands, loop seams and interpolation, exact unchanged root/hips/legs/feet, action snapshot carry/release/rebase, disabled/foreign-state cleanup, LT gating and the existing graph topology. Equipped native-pose coverage spans 3,888 poses: three skin-weight settings, three native sites, two facings, nine speed samples, three curvatures and eight phases. Among 216 offline contact windows, 72 paired nonzero-curvature comparisons show **zero added foot drift and zero clearance change** on identical paths. Nine windows per condition failed the existing fixed-vertex limits identically; this work does not claim new lower-body foot planting.
+
+The legacy three-gait test fixture now pairs its cloned binding speeds to its own legacy profile and clears the new optional review. This repairs fixture isolation without altering shipped gait values.
+
+Installation uses sealed hashes, original-file guards, new-GUID ownership checks and a two-phase import through the existing author Editor. All 42 sealed code/private files match the final selection; 190 protected inputs and 891 synchronized source inputs retain their expected hashes. Author readback confirms the selected required profile, valid bindings, successful compilation, identical accepted gaits, and unchanged scene roots, dirty state, disk bytes and nine terrain transforms/data. An initial metadata import error stopped at the asset hash gate before binding changes; the helper was corrected to import paired assets only and restore the exact candidate GUIDs. The final install and readback passed. The scene was never saved/reloaded, focus was never changed, and Play Mode remains author-owned. Raw exports, derivative sources and binding/profile payloads remain private/local under the existing ignore rules.
+
+## Reproduction and recovery
+
+Private checkpoint: `D:/BooterBigArmPrivateAssets/Mixamo/2026-10-16/ImportCheckpoints/MovingTurnArcs20261016/`. It retains original source exports, pre-install bytes, rejected trials, raw contact tapes, final calibration, source preparation receipts, full test results and author before/after snapshots. `release-candidate-freeze.json` and `installation-plan-release.json` include the final whitespace-only test correction; the earlier freezes and install attempts are preserved. Do not overwrite this checkpoint or rerun its one-shot preparation against completed assets.
+
+For a fresh marked candidate, use the tools under [Tools/Diagnostics](../../../../Tools/Diagnostics/):
+
+1. Place the three original exports at the private names recorded by `CampMovingTurnPreparation`. Run `Prepare`, `ShiftMirrors`, `ReviseFastRun`, `CorrectMirrorReference`, `ExtractRemainingHeading`, then `Export` to fresh destinations.
+2. Run `calibrate_moving_turns.py <export-directory> <fresh-output.json>`. `CampMovingTurnAuthoring.Prepare` creates an incomplete, unbound profile. `CampMovingTurnComposition.BakeFinal` creates upper-body authoring sources; `CampMovingTurnPoseAuthoring.Bake` completes and validates the upper-bone tapes. Do not bind the intermediate incomplete profile.
+3. Run `Run-CampMovingTurnChecks.ps1` with the candidate and a fresh evidence directory. Run `CampMovingTurnContactQualification.Run` for paired offline contact observations and `CampMovingTurnReadback.ValidateCandidateSession` for held main-scene configuration.
+4. Seal exact files and protected inputs before invoking `CampMovingTurnInstallation.Code` in stable author Edit Mode. Wait for successful compilation, then invoke `Assets`. `CampMovingTurnReadback.Snapshot` is read-only and records scene roots/dirty state/disk bytes, terrain transforms/data, gaits and the selected binding. The installer restores original binding bytes on an asset-selection failure; original source/code backups remain in the checkpoint.
+
+Author hands-on acceptance remains to be performed: gentle/tight left and right curves through each gait, stopping/reversing, LT entry/release, and curved run/sprint transitions into jump, landing and dodge. These are feel checks in the current Camp Loop, not additional automatic smoke tests.

@@ -1,0 +1,261 @@
+{
+  "runtimeMvid": "ee658133-9a78-4d08-af94-69ec8de4a402",
+  "code": [
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.ForwardReview.cs",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundBindings.cs",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.Player.cs",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.PoseBlend.cs",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundForwardReviewTests.cs",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.MovingTurns.cs",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.MovingTurns.cs.meta",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundMovingTurnDemand.cs",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundMovingTurnDemand.cs.meta",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundMovingTurnProfile.cs",
+    "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundMovingTurnProfile.cs.meta",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundMovingTurnDemandTests.cs",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundMovingTurnDemandTests.cs.meta",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundMovingTurnProfileTests.cs",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundMovingTurnProfileTests.cs.meta",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundMovingTurnPoseTests.cs",
+    "Assets/_Project/Tests/Editor/AnimationPlaygroundMovingTurnPoseTests.cs.meta"
+  ],
+  "privateAssets": [
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnFastRunLeftUpperBodySource.anim",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnFastRunLeftUpperBodySource.anim.meta",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnFastRunRightUpperBodySource.anim",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnFastRunRightUpperBodySource.anim.meta",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnJogLeftUpperBodySource.anim",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnJogLeftUpperBodySource.anim.meta",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnJogRightUpperBodySource.anim",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnJogRightUpperBodySource.anim.meta",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnRunLeftUpperBodySource.anim",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnRunLeftUpperBodySource.anim.meta",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnRunRightUpperBodySource.anim",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnRunRightUpperBodySource.anim.meta",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnSprintLeftUpperBodySource.anim",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnSprintLeftUpperBodySource.anim.meta",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnSprintRightUpperBodySource.anim",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnSprintRightUpperBodySource.anim.meta",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnWalkLeftUpperBodySource.anim",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnWalkLeftUpperBodySource.anim.meta",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnWalkRightUpperBodySource.anim",
+    "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnWalkRightUpperBodySource.anim.meta",
+    "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/MovingTurnReview.asset",
+    "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/MovingTurnReview.asset.meta"
+  ],
+  "files": [
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.LaboratoryLocomotion.cs",
+      "sha256": "9b2f252fd856f8ac26e2732720873f954cf95edbb0728ca991257dc0da7cf376",
+      "bytes": 18584
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.ForwardReview.cs",
+      "sha256": "5797ffbeaff3fac20b19d50e50a782644f607546f9d884bab5b70f35345380b4",
+      "bytes": 7660
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundBindings.cs",
+      "sha256": "d0e3dc87a54dfe2dbed2c6f875a8ec95c9c4d318560cf76c7f3ee7997355eb1b",
+      "bytes": 8048
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/TopDown3DAnimationPlaygroundSession.Player.cs",
+      "sha256": "c64dc488861184d3c29e7cb26f8859cb24a52413911f14f6f6284d6d3aa46ea2",
+      "bytes": 17374
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.cs",
+      "sha256": "0db09c1b6ae0b7b69497487ad18f4d8ce0274b65f9d46ee82584c839f9d41402",
+      "bytes": 63885
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.PoseBlend.cs",
+      "sha256": "e3eac554098fa13f2cf5691ffd4e547d89be55f62e65a3cd75ef6158628be2bf",
+      "bytes": 10995
+    },
+    {
+      "relative": "Assets/_Project/Tests/Editor/AnimationPlaygroundForwardReviewTests.cs",
+      "sha256": "ad2a70978a97f475e727a59180d2df0aaf6914526219d3bd3bc2ee65dd69a1ed",
+      "bytes": 19009
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.MovingTurns.cs",
+      "sha256": "23ad205eec0ea1d293f71f5df6e4c17e777d571db2f7e16f6d4d5a47704ec107",
+      "bytes": 8732
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/TopDown3DPlayerAnimationDriver.MovingTurns.cs.meta",
+      "sha256": "da95a8fc083839ca36d93e577f5936c1c1f2c150fc987124b574be4d7ec52c41",
+      "bytes": 60
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundMovingTurnDemand.cs",
+      "sha256": "4f7b704b0511162b9b1601c3e315cf6c3842c0762686fbe19534f9898e8fe0da",
+      "bytes": 6762
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundMovingTurnDemand.cs.meta",
+      "sha256": "b2bfd16b74572d6570ed1e56d1eeb005818caf16a17f89f4c9bf3e5ea6c06408",
+      "bytes": 60
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundMovingTurnProfile.cs",
+      "sha256": "89b25d6ed70517892bc5919ccefead329fb9926e3216dbd951bc8b76bfe9ef7d",
+      "bytes": 19705
+    },
+    {
+      "relative": "Assets/_Project/Scripts/Runtime/TopDown3D/AnimationPlayground/AnimationPlaygroundMovingTurnProfile.cs.meta",
+      "sha256": "5bb83680d86c55c8bae4911d552081844b58bd6b02c1358eda28e8bbff0b837b",
+      "bytes": 60
+    },
+    {
+      "relative": "Assets/_Project/Tests/Editor/AnimationPlaygroundMovingTurnDemandTests.cs",
+      "sha256": "e0f666806ab0fc5cf66ae3ec4ba73b5ee988e833b8fae66b8abf3e5c3bf5816b",
+      "bytes": 12873
+    },
+    {
+      "relative": "Assets/_Project/Tests/Editor/AnimationPlaygroundMovingTurnDemandTests.cs.meta",
+      "sha256": "de937c9341b3fde666162683ec8b610830f456107844e046d279a610d3a30e08",
+      "bytes": 60
+    },
+    {
+      "relative": "Assets/_Project/Tests/Editor/AnimationPlaygroundMovingTurnProfileTests.cs",
+      "sha256": "4716f63d0afa03b748fe2580954a035e3fbde3ab49aa03110a9eba4723f23ed8",
+      "bytes": 29478
+    },
+    {
+      "relative": "Assets/_Project/Tests/Editor/AnimationPlaygroundMovingTurnProfileTests.cs.meta",
+      "sha256": "983ba143e4b46f97ceb2e84a77a773d3375e2e7df4f7dfe90d4fd77025df1117",
+      "bytes": 60
+    },
+    {
+      "relative": "Assets/_Project/Tests/Editor/AnimationPlaygroundMovingTurnPoseTests.cs",
+      "sha256": "508b42ee579fcf67bcc8e84b36c739485f7743138f790df16f53d667c5a9275f",
+      "bytes": 13984
+    },
+    {
+      "relative": "Assets/_Project/Tests/Editor/AnimationPlaygroundMovingTurnPoseTests.cs.meta",
+      "sha256": "ab65556c3ddc9ae563c73add72d6f79209873a77c0ad293beed0a3021a18f441",
+      "bytes": 60
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnFastRunLeftUpperBodySource.anim",
+      "sha256": "7c50baefea0c53b2e7bb4c42c013214541ca2a9dcddd6cb78074f6c6111b068f",
+      "bytes": 15515174
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnFastRunLeftUpperBodySource.anim.meta",
+      "sha256": "113c5d03b0eafe3a616cf8e56708a6f51b28f2d6626e65b8b5ddcf19c84472dc",
+      "bytes": 188
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnFastRunRightUpperBodySource.anim",
+      "sha256": "88ce1eb2b464f6f159451ba6a3b3c3e4c4ac744d161181478d237b1f2544a668",
+      "bytes": 15513549
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnFastRunRightUpperBodySource.anim.meta",
+      "sha256": "8cd1e5a968ab2d025d9548b0f8c89081980ecd1618ad0fd64edfe92262607fa1",
+      "bytes": 188
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnJogLeftUpperBodySource.anim",
+      "sha256": "83192a4453bd39c355182285ba262964bf0fe8889e114873cfb43772ed180753",
+      "bytes": 20078003
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnJogLeftUpperBodySource.anim.meta",
+      "sha256": "d46327827755811bfe97825d4ca79deb8c3901c0028d46646a839098ce206e2f",
+      "bytes": 188
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnJogRightUpperBodySource.anim",
+      "sha256": "99f8edd3c67de56eb73f533b7085e1fec8206b90d052872b83e3acf4846b5213",
+      "bytes": 20074274
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnJogRightUpperBodySource.anim.meta",
+      "sha256": "80f006ab2664bf8db5ee22d144397c666dd4b6fd720bb3ca4e7ea4051ac7746e",
+      "bytes": 188
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnRunLeftUpperBodySource.anim",
+      "sha256": "376b60049eb20b2c5d05d95a667f17800b33efe25c403ff55545882c710d97f8",
+      "bytes": 19288548
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnRunLeftUpperBodySource.anim.meta",
+      "sha256": "54a0905ec046ef6ad4f9afad4571ceead3d8b72057dd1816725911e5d6cd78bf",
+      "bytes": 188
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnRunRightUpperBodySource.anim",
+      "sha256": "8b4d37d2de6bb333e9ea1a5e9eef273149019e007362d8d33a7c2747b655720b",
+      "bytes": 19284643
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnRunRightUpperBodySource.anim.meta",
+      "sha256": "6ab905c36a5511617af16f4457c3595976c86562a53595d8757fcc41eac1df15",
+      "bytes": 188
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnSprintLeftUpperBodySource.anim",
+      "sha256": "b6be39e45ef523f11d49ac42db01653560197facd1de02c643934e6fa4254d94",
+      "bytes": 12769172
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnSprintLeftUpperBodySource.anim.meta",
+      "sha256": "f69ff24efd2bd58f90f289df96f5eb60df05b334a157c79927cd8b6af75136b5",
+      "bytes": 188
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnSprintRightUpperBodySource.anim",
+      "sha256": "582db310b93f07e0b8f777f964550427d536101ed320c80deb27ad29c187153b",
+      "bytes": 12767903
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnSprintRightUpperBodySource.anim.meta",
+      "sha256": "1e25db5000d76f5c6c18f21f9a0cde2fdc6e22485eb2228f584c193d81b4502b",
+      "bytes": 188
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnWalkLeftUpperBodySource.anim",
+      "sha256": "f6448b46d095fd00be3fce52b18ece332a957864b74888f15dd458f75da0dede",
+      "bytes": 31672005
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnWalkLeftUpperBodySource.anim.meta",
+      "sha256": "241e86e0539df8840917266d482d6aefdfaefa8bf19126b49dcf81fec98c7cd9",
+      "bytes": 188
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnWalkRightUpperBodySource.anim",
+      "sha256": "281d00e8372943776cc2bd5b3049985e1773d5ab3d8fb467ac353474012c003d",
+      "bytes": 31669768
+    },
+    {
+      "relative": "Assets/_Project/Art/Animations/Mixamo/Derived/MovingTurnWalkRightUpperBodySource.anim.meta",
+      "sha256": "2dc95d57df4827131614f80a0bc4559edf1a354d3e2c73f0d7a0d0d6a5790b80",
+      "bytes": 188
+    },
+    {
+      "relative": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/MovingTurnReview.asset",
+      "sha256": "4cbc4d21536afd33edc7f8bc69ec5570c8e9cd12d8acb86c30c4389998f1915c",
+      "bytes": 2417563
+    },
+    {
+      "relative": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/MovingTurnReview.asset.meta",
+      "sha256": "4c894be9029dbcdf669508598f860cb8ce71865a9858c2fdf7dd7b9a796d57a5",
+      "bytes": 189
+    },
+    {
+      "relative": "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset",
+      "sha256": "9b30b645f7ed2d99f71cd460c6b079f7dba97e7e92601c9ddbda7baa5694b9a9",
+      "bytes": 17851
+    }
+  ],
+  "formattingCorrection": "One whitespace-only empty line removed after the full series; the 24 affected pose tests were rerun and passed."
+}

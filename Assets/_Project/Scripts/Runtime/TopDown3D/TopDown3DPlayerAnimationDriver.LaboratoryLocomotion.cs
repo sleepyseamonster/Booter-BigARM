@@ -86,7 +86,7 @@ namespace BooterBigArm.TopDown3D
             forwardBound = false; forwardClock?.Reset(); forwardSpeed = forwardPreviousSpeed = 0;
             forwardPoseRenderedThisFrame = false;
             forwardTerrainApplied = false; forwardTerrainPose?.Disable();
-            forwardPoseEnvelope.Reset();
+            forwardPoseEnvelope.Reset(); ResetMovingTurns(); ClearMovingTurnDeltas();
             forwardFootEffectsProcessed = false;
             forwardPlantStart = forwardPlantCount = 0;
             if (playableGraph.IsValid()) playableGraph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
@@ -94,6 +94,8 @@ namespace BooterBigArm.TopDown3D
         private void AdvanceForwardMotion(AnimationPlaygroundGroundedMotion sample)
         {
             if (!LaboratoryForwardReady || !isActiveAndEnabled) return;
+            if (!PoseBlendOwned && (sample.Rebased || forwardMotion.Epoch != 0 && sample.Epoch != forwardMotion.Epoch)) ClearMovingTurnDeltas();
+            movingTurnDemand.Observe(sample, MovingTurnEligible && ForwardReviewSupportAvailable());
             if(JumpPresentationOwned && !motor.JumpUsesGroundedLocomotion)
             {LaboratoryDiscardedFootEffects+=forwardPlantCount;forwardPlantCount=forwardPlantStart=0;return;}
             if (!ForwardReviewSupportAvailable())
@@ -133,6 +135,7 @@ namespace BooterBigArm.TopDown3D
 
         private void PrepareForwardGraphUpdate()
         {
+            PrepareMovingTurnFrame();
             if (!JumpPresentationOwned && !DodgeRecoveryOwnsPresentation
                 && (AnimationPresentationOwned || CrouchPresentationOwned || PoseBlendOwned || motor != null && motor.IsActionConstrained))
                 ResetDirectionalPresentation();
@@ -165,6 +168,7 @@ namespace BooterBigArm.TopDown3D
                 forwardClock.Reset(); forwardPoseEnvelope.Reset();
             }
             var alpha = Mathf.Clamp01((float)((Time.timeAsDouble - Time.fixedTimeAsDouble) / Math.Max(.0001, Time.fixedDeltaTime)));
+            movingTurnPoseCurvature = MovingTurnEligible ? movingTurnDemand.RenderCurvature(alpha) : 0;
             var speed = Mathf.Lerp(forwardPreviousSpeed, forwardSpeed, alpha);
             if (!motor.IsGrounded || Time.fixedTimeAsDouble - forwardMotion.CompletedTime > .1) speed = 0;
             var cycles = forwardClock.RenderCycles(alpha, forwardSpeed, laboratoryForwardProfile);
@@ -179,6 +183,7 @@ namespace BooterBigArm.TopDown3D
 
         private void PresentForwardFrame(float speed, double cycles, float deltaTime)
         {
+            movingTurnRenderDelta = deltaTime;
             forwardIdleSeconds += deltaTime;
             var weights = forwardPoseEnvelope.SampleGaitWeights(laboratoryForwardProfile.PoseWeights(speed), speed, deltaTime);
             PresentForwardGaitPose(weights, cycles, forwardIdleSeconds);
@@ -225,6 +230,7 @@ namespace BooterBigArm.TopDown3D
                 ForwardClip(i + 1).SetTime(policy.gaits[i].SourceSeconds(cycles));
                 correction += policy.gaits[i].Height(cycles) * weights[i + 1];
             }
+            correction = ApplyMovingTurnPose(weights, cycles, correction);
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition + Vector3.up * correction,
                 Quaternion.Euler(visualLocalEulerAngles));
             if(jumpComposingUnderlay){LaboratoryForwardLift=correction;LaboratoryRenderedCycles=cycles;return;}

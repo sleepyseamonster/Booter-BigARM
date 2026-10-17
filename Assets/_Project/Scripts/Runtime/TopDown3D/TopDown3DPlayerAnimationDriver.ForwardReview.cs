@@ -82,6 +82,7 @@ namespace BooterBigArm.TopDown3D
             }
             playableGraph.Connect(forwardReviewMixer, 0, mixer, ForwardReviewInputIndex);
             mixer.SetInputWeight(ForwardReviewInputIndex, 0);
+            InitializeMovingTurnInputs();
             InitializeStandingStrafeReviewInputs();
         }
 
@@ -92,7 +93,7 @@ namespace BooterBigArm.TopDown3D
             {
                 for (var i = 0; i < ClipCount; i++) forwardReviewBaselineWeights[i] = mixer.GetInputWeight(i);
                 for (var i = 0; i < mixer.GetInputCount(); i++) mixer.SetInputWeight(i, i == ForwardReviewInputIndex ? 1 : 0);
-                for (var i = 0; i < forwardReviewMixer.GetInputCount(); i++) forwardReviewMixer.SetInputWeight(i, weights[i]);
+                for (var i = 0; i < forwardReviewMixer.GetInputCount(); i++) forwardReviewMixer.SetInputWeight(i, i < 6 ? weights[i] : 0);
                 forwardReviewOutputApplied = true;
             }
             else for (var i = 0; i < mixer.GetInputCount(); i++) mixer.SetInputWeight(i, i < 4 ? weights[i] : 0);

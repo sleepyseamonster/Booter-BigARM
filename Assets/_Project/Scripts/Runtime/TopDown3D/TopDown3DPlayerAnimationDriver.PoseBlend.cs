@@ -53,7 +53,9 @@ namespace BooterBigArm.TopDown3D
             var garmentFloor=animationGarmentFloor || poseBlendGarmentFloor;
             var dodgeProjection=animationDodgeProjection || poseBlendDodgeProjection;
             var dodgeHeading=CurrentDodgeWorldHeading();
+            var movingTurnSnapshot=CaptureMovingTurnSnapshot();
             ReleasePoseBlend();
+            RestoreMovingTurnSnapshot(movingTurnSnapshot);
             poseBlendBodyProjection=bodyProjection;
             poseBlendGarmentFloor=garmentFloor;
             poseBlendDodgeProjection=dodgeProjection;
@@ -157,6 +159,7 @@ namespace BooterBigArm.TopDown3D
         }
         private void ReleasePoseBlend()
         {
+            ReleaseMovingTurnSnapshot();
             if(playableGraph.IsValid())
             {
                 if(mixer.IsValid() && mixer.GetInputCount()>PoseBlendInputIndex)
