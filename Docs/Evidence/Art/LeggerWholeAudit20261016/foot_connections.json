@@ -1,0 +1,128 @@
+{
+  "source_sha256": "90757f7efa6811fbfd9c82c93b08a98d254f60d13d15e447e5eeab03f2db6304",
+  "native_modified": false,
+  "endpoints": [
+    {
+      "side": "L",
+      "endpoint": "forward_tie_inner",
+      "lateral_sign": -1,
+      "point_m": [
+        -0.33500000834465027,
+        -0.5649999976158142,
+        0.050999999046325684
+      ],
+      "own_component_first_vertex": 760,
+      "distance_to_own_control_surface_m": 5.972094641037984e-08,
+      "nearest_other_component_first_vertex": 992,
+      "distance_to_nearest_other_control_surface_m": 0.041282761842012405,
+      "inside_other_control_components": []
+    },
+    {
+      "side": "L",
+      "endpoint": "rear_tie_inner",
+      "lateral_sign": -1,
+      "point_m": [
+        -0.3149999976158142,
+        -0.3799999952316284,
+        0.03799999877810478
+      ],
+      "own_component_first_vertex": 944,
+      "distance_to_own_control_surface_m": 2.9802322387695312e-08,
+      "nearest_other_component_first_vertex": 0,
+      "distance_to_nearest_other_control_surface_m": 0.028213540092110634,
+      "inside_other_control_components": []
+    },
+    {
+      "side": "L",
+      "endpoint": "forward_tie_inner",
+      "lateral_sign": 1,
+      "point_m": [
+        -0.23499999940395355,
+        -0.5649999976158142,
+        0.050999999046325684
+      ],
+      "own_component_first_vertex": 256,
+      "distance_to_own_control_surface_m": 0.0,
+      "nearest_other_component_first_vertex": 488,
+      "distance_to_nearest_other_control_surface_m": 0.041282761842012405,
+      "inside_other_control_components": []
+    },
+    {
+      "side": "L",
+      "endpoint": "rear_tie_inner",
+      "lateral_sign": 1,
+      "point_m": [
+        -0.2549999952316284,
+        -0.3799999952316284,
+        0.03799999877810478
+      ],
+      "own_component_first_vertex": 440,
+      "distance_to_own_control_surface_m": 2.9802322387695312e-08,
+      "nearest_other_component_first_vertex": 0,
+      "distance_to_nearest_other_control_surface_m": 0.028213543817400932,
+      "inside_other_control_components": []
+    },
+    {
+      "side": "R",
+      "endpoint": "forward_tie_inner",
+      "lateral_sign": -1,
+      "point_m": [
+        0.23499999940395355,
+        -0.5649999976158142,
+        0.050999999046325684
+      ],
+      "own_component_first_vertex": 256,
+      "distance_to_own_control_surface_m": 1.5359765015432458e-08,
+      "nearest_other_component_first_vertex": 488,
+      "distance_to_nearest_other_control_surface_m": 0.041282761842012405,
+      "inside_other_control_components": []
+    },
+    {
+      "side": "R",
+      "endpoint": "rear_tie_inner",
+      "lateral_sign": -1,
+      "point_m": [
+        0.2549999952316284,
+        -0.3799999952316284,
+        0.03799999877810478
+      ],
+      "own_component_first_vertex": 440,
+      "distance_to_own_control_surface_m": 0.0,
+      "nearest_other_component_first_vertex": 0,
+      "distance_to_nearest_other_control_surface_m": 0.028213543817400932,
+      "inside_other_control_components": []
+    },
+    {
+      "side": "R",
+      "endpoint": "forward_tie_inner",
+      "lateral_sign": 1,
+      "point_m": [
+        0.33500000834465027,
+        -0.5649999976158142,
+        0.050999999046325684
+      ],
+      "own_component_first_vertex": 760,
+      "distance_to_own_control_surface_m": 3.725290298461914e-09,
+      "nearest_other_component_first_vertex": 992,
+      "distance_to_nearest_other_control_surface_m": 0.041282761842012405,
+      "inside_other_control_components": []
+    },
+    {
+      "side": "R",
+      "endpoint": "rear_tie_inner",
+      "lateral_sign": 1,
+      "point_m": [
+        0.3149999976158142,
+        -0.3799999952316284,
+        0.03799999877810478
+      ],
+      "own_component_first_vertex": 944,
+      "distance_to_own_control_surface_m": 0.0,
+      "nearest_other_component_first_vertex": 0,
+      "distance_to_nearest_other_control_surface_m": 0.028213540092110634,
+      "inside_other_control_components": []
+    }
+  ],
+  "method": "Read-only native control-surface BVHs, connected mesh islands, cap centers from the retained foot authoring recipe. One deterministic oblique ray parity checks each other closed component. Distances are unsigned point-to-surface measurements, not evaluated solid clearance, load certification or animation proof.",
+  "interpretation": "A cap center outside all other components and farther away than its roughly 10mm cap radius supports the visual finding of an unsupported tie-bar inner end; inspect full evaluated assembly before any repair."
+}

@@ -1,0 +1,2562 @@
+{
+  "source": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration04.blend",
+  "source_sha256_before": "90757f7efa6811fbfd9c82c93b08a98d254f60d13d15e447e5eeab03f2db6304",
+  "source_sha256_after": "90757f7efa6811fbfd9c82c93b08a98d254f60d13d15e447e5eeab03f2db6304",
+  "source_bytes": 799090806,
+  "native_saved": false,
+  "native_modified": false,
+  "scenes": 1,
+  "view_layers": 1,
+  "blender": "5.2.2 LTS",
+  "original": {
+    "name": "Legger_DetailBake_Source",
+    "evaluated_triangles": 2667021,
+    "bounds": {
+      "minimum_m": [
+        -0.42928221821784973,
+        -0.8231561183929443,
+        2.691075496841222e-05
+      ],
+      "maximum_m": [
+        0.4292934536933899,
+        0.8231605887413025,
+        2.227745294570923
+      ],
+      "dimensions_XYZ_m": [
+        0.858575701713562,
+        1.6463167667388916,
+        2.2277183532714844
+      ]
+    },
+    "texture_images": [
+      {
+        "name": "Image_0",
+        "size": [
+          4096,
+          4096
+        ],
+        "colorspace": "sRGB"
+      },
+      {
+        "name": "Image_1",
+        "size": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color"
+      },
+      {
+        "name": "Image_2",
+        "size": [
+          4096,
+          4096
+        ],
+        "colorspace": "Non-Color"
+      }
+    ],
+    "geometry_fingerprint": "8298620b1cd30dd916f2d655e3b68794406d087b32923041e2bc21c9e4e658a1"
+  },
+  "current": {
+    "major_meshes": 76,
+    "control_quads": 45762,
+    "evaluated_triangles": 146264,
+    "bounds": {
+      "minimum_m": [
+        -0.43299999833106995,
+        -0.8400000333786011,
+        1.4901161193847656e-08
+      ],
+      "maximum_m": [
+        0.43299999833106995,
+        0.7736929059028625,
+        2.2146799564361572
+      ],
+      "dimensions_XYZ_m": [
+        0.8659999966621399,
+        1.6136929988861084,
+        2.2146799564361572
+      ]
+    },
+    "active_maps": [
+      "Legger_Cargo_L_Aux_AO",
+      "Legger_Cargo_L_Aux_BaseColor",
+      "Legger_Cargo_L_Aux_Metallic",
+      "Legger_Cargo_L_Aux_Normal",
+      "Legger_Cargo_L_Aux_Roughness",
+      "Legger_Cargo_L_Main_AO",
+      "Legger_Cargo_L_Main_BaseColor",
+      "Legger_Cargo_L_Main_Metallic",
+      "Legger_Cargo_L_Main_Normal",
+      "Legger_Cargo_L_Main_Roughness",
+      "Legger_Cargo_R_Aux_AO",
+      "Legger_Cargo_R_Aux_BaseColor",
+      "Legger_Cargo_R_Aux_Metallic",
+      "Legger_Cargo_R_Aux_Normal",
+      "Legger_Cargo_R_Aux_Roughness",
+      "Legger_Cargo_R_Main_AO",
+      "Legger_Cargo_R_Main_BaseColor",
+      "Legger_Cargo_R_Main_Metallic",
+      "Legger_Cargo_R_Main_Normal",
+      "Legger_Cargo_R_Main_Roughness",
+      "Legger_Chassis_Drive_AO",
+      "Legger_FrontVolume_Steering_BaseColor",
+      "Legger_FrontVolume_Steering_Metallic",
+      "Legger_FrontVolume_Steering_Normal",
+      "Legger_FrontVolume_Steering_Roughness",
+      "Legger_FullRefine_BodyArmor_BaseColor",
+      "Legger_FullRefine_BodyArmor_Metallic",
+      "Legger_FullRefine_BodyArmor_Normal",
+      "Legger_FullRefine_BodyArmor_Roughness",
+      "Legger_FullRefine_Drive_BaseColor",
+      "Legger_FullRefine_Drive_Metallic",
+      "Legger_FullRefine_Drive_Normal",
+      "Legger_FullRefine_Drive_Roughness",
+      "Legger_FullRefine_Frame_BaseColor",
+      "Legger_FullRefine_Frame_Metallic",
+      "Legger_FullRefine_Frame_Normal",
+      "Legger_FullRefine_Frame_Roughness",
+      "Legger_FullRefine_LeftLeg_BaseColor",
+      "Legger_FullRefine_LeftLeg_Metallic",
+      "Legger_FullRefine_LeftLeg_Normal",
+      "Legger_FullRefine_LeftLeg_Roughness",
+      "Legger_FullRefine_RightLeg_BaseColor",
+      "Legger_FullRefine_RightLeg_Metallic",
+      "Legger_FullRefine_RightLeg_Normal",
+      "Legger_FullRefine_RightLeg_Roughness",
+      "Legger_FullRefine_Steering_AO",
+      "Legger_Rider_BodyArmor_AO",
+      "Legger_Rider_Frame_AO",
+      "Legger_Rider_Saddle_AO",
+      "Legger_Rider_Saddle_BaseColor",
+      "Legger_Rider_Saddle_Metallic",
+      "Legger_Rider_Saddle_Normal",
+      "Legger_Rider_Saddle_Roughness",
+      "Legger_ThreeLink_LeftLeg_AO",
+      "Legger_ThreeLink_RightLeg_AO"
+    ],
+    "all_mesh_objects": 1021,
+    "packed_image_count": 198,
+    "assembly_roots": [
+      "Legger_BodyArmor_ROOT",
+      "Legger_Cargo_L_Aux_ROOT",
+      "Legger_Cargo_L_Main_ROOT",
+      "Legger_Cargo_R_Aux_ROOT",
+      "Legger_Cargo_R_Main_ROOT",
+      "Legger_Chassis_ROOT",
+      "Legger_Drive_ROOT",
+      "Legger_LeftLeg_ROOT",
+      "Legger_RightLeg_ROOT",
+      "Legger_Saddle_ROOT",
+      "Legger_Steering_ROOT"
+    ],
+    "objects": [
+      {
+        "name": "Legger_Part_L_CargoRack",
+        "module": "Frame",
+        "parent": "Legger_Chassis_ROOT",
+        "pivot_m": [
+          0.0,
+          0.10000000149011612,
+          1.649999976158142
+        ],
+        "control_vertices": 852,
+        "control_faces": 824,
+        "all_quads": true,
+        "evaluated_triangles": 2896,
+        "bounds_m": [
+          [
+            -0.36068812012672424,
+            0.09763626009225845,
+            1.4482293128967285
+          ],
+          [
+            -0.130071222782135,
+            0.7523638010025024,
+            2.0191900730133057
+          ]
+        ],
+        "material": "Legger_FullRefine_Frame_PBR",
+        "fingerprint": "c1648503bfc0ac3590364fdd45e2f88122df52bcfd0ce4bf6bb35847eb691451"
+      },
+      {
+        "name": "Legger_Part_R_CargoRack",
+        "module": "Frame",
+        "parent": "Legger_Chassis_ROOT",
+        "pivot_m": [
+          0.0,
+          0.10000000149011612,
+          1.649999976158142
+        ],
+        "control_vertices": 852,
+        "control_faces": 824,
+        "all_quads": true,
+        "evaluated_triangles": 2896,
+        "bounds_m": [
+          [
+            0.130071222782135,
+            0.09763626009225845,
+            1.4482293128967285
+          ],
+          [
+            0.36068812012672424,
+            0.7523638010025024,
+            2.0191900730133057
+          ]
+        ],
+        "material": "Legger_FullRefine_Frame_PBR",
+        "fingerprint": "6302bba3795275164c8b3ecfdc76ff9434c58d5a06b012aa81b23671719f9e06"
+      },
+      {
+        "name": "Legger_Part_L_FrontYoke",
+        "module": "Frame",
+        "parent": "Legger_Chassis_ROOT",
+        "pivot_m": [
+          -0.14000000059604645,
+          -0.5099999904632568,
+          1.6799999475479126
+        ],
+        "control_vertices": 498,
+        "control_faces": 490,
+        "all_quads": true,
+        "evaluated_triangles": 1244,
+        "bounds_m": [
+          [
+            -0.17591428756713867,
+            -0.5569999814033508,
+            1.5299993753433228
+          ],
+          [
+            -0.10997088253498077,
+            -0.3400000035762787,
+            1.7629998922348022
+          ]
+        ],
+        "material": "Legger_FullRefine_Frame_PBR",
+        "fingerprint": "84ad9bc6369b5779d1a4e09047f5a14a4520c00b4d5dcbd0a2029547f0eebcd0"
+      },
+      {
+        "name": "Legger_Part_L_HipMount",
+        "module": "Frame",
+        "parent": "Legger_Chassis_ROOT",
+        "pivot_m": [
+          -0.17499999701976776,
+          -0.2549999952316284,
+          1.4600000381469727
+        ],
+        "control_vertices": 306,
+        "control_faces": 300,
+        "all_quads": true,
+        "evaluated_triangles": 788,
+        "bounds_m": [
+          [
+            -0.1585022658109665,
+            -0.31778472661972046,
+            1.4210000038146973
+          ],
+          [
+            -0.10399999469518661,
+            -0.06446141004562378,
+            1.6783121824264526
+          ]
+        ],
+        "material": "Legger_FullRefine_Frame_PBR",
+        "fingerprint": "ffeaeabab19da717e8520741bee65f05e0b7c383d3d89267eacdf94159187ffd"
+      },
+      {
+        "name": "Legger_Part_R_FrontYoke",
+        "module": "Frame",
+        "parent": "Legger_Chassis_ROOT",
+        "pivot_m": [
+          0.14000000059604645,
+          -0.5099999904632568,
+          1.6799999475479126
+        ],
+        "control_vertices": 498,
+        "control_faces": 490,
+        "all_quads": true,
+        "evaluated_triangles": 1244,
+        "bounds_m": [
+          [
+            0.10997088253498077,
+            -0.5569999814033508,
+            1.5299993753433228
+          ],
+          [
+            0.17591428756713867,
+            -0.3400000035762787,
+            1.7629998922348022
+          ]
+        ],
+        "material": "Legger_FullRefine_Frame_PBR",
+        "fingerprint": "827cd4bbc270a6d91f5a86a94c33a6d5604152874ce53c8647dbb30d44ac5b7d"
+      },
+      {
+        "name": "Legger_Part_R_HipMount",
+        "module": "Frame",
+        "parent": "Legger_Chassis_ROOT",
+        "pivot_m": [
+          0.17499999701976776,
+          -0.2549999952316284,
+          1.4600000381469727
+        ],
+        "control_vertices": 306,
+        "control_faces": 300,
+        "all_quads": true,
+        "evaluated_triangles": 788,
+        "bounds_m": [
+          [
+            0.10399999469518661,
+            -0.31778472661972046,
+            1.4210000038146973
+          ],
+          [
+            0.1585022658109665,
+            -0.06446141004562378,
+            1.6783121824264526
+          ]
+        ],
+        "material": "Legger_FullRefine_Frame_PBR",
+        "fingerprint": "4e9fa09de8a5b74d1064663ef82e9c63c4c53a0216eb405b980af4593b708887"
+      },
+      {
+        "name": "Legger_Part_MainFrame",
+        "module": "Frame",
+        "parent": "Legger_Chassis_ROOT",
+        "pivot_m": [
+          0.0,
+          0.10000000149011612,
+          1.649999976158142
+        ],
+        "control_vertices": 2248,
+        "control_faces": 2224,
+        "all_quads": true,
+        "evaluated_triangles": 5432,
+        "bounds_m": [
+          [
+            -0.19627968966960907,
+            -0.4247801601886749,
+            1.4614464044570923
+          ],
+          [
+            0.19627968966960907,
+            0.6130744814872742,
+            2.0939228534698486
+          ]
+        ],
+        "material": "Legger_FullRefine_Frame_PBR",
+        "fingerprint": "654eeddb05ff84b0777c73d860f26bbfccc9fabf727f28ef7429f3ffae373492"
+      },
+      {
+        "name": "Legger_Part_SeatSubframe",
+        "module": "Frame",
+        "parent": "Legger_Chassis_ROOT",
+        "pivot_m": [
+          0.0,
+          0.10000000149011612,
+          1.649999976158142
+        ],
+        "control_vertices": 1152,
+        "control_faces": 1128,
+        "all_quads": true,
+        "evaluated_triangles": 3312,
+        "bounds_m": [
+          [
+            -0.1535886973142624,
+            -0.20731785893440247,
+            1.907965898513794
+          ],
+          [
+            0.1535886973142624,
+            0.4192788898944855,
+            2.1404714584350586
+          ]
+        ],
+        "material": "Legger_FullRefine_Frame_PBR",
+        "fingerprint": "693162659394188858fcb80d13a2adfe243ae6ccd13ddd4b29e999997370e586"
+      },
+      {
+        "name": "Legger_Part_SteeringMount",
+        "module": "Frame",
+        "parent": "Legger_Chassis_ROOT",
+        "pivot_m": [
+          0.0,
+          0.10000000149011612,
+          1.649999976158142
+        ],
+        "control_vertices": 328,
+        "control_faces": 322,
+        "all_quads": true,
+        "evaluated_triangles": 1012,
+        "bounds_m": [
+          [
+            -0.14649733901023865,
+            -0.4403911530971527,
+            1.8982219696044922
+          ],
+          [
+            0.14649733901023865,
+            -0.3596162796020508,
+            2.036045551300049
+          ]
+        ],
+        "material": "Legger_FullRefine_Frame_PBR",
+        "fingerprint": "a02ab47b20d3725313c9aa7efea72d2d0d990d549c7ccbbd5d19dc0389fce2d0"
+      },
+      {
+        "name": "Legger_Part_L_Footrest",
+        "module": "Frame",
+        "parent": "Legger_Chassis_ROOT",
+        "pivot_m": [
+          0.0,
+          0.10000000149011612,
+          1.649999976158142
+        ],
+        "control_vertices": 688,
+        "control_faces": 670,
+        "all_quads": true,
+        "evaluated_triangles": 1964,
+        "bounds_m": [
+          [
+            -0.35198652744293213,
+            -0.09554717689752579,
+            1.474760890007019
+          ],
+          [
+            -0.14711883664131165,
+            0.04936634749174118,
+            1.7849085330963135
+          ]
+        ],
+        "material": "Legger_FullRefine_Frame_PBR",
+        "fingerprint": "5ab9503a55ecf25c7c889a71990bc283949baca84632e595866ab1bda891a15d"
+      },
+      {
+        "name": "Legger_Part_R_Footrest",
+        "module": "Frame",
+        "parent": "Legger_Chassis_ROOT",
+        "pivot_m": [
+          0.0,
+          0.10000000149011612,
+          1.649999976158142
+        ],
+        "control_vertices": 688,
+        "control_faces": 670,
+        "all_quads": true,
+        "evaluated_triangles": 1964,
+        "bounds_m": [
+          [
+            0.14711883664131165,
+            -0.09554717689752579,
+            1.474760890007019
+          ],
+          [
+            0.35198652744293213,
+            0.04936634749174118,
+            1.7849085330963135
+          ]
+        ],
+        "material": "Legger_FullRefine_Frame_PBR",
+        "fingerprint": "538e46045ea9d96b7d0e7b9982599434e7f027797e06dbbf2a79585dc9a052bd"
+      },
+      {
+        "name": "Legger_Part_ServiceHarness",
+        "module": "Frame",
+        "parent": "Legger_Chassis_ROOT",
+        "pivot_m": [
+          0.0,
+          0.10000000149011612,
+          1.649999976158142
+        ],
+        "control_vertices": 4184,
+        "control_faces": 4144,
+        "all_quads": true,
+        "evaluated_triangles": 11424,
+        "bounds_m": [
+          [
+            -0.2915974259376526,
+            -0.4775077998638153,
+            1.281968593597412
+          ],
+          [
+            0.2916116714477539,
+            0.7185371518135071,
+            2.1883978843688965
+          ]
+        ],
+        "material": "Legger_FullRefine_Frame_PBR",
+        "fingerprint": "6a233ba3bf575b5aae8afd75f973693587031de150e74373fd246a8b705cc490"
+      },
+      {
+        "name": "Legger_Part_DriveCore",
+        "module": "Drive",
+        "parent": "Legger_Drive_ROOT",
+        "pivot_m": [
+          0.0,
+          0.10000000149011612,
+          1.649999976158142
+        ],
+        "control_vertices": 456,
+        "control_faces": 444,
+        "all_quads": true,
+        "evaluated_triangles": 1296,
+        "bounds_m": [
+          [
+            -0.12600000202655792,
+            -0.11782508343458176,
+            1.4490469694137573
+          ],
+          [
+            0.12600000202655792,
+            0.4355693459510803,
+            1.690138816833496
+          ]
+        ],
+        "material": "Legger_FullRefine_Drive_PBR",
+        "fingerprint": "16b7da2831ac04dffaa37ca78ed1f3ea75b798aa1ab34de3c33c4759aa6a18b2"
+      },
+      {
+        "name": "Legger_Part_SpineHousing",
+        "module": "Drive",
+        "parent": "Legger_Drive_ROOT",
+        "pivot_m": [
+          0.0,
+          0.10000000149011612,
+          1.649999976158142
+        ],
+        "control_vertices": 508,
+        "control_faces": 486,
+        "all_quads": true,
+        "evaluated_triangles": 1644,
+        "bounds_m": [
+          [
+            -0.08992115408182144,
+            -0.23128768801689148,
+            1.7195804119110107
+          ],
+          [
+            0.08992115408182144,
+            0.4707854092121124,
+            1.9636768102645874
+          ]
+        ],
+        "material": "Legger_FullRefine_Drive_PBR",
+        "fingerprint": "f6bf12cf23acea091fc1e19572efa222a0936ac433dca3d23cb0632bfecffba7"
+      },
+      {
+        "name": "Legger_Part_L_DrivePod",
+        "module": "Drive",
+        "parent": "Legger_Drive_ROOT",
+        "pivot_m": [
+          0.0,
+          0.10000000149011612,
+          1.649999976158142
+        ],
+        "control_vertices": 584,
+        "control_faces": 576,
+        "all_quads": true,
+        "evaluated_triangles": 1646,
+        "bounds_m": [
+          [
+            -0.18000000715255737,
+            -0.02556747943162918,
+            1.444000005722046
+          ],
+          [
+            -0.11122338473796844,
+            0.3108164966106415,
+            1.640775203704834
+          ]
+        ],
+        "material": "Legger_FullRefine_Drive_PBR",
+        "fingerprint": "513ea8374b336fbc016aa6ddc0db6adba0734af0dc2f83891c1960075f47e9a8"
+      },
+      {
+        "name": "Legger_Part_R_DrivePod",
+        "module": "Drive",
+        "parent": "Legger_Drive_ROOT",
+        "pivot_m": [
+          0.0,
+          0.10000000149011612,
+          1.649999976158142
+        ],
+        "control_vertices": 584,
+        "control_faces": 576,
+        "all_quads": true,
+        "evaluated_triangles": 1646,
+        "bounds_m": [
+          [
+            0.11122338473796844,
+            -0.025567464530467987,
+            1.444000005722046
+          ],
+          [
+            0.18000000715255737,
+            0.3108164966106415,
+            1.640775203704834
+          ]
+        ],
+        "material": "Legger_FullRefine_Drive_PBR",
+        "fingerprint": "0cdf9a4303b7dfafc47b565c9c5315c28f4a167ae0fa3a6b65961d685245b2ea"
+      },
+      {
+        "name": "Legger_Part_RearCoolingHousing",
+        "module": "Drive",
+        "parent": "Legger_Drive_ROOT",
+        "pivot_m": [
+          0.0,
+          0.10000000149011612,
+          1.649999976158142
+        ],
+        "control_vertices": 448,
+        "control_faces": 428,
+        "all_quads": true,
+        "evaluated_triangles": 1252,
+        "bounds_m": [
+          [
+            -0.10327199846506119,
+            0.34995201230049133,
+            1.9567501544952393
+          ],
+          [
+            0.10327199846506119,
+            0.7736929059028625,
+            2.1722981929779053
+          ]
+        ],
+        "material": "Legger_FullRefine_Drive_PBR",
+        "fingerprint": "aa68fafa730fb7bb6ed9d4dbfff0dc9ed5f542c69e7d03c691a2585f252e25c5"
+      },
+      {
+        "name": "Legger_Part_L_HipJoint",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.17499999701976776,
+          -0.2549999952316284,
+          1.4600000381469727
+        ],
+        "control_vertices": 598,
+        "control_faces": 592,
+        "all_quads": true,
+        "evaluated_triangles": 1552,
+        "bounds_m": [
+          [
+            -0.23399999737739563,
+            -0.3369999825954437,
+            1.378000020980835
+          ],
+          [
+            -0.11899999529123306,
+            -0.1730000078678131,
+            1.5420000553131104
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "7d8564739cb7e0b21ee99233034c408c8c2dc7a5bf9cfdb2e5d35c9483e1e36f"
+      },
+      {
+        "name": "Legger_Part_L_KneeJoint",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.20499999821186066,
+          -0.39500001072883606,
+          1.2050000429153442
+        ],
+        "control_vertices": 784,
+        "control_faces": 774,
+        "all_quads": true,
+        "evaluated_triangles": 2058,
+        "bounds_m": [
+          [
+            -0.29100000858306885,
+            -0.4610000252723694,
+            1.1340000629425049
+          ],
+          [
+            -0.15000000596046448,
+            -0.33100003004074097,
+            1.2740000486373901
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "ec5fb5ceae88c9b6c356b4a8218ac2d42bab03d50e3f4c2380c3b67fc5bde6e2"
+      },
+      {
+        "name": "Legger_Part_L_HockJoint",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.2549999952316284,
+          -0.20999999344348907,
+          0.6800000071525574
+        ],
+        "control_vertices": 598,
+        "control_faces": 592,
+        "all_quads": true,
+        "evaluated_triangles": 1552,
+        "bounds_m": [
+          [
+            -0.33399999141693115,
+            -0.2889999747276306,
+            0.6010000109672546
+          ],
+          [
+            -0.17899999022483826,
+            -0.13099999725818634,
+            0.7590000033378601
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "a3a1833edb6542c2b7ce1b427c2c0150016975a6b4cf8e19923f368ba2ca5057"
+      },
+      {
+        "name": "Legger_Part_L_AnkleJoint",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.2849999964237213,
+          -0.5,
+          0.23500001430511475
+        ],
+        "control_vertices": 598,
+        "control_faces": 592,
+        "all_quads": true,
+        "evaluated_triangles": 1552,
+        "bounds_m": [
+          [
+            -0.3569999933242798,
+            -0.5600000023841858,
+            0.17500002682209015
+          ],
+          [
+            -0.21599999070167542,
+            -0.4399999976158142,
+            0.29500001668930054
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "d14c8a7816cabf1168315c721e20fd4a68228a56bac4c71fecd0832000fe4b38"
+      },
+      {
+        "name": "Legger_Part_L_UpperLinkFrame",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.17499999701976776,
+          -0.2549999952316284,
+          1.4600000381469727
+        ],
+        "control_vertices": 152,
+        "control_faces": 148,
+        "all_quads": true,
+        "evaluated_triangles": 408,
+        "bounds_m": [
+          [
+            -0.22886435687541962,
+            -0.4027543365955353,
+            1.201005458831787
+          ],
+          [
+            -0.14488990604877472,
+            -0.2188737839460373,
+            1.4612812995910645
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "ddf77a0c12cf4fbb855f935ce60e6f8fd979489f5f9d1f9d2542944b92582ec4"
+      },
+      {
+        "name": "Legger_Part_L_UpperLinkShell",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.17499999701976776,
+          -0.2549999952316284,
+          1.4600000381469727
+        ],
+        "control_vertices": 540,
+        "control_faces": 538,
+        "all_quads": true,
+        "evaluated_triangles": 1568,
+        "bounds_m": [
+          [
+            -0.25681695342063904,
+            -0.43072283267974854,
+            1.208438515663147
+          ],
+          [
+            -0.11941758543252945,
+            -0.171625554561615,
+            1.5808991193771362
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "2fc202fb63468281450afb3f36469cb28494e36a24d4722ab28efc514c826c98"
+      },
+      {
+        "name": "Legger_Part_L_MiddleLinkFrame",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.20499999821186066,
+          -0.39500001072883606,
+          1.2050000429153442
+        ],
+        "control_vertices": 444,
+        "control_faces": 430,
+        "all_quads": true,
+        "evaluated_triangles": 1228,
+        "bounds_m": [
+          [
+            -0.27774643898010254,
+            -0.4086657166481018,
+            0.7044344544410706
+          ],
+          [
+            -0.17329098284244537,
+            -0.15600208938121796,
+            1.1990540027618408
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "b42c77189e87f8bbfad084e1c14af24e2223bb4ccb4496414d0d813e7ee4e55c"
+      },
+      {
+        "name": "Legger_Part_L_MiddleLinkShell",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.20499999821186066,
+          -0.39500001072883606,
+          1.2050000429153442
+        ],
+        "control_vertices": 710,
+        "control_faces": 706,
+        "all_quads": true,
+        "evaluated_triangles": 2260,
+        "bounds_m": [
+          [
+            -0.310619056224823,
+            -0.4527253806591034,
+            0.7130303382873535
+          ],
+          [
+            -0.1498832106590271,
+            -0.20799590647220612,
+            1.2009806632995605
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "937b413c79f47ccfb5cfc383b9bf2b266da1c845b6c8565acbed1f1e2698f2de"
+      },
+      {
+        "name": "Legger_Part_L_MiddleLinkActuatorBarrel",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.1920761913061142,
+          -0.3052709996700287,
+          1.1639935970306396
+        ],
+        "control_vertices": 172,
+        "control_faces": 170,
+        "all_quads": true,
+        "evaluated_triangles": 380,
+        "bounds_m": [
+          [
+            -0.23635348677635193,
+            -0.31733953952789307,
+            0.8967577219009399
+          ],
+          [
+            -0.17623279988765717,
+            -0.1962120085954666,
+            1.1679469347000122
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "c8c07766bede1f522c0a3da0d9ebd5ce06cbcc8193ef127f30332d3c6360adc2"
+      },
+      {
+        "name": "Legger_Part_L_MiddleLinkActuatorRod",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.22957618534564972,
+          -0.16652098298072815,
+          0.7702437043190002
+        ],
+        "control_vertices": 116,
+        "control_faces": 112,
+        "all_quads": true,
+        "evaluated_triangles": 352,
+        "bounds_m": [
+          [
+            -0.24228696525096893,
+            -0.22710607945919037,
+            0.7578359246253967
+          ],
+          [
+            -0.2080211639404297,
+            -0.15235134959220886,
+            0.9260602593421936
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "f316ddea012e0f67f4fd8fb48112905e68da47d39c0573f513e095b00a864932"
+      },
+      {
+        "name": "Legger_Part_L_LowerLinkFrame",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.2549999952316284,
+          -0.20999999344348907,
+          0.6800000071525574
+        ],
+        "control_vertices": 436,
+        "control_faces": 422,
+        "all_quads": true,
+        "evaluated_triangles": 1212,
+        "bounds_m": [
+          [
+            -0.3090505599975586,
+            -0.49758708477020264,
+            0.24080488085746765
+          ],
+          [
+            -0.220435231924057,
+            -0.1753641963005066,
+            0.674238920211792
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "60750b028934bcd3ccbe452aae63bfeba9e4d98b986bfd24cd481e5e5469d74c"
+      },
+      {
+        "name": "Legger_Part_L_LowerLinkShell",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.2549999952316284,
+          -0.20999999344348907,
+          0.6800000071525574
+        ],
+        "control_vertices": 680,
+        "control_faces": 676,
+        "all_quads": true,
+        "evaluated_triangles": 2184,
+        "bounds_m": [
+          [
+            -0.33427441120147705,
+            -0.510587215423584,
+            0.2566908299922943
+          ],
+          [
+            -0.2124086320400238,
+            -0.19184234738349915,
+            0.6896135807037354
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "bf059507d90d8b0dd60b4c43b8b18a6bc5eca4d7001dfa4d2594199bab5f4a40"
+      },
+      {
+        "name": "Legger_Part_L_LowerLinkActuatorBarrel",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.23963023722171783,
+          -0.18590132892131805,
+          0.5869377851486206
+        ],
+        "control_vertices": 172,
+        "control_faces": 170,
+        "all_quads": true,
+        "evaluated_triangles": 380,
+        "bounds_m": [
+          [
+            -0.27417197823524475,
+            -0.3439449965953827,
+            0.35784560441970825
+          ],
+          [
+            -0.22337768971920013,
+            -0.17599162459373474,
+            0.5932925343513489
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "cb50db40fe3f4114d3d24326da97d71951c44a8005823135b3e87a99df41165b"
+      },
+      {
+        "name": "Legger_Part_L_LowerLinkActuatorRod",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.2621302306652069,
+          -0.40340134501457214,
+          0.2531876564025879
+        ],
+        "control_vertices": 116,
+        "control_faces": 112,
+        "all_quads": true,
+        "evaluated_triangles": 352,
+        "bounds_m": [
+          [
+            -0.2745652198791504,
+            -0.41809049248695374,
+            0.23927412927150726
+          ],
+          [
+            -0.2464069277048111,
+            -0.31296035647392273,
+            0.38699573278427124
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "546cc25cef13cd19c7167dd7fba2ab648cd4b0ed6ee5632237950d6dce558d42"
+      },
+      {
+        "name": "Legger_Part_L_Foot",
+        "module": "LeftLeg",
+        "parent": "Legger_LeftLeg_ROOT",
+        "pivot_m": [
+          -0.2849999964237213,
+          -0.5,
+          0.23500001430511475
+        ],
+        "control_vertices": 1358,
+        "control_faces": 1318,
+        "all_quads": true,
+        "evaluated_triangles": 3812,
+        "bounds_m": [
+          [
+            -0.43299999833106995,
+            -0.8400000333786011,
+            1.4901161193847656e-08
+          ],
+          [
+            -0.13699999451637268,
+            -0.1599999964237213,
+            0.23400001227855682
+          ]
+        ],
+        "material": "Legger_FullRefine_LeftLeg_PBR",
+        "fingerprint": "c8c5a488c87a52f919f5fce734775458b34c4d94bebf83b279ce4aaa52823b35"
+      },
+      {
+        "name": "Legger_Part_R_HipJoint",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.17499999701976776,
+          -0.2549999952316284,
+          1.4600000381469727
+        ],
+        "control_vertices": 598,
+        "control_faces": 592,
+        "all_quads": true,
+        "evaluated_triangles": 1552,
+        "bounds_m": [
+          [
+            0.11899999529123306,
+            -0.3369999825954437,
+            1.378000020980835
+          ],
+          [
+            0.23399999737739563,
+            -0.1730000078678131,
+            1.5420000553131104
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "b7cd6532813654daa5533705e38a888350706312f1c2c8bf04eba4ef1a6fd09a"
+      },
+      {
+        "name": "Legger_Part_R_KneeJoint",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.20499999821186066,
+          -0.39500001072883606,
+          1.2050000429153442
+        ],
+        "control_vertices": 784,
+        "control_faces": 774,
+        "all_quads": true,
+        "evaluated_triangles": 2058,
+        "bounds_m": [
+          [
+            0.15000000596046448,
+            -0.4610000252723694,
+            1.1340000629425049
+          ],
+          [
+            0.29100000858306885,
+            -0.33100003004074097,
+            1.2740000486373901
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "dd4af8b667a6199120126e454aab933db78682cf0e61ca304b2218bb6f656e87"
+      },
+      {
+        "name": "Legger_Part_R_HockJoint",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.2549999952316284,
+          -0.20999999344348907,
+          0.6800000071525574
+        ],
+        "control_vertices": 598,
+        "control_faces": 592,
+        "all_quads": true,
+        "evaluated_triangles": 1552,
+        "bounds_m": [
+          [
+            0.17899999022483826,
+            -0.2889999747276306,
+            0.6010000109672546
+          ],
+          [
+            0.33399999141693115,
+            -0.13099999725818634,
+            0.7590000033378601
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "95d178c6fed3e48768b162ddbde1aaeccb32119ae2b99ee3742370a06fa855c1"
+      },
+      {
+        "name": "Legger_Part_R_AnkleJoint",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.2849999964237213,
+          -0.5,
+          0.23500001430511475
+        ],
+        "control_vertices": 598,
+        "control_faces": 592,
+        "all_quads": true,
+        "evaluated_triangles": 1552,
+        "bounds_m": [
+          [
+            0.21599999070167542,
+            -0.5600000023841858,
+            0.17500002682209015
+          ],
+          [
+            0.3569999933242798,
+            -0.4399999976158142,
+            0.29500001668930054
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "7ed3397d14b2db519db1b0c99ef46f2a1e53e8fd99f8a765c45a1fb844b3330f"
+      },
+      {
+        "name": "Legger_Part_R_UpperLinkFrame",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.17499999701976776,
+          -0.2549999952316284,
+          1.4600000381469727
+        ],
+        "control_vertices": 152,
+        "control_faces": 148,
+        "all_quads": true,
+        "evaluated_triangles": 408,
+        "bounds_m": [
+          [
+            0.14488990604877472,
+            -0.4027543365955353,
+            1.201005458831787
+          ],
+          [
+            0.22886435687541962,
+            -0.2188737839460373,
+            1.4612812995910645
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "fb33e4bf04f1deb190e70f730316fa407355aca2a914bdcca6131a2541109eea"
+      },
+      {
+        "name": "Legger_Part_R_UpperLinkShell",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.17499999701976776,
+          -0.2549999952316284,
+          1.4600000381469727
+        ],
+        "control_vertices": 540,
+        "control_faces": 538,
+        "all_quads": true,
+        "evaluated_triangles": 1568,
+        "bounds_m": [
+          [
+            0.11941758543252945,
+            -0.43072283267974854,
+            1.208438515663147
+          ],
+          [
+            0.25681695342063904,
+            -0.171625554561615,
+            1.5808991193771362
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "3edb03dc97bdb5ba4a8a8ef1702fba5943e692cb383136a001574040fa3dc27c"
+      },
+      {
+        "name": "Legger_Part_R_MiddleLinkFrame",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.20499999821186066,
+          -0.39500001072883606,
+          1.2050000429153442
+        ],
+        "control_vertices": 444,
+        "control_faces": 430,
+        "all_quads": true,
+        "evaluated_triangles": 1228,
+        "bounds_m": [
+          [
+            0.17329098284244537,
+            -0.4086657166481018,
+            0.7044344544410706
+          ],
+          [
+            0.27774643898010254,
+            -0.15600208938121796,
+            1.1990540027618408
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "8d24b0b10542c6fce32b5b5b23bc5e1fe370b0ef0199b3705e3ba508a3295316"
+      },
+      {
+        "name": "Legger_Part_R_MiddleLinkShell",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.20499999821186066,
+          -0.39500001072883606,
+          1.2050000429153442
+        ],
+        "control_vertices": 710,
+        "control_faces": 706,
+        "all_quads": true,
+        "evaluated_triangles": 2260,
+        "bounds_m": [
+          [
+            0.1498832106590271,
+            -0.4527253806591034,
+            0.7130303382873535
+          ],
+          [
+            0.310619056224823,
+            -0.20799751579761505,
+            1.20098876953125
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "d653a5cbbda472a27c72b29bfe0fceaaaefd81c3dc3117baab8463375628e8b2"
+      },
+      {
+        "name": "Legger_Part_R_MiddleLinkActuatorBarrel",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.1920761913061142,
+          -0.3052709996700287,
+          1.1639935970306396
+        ],
+        "control_vertices": 172,
+        "control_faces": 170,
+        "all_quads": true,
+        "evaluated_triangles": 380,
+        "bounds_m": [
+          [
+            0.17623279988765717,
+            -0.31733953952789307,
+            0.8967577219009399
+          ],
+          [
+            0.23635348677635193,
+            -0.1962120085954666,
+            1.1679469347000122
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "fa06ca4fadeaa48545839c4b81011ba8a1707932723cbb215da785f540d8ad53"
+      },
+      {
+        "name": "Legger_Part_R_MiddleLinkActuatorRod",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.22957618534564972,
+          -0.16652098298072815,
+          0.7702437043190002
+        ],
+        "control_vertices": 116,
+        "control_faces": 112,
+        "all_quads": true,
+        "evaluated_triangles": 352,
+        "bounds_m": [
+          [
+            0.2080211639404297,
+            -0.22710607945919037,
+            0.7578359246253967
+          ],
+          [
+            0.24228696525096893,
+            -0.15235134959220886,
+            0.9260602593421936
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "b52f38565cac2e9cb2f6f84a35c30e1a36bc99094035e59b48f28e5447ba7aa4"
+      },
+      {
+        "name": "Legger_Part_R_LowerLinkFrame",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.2549999952316284,
+          -0.20999999344348907,
+          0.6800000071525574
+        ],
+        "control_vertices": 436,
+        "control_faces": 422,
+        "all_quads": true,
+        "evaluated_triangles": 1212,
+        "bounds_m": [
+          [
+            0.220435231924057,
+            -0.49758708477020264,
+            0.24080488085746765
+          ],
+          [
+            0.3090505599975586,
+            -0.1753641963005066,
+            0.674238920211792
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "b16e7794a8d7800b8355c075c6734afcf58ff87e33f5f8533e3c224e3d4d4b94"
+      },
+      {
+        "name": "Legger_Part_R_LowerLinkShell",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.2549999952316284,
+          -0.20999999344348907,
+          0.6800000071525574
+        ],
+        "control_vertices": 680,
+        "control_faces": 676,
+        "all_quads": true,
+        "evaluated_triangles": 2184,
+        "bounds_m": [
+          [
+            0.2124086320400238,
+            -0.510587215423584,
+            0.25669077038764954
+          ],
+          [
+            0.33427441120147705,
+            -0.19184234738349915,
+            0.6896135807037354
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "59881e7db4c2f8d1d7eb3db754752c92282b025cf0b6af193e247982ad98ffec"
+      },
+      {
+        "name": "Legger_Part_R_LowerLinkActuatorBarrel",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.23963023722171783,
+          -0.18590132892131805,
+          0.5869377851486206
+        ],
+        "control_vertices": 172,
+        "control_faces": 170,
+        "all_quads": true,
+        "evaluated_triangles": 380,
+        "bounds_m": [
+          [
+            0.22337768971920013,
+            -0.3439449965953827,
+            0.35784560441970825
+          ],
+          [
+            0.27417197823524475,
+            -0.17599162459373474,
+            0.5932925343513489
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "af691c885e66567c8b84f8d6b71f7582731cc91c712e76a83d1b43491644eb0c"
+      },
+      {
+        "name": "Legger_Part_R_LowerLinkActuatorRod",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.2621302306652069,
+          -0.40340134501457214,
+          0.2531876564025879
+        ],
+        "control_vertices": 116,
+        "control_faces": 112,
+        "all_quads": true,
+        "evaluated_triangles": 352,
+        "bounds_m": [
+          [
+            0.2464069277048111,
+            -0.41809049248695374,
+            0.23927412927150726
+          ],
+          [
+            0.2745652198791504,
+            -0.31296035647392273,
+            0.38699573278427124
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "537bc14a14b359caa6a46dc2c2ce4e172f0065a0b92fa4f87a9ee181859a8de4"
+      },
+      {
+        "name": "Legger_Part_R_Foot",
+        "module": "RightLeg",
+        "parent": "Legger_RightLeg_ROOT",
+        "pivot_m": [
+          0.2849999964237213,
+          -0.5,
+          0.23500001430511475
+        ],
+        "control_vertices": 1358,
+        "control_faces": 1318,
+        "all_quads": true,
+        "evaluated_triangles": 3812,
+        "bounds_m": [
+          [
+            0.13699999451637268,
+            -0.8400000333786011,
+            1.4901161193847656e-08
+          ],
+          [
+            0.43299999833106995,
+            -0.1599999964237213,
+            0.23400001227855682
+          ]
+        ],
+        "material": "Legger_FullRefine_RightLeg_PBR",
+        "fingerprint": "21ee7b05eca6f3b68bdbabd63b76ff73466fd601f23eec8ab2bd940afaf9e95b"
+      },
+      {
+        "name": "Legger_Part_L_tail_shroud",
+        "module": "BodyArmor",
+        "parent": "Legger_BodyArmor_ROOT",
+        "pivot_m": [
+          -0.13600003719329834,
+          0.4699999988079071,
+          1.8883336782455444
+        ],
+        "control_vertices": 432,
+        "control_faces": 428,
+        "all_quads": true,
+        "evaluated_triangles": 1530,
+        "bounds_m": [
+          [
+            -0.1838962286710739,
+            0.3126751780509949,
+            1.9397183656692505
+          ],
+          [
+            -0.08818067610263824,
+            0.7470859289169312,
+            2.1618847846984863
+          ]
+        ],
+        "material": "Legger_FullRefine_BodyArmor_PBR",
+        "fingerprint": "225e177a6022cd33c4e1ef44596c6911494b502751c150ec07308434cbc271b9"
+      },
+      {
+        "name": "Legger_Part_R_tail_shroud",
+        "module": "BodyArmor",
+        "parent": "Legger_BodyArmor_ROOT",
+        "pivot_m": [
+          0.13600003719329834,
+          0.4700000286102295,
+          1.8883335590362549
+        ],
+        "control_vertices": 432,
+        "control_faces": 428,
+        "all_quads": true,
+        "evaluated_triangles": 1530,
+        "bounds_m": [
+          [
+            0.08818068355321884,
+            0.3126716911792755,
+            1.9397183656692505
+          ],
+          [
+            0.1838962286710739,
+            0.7473058104515076,
+            2.1618847846984863
+          ]
+        ],
+        "material": "Legger_FullRefine_BodyArmor_PBR",
+        "fingerprint": "c2c70cf71d4c7103c2d491473c906d9fa4ab5116f26f3260031f65b19f9c0e3d"
+      },
+      {
+        "name": "Legger_Part_L_upper_body_shroud",
+        "module": "BodyArmor",
+        "parent": "Legger_BodyArmor_ROOT",
+        "pivot_m": [
+          -0.15224994719028473,
+          0.03999998793005943,
+          1.883750319480896
+        ],
+        "control_vertices": 1324,
+        "control_faces": 1318,
+        "all_quads": true,
+        "evaluated_triangles": 4348,
+        "bounds_m": [
+          [
+            -0.14682337641716003,
+            -0.30126550793647766,
+            1.8564456701278687
+          ],
+          [
+            -0.06850022077560425,
+            0.3381563127040863,
+            2.075516939163208
+          ]
+        ],
+        "material": "Legger_FullRefine_BodyArmor_PBR",
+        "fingerprint": "f4bddab5a6b08b09388b3414be08e9bd38dc21842461809fb2fc68f0e533b730"
+      },
+      {
+        "name": "Legger_Part_L_front_fairing",
+        "module": "BodyArmor",
+        "parent": "Legger_BodyArmor_ROOT",
+        "pivot_m": [
+          -0.1615000069141388,
+          -0.44600003957748413,
+          1.783000111579895
+        ],
+        "control_vertices": 838,
+        "control_faces": 830,
+        "all_quads": true,
+        "evaluated_triangles": 3044,
+        "bounds_m": [
+          [
+            -0.15319228172302246,
+            -0.723971426486969,
+            1.6433573961257935
+          ],
+          [
+            -0.01808278262615204,
+            -0.43147727847099304,
+            2.049642562866211
+          ]
+        ],
+        "material": "Legger_FullRefine_BodyArmor_PBR",
+        "fingerprint": "39f865789d3ed41a2921e332a3ff55b259655472f70bcbc5d6fa72df7ec1ba74"
+      },
+      {
+        "name": "Legger_Part_R_upper_body_shroud",
+        "module": "BodyArmor",
+        "parent": "Legger_BodyArmor_ROOT",
+        "pivot_m": [
+          0.15224994719028473,
+          0.03999999165534973,
+          1.8837502002716064
+        ],
+        "control_vertices": 1324,
+        "control_faces": 1318,
+        "all_quads": true,
+        "evaluated_triangles": 4348,
+        "bounds_m": [
+          [
+            0.06850022077560425,
+            -0.30126601457595825,
+            1.8564456701278687
+          ],
+          [
+            0.14682337641716003,
+            0.3381563127040863,
+            2.075516939163208
+          ]
+        ],
+        "material": "Legger_FullRefine_BodyArmor_PBR",
+        "fingerprint": "609901d8241e2b12f6500880a3269ac890797d0d0933dac9fc4c86a79d16dd43"
+      },
+      {
+        "name": "Legger_Part_R_front_fairing",
+        "module": "BodyArmor",
+        "parent": "Legger_BodyArmor_ROOT",
+        "pivot_m": [
+          0.1615000069141388,
+          -0.44600003957748413,
+          1.783000111579895
+        ],
+        "control_vertices": 838,
+        "control_faces": 830,
+        "all_quads": true,
+        "evaluated_triangles": 3044,
+        "bounds_m": [
+          [
+            0.01808278262615204,
+            -0.723971426486969,
+            1.6433573961257935
+          ],
+          [
+            0.15319228172302246,
+            -0.43147727847099304,
+            2.049642562866211
+          ]
+        ],
+        "material": "Legger_FullRefine_BodyArmor_PBR",
+        "fingerprint": "d978d63d59e775be029784331f99e08c68c5b18f93841645553313021be20959"
+      },
+      {
+        "name": "Legger_Part_FrontTankCowling",
+        "module": "BodyArmor",
+        "parent": "Legger_BodyArmor_ROOT",
+        "pivot_m": [
+          0.0,
+          -0.3100000023841858,
+          2.009999990463257
+        ],
+        "control_vertices": 456,
+        "control_faces": 452,
+        "all_quads": true,
+        "evaluated_triangles": 1756,
+        "bounds_m": [
+          [
+            -0.12898918986320496,
+            -0.642663836479187,
+            1.9102977514266968
+          ],
+          [
+            0.12898920476436615,
+            -0.18746230006217957,
+            2.055999994277954
+          ]
+        ],
+        "material": "Legger_FullRefine_BodyArmor_PBR",
+        "fingerprint": "2053888d43ccad348b579149f3dc70df1f826113252d652faf8af865f13fe670"
+      },
+      {
+        "name": "Legger_Part_SaddleUpholstery",
+        "module": "Saddle",
+        "parent": "Legger_Saddle_ROOT",
+        "pivot_m": [
+          0.0,
+          0.11999999731779099,
+          1.9700000286102295
+        ],
+        "control_vertices": 1232,
+        "control_faces": 1226,
+        "all_quads": true,
+        "evaluated_triangles": 2944,
+        "bounds_m": [
+          [
+            -0.13172438740730286,
+            -0.2088622748851776,
+            1.9438889026641846
+          ],
+          [
+            0.13172438740730286,
+            0.34774985909461975,
+            2.197999954223633
+          ]
+        ],
+        "material": "Legger_Rider_Saddle_PBR",
+        "fingerprint": "928fa3880c11f12eac143d941974628ce04ccde6c6dffb9a7d5bf52f25a6f177"
+      },
+      {
+        "name": "Legger_Part_SaddlePan",
+        "module": "Saddle",
+        "parent": "Legger_Saddle_ROOT",
+        "pivot_m": [
+          0.0,
+          0.11999999731779099,
+          1.9500000476837158
+        ],
+        "control_vertices": 1442,
+        "control_faces": 1432,
+        "all_quads": true,
+        "evaluated_triangles": 4240,
+        "bounds_m": [
+          [
+            -0.13285958766937256,
+            -0.210997074842453,
+            1.9278916120529175
+          ],
+          [
+            0.13285958766937256,
+            0.3483372926712036,
+            2.1669363975524902
+          ]
+        ],
+        "material": "Legger_Rider_Saddle_PBR",
+        "fingerprint": "5eec3ac67cc3e7557d8d58875b170916659c8ce46a5a4ad822095a49d6bb5251"
+      },
+      {
+        "name": "Legger_Part_FrontControlPod",
+        "module": "Steering",
+        "parent": "Legger_Steering_ROOT",
+        "pivot_m": [
+          0.0,
+          -0.5680000185966492,
+          1.9099998474121094
+        ],
+        "control_vertices": 706,
+        "control_faces": 696,
+        "all_quads": true,
+        "evaluated_triangles": 2912,
+        "bounds_m": [
+          [
+            -0.09221143275499344,
+            -0.7639999985694885,
+            1.5750000476837158
+          ],
+          [
+            0.09221143275499344,
+            -0.3654285669326782,
+            2.1050000190734863
+          ]
+        ],
+        "material": "Legger_FrontVolume_Steering_PBR",
+        "fingerprint": "70a3d6386858809223229a6d15b28249db2ed5c9d2ab0c4b77e5b7c2924e7165"
+      },
+      {
+        "name": "Legger_Part_SteeringStem",
+        "module": "Steering",
+        "parent": "Legger_Steering_ROOT",
+        "pivot_m": [
+          0.0,
+          -0.4049999713897705,
+          1.9899998903274536
+        ],
+        "control_vertices": 226,
+        "control_faces": 220,
+        "all_quads": true,
+        "evaluated_triangles": 632,
+        "bounds_m": [
+          [
+            -0.056427739560604095,
+            -0.46536189317703247,
+            1.9970935583114624
+          ],
+          [
+            0.056427739560604095,
+            -0.3914443254470825,
+            2.186347484588623
+          ]
+        ],
+        "material": "Legger_FrontVolume_Steering_PBR",
+        "fingerprint": "89d7352e185a70d148f73526c0b02cb05517f26b1886855683588dd9d6565297"
+      },
+      {
+        "name": "Legger_Part_L_Grip",
+        "module": "Steering",
+        "parent": "Legger_Steering_ROOT",
+        "pivot_m": [
+          -0.30000001192092896,
+          -0.3019999563694,
+          2.183000087738037
+        ],
+        "control_vertices": 378,
+        "control_faces": 374,
+        "all_quads": true,
+        "evaluated_triangles": 1148,
+        "bounds_m": [
+          [
+            -0.42648276686668396,
+            -0.3165460526943207,
+            2.162552833557129
+          ],
+          [
+            -0.2917373776435852,
+            -0.2181737720966339,
+            2.2034473419189453
+          ]
+        ],
+        "material": "Legger_FrontVolume_Steering_PBR",
+        "fingerprint": "a86d13afda8120a4e187c3bf3bdb8e47c504a9efcdd01531e134cebd7362d443"
+      },
+      {
+        "name": "Legger_Part_L_BrakeLever",
+        "module": "Steering",
+        "parent": "Legger_Steering_ROOT",
+        "pivot_m": [
+          -0.28200000524520874,
+          -0.5009999871253967,
+          2.0999999046325684
+        ],
+        "control_vertices": 130,
+        "control_faces": 126,
+        "all_quads": true,
+        "evaluated_triangles": 402,
+        "bounds_m": [
+          [
+            -0.39866387844085693,
+            -0.3710530400276184,
+            2.1633334159851074
+          ],
+          [
+            -0.2709999978542328,
+            -0.29721230268478394,
+            2.190999984741211
+          ]
+        ],
+        "material": "Legger_FrontVolume_Steering_PBR",
+        "fingerprint": "15bea8d2a454818bd648b3b45e1da8b6e6f9ebc12b4170a1164ef4a4c35cae9a"
+      },
+      {
+        "name": "Legger_Part_R_Grip",
+        "module": "Steering",
+        "parent": "Legger_Steering_ROOT",
+        "pivot_m": [
+          0.30000001192092896,
+          -0.3019999563694,
+          2.183000087738037
+        ],
+        "control_vertices": 378,
+        "control_faces": 374,
+        "all_quads": true,
+        "evaluated_triangles": 1148,
+        "bounds_m": [
+          [
+            0.2917373776435852,
+            -0.3165460526943207,
+            2.162552833557129
+          ],
+          [
+            0.42648276686668396,
+            -0.2181737720966339,
+            2.2034473419189453
+          ]
+        ],
+        "material": "Legger_FrontVolume_Steering_PBR",
+        "fingerprint": "126fb2f77dfd8032d3be759ad45185aa02affdb734e0880b2011052d484a73aa"
+      },
+      {
+        "name": "Legger_Part_R_BrakeLever",
+        "module": "Steering",
+        "parent": "Legger_Steering_ROOT",
+        "pivot_m": [
+          0.28200000524520874,
+          -0.5009999871253967,
+          2.0999999046325684
+        ],
+        "control_vertices": 130,
+        "control_faces": 126,
+        "all_quads": true,
+        "evaluated_triangles": 402,
+        "bounds_m": [
+          [
+            0.2709999978542328,
+            -0.3710530400276184,
+            2.1633334159851074
+          ],
+          [
+            0.39866387844085693,
+            -0.29721230268478394,
+            2.190999984741211
+          ]
+        ],
+        "material": "Legger_FrontVolume_Steering_PBR",
+        "fingerprint": "fc456f777c1b48abdcbe5c2af7e812677c58b14127fc32cfd06c404ac5285943"
+      },
+      {
+        "name": "Legger_Part_InstrumentGauge",
+        "module": "Steering",
+        "parent": "Legger_Steering_ROOT",
+        "pivot_m": [
+          0.0,
+          -0.5269999504089355,
+          2.1700000762939453
+        ],
+        "control_vertices": 198,
+        "control_faces": 190,
+        "all_quads": true,
+        "evaluated_triangles": 604,
+        "bounds_m": [
+          [
+            -0.06599999964237213,
+            -0.5515871644020081,
+            2.1129162311553955
+          ],
+          [
+            0.06599999964237213,
+            -0.4437376856803894,
+            2.1909608840942383
+          ]
+        ],
+        "material": "Legger_FrontVolume_Steering_PBR",
+        "fingerprint": "3c781633565593b298610e468da4cab47c57ae63f2ca00f9587dca50d5c7afb8"
+      },
+      {
+        "name": "Legger_Part_Handlebar",
+        "module": "Steering",
+        "parent": "Legger_Steering_ROOT",
+        "pivot_m": [
+          0.0,
+          -0.49000000953674316,
+          2.1449999809265137
+        ],
+        "control_vertices": 500,
+        "control_faces": 486,
+        "all_quads": true,
+        "evaluated_triangles": 1212,
+        "bounds_m": [
+          [
+            -0.31117185950279236,
+            -0.46150001883506775,
+            2.162038803100586
+          ],
+          [
+            0.31117185950279236,
+            -0.28782814741134644,
+            2.2146799564361572
+          ]
+        ],
+        "material": "Legger_FrontVolume_Steering_PBR",
+        "fingerprint": "9531743ba1cd62b29606b373c47553d797036754c0fcc8f66e5766650166b0b7"
+      },
+      {
+        "name": "Legger_Part_Cargo_L_Main_Body",
+        "module": "Cargo_L_Main",
+        "parent": "Legger_Cargo_L_Main_ROOT",
+        "pivot_m": [
+          -0.25499996542930603,
+          0.33500000834465027,
+          1.7350000143051147
+        ],
+        "control_vertices": 898,
+        "control_faces": 868,
+        "all_quads": true,
+        "evaluated_triangles": 3384,
+        "bounds_m": [
+          [
+            -0.38051801919937134,
+            0.1773778200149536,
+            1.5059136152267456
+          ],
+          [
+            -0.1436232477426529,
+            0.4926221966743469,
+            1.9640864133834839
+          ]
+        ],
+        "material": "Legger_Cargo_L_Main_Baked_PBR",
+        "fingerprint": "1f4b4239a8472a9aee1b30a17de41e1118b707dfc6cb0aee167c148b57e42322"
+      },
+      {
+        "name": "Legger_Part_Cargo_L_Main_Straps",
+        "module": "Cargo_L_Main",
+        "parent": "Legger_Cargo_L_Main_ROOT",
+        "pivot_m": [
+          -0.25499996542930603,
+          0.33500000834465027,
+          1.7350000143051147
+        ],
+        "control_vertices": 680,
+        "control_faces": 648,
+        "all_quads": true,
+        "evaluated_triangles": 4112,
+        "bounds_m": [
+          [
+            -0.3688352406024933,
+            0.23287640511989594,
+            1.4997916221618652
+          ],
+          [
+            -0.13454000651836395,
+            0.43939852714538574,
+            2.033857822418213
+          ]
+        ],
+        "material": "Legger_Cargo_L_Main_Baked_PBR",
+        "fingerprint": "9536ae4c1a1638f7bf61e111da4ae0f533bd0a4979a8170c68e3f4445c0bd8d3"
+      },
+      {
+        "name": "Legger_Part_Cargo_L_Main_Lid",
+        "module": "Cargo_L_Main",
+        "parent": "Legger_Cargo_L_Main_ROOT",
+        "pivot_m": [
+          -0.157359316945076,
+          0.32127752900123596,
+          1.9498704671859741
+        ],
+        "control_vertices": 338,
+        "control_faces": 322,
+        "all_quads": true,
+        "evaluated_triangles": 1380,
+        "bounds_m": [
+          [
+            -0.32722997665405273,
+            0.1711653172969818,
+            1.941118597984314
+          ],
+          [
+            -0.13094830513000488,
+            0.49126994609832764,
+            2.070211172103882
+          ]
+        ],
+        "material": "Legger_Cargo_L_Main_Baked_PBR",
+        "fingerprint": "a7062414ced62c35ecbd7ec6029d11e922cf257ef6c9900e8a3c5bb1a3805cd6"
+      },
+      {
+        "name": "Legger_Part_Cargo_L_Aux_Body",
+        "module": "Cargo_L_Aux",
+        "parent": "Legger_Cargo_L_Aux_ROOT",
+        "pivot_m": [
+          -0.3030000329017639,
+          0.6349999904632568,
+          1.7350001335144043
+        ],
+        "control_vertices": 424,
+        "control_faces": 394,
+        "all_quads": true,
+        "evaluated_triangles": 2068,
+        "bounds_m": [
+          [
+            -0.4053390622138977,
+            0.5261163711547852,
+            1.5039111375808716
+          ],
+          [
+            -0.22252653539180756,
+            0.7438836097717285,
+            1.966088891029358
+          ]
+        ],
+        "material": "Legger_Cargo_L_Aux_Baked_PBR",
+        "fingerprint": "e0bab7d2d65074a2885b6e52e593ab4a64db27caafc77a74095c71c241ae27b7"
+      },
+      {
+        "name": "Legger_Part_Cargo_L_Aux_Straps",
+        "module": "Cargo_L_Aux",
+        "parent": "Legger_Cargo_L_Aux_ROOT",
+        "pivot_m": [
+          -0.3030000329017639,
+          0.6349999904632568,
+          1.7350001335144043
+        ],
+        "control_vertices": 292,
+        "control_faces": 276,
+        "all_quads": true,
+        "evaluated_triangles": 1768,
+        "bounds_m": [
+          [
+            -0.4083573818206787,
+            0.6067883968353271,
+            1.4959907531738281
+          ],
+          [
+            -0.21099182963371277,
+            0.6656928658485413,
+            2.048748016357422
+          ]
+        ],
+        "material": "Legger_Cargo_L_Aux_Baked_PBR",
+        "fingerprint": "ccce9cc6dd3a1a22b1b7d4baa3b00c0af9c838d691d20a13749f83ac8b180598"
+      },
+      {
+        "name": "Legger_Part_Cargo_L_Aux_Lid",
+        "module": "Cargo_L_Aux",
+        "parent": "Legger_Cargo_L_Aux_ROOT",
+        "pivot_m": [
+          -0.21840550005435944,
+          0.6338925957679749,
+          1.9635581970214844
+        ],
+        "control_vertices": 156,
+        "control_faces": 146,
+        "all_quads": true,
+        "evaluated_triangles": 724,
+        "bounds_m": [
+          [
+            -0.40306732058525085,
+            0.5187916159629822,
+            1.9389005899429321
+          ],
+          [
+            -0.2058001160621643,
+            0.7510835528373718,
+            2.040971279144287
+          ]
+        ],
+        "material": "Legger_Cargo_L_Aux_Baked_PBR",
+        "fingerprint": "4db2b68f1d8fa9e6e7362c87170d43955a0862c0b41ed2a63747bde13aa3a432"
+      },
+      {
+        "name": "Legger_Part_Cargo_R_Main_Body",
+        "module": "Cargo_R_Main",
+        "parent": "Legger_Cargo_R_Main_ROOT",
+        "pivot_m": [
+          0.2549999952316284,
+          0.33500000834465027,
+          1.7350000143051147
+        ],
+        "control_vertices": 898,
+        "control_faces": 868,
+        "all_quads": true,
+        "evaluated_triangles": 3384,
+        "bounds_m": [
+          [
+            0.1436232477426529,
+            0.1773778200149536,
+            1.5059136152267456
+          ],
+          [
+            0.38051801919937134,
+            0.4926221966743469,
+            1.9640864133834839
+          ]
+        ],
+        "material": "Legger_Cargo_R_Main_Baked_PBR",
+        "fingerprint": "3323ea4a198168ffcffc88fd3f2bd28a9261ebe66ab95d1dedb91ef110ac74e2"
+      },
+      {
+        "name": "Legger_Part_Cargo_R_Main_Straps",
+        "module": "Cargo_R_Main",
+        "parent": "Legger_Cargo_R_Main_ROOT",
+        "pivot_m": [
+          0.2549999952316284,
+          0.33500000834465027,
+          1.7350000143051147
+        ],
+        "control_vertices": 680,
+        "control_faces": 648,
+        "all_quads": true,
+        "evaluated_triangles": 4112,
+        "bounds_m": [
+          [
+            0.13454000651836395,
+            0.23287639021873474,
+            1.4997916221618652
+          ],
+          [
+            0.3688352406024933,
+            0.43939852714538574,
+            2.033857822418213
+          ]
+        ],
+        "material": "Legger_Cargo_R_Main_Baked_PBR",
+        "fingerprint": "bad78d6d7f5eb9548d54d5e6f642909e046f75c498cd6d3aa719ab18b49fc116"
+      },
+      {
+        "name": "Legger_Part_Cargo_R_Main_Lid",
+        "module": "Cargo_R_Main",
+        "parent": "Legger_Cargo_R_Main_ROOT",
+        "pivot_m": [
+          0.157359316945076,
+          0.32127752900123596,
+          1.9498704671859741
+        ],
+        "control_vertices": 338,
+        "control_faces": 322,
+        "all_quads": true,
+        "evaluated_triangles": 1380,
+        "bounds_m": [
+          [
+            0.13094830513000488,
+            0.1711653172969818,
+            1.941118597984314
+          ],
+          [
+            0.32722997665405273,
+            0.49126994609832764,
+            2.070211172103882
+          ]
+        ],
+        "material": "Legger_Cargo_R_Main_Baked_PBR",
+        "fingerprint": "415f27cd9cc9e22a20cd0fa9a431d54486ed1f68dc837600ee7337fb66be4d95"
+      },
+      {
+        "name": "Legger_Part_Cargo_R_Aux_Body",
+        "module": "Cargo_R_Aux",
+        "parent": "Legger_Cargo_R_Aux_ROOT",
+        "pivot_m": [
+          0.3030000329017639,
+          0.6349999904632568,
+          1.7350001335144043
+        ],
+        "control_vertices": 424,
+        "control_faces": 394,
+        "all_quads": true,
+        "evaluated_triangles": 2068,
+        "bounds_m": [
+          [
+            0.22252653539180756,
+            0.5261163711547852,
+            1.5039111375808716
+          ],
+          [
+            0.4053390622138977,
+            0.7438836097717285,
+            1.966088891029358
+          ]
+        ],
+        "material": "Legger_Cargo_R_Aux_Baked_PBR",
+        "fingerprint": "3a0a1dc14a727b11d9997f2bf0073148a95572a68b9a5af3bf9316ede179ae0e"
+      },
+      {
+        "name": "Legger_Part_Cargo_R_Aux_Straps",
+        "module": "Cargo_R_Aux",
+        "parent": "Legger_Cargo_R_Aux_ROOT",
+        "pivot_m": [
+          0.3030000329017639,
+          0.6349999904632568,
+          1.7350001335144043
+        ],
+        "control_vertices": 292,
+        "control_faces": 276,
+        "all_quads": true,
+        "evaluated_triangles": 1768,
+        "bounds_m": [
+          [
+            0.21099182963371277,
+            0.6067883968353271,
+            1.4959907531738281
+          ],
+          [
+            0.4083573818206787,
+            0.6656928658485413,
+            2.048748016357422
+          ]
+        ],
+        "material": "Legger_Cargo_R_Aux_Baked_PBR",
+        "fingerprint": "bd54d4b9b06b504e941972b07f1f808ff1f096c0a8ba77a0b29bcf2df0ee36b2"
+      },
+      {
+        "name": "Legger_Part_Cargo_R_Aux_Lid",
+        "module": "Cargo_R_Aux",
+        "parent": "Legger_Cargo_R_Aux_ROOT",
+        "pivot_m": [
+          0.21840550005435944,
+          0.6338925957679749,
+          1.9635581970214844
+        ],
+        "control_vertices": 156,
+        "control_faces": 146,
+        "all_quads": true,
+        "evaluated_triangles": 724,
+        "bounds_m": [
+          [
+            0.2058001160621643,
+            0.5187916159629822,
+            1.9389005899429321
+          ],
+          [
+            0.40306732058525085,
+            0.7510835528373718,
+            2.040971279144287
+          ]
+        ],
+        "material": "Legger_Cargo_R_Aux_Baked_PBR",
+        "fingerprint": "df2fee7586e8f875485d93ac39892eb8ddfc62adbabd23abe15406ec2c0e0d13"
+      }
+    ]
+  },
+  "foot_envelopes": [
+    {
+      "side": "R",
+      "original_below_Z_0_18": {
+        "minimum_m": [
+          0.13382314145565033,
+          -0.8231561183929443,
+          2.691075496841222e-05
+        ],
+        "maximum_m": [
+          0.4292934536933899,
+          -0.1363937258720398,
+          0.1799999177455902
+        ],
+        "dimensions_XYZ_m": [
+          0.29547029733657837,
+          0.6867623925209045,
+          0.17997300624847412
+        ]
+      },
+      "current_named_foot": {
+        "minimum_m": [
+          0.13699999451637268,
+          -0.8400000333786011,
+          1.4901161193847656e-08
+        ],
+        "maximum_m": [
+          0.43299999833106995,
+          -0.1599999964237213,
+          0.23400001227855682
+        ],
+        "dimensions_XYZ_m": [
+          0.29600000381469727,
+          0.6800000667572021,
+          0.23399999737739563
+        ]
+      },
+      "limits": "Original is a fused posed crop; current is the complete named foot. Envelopes are not contact polygons or local-axis alignment."
+    },
+    {
+      "side": "L",
+      "original_below_Z_0_18": {
+        "minimum_m": [
+          -0.42928221821784973,
+          0.006921067833900452,
+          0.0022483759094029665
+        ],
+        "maximum_m": [
+          -0.13356603682041168,
+          0.664293646812439,
+          0.17999878525733948
+        ],
+        "dimensions_XYZ_m": [
+          0.29571616649627686,
+          0.6573725938796997,
+          0.17775040864944458
+        ]
+      },
+      "current_named_foot": {
+        "minimum_m": [
+          -0.43299999833106995,
+          -0.8400000333786011,
+          1.4901161193847656e-08
+        ],
+        "maximum_m": [
+          -0.13699999451637268,
+          -0.1599999964237213,
+          0.23400001227855682
+        ],
+        "dimensions_XYZ_m": [
+          0.29600000381469727,
+          0.6800000667572021,
+          0.23399999737739563
+        ]
+      },
+      "limits": "Original is a fused posed crop; current is the complete named foot. Envelopes are not contact polygons or local-axis alignment."
+    }
+  ],
+  "packed_image_payload_hashes": {
+    "AO.png": "366d5cb00c59125d6ba9222e6b9c0f9b4f0dfc4196cf9e7c2e3938a338bac565",
+    "BaseColor.png": "cae14a9528d66c2f41f3c53db39819d97282226c1553419c825d9df0faacb12d",
+    "Image_0": "9263c7954b33644ab23a4ad6e05c32535edac6b5a1f588cf028d2f8d5c772565",
+    "Image_1": "38dd7cf635a45b11354ec1f545101ad7d1667aa553a0ec04cf2c3e7ec61078af",
+    "Image_2": "a2f4c05e1e37e762d81f873b1fb1b9a8bfb15b410a002ab8336ee2630c033591",
+    "Legger_Cargo_L_Aux_AO": "3b333f6c1fe86bff7a8f83a38d9dc09efea593441206c570d98c8aba10277957",
+    "Legger_Cargo_L_Aux_BaseColor": "16881c8e41c81363c971f2723dba95bfb2c8f4c86468799356405491d122b867",
+    "Legger_Cargo_L_Aux_Metallic": "d60b77c2f66725977ce33826a536f9d71f5549925e8e547f58c450b8222104f5",
+    "Legger_Cargo_L_Aux_Normal": "f64ea8367268714153955abbd38275d3353ce32c6822206874b48261e1ca185c",
+    "Legger_Cargo_L_Aux_Roughness": "4fd19be84290fb4433efffb45271c7f1ef7aecddd8075a32c6db9f926cb37e6b",
+    "Legger_Cargo_L_Main_AO": "fdcc34e188fd58469e35dec9de47b78dc3f25e7a32011a8494dd0e63e2b0ba31",
+    "Legger_Cargo_L_Main_BaseColor": "d5c5e5347313929cbd4d6bc1ab704ccb463817d6ca6c6d4741ce168d7643343a",
+    "Legger_Cargo_L_Main_Metallic": "c31c1bf5cccc086d31c94b1d1b68e5f11b93ba27a4706eba878752a476277a94",
+    "Legger_Cargo_L_Main_Normal": "83e723f45dc0f4c34ca27960e58ae62ef20282c3fe1aa0192e9928187f2d68ea",
+    "Legger_Cargo_L_Main_Roughness": "fe741d16827607f2727f859741f928f61aba8a02d502bdea2f8bb08d3c0717e1",
+    "Legger_Cargo_R_Aux_AO": "8876361c3b549b274558838c6af5d2f019768fe7ba834ea32e8f9aedba44a559",
+    "Legger_Cargo_R_Aux_BaseColor": "c8a4306cb37a54599e6e781d2f354312cd9fbfa8c14e37ee540905d8e0d80f45",
+    "Legger_Cargo_R_Aux_Metallic": "5b0457b7e717d364c65974a8a09e7ea298516828f511e0fac5174fec0dc4b400",
+    "Legger_Cargo_R_Aux_Normal": "7fc0454ce73d8d9a7d99111efa055fe36d94acf9588aaf5dbc006d0da4135739",
+    "Legger_Cargo_R_Aux_Roughness": "3184a49ea03dff72413f48b40297717d9d5708f95c41d4617baafa751044eb90",
+    "Legger_Cargo_R_Main_AO": "a962f60961635561384546c2f554538982121e47467612e844596c27d68d137d",
+    "Legger_Cargo_R_Main_BaseColor": "76920e94abfde30c2e202ad648066d500d880c9c657262b352ec9113c057dc66",
+    "Legger_Cargo_R_Main_Metallic": "413d36cc07a011a326db3bb3569742d08a5d5985dd6c1fef4cba75fc598f6b55",
+    "Legger_Cargo_R_Main_Normal": "d9ecaee7f49775d9eb44eb38101b2196f363be0499dbbb16ddda3d6b95dfd90c",
+    "Legger_Cargo_R_Main_Roughness": "2ea29ec970987b94de2c7609ecad204dec6cf8670c81688ba1910653b971903e",
+    "Legger_CargoSeat_AO": "8ac2820d04cee3d7f34aeacb501f69951a95cb4c83d2561cd1dbfdeebdeb51ed",
+    "Legger_CargoSeat_BaseColor": "2d001d0f37193dfe2a65a2a575de1853582167d930d72d76832d06ed91f17318",
+    "Legger_CargoSeat_Height": "297236ec670219c2b9f7bbc4f13266ffa0555bac53428dd92b2168a9b4cae4fa",
+    "Legger_CargoSeat_Metallic": "19f67a067afe49dd7e76bafe9d9bcb1f46afd046494dfc1d06f6e2fb93836c04",
+    "Legger_CargoSeat_Normal": "91113b88df5be1fa4d3adf391f2e9951307fb190ee8b126a51c7b8ee3c2a707f",
+    "Legger_CargoSeat_ObjectNormal": "62afc0dbab5b02f948cb5da43794f12da8cbfca826953891dc5d41a485683fe8",
+    "Legger_CargoSeat_Roughness": "819eb992cddbb0200dc59673fc3115ff500b8582db4a575d565c57d21668f2f8",
+    "Legger_Chassis_Drive_AO": "e7946059b52ed9c5b9f3d9b59e85f63be55d90130fbf283b3ba9b6fb5fe1eff5",
+    "Legger_Chassis_Drive_BaseColor": "085ffc93f22ec1d21b3b5f63871e92a650ec2a11fdbc124db3dcb99171a6d933",
+    "Legger_Chassis_Drive_Metallic": "f61cab721301f20a1f84d0cfd767cd2d41eb87b72ca1b0af9ab051c521e7698b",
+    "Legger_Chassis_Drive_Normal": "ed62ac238f3cfadcdd141193561668cfb9e220a561ed5b3b12362e433ed387f0",
+    "Legger_Chassis_Drive_Roughness": "b4f6ec03ea7a2eb513ed7230ab615fb3f9b6eae5161aca9e2903937c4eb056cf",
+    "Legger_Chassis_Frame_AO": "6a4cdb10f163e5dbef03c2848d8cfa23ab17c0a68c1e32e7a6f38d9dfcec5a7d",
+    "Legger_Chassis_Frame_BaseColor": "432622f7ee2c005a336c40686ecdffbe4f2d5361e60c8df972084fab7c230f15",
+    "Legger_Chassis_Frame_Metallic": "5026e47c8d64849d536a876e128bea8a3e50081e487f33e902d1b4aaa6ce8bac",
+    "Legger_Chassis_Frame_Normal": "1bcefe53cb5dda75fd7a0c9448aaf84cad302226aedfa3c5e3ce284297f32d1d",
+    "Legger_Chassis_Frame_Roughness": "592cbf8dd21f769151b76bba133379518bb13c926efb85e99b15a80316e4707a",
+    "Legger_Frame_AO": "95c4e64d4f263791cf6c94b2e634ed481dd40b6665079d05cd92fffa4cee8561",
+    "Legger_Frame_BaseColor": "a1cfbeba5f2c7f9fbba0850a0d476306d82dfbc95fd8bc7201bad8e29bf8013d",
+    "Legger_Frame_Height": "c8921bbd1aebc13950ad010e7efd913f60b9d85bdb916dbb63bd47af3a937bec",
+    "Legger_Frame_Metallic": "4638b4d1d0c29f40dda82fe4c5ae8a285fa10562149c9e443e35d3b5c73b0b82",
+    "Legger_Frame_Normal": "e8a158ff1f073febd89edb00fb7f762a0c05041e79f1732a6d428210847d2d3b",
+    "Legger_Frame_ObjectNormal": "88bd337d80ea2edc9bf685ee5c5e3ba6dcd0ad3d2bb8cb42a119f4f6721b5b19",
+    "Legger_Frame_Roughness": "a29f5edf54e2821c08b2ad3527b6f9518eb5f732d9b2f7385a45ea775f7dc918",
+    "Legger_Front_Steering_BaseColor": "882c9922569449d72c935c92202119f24a4bb1d6b39532040d83676bcc1bc9a4",
+    "Legger_Front_Steering_Metallic": "d118fa1919a6c5560a6c79fdb7e6d78b8fba2c91eaaaf0d4bf92d2a67ed1f64e",
+    "Legger_Front_Steering_Roughness": "fb5ab69b689d3a983d4f6cf1a721d085438321e7f7a908ebe349078b097a3559",
+    "Legger_FrontVolume_Steering_BaseColor": "76c77855fa25ceded2aaf1fef60719bb26c733f3eba62ea58faa4c10a8fb4f50",
+    "Legger_FrontVolume_Steering_Metallic": "a2c7fc27bdd21cb38d0f65773bd327fc325385582fc3ecc1c8cb1e192c8c5ab7",
+    "Legger_FrontVolume_Steering_Normal": "30320d8d53b0eb8d07de6b30dd7b291c1bff2eb7a6b9de9a455c3db4d46d1aae",
+    "Legger_FrontVolume_Steering_Roughness": "44f280f280a29cbde9d0574576a026e222f3e34cd065d8dddffbab7fca52ab3f",
+    "Legger_FullRefine_BodyArmor_BaseColor": "3ea1cb4cc84c659d7dbdcefc6190495352cd5fb7d9bc7ddc4e9c540e1abf3335",
+    "Legger_FullRefine_BodyArmor_Metallic": "5d5b69bb0e8fbd917c28d1c597b708a99761eb6e766fb8e044c655245fe22d1d",
+    "Legger_FullRefine_BodyArmor_Normal": "433528c2b169a12d3a13676f21fcc34d7cda411e88c96b8df6293e1ae01eadde",
+    "Legger_FullRefine_BodyArmor_Roughness": "38fd69e20b7824df5915f0e6fe474465ac8c3d19db732030356465a98e35498d",
+    "Legger_FullRefine_Drive_BaseColor": "b75ff798efc2399e03ebce7bd22d97bbd3ee80210833b5d87d35f4d2fe36503f",
+    "Legger_FullRefine_Drive_Metallic": "f61cab721301f20a1f84d0cfd767cd2d41eb87b72ca1b0af9ab051c521e7698b",
+    "Legger_FullRefine_Drive_Normal": "649735e985d3eb3c9670b0fc028b23f8f57e356b736686c67cf8a27149572454",
+    "Legger_FullRefine_Drive_Roughness": "83bbb2f19cf77af6bcc3aba659396d80cbfc2c2c11b167aa97f78f6828237ece",
+    "Legger_FullRefine_Frame_BaseColor": "f684e15cf5bea2e89c99628d19e2e63957a79e4d32b037747b6fef4ab6394858",
+    "Legger_FullRefine_Frame_Metallic": "626dce31c964a951f7a888bc7c4e338d4dd1624bc2d802621e2f673dc4744173",
+    "Legger_FullRefine_Frame_Normal": "5903b0932ba381a5e9f29740849a135a15365157ff12e791124c14fbcc61f94c",
+    "Legger_FullRefine_Frame_Roughness": "38b1cc77c69937c5344a0b5a7efb39bb194506e935a5185f964d869a04e3f70c",
+    "Legger_FullRefine_LeftLeg_BaseColor": "1781400605087dff9d9fc604f5c7f181ffd9070a280e3b32afe24ef72e14320e",
+    "Legger_FullRefine_LeftLeg_Metallic": "c8ffd3776d9c6bba93a122ccbea8946bd01deafae05c01da7140873dd8a49c97",
+    "Legger_FullRefine_LeftLeg_Normal": "0c9b2c8bbcb01185c1786576b60c73dbd6c6eb2e20222a6305385842b6d1f438",
+    "Legger_FullRefine_LeftLeg_Roughness": "bb4adf2aa4f95840491f8366061e43e1915fdd4dbbb04e743a1cb29843a4a950",
+    "Legger_FullRefine_RightLeg_BaseColor": "2a6e5efcb050eb92287baf89330f85971827fc30151826d3240cb476202fd62e",
+    "Legger_FullRefine_RightLeg_Metallic": "e3c3d2d5ebd411796d348aec4572f27cb639ab8110ee47cdad42d9de337b1317",
+    "Legger_FullRefine_RightLeg_Normal": "3cc56d93c779a066565d35bd261938a8500223e8125afb9efaf3cd320af2035b",
+    "Legger_FullRefine_RightLeg_Roughness": "78804915350475d50c23148f5bceacf8a5696eee2e948b075f986649e535b7ef",
+    "Legger_FullRefine_Steering_AO": "1a147ca6d6ec4809ad8a431c527020ab67ea3dece05f655124d524bca192685a",
+    "Legger_FullRefine_Steering_BaseColor": "0b39472c04af907a6d7c197fd04791075bcc391e46c27173949679242b789f5a",
+    "Legger_FullRefine_Steering_Metallic": "a375bbe896faa81463b7f3840ff10b093d2ed88734124f9c214fba37f04fa578",
+    "Legger_FullRefine_Steering_Normal": "5927361aee78994d624609ce28a07a9345d90b0484045932b86de21cbaa4b553",
+    "Legger_FullRefine_Steering_Roughness": "dfc30ab036b36cac63c0d4aa2418a4a397ebd7e83145377a2824d6d647965b89",
+    "Legger_LeftLeg_Height": "887cc5606130a760ae39707e275ba472bf5fce0a08bc6f86561bbbb4733ccab6",
+    "Legger_Modular_BodyArmor_AO": "0b47f29a4fb66ead19b5ac18dc6a5001bc6f13778505b012d7c9012286dd8fbe",
+    "Legger_Modular_BodyArmor_BaseColor": "f29a219dc57148797d7a86191a5e51b22434ff5c8eabcc13bf415f20ed9d6a01",
+    "Legger_Modular_BodyArmor_Metallic": "c29a70aa6db1f723d9ac3fd2959cfb39fbc4fae3014aee931fe21fe65a48d875",
+    "Legger_Modular_BodyArmor_Normal": "387cea9b4148214f319b5b17b1c795b1207b2df7a8fda6bde8410414548e5753",
+    "Legger_Modular_BodyArmor_Roughness": "63becff39af621c7058aee0beba2eb17469fc514098df8b9c836ca35603774fe",
+    "Legger_Modular_Drive_AO": "17796402e9d80874e32e27add5e4aef9e68c4f2ae8d0a724f26c7badd666da96",
+    "Legger_Modular_Drive_BaseColor": "41df35680ea3d51e389e7eed27f9e529642adb0b7aefa88cd27385600117760a",
+    "Legger_Modular_Drive_Metallic": "ea4f4f58f352e0fd39eedb92e912c10b45ea9db8ee52ba03cbd9386644444915",
+    "Legger_Modular_Drive_Normal": "f0233fe3f1d8a113e171cbdb9010e002e396443af53d44b4201838ba450a4c8a",
+    "Legger_Modular_Drive_Roughness": "da3e737a5c7297e9f2f2bf4aab5bdfd1b85b0315f868b8199028744792d18761",
+    "Legger_Modular_Frame_AO": "e3552e034f458756763a2d00995290f82f032ba40704456619798841b4560007",
+    "Legger_Modular_Frame_BaseColor": "6b8d66b93a38810470bc3417ecbf6dcf78f6e4444c82d864b9290c5469e7c91f",
+    "Legger_Modular_Frame_Metallic": "dd7160072d958753cea8c7cbaa170f1e4125b6b8d2a45e4970516e65e676cb9d",
+    "Legger_Modular_Frame_Normal": "f32e3252986d648380da7caf2d500f957f7e9adafd998392bcd40f9f48c44b59",
+    "Legger_Modular_Frame_Roughness": "6165c02424d5a192ac8b74b3f2e40b3cdf969c1cbb9d5145e978db507839a7a6",
+    "Legger_Modular_LeftLeg_AO": "d97bc8a1950849e3d1cb9ef49c92b07fe7b7eb8bba09c2f90b23798c9e822dc7",
+    "Legger_Modular_LeftLeg_BaseColor": "c8df7c8add21fb8315e300146cceb052185024c587989c7b0157455212e67ecf",
+    "Legger_Modular_LeftLeg_Metallic": "c3e0bf3da34112423425a193453e0f02b8faa926b2961391418decbf3193837a",
+    "Legger_Modular_LeftLeg_Normal": "a5f3394fd80f9659727a1150298beecc3f3f37fbc8ff68fd785bcb0f6ae42386",
+    "Legger_Modular_LeftLeg_Roughness": "a931ac4c0562d81c4efa54cd47799955cf72cb53952967c1df5929cc55ba42e0",
+    "Legger_Modular_RightLeg_AO": "62f116b989723786f4a425b44f7202d923b7c33ae62e1b591f9a5367897fcaf1",
+    "Legger_Modular_RightLeg_BaseColor": "7eded253c42027906d3595870e27a38791a540586ea25fbfa2eaaf0a04e699f9",
+    "Legger_Modular_RightLeg_Metallic": "0373545ebd8caa712e2be299f60bbcfeb583fe44372026e93ded9d8d5ec347eb",
+    "Legger_Modular_RightLeg_Normal": "0bbd246dcefd03cf6ca3a1b16c68d04a7d6b6e58ba8742f3df299cc90a4ee290",
+    "Legger_Modular_RightLeg_Roughness": "8ef14ab6ccefddd12994d99046f296852b4e82ad71ac99904c5f52aa79fd2b68",
+    "Legger_Modular_Saddle_AO": "6244dc14e61a3cab0c31dcfc65c6f1e59389d610f45cafb63c558c6ef15813e2",
+    "Legger_Modular_Saddle_BaseColor": "1fd3aed3e1478f8fb609dcd1a4e86b69cfbeb5484b6ec100087147ef88fc8810",
+    "Legger_Modular_Saddle_Metallic": "8b68507badd608f0489321a671163a4d77bcbf830d78d7ba44c2008871baeb8a",
+    "Legger_Modular_Saddle_Normal": "e9d97d504ab47993a59d616a8240c70ebaea42e7af2d64d1eccdc1bfc28bec1d",
+    "Legger_Modular_Saddle_Roughness": "73f76c1d2c86365459ab9ab9d7835f5c56f267cea4c488c425e1a2eca6ae00f0",
+    "Legger_Modular_Steering_AO": "29ede6fa4655a5f879d265a3b49b8d45cf6bb149888bbf891a23a2687d54885f",
+    "Legger_Modular_Steering_BaseColor": "faef289faa4330de55544c7f42acdd58b516b4d6300d4a7f4207510079f389d9",
+    "Legger_Modular_Steering_Metallic": "c3f098e51ac5b2b15807eef5a2c3594431e1daf038fdaba00f9bf08b0029f248",
+    "Legger_Modular_Steering_Normal": "52f7a5ce3cf281144e787b5f8e0474985072199a5608d4f380150534e54f6009",
+    "Legger_Modular_Steering_Roughness": "4dbd2a3e241f056ac2c8220f43e2ffb89e0c7cfe649ddde33eeea8036b1f1f24",
+    "Legger_Rider_BodyArmor_AO": "5c19ac90ae6ad605df583f954179627ec8076a29c7fa868b8a776c854522a83d",
+    "Legger_Rider_BodyArmor_BaseColor": "4b845964cd20cad60dfab875551d5ebf56265287d0a8a9b25a8905d4895198c8",
+    "Legger_Rider_BodyArmor_Metallic": "a02fa8cba5358b0752398ec842111b4f42a2d01b96b7dfca5bad49ac2f2aa06d",
+    "Legger_Rider_BodyArmor_Normal": "4535ccba5c8b125fc1f068cf2e25c25f682d4e9f2c3539d7ff98e84953a68c2f",
+    "Legger_Rider_BodyArmor_Roughness": "79d25b4d4d0e76db97753454cc7154663dfdf035c098913c196e75a319a23157",
+    "Legger_Rider_Frame_AO": "ff7e61f8cff88b66193ce51ea87480915c256bb70972eee50ad343f36895d299",
+    "Legger_Rider_Frame_BaseColor": "455765851dc8208f40be125c81745bac3df03142b611a22eaec3facfad97df47",
+    "Legger_Rider_Frame_Metallic": "b64891c223b53a45521cda4a8f85ed067a05c3bc413a54c1b41e6b2e252d2278",
+    "Legger_Rider_Frame_Normal": "cf5910572da7b888cc04312ec855b75708d9b7fff5f06947a8a591195d4fa4e7",
+    "Legger_Rider_Frame_Roughness": "0026862546a2c215f3bc3da952226c6a1c9c2c82bbf8a026ec968f96b524cafb",
+    "Legger_Rider_Saddle_AO": "a1f26841e994fdaa184cb7f2cf88843e8dafb77e9b58fd031091ce034cc5f62f",
+    "Legger_Rider_Saddle_BaseColor": "d78a1faa1668ed14172e5466db84919746e6176cd3a55cdd0594d4fbcee87752",
+    "Legger_Rider_Saddle_Metallic": "a1a76cb62991154d58a56e182042a46024e05677ab524117e78ba30e6efd2932",
+    "Legger_Rider_Saddle_Normal": "99493c85b0768f3e10920b8c1570a0d6b56411ef947e8574a1f186dbb683d6ef",
+    "Legger_Rider_Saddle_Roughness": "4263824700c1896453560911381b165c98a03d7ee955548e4ee5c17322de6363",
+    "Legger_Rider_Steering_AO": "9e4b4993aa66acd3d4abf751e7ba345fd123fbe2ec2dfa8497cf7d8cd23fc591",
+    "Legger_Rider_Steering_BaseColor": "ca65c1a666b12f2a6baa5f91848643b1a6492f4bb0933144819814f7d32662c4",
+    "Legger_Rider_Steering_Metallic": "38af7d8867bee44901e5283f37c1ac481adccc0f40ae7af9d7cf43443aa1ef8f",
+    "Legger_Rider_Steering_Normal": "f84a7509599b64937e76d7e04e4cb395f3d4a10d8d156b73102c045349f18ebc",
+    "Legger_Rider_Steering_Roughness": "5c1f2317aff0652f9734f777e02c67537de18eb822b3049a1f516d7778fb77a1",
+    "Legger_RightLeg_AO": "3106d9fe3c182a17bb6baf492d84e28c4b9372b5d3b06e3d9f8d0632f42f42cb",
+    "Legger_RightLeg_BaseColor": "7399b0df8c31e8949074f6c5593ca0819f11b79fdabb27f7d0609d032c73263b",
+    "Legger_RightLeg_Height": "a27ff5cb1dbcaeaaf344c51471993e83af8d9a3fbdf87fc260c50d51bf7353ff",
+    "Legger_RightLeg_Metallic": "8940b59c9a18753c720166ee431c2d6c68dbb1b18152af15eea4831fba50ce01",
+    "Legger_RightLeg_Normal": "9bdb7abeb3278c28832d2aca257bfd8a749c380950bffe7f871c84910e607132",
+    "Legger_RightLeg_ObjectNormal": "81c8950c6bcb7087ff18c51afe6c7824e212088ca2680fa6b65f152ce4a0321e",
+    "Legger_RightLeg_Roughness": "eb875ec291052d487e31456df76a77f3cf8d99ea3724fa5f51bba08ec46293a6",
+    "Legger_SciFi_BodyArmor_AO": "15107e9d56caa1ff230dc92b89b1f0a65f33b64d4b14032b86b7c6d5f444de81",
+    "Legger_SciFi_BodyArmor_BaseColor": "3ee718f1b130953c9246107710bd8d8bd71439f3641a57af6e01315e6fe15759",
+    "Legger_SciFi_BodyArmor_Metallic": "1cf97d311ed4b18b45d60aee57d5c33f7fbb16f119306ad8c7ce7bf23bcbf79b",
+    "Legger_SciFi_BodyArmor_Normal": "18a18e5c9d9a140016e7228a1ee164f59d9ebcaf4fefeefdecbef428f8d2672d",
+    "Legger_SciFi_BodyArmor_Roughness": "4e10d3b164e04d8f42b9a745902d2c2a16f25b94fba3bbf0f9bceda7b31e96b9",
+    "Legger_SciFi_Drive_AO": "57bae824dcaa10e8ff8c472cf55a24a1179b5a49540c81fd4b8761ef071b5559",
+    "Legger_SciFi_Drive_BaseColor": "3e59dad25899e6b38efb7b8723811cf0243b5ce18cb1635b808c0c558d2a290d",
+    "Legger_SciFi_Drive_Metallic": "cc1cd4898930491609cad3dd5468976e7a0ec221988e68f1cfdd7d84c86e7f81",
+    "Legger_SciFi_Drive_Normal": "08b5d8d46b08e553739ba4cc03610b5356c832e326a69c7fe77259aa6f907346",
+    "Legger_SciFi_Drive_Roughness": "364f226d497f31282d746748a33f489d8f0f3a9781d6a3929f0e8daf6ba46a0b",
+    "Legger_SciFi_Frame_AO": "564f35d87a71c8d754a2aa0c9b581e064aa7b2433f64b7d329ce4630ffb96e89",
+    "Legger_SciFi_Frame_BaseColor": "eab86ba1a6240150cce706b520e41986a46c008fb4f832807a3951354ad00f4a",
+    "Legger_SciFi_Frame_Metallic": "86d44388cb899709f62c502cc0596a98a12882aa65751103079a9a8f1e54cdf3",
+    "Legger_SciFi_Frame_Normal": "051b9d37c11ec382651d95bfc72f6b50defe756d9fa24a43b4509684b5ea85d5",
+    "Legger_SciFi_Frame_Roughness": "712c91dc47086fc968d2cb7c19be0910fc478596381d2e4399899246c6c562be",
+    "Legger_SciFi_LeftLeg_AO": "eff74fcc523e476e61b619540b135dcbdfa0d738d1e3769842a146a475285872",
+    "Legger_SciFi_LeftLeg_BaseColor": "d82d2d5f50242fd691d8cd4da4c31adf6f61d93782e806bc099291ce9dbcb47b",
+    "Legger_SciFi_LeftLeg_Metallic": "bdb7822fd82a5a937c9a0445b6ccbeac97112bc0f965349c7d9b0fb262ec7fe6",
+    "Legger_SciFi_LeftLeg_Normal": "988572f5db82fff818c061561b5bf1b36a486fd18bb98986a0781c057ff14290",
+    "Legger_SciFi_LeftLeg_Roughness": "364893167546aa3ae8929eba95f845d856b3cc898e4d88861e6aee26c67ade65",
+    "Legger_SciFi_RightLeg_AO": "5bdfb96c98f2dafa1487594c7f81e432b29b6b5189b35e506420d50c85b060ae",
+    "Legger_SciFi_RightLeg_BaseColor": "bd21f67bbcc9bf5388da0fa9b93f4e608c6060e7139d10d4381a5b60f619500c",
+    "Legger_SciFi_RightLeg_Metallic": "2d2ef4ee5dae21e142046ce679779c651fe90cec0170ada6c47c6b67da74a830",
+    "Legger_SciFi_RightLeg_Normal": "858df975bb82fd71e7c604b94cc3f8eb85f72cb0a43282985ed7533944c39f42",
+    "Legger_SciFi_RightLeg_Roughness": "344f33d529c2ce3b7c7096202949172a707f339497ca421d7919ed2ef6c9b93d",
+    "Legger_SciFi_Saddle_AO": "392ec68dc4a9236d5570fecdd2e0a0d6587b183a896376e36de8bdc3afe236ac",
+    "Legger_SciFi_Saddle_BaseColor": "ce91b63a1b797d10562b646a23825f366698c60e926f0e3dda864cbc67484684",
+    "Legger_SciFi_Saddle_Metallic": "0a01f317f99a4507f9b7d85d739e226a8040a71458680b7c2dfd3f3fd7f618ab",
+    "Legger_SciFi_Saddle_Normal": "813fa96df044630be2a7cff436fb1f2d7f753af2499d49a99d1764cf5352ada6",
+    "Legger_SciFi_Saddle_Roughness": "f51d566b6c255820eb12ce8aacb25adcc347a28188ca012985508145075654dc",
+    "Legger_SciFi_Steering_AO": "5415d168e79a533b5c25c3f2a1feb8b39511a254caa7ede32dd23ffcb264cce9",
+    "Legger_SciFi_Steering_BaseColor": "3e7268e8b774ea1ef3cce707b6dc33894455bdb64883a15ffa44b10f7f122133",
+    "Legger_SciFi_Steering_Metallic": "60c648d57f1f3484efc0ce4ce07ec81b015a5ded7370293f30a0bb771efab37e",
+    "Legger_SciFi_Steering_Normal": "398cd06105647a3070ef0ce84dcce5dade3386e2aabf8a98f23486abd31e0bfd",
+    "Legger_SciFi_Steering_Roughness": "05e1e6b0617b6b811b31eaefa594c48c9382cbbeddf52340619c0d64b5d06692",
+    "Legger_ThreeLink_Frame_AO": "5a004fb0bba03f7ba63455062c7042373f8ea35947c7f22b77976823f9b3c07e",
+    "Legger_ThreeLink_Frame_BaseColor": "8dccebb84ae2a616a8a1c7cb33afb170b651643ca871fa4c247aaaad50626179",
+    "Legger_ThreeLink_Frame_Metallic": "1e3b4a0f6c2d5e76844032b9be5f4e8562ebd3301e80dc694068537113a585b3",
+    "Legger_ThreeLink_Frame_Normal": "c2ef64aa69d18f8ee5713b0077bb7b0687353a2da75bf5dc878ec8652fe88af1",
+    "Legger_ThreeLink_Frame_Roughness": "d443ea69fa8c2398dd0f218e991718e2081785c78dc0356df1911173b971ab0a",
+    "Legger_ThreeLink_LeftLeg_AO": "bc8332728d922a3ff6e17806ee41770dc42bde438652a6f033c356309551c6f6",
+    "Legger_ThreeLink_LeftLeg_BaseColor": "e6dd94688daca923752ead96cc2af33422a3a111409acf6b465fa48209e7a04c",
+    "Legger_ThreeLink_LeftLeg_Metallic": "62d5cf2550dc087d7b5b4bd2c2ebea95eb328799316a48cc179ce0f77569c744",
+    "Legger_ThreeLink_LeftLeg_Normal": "2405e1e91491d5d3f5cf0bd4a7496a246ab86ad15839ace63cc423376acb94d6",
+    "Legger_ThreeLink_LeftLeg_Roughness": "bc8a5ffb813485bc7b9458e6222b8ff00550961e7876886fd51707e9bbace5fd",
+    "Legger_ThreeLink_RightLeg_AO": "1ccf8ffa41045adbe5b533d66aa1d21e52b31f70325fe5f563c4344903f56685",
+    "Legger_ThreeLink_RightLeg_BaseColor": "7c8adbf04837c47e36da54f79383978bba25ee00b955a4423e53a858b9c4d7c9",
+    "Legger_ThreeLink_RightLeg_Metallic": "c76e961a8d2c3031df2df87591f14dc3525d7854dbe0f4e41fafe081ba87a93d",
+    "Legger_ThreeLink_RightLeg_Normal": "25171fbac0d41f92cf6d2b277d46cd3cc64edd1c1104e57283c5304a72bf01ce",
+    "Legger_ThreeLink_RightLeg_Roughness": "c20ba4b55a890d20ffcd6cff67af6608c04b26b1e634eaadd9a7b8da825e95fd",
+    "Metallic.png": "18f9671f1ae450cd938cd80bf26d07f1e6beef4601a91d095382779a79688ea7",
+    "Normal.png": "d667ba556b29fa3b140292af07390fc310dc8b7382a47e37144635ba99f81737",
+    "ObjectNormal.png": "0f4598b5bc4b144e214643056a38311003661e1647f64b83fca2eca87a789168",
+    "Roughness.png": "4e3766bce9a39f3d9f6121db40e7d76008a99719d73e6804b4ca9f48a749827e"
+  },
+  "limits": "Read-only native inventory and bounding envelopes, not fresh full manifold/UV validation, rig analysis, ergonomics certification or Unity performance proof."
+}

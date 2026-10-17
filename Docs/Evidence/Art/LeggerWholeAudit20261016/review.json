@@ -1,0 +1,186 @@
+{
+  "source_sha256": "90757f7efa6811fbfd9c82c93b08a98d254f60d13d15e447e5eeab03f2db6304",
+  "reviewed": true,
+  "retained_renders": 59,
+  "paired_comparisons": 28,
+  "current_isolation_views": 3,
+  "reviewed_sheets": [
+    "01_WholeSilhouette",
+    "02_BackAndPlan",
+    "03_FrontAndControls",
+    "04_RiderAndFrame",
+    "05_CargoDriveHoses",
+    "06_LegsFeet",
+    "07_ClayAndHip",
+    "08_CurrentIsolation"
+  ],
+  "selected_full_size_views": [
+    "original_overall_side",
+    "current_overall_side",
+    "original_overall_rear",
+    "current_overall_rear",
+    "original_tail_engine",
+    "current_tail_engine",
+    "original_saddle_side",
+    "current_saddle_side",
+    "original_foot_side",
+    "current_foot_side",
+    "original_foot_top",
+    "current_foot_top"
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "title": "Front head, central nose and lens: high visual priority",
+      "evidence_views": [
+        "front_side",
+        "front_oblique",
+        "control_front",
+        "clay_front_body"
+      ],
+      "status": "Recommendation only; no model edits",
+      "confidence": "Direct visual comparison; original concealed construction remains inferred"
+    },
+    {
+      "id": "F02",
+      "title": "Machinery behind the front cheeks: high visual priority",
+      "evidence_views": [
+        "front_side",
+        "hip_inboard",
+        "clay_chassis"
+      ],
+      "status": "Recommendation only; no model edits",
+      "confidence": "Direct visual comparison; original concealed construction remains inferred"
+    },
+    {
+      "id": "F03",
+      "title": "Tail bridge and central rear housing: high visual priority",
+      "evidence_views": [
+        "overall_rear",
+        "cargo_rear",
+        "tail_engine",
+        "hoses_under",
+        "isolated_drive"
+      ],
+      "status": "Recommendation only; no model edits",
+      "confidence": "Direct visual comparison; original concealed construction remains inferred"
+    },
+    {
+      "id": "F04",
+      "title": "Handlebar, controls and instrument housing: high visual priority",
+      "evidence_views": [
+        "control_front",
+        "cockpit_top",
+        "tail_engine",
+        "front_side"
+      ],
+      "status": "Recommendation only; no model edits",
+      "confidence": "Direct visual comparison; original concealed construction remains inferred"
+    },
+    {
+      "id": "F05",
+      "title": "Cast diagonals, neck/yoke and frame junctions: high visual priority",
+      "evidence_views": [
+        "chassis_side",
+        "hip_inboard",
+        "clay_chassis",
+        "isolated_frame"
+      ],
+      "status": "Recommendation only; no model edits",
+      "confidence": "Direct visual comparison; original concealed construction remains inferred"
+    },
+    {
+      "id": "F06",
+      "title": "Leg armor, joint guards and actuators: high visual priority",
+      "evidence_views": [
+        "leg_upper",
+        "leg_lower",
+        "overall_front",
+        "overall_rear",
+        "clay_leg"
+      ],
+      "status": "Recommendation only; no model edits",
+      "confidence": "Direct visual comparison; original concealed construction remains inferred"
+    },
+    {
+      "id": "F07",
+      "title": "Foot bracing and fitted endpoints: high fitting priority",
+      "evidence_views": [
+        "foot_side",
+        "foot_top",
+        "clay_leg"
+      ],
+      "status": "Recommendation only; no model edits",
+      "confidence": "Direct visual comparison; foot fitting also has auxiliary control-surface measurements"
+    },
+    {
+      "id": "F08",
+      "title": "Saddle, pan and rear support layers: medium priority",
+      "evidence_views": [
+        "saddle_side",
+        "saddle_rear",
+        "cockpit_top"
+      ],
+      "status": "Recommendation only; no model edits",
+      "confidence": "Direct visual comparison; original concealed construction remains inferred"
+    },
+    {
+      "id": "F09",
+      "title": "Forward cowling, knee channels and waist plating: medium priority",
+      "evidence_views": [
+        "cockpit_top",
+        "saddle_side",
+        "rider_stirrups",
+        "front_oblique"
+      ],
+      "status": "Recommendation only; no model edits",
+      "confidence": "Direct visual comparison; original concealed construction remains inferred"
+    },
+    {
+      "id": "F10",
+      "title": "Rider stirrups and mounting webs: medium priority",
+      "evidence_views": [
+        "rider_stirrups",
+        "hip_inboard",
+        "chassis_side"
+      ],
+      "status": "Recommendation only; no model edits",
+      "confidence": "Direct visual comparison; original concealed construction remains inferred"
+    },
+    {
+      "id": "F11",
+      "title": "Cargo cases, lids and straps: medium/lower visual priority",
+      "evidence_views": [
+        "cargo_side",
+        "cargo_rear",
+        "overall_top",
+        "tail_engine"
+      ],
+      "status": "Recommendation only; no model edits",
+      "confidence": "Direct visual comparison; original concealed construction remains inferred"
+    },
+    {
+      "id": "F12",
+      "title": "Hose routing and terminal integration: medium priority",
+      "evidence_views": [
+        "hoses_under",
+        "cargo_side",
+        "overall_underside",
+        "isolated_harness"
+      ],
+      "status": "Recommendation only; no model edits",
+      "confidence": "Direct visual comparison; original concealed construction remains inferred"
+    },
+    {
+      "id": "F13",
+      "title": "Material response, relief and detail hierarchy: medium priority after forms",
+      "evidence_views": [],
+      "status": "Recommendation only; no model edits",
+      "confidence": "Direct visual comparison; original concealed construction remains inferred"
+    }
+  ],
+  "native_modified": false,
+  "implementation_started": false,
+  "foot_camera_repair_reviewed": true,
+  "limits": "Offline views. Limb/foot clips remove occlusion and are labeled; cut surfaces are not model holes. Current neutral stance intentionally differs from the asymmetric original. Elevated view is a stand-in, not an actual Unity camera."
+}

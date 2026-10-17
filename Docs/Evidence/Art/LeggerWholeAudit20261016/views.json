@@ -1,0 +1,1438 @@
+{
+  "source_sha256_before": "90757f7efa6811fbfd9c82c93b08a98d254f60d13d15e447e5eeab03f2db6304",
+  "source_sha256_after": "90757f7efa6811fbfd9c82c93b08a98d254f60d13d15e447e5eeab03f2db6304",
+  "native_modified": false,
+  "native_saved": false,
+  "temporary_overrides_only": true,
+  "blender": "5.2.2 LTS",
+  "views": [
+    {
+      "name": "overall_front",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_overall_front.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        0,
+        -4,
+        0
+      ],
+      "ortho_scale_m": 2.66,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "overall_front",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_overall_front.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        0,
+        -4,
+        0
+      ],
+      "ortho_scale_m": 2.66,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "overall_side",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_overall_side.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 2.66,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "overall_side",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_overall_side.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 2.66,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "overall_left",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_overall_left.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        -4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 2.66,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "overall_left",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_overall_left.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        -4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 2.66,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "overall_rear",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_overall_rear.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        0,
+        4,
+        0
+      ],
+      "ortho_scale_m": 2.66,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "overall_rear",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_overall_rear.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        0,
+        4,
+        0
+      ],
+      "ortho_scale_m": 2.66,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "overall_top",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_overall_top.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        0,
+        0,
+        4
+      ],
+      "ortho_scale_m": 2.3,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "overall_top",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_overall_top.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        0,
+        0,
+        4
+      ],
+      "ortho_scale_m": 2.3,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "overall_underside",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_overall_underside.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        0,
+        0,
+        -4
+      ],
+      "ortho_scale_m": 2.3,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "overall_underside",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_overall_underside.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        0,
+        0,
+        -4
+      ],
+      "ortho_scale_m": 2.3,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "overall_threequarter",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_overall_threequarter.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        3,
+        -4,
+        1.6
+      ],
+      "ortho_scale_m": 2.74,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "overall_threequarter",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_overall_threequarter.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        3,
+        -4,
+        1.6
+      ],
+      "ortho_scale_m": 2.74,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "elevated_read",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_elevated_read.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        3,
+        -4,
+        5.5
+      ],
+      "ortho_scale_m": 2.74,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "elevated_read",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_elevated_read.png",
+      "center_m": [
+        0.0,
+        0.0,
+        1.1200000047683716
+      ],
+      "direction": [
+        3,
+        -4,
+        5.5
+      ],
+      "ortho_scale_m": 2.74,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "front_side",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_front_side.png",
+      "center_m": [
+        0.0,
+        -0.4000000059604645,
+        1.940000057220459
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 1.1,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "front_side",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_front_side.png",
+      "center_m": [
+        0.0,
+        -0.4000000059604645,
+        1.940000057220459
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 1.1,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "front_oblique",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_front_oblique.png",
+      "center_m": [
+        0.0,
+        -0.4000000059604645,
+        1.940000057220459
+      ],
+      "direction": [
+        3,
+        -4,
+        1.5
+      ],
+      "ortho_scale_m": 1.1,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "front_oblique",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_front_oblique.png",
+      "center_m": [
+        0.0,
+        -0.4000000059604645,
+        1.940000057220459
+      ],
+      "direction": [
+        3,
+        -4,
+        1.5
+      ],
+      "ortho_scale_m": 1.1,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "cockpit_top",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_cockpit_top.png",
+      "center_m": [
+        0.0,
+        -0.20000000298023224,
+        2.0299999713897705
+      ],
+      "direction": [
+        1,
+        -1,
+        4
+      ],
+      "ortho_scale_m": 1.24,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "cockpit_top",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_cockpit_top.png",
+      "center_m": [
+        0.0,
+        -0.20000000298023224,
+        2.0299999713897705
+      ],
+      "direction": [
+        1,
+        -1,
+        4
+      ],
+      "ortho_scale_m": 1.24,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "saddle_side",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_saddle_side.png",
+      "center_m": [
+        0.0,
+        0.05000000074505806,
+        1.9900000095367432
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 0.93,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "saddle_side",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_saddle_side.png",
+      "center_m": [
+        0.0,
+        0.05000000074505806,
+        1.9900000095367432
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 0.93,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "saddle_rear",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_saddle_rear.png",
+      "center_m": [
+        0.0,
+        0.07999999821186066,
+        2.0
+      ],
+      "direction": [
+        2,
+        3,
+        2
+      ],
+      "ortho_scale_m": 1.12,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "saddle_rear",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_saddle_rear.png",
+      "center_m": [
+        0.0,
+        0.07999999821186066,
+        2.0
+      ],
+      "direction": [
+        2,
+        3,
+        2
+      ],
+      "ortho_scale_m": 1.12,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "control_front",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_control_front.png",
+      "center_m": [
+        0.0,
+        -0.4000000059604645,
+        2.119999885559082
+      ],
+      "direction": [
+        0,
+        -4,
+        0.6
+      ],
+      "ortho_scale_m": 1.08,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "control_front",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_control_front.png",
+      "center_m": [
+        0.0,
+        -0.4000000059604645,
+        2.119999885559082
+      ],
+      "direction": [
+        0,
+        -4,
+        0.6
+      ],
+      "ortho_scale_m": 1.08,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "chassis_side",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_chassis_side.png",
+      "center_m": [
+        0.05000000074505806,
+        0.0,
+        1.690000057220459
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 1.42,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "chassis_side",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_chassis_side.png",
+      "center_m": [
+        0.05000000074505806,
+        0.0,
+        1.690000057220459
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 1.42,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "hip_inboard",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_hip_inboard.png",
+      "center_m": [
+        0.10000000149011612,
+        0.0,
+        1.4800000190734863
+      ],
+      "direction": [
+        3,
+        -3,
+        -1
+      ],
+      "ortho_scale_m": 1.07,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "hip_inboard",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_hip_inboard.png",
+      "center_m": [
+        0.10000000149011612,
+        0.0,
+        1.4800000190734863
+      ],
+      "direction": [
+        3,
+        -3,
+        -1
+      ],
+      "ortho_scale_m": 1.07,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "cargo_rear",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_cargo_rear.png",
+      "center_m": [
+        0.0,
+        0.4399999976158142,
+        1.7400000095367432
+      ],
+      "direction": [
+        2,
+        4,
+        0.8
+      ],
+      "ortho_scale_m": 1.3,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "cargo_rear",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_cargo_rear.png",
+      "center_m": [
+        0.0,
+        0.4399999976158142,
+        1.7400000095367432
+      ],
+      "direction": [
+        2,
+        4,
+        0.8
+      ],
+      "ortho_scale_m": 1.3,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "cargo_side",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_cargo_side.png",
+      "center_m": [
+        0.15000000596046448,
+        0.3799999952316284,
+        1.7400000095367432
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 1.28,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "cargo_side",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_cargo_side.png",
+      "center_m": [
+        0.15000000596046448,
+        0.3799999952316284,
+        1.7400000095367432
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 1.28,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "tail_engine",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_tail_engine.png",
+      "center_m": [
+        0.0,
+        0.4300000071525574,
+        1.940000057220459
+      ],
+      "direction": [
+        0,
+        4,
+        1.2
+      ],
+      "ortho_scale_m": 1.04,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "tail_engine",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_tail_engine.png",
+      "center_m": [
+        0.0,
+        0.4300000071525574,
+        1.940000057220459
+      ],
+      "direction": [
+        0,
+        4,
+        1.2
+      ],
+      "ortho_scale_m": 1.04,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "hoses_under",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_hoses_under.png",
+      "center_m": [
+        0.0,
+        0.25999999046325684,
+        1.5299999713897705
+      ],
+      "direction": [
+        2,
+        3,
+        -2
+      ],
+      "ortho_scale_m": 1.22,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "hoses_under",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_hoses_under.png",
+      "center_m": [
+        0.0,
+        0.25999999046325684,
+        1.5299999713897705
+      ],
+      "direction": [
+        2,
+        3,
+        -2
+      ],
+      "ortho_scale_m": 1.22,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "leg_upper",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_leg_upper.png",
+      "center_m": [
+        0.23000000417232513,
+        -0.07000000029802322,
+        1.2300000190734863
+      ],
+      "direction": [
+        4,
+        0,
+        0.2
+      ],
+      "ortho_scale_m": 0.88,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 4.230000019073486,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "leg_upper",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_leg_upper.png",
+      "center_m": [
+        0.23000000417232513,
+        -0.07000000029802322,
+        1.2300000190734863
+      ],
+      "direction": [
+        4,
+        0,
+        0.2
+      ],
+      "ortho_scale_m": 0.88,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 4.230000019073486,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "leg_lower",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_leg_lower.png",
+      "center_m": [
+        0.23999999463558197,
+        -0.05999999865889549,
+        0.6499999761581421
+      ],
+      "direction": [
+        4,
+        0,
+        0.2
+      ],
+      "ortho_scale_m": 1.12,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 4.239999771118164,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "leg_lower",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_leg_lower.png",
+      "center_m": [
+        0.23999999463558197,
+        -0.05999999865889549,
+        0.6499999761581421
+      ],
+      "direction": [
+        4,
+        0,
+        0.2
+      ],
+      "ortho_scale_m": 1.12,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 4.239999771118164,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "foot_side",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_foot_side.png",
+      "center_m": [
+        0.2800000011920929,
+        -0.47999998927116394,
+        0.1899999976158142
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 0.94,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 4.28000020980835,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "foot_side",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_foot_side.png",
+      "center_m": [
+        0.2800000011920929,
+        -0.47999998927116394,
+        0.1899999976158142
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 0.94,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 4.28000020980835,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "foot_top",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_foot_top.png",
+      "center_m": [
+        0.2800000011920929,
+        -0.47999998927116394,
+        0.18000000715255737
+      ],
+      "direction": [
+        0,
+        0,
+        4
+      ],
+      "ortho_scale_m": 0.94,
+      "clay": false,
+      "clip_start_m": 3.869999885559082,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1024,
+        1200
+      ]
+    },
+    {
+      "name": "foot_top",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_foot_top.png",
+      "center_m": [
+        0.2800000011920929,
+        -0.47999998927116394,
+        0.18000000715255737
+      ],
+      "direction": [
+        0,
+        0,
+        4
+      ],
+      "ortho_scale_m": 0.94,
+      "clay": false,
+      "clip_start_m": 3.869999885559082,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1024,
+        1200
+      ]
+    },
+    {
+      "name": "rider_stirrups",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_rider_stirrups.png",
+      "center_m": [
+        0.0,
+        0.019999999552965164,
+        1.6299999952316284
+      ],
+      "direction": [
+        2,
+        -3,
+        1.2
+      ],
+      "ortho_scale_m": 0.98,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "rider_stirrups",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_rider_stirrups.png",
+      "center_m": [
+        0.0,
+        0.019999999552965164,
+        1.6299999952316284
+      ],
+      "direction": [
+        2,
+        -3,
+        1.2
+      ],
+      "ortho_scale_m": 0.98,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "clay_front_body",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_clay_front_body.png",
+      "center_m": [
+        0.0,
+        -0.4000000059604645,
+        1.9199999570846558
+      ],
+      "direction": [
+        3,
+        -4,
+        1.3
+      ],
+      "ortho_scale_m": 1.13,
+      "clay": true,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "clay_front_body",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_clay_front_body.png",
+      "center_m": [
+        0.0,
+        -0.4000000059604645,
+        1.9199999570846558
+      ],
+      "direction": [
+        3,
+        -4,
+        1.3
+      ],
+      "ortho_scale_m": 1.13,
+      "clay": true,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "clay_chassis",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_clay_chassis.png",
+      "center_m": [
+        0.05000000074505806,
+        0.0,
+        1.690000057220459
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 1.42,
+      "clay": true,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "clay_chassis",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_clay_chassis.png",
+      "center_m": [
+        0.05000000074505806,
+        0.0,
+        1.690000057220459
+      ],
+      "direction": [
+        4,
+        0,
+        0
+      ],
+      "ortho_scale_m": 1.42,
+      "clay": true,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "clay_leg",
+      "variant": "original",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\original_clay_leg.png",
+      "center_m": [
+        0.23000000417232513,
+        -0.05999999865889549,
+        0.8399999737739563
+      ],
+      "direction": [
+        4,
+        0,
+        0.2
+      ],
+      "ortho_scale_m": 1.64,
+      "clay": true,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 4.230000019073486,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "clay_leg",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_clay_leg.png",
+      "center_m": [
+        0.23000000417232513,
+        -0.05999999865889549,
+        0.8399999737739563
+      ],
+      "direction": [
+        4,
+        0,
+        0.2
+      ],
+      "ortho_scale_m": 1.64,
+      "clay": true,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 4.230000019073486,
+      "isolated": false,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "isolated_frame",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_isolated_frame.png",
+      "center_m": [
+        0.05000000074505806,
+        0.0,
+        1.690000057220459
+      ],
+      "direction": [
+        3,
+        -4,
+        1
+      ],
+      "ortho_scale_m": 1.64,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": true,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "isolated_drive",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_isolated_drive.png",
+      "center_m": [
+        0.0,
+        0.1899999976158142,
+        1.7599999904632568
+      ],
+      "direction": [
+        3,
+        4,
+        -0.5
+      ],
+      "ortho_scale_m": 1.38,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": true,
+      "size": [
+        1200,
+        1200
+      ]
+    },
+    {
+      "name": "isolated_harness",
+      "variant": "current",
+      "image": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerWholeAudit20261016\\Views\\current_isolated_harness.png",
+      "center_m": [
+        0.0,
+        0.20000000298023224,
+        1.600000023841858
+      ],
+      "direction": [
+        3,
+        4,
+        -1
+      ],
+      "ortho_scale_m": 1.5,
+      "clay": false,
+      "clip_start_m": 0.009999999776482582,
+      "clip_end_m": 100.0,
+      "isolated": true,
+      "size": [
+        1200,
+        1200
+      ]
+    }
+  ],
+  "render_settings": {
+    "engine": "Cycles",
+    "device": "OPTIX",
+    "samples": 24,
+    "denoising": true,
+    "view_transform": "AgX",
+    "exposure": 0,
+    "world_strength": 0.6,
+    "film_transparent": true
+  },
+  "limits": "Offline views. Limb/foot clips remove occlusion and are labeled; cut surfaces are not model holes. Current neutral stance intentionally differs from the asymmetric original. Elevated view is a stand-in, not an actual Unity camera.",
+  "foot_camera_repair": "Recenter both right-foot crops to Y=-0.48 m; use 1024x1200 top crop to exclude the opposite foot. Replaces four initially misframed views; no asset edit."
+}
