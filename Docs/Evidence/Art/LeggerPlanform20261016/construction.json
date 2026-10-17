@@ -1,0 +1,280 @@
+{
+  "before_sha256": "d5e676a6b5c0cf03c0608acef0b1efee9360997337bb0ed5a2481aa267dfc226",
+  "candidate_sha256": "f31f4beae80173df81f6d9da649049de66cc967f47382a8bec5bf75fb919eb87",
+  "candidate_bytes": 796195717,
+  "candidate_path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerPlanform20261016\\Candidate.blend",
+  "renamed": {
+    "Legger_Part_Cargo_L_Aux_Body": "REFERENCE_PrePlanform_Legger_Part_Cargo_L_Aux_Body",
+    "Legger_Part_Cargo_L_Aux_Lid": "REFERENCE_PrePlanform_Legger_Part_Cargo_L_Aux_Lid",
+    "Legger_Part_Cargo_L_Aux_Straps": "REFERENCE_PrePlanform_Legger_Part_Cargo_L_Aux_Straps",
+    "Legger_Part_Cargo_L_Main_Body": "REFERENCE_PrePlanform_Legger_Part_Cargo_L_Main_Body",
+    "Legger_Part_Cargo_L_Main_Lid": "REFERENCE_PrePlanform_Legger_Part_Cargo_L_Main_Lid",
+    "Legger_Part_Cargo_L_Main_Straps": "REFERENCE_PrePlanform_Legger_Part_Cargo_L_Main_Straps",
+    "Legger_Part_Cargo_R_Aux_Body": "REFERENCE_PrePlanform_Legger_Part_Cargo_R_Aux_Body",
+    "Legger_Part_Cargo_R_Aux_Lid": "REFERENCE_PrePlanform_Legger_Part_Cargo_R_Aux_Lid",
+    "Legger_Part_Cargo_R_Aux_Straps": "REFERENCE_PrePlanform_Legger_Part_Cargo_R_Aux_Straps",
+    "Legger_Part_Cargo_R_Main_Body": "REFERENCE_PrePlanform_Legger_Part_Cargo_R_Main_Body",
+    "Legger_Part_Cargo_R_Main_Lid": "REFERENCE_PrePlanform_Legger_Part_Cargo_R_Main_Lid",
+    "Legger_Part_Cargo_R_Main_Straps": "REFERENCE_PrePlanform_Legger_Part_Cargo_R_Main_Straps",
+    "Legger_Part_L_CargoRack": "REFERENCE_PrePlanform_Legger_Part_L_CargoRack",
+    "Legger_Part_L_tail_shroud": "REFERENCE_PrePlanform_Legger_Part_L_tail_shroud",
+    "Legger_Part_L_upper_body_shroud": "REFERENCE_PrePlanform_Legger_Part_L_upper_body_shroud",
+    "Legger_Part_MainFrame": "REFERENCE_PrePlanform_Legger_Part_MainFrame",
+    "Legger_Part_R_CargoRack": "REFERENCE_PrePlanform_Legger_Part_R_CargoRack",
+    "Legger_Part_R_tail_shroud": "REFERENCE_PrePlanform_Legger_Part_R_tail_shroud",
+    "Legger_Part_R_upper_body_shroud": "REFERENCE_PrePlanform_Legger_Part_R_upper_body_shroud",
+    "Legger_Part_RearCoolingHousing": "REFERENCE_PrePlanform_Legger_Part_RearCoolingHousing",
+    "Legger_Part_SaddlePan": "REFERENCE_PrePlanform_Legger_Part_SaddlePan",
+    "Legger_Part_SaddleUpholstery": "REFERENCE_PrePlanform_Legger_Part_SaddleUpholstery",
+    "Legger_Part_SeatSubframe": "REFERENCE_PrePlanform_Legger_Part_SeatSubframe"
+  },
+  "hidden_historical_objects_detached_preserving_world": [],
+  "geometry_edits": [
+    {
+      "name": "Legger_Part_Cargo_L_Main_Body",
+      "method": "Rescale case dimensions in mesh coordinates, preserve hinge placement and UVs; rigid angle on cargo root",
+      "maximum_vertex_displacement_m": null
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Straps",
+      "method": "Rescale case dimensions in mesh coordinates, preserve hinge placement and UVs; rigid angle on cargo root",
+      "maximum_vertex_displacement_m": null
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Main_Lid",
+      "method": "Rescale case dimensions in mesh coordinates, preserve hinge placement and UVs; rigid angle on cargo root",
+      "maximum_vertex_displacement_m": null
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Body",
+      "method": "Rescale case dimensions in mesh coordinates, preserve hinge placement and UVs; rigid angle on cargo root",
+      "maximum_vertex_displacement_m": null
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Straps",
+      "method": "Rescale case dimensions in mesh coordinates, preserve hinge placement and UVs; rigid angle on cargo root",
+      "maximum_vertex_displacement_m": null
+    },
+    {
+      "name": "Legger_Part_Cargo_L_Aux_Lid",
+      "method": "Rescale case dimensions in mesh coordinates, preserve hinge placement and UVs; rigid angle on cargo root",
+      "maximum_vertex_displacement_m": null
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Body",
+      "method": "Rescale case dimensions in mesh coordinates, preserve hinge placement and UVs; rigid angle on cargo root",
+      "maximum_vertex_displacement_m": null
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Straps",
+      "method": "Rescale case dimensions in mesh coordinates, preserve hinge placement and UVs; rigid angle on cargo root",
+      "maximum_vertex_displacement_m": null
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Main_Lid",
+      "method": "Rescale case dimensions in mesh coordinates, preserve hinge placement and UVs; rigid angle on cargo root",
+      "maximum_vertex_displacement_m": null
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Body",
+      "method": "Rescale case dimensions in mesh coordinates, preserve hinge placement and UVs; rigid angle on cargo root",
+      "maximum_vertex_displacement_m": null
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Straps",
+      "method": "Rescale case dimensions in mesh coordinates, preserve hinge placement and UVs; rigid angle on cargo root",
+      "maximum_vertex_displacement_m": null
+    },
+    {
+      "name": "Legger_Part_Cargo_R_Aux_Lid",
+      "method": "Rescale case dimensions in mesh coordinates, preserve hinge placement and UVs; rigid angle on cargo root",
+      "maximum_vertex_displacement_m": null
+    },
+    {
+      "name": "Legger_Part_SaddleUpholstery",
+      "method": "Retain original-led contact pocket through Y=0.14; recover narrower, earlier rising rear bolster/pouch envelope with existing quad rows",
+      "maximum_vertex_displacement_m": 0.07113255170499994
+    },
+    {
+      "name": "Legger_Part_SaddlePan",
+      "method": "Follow the corrected rear envelope with existing pan and shoulder support; retain forward seating pocket",
+      "maximum_vertex_displacement_m": 0.07333126849748763
+    },
+    {
+      "name": "Legger_Part_SeatSubframe",
+      "method": "Refit upper rear support to the reshaped saddle pan; keep lower frame junctions and front contact mounts",
+      "maximum_vertex_displacement_m": 0.07805667269740788
+    },
+    {
+      "name": "Legger_Part_MainFrame",
+      "method": "Open the upper rear rails into a tapered V behind the rider; retain lower load path and all leg/steering anchors",
+      "maximum_vertex_displacement_m": 0.031713560453815424
+    },
+    {
+      "name": "Legger_Part_L_upper_body_shroud",
+      "method": "Match the upper rear frame opening while retaining knee-channel and forward panel geometry",
+      "maximum_vertex_displacement_m": 0.016000002708285818
+    },
+    {
+      "name": "Legger_Part_L_tail_shroud",
+      "method": "Refit rear plating into the original tapered perimeter around the cooling housing; keep existing layered quad skins; lower the existing white perimeter beneath the cooling crown after side/oblique review",
+      "maximum_vertex_displacement_m": 1.9884631677005367
+    },
+    {
+      "name": "Legger_Part_R_upper_body_shroud",
+      "method": "Match the upper rear frame opening while retaining knee-channel and forward panel geometry",
+      "maximum_vertex_displacement_m": 0.016000002708285818
+    },
+    {
+      "name": "Legger_Part_R_tail_shroud",
+      "method": "Refit rear plating into the original tapered perimeter around the cooling housing; keep existing layered quad skins; lower the existing white perimeter beneath the cooling crown after side/oblique review",
+      "maximum_vertex_displacement_m": 1.9884692442328142
+    },
+    {
+      "name": "Legger_Part_RearCoolingHousing",
+      "method": "Bring the high rear cooling mass forward and taper the tail endpoint to the retained original profile",
+      "maximum_vertex_displacement_m": 0.09601374984769395
+    },
+    {
+      "name": "Legger_Part_L_CargoRack",
+      "method": "Reuse each loop/stay/beam/cushion component; place four shelf contacts under the re-angled case bottoms and taper the scaffold",
+      "maximum_vertex_displacement_m": 0.47665765954016515
+    },
+    {
+      "name": "Legger_Part_R_CargoRack",
+      "method": "Reuse each loop/stay/beam/cushion component; place four shelf contacts under the re-angled case bottoms and taper the scaffold",
+      "maximum_vertex_displacement_m": 0.47665765954016515
+    }
+  ],
+  "cargo_placement": [
+    {
+      "side": "L",
+      "kind": "Main",
+      "old_center_m": [
+        -0.32,
+        0.5,
+        1.79
+      ],
+      "center_m": [
+        -0.255,
+        0.335,
+        1.735
+      ],
+      "mesh_dimension_scale": [
+        0.84,
+        0.72,
+        0.8
+      ],
+      "yaw_degrees": -8,
+      "top_inward_lean_degrees": 6,
+      "root": "Legger_Cargo_L_Main_ROOT",
+      "parts": [
+        "Legger_Part_Cargo_L_Main_Body",
+        "Legger_Part_Cargo_L_Main_Straps",
+        "Legger_Part_Cargo_L_Main_Lid"
+      ]
+    },
+    {
+      "side": "L",
+      "kind": "Aux",
+      "old_center_m": [
+        -0.305,
+        0.17,
+        1.735
+      ],
+      "center_m": [
+        -0.303,
+        0.635,
+        1.735
+      ],
+      "mesh_dimension_scale": [
+        1.04,
+        1.2,
+        1.15
+      ],
+      "yaw_degrees": -0.75,
+      "top_inward_lean_degrees": 1,
+      "root": "Legger_Cargo_L_Aux_ROOT",
+      "parts": [
+        "Legger_Part_Cargo_L_Aux_Body",
+        "Legger_Part_Cargo_L_Aux_Straps",
+        "Legger_Part_Cargo_L_Aux_Lid"
+      ]
+    },
+    {
+      "side": "R",
+      "kind": "Main",
+      "old_center_m": [
+        0.32,
+        0.5,
+        1.79
+      ],
+      "center_m": [
+        0.255,
+        0.335,
+        1.735
+      ],
+      "mesh_dimension_scale": [
+        0.84,
+        0.72,
+        0.8
+      ],
+      "yaw_degrees": 8,
+      "top_inward_lean_degrees": 6,
+      "root": "Legger_Cargo_R_Main_ROOT",
+      "parts": [
+        "Legger_Part_Cargo_R_Main_Body",
+        "Legger_Part_Cargo_R_Main_Straps",
+        "Legger_Part_Cargo_R_Main_Lid"
+      ]
+    },
+    {
+      "side": "R",
+      "kind": "Aux",
+      "old_center_m": [
+        0.305,
+        0.17,
+        1.735
+      ],
+      "center_m": [
+        0.303,
+        0.635,
+        1.735
+      ],
+      "mesh_dimension_scale": [
+        1.04,
+        1.2,
+        1.15
+      ],
+      "yaw_degrees": 0.75,
+      "top_inward_lean_degrees": 1,
+      "root": "Legger_Cargo_R_Aux_ROOT",
+      "parts": [
+        "Legger_Part_Cargo_R_Aux_Body",
+        "Legger_Part_Cargo_R_Aux_Straps",
+        "Legger_Part_Cargo_R_Aux_Lid"
+      ]
+    }
+  ],
+  "major_meshes": 76,
+  "control_quads": 45762,
+  "evaluated_triangle_ceiling": 146264,
+  "new_maps": 0,
+  "new_active_geometry": false,
+  "visual_refinement": {
+    "input_sha256": "374c16fc081fa0f8afb365b855fd4b5888269668fabf352cb10a4dbdc06e0bac",
+    "edits": [
+      {
+        "part": "Legger_Part_L_tail_shroud",
+        "method": "Lower layered tail perimeter by 0\u201387 mm; retain all skin vertices, connectivity, UVs and modifiers",
+        "maximum_total_displacement_from_before_m": 1.9884631677005367
+      },
+      {
+        "part": "Legger_Part_R_tail_shroud",
+        "method": "Lower layered tail perimeter by 0\u201387 mm; retain all skin vertices, connectivity, UVs and modifiers",
+        "maximum_total_displacement_from_before_m": 1.9884692442328142
+      }
+    ],
+    "reason": "Review of first top, side and rear-oblique checkpoint: tail plating was too high relative to original cooling envelope; front of housing also extended in the second build."
+  }
+}

@@ -1,0 +1,711 @@
+{
+  "source_sha256": "f31f4beae80173df81f6d9da649049de66cc967f47382a8bec5bf75fb919eb87",
+  "original_before": {
+    "source_sha256": "d5e676a6b5c0cf03c0608acef0b1efee9360997337bb0ed5a2481aa267dfc226",
+    "views": [
+      {
+        "image": "original_top.png",
+        "center_m": [
+          0.0,
+          -0.019999999552965164,
+          1.899999976158142
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.65,
+        "clay": false
+      },
+      {
+        "image": "original_top_rear.png",
+        "center_m": [
+          0.0,
+          0.3100000023841858,
+          1.899999976158142
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.04,
+        "clay": false
+      },
+      {
+        "image": "original_rear.png",
+        "center_m": [
+          0.0,
+          0.20000000298023224,
+          1.8300000429153442
+        ],
+        "direction": [
+          0,
+          4,
+          0.06
+        ],
+        "ortho_scale_m": 1.35,
+        "clay": false
+      },
+      {
+        "image": "original_side.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.8799999952316284
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.65,
+        "clay": false
+      },
+      {
+        "image": "original_rear_oblique.png",
+        "center_m": [
+          0.0,
+          0.20000000298023224,
+          1.899999976158142
+        ],
+        "direction": [
+          2.8,
+          3.5,
+          2.8
+        ],
+        "ortho_scale_m": 1.52,
+        "clay": false
+      },
+      {
+        "image": "original_front_oblique.png",
+        "center_m": [
+          0.0,
+          -0.05000000074505806,
+          1.9600000381469727
+        ],
+        "direction": [
+          2.8,
+          -3.5,
+          2.8
+        ],
+        "ortho_scale_m": 1.52,
+        "clay": false
+      },
+      {
+        "image": "original_rider_top.png",
+        "center_m": [
+          0.0,
+          -0.17000000178813934,
+          2.0199999809265137
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.2,
+        "clay": false
+      },
+      {
+        "image": "original_bare_frame_top.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.899999976158142
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.55,
+        "clay": false
+      },
+      {
+        "image": "original_bare_frame_oblique.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.8600000143051147
+        ],
+        "direction": [
+          3,
+          -4,
+          1.8
+        ],
+        "ortho_scale_m": 1.7,
+        "clay": false
+      },
+      {
+        "image": "original_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      },
+      {
+        "image": "before_top.png",
+        "center_m": [
+          0.0,
+          -0.019999999552965164,
+          1.899999976158142
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.65,
+        "clay": false
+      },
+      {
+        "image": "before_top_rear.png",
+        "center_m": [
+          0.0,
+          0.3100000023841858,
+          1.899999976158142
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.04,
+        "clay": false
+      },
+      {
+        "image": "before_rear.png",
+        "center_m": [
+          0.0,
+          0.20000000298023224,
+          1.8300000429153442
+        ],
+        "direction": [
+          0,
+          4,
+          0.06
+        ],
+        "ortho_scale_m": 1.35,
+        "clay": false
+      },
+      {
+        "image": "before_side.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.8799999952316284
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.65,
+        "clay": false
+      },
+      {
+        "image": "before_rear_oblique.png",
+        "center_m": [
+          0.0,
+          0.20000000298023224,
+          1.899999976158142
+        ],
+        "direction": [
+          2.8,
+          3.5,
+          2.8
+        ],
+        "ortho_scale_m": 1.52,
+        "clay": false
+      },
+      {
+        "image": "before_front_oblique.png",
+        "center_m": [
+          0.0,
+          -0.05000000074505806,
+          1.9600000381469727
+        ],
+        "direction": [
+          2.8,
+          -3.5,
+          2.8
+        ],
+        "ortho_scale_m": 1.52,
+        "clay": false
+      },
+      {
+        "image": "before_rider_top.png",
+        "center_m": [
+          0.0,
+          -0.17000000178813934,
+          2.0199999809265137
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.2,
+        "clay": false
+      },
+      {
+        "image": "before_bare_frame_top.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.899999976158142
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.55,
+        "clay": false
+      },
+      {
+        "image": "before_bare_frame_oblique.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.8600000143051147
+        ],
+        "direction": [
+          3,
+          -4,
+          1.8
+        ],
+        "ortho_scale_m": 1.7,
+        "clay": false
+      },
+      {
+        "image": "before_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      }
+    ],
+    "native_saved": false,
+    "native_modified": false,
+    "scope": "Read-only whole-model planform, cargo/frame mounting and rider comparison; temporary overrides, no saved camera/visibility edits."
+  },
+  "first_checkpoint": {
+    "source_sha256": "c1610e556bba214904f9d8499fb44e9def60f05b1468c10dddb5b7a682ba0259",
+    "views": [
+      {
+        "image": "current_top.png",
+        "center_m": [
+          0.0,
+          -0.019999999552965164,
+          1.899999976158142
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.65,
+        "clay": false
+      },
+      {
+        "image": "current_top_rear.png",
+        "center_m": [
+          0.0,
+          0.3100000023841858,
+          1.899999976158142
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.04,
+        "clay": false
+      },
+      {
+        "image": "current_rear.png",
+        "center_m": [
+          0.0,
+          0.20000000298023224,
+          1.8300000429153442
+        ],
+        "direction": [
+          0,
+          4,
+          0.06
+        ],
+        "ortho_scale_m": 1.35,
+        "clay": false
+      },
+      {
+        "image": "current_side.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.8799999952316284
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.65,
+        "clay": false
+      },
+      {
+        "image": "current_rear_oblique.png",
+        "center_m": [
+          0.0,
+          0.20000000298023224,
+          1.899999976158142
+        ],
+        "direction": [
+          2.8,
+          3.5,
+          2.8
+        ],
+        "ortho_scale_m": 1.52,
+        "clay": false
+      },
+      {
+        "image": "current_front_oblique.png",
+        "center_m": [
+          0.0,
+          -0.05000000074505806,
+          1.9600000381469727
+        ],
+        "direction": [
+          2.8,
+          -3.5,
+          2.8
+        ],
+        "ortho_scale_m": 1.52,
+        "clay": false
+      },
+      {
+        "image": "current_rider_top.png",
+        "center_m": [
+          0.0,
+          -0.17000000178813934,
+          2.0199999809265137
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.2,
+        "clay": false
+      },
+      {
+        "image": "current_bare_frame_top.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.899999976158142
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.55,
+        "clay": false
+      },
+      {
+        "image": "current_bare_frame_oblique.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.8600000143051147
+        ],
+        "direction": [
+          3,
+          -4,
+          1.8
+        ],
+        "ortho_scale_m": 1.7,
+        "clay": false
+      },
+      {
+        "image": "current_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      }
+    ],
+    "native_saved": false,
+    "native_modified": false,
+    "scope": "Read-only whole-model planform, cargo/frame mounting and rider comparison; temporary overrides, no saved camera/visibility edits."
+  },
+  "corrected_candidate": {
+    "source_sha256": "f31f4beae80173df81f6d9da649049de66cc967f47382a8bec5bf75fb919eb87",
+    "views": [
+      {
+        "image": "current_top.png",
+        "center_m": [
+          0.0,
+          -0.019999999552965164,
+          1.899999976158142
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.65,
+        "clay": false
+      },
+      {
+        "image": "current_top_rear.png",
+        "center_m": [
+          0.0,
+          0.3100000023841858,
+          1.899999976158142
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.04,
+        "clay": false
+      },
+      {
+        "image": "current_rear.png",
+        "center_m": [
+          0.0,
+          0.20000000298023224,
+          1.8300000429153442
+        ],
+        "direction": [
+          0,
+          4,
+          0.06
+        ],
+        "ortho_scale_m": 1.35,
+        "clay": false
+      },
+      {
+        "image": "current_side.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.8799999952316284
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.65,
+        "clay": false
+      },
+      {
+        "image": "current_rear_oblique.png",
+        "center_m": [
+          0.0,
+          0.20000000298023224,
+          1.899999976158142
+        ],
+        "direction": [
+          2.8,
+          3.5,
+          2.8
+        ],
+        "ortho_scale_m": 1.52,
+        "clay": false
+      },
+      {
+        "image": "current_front_oblique.png",
+        "center_m": [
+          0.0,
+          -0.05000000074505806,
+          1.9600000381469727
+        ],
+        "direction": [
+          2.8,
+          -3.5,
+          2.8
+        ],
+        "ortho_scale_m": 1.52,
+        "clay": false
+      },
+      {
+        "image": "current_rider_top.png",
+        "center_m": [
+          0.0,
+          -0.17000000178813934,
+          2.0199999809265137
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.2,
+        "clay": false
+      },
+      {
+        "image": "current_bare_frame_top.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.899999976158142
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.55,
+        "clay": false
+      },
+      {
+        "image": "current_bare_frame_oblique.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.8600000143051147
+        ],
+        "direction": [
+          3,
+          -4,
+          1.8
+        ],
+        "ortho_scale_m": 1.7,
+        "clay": false
+      },
+      {
+        "image": "current_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      }
+    ],
+    "native_saved": false,
+    "native_modified": false,
+    "scope": "Read-only whole-model planform, cargo/frame mounting and rider comparison; temporary overrides, no saved camera/visibility edits."
+  },
+  "rider": {
+    "source_sha256": "f31f4beae80173df81f6d9da649049de66cc967f47382a8bec5bf75fb919eb87",
+    "views": [
+      {
+        "image": "original_proxy_side.png",
+        "center_m": [
+          0.0,
+          -0.03999999910593033,
+          2.0999999046325684
+        ],
+        "ortho_scale_m": 2.0,
+        "note": "Temporary proportional joint proxy; original-led comparison, not final rider mesh or animation."
+      },
+      {
+        "image": "original_proxy_top.png",
+        "center_m": [
+          0.0,
+          -0.03999999910593033,
+          2.0999999046325684
+        ],
+        "ortho_scale_m": 1.85,
+        "note": "Temporary proportional joint proxy; original-led comparison, not final rider mesh or animation."
+      },
+      {
+        "image": "current_proxy_side.png",
+        "center_m": [
+          0.0,
+          -0.03999999910593033,
+          2.0999999046325684
+        ],
+        "ortho_scale_m": 2.0,
+        "note": "Temporary proportional joint proxy; original-led comparison, not final rider mesh or animation."
+      },
+      {
+        "image": "current_proxy_top.png",
+        "center_m": [
+          0.0,
+          -0.03999999910593033,
+          2.0999999046325684
+        ],
+        "ortho_scale_m": 1.85,
+        "note": "Temporary proportional joint proxy; original-led comparison, not final rider mesh or animation."
+      }
+    ],
+    "native_saved": false
+  },
+  "native": {
+    "source_sha256": "f31f4beae80173df81f6d9da649049de66cc967f47382a8bec5bf75fb919eb87",
+    "views": [
+      {
+        "image": "current_top.png",
+        "center_m": [
+          0.0,
+          -0.019999999552965164,
+          1.899999976158142
+        ],
+        "direction": [
+          0,
+          0,
+          4
+        ],
+        "ortho_scale_m": 1.65,
+        "clay": false
+      },
+      {
+        "image": "current_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      }
+    ],
+    "native_saved": false,
+    "native_modified": false,
+    "scope": "Read-only whole-model planform, cargo/frame mounting and rider comparison; temporary overrides, no saved camera/visibility edits."
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "source_sha256": "f31f4beae80173df81f6d9da649049de66cc967f47382a8bec5bf75fb919eb87",
+  "before_sha256": "d5e676a6b5c0cf03c0608acef0b1efee9360997337bb0ed5a2481aa267dfc226",
+  "method": "World downward rays from Z=2.6 m. Grid 5 mm in X by 10 mm in Y. Current robot legs excluded; heights >1.4 m. Original dense geometry remains fused. Footprint IoU includes all source surfaces in each explicit crop, not semantic part segmentation. Height error only on shared occupied cells.",
+  "regions": [
+    {
+      "region": "cargo",
+      "version": "before",
+      "footprint_intersection_over_union": 0.5643693107932379,
+      "height_mean_absolute_error_on_shared_cells_m": 0.17243605852127075,
+      "shared_cells": 3472
+    },
+    {
+      "region": "cargo",
+      "version": "candidate",
+      "footprint_intersection_over_union": 0.8053269813772196,
+      "height_mean_absolute_error_on_shared_cells_m": 0.08755769580602646,
+      "shared_cells": 3719
+    },
+    {
+      "region": "rear_core",
+      "version": "before",
+      "footprint_intersection_over_union": 0.9469839773798303,
+      "height_mean_absolute_error_on_shared_cells_m": 0.10188741981983185,
+      "shared_cells": 4019
+    },
+    {
+      "region": "rear_core",
+      "version": "candidate",
+      "footprint_intersection_over_union": 0.938421915242332,
+      "height_mean_absolute_error_on_shared_cells_m": 0.07964108139276505,
+      "shared_cells": 4008
+    },
+    {
+      "region": "body",
+      "version": "before",
+      "footprint_intersection_over_union": 0.7373709940249864,
+      "height_mean_absolute_error_on_shared_cells_m": 0.10856666415929794,
+      "shared_cells": 13575
+    },
+    {
+      "region": "body",
+      "version": "candidate",
+      "footprint_intersection_over_union": 0.8196155448431828,
+      "height_mean_absolute_error_on_shared_cells_m": 0.07942365109920502,
+      "shared_cells": 13772
+    }
+  ],
+  "rider_centerline": [
+    {
+      "region": "main_rider_pocket",
+      "y_range_m": [
+        -0.18,
+        0.14
+      ],
+      "samples": 33,
+      "before_centerline_rms_error_m": 0.0027451689820736647,
+      "candidate_centerline_rms_error_m": 0.002734913257881999
+    },
+    {
+      "region": "rear_bolster_envelope",
+      "y_range_m": [
+        0.16,
+        0.34
+      ],
+      "samples": 19,
+      "before_centerline_rms_error_m": 0.1489652842283249,
+      "candidate_centerline_rms_error_m": 0.0055297319777309895
+    }
+  ],
+  "case_bounds": [
+    {
+      "side": "L",
+      "case": "Main",
+      "before_bounds_m": [
+        [
+          -0.43299999833106995,
+          0.289000004529953,
+          1.5032000541687012
+        ],
+        [
+          -0.21900001168251038,
+          0.7109999656677246,
+          2.211322069168091
+        ]
+      ],
+      "candidate_bounds_m": [
+        [
+          -0.38051801919937134,
+          0.1711653172969818,
+          1.4997916221618652
+        ],
+        [
+          -0.13094830513000488,
+          0.4926221966743469,
+          2.070211172103882
+        ]
+      ]
+    },
+    {
+      "side": "L",
+      "case": "Aux",
+      "before_bounds_m": [
+        [
+          -0.40550002455711365,
+          0.07400000095367432,
+          1.5282000303268433
+        ],
+        [
+          -0.21650001406669617,
+          0.26600000262260437,
+          2.0068001747131348
+        ]
+      ],
+      "candidate_bounds_m": [
+        [
+          -0.4083573818206787,
+          0.5187916159629822,
+          1.4959907531738281
+        ],
+        [
+          -0.2058001160621643,
+          0.7510835528373718,
+          2.048748016357422
+        ]
+      ]
+    },
+    {
+      "side": "R",
+      "case": "Main",
+      "before_bounds_m": [
+        [
+          0.21900001168251038,
+          0.289000004529953,
+          1.5032000541687012
+        ],
+        [
+          0.43299999833106995,
+          0.7109999656677246,
+          2.211322069168091
+        ]
+      ],
+      "candidate_bounds_m": [
+        [
+          0.13094830513000488,
+          0.1711653172969818,
+          1.4997916221618652
+        ],
+        [
+          0.38051801919937134,
+          0.4926221966743469,
+          2.070211172103882
+        ]
+      ]
+    },
+    {
+      "side": "R",
+      "case": "Aux",
+      "before_bounds_m": [
+        [
+          0.21650001406669617,
+          0.07400000095367432,
+          1.5282000303268433
+        ],
+        [
+          0.40550002455711365,
+          0.26600000262260437,
+          2.0068001747131348
+        ]
+      ],
+      "candidate_bounds_m": [
+        [
+          0.2058001160621643,
+          0.5187916159629822,
+          1.4959907531738281
+        ],
+        [
+          0.4083573818206787,
+          0.7510835528373718,
+          2.048748016357422
+        ]
+      ]
+    }
+  ],
+  "limits": "Sampling is an auxiliary silhouette/height diagnostic, not perceptual fidelity or anatomical certification. In the rear core footprint alone worsens slightly as open gaps and taper change; height fit improves. Main rider pocket preserves its fitted contact geometry."
+}

@@ -1,0 +1,276 @@
+{
+  "source_sha256": "f31f4beae80173df81f6d9da649049de66cc967f47382a8bec5bf75fb919eb87",
+  "local_files": [
+    {
+      "path": "Logs/LeggerPlanform20261016/application.json",
+      "sha256": "bc72562799092f6179b690309b8ef3c946c70e0e5f33980a29a69914c2b9f527",
+      "bytes": 822
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/apply.py",
+      "sha256": "83c93f5ac18e812c36889347a3419a56508c0f785aa12854b0ee81ac735c4294",
+      "bytes": 2456
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/baseline.json",
+      "sha256": "9842371e046cfbb31d1fea9c45af54fd02ab8716fd281cd2f9e6b52bc42cc913",
+      "bytes": 238927
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/baseline.py",
+      "sha256": "8b53d17cea3127a22ae258a185daa89195b6f63e30a25964d77777bd2666d65a",
+      "bytes": 2449
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/brief.md",
+      "sha256": "66b52c8bf41b9ead0b5016267767bb6f092d18a75c4aded7096d6b9ff7abdfeb",
+      "bytes": 1797
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/build.json",
+      "sha256": "27f0d96b3915a99095a6a869a744818725d898250c1860268d4da74778e37bd7",
+      "bytes": 11496
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/build.py",
+      "sha256": "5b6f1645babb8e2eb42d63416a796c1becc7a38f593c84a19293ead44d9880b6",
+      "bytes": 10813
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/candidate_canonical.json",
+      "sha256": "7c67d3ced65e636e32b25f13095f3511d08d43718cbe46819a77beb86fa0c2f1",
+      "bytes": 41977
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/candidate_qa.json",
+      "sha256": "3e02020302657c37d3de3a594df25aca95da0e9386ea0b1ea98a51d9a872995f",
+      "bytes": 67670
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/capture.py",
+      "sha256": "426e86b346dc074317fc0ce0441e075599bdea73ce64f2b3d5a74c4b0b4df161",
+      "bytes": 5079
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/capture_audit.json",
+      "sha256": "d3b95cf68133580b88b2f69711d9328627bb82a0145a7b42cafe3ae5b5cb52bf",
+      "bytes": 5462
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/capture_native.json",
+      "sha256": "70c1f454733dec7cad53aa6e3204890433be40ec444de38f27578029af91dcac",
+      "bytes": 810
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/capture_texture.json",
+      "sha256": "7e20aa4a31cccfc642a8d354d1c87c47b768114d2be0dee56a20142cd4598201",
+      "bytes": 2883
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/cargo_fit.py",
+      "sha256": "96adfdf74a1690c3f7c444bf5717822c3f2ea123aaac6d8c7101dfa198992424",
+      "bytes": 3472
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/cargo_plane_fit.json",
+      "sha256": "d2eca269fc031c58012f1a8e602227d3d4d348d954c9ebbe146fcb440d8da3e6",
+      "bytes": 6198
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/cargo_plane_fit_final.json",
+      "sha256": "1c53038f0b99ce8a99919f1de1198f7d69ea509cf5ec066a1d5e16c8c39ad0b4",
+      "bytes": 10380
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/checkpoint01_build.json",
+      "sha256": "83156c94ada11e71f79e7e0af7ff3f8c73a293b2d09f0ef9c1244d7d54f425c6",
+      "bytes": 10462
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/checkpoint01_capture_texture.json",
+      "sha256": "a84412733a5fb911413637034c596abcbf7b4e1bdc01055bc77d0b978c540fc5",
+      "bytes": 2883
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/checkpoint01_rider_profiles_candidate.json",
+      "sha256": "99fc96f71742d955d1fd4bb467ecee0cccf80ffc947a569075c64a7868904641",
+      "bytes": 188900
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/checkpoint01_top_fields_candidate.npz",
+      "sha256": "9ed0f882c3e14f611711c632d45e31a23c70827f22d61cb8e814ccff6514e8a0",
+      "bytes": 106406
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/commit_records.py",
+      "sha256": "af6a37bab5d12dd6f4e30fb42155959bccbacfda86847141674de144645e9162",
+      "bytes": 2457
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/components.json",
+      "sha256": "935f04f856597348ac9088d52e950e1d267495659751c69a90d5319b2a4cf70c",
+      "bytes": 107720
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/components.py",
+      "sha256": "9f11562f24e1ecb479284d817da42b68186b15e7e2e3658763f98134435d39ab",
+      "bytes": 1035
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/final_cargo_fit.py",
+      "sha256": "075522c51ad5a4cc98da3f5d4c6430c7eec61d0e42a21f7c2d3d43e1fdd19d64",
+      "bytes": 1476
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/grip_estimates.json",
+      "sha256": "a22004657b8a39693eac1fa0ad5c13804a6f0c117380f3a464f79ce15d2b5c1d",
+      "bytes": 3462
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/measure.py",
+      "sha256": "09a7961b6278e2e1e85764b1c998c8b5203ebbdcf1d7ff0fcd6642243adaf97a",
+      "bytes": 3045
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/mount_check.py",
+      "sha256": "1fad4a02ab145084a905314768db5cab6e121ff64186b29299906fdce441bf0c",
+      "bytes": 1949
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/mount_contacts.json",
+      "sha256": "dff7c5a9f3027ac5373fe282f46011a8650c461fb6b4402d61b868a07d621f2c",
+      "bytes": 4569
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/native_canonical.json",
+      "sha256": "7c67d3ced65e636e32b25f13095f3511d08d43718cbe46819a77beb86fa0c2f1",
+      "bytes": 41977
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/native_qa.json",
+      "sha256": "3e02020302657c37d3de3a594df25aca95da0e9386ea0b1ea98a51d9a872995f",
+      "bytes": 67670
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/original_cargo_points.npz",
+      "sha256": "c7bf32f71e56c9e4e711a5e9ef1bf3760990a97aa1f43674a4cd5601dafcf461",
+      "bytes": 2541371
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/original_front_samples.json",
+      "sha256": "7f7e0a4d443e64edba48996a2e150b092680b801f99964bc7cf7808e5868db1f",
+      "bytes": 233
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/planform_metrics.json",
+      "sha256": "6d166a8a8dadaeb1d16c49e72482ebd4e0fb668a956b1881e898f3dfa6ed3c1e",
+      "bytes": 5203
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/pose_analysis.json",
+      "sha256": "6a4b5e7ab1e14d667dea5687c68a1711f5f89cea457e8f38d0d73a7d779132e6",
+      "bytes": 153832
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/pose_captures.json",
+      "sha256": "b2d06e823738bbdfbf96f011bc06825c0beccd411443f3c63e8ea376aa23a3bb",
+      "bytes": 1352
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/pose_check.py",
+      "sha256": "bfffe333fe31fb9a7b2376c1012fea013f801954ae8702cc8c87e82bffab3e8a",
+      "bytes": 8449
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/probe.py",
+      "sha256": "2c9ed4f9bb561bc537d05e131dd6ffc625f0b76946c2eff0ef6e04590896c7a6",
+      "bytes": 2798
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/prototype_rig.json",
+      "sha256": "15a607f4f21a3a7d84d45033c6d4e596ba1f85e3af0f1e688f9e5ff649cafd09",
+      "bytes": 19347
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/qa.py",
+      "sha256": "98024087c9e05f097166887e1d75ddba5d97ba5616747a9b97725b638fb62e86",
+      "bytes": 8618
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/refine.py",
+      "sha256": "84b112f1e643bb5cf53c9e7d92e93cfd0d9b033dc051d878fe7c7e787ac3d08e",
+      "bytes": 2106
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/render_comparison.json",
+      "sha256": "abce5f21b0376d6d2272d3cf6321d1619aa645f8359f28d5d7d379cc8fde5bb4",
+      "bytes": 539
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/rider_profiles_before.json",
+      "sha256": "5be0beb66edb2dc93413738bb522185227154ef1f35aacbee41a70e8efce79f5",
+      "bytes": 161910
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/rider_profiles_candidate.json",
+      "sha256": "0dd145d860d1b3d5c777ca14e26761634da8a78ce137cefce438f61515fb7de9",
+      "bytes": 188904
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/seal_records.py",
+      "sha256": "7eabdb768f55ccc3144a6e11c7ded8e3612268fce6cb4564daa0919a3185fd43",
+      "bytes": 5414
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/source_preservation.json",
+      "sha256": "bc23ee64252b14b39af1ff1f885890c2586eaa97c593156936d6aa6b1bc48e3c",
+      "bytes": 234995
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/top_fields_before.npz",
+      "sha256": "ab25d910568101d416b4fafff2e7ef542a6be7e03566a73e1dcb14635a1a7eaf",
+      "bytes": 98148
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/top_fields_candidate.npz",
+      "sha256": "43c64bd15699423d45ef5e947347d59c07edaf43692d2ebfe03e3e2a4b16d3eb",
+      "bytes": 106422
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/validate_records.py",
+      "sha256": "81ab2ca4bea765ec79f9b2cf218119bd878b5fefe07ab67821aa6f6117aaa938",
+      "bytes": 2148
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/views.json",
+      "sha256": "b45ae32b7fb4034106796059208ae5040cf6ad8cb7631a2a354b3c82bcdc9da0",
+      "bytes": 14936
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/visual_review.json",
+      "sha256": "452a31c7cf07c3f9debce79c7577ead05f38f2fe4cd29b578335aeb97be69d54",
+      "bytes": 1778
+    },
+    {
+      "path": "Logs/LeggerPlanform20261016/write_receipt.py",
+      "sha256": "ad7c8b0c89be822430e964e6f3de448cdb9dff4506cf01211c8c03716bf94f5d",
+      "bytes": 8445
+    },
+    {
+      "path": "Logs/LeggerSciFi20261015/fingerprint.py",
+      "sha256": "eb5f095437185432900cd31b2ed07feb3d55796db3dcd72eb7dc8c1a8f5bc86f",
+      "bytes": 1762
+    },
+    {
+      "path": "Logs/LeggerSciFi20261015/forms.py",
+      "sha256": "5c203c6585408c89137a8ab649a2c5f1b86a126d62dade50c03b8114e73f545e",
+      "bytes": 9219
+    },
+    {
+      "path": "Tools/Art/Blender/inspect_blend.py",
+      "sha256": "72a570b58d8b0622dd5477f4a130b2a10e36b4840778dea14bad634273e9da20",
+      "bytes": 2394
+    }
+  ],
+  "scope": "Ignored local authoring/checkpoint recipes and measured inputs; native checkpoints and pixels have separate hashes."
+}

@@ -1,0 +1,54 @@
+{
+  "source_sha256": "f31f4beae80173df81f6d9da649049de66cc967f47382a8bec5bf75fb919eb87",
+  "before_sha256": "d5e676a6b5c0cf03c0608acef0b1efee9360997337bb0ed5a2481aa267dfc226",
+  "native": {
+    "path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration04.blend",
+    "bytes": 796195717
+  },
+  "recovery": {
+    "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerPlanform20261016\\Before.blend",
+    "sha256": "d5e676a6b5c0cf03c0608acef0b1efee9360997337bb0ed5a2481aa267dfc226",
+    "bytes": 796129451
+  },
+  "first_visual_checkpoint": {
+    "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerPlanform20261016\\Checkpoint01.blend",
+    "sha256": "c1610e556bba214904f9d8499fb44e9def60f05b1468c10dddb5b7a682ba0259"
+  },
+  "major_meshes": 76,
+  "control_quads": 45762,
+  "evaluated_triangles": 146264,
+  "active_maps": 55,
+  "changed_meshes": 23,
+  "unchanged_meshes": 53,
+  "prior_meshes_preserved": 971,
+  "all_mesh_objects": 994,
+  "prior_packed_images_byte_identical": 191,
+  "native_matches_candidate_qa": true,
+  "native_render_comparison": [
+    {
+      "view": "top",
+      "exact_alpha": true,
+      "mean_rgb_delta_0_255": 3.3796296296296295e-05,
+      "maximum_rgb_delta_0_255": 2.0
+    },
+    {
+      "view": "assembled",
+      "exact_alpha": true,
+      "mean_rgb_delta_0_255": 8.333333333333334e-06,
+      "maximum_rgb_delta_0_255": 1.0
+    }
+  ],
+  "review_images": 53,
+  "view_count": {
+    "original_before": 20,
+    "first_checkpoint": 10,
+    "corrected_candidate": 10,
+    "rider": 4,
+    "native": 2
+  },
+  "foreground_interaction": false,
+  "user_gui_reloaded": false,
+  "source_art_only": true,
+  "unity_proof": false,
+  "native_local_only": true
+}

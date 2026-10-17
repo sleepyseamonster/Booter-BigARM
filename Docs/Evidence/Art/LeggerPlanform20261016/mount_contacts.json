@@ -1,0 +1,143 @@
+{
+  "source_sha256": "f31f4beae80173df81f6d9da649049de66cc967f47382a8bec5bf75fb919eb87",
+  "contacts": [
+    {
+      "side": "L",
+      "case": "Main",
+      "pad_component": 5,
+      "pad_top_center_m": [
+        -0.25468945503234863,
+        0.244956374168396,
+        1.5109835863113403
+      ],
+      "body_surface_m": [
+        -0.2549537122249603,
+        0.24499353766441345,
+        1.5084447860717773
+      ],
+      "nearest_surface_separation_m": 0.00255278664024029,
+      "method": "Existing cushion top centroid to evaluated case body; unsigned local proximity, not full contact or load certification."
+    },
+    {
+      "side": "L",
+      "case": "Main",
+      "pad_component": 7,
+      "pad_top_center_m": [
+        -0.25468945503234863,
+        0.42495638132095337,
+        1.5109835863113403
+      ],
+      "body_surface_m": [
+        -0.25468266010284424,
+        0.42495545744895935,
+        1.5110490322113037
+      ],
+      "nearest_surface_separation_m": 6.580418245406307e-05,
+      "method": "Existing cushion top centroid to evaluated case body; unsigned local proximity, not full contact or load certification."
+    },
+    {
+      "side": "L",
+      "case": "Aux",
+      "pad_component": 9,
+      "pad_top_center_m": [
+        -0.30294764041900635,
+        0.5799993276596069,
+        1.5049996376037598
+      ],
+      "body_surface_m": [
+        -0.3029484748840332,
+        0.5799993276596069,
+        1.5049514770507812
+      ],
+      "nearest_surface_separation_m": 4.816778171223432e-05,
+      "method": "Existing cushion top centroid to evaluated case body; unsigned local proximity, not full contact or load certification."
+    },
+    {
+      "side": "L",
+      "case": "Aux",
+      "pad_component": 11,
+      "pad_top_center_m": [
+        -0.30294764041900635,
+        0.6899993419647217,
+        1.5049996376037598
+      ],
+      "body_surface_m": [
+        -0.3029480278491974,
+        0.6899993419647217,
+        1.5049766302108765
+      ],
+      "nearest_surface_separation_m": 2.301065469384756e-05,
+      "method": "Existing cushion top centroid to evaluated case body; unsigned local proximity, not full contact or load certification."
+    },
+    {
+      "side": "R",
+      "case": "Main",
+      "pad_component": 5,
+      "pad_top_center_m": [
+        0.25468945503234863,
+        0.2449563592672348,
+        1.5109837055206299
+      ],
+      "body_surface_m": [
+        0.2549537122249603,
+        0.24499352276325226,
+        1.5084447860717773
+      ],
+      "nearest_surface_separation_m": 0.002552905188077563,
+      "method": "Existing cushion top centroid to evaluated case body; unsigned local proximity, not full contact or load certification."
+    },
+    {
+      "side": "R",
+      "case": "Main",
+      "pad_component": 7,
+      "pad_top_center_m": [
+        0.25468945503234863,
+        0.424956351518631,
+        1.5109837055206299
+      ],
+      "body_surface_m": [
+        0.25468266010284424,
+        0.4249553978443146,
+        1.5110490322113037
+      ],
+      "nearest_surface_separation_m": 6.568604932605924e-05,
+      "method": "Existing cushion top centroid to evaluated case body; unsigned local proximity, not full contact or load certification."
+    },
+    {
+      "side": "R",
+      "case": "Aux",
+      "pad_component": 9,
+      "pad_top_center_m": [
+        0.30294767022132874,
+        0.5799992680549622,
+        1.5049995183944702
+      ],
+      "body_surface_m": [
+        0.3029484748840332,
+        0.5799992680549622,
+        1.5049514770507812
+      ],
+      "nearest_surface_separation_m": 4.804808201696716e-05,
+      "method": "Existing cushion top centroid to evaluated case body; unsigned local proximity, not full contact or load certification."
+    },
+    {
+      "side": "R",
+      "case": "Aux",
+      "pad_component": 11,
+      "pad_top_center_m": [
+        0.30294767022132874,
+        0.6899993419647217,
+        1.5049995183944702
+      ],
+      "body_surface_m": [
+        0.3029480576515198,
+        0.6899993419647217,
+        1.5049766302108765
+      ],
+      "nearest_surface_separation_m": 2.2891462390466365e-05,
+      "method": "Existing cushion top centroid to evaluated case body; unsigned local proximity, not full contact or load certification."
+    }
+  ],
+  "maximum_separation_m": 0.002552905188077563,
+  "check": "Eight reused shelf cushions within 4 mm of their evaluated case bottoms; static placement check only."
+}

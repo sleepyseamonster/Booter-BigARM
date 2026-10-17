@@ -1,0 +1,24 @@
+{
+  "source_sha256": "f31f4beae80173df81f6d9da649049de66cc967f47382a8bec5bf75fb919eb87",
+  "reviewed": true,
+  "audit_views": 20,
+  "first_checkpoint_views": 10,
+  "final_candidate_views": 10,
+  "rider_views": 4,
+  "review_method": "All captures inspected in labeled contact sheets; selected original/candidate top-rear and side captures at full size. Final candidate and comparative rider sheets inspected after corrective iteration.",
+  "findings": [
+    "Original cargo is staggered, lower and follows a taper, unlike the previous parallel tall-case rows.",
+    "First checkpoint corrected cargo proportion, mounting angles, rack shelves and rear rider envelope.",
+    "Checkpoint review caught a remaining gap behind the saddle and a tail perimeter level with the cooling crown. Front cooling geometry moved forward/up and white rear plating lowered using existing vertices.",
+    "Final views show coherent tapered rear plating, lower staggered cases, preserved rider knee corridors and controls.",
+    "Rider proxy is an analytical cross-check; original design controls fit. Small thigh-radius approaches do not constitute signed collision certification."
+  ],
+  "limits": [
+    "Original fused topology prevents true bare-frame isolation.",
+    "Four clean cargo cases approximate the generated stacked luggage masses; small pouch/latch complexity remains in textures or future approved work.",
+    "Retained atlases deform with the surfaces; anisotropic case resizing changes texel density. No new maps or texture rebake in this mounting pass.",
+    "Final dressed rider, wrist roll, moving joints/steering, case-lid sweep, structural loading and Unity performance are not validated."
+  ],
+  "native_views": 2,
+  "native_assembly_and_final_comparison_inspected": true
+}
