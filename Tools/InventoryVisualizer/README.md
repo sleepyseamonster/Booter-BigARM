@@ -10,6 +10,8 @@ Open **http://127.0.0.1:8087**. Stop with Ctrl+C in the server terminal. Optiona
 
 ## Current proposal
 
+- **Sort → Rarity** orders the current results Junk, Common, Uncommon, Rare, Epic and Legendary, then unassigned/legacy values. Names sort alphabetically within each rarity. Category, search and other filters continue to apply; item values and distribution totals are unchanged.
+
 - Each tier-distribution badge retains its total and appends colored dots with nonzero rarity counts for that tier. Hover a dot/count for the rarity name; unassigned and legacy values use outlined dots. The separate overall rarity-distribution row is unchanged. Both distributions use the selected section and inventory context, independently of search/grid filters, and refresh with catalog edits. Browser checks covered mixed-rarity sums, live rebalance updates, empty categories and search preserving section totals. This changes presentation only; no workbook or review records are edited.
 
 - Initial rarity defaults, October 16: [the baseline receipt](../../Docs/Design/Items/RARITY_BASELINE_2026-10-16.json) records 900 current items assigned from their live tiers: T0 → Junk, T1 → Common, T2 → Uncommon, T3 → Rare and T4 → Epic. Thirty-two ancient-technology entries without numeric tiers receive Epic from the setting's extreme ancient-material scarcity; their tiers remain unchanged. These are one-time editable values for the author's manual rebalance. Tier edits do not automatically rewrite rarity, and Legendary remains available for manual assignment. Only `Items.Rarity` changes; other item fields, recipes, review/art state and ongoing edits are preserved. The separate Google Sheet is unsynchronized.

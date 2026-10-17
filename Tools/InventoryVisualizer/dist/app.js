@@ -1,6 +1,7 @@
 import {installCategoryMoves} from './category-moves.js';
 import {installTierEditor} from './tier-editor.js';
 import {installRarityEditor,rarityMarker,RARITY_COLORS} from './rarity-editor.js';
+const RARITY_ORDER=new Map(Object.keys(RARITY_COLORS).map((rarity,index)=>[rarity,index]));
 const $ = selector => document.querySelector(selector);
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const state = {items:[], art:{}, category:'', owner:'catalog', selected:null, view:'menu', list:false};
@@ -54,7 +55,7 @@ function visibleItems(){
     return query.every(term=>Object.values(item).join(' ').toLocaleLowerCase().includes(term));
   }).sort((a,b)=>{
     const sort=$('#sort').value;
-    return (sort==='tier'?Number(a['Tier sort order']??99)-Number(b['Tier sort order']??99):sort==='category'?String(a.Category).localeCompare(String(b.Category)):0)||name(a).localeCompare(name(b));
+    return (sort==='tier'?Number(a['Tier sort order']??99)-Number(b['Tier sort order']??99):sort==='rarity'?(RARITY_ORDER.get(a.Rarity)??99)-(RARITY_ORDER.get(b.Rarity)??99):sort==='category'?String(a.Category).localeCompare(String(b.Category)):0)||name(a).localeCompare(name(b));
   });
 }
 function renderCategories(){
