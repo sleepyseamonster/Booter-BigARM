@@ -1,11 +1,13 @@
 import {IDS,EQUIPMENT,OWNERS,RECIPES,freshState,restoreState,accessible,amount,load,transfer,craft,craftBlocker} from './game-model.mjs';
 import {startInventoryGamepad} from './gamepad.js';
 import {itemIcon} from './item-icons.mjs';
+import {CAMP_SERVICES,campStations,resolveCampStation,campView} from './game-camp.mjs';
 
 const $=s=>document.querySelector(s),html=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const SAVE='arc-dust-game-inventory-v1',PREFS='arc-dust-game-settings-v1';
 let state=freshState(),catalog=new Map(),page='inventory',owner='booter',selected='fitted-0',recipe='battery',search='',filter='',sort='name',referenceId=null,saveBlocked=false;
 let settings={large:false,motion:false},loaded=false;
+let campService='overview',campStation='author.station.workbench',campExitPage='inventory';
 const ownerPages={inventory:'booter',legger:'legger',storage:'chest'},ownerSelections={};
 const mapPlaces=[{id:'booter',label:'Booter',x:34,y:59,icon:'●',description:'Player marker. Position is illustrative; the browser has no live world connection.'},{id:'legger',label:'The Legger',x:46,y:64,icon:'◇',description:'Companion marker. This diagram does not establish actual range, routes or physical access.'},{id:'camp',label:'Camp',x:66,y:34,icon:'△',description:'Sample camp marker. Storage and workstation contents remain owned by their existing sample systems.'}];
 let mapSelection='booter',waypoint=null,mapZoom=1;
@@ -44,7 +46,7 @@ function inspect(){
   if(!entry)return '<aside class="panel item-inspector"><div class="section-label">INSPECT</div><p class="empty">Select an item.</p></aside>';
   const item=catalog.get(entry.item),protectedItem=state.protected.includes(entry.key),favourite=state.favourites.includes(entry.key),equipment=EQUIPMENT.find(([,id])=>id===entry.item);
   const field=(k,v)=>`<dt>${k}</dt><dd>${html(v)}</dd>`;
-  return `<aside class="panel item-inspector"><div class="section-label">INSPECT <span>${entry.instance?'EQUIPMENT':'SUPPLY / RESOURCE'}</span></div><div class="inspect-art">${itemIcon(entry.item)}</div><h2>${html(itemName(entry.item))}</h2><div class="item-subtitle">${html(equipment?.[0]||item?.Category||'Item')} ${entry.owner==='booter'&&entry.slot<6?'· FITTED':''}</div><p class="item-purpose">${html(item?.Purpose||'Expedition equipment.')}</p><dl>${field('Location',OWNERS[entry.owner])}${field('Quantity',entry.qty)}${entry.dust?field('Contained dust',entry.dust):''}${item?.['Mass (game units)']!=null?field('Unit mass',item['Mass (game units)']):''}${field('Access',accessible(state,entry.owner)?'Available':'Out of reach')}</dl><div class="actions item-marks"><button data-action="favourite" class="${favourite?'active':''}" aria-pressed="${favourite}">${favourite?'★ Favourite':'☆ Favourite'}</button><button data-action="protect" class="${protectedItem?'active':''}" aria-pressed="${protectedItem}">${protectedItem?'◆ Protected':'Protect'}</button></div><div class="transfer-label">MOVE TO</div><div class="actions transfer-actions">${Object.entries(OWNERS).filter(([id])=>id!==owner).map(([id,label])=>`<button data-transfer="${id}" ${!accessible(state,owner)||!accessible(state,id)||protectedItem||entry.item===IDS.algae?'disabled':''}>${id==='legger'?'Legger':id==='chest'?'Camp chest':'Booter'}</button>`).join('')}</div>${entry.item===IDS.algae?'<p class="inline-note">Living reserve · attached</p>':''}<button class="help-link" data-reference="${html(entry.item)}">Reference & uses ↗</button>${RECIPES.filter(r=>r.output===entry.item||r.id==='battery'&&entry.item===IDS.ore||r.id==='charge'&&[IDS.empty,IDS.dust].includes(entry.item)).map(r=>`<button class="help-link" data-craft-link="${r.id}">${r.output===entry.item?'Make':'Used in'}: ${html(r.name)} ↗</button>`).join('')}</aside>`;
+  return `<aside class="panel item-inspector"><div class="section-label">INSPECT <span>${entry.instance?'EQUIPMENT':'SUPPLY / RESOURCE'}</span></div><div class="inspect-art">${itemIcon(entry.item)}</div><h2>${html(itemName(entry.item))}</h2><div class="item-subtitle">${html(equipment?.[0]||item?.Category||'Item')} ${entry.owner==='booter'&&entry.slot<6?'· FITTED':''}</div><p class="item-purpose">${html(item?.Purpose||'Expedition equipment.')}</p><dl>${field('Location',OWNERS[entry.owner])}${field('Quantity',entry.qty)}${entry.dust?field('Contained dust',entry.dust):''}${item?.['Mass (game units)']!=null?field('Unit mass',item['Mass (game units)']):''}${field('Access',accessible(state,entry.owner)?'Available':'Out of reach')}</dl><div class="actions item-marks"><button data-action="favourite" class="${favourite?'active':''}" aria-pressed="${favourite}">${favourite?'★ Favourite':'☆ Favourite'}</button><button data-action="protect" class="${protectedItem?'active':''}" aria-pressed="${protectedItem}">${protectedItem?'◆ Protected':'Protect'}</button></div><div class="transfer-label">MOVE TO</div><div class="actions transfer-actions">${Object.entries(OWNERS).filter(([id])=>id!==owner).map(([id,label])=>`<button data-transfer="${id}" ${!accessible(state,owner)||!accessible(state,id)||protectedItem||entry.item===IDS.algae?'disabled':''}>${id==='legger'?'Legger':id==='chest'?'Camp chest':'Booter'}</button>`).join('')}</div>${entry.item===IDS.algae?'<p class="inline-note">Living reserve · attached</p>':''}${entry.item===IDS.camp?'<button id="interact-camp" class="camp-interact" data-page="camp">Interact with camp →</button>':''}<button class="help-link" data-reference="${html(entry.item)}">Reference & uses ↗</button>${RECIPES.filter(r=>r.output===entry.item||r.id==='battery'&&entry.item===IDS.ore||r.id==='charge'&&[IDS.empty,IDS.dust].includes(entry.item)).map(r=>`<button class="help-link" data-craft-link="${r.id}">${r.output===entry.item?'Make':'Used in'}: ${html(r.name)} ↗</button>`).join('')}</aside>`;
 }
 function crafting(){const r=RECIPES.find(r=>r.id===recipe),blocker=craftBlocker(state,r.id,catalog),ore=state.entries.filter(e=>e.owner==='chest'&&e.item===IDS.ore),oreEligible=ore.filter(e=>accessible(state,e.owner)&&!state.protected.includes(e.key)).reduce((n,e)=>n+e.qty,0),dust=state.entries.filter(e=>e.item===IDS.dust&&accessible(state,e.owner)&&!state.protected.includes(e.key)).reduce((n,e)=>n+(e.dust||0),0);
   return heading('CAMP / CRAFTING','Make what you need.','Inspect the route, check local stock, choose the next useful action.')+`<div class="workspace">${rail('recipes')}<section>${RECIPES.map(rec=>`<button class="recipe-card ${r.id===rec.id?'active':''}" data-recipe="${rec.id}"><div class="eyebrow">${rec.station} / ${craftBlocker(state,rec.id,catalog)?'REQUIREMENTS UNMET':'READY HERE'}</div><strong>${rec.name}</strong><small>${rec.description}</small></button>`).join('')}<p class="notice">Two explicit Camp Loop sample operations. Prototype costs are not settled production balance. The refinery study applies conversion directly; Unity’s physical docking and deployment are not simulated here.</p><p class="notice">The remaining catalogue is reference material. Unresolved quantities, sources and facilities never become zero-cost recipes.</p></section><aside class="panel"><div class="eyebrow">${r.station} / RECIPE</div><h2>${r.name}</h2><p>${r.description}</p>${r.id==='battery'?`<div class="requirements"><span>Ironstone Ore<br><small>Eligible in camp chest / required</small></span><strong>${oreEligible} / 4</strong></div><div class="requirements"><span>Known owned across locations</span><strong>${amount(state,IDS.ore)}</strong></div>`:`<div class="requirements"><span>Contained dust<br><small>10 must be in one eligible canister</small></span><strong>${dust} / 10</strong></div><div class="requirements"><span>Eligible empty batteries</span><strong>${amount(state,IDS.empty,true)} / 1</strong></div>`}<div class="requirements"><span>Output destination</span><strong>Booter pocket</strong></div><p class="notice ${blocker?'blocked':'good'}">${html(blocker||'Ready here · requirements and output space verified.')}</p><div class="actions"><button data-action="craft" ${blocker?'disabled':''}>${r.id==='battery'?'Craft one':'Refine & charge'}</button><button data-action="track">Track project</button></div></aside></div>`;
@@ -67,25 +69,56 @@ function render(){
   const searchFocus=document.activeElement?.id==='game-search',position=searchFocus?document.activeElement.selectionStart:null;
   const prototypeOpen=$('#prototype-controls')?.open,mapViewport=$('.map-viewport'),mapPosition=mapViewport?{left:mapViewport.scrollLeft,top:mapViewport.scrollTop}:null;
   document.body.dataset.screen=page;
-  $('#content').innerHTML=ownerPages[page]?inventory():page==='crafting'?crafting():page==='projects'?projects():page==='map'?mapView():page==='settings'?settingsView():reference();
+  const active=document.activeElement,focusId=active?.closest('#content')?active.id:null;
+  const focusCommand=active?.closest('#content')?['action','transfer','project','reference'].find(k=>active.dataset[k]!==undefined):null;
+  const focusSelector=focusCommand?`[data-${focusCommand}="${CSS.escape(active.dataset[focusCommand])}"]`:null;
+  const campContent=page==='camp'?(ownerPages[campService]?inventory():campService==='projects'?projects():campService==='reference'?reference():''):'';
+  $('#content').innerHTML=page==='camp'?campView({state,catalog,service:campService,stationId:campStation,content:campContent}):ownerPages[page]?inventory():page==='crafting'?crafting():page==='projects'?projects():page==='map'?mapView():page==='settings'?settingsView():reference();
   if(prototypeOpen&&$('#prototype-controls'))$('#prototype-controls').open=true;
   if(mapPosition&&$('.map-viewport'))$('.map-viewport').scrollTo(mapPosition);
   document.querySelectorAll('[data-page]').forEach(b=>{b.classList.toggle('active',b.dataset.page===page);b.setAttribute('aria-current',b.dataset.page===page?'page':'false');});
   $('#project-count').textContent=state.projects.length;
   if(searchFocus&&$('#game-search')){$('#game-search').focus();try{$('#game-search').setSelectionRange(position,position);}catch{}}
+  else if(focusId)document.getElementById(focusId)?.focus({preventScroll:true});
+  else if(focusSelector){const target=document.querySelector(focusSelector);if(target&&!target.disabled)target.focus({preventScroll:true});else if(page==='camp')document.getElementById(`camp-station-${campStation}`)?.focus({preventScroll:true});}
 }
 function go(next){
   if(state.entries.some(e=>e.key===selected&&e.owner===owner))ownerSelections[owner]=selected;
+  if(next==='camp'&&page!=='camp'){campExitPage=page;campService='overview';}
   page=next;search='';filter='';
   if(ownerPages[page]){owner=ownerPages[page];selected=state.entries.find(e=>e.key===ownerSelections[owner]&&e.owner===owner)?.key||state.entries.find(e=>e.owner===owner)?.key;}
   render();window.scrollTo({top:0,behavior:'instant'});
+}
+function campNavigate(service){
+  if(!CAMP_SERVICES.some(s=>s.id===service))return;
+  if(page!=='camp')go('camp');
+  if(state.entries.some(e=>e.key===selected&&e.owner===owner))ownerSelections[owner]=selected;
+  campService=service;search='';filter='';
+  if(ownerPages[service]){owner=ownerPages[service];selected=state.entries.find(e=>e.key===ownerSelections[owner]&&e.owner===owner)?.key||state.entries.find(e=>e.owner===owner)?.key;}
+  const station=resolveCampStation(campStations(catalog),campStation);
+  if(station){campStation=station.id;if(station.recipe)recipe=station.recipe;}
+  render();document.getElementById(`camp-service-${service}`)?.focus();window.scrollTo({top:0,behavior:'instant'});
+}
+function openRecipe(id){
+  recipe=id;
+  if(page==='camp'){campStation=campStations(catalog).find(s=>s.recipe===id)?.id||campStation;campNavigate('workstations');}
+  else go('crafting');
+}
+function back(){
+  if(page==='camp'){
+    if(campService!=='overview'){const previous=campService;campNavigate('overview');document.getElementById(`camp-service-${previous}`)?.focus();}
+    else $('#leave-camp').click();
+  }else $('#menu').showModal();
 }
 function applySettings(){document.documentElement.classList.toggle('large-text',settings.large);document.documentElement.classList.toggle('reduced-motion',settings.motion);}
 function leaveStudy(){if(window.parent!==window)window.parent.location.hash='inventory';else window.location.href='index.html#inventory';}
 document.addEventListener('click',event=>run(()=>{
   const button=event.target.closest('button');if(!button||button.disabled)return;
   const d=button.dataset;
-  if(d.page){go(d.page);return;}
+  if(d.campService){campNavigate(d.campService);return;}
+  if(d.campStation){const station=campStations(catalog).find(s=>s.id===d.campStation);if(!station)return;campStation=station.id;if(station.recipe)recipe=station.recipe;render();return;}
+  if(d.campExit!==undefined){go(campExitPage);document.querySelector('[data-page="camp"]')?.focus();say('Camp menu closed.');return;}
+  if(d.page){if(d.page==='camp'&&page==='camp')campNavigate('overview');else go(d.page);return;}
   if(d.owner){go(Object.keys(ownerPages).find(p=>ownerPages[p]===d.owner)||'inventory');return;}
   if(d.mapMarker){mapSelection=d.mapMarker;render();document.querySelector(`[data-map-marker="${CSS.escape(mapSelection)}"]`)?.focus();return;}
   if(d.mapZoom){mapZoom=Math.max(1,Math.min(2,mapZoom+(d.mapZoom==='in'?.25:-.25)));render();return;}
@@ -93,8 +126,8 @@ document.addEventListener('click',event=>run(()=>{
   if(d.action==='clear-waypoint'){waypoint=null;render();say('Schematic waypoint cleared.');return;}
   if(d.entry){selected=d.entry;render();document.querySelector(`[data-entry="${CSS.escape(selected)}"]`)?.focus();return;}
   if(d.recipe){recipe=d.recipe;render();return;}
-  if(d.craftLink){recipe=d.craftLink;go('crafting');return;}
-  if(d.reference){referenceId=d.reference;go('reference');return;}
+  if(d.craftLink){openRecipe(d.craftLink);return;}
+  if(d.reference){referenceId=d.reference;if(page==='camp'){if(campService==='reference')render();else campNavigate('reference');}else go('reference');return;}
   if(d.transfer){if(state.entries.find(e=>e.key===selected)?.item===IDS.algae)throw Error('The living algae attachment cannot be removed.');const next=transfer(state,selected,d.transfer,catalog);commit(next,`Transferred to ${OWNERS[d.transfer]}.`);return;}
   if(d.action==='protect'||d.action==='favourite'){
     const key=d.action==='protect'?'protected':'favourites';if(!state.entries.some(e=>e.key===selected))return;
@@ -109,12 +142,14 @@ document.addEventListener('click',event=>run(()=>{
   if(d.remove){const next=structuredClone(state);next.projects=next.projects.filter(p=>p.recipe!==d.remove);commit(next,'Project removed. Possessions are unchanged.');return;}
   if(d.action==='reset'){$('#reset').showModal();return;}
   if(d.menu==='resume'){$('#menu').close();return;}
+  if(d.menu==='camp'){$('#menu').close();if(page==='camp')campNavigate('overview');else go('camp');document.getElementById('camp-service-overview')?.focus();return;}
   if(d.menu==='radial'||d.menu==='settings'){$('#menu').close();go('settings');return;}
   if(d.menu==='exit'){leaveStudy();return;}
 }));
 document.addEventListener('input',event=>{if(event.target.id==='game-search'){search=event.target.value;render();}});
 document.addEventListener('change',event=>run(()=>{
   const target=event.target,d=target.dataset;
+  if(d.campStationSelect!==undefined){const station=campStations(catalog).find(s=>s.id===target.value);if(station){campStation=station.id;if(station.recipe)recipe=station.recipe;render();}return;}
   if(d.near){state.near[d.near]=target.checked;render();persist();say('Access updated. Quantities and ownership are unchanged.');}
   if(target.id==='game-filter'){filter=target.value;render();}
   if(target.id==='game-sort'){sort=target.value;render();}
@@ -127,17 +162,18 @@ $('#cancel-reset').onclick=()=>$('#reset').close();
 $('#confirm-reset').onclick=()=>{$('#reset').close();saveBlocked=false;state=freshState();owner='booter';selected='fitted-0';go('inventory');persist();say('Sample expedition reset. The item database is unchanged.');};
 document.addEventListener('keydown',event=>{
   if(document.querySelector('dialog[open]'))return;
-  if(event.key==='Escape'){event.preventDefault();$('#menu').showModal();return;}
+  if(event.key==='Escape'){event.preventDefault();back();return;}
   if(/INPUT|SELECT|TEXTAREA/.test(event.target.tagName))return;
-  if(event.key==='/'){event.preventDefault();if(!$('#game-search'))go('reference');$('#game-search')?.focus();}
+  if(event.key==='/'){event.preventDefault();if(!$('#game-search')){if(page==='camp')campNavigate('reference');else go('reference');}$('#game-search')?.focus();}
   if(event.key.toLowerCase()==='i')go('inventory');
 });
+document.addEventListener('inventory-back',back);
 async function init(){
   let recovery='';
   try{const saved=localStorage.getItem(SAVE);if(saved)state=restoreState(JSON.parse(saved));}catch{saveBlocked=true;recovery='Saved study data could not be read. It has been preserved; reset the sample explicitly to replace it.';}
   try{const saved=JSON.parse(localStorage.getItem(PREFS)||'null');if(saved)settings={large:saved.large===true,motion:saved.motion===true};}catch{}
   applySettings();
-  try{const response=await fetch('/api/catalog');if(!response.ok)throw Error('The item catalogue is unavailable.');const data=await response.json();catalog=new Map(data.items.map(item=>[item['Item ID'],item]));loaded=true;render();say(recovery||'Loadout ready.');}
+  try{const response=await fetch('/api/catalog');if(!response.ok)throw Error('The item catalogue is unavailable.');const data=await response.json();catalog=new Map(data.items.map(item=>[item['Item ID'],item]));loaded=true;if(location.hash==='#camp')go('camp');else render();say(recovery||'Loadout ready.');}
   catch(error){$('#content').innerHTML='<p class="empty">Could not read the item catalogue. Keep the local visualizer server running, then reload this tab.</p>';say(error.message);}
 }
 init().then(()=>{if(loaded)startInventoryGamepad();});

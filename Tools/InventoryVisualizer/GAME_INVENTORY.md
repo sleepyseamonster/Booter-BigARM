@@ -4,6 +4,38 @@ Open **Game inventory** in the visualizer's top navigation, or visit `http://127
 
 This tab is separate from the catalogue/review/artwork workspace. Its iframe, JavaScript module, model and stylesheet are independent; the shared entry points integrate navigation, lazy loading and scoped host chrome. It reads `/api/catalog` and never calls a mutation endpoint. No master item, review choice, artwork record, Unity asset or gameplay save is edited.
 
+## Pop-up camp menu — October 17, 2026
+
+Open **Game inventory → Camp**, choose **Enter camp** in the Game menu, or inspect the Pop-up camp item and choose **Interact with camp**. Direct entry is `http://127.0.0.1:8087/game.html#camp`.
+
+This implements the author's narrowed browser/menu-only request. The Camp Loop Unity scene and runtime are unchanged. The browser remains the design workspace for camp and eventual town menus; a complete town economy, vendors and additional production recipes are not implemented here.
+
+The persistent camp service menu contains Overview, Item box, Booter equipment, Legger cargo, Workstations, Tracked projects and Item reference. Inventory, inspection, transfers, protection, crafting and tracking use the existing sample ownership and transaction functions. Opening a menu never changes proximity or supplies resources. Escape/East backs from a service to camp overview, then leaves camp for the prior game tab. Escape outside camp opens the existing Game menu. Modal dialogs retain their existing close behavior. Bumpers/triggers cycle the nine top tabs; camp service buttons are separate from that cycle.
+
+Workstations includes every current catalogue definition in **Crafting stations** (11 at verification), plus a Cooking station menu address when its definition is absent. The cooking fallback follows [the author-directed station brief](../../Docs/Design/Items/CAMP_CRAFTING_STATION_PROPOSALS.json); it does not create an item, inventory instance or recipe. Workbench and Dust refinery execute the two existing sample operations. Ironstone refinery, Cooking and proposal facilities open inspectable details with unavailable recipe actions. No new costs, yields, construction, food effects, power sources or crafting routes are invented. The active station ID and recipe resolve together if a catalogue definition is missing, and overview readiness counts only recipes with available station menus.
+
+Navigation and selected workstation are transient UI state. Existing save version, localStorage keys, instance IDs, access checks, protected-input rules, canister contents and transaction rollback remain unchanged. No world generation, terrain streaming, chunk unload/reload, placed-object identity or persisted Unity deltas are involved. The service records/rendering are isolated in `dist/game-camp.mjs`; `dist/game-camp.css` scopes their presentation. Town services can later reuse the same service/content boundary after their rules are defined.
+
+### Research and audit
+
+| Evidence | Design consequence |
+| --- | --- |
+| [Capcom's Gamescom overview](https://blog.playstation.com/2024/08/20/monster-hunter-wilds-all-the-news-from-gamescom-opening-night-live/) describes pop-up camps as field access to item/equipment management and quest preparation; its base camp also hosts smithing and purchasing. | Use one preparation hub, with room for broader town facilities later. Quest and shop systems are not introduced in this slice. |
+| [PlayStation's Wilds handbook](https://www.playstation.com/en-us/games/monster-hunter-wilds/monster-hunter-wilds-starters-guide/) describes camp preparation, customizable radial menus, and crafting from stored supplies while in a tent. | Keep storage and crafting close together, with direct service navigation and visible stock/access requirements. |
+| [The community Tent reference](https://www.monsterhunterwiki.org/wiki/MHWilds/Tent) inventories item transfer/crafting, equipment, companion, meal/rest and other tent groups. It is secondary evidence, not a verified current game capture. Capcom's linked online manual could not be fetched during this research. | Borrow the grouped-service structure while retaining Arc & Dust's terminology, palette and established systems. Do not copy Wilds' unrelated systems or assume exact current bindings. |
+| Browser audit: `game.html` had eight peer tabs; `game.js` dispatched views centrally; `game-model.mjs` owned two atomic recipe routes and finite carrier rules. | Add Camp as the ninth tab and compose existing views inside its shell instead of maintaining a second inventory. |
+| Browser audit: the controller adapter preserves logical focus by control addresses and includes all visible `nav [data-page]` controls in tab cycling. | Give camp controls distinct attributes/stable IDs, retain focus after rebuilds, and add East/back to the existing neutral/release-gated adapter. |
+
+The original SVG camp illustration is an interface placeholder, not approved source art or a Unity scene capture. No Monster Hunter assets are bundled. Desktop stations use a list/details layout; at 520px and below, a labelled station selector keeps the selected details close to the control.
+
+### Current verification
+
+- `node --test Tools/InventoryVisualizer/test_camp_menu.mjs Tools/InventoryVisualizer/test_game_inventory.mjs Tools/InventoryVisualizer/test_gamepad.mjs`: **22 passed**. New checks cover missing-station fallback/readiness, proposal recipe exclusion, escaped catalogue text, protected/full-output UI blockers and East/back neutral gating. Existing transaction/identity/controller checks remain passing.
+- Changed JavaScript modules pass syntax checks; Git whitespace checks pass.
+- Background browser verification passed in standalone mode and the existing Game inventory iframe: all seven services, all twelve station details, camp-item/Game-menu entry, Escape back/exit, reference search, recipe links, tracking, battery crafting, dust charging, transfer, protection, out-of-reach blocking and reload persistence. Charging left three dust in the same canister. These actions affected only local sample possessions; access/text settings were restored after checking.
+- All seven services had no document horizontal overflow at 520px. Mobile station selection and larger text were visually reviewed; desktop review used 1280 × 900. Console warnings/errors were empty. Physical controller acceptance remains unverified; mapping/timing checks are synthetic.
+- Evidence: [camp overview](../../Docs/Evidence/UI/CampMenu20261017/camp-1280.png), [desktop workbench](../../Docs/Evidence/UI/CampMenu20261017/workbench-1280.png), [mobile workbench](../../Docs/Evidence/UI/CampMenu20261017/workbench-520.png). No Unity launch, import, build, gameplay smoke test or workbook mutation was performed.
+
 ## Compact inventory iteration — October 15, 2026
 
 The current character panel uses a static, original SVG outline labelled **Empty character space**, following the author's subsequent direction. The 3D model and rotation controls are removed from the active page; no mesh or WebGL viewer is loaded. Gear slots and item inspection remain independent of this placeholder. The earlier viewer implementation and export sources below are retained for reference only.
@@ -24,7 +56,7 @@ Historical viewer review found and corrected an extended-arm FBX pose, gear alig
 
 ## Included interactions
 
-The sticky top menu now has eight peer tabs: **Booter inventory**, **Legger loadout**, **Camp storage**, **Crafting**, **Projects**, **Map**, **Reference**, and **Settings**. Inventory ownership is selected by those top tabs; the old left-hand owner switcher is removed. Each owner remembers its valid item selection during tab changes. The left panel summarizes the current carrier; crafting still has its station picker within the Crafting tab.
+The sticky top menu has nine peer tabs: **Booter inventory**, **Legger loadout**, **Camp**, **Camp storage**, **Crafting**, **Projects**, **Map**, **Reference**, and **Settings**. Inventory ownership is selected by those top tabs or the Camp service menu; the old left-hand owner switcher is removed. Each owner remembers its valid item selection during tab changes. The left panel summarizes the current carrier; crafting still has its station picker within the Crafting tab.
 
 Top-menu follow-up, October 15, 2026: all eight pages were checked in the browser, including Legger ownership, map waypoint interaction, and Settings/radial/prototype controls. The synthetic browser fixture verified both bumpers and both triggers cycle the same top row and wrap at its ends, with the existing long-list navigation/right-stick scrolling checks still passing. The 18 automated inventory/controller checks pass, including clearance beneath the sticky menu. Hardware acceptance remains separate.
 
@@ -41,7 +73,7 @@ Map is an explicitly schematic mockup with Booter, Legger and camp markers, mark
 
 ## Controller controls
 
-Use a browser-standard mapped gamepad and press a button while the visualizer has focus. The browser may require this before exposing the device. D-pad or left stick moves visible focus; South selects the focused control. **LB/RB and LT/RT both cycle the same eight top-level tabs**, wrapping at either end. Neither pair changes tabs behind an open dialog. Workbench/Refinery selection uses ordinary focus and South within Crafting.
+Use a browser-standard mapped gamepad and press a button while the visualizer has focus. The browser may require this before exposing the device. D-pad or left stick moves visible focus; South selects the focused control; East backs out. **LB/RB and LT/RT both cycle the same nine top-level tabs**, wrapping at either end. Neither pair changes tabs behind an open dialog. Workbench/Refinery selection uses ordinary focus and South within Crafting or Camp.
 
 D-pad/left-stick navigation includes offscreen controls and scrolls the new focus into view with clearance below the sticky menu and above the sticky footer. The right stick scrolls vertically or horizontally without changing selection: a 0.22 dead zone removes drift, deflection scales speed up to 850 pixels/second, and frame time is capped at 50ms to prevent resume jumps. It scrolls the focused control's nearest scrollable pane, including the schematic map, or the study document; an open dialog confines scrolling to itself. Right-stick scrolling does not continually snap back to the focused item. Returning to navigation reveals focus again. Hidden/inactive study tabs and disconnected controllers cannot scroll the page.
 

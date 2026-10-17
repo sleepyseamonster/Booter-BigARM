@@ -21,6 +21,17 @@ test('South is one selection per release, including while another control remain
   assert.deepEqual(input.sample(pad([13]),1200),[]);assert.deepEqual(input.sample(pad(),1300),[]);
   assert.deepEqual(input.sample(pad([0]),1400),['select']);
 });
+
+test('East backs out once per release and cannot bypass neutral rearming',()=>{
+  const input=new InventoryPadInput();
+  assert.deepEqual(input.sample(pad([1]),0),[]);
+  input.sample(pad(),1);
+  assert.deepEqual(input.sample(pad([1]),2),['back']);
+  assert.deepEqual(input.sample(pad([1]),500),[]);
+  assert.deepEqual(input.sample(pad([1,0]),600),[]);
+  input.sample(pad(),700);
+  assert.deepEqual(input.sample(pad([1]),800),['back']);
+});
 test('bumpers and analog triggers tab independently and never repeat while held',()=>{
   for(const [button,action]of [[4,'previousTab'],[5,'nextTab'],[6,'previousTab'],[7,'nextTab']]){
     const input=armed();assert.deepEqual(input.sample(pad([button]),1),[action]);assert.deepEqual(input.sample(pad([button]),1000),[]);

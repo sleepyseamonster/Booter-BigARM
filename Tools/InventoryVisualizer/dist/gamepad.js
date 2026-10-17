@@ -7,7 +7,7 @@ export function startInventoryGamepad(){
   const scope=()=>document.querySelector('dialog[open]')||document.querySelector('.shell');
   const visible=el=>el.getClientRects().length>0&&!el.closest('[hidden]')&&getComputedStyle(el).visibility!=='hidden';
   const candidates=()=>[...scope().querySelectorAll(controls)].filter(visible);
-  const key=el=>el?.id?`#${CSS.escape(el.id)}`:['entry','owner','page','recipe','action','transfer','menu','near','project','radial','setting','reference','craftLink','remove','mapMarker','mapZoom','turn'].map(k=>el?.dataset[k]!==undefined?`[data-${k.replace(/[A-Z]/g,c=>'-'+c.toLowerCase())}="${CSS.escape(el.dataset[k])}"]`:null).find(Boolean);
+  const key=el=>el?.id?`#${CSS.escape(el.id)}`:['entry','owner','page','recipe','action','transfer','menu','near','project','radial','setting','reference','craftLink','remove','mapMarker','mapZoom','turn','campService','campStation','campExit'].map(k=>el?.dataset[k]!==undefined?`[data-${k.replace(/[A-Z]/g,c=>'-'+c.toLowerCase())}="${CSS.escape(el.dataset[k])}"]`:null).find(Boolean);
   function reveal(el){
     el.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
     const modal=document.querySelector('dialog[open]');
@@ -98,12 +98,12 @@ export function startInventoryGamepad(){
       else{
         const actions=input.sample(pad,now,active);
         if(active){
-          hint.textContent=input.armed?'D-pad / LS move · RS scroll · South select · LB/RB or LT/RT tabs':'Release controls to continue';
+          hint.textContent=input.armed?'D-pad / LS move · RS scroll · South select · East back · LB/RB or LT/RT tabs':'Release controls to continue';
           if(document.body.classList.contains('pad-mode')&&lastFocus){
             // Recover logical focus after a view rebuild; keep modal focus trapped.
             current();
           }
-          for(const action of actions){document.body.classList.add('pad-mode');if(['up','down','left','right'].includes(action))navigate(action);else if(action==='select')select();else tab(action);}
+          for(const action of actions){document.body.classList.add('pad-mode');if(['up','down','left','right'].includes(action))navigate(action);else if(action==='select')select();else if(action==='back'){editing?.classList.remove('pad-editing');editing=null;const modal=document.querySelector('dialog[open]');if(modal)modal.close();else document.dispatchEvent(new Event('inventory-back'));current();}else tab(action);}
           const amount=rightStickScroll(pad,delta,input.armed);
           if(amount.x||amount.y){document.body.classList.add('pad-mode');scroll(amount);}
         }else{input.reset();nativeInput();}
