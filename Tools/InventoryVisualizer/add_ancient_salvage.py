@@ -137,10 +137,9 @@ def build(snapshot, spec=None):
             caches = {31:search,36:0,37:0,38:0,39:'Raw entry feed; no production route' if fields[2]=='T0' else 'No production route listed',40:int(fields[2][1:])}
             items.append((n,row_xml('Items',631,n,fields,caches)))
             u = use_last + offset
-            use_fields = [w['Item uses'].cell(use_last,c).value for c in range(1,7)]
-            for c,value in enumerate(use_fields,1):
-                if isinstance(value,str) and value.startswith('='):use_fields[c-1]=Translator(value,origin=f'{openpyxl.utils.get_column_letter(c)}{use_last}').translate_formula(f'{openpyxl.utils.get_column_letter(c)}{u}')
-            use_fields[0]=item['id'];use_fields[5]='Author-requested catalog proposal; intended use, not an implemented action.'
+            # Relationship rows append independently of recycled master rows.
+            use_fields = [item['id'],f'=Items!B{n}',f'=Items!D{n}','Primary',f'=Items!AA{n}',
+                          'Author-requested catalog proposal; intended use, not an implemented action.']
             uses.append((u,row_xml('Item uses',use_last,u,use_fields,{2:item['name'],3:fields[3],5:item['use']})))
             access = ('As-found ancient recovery' if fields[25]=='Ancient technology' else 'As-found salvage') if fields[2]=='T0' else 'Finished object proposal'
             if fields[34]=='Material':access='Intermediate stock proposal'

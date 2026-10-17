@@ -1,0 +1,141 @@
+{
+  "source": "Author requested ten more canister, broken canister or canister-part salvage items and ten more iron salvage items of varying tier and quality, October 16, 2026. These are new local catalog proposals under Docs/WORLD_BASIS.md; all twenty belong in Salvage.",
+  "scope": "Twenty additions only: ten canister finds and ten iron finds. T0-T4 express relative practical worth, independent of crafting readiness, rarity or guaranteed performance. Existing records, author deletions and live review edits are preserved. Deterministic world identity, streaming/unload/reload, stable generated-object identity, authored placement constraints and persisted runtime deltas are not applicable because this changes catalog records without runtime objects, placement, recipes or save systems.",
+  "defaults": {
+    "Tier": "T1", "Category": "Salvage", "Subtype": "Recovered workshop salvage", "Implementation scope": "New proposal",
+    "Equipment slot": "None; recovered salvage", "Carrier metadata": "Separate recovered cargo item; mass, packing and carrier fit unresolved.",
+    "Stack limit": null, "Mass (game units)": null,
+    "Acquisition": "Recover from discarded contemporary equipment, abandoned workshop stores or damaged machinery. Particular sites, frequency and ownership remain proposals.",
+    "Crafting / processing": "Inspect the recovered object and assess surviving material or matched donor parts. Cleaning, separation, fitting, repairs, recovery yields and recipes remain unresolved; no craft-ready stock or working equipment is granted automatically.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "As-found salvage. Apparent quality does not qualify a part for service. Integrity, contamination, compatibility, useful yield, mass and actual performance remain unresolved. Empty vessels grant no usable contents, stored pressure or energy; later servicing preserves the original physical holder.",
+    "Rarity": null, "Trade value": null, "Damage": null, "Protection": null, "Durability": null,
+    "Item type": "Machine part", "Processing stage": "Recovered part", "Origin family": "Industrial salvage",
+    "Primary use": "Equipment repair", "Material family": "Metal", "Physical form": "Assembly", "Design status": "Proposal",
+    "Classification basis": "Distinct contemporary recovered object with a particular physical form and condition, retained as Salvage rather than working equipment or qualified workshop stock.",
+    "Tier basis": "Relative practical-worth proposal based on surviving utility, condition, fabrication effort and replacement difficulty. No manufacturing stage or crafting eligibility follows from the tier.",
+    "Finished-item input tier": "Unassigned", "Crafting role": "Component"
+  },
+  "items": [
+    {
+      "id": "proposal.salvage.crushed_canister_body", "group": "canister", "name": "Crushed canister body",
+      "purpose": "A thin-walled canister body flattened into an uneven oval, with its neck folded shut and the base split along one edge. Most of its original fittings are missing. The distorted shell is a low-quality source of recoverable material after inspection, with little remaining value as a container.",
+      "icon": "One flattened oval metal canister body with a folded neck, split base and missing fittings; empty, no extra contents or parts.", "material": "Metal", "use": "Equipment fabrication",
+      "fields": {"Tier":"T0","Subtype":"Canister salvage","Item type":"Raw material","Primary use":"Equipment fabrication","Crafting role":"Material","Search aliases":"workshop recovery; canister salvage; crushed canister; collapsed vessel","Tier basis":"T0 value proposal: severe deformation and missing fittings leave mainly low-value shell material.","Open design decisions":"Resolve surviving material, contamination and recovery route. No usable container body or guaranteed metal yield."}
+    },
+    {
+      "id": "proposal.salvage.shattered_canister_sight_strip", "group": "canister", "name": "Shattered canister sight strip",
+      "purpose": "A cracked glass viewing strip still caught in a twisted metal retaining channel. Several small sections are missing, and grit has entered the fractured edges. The assembly preserves the outline of a canister inspection window, but offers only limited glass and retaining-metal salvage rather than a usable transparent insert.",
+      "icon": "One narrow broken glass strip held in a twisted metal channel, with visible missing sections and chipped edges; no vessel or loose duplicate shards.", "material": "Glass and metal", "use": "Equipment fabrication",
+      "fields": {"Tier":"T0","Subtype":"Canister salvage","Item type":"Raw material","Primary use":"Equipment fabrication","Material family":"Glass and metal","Crafting role":"Material","Search aliases":"workshop recovery; canister salvage; shattered sight strip; broken viewing window","Tier basis":"T0 value proposal: fragmented glass and a distorted retainer offer little direct fitted-part reuse.","Open design decisions":"Resolve remaining glass, channel condition, contamination and recovery. Distinct from the intact canister viewing-port insert; not a usable window."}
+    },
+    {
+      "id": "proposal.salvage.empty_pigment_canister", "group": "canister", "name": "Empty pigment canister",
+      "purpose": "A squat workshop canister with a broad mouth and a simple removable cover, stained inside by dried pigment residue. Its useful contents have been spent. The surviving body and cover may be assessed for workshop storage or material recovery, while the residue must be identified before any new use.",
+      "icon": "One squat empty canister with a broad mouth, seated plain cover and dry colored staining around the rim; no loose pigment or refill.", "material": "Mixed / unresolved", "use": "Equipment repair",
+      "fields": {"Tier":"T1","Subtype":"Canister salvage","Item type":"Container","Material family":"Mixed / unresolved","Search aliases":"workshop recovery; canister salvage; empty pigment canister; stained storage vessel","Tier basis":"T1 value proposal: an ordinary retained body and cover have modest reuse potential, reduced by unknown residue.","Open design decisions":"Resolve residue identity, liner material, closure condition and compatible future contents. No usable pigment, food-contact suitability or dye recipe supplied."}
+    },
+    {
+      "id": "proposal.salvage.broken_canister_locking_ring", "group": "canister", "name": "Broken canister locking ring",
+      "purpose": "A heavy closure-retaining ring snapped beside one locking lug, with the remaining lugs and curved body still attached. It can no longer secure a canister lid. Its surviving worked metal and retaining features make it a possible donor or fabrication reference after inspection, rather than a complete closure.",
+      "icon": "One broken circular metal retaining ring with a clear gap beside a snapped locking lug and worn remaining lugs; no lid, seal or canister.", "material": "Metal", "use": "Equipment repair",
+      "fields": {"Tier":"T1","Subtype":"Canister salvage","Item type":"Container part","Physical form":"Solid part","Search aliases":"workshop recovery; canister salvage; broken locking ring; snapped lid retainer","Tier basis":"T1 value proposal: a broken retaining function limits direct use, but substantial worked metal and intact features retain modest donor value.","Open design decisions":"Resolve fracture extent, surviving lugs and host geometry. No working latch, fitted seal or pressure closure."}
+    },
+    {
+      "id": "proposal.salvage.empty_chemical_transfer_canister", "group": "canister", "name": "Empty chemical transfer canister",
+      "purpose": "An empty industrial canister with two capped transfer fittings and a protected carrying handle. Surface staining records former chemical service without identifying the contents. The body and fittings are candidates for matched industrial reuse after inspection, separate from personal algae vessels and the glass-lined haul canister.",
+      "icon": "One empty industrial canister with two capped transfer fittings, guarded carrying handle and old surface stains; no chemicals, hose or stored pressure.", "material": "Mixed / unresolved", "use": "Equipment repair",
+      "fields": {"Tier":"T2","Subtype":"Canister salvage","Item type":"Container","Material family":"Mixed / unresolved","Search aliases":"workshop recovery; canister salvage; empty chemical transfer canister; capped industrial vessel","Tier basis":"T2 value proposal: retained specialist transfer fittings add potential industrial utility, subject to contamination and compatibility checks.","Open design decisions":"Resolve service history, residue, lining, closure integrity and compatible industrial use. No useful chemicals, food-contact suitability or pressure qualification."}
+    },
+    {
+      "id": "proposal.salvage.seized_canister_metering_head", "group": "canister", "name": "Seized canister metering head",
+      "purpose": "A recovered canister dispensing head whose small adjustment wheel is jammed by compacted residue. The head retains its marked outer collar and outlet housing, preserving a more intricate donor assembly than a plain cap. Its former controlled-dispensing role is recognizable, but it cannot be assumed to deliver any measured amount in its current state.",
+      "icon": "One compact canister dispensing head with jammed adjustment wheel, scored outer collar and closed outlet housing; no flow, measurements or internal diagram.", "material": "Mixed / unresolved", "use": "Equipment repair",
+      "fields": {"Tier":"T2","Subtype":"Canister salvage","Item type":"Container part","Material family":"Mixed / unresolved","Search aliases":"workshop recovery; canister salvage; seized metering head; jammed dispenser fitting","Tier basis":"T2 value proposal: a seized mechanism loses its operating value but retains specialist fittings and possible matched donors.","Open design decisions":"Resolve former contents, seizure, internal wear, host fit and donor suitability. No calibrated output, restored operation or cleaning recipe."}
+    },
+    {
+      "id": "proposal.salvage.empty_double_walled_canister", "group": "canister", "name": "Empty double-walled canister",
+      "purpose": "A substantial empty canister with an inner vessel held inside a ribbed outer shell. The protected inner body and surviving spacing supports distinguish it from an ordinary single-wall container. Its carefully made construction may justify specialist restoration or donor recovery, although the gap and inner surfaces still require inspection.",
+      "icon": "One empty canister with a ribbed outer shell and an exposed rim showing a separate inner vessel and spacing tabs; no contents, sectional diagram or thermal effects.", "material": "Mixed / unresolved", "use": "Equipment repair",
+      "fields": {"Tier":"T3","Subtype":"Canister salvage","Item type":"Container","Material family":"Mixed / unresolved","Search aliases":"workshop recovery; canister salvage; empty double walled canister; nested vessel","Tier basis":"T3 value proposal: two fitted bodies and retained spacing supports represent considerable fabrication work and specialist donor potential.","Open design decisions":"Resolve gap condition, corrosion, inner-vessel integrity, joining and compatible use. Double walls do not establish vacuum insulation, thermal performance or a pressure rating."}
+    },
+    {
+      "id": "proposal.salvage.low_wear_canister_docking_collar", "group": "canister", "name": "Low-wear canister docking collar",
+      "purpose": "A carefully fitted exterior docking collar with intact engagement lugs and little visible wear on its locating faces. It once joined a canister body to a matching equipment socket. Its retained exterior fit offers specialist donor value, while remaining distinct from the sealing collar at a vessel mouth and from a general carrying bracket.",
+      "icon": "One recovered metal docking collar with intact exterior engagement lugs and clean locating faces; no seal, canister, bracket or complete socket.", "material": "Metal", "use": "Equipment repair",
+      "fields": {"Tier":"T3","Subtype":"Canister salvage","Item type":"Container part","Physical form":"Solid part","Search aliases":"workshop recovery; canister salvage; low wear docking collar; canister locating interface","Tier basis":"T3 value proposal: precise surviving locating faces and intact lugs can replace difficult matched fitting work; host compatibility is still unknown.","Open design decisions":"Resolve wear, lug integrity, matching body and socket. This is an external locating part, not a sealing collar, universal adapter or new equipment slot."}
+    },
+    {
+      "id": "proposal.salvage.precision_multiport_canister_head", "group": "canister", "name": "Precision multi-port canister head",
+      "purpose": "A specialist canister head retaining several individually capped service ports within one finely worked housing. Its unusually intact interfaces and compact arrangement distinguish it from a loose valve core or ordinary cover. Replacing such a matched original could demand substantial specialist work, making it a valuable inspection and donor candidate despite its unknown internal condition.",
+      "icon": "One recovered compact canister head with several unequal capped exterior ports and finely finished mounting faces; no internal passages, connections, pressure values or complete vessel.", "material": "Mixed / unresolved", "use": "Equipment repair",
+      "fields": {"Tier":"T4","Subtype":"Canister salvage","Item type":"Container part","Material family":"Mixed / unresolved","Search aliases":"workshop recovery; canister salvage; precision multi port head; specialist canister interface","Tier basis":"T4 value proposal: an unusually intact specialist housing with multiple matched interfaces has exceptional replacement difficulty. This reflects workmanship, not ancient origin or verified operation.","Open design decisions":"Resolve former service, residue, internal condition and matching equipment. No approved plumbing arrangement, pressure behavior or functioning multi-port assembly is established."}
+    },
+    {
+      "id": "proposal.salvage.matched_canister_closure_assembly", "group": "canister", "name": "Matched canister closure assembly",
+      "purpose": "An original canister cap, retaining ring and rigid seat recovered together as a closely matched set. The even contact surfaces and intact retention features preserve work that isolated closure fragments cannot offer. The assembly is a high-quality restoration candidate for its original service family, but still lacks a qualified fresh seal and confirmed fit to a surviving vessel.",
+      "icon": "One complete recovered cap and retaining-ring assembly seated on its rigid collar, with intact outer retention features and light wear; no fresh seal, vessel or extra duplicate parts.", "material": "Metal", "use": "Equipment repair",
+      "fields": {"Tier":"T4","Subtype":"Canister salvage","Item type":"Container part","Search aliases":"workshop recovery; canister salvage; matched closure assembly; precision cap and retaining ring","Tier basis":"T4 value proposal: a well-preserved matched closure set retains exceptional specialist fitting work that loose rings or separate donor cores do not. Condition and actual demand remain unqualified.","Open design decisions":"Resolve original service, matching mouth, contact wear and a compatible seal. No guaranteed leak-tight closure, pressure certification or universal cap fit."}
+    },
+    {
+      "id": "proposal.salvage.flaking_iron_grate_segment", "group": "iron", "name": "Flaking iron grate segment",
+      "purpose": "A broken section of iron grating with missing crossbars and deep flaky corrosion along its edges. Little continuous surface survives, and several remaining bars are visibly thinned. It offers low-quality iron recovery feed after inspection rather than a dependable floor, guard or screening panel.",
+      "icon": "One broken rusted iron grate segment with missing crossbars, flaky edges and visibly thinned bars; no frame, machine or loose extra fragments.", "material": "Metal", "use": "Equipment fabrication",
+      "fields": {"Tier":"T0","Subtype":"Iron salvage","Item type":"Raw material","Primary use":"Equipment fabrication","Crafting role":"Material","Search aliases":"workshop recovery; iron salvage; flaking grate segment; corroded iron grating","Tier basis":"T0 value proposal: severe corrosion and broken crossbars leave little dependable worked form and uncertain recoverable metal.","Open design decisions":"Resolve surviving metal, contamination and recovery yield. No load-bearing, guard or screening performance."}
+    },
+    {
+      "id": "proposal.salvage.twisted_iron_binding_strip", "group": "iron", "name": "Twisted iron binding strip",
+      "purpose": "A narrow iron band torn from a former casing or bundle, with elongated fixing holes and several sharp twists. Its simple worked form has been badly distorted. The strip is mainly a modest metal-feed candidate, distinct from spring-grade stock or a reusable fastening band.",
+      "icon": "One narrow rusted iron binding band with sharp twists, stretched fixing holes and a torn end; no spring coil or attached cargo.", "material": "Metal", "use": "Equipment fabrication",
+      "fields": {"Tier":"T0","Subtype":"Iron salvage","Item type":"Raw material","Primary use":"Equipment fabrication","Physical form":"Strip","Crafting role":"Material","Search aliases":"workshop recovery; iron salvage; twisted binding strip; torn iron band","Tier basis":"T0 value proposal: a small distorted ordinary iron strip retains little fabrication effort or direct fitting utility.","Open design decisions":"Resolve thickness, tears and recoverable material. No spring properties, restraint strength or reusable fastener qualification."}
+    },
+    {
+      "id": "proposal.salvage.dented_iron_shin_guard", "group": "iron", "name": "Dented iron shin guard",
+      "purpose": "A single iron shin plate with a broad inward dent and torn attachment holes along one side. Much of its curved face remains, but the damaged shape prevents treating it as fitted protective wear. It may provide a small curved fabrication blank or recoverable iron after inspection, rather than a complete leg-armor item.",
+      "icon": "One rust-red iron shin plate with a broad inward dent, torn side holes and worn lower edge; no wearer, straps or matching guard.", "material": "Metal", "use": "Equipment fabrication",
+      "fields": {"Tier":"T1","Subtype":"Iron salvage","Item type":"Raw material","Primary use":"Equipment fabrication","Physical form":"Solid part","Crafting role":"Material","Search aliases":"workshop recovery; iron salvage; dented shin guard; damaged iron leg plate","Tier basis":"T1 value proposal: a substantial surviving curved surface retains ordinary fabrication utility despite damaged attachment points.","Open design decisions":"Resolve cracking beneath the dent, useful surface and mass. Not wearable protection, a complete pair or an automatic repair input."}
+    },
+    {
+      "id": "proposal.salvage.snapped_iron_clevis", "group": "iron", "name": "Snapped iron clevis",
+      "purpose": "A forked iron linkage fitting with one arm broken away and the surviving pin eye visibly worn. Its thick base preserves more worked metal than a bent nail or small rivet, but the broken fork cannot perform its former connecting role. The remaining body is a modest donor or metal-recovery candidate.",
+      "icon": "One thick forked iron linkage end with a snapped arm, worn surviving pin eye and rusted base; no pin, cable or complete linkage.", "material": "Metal", "use": "Equipment repair",
+      "fields": {"Tier":"T1","Subtype":"Iron salvage","Physical form":"Solid part","Search aliases":"workshop recovery; iron salvage; snapped clevis; broken forked linkage fitting","Tier basis":"T1 value proposal: a broken connecting function limits direct use, while the thick formed base retains modest donor and material worth.","Open design decisions":"Resolve fracture extent, remaining eye wear and material recovery. No supported load, repaired connection or usable linkage supplied."}
+    },
+    {
+      "id": "proposal.salvage.seized_iron_hinge_block", "group": "iron", "name": "Seized iron hinge block",
+      "purpose": "A complete heavy iron hinge block with both leaves and its original pin still together, locked by corrosion around the knuckle. It preserves a matched assembly that discarded hinge halves lack. The body, mounting faces or pin may be useful donors after inspection, even if the joint cannot be restored.",
+      "icon": "One heavy iron hinge block with both leaves, original retained pin and dense corrosion around the closed knuckle; no door, loose halves or movement diagram.", "material": "Metal", "use": "Equipment repair",
+      "fields": {"Tier":"T2","Subtype":"Iron salvage","Search aliases":"workshop recovery; iron salvage; seized hinge block; matched corroded iron hinge","Tier basis":"T2 value proposal: a complete matched heavy fitting retains more donor utility and fabrication work than loose hinge fragments, offset by seizure.","Open design decisions":"Resolve pin and knuckle condition, mounting compatibility and donor recovery. No working articulation or restored hinge is granted."}
+    },
+    {
+      "id": "proposal.salvage.iron_counterweight_block", "group": "iron", "name": "Iron counterweight block",
+      "purpose": "A compact solid iron weight with a recessed mounting channel and a worn retaining eye from an old machine. Its simple body is largely intact, retaining a recognizable purpose and substantial material in one piece. It is a candidate for compatible machinery restoration or metal recovery, not an automatic balance adjustment for carried equipment.",
+      "icon": "One compact dark iron counterweight with recessed mounting channel, worn retaining eye and battered corners; no rope, machine or weight markings.", "material": "Metal", "use": "Equipment repair",
+      "fields": {"Tier":"T2","Subtype":"Iron salvage","Physical form":"Solid part","Search aliases":"workshop recovery; iron salvage; counterweight block; recovered machine weight","Tier basis":"T2 value proposal: a largely intact heavy worked form and retained mounting features offer useful machinery donor potential. Actual mass and host demand remain unresolved.","Open design decisions":"Resolve mounting damage, hidden cracking, carrying mass and matched machine use. No lifting capacity, balance effect or numeric weight supplied."}
+    },
+    {
+      "id": "proposal.salvage.low_wear_iron_gear_wheel", "group": "iron", "name": "Low-wear iron gear wheel",
+      "purpose": "A recovered iron gear wheel with a spoked center, intact straight teeth and little visible wear around the hub. Its retained tooth pattern and fitted center make it more valuable than an unworked metal disc. It remains a donor for a specifically compatible drive, with hidden cracking and actual engagement condition still to be checked.",
+      "icon": "One recovered iron gear wheel with a spoked center, intact straight outer teeth and lightly worn hub; no gear train, shaft or construction dimensions.", "material": "Metal", "use": "Equipment repair",
+      "fields": {"Tier":"T3","Subtype":"Iron salvage","Physical form":"Solid part","Search aliases":"workshop recovery; iron salvage; low wear gear wheel; straight tooth drive donor","Tier basis":"T3 value proposal: retained fitted teeth and hub geometry preserve considerable replacement work, provided a matching host exists. Apparent low wear is not service qualification.","Open design decisions":"Resolve cracks, tooth and hub wear, matching drive and authenticity of the iron material identification. No speed, load, ratio or functioning drive assigned."}
+    },
+    {
+      "id": "proposal.salvage.thick_iron_bracing_saddle", "group": "iron", "name": "Thick iron bracing saddle",
+      "purpose": "A broad formed iron saddle with a deep central cradle and substantial mounting feet, recovered from a heavy support assembly. Most of its worked curve and fixing faces survive beneath surface rust. Its fitted three-dimensional shape makes it a valuable support donor, distinct from flat reinforcement plating or a simple loose bracket.",
+      "icon": "One thick iron support saddle with deep central cradle, broad mounting feet and mostly intact fixing faces under surface rust; no supported machine or structural diagram.", "material": "Metal", "use": "Equipment repair",
+      "fields": {"Tier":"T3","Subtype":"Iron salvage","Physical form":"Solid part","Search aliases":"workshop recovery; iron salvage; bracing saddle; formed iron support donor","Tier basis":"T3 value proposal: substantial retained formed geometry and fitted mounting faces represent difficult replacement work beyond ordinary plate stock.","Open design decisions":"Resolve hidden cracks, distortion, foot wear and host fit. No load rating, functioning support assembly or guaranteed straightness."}
+    },
+    {
+      "id": "proposal.salvage.matched_iron_bearing_housing", "group": "iron", "name": "Matched iron bearing housing",
+      "purpose": "The original lower housing and upper cap from a fitted iron bearing support, recovered together with their matching marks still visible. The clean locating faces and retained pairing preserve specialist fitting work that isolated casting fragments cannot replace. Its bearing element is missing, leaving a valuable housing donor rather than a complete rotating support.",
+      "icon": "One matched lower iron bearing housing and seated upper cap with paired witness marks and clean locating faces; empty center, no bearing, shaft or exploded diagram.", "material": "Metal", "use": "Equipment repair",
+      "fields": {"Tier":"T4","Subtype":"Iron salvage","Search aliases":"workshop recovery; iron salvage; matched bearing housing; precision iron support cap","Tier basis":"T4 value proposal: unusually intact matched specialist locating surfaces have exceptional host-specific replacement difficulty. Value comes from retained fitting work, not expensive base iron or ancient origin.","Open design decisions":"Resolve wear, cracks, original bearing type, host demand and actual matching fit. No bearing element, low-friction performance or operational machinery included."}
+    },
+    {
+      "id": "proposal.salvage.precision_iron_indexing_plate", "group": "iron", "name": "Precision iron indexing plate",
+      "purpose": "A carefully worked iron positioning plate with several distinct rings of small locating holes and a fitted central opening. Its hole pattern and mostly unworn locating faces preserve a specialist workshop fixture component. It is an unusually valuable donor or reference piece for its original machine, although distortion and actual indexing accuracy remain unverified.",
+      "icon": "One recovered iron positioning plate with several visibly different rings of small holes, fitted central opening and light surface wear; no scales, dimensions, tool setup or machine.", "material": "Metal", "use": "Equipment repair",
+      "fields": {"Tier":"T4","Subtype":"Iron salvage","Physical form":"Solid part","Search aliases":"workshop recovery; iron salvage; precision indexing plate; workshop positioning donor","Tier basis":"T4 value proposal: an unusually preserved specialist hole pattern and fitted center represent exceptional replacement labor and narrow but potentially high demand. Accuracy and compatible use are not certified.","Open design decisions":"Resolve distortion, hole wear, original fixture, matching fit and useful accuracy. No automatic calibration, precision bonus or working fabrication station."}
+    }
+  ]
+}
