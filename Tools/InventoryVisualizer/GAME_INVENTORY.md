@@ -4,6 +4,16 @@ Open **Game inventory** in the visualizer's top navigation, or visit `http://127
 
 This tab is separate from the catalogue/review/artwork workspace. Its iframe, JavaScript module, model and stylesheet are independent; the shared entry points integrate navigation, lazy loading and scoped host chrome. It reads `/api/catalog` and never calls a mutation endpoint. No master item, review choice, artwork record, Unity asset or gameplay save is edited.
 
+## Television-readable gamepad footer — October 17, 2026
+
+The author requested gamepad navigation prompts at a normal television viewing distance. Replaced the tiny Esc/search/Tab footer legend with a controller help row: South/Select, East/Back or Menu, D-pad or LS/Navigate, RS/Scroll, LB/RB/Primary tabs, and LT/RT/Sub-tabs. Neutral face-button diagrams identify button positions without assuming a controller brand. Trigger help appears only on Inventory and Crafting, which have sub-tabs. Existing keyboard and pointer controls remain supported.
+
+Prompt labels are 18–24px by default (24px at 1920px width), with 34–42px controller symbols, clear spacing and a 16px status line. Larger text mode raises prompt labels to 20–26px. At narrow widths, prompts wrap into columns and the footer joins document flow instead of covering the menu. Connection/release feedback uses a separate status line; unchanged status text is no longer rewritten on every controller frame.
+
+Verification: 13 controller checks and module syntax passed. The synthetic browser navigation fixture passed primary/sub-tab routing, wrap, dialog blocking, focus reveal above a taller footer, and independent right-stick scrolling. Browser review passed at 1280px, 1920×1080 and 520px with no horizontal document overflow; the Reference page hides trigger help. Browser console warnings/errors were empty. This is browser UI proof, not physical television/controller acceptance. Temporary viewport overrides were restored.
+
+Evidence: [1080p controller footer](../../Docs/Evidence/UI/CampMenu20261017/gamepad-footer-1920.png), [1280px view](../../Docs/Evidence/UI/CampMenu20261017/gamepad-footer-1280.png), [520px wrapping](../../Docs/Evidence/UI/CampMenu20261017/gamepad-footer-520.png). This local presentation change adds no world identity, streaming, generated-object or persisted gameplay-state behavior; Unity and save formats are unchanged.
+
 ## Crafting Local Access block removed — October 17, 2026
 
 Removed the Local Access summary (Camp chest, Legger cargo and Workstations proximity indicators) and its Adjust study access link from Crafting. The underlying access rules and Settings prototype controls retain their behavior. Camp view checks, module syntax and browser review passed; no Local Access block remains in the rendered Crafting hub. [Current view](../../Docs/Evidence/UI/CampMenu20261017/crafting-without-local-access.png).

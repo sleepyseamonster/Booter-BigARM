@@ -2,6 +2,7 @@ import {InventoryPadInput,spatialTarget,rightStickScroll,revealScroll} from './g
 
 export function startInventoryGamepad(){
   const input=new InventoryPadInput(),hint=document.querySelector('#pad-status');
+  const status=text=>{if(hint.textContent!==text)hint.textContent=text;};
   let lastFocus=null,editing=null,focusKey=null,running=true,frame,lastTime=null;
   const controls='button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),a[href],summary';
   const scope=()=>document.querySelector('dialog[open]')||document.querySelector('.shell');
@@ -68,7 +69,7 @@ export function startInventoryGamepad(){
       editing=editing===active?null:active;
       active.classList.toggle('pad-editing',editing===active);return;
     }
-    if(active.matches('input[type="search"],input[type="text"],textarea')){active.focus();hint.textContent='Search text uses your keyboard · D-pad / stick returns to navigation';return;}
+    if(active.matches('input[type="search"],input[type="text"],textarea')){active.focus();status('Text search uses a keyboard');return;}
     editing=null;active.click();
     // Existing item commands may rebuild their controls or open a modal.
     current();
@@ -94,11 +95,11 @@ export function startInventoryGamepad(){
       const pads=navigator.getGamepads?.()||[],available=[...pads].filter(p=>p&&p.connected!==false);
       const pad=available.find(p=>`${p.index}:${p.id}`===input.device)||available.find(p=>p.mapping==='standard');
       const active=isActive();
-      if(!pad){input.reset();hint.textContent=available.length?'Controller mapping unsupported · use a standard-mapped controller':'Connect a controller, then press a button';nativeInput();}
+      if(!pad){input.reset();status(available.length?'Use a standard-mapped controller':'Connect a controller, then press a button');nativeInput();}
       else{
         const actions=input.sample(pad,now,active);
         if(active){
-          hint.textContent=input.armed?'D-pad / LS move · RS scroll · South select · East back · LB/RB primary tabs · LT/RT sub-tabs':'Release controls to continue';
+          status(input.armed?'Controller ready':'Release controls to continue');
           if(document.body.classList.contains('pad-mode')&&lastFocus){
             // Recover logical focus after a view rebuild; keep modal focus trapped.
             current();
@@ -108,7 +109,7 @@ export function startInventoryGamepad(){
           if(amount.x||amount.y){document.body.classList.add('pad-mode');scroll(amount);}
         }else{input.reset();nativeInput();}
       }
-    }catch{input.reset();nativeInput();hint.textContent='Controller access unavailable in this browser';}
+    }catch{input.reset();nativeInput();status('Controller access unavailable in this browser');}
     frame=requestAnimationFrame(tick);
   }
   // Pointer/keyboard interaction keeps native behaviour and relinquishes controller focus.

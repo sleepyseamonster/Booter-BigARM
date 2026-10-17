@@ -1,11 +1,21 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Arc & Dust · Game inventory</title><link rel="icon" href="data:,"><link rel="stylesheet" href="game.css"><link rel="stylesheet" href="game-compact.css"><link rel="stylesheet" href="game-palette.css"><link rel="stylesheet" href="game-camp.css"><link rel="stylesheet" href="game-almanac.css"></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Arc & Dust · Game inventory</title><link rel="icon" href="data:,"><link rel="stylesheet" href="game.css"><link rel="stylesheet" href="game-compact.css"><link rel="stylesheet" href="game-palette.css"><link rel="stylesheet" href="game-camp.css"><link rel="stylesheet" href="game-almanac.css"><link rel="stylesheet" href="game-prompts.css"></head>
 <body>
 <div class="shell">
   <header><div class="wordmark">ARC <i>&</i> DUST <small>EXPEDITION SYSTEMS</small></div><div class="study">INTERACTIVE STUDY <span>Local sample save · not live gameplay</span></div><button id="open-menu">☰ Game menu</button></header>
   <nav class="game-tabs" aria-label="Game system"><span class="tab-binding">LB <span>‹</span></span><button data-page="inventory" class="active">Inventory</button><button data-page="crafting">Crafting</button><button data-page="storage">Storage</button><button data-page="map">Map</button><button data-page="reference">Reference</button><button data-page="settings">Settings</button><span class="tab-binding"><span>›</span> RB</span></nav>
   <main id="content"><p class="empty">Reading the item catalogue…</p></main>
-  <footer><span id="message" role="status" aria-live="polite">Loading sample expedition…</span><span><kbd>Esc</kbd> Menu / Back · <kbd>/</kbd> Search · <kbd>Tab</kbd> Navigate<br><span id="pad-status" role="status">Connect a controller, then press a button</span></span></footer>
+  <footer class="game-footer">
+    <div class="controller-prompts" role="group" aria-label="Gamepad controls">
+      <span class="controller-prompt" aria-label="South button: Select"><svg class="pad-face" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="6" r="4"/><circle cx="26" cy="16" r="4"/><circle cx="6" cy="16" r="4"/><circle class="pressed" cx="16" cy="26" r="4"/></svg><span>Select</span></span>
+      <span class="controller-prompt" aria-label="East button: Back or Menu"><svg class="pad-face" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="6" r="4"/><circle class="pressed" cx="26" cy="16" r="4"/><circle cx="6" cy="16" r="4"/><circle cx="16" cy="26" r="4"/></svg><span>Back / Menu</span></span>
+      <span class="controller-prompt" aria-label="D-pad or left stick: Navigate"><span class="pad-pair" aria-hidden="true"><span class="pad-key pad-dpad">✚</span><span class="pad-or">/</span><span class="pad-key pad-stick">LS</span></span><span>Navigate</span></span>
+      <span class="controller-prompt" aria-label="Right stick: Scroll"><span class="pad-key pad-stick" aria-hidden="true">RS</span><span>Scroll</span></span>
+      <span class="controller-prompt" aria-label="Left and right bumpers: Primary tabs"><span class="pad-pair" aria-hidden="true"><span class="pad-key">LB</span><span class="pad-key">RB</span></span><span>Primary tabs</span></span>
+      <span class="controller-prompt" data-pad-subtabs aria-label="Left and right triggers: Sub-tabs"><span class="pad-pair" aria-hidden="true"><span class="pad-key pad-trigger">LT</span><span class="pad-key pad-trigger">RT</span></span><span>Sub-tabs</span></span>
+    </div>
+    <div class="footer-state"><span id="message" role="status" aria-live="polite">Loading sample expedition…</span><span id="pad-status" role="status">Connect a controller, then press a button</span></div>
+  </footer>
 </div>
 <dialog id="menu"><div class="eyebrow">ARC & DUST / SYSTEM</div><h1>Take a moment.</h1><p class="muted">A quiet layer between journeys.</p><div class="menu-actions"><button data-menu="resume">Resume <span>↗</span></button><button data-menu="crafting">Crafting <span>↗</span></button><button data-menu="settings">Settings <span>↗</span></button><button data-menu="exit">Return to item management <span>↗</span></button></div><small>The study stores changes only in this browser.</small></dialog>
 <dialog id="reset"><div class="eyebrow">STUDY CONTROLS</div><h2>Reset sample expedition?</h2><p>This replaces this tab’s sample possessions, projects, shortcuts and item discoveries. Your workbook, item reviews and artwork are untouched.</p><div class="actions"><button id="cancel-reset">Keep expedition</button><button id="confirm-reset">Reset sample</button></div></dialog>

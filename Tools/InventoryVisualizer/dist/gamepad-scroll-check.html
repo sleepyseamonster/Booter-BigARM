@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inventory navigation and scrolling check</title><link rel="icon" href="data:,"><style>
-body{font:16px sans-serif;margin:20px;background:#192019;color:#eee}button{padding:20px;background:#303d30;color:#fff;border:1px solid #899a80}#rows{display:grid;gap:8px;max-width:500px;margin-top:20px}footer{position:fixed;bottom:0;left:0;right:0;padding:20px;background:#4a4231;min-height:40px}.pad-focus{outline:4px solid #edc47a}#result{position:fixed;right:20px;top:20px;max-width:280px;background:#233526;padding:20px;z-index:5}body{padding-bottom:120px}
+body{font:16px sans-serif;margin:20px;background:#192019;color:#eee}button{padding:20px;background:#303d30;color:#fff;border:1px solid #899a80}#rows{display:grid;gap:8px;max-width:500px;margin-top:20px}footer{position:fixed;bottom:0;left:0;right:0;padding:20px;background:#4a4231;min-height:120px}.pad-focus{outline:4px solid #edc47a}#result{position:fixed;right:20px;top:20px;max-width:280px;background:#233526;padding:20px;z-index:5}body{padding-bottom:120px}
 </style></head><body>
-<button id="run">Run synthetic navigation check</button><p>Disposable DOM fixture. Uses synthetic gamepad frames; never reads the workbook or gameplay save.</p>
+<button id="run">Run synthetic navigation check</button><p>Disposable DOM fixture with a tall controller footer. Uses synthetic gamepad frames; never reads the workbook or gameplay save.</p>
 <div class="shell"><nav class="game-tabs"><button data-page="inventory" class="active">Inventory</button><button data-page="crafting">Crafting</button><button data-page="storage">Storage</button><button data-page="map">Map</button><button data-page="reference">Reference</button><button data-page="settings">Settings</button></nav><main><div id="subtabs"></div><div id="rows"></div></main><footer><span id="pad-status"></span></footer></div>
 <dialog id="modal"><button>Modal action</button></dialog>
 <output id="result">Not run</output>
