@@ -8,8 +8,7 @@ export const CAMP_SERVICES=Object.freeze([
   {id:'inventory',name:'Booter equipment',hint:'Equipment & supply pockets',icon:'◈'},
   {id:'legger',name:'Legger cargo',hint:'Manage the expedition haul',icon:'◇'},
   {id:'workstations',name:'Workstations',hint:'Craft, refine & prepare',icon:'⚒'},
-  {id:'projects',name:'Tracked projects',hint:'Plan your gathering',icon:'⌁'},
-  {id:'reference',name:'Item almanac',hint:'Known & undiscovered items',icon:'⊞'}
+  {id:'projects',name:'Tracked projects',hint:'Plan your gathering',icon:'⌁'}
 ]);
 const recipeStations={'author.station.workbench':'battery','author.station.dust_refinery':'charge'};
 export function campStations(catalog){

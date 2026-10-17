@@ -41,8 +41,8 @@ document.querySelector('#run').onclick=async()=>{
     await pulse(6);expect('inventory','legger');
     await pulse(5); // Crafting; bumpers must leave its remembered service alone.
     if(page!=='crafting'||selected.inventory!=='legger')throw Error('Primary switch changed the loadout.');
-    for(const service of ['projects','reference','storage','inventory','legger','workstations']){await pulse(7);expect('crafting',service);}
-    for(const service of ['legger','inventory','storage','reference','projects','workstations']){await pulse(6);expect('crafting',service);}
+    for(const service of ['projects','storage','inventory','legger','workstations']){await pulse(7);expect('crafting',service);}
+    for(const service of ['legger','inventory','storage','projects','workstations']){await pulse(6);expect('crafting',service);}
     await pulse(4);
     if(page!=='inventory'||selected.inventory!=='legger')throw Error('Loadout did not survive primary navigation.');
     await pulse(4);expect('settings',null); // primary backward wrap

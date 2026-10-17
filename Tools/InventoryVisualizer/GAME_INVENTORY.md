@@ -4,9 +4,15 @@ Open **Game inventory** in the visualizer's top navigation, or visit `http://127
 
 This tab is separate from the catalogue/review/artwork workspace. Its iframe, JavaScript module, model and stylesheet are independent; the shared entry points integrate navigation, lazy loading and scoped host chrome. It reads `/api/catalog` and never calls a mutation endpoint. No master item, review choice, artwork record, Unity asset or gameplay save is edited.
 
+## Reference removed from Crafting — October 17, 2026
+
+Crafting now has five sub-tabs: Item box, Booter equipment, Legger cargo, Workstations and Tracked projects. The author removed its duplicate Item almanac/Reference section. Item **Reference & uses** links now open the primary **Reference** tab, and `/` does the same when the current Crafting panel has no search field. Existing possession search stays in its panel. LT/RT wrap across the five remaining services.
+
+Verification: 29 focused checks passed. Browser review confirmed the five sub-tabs, keyboard wrap, item-link routing to the selected almanac record, `/` routing and the retained primary Reference page. The synthetic controller fixture passed with the five-service cycle. [Current Crafting view](../../Docs/Evidence/UI/CampMenu20261017/crafting-without-reference.png). Earlier screenshots and receipts retain their previous layouts.
+
 ## Two-level menu navigation — October 17, 2026
 
-Crafting's former left service rail is now a horizontal sub-tab row above the content: **Item box**, **Booter equipment**, **Legger cargo**, **Workstations**, **Tracked projects**, and **Item almanac**. Inventory uses the same row component for **Booter** and **Legger**. Local access status sits below Crafting's content. The removed Overview stays removed.
+Crafting's former left service rail is now a horizontal sub-tab row above the content: **Item box**, **Booter equipment**, **Legger cargo**, **Workstations**, and **Tracked projects**. Inventory uses the same row component for **Booter** and **Legger**. Local access status sits below Crafting's content. The removed Overview stays removed.
 
 **LB/RB** cycle the six primary tabs; **LT/RT** cycle the active page's sub-tabs. Both rows wrap in either direction. Triggers do nothing on pages without sub-tabs, and neither pair navigates behind an open dialog. Shoulder actions remain one per full release, including switching between navigation tiers. Keyboard Left/Right and Home/End operate the focused sub-tab row. Selected sub-tabs retain focus after the content rebuilds; narrow screens scroll the row to reveal the selected tab. Workstation selection remains within Workstations, using ordinary navigation or the mobile station picker.
 
@@ -16,7 +22,7 @@ Evidence: [desktop sub-tabs](../../Docs/Evidence/UI/CampMenu20261017/crafting-su
 
 ## Discovery almanac — October 17, 2026
 
-**Reference** is now an **Item almanac** covering the entire current item catalogue, also accessible through **Crafting → Item almanac**. At verification it contained 887 definitions in 19 categories. Category progress, All/Discovered/Undiscovered filters, discovery-safe search, category ordering and 36-entry pagination replace the old 100-result reference list. Every catalogue entry is reachable; definitions are not granted as possessions.
+**Reference** is now an **Item almanac** covering the entire current item catalogue, accessed through the primary **Reference** tab. At verification it contained 887 definitions in 19 categories. Category progress, All/Discovered/Undiscovered filters, discovery-safe search, category ordering and 36-entry pagination replace the old 100-result reference list. Every catalogue entry is reachable; definitions are not granted as possessions.
 
 Discovered cards show their name and icon. Their records include the available description, category/type, rarity, value tier, mass, stack limit, current ownership, acquisition, processing and limitations. Qualified sample recipe links appear when their output is discovered. Contained Arc Dust is counted in its actual canister location rather than represented as extra loose inventory.
 
@@ -39,7 +45,7 @@ The author removed the **Out of reach. Inspection only.** banner from **Crafting
 
 The author combined Camp and Crafting into one **Crafting** top-level tab. Open **Game inventory → Crafting**, choose **Crafting** in the Game menu, or interact with the camp item. Direct entry is `http://127.0.0.1:8087/game.html#crafting`; the previous `#camp` entry remains compatible.
 
-Crafting now uses the former camp hub and opens directly to **Workstations**. Its horizontal sub-tabs provide Item box, Booter equipment, Legger cargo, Workstations, Tracked projects and Item almanac. The author removed the camp Overview page, sidebar entry, illustration and overview navigation links. The separate two-recipe crafting screen is removed; every item/reference/project recipe link selects the matching station in this single interface. The title, service breadcrumb, Game-menu entry and close action use Crafting. Camp Loop remains the sample location. Escape/East closes Crafting directly to the prior top-level page. There are six top-level destinations; controller bumpers cycle that row, and triggers cycle the active sub-tabs.
+Crafting now uses the former camp hub and opens directly to **Workstations**. Its horizontal sub-tabs provide Item box, Booter equipment, Legger cargo, Workstations and Tracked projects. The author removed the camp Overview page, sidebar entry, illustration and overview navigation links. The separate two-recipe crafting screen is removed; every item/reference/project recipe link selects the matching station in this single interface. The title, service breadcrumb, Game-menu entry and close action use Crafting. Camp Loop remains the sample location. Escape/East closes Crafting directly to the prior top-level page. There are six top-level destinations; controller bumpers cycle that row, and triggers cycle the active sub-tabs.
 
 The inventory model, recipes, access checks, sample save and Unity files are unchanged. Module syntax and all 22 existing camp/inventory/controller checks pass. Browser verification passed for a single Crafting tab, default workstation view, a battery recipe link after previously selecting Dust refinery, Game-menu entry, item-box/workstation navigation, back/close and both old/new direct URLs. [Current Crafting screenshot](../../Docs/Evidence/UI/CampMenu20261017/crafting-unified.png). Earlier sections and screenshots retain the previous layout's research and verification history.
 

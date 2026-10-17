@@ -72,7 +72,7 @@ function openReference(id){
   referenceId=id;almanacCategory=catalog.get(id)?.Category||'';almanacStatus='all';
   const slot=[...catalog.keys()].indexOf(id);
   almanacPage=almanacIndex(catalog,discovered,{category:almanacCategory,order:almanacOrder,locateSlot:slot}).page;
-  if(page==='crafting')campNavigate('reference');else go('reference');
+  go('reference');
 }
 function mapView(){
   const place=mapPlaces.find(p=>p.id===mapSelection);
@@ -89,7 +89,7 @@ function render(){
   const active=document.activeElement,focusId=active?.closest('#content')?active.id:null;
   const focusCommand=active?.closest('#content')?['action','transfer','project','reference'].find(k=>active.dataset[k]!==undefined):null;
   const focusSelector=focusCommand?`[data-${focusCommand}="${CSS.escape(active.dataset[focusCommand])}"]`:null;
-  const campContent=page==='crafting'?(ownerPages[campService]?inventory():campService==='projects'?projects():campService==='reference'?reference():''):'';
+  const campContent=page==='crafting'?(ownerPages[campService]?inventory():campService==='projects'?projects():''):'';
   $('#content').innerHTML=page==='crafting'?campView({state,catalog,service:campService,stationId:campStation,content:campContent}):ownerPages[page]?inventory():page==='projects'?projects():page==='map'?mapView():page==='settings'?settingsView():reference();
   if(prototypeOpen&&$('#prototype-controls'))$('#prototype-controls').open=true;
   if(mapPosition&&$('.map-viewport'))$('.map-viewport').scrollTo(mapPosition);
@@ -192,7 +192,7 @@ document.addEventListener('keydown',event=>{
     tabs[next]?.click();return;
   }
   if(/INPUT|SELECT|TEXTAREA/.test(event.target.tagName))return;
-  if(event.key==='/'){event.preventDefault();if(!$('#game-search')){if(page==='crafting')campNavigate('reference');else go('reference');}$('#game-search')?.focus();}
+  if(event.key==='/'){event.preventDefault();if(!$('#game-search'))go('reference');$('#game-search')?.focus();}
   if(event.key.toLowerCase()==='i')go('inventory');
 });
 document.addEventListener('inventory-back',back);
