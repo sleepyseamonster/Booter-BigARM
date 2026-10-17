@@ -24,6 +24,9 @@ Evidence: [desktop almanac](../../Docs/Evidence/UI/Almanac20261017/almanac-deskt
 
 ## Unified crafting — October 17, 2026
 
+The author removed the **Out of reach. Inspection only.** banner from **Crafting → Item box**. This is scoped to that notice; transfer/crafting access checks and other access indicators retain their existing behavior. The standalone Storage view keeps its access notice.
+
+
 The author combined Camp and Crafting into one **Crafting** top-level tab. Open **Game inventory → Crafting**, choose **Crafting** in the Game menu, or interact with the camp item. Direct entry is `http://127.0.0.1:8087/game.html#crafting`; the previous `#camp` entry remains compatible.
 
 Crafting now uses the former camp hub and opens directly to **Workstations**. Its sidebar retains Item box, Booter equipment, Legger cargo, Workstations, Tracked projects and Item almanac. The author removed the camp Overview page, sidebar entry, illustration and overview navigation links. The separate two-recipe crafting screen is removed; every item/reference/project recipe link selects the matching station in this single interface. The title, service breadcrumb, Game-menu entry and close action use Crafting. Camp Loop remains the sample location. Escape/East closes Crafting directly to the prior top-level page. There are six top-level destinations; controller bumpers/triggers cycle that row.
