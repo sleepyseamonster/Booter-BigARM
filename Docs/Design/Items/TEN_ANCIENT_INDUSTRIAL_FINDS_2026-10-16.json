@@ -1,0 +1,155 @@
+{
+  "source": "Author requested ten more brainstormed Ancient salvage items, October 16, 2026. These are new local design proposals following Docs/WORLD_BASIS.md, not retrieved source lore. Ancient technology and materials are extremely rare; recovery does not establish operation, contemporary manufacture or internal repair.",
+  "scope": "Ten independent recovered originals spanning industrial sensing, calibration, timing, gripping and process handling. No executable recipe, recovered information, working machine, world placement or game effect. World identity, streaming/unload/reload, generated-object identity, authored placement and persisted runtime deltas are not applicable because this changes catalog records only.",
+  "expectedCategoryCounts": {"Ancient salvage": 50},
+  "defaults": {
+    "Tier": "T0",
+    "Category": "Ancient salvage",
+    "Subtype": "Ancient recovery",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "None; compatibility unresolved",
+    "Carrier metadata": "Physical recovered inventory / cargo item; size, mass, packing and safe handling unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Recover a surviving original from a proposed ancient industrial machine or ruin. Sites, availability and extraction conditions remain undefined.",
+    "Crafting / processing": "As-found original requiring identification and integrity/compatibility qualification before any reuse. No manufacturing, internal repair, recovery yield or crafting recipe established.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Extremely rare. Historical functions are hypotheses. Integrity, interfaces, operating requirements and remaining useful life are unknown; no guaranteed operation, compatible host, recovered contents or numerical benefit is assigned.",
+    "Rarity": "Extremely rare",
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Item type": "Machine part",
+    "Processing stage": "Recovered part",
+    "Origin family": "Ancient technology",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "One separately listed ancient original with a distinct proposed historical industrial role. Discovery does not qualify the component for crafting or establish reproducible technology.",
+    "Tier basis": "T0 is the as-found recovery stage, independent of technological complexity and extreme rarity. A qualified compatible original would need a separate T1 readiness record; no such qualification is granted here.",
+    "Finished-item input tier": "T0",
+    "Crafting role": "Component"
+  },
+  "items": [
+    {
+      "id": "proposal.ancient.molecular_sieve_cartridge",
+      "name": "Ancient molecular-sieve cartridge",
+      "purpose": "A sealed cylindrical cartridge packed with a fine porous internal structure, proposed to have separated selected substances in an ancient process line. Unlike the vacuum pump core, it is a passive treatment insert rather than the device that drives flow. Its retained contents and useful selectivity are unknown.",
+      "icon": "One squat ancient cartridge with perforated end guards, a dense pale cellular core visible through one broken inspection slot, and two unequal locating tabs. No loose contents, vapor, breathing mask or complete pump.",
+      "material": "Mixed / unresolved",
+      "use": "Chemical processing",
+      "fields": {
+        "Search aliases": "ancient salvage; molecular sieve; porous separator cartridge; process treatment insert",
+        "Open design decisions": "Medium identity, contamination, saturation, compatible substances, flow direction and regeneration remain unknown. No breathable air, purified drink, safe filter or active separation process is granted."
+      }
+    },
+    {
+      "id": "proposal.ancient.catalyst_honeycomb",
+      "name": "Ancient catalyst honeycomb",
+      "purpose": "A brittle ceramic-like block pierced by thousands of fine parallel channels with a dark coating on their inner walls. Its proposed historical role is a catalytic insert in ancient industrial processing. It is distinct from a routing plate or storage vessel; neither the coating nor the reaction it once served has been identified.",
+      "icon": "One fractured rectangular ancient monolith with an exposed honeycomb of tiny square channels, dark inner coatings and a worn metal retaining band. No reaction glow, smoke, free liquid or complete reactor.",
+      "material": "Mixed / unresolved",
+      "use": "Chemical processing",
+      "fields": {
+        "Search aliases": "ancient salvage; catalyst honeycomb; coated process monolith; channel block",
+        "Open design decisions": "Coating composition, original reaction, poisoning, residue, required temperature and compatible host remain unknown. No chemical formula, fuel conversion, detoxification or reusable catalyst performance is established."
+      }
+    },
+    {
+      "id": "proposal.ancient.machine_clock_capsule",
+      "name": "Ancient machine-clock capsule",
+      "purpose": "A small sealed timing capsule with several synchronized contact faces and an unfamiliar alignment mark. It is proposed to have supplied a common timing reference to an ancient machine's subsystems. Unlike the logic tile or inertial sphere, its hypothesized role is timing rather than stored instructions or navigation.",
+      "icon": "One thumb-sized ancient timing capsule in a dark faceted housing, with several tiny contact pads, a recessed alignment mark and an opaque central window. No readable clock face, digits, map or active display.",
+      "material": "Ancient composite",
+      "use": "Equipment repair",
+      "fields": {
+        "Search aliases": "ancient salvage; machine clock; timing reference capsule; synchronization module",
+        "Open design decisions": "Internal timing mechanism, retained calibration, power, signal format and host compatibility remain unknown. No accurate timekeeping, machine activation, decoded instructions or temporal effects are supplied."
+      }
+    },
+    {
+      "id": "proposal.ancient.thermal_witness_tile",
+      "name": "Ancient thermal witness tile",
+      "purpose": "A thin tile with several permanently discolored layers beneath a clear protective face. It is proposed as a passive witness to excessive heat inside an ancient assembly, preserving a physical trace rather than a readable electronic log. The meaning of its marks and the conditions that produced them remain unknown.",
+      "icon": "One narrow ancient witness tile with a transparent worn face, three uneven bands of muted color beneath it and broken attachment feet. No legible scale, numerical temperature, data screen or active glow.",
+      "material": "Mixed / unresolved",
+      "use": "Material analysis",
+      "fields": {
+        "Search aliases": "ancient salvage; thermal witness; heat history tile; passive condition marker",
+        "Open design decisions": "Layer chemistry, original calibration, exposure history and interpretability remain unresolved. It grants no temperature reading, decoded event, functioning sensor or cooling effect."
+      }
+    },
+    {
+      "id": "proposal.ancient.electroadhesive_gripper_pad",
+      "name": "Ancient electroadhesive gripper pad",
+      "purpose": "A flat contact pad with fine interleaved traces beneath a worn flexible face and a broken manipulator mount. It is proposed to have held workpieces through an electrically controlled contact effect. It is a gripping surface, distinct from a load-spreading mesh, and lacks the arm, controls and supply of a complete handling machine.",
+      "icon": "One recovered palm-sized manipulator pad with rounded corners, a peeling dark contact face, faint interleaved traces and an incomplete rear mounting neck. No attached hand, lifted object, force field or active electrical effect.",
+      "material": "Ancient composite",
+      "use": "Equipment repair",
+      "fields": {
+        "Search aliases": "ancient salvage; electroadhesive pad; workpiece gripper; manipulator contact face",
+        "Open design decisions": "Contact mechanism, power, target materials, contamination sensitivity, release control and retained flexibility remain unknown. No climbing ability, remote attraction, universal grip or usable holding force is granted."
+      }
+    },
+    {
+      "id": "proposal.ancient.strain_sensing_washer",
+      "name": "Ancient strain-sensing washer",
+      "purpose": "A thin annular fitting with fine radial traces and a damaged signal tab, proposed to have monitored loading across a machine's bolted joint. Its historical role was measurement at an interface rather than carrying the joint as a bearing. The attached traces provide no usable reading without an identified compatible system.",
+      "icon": "One large ancient washer with a dark layered body, delicate radial lines around its center hole and a snapped flat signal tab. No bolt, gauge, force arrows, powered light or complete machine joint.",
+      "material": "Mixed / unresolved",
+      "use": "Material analysis",
+      "fields": {
+        "Search aliases": "ancient salvage; strain washer; load sensing ring; joint condition fitting",
+        "Open design decisions": "Sensing principle, calibration, deformation, electrical interface and compatible loading remain unknown. No working force measurement, structural safety rating or overload warning is established."
+      }
+    },
+    {
+      "id": "proposal.ancient.filament_cutting_loop",
+      "name": "Ancient filament cutting loop",
+      "purpose": "An exceptionally fine dark filament retained as a loop inside a damaged protective frame, proposed as the working element of an ancient precision cutter. It differs from the structural nanocarbon tension member in its intended cutting role and guarded form. The filament's continuity, composition and original drive arrangement are unknown.",
+      "icon": "One small ancient cutter frame containing a barely visible dark filament loop, with two recessed retainers and a broken drive socket. Show the filament safely enclosed; no hand, severed object, beam or complete weapon.",
+      "material": "Ancient composite",
+      "use": "Tool fabrication",
+      "fields": {
+        "Search aliases": "ancient salvage; filament cutting loop; precision cutter element; guarded fine filament",
+        "Open design decisions": "Filament material, tension, retained integrity, drive, compatible workpieces and safe handling remain unresolved. No cutting performance, weapon action or reproduction of ancient filament is assigned."
+      }
+    },
+    {
+      "id": "proposal.ancient.optical_rotary_coupling",
+      "name": "Ancient optical rotary coupling",
+      "purpose": "Two nested rings with dark optical windows arranged around their shared axis, proposed to have carried an optical path through a rotating ancient joint. It is neither a mechanical bearing nor a focusing cradle. Alignment, transmission surfaces and the devices formerly connected to either side remain unidentified.",
+      "icon": "One ancient concentric two-ring coupling with narrow black glass-like windows, worn pale composite edges and opposed locating tabs. No light beam, projected image, complete bearing or attached cable network.",
+      "material": "Glass and metal",
+      "use": "Equipment repair",
+      "fields": {
+        "Search aliases": "ancient salvage; optical rotary coupling; rotating optical interface; annular optical joint",
+        "Open design decisions": "Original optical service, rotation mechanism, surface condition, alignment and signal format remain unknown. No recovered data, working communications, complete joint or usable optical performance is granted."
+      }
+    },
+    {
+      "id": "proposal.ancient.acoustic_inspection_plate",
+      "name": "Ancient acoustic inspection plate",
+      "purpose": "A rigid plate carrying a tight array of small sealed elements beneath a worn contact face. It is proposed as an industrial inspection head that once sent or received vibrations through a workpiece. Its array form and examination role distinguish it from a radio receiver capsule or sonic weapon supply.",
+      "icon": "One rectangular ancient inspection head with a grid of small recessed elements, a worn flat contact face, rear heat ribs and one broken connector. No sound waves, scan image, specimen, weapon or active screen.",
+      "material": "Mixed / unresolved",
+      "use": "Material analysis",
+      "fields": {
+        "Search aliases": "ancient salvage; acoustic inspection plate; vibration inspection array; contact examination head",
+        "Open design decisions": "Transducer construction, contact method, power, frequency, retained calibration and interpretation remain unknown. No internal scan, defect detection, medical examination or acoustic attack is implemented."
+      }
+    },
+    {
+      "id": "proposal.ancient.dimensional_reference_block",
+      "name": "Ancient dimensional reference block",
+      "purpose": "A dense rectangular block with several unusually smooth faces and recessed protective edges, proposed as a reference artifact from an ancient calibration fixture. It supplied a comparison surface rather than a powered measuring device. Wear, original dimensions and the meaning of its fine alignment marks are unresolved.",
+      "icon": "One heavy ancient reference block with three smooth dark faces, recessed worn edges, tiny unreadable alignment marks and a broken storage clip. No ruler, readable numbers, floating pieces or measuring beam.",
+      "material": "Ancient composite",
+      "use": "Material analysis",
+      "fields": {
+        "Search aliases": "ancient salvage; dimensional reference block; calibration artifact; comparison surface block",
+        "Open design decisions": "Material, original geometry, wear, reference standard and compatible fixtures remain unknown. No perfect dimension, universal calibration, automatic measurement or readable ancient unit system is assigned."
+      }
+    }
+  ]
+}
