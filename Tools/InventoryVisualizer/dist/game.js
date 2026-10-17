@@ -10,7 +10,7 @@ let state=freshState(),catalog=new Map(),page='inventory',owner='booter',selecte
 let settings={large:false,motion:false},loaded=false;
 let inventoryOwner='booter';
 let discovered=new Set(),discoveryBlocked=false,discoveryNotice='',almanacCategory='',almanacStatus='all',almanacOrder='discovered',almanacPage=0;
-let campService='overview',campStation='author.station.workbench',campExitPage='inventory';
+let campService='workstations',campStation='author.station.workbench',campExitPage='inventory';
 const ownerPages={inventory:'booter',legger:'legger',storage:'chest'},ownerSelections={};
 const mapPlaces=[{id:'booter',label:'Booter',x:34,y:59,icon:'●',description:'Player marker. Position is illustrative; the browser has no live world connection.'},{id:'legger',label:'The Legger',x:46,y:64,icon:'◇',description:'Companion marker. This diagram does not establish actual range, routes or physical access.'},{id:'camp',label:'Camp',x:66,y:34,icon:'△',description:'Sample camp marker. Storage and workstation contents remain owned by their existing sample systems.'}];
 let mapSelection='booter',waypoint=null,mapZoom=1;
@@ -121,10 +121,8 @@ function openRecipe(id){
   campNavigate('workstations');
 }
 function back(){
-  if(page==='crafting'){
-    if(campService!=='overview'){const previous=campService;campNavigate('overview');document.getElementById(`camp-service-${previous}`)?.focus();}
-    else $('#leave-camp').click();
-  }else $('#menu').showModal();
+  if(page==='crafting')$('#leave-camp').click();
+  else $('#menu').showModal();
 }
 function applySettings(){document.documentElement.classList.toggle('large-text',settings.large);document.documentElement.classList.toggle('reduced-motion',settings.motion);}
 function leaveStudy(){if(window.parent!==window)window.parent.location.hash='inventory';else window.location.href='index.html#inventory';}

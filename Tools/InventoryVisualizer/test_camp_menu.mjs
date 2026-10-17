@@ -13,15 +13,19 @@ function catalog(){return new Map([
   ['author.station.dust_refinery',{'Item ID':'author.station.dust_refinery','Item name':'Dust refinery',Category:'Crafting stations','Design status':'Author direction'}]
 ]);}
 
-test('missing default station resolves its ID and recipe together; readiness only counts available menus',()=>{
+test('missing default station resolves its ID and recipe together in the default Workstations view',()=>{
   const definitions=catalog();definitions.delete('author.station.workbench');
   const station=resolveCampStation(campStations(definitions),'author.station.workbench');
   assert.equal(station.id,'author.station.dust_refinery');assert.equal(station.recipe,'charge');
   const view=campView({state:freshState(),catalog:definitions,service:'workstations',stationId:station.id});
   assert.match(view,/Charged battery|Charged Arc Battery/);assert.doesNotMatch(view,/Craft one battery/);
-  assert.match(campView({state:freshState(),catalog:definitions}),/1 recipe ready/);
+  const fallback=campView({state:freshState(),catalog:definitions,service:'overview'});
+  assert.match(fallback,/data-camp-screen="workstations"/);
+  assert.doesNotMatch(fallback,/camp-service-overview|camp-back|camp-landscape/);
+  assert.match(fallback,/Charged Arc Battery/);
   definitions.delete('author.station.dust_refinery');
-  assert.match(campView({state:freshState(),catalog:definitions}),/0 recipes ready/);
+  const unavailable=campView({state:freshState(),catalog:definitions});
+  assert.match(unavailable,/No executable recipe/);assert.doesNotMatch(unavailable,/data-action="craft"/);
 });
 
 test('catalogue facilities remain inspectable without granting arbitrary executable recipes',()=>{
