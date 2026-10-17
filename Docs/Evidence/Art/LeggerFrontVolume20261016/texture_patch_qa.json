@@ -1,0 +1,88 @@
+{
+  "source_sha256": "90757f7efa6811fbfd9c82c93b08a98d254f60d13d15e447e5eeab03f2db6304",
+  "passed": true,
+  "atlas_size": [
+    2048,
+    2048
+  ],
+  "checked_outside_pixels": 3217977,
+  "mask_dilation_px": 8,
+  "maps": {
+    "BaseColor": {
+      "sha256": "76c77855fa25ceded2aaf1fef60719bb26c733f3eba62ea58faa4c10a8fb4f50",
+      "maximum_channel_delta_outside_patch_8px_margin": 0,
+      "pixels_over_1_LSB_outside_patch": 0,
+      "inside_region_mean_RGB_8bit": {
+        "body": [
+          51.834856781223344,
+          57.10150693852094,
+          59.19158755927322
+        ],
+        "head": [
+          68.88268681470561,
+          71.61884732332074,
+          69.75186584354556
+        ]
+      },
+      "changed_pixels": 37850
+    },
+    "Roughness": {
+      "sha256": "44f280f280a29cbde9d0574576a026e222f3e34cd065d8dddffbab7fca52ab3f",
+      "maximum_channel_delta_outside_patch_8px_margin": 0,
+      "pixels_over_1_LSB_outside_patch": 0,
+      "inside_region_mean_RGB_8bit": {
+        "body": [
+          124.14625833493841,
+          124.14625833493841,
+          124.14625833493841
+        ],
+        "head": [
+          107.78669953008385,
+          107.78669953008385,
+          107.78669953008385
+        ]
+      },
+      "changed_pixels": 14646
+    },
+    "Metallic": {
+      "sha256": "a2c7fc27bdd21cb38d0f65773bd327fc325385582fc3ecc1c8cb1e192c8c5ab7",
+      "maximum_channel_delta_outside_patch_8px_margin": 0,
+      "pixels_over_1_LSB_outside_patch": 0,
+      "inside_region_mean_RGB_8bit": {
+        "body": [
+          184.05364260884718,
+          184.05364260884718,
+          184.05364260884718
+        ],
+        "head": [
+          169.28965723763014,
+          169.28965723763014,
+          169.28965723763014
+        ]
+      },
+      "changed_pixels": 6181
+    },
+    "Normal": {
+      "sha256": "30320d8d53b0eb8d07de6b30dd7b291c1bff2eb7a6b9de9a455c3db4d46d1aae",
+      "maximum_channel_delta_outside_patch_8px_margin": 0,
+      "pixels_over_1_LSB_outside_patch": 0,
+      "inside_region_mean_RGB_8bit": {
+        "body": [
+          128.00272954901908,
+          128.00919755294464,
+          254.88982013959588
+        ],
+        "head": [
+          127.99942872938358,
+          128.0029024232931,
+          254.8089975122086
+        ]
+      },
+      "changed_pixels": 30135,
+      "fraction_tangent_Z_positive": 1.0,
+      "median_vector_length": 1.0000153785822494
+    }
+  },
+  "retained_AO": true,
+  "method": "Read-only decoded PNG comparison outside rasterized body/head face UVs plus 8px guard; at most 1/255 serialization rounding. Normal-vector readback uses encoded tangent RGB."
+}

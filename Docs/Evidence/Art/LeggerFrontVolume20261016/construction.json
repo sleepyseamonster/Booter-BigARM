@@ -1,0 +1,237 @@
+{
+  "before_sha256": "cb63818312443226502d02ca7ed76498e985d4b556205a3b60d8f122b5a26071",
+  "candidate_sha256": "90757f7efa6811fbfd9c82c93b08a98d254f60d13d15e447e5eeab03f2db6304",
+  "candidate_bytes": 799090806,
+  "candidate_path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFrontVolume20261016\\Candidate.blend",
+  "renamed": {
+    "Legger_Part_FrontControlPod": "REFERENCE_PreFrontVolume_Legger_Part_FrontControlPod",
+    "Legger_Part_FrontTankCowling": "REFERENCE_PreFrontVolume_Legger_Part_FrontTankCowling",
+    "Legger_Part_Handlebar": "REFERENCE_PreFrontVolume_Legger_Part_Handlebar",
+    "Legger_Part_InstrumentGauge": "REFERENCE_PreFrontVolume_Legger_Part_InstrumentGauge",
+    "Legger_Part_L_BrakeLever": "REFERENCE_PreFrontVolume_Legger_Part_L_BrakeLever",
+    "Legger_Part_L_Grip": "REFERENCE_PreFrontVolume_Legger_Part_L_Grip",
+    "Legger_Part_L_front_fairing": "REFERENCE_PreFrontVolume_Legger_Part_L_front_fairing",
+    "Legger_Part_R_BrakeLever": "REFERENCE_PreFrontVolume_Legger_Part_R_BrakeLever",
+    "Legger_Part_R_Grip": "REFERENCE_PreFrontVolume_Legger_Part_R_Grip",
+    "Legger_Part_R_front_fairing": "REFERENCE_PreFrontVolume_Legger_Part_R_front_fairing",
+    "Legger_Part_SteeringStem": "REFERENCE_PreFrontVolume_Legger_Part_SteeringStem"
+  },
+  "geometry_parts": [
+    "Legger_Part_FrontControlPod",
+    "Legger_Part_L_front_fairing",
+    "Legger_Part_R_front_fairing",
+    "Legger_Part_FrontTankCowling"
+  ],
+  "material_parts": [
+    "Legger_Part_FrontControlPod",
+    "Legger_Part_SteeringStem",
+    "Legger_Part_L_Grip",
+    "Legger_Part_L_BrakeLever",
+    "Legger_Part_R_Grip",
+    "Legger_Part_R_BrakeLever",
+    "Legger_Part_InstrumentGauge",
+    "Legger_Part_Handlebar"
+  ],
+  "geometry_edits": [
+    {
+      "name": "Legger_Part_FrontControlPod",
+      "maximum_vertex_displacement_m": 0.33041739618216337
+    },
+    {
+      "name": "Legger_Part_L_front_fairing",
+      "maximum_vertex_displacement_m": 0.04255592561475057
+    },
+    {
+      "name": "Legger_Part_R_front_fairing",
+      "maximum_vertex_displacement_m": 0.04255592561475057
+    },
+    {
+      "name": "Legger_Part_FrontTankCowling",
+      "maximum_vertex_displacement_m": 0.06591284343432692
+    }
+  ],
+  "body_profile_Z_frontY_rearY_halfwidth_m": [
+    [
+      1.575,
+      -0.636,
+      -0.574,
+      0.023
+    ],
+    [
+      1.615,
+      -0.672,
+      -0.526,
+      0.042
+    ],
+    [
+      1.68,
+      -0.717,
+      -0.458,
+      0.067
+    ],
+    [
+      1.75,
+      -0.742,
+      -0.408,
+      0.09
+    ],
+    [
+      1.825,
+      -0.76,
+      -0.38,
+      0.105
+    ],
+    [
+      1.895,
+      -0.751,
+      -0.365,
+      0.11
+    ],
+    [
+      1.965,
+      -0.711,
+      -0.386,
+      0.099
+    ],
+    [
+      2.025,
+      -0.638,
+      -0.44,
+      0.076
+    ]
+  ],
+  "head_profile_Z_frontY_rearY_halfwidth_m": [
+    [
+      1.94,
+      -0.739,
+      -0.637,
+      0.047
+    ],
+    [
+      1.96,
+      -0.758,
+      -0.62,
+      0.07
+    ],
+    [
+      1.995,
+      -0.759,
+      -0.608,
+      0.088
+    ],
+    [
+      2.03,
+      -0.745,
+      -0.606,
+      0.086
+    ],
+    [
+      2.07,
+      -0.714,
+      -0.606,
+      0.074
+    ],
+    [
+      2.105,
+      -0.686,
+      -0.612,
+      0.049
+    ]
+  ],
+  "methods": [
+    "Recontour existing 22 eight-sided rings as enclosed deep central neck/lower front body, retaining front lens surface plane.",
+    "Recontour existing 16x11x2 head grid into a wrapped cross-section with full side depth and original-led lower shoulders.",
+    "Extend existing ivory cheek tips to 1.645 m and thicken the hidden inner backing shell.",
+    "Deepen only the forward lower cowling; preserve upper roof and saddle termination."
+  ],
+  "major_meshes": 76,
+  "control_quads": 45762,
+  "evaluated_triangles": 146264,
+  "evaluated_triangle_ceiling": 146264,
+  "surface_patch": {
+    "old_material": "Legger_Front_Steering_PBR",
+    "material": "Legger_FrontVolume_Steering_PBR",
+    "maps": {
+      "BaseColor": {
+        "before_image": "Legger_Front_Steering_BaseColor",
+        "image": "Legger_FrontVolume_Steering_BaseColor",
+        "before_sha256": "882c9922569449d72c935c92202119f24a4bb1d6b39532040d83676bcc1bc9a4",
+        "sha256": "76c77855fa25ceded2aaf1fef60719bb26c733f3eba62ea58faa4c10a8fb4f50",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "colorspace": "sRGB",
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFrontVolume20261016\\Maps\\BaseColor.png",
+        "before_path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFrontVolume20261016\\Maps\\Before_BaseColor.png"
+      },
+      "Roughness": {
+        "before_image": "Legger_Front_Steering_Roughness",
+        "image": "Legger_FrontVolume_Steering_Roughness",
+        "before_sha256": "fb5ab69b689d3a983d4f6cf1a721d085438321e7f7a908ebe349078b097a3559",
+        "sha256": "44f280f280a29cbde9d0574576a026e222f3e34cd065d8dddffbab7fca52ab3f",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFrontVolume20261016\\Maps\\Roughness.png",
+        "before_path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFrontVolume20261016\\Maps\\Before_Roughness.png"
+      },
+      "Metallic": {
+        "before_image": "Legger_Front_Steering_Metallic",
+        "image": "Legger_FrontVolume_Steering_Metallic",
+        "before_sha256": "d118fa1919a6c5560a6c79fdb7e6d78b8fba2c91eaaaf0d4bf92d2a67ed1f64e",
+        "sha256": "a2c7fc27bdd21cb38d0f65773bd327fc325385582fc3ecc1c8cb1e192c8c5ab7",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFrontVolume20261016\\Maps\\Metallic.png",
+        "before_path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFrontVolume20261016\\Maps\\Before_Metallic.png"
+      },
+      "Normal": {
+        "before_image": "Legger_FullRefine_Steering_Normal",
+        "image": "Legger_FrontVolume_Steering_Normal",
+        "before_sha256": "5927361aee78994d624609ce28a07a9345d90b0484045932b86de21cbaa4b553",
+        "sha256": "30320d8d53b0eb8d07de6b30dd7b291c1bff2eb7a6b9de9a455c3db4d46d1aae",
+        "resolution": [
+          2048,
+          2048
+        ],
+        "colorspace": "Non-Color",
+        "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFrontVolume20261016\\Maps\\Normal.png",
+        "before_path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFrontVolume20261016\\Maps\\Before_Normal.png"
+      }
+    },
+    "method": "Isolated CPU bake of existing body/head UV faces; three EMIT maps plus tangent NORMAL bake combining retained grain with 1.2 mm access-ring and 0.65 mm seam relief. Old atlas pixels initialize targets, use_clear=False, margin=2. AO retained.",
+    "detail_centers_body_Y_Z_radius_m": [
+      [
+        -0.535,
+        1.805,
+        0.037
+      ],
+      [
+        -0.445,
+        1.865,
+        0.038
+      ]
+    ],
+    "detail_centers_head_Y_Z_radius_m": [
+      [
+        -0.678,
+        2.007,
+        0.024
+      ],
+      [
+        -0.646,
+        2.058,
+        0.011
+      ]
+    ]
+  },
+  "checkpoint01_sha256": "626c3158454fd0ec5d11e36c8b883208b71a07bf23cf12a4ef0fa0fb3865d20a",
+  "body_width_refinement_factor": 0.84,
+  "head_cross_section": "Flat center and chamfered shoulders: normalized |X| 0,.4,.72,1 -> normalized front/back depth inset 0,0,.12,.36."
+}

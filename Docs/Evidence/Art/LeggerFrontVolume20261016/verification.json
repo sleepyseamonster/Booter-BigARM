@@ -1,0 +1,57 @@
+{
+  "source_sha256": "90757f7efa6811fbfd9c82c93b08a98d254f60d13d15e447e5eeab03f2db6304",
+  "before_sha256": "cb63818312443226502d02ca7ed76498e985d4b556205a3b60d8f122b5a26071",
+  "native": {
+    "path": "D:\\Arc & Dust\\Project\\SourceArt\\Blender\\Studies\\Legger\\Legger_Topology_Iteration04.blend",
+    "bytes": 799090806
+  },
+  "recovery": {
+    "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFrontVolume20261016\\Before.blend",
+    "sha256": "cb63818312443226502d02ca7ed76498e985d4b556205a3b60d8f122b5a26071",
+    "bytes": 797234968
+  },
+  "first_visual_checkpoint": {
+    "path": "C:\\Users\\kbkno\\.codex\\art-cache\\LeggerFrontVolume20261016\\Checkpoint01.blend",
+    "sha256": "626c3158454fd0ec5d11e36c8b883208b71a07bf23cf12a4ef0fa0fb3865d20a"
+  },
+  "major_meshes": 76,
+  "control_quads": 45762,
+  "evaluated_triangles": 146264,
+  "active_maps": 55,
+  "geometry_changed_meshes": 4,
+  "geometry_exact_meshes": 72,
+  "fingerprint_exact_meshes": 65,
+  "new_material_users": 8,
+  "prior_meshes_preserved": 1010,
+  "all_mesh_objects": 1021,
+  "prior_packed_images_byte_identical": 194,
+  "new_packed_images": 4,
+  "all_packed_images": 198,
+  "native_matches_candidate_qa": true,
+  "native_render_comparison": [
+    {
+      "view": "front_oblique",
+      "exact_alpha": true,
+      "mean_rgb_delta_0_255": 2.175925925925926e-05,
+      "maximum_rgb_delta_0_255": 1.0
+    },
+    {
+      "view": "assembled",
+      "exact_alpha": true,
+      "mean_rgb_delta_0_255": 8.796296296296296e-06,
+      "maximum_rgb_delta_0_255": 1.0
+    }
+  ],
+  "review_images": 39,
+  "view_count": {
+    "original_before": 16,
+    "first_checkpoint": 8,
+    "corrected_candidate": 8,
+    "native": 2
+  },
+  "foreground_interaction": false,
+  "user_gui_reloaded": false,
+  "source_art_only": true,
+  "unity_proof": false,
+  "native_local_only": true
+}

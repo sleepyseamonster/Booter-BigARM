@@ -1,0 +1,226 @@
+{
+  "source_sha256": "90757f7efa6811fbfd9c82c93b08a98d254f60d13d15e447e5eeab03f2db6304",
+  "local_files": [
+    {
+      "path": "Logs/LeggerFrontVolume20261016/application.json",
+      "sha256": "388ff21cccc5083b296b4d5e3e55da449a591d7367533ba18704ce8330c034a3",
+      "bytes": 813
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/apply.py",
+      "sha256": "a8e06cf96e82dfb919f31623277d5a0811ba9a82ec91c0e86ae1eb69f46fdd2d",
+      "bytes": 2332
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/baseline.json",
+      "sha256": "dbfc835f3ed42a820ecf1aaad5bfb9fc647daadacce5dc8a5be17988b285251c",
+      "bytes": 244680
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/baseline.py",
+      "sha256": "b1fd07c83588c87785f7fc74c3e11d42ae206629818ffac8a7033ce4679721e2",
+      "bytes": 2469
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/boards.py",
+      "sha256": "4257fd143a813cd2c9a187187cf2d2835f63cfce5ef899025ce649abfa057e7d",
+      "bytes": 1477
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/brief.md",
+      "sha256": "1a50788c81cd4f87de9539b6648cbf519ebb18ec539ee64344ade70cb401105f",
+      "bytes": 1475
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/build.json",
+      "sha256": "d34d5c06d2144f99d249ca2f68ed93355bf4ff3edadf2fa42edecc0265784fb0",
+      "bytes": 7388
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/build.py",
+      "sha256": "d5dc38efd337868794eddfda67a0a3c0d2efbd7579074a7fd92b671746ac9273",
+      "bytes": 6535
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/candidate_canonical.json",
+      "sha256": "1bcb0baac1d709320f14e935bd4576ce523324aee8b0b16f2e0982e92127378b",
+      "bytes": 41977
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/candidate_qa.json",
+      "sha256": "d49cfd3d9f0cc151d58d56c375b30298caffaca91eba78856fc83fe15372a8f9",
+      "bytes": 73198
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/capture.py",
+      "sha256": "e5083fd40552dcac5d871bc0a1a673bc5bda89388ea2efc5b93c8e5172dcc46d",
+      "bytes": 4975
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/capture_audit.json",
+      "sha256": "b3f0480b3d7cbdc020a14dfbde9e2b485968d89dc1fc8559ffbd4baf4441770f",
+      "bytes": 4471
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/capture_checkpoint01.json",
+      "sha256": "2ecff44bd4bf2b20278968cf5dc664228c421f51b0aa10c3fc5ea8c7817564c2",
+      "bytes": 2382
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/capture_native.json",
+      "sha256": "ac55148c40cc3bbffe9a51e4c3f9fb33b6a88618bc9451db27cbdac0fc13efe8",
+      "bytes": 811
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/capture_texture.json",
+      "sha256": "57827f5cc32b255954ed6309b8384a5f3e83cd6a6add195c4adfe633517f9bed",
+      "bytes": 2382
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/checkpoint01_build.json",
+      "sha256": "862193d864056ce9fcfa2d44cbdc784b7081391794d58df5dcece0833cc64524",
+      "bytes": 4018
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/checkpoint01_qa.json",
+      "sha256": "67fbe730d6271bf6425dbe003dbf590f9938da449828c776d20e5ebb547ef87a",
+      "bytes": 69957
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/commit_records.py",
+      "sha256": "616df56f32cd880a60572a769a94858339325181ca02f3ba9999991be1c3c730",
+      "bytes": 2354
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/components.json",
+      "sha256": "be75178cf8be9bbc2893af02140d69c17e6da1cd5f4e20bae064b56359b89b1a",
+      "bytes": 473746
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/front_meshes.npz",
+      "sha256": "e2a84ad26f9b01104cc949523179299fa7a3208e9d1369a5a9c7f6d5b23b4c3e",
+      "bytes": 196638
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/measure.py",
+      "sha256": "ae3033d847969ac0eaca6f4cf055e5fadc37340f2b6bf81042e5a0ef6b053513",
+      "bytes": 2313
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/native_canonical.json",
+      "sha256": "1bcb0baac1d709320f14e935bd4576ce523324aee8b0b16f2e0982e92127378b",
+      "bytes": 41977
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/native_qa.json",
+      "sha256": "d49cfd3d9f0cc151d58d56c375b30298caffaca91eba78856fc83fe15372a8f9",
+      "bytes": 73198
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/original_front_points.npz",
+      "sha256": "48de46b71dd8e2512501780b46c79e3840a7a9510b30bd4ed3c22a0ce6bc91e8",
+      "bytes": 1952319
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/original_front_samples.json",
+      "sha256": "162380f27fc019b05e41021c32727a2ab58cddf0f7939e1824fea76995c1ef12",
+      "bytes": 233
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/patch_uv.json",
+      "sha256": "540a63a31efd6708ee3d0a8d5050988dbe8893e567751a02ddb97eef8bcdcaa5",
+      "bytes": 102333
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/prepare_closeout.py",
+      "sha256": "9b242ffd2403a08e1641b11b7c641a66611d89a5bebfe3e9b926411569435387",
+      "bytes": 1663
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/prepare_helpers.py",
+      "sha256": "86944f229b66272d58617da3db7abce9e2974f9a850d1f793121d75ac7e243bb",
+      "bytes": 625
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/probe.py",
+      "sha256": "bc461397803dd52dd1da2ba8e1230fd385f110596be2e5bb579c52cbc3f33b21",
+      "bytes": 1610
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/qa.py",
+      "sha256": "12e98a0fab63822902b64048948c83c368659240dc340acf99a6f3a27701f923",
+      "bytes": 9485
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/render_comparison.json",
+      "sha256": "53232ba064665562755bf816101b36d9fa1b90cff063d62699f2a563de92b2f6",
+      "bytes": 544
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/seal_records.py",
+      "sha256": "66667fc9c3b5280e53f8a6a58d56cea63036a8844bb6daf4d7601e43256fdbca",
+      "bytes": 5379
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/source_preservation.json",
+      "sha256": "6badc3037ce48e29c057b748a00fd9aee07412e5943b8f17977be3781a6c183c",
+      "bytes": 244233
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/surface.py",
+      "sha256": "6f884ed2653e67203f003fa7c676d127d3deafc8f6ae9695b155943b721fb8e8",
+      "bytes": 10919
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/texture_patch_qa.json",
+      "sha256": "12a2b9c80703eb139aff89875c9f7ddd418f9e6f4afd4db10f9d0f77bcae0ce9",
+      "bytes": 2624
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/texture_patch_qa.py",
+      "sha256": "7cc752c621d2551e5cf2f8b0a524d4e7ef296386c9ea1584e8736d41d70eb608",
+      "bytes": 2274
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/validate_records.py",
+      "sha256": "badc5d17cc3a271a067b112bddf3cbab7f09809426beb7d53365db5f85e2b4e2",
+      "bytes": 2570
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/views.json",
+      "sha256": "cef33c02b3bce694ef5d3f6fee788f19583f13897ec789b29fdd8775b396b984",
+      "bytes": 11296
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/visual_review.json",
+      "sha256": "5cbc08a74ad0aa01bf00707c16c5c3ceada0c5a6f0ae2bc307a7a5923e58c5a0",
+      "bytes": 1267
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/volume_sections.json",
+      "sha256": "c2176afd261a4bd050a09197c035892363af926a3b34a9b274a33d62bfb0d151",
+      "bytes": 2463
+    },
+    {
+      "path": "Logs/LeggerFrontVolume20261016/write_receipt.py",
+      "sha256": "80cd70da84df17d5d9904d70f95b5236ad8c46029a0add3b05b401d5eb4004eb",
+      "bytes": 7328
+    },
+    {
+      "path": "Logs/LeggerSciFi20261015/fingerprint.py",
+      "sha256": "eb5f095437185432900cd31b2ed07feb3d55796db3dcd72eb7dc8c1a8f5bc86f",
+      "bytes": 1762
+    },
+    {
+      "path": "Logs/LeggerSciFi20261015/forms.py",
+      "sha256": "5c203c6585408c89137a8ab649a2c5f1b86a126d62dade50c03b8114e73f545e",
+      "bytes": 9219
+    },
+    {
+      "path": "Tools/Art/Blender/inspect_blend.py",
+      "sha256": "72a570b58d8b0622dd5477f4a130b2a10e36b4840778dea14bad634273e9da20",
+      "bytes": 2394
+    }
+  ],
+  "scope": "Ignored local recipes, measured inputs, and intermediate trials. Final surfaces use an isolated CPU bake. Native checkpoints and pixels have separate hashes."
+}

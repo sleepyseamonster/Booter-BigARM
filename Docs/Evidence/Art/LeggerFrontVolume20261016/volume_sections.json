@@ -1,0 +1,94 @@
+{
+  "source_sha256": "90757f7efa6811fbfd9c82c93b08a98d254f60d13d15e447e5eeab03f2db6304",
+  "sections": [
+    {
+      "part": "central_body",
+      "before": {
+        "section_Z_m": 1.83,
+        "bounds_XY_m": [
+          [
+            -0.04193202778697014,
+            -0.7553956508636475
+          ],
+          [
+            0.04193202778697014,
+            -0.7028788924217224
+          ]
+        ],
+        "width_m": 0.08386405557394028,
+        "depth_m": 0.05251675844192505
+      },
+      "after": {
+        "section_Z_m": 1.83,
+        "bounds_XY_m": [
+          [
+            -0.0883457213640213,
+            -0.7588306665420532
+          ],
+          [
+            0.0883457213640213,
+            -0.3791557550430298
+          ]
+        ],
+        "width_m": 0.1766914427280426,
+        "depth_m": 0.37967491149902344
+      },
+      "original_reference_surface_ROI": {
+        "vertices": 1994,
+        "Z_half_band_m": 0.004,
+        "absX_limit_m": 0.13,
+        "Y_max_m": -0.36,
+        "Y_quantile_03_97_m": [
+          -0.7177553594112396,
+          -0.3827133098244667
+        ],
+        "absX_quantile_97_m": 0.12264905124902725
+      }
+    },
+    {
+      "part": "upper_head",
+      "before": {
+        "section_Z_m": 2.0,
+        "bounds_XY_m": [
+          [
+            -0.06384638696908951,
+            -0.7434386014938354
+          ],
+          [
+            0.06384638696908951,
+            -0.6601052284240723
+          ]
+        ],
+        "width_m": 0.12769277393817902,
+        "depth_m": 0.08333337306976318
+      },
+      "after": {
+        "section_Z_m": 2.0,
+        "bounds_XY_m": [
+          [
+            -0.087714284658432,
+            -0.7570000290870667
+          ],
+          [
+            0.087714284658432,
+            -0.6077142953872681
+          ]
+        ],
+        "width_m": 0.175428569316864,
+        "depth_m": 0.14928573369979858
+      },
+      "original_reference_surface_ROI": {
+        "vertices": 587,
+        "Z_half_band_m": 0.004,
+        "absX_limit_m": 0.1,
+        "Y_max_m": -0.6,
+        "Y_quantile_03_97_m": [
+          -0.736036422252655,
+          -0.6015595746040344
+        ],
+        "absX_quantile_97_m": 0.08618243783712387
+      }
+    }
+  ],
+  "method": "Exact horizontal control-edge intersections for isolated current/prior connected body/head components; auxiliary original fused-surface coordinate slices include nearby parts. Not semantic segmentation or a solid-volume fit score."
+}
