@@ -64,6 +64,14 @@ function renderCategories(){
 function renderItems(){
   const items=visibleItems();
   $('#result-count').textContent=`${items.length} items${state.category?' / '+state.category:''}`;
+  // Keep category totals visible even when search or filters narrow the grid.
+  const sectionItems=ownerItems().filter(item=>!state.category||item.Category===state.category);
+  const tierCounts=new Map();
+  for(const item of sectionItems){const tier=item.Tier||'Unassigned';tierCounts.set(tier,(tierCounts.get(tier)||0)+1);}
+  const sectionTiers=[...new Set([...(state.tierChoices||[]),...tierCounts.keys()])];
+  const numericTiers=sectionTiers.filter(tier=>/^T\d+$/.test(tier)).sort((a,b)=>Number(a.slice(1))-Number(b.slice(1)));
+  const otherTiers=sectionTiers.filter(tier=>!/^T\d+$/.test(tier)&&tierCounts.has(tier)).sort();
+  $('#tier-distribution').innerHTML=`<span class="tier-distribution-label">${esc(state.category||'All items')} · tier distribution</span><dl>${[...numericTiers,...otherTiers].map(tier=>`<div><dt>${esc(tier)}</dt><dd>${tierCounts.get(tier)||0}</dd></div>`).join('')}</dl>`;
   $('#queue-filtered').disabled=!items.length;
   if(!items.some(item=>id(item)===state.selected))state.selected=items.length?id(items[0]):null;
   $('#items').classList.toggle('list',state.list);
