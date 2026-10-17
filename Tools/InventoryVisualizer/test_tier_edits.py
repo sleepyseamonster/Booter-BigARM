@@ -22,7 +22,7 @@ def tier_fixture(path):
     b=openpyxl.load_workbook(path)
     s=b.create_sheet('Taxonomy')
     s.cell(5,1,'Field');s.cell(5,2,'Allowed value')
-    for n,t in enumerate(['Not applicable','T0','T1','T2','T3','T4','Unassigned'],6):
+    for n,t in enumerate(['Not applicable','T0','T1','T2','T3','T4','Unassigned','T5'],6):
         s.cell(n,1,'Material tier');s.cell(n,2,t)
     for name,headers,rows in [
         ('Material routes',['Link ID','Recipe ID','Relationship','Item ID','Material tier','Ingredient tier number','Unresolved ingredient tier'],
@@ -83,11 +83,24 @@ class TierTests(unittest.TestCase):
 
     def test_invalid_stale_noop_and_missing_item(self):
         original=self.book.read_bytes()
-        for overrides in [{'toTier':'T5'},{'toTier':None},{'fromTier':'T3'},{'sourceHash':'stale'},{'itemId':'missing'},{'operationId':'../bad'}]:
+        for overrides in [{'toTier':'T6'},{'toTier':None},{'fromTier':'T3'},{'sourceHash':'stale'},{'itemId':'missing'},{'operationId':'../bad'}]:
             with self.assertRaises(edits.EditError):edits.update(self.book,self.backups,{**self.body(),**overrides})
             self.assertEqual(self.book.read_bytes(),original)
         self.assertTrue(edits.update(self.book,self.backups,{**self.body(),'toTier':'T1'})['noop'])
         self.assertEqual(self.book.read_bytes(),original)
+
+    def test_t5_is_numeric_and_saves_linked_ingredient_tiers(self):
+        self.assertEqual(edits.tier_number('T5'), 5)
+        self.assertEqual(edits.tier_number('T6'), -1)
+        self.assertEqual(edits.tier_choices(edits.parse_sheets(self.book.read_bytes())),
+                         ['Not applicable','T0','T1','T2','T3','T4','T5','Unassigned'])
+        result = edits.update(self.book, self.backups, {**self.body(), 'toTier':'T5'})
+        self.assertEqual(result['toTier'], 'T5')
+        sheets = edits.parse_sheets(self.book.read_bytes())
+        self.assertEqual(sheets['Material routes'][5][4:7], ('T5',5,0))
+        self.assertEqual(sheets['Crafting recipes'][5][1], 'T5')
+        self.assertEqual(sheets['Tier review'][5][2:4], ('T5',5))
+        self.assertEqual(sheets['Craft audit'][5][1], 'T5')
 
     def test_lost_journal_conflicts_and_locked_workbook(self):
         real=edits.atomic_write;body=self.body()

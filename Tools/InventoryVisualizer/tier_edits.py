@@ -13,12 +13,13 @@ INGREDIENTS = {'Ingredient candidate', 'Consumed input', 'Contained input', 'Tra
 
 
 def tier_choices(sheets):
-    return [r[1] for r in sheets.get('Taxonomy', [])[5:]
-            if len(r)>1 and r[0]=='Material tier' and isinstance(r[1], str)]
+    choices = [r[1] for r in sheets.get('Taxonomy', [])[5:]
+               if len(r)>1 and r[0]=='Material tier' and isinstance(r[1], str)]
+    return sorted(choices, key=lambda value: -1 if value=='Not applicable' else tier_number(value) if tier_number(value)>=0 else 99)
 
 
 def tier_number(tier):
-    return int(tier[1]) if isinstance(tier, str) and re.fullmatch(r'T[0-4]', tier) else -1
+    return int(tier[1]) if isinstance(tier, str) and re.fullmatch(r'T[0-5]', tier) else -1
 
 
 def build_tier(snapshot, item_id, destination, expected_from):
