@@ -63,6 +63,8 @@ Author direction recorded October 14, 2026:
 
 ## Material Culture
 
+Author direction, October 16, 2026: giant megafauna include extremely rare creatures intended for difficult great hunts. Selected biological parts from those hunts can carry higher practical-worth tiers and rarity than everyday faunal resources. This does not make ordinary megafauna shell expensive. The [100-item biological catalog expansion](Design/Items/MEGAFAUNA_BIOLOGICAL_ITEMS_2026-10-16.json) proposes particular harvested structures and intended uses; species, exact anatomy, yields, recipes and effects remain design work. Biological items receive editable initial rarity defaults of T0 Junk, T1 Common, T2 Uncommon, T3 Rare and T4 Epic. These are one-time defaults for manual auditing, not an ongoing rule that changing tier also changes rarity.
+
 Author direction recorded October 14, 2026:
 
 - Oxygen-releasing stone, glowing stone and flint are recognized resource families. Specific mineral names, activation, output, duration, depletion and behavior after extraction remain undefined. Glowing stone does not automatically imply combustion or a heat source.

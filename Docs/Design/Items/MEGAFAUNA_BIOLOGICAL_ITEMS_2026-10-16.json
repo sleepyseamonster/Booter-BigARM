@@ -1,0 +1,992 @@
+{
+  "date": "2026-10-16",
+  "source": "Direct author direction: extremely rare giant megafauna form difficult great hunts, with higher-value and higher-rarity biological harvests. Specific item anatomy and uses are new local brainstorming proposals.",
+  "boundary": "Catalog-only brainstorming. Ordinary shells remain cheap bulk; no generic meat/fat, general edibility, cloth, wood, natural free water, defined yields, recipes or implemented harvesting introduced. No external lore retrieval or source-canon claims.",
+  "worldIntegration": "World identity, terrain/chunk streaming, unload/reload, generated object identity and persisted runtime deltas do not apply: no Unity world objects or live saves are created or edited. Authored constraints remain in WORLD_BASIS; stable catalog item IDs identify the new proposals.",
+  "expectedCategoryCounts": {
+    "Biological resources": 100
+  },
+  "rarityDefaults": {
+    "T0": "Junk",
+    "T1": "Common",
+    "T2": "Uncommon",
+    "T3": "Rare",
+    "T4": "Epic"
+  },
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Biological resources",
+    "Subtype": "Megafauna hunt material",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "None",
+    "Carrier metadata": "Physical hunt cargo; compatible packing, containment, mass and handling remain unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Supported behavior": "Not implemented",
+    "Crafting / processing": "Select and preserve the anatomical specimen for later qualification. No recipe, usable yield or operating performance established.",
+    "Limitations": "Potentially toxic or contaminated biological cargo. No edibility, human filtration, medical use, rated protection, live-organ function or stored usable energy is established.",
+    "Item type": "Raw material",
+    "Processing stage": "Raw",
+    "Origin family": "Fauna",
+    "Design status": "Proposal",
+    "Crafting role": "Material",
+    "Finished-item input tier": "Unassigned",
+    "Classification basis": "Author-requested great-hunt biological material brainstorm. Specific anatomy and receiving designs remain proposals."
+  },
+  "items": [
+    {
+      "id": "proposal.megafauna.thorax_scutes",
+      "name": "Megafauna thorax scute set",
+      "purpose": "A matched set of interlocking thorax scutes with their overlap geometry intact. Candidate facing for segmented guards, distinct from loose bulk shell husks.",
+      "icon": "One isolated harvested specimen: thorax scute set. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Shell / chitin",
+      "use": "Protective fabrication",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Shell / chitin",
+        "Primary use": "Protective fabrication",
+        "Physical form": "Shell plate",
+        "Acquisition": "Great-hunt harvest proposal. Armored thorax; retain overlapping edges as a matched set. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. Matched curvature and intact overlap edges are scarce specialist blanks; ordinary broken shell remains low-value bulk. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; thorax scutes",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: thorax scute set."
+      }
+    },
+    {
+      "id": "proposal.megafauna.shoulder_buttress",
+      "name": "Megafauna shoulder buttress",
+      "purpose": "A branching internal support from a heavy forelimb attachment. Its broad roots offer candidate load-spreading mounting blanks rather than flat armor plates.",
+      "icon": "One isolated harvested specimen: shoulder buttress. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Binding and construction",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Binding and construction",
+        "Physical form": "Solid piece",
+        "Acquisition": "Great-hunt harvest proposal. Forelimb shoulder junction; recover the internal branching support. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. Deep extraction and retaining the branched load path make this more valuable than surface shell. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; shoulder buttress",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: shoulder buttress."
+      }
+    },
+    {
+      "id": "proposal.megafauna.tarsal_pad_stack",
+      "name": "Megafauna tarsal pad stack",
+      "purpose": "A layered foot-contact pad retained with its supporting cushion. Candidate traction and compliant-contact material, distinct from loose gripping-pad scales.",
+      "icon": "One isolated harvested specimen: tarsal pad stack. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Traversal",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal tissue",
+        "Primary use": "Traversal",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Weight-bearing foot; preserve the layered contact pad. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. Complete pad layers are harder to recover than detached scales and offer a larger specialist workpiece. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; tarsal pad stack",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: tarsal pad stack."
+      }
+    },
+    {
+      "id": "proposal.megafauna.excavator_wedge",
+      "name": "Megafauna excavator wedge",
+      "purpose": "The broad leading wedge of a giant digging limb. Its thick working face is a candidate excavation-tool blank after inspection and mounting.",
+      "icon": "One isolated harvested specimen: excavator wedge. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Excavation",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Excavation",
+        "Physical form": "Solid piece",
+        "Acquisition": "Great-hunt harvest proposal. Burrowing forelimb; remove the broad leading wedge. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. An intact broad working face has specialist value; worn or fractured pieces revert to ordinary hard-tissue feed. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; excavator wedge",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: excavator wedge."
+      }
+    },
+    {
+      "id": "proposal.megafauna.mandible_ridges",
+      "name": "Megafauna crushing ridges",
+      "purpose": "Dense ridged material from an opposing crushing jaw surface. Candidate gripping or crushing inserts, with a different working profile from a flat jaw plate.",
+      "icon": "One isolated harvested specimen: crushing ridges. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Biological and mineral mixture",
+      "use": "Tool fabrication",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Biological and mineral mixture",
+        "Primary use": "Tool fabrication",
+        "Physical form": "Strip",
+        "Acquisition": "Great-hunt harvest proposal. Crushing mandible; separate the dense opposing ridge. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. Retaining a continuous ridge and useful contact profile demands selective harvest from a dangerous source. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; mandible ridges",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: crushing ridges."
+      }
+    },
+    {
+      "id": "proposal.megafauna.rasp_bands",
+      "name": "Megafauna burrowing rasp bands",
+      "purpose": "Curved bands of closely spaced mineral-scouring teeth. Candidate coarse abrasion inserts for shaped surfaces, distinct from loose grinding grit.",
+      "icon": "One isolated harvested specimen: burrowing rasp bands. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Surface finishing",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Surface finishing",
+        "Physical form": "Strip",
+        "Acquisition": "Great-hunt harvest proposal. Burrowing limb; recover curved toothed abrasion bands. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. A continuous patterned tooth band is a specialist blank with a low intact recovery rate. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; rasp bands",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: burrowing rasp bands."
+      }
+    },
+    {
+      "id": "proposal.megafauna.nuchal_cable",
+      "name": "Megafauna nuchal tension cable",
+      "purpose": "An unusually long aligned bundle from a giant head-support junction. Candidate heavy binding stock after stabilization, rather than ordinary short dried tendon.",
+      "icon": "One isolated harvested specimen: nuchal tension cable. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Binding and construction",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal tissue",
+        "Primary use": "Binding and construction",
+        "Physical form": "Bundle",
+        "Acquisition": "Great-hunt harvest proposal. Head-support junction; preserve a long aligned tension bundle. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. Length, alignment and damage-free extraction create value beyond common mixed tendon bundles. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; nuchal cable",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: nuchal tension cable."
+      }
+    },
+    {
+      "id": "proposal.megafauna.flight_collar",
+      "name": "Megafauna flight-hinge collar",
+      "purpose": "A ring-shaped wing-root bearing surround with its broad attachment flange intact. Candidate fitted mounting stock; it is not a complete wing or a working bearing.",
+      "icon": "One isolated harvested specimen: flight-hinge collar. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Equipment mounting",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Equipment mounting",
+        "Physical form": "Solid part",
+        "Acquisition": "Great-hunt harvest proposal. Large flyer wing root; retain the ring-shaped bearing surround. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. The continuous flange and bore geometry are uncommon specialist shapes lost when a joint is broken apart. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; flight collar",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: flight-hinge collar."
+      }
+    },
+    {
+      "id": "proposal.megafauna.spiracle_leaves",
+      "name": "Megafauna spiracle valve leaves",
+      "purpose": "Thin overlapping closure leaves from a large breathing opening. Candidate flexible grit-shutter material, separate from rigid breathing-filter plates.",
+      "icon": "One isolated harvested specimen: spiracle valve leaves. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal membrane",
+      "use": "Dust exclusion",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal membrane",
+        "Primary use": "Dust exclusion",
+        "Physical form": "Membrane",
+        "Acquisition": "Great-hunt harvest proposal. Breathing opening; preserve the overlapping closure leaves. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. Usable matched leaf sets require careful extraction and are less replaceable than ordinary filter debris. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; spiracle leaves",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: spiracle valve leaves."
+      }
+    },
+    {
+      "id": "proposal.megafauna.bellows_pleats",
+      "name": "Megafauna abdominal bellows pleats",
+      "purpose": "A folded membrane section that expands through its existing pleat geometry. Candidate flexible chamber or bellows feed after compatibility checks.",
+      "icon": "One isolated harvested specimen: abdominal bellows pleats. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal membrane",
+      "use": "Liquid and bulk containment",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal membrane",
+        "Primary use": "Liquid and bulk containment",
+        "Physical form": "Membrane",
+        "Acquisition": "Great-hunt harvest proposal. Abdominal air sac; recover an unbroken concertina-fold section. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. An intact pleated span is a specialist harvest whose folds are easily torn during a fight or extraction. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; bellows pleats",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: abdominal bellows pleats."
+      }
+    },
+    {
+      "id": "proposal.megafauna.resonator_diaphragms",
+      "name": "Megafauna resonator diaphragms",
+      "purpose": "Paired tension membranes from a proposed signaling chamber. Candidate mechanical sounder or instrument diaphragms, distinct from hard resonance plates.",
+      "icon": "One isolated harvested specimen: resonator diaphragms. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal membrane",
+      "use": "Music",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal membrane",
+        "Primary use": "Music",
+        "Physical form": "Membrane",
+        "Acquisition": "Great-hunt harvest proposal. Signaling chamber; retain a matched pair of tension membranes. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. Matched thin membranes are fragile specialist workpieces rather than interchangeable bulk tissue. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; resonator diaphragms",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: resonator diaphragms."
+      }
+    },
+    {
+      "id": "proposal.megafauna.whisker_root_fan",
+      "name": "Megafauna whisker-root fan",
+      "purpose": "A fan-shaped root mat retaining the orientation of its sensory bristles. Candidate mechanical contact-feeler research material, not a functioning biological sensor.",
+      "icon": "One isolated harvested specimen: whisker-root fan. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal fiber",
+      "use": "Warning and detection",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal fiber",
+        "Primary use": "Warning and detection",
+        "Physical form": "Bundle",
+        "Acquisition": "Great-hunt harvest proposal. Sensory field; preserve a fan of roots and aligned bristles. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. The intact orientation pattern has specialist value that loose coarse bristles do not retain. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; whisker root fan",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: whisker-root fan."
+      }
+    },
+    {
+      "id": "proposal.megafauna.corneal_windows",
+      "name": "Megafauna corneal windows",
+      "purpose": "Clear faceted outer eye-cover panels. Candidate protective viewing windows after inspection; these outer covers are distinct from internal focusing lenses.",
+      "icon": "One isolated harvested specimen: corneal windows. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Vision",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Vision",
+        "Physical form": "Panel",
+        "Acquisition": "Great-hunt harvest proposal. External eye cover; separate clear faceted protective windows. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. Useful clear areas without scoring or cracks are scarce even on a large carcass. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; corneal windows",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: corneal windows."
+      }
+    },
+    {
+      "id": "proposal.megafauna.brake_lamellae",
+      "name": "Megafauna joint-brake lamellae",
+      "purpose": "Opposing textured lamellae from a proposed joint-braking structure. Candidate friction-contact research feed rather than a finished clutch or brake.",
+      "icon": "One isolated harvested specimen: joint-brake lamellae. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Machinery drive",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal tissue",
+        "Primary use": "Machinery drive",
+        "Physical form": "Strip",
+        "Acquisition": "Great-hunt harvest proposal. Heavy limb joint; recover opposing friction lamellae. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. Paired textured contact layers demand selective extraction and offer a specialist surface unavailable in generic hide. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; brake lamellae",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: joint-brake lamellae."
+      }
+    },
+    {
+      "id": "proposal.megafauna.locking_hooks",
+      "name": "Megafauna intersegment locking hooks",
+      "purpose": "Opposed hard hooks from a proposed body-segment latch. Candidate hook-and-catch blanks with broad attachment roots.",
+      "icon": "One isolated harvested specimen: intersegment locking hooks. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Equipment mounting",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Equipment mounting",
+        "Physical form": "Solid part",
+        "Acquisition": "Great-hunt harvest proposal. Segment junction; recover opposed hooks with their roots. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. Complete opposed geometry and intact roots distinguish these from ordinary broken spines. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; locking hooks",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: intersegment locking hooks."
+      }
+    },
+    {
+      "id": "proposal.megafauna.spray_nozzle_plate",
+      "name": "Megafauna spray-nozzle plate",
+      "purpose": "A perforated plate surrounding defensive secretion outlets. Candidate patterned dispensing or flow-distribution research material after decontamination.",
+      "icon": "One isolated harvested specimen: spray-nozzle plate. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Material transfer",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Material transfer",
+        "Physical form": "Panel",
+        "Acquisition": "Great-hunt harvest proposal. Defensive secretion outlet; retain the perforated outlet plate. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. An intact outlet pattern is difficult to recover from a hazardous gland-bearing hunt. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; spray nozzle plate",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: spray-nozzle plate."
+      }
+    },
+    {
+      "id": "proposal.megafauna.reservoir_wall",
+      "name": "Megafauna secretion-reservoir wall",
+      "purpose": "A thick laminated membrane from a defensive secretion reservoir. Candidate industrial liner feed, distinct from thin gut lining and ordinary joint membrane.",
+      "icon": "One isolated harvested specimen: secretion-reservoir wall. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal membrane",
+      "use": "Liquid and bulk containment",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal membrane",
+        "Primary use": "Liquid and bulk containment",
+        "Physical form": "Membrane",
+        "Acquisition": "Great-hunt harvest proposal. Defensive reservoir; isolate the thick laminated wall. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. The layered wall is selectively recoverable material from a hazardous internal compartment. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; reservoir wall",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: secretion-reservoir wall."
+      }
+    },
+    {
+      "id": "proposal.megafauna.precursor_pellets",
+      "name": "Megafauna gland precursor pellets",
+      "purpose": "Solid deposits proposed as glandular secretion precursors. Candidate industrial reaction feed for later analysis, separate from collected final secretion.",
+      "icon": "One isolated harvested specimen: gland precursor pellets. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Biological chemical",
+      "use": "Chemical processing",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Biological chemical",
+        "Primary use": "Chemical processing",
+        "Physical form": "Particles",
+        "Acquisition": "Great-hunt harvest proposal. Secretion gland; collect segregated solid precursor pellets. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. Segregated precursor deposits are a specialist sample from difficult-to-access gland anatomy. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; precursor pellets",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: gland precursor pellets."
+      }
+    },
+    {
+      "id": "proposal.megafauna.jaw_sealing_rings",
+      "name": "Megafauna jaw-joint sealing rings",
+      "purpose": "Annular flexible margins from a giant jaw pivot. Candidate shaped seal blanks, distinct from flat joint-membrane patches.",
+      "icon": "One isolated harvested specimen: jaw-joint sealing rings. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal membrane",
+      "use": "Sealing",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal membrane",
+        "Primary use": "Sealing",
+        "Physical form": "Solid piece",
+        "Acquisition": "Great-hunt harvest proposal. Jaw pivot; retain the annular flexible sealing margin. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. A complete flexible ring with a usable central opening is harder to obtain than membrane scraps. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; jaw sealing rings",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: jaw-joint sealing rings."
+      }
+    },
+    {
+      "id": "proposal.megafauna.anchoring_talon",
+      "name": "Megafauna anchoring talon",
+      "purpose": "A complete recurved anchoring talon with a broad root. Candidate hooked mounting or anchoring stock, distinct from small detached claw tips.",
+      "icon": "One isolated harvested specimen: anchoring talon. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Equipment mounting",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Equipment mounting",
+        "Physical form": "Solid piece",
+        "Acquisition": "Great-hunt harvest proposal. Cliff-clinging foot; remove a complete recurved talon and root. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. The full root-to-hook profile is a specialist blank recovered from a difficult climbing hunt. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; anchoring talon",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: anchoring talon."
+      }
+    },
+    {
+      "id": "proposal.megafauna.vibration_rods",
+      "name": "Megafauna vibration-transfer rods",
+      "purpose": "Long slender rods from a proposed vibration-transfer pathway. Candidate mechanical contact-transmission experiments, separate from short joint hinge pins.",
+      "icon": "One isolated harvested specimen: vibration-transfer rods. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Warning and detection",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Warning and detection",
+        "Physical form": "Solid piece",
+        "Acquisition": "Great-hunt harvest proposal. Sensory limb; isolate long rods linking contact surfaces to sensory roots. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. Long unfractured sensory rods are fragile specialist harvests rather than common structural splinters. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; vibration rods",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: vibration-transfer rods."
+      }
+    },
+    {
+      "id": "proposal.megafauna.brood_seam_comb",
+      "name": "Megafauna brood-seam comb",
+      "purpose": "A fine-toothed appendage proposed for opening brood-casing seams. Candidate seam-separating or fiber-combing blank, with different tooth geometry from grooming plates.",
+      "icon": "One isolated harvested specimen: brood-seam comb. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Fiber processing",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Fiber processing",
+        "Physical form": "Solid piece",
+        "Acquisition": "Great-hunt harvest proposal. Brood-bearing adult; retain the fine-toothed casing-opening appendage. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. Specialized fine teeth and a complete supporting base justify a specialist value band. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; brood seam comb",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: brood-seam comb."
+      }
+    },
+    {
+      "id": "proposal.megafauna.reflector_mosaic",
+      "name": "Megafauna reflector mosaic",
+      "purpose": "A patch of ordered reflective microplates from a display surface. Candidate decorative inlay that relies on retained structure rather than extracted pigment.",
+      "icon": "One isolated harvested specimen: reflector mosaic. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Decoration",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Decoration",
+        "Physical form": "Panel",
+        "Acquisition": "Great-hunt harvest proposal. Display surface; preserve an ordered reflective microplate patch. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. An uncrushed ordered patch is scarce intact material even when ordinary shell flakes are plentiful. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; reflector mosaic",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: reflector mosaic."
+      }
+    },
+    {
+      "id": "proposal.megafauna.wing_root_ligament",
+      "name": "Megafauna wing-root ligament",
+      "purpose": "A broad elastic linkage from a wing root. Candidate flexing connector feed after stabilization, distinct from tensile cordage and delicate sail membrane.",
+      "icon": "One isolated harvested specimen: wing-root ligament. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Equipment fabrication",
+      "fields": {
+        "Tier": "T2",
+        "Rarity": "Uncommon",
+        "Material family": "Faunal tissue",
+        "Primary use": "Equipment fabrication",
+        "Physical form": "Bundle",
+        "Acquisition": "Great-hunt harvest proposal. Large flyer; extract the broad elastic wing-root linkage. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T2 practical-worth proposal. A complete broad linkage is a selective, damage-sensitive harvest from a large flying quarry. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; wing root ligament",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: wing-root ligament."
+      }
+    },
+    {
+      "id": "proposal.megafauna.shock_joint_core",
+      "name": "Megafauna shock-damping joint core",
+      "purpose": "A nested joint core retaining its supporting layers and compliant cushion. Candidate damping-assembly research material rather than loose elastic arches.",
+      "icon": "One isolated harvested specimen: shock-damping joint core. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Equipment fabrication",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Faunal tissue",
+        "Primary use": "Equipment fabrication",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Massive weight-bearing joint; preserve the nested cushion and support core. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. The layered interface is rarely recovered intact after a hard fight and is difficult to replace with separated tissue. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; shock joint core",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: shock-damping joint core."
+      }
+    },
+    {
+      "id": "proposal.megafauna.ventral_keel",
+      "name": "Megafauna laminated ventral keel",
+      "purpose": "A long laminated support from beneath an armored body. Candidate structural blank whose value depends on continuity through several attached layers.",
+      "icon": "One isolated harvested specimen: laminated ventral keel. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Binding and construction",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Binding and construction",
+        "Physical form": "Solid piece",
+        "Acquisition": "Great-hunt harvest proposal. Armored underside; lift the long laminated internal keel. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. Protected internal placement, length and intact lamination make it a high-value selective harvest. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; ventral keel",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: laminated ventral keel."
+      }
+    },
+    {
+      "id": "proposal.megafauna.flexor_comb",
+      "name": "Megafauna flexor locking comb",
+      "purpose": "Opposed toothed elements from a proposed limb-holding mechanism. Candidate mechanical locking research stock, not a working ratchet or autonomous actuator.",
+      "icon": "One isolated harvested specimen: flexor locking comb. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Machinery drive",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Machinery drive",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Heavy gripping limb; recover the opposed toothed locking elements. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. Matched fine tooth engagement and retained supports are scarce intact anatomical geometry. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; flexor comb",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: flexor locking comb."
+      }
+    },
+    {
+      "id": "proposal.megafauna.lens_cluster",
+      "name": "Megafauna precision lens cluster",
+      "purpose": "An aligned internal lens cluster retained in its supporting tissue. Candidate optical research feed, distinct from loose individual lenses and a whole ocular organ.",
+      "icon": "One isolated harvested specimen: precision lens cluster. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Vision",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Faunal tissue",
+        "Primary use": "Vision",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Specialized eye; isolate an aligned cluster without its outer cover. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. Alignment is easily destroyed during harvest, making intact clusters high-value specialist material. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; lens cluster",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: precision lens cluster."
+      }
+    },
+    {
+      "id": "proposal.megafauna.actuator_braid",
+      "name": "Megafauna actuator braid",
+      "purpose": "An organized braid of proposed electroactive tissue with both attachment ends. Candidate actuator-material research, not ordinary loose fiber or working artificial muscle.",
+      "icon": "One isolated harvested specimen: actuator braid. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Machinery drive",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Faunal tissue",
+        "Primary use": "Machinery drive",
+        "Physical form": "Bundle",
+        "Acquisition": "Great-hunt harvest proposal. Heavy electroactive limb; preserve an organized braid with attachment ends. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. Intact end attachments and organized internal structure create high replacement difficulty. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; actuator braid",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: actuator braid."
+      }
+    },
+    {
+      "id": "proposal.megafauna.charge_septa",
+      "name": "Megafauna charge-organ septum stack",
+      "purpose": "An ordered stack of partitions from a proposed charge organ. Candidate insulation and compartment-separation research feed, distinct from generic organ tissue.",
+      "icon": "One isolated harvested specimen: charge-organ septum stack. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal membrane",
+      "use": "Electrical insulation",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Faunal membrane",
+        "Primary use": "Electrical insulation",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Charge-bearing animal; retain the ordered internal septa. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. Ordered undamaged partitions are scarce internal structures from a hazardous hunt. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; charge septa",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: charge-organ septum stack."
+      }
+    },
+    {
+      "id": "proposal.megafauna.discharge_lining",
+      "name": "Megafauna discharge-channel lining",
+      "purpose": "A continuous lining from a proposed electrical discharge path. Candidate electrical-interface research material; harvest grants no stored charge or working discharge system.",
+      "icon": "One isolated harvested specimen: discharge-channel lining. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Electrical work",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Faunal tissue",
+        "Primary use": "Electrical work",
+        "Physical form": "Strip",
+        "Acquisition": "Great-hunt harvest proposal. Charge-bearing animal; isolate the protected discharge-path lining. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. Hazardous extraction and retaining a continuous undamaged lining make this high-value material. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; discharge lining",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: discharge-channel lining."
+      }
+    },
+    {
+      "id": "proposal.megafauna.dielectric_baffles",
+      "name": "Megafauna dielectric chamber baffles",
+      "purpose": "Rigid chamber-dividing baffles from a proposed electrical organ surround. Candidate shaped insulation research blanks, distinct from flexible septum membranes.",
+      "icon": "One isolated harvested specimen: dielectric chamber baffles. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Electrical insulation",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Electrical insulation",
+        "Physical form": "Panel",
+        "Acquisition": "Great-hunt harvest proposal. Charge-bearing animal; separate the rigid chamber-dividing baffles. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. Uncracked shaped baffles are rare selective recoveries from protected internal anatomy. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; dielectric baffles",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: dielectric chamber baffles."
+      }
+    },
+    {
+      "id": "proposal.megafauna.acoustic_horn",
+      "name": "Megafauna acoustic focusing horn",
+      "purpose": "A tapered internal passage from a proposed acoustic organ. Candidate sound-routing research blank, distinct from an external horn core or musical horn.",
+      "icon": "One isolated harvested specimen: acoustic focusing horn. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Warning and detection",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Warning and detection",
+        "Physical form": "Solid piece",
+        "Acquisition": "Great-hunt harvest proposal. Signaling or sensing chamber; preserve its internal tapered passage. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. Continuous internal geometry is difficult to extract without splitting the body of the passage. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; acoustic horn",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: acoustic focusing horn."
+      }
+    },
+    {
+      "id": "proposal.megafauna.scent_ampulla",
+      "name": "Megafauna scent-gland ampulla",
+      "purpose": "A compartmentalized scent-gland specimen retaining separated residues. Candidate species-response research, distinct from a mixed scent-marker secretion.",
+      "icon": "One isolated harvested specimen: scent-gland ampulla. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Biological chemical",
+      "use": "Fauna interaction",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Biological chemical",
+        "Primary use": "Fauna interaction",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Rare signaling animal; isolate a compartmentalized scent-gland specimen. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. Preserved compartment boundaries and rare source availability justify high sample value. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; scent ampulla",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: scent-gland ampulla."
+      }
+    },
+    {
+      "id": "proposal.megafauna.bonding_matrix",
+      "name": "Megafauna bonding-gland matrix",
+      "purpose": "Structured tissue proposed to produce a shell-bonding secretion. Candidate investigation of source processing chemistry, separate from collected binder secretion.",
+      "icon": "One isolated harvested specimen: bonding-gland matrix. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Chemical processing",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Faunal tissue",
+        "Primary use": "Chemical processing",
+        "Physical form": "Solid piece",
+        "Acquisition": "Great-hunt harvest proposal. Armored specialist; isolate the structured secretion-producing matrix. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. Recovering the intact producing structure is substantially harder than collecting discharged material. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; bonding matrix",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: bonding-gland matrix."
+      }
+    },
+    {
+      "id": "proposal.megafauna.catalytic_granules",
+      "name": "Megafauna catalytic digestion granules",
+      "purpose": "Dense granules from a proposed mineral-processing digestive compartment. Candidate catalytic-material analysis feed, not a qualified etchant, enzyme or safe reagent.",
+      "icon": "One isolated harvested specimen: catalytic digestion granules. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Biological chemical",
+      "use": "Chemical processing",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Biological chemical",
+        "Primary use": "Chemical processing",
+        "Physical form": "Particles",
+        "Acquisition": "Great-hunt harvest proposal. Rare mineral-processing gut; segregate intact dense granules. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. Rare source anatomy and difficult separation of intact granules give these high specialist value. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; catalytic granules",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: catalytic digestion granules."
+      }
+    },
+    {
+      "id": "proposal.megafauna.heat_lattice",
+      "name": "Megafauna heat-exchange lattice",
+      "purpose": "A branching scaffold proposed to distribute heat within a giant animal. Candidate thermal-interface research stock with its fine passages preserved.",
+      "icon": "One isolated harvested specimen: heat-exchange lattice. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Biological and mineral mixture",
+      "use": "Equipment fabrication",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Biological and mineral mixture",
+        "Primary use": "Equipment fabrication",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Heat-tolerant hunt quarry; recover the internal branching exchange scaffold. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. An intact fine-passage lattice is a fragile and difficult internal recovery rather than bulk shell. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; heat lattice",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: heat-exchange lattice."
+      }
+    },
+    {
+      "id": "proposal.megafauna.reservoir_sphincter",
+      "name": "Megafauna reservoir sphincter",
+      "purpose": "A complete annular closure from a proposed defensive reservoir. Candidate compliant-valve research material, distinct from reservoir wall membrane.",
+      "icon": "One isolated harvested specimen: reservoir sphincter. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Material transfer",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Faunal tissue",
+        "Primary use": "Material transfer",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Defensive reservoir; recover the complete annular closure structure. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. Recovering the complete closure and attachment interfaces carries high extraction and preservation difficulty. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; reservoir sphincter",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: reservoir sphincter."
+      }
+    },
+    {
+      "id": "proposal.megafauna.icore_root_mat",
+      "name": "Megafauna long-strand icore root mat",
+      "purpose": "A root mat holding unusually long aligned icore strands. Candidate low-yield specialist fiber stock, distinct from abundant short scraped icore fibers.",
+      "icon": "One isolated harvested specimen: long-strand icore root mat. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Husk fiber",
+      "use": "Textile processing",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Husk fiber",
+        "Primary use": "Textile processing",
+        "Physical form": "Bundle",
+        "Acquisition": "Great-hunt harvest proposal. Rare fiber-bearing giant; retain long strands rooted in their support mat. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. Length and continuous root alignment are scarce recoverable qualities; difficult textile processing still applies. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; icore root mat",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: long-strand icore root mat."
+      }
+    },
+    {
+      "id": "proposal.megafauna.spar_junction",
+      "name": "Megafauna wing-spar junction",
+      "purpose": "A branched spar junction retaining its multiple attachment surfaces. Candidate sail-frame connection research stock, distinct from straight individual wing ribs.",
+      "icon": "One isolated harvested specimen: wing-spar junction. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Wind propulsion",
+      "fields": {
+        "Tier": "T3",
+        "Rarity": "Rare",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Wind propulsion",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Large flying hunt quarry; extract the intact branched wing-root spar junction. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T3 practical-worth proposal. The unbroken branching junction is a high-value geometry commonly destroyed by a fall or a fight. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; spar junction",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: wing-spar junction."
+      }
+    },
+    {
+      "id": "proposal.megafauna.intact_charge_capsule",
+      "name": "Megafauna intact charge-organ capsule",
+      "purpose": "A complete charge-organ specimen with its envelope and internal supports retained. An exceptional research harvest, distinct from tissue samples, septa or channel linings. It is not a charged battery.",
+      "icon": "One isolated harvested specimen: intact charge-organ capsule. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Electrical work",
+      "fields": {
+        "Tier": "T4",
+        "Rarity": "Epic",
+        "Material family": "Faunal tissue",
+        "Primary use": "Electrical work",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Exceptionally rare charge-bearing giant; recover the complete organ envelope and internal supports. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T4 practical-worth proposal. Exceptionally scarce source, dangerous access and near-total structural preservation make a complete specimen an exceptional prize. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; intact charge capsule",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: intact charge-organ capsule."
+      }
+    },
+    {
+      "id": "proposal.megafauna.navigation_organ",
+      "name": "Megafauna acoustic navigation organ",
+      "purpose": "A complete proposed acoustic receiving organ with its membranes, passages and support frame. Candidate sensory-material research, not a working detector or a granted tracking ability.",
+      "icon": "One isolated harvested specimen: acoustic navigation organ. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Warning and detection",
+      "fields": {
+        "Tier": "T4",
+        "Rarity": "Epic",
+        "Material family": "Faunal tissue",
+        "Primary use": "Warning and detection",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Exceptionally rare sensing specialist; isolate the complete acoustic receiving structure. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T4 practical-worth proposal. A whole delicate sensory structure from an exceptionally rare hunt has far greater scarcity than detached acoustic parts. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; navigation organ",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: acoustic navigation organ."
+      }
+    },
+    {
+      "id": "proposal.megafauna.ocular_core",
+      "name": "Megafauna intact ocular core",
+      "purpose": "A complete internal ocular specimen retaining lens supports, separating layers and receptor tissue. Candidate specialist research material, distinct from a detached lens cluster or corneal window.",
+      "icon": "One isolated harvested specimen: intact ocular core. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Vision",
+      "fields": {
+        "Tier": "T4",
+        "Rarity": "Epic",
+        "Material family": "Faunal tissue",
+        "Primary use": "Vision",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Exceptionally rare giant with specialized vision; retain the complete supported internal eye core. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T4 practical-worth proposal. Complete internal organization is exceptionally difficult to preserve after a dangerous hunt. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; ocular core",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: intact ocular core."
+      }
+    },
+    {
+      "id": "proposal.megafauna.load_transfer_hub",
+      "name": "Megafauna mineral-thread load hub",
+      "purpose": "A dense internal node joining several mineralized tension paths. Candidate study of load-spreading biological composites with the converging structure intact.",
+      "icon": "One isolated harvested specimen: mineral-thread load hub. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Biological and mineral mixture",
+      "use": "Binding and construction",
+      "fields": {
+        "Tier": "T4",
+        "Rarity": "Epic",
+        "Material family": "Biological and mineral mixture",
+        "Primary use": "Binding and construction",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Exceptionally rare armored giant; recover the internal node where mineralized threads converge. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T4 practical-worth proposal. An intact multi-path node is an exceptional internal recovery, rather than another large sheet of cheap shell. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; load transfer hub",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: mineral-thread load hub."
+      }
+    },
+    {
+      "id": "proposal.megafauna.continuous_fiber_spool",
+      "name": "Megafauna continuous fiber coil",
+      "purpose": "One unusually long continuous strand from a proposed internal fiber-storage structure. Candidate specialist cordage or textile feed, distinct from short scraped fibers and woven finished material.",
+      "icon": "One isolated harvested specimen: continuous fiber coil. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal fiber",
+      "use": "Textile processing",
+      "fields": {
+        "Tier": "T4",
+        "Rarity": "Epic",
+        "Material family": "Faunal fiber",
+        "Primary use": "Textile processing",
+        "Physical form": "Bundle",
+        "Acquisition": "Great-hunt harvest proposal. Exceptionally rare fiber-producing giant; unwind and retain one continuous internally coiled strand. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T4 practical-worth proposal. Unbroken length and scarce source anatomy justify exceptional value; difficult processing and low usable yield still apply. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; continuous fiber spool",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: continuous fiber coil."
+      }
+    },
+    {
+      "id": "proposal.megafauna.separation_gland",
+      "name": "Megafauna chemical-separation gland",
+      "purpose": "An intact gland proposed to segregate chemically different internal fractions. Candidate study of selective barriers and industrial separation materials, not a ready chemical refinery.",
+      "icon": "One isolated harvested specimen: chemical-separation gland. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Chemical processing",
+      "fields": {
+        "Tier": "T4",
+        "Rarity": "Epic",
+        "Material family": "Faunal tissue",
+        "Primary use": "Chemical processing",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Exceptionally rare chemical specialist; retain the intact multi-compartment gland. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T4 practical-worth proposal. A whole undamaged multi-compartment specimen from an exceptionally rare source is an exceptional specialist harvest. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; separation gland",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: chemical-separation gland."
+      }
+    },
+    {
+      "id": "proposal.megafauna.reflector_organ",
+      "name": "Megafauna layered reflector organ",
+      "purpose": "A complete stack of ordered reflective layers with its spacing supports intact. Candidate optical or decorative research material, distinct from surface reflector mosaic patches.",
+      "icon": "One isolated harvested specimen: layered reflector organ. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal hard tissue",
+      "use": "Decoration",
+      "fields": {
+        "Tier": "T4",
+        "Rarity": "Epic",
+        "Material family": "Faunal hard tissue",
+        "Primary use": "Decoration",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Exceptionally rare display specialist; recover the complete ordered reflector stack. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T4 practical-worth proposal. Preserving the full layered order is exceptionally difficult and materially different from gathering reflective shell flakes. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; reflector organ",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: layered reflector organ."
+      }
+    },
+    {
+      "id": "proposal.megafauna.pressure_valve_organ",
+      "name": "Megafauna pressure-regulation organ",
+      "purpose": "A proposed regulator organ with its multiple closure stages retained. Candidate controlled-flow research, distinct from a single reservoir sphincter. No pressure rating or stored driving medium is supplied.",
+      "icon": "One isolated harvested specimen: pressure-regulation organ. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Material transfer",
+      "fields": {
+        "Tier": "T4",
+        "Rarity": "Epic",
+        "Material family": "Faunal tissue",
+        "Primary use": "Material transfer",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Exceptionally rare reservoir-bearing giant; isolate the complete regulator and its attachments. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T4 practical-worth proposal. Multiple intact linked stages from an exceptionally rare giant make this an exceptional research recovery. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; pressure valve organ",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: pressure-regulation organ."
+      }
+    },
+    {
+      "id": "proposal.megafauna.molt_template",
+      "name": "Megafauna molt-growth scaffold",
+      "purpose": "A delicate scaffold from the interface where a proposed giant forms replacement hard covering. Candidate study of layered material formation, not a living production system or a source of regenerative effects.",
+      "icon": "One isolated harvested specimen: molt-growth scaffold. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Faunal tissue",
+      "use": "Fabrication",
+      "fields": {
+        "Tier": "T4",
+        "Rarity": "Epic",
+        "Material family": "Faunal tissue",
+        "Primary use": "Fabrication",
+        "Physical form": "Assembly",
+        "Acquisition": "Great-hunt harvest proposal. Exceptionally rare mature giant; preserve the delicate layered growth-interface scaffold. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T4 practical-worth proposal. The complete fragile interface is exceptionally scarce and requires an unusual intact harvest rather than ordinary shed husk collection. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; molt template",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: molt-growth scaffold."
+      }
+    },
+    {
+      "id": "proposal.megafauna.signal_pearl",
+      "name": "Megafauna layered signal pearl",
+      "purpose": "A large internally layered nodule proposed to sit within a signaling structure. Candidate acoustic-material sample or collector specimen, distinct from small balance stones. It has no assigned supernatural property.",
+      "icon": "One isolated harvested specimen: layered signal pearl. Grounded insectoid/faunal structure, no containers, text, wood or assembled equipment.",
+      "material": "Biological and mineral mixture",
+      "use": "Specialist samples",
+      "fields": {
+        "Tier": "T4",
+        "Rarity": "Epic",
+        "Material family": "Biological and mineral mixture",
+        "Primary use": "Specialist samples",
+        "Physical form": "Solid piece",
+        "Acquisition": "Great-hunt harvest proposal. Exceptionally rare mature signaling giant; isolate a complete internally layered resonance nodule. Specific creature, extraction method, encounter frequency and yield remain design work.",
+        "Tier basis": "T4 practical-worth proposal. A complete mature layered specimen combines exceptional source scarcity with difficult damage-free recovery. This is harvested material value, not a refinement stage or crafting qualification.",
+        "Search aliases": "megafauna; giant fauna; great hunt; rare creature harvest; signal pearl",
+        "Open design decisions": "Source species and exact anatomy, intact-yield conditions, preservation, compatibility and receiving recipes remain open. Artwork direction: layered signal pearl."
+      }
+    }
+  ]
+}

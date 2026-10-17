@@ -1,0 +1,914 @@
+{
+  "sourceHash": "59441098822624965212dfefab919e3c7e7c0fa462238f0e3b8987222679a3be",
+  "resultHash": "50deb5d4e2bb7973e543397ca6a442fe085ac0f69c1dc893314755cf1e2cae3d",
+  "items": [
+    {
+      "id": "proposal.bio.shell",
+      "name": "Shell husks / shed plates",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.tendon",
+      "name": "Dried tendon bundles",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.bristles",
+      "name": "Coarse sensory bristles",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.underfur",
+      "name": "Shed underfur",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.jaw",
+      "name": "Dense jaw plates",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.membrane",
+      "name": "Dried joint membrane",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.fat",
+      "name": "Unverified faunal storage tissue",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.organ",
+      "name": "Charge-organ tissue",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.chitin_fibers",
+      "name": "Scraped chitin fibers",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.icore_fibers",
+      "name": "Scraped icore fibers",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.hide",
+      "name": "Raw hide",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.chemical_material",
+      "name": "Faunal chemical material (unspecified)",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.liquid_material",
+      "name": "Faunal liquid material (unspecified)",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.chemical.digestive_etchant",
+      "name": "Digestive etchant",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.chemical.husk_enzyme",
+      "name": "Husk-separation enzyme",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.chemical.shell_binder",
+      "name": "Shell-binding secretion",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.chemical.clotting_compound",
+      "name": "Mineral clotting compound",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.chemical.mineral_ichor",
+      "name": "Mineral-rich ichor",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.chemical.joint_lubricant",
+      "name": "Joint-lubricating secretion",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.chemical.insulating_secretion",
+      "name": "Insulating secretion",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.chemical.conductive_gel",
+      "name": "Charge-conducting gel",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.chemical.molt_release",
+      "name": "Molt-release compound",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.chemical.defensive_irritant",
+      "name": "Defensive irritant secretion",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.chemical.disabling_venom",
+      "name": "Disabling venom fraction",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.chemical.scent_marker",
+      "name": "Chemical scent marker",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.inner_wing",
+      "name": "Delicate inner wing",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.raw.spines",
+      "name": "Loose fauna spines",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.raw.claws",
+      "name": "Fauna claw tips",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.raw.brood_casing",
+      "name": "Empty brood casings",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.raw.antenna_sheath",
+      "name": "Empty antenna sheaths",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.raw.wing_ribs",
+      "name": "Insectoid wing ribs",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.raw.horn_core",
+      "name": "Fauna horn cores",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.raw.tail_rings",
+      "name": "Fauna tail rings",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.raw.socket_cups",
+      "name": "Fauna joint-socket cups",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.raw.eye_lenses",
+      "name": "Fauna eye lenses",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.raw.filter_plates",
+      "name": "Fauna breathing-filter plates",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.raw.droppings",
+      "name": "Dried mineral-rich fauna droppings",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.branch.elastic_secretion",
+      "name": "Elastic-joint secretion",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.lore.phagia_byproduct",
+      "name": "Contained Phagia vat byproduct",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.lore.electroactive_bundle",
+      "name": "Harvested electroactive fiber bundles",
+      "tier": "T1",
+      "previousRarity": "Common",
+      "rarity": "Common",
+      "added": false
+    },
+    {
+      "id": "proposal.megafauna.thorax_scutes",
+      "name": "Megafauna thorax scute set",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.shoulder_buttress",
+      "name": "Megafauna shoulder buttress",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.tarsal_pad_stack",
+      "name": "Megafauna tarsal pad stack",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.excavator_wedge",
+      "name": "Megafauna excavator wedge",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.mandible_ridges",
+      "name": "Megafauna crushing ridges",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.rasp_bands",
+      "name": "Megafauna burrowing rasp bands",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.nuchal_cable",
+      "name": "Megafauna nuchal tension cable",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.flight_collar",
+      "name": "Megafauna flight-hinge collar",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.spiracle_leaves",
+      "name": "Megafauna spiracle valve leaves",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.bellows_pleats",
+      "name": "Megafauna abdominal bellows pleats",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.resonator_diaphragms",
+      "name": "Megafauna resonator diaphragms",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.whisker_root_fan",
+      "name": "Megafauna whisker-root fan",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.corneal_windows",
+      "name": "Megafauna corneal windows",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.brake_lamellae",
+      "name": "Megafauna joint-brake lamellae",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.locking_hooks",
+      "name": "Megafauna intersegment locking hooks",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.spray_nozzle_plate",
+      "name": "Megafauna spray-nozzle plate",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.reservoir_wall",
+      "name": "Megafauna secretion-reservoir wall",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.precursor_pellets",
+      "name": "Megafauna gland precursor pellets",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.jaw_sealing_rings",
+      "name": "Megafauna jaw-joint sealing rings",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.anchoring_talon",
+      "name": "Megafauna anchoring talon",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.vibration_rods",
+      "name": "Megafauna vibration-transfer rods",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.brood_seam_comb",
+      "name": "Megafauna brood-seam comb",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.reflector_mosaic",
+      "name": "Megafauna reflector mosaic",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.wing_root_ligament",
+      "name": "Megafauna wing-root ligament",
+      "tier": "T2",
+      "previousRarity": "Uncommon",
+      "rarity": "Uncommon",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.shock_joint_core",
+      "name": "Megafauna shock-damping joint core",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.ventral_keel",
+      "name": "Megafauna laminated ventral keel",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.flexor_comb",
+      "name": "Megafauna flexor locking comb",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.lens_cluster",
+      "name": "Megafauna precision lens cluster",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.actuator_braid",
+      "name": "Megafauna actuator braid",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.charge_septa",
+      "name": "Megafauna charge-organ septum stack",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.discharge_lining",
+      "name": "Megafauna discharge-channel lining",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.dielectric_baffles",
+      "name": "Megafauna dielectric chamber baffles",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.acoustic_horn",
+      "name": "Megafauna acoustic focusing horn",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.scent_ampulla",
+      "name": "Megafauna scent-gland ampulla",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.bonding_matrix",
+      "name": "Megafauna bonding-gland matrix",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.catalytic_granules",
+      "name": "Megafauna catalytic digestion granules",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.heat_lattice",
+      "name": "Megafauna heat-exchange lattice",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.reservoir_sphincter",
+      "name": "Megafauna reservoir sphincter",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.icore_root_mat",
+      "name": "Megafauna long-strand icore root mat",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.spar_junction",
+      "name": "Megafauna wing-spar junction",
+      "tier": "T3",
+      "previousRarity": "Rare",
+      "rarity": "Rare",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.intact_charge_capsule",
+      "name": "Megafauna intact charge-organ capsule",
+      "tier": "T4",
+      "previousRarity": "Epic",
+      "rarity": "Epic",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.navigation_organ",
+      "name": "Megafauna acoustic navigation organ",
+      "tier": "T4",
+      "previousRarity": "Epic",
+      "rarity": "Epic",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.ocular_core",
+      "name": "Megafauna intact ocular core",
+      "tier": "T4",
+      "previousRarity": "Epic",
+      "rarity": "Epic",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.load_transfer_hub",
+      "name": "Megafauna mineral-thread load hub",
+      "tier": "T4",
+      "previousRarity": "Epic",
+      "rarity": "Epic",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.continuous_fiber_spool",
+      "name": "Megafauna continuous fiber coil",
+      "tier": "T4",
+      "previousRarity": "Epic",
+      "rarity": "Epic",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.separation_gland",
+      "name": "Megafauna chemical-separation gland",
+      "tier": "T4",
+      "previousRarity": "Epic",
+      "rarity": "Epic",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.reflector_organ",
+      "name": "Megafauna layered reflector organ",
+      "tier": "T4",
+      "previousRarity": "Epic",
+      "rarity": "Epic",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.pressure_valve_organ",
+      "name": "Megafauna pressure-regulation organ",
+      "tier": "T4",
+      "previousRarity": "Epic",
+      "rarity": "Epic",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.molt_template",
+      "name": "Megafauna molt-growth scaffold",
+      "tier": "T4",
+      "previousRarity": "Epic",
+      "rarity": "Epic",
+      "added": true
+    },
+    {
+      "id": "proposal.megafauna.signal_pearl",
+      "name": "Megafauna layered signal pearl",
+      "tier": "T4",
+      "previousRarity": "Epic",
+      "rarity": "Epic",
+      "added": true
+    },
+    {
+      "id": "proposal.bio.gripping_pad_scales",
+      "name": "Faunal gripping-pad scales",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.resonance_plates",
+      "name": "Faunal resonance plates",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.grinding_grit",
+      "name": "Faunal grinding grit",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.mineralized_hinge_rods",
+      "name": "Mineralized hinge rods",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.tracheal_tubes",
+      "name": "Faunal tracheal tubes",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.gut_lining_sacs",
+      "name": "Faunal gut-lining sacs",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.pigment_nodules",
+      "name": "Faunal pigment nodules",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.spring_arches",
+      "name": "Faunal spring arches",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.balance_stones",
+      "name": "Faunal balance stones",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    },
+    {
+      "id": "proposal.bio.grooming_comb_plates",
+      "name": "Faunal grooming-comb plates",
+      "tier": "T0",
+      "previousRarity": "Junk",
+      "rarity": "Junk",
+      "added": false
+    }
+  ],
+  "itemRows": {
+    "proposal.megafauna.thorax_scutes": 558,
+    "proposal.megafauna.shoulder_buttress": 559,
+    "proposal.megafauna.tarsal_pad_stack": 560,
+    "proposal.megafauna.excavator_wedge": 565,
+    "proposal.megafauna.mandible_ridges": 567,
+    "proposal.megafauna.rasp_bands": 568,
+    "proposal.megafauna.nuchal_cable": 569,
+    "proposal.megafauna.flight_collar": 578,
+    "proposal.megafauna.spiracle_leaves": 579,
+    "proposal.megafauna.bellows_pleats": 580,
+    "proposal.megafauna.resonator_diaphragms": 581,
+    "proposal.megafauna.whisker_root_fan": 586,
+    "proposal.megafauna.corneal_windows": 634,
+    "proposal.megafauna.brake_lamellae": 640,
+    "proposal.megafauna.locking_hooks": 652,
+    "proposal.megafauna.spray_nozzle_plate": 654,
+    "proposal.megafauna.reservoir_wall": 661,
+    "proposal.megafauna.precursor_pellets": 666,
+    "proposal.megafauna.jaw_sealing_rings": 668,
+    "proposal.megafauna.anchoring_talon": 670,
+    "proposal.megafauna.vibration_rods": 672,
+    "proposal.megafauna.brood_seam_comb": 673,
+    "proposal.megafauna.reflector_mosaic": 674,
+    "proposal.megafauna.wing_root_ligament": 675,
+    "proposal.megafauna.shock_joint_core": 679,
+    "proposal.megafauna.ventral_keel": 683,
+    "proposal.megafauna.flexor_comb": 690,
+    "proposal.megafauna.lens_cluster": 706,
+    "proposal.megafauna.actuator_braid": 708,
+    "proposal.megafauna.charge_septa": 709,
+    "proposal.megafauna.discharge_lining": 710,
+    "proposal.megafauna.dielectric_baffles": 716,
+    "proposal.megafauna.acoustic_horn": 721,
+    "proposal.megafauna.scent_ampulla": 732,
+    "proposal.megafauna.bonding_matrix": 735,
+    "proposal.megafauna.catalytic_granules": 740,
+    "proposal.megafauna.heat_lattice": 747,
+    "proposal.megafauna.reservoir_sphincter": 750,
+    "proposal.megafauna.icore_root_mat": 753,
+    "proposal.megafauna.spar_junction": 757,
+    "proposal.megafauna.intact_charge_capsule": 758,
+    "proposal.megafauna.navigation_organ": 760,
+    "proposal.megafauna.ocular_core": 768,
+    "proposal.megafauna.load_transfer_hub": 769,
+    "proposal.megafauna.continuous_fiber_spool": 773,
+    "proposal.megafauna.separation_gland": 774,
+    "proposal.megafauna.reflector_organ": 777,
+    "proposal.megafauna.pressure_valve_organ": 781,
+    "proposal.megafauna.molt_template": 786,
+    "proposal.megafauna.signal_pearl": 810
+  },
+  "tables": {
+    "ItemsTable": "A5:AN1005",
+    "ItemUseRelationships": "A5:F1233",
+    "CraftAudit": "A5:J1005"
+  },
+  "summaryCaches": {
+    "Categories": {
+      "B49": 100
+    },
+    "Collection targets": {
+      "D8": 158,
+      "E8": 0
+    }
+  },
+  "reviewed": 100,
+  "added": 50,
+  "retained": 50,
+  "tierCounts": {
+    "T0": 33,
+    "T1": 17,
+    "T2": 24,
+    "T3": 16,
+    "T4": 10
+  },
+  "rarityCounts": {
+    "Junk": 33,
+    "Common": 17,
+    "Uncommon": 24,
+    "Rare": 16,
+    "Epic": 10
+  },
+  "existingRarityChanges": {},
+  "date": "2026-10-16",
+  "authority": "Direct author direction: extremely rare giant megafauna form difficult great hunts, with higher-value and higher-rarity biological harvests. Specific item anatomy and uses are new local brainstorming proposals.",
+  "scope": "50 new Biological resources proposals plus editable default Rarity values on this 100-item category only. Existing IDs, tiers, descriptions, other categories, recipes, artwork/review state and Unity/world/save data preserved. No ongoing tier-to-rarity coupling. Google Sheet unsynchronized.",
+  "validation": "Preserving appender and exact changed-cell verification passed. Unrelated OOXML archive members, formulas, styles and existing cells retained; linked use/audit records, category counts, ID pickers and table bounds accounted for.",
+  "commitCandidate": {
+    "baseHead": "bbd1abbcae44d3851009c8cbba657b288dbeb25b",
+    "sourceHash": "307262a37f52f44a37d7061c64729df3f5b9fb0dca56fcaf0aaa205424ea6283",
+    "resultHash": "6c2b4fd90119faaa052e8e30287cbe8bfec824f894030163e6d1ea2342f18752",
+    "method": "Task-only candidate built from HEAD. Live workbook retained independently, preserving earlier uncommitted manual edits/deletions. All 100 biological IDs, names, tiers, rarity defaults and descriptions agree.",
+    "tierCounts": {
+      "T0": 33,
+      "T1": 17,
+      "T2": 24,
+      "T3": 16,
+      "T4": 10
+    },
+    "rarityCounts": {
+      "Junk": 33,
+      "Common": 17,
+      "Uncommon": 24,
+      "Rare": 16,
+      "Epic": 10
+    }
+  }
+}
