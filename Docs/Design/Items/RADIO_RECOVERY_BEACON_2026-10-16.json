@@ -1,0 +1,48 @@
+{
+  "source": "Author requested a Tools item named Radio recovery beacon, October 16, 2026: carrying it when the player dies allows a later return to the death location to collect dropped gear. That core behavior has author authority. T3 / Rare and the physical design are editable catalog proposals.",
+  "scope": "Append one Tools definition and record the approved behavior. No runtime death, respawn, dropped-inventory, radio or save implementation is included. Deterministic world identity, streaming/unload/reload, stable generated-object identity, authored placement and persisted runtime deltas are not applicable to this catalog-only edit. Future implementation must retain the real death-site position and one stable link between beacon and dropped-gear record, preserve remaining dropped inventory across reloads, and account for successful recovery without duplicating gear. Greater Wasteland terrain remains fixed and always loaded; no terrain streaming or generation is introduced.",
+  "defaults": {
+    "Tier": "T3",
+    "Category": "Tools",
+    "Subtype": "Death-site recovery beacon",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "Unassigned; carried tool",
+    "Carrier metadata": "Must be carried by the player when they die. The recovery signal is associated with the death site and dropped gear. Physical mounting, packing and carrying mass remain undefined.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Acquisition source remains undefined. The player needs to obtain and carry the beacon before the death it is intended to mark.",
+    "Crafting / processing": "Radio transmitter assembly, enclosure, power supply and activation method remain to be designed. No crafting recipe, required components or charging procedure is established.",
+    "Supported behavior": "Author-directed behavior; runtime not implemented: when the player dies while carrying the beacon, it marks the location of the death and dropped gear with a recovery signal. The player can later follow that signal back and collect their dropped belongings.",
+    "Limitations": "The player must travel back to the marked location and retrieve the dropped gear. The beacon records a recovery destination; signal reception and navigation presentation, range, power, signal lifetime, survival of the physical device, reuse, multiple deaths and multiple beacons still require design decisions.",
+    "Rarity": "Rare",
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Item type": "Tool",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Primary use": "Radio communication",
+    "Material family": "Mixed / unresolved",
+    "Physical form": "Assembly",
+    "Design status": "Author direction",
+    "Classification basis": "A carried recovery-navigation tool. The author defines death-site marking and later dropped-gear retrieval as its purpose; detailed construction and runtime systems remain unimplemented.",
+    "Finished-item input tier": "Unassigned",
+    "Crafting role": "Finished item"
+  },
+  "items": [
+    {
+      "id": "author.tool.radio_recovery_beacon",
+      "name": "Radio recovery beacon",
+      "purpose": "A carried radio beacon that marks the place where the player dies. If it is in the player's inventory at death, its recovery signal lets them locate the dropped gear and return later to collect their belongings.",
+      "icon": "One compact rugged recovery-radio beacon with a short protected antenna, recessed indicator and mounting loop; a practical repaired metal-and-ceramic design proposal, without a screen, text, map, floating marker or loose gear.",
+      "material": "Mixed / unresolved",
+      "use": "Radio communication",
+      "fields": {
+        "Search aliases": "radio recovery beacon; death beacon; lost gear locator; dropped equipment recovery; death-site marker; corpse run beacon",
+        "Tier basis": "Proposed T3 practical-worth band: specialist radio equipment that supports recovery of an expedition's lost belongings. Initial Rare rarity follows the existing radio-tool band; both assignments are editable balance choices, independent of the author-approved core function.",
+        "Open design decisions": "Define how the death event activates or leaves the beacon, how the returning player detects and follows the signal, receiver requirements, range, power, duration, device recovery/reuse and handling of repeated deaths or several carried units. Future persistence must bind a stable beacon/drop record to the actual death-site coordinates, retain unrecovered gear, and commit retrieval without duplication. Death penalties, exact dropped-item rules and the treatment of unrelated world actors remain separate."
+      }
+    }
+  ]
+}

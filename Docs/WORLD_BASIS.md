@@ -174,6 +174,10 @@ Booter is a professional desert survivor and metal scrapper.
 - Movement should have momentum, commitment, and positioning cost.
 - Combat should be slow, intentional, and punishing when poorly positioned.
 
+## Radio Recovery Beacon
+
+Author direction October 16, 2026: the **Radio recovery beacon** is a carried tool. If the player is carrying it when they die, it marks the death location so they can return later and collect their dropped gear and belongings. How the player receives and follows its radio signal, its power, range, lifetime, reuse and handling of repeated deaths remain design work. The [catalog definition](Design/Items/RADIO_RECOVERY_BEACON_2026-10-16.json) records this approved purpose with provisional T3 / Rare balance values; no runtime death-recovery system is installed by the catalog addition.
+
 ## The Legger
 
 The Legger (formerly BigARM) is a simple, physically present companion whose abilities are designed to work synergistically with Booter.
