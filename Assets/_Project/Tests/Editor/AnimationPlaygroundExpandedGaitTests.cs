@@ -40,6 +40,24 @@ namespace BooterBigArm.Tests
         }
 
         [Test, Category("PrivateAnimationQualification")]
+        public void FullSprintEntersAndLeavesWithoutAnAbruptPoseWeightSlope()
+        {
+            var p = Policy(); var fast = p.gaits[3].nominalSpeed; var full = p.gaits[4].nominalSpeed;
+            var width = full - fast; var edge = width * .001f;
+            Assert.That(p.PoseWeights(fast)[4], Is.EqualTo(1));
+            Assert.That(p.PoseWeights(full)[5], Is.EqualTo(1));
+            Assert.That(p.PoseWeights(fast + edge)[5], Is.LessThan(.00001f));
+            Assert.That(1 - p.PoseWeights(full - edge)[5], Is.LessThan(.00001f));
+            Assert.That(p.PoseWeights((fast + full) * .5f)[5], Is.EqualTo(.5f).Within(.00001f));
+            for (var i = 0; i <= 100; i++)
+            {
+                var speed = Mathf.Lerp(fast, full, i / 100f); var w = p.PoseWeights(speed);
+                Assert.That(p.CycleDistance(speed), Is.EqualTo(w[4] * p.gaits[3].metresPerCycle
+                    + w[5] * p.gaits[4].metresPerCycle).Within(.000001));
+            }
+        }
+
+        [Test, Category("PrivateAnimationQualification")]
         public void AnalogGaitsAreContinuousAndKeepTheMeasuredDistanceClock()
         {
             var p = Policy(); var previous = p.PoseWeights(0);

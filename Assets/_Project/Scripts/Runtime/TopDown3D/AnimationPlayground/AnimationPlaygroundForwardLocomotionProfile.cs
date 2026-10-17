@@ -294,6 +294,11 @@ namespace BooterBigArm.TopDown3D
                 var upper = 2;
                 while (upper < gaits.Length - 1 && speed > gaits[upper].nominalSpeed) upper++;
                 var blend = Mathf.InverseLerp(gaits[upper - 1].nominalSpeed, gaits[upper].nominalSpeed, speed);
+                // The full sprint has a much larger knee/arm drive than fast run.
+                // Ease its weight at both pure-gait boundaries so accelerating or
+                // releasing sprint does not abruptly change the pose derivative.
+                // The same weights feed the distance clock, keeping pose and stride paired.
+                if (upper == gaits.Length - 1) blend = Mathf.SmoothStep(0, 1, blend);
                 result[upper] = 1 - blend; result[upper + 1] = blend;
             }
             return result;
