@@ -70,7 +70,7 @@ Historical viewer review found and corrected an extended-arm FBX pose, gear alig
 
 ## Included interactions
 
-The sticky top menu has seven peer tabs: **Inventory**, **Crafting**, **Camp storage**, **Projects**, **Map**, **Reference**, and **Settings**. Inventory contains two loadout sub-tabs, **Booter** and **Legger**; Legger is no longer a separate top-level page. Inventory ownership is selected by these sub-tabs or the Camp service menu; the old left-hand owner switcher is removed. Each owner remembers its valid item selection during tab changes. The left panel summarizes the current carrier; crafting still has its station picker within the Crafting tab.
+The sticky top menu has seven peer tabs: **Inventory**, **Crafting**, **Storage**, **Projects**, **Map**, **Reference**, and **Settings**. Inventory contains two loadout sub-tabs, **Booter** and **Legger**; Legger is no longer a separate top-level page. Inventory ownership is selected by these sub-tabs or the Camp service menu; the old left-hand owner switcher is removed. Each owner remembers its valid item selection during tab changes. The left panel summarizes the current carrier; crafting still has its station picker within the Crafting tab.
 
 Top-menu follow-up, October 15, 2026: all eight pages were checked in the browser, including Legger ownership, map waypoint interaction, and Settings/radial/prototype controls. The synthetic browser fixture verified both bumpers and both triggers cycle the same top row and wrap at its ends, with the existing long-list navigation/right-stick scrolling checks still passing. The 18 automated inventory/controller checks pass, including clearance beneath the sticky menu. Hardware acceptance remains separate.
 
