@@ -1,0 +1,336 @@
+{
+  "date": "2026-10-16",
+  "reason": "Author direction October 16: all remaining Cultural objects are Salvage; remove the cultural items section. Preserve item identity, descriptions, condition, tiers, uses and recipe semantics.",
+  "items": [
+    {
+      "id": "proposal.culture.icon",
+      "name": "Preserver icon token",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.shrine",
+      "name": "Household shrine plaque",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.altar_vial",
+      "name": "Altar display vial",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.reliquary",
+      "name": "Relic case",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.offering",
+      "name": "Votive shell token",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.badge",
+      "name": "Civic office badge",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.stamp",
+      "name": "Official seal stamp",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.notice",
+      "name": "Public notice plate",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.pilgrim_die",
+      "name": "Pilgrimage marking die",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.memorial",
+      "name": "Memorial name plate",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.oath_ring",
+      "name": "Oath exchange ring",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.milestone",
+      "name": "Life-event charm",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.rattle",
+      "name": "Ceremonial shell rattle",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.gift_case",
+      "name": "Ceremonial gift case",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.ceramic.votive_plaque",
+      "name": "Ceramic votive plaque",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.ceramic.figurine",
+      "name": "Ceramic commemorative figurine",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.ceramic.ceremony_bowl",
+      "name": "Ceremonial ceramic bowl",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.founding_stone_keepsake",
+      "name": "Founding-stone keepsake",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.guild_craft_exemplar",
+      "name": "Guild craft exemplar",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.witness_chain",
+      "name": "Witness chain",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.pilgrim_route_bead_strand",
+      "name": "Pilgrim route bead strand",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.ancestor_shell_silhouette",
+      "name": "Ancestor shell silhouette",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.work_crew_oath_clasp",
+      "name": "Work-crew oath clasp",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.ceremonial_magnet_stand",
+      "name": "Ceremonial magnet stand",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.masterwork_presentation_tile",
+      "name": "Masterwork presentation tile",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.salvage_claim_leaf",
+      "name": "Salvage claim leaf",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.hide_headed_shell_drum",
+      "name": "Hide-headed shell drum",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.double_headed_metal_drum",
+      "name": "Double-headed metal drum",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.slit_shell_drum",
+      "name": "Slit shell drum",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.metal_frame_drum",
+      "name": "Metal frame drum",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.shell_clapper_pair",
+      "name": "Shell-clapper pair",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.bronze_hand_bell",
+      "name": "Bronze hand bell",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.iron_cup_bell_chime",
+      "name": "Iron cup-bell chime",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.stone_bar_resonator",
+      "name": "Stone-bar resonator",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.steel_tongue_drum",
+      "name": "Steel tongue drum",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.metal_transverse_flute",
+      "name": "Metal transverse flute",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.ceramic_duct_flute",
+      "name": "Ceramic duct flute",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.hollow_horn_flute",
+      "name": "Hollow-horn flute",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.wing_rib_whistle",
+      "name": "Wing-rib whistle",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.shell_chamber_ocarina",
+      "name": "Shell chamber ocarina",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.bronze_lip_horn",
+      "name": "Bronze lip horn",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.metal_free_reed_mouth_organ",
+      "name": "Metal free-reed mouth organ",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.wire_strung_shell_lyre",
+      "name": "Wire-strung shell lyre",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.tendon_strung_metal_zither",
+      "name": "Tendon-strung metal zither",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.collection.steel_jaw_harp",
+      "name": "Steel jaw harp",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.engraved_game_tiles",
+      "name": "Engraved shell game tiles",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.ceramic_storytelling_mask",
+      "name": "Ceramic storytelling mask",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.husk_paper_songbook",
+      "name": "Husk-paper songbook",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.household_pattern_roller",
+      "name": "Household pattern roller",
+      "previous": "Cultural objects"
+    },
+    {
+      "id": "proposal.culture.interlocking_iron_ring_puzzle",
+      "name": "Interlocking iron ring puzzle",
+      "previous": "Cultural objects"
+    }
+  ],
+  "retiredCategory": "Cultural objects",
+  "counts": {
+    "Salvage": 200,
+    "Tools": 20,
+    "Atmospheric resources": 2,
+    "Manufactured stock": 100,
+    "Mineral resources": 50,
+    "Biological resources": 50,
+    "Crafting components": 200,
+    "Cooking ingredients": 18,
+    "Armor": 50,
+    "Weapons": 30,
+    "Ancient salvage": 40,
+    "Clothing": 40,
+    "Workshop upgrades": 1,
+    "Currency": 5,
+    "Legger attachments": 10,
+    "Legger armor": 10,
+    "Consumables": 20,
+    "Ammunition": 14,
+    "Crafting stations": 11
+  },
+  "sourceHashBefore": "687d2e480a18f8f6a3fa9af55f9570114077afc4b1a30fb958e2d7d442ec6841",
+  "sourceHashAfter": "a29bcf48014b3a02ae917dfb39973c78feb8d1f99ff5b2b9a60f1ad5db87d274",
+  "scope": "Catalog-only classification. IDs, item properties, recipes and review/art links retained. Deterministic world identity, streaming/unload/reload, generated-object identity, authored placement and persisted runtime deltas are not applicable: no Unity runtime or world data changes.",
+  "preservedPriorAuthorDeletions": [
+    {
+      "id": "proposal.collection.canister_coming_of_age_pendant",
+      "name": "Canister coming-of-age pendant"
+    },
+    {
+      "id": "proposal.collection.caravan_cargo_manifest",
+      "name": "Caravan cargo manifest"
+    },
+    {
+      "id": "proposal.collection.instrument_tuning_chart",
+      "name": "Instrument tuning chart"
+    },
+    {
+      "id": "proposal.collection.workshop_repair_folio",
+      "name": "Workshop repair folio"
+    },
+    {
+      "id": "proposal.culture.apprentice_practice_plaque",
+      "name": "Apprentice practice plaque"
+    },
+    {
+      "id": "proposal.culture.commendation",
+      "name": "Community service medallion"
+    },
+    {
+      "id": "proposal.culture.jointed_shell_shadow_figure",
+      "name": "Jointed shell shadow figure"
+    },
+    {
+      "id": "proposal.culture.petition",
+      "name": "Petition leaf"
+    },
+    {
+      "id": "proposal.culture.prayer_leaf",
+      "name": "Husk-paper prayer leaf"
+    },
+    {
+      "id": "proposal.culture.register",
+      "name": "Civic register folio"
+    }
+  ],
+  "commitScope": "The category-wide closeout includes these existing author deletions, preserving the live roster and ensuring no surviving committed item refers to the retired category.",
+  "validation": {
+    "focusedCategoryTests": 8,
+    "result": "passed",
+    "moved": 50,
+    "linkedCategoryCells": {
+      "Item uses": 60,
+      "Material routes": 44,
+      "Crafting browser": 89
+    },
+    "verification": "All untouched ZIP parts and cells byte-identical; edited cells retain original formulas/styles; workbook XML differs only in category dropdown range; review state unchanged.",
+    "sourceHashAfter": "a29bcf48014b3a02ae917dfb39973c78feb8d1f99ff5b2b9a60f1ad5db87d274"
+  }
+}
