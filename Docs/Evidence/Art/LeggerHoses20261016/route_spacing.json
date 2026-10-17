@@ -1,0 +1,431 @@
+{
+  "source_sha256": "49a8a0e4322fc388ea2cfbb3d3ede9b94323109aa41e1573020d0fd5f88a6a17",
+  "route_count": 12,
+  "inter_route_pairs": [
+    {
+      "a": "L Steering control lead",
+      "b": "L Outer supply loop",
+      "sampled_centerline_distance_m": 0.5902990698814392,
+      "radius_subtracted_gap_m": 0.5742990698814393
+    },
+    {
+      "a": "L Steering control lead",
+      "b": "L Inner service loop",
+      "sampled_centerline_distance_m": 0.6197523474693298,
+      "radius_subtracted_gap_m": 0.6077523474693299
+    },
+    {
+      "a": "L Steering control lead",
+      "b": "L Thin return loop",
+      "sampled_centerline_distance_m": 0.6829663515090942,
+      "radius_subtracted_gap_m": 0.6739663515090943
+    },
+    {
+      "a": "L Steering control lead",
+      "b": "R Steering control lead",
+      "sampled_centerline_distance_m": 0.09201369434595108,
+      "radius_subtracted_gap_m": 0.08301369434595107
+    },
+    {
+      "a": "L Steering control lead",
+      "b": "R Outer supply loop",
+      "sampled_centerline_distance_m": 0.6314055919647217,
+      "radius_subtracted_gap_m": 0.6154055919647218
+    },
+    {
+      "a": "L Steering control lead",
+      "b": "R Inner service loop",
+      "sampled_centerline_distance_m": 0.6577940583229065,
+      "radius_subtracted_gap_m": 0.6457940583229066
+    },
+    {
+      "a": "L Steering control lead",
+      "b": "R Thin return loop",
+      "sampled_centerline_distance_m": 0.7154040932655334,
+      "radius_subtracted_gap_m": 0.7064040932655336
+    },
+    {
+      "a": "L Steering control lead",
+      "b": "L MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.8438815474510193,
+      "radius_subtracted_gap_m": 0.8348815474510194
+    },
+    {
+      "a": "L Steering control lead",
+      "b": "L LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 1.4334800243377686,
+      "radius_subtracted_gap_m": 1.4244800243377687
+    },
+    {
+      "a": "L Steering control lead",
+      "b": "R MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.877411425113678,
+      "radius_subtracted_gap_m": 0.8684114251136781
+    },
+    {
+      "a": "L Steering control lead",
+      "b": "R LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 1.4587584733963013,
+      "radius_subtracted_gap_m": 1.4497584733963014
+    },
+    {
+      "a": "L Outer supply loop",
+      "b": "L Inner service loop",
+      "sampled_centerline_distance_m": 0.02894585207104683,
+      "radius_subtracted_gap_m": 0.00994585207104683
+    },
+    {
+      "a": "L Outer supply loop",
+      "b": "L Thin return loop",
+      "sampled_centerline_distance_m": 0.07178834825754166,
+      "radius_subtracted_gap_m": 0.05578834825754166
+    },
+    {
+      "a": "L Outer supply loop",
+      "b": "R Steering control lead",
+      "sampled_centerline_distance_m": 0.6314055919647217,
+      "radius_subtracted_gap_m": 0.6154055919647218
+    },
+    {
+      "a": "L Outer supply loop",
+      "b": "R Outer supply loop",
+      "sampled_centerline_distance_m": 0.3100000023841858,
+      "radius_subtracted_gap_m": 0.28700000238418577
+    },
+    {
+      "a": "L Outer supply loop",
+      "b": "R Inner service loop",
+      "sampled_centerline_distance_m": 0.31467127799987793,
+      "radius_subtracted_gap_m": 0.2956712779998779
+    },
+    {
+      "a": "L Outer supply loop",
+      "b": "R Thin return loop",
+      "sampled_centerline_distance_m": 0.30773022770881653,
+      "radius_subtracted_gap_m": 0.2917302277088165
+    },
+    {
+      "a": "L Outer supply loop",
+      "b": "L MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.48104384541511536,
+      "radius_subtracted_gap_m": 0.46504384541511534
+    },
+    {
+      "a": "L Outer supply loop",
+      "b": "L LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 0.8893350958824158,
+      "radius_subtracted_gap_m": 0.8733350958824159
+    },
+    {
+      "a": "L Outer supply loop",
+      "b": "R MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.6235701441764832,
+      "radius_subtracted_gap_m": 0.6075701441764833
+    },
+    {
+      "a": "L Outer supply loop",
+      "b": "R LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 1.0096126794815063,
+      "radius_subtracted_gap_m": 0.9936126794815064
+    },
+    {
+      "a": "L Inner service loop",
+      "b": "L Thin return loop",
+      "sampled_centerline_distance_m": 0.03594030812382698,
+      "radius_subtracted_gap_m": 0.02394030812382698
+    },
+    {
+      "a": "L Inner service loop",
+      "b": "R Steering control lead",
+      "sampled_centerline_distance_m": 0.6577940583229065,
+      "radius_subtracted_gap_m": 0.6457940583229066
+    },
+    {
+      "a": "L Inner service loop",
+      "b": "R Outer supply loop",
+      "sampled_centerline_distance_m": 0.31467127799987793,
+      "radius_subtracted_gap_m": 0.2956712779998779
+    },
+    {
+      "a": "L Inner service loop",
+      "b": "R Inner service loop",
+      "sampled_centerline_distance_m": 0.27825209498405457,
+      "radius_subtracted_gap_m": 0.26325209498405455
+    },
+    {
+      "a": "L Inner service loop",
+      "b": "R Thin return loop",
+      "sampled_centerline_distance_m": 0.27158409357070923,
+      "radius_subtracted_gap_m": 0.2595840935707092
+    },
+    {
+      "a": "L Inner service loop",
+      "b": "L MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.5610679984092712,
+      "radius_subtracted_gap_m": 0.5490679984092713
+    },
+    {
+      "a": "L Inner service loop",
+      "b": "L LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 0.9564211964607239,
+      "radius_subtracted_gap_m": 0.944421196460724
+    },
+    {
+      "a": "L Inner service loop",
+      "b": "R MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.6642976403236389,
+      "radius_subtracted_gap_m": 0.652297640323639
+    },
+    {
+      "a": "L Inner service loop",
+      "b": "R LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 1.0456161499023438,
+      "radius_subtracted_gap_m": 1.0336161499023437
+    },
+    {
+      "a": "L Thin return loop",
+      "b": "R Steering control lead",
+      "sampled_centerline_distance_m": 0.7154040932655334,
+      "radius_subtracted_gap_m": 0.7064040932655336
+    },
+    {
+      "a": "L Thin return loop",
+      "b": "R Outer supply loop",
+      "sampled_centerline_distance_m": 0.30773022770881653,
+      "radius_subtracted_gap_m": 0.2917302277088165
+    },
+    {
+      "a": "L Thin return loop",
+      "b": "R Inner service loop",
+      "sampled_centerline_distance_m": 0.27158409357070923,
+      "radius_subtracted_gap_m": 0.2595840935707092
+    },
+    {
+      "a": "L Thin return loop",
+      "b": "R Thin return loop",
+      "sampled_centerline_distance_m": 0.23683230578899384,
+      "radius_subtracted_gap_m": 0.22783230578899383
+    },
+    {
+      "a": "L Thin return loop",
+      "b": "L MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.6729152798652649,
+      "radius_subtracted_gap_m": 0.663915279865265
+    },
+    {
+      "a": "L Thin return loop",
+      "b": "L LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 0.9474231600761414,
+      "radius_subtracted_gap_m": 0.9384231600761415
+    },
+    {
+      "a": "L Thin return loop",
+      "b": "R MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.7531436085700989,
+      "radius_subtracted_gap_m": 0.744143608570099
+    },
+    {
+      "a": "L Thin return loop",
+      "b": "R LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 1.0286343097686768,
+      "radius_subtracted_gap_m": 1.0196343097686769
+    },
+    {
+      "a": "R Steering control lead",
+      "b": "R Outer supply loop",
+      "sampled_centerline_distance_m": 0.5902990698814392,
+      "radius_subtracted_gap_m": 0.5742990698814393
+    },
+    {
+      "a": "R Steering control lead",
+      "b": "R Inner service loop",
+      "sampled_centerline_distance_m": 0.6197523474693298,
+      "radius_subtracted_gap_m": 0.6077523474693299
+    },
+    {
+      "a": "R Steering control lead",
+      "b": "R Thin return loop",
+      "sampled_centerline_distance_m": 0.6829663515090942,
+      "radius_subtracted_gap_m": 0.6739663515090943
+    },
+    {
+      "a": "R Steering control lead",
+      "b": "L MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.877411425113678,
+      "radius_subtracted_gap_m": 0.8684114251136781
+    },
+    {
+      "a": "R Steering control lead",
+      "b": "L LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 1.4587584733963013,
+      "radius_subtracted_gap_m": 1.4497584733963014
+    },
+    {
+      "a": "R Steering control lead",
+      "b": "R MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.8438815474510193,
+      "radius_subtracted_gap_m": 0.8348815474510194
+    },
+    {
+      "a": "R Steering control lead",
+      "b": "R LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 1.4334800243377686,
+      "radius_subtracted_gap_m": 1.4244800243377687
+    },
+    {
+      "a": "R Outer supply loop",
+      "b": "R Inner service loop",
+      "sampled_centerline_distance_m": 0.02894585207104683,
+      "radius_subtracted_gap_m": 0.00994585207104683
+    },
+    {
+      "a": "R Outer supply loop",
+      "b": "R Thin return loop",
+      "sampled_centerline_distance_m": 0.07178834825754166,
+      "radius_subtracted_gap_m": 0.05578834825754166
+    },
+    {
+      "a": "R Outer supply loop",
+      "b": "L MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.6235701441764832,
+      "radius_subtracted_gap_m": 0.6075701441764833
+    },
+    {
+      "a": "R Outer supply loop",
+      "b": "L LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 1.0096126794815063,
+      "radius_subtracted_gap_m": 0.9936126794815064
+    },
+    {
+      "a": "R Outer supply loop",
+      "b": "R MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.48104384541511536,
+      "radius_subtracted_gap_m": 0.46504384541511534
+    },
+    {
+      "a": "R Outer supply loop",
+      "b": "R LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 0.8893350958824158,
+      "radius_subtracted_gap_m": 0.8733350958824159
+    },
+    {
+      "a": "R Inner service loop",
+      "b": "R Thin return loop",
+      "sampled_centerline_distance_m": 0.03594030812382698,
+      "radius_subtracted_gap_m": 0.02394030812382698
+    },
+    {
+      "a": "R Inner service loop",
+      "b": "L MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.6642976403236389,
+      "radius_subtracted_gap_m": 0.652297640323639
+    },
+    {
+      "a": "R Inner service loop",
+      "b": "L LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 1.0456161499023438,
+      "radius_subtracted_gap_m": 1.0336161499023437
+    },
+    {
+      "a": "R Inner service loop",
+      "b": "R MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.5610679984092712,
+      "radius_subtracted_gap_m": 0.5490679984092713
+    },
+    {
+      "a": "R Inner service loop",
+      "b": "R LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 0.9564211964607239,
+      "radius_subtracted_gap_m": 0.944421196460724
+    },
+    {
+      "a": "R Thin return loop",
+      "b": "L MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.7531436085700989,
+      "radius_subtracted_gap_m": 0.744143608570099
+    },
+    {
+      "a": "R Thin return loop",
+      "b": "L LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 1.0286343097686768,
+      "radius_subtracted_gap_m": 1.0196343097686769
+    },
+    {
+      "a": "R Thin return loop",
+      "b": "R MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.6729152798652649,
+      "radius_subtracted_gap_m": 0.663915279865265
+    },
+    {
+      "a": "R Thin return loop",
+      "b": "R LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 0.9474231600761414,
+      "radius_subtracted_gap_m": 0.9384231600761415
+    },
+    {
+      "a": "L MiddleLink actuator service hose",
+      "b": "L LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 0.36478838324546814,
+      "radius_subtracted_gap_m": 0.35578838324546813
+    },
+    {
+      "a": "L MiddleLink actuator service hose",
+      "b": "R MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.356264591217041,
+      "radius_subtracted_gap_m": 0.347264591217041
+    },
+    {
+      "a": "L MiddleLink actuator service hose",
+      "b": "R LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 0.5604566335678101,
+      "radius_subtracted_gap_m": 0.5514566335678102
+    },
+    {
+      "a": "L LowerLink actuator service hose",
+      "b": "R MiddleLink actuator service hose",
+      "sampled_centerline_distance_m": 0.5604566335678101,
+      "radius_subtracted_gap_m": 0.5514566335678102
+    },
+    {
+      "a": "L LowerLink actuator service hose",
+      "b": "R LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 0.44987040758132935,
+      "radius_subtracted_gap_m": 0.44087040758132934
+    },
+    {
+      "a": "R MiddleLink actuator service hose",
+      "b": "R LowerLink actuator service hose",
+      "sampled_centerline_distance_m": 0.36478838324546814,
+      "radius_subtracted_gap_m": 0.35578838324546813
+    }
+  ],
+  "minimum_sampled_radius_subtracted_gap_m": 0.00994585207104683,
+  "mirrored_route_pairs": [
+    {
+      "pair": "Steering control lead",
+      "centerline_mirror_error_m": 0.0
+    },
+    {
+      "pair": "Outer supply loop",
+      "centerline_mirror_error_m": 0.0
+    },
+    {
+      "pair": "Inner service loop",
+      "centerline_mirror_error_m": 0.0
+    },
+    {
+      "pair": "Thin return loop",
+      "centerline_mirror_error_m": 0.0
+    },
+    {
+      "pair": "MiddleLink actuator service hose",
+      "centerline_mirror_error_m": 0.0
+    },
+    {
+      "pair": "LowerLink actuator service hose",
+      "centerline_mirror_error_m": 0.0
+    }
+  ],
+  "method": "Piecewise-linear native ring centerlines sampled at <=2 mm; unsigned point-sample separation minus nominal radii.",
+  "limits": "Auxiliary inter-route spacing check only. Not signed solid collision or motion certification; terminal collars/sockets and deliberate housing insets are outside this radius check."
+}

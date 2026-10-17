@@ -1,0 +1,545 @@
+{
+  "source_sha256": "49a8a0e4322fc388ea2cfbb3d3ede9b94323109aa41e1573020d0fd5f88a6a17",
+  "original_before": {
+    "source_sha256": "f31f4beae80173df81f6d9da649049de66cc967f47382a8bec5bf75fb919eb87",
+    "views": [
+      {
+        "image": "original_side_low.png",
+        "center_m": [
+          0.15000000596046448,
+          0.17000000178813934,
+          1.5
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.35,
+        "clay": false
+      },
+      {
+        "image": "original_rear_low.png",
+        "center_m": [
+          0.0,
+          0.4000000059604645,
+          1.5
+        ],
+        "direction": [
+          0,
+          4,
+          0.15
+        ],
+        "ortho_scale_m": 1.1,
+        "clay": false
+      },
+      {
+        "image": "original_underside.png",
+        "center_m": [
+          0.0,
+          0.15000000596046448,
+          1.5499999523162842
+        ],
+        "direction": [
+          0,
+          1,
+          -4
+        ],
+        "ortho_scale_m": 1.3,
+        "clay": false
+      },
+      {
+        "image": "original_engine_oblique.png",
+        "center_m": [
+          0.0,
+          0.15000000596046448,
+          1.5
+        ],
+        "direction": [
+          3,
+          4,
+          -0.8
+        ],
+        "ortho_scale_m": 1.3,
+        "clay": false
+      },
+      {
+        "image": "original_front_routing.png",
+        "center_m": [
+          0.0,
+          -0.3499999940395355,
+          1.9600000381469727
+        ],
+        "direction": [
+          3,
+          -4,
+          1
+        ],
+        "ortho_scale_m": 0.9,
+        "clay": false
+      },
+      {
+        "image": "original_leg_side.png",
+        "center_m": [
+          0.23999999463558197,
+          -0.28999999165534973,
+          0.8500000238418579
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.4,
+        "clay": false
+      },
+      {
+        "image": "original_routes_side.png",
+        "center_m": [
+          0.15000000596046448,
+          0.1599999964237213,
+          1.600000023841858
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.4,
+        "clay": false
+      },
+      {
+        "image": "original_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      },
+      {
+        "image": "before_side_low.png",
+        "center_m": [
+          0.15000000596046448,
+          0.17000000178813934,
+          1.5
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.35,
+        "clay": false
+      },
+      {
+        "image": "before_rear_low.png",
+        "center_m": [
+          0.0,
+          0.4000000059604645,
+          1.5
+        ],
+        "direction": [
+          0,
+          4,
+          0.15
+        ],
+        "ortho_scale_m": 1.1,
+        "clay": false
+      },
+      {
+        "image": "before_underside.png",
+        "center_m": [
+          0.0,
+          0.15000000596046448,
+          1.5499999523162842
+        ],
+        "direction": [
+          0,
+          1,
+          -4
+        ],
+        "ortho_scale_m": 1.3,
+        "clay": false
+      },
+      {
+        "image": "before_engine_oblique.png",
+        "center_m": [
+          0.0,
+          0.15000000596046448,
+          1.5
+        ],
+        "direction": [
+          3,
+          4,
+          -0.8
+        ],
+        "ortho_scale_m": 1.3,
+        "clay": false
+      },
+      {
+        "image": "before_front_routing.png",
+        "center_m": [
+          0.0,
+          -0.3499999940395355,
+          1.9600000381469727
+        ],
+        "direction": [
+          3,
+          -4,
+          1
+        ],
+        "ortho_scale_m": 0.9,
+        "clay": false
+      },
+      {
+        "image": "before_leg_side.png",
+        "center_m": [
+          0.23999999463558197,
+          -0.28999999165534973,
+          0.8500000238418579
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.4,
+        "clay": false
+      },
+      {
+        "image": "before_routes_side.png",
+        "center_m": [
+          0.15000000596046448,
+          0.1599999964237213,
+          1.600000023841858
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.4,
+        "clay": false
+      },
+      {
+        "image": "before_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      }
+    ],
+    "native_saved": false,
+    "native_modified": false,
+    "scope": "Read-only original hose and tubing route comparison; temporary overrides, no saved camera/visibility edits."
+  },
+  "first_checkpoint": {
+    "source_sha256": "cd970f17b598f3b3a0e3c32713737b9bf938585317bc040272b6eed0b4a24918",
+    "views": [
+      {
+        "image": "current_side_low.png",
+        "center_m": [
+          0.15000000596046448,
+          0.17000000178813934,
+          1.5
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.35,
+        "clay": false
+      },
+      {
+        "image": "current_rear_low.png",
+        "center_m": [
+          0.0,
+          0.4000000059604645,
+          1.5
+        ],
+        "direction": [
+          0,
+          4,
+          0.15
+        ],
+        "ortho_scale_m": 1.1,
+        "clay": false
+      },
+      {
+        "image": "current_underside.png",
+        "center_m": [
+          0.0,
+          0.15000000596046448,
+          1.5499999523162842
+        ],
+        "direction": [
+          0,
+          1,
+          -4
+        ],
+        "ortho_scale_m": 1.3,
+        "clay": false
+      },
+      {
+        "image": "current_engine_oblique.png",
+        "center_m": [
+          0.0,
+          0.15000000596046448,
+          1.5
+        ],
+        "direction": [
+          3,
+          4,
+          -0.8
+        ],
+        "ortho_scale_m": 1.3,
+        "clay": false
+      },
+      {
+        "image": "current_front_routing.png",
+        "center_m": [
+          0.0,
+          -0.3499999940395355,
+          1.9600000381469727
+        ],
+        "direction": [
+          3,
+          -4,
+          1
+        ],
+        "ortho_scale_m": 0.9,
+        "clay": false
+      },
+      {
+        "image": "current_leg_side.png",
+        "center_m": [
+          0.23999999463558197,
+          -0.28999999165534973,
+          0.8500000238418579
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.4,
+        "clay": false
+      },
+      {
+        "image": "current_routes_side.png",
+        "center_m": [
+          0.15000000596046448,
+          0.1599999964237213,
+          1.600000023841858
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.4,
+        "clay": false
+      },
+      {
+        "image": "current_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      }
+    ],
+    "native_saved": false,
+    "native_modified": false,
+    "scope": "Read-only original hose and tubing route comparison; temporary overrides, no saved camera/visibility edits."
+  },
+  "corrected_candidate": {
+    "source_sha256": "49a8a0e4322fc388ea2cfbb3d3ede9b94323109aa41e1573020d0fd5f88a6a17",
+    "views": [
+      {
+        "image": "current_side_low.png",
+        "center_m": [
+          0.15000000596046448,
+          0.17000000178813934,
+          1.5
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.35,
+        "clay": false
+      },
+      {
+        "image": "current_rear_low.png",
+        "center_m": [
+          0.0,
+          0.4000000059604645,
+          1.5
+        ],
+        "direction": [
+          0,
+          4,
+          0.15
+        ],
+        "ortho_scale_m": 1.1,
+        "clay": false
+      },
+      {
+        "image": "current_underside.png",
+        "center_m": [
+          0.0,
+          0.15000000596046448,
+          1.5499999523162842
+        ],
+        "direction": [
+          0,
+          1,
+          -4
+        ],
+        "ortho_scale_m": 1.3,
+        "clay": false
+      },
+      {
+        "image": "current_engine_oblique.png",
+        "center_m": [
+          0.0,
+          0.15000000596046448,
+          1.5
+        ],
+        "direction": [
+          3,
+          4,
+          -0.8
+        ],
+        "ortho_scale_m": 1.3,
+        "clay": false
+      },
+      {
+        "image": "current_front_routing.png",
+        "center_m": [
+          0.0,
+          -0.3499999940395355,
+          1.9600000381469727
+        ],
+        "direction": [
+          3,
+          -4,
+          1
+        ],
+        "ortho_scale_m": 0.9,
+        "clay": false
+      },
+      {
+        "image": "current_leg_side.png",
+        "center_m": [
+          0.23999999463558197,
+          -0.28999999165534973,
+          0.8500000238418579
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.4,
+        "clay": false
+      },
+      {
+        "image": "current_routes_side.png",
+        "center_m": [
+          0.15000000596046448,
+          0.1599999964237213,
+          1.600000023841858
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.4,
+        "clay": false
+      },
+      {
+        "image": "current_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      }
+    ],
+    "native_saved": false,
+    "native_modified": false,
+    "scope": "Read-only original hose and tubing route comparison; temporary overrides, no saved camera/visibility edits."
+  },
+  "native": {
+    "source_sha256": "49a8a0e4322fc388ea2cfbb3d3ede9b94323109aa41e1573020d0fd5f88a6a17",
+    "views": [
+      {
+        "image": "current_side_low.png",
+        "center_m": [
+          0.15000000596046448,
+          0.17000000178813934,
+          1.5
+        ],
+        "direction": [
+          4,
+          0,
+          0
+        ],
+        "ortho_scale_m": 1.35,
+        "clay": false
+      },
+      {
+        "image": "current_assembled.png",
+        "center_m": [
+          0.0,
+          0.0,
+          1.1200000047683716
+        ],
+        "direction": [
+          3,
+          -4,
+          1.5
+        ],
+        "ortho_scale_m": 2.68,
+        "clay": false
+      }
+    ],
+    "native_saved": false,
+    "native_modified": false,
+    "scope": "Read-only original hose and tubing route comparison; temporary overrides, no saved camera/visibility edits."
+  }
+}

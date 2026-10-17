@@ -1,0 +1,196 @@
+{
+  "source_sha256": "49a8a0e4322fc388ea2cfbb3d3ede9b94323109aa41e1573020d0fd5f88a6a17",
+  "local_files": [
+    {
+      "path": "Logs/LeggerHoses20261016/application.json",
+      "sha256": "001a1229a97e7d1a4d9e062e61eda47f6074395b4bda072de348c48bfe55a7e3",
+      "bytes": 819
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/apply.py",
+      "sha256": "06959af58459cc6e3c85589b9407c52e540459d02025fbb59d78bee1f8497b56",
+      "bytes": 2420
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/baseline.json",
+      "sha256": "2ec8f26b60a07dfd51cf35f1196948c245a90cd3ce93d1d4136fce025987ca10",
+      "bytes": 241907
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/baseline.py",
+      "sha256": "ba4b43f2f045d831bae13a09d65fc3fe146f60ed55b383f7f5d32351c7ca7252",
+      "bytes": 2482
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/brief.md",
+      "sha256": "6f73b88aea7f4dafb71a59ed973c8eb03a17806c69f5f8a93c14a9fc6438d515",
+      "bytes": 1410
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/build.json",
+      "sha256": "ddc4d5b35b88b0d6d7a86dec10963074af8c1094f774606de0619032b56393ec",
+      "bytes": 138055
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/build.py",
+      "sha256": "6c63acaa7edd421b26df4afc298297c18ba919587c9eba3f9a7e21f52abbf696",
+      "bytes": 9695
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/candidate_canonical.json",
+      "sha256": "3428dc18b6606cb81744d02ba26390883b9ad59b5615d9baaad3a33059b211f4",
+      "bytes": 41977
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/candidate_qa.json",
+      "sha256": "772fc98de7bf0d31edd32cf471cf539841f2b40e30e5b30676972d31dc9eed18",
+      "bytes": 66991
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/capture.py",
+      "sha256": "ad8a9155c5e3cc53a24e2fc3b13c5954131eddd7571ba2e32506f25ef5ecba37",
+      "bytes": 4962
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/capture_audit.json",
+      "sha256": "e010d7870266bb0169246c8efd4cd0ea6f969b344f7456eb5e5f59bf9792326a",
+      "bytes": 4470
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/capture_checkpoint01.json",
+      "sha256": "5280114e26cf3b6d3c3e917ecf7347cf66f974b9963693facb7b68abf1726144",
+      "bytes": 2376
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/capture_native.json",
+      "sha256": "2b5228e1dc6a913f76518ea612ca14d6dd173728e9f5a9805095dd760a458c8c",
+      "bytes": 793
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/capture_texture.json",
+      "sha256": "fac94fa09fe821003fd1153df1e66cb5e9f20ec575a074e8e6f2134b58fc7521",
+      "bytes": 2376
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/cargo_clearance.json",
+      "sha256": "611d7ab8f8c5ccf172390a80acabf4711b7c1a754f59e305eee66df43f35fe84",
+      "bytes": 5066
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/cargo_clearance.py",
+      "sha256": "9d046b68e2f437614464ecf390bd324c56af157b58d9a7f5233352a28cc2994d",
+      "bytes": 1872
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/checkpoint01_build.json",
+      "sha256": "a59fcb0ff9138d341554b053c6c21e34afef1ddcb6e669e88b3a6617fe4ab15e",
+      "bytes": 134675
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/clearance.py",
+      "sha256": "855b23db75253c8bf1ec7397494dd4d304873e61adaa69edf598d4d5455098e4",
+      "bytes": 2034
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/commit_records.py",
+      "sha256": "34340991df3481c29319edef272ac049cf88a3dd4a144c69c1eba80694923006",
+      "bytes": 2395
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/components.json",
+      "sha256": "1dec569813aa780cee58d4162b8e83090121ab54f375473e1f2728fcc5e5f56f",
+      "bytes": 108356
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/components.py",
+      "sha256": "ac30cec7819a274578058861bb3ac7d7e29f80a6e882bcc09d975f1183e21e06",
+      "bytes": 1010
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/finalize.py",
+      "sha256": "fb2657ca9cb99cd6c9d19dab71c1987ea9deba95e25f48934d52a4d9d977bfb1",
+      "bytes": 3451
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/native_canonical.json",
+      "sha256": "3428dc18b6606cb81744d02ba26390883b9ad59b5615d9baaad3a33059b211f4",
+      "bytes": 41977
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/native_qa.json",
+      "sha256": "772fc98de7bf0d31edd32cf471cf539841f2b40e30e5b30676972d31dc9eed18",
+      "bytes": 66991
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/original_front_samples.json",
+      "sha256": "6f1ba8022280d9854cbca2e64c0c1b9761dcde6c4d71b0273ca9d1e4bb3f9fed",
+      "bytes": 233
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/original_routing_points.npz",
+      "sha256": "45bb561d8beaa1e9a343bb3febe05bf073ce49b2eeaa740a5177a1d7df0f8208",
+      "bytes": 5786648
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/qa.py",
+      "sha256": "16d898a74fcc8e98c24573264af533009cdf17f4c3f2c90eefaa1c4db5a8af18",
+      "bytes": 9007
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/render_comparison.json",
+      "sha256": "900d23a32e36f3569d41f17e1627bc9dcbf887440c7c1f1461a84b2fcbb3f09f",
+      "bytes": 544
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/route_clearance.json",
+      "sha256": "34663a3b43860a3e823d1926e09241ad42f7e8d491bb05c1458f98f52e06dfef",
+      "bytes": 14538
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/seal_records.py",
+      "sha256": "5eab46c066e08d4e4644a4074cb464f598eeffaa2f225054ac8da08dba6c6563",
+      "bytes": 5185
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/source_preservation.json",
+      "sha256": "3d05c77dc69ec34fdc677c3a04b6a9bcf3cde8e0abd46ef2d758c5fb3212f321",
+      "bytes": 240072
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/validate_records.py",
+      "sha256": "b3eaab1d008a8f6c13794e9771d342aef4cfb39f7dbf59309a35d0192baabb7a",
+      "bytes": 2085
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/views.json",
+      "sha256": "31fb41c006c8392832ff757216fa0ffbb6af59b2cbe5bdb79026771f44abd7c6",
+      "bytes": 11265
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/visual_review.json",
+      "sha256": "77234633556e7dbea2e2093dc53aca10f5cda2f7bc5968b30eb692620d160d7c",
+      "bytes": 1561
+    },
+    {
+      "path": "Logs/LeggerHoses20261016/write_receipt.py",
+      "sha256": "821bbf6cd600e7e81d3e6f6f3dfc5ae435c72e255b21cd5bf744372448d7068b",
+      "bytes": 8174
+    },
+    {
+      "path": "Logs/LeggerSciFi20261015/fingerprint.py",
+      "sha256": "eb5f095437185432900cd31b2ed07feb3d55796db3dcd72eb7dc8c1a8f5bc86f",
+      "bytes": 1762
+    },
+    {
+      "path": "Logs/LeggerSciFi20261015/forms.py",
+      "sha256": "5c203c6585408c89137a8ab649a2c5f1b86a126d62dade50c03b8114e73f545e",
+      "bytes": 9219
+    },
+    {
+      "path": "Tools/Art/Blender/inspect_blend.py",
+      "sha256": "72a570b58d8b0622dd5477f4a130b2a10e36b4840778dea14bad634273e9da20",
+      "bytes": 2394
+    }
+  ],
+  "scope": "Ignored local authoring/checkpoint recipes and measured inputs; native checkpoints and pixels have separate hashes."
+}

@@ -1,0 +1,22 @@
+{
+  "source_sha256": "49a8a0e4322fc388ea2cfbb3d3ede9b94323109aa41e1573020d0fd5f88a6a17",
+  "reviewed": true,
+  "audit_views": 16,
+  "first_checkpoint_views": 8,
+  "final_candidate_views": 8,
+  "method": "All captured views inspected in labeled sheets, plus original side/underside/cockpit/leg and candidate side/engine details at full size.",
+  "findings": [
+    "Original underbody uses broad nested loops and different gauges, with a thinner low return. Prior routing was short and tucked too tightly.",
+    "Control leads in the original follow the bar into the neck; reroute the existing front pair accordingly.",
+    "First candidate return runs encroached on rear cargo space; second build tucks the rise inboard of unchanged case bodies.",
+    "First candidate thin loop showed angularity; redistribute its existing rings toward bends with no added topology.",
+    "Final twelve routes retain gauge hierarchy, route separation and leg service bows. Existing collars and socket barrels follow the new terminals."
+  ],
+  "limits": [
+    "Fused original conceals junction semantics; names such as supply/return are descriptive modeling labels, not game-system canon.",
+    "Preserved packed rubber/steel maps carry existing surface texture; no new corrugation mesh or new texture maps in this routing pass.",
+    "Static sampled proximity does not certify moving steering/joints, hose flex, dressed rider clearance, every clamp/collar intersection or structural loading."
+  ],
+  "native_views": 2,
+  "native_assembly_and_comparison_board_inspected": true
+}

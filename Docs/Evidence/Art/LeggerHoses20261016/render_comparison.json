@@ -1,0 +1,18 @@
+{
+  "source_sha256": "49a8a0e4322fc388ea2cfbb3d3ede9b94323109aa41e1573020d0fd5f88a6a17",
+  "native_to_candidate": [
+    {
+      "view": "side_low",
+      "exact_alpha": true,
+      "mean_rgb_delta_0_255": 1.6898148148148148e-05,
+      "maximum_rgb_delta_0_255": 1.0
+    },
+    {
+      "view": "assembled",
+      "exact_alpha": true,
+      "mean_rgb_delta_0_255": 9.722222222222223e-06,
+      "maximum_rgb_delta_0_255": 1.0
+    }
+  ],
+  "scope": "Independent source reopen with matched temporary cameras/lights and 20-sample OPTIX rendering."
+}

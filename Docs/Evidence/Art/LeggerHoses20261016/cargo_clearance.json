@@ -1,0 +1,188 @@
+{
+  "source_sha256": "49a8a0e4322fc388ea2cfbb3d3ede9b94323109aa41e1573020d0fd5f88a6a17",
+  "minimum_sampled_gap_m": 0.022571954859810037,
+  "routes": [
+    {
+      "route": "L Steering control lead",
+      "cargo": "Legger_Part_Cargo_L_Main_Body",
+      "radius_subtracted_gap_m": 0.5575755852006513,
+      "center_m": [
+        -0.28299999237060547,
+        -0.32499998807907104,
+        2.180999994277954
+      ],
+      "surface_m": [
+        -0.23534488677978516,
+        0.1864406168460846,
+        1.952775478363037
+      ]
+    },
+    {
+      "route": "L Outer supply loop",
+      "cargo": "Legger_Part_Cargo_L_Aux_Body",
+      "radius_subtracted_gap_m": 0.022571954859810037,
+      "center_m": [
+        -0.19300000369548798,
+        0.5680000185966492,
+        1.8140000104904175
+      ],
+      "surface_m": [
+        -0.227063849568367,
+        0.5684458613395691,
+        1.8145947456359863
+      ]
+    },
+    {
+      "route": "L Inner service loop",
+      "cargo": "Legger_Part_Cargo_L_Main_Body",
+      "radius_subtracted_gap_m": 0.045778097561502515,
+      "center_m": [
+        -0.18715791404247284,
+        0.18136754631996155,
+        1.4786436557769775
+      ],
+      "surface_m": [
+        -0.22971926629543304,
+        0.19350461661815643,
+        1.5083047151565552
+      ]
+    },
+    {
+      "route": "L Thin return loop",
+      "cargo": "Legger_Part_Cargo_L_Main_Body",
+      "radius_subtracted_gap_m": 0.04970907862944691,
+      "center_m": [
+        -0.15722179412841797,
+        0.29798972606658936,
+        1.5054638385772705
+      ],
+      "surface_m": [
+        -0.20993691682815552,
+        0.3053983747959137,
+        1.515703558921814
+      ]
+    },
+    {
+      "route": "R Steering control lead",
+      "cargo": "Legger_Part_Cargo_R_Main_Body",
+      "radius_subtracted_gap_m": 0.5575755852006513,
+      "center_m": [
+        0.28299999237060547,
+        -0.32499998807907104,
+        2.180999994277954
+      ],
+      "surface_m": [
+        0.23534488677978516,
+        0.1864406168460846,
+        1.952775478363037
+      ]
+    },
+    {
+      "route": "R Outer supply loop",
+      "cargo": "Legger_Part_Cargo_R_Aux_Body",
+      "radius_subtracted_gap_m": 0.022571954859810037,
+      "center_m": [
+        0.19300000369548798,
+        0.5680000185966492,
+        1.8140000104904175
+      ],
+      "surface_m": [
+        0.227063849568367,
+        0.5684458613395691,
+        1.8145947456359863
+      ]
+    },
+    {
+      "route": "R Inner service loop",
+      "cargo": "Legger_Part_Cargo_R_Main_Body",
+      "radius_subtracted_gap_m": 0.045778097561502515,
+      "center_m": [
+        0.18715791404247284,
+        0.18136754631996155,
+        1.4786436557769775
+      ],
+      "surface_m": [
+        0.22971926629543304,
+        0.19350461661815643,
+        1.5083047151565552
+      ]
+    },
+    {
+      "route": "R Thin return loop",
+      "cargo": "Legger_Part_Cargo_R_Main_Body",
+      "radius_subtracted_gap_m": 0.04970907862944691,
+      "center_m": [
+        0.15722179412841797,
+        0.29798972606658936,
+        1.5054638385772705
+      ],
+      "surface_m": [
+        0.20993691682815552,
+        0.3053983747959137,
+        1.515703558921814
+      ]
+    },
+    {
+      "route": "L MiddleLink actuator service hose",
+      "cargo": "Legger_Part_Cargo_L_Main_Body",
+      "radius_subtracted_gap_m": 0.5879825276580645,
+      "center_m": [
+        -0.18007151782512665,
+        -0.25152862071990967,
+        1.1148779392242432
+      ],
+      "surface_m": [
+        -0.23846206068992615,
+        0.18687871098518372,
+        1.509117841720581
+      ]
+    },
+    {
+      "route": "L LowerLink actuator service hose",
+      "cargo": "Legger_Part_Cargo_L_Main_Body",
+      "radius_subtracted_gap_m": 0.9909944185773152,
+      "center_m": [
+        -0.22565250098705292,
+        -0.18633238971233368,
+        0.5862762928009033
+      ],
+      "surface_m": [
+        -0.2377130389213562,
+        0.19462807476520538,
+        1.5059136152267456
+      ]
+    },
+    {
+      "route": "R MiddleLink actuator service hose",
+      "cargo": "Legger_Part_Cargo_R_Main_Body",
+      "radius_subtracted_gap_m": 0.5879825276580645,
+      "center_m": [
+        0.18007151782512665,
+        -0.25152862071990967,
+        1.1148779392242432
+      ],
+      "surface_m": [
+        0.23846206068992615,
+        0.18687871098518372,
+        1.509117841720581
+      ]
+    },
+    {
+      "route": "R LowerLink actuator service hose",
+      "cargo": "Legger_Part_Cargo_R_Main_Body",
+      "radius_subtracted_gap_m": 0.9909944185773152,
+      "center_m": [
+        0.22565250098705292,
+        -0.18633238971233368,
+        0.5862762928009033
+      ],
+      "surface_m": [
+        0.2377130389213562,
+        0.1946280598640442,
+        1.5059136152267456
+      ]
+    }
+  ],
+  "method": "Native centerline segments sampled <=2 mm against evaluated closed case bodies; nearest-normal sign and nominal hose radius.",
+  "limits": "Static sampled case-body clearance only; not full solid intersection, collars/straps, motion, steering or rig certification."
+}
