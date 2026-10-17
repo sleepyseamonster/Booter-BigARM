@@ -1,0 +1,1633 @@
+{
+  "date": "2026-10-16",
+  "authority": "Author requested practical-worth brainstorming and exactly 40 of the 200 salvage items in each tier T0 through T4.",
+  "method": "Relative recoverable utility, replacement labor, material scarcity, condition and plausible specialist demand. These are estimated value bands, not currency prices, drop probabilities or manufacturing stages. Bulk and incomplete matching reduce value. Unknown contents, charge, provenance and unproven powers add no guaranteed value.",
+  "tierDefinitions": {
+    "T0": "Low-value common goods, incomplete scrap and uncertain reclaiming feed",
+    "T1": "Modest-value reusable vessels, useful stock and simple fittings",
+    "T2": "Useful fabricated goods, repair donors and moderate craft labor",
+    "T3": "High-value prepared materials, skilled tools and artisan mechanisms",
+    "T4": "Highest relative value: precision assemblies, scarce optics, substantial machinery and costly prepared craft materials"
+  },
+  "scope": "Local master workbook only. Google Sheets is separate and unsynchronized. Preserve rarity, trade-value fields, item IDs, descriptions, physical condition, recipes, quantities, contents and review/art state. World identity, streaming/unload/reload, generated-object identity, authored placement and persisted runtime deltas are not applicable because no runtime or world objects are changed.",
+  "counts": {
+    "T0": 40,
+    "T1": 40,
+    "T2": 40,
+    "T3": 40,
+    "T4": 40
+  },
+  "sourceHashBefore": "06cf01022a9f143e0049922221370e1bb1a2124dbd862479bd94a2fa9167969f",
+  "items": [
+    {
+      "id": "lab.salvage.drive_assembly",
+      "name": "Drive Assembly",
+      "row": 6,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "Matched machine drivetrain has substantial donor-part value and difficult-to-replace fitted internals, subject to inspection."
+    },
+    {
+      "id": "lab.salvage.metal_plate",
+      "name": "Metal Plate",
+      "row": 7,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "Flat recoverable metal has broad patching and fabrication demand but little specialist workmanship."
+    },
+    {
+      "id": "lab.salvage.wire_bundle",
+      "name": "Wire Bundle",
+      "row": 8,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "Usable conductor lengths can save scarce wire preparation and electrical repair labor, after continuity and insulation checks."
+    },
+    {
+      "id": "equipment.arc_battery_empty",
+      "name": "Empty Arc Battery",
+      "row": 16,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A surviving Arc Battery holder preserves scarce energy-storage hardware even when empty. No charge is included."
+    },
+    {
+      "id": "tool.popup_camp",
+      "name": "Pop-up camp",
+      "row": 17,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "An integrated packable shade assembly combines prepared membrane, fittings and shelter utility that are costly to replace together."
+    },
+    {
+      "id": "proposal.natural.mica",
+      "name": "Mica sheets",
+      "row": 33,
+      "previousTier": "T0",
+      "tier": "T1",
+      "valueReason": "Selected insulating mineral sheets have useful workshop demand but remain relatively simple material stock without rated performance."
+    },
+    {
+      "id": "proposal.container.reagent_bottle",
+      "name": "Opaque reagent bottle",
+      "row": 97,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A reusable opaque vessel offers modest storage utility after cleaning and closure inspection. Unknown contents add no value."
+    },
+    {
+      "id": "proposal.container.wide_jar",
+      "name": "Wide-mouth sample jar",
+      "row": 98,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A broad-opening glass vessel offers general reuse value without precision calibration or guaranteed closure."
+    },
+    {
+      "id": "proposal.container.ampoule",
+      "name": "Sealed sample ampoule",
+      "row": 99,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A small sealed vessel offers modest glass recovery value. Unknown enclosed material receives no speculative payload premium."
+    },
+    {
+      "id": "proposal.container.marked_flask",
+      "name": "Marked glass flask",
+      "row": 100,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A marked glass vessel has practical reuse value, discounted because its markings establish no reliable calibration."
+    },
+    {
+      "id": "proposal.container.shell_cage",
+      "name": "Shell-caged glass flask",
+      "row": 101,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "Fitted shell protection around a glass vessel preserves more assembly labor and fragile material than an ordinary bottle."
+    },
+    {
+      "id": "proposal.container.lined_canister",
+      "name": "Glass-lined haul canister",
+      "row": 102,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "An intact glass lining inside a haul body would be difficult to replace. Cracking, contamination and closure remain qualification costs."
+    },
+    {
+      "id": "proposal.container.ceramic_jar",
+      "name": "Glazed ceramic reagent jar",
+      "row": 103,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A glazed ceramic vessel has useful but reproducible household and workshop value, subject to residue and crack checks."
+    },
+    {
+      "id": "proposal.container.sealed_box",
+      "name": "Sealed cargo box",
+      "row": 106,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A cargo enclosure provides general hardware and body stock. Its seal and contents receive no assumed premium."
+    },
+    {
+      "id": "proposal.container.field_chest",
+      "name": "Locking field chest",
+      "row": 107,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A fitted lock and chest body preserve more metalwork and security hardware than a plain box. No contents are included."
+    },
+    {
+      "id": "proposal.container.draw_tube",
+      "name": "Glass draw tube",
+      "row": 109,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A hollow glass part is useful specialist stock but has narrow compatibility and fragile condition."
+    },
+    {
+      "id": "proposal.container.glass_stopper",
+      "name": "Matched glass stopper",
+      "row": 110,
+      "previousTier": "T2",
+      "tier": "T1",
+      "valueReason": "A shaped stopper retains modest glassworking labor, heavily discounted without a matching vessel."
+    },
+    {
+      "id": "proposal.fashion.special_spectacles",
+      "name": "Specialized spectacles",
+      "row": 126,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "Explicitly rare specialist eyewear preserves scarce optical workmanship and fitted parts, although its actual optical function remains open."
+    },
+    {
+      "id": "proposal.fashion.eyeglasses",
+      "name": "Eyeglasses",
+      "row": 127,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "Rare matched lenses and frame are difficult to replace. Optical clarity and wearer fit still require qualification."
+    },
+    {
+      "id": "proposal.bio.wing_panel",
+      "name": "Prepared wing shade panel",
+      "row": 142,
+      "previousTier": "T1",
+      "tier": "T3",
+      "valueReason": "Prepared delicate wing material saves selection and preparation labor and has direct shade-repair demand."
+    },
+    {
+      "id": "proposal.canister.inspection_gauge",
+      "name": "Seal inspection gauge",
+      "row": 153,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A specialist inspection gauge can preserve precision workshop capability. Accuracy and interface must be qualified."
+    },
+    {
+      "id": "proposal.canister.service_kit",
+      "name": "Canister service kit",
+      "row": 154,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A selected set of compatible seals and fittings can support valuable canister maintenance. Completeness and compatibility remain unproven."
+    },
+    {
+      "id": "proposal.culture.icon",
+      "name": "Preserver icon token",
+      "row": 158,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A small devotional token made from ordinary material has little recoverable utility. No provenance or exceptional collector demand is assumed."
+    },
+    {
+      "id": "proposal.culture.shrine",
+      "name": "Household shrine plaque",
+      "row": 159,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A simple household plaque has limited general resale demand outside its original household and modest material value."
+    },
+    {
+      "id": "proposal.culture.altar_vial",
+      "name": "Altar display vial",
+      "row": 160,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A small display vessel retains modest glasswork and presentation value. No valuable sacred contents are assumed."
+    },
+    {
+      "id": "proposal.culture.reliquary",
+      "name": "Relic case",
+      "row": 161,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A worked relic enclosure preserves protective fittings and presentation craftsmanship. The claimed relic and provenance add no guaranteed value."
+    },
+    {
+      "id": "proposal.culture.offering",
+      "name": "Votive shell token",
+      "row": 163,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "Abundant shell and simple token form give little material or replacement-labor value."
+    },
+    {
+      "id": "proposal.culture.badge",
+      "name": "Civic office badge",
+      "row": 164,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A worked identifying badge has modest metalwork value. No continuing office, legal privilege or authority is priced in."
+    },
+    {
+      "id": "proposal.culture.stamp",
+      "name": "Official seal stamp",
+      "row": 165,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A precisely cut stamp retains specialist engraving workmanship. Authentication and current institutional authority are unproven."
+    },
+    {
+      "id": "proposal.culture.notice",
+      "name": "Public notice plate",
+      "row": 167,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A plain notice surface offers little beyond common plate stock. The recorded message is not assumed valuable."
+    },
+    {
+      "id": "proposal.culture.pilgrim_die",
+      "name": "Pilgrimage marking die",
+      "row": 170,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A small marking die retains some engraving labor but has narrow demand and no assumed sacred authority."
+    },
+    {
+      "id": "proposal.culture.memorial",
+      "name": "Memorial name plate",
+      "row": 171,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A name plate has low general salvage demand. Personal importance does not establish broad market value."
+    },
+    {
+      "id": "proposal.culture.oath_ring",
+      "name": "Oath exchange ring",
+      "row": 172,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A shaped metal ring retains modest workmanship and possible wearability without assumed precious alloy or provenance."
+    },
+    {
+      "id": "proposal.culture.milestone",
+      "name": "Life-event charm",
+      "row": 173,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A simple personal charm has little general utility or recoverable material value without established provenance."
+    },
+    {
+      "id": "proposal.culture.rattle",
+      "name": "Ceremonial shell rattle",
+      "row": 174,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A simple shell rattle uses abundant material and limited precision work compared with tuned instruments."
+    },
+    {
+      "id": "proposal.culture.gift_case",
+      "name": "Ceremonial gift case",
+      "row": 175,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A worked presentation enclosure has modest reusable body and fitting value, with no gift contents included."
+    },
+    {
+      "id": "proposal.culture.bowl",
+      "name": "Everyday shell bowl",
+      "row": 176,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A common shell bowl uses abundant material and simple shaping, giving low replacement cost."
+    },
+    {
+      "id": "proposal.culture.spoon",
+      "name": "Algae spoon / scraper",
+      "row": 177,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A simple meal scraper uses little common material and is inexpensive to replace."
+    },
+    {
+      "id": "proposal.culture.brush",
+      "name": "Dust brush",
+      "row": 178,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A basic cleaning implement has everyday demand but limited material and assembly value."
+    },
+    {
+      "id": "proposal.culture.comb",
+      "name": "Shell comb",
+      "row": 179,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "An ordinary shaped shell grooming piece has low material cost and modest workmanship."
+    },
+    {
+      "id": "proposal.culture.tablet",
+      "name": "Reusable tally tablet",
+      "row": 180,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A reusable marking surface has practical recordkeeping utility and modest surface-preparation labor."
+    },
+    {
+      "id": "proposal.culture.stylus",
+      "name": "Marking stylus",
+      "row": 181,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A simple incising point is readily replaced and contains little material."
+    },
+    {
+      "id": "proposal.ceramic.bowl",
+      "name": "Plain ceramic eating bowl",
+      "row": 186,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "An ordinary small fired bowl offers low-value domestic utility without specialist glazing or fitting."
+    },
+    {
+      "id": "proposal.ceramic.cup",
+      "name": "Small ceramic cup",
+      "row": 187,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A small plain cup contains little material and is a routine domestic replacement."
+    },
+    {
+      "id": "proposal.ceramic.plate",
+      "name": "Ceramic serving plate",
+      "row": 188,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A simple serving plate has low specialist demand and modest forming work."
+    },
+    {
+      "id": "proposal.ceramic.storage_crock",
+      "name": "Ceramic dry-storage crock",
+      "row": 189,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A larger fitted storage vessel offers more useful body and lid value than plain tableware."
+    },
+    {
+      "id": "proposal.ceramic.crucible",
+      "name": "Ceramic crucible",
+      "row": 190,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A sound specialist crucible can support difficult hot-work processes. Thermal suitability and contamination must be qualified."
+    },
+    {
+      "id": "proposal.ceramic.casting_mold",
+      "name": "Ceramic casting mold",
+      "row": 191,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A shaped casting cavity preserves skilled process-specific work, discounted for narrow fit and unknown heat history."
+    },
+    {
+      "id": "proposal.ceramic.mortar",
+      "name": "Ceramic grinding mortar",
+      "row": 192,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A prepared grinding vessel offers durable workshop utility and more process value than common tableware."
+    },
+    {
+      "id": "proposal.ceramic.pestle",
+      "name": "Ceramic pestle",
+      "row": 193,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A simple grinding handpiece is useful but less labor-intensive and less complete than a matched grinding set."
+    },
+    {
+      "id": "proposal.ceramic.firing_tray",
+      "name": "Ceramic firing tray",
+      "row": 194,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A sound firing support preserves useful ceramic process hardware, subject to heat-history inspection."
+    },
+    {
+      "id": "proposal.ceramic.votive_plaque",
+      "name": "Ceramic votive plaque",
+      "row": 204,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A small ordinary ceramic offering has limited practical reuse and no assumed exceptional provenance."
+    },
+    {
+      "id": "proposal.ceramic.figurine",
+      "name": "Ceramic commemorative figurine",
+      "row": 205,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A sculpted keepsake retains modest artisan labor, without assigning extraordinary collector demand."
+    },
+    {
+      "id": "proposal.ceramic.ceremony_bowl",
+      "name": "Ceremonial ceramic bowl",
+      "row": 206,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A finished ceremonial bowl has more presentation labor than plain tableware but no assumed precious material."
+    },
+    {
+      "id": "proposal.fire.striker",
+      "name": "Flint striking tool",
+      "row": 214,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A compact striking implement offers basic process utility without supplying fuel, oxygen or a complete heating setup."
+    },
+    {
+      "id": "proposal.fire.cooking_pot",
+      "name": "Ceramic cooking pot",
+      "row": 216,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A sound cooking vessel preserves useful forming and heating-related workmanship, with food-contact and heat suitability still to check."
+    },
+    {
+      "id": "proposal.fire.lidded_pan",
+      "name": "Lidded cooking pan",
+      "row": 218,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A metal pan and matching lid combine useful metal stock with fitted cooking hardware and broad domestic demand."
+    },
+    {
+      "id": "proposal.fire.rack",
+      "name": "Cooking rack",
+      "row": 219,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A simple open cooking support has useful metal stock but limited precision or assembly labor."
+    },
+    {
+      "id": "proposal.fire.pot_stand",
+      "name": "Cooking pot stand",
+      "row": 220,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A basic vessel stand has general reuse potential and low mechanical complexity."
+    },
+    {
+      "id": "proposal.fire.tongs",
+      "name": "Cooking tongs",
+      "row": 221,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "Simple cooking handling hardware has everyday value but is relatively straightforward to replace."
+    },
+    {
+      "id": "proposal.fire.firebox",
+      "name": "Cooking station",
+      "row": 222,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "An integrated cooking and preparation station preserves multiple useful fitted parts and substantial replacement labor. No food or fuel is included."
+    },
+    {
+      "id": "proposal.fire.glow_holder",
+      "name": "Shuttered glow-stone holder",
+      "row": 226,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A fitted shutter mechanism and holder have higher workmanship and light-control utility than a plain bracket. No glowing stone is included."
+    },
+    {
+      "id": "proposal.wind.turbine",
+      "name": "Salvaged wind turbine",
+      "row": 235,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A turbine assembly preserves major fitted machinery and potential wind-work utility. Output, mounting and operability remain unproven."
+    },
+    {
+      "id": "proposal.wind.sail_panel",
+      "name": "Prepared insect-wing sail panel",
+      "row": 236,
+      "previousTier": "T1",
+      "tier": "T3",
+      "valueReason": "Prepared sail membrane saves delicate-material selection and fabrication effort and can serve valuable propulsion repairs."
+    },
+    {
+      "id": "proposal.wind.folding_frame",
+      "name": "Collapsible sail frame",
+      "row": 239,
+      "previousTier": "T4",
+      "tier": "T4",
+      "valueReason": "A collapsible load-bearing frame concentrates fitted joints and alignment work that are costly to replace."
+    },
+    {
+      "id": "proposal.wind.sail_grip",
+      "name": "Hand-sail grip assembly",
+      "row": 240,
+      "previousTier": "T3",
+      "tier": "T3",
+      "valueReason": "A matched grip and control fitting preserves ergonomic and mechanical assembly work with direct sail-repair demand."
+    },
+    {
+      "id": "proposal.wind.wheel",
+      "name": "Dirtboard wheel assembly",
+      "row": 241,
+      "previousTier": "T4",
+      "tier": "T4",
+      "valueReason": "A complete wheel and bearing unit preserves precision moving parts needed for traversal, subject to condition and fit."
+    },
+    {
+      "id": "proposal.wind.truck",
+      "name": "Dirtboard axle / steering assembly",
+      "row": 242,
+      "previousTier": "T4",
+      "tier": "T4",
+      "valueReason": "A steering and axle assembly concentrates load-bearing, alignment and moving-interface work essential to a compatible dirtboard."
+    },
+    {
+      "id": "proposal.wind.rotor",
+      "name": "Salvaged turbine rotor assembly",
+      "row": 243,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A matched rotor assembly preserves substantial fabricated machinery, although load suitability and remaining condition are unproven."
+    },
+    {
+      "id": "proposal.wind.generator",
+      "name": "Salvaged generator assembly",
+      "row": 244,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "Electromechanical conversion hardware is difficult to replace and valuable to compatible machinery specialists. No output is guaranteed."
+    },
+    {
+      "id": "proposal.legger.board_bracket",
+      "name": "Legger dirtboard carrying bracket",
+      "row": 274,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A fitted carrying bracket offers useful fabricated hardware but no added cargo capacity or remote access."
+    },
+    {
+      "id": "proposal.legger.grease_applicator",
+      "name": "Joint grease applicator",
+      "row": 287,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A controlled grease applicator preserves a service mechanism and useful maintenance labor. No grease supply is included."
+    },
+    {
+      "id": "proposal.legger.service_pick",
+      "name": "Joint-service cleaning pick",
+      "row": 289,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A simple cleaning pick needs little material or precision assembly and is readily replaced."
+    },
+    {
+      "id": "proposal.legger.bearing_puller",
+      "name": "Matched bearing-removal tool",
+      "row": 290,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A matched bearing-removal tool can preserve specialist service capability and costly precision fit, subject to compatibility."
+    },
+    {
+      "id": "proposal.legger.alignment_gauge",
+      "name": "Legger alignment gauge",
+      "row": 291,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "An alignment gauge preserves specialist dimensional reference work. Actual accuracy and matched equipment must be checked."
+    },
+    {
+      "id": "proposal.legger.impact_cap",
+      "name": "Sacrificial impact cap",
+      "row": 296,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A simple replaceable impact cap offers modest scrap and fitting value without a complete protective assembly."
+    },
+    {
+      "id": "proposal.food.drink_flask",
+      "name": "Reusable Phagia drinking flask",
+      "row": 316,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A reusable food-contact flask has ordinary survival-kit demand but supplies no Phagia or automatic safe seal."
+    },
+    {
+      "id": "proposal.food.bar_case",
+      "name": "Phagia ration-bar case",
+      "row": 317,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A simple ration case offers modest body and closure value. No rations are included."
+    },
+    {
+      "id": "proposal.raw.pumice",
+      "name": "Pumice lumps",
+      "row": 321,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "Common abrasive mineral lumps have low fabrication labor and low value before selection."
+    },
+    {
+      "id": "proposal.raw.ceramic_shards",
+      "name": "Broken ceramic shards",
+      "row": 328,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "Broken ceramic feed requires sorting and reprocessing and retains little finished-object labor."
+    },
+    {
+      "id": "proposal.raw.glass_shards",
+      "name": "Broken glass pieces",
+      "row": 329,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "Mixed broken glass is low-value reclaiming feed until composition and contamination are resolved."
+    },
+    {
+      "id": "proposal.raw.spring_strips",
+      "name": "Salvaged spring-metal strips",
+      "row": 330,
+      "previousTier": "T0",
+      "tier": "T3",
+      "valueReason": "Surviving spring stock can save specialized resilient-part preparation. Reuse depends on remaining spring behavior."
+    },
+    {
+      "id": "proposal.raw.metal_cable",
+      "name": "Salvaged metal cable",
+      "row": 331,
+      "previousTier": "T0",
+      "tier": "T3",
+      "valueReason": "Sound cable lengths preserve significant wire and assembly labor and have broad repair demand. No load rating is assumed."
+    },
+    {
+      "id": "proposal.raw.metal_mesh",
+      "name": "Metal mesh scrap",
+      "row": 332,
+      "previousTier": "T0",
+      "tier": "T1",
+      "valueReason": "Scrap mesh is versatile screening stock, discounted for variable aperture, alloy and damage."
+    },
+    {
+      "id": "proposal.raw.spent_refractory",
+      "name": "Spent refractory chunks",
+      "row": 334,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "Spent contaminated lining has uncertain recovery yield and no assured remaining heat resistance."
+    },
+    {
+      "id": "proposal.raw.grinding_pebbles",
+      "name": "Rounded grinding stones",
+      "row": 339,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "Selected ordinary stones require little manufacture and offer basic grinding-feed value."
+    },
+    {
+      "id": "proposal.raw.chain",
+      "name": "Rusted chain lengths",
+      "row": 347,
+      "previousTier": "T0",
+      "tier": "T1",
+      "valueReason": "Chain retains linked metalwork but corrosion reduces direct-use value and requires link-by-link inspection."
+    },
+    {
+      "id": "proposal.raw.brass_scrap",
+      "name": "Salvaged brass fragments",
+      "row": 348,
+      "previousTier": "T0",
+      "tier": "T1",
+      "valueReason": "Brass fragments offer useful alloy recovery value, discounted for mixed composition and refining work."
+    },
+    {
+      "id": "proposal.raw.bronze_scrap",
+      "name": "Salvaged bronze fragments",
+      "row": 349,
+      "previousTier": "T0",
+      "tier": "T1",
+      "valueReason": "Bronze fragments provide useful metal feed without a guaranteed alloy grade or finished fitting."
+    },
+    {
+      "id": "proposal.raw.hinge_halves",
+      "name": "Discarded hinge halves",
+      "row": 350,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "An unmatched hinge half supplies little usable mechanism and mainly common metal feed."
+    },
+    {
+      "id": "proposal.raw.hoop_bands",
+      "name": "Salvaged metal hoop bands",
+      "row": 351,
+      "previousTier": "T0",
+      "tier": "T1",
+      "valueReason": "Curved bands retain useful shaping and metal stock but require fitting and condition checks."
+    },
+    {
+      "id": "proposal.raw.pipe_sections",
+      "name": "Old metal pipe sections",
+      "row": 352,
+      "previousTier": "T0",
+      "tier": "T1",
+      "valueReason": "Hollow metal stock is useful for fabrication but unknown service history limits ready reuse."
+    },
+    {
+      "id": "proposal.raw.coated_sheet",
+      "name": "Coated sheet-metal scrap",
+      "row": 353,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "An unidentified coating adds removal and process uncertainty to otherwise ordinary sheet scrap."
+    },
+    {
+      "id": "proposal.raw.bent_fasteners",
+      "name": "Bent nails and rivets",
+      "row": 354,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "Deformed small fasteners offer little immediate reuse and mostly low-grade reclaiming value."
+    },
+    {
+      "id": "proposal.raw.furnace_ash",
+      "name": "Coarse furnace ash",
+      "row": 355,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "Uncharacterized furnace residue has uncertain useful yield and substantial processing burden."
+    },
+    {
+      "id": "proposal.raw.abrasive_fragments",
+      "name": "Broken abrasive-wheel fragments",
+      "row": 356,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "Broken abrasive fragments retain only limited hand-finishing or grain-recovery value and cannot replace an intact wheel."
+    },
+    {
+      "id": "proposal.raw.magnet_fragments",
+      "name": "Broken magnet fragments",
+      "row": 357,
+      "previousTier": "T0",
+      "tier": "T3",
+      "valueReason": "Remaining magnetic material can supply difficult-to-substitute holding or collection parts, after magnetic and condition checks."
+    },
+    {
+      "id": "proposal.raw.punching_offcuts",
+      "name": "Metal punching offcuts",
+      "row": 358,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "Small punching remnants mainly provide ordinary reclaiming feed and limited fabrication blanks."
+    },
+    {
+      "id": "author.forging.hammer",
+      "name": "Forging hammer",
+      "row": 398,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A serviceable forging hammer preserves a durable workshop tool with broad production demand and meaningful shaping labor."
+    },
+    {
+      "id": "proposal.forging.tongs",
+      "name": "Smithing tongs",
+      "row": 400,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "Smithing tongs offer useful hot-work gripping geometry with moderate fabrication effort and fit constraints."
+    },
+    {
+      "id": "proposal.forging.sledge",
+      "name": "Forging sledge",
+      "row": 401,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A heavy worked striking head preserves substantial prepared metal and forging utility, despite its transport burden."
+    },
+    {
+      "id": "proposal.forging.hot_cut",
+      "name": "Hot-cut chisel",
+      "row": 402,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A hot-work cutting edge offers repeat workshop utility and prepared-tool value, subject to edge condition."
+    },
+    {
+      "id": "proposal.forging.punch",
+      "name": "Forging punch",
+      "row": 403,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A prepared piercing tool preserves shaped working stock and workshop labor but has a relatively simple form."
+    },
+    {
+      "id": "proposal.forging.drift",
+      "name": "Forming drift",
+      "row": 404,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A sizing tool retains useful shaped precision relative to scrap, though its matching hole geometry limits demand."
+    },
+    {
+      "id": "proposal.forging.swage_block",
+      "name": "Swage block",
+      "row": 405,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A large shaped support block preserves major metal mass, multiple working contours and expensive workshop preparation, with a hauling penalty."
+    },
+    {
+      "id": "proposal.forging.file",
+      "name": "Metalworking file",
+      "row": 406,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "Fine cutting teeth and prepared working surfaces preserve difficult hand-tool manufacture and broad fitting utility."
+    },
+    {
+      "id": "proposal.t4.spar_joint",
+      "name": "Collapsible sail-spar joint kit",
+      "row": 479,
+      "previousTier": "T4",
+      "tier": "T4",
+      "valueReason": "A matched collapsible joint set concentrates precision wind-load interfaces and traversal-repair value."
+    },
+    {
+      "id": "proposal.t4.wheel_hub",
+      "name": "Dirtboard wheel-hub core",
+      "row": 482,
+      "previousTier": "T4",
+      "tier": "T4",
+      "valueReason": "A fitted wheel-hub core preserves precision bearing and axle interfaces that are difficult to substitute."
+    },
+    {
+      "id": "proposal.lore.ruin_growth",
+      "name": "Ruin-associated Iron Growth specimens",
+      "row": 492,
+      "previousTier": "T0",
+      "tier": "T3",
+      "valueReason": "A context-sensitive ruin specimen may attract specialist analysis demand. No ancient synthetic composition or special power is assumed."
+    },
+    {
+      "id": "proposal.lore.shell_scraper",
+      "name": "Domestic shell-trimming scraper",
+      "row": 513,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A fitted shell-care insert and handle preserve specialized husbandry-tool work without assuming biological yield or safe use."
+    },
+    {
+      "id": "proposal.collection.hand_cranked_metal_drill",
+      "name": "Hand-cranked metal drill",
+      "row": 548,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A hand drill concentrates gears, jaws and rotating interfaces with broad workshop production value, after qualification."
+    },
+    {
+      "id": "proposal.collection.husk_sheet_cutting_shears",
+      "name": "Husk-sheet cutting shears",
+      "row": 550,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "Fitted cutting blades and a pivot preserve useful precision work for scarce prepared sheets and hides."
+    },
+    {
+      "id": "proposal.collection.divided_ceramic_reagent_caddy",
+      "name": "Divided ceramic reagent caddy",
+      "row": 551,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A divided shaped caddy retains moderate ceramic workmanship and sorting utility without contents or chemical certification."
+    },
+    {
+      "id": "proposal.collection.founding_stone_keepsake",
+      "name": "Founding-stone keepsake",
+      "row": 562,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A worked keepsake has modest artisan value. Unverified settlement provenance receives no major premium."
+    },
+    {
+      "id": "proposal.collection.guild_craft_exemplar",
+      "name": "Guild craft exemplar",
+      "row": 563,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "An exemplar's value rests on demonstrable fine workmanship and specialist study interest, without assuming guild authentication."
+    },
+    {
+      "id": "proposal.collection.witness_chain",
+      "name": "Witness chain",
+      "row": 564,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A linked agreement token preserves some metalworking labor without transferring legal standing."
+    },
+    {
+      "id": "proposal.collection.pilgrim_route_bead_strand",
+      "name": "Pilgrim route bead strand",
+      "row": 566,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A worked bead strand retains assembly and decorative labor, without assuming a verified journey history."
+    },
+    {
+      "id": "proposal.collection.ancestor_shell_silhouette",
+      "name": "Ancestor shell silhouette",
+      "row": 567,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A simple cutout in abundant shell has narrow decorative demand and low replacement cost."
+    },
+    {
+      "id": "proposal.collection.work_crew_oath_clasp",
+      "name": "Work-crew oath clasp",
+      "row": 568,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A worked clasp combines modest fastening and decorative value without granting membership or authority."
+    },
+    {
+      "id": "proposal.collection.ceremonial_magnet_stand",
+      "name": "Ceremonial magnet stand",
+      "row": 569,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A display assembly containing a magnet has specialist recoverable-material and fitting value. Ritual status adds no guaranteed premium."
+    },
+    {
+      "id": "proposal.collection.masterwork_presentation_tile",
+      "name": "Masterwork presentation tile",
+      "row": 570,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A carefully finished presentation support preserves moderate decorative workmanship without including the masterwork it once held."
+    },
+    {
+      "id": "proposal.collection.long_handled_meal_ladle",
+      "name": "Long-handled meal ladle",
+      "row": 573,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A long reusable serving implement offers modest metal and forming value with broad household demand."
+    },
+    {
+      "id": "proposal.collection.ceramic_portion_scoop",
+      "name": "Ceramic portion scoop",
+      "row": 574,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A simple small ceramic scoop offers little material and routine forming value. Precise calibration is not assumed."
+    },
+    {
+      "id": "proposal.collection.shell_serving_tray",
+      "name": "Shell serving tray",
+      "row": 575,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A broad shell tray uses abundant material and simple shaping and has low specialist demand."
+    },
+    {
+      "id": "proposal.collection.metal_eating_tongs",
+      "name": "Metal eating tongs",
+      "row": 576,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "Small reusable eating tongs retain modest fitted metalwork and ordinary domestic value."
+    },
+    {
+      "id": "proposal.collection.salvage_claim_leaf",
+      "name": "Salvage claim leaf",
+      "row": 577,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "Prepared record material and surviving marks can be useful to a matching claimant. Valid title or enforceable ownership is not assumed."
+    },
+    {
+      "id": "proposal.collection.household_meal_ledger",
+      "name": "Household meal ledger",
+      "row": 580,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A prepared ledger preserves paper and recordkeeping labor. Useful ration information depends on legibility and relevance."
+    },
+    {
+      "id": "proposal.collection.shaft_drop_weight_train",
+      "name": "Shaft-drop weight train",
+      "row": 690,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A large matched mechanical energy-storage assembly preserves expensive hardware and fabrication labor, discounted for fixed-site and hauling constraints. No stored energy is included."
+    },
+    {
+      "id": "proposal.collection.replaceable_electrode_battery_jar",
+      "name": "Replaceable electrode battery jar",
+      "row": 695,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A serviceable battery architecture preserves scarce contacts and fitted electrical hardware. No active chemistry or charge is included."
+    },
+    {
+      "id": "proposal.collection.radio_contact_service_kit",
+      "name": "Radio contact service kit",
+      "row": 705,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "Matched radio contacts and service implements preserve specialist communications-maintenance capability, subject to completeness and compatibility."
+    },
+    {
+      "id": "proposal.collection.dirtboard_running_gear_kit",
+      "name": "Dirtboard running-gear kit",
+      "row": 707,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A selected running-gear set preserves multiple precision traversal spares. No complete board or guaranteed fit is included."
+    },
+    {
+      "id": "proposal.collection.hide_headed_shell_drum",
+      "name": "Hide-headed shell drum",
+      "row": 715,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "Extremely low hide yield makes a prepared hide head costly, with tensioning and fitted shell adding artisan labor."
+    },
+    {
+      "id": "proposal.collection.double_headed_metal_drum",
+      "name": "Double-headed metal drum",
+      "row": 716,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "Two scarce prepared hide heads and a worked metal body combine high material replacement cost with instrument craftsmanship."
+    },
+    {
+      "id": "proposal.collection.slit_shell_drum",
+      "name": "Slit shell drum",
+      "row": 717,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A carefully tuned slit and resonating shell preserve skilled acoustic workmanship despite abundant raw shell."
+    },
+    {
+      "id": "proposal.collection.metal_frame_drum",
+      "name": "Metal frame drum",
+      "row": 718,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A scarce prepared hide membrane and fitted metal frame preserve both expensive material preparation and musical craftsmanship."
+    },
+    {
+      "id": "proposal.collection.shell_clapper_pair",
+      "name": "Shell-clapper pair",
+      "row": 719,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "Two simple shaped shell pieces require little scarce input or precision compared with tuned instruments."
+    },
+    {
+      "id": "proposal.collection.bronze_hand_bell",
+      "name": "Bronze hand bell",
+      "row": 720,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A cast tuned bell and suspended striker preserve useful alloy and skilled acoustic finishing."
+    },
+    {
+      "id": "proposal.collection.iron_cup_bell_chime",
+      "name": "Iron cup-bell chime",
+      "row": 721,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "Several matched resonating cups and their suspension preserve more tuning and assembly work than ordinary scrap cups."
+    },
+    {
+      "id": "proposal.collection.stone_bar_resonator",
+      "name": "Stone-bar resonator",
+      "row": 722,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "Selected tuned bars and a fitted resonance cavity preserve substantial acoustic preparation despite common base materials."
+    },
+    {
+      "id": "proposal.collection.steel_tongue_drum",
+      "name": "Steel tongue drum",
+      "row": 723,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "Carefully cut tuned tongues and a resonant steel body preserve difficult precision and artisan metalwork."
+    },
+    {
+      "id": "proposal.collection.metal_transverse_flute",
+      "name": "Metal transverse flute",
+      "row": 724,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A fitted metal wind instrument preserves precise openings and acoustic workmanship beyond ordinary tubing."
+    },
+    {
+      "id": "proposal.collection.ceramic_duct_flute",
+      "name": "Ceramic duct flute",
+      "row": 725,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A formed air channel and tuned openings preserve specialist ceramic instrument work."
+    },
+    {
+      "id": "proposal.collection.hollow_horn_flute",
+      "name": "Hollow-horn flute",
+      "row": 726,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A worked horn body with playable openings preserves selected faunal material and skilled acoustic labor."
+    },
+    {
+      "id": "proposal.collection.wing_rib_whistle",
+      "name": "Wing-rib whistle",
+      "row": 727,
+      "previousTier": "Not applicable",
+      "tier": "T0",
+      "valueReason": "A small simple hard-part whistle has limited material cost and less fabrication complexity than larger tuned instruments."
+    },
+    {
+      "id": "proposal.collection.shell_chamber_ocarina",
+      "name": "Shell chamber ocarina",
+      "row": 728,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A matched mouthpiece and tuned hollow chamber preserve specialist instrument shaping and fitting."
+    },
+    {
+      "id": "proposal.collection.bronze_lip_horn",
+      "name": "Bronze lip horn",
+      "row": 729,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A worked flared bronze instrument retains useful alloy and skilled forming beyond ordinary scrap stock."
+    },
+    {
+      "id": "proposal.collection.metal_free_reed_mouth_organ",
+      "name": "Metal free-reed mouth organ",
+      "row": 730,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A fitted bank of fine reeds and mouthpiece concentrates precision metalworking and tuning labor."
+    },
+    {
+      "id": "proposal.collection.wire_strung_shell_lyre",
+      "name": "Wire-strung shell lyre",
+      "row": 731,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "Selected metal strings, tension fittings and a worked shell frame combine scarce usable wire with instrument craftsmanship."
+    },
+    {
+      "id": "proposal.collection.tendon_strung_metal_zither",
+      "name": "Tendon-strung metal zither",
+      "row": 732,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "Prepared tendon strings, tensioning and a resonant metal body preserve difficult material preparation and fitting work."
+    },
+    {
+      "id": "proposal.collection.steel_jaw_harp",
+      "name": "Steel jaw harp",
+      "row": 733,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A resilient tuned tongue in a compact fitted frame preserves spring preparation and fine instrument work."
+    },
+    {
+      "id": "proposal.collection.folding_vertical_wing_shade",
+      "name": "Folding vertical wing shade",
+      "row": 734,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A folding fitted shade combines delicate prepared membrane, framing and packable shelter utility with high replacement labor."
+    },
+    {
+      "id": "proposal.collection.low_wing_roof_panel",
+      "name": "Low wing-roof panel",
+      "row": 735,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A broad prepared wing roof preserves fragile usable membrane and fitted shelter work, subject to wind-retention and condition checks."
+    },
+    {
+      "id": "proposal.collection.segmented_shelter_pole_set",
+      "name": "Segmented shelter pole set",
+      "row": 736,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "Matched segmented metal supports preserve several fitted joints and reusable shelter hardware."
+    },
+    {
+      "id": "proposal.collection.ground_anchor_stake_set",
+      "name": "Ground-anchor stake set",
+      "row": 737,
+      "previousTier": "Not applicable",
+      "tier": "T1",
+      "valueReason": "A basic anchor set provides ordinary worked metal and camp utility without substantial precision assembly."
+    },
+    {
+      "id": "proposal.collection.tendon_guyline_bundle",
+      "name": "Tendon guyline bundle",
+      "row": 738,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A prepared matched bundle of biological lines preserves selection, preparation and shelter-retention labor. Strength remains unqualified."
+    },
+    {
+      "id": "proposal.collection.husk_sheet_grit_screen",
+      "name": "Husk-sheet grit screen",
+      "row": 739,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A prepared grit screen has useful camp function and sheet-processing labor without a filtration rating."
+    },
+    {
+      "id": "proposal.collection.shell_ground_rest_panel",
+      "name": "Shell ground-rest panel",
+      "row": 740,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A fitted raised shell surface preserves practical camp construction work while using abundant shell stock."
+    },
+    {
+      "id": "proposal.collection.folding_privacy_partition",
+      "name": "Folding privacy partition",
+      "row": 741,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A folding reusable frame and pressed panels retain moderate domestic assembly value."
+    },
+    {
+      "id": "proposal.collection.canister_shelter_docking_stand",
+      "name": "Canister shelter docking stand",
+      "row": 742,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A fitted upright support retains useful canister-positioning hardware without including a canister or its contents."
+    },
+    {
+      "id": "proposal.collection.shelter_repair_patch_roll",
+      "name": "Shelter repair patch roll",
+      "row": 743,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "Prepared compatible membrane patches and retainers can protect valuable shelter material and save repair preparation."
+    },
+    {
+      "id": "proposal.collection.dirtboard_lane_snag_bar",
+      "name": "Dirtboard lane snag bar",
+      "row": 780,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A shaped obstacle retains useful metal and fabricated structure, but narrow encounter use limits general demand."
+    },
+    {
+      "id": "proposal.audit.recovered_radio_detector_element",
+      "name": "Recovered radio detector element",
+      "row": 825,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A recovered radio detector is a difficult-to-reproduce specialist component. Its operability, power needs and interface remain unproven."
+    },
+    {
+      "id": "proposal.audit.recovered_acoustic_receiver_capsule",
+      "name": "Recovered acoustic receiver capsule",
+      "row": 826,
+      "previousTier": "Not applicable",
+      "tier": "T4",
+      "valueReason": "A recovered transducer preserves specialist manufacture and compatible-radio repair potential, subject to function and fit checks."
+    },
+    {
+      "id": "proposal.audit.metalworking_hand_saw",
+      "name": "Metalworking hand saw",
+      "row": 829,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A toothed working blade and frame preserve useful cutting-tool manufacture with broad workshop demand."
+    },
+    {
+      "id": "proposal.audit.workshop_winding_mandrel",
+      "name": "Workshop winding mandrel",
+      "row": 830,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A reusable winding form preserves useful workshop geometry but lacks the precision moving parts of a complete mechanism."
+    },
+    {
+      "id": "proposal.audit.food_preparation_screen",
+      "name": "Food preparation screen",
+      "row": 831,
+      "previousTier": "Not applicable",
+      "tier": "T2",
+      "valueReason": "A prepared tendon lattice preserves material selection and fabrication for food handling, subject to food-contact qualification."
+    },
+    {
+      "id": "proposal.audit.metal_glassworking_blowpipe",
+      "name": "Metal glassworking blowpipe",
+      "row": 832,
+      "previousTier": "Not applicable",
+      "tier": "T3",
+      "valueReason": "A fitted long hollow hot-work tool preserves glassworking preparation and specialist workshop utility."
+    },
+    {
+      "id": "proposal.camp.divided_warming_pot",
+      "name": "Divided meal-warming pot",
+      "row": 840,
+      "previousTier": "T2",
+      "tier": "T3",
+      "valueReason": "Two fitted ceramic cups and a shared metal cradle preserve coordinated cooking-vessel and support work."
+    },
+    {
+      "id": "proposal.camp.pot_lid_rest",
+      "name": "Folding pot-lid rest",
+      "row": 841,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "A hinged support saves useful fitting and camp fabrication work but has a narrow domestic role."
+    },
+    {
+      "id": "proposal.camp.cam_tie_down_buckle",
+      "name": "Cam-lever tie-down buckle",
+      "row": 842,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "A fitted cam mechanism preserves moderate fastening labor and flexible camp utility, with no binding included."
+    },
+    {
+      "id": "proposal.camp.guyline_tensioner",
+      "name": "Three-hole guyline tensioner",
+      "row": 843,
+      "previousTier": "T2",
+      "tier": "T1",
+      "valueReason": "A small perforated plate offers practical line adjustment with little material and simple manufacture."
+    },
+    {
+      "id": "proposal.camp.split_ring_hanging_hook",
+      "name": "Split-ring hanging hook",
+      "row": 844,
+      "previousTier": "T2",
+      "tier": "T0",
+      "valueReason": "A small ring and short hook use little common metal and simple shaping, with no climbing rating."
+    },
+    {
+      "id": "proposal.camp.hinged_utensil_case",
+      "name": "Hinged camp utensil case",
+      "row": 845,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "A divided hinged case preserves moderate sheet-metal and closure work and practical utensil protection."
+    },
+    {
+      "id": "proposal.camp.folding_grit_pan",
+      "name": "Folding grit pan",
+      "row": 846,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "A folding handle and formed cleaning pan preserve moderate camp-tool workmanship beyond simple scrap."
+    },
+    {
+      "id": "proposal.salvage.expedition_cookpot",
+      "name": "Dented expedition cookpot",
+      "row": 850,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "Denting and unknown food-contact condition reduce this ordinary pot to low-value repair or reclaiming stock."
+    },
+    {
+      "id": "proposal.salvage.buckled_pack_frame",
+      "name": "Buckled pack frame",
+      "row": 851,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "A bent crossbar and missing bindings leave an incomplete common carrying frame with substantial repair burden."
+    },
+    {
+      "id": "proposal.salvage.mixed_field_fasteners",
+      "name": "Mixed field-repair fasteners",
+      "row": 852,
+      "previousTier": "T0",
+      "tier": "T2",
+      "valueReason": "A mixed set of potentially sound small fittings can save repeated repair trips, though sorting and matching are required."
+    },
+    {
+      "id": "proposal.salvage.cracked_haul_canister",
+      "name": "Cracked empty haul canister",
+      "row": 853,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "A cracked seam and missing closure remove containment utility, leaving ordinary body and fitting recovery value."
+    },
+    {
+      "id": "proposal.salvage.worn_boot_sole_plates",
+      "name": "Worn boot sole plates",
+      "row": 854,
+      "previousTier": "T0",
+      "tier": "T0",
+      "valueReason": "Worn mismatched sole pieces offer little complete-equipment value and require fit checks even as donors."
+    },
+    {
+      "id": "proposal.salvage.weathered_route_plates",
+      "name": "Weathered expedition route plates",
+      "row": 855,
+      "previousTier": "T0",
+      "tier": "T2",
+      "valueReason": "Surviving route marks may interest an expedition specialist, but age, accuracy and relevance discount them. No locations are revealed automatically."
+    },
+    {
+      "id": "proposal.salvage.damaged_sail_hinge",
+      "name": "Damaged folding-sail hinge",
+      "row": 856,
+      "previousTier": "T0",
+      "tier": "T2",
+      "valueReason": "A damaged specialist hinge may retain valuable matched pins and bearing surfaces despite seizure and missing sail parts."
+    },
+    {
+      "id": "proposal.salvage.seized_hand_drill",
+      "name": "Seized hand-crank drill",
+      "row": 857,
+      "previousTier": "T0",
+      "tier": "T2",
+      "valueReason": "A seized drill may retain useful gears and jaws, but jammed motion warrants a large discount from a sound drill."
+    },
+    {
+      "id": "proposal.salvage.cracked_expedition_spectacles",
+      "name": "Cracked expedition spectacles",
+      "row": 858,
+      "previousTier": "T0",
+      "tier": "T4",
+      "valueReason": "Even one surviving lens from explicitly rare eyewear can be costly to replace. Cracks, optical quality and specialist matching remain major limits."
+    },
+    {
+      "id": "proposal.salvage.sand_choked_cable_winch",
+      "name": "Sand-choked cable winch",
+      "row": 883,
+      "previousTier": "T0",
+      "tier": "T3",
+      "valueReason": "A damaged winch retains substantial gearing, drum and mounting hardware, discounted for seized motion and a damaged pawl. No usable cable is included."
+    },
+    {
+      "id": "proposal.accessory.static_discharge_wand",
+      "name": "Static-discharge contact wand",
+      "row": 885,
+      "previousTier": "T2",
+      "tier": "T4",
+      "valueReason": "A fitted insulated contact assembly has specialist electrical-service value. The undefined discharge mechanism prevents assuming protective performance."
+    },
+    {
+      "id": "proposal.accessory.spectacle_keeper_chain",
+      "name": "Spectacle keeper chain",
+      "row": 887,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "A fine chain and adjustable loops preserve small fitting work and retention utility, without including scarce spectacles."
+    },
+    {
+      "id": "proposal.accessory.metal_signal_mirror",
+      "name": "Polished-metal signal mirror",
+      "row": 889,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "A prepared reflective surface and sighting opening offer practical signaling value, limited by twilight light and geometry."
+    },
+    {
+      "id": "proposal.accessory.mechanical_travel_counter",
+      "name": "Mechanical travel counter",
+      "row": 890,
+      "previousTier": "T2",
+      "tier": "T3",
+      "valueReason": "A compact counting mechanism preserves fitted wheels and manual recordkeeping utility without paper or power."
+    },
+    {
+      "id": "proposal.accessory.personal_cord_reel",
+      "name": "Personal cord reel",
+      "row": 892,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "A reusable payout spool retains modest fabricated utility, with no line or retracting spring included."
+    },
+    {
+      "id": "proposal.accessory.folding_wing_hand_fan",
+      "name": "Folding wing-membrane hand fan",
+      "row": 893,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "A small prepared membrane and folding frame preserve useful craft labor, though limited size keeps it below shelter panels."
+    },
+    {
+      "id": "proposal.accessory.pocket_grit_bellows",
+      "name": "Pocket grit bellows",
+      "row": 895,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "Prepared membrane, shell cheeks and nozzle retain useful cleaning-tool assembly work with modest scale."
+    },
+    {
+      "id": "proposal.culture.engraved_game_tiles",
+      "name": "Engraved shell game tiles",
+      "row": 919,
+      "previousTier": "T2",
+      "tier": "T0",
+      "valueReason": "Small incised game pieces use abundant shell and simple marks, with no exceptional collector provenance assumed."
+    },
+    {
+      "id": "proposal.culture.ceramic_storytelling_mask",
+      "name": "Ceramic storytelling mask",
+      "row": 920,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "A shaped expressive ceramic mask retains moderate performance-art craftsmanship without protective or sacred effects."
+    },
+    {
+      "id": "proposal.culture.husk_paper_songbook",
+      "name": "Husk-paper songbook",
+      "row": 922,
+      "previousTier": "T3",
+      "tier": "T4",
+      "valueReason": "Prepared paper leaves and preserved authored repertoire combine material processing, transcription and possible performer demand. Legibility and relevant buyers are required."
+    },
+    {
+      "id": "proposal.culture.household_pattern_roller",
+      "name": "Household pattern roller",
+      "row": 924,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "An engraved cylinder and axle preserve repeat-pattern craft utility without official seal authority."
+    },
+    {
+      "id": "proposal.camp.folding_shell_stool",
+      "name": "Folding shell stool",
+      "row": 964,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "A folding support and shaped seat preserve useful camp furniture labor while relying on common shell and metal."
+    },
+    {
+      "id": "proposal.camp.folding_camp_table",
+      "name": "Folding camp table",
+      "row": 965,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "Fitted hinges, legs and two shell leaves preserve moderate camp furniture assembly value, discounted for bulk. No crafting capability is included."
+    },
+    {
+      "id": "proposal.camp.adjustable_shell_headrest",
+      "name": "Adjustable shell headrest",
+      "row": 966,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "A smooth shell support and notched adjustment preserve moderate fitted comfort-item craftsmanship."
+    },
+    {
+      "id": "proposal.camp.boot_scraper",
+      "name": "Camp boot scraper",
+      "row": 967,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "A fabricated scraping edge and removable tray preserve useful camp maintenance work with common materials."
+    },
+    {
+      "id": "proposal.culture.interlocking_iron_ring_puzzle",
+      "name": "Interlocking iron ring puzzle",
+      "row": 968,
+      "previousTier": "T2",
+      "tier": "T2",
+      "valueReason": "Interlinked worked loops and a sliding keeper preserve moderate small-object fitting labor and entertainment value."
+    }
+  ],
+  "sourceHashAfter": "186be522ab5c7f03715fd9510b7cf1984c86035b17180b3f1033c222d1448629",
+  "changedCells": {
+    "Items": 732,
+    "Tier review": 22,
+    "Craft audit": 163,
+    "Material routes": 225,
+    "Crafting browser": 643,
+    "Crafting recipes": 19
+  },
+  "verification": "Exact changed-cell allowlist checked across all workbook XML. All original formulas, styles and unrelated cells/archive members retained. All 200 stable IDs retained and each tier has 40 items."
+}
