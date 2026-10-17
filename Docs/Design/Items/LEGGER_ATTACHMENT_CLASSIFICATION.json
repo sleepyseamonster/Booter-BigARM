@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-15",
+  "definition": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects.",
+  "items": [
+    {
+      "id": "proposal.legger.sling",
+      "name": "Legger cargo sling",
+      "previous": "Attachments"
+    },
+    {
+      "id": "proposal.legger.cradle",
+      "name": "Legger rigid cargo cradle",
+      "previous": "Attachments"
+    },
+    {
+      "id": "proposal.legger.ceramic_backing",
+      "name": "Ceramic armor backing insert",
+      "previous": "Attachments"
+    },
+    {
+      "id": "proposal.legger.pannier_frame",
+      "name": "Legger side-pannier frame",
+      "previous": "Attachments"
+    },
+    {
+      "id": "proposal.legger.sample_rack",
+      "name": "Legger sample-vial rack",
+      "previous": "Attachments"
+    },
+    {
+      "id": "proposal.legger.ore_bin",
+      "name": "Legger removable ore bin",
+      "previous": "Attachments"
+    },
+    {
+      "id": "proposal.legger.board_bracket",
+      "name": "Legger dirtboard carrying bracket",
+      "previous": "Attachments"
+    },
+    {
+      "id": "proposal.legger.spares_case",
+      "name": "Legger fitted spares case",
+      "previous": "Attachments"
+    },
+    {
+      "id": "proposal.legger.seam_guard",
+      "name": "Armor seam-cover strip",
+      "previous": "Attachments"
+    },
+    {
+      "id": "proposal.legger.impact_cap",
+      "name": "Sacrificial impact cap",
+      "previous": "Attachments"
+    },
+    {
+      "id": "proposal.legger.fragment_liner",
+      "name": "Pressed-husk fragment liner",
+      "previous": "Attachments"
+    },
+    {
+      "id": "proposal.legger.impact_lattice",
+      "name": "Ancient impact-lattice backing",
+      "previous": "Attachments"
+    }
+  ],
+  "counts": {
+    "Legger attachments": 12,
+    "Attachments": 4
+  },
+  "sourceHashBefore": "fe88099e05c91cee1266b7639855cb5829374edebbe52037fedf9c29e245a35a",
+  "sourceHashAfter": "d0c396bc0b5c92213ad95e1510efdfab7d4c3c451838824946fd8d286ec62b11",
+  "scope": "Catalog organization only. Stable item IDs, art/review choices, fitments, world identity, streaming and persisted gameplay deltas are unchanged."
+}

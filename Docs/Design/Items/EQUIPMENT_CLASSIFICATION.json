@@ -1,0 +1,1028 @@
+{
+  "date": "2026-10-15",
+  "authority": "User requested Equipment split into armor, tools, accessories and attachments.",
+  "scope": "Catalog organization only; preserve IDs, design status, tiers, equipment slots and gameplay behavior.",
+  "sourceHashBefore": "ac13104281afc6f6cdcf1db54776192fece457581b2ad01cf7bff2c97bdaaea3",
+  "sourceHashAfter": "5ef755034a6b8892fb3eb3fb364b3ac3787deb620b374edb5db14b3c2dde889a",
+  "counts": {
+    "Accessories": 7,
+    "Clothing": 8,
+    "Tools": 27,
+    "Armor": 37,
+    "Attachments": 1,
+    "Salvage": 17,
+    "Workshop upgrades": 1,
+    "Camp items": 8,
+    "Legger attachments": 11,
+    "Legger armor": 7,
+    "Crafting stations": 1
+  },
+  "items": [
+    {
+      "id": "equipment.algae_canister",
+      "name": "Algae canister",
+      "category": "Accessories",
+      "reason": "Eyewear, carried personal reserves, carriers and supporting utility gear; ordinary garments are classified as Clothing. No new slots or effects."
+    },
+    {
+      "id": "equipment.cloak",
+      "name": "Cloak",
+      "category": "Clothing",
+      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
+    },
+    {
+      "id": "equipment.digging_tool",
+      "name": "Digging shovel axe",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "tool.micro_dust_harvester",
+      "name": "Dust canister",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "equipment.grappling_hook",
+      "name": "Grappling hook",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "equipment.jacket",
+      "name": "Jacket",
+      "category": "Clothing",
+      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
+    },
+    {
+      "id": "proposal.gear.magnets",
+      "name": "Field magnets",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.gear.grounding_kit",
+      "name": "Static grounding kit",
+      "category": "Accessories",
+      "reason": "Eyewear, carried personal reserves, carriers and supporting utility gear; ordinary garments are classified as Clothing. No new slots or effects."
+    },
+    {
+      "id": "proposal.gear.mail_shirt",
+      "name": "Chainmail shirt",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.gear.chest_armor",
+      "name": "Iron chestplate",
+      "category": "Armor",
+      "reason": "Generic armor piece refined into the iron family; ID retained."
+    },
+    {
+      "id": "proposal.gear.helmet",
+      "name": "Iron helmet",
+      "category": "Armor",
+      "reason": "Generic armor piece refined into the iron family; ID retained."
+    },
+    {
+      "id": "proposal.gear.leg_armor",
+      "name": "Iron leg guards",
+      "category": "Armor",
+      "reason": "Generic armor piece refined into the iron family; ID retained."
+    },
+    {
+      "id": "proposal.gear.boots",
+      "name": "Boots",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.gear.gloves",
+      "name": "Gloves",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.gear.backpack",
+      "name": "Backpack",
+      "category": "Accessories",
+      "reason": "Eyewear, carried personal reserves, carriers and supporting utility gear; ordinary garments are classified as Clothing. No new slots or effects."
+    },
+    {
+      "id": "proposal.gear.special_plates",
+      "name": "Specialized armor plates",
+      "category": "Armor",
+      "reason": "Author direction October 16: all remaining general Attachments belong in Armor; retire the empty Attachments section. Category assignment preserves item type, properties and recipe roles, including the tool belt. Legger attachments remains separate."
+    },
+    {
+      "id": "proposal.gear.shield",
+      "name": "Shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.fashion.special_spectacles",
+      "name": "Specialized spectacles",
+      "category": "Accessories",
+      "reason": "Eyewear, carried personal reserves, carriers and supporting utility gear; ordinary garments are classified as Clothing. No new slots or effects."
+    },
+    {
+      "id": "proposal.fashion.eyeglasses",
+      "name": "Eyeglasses",
+      "category": "Accessories",
+      "reason": "Eyewear, carried personal reserves, carriers and supporting utility gear; ordinary garments are classified as Clothing. No new slots or effects."
+    },
+    {
+      "id": "proposal.fashion.hat",
+      "name": "Hat",
+      "category": "Clothing",
+      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
+    },
+    {
+      "id": "proposal.fashion.husk_garment",
+      "name": "Pleated husk-fiber dress coat",
+      "category": "Clothing",
+      "reason": "Individual garment refined within the requested clothing family; existing ID retained."
+    },
+    {
+      "id": "proposal.fashion.fur_garment",
+      "name": "Elaborate fur wear",
+      "category": "Clothing",
+      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
+    },
+    {
+      "id": "proposal.fashion.hide_garment",
+      "name": "Elaborate hide wear",
+      "category": "Clothing",
+      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
+    },
+    {
+      "id": "proposal.gear.simple_wraps",
+      "name": "Everyday torso wrap",
+      "category": "Clothing",
+      "reason": "Individual garment refined within the requested clothing family; existing ID retained."
+    },
+    {
+      "id": "proposal.canister.harness",
+      "name": "Fitted canister harness",
+      "category": "Attachments",
+      "reason": "General fitted mounts, harnesses, inserts and wearable add-ons. Companion-specific cargo fittings, cases and armor add-ons are Legger attachments; complete protective covers remain Legger armor."
+    },
+    {
+      "id": "proposal.canister.inspection_gauge",
+      "name": "Seal inspection gauge",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "proposal.ceramic.crucible",
+      "name": "Ceramic crucible",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.ceramic.casting_mold",
+      "name": "Ceramic casting mold",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.ceramic.mortar",
+      "name": "Ceramic grinding mortar",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.ceramic.pestle",
+      "name": "Ceramic pestle",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.ceramic.firing_tray",
+      "name": "Ceramic firing tray",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.ceramic.armor_insert",
+      "name": "Specialist ceramic armor insert",
+      "category": "Armor",
+      "reason": "Author direction October 16: all remaining general Attachments belong in Armor; retire the empty Attachments section. Category assignment preserves item type, properties and recipe roles, including the tool belt. Legger attachments remains separate."
+    },
+    {
+      "id": "proposal.ceramic.grinding_disc",
+      "name": "Ceramic abrasive disc",
+      "category": "Workshop upgrades",
+      "reason": "Upgrades and replaceable working parts fitted to workshop tools or stations."
+    },
+    {
+      "id": "proposal.fire.striker",
+      "name": "Flint striking tool",
+      "category": "Camp items",
+      "reason": "Author camp organization: Cooking & ignition."
+    },
+    {
+      "id": "proposal.fire.cooking_pot",
+      "name": "Ceramic cooking pot",
+      "category": "Camp items",
+      "reason": "Author camp organization: Cooking & ignition."
+    },
+    {
+      "id": "proposal.fire.cooking_slab",
+      "name": "Cooking stone slab",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.fire.lidded_pan",
+      "name": "Lidded cooking pan",
+      "category": "Camp items",
+      "reason": "Author camp organization: Cooking & ignition."
+    },
+    {
+      "id": "proposal.fire.rack",
+      "name": "Cooking rack",
+      "category": "Camp items",
+      "reason": "Author camp organization: Cooking & ignition."
+    },
+    {
+      "id": "proposal.fire.pot_stand",
+      "name": "Cooking pot stand",
+      "category": "Camp items",
+      "reason": "Author camp organization: Cooking & ignition."
+    },
+    {
+      "id": "proposal.fire.tongs",
+      "name": "Cooking tongs",
+      "category": "Camp items",
+      "reason": "Author camp organization: Cooking & ignition."
+    },
+    {
+      "id": "proposal.fire.firebox",
+      "name": "Managed cooking firebox",
+      "category": "Camp items",
+      "reason": "Author correction: all cooking equipment and related household food-preparation records belong in Camp items, including the cooking station and damaged cooking vessels. Classification does not repair salvage or establish working equipment."
+    },
+    {
+      "id": "proposal.fire.glow_holder",
+      "name": "Shuttered glow-stone holder",
+      "category": "Accessories",
+      "reason": "Eyewear, carried personal reserves, carriers and supporting utility gear; ordinary garments are classified as Clothing. No new slots or effects."
+    },
+    {
+      "id": "proposal.wind.turbine",
+      "name": "Salvaged wind turbine",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "proposal.wind.hand_sail",
+      "name": "Collapsible handheld wind sail",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.wind.dirtboard",
+      "name": "Four-wheel all-terrain dirtboard",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.legger.sling",
+      "name": "Legger cargo sling",
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
+    },
+    {
+      "id": "proposal.legger.cradle",
+      "name": "Legger rigid cargo cradle",
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
+    },
+    {
+      "id": "proposal.legger.belly_pan",
+      "name": "Legger chassis belly pan",
+      "category": "Legger armor",
+      "reason": "Protective guards, panels and chassis covers intended for the Legger, including recovered ancient variants. Fit and protection behavior remain proposals."
+    },
+    {
+      "id": "proposal.legger.shell_guard",
+      "name": "Chitin chassis guard",
+      "category": "Legger armor",
+      "reason": "Protective guards, panels and chassis covers intended for the Legger, including recovered ancient variants. Fit and protection behavior remain proposals."
+    },
+    {
+      "id": "proposal.legger.iron_guard",
+      "name": "Iron chassis guard",
+      "category": "Legger armor",
+      "reason": "Protective guards, panels and chassis covers intended for the Legger, including recovered ancient variants. Fit and protection behavior remain proposals."
+    },
+    {
+      "id": "proposal.legger.joint_guard",
+      "name": "Articulated joint guard",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.legger.ceramic_backing",
+      "name": "Ceramic armor backing insert",
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
+    },
+    {
+      "id": "proposal.legger.nanocarbon_panel",
+      "name": "Ancient nanocarbon armor panel",
+      "category": "Legger armor",
+      "reason": "Protective guards, panels and chassis covers intended for the Legger, including recovered ancient variants. Fit and protection behavior remain proposals."
+    },
+    {
+      "id": "proposal.legger.ballistic_guard",
+      "name": "Ancient ballistic-deflecting guard",
+      "category": "Legger armor",
+      "reason": "Protective guards, panels and chassis covers intended for the Legger, including recovered ancient variants. Fit and protection behavior remain proposals."
+    },
+    {
+      "id": "proposal.legger.pannier_frame",
+      "name": "Legger side-pannier frame",
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
+    },
+    {
+      "id": "proposal.legger.sample_rack",
+      "name": "Legger sample-vial rack",
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
+    },
+    {
+      "id": "proposal.legger.ore_bin",
+      "name": "Legger removable ore bin",
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
+    },
+    {
+      "id": "proposal.legger.board_bracket",
+      "name": "Legger dirtboard carrying bracket",
+      "category": "Salvage",
+      "reason": "Author correction October 15: dirtboard parts and sail components in Tools move to Salvage, including supporting bracket, running-gear kit and named lane snag bar. The complete dirtboard and handheld dirtboard sail remain Tools. Category does not change IDs, tiers, recipe roles or gameplay behavior."
+    },
+    {
+      "id": "proposal.legger.grease_applicator",
+      "name": "Joint grease applicator",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "proposal.legger.service_pick",
+      "name": "Joint-service cleaning pick",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.legger.bearing_puller",
+      "name": "Matched bearing-removal tool",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "proposal.legger.alignment_gauge",
+      "name": "Legger alignment gauge",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "proposal.legger.spares_case",
+      "name": "Legger fitted spares case",
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
+    },
+    {
+      "id": "proposal.legger.edge_guard",
+      "name": "Chassis leading-edge guard",
+      "category": "Legger armor",
+      "reason": "Protective guards, panels and chassis covers intended for the Legger, including recovered ancient variants. Fit and protection behavior remain proposals."
+    },
+    {
+      "id": "proposal.legger.instrument_guard",
+      "name": "Instrument-face guard",
+      "category": "Legger armor",
+      "reason": "Protective guards, panels and chassis covers intended for the Legger, including recovered ancient variants. Fit and protection behavior remain proposals."
+    },
+    {
+      "id": "proposal.legger.seam_guard",
+      "name": "Armor seam-cover strip",
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
+    },
+    {
+      "id": "proposal.legger.impact_cap",
+      "name": "Sacrificial impact cap",
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
+    },
+    {
+      "id": "proposal.legger.fragment_liner",
+      "name": "Pressed-husk fragment liner",
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
+    },
+    {
+      "id": "proposal.legger.impact_lattice",
+      "name": "Ancient impact-lattice backing",
+      "category": "Legger attachments",
+      "reason": "Fitted Legger cargo supports, racks, containers, brackets, service cases and replaceable armor backing, liners and add-ons. Complete protective covers remain Legger armor. Classification grants no fitments, capacity or protection effects."
+    },
+    {
+      "id": "author.communication.crude_two_way_radio",
+      "name": "Crude two-way radio",
+      "category": "Accessories",
+      "reason": "Eyewear, carried personal reserves, carriers and supporting utility gear; ordinary garments are classified as Clothing. No new slots or effects."
+    },
+    {
+      "id": "author.electrical.magnetic_disruptor",
+      "name": "Magnetic field disruptor",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "author.electrical.magnetic_inhibitor",
+      "name": "Magnetic field inhibitor",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "author.electrical.magnetic_enhancer",
+      "name": "Magnetic field enhancer",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "author.electrical.static_enhancer",
+      "name": "Static-electricity field enhancer",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "author.electrical.static_disruptor",
+      "name": "Static-electricity field disruptor",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "author.electrical.insulated_suit",
+      "name": "Electrical insulating jacket",
+      "category": "Armor",
+      "reason": "Individual electrical-insulating garment in the five clothing families; existing ID retained."
+    },
+    {
+      "id": "author.electrical.insulated_gloves",
+      "name": "Electrical insulating gloves",
+      "category": "Armor",
+      "reason": "Individual electrical-insulating garment in the five clothing families; existing ID retained."
+    },
+    {
+      "id": "author.electrical.insulated_boots",
+      "name": "Electrical insulating boots",
+      "category": "Armor",
+      "reason": "Individual electrical-insulating garment in the five clothing families; existing ID retained."
+    },
+    {
+      "id": "author.forging.hammer",
+      "name": "Forging hammer",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "author.forging.anvil",
+      "name": "Anvil",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.forging.tongs",
+      "name": "Smithing tongs",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "proposal.forging.sledge",
+      "name": "Forging sledge",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.forging.hot_cut",
+      "name": "Hot-cut chisel",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "proposal.forging.punch",
+      "name": "Forging punch",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "proposal.forging.drift",
+      "name": "Forming drift",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "proposal.forging.swage_block",
+      "name": "Swage block",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.forging.file",
+      "name": "Metalworking file",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "proposal.forging.hearth",
+      "name": "Forge hearth",
+      "category": "Crafting stations",
+      "reason": "Complete workshop heat source for metal forging."
+    },
+    {
+      "id": "author.city_transport.carriage",
+      "name": "Inner-city carriage",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "author.city_transport.car",
+      "name": "Inner-city car",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.lore.shell_scraper",
+      "name": "Domestic shell-trimming scraper",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.collection.hand_cranked_metal_drill",
+      "name": "Hand-cranked metal drill",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "proposal.collection.husk_sheet_cutting_shears",
+      "name": "Husk-sheet cutting shears",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "proposal.collection.husk_fiber_face_wrap",
+      "name": "Husk-fiber face wrap",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.chainmail_shoulder_mantle",
+      "name": "Chainmail shoulder mantle",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.shell_rib_gaiters",
+      "name": "Shell-rib gaiters",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.minimal_hide_tool_belt",
+      "name": "Minimal-hide tool belt",
+      "category": "Armor",
+      "reason": "Author direction October 16: all remaining general Attachments belong in Armor; retire the empty Attachments section. Category assignment preserves item type, properties and recipe roles, including the tool belt. Legger attachments remains separate."
+    },
+    {
+      "id": "proposal.collection.pressed_husk_apron",
+      "name": "Pressed-husk apron",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.mica_brim_sun_visor",
+      "name": "Mica-brim sun visor",
+      "category": "Clothing",
+      "reason": "Ordinary worn garments, fashion clothing, wraps, hats and visors. Protective armor stays in Armor; eyewear stays in Accessories. No new slots or effects."
+    },
+    {
+      "id": "proposal.collection.cable_grip_canyon_ascender",
+      "name": "Cable-grip canyon ascender",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.collection.braked_canyon_descent_trolley",
+      "name": "Braked canyon descent trolley",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.collection.shell_runner_cargo_sled",
+      "name": "Shell-runner cargo sled",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "proposal.collection.round_iron_buckler",
+      "name": "Round iron buckler",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.riveted_steel_round_shield",
+      "name": "Riveted steel round shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.broad_chitin_shield",
+      "name": "Broad chitin shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.shell_rib_oval_shield",
+      "name": "Shell-rib oval shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.tall_iron_pavise",
+      "name": "Tall iron pavise",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.folding_wing_frame_screen_shield",
+      "name": "Folding wing-frame screen shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.layered_husk_shield",
+      "name": "Layered husk shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.steel_rimmed_shell_shield",
+      "name": "Steel-rimmed shell shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.hook_edged_catch_shield",
+      "name": "Hook-edged catch shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.elbow_strapped_work_shield",
+      "name": "Elbow-strapped work shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.knee_braced_ground_shield",
+      "name": "Knee-braced ground shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.segmented_tower_shield",
+      "name": "Segmented tower shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.mica_slit_observation_shield",
+      "name": "Mica-slit observation shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.grit_shedding_curved_shield",
+      "name": "Grit-shedding curved shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.insulated_handle_shield",
+      "name": "Insulated-handle shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.ceremonial_inlay_shield",
+      "name": "Ceremonial inlay shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.magnet_clamp_utility_shield",
+      "name": "Magnet-clamp utility shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.replaceable_scale_shield",
+      "name": "Replaceable-scale shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.collection.ancient_plasteel_guard_shield",
+      "name": "Ancient plasteel guard shield",
+      "category": "Armor",
+      "reason": "Protective wear and shields for Booter; companion-specific protection is classified as Legger armor. Classification does not assign protection effects."
+    },
+    {
+      "id": "proposal.audit.metalworking_hand_saw",
+      "name": "Metalworking hand saw",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    },
+    {
+      "id": "proposal.audit.workshop_winding_mandrel",
+      "name": "Workshop winding mandrel",
+      "category": "Tools",
+      "reason": "Equipment actively used for harvesting, traversal, processing, fabrication or operating machinery; includes workshop fixtures and transport machines, not a portability claim."
+    },
+    {
+      "id": "proposal.audit.food_preparation_screen",
+      "name": "Food preparation screen",
+      "category": "Camp items",
+      "reason": "Author camp organization: Cooking & ignition."
+    },
+    {
+      "id": "proposal.audit.metal_glassworking_blowpipe",
+      "name": "Metal glassworking blowpipe",
+      "category": "Salvage",
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged."
+    }
+  ],
+  "revisions": [
+    {
+      "date": "2026-10-15",
+      "reason": "Author marked eight garments to move from Accessories into Clothing.",
+      "movedIds": [
+        "equipment.cloak",
+        "equipment.jacket",
+        "proposal.collection.mica_brim_sun_visor",
+        "proposal.fashion.fur_garment",
+        "proposal.fashion.hat",
+        "proposal.fashion.hide_garment",
+        "proposal.fashion.husk_garment",
+        "proposal.gear.simple_wraps"
+      ],
+      "sourceHashBefore": "f14c1ccda048918c8aa858d0d6e6f3b82b390be6c13b0dd4876c0f58d0f587ee",
+      "sourceHashAfter": "1e948e4daa1668b00b38e11790167dc8e3f13cc7d9b6f22736ef21c885072f46"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Author moved Ceramic abrasive disc into new Workshop upgrades category.",
+      "movedIds": [
+        "proposal.ceramic.grinding_disc"
+      ],
+      "sourceHashBefore": "1e948e4daa1668b00b38e11790167dc8e3f13cc7d9b6f22736ef21c885072f46",
+      "sourceHashAfter": "27f2ffa4bfe5ab4baebc6f741bace32e8a76a647413c74eee121b3c1b9cc167d"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Author requested a separate category for Legger armor.",
+      "movedIds": [
+        "proposal.legger.ballistic_guard",
+        "proposal.legger.belly_pan",
+        "proposal.legger.edge_guard",
+        "proposal.legger.instrument_guard",
+        "proposal.legger.iron_guard",
+        "proposal.legger.nanocarbon_panel",
+        "proposal.legger.shell_guard"
+      ],
+      "sourceHashBefore": "27f2ffa4bfe5ab4baebc6f741bace32e8a76a647413c74eee121b3c1b9cc167d",
+      "sourceHashAfter": "106e9aa6133379df609254844a60afd2cb3f9c5a67ce917188862df97aefe6b3"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Separate complete crafting facilities from reusable tools.",
+      "movedIds": [
+        "proposal.forging.hearth",
+        "proposal.audit.controlled_heating_firing_kiln",
+        "proposal.fire.firebox"
+      ],
+      "sourceHashBefore": "fe5a39261b9e77ec866e23ce66ebae28a5bb5fe15d6b069cdbe152b8de091461",
+      "sourceHashAfter": "608994e360a6058e996e127a648ddc2ce655fa6e09c450a41db86e6a5961d1b9"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Author separated Legger attachments from general attachments.",
+      "movedIds": [
+        "proposal.legger.board_bracket",
+        "proposal.legger.ceramic_backing",
+        "proposal.legger.cradle",
+        "proposal.legger.fragment_liner",
+        "proposal.legger.impact_cap",
+        "proposal.legger.impact_lattice",
+        "proposal.legger.ore_bin",
+        "proposal.legger.pannier_frame",
+        "proposal.legger.sample_rack",
+        "proposal.legger.seam_guard",
+        "proposal.legger.sling",
+        "proposal.legger.spares_case"
+      ],
+      "sourceHashBefore": "fe88099e05c91cee1266b7639855cb5829374edebbe52037fedf9c29e245a35a",
+      "sourceHashAfter": "d0c396bc0b5c92213ad95e1510efdfab7d4c3c451838824946fd8d286ec62b11"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Author correction: dedicated dirtboard and handheld-sail items belong in Tools, including their parts, service kit, carrying bracket and named lane snag bar. Category does not change item type, tier, recipe role or gameplay behavior.",
+      "movedIds": [
+        "proposal.collection.dirtboard_lane_snag_bar",
+        "proposal.collection.dirtboard_running_gear_kit",
+        "proposal.legger.board_bracket",
+        "proposal.t4.spar_joint",
+        "proposal.t4.wheel_hub",
+        "proposal.wind.folding_frame",
+        "proposal.wind.sail_grip",
+        "proposal.wind.sail_panel",
+        "proposal.wind.truck",
+        "proposal.wind.wheel"
+      ],
+      "sourceHashBefore": "f2b68bb4393fa0501d06dcf67c394f0fe38b11fb76e18e9ce370e1cc640663cf",
+      "sourceHashAfter": "9afff4193dfb1e6627a8ae94c564f6f10fb6dd9818eb39c82e50125fe22a9fa1"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Replace counted whole-set concept with five individually listed armor families.",
+      "retiredIds": [
+        "proposal.gear.metal_armor_set"
+      ],
+      "reusedIds": [
+        "proposal.gear.chest_armor",
+        "proposal.gear.leg_armor",
+        "proposal.gear.helmet"
+      ],
+      "sourceHashBefore": "ee2150b0edf95fc20ecd45a96ad83d7e7b208bfb56bfbd734dc8f7906bde225d",
+      "sourceHashAfter": "941e79016c1e650fc68897a53f13b3e05c44c699847c149e9dd7866f8f578bde"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Organize camp items and everyday goods into five camp groups.",
+      "movedIds": [
+        "tool.popup_camp",
+        "proposal.container.field_chest",
+        "proposal.bio.wing_panel",
+        "proposal.culture.bowl",
+        "proposal.culture.spoon",
+        "proposal.culture.brush",
+        "proposal.culture.comb",
+        "proposal.culture.tablet",
+        "proposal.culture.stylus",
+        "proposal.ceramic.bowl",
+        "proposal.ceramic.cup",
+        "proposal.ceramic.plate",
+        "proposal.ceramic.storage_crock",
+        "proposal.fire.striker",
+        "proposal.fire.cooking_pot",
+        "proposal.fire.lidded_pan",
+        "proposal.fire.rack",
+        "proposal.fire.pot_stand",
+        "proposal.fire.tongs",
+        "proposal.food.drink_flask",
+        "proposal.food.bar_case",
+        "proposal.collection.long_handled_meal_ladle",
+        "proposal.collection.ceramic_portion_scoop",
+        "proposal.collection.shell_serving_tray",
+        "proposal.collection.metal_eating_tongs",
+        "proposal.collection.folding_vertical_wing_shade",
+        "proposal.collection.low_wing_roof_panel",
+        "proposal.collection.segmented_shelter_pole_set",
+        "proposal.collection.ground_anchor_stake_set",
+        "proposal.collection.tendon_guyline_bundle",
+        "proposal.collection.husk_sheet_grit_screen",
+        "proposal.collection.shell_ground_rest_panel",
+        "proposal.collection.folding_privacy_partition",
+        "proposal.collection.canister_shelter_docking_stand",
+        "proposal.collection.shelter_repair_patch_roll",
+        "proposal.audit.food_preparation_screen",
+        "proposal.camp.divided_warming_pot",
+        "proposal.camp.pot_lid_rest",
+        "proposal.camp.cam_tie_down_buckle",
+        "proposal.camp.guyline_tensioner",
+        "proposal.camp.split_ring_hanging_hook",
+        "proposal.camp.hinged_utensil_case",
+        "proposal.camp.folding_grit_pan"
+      ],
+      "sourceHashBefore": "11a058df8b95a07e6894ded29aaea0775592cdf7f5c0970aae27bca620c08d21",
+      "sourceHashAfter": "55d340ea8203f33cc2ce8700d7c906fc1e6a770046b7a47a12da95e846b93396"
+    },
+    {
+      "date": "2026-10-15",
+      "reason": "Author correction: all cooking equipment and related household food-preparation records belong in Camp items, including the cooking station and damaged cooking vessels. Classification does not repair salvage or establish working equipment.",
+      "movedIds": [
+        "proposal.fire.firebox",
+        "proposal.salvage.expedition_cookpot",
+        "proposal.collection.household_meal_ledger"
+      ],
+      "sourceHashBefore": "2ef7f4fee50d0045820976b1044bc7b85f5f75ab1dc343440f38f51912da86c7",
+      "sourceHashAfter": "78838e92c7a9744a04154895e9eb0440bbbf7cb70121b0dc5a27b80e2addf50b"
+    },
+    {
+      "reason": "Author direction October 15: Tools marked for review in the active inventory are reclassified as Salvage. Existing identity, condition, tier, purpose and proposal readiness remain unchanged.",
+      "movedIds": [
+        "author.forging.hammer",
+        "proposal.audit.metal_glassworking_blowpipe",
+        "proposal.audit.metalworking_hand_saw",
+        "proposal.canister.inspection_gauge",
+        "proposal.collection.hand_cranked_metal_drill",
+        "proposal.collection.husk_sheet_cutting_shears",
+        "proposal.collection.shell_runner_cargo_sled",
+        "proposal.forging.drift",
+        "proposal.forging.file",
+        "proposal.forging.hot_cut",
+        "proposal.forging.punch",
+        "proposal.forging.tongs",
+        "proposal.legger.alignment_gauge",
+        "proposal.legger.bearing_puller",
+        "proposal.legger.grease_applicator",
+        "proposal.wind.turbine"
+      ],
+      "sourceHashBefore": "06134613cd3da3d64b1b1d9c6648cd9b15f976bd75077e659f567e203bb890ab",
+      "sourceHashAfter": "a799c8fb8ecc4f1d69f41bd994655511cc6d789bf31af09a6845d9f473e3aae4"
+    },
+    {
+      "reason": "Author correction October 15: dirtboard parts and sail components in Tools move to Salvage, including supporting bracket, running-gear kit and named lane snag bar. The complete dirtboard and handheld dirtboard sail remain Tools. Category does not change IDs, tiers, recipe roles or gameplay behavior.",
+      "movedIds": [
+        "proposal.collection.dirtboard_lane_snag_bar",
+        "proposal.collection.dirtboard_running_gear_kit",
+        "proposal.legger.board_bracket",
+        "proposal.t4.spar_joint",
+        "proposal.t4.wheel_hub",
+        "proposal.wind.folding_frame",
+        "proposal.wind.sail_grip",
+        "proposal.wind.sail_panel",
+        "proposal.wind.wheel"
+      ],
+      "sourceHashBefore": "77014fcb8184aaa34fcba3de809793b01c9d3f21122be5a44c4a6344edce0dc3",
+      "sourceHashAfter": "c6bf94e9cabf37237aeb94d68f0714a0a83dcb0c155b80d0810434dd73ffc686"
+    },
+    {
+      "reason": "Complete five clothing families as individual pieces; refine generic insulating suit to a jacket.",
+      "reusedIds": [
+        "author.electrical.insulated_suit",
+        "author.electrical.insulated_boots",
+        "author.electrical.insulated_gloves"
+      ],
+      "sourceHashBefore": "31744495fedb62c5110a9d44ea6b695ea332f428d4898ba51d105d777b37c630",
+      "sourceHashAfter": "1d7b5f6375758053c2bdbfded3548f32e14c9e2ab256209dedeb636b8654c0f7"
+    },
+    {
+      "reason": "Author direction October 16: all remaining general Attachments belong in Armor; retire the empty Attachments section. Category assignment preserves item type, properties and recipe roles, including the tool belt. Legger attachments remains separate.",
+      "movedIds": [
+        "proposal.ceramic.armor_insert",
+        "proposal.collection.minimal_hide_tool_belt",
+        "proposal.gear.special_plates"
+      ],
+      "sourceHashBefore": "073a058692a1ba6b895b5dfd6bdabfa2896a18ba92aee105a5ee3a9764859aa8",
+      "sourceHashAfter": "a703b526f94736ace214713d4b6b3ec4e63eae280ef4bbc7c8d3ecb985f64710"
+    },
+    {
+      "reason": "Five separate everyday-wrap garments: reuse the generic wraps ID for one torso piece and add four pieces. No counted whole-set item, set bonus, new equipment slots, world placement, streaming or persisted gameplay changes.",
+      "reusedIds": [
+        "proposal.gear.simple_wraps"
+      ],
+      "sourceHashBefore": "5891675c245560377f1224d12532e55c6105733bb08a55902af78dbf2aca9b58",
+      "sourceHashAfter": "c17efc713a1521718173e1a4a3f61fd29a9c12d3b21802b6c5141e99c3f111a1"
+    },
+    {
+      "reason": "Five independently listed fancy husk-fiber garments: reuse the broad garment ID for a coat and add four pieces. No full-set inventory item, set bonus, faction dress code, new equipment slots, runtime world identity, streaming or saved-game changes.",
+      "reusedIds": [
+        "proposal.fashion.husk_garment"
+      ],
+      "sourceHashBefore": "a51665b73a89c2fc725e001b8802c3e527552dfbecc600bee69c197610348447",
+      "sourceHashAfter": "d11d604e8a6fa6b97b706aff856ee81513fa478f0d7d501abf3f94c43c8bd883"
+    },
+    {
+      "reason": "Author direction October 16: remove the seven highlighted ceramic-faced armor pieces, including the pauldron and shield. Other ceramic goods and the unhighlighted specialist ceramic armor insert are outside this removal.",
+      "removedIds": [
+        "proposal.armor.ceramic.arms",
+        "proposal.armor.ceramic.boots",
+        "proposal.armor.ceramic.chest",
+        "proposal.armor.ceramic.helmet",
+        "proposal.armor.ceramic.legs",
+        "proposal.armor.shoulder.ceramic_deflector",
+        "proposal.collection.ceramic_faced_shield"
+      ],
+      "sourceHashBefore": "8c2ae981ef13068830b24889b455966c929fc8c232e92bbf4332b0beae43cf8c",
+      "sourceHashAfter": "5ef755034a6b8892fb3eb3fb364b3ac3787deb620b374edb5db14b3c2dde889a"
+    }
+  ]
+}

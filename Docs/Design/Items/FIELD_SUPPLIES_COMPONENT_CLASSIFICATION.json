@@ -1,0 +1,79 @@
+{
+  "reason": "Author direction October 15: all remaining Field supplies are Crafting components; retire Field supplies as an active category.",
+  "items": [
+    {
+      "id": "proposal.legger.fastener_pack",
+      "name": "Legger service fastener pack",
+      "previous": "Field supplies"
+    },
+    {
+      "id": "proposal.lore.assay_packet",
+      "name": "Growth assay reference packet",
+      "previous": "Field supplies"
+    },
+    {
+      "id": "proposal.collection.guarded_flywheel_cartridge",
+      "name": "Guarded flywheel cartridge",
+      "previous": "Field supplies"
+    },
+    {
+      "id": "proposal.collection.wound_clock_spring_pack",
+      "name": "Wound clock-spring pack",
+      "previous": "Field supplies"
+    },
+    {
+      "id": "proposal.collection.torsion_spring_accumulator",
+      "name": "Torsion-spring accumulator",
+      "previous": "Field supplies"
+    },
+    {
+      "id": "proposal.collection.lifted_counterweight_module",
+      "name": "Lifted counterweight module",
+      "previous": "Field supplies"
+    },
+    {
+      "id": "proposal.collection.sealed_pressure_accumulator",
+      "name": "Sealed pressure accumulator",
+      "previous": "Field supplies"
+    },
+    {
+      "id": "proposal.collection.packed_stone_thermal_block",
+      "name": "Packed-stone thermal block",
+      "previous": "Field supplies"
+    },
+    {
+      "id": "proposal.collection.ceramic_housed_mineral_battery",
+      "name": "Ceramic-housed mineral battery",
+      "previous": "Field supplies"
+    },
+    {
+      "id": "proposal.collection.packed_separator_battery_stack",
+      "name": "Packed separator battery stack",
+      "previous": "Field supplies"
+    },
+    {
+      "id": "proposal.collection.mica_plate_capacitor_pack",
+      "name": "Mica-plate capacitor pack",
+      "previous": "Field supplies"
+    },
+    {
+      "id": "proposal.collection.glass_jar_capacitor_bank",
+      "name": "Glass-jar capacitor bank",
+      "previous": "Field supplies"
+    },
+    {
+      "id": "proposal.collection.ceramic_dielectric_pulse_bank",
+      "name": "Ceramic-dielectric pulse bank",
+      "previous": "Field supplies"
+    },
+    {
+      "id": "proposal.collection.magnetic_salvage_catch_plate",
+      "name": "Magnetic salvage catch plate",
+      "previous": "Field supplies"
+    }
+  ],
+  "retiredCategory": "Field supplies",
+  "sourceHashBefore": "84aab2c392d6a2189e47ff8935f6f30e1bc49ad1992196b2cef28b2a8369737a",
+  "sourceHashAfter": "fb4c241cb6ecb37ff96084259934c60b3e692ed4980f947831bbd051311276d5",
+  "scope": "Catalog classification only; IDs, properties, recipes, review/art state, world identity, fixed terrain, streaming and persisted runtime deltas unchanged."
+}

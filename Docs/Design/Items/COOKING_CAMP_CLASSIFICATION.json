@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-15",
+  "reason": "Author correction: all cooking equipment and related household food-preparation records belong in Camp items, including the cooking station and damaged cooking vessels. Classification does not repair salvage or establish working equipment.",
+  "items": [
+    {
+      "id": "proposal.fire.firebox",
+      "name": "Cooking station",
+      "previous": "Crafting stations",
+      "previousSubtype": "Camp cooking station",
+      "group": "Cooking & ignition"
+    },
+    {
+      "id": "proposal.collection.household_meal_ledger",
+      "name": "Household meal ledger",
+      "previous": "Cultural objects",
+      "previousSubtype": "Document",
+      "group": "Camp records"
+    },
+    {
+      "id": "proposal.salvage.expedition_cookpot",
+      "name": "Dented expedition cookpot",
+      "previous": "Salvage",
+      "previousSubtype": "Expedition recovery",
+      "group": "Cooking & ignition"
+    }
+  ],
+  "sourceHashBefore": "2ef7f4fee50d0045820976b1044bc7b85f5f75ab1dc343440f38f51912da86c7",
+  "sourceHashAfter": "78838e92c7a9744a04154895e9eb0440bbbf7cb70121b0dc5a27b80e2addf50b",
+  "scope": "Catalog-only correction. Preserve tiers, types, condition, purposes, recipes, stable IDs, world identity, streaming and saved gameplay deltas."
+}

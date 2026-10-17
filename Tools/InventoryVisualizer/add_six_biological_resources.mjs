@@ -1,0 +1,18 @@
+import fs from 'node:fs/promises';
+import {Workbook,SpreadsheetFile} from '@oai/artifact-tool';
+const directory=process.argv[2];
+if(!directory)throw new Error('Provide the prepared operation directory.');
+const {spec}=JSON.parse(await fs.readFile(`${directory}/plan.json`,'utf8'));
+const wb=Workbook.create(),sheet=wb.worksheets.add('Resource inputs');
+sheet.getRange('A1:G7').values=[['ID','Name','Purpose','Icon direction','Material','Use','Specific fields'],...spec.items.map(i=>[i.id,i.name,i.purpose,i.icon,i.material,i.use,JSON.stringify(i.fields)])];
+const review=wb.worksheets.add('Review');
+review.getRange('A1:C7').values=[['Biological resource','Tier','Candidate use'],...spec.items.map(i=>[i.name,'T0',i.use])];
+review.getRange('A1:A7').format.columnWidth=38;
+review.getRange('B1:B7').format.columnWidth=8;
+review.getRange('C1:C7').format.columnWidth=30;
+review.getRange('A1:C7').format.rowHeight=25;
+wb.recalculate();
+await (await SpreadsheetFile.exportXlsx(wb)).save(`${directory}/authored.xlsx`);
+const img=await wb.render({sheetName:'Review',range:'A1:C7',scale:1.5,format:'png'});
+await fs.writeFile(`${directory}/review.png`,new Uint8Array(await img.arrayBuffer()));
+console.log('Authored and rendered six biological resource inputs.');

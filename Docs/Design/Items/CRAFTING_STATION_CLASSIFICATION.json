@@ -1,0 +1,385 @@
+{
+  "date": "2026-10-15",
+  "definition": "Complete placed facilities that provide a crafting, firing, forging or cooking work site. Hand tools, vessels and auxiliary forming fixtures stay in Tools; fitted upgrades and unfinished components retain their own categories. Placement and recipes remain design proposals.",
+  "sourceHashBefore": "fe5a39261b9e77ec866e23ce66ebae28a5bb5fe15d6b069cdbe152b8de091461",
+  "sourceHashAfter": "608994e360a6058e996e127a648ddc2ce655fa6e09c450a41db86e6a5961d1b9",
+  "reviewedItems": [
+    {
+      "id": "equipment.digging_tool",
+      "name": "Digging shovel axe",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "tool.micro_dust_harvester",
+      "name": "Dust canister",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "equipment.grappling_hook",
+      "name": "Grappling hook",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.gear.magnets",
+      "name": "Field magnets",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.canister.inspection_gauge",
+      "name": "Seal inspection gauge",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.ceramic.crucible",
+      "name": "Ceramic crucible",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.ceramic.casting_mold",
+      "name": "Ceramic casting mold",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.ceramic.mortar",
+      "name": "Ceramic grinding mortar",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.ceramic.pestle",
+      "name": "Ceramic pestle",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.ceramic.firing_tray",
+      "name": "Ceramic firing tray",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.ceramic.kiln_liner",
+      "name": "Ceramic kiln lining panel",
+      "before": "Crafting components",
+      "category": "Crafting components",
+      "reason": "Unfinished station component, not a complete station."
+    },
+    {
+      "id": "proposal.ceramic.grinding_disc",
+      "name": "Ceramic abrasive disc",
+      "before": "Workshop upgrades",
+      "category": "Workshop upgrades",
+      "reason": "Fitted working part, not a complete station."
+    },
+    {
+      "id": "proposal.fire.striker",
+      "name": "Flint striking tool",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.fire.cooking_pot",
+      "name": "Ceramic cooking pot",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.fire.lidded_pan",
+      "name": "Lidded cooking pan",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.fire.rack",
+      "name": "Cooking rack",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.fire.pot_stand",
+      "name": "Cooking pot stand",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.fire.tongs",
+      "name": "Cooking tongs",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.fire.firebox",
+      "name": "Managed cooking firebox",
+      "before": "Tools",
+      "category": "Crafting stations",
+      "reason": "Complete managed cooking heat source, rather than a vessel or handling tool."
+    },
+    {
+      "id": "proposal.wind.turbine",
+      "name": "Salvaged wind turbine",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.wind.hand_sail",
+      "name": "Collapsible handheld wind sail",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.wind.dirtboard",
+      "name": "Four-wheel all-terrain dirtboard",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.legger.grease_applicator",
+      "name": "Joint grease applicator",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.legger.service_pick",
+      "name": "Joint-service cleaning pick",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.legger.bearing_puller",
+      "name": "Matched bearing-removal tool",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.legger.alignment_gauge",
+      "name": "Legger alignment gauge",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "author.electrical.magnetic_disruptor",
+      "name": "Magnetic field disruptor",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "author.electrical.magnetic_inhibitor",
+      "name": "Magnetic field inhibitor",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "author.electrical.magnetic_enhancer",
+      "name": "Magnetic field enhancer",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "author.electrical.static_enhancer",
+      "name": "Static-electricity field enhancer",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "author.electrical.static_disruptor",
+      "name": "Static-electricity field disruptor",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "author.forging.hammer",
+      "name": "Forging hammer",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.forging.tongs",
+      "name": "Smithing tongs",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.forging.sledge",
+      "name": "Forging sledge",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.forging.hot_cut",
+      "name": "Hot-cut chisel",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.forging.punch",
+      "name": "Forging punch",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.forging.drift",
+      "name": "Forming drift",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.forging.swage_block",
+      "name": "Swage block",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.forging.file",
+      "name": "Metalworking file",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.forging.hearth",
+      "name": "Forge hearth",
+      "before": "Tools",
+      "category": "Crafting stations",
+      "reason": "Complete workshop heat source for metal forging."
+    },
+    {
+      "id": "author.city_transport.carriage",
+      "name": "Inner-city carriage",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "author.city_transport.car",
+      "name": "Inner-city car",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.lore.shell_scraper",
+      "name": "Domestic shell-trimming scraper",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.collection.hand_cranked_metal_drill",
+      "name": "Hand-cranked metal drill",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.collection.husk_sheet_cutting_shears",
+      "name": "Husk-sheet cutting shears",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.collection.cable_grip_canyon_ascender",
+      "name": "Cable-grip canyon ascender",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.collection.braked_canyon_descent_trolley",
+      "name": "Braked canyon descent trolley",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.collection.shell_runner_cargo_sled",
+      "name": "Shell-runner cargo sled",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.audit.controlled_heating_firing_kiln",
+      "name": "Controlled-heating firing kiln",
+      "before": "Field supplies",
+      "category": "Crafting stations",
+      "reason": "Complete stationary firing facility; power, controls and atmosphere remain unresolved."
+    },
+    {
+      "id": "proposal.audit.metalworking_hand_saw",
+      "name": "Metalworking hand saw",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.audit.workshop_winding_mandrel",
+      "name": "Workshop winding mandrel",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.audit.food_preparation_screen",
+      "name": "Food preparation screen",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    },
+    {
+      "id": "proposal.audit.metal_glassworking_blowpipe",
+      "name": "Metal glassworking blowpipe",
+      "before": "Tools",
+      "category": "Tools",
+      "reason": "Reusable tool, vessel, auxiliary fixture or noncrafting equipment; not a complete crafting facility."
+    }
+  ],
+  "movedIds": [
+    "proposal.forging.hearth",
+    "proposal.audit.controlled_heating_firing_kiln",
+    "proposal.fire.firebox"
+  ],
+  "boundary": "Catalog organization only. No world identity, streaming, generated objects, gameplay saves, station behavior or recipes changed."
+}

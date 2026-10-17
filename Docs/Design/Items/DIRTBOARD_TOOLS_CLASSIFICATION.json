@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-15",
+  "reason": "Author correction: dedicated dirtboard and handheld-sail items belong in Tools, including their parts, service kit, carrying bracket and named lane snag bar. Category does not change item type, tier, recipe role or gameplay behavior.",
+  "movedItems": [
+    {
+      "id": "proposal.wind.sail_panel",
+      "name": "Prepared insect-wing sail panel",
+      "previous": "Crafting components"
+    },
+    {
+      "id": "proposal.wind.folding_frame",
+      "name": "Collapsible sail frame",
+      "previous": "Crafting components"
+    },
+    {
+      "id": "proposal.wind.sail_grip",
+      "name": "Hand-sail grip assembly",
+      "previous": "Crafting components"
+    },
+    {
+      "id": "proposal.wind.wheel",
+      "name": "Dirtboard wheel assembly",
+      "previous": "Crafting components"
+    },
+    {
+      "id": "proposal.wind.truck",
+      "name": "Dirtboard axle / steering assembly",
+      "previous": "Crafting components"
+    },
+    {
+      "id": "proposal.legger.board_bracket",
+      "name": "Legger dirtboard carrying bracket",
+      "previous": "Legger attachments"
+    },
+    {
+      "id": "proposal.t4.spar_joint",
+      "name": "Collapsible sail-spar joint kit",
+      "previous": "Crafting components"
+    },
+    {
+      "id": "proposal.t4.wheel_hub",
+      "name": "Dirtboard wheel-hub core",
+      "previous": "Crafting components"
+    },
+    {
+      "id": "proposal.collection.dirtboard_running_gear_kit",
+      "name": "Dirtboard running-gear kit",
+      "previous": "Field supplies"
+    },
+    {
+      "id": "proposal.collection.dirtboard_lane_snag_bar",
+      "name": "Dirtboard lane snag bar",
+      "previous": "Weapons"
+    }
+  ],
+  "alreadyTools": [
+    "proposal.wind.hand_sail",
+    "proposal.wind.dirtboard"
+  ],
+  "sharedMaterialsRetained": [
+    "proposal.bio.inner_wing",
+    "proposal.t3.bearing_blank"
+  ],
+  "sourceHashBefore": "f2b68bb4393fa0501d06dcf67c394f0fe38b11fb76e18e9ce370e1cc640663cf",
+  "sourceHashAfter": "9afff4193dfb1e6627a8ae94c564f6f10fb6dd9818eb39c82e50125fe22a9fa1",
+  "scope": "Catalog only. No world identity, streaming, placed objects, persisted gameplay deltas, slots or recipes changed."
+}

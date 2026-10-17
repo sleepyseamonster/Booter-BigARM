@@ -1,0 +1,112 @@
+{
+  "source": "Author requested renaming Salvage feedstock to Salvage and expanding recovery from failed or abandoned settler/Booter expeditions, October 15, 2026. Specific finds and rarities are design proposals; no loot spawning is implemented.",
+  "defaults": {
+    "Tier": "T0",
+    "Category": "Salvage",
+    "Subtype": "Expedition recovery",
+    "Acquisition": "Search abandoned camps, failed expedition sites, scattered gear and discarded settler or Booter equipment. Specific sites and drop rules remain proposals.",
+    "Crafting / processing": "Recover and inspect the physical item before reuse, repair or material recovery. No recipe, salvage yield or automatic conversion into usable gear is authored.",
+    "Limitations": "As-found condition does not establish safe operation or compatible fit. Contents, stored energy and usable parts are not granted by finding the outer item.",
+    "Rarity": "Common",
+    "Item type": "Crafting component",
+    "Processing stage": "Recovered part",
+    "Origin family": "Industrial salvage",
+    "Physical form": "Assembly",
+    "Classification basis": "Author-requested expedition salvage concept. Recovery category records where and in what condition it is found; qualification for reuse remains unresolved.",
+    "Tier basis": "T0 is the as-found recovery stage, independent of original manufacturing complexity or rarity. A qualified reusable form requires a separate readiness record; no repair recipe or free replacement item is implied.",
+    "Finished-item input tier": "T0",
+    "Crafting role": "Component"
+  },
+  "items": [
+    {
+      "id": "proposal.salvage.expedition_cookpot",
+      "name": "Dented expedition cookpot",
+      "purpose": "A battered metal meal pot recovered from an old camp. An intact body could return to food-heating service after cleaning and inspection; a split one is a metal-recovery candidate. No ordinary combustion or free-water cooking assumed.",
+      "icon": "A squat dented pot with one bent loop handle and a badly fitting lid.",
+      "material": "Metal",
+      "use": "Cooking",
+      "fields": {"Item type": "Household utensil"}
+    },
+    {
+      "id": "proposal.salvage.buckled_pack_frame",
+      "name": "Buckled pack frame",
+      "purpose": "An exposed metal carrying frame with a bent crossbar and missing bindings. It may supply matching brackets or become a repair candidate for an existing pack; recovering it does not produce a complete backpack.",
+      "icon": "A narrow ladder-like frame with a skewed crossbar and two bare attachment eyes.",
+      "material": "Metal",
+      "use": "Cargo organization",
+      "fields": {"Item type": "Carrier"}
+    },
+    {
+      "id": "proposal.salvage.mixed_field_fasteners",
+      "name": "Mixed field-repair fasteners",
+      "purpose": "A recovered handful of pins, rivets, retainers and short bolts from an abandoned repair pouch or tray. Sorting and fit checks could recover useful replacements; this differs from bent nails/rivets intended mainly as refining feed.",
+      "icon": "A shallow folded metal tray holding mismatched pins, a split retainer and short bolts.",
+      "material": "Metal",
+      "use": "Equipment repair",
+      "fields": {"Physical form": "Bundle"}
+    },
+    {
+      "id": "proposal.salvage.cracked_haul_canister",
+      "name": "Cracked empty haul canister",
+      "purpose": "A discarded transport canister with a cracked seam and missing closure. Its body, collar or fittings may be worth recovering after inspection. It supplies no chemicals, food or living algae reserve and is not ready for containment service.",
+      "icon": "A short cylindrical canister with an exposed mouth, split side seam and uneven base.",
+      "material": "Metal",
+      "use": "Liquid and bulk containment",
+      "fields": {"Item type": "Container"}
+    },
+    {
+      "id": "proposal.salvage.worn_boot_sole_plates",
+      "name": "Worn boot sole plates",
+      "purpose": "A mismatched pair of worn metal sole pieces found among discarded travel gear. Surviving tread and fixing holes may be repair references or donor parts, without granting a complete wearable pair of boots.",
+      "icon": "Two uneven foot-shaped metal plates, one deeply worn and missing its heel edge.",
+      "material": "Metal",
+      "use": "Equipment repair",
+      "fields": {"Physical form": "Bundle"}
+    },
+    {
+      "id": "proposal.salvage.weathered_route_plates",
+      "name": "Weathered expedition route plates",
+      "purpose": "Small inscribed metal plates recovered from a previous expedition's belongings. Surviving marks might provide a route clue or record of intent after interpretation; accuracy, age and useful information remain open. They do not automatically reveal map locations.",
+      "icon": "Three overlapping rectangular plates with scratched lines and a broken hanging hole.",
+      "material": "Metal",
+      "use": "Writing and records",
+      "fields": {"Item type": "Document", "Physical form": "Bundle"}
+    },
+    {
+      "id": "proposal.salvage.damaged_sail_hinge",
+      "name": "Damaged folding-sail hinge",
+      "purpose": "A seized hinge and stop from an abandoned Booter's sail frame. Matching pins or bearing surfaces could be repair donors after inspection. No wing membrane, complete sail or universal compatibility is supplied.",
+      "icon": "Two folded metal hinge arms around an offset pivot, with one broken stop tooth.",
+      "material": "Metal",
+      "use": "Equipment repair",
+      "fields": {"Rarity": "Uncommon", "Item type": "Machine part"}
+    },
+    {
+      "id": "proposal.salvage.seized_hand_drill",
+      "name": "Seized hand-crank drill",
+      "purpose": "A neglected manual drill with a jammed gear train, recovered from abandoned field tools. It may retain useful jaws, gears or a repairable body. Working motion and cutting ability require qualification; the find is distinct from a ready-to-use drill.",
+      "icon": "A compact crank drill with exposed rusty gears, a crooked grip and an empty chuck.",
+      "material": "Metal",
+      "use": "Fabrication",
+      "fields": {"Rarity": "Uncommon", "Item type": "Tool"}
+    },
+    {
+      "id": "proposal.salvage.cracked_expedition_spectacles",
+      "name": "Cracked expedition spectacles",
+      "purpose": "Rare discarded eyewear with one cracked lens and a damaged frame. A surviving lens or bridge could be valuable to a specialist, but optical quality, wearer fit and safe reuse remain unresolved. No special vision effect is assigned.",
+      "icon": "A folded metal spectacle frame with one intact lens, one radiating crack and a bent arm.",
+      "material": "Glass and metal",
+      "use": "Vision",
+      "fields": {"Rarity": "Rare", "Item type": "Wearable"}
+    },
+    {
+      "id": "proposal.salvage.recovered_survey_clinometer",
+      "name": "Recovered survey clinometer",
+      "purpose": "A scarce mechanical slope-measuring instrument found in an expedition case. Its marked arc and suspended pointer may support survey work if intact and calibrated. Its readings, scale, precision and usability remain proposals, without requiring ancient electronics.",
+      "icon": "A thick semicircular metal instrument with a recessed glass face and an off-center pointer.",
+      "material": "Glass and metal",
+      "use": "Inspection",
+      "fields": {"Rarity": "Rare", "Item type": "Tool"}
+    }
+  ]
+}

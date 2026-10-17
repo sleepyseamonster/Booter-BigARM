@@ -1,0 +1,70 @@
+{
+  "source": "Author requested four more brainstormed camp items, October 16, 2026. Proposed shell-and-metal everyday camp goods governed by Docs/WORLD_BASIS.md; no wood, ordinary cloth or natural-water process assumed.",
+  "scope": "Four independent Camp items. Design proposals only; no runtime furniture, interactions, world placement, deterministic identity, streaming or persisted gameplay changes.",
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Camp items",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "None; camp placement unresolved",
+    "Carrier metadata": "Physical camp inventory / cargo item; folded size, packing and placement unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed contemporary fabrication or trade; availability and price unresolved.",
+    "Crafting / processing": "Candidate assembly from qualified shell/metal stock and compatible fittings. No recipe, quantities, yields, dimensions or production time assigned.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Fit, loads, stability, wear, dimensions and useful performance remain proposals. No wood, ordinary cloth, natural-water process, numerical bonus or new equipment slot established.",
+    "Rarity": null,
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Item type": "Household utensil",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Material family": "Metal and shell",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "Independent everyday camp object; Camp items uses the shared filters and sort order without visible subsection grouping.",
+    "Tier basis": "Proposed T2 assembly using qualified T1 stock and compatible fittings; actual recipe and qualification unresolved.",
+    "Finished-item input tier": "T1",
+    "Crafting role": "Finished item"
+  },
+  "items": [
+    {
+      "id": "proposal.camp.folding_shell_stool",
+      "name": "Folding shell stool",
+      "purpose": "A shallow curved shell seat carried on a folding metal support. A compact sitting place for a settled camp, distinct from the existing ground-rest panel. Load, balance and fold retention remain design work.",
+      "icon": "One low folding stool with a curved amber-brown shell seat, crossed dark-metal legs and visible hinge pins. No wooden parts, cloth, wearer or surrounding camp.",
+      "material": "Metal and shell",
+      "use": "Camp rest",
+      "fields": {"Subtype": "Camp seating", "Primary use": "Camp rest", "Search aliases": "camp chair; folding seat; shell stool; sitting", "Open design decisions": "Seat curvature, leg spread, hinge stops, load, stability and folded packing remain unresolved. No rest recovery or comfort statistic assigned."}
+    },
+    {
+      "id": "proposal.camp.folding_camp_table",
+      "name": "Folding camp table",
+      "purpose": "Two hinged shell leaves form a small dining and sorting surface on folding metal legs. A camp furniture item distinct from the Workbench crafting station; it grants no crafting capability or extra storage.",
+      "icon": "One compact folding table with two flat shell leaves, a visible center hinge and plain metal trestle legs. Empty surface, no wood, fabric, tools, food or full camp.",
+      "material": "Metal and shell",
+      "use": "Food service",
+      "fields": {"Subtype": "Camp furniture", "Primary use": "Food service", "Search aliases": "camp dining table; folding table; shell tabletop; meal surface", "Open design decisions": "Panel joining, fold locks, leg stability, load and folded volume remain unresolved. Not a crafting station, storage holder or additional inventory capacity."}
+    },
+    {
+      "id": "proposal.camp.adjustable_shell_headrest",
+      "name": "Adjustable shell headrest",
+      "purpose": "A smooth shallow shell saddle on a short notched metal support, intended to position the head above a camp resting surface. Separate from the existing ground-rest panel and bedding; canister clearance and useful support require design.",
+      "icon": "One low headrest with a smooth curved shell saddle, two short metal feet and a small notched height adjuster. No pillow, ordinary cloth, wearer or sleeping platform.",
+      "material": "Metal and shell",
+      "use": "Camp rest",
+      "fields": {"Subtype": "Camp resting support", "Primary use": "Camp rest", "Search aliases": "camp headrest; shell neck support; sleeping head support", "Open design decisions": "Saddle shape, height adjustment, edge finishing, stability, wearer fit and personal canister clearance remain unresolved. No medical, sleep-quality or recovery benefit assigned."}
+    },
+    {
+      "id": "proposal.camp.boot_scraper",
+      "name": "Camp boot scraper",
+      "purpose": "A low slotted metal scraping edge over a removable shell grit tray, intended to clear loose packed grit from footwear outside a shelter. Unlike the existing dust brush and folding grit pan, this is a fixed scraping fixture with its own catch tray.",
+      "icon": "One low camp boot scraper with a blunt slotted dark-metal scraping bar, two broad feet and a shallow removable shell grit tray. No boot, wearer, brush, wood or full camp.",
+      "material": "Metal and shell",
+      "use": "Cleaning",
+      "fields": {"Subtype": "Camp cleaning fixture", "Primary use": "Cleaning", "Search aliases": "sole scraper; footwear grit cleaner; camp boot cleaning; grit tray", "Open design decisions": "Edge profile, tray retention, tipping resistance, cleaning and footwear compatibility remain unresolved. No footwear repair, durability recovery or mandatory cleaning chore established."}
+    }
+  ]
+}

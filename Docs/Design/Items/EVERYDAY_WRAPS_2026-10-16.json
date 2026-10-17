@@ -1,0 +1,82 @@
+{
+  "source": "Author requested an everyday-wraps clothing family as individually listed pieces, October 16, 2026. The existing Simple everyday wraps ID is refined into a torso wrap. Docs/WORLD_BASIS.md governs no-cloth/no-wood, difficult husk-fiber preparation and scarce usable hide/fur yields.",
+  "scope": "Five separate everyday-wrap garments: reuse the generic wraps ID for one torso piece and add four pieces. No counted whole-set item, set bonus, new equipment slots, world placement, streaming or persisted gameplay changes.",
+  "reusedIds": ["proposal.gear.simple_wraps"],
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Clothing",
+    "Subtype": "Everyday wraps",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "Unassigned; fit unresolved",
+    "Carrier metadata": "Booter-worn wrap garment; fit, packing and personal canister clearance unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed simple garment craft or trade; price and availability unresolved.",
+    "Crafting / processing": "Wrap selected prepared husk-fiber strips into one fitted garment with compatible small metal closures. Husk-fiber textile preparation remains very difficult. No ordinary cloth, wood, numeric yield, crafting time or complete-set recipe assumed.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Simple clothing, not armor or qualified electrical protection. Fit, joining, comfort, abrasion, dust exclusion and wear remain design work. No statistics, set bonus, new equipment slots, ordinary cloth or abundant hide/fur supply established.",
+    "Rarity": null,
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Item type": "Wearable",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Primary use": "Clothing",
+    "Material family": "Husk fiber",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "One independently listed garment in the everyday-wraps family; the family itself is not an inventory item.",
+    "Tier basis": "Proposed T2 garment using qualified T1 strip stock and supporting closures. The necessary fiber preparation and assembly route remain unresolved.",
+    "Finished-item input tier": "T1",
+    "Crafting role": "Finished item"
+  },
+  "items": [
+    {
+      "id": "proposal.gear.simple_wraps",
+      "name": "Everyday torso wrap",
+      "purpose": "One simple crossed torso wrap with an overlapping waist return and small metal keeper. Covers the trunk without including leg, hand, foot or head pieces. Reuses the former generic Simple everyday wraps entry as one garment.",
+      "icon": "One plain crossed torso wrap of narrow prepared husk-fiber strips, visible strip edges and a small metal keeper. Muted mineral tones, no ordinary woven cloth, wearer or complete outfit.",
+      "material": "Husk fiber",
+      "use": "Clothing",
+      "fields": {"Subtype": "Everyday wraps / torso", "Search aliases": "simple everyday wraps; everyday wraps set; torso wrap; crossed body wrap; separate garment", "Open design decisions": "Torso fit, strip preparation, keeper design, joining and canister clearance unresolved. This is one torso garment, not the former broad outfit concept."}
+    },
+    {
+      "id": "proposal.clothing.everyday_wraps.legs",
+      "name": "Everyday leg wraps",
+      "purpose": "One matched pair of overlapping spiral leg wraps, secured at the lower thigh and ankle by small metal keepers. Leg covering only; foot wraps remain a separate item.",
+      "icon": "Only a matched pair of plain spiral leg wraps formed from narrow prepared husk-fiber strips with small metal keepers. No footwear, wearer or full outfit.",
+      "material": "Husk fiber",
+      "use": "Clothing",
+      "fields": {"Subtype": "Everyday wraps / legs", "Search aliases": "everyday wraps set; leg bindings; spiral leg wraps; separate garment", "Open design decisions": "Knee movement, strip overlap, fit and fastening remain unresolved. No armor or mobility benefit assigned."}
+    },
+    {
+      "id": "proposal.clothing.everyday_wraps.feet",
+      "name": "Everyday foot wraps",
+      "purpose": "One matched pair of layered foot wraps with a folded sole section and crossed instep binding. Foot covering only; no separate boots, leg wraps or rigid sole is included.",
+      "icon": "Only a matched pair of folded husk-fiber foot wraps with layered sole folds and crossed instep strips. No wearer, boots, leg pieces or full outfit.",
+      "material": "Husk fiber",
+      "use": "Clothing",
+      "fields": {"Subtype": "Everyday wraps / feet", "Search aliases": "everyday wraps set; foot bindings; folded sole wraps; separate garment", "Open design decisions": "Sole wear, fit, traction, fastening and compatibility with other footwear require design. No hazard protection, electrical insulation or speed bonus established."}
+    },
+    {
+      "id": "proposal.clothing.everyday_wraps.hands",
+      "name": "Everyday hand wraps",
+      "purpose": "One matched pair of crossed palm and wrist wraps with an open-finger shape for ordinary handling. Covers hands and wrists only; it does not include an arm garment or qualified protective gloves.",
+      "icon": "Only a matched pair of plain narrow husk-fiber hand and wrist wraps, open fingers and crossed palm bindings. No wearer, tool, arm guards or full outfit.",
+      "material": "Husk fiber",
+      "use": "Clothing",
+      "fields": {"Subtype": "Everyday wraps / hands", "Search aliases": "everyday wraps set; palm bindings; wrist wraps; separate garment", "Open design decisions": "Grip, finger clearance, fastening and abrasion performance remain open. No electrical or hot-work qualification assigned."}
+    },
+    {
+      "id": "proposal.clothing.everyday_wraps.head",
+      "name": "Everyday head wrap",
+      "purpose": "One simple layered crown wrap with a short overlapping nape tail and an open face. A plain everyday head covering, distinct from the existing face wrap and specialized hats.",
+      "icon": "One simple crown wrap built from narrow overlapping husk-fiber strips with a short nape tail and open face. No wearer, spectacles, mask or complete outfit.",
+      "material": "Husk fiber",
+      "use": "Clothing",
+      "fields": {"Subtype": "Everyday wraps / head", "Search aliases": "everyday wraps set; crown binding; head covering; nape wrap; separate garment", "Open design decisions": "Head fit, sight and hearing clearance, fastening, wind retention and canister interface require design. No respirator, sealed atmosphere or specialized optical benefit established."}
+    }
+  ]
+}

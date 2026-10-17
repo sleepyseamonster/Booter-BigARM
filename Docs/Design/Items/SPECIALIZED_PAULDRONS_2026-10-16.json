@@ -1,0 +1,63 @@
+{
+  "source": "Author requested three specialized shoulder guard or pauldron styles as individual Armor items, October 16, 2026. Local design proposals governed by Docs/WORLD_BASIS.md.",
+  "scope": "Three separate single-shoulder armor items, no counted set or complete suit. No runtime equipment, world identity, streaming or saved gameplay changes.",
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Armor",
+    "Subtype": "Specialized shoulder armor",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "Unassigned; shoulder side and fit unresolved",
+    "Carrier metadata": "Booter-worn shoulder armor concept; fit, fastening and spare-cargo rules unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed specialist craft or trade; availability and price unresolved.",
+    "Crafting / processing": "Candidate assembly from qualified stock and compatible fasteners. No recipe, input quantity, yield or production time authored.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "One shoulder piece, not a paired set, arm guard or complete suit. Side, coverage, articulation, wear, protection and compatibility remain proposals. No numerical resistance, automatic deflection, set bonus, new equipment slot, wood, ordinary cloth or free-water process established.",
+    "Rarity": null,
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Item type": "Armor",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Primary use": "Protection",
+    "Material family": "Metal",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "Author-requested specialized shoulder armor; one distinct independently listed piece per style.",
+    "Tier basis": "Proposed T2 finished assembly using qualified T1 inputs; stock, fit, process and protective behavior unresolved.",
+    "Finished-item input tier": "T1",
+    "Crafting role": "Finished item"
+  },
+  "items": [
+    {
+      "id": "proposal.armor.shoulder.raised_rim_iron",
+      "name": "Raised-rim iron pauldron",
+      "purpose": "Single iron shoulder cap with a tall turned rim toward the neck and stepped outer plates. Proposed for a close-combat guard posture; the shape suggests coverage at the neck-shoulder gap without establishing a deflection mechanic.",
+      "icon": "One broad iron shoulder cap with a raised inner neck rim and three short articulated outer lames. Rust-dark iron, rolled edges and visible metal rivets. No wearer, spikes, cloth or full suit.",
+      "material": "Metal",
+      "use": "Protection",
+      "fields": {"Search aliases": "pauldron; shoulder guard; shoulder armor; iron; raised rim", "Open design decisions": "Left/right fitting, neck clearance, raised-arm movement, rivet articulation and compatibility with chest armor require design. No automatic parry or reduced damage assigned."}
+    },
+    {
+      "id": "proposal.armor.shoulder.layered_chitin",
+      "name": "Layered chitin shoulder guard",
+      "purpose": "Single shoulder guard built from overlapping curved shell segments with a downward-swept outer edge. Proposed for a broad movement silhouette and replaceable outer scales; flexibility and coverage remain untested design intentions.",
+      "icon": "One curved shoulder guard of four overlapping amber-brown chitin segments, visible shell growth lines, small metal joining points and a swept outer edge. No wearer, textile backing or full suit.",
+      "material": "Shell / chitin",
+      "use": "Protection",
+      "fields": {"Material family": "Shell / chitin", "Search aliases": "pauldron; shoulder guard; shoulder armor; chitin; shell; overlapping segments", "Open design decisions": "Shell selection, edge finishing, joining geometry, replaceability, shoulder range and coverage require design. Abundant raw shell does not establish cheap finished workmanship or superior protection."}
+    },
+    {
+      "id": "proposal.armor.shoulder.ceramic_deflector",
+      "name": "Ceramic-faced deflector pauldron",
+      "purpose": "Single angular shoulder cap with small replaceable ceramic faces on a metal carrier. Its sloped outward face is a proposed debris-deflecting silhouette; actual impact, heat and electrical performance remain unresolved.",
+      "icon": "One angular metal pauldron with a sloped outward face, pale small ceramic tiles in individual retainers and a short articulated lower skirt. Show gaps and fasteners. No glowing shield, wearer or full suit.",
+      "material": "Ceramic and metal",
+      "use": "Protection",
+      "fields": {"Tier": "T3", "Finished-item input tier": "T2", "Material family": "Ceramic and metal", "Search aliases": "pauldron; shoulder guard; shoulder armor; ceramic faced; deflector", "Tier basis": "Proposed T3 fitted ceramic-and-metal assembly using T2 components; tiles, carrier, mounting and qualification remain unresolved.", "Open design decisions": "Tile composition, retention, fracture behavior, carrier geometry, maintenance and chest/arm clearance require design. No bulletproofing, heat rating, electrical insulation or guaranteed deflection assigned."}
+    }
+  ]
+}

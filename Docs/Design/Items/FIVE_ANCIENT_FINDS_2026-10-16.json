@@ -1,0 +1,79 @@
+{
+  "source": "Author requested five more brainstormed ancient salvage items, October 16, 2026. Local recovery proposals governed by Docs/WORLD_BASIS.md: ancient technology/materials are extremely rare; finding originals does not establish contemporary manufacture, internal repair or operational readiness.",
+  "scope": "Five independent Ancient salvage records. No working machinery, recovered data, manufactured products, recipes, world placement, streaming or persisted runtime changes.",
+  "defaults": {
+    "Tier": "T0",
+    "Category": "Ancient salvage",
+    "Subtype": "Ancient recovery",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "None; compatibility unresolved",
+    "Carrier metadata": "Physical recovered inventory / cargo item; dimensions, condition and packing unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Recover a surviving original from a proposed ancient machine or ruin. Sites, recovery conditions and availability remain unresolved.",
+    "Crafting / processing": "As-found original requiring identification and integrity/compatibility qualification before possible reuse. No modern manufacturing, internal repair, recovery yield or crafting recipe established.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Extremely rare. Internal construction, integrity, interfaces, operating requirements and useful life remain unknown. No guaranteed operation, compatible host, reproduced ancient technology, contents or numerical benefit granted.",
+    "Rarity": "Extremely rare",
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Item type": "Machine part",
+    "Processing stage": "Recovered part",
+    "Origin family": "Ancient technology",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "One independently listed ancient recovered original. Proposed historical role does not establish functioning game behavior or reproducible manufacture.",
+    "Tier basis": "T0 as found, independent of ancient complexity and extreme rarity. Any qualified craft-ready form would require a separate T1 readiness record.",
+    "Finished-item input tier": "T0",
+    "Crafting role": "Component"
+  },
+  "items": [
+    {
+      "id": "proposal.ancient.optical_data_ribbon",
+      "name": "Ancient optical data ribbon",
+      "purpose": "A short translucent ribbon held in a protective spool frame, proposed as a removable optical storage medium from an ancient machine. Patterns remain visible along its layers, but no readable message, map or compatible reader is supplied.",
+      "icon": "One small ancient spool frame holding a short translucent ribbon with layered iridescent tracks and an unfamiliar clipped end. Worn pale composite housing; no readable text, map, working display or loose extra ribbon.",
+      "material": "Ancient composite",
+      "use": "Provenance",
+      "fields": {"Material family": "Ancient composite", "Primary use": "Provenance", "Search aliases": "ancient salvage; optical data ribbon; recovered storage medium; data spool", "Open design decisions": "Medium composition, retained information, read/write mechanism, corruption, reader compatibility and useful recovery remain unknown. No records, translation, quest information or digital access granted."}
+    },
+    {
+      "id": "proposal.ancient.vacuum_pump_core",
+      "name": "Ancient vacuum pump core",
+      "purpose": "A dense sealed core with precision ports and nested internal channels, proposed as an atmosphere-handling component from ancient machinery. Distinct from the existing microfluidic routing plate; any pumping function, power supply or compatible installation remains unknown.",
+      "icon": "One compact ancient pump core with a sealed dark body, two mismatched precision ports, concentric end rings and worn recessed fittings. No attached hoses, gas effects, pressure gauge or complete machine.",
+      "material": "Mixed / unresolved",
+      "use": "Chemical processing",
+      "fields": {"Material family": "Mixed / unresolved", "Primary use": "Chemical processing", "Search aliases": "ancient salvage; vacuum pump core; atmosphere handling; sealed pump", "Open design decisions": "Internal mechanism, retained contamination, port standards, power, flow and qualification remain unknown. No vacuum capability, breathable atmosphere or practical process assigned."}
+    },
+    {
+      "id": "proposal.ancient.phase_change_heat_sink",
+      "name": "Ancient phase-change heat sink",
+      "purpose": "A sealed layered thermal block proposed to have buffered heat inside ancient equipment. Unlike the open-finned heat-exchange comb, it has an enclosed internal medium whose state, integrity and remaining usefulness are unknown.",
+      "icon": "One palm-sized ancient layered thermal block with sealed edges, a dull ceramic-like face, dark mounting lugs and a small damaged inspection window. No exposed liquid, ice, steam or active glow.",
+      "material": "Mixed / unresolved",
+      "use": "Equipment repair",
+      "fields": {"Material family": "Mixed / unresolved", "Primary use": "Equipment repair", "Search aliases": "ancient salvage; phase change heat sink; thermal buffer block; sealed heat reservoir", "Open design decisions": "Internal medium, thermal limits, seal integrity, host interface and any reuse remain unknown. No natural water, perpetual cooling, working heat capacity or replenishment process established."}
+    },
+    {
+      "id": "proposal.ancient.microtool_turret",
+      "name": "Ancient microtool turret",
+      "purpose": "A recovered miniature indexing head with several recessed tool tips, proposed as part of an ancient maintenance manipulator. It is a single incomplete head, not a robot, independent repair device or present-day fabrication station.",
+      "icon": "One small ancient rotating tool head with four recessed unequal tips, an incomplete mounting collar and worn pale composite guards. No robot arm, tool beam, completed product or active repair scene.",
+      "material": "Ancient composite",
+      "use": "Equipment repair",
+      "fields": {"Material family": "Ancient composite", "Primary use": "Equipment repair", "Search aliases": "ancient salvage; microtool turret; miniature indexing head; maintenance tool head", "Open design decisions": "Tip identity, rotation, retained precision, drives, controls and compatible manipulator remain unknown. No automatic repair, reverse-engineered fabrication or reproduction of ancient parts granted."}
+    },
+    {
+      "id": "proposal.ancient.spectral_filter_disk",
+      "name": "Ancient spectral filter disk",
+      "purpose": "A thin multilayer optical disk retained in a precision ring, proposed to have selected light bands inside an ancient sensor. It is distinct from a focusing mount or sensor eye; intact coatings and any compatible viewing device remain unverified.",
+      "icon": "One thin circular ancient optical filter in a worn dark-metal ring, with subtle iridescent layers, tiny edge alignment notches and a chipped outer retainer. No beam, eye, display or wearer.",
+      "material": "Glass and metal",
+      "use": "Vision",
+      "fields": {"Material family": "Glass and metal", "Primary use": "Vision", "Search aliases": "ancient salvage; spectral filter disk; multilayer optic; sensor filter", "Open design decisions": "Optical composition, coating integrity, wavelength response, mounting and qualification remain unknown. No enhanced vision, eye protection, cloaking or sensor performance established."}
+    }
+  ]
+}

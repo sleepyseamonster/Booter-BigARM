@@ -1,0 +1,34 @@
+{
+  "reason": "Author direction October 16: ancient-origin items in general Salvage belong in Ancient salvage. IDs, tiers, rarity, condition, properties, recipe roles and unknown operating requirements remain unchanged.",
+  "items": [
+    {
+      "id": "proposal.collection.ancient_compact_power_cell",
+      "name": "Ancient compact power cell",
+      "previous": "Salvage"
+    },
+    {
+      "id": "proposal.collection.ancient_microcapacitor_brick",
+      "name": "Ancient microcapacitor brick",
+      "previous": "Salvage"
+    },
+    {
+      "id": "proposal.collection.ancient_persistent_current_ring",
+      "name": "Ancient persistent-current ring",
+      "previous": "Salvage"
+    },
+    {
+      "id": "proposal.collection.ancient_inertial_storage_capsule",
+      "name": "Ancient inertial storage capsule",
+      "previous": "Salvage"
+    },
+    {
+      "id": "proposal.collection.ancient_true_arc_vessel",
+      "name": "Ancient true-Arc vessel",
+      "previous": "Salvage"
+    }
+  ],
+  "reviewSelectionHash": "1a3fd77cb22b8bc5126fb646b77910ed8b27a4b4e82893b64cc3121788e881c9",
+  "sourceHashBefore": "3e56d8f4e527bfd909028c086891f33fd533e6379ff306757bace2a8cfd6310c",
+  "sourceHashAfter": "7719fc869183c2a9f53eff4f8b6a74dd84444142d639e172dc4288962d10437b",
+  "scope": "Category and linked category/search/count updates only. All review/art state retained. No runtime world identity, streaming, placement or persisted gameplay changes."
+}

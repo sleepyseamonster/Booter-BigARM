@@ -1,0 +1,82 @@
+{
+  "source": "Author requested fashionable fancy husk-fiber textile clothing, October 16, 2026. Existing Elaborate husk-fiber wear is refined into one coat. Docs/WORLD_BASIS.md establishes difficult husk-fiber textile preparation and very rare, expensive elaborate fashion; no ordinary cloth or wood assumed.",
+  "scope": "Five independently listed fancy husk-fiber garments: reuse the broad garment ID for a coat and add four pieces. No full-set inventory item, set bonus, faction dress code, new equipment slots, runtime world identity, streaming or saved-game changes.",
+  "reusedIds": ["proposal.fashion.husk_garment"],
+  "defaults": {
+    "Tier": "T3",
+    "Category": "Clothing",
+    "Subtype": "Fancy husk-fiber fashion",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "Unassigned; fit unresolved",
+    "Carrier metadata": "Booter-worn fashion garment; fitting, packing and canister clearance unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed specialist fashion craft or high-value trade. Elaborate fashion is very rare and expensive; exact availability, cost and maker remain unresolved.",
+    "Crafting / processing": "Candidate shaping and assembly of extensively prepared husk-fiber textile panels, fine strip bindings and small metal fittings. Very large material inputs and crafting effort are intended; quantities, yields, recipes and times remain undefined. Raw husk abundance does not make textile manufacture easy.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Fashion clothing, not armor. Material preparation, seams, fit, comfort, wear and performance remain proposals. No ordinary cloth, wood, free-water textile process, social-stat bonus, set bonus or equipment slot introduced.",
+    "Rarity": "Very rare",
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Item type": "Wearable",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Primary use": "Fashion",
+    "Material family": "Husk fiber",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "One separate fashionable husk-fiber garment; family membership adds no counted outfit. Rarity and value follow the author's elaborate-fashion direction without assigning prices.",
+    "Tier basis": "Proposed T3 finished fashion piece assembled from qualified T2 husk-fiber textile inputs and supporting fittings. Exact preparation and construction remain unresolved; rarity is separate from tier.",
+    "Finished-item input tier": "T2",
+    "Crafting role": "Finished item"
+  },
+  "items": [
+    {
+      "id": "proposal.fashion.husk_garment",
+      "name": "Pleated husk-fiber dress coat",
+      "purpose": "One fitted fashion coat with a high folded collar, long split tails and narrow fan pleats at the back. Burnished metal clasps and layered husk-fiber edges give the proposed family a sculpted formal silhouette. Reuses the former broad Elaborate husk-fiber wear entry as one coat.",
+      "icon": "One elegant rust-and-ochre husk-fiber dress coat with a folded high collar, long split tails, fan-pleated back and small burnished metal clasps. Visible pressed fiber texture; no ordinary woven cloth, wearer or complete outfit.",
+      "material": "Husk fiber",
+      "use": "Fashion",
+      "fields": {"Subtype": "Fancy husk-fiber fashion / coat", "Search aliases": "elaborate husk-fiber wear; fancy husk fiber set; fashionable textile; formal coat; separate garment", "Open design decisions": "Panel preparation, fold retention, joining, collar fit, closure and canister clearance require design. No uniform, rank, social privilege or armor benefit established."}
+    },
+    {
+      "id": "proposal.clothing.fancy_husk_fiber.trousers",
+      "name": "Panelled husk-fiber dress trousers",
+      "purpose": "One pair of tailored fashion trousers with long narrow pressed panels, a folded waistband and layered side edging. Designed to continue the coat's vertical lines while remaining a separate garment.",
+      "icon": "Only a pair of elegant ochre husk-fiber trousers with narrow vertical panel seams, folded waistband, layered edge trim and small metal closures. No footwear, wearer or full outfit.",
+      "material": "Husk fiber",
+      "use": "Fashion",
+      "fields": {"Subtype": "Fancy husk-fiber fashion / trousers", "Search aliases": "fancy husk fiber set; fashionable textile; formal trousers; panelled legwear; separate garment", "Open design decisions": "Hip and knee movement, panel joining, fastening, fit and crease retention remain unresolved. No movement or social-stat bonus assigned."}
+    },
+    {
+      "id": "proposal.clothing.fancy_husk_fiber.shoes",
+      "name": "Folded husk-fiber court shoes",
+      "purpose": "One matched pair of decorative closed shoes with folded husk-fiber uppers, layered prepared-fiber soles and a small metal instep clasp. Court is a proposed style label, not an established institution or dress code.",
+      "icon": "Only a matched pair of low elegant husk-fiber shoes with folded uppers, layered soles, squared toes and small burnished instep clasps. No wearer, trousers or full outfit.",
+      "material": "Husk fiber",
+      "use": "Fashion",
+      "fields": {"Subtype": "Fancy husk-fiber fashion / shoes", "Search aliases": "fancy husk fiber set; fashionable textile; formal shoes; dress footwear; separate garment", "Open design decisions": "Sole construction, grip, fit, edge finishing, clasp strength and wear remain design work. No terrain protection or accepted court tradition established."}
+    },
+    {
+      "id": "proposal.clothing.fancy_husk_fiber.gloves",
+      "name": "Layered-cuff husk-fiber dress gloves",
+      "purpose": "One matched pair of close-fitting fashion gloves with short layered fan cuffs and tiny metal wrist closures. They echo the coat's pleats without including sleeves or claiming protective performance.",
+      "icon": "Only a matched pair of fine husk-fiber dress gloves with short fan-fold cuffs and tiny metal wrist closures. Visible prepared fiber texture, no wearer, tool, coat or complete outfit.",
+      "material": "Husk fiber",
+      "use": "Fashion",
+      "fields": {"Subtype": "Fancy husk-fiber fashion / gloves", "Search aliases": "fancy husk fiber set; fashionable textile; formal gloves; fan cuffs; separate garment", "Open design decisions": "Finger articulation, joining, fastening, fit and useful wear life remain unresolved. No electrical, thermal or combat protection established."}
+    },
+    {
+      "id": "proposal.clothing.fancy_husk_fiber.headdress",
+      "name": "Fan-fold husk-fiber headdress",
+      "purpose": "One elaborate headpiece with a low fitted crown and an offset fan of folded husk-fiber panels held by a narrow metal comb. A proposed fashion silhouette independent of any faith, faction, rank or ceremonial obligation.",
+      "icon": "One elegant low-crown husk-fiber headdress with an asymmetric fan of ochre folded panels and a narrow burnished metal comb. No feathers, ordinary cloth, wearer or full outfit.",
+      "material": "Husk fiber",
+      "use": "Fashion",
+      "fields": {"Subtype": "Fancy husk-fiber fashion / headdress", "Search aliases": "fancy husk fiber set; fashionable textile; elaborate headwear; fan fold headpiece; separate garment", "Open design decisions": "Fold support, comb fit, wind retention, sight/hearing and canister clearance remain open. No rank, ritual, fashion-stat benefit or protective function established."}
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "reason": "Author direction October 15: remaining Containers entries are ordinary salvage for possible reuse or material recovery. Specialized container, payload, transfer, sealing and cargo mechanics are withdrawn; no specific reuse or recovery yield is approved.",
+  "items": [
+    {
+      "id": "proposal.container.reagent_bottle",
+      "name": "Opaque reagent bottle",
+      "previous": "Containers",
+      "previousSubtype": "Primary vessel"
+    },
+    {
+      "id": "proposal.container.wide_jar",
+      "name": "Wide-mouth sample jar",
+      "previous": "Containers",
+      "previousSubtype": "Primary vessel"
+    },
+    {
+      "id": "proposal.container.ampoule",
+      "name": "Sealed sample ampoule",
+      "previous": "Containers",
+      "previousSubtype": "Primary vessel"
+    },
+    {
+      "id": "proposal.container.marked_flask",
+      "name": "Marked glass flask",
+      "previous": "Containers",
+      "previousSubtype": "Primary vessel"
+    },
+    {
+      "id": "proposal.container.shell_cage",
+      "name": "Shell-caged glass flask",
+      "previous": "Containers",
+      "previousSubtype": "Protected vessel assembly"
+    },
+    {
+      "id": "proposal.container.lined_canister",
+      "name": "Glass-lined haul canister",
+      "previous": "Containers",
+      "previousSubtype": "Protected vessel assembly"
+    },
+    {
+      "id": "proposal.container.ceramic_jar",
+      "name": "Glazed ceramic reagent jar",
+      "previous": "Containers",
+      "previousSubtype": "Primary vessel"
+    },
+    {
+      "id": "proposal.container.sealed_box",
+      "name": "Sealed cargo box",
+      "previous": "Containers",
+      "previousSubtype": "Protective carrier"
+    },
+    {
+      "id": "proposal.container.draw_tube",
+      "name": "Glass draw tube",
+      "previous": "Containers",
+      "previousSubtype": "Transfer glassware"
+    },
+    {
+      "id": "proposal.container.glass_stopper",
+      "name": "Matched glass stopper",
+      "previous": "Containers",
+      "previousSubtype": "Closure component"
+    },
+    {
+      "id": "proposal.collection.divided_ceramic_reagent_caddy",
+      "name": "Divided ceramic reagent caddy",
+      "previous": "Containers",
+      "previousSubtype": "Container"
+    }
+  ],
+  "retiredRoutes": [
+    "design.audit.proposal_container_ceramic_jar",
+    "design.audit.proposal_container_draw_tube",
+    "design.audit.proposal_container_lined_canister",
+    "design.audit.proposal_container_reagent_bottle",
+    "design.collection.divided_ceramic_reagent_caddy",
+    "design.review.proposal_container_glass_stopper"
+  ],
+  "sourceHashBefore": "1f4c72e862763a18bd7da7a7991d858d30ce60ca608765ddfe665bf83554d800",
+  "sourceHashAfter": "02a5b47d536eb11c163f192bea1a195191a8510e09af79a32369677c2af690c2",
+  "scope": "Catalog and proposal records only. Stable IDs, names, tiers, physical materials/forms and review/art links retained. No runtime world identity, streaming, placement or persisted gameplay delta changes."
+}

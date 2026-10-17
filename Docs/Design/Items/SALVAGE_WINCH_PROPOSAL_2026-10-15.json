@@ -1,0 +1,44 @@
+{
+  "source": "Author requested one new salvage brainstorm item, October 15, 2026. New game proposal under Docs/WORLD_BASIS.md; no source-lore anatomy, named location or historical event is asserted.",
+  "boundary": "Catalog proposal only. No world-object placement, deterministic world identity, streaming, unload/reload state, harvesting, runtime persistence or recipe changes.",
+  "defaults": {
+    "Tier": "T0",
+    "Category": "Salvage",
+    "Subtype": "Abandoned hauling machinery",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "None",
+    "Carrier metadata": "Recovered physical cargo; dimensions, mass and carrier fit unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Recover from a proposed abandoned canyon lift or expedition hauling point. Specific sites, frequency and recovery requirements remain design work.",
+    "Crafting / processing": "Inspect and dismantle for potentially reusable drum, gears, pawl or mounting brackets, or assess as a whole-machine repair candidate. No salvage yield, repair recipe or working replacement parts granted automatically.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Seized gearing, damaged retaining pawl and hidden wear may prevent reuse. No usable cable, reliable brake, supported load, stored energy or working lifting action is supplied. Metal construction; no wooden handles or frame assumed.",
+    "Rarity": null,
+    "Item type": "Machine",
+    "Processing stage": "Recovered part",
+    "Origin family": "Industrial salvage",
+    "Primary use": "Machinery repair",
+    "Material family": "Metal",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "As-found damaged contemporary hauling machinery, distinct from loose cable scrap, manufactured ratchet parts and ready-to-use traversal tools. Neither ancient technology nor a working tool is assumed.",
+    "Tier basis": "T0 as recovered in unknown condition. A qualified reusable mechanism would need a separate T1 readiness record; original complexity does not establish usability.",
+    "Finished-item input tier": "T0",
+    "Crafting role": "Component"
+  },
+  "items": [
+    {
+      "id": "proposal.salvage.sand_choked_cable_winch",
+      "name": "Sand-choked cable winch",
+      "purpose": "A seized hand-crank winch recovered from an abandoned canyon lift or expedition hauling point. Packed grit jams the exposed gearing and the retaining pawl is damaged. The bare drum, gear teeth and mounting frame may offer repair donors or metal-recovery feed after inspection; recovering the assembly does not provide a working hoist or usable cable.",
+      "icon": "A squat rust-red iron winch on a bent mounting frame, with an empty grooved drum, exposed grit-packed gears and a broken all-metal crank handle.",
+      "material": "Metal",
+      "use": "Machinery repair",
+      "fields": {
+        "Search aliases": "seized cable winch; abandoned canyon hoist; grit-jammed hauling gear; damaged hand-crank winch",
+        "Open design decisions": "Recovery sites, physical size, carrying mass, inspection criteria, useful donor parts and repair route remain proposals. Visual direction: empty grooved drum, exposed grit-packed gears, bent iron frame and broken all-metal crank."
+      }
+    }
+  ]
+}

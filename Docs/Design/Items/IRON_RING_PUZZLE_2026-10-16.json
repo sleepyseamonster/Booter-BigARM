@@ -1,0 +1,45 @@
+{
+  "source": "Author requested one more brainstormed cultural object, October 16, 2026. Local leisure-object proposal governed by Docs/WORLD_BASIS.md; no specific culture, institution or traditional custom established.",
+  "scope": "One independent cultural object. No gameplay puzzle, minigame, rewards, faction custom, world placement, streaming or persisted runtime changes.",
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Cultural objects",
+    "Subtype": "Leisure puzzle",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "None",
+    "Carrier metadata": "Small physical inventory / cargo object; dimensions and packing unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed metalworker craft or trade; availability and price unresolved.",
+    "Crafting / processing": "Candidate forming, joining and edge finishing of qualified iron stock into linked loops and a retained sliding keeper. Exact solvable geometry, inputs, quantities and production time remain unresolved.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "A cultural leisure object, not a lockpick, restraint or equipment attachment. No minigame, skill gain, morale bonus, reward, canonical custom, wood, ordinary cloth or natural-water process established.",
+    "Rarity": null,
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Item type": "Cultural object",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Primary use": "Culture support",
+    "Material family": "Metal",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "Author-requested cultural expansion; one individually listed leisure object with proposed use and appearance.",
+    "Tier basis": "Proposed T2 finished object using qualified T1 iron stock; forming, geometry and finishing route unresolved.",
+    "Finished-item input tier": "T1",
+    "Crafting role": "Finished item"
+  },
+  "items": [
+    {
+      "id": "proposal.culture.interlocking_iron_ring_puzzle",
+      "name": "Interlocking iron ring puzzle",
+      "purpose": "A palm-sized disentangling puzzle made from interlinked iron loops and a sliding keeper. Proposed as a simple object for passing time or exchanging puzzle challenges; its exact solvable geometry and any cultural associations remain open.",
+      "icon": "One palm-sized puzzle of three interlinked dark-iron loops, one elongated loop and a small retained sliding keeper. Smooth worn edges and a few shallow alignment marks. Plain background, no wood, string, cloth, hands, stand or accompanying game pieces.",
+      "material": "Metal",
+      "use": "Culture support",
+      "fields": {"Search aliases": "ring puzzle; iron loop puzzle; disentangling puzzle; leisure object; metal brainteaser", "Open design decisions": "Resolve a workable disentangling geometry, whether parts separate or remain captive, edge finishing, scale, presentation and acquisition. No puzzle rules, solution, difficulty, rewards or accepted social tradition assigned."}
+    }
+  ]
+}

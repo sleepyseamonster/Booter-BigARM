@@ -1,0 +1,122 @@
+{
+  "source": "Author requested a regular workbench, Ironstone refinery, dust-to-Arc-Battery refinery and cooking station, October 15, 2026, and invited further camp station ideas. Additional stations and all construction tiers are proposals. Existing trial evidence: Docs/Evidence/Gameplay/CampWorkstations20261014/README.md and Docs/Evidence/Gameplay/CampIronstone20261014/README.md.",
+  "scope": "Catalog only. No scene, world identity, terrain streaming, placed-object identity, unload/reload behavior or persisted runtime delta changes. Camp stations are placed facilities, not Legger crafting platforms. Existing firebox ID is retained as Cooking station rather than adding a duplicate heat station.",
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Crafting stations",
+    "Subtype": "Camp crafting station",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "None",
+    "Carrier metadata": "Placed camp facility; transport, assembly and footprint unresolved. The Legger is not a crafting platform.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed camp construction or specialist trade; construction recipe and availability unresolved.",
+    "Crafting / processing": "Station function and candidate material families only. No station construction recipe, quantities, yield, power cost or production time established.",
+    "Supported behavior": "Catalog proposal; station not implemented by this update.",
+    "Limitations": "No wood, ordinary cloth, natural free water or plant feedstocks. Utilities, containment, process qualification and physical placement require design.",
+    "Rarity": null,
+    "Open design decisions": "Station footprint, construction, tool requirements, access, power, throughput and persistence remain unresolved.",
+    "Item type": "Machine",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Material family": "Ceramic and metal",
+    "Physical form": "Assembly",
+    "Primary use": "Fabrication",
+    "Design status": "Proposal",
+    "Classification basis": "Placed camp facility hosting a defined crafting operation; supporting hand tools, process vessels, upgrade parts and ingredients remain separate items.",
+    "Tier basis": "Proposed T2 construction from craft-ready T1 stock. Construction tier is independent of the tier of products processed here; no construction recipe is approved.",
+    "Finished-item input tier": "T1",
+    "Crafting role": "Finished item"
+  },
+  "items": [
+    {
+      "id": "author.station.workbench",
+      "name": "Workbench",
+      "purpose": "General camp work surface for fitting parts, assembling tools and repairing ordinary gear. The existing Camp Loop trial uses its workbench to craft an empty Arc Battery; this catalog entry does not expand the trial recipe roster.",
+      "icon": "A worn metal worktop on a braced iron frame, with a vise and shallow shell parts tray; no wooden boards.",
+      "material": "Metal and shell",
+      "use": "Equipment fabrication",
+      "fields": {"Material family": "Metal and shell", "Primary use": "Equipment fabrication", "Design status": "Author direction", "Supported behavior": "Workbench and empty-battery crafting are recorded in the CampWorkstations20261014 reference-trial receipt. This update creates only a catalog representation, not production placement or fresh runtime validation.", "Search aliases": "regular workbench; assembly bench; repair bench; empty battery crafting"}
+    },
+    {
+      "id": "author.station.ironstone_refinery",
+      "name": "Ironstone refinery",
+      "purpose": "Camp facility for breaking down and separating raw Ironstone Ore into coarse aggregate, iron-rich concentrate, mineral sand and mineral dust. Represents the existing manual Ironstone sorter; further refining or smelting would require separately designed operations.",
+      "icon": "A low iron-framed sorting machine with a hopper, screened channels and separate ceramic output bins.",
+      "material": "Ceramic and metal",
+      "use": "Metal refining",
+      "fields": {"Primary use": "Metal refining", "Design status": "Author direction", "Supported behavior": "Manual sorting with a finite output tray is recorded in CampIronstone20261014. Catalog name adopts the author's Ironstone refinery label; runtime sorter naming and recipes remain unchanged.", "Limitations": "Mineral dust is not Arc Dust and cannot charge Arc Batteries. Sorting does not produce refined metal automatically. No wood, natural free water or new smelting capability introduced.", "Search aliases": "ironstone sorter; manual ironstone sorter; ore sorting; ore refinery"}
+    },
+    {
+      "id": "author.station.dust_refinery",
+      "name": "Dust refinery",
+      "purpose": "Refine collected Arc Dust into Arc Energy and charge an existing empty Arc Battery. Accept a dust canister and an empty battery, retain the canister and unused dust, and return the same battery charged; dust alone does not create a battery casing.",
+      "icon": "A ceramic-insulated metal apparatus with separate canister and battery sockets linked through a compact refining chamber.",
+      "material": "Ceramic and metal",
+      "use": "Energy processing",
+      "fields": {"Primary use": "Energy processing", "Design status": "Author direction", "Supported behavior": "Canister/battery docking and Arc-Dust charging are recorded in CampWorkstations20261014. Existing trial costs remain trial balance; this catalog entry adds no runtime service.", "Limitations": "Requires collected Arc Dust and a compatible existing empty Arc Battery. Preserve battery and canister identity, leftover contents and energy accounting. Ordinary mineral dust is ineligible; no free battery holder or duplicated charge.", "Search aliases": "arc dust refinery; arc battery charger; battery charging station"}
+    },
+    {
+      "id": "proposal.station.salvage_dismantling_bench",
+      "name": "Salvage dismantling bench",
+      "purpose": "Secure recovered scrap and damaged mechanisms for inspection and careful disassembly. Candidate outputs are sorted scrap and individually qualified reusable parts; dismantling does not guarantee repair or reproduce ancient technology.",
+      "icon": "A scarred iron bench with restraint jaws, removable shell catch trays and a few dismantled metal housings.",
+      "material": "Metal and shell",
+      "use": "Equipment repair",
+      "fields": {"Material family": "Metal and shell", "Primary use": "Equipment repair", "Search aliases": "scrapping station; salvage inspection; dismantling table"}
+    },
+    {
+      "id": "proposal.station.husk_processing_table",
+      "name": "Husk processing table",
+      "purpose": "Hold shell husks and shed plates for scraping chitin/icore fibers and sorting useful shell pieces. Supplies candidate fiber feed for husk paper and later pressing; cheap raw shell does not imply cheap finished textiles.",
+      "icon": "A shallow metal table with shell clamping jaws, a scraper rail and divided fiber collection trays.",
+      "material": "Metal and shell",
+      "use": "Fiber processing",
+      "fields": {"Material family": "Metal and shell", "Primary use": "Fiber processing", "Search aliases": "shell scraping station; icore extraction; chitin processing"}
+    },
+    {
+      "id": "proposal.station.husk_fiber_press",
+      "name": "Husk-fiber press",
+      "purpose": "Press prepared husk-fiber feed into candidate paper sheets or difficult dense fiber stock using process-specific tooling. Paper and garment-grade material remain separate processes; pressing alone does not supply ordinary cloth or bypass costly textile preparation.",
+      "icon": "An iron screw press with broad removable platens, a shallow ceramic forming tray and rough husk sheets.",
+      "material": "Ceramic and metal",
+      "use": "Paper making",
+      "fields": {"Tier": "T3", "Finished-item input tier": "T2", "Tier basis": "Proposed T3 precision press assembly using T2 fitted screw, frame and platen parts. Output tier and difficult textile processing are separate questions.", "Primary use": "Paper making", "Search aliases": "paper press; fiber pressing; pressed husk station"}
+    },
+    {
+      "id": "proposal.station.ceramic_forming_bench",
+      "name": "Ceramic forming bench",
+      "purpose": "Prepare and shape qualified ceramic feed into unfired vessels, molds or fitted blanks before drying and kiln firing. Complements the existing firing kiln; binder chemistry, usable process liquids and feed suitability must be selected explicitly.",
+      "icon": "A metal forming table with ceramic molds, shaping tools and an unfired vessel on a removable tray.",
+      "material": "Ceramic and metal",
+      "use": "Glass and ceramics",
+      "fields": {"Primary use": "Glass and ceramics", "Search aliases": "pottery station; ceramic shaping; mold forming bench"}
+    },
+    {
+      "id": "proposal.station.contained_chemical_processing_station",
+      "name": "Contained chemical processing station",
+      "purpose": "Process separately contained faunal and mineral feedstocks into candidate industrial binders, sealants, lubricants or other processing agents. Select compatible vessels and a qualified process for each product; keep industrial chemicals separate from Phagia and food equipment.",
+      "icon": "A bunded metal worktop with covered ceramic vessels, short fitted lines and sealed collection jars.",
+      "material": "Ceramic and metal",
+      "use": "Chemical processing",
+      "fields": {"Tier": "T3", "Finished-item input tier": "T2", "Tier basis": "Proposed T3 station assembly from T2 containment and fitted process parts. No universal chemistry or process qualification implied.", "Primary use": "Chemical processing", "Search aliases": "chemical workbench; sealant station; lubricant processing; binder preparation"}
+    },
+    {
+      "id": "proposal.station.legger_service_stand",
+      "name": "Legger service stand",
+      "purpose": "Support accessible Legger assemblies during inspection, cleaning, lubrication and replacement of compatible mechanical parts. Requires the Legger's physical presence and appropriate tools; service outcomes depend on parts and access rather than automatic full repair.",
+      "icon": "A low braced metal service frame with adjustable support saddles and a side tool tray, sized beside a bipedal companion.",
+      "material": "Metal",
+      "use": "Machinery repair",
+      "fields": {"Material family": "Metal", "Primary use": "Machinery repair", "Search aliases": "legger repair station; companion service bay; mechanical maintenance stand"}
+    }
+  ],
+  "existingStationUpdate": {
+    "id": "proposal.fire.firebox",
+    "previousName": "Managed cooking firebox",
+    "name": "Cooking station",
+    "purpose": "Camp food-preparation and cooking station combining the existing managed firebox concept with a preparation surface and compatible cooking vessels and tools. Process Phagia ingredients and selected edible fauna fractions into meals, bars or drinks using explicitly designed recipes; Phagia remains the nutritional foundation.",
+    "aliases": "managed cooking firebox; camp kitchen; food preparation station; phagia cooking",
+    "limitations": "Food contact must remain separate from industrial chemical processing. No ordinary combustion, free-water supply, wooden worktop, ordinary cloth or general fauna edibility assumed. Heat source, atmosphere management, food safety, quantities and benefits remain unresolved. Existing firebox item ID retained."
+  }
+}

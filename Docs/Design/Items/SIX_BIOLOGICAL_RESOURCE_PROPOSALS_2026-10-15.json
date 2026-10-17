@@ -1,0 +1,117 @@
+{
+  "source": "Author requested six more Biological resources, October 15, 2026. These are new fauna-material brainstorming proposals governed by Docs/WORLD_BASIS.md; specific species, anatomy, yields and manufacturing uses are not established canon.",
+  "boundary": "Raw harvested resources only. No ordinary meat/fat anatomy, general edibility, wood, cloth, natural free water, recipes or implemented harvesting is introduced. Catalog IDs do not create world objects, streaming, unload/reload state or persisted gameplay deltas.",
+  "defaults": {
+    "Tier": "T0",
+    "Category": "Biological resources",
+    "Subtype": "Raw faunal material",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "None",
+    "Carrier metadata": "Physical harvested cargo; container, packing, mass and handling policy unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Recover from a selected fauna species; anatomy, source availability and collection method remain proposals.",
+    "Crafting / processing": "Inspect, segregate and qualify raw feed before selecting a later preparation route. No processing recipe, yield or performance established.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Potentially contaminated faunal material. No food, drinking, medical, protective or functional suitability established; preparation and safe containment require design.",
+    "Rarity": null,
+    "Item type": "Raw material",
+    "Processing stage": "Raw",
+    "Origin family": "Fauna",
+    "Material family": "Faunal hard tissue",
+    "Physical form": "Solid piece",
+    "Primary use": "Fabrication",
+    "Design status": "Proposal",
+    "Classification basis": "Author-invited biological-resource expansion. Anatomically distinct raw feeds rather than finished tools, processing agents or general edible fauna.",
+    "Tier basis": "T0 as harvested, before inspection and preparation establish craft-ready T1 material. Potential use does not establish suitability or a recipe.",
+    "Finished-item input tier": "T0",
+    "Crafting role": "Material"
+  },
+  "items": [
+    {
+      "id": "proposal.bio.tracheal_tubes",
+      "name": "Faunal tracheal tubes",
+      "purpose": "Hollow, ring-supported airway structures proposed as raw feed for short protective conduits or small passages after cleaning and qualification. Distinct from flat breathing-filter plates and antenna sheaths; no useful flow rate or pressure rating established.",
+      "icon": "Several short pale-brown hollow tubes with visible reinforcing rings and broken branching ends.",
+      "material": "Faunal hard tissue",
+      "use": "Fabrication",
+      "fields": {
+        "Search aliases": "tracheal tubes; ringed airway tubes; raw biological conduits",
+        "Acquisition": "Recover intact ring-supported airway sections from a proposed insectoid fauna source; species and extraction method unresolved.",
+        "Limitations": "Fragility, internal contamination, dimensions and compatibility remain unknown. Not a breathing aid, certified filter, pressure hose or finished canister line."
+      }
+    },
+    {
+      "id": "proposal.bio.gut_lining_sacs",
+      "name": "Faunal gut-lining sacs",
+      "purpose": "Flexible lining structures proposed as membrane feed for experimental industrial vessel liners or replaceable internal barriers. Distinct from joint membrane and raw hide; any chemical-service use requires compatibility testing and a separate fitted design.",
+      "icon": "Two collapsed translucent amber sacs with uneven folded rims, shown as raw unattached tissue.",
+      "material": "Faunal tissue",
+      "use": "Liquid and bulk containment",
+      "fields": {
+        "Material family": "Faunal tissue",
+        "Physical form": "Membrane",
+        "Primary use": "Liquid and bulk containment",
+        "Search aliases": "gut lining; digestive membrane sacs; biological liner feed",
+        "Limitations": "Internal residues may be toxic. Recovery does not guarantee chemical resistance, a leakproof container, safe food contact or a finished seal. Species, stabilization and service life unresolved."
+      }
+    },
+    {
+      "id": "proposal.bio.pigment_nodules",
+      "name": "Faunal pigment nodules",
+      "purpose": "Localized color-bearing deposits proposed as raw pigment feed for coatings, paper marking or decorative inlay trials. These solid deposits are separate from mineral-rich ichor and the existing prepared shell-pigment suspension.",
+      "icon": "Several irregular ochre, dark red and charcoal nodules with fractured colored interiors.",
+      "material": "Biological and mineral mixture",
+      "use": "Decoration",
+      "fields": {
+        "Material family": "Biological and mineral mixture",
+        "Primary use": "Decoration",
+        "Search aliases": "pigment bodies; faunal color deposits; raw biological pigment",
+        "Acquisition": "Recover localized color-bearing deposits from a selected fauna integument; species, deposit structure and useful yield remain proposals.",
+        "Limitations": "Color stability, toxicity, particle preparation and binder compatibility are unverified. No dye, paint, cosmetic or food coloring is supplied as harvested."
+      }
+    },
+    {
+      "id": "proposal.bio.spring_arches",
+      "name": "Faunal spring arches",
+      "purpose": "Curved resilient cuticle structures proposed as raw feed for small spring elements, flexing catches or vibration-isolating spacers. Selected for possible elastic response rather than the straight pivot geometry of mineralized hinge rods or structural wing ribs.",
+      "icon": "Three compact dark cuticle arches with thickened ends and a smooth bowed middle.",
+      "material": "Faunal hard tissue",
+      "use": "Fabrication",
+      "fields": {
+        "Search aliases": "resilient cuticle arches; biological spring blanks; flexure feed",
+        "Acquisition": "Recover bowed cuticle structures from a proposed spring-loaded fauna joint; source anatomy and extraction remain speculative.",
+        "Limitations": "Elastic recovery, fatigue, brittleness after drying and load limits are unknown. Not an installed spring, guaranteed shock absorber or source of stored electricity."
+      }
+    },
+    {
+      "id": "proposal.bio.balance_stones",
+      "name": "Faunal balance stones",
+      "purpose": "Small dense nodules from proposed balance-sensing structures, considered as raw bead blanks, tiny counterweight feed or decorative inserts. Distinct from digestive grinding grit: these are individually recovered nodules rather than bulk abrasive granules.",
+      "icon": "A few smooth pale oval nodules beside a split mineralized bead showing faint concentric layers.",
+      "material": "Biological and mineral mixture",
+      "use": "Fabrication",
+      "fields": {
+        "Material family": "Biological and mineral mixture",
+        "Search aliases": "balance nodules; statolith-like stones; faunal bead blanks",
+        "Acquisition": "Recover individual mineralized nodules from a proposed sensory balance structure in selected fauna; anatomy and occurrence unresolved.",
+        "Limitations": "Size, density consistency, workability and useful yield unknown. No gemstone value, precision bearing quality or sensory power is granted to harvested nodules."
+      }
+    },
+    {
+      "id": "proposal.bio.grooming_comb_plates",
+      "name": "Faunal grooming-comb plates",
+      "purpose": "Fine-toothed hard plates from proposed grooming limbs, considered as blanks for small cleaning combs, fiber-separating tools or scraper inserts. The raw plate differs from loose sensory bristles, gripping-pad scales and the finished household shell comb.",
+      "icon": "Two narrow chitin plates with closely spaced integral teeth, one retaining a rough attachment edge.",
+      "material": "Faunal hard tissue",
+      "use": "Fiber processing",
+      "fields": {
+        "Physical form": "Shell plate",
+        "Primary use": "Fiber processing",
+        "Search aliases": "grooming lamellae; toothed faunal plates; raw chitin combs",
+        "Acquisition": "Recover intact toothed plates from a proposed grooming limb or shed appendage; source species and recovery method unresolved.",
+        "Limitations": "Tooth spacing, wear, contamination and grip mounting require qualification. Not a finished brush, certified filter or proof of effortless husk-fiber separation."
+      }
+    }
+  ]
+}
