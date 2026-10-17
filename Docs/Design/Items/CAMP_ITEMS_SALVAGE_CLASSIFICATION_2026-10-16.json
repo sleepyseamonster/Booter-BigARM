@@ -1,0 +1,282 @@
+{
+  "date": "2026-10-16",
+  "reason": "Author direction October 16: all Camp items are Salvage; retire the Camp items section. Item identity, condition, tiers, purposes and recipe semantics remain unchanged.",
+  "items": [
+    {
+      "id": "tool.popup_camp",
+      "name": "Pop-up camp",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.container.field_chest",
+      "name": "Locking field chest",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.bio.wing_panel",
+      "name": "Prepared wing shade panel",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.culture.bowl",
+      "name": "Everyday shell bowl",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.culture.spoon",
+      "name": "Algae spoon / scraper",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.culture.brush",
+      "name": "Dust brush",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.culture.comb",
+      "name": "Shell comb",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.culture.tablet",
+      "name": "Reusable tally tablet",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.culture.stylus",
+      "name": "Marking stylus",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.ceramic.bowl",
+      "name": "Plain ceramic eating bowl",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.ceramic.cup",
+      "name": "Small ceramic cup",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.ceramic.plate",
+      "name": "Ceramic serving plate",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.ceramic.storage_crock",
+      "name": "Ceramic dry-storage crock",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.fire.striker",
+      "name": "Flint striking tool",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.fire.cooking_pot",
+      "name": "Ceramic cooking pot",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.fire.lidded_pan",
+      "name": "Lidded cooking pan",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.fire.rack",
+      "name": "Cooking rack",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.fire.pot_stand",
+      "name": "Cooking pot stand",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.fire.tongs",
+      "name": "Cooking tongs",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.fire.firebox",
+      "name": "Cooking station",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.food.drink_flask",
+      "name": "Reusable Phagia drinking flask",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.food.bar_case",
+      "name": "Phagia ration-bar case",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.long_handled_meal_ladle",
+      "name": "Long-handled meal ladle",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.ceramic_portion_scoop",
+      "name": "Ceramic portion scoop",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.shell_serving_tray",
+      "name": "Shell serving tray",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.metal_eating_tongs",
+      "name": "Metal eating tongs",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.household_meal_ledger",
+      "name": "Household meal ledger",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.folding_vertical_wing_shade",
+      "name": "Folding vertical wing shade",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.low_wing_roof_panel",
+      "name": "Low wing-roof panel",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.segmented_shelter_pole_set",
+      "name": "Segmented shelter pole set",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.ground_anchor_stake_set",
+      "name": "Ground-anchor stake set",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.tendon_guyline_bundle",
+      "name": "Tendon guyline bundle",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.husk_sheet_grit_screen",
+      "name": "Husk-sheet grit screen",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.shell_ground_rest_panel",
+      "name": "Shell ground-rest panel",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.folding_privacy_partition",
+      "name": "Folding privacy partition",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.canister_shelter_docking_stand",
+      "name": "Canister shelter docking stand",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.collection.shelter_repair_patch_roll",
+      "name": "Shelter repair patch roll",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.audit.food_preparation_screen",
+      "name": "Food preparation screen",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.camp.divided_warming_pot",
+      "name": "Divided meal-warming pot",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.camp.pot_lid_rest",
+      "name": "Folding pot-lid rest",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.camp.cam_tie_down_buckle",
+      "name": "Cam-lever tie-down buckle",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.camp.guyline_tensioner",
+      "name": "Three-hole guyline tensioner",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.camp.split_ring_hanging_hook",
+      "name": "Split-ring hanging hook",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.camp.hinged_utensil_case",
+      "name": "Hinged camp utensil case",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.camp.folding_grit_pan",
+      "name": "Folding grit pan",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.salvage.expedition_cookpot",
+      "name": "Dented expedition cookpot",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.camp.folding_shell_stool",
+      "name": "Folding shell stool",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.camp.folding_camp_table",
+      "name": "Folding camp table",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.camp.adjustable_shell_headrest",
+      "name": "Adjustable shell headrest",
+      "previous": "Camp items"
+    },
+    {
+      "id": "proposal.camp.boot_scraper",
+      "name": "Camp boot scraper",
+      "previous": "Camp items"
+    }
+  ],
+  "retiredCategory": "Camp items",
+  "counts": {
+    "Salvage": 150,
+    "Tools": 20,
+    "Atmospheric resources": 2,
+    "Manufactured stock": 100,
+    "Mineral resources": 50,
+    "Biological resources": 50,
+    "Crafting components": 200,
+    "Cooking ingredients": 18,
+    "Armor": 50,
+    "Weapons": 30,
+    "Ancient salvage": 40,
+    "Clothing": 40,
+    "Cultural objects": 60,
+    "Workshop upgrades": 1,
+    "Currency": 5,
+    "Legger attachments": 10,
+    "Legger armor": 10,
+    "Consumables": 20,
+    "Ammunition": 14,
+    "Crafting stations": 11
+  },
+  "sourceHashBefore": "5ef755034a6b8892fb3eb3fb364b3ac3787deb620b374edb5db14b3c2dde889a",
+  "sourceHashAfter": "016e6f1afb0cbac26b496543724c1ed489edef4a63e0a5a27d408d03980017f5",
+  "scope": "Catalog-only classification. IDs, item properties, recipes and review/art links retained. Deterministic world identity, streaming/unload/reload, generated-object identity, authored placement and persisted runtime deltas are not applicable: no Unity runtime or world data changes."
+}
