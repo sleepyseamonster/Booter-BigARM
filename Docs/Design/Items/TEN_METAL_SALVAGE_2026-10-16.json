@@ -1,0 +1,186 @@
+{
+  "source": "Author requested ten additional metal salvage items, including rusted iron and machine parts, at T0 and T1 with varying rarities, October 16, 2026. Local catalog proposals under Docs/WORLD_BASIS.md.",
+  "scope": "Append ten Salvage definitions only: six T0 and four T1. Rarity is independent of practical-worth tier. Existing items, manual edits and review/artwork state are retained. Deterministic world identity, streaming and unload/reload, generated-object identity, authored placement constraints and persisted runtime deltas are not applicable: this batch adds catalog definitions without spawning objects or changing runtime, placement, recipes or saved games.",
+  "defaults": {
+    "Tier": "T0",
+    "Category": "Salvage",
+    "Subtype": "Rusted metal salvage",
+    "Implementation scope": "New proposal",
+    "Equipment slot": "None; recovered scrap",
+    "Carrier metadata": "Recovered metal cargo; dimensions, carrying mass and packing remain undefined.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Recover from discarded contemporary workshop fittings, frames or machinery. Exact sites, encounter frequency and collection requirements remain design work.",
+    "Crafting / processing": "Inspect, clean and sort the recovered piece before assessing surviving metal or possible donor use. No recovery quantity, repair recipe or working replacement part is established.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "As-found salvage with uncertain integrity. No qualified replacement fit, load rating, crafting readiness, guaranteed metal yield or automatic processing result.",
+    "Rarity": "Junk",
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Item type": "Raw material",
+    "Processing stage": "Recovered part",
+    "Origin family": "Industrial salvage",
+    "Primary use": "Metal refining",
+    "Material family": "Metal",
+    "Physical form": "Solid part",
+    "Design status": "Proposal",
+    "Classification basis": "Contemporary recovered metal pieces, cataloged as salvage for condition assessment and possible material or donor-part recovery.",
+    "Finished-item input tier": "Unassigned",
+    "Crafting role": "Material"
+  },
+  "items": [
+    {
+      "id": "proposal.salvage.flaking_iron_bolt_stubs",
+      "name": "Flaking iron bolt stubs",
+      "purpose": "A few snapped iron bolt shanks with missing heads and thick rust scales filling the remaining threads. Their short, uneven cores offer little donor-part utility, but can be sorted as small ferrous scrap after inspection.",
+      "icon": "Three short irregular rust-red iron bolt stubs with broken ends, missing heads and flaking thread ridges; no complete fasteners or tools.",
+      "material": "Metal",
+      "use": "Metal refining",
+      "fields": {
+        "Physical form": "Bundle",
+        "Search aliases": "rusted iron; broken bolt shanks; snapped fasteners; ferrous scrap",
+        "Tier basis": "T0: short fractured shanks with little surviving useful geometry and modest recoverable metal.",
+        "Open design decisions": "Junk rarity: routine fastener debris. Resolve corrosion loss, recoverable quantity and sorting route; no usable bolt or threading is granted."
+      }
+    },
+    {
+      "id": "proposal.salvage.crushed_iron_conduit_elbow",
+      "name": "Crushed iron conduit elbow",
+      "purpose": "A rusted right-angle iron conduit fitting flattened across its bend. Both sockets are distorted and packed with grit, leaving a recognizable hollow fitting suitable mainly for metal recovery rather than carrying a line or protecting a cable.",
+      "icon": "One small rusted iron ninety-degree conduit elbow with a crushed bend, distorted sockets and packed sand; no cable or long pipe section.",
+      "material": "Metal",
+      "use": "Metal refining",
+      "fields": {
+        "Search aliases": "rusted elbow; crushed conduit fitting; iron socket scrap; bent pipe fitting",
+        "Tier basis": "T0: crushed hollow section and ruined sockets eliminate most fitting utility.",
+        "Open design decisions": "Junk rarity: ordinary discarded conduit debris. Resolve wall thickness, contamination and recovery route; no usable conduit or electrical protection rating."
+      }
+    },
+    {
+      "id": "proposal.salvage.broken_cast_iron_mounting_foot",
+      "name": "Broken cast-iron mounting foot",
+      "purpose": "A squat cast-iron machine foot broken through its mounting hole. A missing corner and granular fracture face leave too little sound shape to secure equipment, though the heavy fragment remains a candidate for sorted iron feed.",
+      "icon": "One squat dark rusted cast-iron mounting foot with a broken bolt hole, missing corner and coarse fracture face; no attached machine or intact bracket.",
+      "material": "Metal",
+      "use": "Metal refining",
+      "fields": {
+        "Search aliases": "cast iron scrap; broken machine foot; cracked mounting lug; rusted iron fragment",
+        "Tier basis": "T0: brittle fracture through the fixing point prevents useful mounting; bulk alone does not establish high-value stock.",
+        "Open design decisions": "Junk rarity: ordinary broken cast hardware. Resolve mass, hidden cracking and material recovery; no sound mount or structural reuse implied."
+      }
+    },
+    {
+      "id": "proposal.salvage.rusted_square_washer_stack",
+      "name": "Rusted square washer stack",
+      "purpose": "Several square iron washers stuck together by rust, with rounded corners and enlarged central holes. Separating them may expose a few small packing blanks, but their worn faces and uncertain thickness keep them in the low-value scrap band.",
+      "icon": "A short uneven stack of four square iron washers fused with orange rust, rounded corners and enlarged holes; no nuts or bolts.",
+      "material": "Metal",
+      "use": "Equipment repair",
+      "fields": {
+        "Rarity": "Common",
+        "Physical form": "Bundle",
+        "Search aliases": "square washers; rusted washer pile; iron packing scrap; fused washers",
+        "Tier basis": "T0: small worn pieces and uncertain separation leave little assured repair utility.",
+        "Open design decisions": "Common rarity: recognizable square hardware occurs less often than mixed fragments but remains an ordinary find. Assess separability and usable faces; no guaranteed washer count or load-bearing use.",
+        "Primary use": "Equipment repair"
+      }
+    },
+    {
+      "id": "proposal.salvage.seized_iron_oil_cup_cap",
+      "name": "Seized iron oil-cup cap",
+      "purpose": "A tiny threaded iron cap recovered with the broken neck of a machine oil cup seized inside it. Its narrow knurled rim is recognizable, but corrosion has blocked the thread and the attached fragment prevents treating it as a usable closure.",
+      "icon": "One tiny rusty knurled iron oil-cup cap with a jagged broken neck seized in its threads; dry, without oil or a complete vessel.",
+      "material": "Metal",
+      "use": "Metal refining",
+      "fields": {
+        "Rarity": "Uncommon",
+        "Search aliases": "oil cup lid; rusted lubricator cap; seized threaded cap; dry machinery scrap",
+        "Tier basis": "T0: very little metal, blocked threads and a trapped fragment provide almost no assured donor utility.",
+        "Open design decisions": "Uncommon rarity: this small recognizable service fitting is less frequently recovered intact enough to identify. Resolve material and separability; it contains no usable lubricant or restored seal."
+      }
+    },
+    {
+      "id": "proposal.salvage.broken_fine_pitch_gauge_leaf",
+      "name": "Broken fine-pitch gauge leaf",
+      "purpose": "A thin iron-alloy leaf from a specialist thread gauge, snapped across its toothed edge and freckled with rust. A few closely spaced teeth and a worn pitch marking remain, identifying an unusual workshop find whose missing reference edge prevents reliable measurement.",
+      "icon": "One thin rust-spotted metal gauge leaf with a broken fine-toothed edge, a small pivot hole and faint pitch marks; no complete gauge set.",
+      "material": "Metal",
+      "use": "Metal refining",
+      "fields": {
+        "Rarity": "Rare",
+        "Physical form": "Strip",
+        "Search aliases": "thread pitch gauge scrap; broken gauge blade; fine toothed measuring leaf; rusty workshop gauge",
+        "Tier basis": "T0: tiny metal quantity and a destroyed measuring edge leave negligible assured practical utility.",
+        "Open design decisions": "Rare rarity: a recognizable specialist fine-pitch gauge fragment is an unusual find; rarity does not restore its accuracy or raise scrap value. Resolve original pitch and alloy; no calibrated measurement, ancient provenance or collector premium is established."
+      }
+    },
+    {
+      "id": "proposal.salvage.rusted_iron_u_bolt_clamp",
+      "name": "Rusted iron U-bolt clamp",
+      "purpose": "A U-shaped iron clamp recovered with its crossbar and one stubborn nut. Rust covers the curve and the exposed threads are bruised, but the broad shape and surviving clamp hardware offer a modest donor candidate after cleaning and inspection.",
+      "icon": "One rusted iron U-bolt with a flat crossbar, one retained nut and one bare threaded end; no pipe, cable or surrounding frame.",
+      "material": "Metal",
+      "use": "Equipment mounting",
+      "fields": {
+        "Tier": "T1",
+        "Rarity": "Common",
+        "Physical form": "Assembly",
+        "Search aliases": "u bolt clamp; rusty pipe saddle clamp; recovered iron fastener; threaded clamp",
+        "Tier basis": "T1: a substantial surviving clamp shape and retained crossbar offer more potential reuse than fractured or crushed fragments.",
+        "Open design decisions": "Common rarity: ordinary frame and pipe hardware. Assess thread damage, metal loss, span and fatigue; no safe clamping load or working replacement is granted.",
+        "Primary use": "Equipment mounting"
+      }
+    },
+    {
+      "id": "proposal.salvage.pitted_iron_spacer_sleeve",
+      "name": "Pitted iron spacer sleeve",
+      "purpose": "A short thick-walled iron spacer with rust pits along its outer surface and wear on both end faces. Its open central bore and substantial ring section survive, offering a possible donor blank or packing spacer once its dimensions and remaining metal have been checked.",
+      "icon": "One short thick-walled rusty iron spacer sleeve with an open central bore, pitted outside and worn flat ends; no shaft or bearing assembly.",
+      "material": "Metal",
+      "use": "Machinery repair",
+      "fields": {
+        "Tier": "T1",
+        "Rarity": "Common",
+        "Search aliases": "iron spacer tube; pitted distance sleeve; thick metal spacer; rusty ring blank",
+        "Tier basis": "T1: a largely continuous thick section retains ordinary donor geometry and useful metal despite worn faces.",
+        "Open design decisions": "Common rarity: standard machinery spacing hardware. Resolve bore, length, wall loss and end-face condition; no bearing fit or precision alignment is implied.",
+        "Primary use": "Machinery repair"
+      }
+    },
+    {
+      "id": "proposal.salvage.seized_bronze_flanged_bushing",
+      "name": "Seized bronze flanged bushing",
+      "purpose": "A bronze sleeve bushing with a green-brown patina, a worn flange and a scored bore holding a short rusted iron shaft stub. Its recoverable bronze and surviving worked section make a modestly useful find, while the seized mixed-metal core prevents immediate bearing reuse.",
+      "icon": "One patinated bronze flanged bushing with a scored bore and short rusty iron stub seized inside; no complete bearing, lubricant or surrounding housing.",
+      "material": "Metal",
+      "use": "Machinery repair",
+      "fields": {
+        "Tier": "T1",
+        "Rarity": "Uncommon",
+        "Physical form": "Assembly",
+        "Search aliases": "bronze bush; flanged bronze sleeve; seized bearing bush; mixed metal scrap",
+        "Tier basis": "T1: nonferrous recovery potential and a surviving flange give modest worth, reduced by seizure, scoring and separation work.",
+        "Open design decisions": "Uncommon rarity: a recognizable bronze donor is less routine than ferrous scrap. Resolve alloy, shaft separation, recoverable quantity and bore wear; no usable bearing surface or guaranteed bronze yield.",
+        "Primary use": "Machinery repair"
+      }
+    },
+    {
+      "id": "proposal.salvage.left_thread_iron_turnbuckle_barrel",
+      "name": "Left-thread iron turnbuckle barrel",
+      "purpose": "A rusted iron tensioning barrel with one left-hand and one right-hand threaded socket. Both matching end rods are missing. The central body retains useful worked metal and unusual opposing threads, but practical reuse depends on compatible fittings and condition checks.",
+      "icon": "One short rusty iron turnbuckle barrel with opposing threaded end sockets and a central adjustment opening; no hooks, end rods, cable or complete tensioner.",
+      "material": "Metal",
+      "use": "Equipment repair",
+      "fields": {
+        "Tier": "T1",
+        "Rarity": "Rare",
+        "Search aliases": "reverse thread tensioner; left hand threaded barrel; rusty turnbuckle body; opposing thread fitting",
+        "Tier basis": "T1: surviving worked threads offer limited donor utility, constrained by small size, corrosion and missing matched rods.",
+        "Open design decisions": "Rare rarity: this particular opposing-thread fitting is an unusual salvage find. Resolve thread pitch, internal corrosion and compatible ends; no universal fitting compatibility or safe tensioning load is established.",
+        "Primary use": "Equipment repair"
+      }
+    }
+  ]
+}
