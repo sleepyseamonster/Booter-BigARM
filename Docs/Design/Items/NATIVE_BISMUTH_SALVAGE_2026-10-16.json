@@ -1,0 +1,32 @@
+{
+  "source": "Author requested one actual mineral metal salvage item at Tier 1 and Epic rarity, October 16, 2026. Native bismuth is proposed as a native-element metal mineral for the local catalog under Docs/WORLD_BASIS.md.",
+  "scope": "Append one Salvage definition only. Rarity describes the proposed scarcity of encountering this specimen; T1 describes its modest practical worth at the small recovered quantity. World identity, streaming/unload/reload, generated-object identity, authored placement constraints and persisted runtime deltas are not applicable because no runtime objects, deposits, placement, recipes or save systems change.",
+  "defaults": {
+    "Tier": "T1", "Category": "Salvage", "Subtype": "Native metal mineral", "Implementation scope": "New proposal",
+    "Equipment slot": "None; recovered mineral metal", "Carrier metadata": "Very small mineral specimen; exact mass, dimensions and protective packing remain undefined.",
+    "Stack limit": null, "Mass (game units)": null,
+    "Acquisition": "Recover an isolated native-metal chip from discarded mineral samples or sorting residues. The proposed Epic encounter rarity is an editable catalog assignment; actual deposits and drop rates remain undefined.",
+    "Crafting / processing": "Identify and assay the chip before considering specialist material research or a small alloying contribution. No purity, refining recipe, alloy composition or useful output quantity is established.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "A tiny unqualified mineral specimen, with possible adhering rock and contamination. It supplies no useful bulk stock, ancient technology or automatic equipment improvement.",
+    "Rarity": "Epic", "Trade value": null, "Damage": null, "Protection": null, "Durability": null,
+    "Item type": "Raw material", "Processing stage": "Recovered material", "Origin family": "Geological",
+    "Primary use": "Material analysis", "Material family": "Metal", "Physical form": "Solid piece", "Design status": "Proposal",
+    "Classification basis": "Naturally occurring elemental bismuth recovered as a mineral specimen. This is actual metal, distinct from metal-bearing ore, manufactured fittings and laboratory-grown display crystals.",
+    "Finished-item input tier": "Unassigned", "Crafting role": "Material"
+  },
+  "items": [
+    {
+      "id": "proposal.salvage.native_bismuth_chip",
+      "name": "Native bismuth chip",
+      "purpose": "A tiny irregular chip of native bismuth, with a silvery metallic fracture, muted tarnish and a little adhering rock. The natural metal is an exceptional find in the proposed salvage pool, but the small, unassayed quantity limits its practical worth to a material sample or possible minor alloying input after qualification.",
+      "icon": "One tiny irregular silvery bismuth chip with a fractured metallic surface, subdued tarnish and a trace of gray host rock; no rainbow stair-step display crystal, worked fitting or metal ingot.",
+      "material": "Metal", "use": "Material analysis",
+      "fields": {
+        "Search aliases": "native bismuth; bismuth metal mineral; natural bismuth specimen; small native metal chip",
+        "Tier basis": "T1 practical worth: a very small unqualified chip offers modest sampling or specialist feed utility rather than usable bulk metal. Scarcity alone does not guarantee a high-value sale or a higher practical tier.",
+        "Open design decisions": "Epic rarity is the author's requested gameplay rarity for this proposed native-metal specimen, separate from its T1 worth. Resolve mineral identification, purity, useful quantity, local demand and any compatible process. No price, deposit, drop probability, laboratory crystal growth, special power or established alloy recipe is assigned."
+      }
+    }
+  ]
+}

@@ -10,6 +10,8 @@ Open **http://127.0.0.1:8087**. Stop with Ctrl+C in the server terminal. Optiona
 
 ## Current proposal
 
+- [Native bismuth chip](../../Docs/Design/Items/NATIVE_BISMUTH_SALVAGE_2026-10-16.json) adds one actual native-metal mineral to Salvage at T1 / Epic. Epic reflects proposed encounter scarcity; the tiny, unassayed quantity limits its practical worth to T1. `add_native_bismuth_salvage.py` preserves existing records and labels the audit entry as as-found mineral-metal salvage. Inputs, snapshots and proof remain in ignored `Logs/NativeBismuthSalvage20261016/`; no deposit, recipe, price or runtime behavior is installed.
+
 - [Two mineral salvage finds](../../Docs/Design/Items/TWO_MINERAL_SALVAGE_2026-10-16.json) add Pyrite chunks and Kaolinite clods to Salvage, both T1 / Uncommon. These are actual mineral pieces rather than worked objects. `add_two_mineral_salvage.py` uses the preserving catalog appender and replaces the two task-owned worked-stone drafts if present. No qualified grade, processing recipe or runtime placement is established. Authored inputs, snapshots and proof remain in ignored `Logs/TwoMineralSalvage20261016/`.
 
 - [Ten additional metal salvage finds](../../Docs/Design/Items/TEN_METAL_SALVAGE_2026-10-16.json) add six T0 and four T1 definitions: three Junk, three Common, two Uncommon and two Rare. Each includes a distinct recovered shape, practical use, tier rationale and rarity rationale. The guarded `add_ten_metal_salvage.py` appender preserves existing records; Artifact Tool inputs and proof remain under ignored `Logs/TenMetalSalvage20261016/`. All ten are as-found salvage, with no qualified replacement parts, established recipes or runtime placement changes.
