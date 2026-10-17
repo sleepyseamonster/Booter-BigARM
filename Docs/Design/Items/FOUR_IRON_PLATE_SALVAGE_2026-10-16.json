@@ -1,0 +1,53 @@
+{
+  "source": "Author requested four iron plate armor / iron plating salvage items, October 16, 2026. These are local catalog proposals under Docs/WORLD_BASIS.md, distinct from the existing generic Metal Plate and usable Iron armor family.",
+  "scope": "Four new Salvage entries only. Existing items and live review/balance edits are retained. Tiers express relative practical worth, not manufacturing stage or crafting readiness. World identity, streaming/unload/reload, stable generated-object identity, authored placement constraints and persisted runtime deltas are not applicable because no runtime objects, placement, recipes or save systems change.",
+  "defaults": {
+    "Tier": "T1", "Category": "Salvage", "Subtype": "Iron plate salvage", "Implementation scope": "New proposal",
+    "Equipment slot": "None; damaged salvage", "Carrier metadata": "Recovered iron cargo; size, mass and carrying arrangement unresolved.",
+    "Stack limit": null, "Mass (game units)": null,
+    "Acquisition": "Recover from discarded iron armor or damaged contemporary machinery. Specific sites, frequency and recovery requirements remain design work.",
+    "Crafting / processing": "Inspect the recovered iron for surviving usable sections, fittings or metal-recovery feed. Condition-specific preparation is required before any reuse; no recovery yield, repair recipe or ready-to-use part is granted.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "As-found iron salvage with uncertain integrity. Not wearable armor, a qualified protective plate or craft-ready stock. Fit, usable area, recovery yield, mass and protective performance remain unassigned.",
+    "Rarity": null, "Trade value": null, "Damage": null, "Protection": null, "Durability": null,
+    "Item type": "Raw material", "Processing stage": "Recovered part", "Origin family": "Industrial salvage",
+    "Primary use": "Equipment fabrication", "Material family": "Metal", "Physical form": "Solid part", "Design status": "Proposal",
+    "Classification basis": "Damaged recovered iron plating retained as Salvage for material or donor-part assessment. Original armor or machinery shape does not establish a functioning equipment item.",
+    "Tier basis": "Proposed T1 practical-worth band: ordinary useful iron with some surviving worked shape. Value tier does not qualify the recovered object for crafting.",
+    "Finished-item input tier": "Unassigned", "Crafting role": "Material"
+  },
+  "items": [
+    {
+      "id": "proposal.salvage.crumpled_iron_chestplate",
+      "name": "Crumpled iron chestplate",
+      "purpose": "A discarded iron chestplate folded inward across the lower ribs, with torn fastening points and a broad dent through the front. Its curved upper section still offers substantial worked iron for inspection and possible reuse, while the distorted body can be assessed as metal feed. It is a damaged salvage object rather than wearable armor.",
+      "icon": "One rust-red iron chestplate with a deep diagonal fold, dented front, torn fixing holes and an uneven lower edge; no wearer, straps, matching armor or loose extra metal.",
+      "material": "Metal", "use": "Equipment fabrication",
+      "fields": {"Search aliases": "iron plate salvage; crumpled iron chestplate; dented breastplate; damaged iron armor; recovered plating", "Open design decisions": "Resolve usable plate area, cracks beneath the fold, corrosion, carrying mass and material-recovery route. Retain the dented torso silhouette; no repair or protection rating established."}
+    },
+    {
+      "id": "proposal.salvage.split_iron_shoulder_plate",
+      "name": "Split iron shoulder plate",
+      "purpose": "A small curved iron shoulder plate split from its rim to the central fixing hole. One side has peeled outward, leaving ragged edges and little continuous surface for reuse. The recognizable armor fragment is mainly a candidate for recovering modest iron feed after inspection, rather than a serviceable shoulder guard.",
+      "icon": "One small rusted iron shoulder cap with a long open split, peeled edge and broken fixing hole; no wearer, intact armor set or attached lining.",
+      "material": "Metal", "use": "Equipment fabrication",
+      "fields": {"Tier": "T0", "Search aliases": "iron plate salvage; split shoulder plate; cracked iron pauldron; broken armor plate; recovered plating", "Tier basis": "Proposed T0 practical-worth band: a small deeply split fragment with limited surviving worked surface and modest recoverable iron. This is a low-value judgment, not an automatic processing stage.", "Open design decisions": "Resolve fragment size, corrosion, edge condition and recoverable material. No usable armor fitting or automatic salvage yield."}
+    },
+    {
+      "id": "proposal.salvage.buckled_iron_casing_panel",
+      "name": "Buckled iron casing panel",
+      "purpose": "A broad iron machinery cover bowed out of shape, with a turned perimeter flange and a row of stretched mounting holes. The panel retains more flat surface than the broken armor pieces, making it a candidate patch blank or metal-recovery source after inspection. Its bent rim prevents treating it as a ready replacement machine cover.",
+      "icon": "One broad rust-red iron casing panel with a shallow buckle, turned flange and stretched perimeter mounting holes; no machine, symbols or extra sheets.",
+      "material": "Metal", "use": "Equipment fabrication",
+      "fields": {"Search aliases": "iron plate salvage; buckled iron panel; machine casing plate; sheet iron cover; recovered plating", "Tier basis": "Proposed T1 practical-worth band: a broad ordinary iron panel with useful surviving surface, offset by bending and damaged mounting holes. No qualified stock or replacement fit implied.", "Open design decisions": "Resolve panel thickness, surviving surface, hidden cracking, coating residue and carrying mass. Distinct from the generic Metal Plate through its flanged machinery-cover form and damaged mounting edge."}
+    },
+    {
+      "id": "proposal.salvage.riveted_iron_reinforcement_plate",
+      "name": "Riveted iron reinforcement plate",
+      "purpose": "A thick iron reinforcement plate recovered with a narrow backing strip still held by several large rivets. A battered corner and worn fixing holes mark its former service on a heavy structure, but much of the solid body survives. Its substantial worked section and retained fittings offer potentially valuable repair donors after condition checks.",
+      "icon": "One thick rectangular iron reinforcement plate with a narrow attached backing strip, a few large rivet heads, worn fixing holes and one battered corner; no surrounding structure or loose duplicate parts.",
+      "material": "Metal", "use": "Equipment fabrication",
+      "fields": {"Tier": "T2", "Physical form": "Assembly", "Search aliases": "iron plate salvage; riveted reinforcement plate; heavy iron plating; structural patch plate; recovered plating", "Tier basis": "Proposed T2 practical-worth band: substantial surviving worked iron plus retained backing and fittings offer more potential repair utility than small cracked fragments or bent thin panels. Integrity and actual demand still require assessment.", "Open design decisions": "Resolve hidden corrosion between joined faces, rivet condition, usable sections and carrying mass. No structural load rating, armor conversion, repair result or guaranteed quantity of recovered fittings."}
+    }
+  ]
+}
