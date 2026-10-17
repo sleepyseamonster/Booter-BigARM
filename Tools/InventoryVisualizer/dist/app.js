@@ -1,4 +1,5 @@
 import {installCategoryMoves} from './category-moves.js';
+import {installNameEditor} from './name-editor.js';
 import {installTierEditor} from './tier-editor.js';
 import {installRarityEditor,rarityMarker,RARITY_COLORS} from './rarity-editor.js';
 const RARITY_ORDER=new Map(Object.keys(RARITY_COLORS).map((rarity,index)=>[rarity,index]));
@@ -106,7 +107,7 @@ function renderDetail(){
   const art=recordFor(id(item));
   const field=(label,value)=>`<dt>${esc(label)}</dt><dd>${esc(value??'Not defined')}</dd>`;
   const acquisitionProcessing=[['Acquisition',item.Acquisition],['Processing',item['Crafting / processing']]].filter(([,text])=>text).map(([label,text])=>`<p><strong>${label}:</strong> ${esc(text)}</p>`).join('');
-  $('#detail').innerHTML=`<div class="detail-top"><span>ITEM INSPECTION</span><span>${esc(tierLabel(item))} / ${art.image?'IMAGE':'NO IMAGE'}</span></div><div class="detail-hero">${imageFor(item,true)}${!art.image?'<span class="placeholder-tag">CATEGORY PLACEHOLDER · NOT ITEM ART</span>':''}</div><div class="detail-body"><div class="eyebrow">${esc(item.Category)}</div><h2>${esc(name(item))}</h2><div class="pills"><span class="pill">Tier: ${esc(item.Tier||'Unassigned')}</span></div><section class="item-description" aria-label="Item description"><h3>Description</h3><p class="description">${esc(item.Purpose||'Description not yet recorded in the master register.')}</p></section><dl>${field('Material',item['Material family'])}${field('Form',item['Physical form'])}${field('Primary use',item['Primary use'])}${field('Stage',item['Processing stage'])}${field('Rarity',item.Rarity)}${field('Scope',item['Implementation scope'])}${field('Carrier',item['Carrier metadata'])}${field('Stack limit',item['Stack limit'])}${field('Mass (game units)',item['Mass (game units)'])}</dl><section class="item-acquisition" aria-label="Acquisition and processing"><h3>Acquisition &amp; processing</h3>${acquisitionProcessing||'<p>Acquisition and processing details have not been recorded.</p>'}</section><section class="art-tools"><h3>Artwork workspace</h3><label class="button">＋ Attach item image<input id="image-upload" type="file" accept="image/png,image/jpeg,image/webp" hidden></label><label>Art status<select id="art-status"><option value="missing">Not started</option><option value="queued">Queued for generation</option><option value="review">In review</option><option value="approved">Approved artwork</option></select></label><label>Art notes<textarea id="art-notes" placeholder="Silhouette, material, framing, changes…">${esc(art.notes||'')}</textarea></label><div class="row"><button id="prompt">Copy draft prompt</button><button id="remove-image" ${!art.image?'disabled':''}>Remove image</button></div><small>Saved in this browser. Export a workspace backup to keep images and notes portable.</small></section></div>`;
+  $('#detail').innerHTML=`<div class="detail-top"><span>ITEM INSPECTION</span><span>${esc(tierLabel(item))} / ${art.image?'IMAGE':'NO IMAGE'}</span></div><div class="detail-hero">${imageFor(item,true)}${!art.image?'<span class="placeholder-tag">CATEGORY PLACEHOLDER · NOT ITEM ART</span>':''}</div><div class="detail-body"><div class="eyebrow">${esc(item.Category)}</div>${nameEditor.controls(item)}<div class="pills"><span class="pill">Tier: ${esc(item.Tier||'Unassigned')}</span></div><section class="item-description" aria-label="Item description"><h3>Description</h3><p class="description">${esc(item.Purpose||'Description not yet recorded in the master register.')}</p></section><dl>${field('Material',item['Material family'])}${field('Form',item['Physical form'])}${field('Primary use',item['Primary use'])}${field('Stage',item['Processing stage'])}${field('Rarity',item.Rarity)}${field('Scope',item['Implementation scope'])}${field('Carrier',item['Carrier metadata'])}${field('Stack limit',item['Stack limit'])}${field('Mass (game units)',item['Mass (game units)'])}</dl><section class="item-acquisition" aria-label="Acquisition and processing"><h3>Acquisition &amp; processing</h3>${acquisitionProcessing||'<p>Acquisition and processing details have not been recorded.</p>'}</section><section class="art-tools"><h3>Artwork workspace</h3><label class="button">＋ Attach item image<input id="image-upload" type="file" accept="image/png,image/jpeg,image/webp" hidden></label><label>Art status<select id="art-status"><option value="missing">Not started</option><option value="queued">Queued for generation</option><option value="review">In review</option><option value="approved">Approved artwork</option></select></label><label>Art notes<textarea id="art-notes" placeholder="Silhouette, material, framing, changes…">${esc(art.notes||'')}</textarea></label><div class="row"><button id="prompt">Copy draft prompt</button><button id="remove-image" ${!art.image?'disabled':''}>Remove image</button></div><small>Saved in this browser. Export a workspace backup to keep images and notes portable.</small></section></div>`;
   $('#detail .item-acquisition').insertAdjacentHTML('afterend',categoryMoves.controls(item));
   $('#detail .item-description').insertAdjacentHTML('beforebegin',tierEditor.controls(item));
   $('#detail .item-description').insertAdjacentHTML('beforebegin',rarityEditor.controls(item));
@@ -222,7 +223,7 @@ async function init(){
 function syncStatus(message){$('#sync-status').textContent=message;}
 let syncBusy=false;
 async function reviewAction(action,key){
-  if(categoryMoves.pending()||tierEditor.pending()||rarityEditor.pending()){toast('Check the pending spreadsheet save before changing another item.');return;}
+  if(categoryMoves.pending()||tierEditor.pending()||rarityEditor.pending()||nameEditor.pending()){toast('Check the pending spreadsheet save before changing another item.');return;}
   if(syncBusy){toast('Spreadsheet action in progress · try again in a moment');return;}
   const kept=(state.protectedIds||[]).includes(key),reviewed=(state.reviewIds||[]).includes(key);
   if(action==='delete'&&kept){toast('This item is kept. Uncheck it before deleting.');return;}
@@ -256,12 +257,12 @@ $('#reload-data').onclick=safeRun(async()=>{
   finally{syncBusy=false;$('#reload-data').disabled=false;}
 });
 async function refreshCatalog(force=false){
-  if(!force&&(state.categoryDrag||state.categorySaving))return;
+  if(!force&&(state.categoryDrag||state.categorySaving||nameEditor.dirty()))return;
   const response=await fetch('/api/catalog',{cache:'no-store'});
   if(!response.ok)throw new Error('The master workbook could not be loaded.');
   const data=await response.json();
   // Never rebuild the inspector while its notes or file controls are in use.
-  if(!force&&(state.categoryDrag||state.categorySaving||document.activeElement?.closest('#detail') || $('#settings').open || ['tier','design'].includes(document.activeElement?.id))){
+  if(!force&&(state.categoryDrag||state.categorySaving||nameEditor.dirty()||document.activeElement?.closest('#detail') || $('#settings').open || ['tier','design'].includes(document.activeElement?.id))){
     syncStatus('Spreadsheet update ready · waiting for editing to finish');return;
   }
   if(!Array.isArray(data.items)||typeof data.sha256!=='string')throw new Error('Invalid catalog response.');
@@ -275,6 +276,7 @@ async function refreshCatalog(force=false){
   state.items=data.items;state.categories=data.categories||[];state.categoryEditing=data.categoryEditing===true;state.sourceHash=data.sha256;state.protectedIds=data.protectedIds||[];state.reviewIds=data.reviewIds||[];state.reviewRevision=data.reviewRevision;state.mutationToken=data.mutationToken;$('#total').textContent=state.items.length;
   state.tierChoices=data.tierChoices||[];state.tierEditing=data.tierEditing===true;
   state.rarityChoices=data.rarityChoices||[];state.rarityEditing=data.rarityEditing===true;
+  state.nameEditing=data.nameEditing===true;
   for(const [selector,key,label]of [['#tier','Tier','All tiers'],['#design','Design status','All statuses']]){
     const selected=$(selector).value;
     const values=[...new Set(state.items.map(item=>item[key]).filter(Boolean))].sort();
@@ -293,7 +295,7 @@ async function refreshCatalog(force=false){
   if(changed)toast('Spreadsheet updated · item library refreshed');
 }
 async function checkSpreadsheet(){
-  if(syncBusy||state.categoryDrag||state.categorySaving||document.hidden)return;
+  if(syncBusy||state.categoryDrag||state.categorySaving||nameEditor.dirty()||document.hidden)return;
   syncBusy=true;
   try{
     const response=await fetch('/api/revision',{cache:'no-store'});
@@ -305,10 +307,11 @@ async function checkSpreadsheet(){
   finally{syncBusy=false;}
 }
 const saveArtDraft=async()=>{const draft=$('#art-notes');if(draft&&state.selected&&draft.value!==(recordFor(state.selected).notes||''))await updateArt(state.selected,{notes:draft.value});};
-const categoryMoves=installCategoryMoves({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||tierEditor.pending()||rarityEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:saveArtDraft});
-const tierEditor=installTierEditor({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||categoryMoves.pending()||rarityEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:saveArtDraft});
-const rarityEditor=installRarityEditor({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||categoryMoves.pending()||tierEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:saveArtDraft});
-init().then(async()=>{await categoryMoves.restore();await tierEditor.restore();await rarityEditor.restore();}).catch(error=>{$('#result-count').textContent=error.message;report(error);}).finally(()=>{
+const categoryMoves=installCategoryMoves({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||tierEditor.pending()||rarityEditor.pending()||nameEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:saveArtDraft});
+const tierEditor=installTierEditor({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||categoryMoves.pending()||rarityEditor.pending()||nameEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:saveArtDraft});
+const rarityEditor=installRarityEditor({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||categoryMoves.pending()||tierEditor.pending()||nameEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:saveArtDraft});
+const nameEditor=installNameEditor({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||categoryMoves.pending()||tierEditor.pending()||rarityEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:saveArtDraft});
+init().then(async()=>{await categoryMoves.restore();await tierEditor.restore();await rarityEditor.restore();await nameEditor.restore();}).catch(error=>{$('#result-count').textContent=error.message;report(error);}).finally(()=>{
   $('#reload-data').disabled=false;
   setInterval(checkSpreadsheet,3000);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkSpreadsheet();});

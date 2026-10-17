@@ -10,6 +10,8 @@ Open **http://127.0.0.1:8087**. Stop with Ctrl+C in the server terminal. Optiona
 
 ## Current proposal
 
+- The item name at the top of the catalog inspector is editable. **Save name** writes to the master workbook, refreshes the grid and updates linked catalog labels and search terms. Stable item IDs, Unity source names and historical prose remain unchanged; former names remain searchable aliases. Saves reject stale spreadsheet revisions and retain backups and operation receipts like tier and rarity edits. Unsaved name text pauses automatic refresh.
+
 - **Sort → Rarity** orders the current results Junk, Common, Uncommon, Rare, Epic and Legendary, then unassigned/legacy values. Names sort alphabetically within each rarity. Category, search and other filters continue to apply; item values and distribution totals are unchanged.
 
 - Each tier-distribution badge retains its total and appends colored dots with nonzero rarity counts for that tier. Hover a dot/count for the rarity name; unassigned and legacy values use outlined dots. The separate overall rarity-distribution row is unchanged. Both distributions use the selected section and inventory context, independently of search/grid filters, and refresh with catalog edits. Browser checks covered mixed-rarity sums, live rebalance updates, empty categories and search preserving section totals. This changes presentation only; no workbook or review records are edited.
