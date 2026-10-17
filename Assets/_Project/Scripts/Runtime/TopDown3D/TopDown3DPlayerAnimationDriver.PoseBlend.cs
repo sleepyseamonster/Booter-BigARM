@@ -52,10 +52,12 @@ namespace BooterBigArm.TopDown3D
             var bodyProjection=animationBodyProjection || poseBlendBodyProjection;
             var garmentFloor=animationGarmentFloor || poseBlendGarmentFloor;
             var dodgeProjection=animationDodgeProjection || poseBlendDodgeProjection;
+            var dodgeHeading=CurrentDodgeWorldHeading();
             ReleasePoseBlend();
             poseBlendBodyProjection=bodyProjection;
             poseBlendGarmentFloor=garmentFloor;
             poseBlendDodgeProjection=dodgeProjection;
+            poseBlendDodgeHeading=dodgeHeading;
             poseBlendAdvanceSources=advanceSources;
             if(mixer.GetInputCount()<=PoseBlendInputIndex)mixer.SetInputCount(PoseBlendInputIndex+1);
             poseBlendSnapshot=AnimationMixerPlayable.Create(playableGraph,sources.Count);
@@ -121,7 +123,11 @@ namespace BooterBigArm.TopDown3D
         private void ProjectLaboratoryFootPlane()
         {
             LastPoseBlendGroundCorrection=0;
-            if(DodgeProjectionActive && TryProjectDodgeBody())return;
+            if(DodgeProjectionActive)
+            {
+                ApplyDodgeVisualHeading();
+                if(TryProjectDodgeBody())return;
+            }
             if(JumpPresentationOwned && !jumpGrounded && !JumpPresentationSupportCurrent)return;
             var sampler=animationBodyProjection || poseBlendBodyProjection ? bodyProjectionSampler : footProjectionSampler;
             if(sampler==null)return;

@@ -23,8 +23,8 @@ namespace BooterBigArm.TopDown3D
             : LaboratoryForwardFailure != null ? "Forward gait review unavailable: " + LaboratoryForwardFailure
             : LaboratoryContinuationFailure != null ? "Motion review fallback: " + LaboratoryContinuationFailure
             : LaboratoryContinuationConfigured ? continuationReview.NativeCampGround
-                ? "Camp Loop native-ground motion review. A jump / B cancel." + (LaboratoryNativeGroundFailure == null ? null : "\n" + LaboratoryNativeGroundFailure)
-                : "Experimental Camp Loop motions: static even slopes up to " + continuationReview.maximumSlope + " degrees; baseline beyond. A jump / B cancel."
+                ? "Camp Loop native-ground motion review. A jump / B dodge / Backspace cancel." + (LaboratoryNativeGroundFailure == null ? null : "\n" + LaboratoryNativeGroundFailure)
+                : "Experimental Camp Loop motions: static even slopes up to " + continuationReview.maximumSlope + " degrees; baseline beyond. A jump / B dodge / Backspace cancel."
             : LaboratoryForwardReviewActive ? "Experimental forward gaits — AP02 flat deck"
             : "Experimental forward gaits available on AP02's flat deck. Baseline active elsewhere.")
             + (LaboratoryStandingStrafeConfigured ? "\n" + LaboratoryStandingStrafeStatus : null)+ContinuationTurnStatus;

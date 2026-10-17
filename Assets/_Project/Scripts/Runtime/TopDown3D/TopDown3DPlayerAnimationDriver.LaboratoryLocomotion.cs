@@ -133,7 +133,8 @@ namespace BooterBigArm.TopDown3D
 
         private void PrepareForwardGraphUpdate()
         {
-            if (!JumpPresentationOwned && (AnimationPresentationOwned || CrouchPresentationOwned || PoseBlendOwned || motor != null && motor.IsActionConstrained))
+            if (!JumpPresentationOwned && !DodgeRecoveryOwnsPresentation
+                && (AnimationPresentationOwned || CrouchPresentationOwned || PoseBlendOwned || motor != null && motor.IsActionConstrained))
                 ResetDirectionalPresentation();
             continuationActionTerrainApplied=false;
             RestoreStandingStrafeBaseline();

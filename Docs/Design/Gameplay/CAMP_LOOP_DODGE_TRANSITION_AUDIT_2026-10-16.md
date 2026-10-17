@@ -1,5 +1,7 @@
 # Dodge transition audit — October 16, 2026
 
+**Correction installed:** the [transition-fix receipt](../../Evidence/Gameplay/DodgeTransitionFix20261016/README.md) records the LT/support lease, world-facing blend and moving-entry braking fixes, 222 passing focused checks and installation in the open main camp slice. The audit below preserves the pre-fix findings; author hands-on feel acceptance remains pending.
+
 **Result: two confirmed recovery defects. The dodge is installed, but its running/sprinting handoff is not ready to be called smooth.** This is an audit; runtime behavior and accepted tuning were preserved. The author-owned CampLoopTesting scene remains open and unsaved.
 
 ## P1 — recovery drops held LT facing lock

@@ -92,5 +92,58 @@ namespace BooterBigArm.Tests
             }
             finally { f.Inner.Driver.EndPoseBlend(owner); actions.DisposeOwnedServices(); Object.DestroyImmediate(mesh); }
         }
+
+        [TestCase(SkinWeights.OneBone)] [TestCase(SkinWeights.TwoBones)] [TestCase(SkinWeights.FourBones)]
+        public void DirectionalWorldHeadingBlendsFitTheNativeCampWithoutChangingTheActorFacing(SkinWeights quality)
+        {
+            var p = AnimationPlaygroundDodgeTests.Profile(); using var f = new AnimationPlaygroundNativeGroundTests.NativeFixture(quality);
+            var actions = f.Inner.Forward.Actor.AddComponent<AnimationPlaygroundActionCoordinator>();
+            actions.Configure(f.Inner.Motor, f.Inner.Driver, new AnimationPlaygroundResetRegistry(), new[] { f.Inner.Motor.Position });
+            var owner = new object(); var mesh = new Mesh();
+            var binding = new AnimationPlaygroundMotionBinding { sourceId = "OfflineWorldHeadingDodge", clip = p.roll,
+                readiness = AnimationPlaygroundMotionReadiness.PhysicalQualified };
+            var at = typeof(TopDown3DPlayerAnimationDriver).GetMethod("PresentDodgeRunOutBlendAt", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            try
+            {
+                foreach (var site in AnimationPlaygroundNativeGroundTests.Sites)
+                foreach (var speed in new[] { 4.9f, 6.15f })
+                foreach (var phase in new[] { 0d, .5 })
+                for (var heading = 0; heading < 360; heading += 45)
+                {
+                    f.Place(site, 0); f.Inner.Lock(true); f.Inner.Frame(speed, phase, Vector2.up, 1);
+                    var direction = Quaternion.Euler(0, heading, 0) * Vector3.forward;
+                    Assert.That(f.Inner.Driver.TryCapturePoseBlend(owner, p.entryBlend), Is.True);
+                    Assert.That(actions.TryBeginPhysical(binding, AnimationPlaygroundMotionMode.Dodge, null,
+                        _ => new AnimationPlaygroundMotorIntent(Vector3.zero, Vector3.forward), null), Is.True);
+                    f.Inner.Driver.SetAnimationBodyProjection(actions, p.bodyProjection);
+                    f.Inner.Driver.SetAnimationDodgeProjection(actions, direction);
+                    f.Inner.Driver.SetAnimationGarmentFloor(actions, true, p.maximumGarmentProjection, p.garmentClearance);
+                    for (var frame = 0; frame <= 8; frame++)
+                    {
+                        var time = p.entryBlend * frame / 8; f.Inner.Forward.Call("PrepareForwardGraphUpdate");
+                        f.Inner.Driver.SetAnimationPresentationTime(actions, time); f.Inner.Driver.SetPoseBlendElapsed(owner, time);
+                        f.Inner.Forward.Call("PresentAnimationAction"); f.Inner.Forward.Call("LateUpdate");
+                        Assert.That(f.Inner.Driver.GarmentFloorExceeded, Is.False);
+                        if (frame % 2 == 0) Assert.That(f.MeshMinimum(mesh), Is.GreaterThanOrEqualTo(-.002f), $"Entry {quality}/{site}/{speed}/{phase}/{heading}/{frame}/{f.MinimumSkin}");
+                    }
+                    f.Inner.Driver.EndPoseBlend(owner); f.Inner.Driver.SetAnimationPresentationTime(actions, p.roll.length);
+                    f.Inner.Forward.Call("PresentAnimationAction"); f.Inner.Forward.Call("LateUpdate");
+                    Assert.That(f.Inner.Driver.TryCapturePoseBlend(owner, p.exitBlend), Is.True); actions.Cancel();
+                    f.Inner.Forward.Player.linearVelocity = direction * speed;
+                    for (var frame = 0; frame <= 8; frame++)
+                    {
+                        var time = p.exitBlend * frame / 8; f.Inner.Driver.SetPoseBlendElapsed(owner, time);
+                        f.Inner.Forward.Call("PrepareForwardGraphUpdate");
+                        Assert.That((bool)at.Invoke(f.Inner.Driver, new object[] { .5f, p.exitBlend / 8 }), Is.True);
+                        f.Inner.Forward.Call("LateUpdate");
+                        Assert.That(f.Inner.Driver.GarmentFloorExceeded, Is.False);
+                        if (frame % 2 == 0) Assert.That(f.MeshMinimum(mesh), Is.GreaterThanOrEqualTo(-.002f), $"Recovery {quality}/{site}/{speed}/{phase}/{heading}/{frame}/{f.MinimumSkin}");
+                        Assert.That(Quaternion.Angle(f.Inner.Forward.Player.rotation, Quaternion.identity), Is.LessThan(.01f));
+                    }
+                    f.Inner.Driver.EndPoseBlend(owner);
+                }
+            }
+            finally { f.Inner.Driver.EndPoseBlend(owner); actions.DisposeOwnedServices(); Object.DestroyImmediate(mesh); }
+        }
     }
 }

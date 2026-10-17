@@ -12,8 +12,11 @@ namespace BooterBigArm.TopDown3D
         private AnimationPlaygroundDodgeProfile profile;
         private AnimationPlaygroundResetRegistry registry;
         private Func<bool> paused, otherBusy;
-        private Vector3 direction, entryVelocity;
-        private float previousTime, blendTime, cooldown;
+        // A running roll may shed momentum, but must not inherit the standing
+        // source's instantaneous braking. Ordinary gaits keep their own tuning.
+        private const float MovingBraking = 8f;
+        private Vector3 direction, entryDirection, entryFacing;
+        private float entrySpeed, previousSpeed, previousTime, blendTime, cooldown;
         private bool rolling, blending, disposed;
         public bool Active => rolling || blending;
         public bool Ready => profile != null && profile.Validate(profile.targetModel, out _);
@@ -44,7 +47,12 @@ namespace BooterBigArm.TopDown3D
             direction = Vector3.ProjectOnPlane(motor.LaboratoryMoveDirection, Vector3.up);
             if (direction.sqrMagnitude < .01f) direction = Vector3.ProjectOnPlane(motor.FacingDirection, Vector3.up);
             if (direction.sqrMagnitude < .000001f) return Fail("A dodge direction is unavailable.");
-            direction.Normalize(); entryVelocity = Vector3.ProjectOnPlane(motor.Velocity, Vector3.up); previousTime = 0;
+            direction.Normalize(); entryFacing = motor.FacingDirection;
+            entryDirection = Vector3.ProjectOnPlane(motor.Velocity, Vector3.up);
+            entryDirection = entryDirection.sqrMagnitude > .0001f ? entryDirection.normalized : direction;
+            var normal = motor.TryGetLaboratorySupportPlane(out var support, true) ? support.normal : Vector3.up;
+            entrySpeed = previousSpeed = Mathf.Min(profile.maximumSpeed, Vector3.ProjectOnPlane(motor.Velocity, normal).magnitude);
+            previousTime = 0;
             if (!driver.TryCapturePoseBlend(this, profile.entryBlend)) return Fail("The dodge entry pose is unavailable.");
             var binding = new AnimationPlaygroundMotionBinding { sourceId = "QualifiedDodge.Roll", clip = profile.roll,
                 readiness = AnimationPlaygroundMotionReadiness.PhysicalQualified };
@@ -53,7 +61,7 @@ namespace BooterBigArm.TopDown3D
             { driver.EndPoseBlend(this); return Fail("The dodge could not acquire its movement and presentation."); }
             rolling = true; LastFailure = null;
             if (!driver.SetAnimationBodyProjection(coordinator, profile.bodyProjection)
-                || !driver.SetAnimationDodgeProjection(coordinator)
+                || !driver.SetAnimationDodgeProjection(coordinator, direction)
                 || !driver.SetAnimationGarmentFloor(coordinator, true, profile.maximumGarmentProjection, profile.garmentClearance))
             { Cancel(); return Fail("The paired dodge projection is unavailable."); }
             return true;
@@ -62,14 +70,26 @@ namespace BooterBigArm.TopDown3D
         private AnimationPlaygroundMotorIntent Intent(double seconds)
         {
             var time = Mathf.Min((float)seconds, profile.roll.length);
-            var velocity = direction * profile.Speed(previousTime, time);
-            velocity = Vector3.Lerp(entryVelocity, velocity, Mathf.SmoothStep(0, 1, Mathf.Clamp01(time / profile.entryBlend)));
+            var entry = Mathf.SmoothStep(0, 1, Mathf.Clamp01(time / profile.entryBlend));
+            var speed = Mathf.Lerp(entrySpeed, profile.Speed(previousTime, time), entry);
+            var heading = BlendHeading(entryDirection, direction, entry);
             var phase = time / profile.roll.length;
             var runOut = Mathf.SmoothStep(0, 1, Mathf.InverseLerp(1 - profile.runOutFraction, 1, phase));
-            velocity = Vector3.Lerp(velocity, motor.DodgeRunOutVelocity(coordinator), runOut);
-            if (paused?.Invoke() != true) previousTime = time;
+            var target = motor.DodgeRunOutVelocity(coordinator);
+            speed = Mathf.Lerp(speed, target.magnitude, runOut);
+            if (target.sqrMagnitude > .0001f) heading = BlendHeading(heading, target, runOut);
+            if (entrySpeed > .18f) speed = Mathf.Max(speed, previousSpeed - MovingBraking * Mathf.Max(0, time - previousTime));
+            speed = Mathf.Clamp(speed, 0, profile.maximumSpeed);
+            if (paused?.Invoke() != true) { previousTime = time; previousSpeed = speed; }
             driver.SetPoseBlendElapsed(this, time);
-            return new AnimationPlaygroundMotorIntent(velocity, direction, phase: phase, paused: paused?.Invoke() == true);
+            return new AnimationPlaygroundMotorIntent(heading * speed, entryFacing, phase: phase, paused: paused?.Invoke() == true);
+        }
+
+        private static Vector3 BlendHeading(Vector3 from, Vector3 to, float blend)
+        {
+            from = Vector3.ProjectOnPlane(from, Vector3.up); to = Vector3.ProjectOnPlane(to, Vector3.up);
+            return Quaternion.Slerp(Quaternion.LookRotation(from.normalized, Vector3.up),
+                Quaternion.LookRotation(to.normalized, Vector3.up), blend) * Vector3.forward;
         }
 
         private void StageCompleted()

@@ -352,7 +352,12 @@ namespace BooterBigArm.TopDown3D
             if(animationMotionOwner==null)return;
             var jump=JumpLocomotionActive;var dodge=DodgeLocomotionActive;
             jumpPreserveGroundObservationOnRelease=jump && JumpUsesGroundedLocomotion;
-            if(!jump || !JumpUsesGroundedLocomotion)ResetStandingMotionObservation();
+            dodgePreserveGroundObservationOnRelease=dodge && IsGrounded && laboratoryGroundSupport!=null;
+            // A grounded roll releases after its current support ray. Retain
+            // that ray so the normal post-tick observation can rebase in place;
+            // clearing it here invalidates the first recovery-facing lease.
+            if(!(jump && JumpUsesGroundedLocomotion) && !dodgePreserveGroundObservationOnRelease)
+                ResetStandingMotionObservation();
             if(body!=null){body.useGravity=animationOriginalGravity;var velocity=animationWasPaused ? animationPausedVelocity : body.linearVelocity;
                 body.linearVelocity=jump || dodge ? velocity : Vector3.up*velocity.y;body.angularVelocity=Vector3.zero;}
             if(capsule!=null)capsule.enabled=animationColliderEnabled;

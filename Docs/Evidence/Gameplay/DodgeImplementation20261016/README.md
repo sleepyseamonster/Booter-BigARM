@@ -4,7 +4,7 @@ Installed in the already open **CampLoopTesting** main camp slice and ready for 
 
 ## Subsequent transition audit — October 16
 
-The [running/sprint recovery audit](../../../Design/Gameplay/CAMP_LOOP_DODGE_TRANSITION_AUDIT_2026-10-16.md) reproduced two handoff defects: held LT facing lock drops on the first ordinary recovery tick, and side/back rolls reset motor facing before the local pose fade. The source/geometry checks below remain valid, but they do not establish smooth temporal recovery. The audit preserves accepted gaits and records correction gates; runtime fixes remain pending.
+The [running/sprint recovery audit](../../../Design/Gameplay/CAMP_LOOP_DODGE_TRANSITION_AUDIT_2026-10-16.md) reproduced two handoff defects: held LT facing lock drops on the first ordinary recovery tick, and side/back rolls reset motor facing before the local pose fade. The source/geometry checks below remain valid, but they do not establish smooth temporal recovery. The subsequent [transition fix](../DodgeTransitionFix20261016/README.md) resolves those ownership defects and bounds moving-entry braking, with 222 passing focused checks and a guarded import into the open main camp. Accepted gaits remain unchanged; author hands-on feel acceptance is pending.
 
 ## Controls and behavior
 

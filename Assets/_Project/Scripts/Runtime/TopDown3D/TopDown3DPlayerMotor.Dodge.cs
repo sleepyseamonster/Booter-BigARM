@@ -4,6 +4,8 @@ namespace BooterBigArm.TopDown3D
 {
     public sealed partial class TopDown3DPlayerMotor
     {
+        private bool dodgePreserveGroundObservationOnRelease;
+
         public bool DodgeLocomotionActive => animationMotionOwner != null
             && animationMotionPolicy == AnimationPlaygroundMotionPolicy.DodgeLocomotion;
 
@@ -22,10 +24,19 @@ namespace BooterBigArm.TopDown3D
             if (!IsAnimationMotionOwner(owner) || !DodgeLocomotionActive || input == null
                 || input.Mode != TopDown3DInputMode.Gameplay || input.LaboratoryResetBlocked) return Vector3.zero;
             var direction = LaboratoryMoveDirection;
+            if (direction.sqrMagnitude < .000001f) return Vector3.zero;
+            if (TryGetSurfaceNormalAhead(direction, out var ahead))
+                direction = TopDown3DSlopeMath.RemoveSteepUphillComponent(direction, ahead, maxWalkableSlope);
             var speed = AnimationLocomotionSpeed(LaboratoryRequestedSpeed(input.SprintHeld));
             if (standingStrafeLocked && standingStrafeProfile != null && standingStrafeProfile.AllDirections)
                 speed = Mathf.Min(speed, AnimationPlaygroundDirectionalMath.SpeedLimit(standingStrafeProfile,
                     AnimationPlaygroundDirectionalMath.Local(direction, standingStrafeFacing)));
+            if (TryGetGroundNormal(out var normal))
+            {
+                var magnitude = direction.magnitude;
+                direction = TopDown3DSlopeMath.ProjectDirectionOnSlope(direction, normal, maxWalkableSlope) * magnitude;
+                speed = ApplyLaboratoryUphillGait(speed, direction, normal);
+            }
             return direction * speed;
         }
 

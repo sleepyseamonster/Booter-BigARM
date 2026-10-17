@@ -42,7 +42,8 @@ namespace BooterBigArm.TopDown3D
         }
 
         public bool StandingStrafeReviewSupportAvailable() => LaboratoryStandingStrafeConfigured && LaboratoryForwardReady
-            && ForwardReviewSupportAvailable() && (JumpPresentationOwned || !AnimationPresentationOwned && !PoseBlendOwned) && !CrouchPresentationOwned
+            && ForwardReviewSupportAvailable() && (JumpPresentationOwned || DodgeRecoveryOwnsPresentation
+                || !AnimationPresentationOwned && !PoseBlendOwned) && !CrouchPresentationOwned
             && motor != null && !motor.IsMounted && (!motor.IsActionConstrained || motor.JumpUsesGroundedLocomotion);
 
         private void InitializeStandingStrafeReviewInputs()
@@ -184,7 +185,7 @@ namespace BooterBigArm.TopDown3D
         private void EmitStandingStrafeFootEffects()
         {
             if (standingStrafeReview != null && standingStrafeReview.AllDirections) return;
-            if (!standingStrafeRendered || !StandingStrafeReviewSupportAvailable() || motor == null) return;
+            if (!standingStrafeRendered || !StandingStrafeReviewSupportAvailable() || PoseBlendOwned || motor == null) return;
             var sample = motor.LaboratoryGroundedMotion;
             if (!sample.Available || sample.Tick != standingStrafeMotion.Tick || sample.Epoch != standingStrafeMotion.Epoch)
             { standingStrafePlantStart = standingStrafePlantCount = 0; return; }

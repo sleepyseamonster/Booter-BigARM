@@ -1,0 +1,2867 @@
+{
+  "scope": "Offline command/state proof on native camp support; completed-motion units are explicit, actor held fixed, no physical distance/cadence/feel claim",
+  "cases": [
+    {
+      "speed": 4.9,
+      "heading": 0.0,
+      "ltHeld": false,
+      "maximumEntryBraking": 8.000043,
+      "releaseYaw": 0.0,
+      "releaseVisualYaw": 0.0,
+      "firstLostLock": -1,
+      "scalarCommandDistance": 3.63743973,
+      "finalLock": false,
+      "entry80msTangentSpeed": 4.26000071,
+      "entryWindow": [
+        {
+          "tick": 1,
+          "seconds": 0.0199999921,
+          "tangentSpeed": 4.74000025,
+          "roll": true,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 2,
+          "seconds": 0.0399999842,
+          "tangentSpeed": 4.5800004,
+          "roll": true,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.01978234
+        },
+        {
+          "tick": 3,
+          "seconds": 0.0599999763,
+          "tangentSpeed": 4.42000055,
+          "roll": true,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0593470261
+        },
+        {
+          "tick": 4,
+          "seconds": 0.07999997,
+          "tangentSpeed": 4.26000071,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 5,
+          "seconds": 0.0999999642,
+          "tangentSpeed": 4.10000134,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 6,
+          "seconds": 0.119999953,
+          "tangentSpeed": 3.94000077,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 7,
+          "seconds": 0.139999941,
+          "tangentSpeed": 3.780001,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 8,
+          "seconds": 0.159999937,
+          "tangentSpeed": 3.62000132,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 9,
+          "seconds": 0.179999933,
+          "tangentSpeed": 3.46000147,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 10,
+          "seconds": 0.199999928,
+          "tangentSpeed": 3.30000186,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 11,
+          "seconds": 0.219999909,
+          "tangentSpeed": 3.14000177,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 12,
+          "seconds": 0.2399999,
+          "tangentSpeed": 3.03228283,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 13,
+          "seconds": 0.2599999,
+          "tangentSpeed": 3.99154472,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 14,
+          "seconds": 0.279999882,
+          "tangentSpeed": 4.641019,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 15,
+          "seconds": 0.2999999,
+          "tangentSpeed": 4.481018,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        }
+      ],
+      "releaseAndRecovery": [
+        {
+          "tick": 47,
+          "seconds": 0.93999964,
+          "tangentSpeed": 4.860706,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 48,
+          "seconds": 0.9599996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 49,
+          "seconds": 0.9799996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 50,
+          "seconds": 0.9999996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.07912937
+        },
+        {
+          "tick": 51,
+          "seconds": 1.01999962,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0593470261
+        },
+        {
+          "tick": 52,
+          "seconds": 1.0399996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.03956468
+        },
+        {
+          "tick": 53,
+          "seconds": 1.05999959,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.01978234
+        },
+        {
+          "tick": 54,
+          "seconds": 1.07999957,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 55,
+          "seconds": 1.09999955,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 56,
+          "seconds": 1.11999953,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 57,
+          "seconds": 1.13999951,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 58,
+          "seconds": 1.15999949,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        }
+      ]
+    },
+    {
+      "speed": 4.9,
+      "heading": 0.0,
+      "ltHeld": true,
+      "maximumEntryBraking": 8.000043,
+      "releaseYaw": 0.0,
+      "releaseVisualYaw": 0.0,
+      "firstLostLock": -1,
+      "scalarCommandDistance": 3.63743973,
+      "finalLock": true,
+      "entry80msTangentSpeed": 4.26000071,
+      "entryWindow": [
+        {
+          "tick": 1,
+          "seconds": 0.0199999921,
+          "tangentSpeed": 4.74000025,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 2,
+          "seconds": 0.0399999842,
+          "tangentSpeed": 4.5800004,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.01978234
+        },
+        {
+          "tick": 3,
+          "seconds": 0.0599999763,
+          "tangentSpeed": 4.42000055,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0593470261
+        },
+        {
+          "tick": 4,
+          "seconds": 0.07999997,
+          "tangentSpeed": 4.26000071,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 5,
+          "seconds": 0.0999999642,
+          "tangentSpeed": 4.10000134,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 6,
+          "seconds": 0.119999953,
+          "tangentSpeed": 3.94000077,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 7,
+          "seconds": 0.139999941,
+          "tangentSpeed": 3.780001,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 8,
+          "seconds": 0.159999937,
+          "tangentSpeed": 3.62000132,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 9,
+          "seconds": 0.179999933,
+          "tangentSpeed": 3.46000147,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 10,
+          "seconds": 0.199999928,
+          "tangentSpeed": 3.30000186,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 11,
+          "seconds": 0.219999909,
+          "tangentSpeed": 3.14000177,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 12,
+          "seconds": 0.2399999,
+          "tangentSpeed": 3.03228283,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 13,
+          "seconds": 0.2599999,
+          "tangentSpeed": 3.99154472,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 14,
+          "seconds": 0.279999882,
+          "tangentSpeed": 4.641019,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 15,
+          "seconds": 0.2999999,
+          "tangentSpeed": 4.481018,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        }
+      ],
+      "releaseAndRecovery": [
+        {
+          "tick": 47,
+          "seconds": 0.93999964,
+          "tangentSpeed": 4.860706,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 48,
+          "seconds": 0.9599996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 49,
+          "seconds": 0.9799996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 50,
+          "seconds": 0.9999996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.07912937
+        },
+        {
+          "tick": 51,
+          "seconds": 1.01999962,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0593470261
+        },
+        {
+          "tick": 52,
+          "seconds": 1.0399996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.03956468
+        },
+        {
+          "tick": 53,
+          "seconds": 1.05999959,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.01978234
+        },
+        {
+          "tick": 54,
+          "seconds": 1.07999957,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 55,
+          "seconds": 1.09999955,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 56,
+          "seconds": 1.11999953,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 57,
+          "seconds": 1.13999951,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 58,
+          "seconds": 1.15999949,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        }
+      ]
+    },
+    {
+      "speed": 4.9,
+      "heading": 45.0,
+      "ltHeld": true,
+      "maximumEntryBraking": 8.000008,
+      "releaseYaw": 0.0,
+      "releaseVisualYaw": 0.0,
+      "firstLostLock": -1,
+      "scalarCommandDistance": 3.63743973,
+      "finalLock": true,
+      "entry80msTangentSpeed": 4.26000071,
+      "entryWindow": [
+        {
+          "tick": 1,
+          "seconds": 0.0199999921,
+          "tangentSpeed": 4.74000025,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 7.0302043
+        },
+        {
+          "tick": 2,
+          "seconds": 0.0399999842,
+          "tangentSpeed": 4.5800004,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 22.512022
+        },
+        {
+          "tick": 3,
+          "seconds": 0.0599999763,
+          "tangentSpeed": 4.42000055,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 38.04956
+        },
+        {
+          "tick": 4,
+          "seconds": 0.07999997,
+          "tangentSpeed": 4.26000071,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 5,
+          "seconds": 0.0999999642,
+          "tangentSpeed": 4.100001,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 6,
+          "seconds": 0.119999953,
+          "tangentSpeed": 3.940001,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 7,
+          "seconds": 0.139999941,
+          "tangentSpeed": 3.780001,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 8,
+          "seconds": 0.159999937,
+          "tangentSpeed": 3.62000132,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 9,
+          "seconds": 0.179999933,
+          "tangentSpeed": 3.46000171,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 10,
+          "seconds": 0.199999928,
+          "tangentSpeed": 3.30000162,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 11,
+          "seconds": 0.219999909,
+          "tangentSpeed": 3.14000177,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 12,
+          "seconds": 0.2399999,
+          "tangentSpeed": 3.03228283,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 13,
+          "seconds": 0.2599999,
+          "tangentSpeed": 3.99154425,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 14,
+          "seconds": 0.279999882,
+          "tangentSpeed": 4.64101839,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 15,
+          "seconds": 0.2999999,
+          "tangentSpeed": 4.48101854,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        }
+      ],
+      "releaseAndRecovery": [
+        {
+          "tick": 47,
+          "seconds": 0.93999964,
+          "tangentSpeed": 4.86070633,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 48,
+          "seconds": 0.9599996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 49,
+          "seconds": 0.9799996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 50,
+          "seconds": 0.9999996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 43.18169
+        },
+        {
+          "tick": 51,
+          "seconds": 1.01999962,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 38.0495758
+        },
+        {
+          "tick": 52,
+          "seconds": 1.0399996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 30.8027058
+        },
+        {
+          "tick": 53,
+          "seconds": 1.05999959,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 22.5120487
+        },
+        {
+          "tick": 54,
+          "seconds": 1.07999957,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 14.2384157
+        },
+        {
+          "tick": 55,
+          "seconds": 1.09999955,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 7.0302043
+        },
+        {
+          "tick": 56,
+          "seconds": 1.11999953,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 1.93340433
+        },
+        {
+          "tick": 57,
+          "seconds": 1.13999951,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 58,
+          "seconds": 1.15999949,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        }
+      ]
+    },
+    {
+      "speed": 4.9,
+      "heading": 90.0,
+      "ltHeld": true,
+      "maximumEntryBraking": 8.000019,
+      "releaseYaw": 0.0,
+      "releaseVisualYaw": 0.0,
+      "firstLostLock": -1,
+      "scalarCommandDistance": 3.63743949,
+      "finalLock": true,
+      "entry80msTangentSpeed": 4.26,
+      "entryWindow": [
+        {
+          "tick": 1,
+          "seconds": 0.0199999921,
+          "tangentSpeed": 4.74000025,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 14.0624981
+        },
+        {
+          "tick": 2,
+          "seconds": 0.0399999842,
+          "tangentSpeed": 4.5800004,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.0322075
+        },
+        {
+          "tick": 3,
+          "seconds": 0.0599999763,
+          "tangentSpeed": 4.42,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 76.03179
+        },
+        {
+          "tick": 4,
+          "seconds": 0.07999997,
+          "tangentSpeed": 4.26,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 5,
+          "seconds": 0.0999999642,
+          "tangentSpeed": 4.10000038,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 6,
+          "seconds": 0.119999953,
+          "tangentSpeed": 3.94000077,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 7,
+          "seconds": 0.139999941,
+          "tangentSpeed": 3.780001,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 8,
+          "seconds": 0.159999937,
+          "tangentSpeed": 3.620001,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 9,
+          "seconds": 0.179999933,
+          "tangentSpeed": 3.46000123,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 10,
+          "seconds": 0.199999928,
+          "tangentSpeed": 3.30000138,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 11,
+          "seconds": 0.219999909,
+          "tangentSpeed": 3.14000154,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 12,
+          "seconds": 0.2399999,
+          "tangentSpeed": 3.03228259,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 13,
+          "seconds": 0.2599999,
+          "tangentSpeed": 3.99154449,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 14,
+          "seconds": 0.279999882,
+          "tangentSpeed": 4.641018,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 15,
+          "seconds": 0.2999999,
+          "tangentSpeed": 4.48101759,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        }
+      ],
+      "releaseAndRecovery": [
+        {
+          "tick": 47,
+          "seconds": 0.93999964,
+          "tangentSpeed": 4.860707,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 48,
+          "seconds": 0.9599996,
+          "tangentSpeed": 4.90000057,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 49,
+          "seconds": 0.9799996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 50,
+          "seconds": 0.9999996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 86.22523
+        },
+        {
+          "tick": 51,
+          "seconds": 1.01999962,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 76.03183
+        },
+        {
+          "tick": 52,
+          "seconds": 1.0399996,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 61.5938759
+        },
+        {
+          "tick": 53,
+          "seconds": 1.05999959,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.03224
+        },
+        {
+          "tick": 54,
+          "seconds": 1.07999957,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 28.48437
+        },
+        {
+          "tick": 55,
+          "seconds": 1.09999955,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 14.0625267
+        },
+        {
+          "tick": 56,
+          "seconds": 1.11999953,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 3.867056
+        },
+        {
+          "tick": 57,
+          "seconds": 1.13999951,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 58,
+          "seconds": 1.15999949,
+          "tangentSpeed": 4.9,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        }
+      ]
+    },
+    {
+      "speed": 4.9,
+      "heading": 180.0,
+      "ltHeld": true,
+      "maximumEntryBraking": 8.000043,
+      "releaseYaw": 0.0,
+      "releaseVisualYaw": 0.0,
+      "firstLostLock": -1,
+      "scalarCommandDistance": 3.544581,
+      "finalLock": true,
+      "entry80msTangentSpeed": 4.26000071,
+      "entryWindow": [
+        {
+          "tick": 1,
+          "seconds": 0.0199999921,
+          "tangentSpeed": 4.74000072,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -28.1286564
+        },
+        {
+          "tick": 2,
+          "seconds": 0.0399999842,
+          "tangentSpeed": 4.58,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -89.97854
+        },
+        {
+          "tick": 3,
+          "seconds": 0.0599999763,
+          "tangentSpeed": 4.420001,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -151.820648
+        },
+        {
+          "tick": 4,
+          "seconds": 0.07999997,
+          "tangentSpeed": 4.26000071,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 5,
+          "seconds": 0.0999999642,
+          "tangentSpeed": 4.10000134,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 6,
+          "seconds": 0.119999953,
+          "tangentSpeed": 3.94000077,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 7,
+          "seconds": 0.139999941,
+          "tangentSpeed": 3.780001,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 8,
+          "seconds": 0.159999937,
+          "tangentSpeed": 3.62000132,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 9,
+          "seconds": 0.179999933,
+          "tangentSpeed": 3.46000147,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 10,
+          "seconds": 0.199999928,
+          "tangentSpeed": 3.30000186,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 11,
+          "seconds": 0.219999909,
+          "tangentSpeed": 3.14000177,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 12,
+          "seconds": 0.2399999,
+          "tangentSpeed": 3.03228283,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 13,
+          "seconds": 0.2599999,
+          "tangentSpeed": 3.99154472,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 14,
+          "seconds": 0.279999882,
+          "tangentSpeed": 4.641019,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 15,
+          "seconds": 0.2999999,
+          "tangentSpeed": 4.481018,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        }
+      ],
+      "releaseAndRecovery": [
+        {
+          "tick": 47,
+          "seconds": 0.93999964,
+          "tangentSpeed": 3.96792364,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 48,
+          "seconds": 0.9599996,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 49,
+          "seconds": 0.9799996,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 50,
+          "seconds": 0.9999996,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -172.301025
+        },
+        {
+          "tick": 51,
+          "seconds": 1.01999962,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -151.820724
+        },
+        {
+          "tick": 52,
+          "seconds": 1.0399996,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -122.977219
+        },
+        {
+          "tick": 53,
+          "seconds": 1.05999959,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -89.9786148
+        },
+        {
+          "tick": 54,
+          "seconds": 1.07999957,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -56.9628677
+        },
+        {
+          "tick": 55,
+          "seconds": 1.09999955,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -28.128727
+        },
+        {
+          "tick": 56,
+          "seconds": 1.11999953,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -7.734617
+        },
+        {
+          "tick": 57,
+          "seconds": 1.13999951,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 58,
+          "seconds": 1.15999949,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        }
+      ]
+    },
+    {
+      "speed": 6.15,
+      "heading": 0.0,
+      "ltHeld": false,
+      "maximumEntryBraking": 8.000043,
+      "releaseYaw": 0.0,
+      "releaseVisualYaw": 0.0,
+      "firstLostLock": -1,
+      "scalarCommandDistance": 4.07217741,
+      "finalLock": false,
+      "entry80msTangentSpeed": 5.51000071,
+      "entryWindow": [
+        {
+          "tick": 1,
+          "seconds": 0.0199999921,
+          "tangentSpeed": 5.99000072,
+          "roll": true,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 2,
+          "seconds": 0.0399999842,
+          "tangentSpeed": 5.830001,
+          "roll": true,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.01978234
+        },
+        {
+          "tick": 3,
+          "seconds": 0.0599999763,
+          "tangentSpeed": 5.67000055,
+          "roll": true,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0593470261
+        },
+        {
+          "tick": 4,
+          "seconds": 0.07999997,
+          "tangentSpeed": 5.51000071,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 5,
+          "seconds": 0.0999999642,
+          "tangentSpeed": 5.35000134,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 6,
+          "seconds": 0.119999953,
+          "tangentSpeed": 5.19000149,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 7,
+          "seconds": 0.139999941,
+          "tangentSpeed": 5.03000164,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 8,
+          "seconds": 0.159999937,
+          "tangentSpeed": 4.870002,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 9,
+          "seconds": 0.179999933,
+          "tangentSpeed": 4.71000242,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 10,
+          "seconds": 0.199999928,
+          "tangentSpeed": 4.55000257,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 11,
+          "seconds": 0.219999909,
+          "tangentSpeed": 4.39000273,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 12,
+          "seconds": 0.2399999,
+          "tangentSpeed": 4.230003,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 13,
+          "seconds": 0.2599999,
+          "tangentSpeed": 4.070002,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 14,
+          "seconds": 0.279999882,
+          "tangentSpeed": 4.641019,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 15,
+          "seconds": 0.2999999,
+          "tangentSpeed": 4.481018,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        }
+      ],
+      "releaseAndRecovery": [
+        {
+          "tick": 47,
+          "seconds": 0.93999964,
+          "tangentSpeed": 6.100683,
+          "roll": true,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 48,
+          "seconds": 0.9599996,
+          "tangentSpeed": 6.150001,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 49,
+          "seconds": 0.9799996,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 50,
+          "seconds": 0.9999996,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.07912937
+        },
+        {
+          "tick": 51,
+          "seconds": 1.01999962,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0593470261
+        },
+        {
+          "tick": 52,
+          "seconds": 1.0399996,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.03956468
+        },
+        {
+          "tick": 53,
+          "seconds": 1.05999959,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.01978234
+        },
+        {
+          "tick": 54,
+          "seconds": 1.07999957,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 55,
+          "seconds": 1.09999955,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 56,
+          "seconds": 1.11999953,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 57,
+          "seconds": 1.13999951,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 58,
+          "seconds": 1.15999949,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": false,
+          "locked": false,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        }
+      ]
+    },
+    {
+      "speed": 6.15,
+      "heading": 0.0,
+      "ltHeld": true,
+      "maximumEntryBraking": 8.000043,
+      "releaseYaw": 0.0,
+      "releaseVisualYaw": 0.0,
+      "firstLostLock": -1,
+      "scalarCommandDistance": 4.07217741,
+      "finalLock": true,
+      "entry80msTangentSpeed": 5.51000071,
+      "entryWindow": [
+        {
+          "tick": 1,
+          "seconds": 0.0199999921,
+          "tangentSpeed": 5.99000072,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 2,
+          "seconds": 0.0399999842,
+          "tangentSpeed": 5.830001,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.01978234
+        },
+        {
+          "tick": 3,
+          "seconds": 0.0599999763,
+          "tangentSpeed": 5.67000055,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0593470261
+        },
+        {
+          "tick": 4,
+          "seconds": 0.07999997,
+          "tangentSpeed": 5.51000071,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 5,
+          "seconds": 0.0999999642,
+          "tangentSpeed": 5.35000134,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 6,
+          "seconds": 0.119999953,
+          "tangentSpeed": 5.19000149,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 7,
+          "seconds": 0.139999941,
+          "tangentSpeed": 5.03000164,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 8,
+          "seconds": 0.159999937,
+          "tangentSpeed": 4.870002,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 9,
+          "seconds": 0.179999933,
+          "tangentSpeed": 4.71000242,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 10,
+          "seconds": 0.199999928,
+          "tangentSpeed": 4.55000257,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 11,
+          "seconds": 0.219999909,
+          "tangentSpeed": 4.39000273,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 12,
+          "seconds": 0.2399999,
+          "tangentSpeed": 4.230003,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 13,
+          "seconds": 0.2599999,
+          "tangentSpeed": 4.070002,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 14,
+          "seconds": 0.279999882,
+          "tangentSpeed": 4.641019,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 15,
+          "seconds": 0.2999999,
+          "tangentSpeed": 4.481018,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        }
+      ],
+      "releaseAndRecovery": [
+        {
+          "tick": 47,
+          "seconds": 0.93999964,
+          "tangentSpeed": 6.100683,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 48,
+          "seconds": 0.9599996,
+          "tangentSpeed": 6.150001,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 49,
+          "seconds": 0.9799996,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0862292349
+        },
+        {
+          "tick": 50,
+          "seconds": 0.9999996,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.07912937
+        },
+        {
+          "tick": 51,
+          "seconds": 1.01999962,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.0593470261
+        },
+        {
+          "tick": 52,
+          "seconds": 1.0399996,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.03956468
+        },
+        {
+          "tick": 53,
+          "seconds": 1.05999959,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -0.01978234
+        },
+        {
+          "tick": 54,
+          "seconds": 1.07999957,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 55,
+          "seconds": 1.09999955,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 56,
+          "seconds": 1.11999953,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 57,
+          "seconds": 1.13999951,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 58,
+          "seconds": 1.15999949,
+          "tangentSpeed": 6.15000057,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        }
+      ]
+    },
+    {
+      "speed": 6.15,
+      "heading": 45.0,
+      "ltHeld": true,
+      "maximumEntryBraking": 8.000019,
+      "releaseYaw": 0.0,
+      "releaseVisualYaw": 0.0,
+      "firstLostLock": -1,
+      "scalarCommandDistance": 4.010439,
+      "finalLock": true,
+      "entry80msTangentSpeed": 5.510001,
+      "entryWindow": [
+        {
+          "tick": 1,
+          "seconds": 0.0199999921,
+          "tangentSpeed": 5.990001,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 7.0302043
+        },
+        {
+          "tick": 2,
+          "seconds": 0.0399999842,
+          "tangentSpeed": 5.830001,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 22.512022
+        },
+        {
+          "tick": 3,
+          "seconds": 0.0599999763,
+          "tangentSpeed": 5.67000055,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 38.04956
+        },
+        {
+          "tick": 4,
+          "seconds": 0.07999997,
+          "tangentSpeed": 5.510001,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 5,
+          "seconds": 0.0999999642,
+          "tangentSpeed": 5.35000134,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 6,
+          "seconds": 0.119999953,
+          "tangentSpeed": 5.19000149,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 7,
+          "seconds": 0.139999941,
+          "tangentSpeed": 5.03000164,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 8,
+          "seconds": 0.159999937,
+          "tangentSpeed": 4.870002,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 9,
+          "seconds": 0.179999933,
+          "tangentSpeed": 4.710002,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 10,
+          "seconds": 0.199999928,
+          "tangentSpeed": 4.550002,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 11,
+          "seconds": 0.219999909,
+          "tangentSpeed": 4.39000225,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 12,
+          "seconds": 0.2399999,
+          "tangentSpeed": 4.2300024,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 13,
+          "seconds": 0.2599999,
+          "tangentSpeed": 4.07000256,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 14,
+          "seconds": 0.279999882,
+          "tangentSpeed": 4.64101839,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 15,
+          "seconds": 0.2999999,
+          "tangentSpeed": 4.48101854,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        }
+      ],
+      "releaseAndRecovery": [
+        {
+          "tick": 47,
+          "seconds": 0.93999964,
+          "tangentSpeed": 5.53029346,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 48,
+          "seconds": 0.9599996,
+          "tangentSpeed": 5.575,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 49,
+          "seconds": 0.9799996,
+          "tangentSpeed": 5.57060766,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.1291122
+        },
+        {
+          "tick": 50,
+          "seconds": 0.9999996,
+          "tangentSpeed": 5.57060766,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 43.18169
+        },
+        {
+          "tick": 51,
+          "seconds": 1.01999962,
+          "tangentSpeed": 5.57060766,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 38.0495758
+        },
+        {
+          "tick": 52,
+          "seconds": 1.0399996,
+          "tangentSpeed": 5.57060766,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 30.8027058
+        },
+        {
+          "tick": 53,
+          "seconds": 1.05999959,
+          "tangentSpeed": 5.57060766,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 22.5120487
+        },
+        {
+          "tick": 54,
+          "seconds": 1.07999957,
+          "tangentSpeed": 5.57060766,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 14.2384157
+        },
+        {
+          "tick": 55,
+          "seconds": 1.09999955,
+          "tangentSpeed": 5.57060766,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 7.0302043
+        },
+        {
+          "tick": 56,
+          "seconds": 1.11999953,
+          "tangentSpeed": 5.57060766,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 1.93340433
+        },
+        {
+          "tick": 57,
+          "seconds": 1.13999951,
+          "tangentSpeed": 5.57060766,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 58,
+          "seconds": 1.15999949,
+          "tangentSpeed": 5.57060766,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        }
+      ]
+    },
+    {
+      "speed": 6.15,
+      "heading": 90.0,
+      "ltHeld": true,
+      "maximumEntryBraking": 8.000019,
+      "releaseYaw": 0.0,
+      "releaseVisualYaw": 0.0,
+      "firstLostLock": -1,
+      "scalarCommandDistance": 3.94870043,
+      "finalLock": true,
+      "entry80msTangentSpeed": 5.51000071,
+      "entryWindow": [
+        {
+          "tick": 1,
+          "seconds": 0.0199999921,
+          "tangentSpeed": 5.99000025,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 14.0624981
+        },
+        {
+          "tick": 2,
+          "seconds": 0.0399999842,
+          "tangentSpeed": 5.83000135,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.0322075
+        },
+        {
+          "tick": 3,
+          "seconds": 0.0599999763,
+          "tangentSpeed": 5.670001,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 76.03179
+        },
+        {
+          "tick": 4,
+          "seconds": 0.07999997,
+          "tangentSpeed": 5.51000071,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 5,
+          "seconds": 0.0999999642,
+          "tangentSpeed": 5.350001,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 6,
+          "seconds": 0.119999953,
+          "tangentSpeed": 5.190001,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 7,
+          "seconds": 0.139999941,
+          "tangentSpeed": 5.030001,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 8,
+          "seconds": 0.159999937,
+          "tangentSpeed": 4.87000132,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 9,
+          "seconds": 0.179999933,
+          "tangentSpeed": 4.71000147,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 10,
+          "seconds": 0.199999928,
+          "tangentSpeed": 4.55000162,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 11,
+          "seconds": 0.219999909,
+          "tangentSpeed": 4.390002,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 12,
+          "seconds": 0.2399999,
+          "tangentSpeed": 4.230002,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 13,
+          "seconds": 0.2599999,
+          "tangentSpeed": 4.070002,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 14,
+          "seconds": 0.279999882,
+          "tangentSpeed": 4.641018,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 15,
+          "seconds": 0.2999999,
+          "tangentSpeed": 4.48101759,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        }
+      ],
+      "releaseAndRecovery": [
+        {
+          "tick": 47,
+          "seconds": 0.93999964,
+          "tangentSpeed": 4.95990467,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 48,
+          "seconds": 0.9599996,
+          "tangentSpeed": 5.00000048,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 49,
+          "seconds": 0.9799996,
+          "tangentSpeed": 5.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 90.08567
+        },
+        {
+          "tick": 50,
+          "seconds": 0.9999996,
+          "tangentSpeed": 5.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 86.22523
+        },
+        {
+          "tick": 51,
+          "seconds": 1.01999962,
+          "tangentSpeed": 5.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 76.03183
+        },
+        {
+          "tick": 52,
+          "seconds": 1.0399996,
+          "tangentSpeed": 5.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 61.5938759
+        },
+        {
+          "tick": 53,
+          "seconds": 1.05999959,
+          "tangentSpeed": 5.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 45.03224
+        },
+        {
+          "tick": 54,
+          "seconds": 1.07999957,
+          "tangentSpeed": 5.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 28.48437
+        },
+        {
+          "tick": 55,
+          "seconds": 1.09999955,
+          "tangentSpeed": 5.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 14.0625267
+        },
+        {
+          "tick": 56,
+          "seconds": 1.11999953,
+          "tangentSpeed": 5.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 3.867056
+        },
+        {
+          "tick": 57,
+          "seconds": 1.13999951,
+          "tangentSpeed": 5.0,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 58,
+          "seconds": 1.15999949,
+          "tangentSpeed": 5.0,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        }
+      ]
+    },
+    {
+      "speed": 6.15,
+      "heading": 180.0,
+      "ltHeld": true,
+      "maximumEntryBraking": 8.000091,
+      "releaseYaw": 0.0,
+      "releaseVisualYaw": 0.0,
+      "firstLostLock": -1,
+      "scalarCommandDistance": 3.84510469,
+      "finalLock": true,
+      "entry80msTangentSpeed": 5.51000071,
+      "entryWindow": [
+        {
+          "tick": 1,
+          "seconds": 0.0199999921,
+          "tangentSpeed": 5.990001,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -28.1286564
+        },
+        {
+          "tick": 2,
+          "seconds": 0.0399999842,
+          "tangentSpeed": 5.8300004,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -89.97854
+        },
+        {
+          "tick": 3,
+          "seconds": 0.0599999763,
+          "tangentSpeed": 5.67000246,
+          "roll": true,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -151.820648
+        },
+        {
+          "tick": 4,
+          "seconds": 0.07999997,
+          "tangentSpeed": 5.51000071,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 5,
+          "seconds": 0.0999999642,
+          "tangentSpeed": 5.35000134,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 6,
+          "seconds": 0.119999953,
+          "tangentSpeed": 5.19000149,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 7,
+          "seconds": 0.139999941,
+          "tangentSpeed": 5.03000164,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 8,
+          "seconds": 0.159999937,
+          "tangentSpeed": 4.870002,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 9,
+          "seconds": 0.179999933,
+          "tangentSpeed": 4.71000242,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 10,
+          "seconds": 0.199999928,
+          "tangentSpeed": 4.55000257,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 11,
+          "seconds": 0.219999909,
+          "tangentSpeed": 4.39000273,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 12,
+          "seconds": 0.2399999,
+          "tangentSpeed": 4.230003,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 13,
+          "seconds": 0.2599999,
+          "tangentSpeed": 4.070002,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 14,
+          "seconds": 0.279999882,
+          "tangentSpeed": 4.641019,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 15,
+          "seconds": 0.2999999,
+          "tangentSpeed": 4.481018,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        }
+      ],
+      "releaseAndRecovery": [
+        {
+          "tick": 47,
+          "seconds": 0.93999964,
+          "tangentSpeed": 3.96792364,
+          "roll": true,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 48,
+          "seconds": 0.9599996,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 49,
+          "seconds": 0.9799996,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 179.913773
+        },
+        {
+          "tick": 50,
+          "seconds": 0.9999996,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -172.301025
+        },
+        {
+          "tick": 51,
+          "seconds": 1.01999962,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -151.820724
+        },
+        {
+          "tick": 52,
+          "seconds": 1.0399996,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -122.977219
+        },
+        {
+          "tick": 53,
+          "seconds": 1.05999959,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -89.9786148
+        },
+        {
+          "tick": 54,
+          "seconds": 1.07999957,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -56.9628677
+        },
+        {
+          "tick": 55,
+          "seconds": 1.09999955,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -28.128727
+        },
+        {
+          "tick": 56,
+          "seconds": 1.11999953,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": true,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": -7.734617
+        },
+        {
+          "tick": 57,
+          "seconds": 1.13999951,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        },
+        {
+          "tick": 58,
+          "seconds": 1.15999949,
+          "tangentSpeed": 4.0,
+          "roll": false,
+          "blend": false,
+          "locked": true,
+          "yaw": 0.0,
+          "visualYawDegrees": 0.0
+        }
+      ]
+    }
+  ],
+  "diagnostic": "Tools/Diagnostics/CampDodgeTransitionFix.cs",
+  "diagnosticSha256": "290e8558fde9d8faa70f92231ad65a39bed14c769cd55fd3a3434e86adf2fb89"
+}

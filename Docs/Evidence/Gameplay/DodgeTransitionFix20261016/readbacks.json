@@ -1,0 +1,113 @@
+{
+  "authorBefore": {
+    "playing": false,
+    "compiling": false,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "dirty": true,
+    "roots": "290296,290870,291378,292510,291874,292802,292068,-7441938"
+  },
+  "authorPreinstall": {
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "dirty": true,
+    "roots": "290296,290870,291378,292510,291874,292802,292068,-7441938",
+    "sceneCount": 1,
+    "newAPI": false,
+    "playing": false,
+    "compiling": false
+  },
+  "authorImport": {
+    "imported": 11,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "dirty": true,
+    "roots": "290296,290870,291378,292510,291874,292802,292068,-7441938"
+  },
+  "authorAfter": {
+    "valid": true,
+    "reason": null,
+    "apiLoaded": true,
+    "braking": 8,
+    "speeds": [
+      1.4,
+      3,
+      4,
+      4.9,
+      6.15
+    ],
+    "cycles": [
+      3.22170615,
+      4.36681175,
+      5.592029,
+      5.49517441,
+      5.483365
+    ],
+    "nativeCamp": true,
+    "dodgeRequired": true,
+    "clip": "Assets/_Project/Art/Animations/Mixamo/Derived/CampDodgeRollGrounded.anim",
+    "duration": 0.95,
+    "profileDirty": false,
+    "bindingDirty": false,
+    "dodgePath": "<Gamepad>/buttonEast",
+    "pickupPath": "<Gamepad>/select",
+    "fastRun": 4.9,
+    "sprint": 6.15,
+    "jumpGravity": 1.6,
+    "jumpImpulse": 4.6,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity",
+    "dirty": true,
+    "roots": "290296,290870,291378,292510,291874,292802,292068,-7441938",
+    "playing": false
+  },
+  "authorNativeBefore": {
+    "nativeTerrainCollidersMatched": 9,
+    "maximumMatrixDifferenceAllowed": 0.0001,
+    "terrainDataClean": true,
+    "sceneDirty": true,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity"
+  },
+  "authorNativeAfter": {
+    "nativeTerrainCollidersMatched": 9,
+    "maximumMatrixDifferenceAllowed": 0.0001,
+    "terrainDataClean": true,
+    "sceneDirty": true,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity"
+  },
+  "candidateNative": {
+    "nativeTerrainCollidersMatched": 9,
+    "maximumMatrixDifferenceAllowed": 0.0001,
+    "terrainDataClean": true,
+    "sceneDirty": false,
+    "scene": "Assets/_Project/Scenes/Reference/CampLoopTesting.unity"
+  },
+  "authorGuid": {
+    "testMetaPath": "Assets/_Project/Tests/Editor/AnimationPlaygroundDodgeTransitionTests.cs",
+    "compiling": false,
+    "playing": false
+  },
+  "authorConsole": {
+    "entries": [],
+    "cursor": 8655,
+    "session": "3556564e7660432fa8d8201f899bd256",
+    "returned": 0,
+    "dropped": false,
+    "reset": false,
+    "counts": {
+      "error": 13,
+      "warn": 1826,
+      "log": 161
+    },
+    "groundTruth": {
+      "sampledUtc": "2026-10-17T01:05:15.6500683Z",
+      "ageMs": 174,
+      "compilationFailed": false,
+      "compiling": false,
+      "consoleErrors": 0,
+      "consoleWarnings": 94,
+      "consoleLogs": 0,
+      "seeded": true
+    }
+  },
+  "candidateClose": {
+    "ownedCandidateExitScheduled": true,
+    "playing": false
+  }
+}

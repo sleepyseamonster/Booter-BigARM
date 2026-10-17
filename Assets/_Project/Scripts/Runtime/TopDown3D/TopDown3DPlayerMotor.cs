@@ -250,6 +250,7 @@ namespace BooterBigArm.TopDown3D
             }
 
             EnsureBody();
+            dodgePreserveGroundObservationOnRelease = false;
             CancelTraversal();
             EndClimb();
             if (actionConstraintOwner == null) ResetStandingMotionObservation();
@@ -274,8 +275,8 @@ namespace BooterBigArm.TopDown3D
             }
 
             if(ReferenceEquals(animationMotionOwner,owner))ReleaseAnimationMotionCore();
-            if (actionConstraintOwner != null && !jumpPreserveGroundObservationOnRelease) ResetStandingMotionObservation();
-            jumpPreserveGroundObservationOnRelease=false;
+            if (actionConstraintOwner != null && !jumpPreserveGroundObservationOnRelease && !dodgePreserveGroundObservationOnRelease) ResetStandingMotionObservation();
+            jumpPreserveGroundObservationOnRelease=false; dodgePreserveGroundObservationOnRelease=false;
             actionConstraintOwner = null;
             campApproaching = false;
             waypointTravelActive = false;
