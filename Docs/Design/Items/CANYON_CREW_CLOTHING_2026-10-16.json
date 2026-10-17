@@ -1,0 +1,77 @@
+{
+  "source": "Author direction, October 16, 2026: create a full cloth clothing set named Canyon Crew. Cloth is explicitly authorized for this family, superseding the previous no-cloth restriction within this scope. Silhouettes, colors and construction below are local catalog proposals; no faction history or affiliation is established.",
+  "scope": "Five-piece Clothing family: jacket, trousers, paired boots, paired gloves and hood listed separately. No extra whole-set item. Catalog only: deterministic world identity, authored placement constraints, streaming/unload/reload, generated-object identity and persisted runtime deltas are not applicable because no runtime objects, placement or save systems change.",
+  "family": "Canyon Crew",
+  "defaults": {
+    "Tier": "T2",
+    "Category": "Clothing",
+    "Subtype": "Canyon Crew",
+    "Implementation scope": "Author-directed concept",
+    "Equipment slot": "Unassigned; no new slot approved",
+    "Carrier metadata": "Booter-worn garment concept; fit, packing and canister clearance unresolved.",
+    "Stack limit": null,
+    "Mass (game units)": null,
+    "Acquisition": "Proposed garment craft or trade; cloth source, availability and price remain unresolved.",
+    "Crafting / processing": "Candidate cutting, folding, stitching and patching of qualified cloth stock with small metal closures where needed. Cloth composition and provenance, joining materials, exact inputs, quantities and production process remain unresolved.",
+    "Supported behavior": "Not implemented",
+    "Limitations": "Practical clothing proposal. Fit, comfort, seam strength, wear, shade and dust coverage require design. No armor rating, storm immunity, electrical insulation, set bonus or new equipment slot is established.",
+    "Rarity": null,
+    "Trade value": null,
+    "Damage": null,
+    "Protection": null,
+    "Durability": null,
+    "Item type": "Wearable",
+    "Processing stage": "Finished item",
+    "Origin family": "Manufactured / unresolved",
+    "Primary use": "Clothing",
+    "Material family": "Cloth",
+    "Physical form": "Assembly",
+    "Design status": "Proposal",
+    "Classification basis": "Separate wearable piece of the author-requested Canyon Crew cloth family. Paired gloves and boots each count as one item; the complete set is not an additional inventory record.",
+    "Tier basis": "Proposed T2 finished garment using qualified T1 cloth stock and supporting fittings. Cloth provenance and preparation are unresolved; the planning tier does not establish a recipe or an abundant textile supply.",
+    "Finished-item input tier": "T1",
+    "Crafting role": "Finished item"
+  },
+  "items": [
+    {
+      "id": "proposal.clothing.canyon_crew.jacket",
+      "name": "Canyon Crew jacket",
+      "purpose": "A short rust-red cloth jacket with a high fold-over collar, overlapping front, reinforced elbows and flat patch pockets. Its close workwear cut keeps loose fabric near the body while the collar can be raised against drifting grit. Broad ochre seam bands match the other Canyon Crew pieces.",
+      "icon": "Short rust-red cloth work jacket, ochre seam bands, high fold-over collar, overlapping front, elbow patches and flat pockets; small plain metal closures, no insignia or wearer.",
+      "material": "Cloth", "use": "Clothing",
+      "fields": {"Equipment slot": "Torso / fit unresolved", "Search aliases": "Canyon Crew; cloth set; work jacket; crew outfit; torso", "Open design decisions": "Resolve cloth composition and provenance, cut, joining, pocket layout, collar closure and canister clearance. Proposed rust-red and ochre palette does not establish a dye recipe or faction insignia."}
+    },
+    {
+      "id": "proposal.clothing.canyon_crew.trousers",
+      "name": "Canyon Crew trousers",
+      "purpose": "Rust-red cloth work trousers with a roomy seat, folded knee patches and tapered lower legs that tuck into the matching boots. Flat thigh pockets keep small belongings close while climbing or crouching. Ochre seam bands continue the Canyon Crew jacket's practical, visibly repaired style.",
+      "icon": "Rust-red cloth trousers with roomy seat, ochre side seams, broad knee patches, flat thigh pockets and tapered cuffs; no armor plates, insignia or wearer.",
+      "material": "Cloth", "use": "Clothing",
+      "fields": {"Equipment slot": "Legs / fit unresolved", "Search aliases": "Canyon Crew; cloth set; work trousers; pants; crew outfit; legs", "Open design decisions": "Resolve cloth stock, waistband adjustment, knee articulation, pocket closures and cuff fit. Clothing does not provide a climbing or carrying bonus."}
+    },
+    {
+      "id": "proposal.clothing.canyon_crew.boots",
+      "name": "Canyon Crew boots",
+      "purpose": "A matched pair of ankle-high cloth boots with rust-red uppers, overlapping instep wraps and dense layered-cloth soles. Ochre binding encloses the edges and replaceable toe patches take routine scuffing. The wrapped openings tuck over the matching trouser cuffs to reduce loose gaps around the ankles.",
+      "icon": "Matched pair of rust-red cloth ankle boots with overlapping instep wraps, thick layered-cloth soles, ochre edge binding and replaceable toe patches; no wooden soles, armor plates or wearer.",
+      "material": "Cloth", "use": "Clothing",
+      "fields": {"Equipment slot": "Feet / paired fit unresolved", "Search aliases": "Canyon Crew; cloth set; cloth boots; paired footwear; crew outfit", "Open design decisions": "Resolve layered-cloth sole construction, seam strength, fastening, foot fit, abrasion and grip. Traction, puncture protection and electrical insulation are not established."}
+    },
+    {
+      "id": "proposal.clothing.canyon_crew.gloves",
+      "name": "Canyon Crew gloves",
+      "purpose": "A matched pair of full-finger cloth work gloves with rust-red backs, folded palm patches and short ochre-bound cuffs. Narrow finger panels keep the silhouette compact for handling small tools, while the palm patches provide a replaceable wear surface. They complete the hand coverage of the Canyon Crew outfit.",
+      "icon": "Matched full-finger rust-red cloth work gloves, folded palm patches, narrow fingers and short ochre-bound cuffs; no armor, electrical symbols or wearer.",
+      "material": "Cloth", "use": "Clothing",
+      "fields": {"Equipment slot": "Hands / paired fit unresolved", "Search aliases": "Canyon Crew; cloth set; work gloves; paired gloves; crew outfit", "Open design decisions": "Resolve finger mobility, palm layering, cuff closure, seam placement and tool-handling comfort. Cut, heat and electrical protection are not established."}
+    },
+    {
+      "id": "proposal.clothing.canyon_crew.hood",
+      "name": "Canyon Crew hood",
+      "purpose": "A close rust-red cloth hood with an extended neck drape and a fold-back lower face panel. The drape tucks beneath the matching jacket collar, and plain side tabs hold the face panel open when it is not needed. Ochre edge bands give the headwear the same simple finish as the rest of Canyon Crew.",
+      "icon": "Rust-red cloth hood with short neck drape, fold-back lower face panel, plain side tabs and ochre edge bands; no helmet, respirator filter, insignia or wearer.",
+      "material": "Cloth", "use": "Clothing",
+      "fields": {"Equipment slot": "Head / fit unresolved", "Search aliases": "Canyon Crew; cloth set; cloth hood; neck drape; crew outfit; headwear", "Open design decisions": "Resolve face opening, ventilation, hearing and sight clearance, retention and jacket fit. The face panel is not a respirator and has no filtration rating."}
+    }
+  ]
+}
