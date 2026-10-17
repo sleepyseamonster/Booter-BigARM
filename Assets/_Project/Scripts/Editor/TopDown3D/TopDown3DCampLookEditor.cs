@@ -171,7 +171,7 @@ namespace BooterBigArm.Editor
                 EditorGUI.BeginChangeCheck();
                 foreach (var property in MaterialEditor.GetMaterialProperties(new Object[] { profile.skyMaterial }))
                 {
-                    if ((property.flags & MaterialProperty.PropFlags.HideInInspector) != 0
+                    if ((property.propertyFlags & UnityEngine.Rendering.ShaderPropertyFlags.HideInInspector) != 0
                         || property.name == "_Exposure" || property.name == "_TwilightBrightness" || property.name == "_SunDirection"
                         || (property.name == "_SunAngularRadius" && profile.nativeOptics != null)) continue;
                     ((MaterialEditor)skyEditor).ShaderProperty(property, property.displayName);
