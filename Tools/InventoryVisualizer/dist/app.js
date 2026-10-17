@@ -14,17 +14,11 @@ function toast(message){ $('#toast').textContent=message; $('#toast').classList.
 function report(error){ console.error(error); toast(error.message || 'The operation could not be completed.'); }
 function safeRun(fn){ return (...args)=>Promise.resolve().then(()=>fn(...args)).catch(report); }
 async function openStorage(){
-  database = await new Promise((resolve,reject)=>{const req=indexedDB.open('arc-dust-inventory-study',1);req.onupgradeneeded=()=>req.result.createObjectStore('art',{keyPath:'id'});req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(new Error('Browser storage unavailable. Artwork changes cannot be saved.'));});
+  database = await new Promise((resolve,reject)=>{const req=indexedDB.open('arc-dust-inventory-study',1);req.onupgradeneeded=()=>req.result.createObjectStore('art',{keyPath:'id'});req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(new Error('Browser storage unavailable. Saved item images cannot be loaded.'));});
   const records=await new Promise((resolve,reject)=>{const req=database.transaction('art').objectStore('art').getAll();req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);});
   state.art=Object.fromEntries(records.map(record=>[record.id,record]));
 }
-async function store(records){
-  if(!database)throw new Error('Browser storage unavailable. Changes were not saved.');
-  await new Promise((resolve,reject)=>{const tx=database.transaction('art','readwrite');for(const record of records)tx.objectStore('art').put(record);tx.oncomplete=resolve;tx.onerror=()=>reject(new Error('Artwork could not be saved. Export a backup before closing.'));tx.onabort=()=>reject(new Error('Storage write aborted.'));});
-  for(const record of records)state.art[record.id]=record;
-}
 function recordFor(key){return state.art[key] || {id:key,status:'missing',notes:'',image:null};}
-async function updateArt(key,patch){await store([{...recordFor(key),...patch}]);renderProgress();}
 function glyph(item){
   const category=item.Category || '';
   let shape='<path d="m19 70 8-31 31-20 25 19 6 31-32 15Z" fill="currentColor" opacity=".32"/><path d="m19 70 38 14-9-32-21-13m21 13 10-33m-10 33 35-14m-35 14 41 17"/>';
@@ -92,7 +86,6 @@ function renderItems(){
     rarityCounts.set(rarity,(rarityCounts.get(rarity)||0)+1);
   }
   $('#rarity-distribution').innerHTML=`<span class="tier-distribution-label">${esc(state.category||'All items')} · rarity distribution</span><dl>${[...rarityCounts].map(([rarity,count])=>`<div><dt>${Object.hasOwn(RARITY_COLORS,rarity)?`<span class="rarity-key" style="--rarity-color:${RARITY_COLORS[rarity]}" aria-hidden="true"></span>`:''}${esc(rarity)}</dt><dd>${count}</dd></div>`).join('')}</dl>`;
-  $('#queue-filtered').disabled=!items.length;
   if(!items.some(item=>id(item)===state.selected))state.selected=items.length?id(items[0]):null;
   $('#items').classList.toggle('list',state.list);
   $('#items').innerHTML=items.length?items.map(item=>{
@@ -107,7 +100,7 @@ function renderDetail(){
   const art=recordFor(id(item));
   const field=(label,value)=>`<dt>${esc(label)}</dt><dd>${esc(value??'Not defined')}</dd>`;
   const acquisitionProcessing=[['Acquisition',item.Acquisition],['Processing',item['Crafting / processing']]].filter(([,text])=>text).map(([label,text])=>`<p><strong>${label}:</strong> ${esc(text)}</p>`).join('');
-  $('#detail').innerHTML=`<div class="detail-top"><span>ITEM INSPECTION</span><span>${esc(tierLabel(item))} / ${art.image?'IMAGE':'NO IMAGE'}</span></div><div class="detail-hero">${imageFor(item,true)}${!art.image?'<span class="placeholder-tag">CATEGORY PLACEHOLDER · NOT ITEM ART</span>':''}</div><div class="detail-body"><div class="eyebrow">${esc(item.Category)}</div>${nameEditor.controls(item)}<div class="pills"><span class="pill">Tier: ${esc(item.Tier||'Unassigned')}</span></div><section class="item-description" aria-label="Item description"><h3>Description</h3><p class="description">${esc(item.Purpose||'Description not yet recorded in the master register.')}</p></section><dl>${field('Material',item['Material family'])}${field('Form',item['Physical form'])}${field('Primary use',item['Primary use'])}${field('Stage',item['Processing stage'])}${field('Rarity',item.Rarity)}${field('Scope',item['Implementation scope'])}${field('Carrier',item['Carrier metadata'])}${field('Stack limit',item['Stack limit'])}${field('Mass (game units)',item['Mass (game units)'])}</dl><section class="item-acquisition" aria-label="Acquisition and processing"><h3>Acquisition &amp; processing</h3>${acquisitionProcessing||'<p>Acquisition and processing details have not been recorded.</p>'}</section><section class="art-tools"><h3>Artwork workspace</h3><label class="button">＋ Attach item image<input id="image-upload" type="file" accept="image/png,image/jpeg,image/webp" hidden></label><label>Art status<select id="art-status"><option value="missing">Not started</option><option value="queued">Queued for generation</option><option value="review">In review</option><option value="approved">Approved artwork</option></select></label><label>Art notes<textarea id="art-notes" placeholder="Silhouette, material, framing, changes…">${esc(art.notes||'')}</textarea></label><div class="row"><button id="prompt">Copy draft prompt</button><button id="remove-image" ${!art.image?'disabled':''}>Remove image</button></div><small>Saved in this browser. Export a workspace backup to keep images and notes portable.</small></section></div>`;
+  $('#detail').innerHTML=`<div class="detail-top"><span>ITEM INSPECTION</span><span>${esc(tierLabel(item))} / ${art.image?'IMAGE':'NO IMAGE'}</span></div><div class="detail-hero">${imageFor(item,true)}${!art.image?'<span class="placeholder-tag">CATEGORY PLACEHOLDER · NOT ITEM ART</span>':''}</div><div class="detail-body"><div class="eyebrow">${esc(item.Category)}</div>${nameEditor.controls(item)}<div class="pills"><span class="pill">Tier: ${esc(item.Tier||'Unassigned')}</span></div><section class="item-description" aria-label="Item description"><h3>Description</h3><p class="description">${esc(item.Purpose||'Description not yet recorded in the master register.')}</p></section><dl>${field('Material',item['Material family'])}${field('Form',item['Physical form'])}${field('Primary use',item['Primary use'])}${field('Stage',item['Processing stage'])}${field('Rarity',item.Rarity)}${field('Scope',item['Implementation scope'])}${field('Carrier',item['Carrier metadata'])}${field('Stack limit',item['Stack limit'])}${field('Mass (game units)',item['Mass (game units)'])}</dl><section class="item-acquisition" aria-label="Acquisition and processing"><h3>Acquisition &amp; processing</h3>${acquisitionProcessing||'<p>Acquisition and processing details have not been recorded.</p>'}</section></div>`;
   $('#detail .item-acquisition').insertAdjacentHTML('afterend',categoryMoves.controls(item));
   $('#detail .item-description').insertAdjacentHTML('beforebegin',tierEditor.controls(item));
   $('#detail .item-description').insertAdjacentHTML('beforebegin',rarityEditor.controls(item));
@@ -119,37 +112,17 @@ function renderDetail(){
   }
   if($('#detail').dataset.itemId!==id(item))$('#detail').scrollTop=0;
   $('#detail').dataset.itemId=id(item);
-  $('#art-status').value=art.status;
-  const key=id(item);
-  $('#art-status').onchange=safeRun(async event=>{await updateArt(key,{status:event.target.value});renderItems();});
-  $('#art-notes').onchange=safeRun(async event=>{await updateArt(key,{notes:event.target.value});toast('Art notes saved');});
-  $('#image-upload').onchange=safeRun(async event=>{
-    const file=event.target.files[0];if(!file)return;
-    if(!['image/png','image/jpeg','image/webp'].includes(file.type)||file.size>10*1024*1024)throw new Error('Choose a PNG, JPEG or WebP image under 10 MB.');
-    const image=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(new Error('Image could not be read.'));reader.readAsDataURL(file);});
-    await updateArt(key,{image,status:'review'});renderItems();toast('Image attached · saved for this item');
-  });
-  $('#remove-image').onclick=safeRun(async()=>{await updateArt(key,{image:null,status:'queued'});renderItems();toast('Image removed; item returned to queue');});
-  $('#prompt').onclick=safeRun(async()=>{
-    await updateArt(key,{notes:$('#art-notes').value});
-    const prompt=`Create one inventory icon for Arc & Dust: ${name(item)}.\nDatabase description: ${item.Purpose||'Undefined; design needed'}.\nMaterial: ${item['Material family']||'Undefined'}. Physical form: ${item['Physical form']||'Undefined'}.\nDirection proposal: grounded stylized realism, believable material response, restrained hand-painted planes, worked iron and dusty mineral palette where appropriate. Isolated single object, centered three-quarter view, readable silhouette at 96px, soft neutral light, transparent background, no text, no border, no UI.\nArt notes: ${recordFor(key).notes||'None yet'}.\nDesign status: ${item['Design status']||'Unspecified'}. Missing construction details remain open; do not infer them from tier or rarity.`;
-    try{await navigator.clipboard.writeText(prompt);toast('Draft generation prompt copied');}catch{download(`${key}-prompt.txt`,prompt,'text/plain');toast('Clipboard unavailable; prompt downloaded');}
-  });
+
 }
-function renderProgress(){const records=state.items.map(item=>recordFor(id(item)));$('#art-progress').textContent=`ARTWORK / ${records.filter(r=>r.image).length} IMAGES · ${records.filter(r=>r.status==='queued').length} QUEUED · ${records.filter(r=>r.status==='approved').length} APPROVED`;}
 function resetFilters(){state.category='';for(const selector of ['#search','#tier','#design','#art-filter'])$(selector).value='';renderCategories();renderItems();}
 function setView(view){
-  if(!['menu','inventory','art','game'].includes(view))view='menu';state.view=view;
+  if(view==='art')view='inventory';
+  if(!['menu','inventory','game'].includes(view))view='menu';state.view=view;
   $('#menu').hidden=view!=='menu';$('#workspace').hidden=view==='menu'||view==='game';
   $('#game-study').hidden=view!=='game';
   document.body.classList.toggle('game-host',view==='game');
   if(view==='game'){const frame=$('#game-study iframe');if(!frame.getAttribute('src'))frame.src=frame.dataset.src;}
   document.querySelectorAll('nav [data-view]').forEach(button=>{button.classList.toggle('active',button.dataset.view===view);button.setAttribute('aria-current',button.dataset.view===view?'page':'false');});
-  $('#view-title').textContent=view==='art'?'Artwork studio':'Inventory';
-  $('#view-eyebrow').textContent=view==='art'?'ITEM LIBRARY / IMAGE DEVELOPMENT':'EXPEDITION / INVENTORY STUDY';
-  if(view==='art'&&state.owner!=='catalog')setOwner('catalog');
-  $('#queue-filtered').hidden=view!=='art';
-  document.body.classList.toggle('studio-mode',view==='art');
   document.querySelector('.category-drag-hint')?.remove();
   if(view==='inventory'&&state.owner==='catalog')document.querySelector('.review-hint')?.insertAdjacentHTML('beforeend','<span class="category-drag-hint"> · Drag an item onto a category to move it.</span>');
   renderItems();
@@ -164,7 +137,6 @@ function setOwner(owner){
   if(state.view==='inventory'&&owner==='catalog')document.querySelector('.review-hint')?.insertAdjacentHTML('beforeend','<span class="category-drag-hint"> · Drag an item onto a category to move it.</span>');
   renderCategories();renderItems();
 }
-function download(filename,content,type='application/json'){const url=URL.createObjectURL(new Blob([content],{type}));const a=document.createElement('a');a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 const prefs={theme:'iron',density:'145',textSize:'15',texture:'0.04'};
 function applyPrefs(){document.body.classList.remove('oxide','chalk');if(prefs.theme!=='iron')document.body.classList.add(prefs.theme);document.documentElement.style.setProperty('--tile',`${prefs.density}px`);document.documentElement.style.fontSize=`${prefs.textSize}px`;document.documentElement.style.setProperty('--texture',prefs.texture);}
 function savePrefs(){try{localStorage.setItem('arc-dust-appearance',JSON.stringify(prefs));}catch{toast('Appearance could not be saved in this browser.');}applyPrefs();}
@@ -184,21 +156,6 @@ $('#items').onclick=safeRun(async event=>{
 });
 $('#search').oninput=renderItems;for(const selector of ['#tier','#design','#art-filter','#sort'])$(selector).onchange=renderItems;
 $('#clear').onclick=resetFilters;$('#grid-toggle').onclick=()=>{state.list=!state.list;renderItems();};
-$('#queue-filtered').onclick=safeRun(async()=>{const items=visibleItems().filter(item=>!recordFor(id(item)).image&&recordFor(id(item)).status==='missing');await store(items.map(item=>({...recordFor(id(item)),status:'queued'})));renderProgress();renderItems();toast(`${items.length} unstarted items added to the artwork queue`);});
-$('#export').onclick=safeRun(async()=>{if($('#art-notes'))await updateArt(state.selected,{notes:$('#art-notes').value});download('arc-dust-artwork-workspace.json',JSON.stringify({version:1,sourceHash:state.sourceHash,art:Object.values(state.art),appearance:prefs},null,2));toast('Workspace exported with attached images and notes');});
-$('#import').onchange=safeRun(async event=>{
-  const file=event.target.files[0];event.target.value='';if(!file)return;
-  if(file.size>100*1024*1024)throw new Error('Workspace file exceeds 100 MB.');
-  const data=JSON.parse(await file.text());if(data.version!==1||!Array.isArray(data.art))throw new Error('This is not a supported artwork workspace.');
-  const validIds=new Set(state.items.map(id));const records=[];
-  for(const entry of data.art){
-    if(!entry||!validIds.has(entry.id))continue;
-    if(!['missing','queued','review','approved'].includes(entry.status)||typeof entry.notes!=='string')throw new Error('Workspace contains an invalid artwork record.');
-    if(entry.image!==null&&entry.image!==undefined&&(typeof entry.image!=='string'||!/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/=]+$/.test(entry.image)))throw new Error('Workspace contains an unsupported image.');
-    records.push({id:entry.id,status:entry.status,notes:entry.notes,image:entry.image||null});
-  }
-  await store(records);renderProgress();renderItems();toast(`Imported ${records.length} item records · ${data.art.length-records.length} unknown IDs skipped`);
-});
 document.addEventListener('keydown',event=>{
   if(state.view==='game')return;
   if($('#settings').open)return;
@@ -217,7 +174,7 @@ async function init(){
   try{await openStorage();}catch(error){report(error);}
   $('#equipment-slots').innerHTML=['Dust canister','Algae canister','Grappling hook','Cloak','Jacket','Excavation tool'].map(slot=>`<button data-slot="${esc(slot)}">${esc(slot)}<small>UNFILLED / STUDY</small></button>`).join('');
   $('#equipment-slots').onclick=event=>{const slot=event.target.closest('[data-slot]');if(!slot)return;resetFilters();$('#search').value=slot.dataset.slot;renderItems();};
-  renderCategories();renderItems();renderProgress();setView(location.hash.slice(1)||'menu');
+  renderCategories();renderItems();setView(location.hash.slice(1)||'menu');
   await refreshCatalog();
 }
 function syncStatus(message){$('#sync-status').textContent=message;}
@@ -229,8 +186,6 @@ async function reviewAction(action,key){
   if(action==='delete'&&kept){toast('This item is kept. Uncheck it before deleting.');return;}
   syncBusy=true;
   try{
-    const draft=$('#art-notes');
-    if(draft&&state.selected&&draft.value!==(recordFor(state.selected).notes||''))await updateArt(state.selected,{notes:draft.value});
     const response=await fetch(`/api/items/${action}`,{method:'POST',headers:{'Content-Type':'application/json','X-Inventory-Token':state.mutationToken||''},body:JSON.stringify({itemId:key,sourceHash:state.sourceHash,protected:!kept,reviewed:!reviewed})});
     const result=await response.json();
     if(!response.ok)throw new Error(result.error||'Item could not be changed.');
@@ -250,8 +205,6 @@ $('#reload-data').onclick=safeRun(async()=>{
   if(syncBusy){toast('Spreadsheet check already in progress');return;}
   syncBusy=true;$('#reload-data').disabled=true;syncStatus('Reading spreadsheet…');
   try{
-    const notes=$('#art-notes');
-    if(notes&&state.selected&&notes.value!==(recordFor(state.selected).notes||''))await updateArt(state.selected,{notes:notes.value});
     await refreshCatalog();toast('Latest saved spreadsheet loaded');
   }catch(error){syncStatus('Spreadsheet unavailable · retrying; keeping current items');throw error;}
   finally{syncBusy=false;$('#reload-data').disabled=false;}
@@ -261,13 +214,11 @@ async function refreshCatalog(force=false){
   const response=await fetch('/api/catalog',{cache:'no-store'});
   if(!response.ok)throw new Error('The master workbook could not be loaded.');
   const data=await response.json();
-  // Never rebuild the inspector while its notes or file controls are in use.
+  // Never rebuild the inspector while its controls are in use.
   if(!force&&(state.categoryDrag||state.categorySaving||nameEditor.dirty()||document.activeElement?.closest('#detail') || $('#settings').open || ['tier','design'].includes(document.activeElement?.id))){
     syncStatus('Spreadsheet update ready · waiting for editing to finish');return;
   }
   if(!Array.isArray(data.items)||typeof data.sha256!=='string')throw new Error('Invalid catalog response.');
-  const draft=$('#art-notes');
-  if(draft&&state.selected&&draft.value!==(recordFor(state.selected).notes||''))await updateArt(state.selected,{notes:draft.value});
   const changed=Boolean(state.sourceHash&&state.sourceHash!==data.sha256);
   const focus=document.activeElement;
   const focusItem=focus?.dataset.id,focusCategory=focus?.dataset.category;
@@ -284,7 +235,7 @@ async function refreshCatalog(force=false){
     $(selector).value=values.includes(selected)?selected:'';
   }
   if(!(state.owner==='catalog'?state.categories.includes(state.category):ownerItems().some(item=>item.Category===state.category)))state.category='';
-  renderCategories();renderItems();renderProgress();
+  renderCategories();renderItems();
   $('#items').scrollTop=gridScroll;$('#detail').scrollTop=detailScroll;
   document.querySelectorAll('#detail details').forEach(el=>{el.open=openDetails.includes(el.querySelector('summary').textContent);});
   if(focusItem!==undefined||focusCategory!==undefined){
@@ -306,11 +257,10 @@ async function checkSpreadsheet(){
   }catch{syncStatus('Spreadsheet unavailable · retrying; keeping current items');}
   finally{syncBusy=false;}
 }
-const saveArtDraft=async()=>{const draft=$('#art-notes');if(draft&&state.selected&&draft.value!==(recordFor(state.selected).notes||''))await updateArt(state.selected,{notes:draft.value});};
-const categoryMoves=installCategoryMoves({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||tierEditor.pending()||rarityEditor.pending()||nameEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:saveArtDraft});
-const tierEditor=installTierEditor({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||categoryMoves.pending()||rarityEditor.pending()||nameEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:saveArtDraft});
-const rarityEditor=installRarityEditor({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||categoryMoves.pending()||tierEditor.pending()||nameEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:saveArtDraft});
-const nameEditor=installNameEditor({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||categoryMoves.pending()||tierEditor.pending()||rarityEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:saveArtDraft});
+const categoryMoves=installCategoryMoves({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||tierEditor.pending()||rarityEditor.pending()||nameEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:async()=>{}});
+const tierEditor=installTierEditor({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||categoryMoves.pending()||rarityEditor.pending()||nameEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:async()=>{}});
+const rarityEditor=installRarityEditor({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||categoryMoves.pending()||tierEditor.pending()||nameEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:async()=>{}});
+const nameEditor=installNameEditor({state,esc,refresh:refreshCatalog,toast,busy:()=>syncBusy||categoryMoves.pending()||tierEditor.pending()||rarityEditor.pending(),setBusy:value=>{syncBusy=value;state.categorySaving=value;},saveDraft:async()=>{}});
 init().then(async()=>{await categoryMoves.restore();await tierEditor.restore();await rarityEditor.restore();await nameEditor.restore();}).catch(error=>{$('#result-count').textContent=error.message;report(error);}).finally(()=>{
   $('#reload-data').disabled=false;
   setInterval(checkSpreadsheet,3000);
