@@ -14,9 +14,12 @@ namespace BooterBigArm.TopDown3D
         public float maximumSpeed = .5f;
         // Schema 2 is a distinct complete standing family. Schema 1 assets retain
         // their original slow-review contract and are never migrated in place.
+        // Schema 3 adds distinct lateral jogs without changing the older layouts.
         public AnimationPlaygroundForwardGait[] directionalGaits = Array.Empty<AnimationPlaygroundForwardGait>();
         public float maximumLateralSpeed = 5, maximumBackwardSpeed = 4;
-        public bool AllDirections => schema == 2;
+        public bool AllDirections => schema == 2 || schema == 3;
+        public bool HasJog => schema == 3;
+        public int DirectionalChannelCount => HasJog ? 14 : 12;
         public bool Validate(GameObject model, AnimationPlaygroundFootProjection projection, out string reason)
         {
             if (AllDirections) return AnimationPlaygroundDirectionalMath.Validate(this, model, projection, out reason);

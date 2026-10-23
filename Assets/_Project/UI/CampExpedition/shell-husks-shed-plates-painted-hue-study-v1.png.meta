@@ -1,0 +1,611 @@
+fileFormatVersion: 2
+guid: 9aa5f22e0948c4f47936608bd7ca86ca
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2585918571336173776
+    second: shell-husks-shed-plates-painted-hue-study-v1_0
+  - first:
+      213: 8739154774894870884
+    second: shell-husks-shed-plates-painted-hue-study-v1_1
+  - first:
+      213: -4336553711606586953
+    second: shell-husks-shed-plates-painted-hue-study-v1_2
+  - first:
+      213: -7066701420518268553
+    second: shell-husks-shed-plates-painted-hue-study-v1_3
+  - first:
+      213: -908180449209453399
+    second: shell-husks-shed-plates-painted-hue-study-v1_4
+  - first:
+      213: 6568596519879089613
+    second: shell-husks-shed-plates-painted-hue-study-v1_5
+  - first:
+      213: -5238842878900007334
+    second: shell-husks-shed-plates-painted-hue-study-v1_6
+  - first:
+      213: 1854238316728639156
+    second: shell-husks-shed-plates-painted-hue-study-v1_7
+  - first:
+      213: 7981526066888656877
+    second: shell-husks-shed-plates-painted-hue-study-v1_8
+  - first:
+      213: 6110519902056911109
+    second: shell-husks-shed-plates-painted-hue-study-v1_9
+  - first:
+      213: 7968771589115458140
+    second: shell-husks-shed-plates-painted-hue-study-v1_10
+  - first:
+      213: -1047556268156194491
+    second: shell-husks-shed-plates-painted-hue-study-v1_11
+  - first:
+      213: 5537784041611205779
+    second: shell-husks-shed-plates-painted-hue-study-v1_12
+  - first:
+      213: -4098945468604090835
+    second: shell-husks-shed-plates-painted-hue-study-v1_13
+  - first:
+      213: 1853882968804579933
+    second: shell-husks-shed-plates-painted-hue-study-v1_14
+  - first:
+      213: -1230072979894903367
+    second: shell-husks-shed-plates-painted-hue-study-v1_15
+  - first:
+      213: -7379865149045975199
+    second: shell-husks-shed-plates-painted-hue-study-v1_16
+  - first:
+      213: -1970444052556690901
+    second: shell-husks-shed-plates-painted-hue-study-v1_17
+  - first:
+      213: 8529129007852086028
+    second: shell-husks-shed-plates-painted-hue-study-v1_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1251
+        height: 1251
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d804966d3703e320800000000000000
+      internalID: 2585918571336173776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_1
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 1209
+        width: 19
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46184ca37f6b74970800000000000000
+      internalID: 8739154774894870884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_2
+      rect:
+        serializedVersion: 2
+        x: 739
+        y: 1207
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b1a946106771d3c0800000000000000
+      internalID: -4336553711606586953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_3
+      rect:
+        serializedVersion: 2
+        x: 764
+        y: 1205
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 771a240cf780eed90800000000000000
+      internalID: -7066701420518268553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_4
+      rect:
+        serializedVersion: 2
+        x: 995
+        y: 1191
+        width: 9
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a47ae471be7563f0800000000000000
+      internalID: -908180449209453399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_5
+      rect:
+        serializedVersion: 2
+        x: 793
+        y: 1188
+        width: 30
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcd9240abb7582b50800000000000000
+      internalID: 6568596519879089613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 984
+        width: 6
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5e84118824eb47b0800000000000000
+      internalID: -5238842878900007334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_7
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 815
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4be5785cce39bb910800000000000000
+      internalID: 1854238316728639156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_8
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 81
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de74b6e7ba314ce60800000000000000
+      internalID: 7981526066888656877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_9
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 67
+        width: 27
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5019e0bd97decc450800000000000000
+      internalID: 6110519902056911109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_10
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 87
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c52b3793a83c69e60800000000000000
+      internalID: 7968771589115458140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_11
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 85
+        width: 7
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 541f052df155671f0800000000000000
+      internalID: -1047556268156194491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_12
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 79
+        width: 24
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39c1013de392adc40800000000000000
+      internalID: 5537784041611205779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_13
+      rect:
+        serializedVersion: 2
+        x: 247
+        y: 56
+        width: 9
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d26f72e30de9d17c0800000000000000
+      internalID: -4098945468604090835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_14
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 39
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5a5eb2ecb05ab910800000000000000
+      internalID: 1853882968804579933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_15
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 6
+        width: 38
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bdde895427edeee0800000000000000
+      internalID: -1230072979894903367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_16
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 25
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16754d44fb3759990800000000000000
+      internalID: -7379865149045975199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_17
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 9
+        width: 32
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2ac395f29397a4e0800000000000000
+      internalID: -1970444052556690901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-husks-shed-plates-painted-hue-study-v1_18
+      rect:
+        serializedVersion: 2
+        x: 631
+        y: 17
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c03e084b4ad8d5670800000000000000
+      internalID: 8529129007852086028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      shell-husks-shed-plates-painted-hue-study-v1_0: 2585918571336173776
+      shell-husks-shed-plates-painted-hue-study-v1_1: 8739154774894870884
+      shell-husks-shed-plates-painted-hue-study-v1_10: 7968771589115458140
+      shell-husks-shed-plates-painted-hue-study-v1_11: -1047556268156194491
+      shell-husks-shed-plates-painted-hue-study-v1_12: 5537784041611205779
+      shell-husks-shed-plates-painted-hue-study-v1_13: -4098945468604090835
+      shell-husks-shed-plates-painted-hue-study-v1_14: 1853882968804579933
+      shell-husks-shed-plates-painted-hue-study-v1_15: -1230072979894903367
+      shell-husks-shed-plates-painted-hue-study-v1_16: -7379865149045975199
+      shell-husks-shed-plates-painted-hue-study-v1_17: -1970444052556690901
+      shell-husks-shed-plates-painted-hue-study-v1_18: 8529129007852086028
+      shell-husks-shed-plates-painted-hue-study-v1_2: -4336553711606586953
+      shell-husks-shed-plates-painted-hue-study-v1_3: -7066701420518268553
+      shell-husks-shed-plates-painted-hue-study-v1_4: -908180449209453399
+      shell-husks-shed-plates-painted-hue-study-v1_5: 6568596519879089613
+      shell-husks-shed-plates-painted-hue-study-v1_6: -5238842878900007334
+      shell-husks-shed-plates-painted-hue-study-v1_7: 1854238316728639156
+      shell-husks-shed-plates-painted-hue-study-v1_8: 7981526066888656877
+      shell-husks-shed-plates-painted-hue-study-v1_9: 6110519902056911109
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -123,6 +123,47 @@ namespace BooterBigArm.Tests
             Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Falling));Land(2);Tick(20);
             Assert.That(landings,Is.EqualTo(2));Assert.That(airborne.Active,Is.False);
         }
+        [Test] public void LandingHandoffDoesNotRestartForBriefNearGroundContactGap()
+        {
+            var landings=0;airborne.Landed+=value=>landings++;Launch(3);Land(4.5f);Tick(4);
+            recordedSupport=false;body.linearVelocity=Vector3.forward*3+Vector3.down*.5f;Tick();
+            Assert.That(motor.JumpObservation.Supported,Is.False,"Presentation grace must not manufacture a physical contact.");
+            Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Landing),
+                "A single missing manifold at the same nearby floor must not restart the falling clip.");
+            Land(.55f);Tick(20);
+            Assert.That(landings,Is.EqualTo(1));Assert.That(airborne.Active,Is.False);
+        }
+        [Test] public void LandingHandoffGraceExpiresAndDoesNotHideANewHardImpact()
+        {
+            var landings=0;airborne.Landed+=value=>landings++;Launch();Land(3);Tick(4);
+            recordedSupport=false;body.linearVelocity=Vector3.down*.5f;Tick();Land(8);
+            Assert.That(landings,Is.EqualTo(2));Assert.That(motor.JumpUsesGroundedLocomotion,Is.False);
+            airborne.InvalidateForReset(1);recordedSupport=true;Set(motor,"<IsGrounded>k__BackingField",true);
+            Launch();Land(3);Tick(4);recordedSupport=false;body.linearVelocity=Vector3.down*.5f;Tick(4);
+            Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Falling));
+        }
+        [Test] public void LandingHandoffUsesGroundProbeAndBrakingAcrossMissingCallbacks()
+        {
+            var inputObject=new GameObject("Landing probe input");inputObject.SetActive(false);
+            try
+            {
+                var input=inputObject.AddComponent<TopDown3DInputRouter>();input.enabled=false;
+                motor.Configure(input,actor.transform);motor.ConfigureLaboratorySpeeds(coordinator,1.4f,3,6);
+                var landings=0;airborne.Landed+=_=>landings++;Launch(3);Land(3);
+                recordedSupport=false;body.linearVelocity=Vector3.forward*3+Vector3.down*.2f;Tick(4);
+                Assert.That(motor.JumpObservation.Supported,Is.False,"A ground probe must not invent a completed collision callback.");
+                Assert.That(motor.IsGrounded,Is.True,"Soft recovery must still run the ordinary physical ground probe.");
+                Assert.That(body.linearVelocity.z,Is.LessThan(3),"Neutral braking must continue during missing callbacks.");
+                Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Landing));
+                recordedSupport=true;recordedImpact=1.8f;Tick();
+                Assert.That(landings,Is.EqualTo(1),"A callback returning during continuously probed recovery must not restart landing.");
+                recordedSupport=false;body.position+=Vector3.up;body.linearVelocity=Vector3.down*2;Physics.SyncTransforms();Tick(4);
+                Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Falling));
+                Land(8);Assert.That(landings,Is.EqualTo(2));
+                Assert.That(motor.JumpUsesGroundedLocomotion,Is.False,"A distinct hard impact still owns hard recovery.");
+            }
+            finally{Object.DestroyImmediate(inputObject);}
+        }
         [Test] public void BufferedPressStartsTheNextJumpAtSoftTouchdown()
         {
             var landings=0;airborne.Landed+=value=>landings++;Launch(3);body.linearVelocity=Vector3.down*2;Tick();
@@ -167,6 +208,54 @@ namespace BooterBigArm.Tests
         {
             body.linearVelocity=Vector3.forward*5;Assert.That(airborne.TryJump(),Is.True);Tick();Assert.That(airborne.TryCancel(),Is.True);
             Assert.That(airborne.Active,Is.False);Assert.That(body.linearVelocity,Is.EqualTo(Vector3.forward*5));
+        }
+        [TestCase(0f,0)] [TestCase(1.4f,0)] [TestCase(4.9f,0)] [TestCase(6.15f,0)]
+        [TestCase(0f,4)] [TestCase(1.4f,4)] [TestCase(4.9f,4)] [TestCase(6.15f,4)]
+        [TestCase(0f,8)] [TestCase(1.4f,8)] [TestCase(4.9f,8)] [TestCase(6.15f,8)]
+        public void SupportedSoftLandingYieldsPoseAndMomentumWithoutRepeatingImpact(float speed,int ticks)
+        {
+            var landings=0;airborne.Landed+=_=>landings++;Launch(speed);Land();
+            Tick(ticks);
+            var velocity=body.linearVelocity;var successor=new object();
+            Assert.That(airborne.CanYieldToGroundedAction,Is.True);
+            Assert.That(airborne.TryYieldToGroundedAction(successor),Is.True);
+            Assert.That(airborne.Active || coordinator.IsBusy || motor.IsActionConstrained,Is.False);
+            Assert.That(driver.PoseBlendOwned,Is.True);Assert.That(body.linearVelocity,Is.EqualTo(velocity));
+            var binding=new AnimationPlaygroundMotionBinding{sourceId="Grounded roll successor",clip=profile.standing.continuous,readiness=AnimationPlaygroundMotionReadiness.PhysicalQualified};
+            Assert.That(coordinator.TryBeginPhysicalSequence(successor,binding,AnimationPlaygroundMotionMode.Dodge,null,
+                _=>new AnimationPlaygroundMotorIntent(Vector3.ProjectOnPlane(velocity,Vector3.up),Vector3.forward),null,
+                policy:AnimationPlaygroundMotionPolicy.DodgeLocomotion),Is.True);
+            airborne.InvalidateForReset(2);Tick(3);
+            Assert.That(coordinator.IsSequenceOwner(successor),Is.True,"Stale airborne cleanup cannot release the successor.");
+            Assert.That(landings,Is.EqualTo(1));coordinator.CancelPhysicalSequence(successor);driver.EndPoseBlend(successor);
+        }
+        [Test] public void SoftLandingUsesCurrentGroundProbeWhenCollisionCallbacksAreMissing()
+        {
+            var inputObject=new GameObject("Landing handoff probe input");inputObject.SetActive(false);var successor=new object();
+            try
+            {
+                var input=inputObject.AddComponent<TopDown3DInputRouter>();input.enabled=false;
+                motor.Configure(input,actor.transform);motor.ConfigureLaboratorySpeeds(coordinator,1.4f,3,6);
+                Launch(3);Land();recordedSupport=false;body.linearVelocity=Vector3.forward*3+Vector3.down*.2f;Tick(4);
+                Assert.That(airborne.State,Is.EqualTo(AnimationPlaygroundAirborneState.Landing));
+                Assert.That(motor.IsGrounded,Is.True);Assert.That(motor.JumpObservation.Supported,Is.False);
+                Assert.That(airborne.TryYieldToGroundedAction(successor),Is.True);
+            }
+            finally{driver.EndPoseBlend(successor);Object.DestroyImmediate(inputObject);}
+        }
+        [TestCase("rising")] [TestCase("hard")] [TestCase("unsupported")] [TestCase("paused")] [TestCase("foreign")] [TestCase("null")]
+        public void IneligibleLandingYieldPreservesTheCurrentOwner(string condition)
+        {
+            Launch(3);if(condition!="rising")Land(condition=="hard"?8:3);
+            if(condition=="paused")paused=true;
+            if(condition=="unsupported")Set(motor,"<IsGrounded>k__BackingField",false);
+            var foreign=new object();
+            if(condition=="foreign"){coordinator.CancelPhysicalSequence(airborne);Assert.That(motor.TryBeginActionConstraint(foreign),Is.True);}
+            var state=airborne.State;var velocity=body.linearVelocity;var busy=coordinator.IsBusy;var blend=driver.PoseBlendOwned;
+            Assert.That(airborne.TryYieldToGroundedAction(condition=="null"?null:new object()),Is.False);
+            Assert.That(airborne.State,Is.EqualTo(state));Assert.That(body.linearVelocity,Is.EqualTo(velocity));
+            Assert.That(coordinator.IsBusy,Is.EqualTo(busy));Assert.That(driver.PoseBlendOwned,Is.EqualTo(blend));
+            if(condition=="foreign"){Assert.That(motor.IsActionConstrained,Is.True);motor.EndActionConstraint(foreign);}
         }
         [Test] public void HardContactHasItsOwnRecoveryAndDamageOccursOnce()
         {
@@ -282,22 +371,37 @@ namespace BooterBigArm.Tests
             }
             finally{Object.DestroyImmediate(inputObject);}
         }
-        [Test] public void HeldLTFacingAndLookAheadSurviveTakeoffFlightAndSoftRelease()
+        [TestCase(3f)] [TestCase(8f)] public void HeldLTFacingAndLookAheadSurviveTakeoffFlightAndLandingRelease(float impact)
         {
             using var f=new AnimationPlaygroundStandingStrafeTests.InputFixture();
             motor.Configure(f.Router,actor.transform);motor.ConfigureLaboratorySpeeds(coordinator,1.4f,3,6);
-            motor.ConfigureLaboratoryStandingStrafe(coordinator,AnimationPlaygroundDirectionalTests.Profile(),()=>true);
+            motor.ConfigureLaboratoryStandingStrafe(coordinator,AnimationPlaygroundDirectionalTests.Profile(),()=>motor.TryGetLaboratorySupportPlane(out _,true));
             void Apply(Vector3 direction)
             {
                 var args=new object[]{direction};
                 motor.GetType().GetMethod("ApplyStandingStrafeIntent",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(motor,args);
             }
-            Apply(Vector3.zero);f.PadState(new GamepadState{leftTrigger=1});
+            void Advance(int count=1)
+            {
+                for(var i=0;i<count;i++)
+                {
+                    Tick();
+                    // This command fixture injects its completed clock; Unity's
+                    // actual fixed timestamp does not advance between calls.
+                    motor.GetType().GetMethod("ObserveCompletedLaboratoryMotionAt",BindingFlags.Instance|BindingFlags.NonPublic)
+                        .Invoke(motor,new object[]{clock});
+                }
+            }
+            Advance();Apply(Vector3.zero);f.PadState(new GamepadState{leftTrigger=1});
             Set(f.Router,"<MoveValue>k__BackingField",Vector2.right);Apply(Vector3.right);
             Assert.That(motor.LaboratoryStandingFacingLocked,Is.True);var facing=motor.JumpLaunchFacing;
             Launch(3,90);Assert.That(motor.LaboratoryStandingFacingLocked,Is.True);
             Assert.That(Vector3.Angle(motor.JumpLaunchFacing,facing),Is.LessThan(.001f));
-            Assert.That(f.Router.CameraLookAheadHeld,Is.True);Land();Tick(20);
+            Assert.That(f.Router.CameraLookAheadHeld,Is.True);Land(impact);
+            Set(motor,"<IsGrounded>k__BackingField",false);Apply(Vector3.right);
+            Assert.That(motor.LaboratoryStandingFacingLocked,Is.True,"An owned landing's missing probe must not disarm held LT.");
+            Assert.That(Vector3.Angle(motor.JumpLaunchFacing,facing),Is.LessThan(.001f));
+            Set(motor,"<IsGrounded>k__BackingField",true);Advance(60);
             Assert.That(airborne.Active,Is.False);Assert.That(motor.LaboratoryStandingFacingLocked,Is.True);
             Assert.That(f.Router.LaboratoryStandingFacingHeld,Is.True);Assert.That(f.Router.CameraLookAheadHeld,Is.True);
             f.Router.AnimationCommandsDisarmed+=airborne.DisarmJumpRequest;

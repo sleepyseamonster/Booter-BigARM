@@ -41,6 +41,46 @@ namespace BooterBigArm.Tests
             }
             finally { Object.DestroyImmediate(copy); }
         }
+        [TestCase(false)] [TestCase(true)]
+        public void ResponsiveRollReleasesPhysicalLeaseAtItsNominalFixedTick(bool moving)
+        {
+            var bindings = AssetDatabase.LoadAssetAtPath<TopDown3DAnimationPlaygroundBindings>(
+                "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset");
+            var profile = bindings.dodge.Select(moving ? 3f : 0f);
+            Assert.That(profile.responseDuration, Is.GreaterThan(0));
+            var ticks = Mathf.RoundToInt(profile.Duration / Time.fixedDeltaTime);
+            double elapsed = 0;
+            for (var i = 0; i < ticks; i++) elapsed += Time.fixedDeltaTime;
+            Assert.That(profile.SourceSeconds(profile.Duration - .0001), Is.LessThan(profile.roll.length));
+            Assert.That(profile.SourceSeconds(elapsed - Time.fixedDeltaTime), Is.LessThan(profile.roll.length));
+            Assert.That(profile.SourceSeconds(elapsed), Is.EqualTo(profile.roll.length),
+                "Accumulated float fixed steps must cover the complete source on the nominal last tick.");
+            using var f = new Fixture(profile);
+            f.Body.linearVelocity = Vector3.forward * (moving ? 3f : 0f);
+            Assert.That(f.Dodge.TryDodge(), Is.True, f.Dodge.LastFailure);
+            f.Tick(ticks - 1);
+            Assert.That(f.Actions.IsBusy, Is.True, "Do not release a complete tick early.");
+            f.Tick(1);
+            Assert.That(f.Actions.IsBusy, Is.False, "The last source frame must release physical ownership this tick.");
+            Assert.That(f.Motor.IsActionConstrained, Is.False);
+            Assert.That(f.Dodge.Active && f.Driver.PoseBlendOwned, Is.True, "Retain the outgoing pose blend after physical release.");
+            f.Tick(Mathf.CeilToInt((profile.exitBlend + profile.cooldown) / Time.fixedDeltaTime) + 2);
+            Assert.That(f.Dodge.Active || f.Actions.IsBusy || f.Driver.PoseBlendOwned || f.Motor.IsActionConstrained, Is.False);
+        }
+
+        [Test] public void LegacyDodgeSourceClockRetainsItsUncompressedEndpoint()
+        {
+            var profile = Object.Instantiate(Profile());
+            try
+            {
+                profile.responseDuration = 0;
+                profile.playbackRate = 1;
+                Assert.That(profile.SourceSeconds(profile.Duration - .0000005), Is.LessThan(profile.roll.length));
+                Assert.That(profile.SourceSeconds(profile.Duration), Is.EqualTo(profile.roll.length));
+            }
+            finally { Object.DestroyImmediate(profile); }
+        }
+
         [Test] public void MissingRequiredDodgeCannotSilentlyDisableTheRequestedControl()
         {
             var b = Object.Instantiate(AssetDatabase.LoadAssetAtPath<TopDown3DAnimationPlaygroundBindings>(
@@ -125,9 +165,10 @@ namespace BooterBigArm.Tests
             public Rigidbody Body => Forward.Player;
             public readonly AnimationPlaygroundActionCoordinator Actions;
             public readonly AnimationPlaygroundDodgeController Dodge;
+            public readonly AnimationPlaygroundResetRegistry Registry;
             readonly GameObject floor;
             public bool Paused, Busy;
-            public Fixture()
+            public Fixture(AnimationPlaygroundDodgeProfile selected = null)
             {
                 directional = new AnimationPlaygroundDirectionalTests.Fixture(SkinWeights.FourBones);
                 Forward = directional.Forward;
@@ -136,10 +177,10 @@ namespace BooterBigArm.Tests
                 floor.transform.position = Body.position - Vector3.up * 1.01f; floor.transform.localScale = new Vector3(20, .2f, 20);
                 floor.AddComponent<TopDown3DGroundSurface>(); Physics.SyncTransforms();
                 typeof(TopDown3DPlayerMotor).GetProperty("IsGrounded").SetValue(Motor, true);
-                var registry = new AnimationPlaygroundResetRegistry(); Actions = Forward.Actor.AddComponent<AnimationPlaygroundActionCoordinator>();
+                var registry = Registry = new AnimationPlaygroundResetRegistry(); Actions = Forward.Actor.AddComponent<AnimationPlaygroundActionCoordinator>();
                 Actions.Configure(Motor, Driver, registry, new[] { Body.position }, () => Paused);
                 Dodge = Forward.Actor.AddComponent<AnimationPlaygroundDodgeController>();
-                Dodge.Configure(Motor, Driver, Actions, Profile(), registry, () => Paused, () => Busy);
+                Dodge.Configure(Motor, Driver, Actions, selected ?? Profile(), registry, () => Paused, () => Busy);
             }
             public void Tick(int count)
             {

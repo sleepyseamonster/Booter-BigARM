@@ -14,9 +14,11 @@ namespace BooterBigArm.TopDown3D
         public bool IsMounted => !ReferenceEquals(riderOwner, null);
         internal bool OwnsRiderConstraint(TopDown3DLeggerRidingController owner)
             => !ReferenceEquals(owner, null) && ReferenceEquals(riderOwner, owner) && ReferenceEquals(actionConstraintOwner, owner);
-        internal bool TryAcquireRider(TopDown3DLeggerRidingController owner)
+        internal bool TryAcquireRider(TopDown3DLeggerRidingController owner, bool checkpointRestore = false)
         {
-            if (owner == null || !ReferenceEquals(riderOwner, null) || !CanBeginCampAction
+            bool restoring=checkpointRestore && CampExpeditionFeature.Enabled(gameObject.scene) && CampExpeditionSession.Find(gameObject.scene)?.RestoringRiderCheckpoint==true;
+            if (checkpointRestore&&!restoring)return false;
+            if (owner == null || !ReferenceEquals(riderOwner, null) || !restoring&&!CanBeginCampAction
                 || !TryBeginActionConstraint(owner)) return false;
             EnsureBody(); capsule ??= GetComponent<CapsuleCollider>();
             EnsureAnimationShape();

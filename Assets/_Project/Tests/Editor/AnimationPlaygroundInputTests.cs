@@ -6,6 +6,8 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
+using UnityEngine.InputSystem.UI;
+using UnityEngine.EventSystems;
 using Object = UnityEngine.Object;
 
 namespace BooterBigArm.Tests
@@ -119,6 +121,55 @@ namespace BooterBigArm.Tests
                 InputSystem.settings=oldSettings;Object.DestroyImmediate(settings);
             }
         }
+        [TestCase("Facing", false)]
+        [TestCase("Walk", false)]
+        [TestCase("Jump", false)]
+        [TestCase("Dodge", false)]
+        [TestCase("Facing", true)]
+        [TestCase("Walk", true)]
+        public void FreshCommandsRearmIndependentlyOfHeldButtonsAfterInterruption(string held, bool focusChange)
+        {
+            var oldSettings=InputSystem.settings;var settings=Object.Instantiate(oldSettings);
+            settings.SetInternalFeatureFlag("RUN_PLAYER_UPDATES_IN_EDIT_MODE",true);InputSystem.settings=settings;
+            var keyboard=InputSystem.AddDevice<Keyboard>();var pad=InputSystem.AddDevice<Gamepad>();
+            var shipped=AssetDatabase.LoadAssetAtPath<InputActionAsset>("Assets/_Project/Settings/Input/InputSystem_Actions.inputactions");
+            var actions=AnimationPlaygroundInputFactory.Create(shipped);
+            var root=new GameObject("Independent command rearming");root.SetActive(false);
+            try
+            {
+                var router=root.AddComponent<TopDown3DInputRouter>();router.Configure(actions);Assert.That(router.Initialize(),Is.True);
+                var jumps=0;var dodges=0;router.AnimationJumpRequested+=()=>jumps++;router.AnimationDodgeRequested+=()=>dodges++;
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState());InputSystem.QueueStateEvent(pad,new GamepadState());InputSystem.Update();
+                var heldPad=held=="Facing" ? new GamepadState {leftTrigger=1} : held=="Dodge" ? new GamepadState().WithButton(GamepadButton.East) : new GamepadState();
+                var heldKey=held=="Walk" ? Key.LeftAlt : held=="Jump" ? Key.Space : Key.None;
+                InputSystem.QueueStateEvent(keyboard,heldKey==Key.None ? new KeyboardState() : new KeyboardState(heldKey));
+                InputSystem.QueueStateEvent(pad,heldPad);InputSystem.Update();
+                if(focusChange)
+                {
+                    var method=typeof(TopDown3DInputRouter).GetMethod("OnApplicationFocus",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic);
+                    method.Invoke(router,new object[]{false});method.Invoke(router,new object[]{true});
+                }
+                else {router.EnterSystemMenuMode();router.EnterGameplayMode();}
+                InputSystem.Update();var beforeJump=jumps;var beforeDodge=dodges;
+                if(held!="Jump")
+                {
+                    InputSystem.QueueStateEvent(keyboard,heldKey==Key.None ? new KeyboardState(Key.Space) : new KeyboardState(heldKey,Key.Space));InputSystem.Update();
+                    Assert.That(jumps,Is.EqualTo(beforeJump+1),"Fresh Jump must work while another control remains held.");
+                    InputSystem.QueueStateEvent(keyboard,heldKey==Key.None ? new KeyboardState() : new KeyboardState(heldKey));InputSystem.Update();
+                }
+                if(held!="Dodge")
+                {
+                    InputSystem.QueueStateEvent(pad,heldPad.WithButton(GamepadButton.East));InputSystem.Update();
+                    Assert.That(dodges,Is.EqualTo(beforeDodge+1),"Fresh Dodge must work while another control remains held.");
+                }
+                Assert.That(held=="Jump" ? jumps : held=="Dodge" ? dodges : 0,Is.EqualTo(held=="Jump" ? beforeJump : held=="Dodge" ? beforeDodge : 0),"A held action must not replay.");
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);Object.DestroyImmediate(actions);InputSystem.RemoveDevice(keyboard);InputSystem.RemoveDevice(pad);
+                InputSystem.settings=oldSettings;Object.DestroyImmediate(settings);
+            }
+        }
         [Test]
         public void OldEastPickupPreferenceAdaptsInMemoryAndTheSourceRemainsUnchanged()
         {
@@ -165,6 +216,156 @@ namespace BooterBigArm.Tests
                 if(!target.StartsWith(parent,StringComparison.OrdinalIgnoreCase))throw new InvalidOperationException("Fixture cleanup escaped its parent.");
                 if(Directory.Exists(target))Directory.Delete(target,true);
             }
+        }
+
+        [Test]
+        public void KeyboardDodgeAndMouseFacingWorkAndRearmAfterMenuReturn()
+        {
+            var original=InputSystem.settings;var settings=Object.Instantiate(original);
+            settings.SetInternalFeatureFlag("RUN_PLAYER_UPDATES_IN_EDIT_MODE",true);InputSystem.settings=settings;
+            var keyboard=InputSystem.AddDevice<Keyboard>();var mouse=InputSystem.AddDevice<Mouse>();
+            var actions=AnimationPlaygroundInputFactory.Create(AssetDatabase.LoadAssetAtPath<InputActionAsset>("Assets/_Project/Settings/Input/InputSystem_Actions.inputactions"));
+            var root=new GameObject("Keyboard locomotion controls");root.SetActive(false);
+            try
+            {
+                var router=root.AddComponent<TopDown3DInputRouter>();router.Configure(actions);Assert.That(router.Initialize(),Is.True);
+                var dodges=0;router.AnimationDodgeRequested+=()=>dodges++;
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState());InputSystem.QueueStateEvent(mouse,new MouseState());InputSystem.Update();
+                InputSystem.QueueStateEvent(mouse,new MouseState().WithButton(MouseButton.Right));InputSystem.Update();
+                Assert.That(router.LaboratoryStandingFacingHeld,Is.True,"Mouse facing uses the same directional movement route as LT.");
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftCtrl));InputSystem.Update();Assert.That(dodges,Is.EqualTo(1));
+                router.EnterSystemMenuMode();router.EnterGameplayMode();InputSystem.Update();
+                Assert.That(router.LaboratoryStandingFacingHeld,Is.False);Assert.That(dodges,Is.EqualTo(1));
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState());InputSystem.Update();
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.LeftCtrl));InputSystem.Update();
+                Assert.That(dodges,Is.EqualTo(2),"Held mouse after a menu must not suppress a fresh dodge.");
+                InputSystem.QueueStateEvent(mouse,new MouseState());InputSystem.Update();
+                InputSystem.QueueStateEvent(mouse,new MouseState().WithButton(MouseButton.Right));InputSystem.Update();
+                Assert.That(router.LaboratoryStandingFacingHeld,Is.True);
+                InputSystem.RemoveDevice(mouse);Assert.That(router.LaboratoryStandingFacingHeld,Is.False);
+                Assert.That(TopDown3DControlPreferencesService.TryValidate(new TopDown3DControlPreferences(),actions,out var error),Is.True,error);
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);Object.DestroyImmediate(actions);InputSystem.RemoveDevice(keyboard);
+                if(mouse.added)InputSystem.RemoveDevice(mouse);InputSystem.settings=original;Object.DestroyImmediate(settings);
+            }
+        }
+
+        [TestCase(TopDown3DInputMode.Inventory)]
+        [TestCase(TopDown3DInputMode.CampActions)]
+        [TestCase(TopDown3DInputMode.SystemMenu)]
+        public void CancelLeavesItsCallbackContextIntactForLaterUiListeners(TopDown3DInputMode mode)
+        {
+            var original=InputSystem.settings;var settings=Object.Instantiate(original);
+            settings.SetInternalFeatureFlag("RUN_PLAYER_UPDATES_IN_EDIT_MODE",true);InputSystem.settings=settings;
+            var keyboard=InputSystem.AddDevice<Keyboard>();
+            var actions=InputActionAsset.FromJson(AssetDatabase.LoadAssetAtPath<InputActionAsset>("Assets/_Project/Settings/Input/InputSystem_Actions.inputactions").ToJson());
+            var root=new GameObject("Cancel callback ordering");root.SetActive(false);
+            GameObject uiRoot=null;InputActionReference cancelReference=null;
+            try
+            {
+                var router=root.AddComponent<TopDown3DInputRouter>();router.Configure(actions);Assert.That(router.Initialize(),Is.True);
+                uiRoot=new GameObject("Cancel UI listener",typeof(EventSystem),typeof(InputSystemUIInputModule));
+                var module=uiRoot.GetComponent<InputSystemUIInputModule>();module.actionsAsset=actions;
+                cancelReference=InputActionReference.Create(actions.FindAction("UI/Cancel",true));module.cancel=cancelReference;
+                typeof(InputSystemUIInputModule).GetMethod("OnEnable",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).Invoke(module,null);
+                if(mode==TopDown3DInputMode.Inventory)router.EnterInventoryMode();
+                else if(mode==TopDown3DInputMode.SystemMenu)router.EnterSystemMenuMode();else router.EnterCampMode(mode);
+                var callbacks=0;var observedMode=TopDown3DInputMode.Disabled;InputControl observedControl=null;
+                router.UiCancelRequested+=()=>{callbacks++;router.EnterGameplayMode();};
+                // Unity's UI module reads context.control after the router's
+                // listener. Re-resolving maps inside that listener invalidates it.
+                actions.FindAction("UI/Cancel",true).performed+=context=>{observedMode=router.Mode;observedControl=context.control;};
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState());InputSystem.Update();
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.Escape));InputSystem.Update();
+                Assert.That(observedMode,Is.EqualTo(mode),"Map changes must wait until all action listeners have read the event.");
+                Assert.That(observedControl,Is.SameAs(keyboard.escapeKey));Assert.That(callbacks,Is.EqualTo(1));
+                Assert.That(router.Mode,Is.EqualTo(TopDown3DInputMode.Gameplay));InputSystem.Update();Assert.That(callbacks,Is.EqualTo(1));
+            }
+            finally
+            {
+                if(uiRoot!=null)Object.DestroyImmediate(uiRoot);if(cancelReference!=null)Object.DestroyImmediate(cancelReference);
+                Object.DestroyImmediate(root);Object.DestroyImmediate(actions);InputSystem.RemoveDevice(keyboard);
+                InputSystem.settings=original;Object.DestroyImmediate(settings);
+            }
+        }
+
+        [Test]
+        public void DestroyedPlayerStatusCanBeReadDuringStationTeardown()
+        {
+            var root=new GameObject("Presentation teardown status");root.SetActive(false);
+            var driver=root.AddComponent<TopDown3DPlayerAnimationDriver>();
+            var continuation=ScriptableObject.CreateInstance<AnimationPlaygroundContinuationProfile>();
+            var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+            typeof(TopDown3DPlayerAnimationDriver).GetField("forwardReviewConfigured",flags).SetValue(driver,true);
+            typeof(TopDown3DPlayerAnimationDriver).GetField("continuationReview",flags).SetValue(driver,continuation);
+            try
+            {
+                Object.DestroyImmediate(root);
+                Assert.DoesNotThrow(()=>{var status=driver.LaboratoryForwardReviewStatus;});
+            }
+            finally { if(root!=null)Object.DestroyImmediate(root);Object.DestroyImmediate(continuation); }
+        }
+
+        [Test]
+        public void MouseFacingAndKeyboardDodgeCanBeReboundWithCoactiveConflictsProtected()
+        {
+            var actions=AnimationPlaygroundInputFactory.Create(AssetDatabase.LoadAssetAtPath<InputActionAsset>("Assets/_Project/Settings/Input/InputSystem_Actions.inputactions"));
+            try
+            {
+                var facing=actions.FindAction("Gameplay/CameraLookAhead",true);var dodge=actions.FindAction("Gameplay/AnimationDodge",true);
+                var facingBinding=System.Linq.Enumerable.Single(facing.bindings,b=>b.groups=="Keyboard&Mouse");
+                var dodgeBinding=System.Linq.Enumerable.Single(dodge.bindings,b=>b.groups=="Keyboard&Mouse");
+                var draft=new TopDown3DControlPreferences();
+                draft.bindings.Add(new TopDown3DControlBindingOverride{actionPath="Gameplay/CameraLookAhead",bindingId=facingBinding.id.ToString(),path="<Mouse>/middleButton"});
+                draft.bindings.Add(new TopDown3DControlBindingOverride{actionPath="Gameplay/AnimationDodge",bindingId=dodgeBinding.id.ToString(),path="<Keyboard>/z"});
+                Assert.That(TopDown3DControlPreferencesService.TryValidate(draft,actions,out var reason),Is.True,reason);
+                TopDown3DControlPreferencesService.Apply(actions,draft);
+                Assert.That(System.Linq.Enumerable.Single(facing.bindings,b=>b.id==facingBinding.id).effectivePath,Is.EqualTo("<Mouse>/middleButton"));
+                Assert.That(System.Linq.Enumerable.Single(dodge.bindings,b=>b.id==dodgeBinding.id).effectivePath,Is.EqualTo("<Keyboard>/z"));
+                var resetFacing=new TopDown3DControlPreferences();
+                resetFacing.bindings.Add(new TopDown3DControlBindingOverride{actionPath="Gameplay/AnimationDodge",bindingId=dodgeBinding.id.ToString(),path="<Mouse>/rightButton"});
+                Assert.That(TopDown3DControlPreferencesService.TryValidate(resetFacing,actions,out reason),Is.False,
+                    "Removing the facing override restores right mouse, even while the currently applied binding uses middle mouse.");
+                draft.bindings[0].path="<Mouse>/leftButton";
+                Assert.That(TopDown3DControlPreferencesService.TryValidate(draft,actions,out reason),Is.False,"Attack and held facing cannot share a button.");
+                draft.bindings[0].path="<Mouse>/delta";
+                Assert.That(TopDown3DControlPreferencesService.TryValidate(draft,actions,out reason),Is.False,"An axis is not a facing button.");
+                TopDown3DControlPreferencesService.Apply(actions,new TopDown3DControlPreferences());
+                Assert.That(System.Linq.Enumerable.Single(facing.bindings,b=>b.id==facingBinding.id).effectivePath,Is.EqualTo("<Mouse>/rightButton"));
+                Assert.That(System.Linq.Enumerable.Single(dodge.bindings,b=>b.id==dodgeBinding.id).effectivePath,Is.EqualTo("<Keyboard>/leftCtrl"));
+            }
+            finally{Object.DestroyImmediate(actions);}
+        }
+
+        [Test]
+        public void KeyboardFacingFeedsTheExistingDirectionalMotorAndReleasesNormally()
+        {
+            using var f=new AnimationPlaygroundStandingStrafeTests.InputFixture();
+            var keyboard=InputSystem.AddDevice<Keyboard>();var mouse=InputSystem.AddDevice<Mouse>();
+            try
+            {
+                var motor=f.Actor.AddComponent<TopDown3DPlayerMotor>();
+                var flags=System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic;
+                typeof(TopDown3DPlayerMotor).GetField("input",flags).SetValue(motor,f.Router);
+                typeof(TopDown3DPlayerMotor).GetField("cameraBasis",flags).SetValue(motor,f.Actor.transform);
+                var binding=AssetDatabase.LoadAssetAtPath<TopDown3DAnimationPlaygroundBindings>("Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset");
+                Assert.That(binding,Is.Not.Null);Assert.That(binding.standingStrafeReview.AllDirections,Is.True);
+                var owner=new object();motor.BindAnimationPostureOwner(owner);
+                motor.ConfigureLaboratoryStandingStrafe(owner,binding.standingStrafeReview,()=>true);
+                typeof(TopDown3DPlayerMotor).GetProperty("IsGrounded").SetValue(motor,true);
+                void Apply() => typeof(TopDown3DPlayerMotor).GetMethod("ApplyStandingStrafeIntent",flags).Invoke(motor,new object[]{motor.LaboratoryMoveDirection});
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState());InputSystem.QueueStateEvent(mouse,new MouseState());InputSystem.Update();Apply();
+                InputSystem.QueueStateEvent(mouse,new MouseState().WithButton(MouseButton.Right));
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.A));InputSystem.Update();Apply();
+                Assert.That(motor.LaboratoryStandingFacingLocked,Is.True);Assert.That(motor.LaboratoryStandingTravel,Is.EqualTo(AnimationPlaygroundStandingTravel.Left));
+                InputSystem.QueueStateEvent(keyboard,new KeyboardState(Key.S));InputSystem.Update();Apply();
+                Assert.That(motor.LaboratoryStandingTravel,Is.EqualTo(AnimationPlaygroundStandingTravel.Backward));
+                InputSystem.QueueStateEvent(mouse,new MouseState());InputSystem.Update();Apply();
+                Assert.That(motor.LaboratoryStandingFacingLocked,Is.False);
+            }
+            finally {InputSystem.RemoveDevice(keyboard);InputSystem.RemoveDevice(mouse);}
         }
     }
 }

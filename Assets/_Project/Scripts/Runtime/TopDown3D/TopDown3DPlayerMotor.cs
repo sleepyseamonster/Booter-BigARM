@@ -223,7 +223,7 @@ namespace BooterBigArm.TopDown3D
 
         public void Teleport(Vector3 position)
         {
-            ResetStandingStrafe(true);
+            ClearDodgeRunOut();ResetStandingStrafe(true);
             EnsureBody();
             CancelTraversal();
             EndClimb();
@@ -249,7 +249,7 @@ namespace BooterBigArm.TopDown3D
                 return false;
             }
 
-            EnsureBody();
+            ClearDodgeRunOut();EnsureBody();
             dodgePreserveGroundObservationOnRelease = false;
             CancelTraversal();
             EndClimb();
@@ -342,6 +342,7 @@ namespace BooterBigArm.TopDown3D
             if (IsActionConstrained && !jumpGroundedLocomotion)
             {
                 if(AdvanceAnimationMotion())return;
+                if (!IsActionConstrained) { AdvanceMotorFixedTick(jumpGroundedLocomotion); return; }
                 if (waypointTravelActive) { AdvanceWaypointTravel(); return; }
                 if (campApproaching) { AdvanceCampApproach(); return; }
                 PlanarAcceleration = Vector3.zero;
@@ -417,6 +418,12 @@ namespace BooterBigArm.TopDown3D
                 hasStableGroundNormal = false;
             }
 
+            if (animationPostureOwner != null && !jumpGroundedLocomotion && animationMotionOwner == null)
+            {
+                AnimationLocomotionPreparing?.Invoke();
+                if (animationMotionOwner != null && AdvanceAnimationMotion()) return;
+            }
+
             if (IsGrounded && desiredDirection.sqrMagnitude > 0.0001f)
             {
                 var inputMagnitude = desiredDirection.magnitude;
@@ -457,6 +464,7 @@ namespace BooterBigArm.TopDown3D
                 deceleration,
                 stopDeceleration,
                 directionChangeAcceleration);
+            rate = SelectDodgeRunOutAcceleration(rate,targetPlanar);
             var nextPlanar = Vector3.MoveTowards(currentPlanar, targetPlanar, rate * Time.fixedDeltaTime);
             // Terrain arrives asynchronously. Keep the capsule on supported ground
             // until the next streamed chunk has a live collider.
@@ -478,7 +486,9 @@ namespace BooterBigArm.TopDown3D
             {
                 var targetVerticalVelocity = desiredDirection.sqrMagnitude > 0.0001f
                     ? targetVelocity.y
-                    : Mathf.Min(verticalVelocity, -1.5f);
+                    : TopDown3DSlopeMath.VerticalVelocityOnPlane(nextPlanar, groundNormal);
+                // A downward idle drive is deflected downhill by the capsule.
+                // Keep braking tangent to support; normal gravity supplies contact.
                 verticalVelocity = Mathf.MoveTowards(
                     verticalVelocity,
                     targetVerticalVelocity,
@@ -1450,6 +1460,12 @@ namespace BooterBigArm.TopDown3D
                 currentNormal.normalized,
                 measuredNormal.normalized,
                 blend).normalized;
+        }
+
+        public static float VerticalVelocityOnPlane(Vector3 planarVelocity, Vector3 surfaceNormal)
+        {
+            if (!float.IsFinite(surfaceNormal.y) || surfaceNormal.y <= .0001f) return 0;
+            return -(planarVelocity.x * surfaceNormal.x + planarVelocity.z * surfaceNormal.z) / surfaceNormal.y;
         }
 
         public static bool IsWalkable(Vector3 surfaceNormal, float maximumSlopeDegrees)

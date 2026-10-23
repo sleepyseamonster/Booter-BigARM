@@ -104,6 +104,7 @@ namespace BooterBigArm.TopDown3D
         public event Action MenuToggleRequested;
         public event Action<TopDown3DInputMode> ModeChanged;
         public event Action<TopDown3DPromptDevice> PromptDeviceChanged;
+        private InputDevice promptBindingDevice;
 
         public void Configure(InputActionAsset actions)
         {
@@ -413,12 +414,10 @@ namespace BooterBigArm.TopDown3D
 
         private void HandleUiCancel(InputAction.CallbackContext context)
         {
-            if (context.phase == InputActionPhase.Performed)
-            {
-                if (inputUpdateMode == TopDown3DInputMode.SystemMenu)
-                { menuBackRequested = true; return; }
-                UiCancelRequested?.Invoke();
-            }
+            // Later listeners (including the UI module) still read this event's
+            // control. Closing inventory/camp here can re-resolve and invalidate
+            // its InputAction state. Dispatch after the complete input update.
+            if (context.phase == InputActionPhase.Performed) menuBackRequested = true;
         }
 
         private void BeforeInputUpdate() => inputUpdateMode = Mode;
@@ -468,6 +467,10 @@ namespace BooterBigArm.TopDown3D
         public void EnterInventoryMode()
         {
             SetMode(TopDown3DInputMode.Inventory);
+            // Menu preparation can add actions while Inventory already owns input.
+            // SetMode is intentionally a no-op on reentry, so enable the current map
+            // here as well instead of leaving newly introduced controls disabled.
+            uiMap?.Enable();
         }
 
         public void EnterRadialMode() => SetMode(TopDown3DInputMode.Radial);
@@ -479,13 +482,22 @@ namespace BooterBigArm.TopDown3D
                 ? "Gamepad"
                 : "Keyboard&Mouse";
             var device = PromptDevice == TopDown3DPromptDevice.Gamepad
-                ? (InputDevice)FindAvailableGamepad()
+                ? promptBindingDevice is Gamepad pad && pad.added && pad.enabled ? pad : (InputDevice)FindAvailableGamepad()
                 : Keyboard.current;
             return TopDown3DInputPromptUtility.ResolveBindingDisplayName(
                 action,
                 group,
                 device,
                 fallback);
+        }
+
+        internal InputControl GetBindingPromptControl(string actionPath,string controlName=null)
+        {
+            var device=PromptDevice==TopDown3DPromptDevice.Gamepad
+                ? promptBindingDevice is Gamepad pad&&pad.added&&pad.enabled?pad:(InputDevice)FindAvailableGamepad()
+                : Keyboard.current;
+            return TopDown3DInputPromptUtility.ResolveBindingControl(inputActions?.FindAction(actionPath,false),
+                PromptDevice==TopDown3DPromptDevice.Gamepad?"Gamepad":"Keyboard&Mouse",device,controlName);
         }
 
         private void SetMode(TopDown3DInputMode mode)
@@ -624,7 +636,8 @@ namespace BooterBigArm.TopDown3D
             LastInputDevice = device.displayName;
             if (device is Gamepad)
             {
-                SetPromptDevice(TopDown3DPromptDevice.Gamepad);
+                // Action callbacks can precede Gamepad.current changing for this event.
+                ChangePromptDevice(TopDown3DPromptDevice.Gamepad,device);
             }
             else if (device is Keyboard || device is Mouse)
             {
@@ -655,22 +668,28 @@ namespace BooterBigArm.TopDown3D
                 case InputDeviceChange.Removed:
                 case InputDeviceChange.Disconnected:
                 case InputDeviceChange.Disabled:
-                    if (FindAvailableGamepad(device) == null)
-                    {
-                        SetPromptDevice(TopDown3DPromptDevice.KeyboardMouse);
-                    }
+                    if (FindAvailableGamepad(device) == null) SetPromptDevice(TopDown3DPromptDevice.KeyboardMouse);
+                    else if (PromptDevice == TopDown3DPromptDevice.Gamepad) ChangePromptDevice(TopDown3DPromptDevice.Gamepad,FindAvailableGamepad(device));
                     break;
             }
         }
 
         private void SetPromptDevice(TopDown3DPromptDevice device)
         {
-            if (PromptDevice == device)
+            var bindingDevice = device == TopDown3DPromptDevice.Gamepad
+                ? (InputDevice)FindAvailableGamepad() : Keyboard.current;
+            ChangePromptDevice(device,bindingDevice);
+        }
+
+        private void ChangePromptDevice(TopDown3DPromptDevice device,InputDevice bindingDevice)
+        {
+            if (PromptDevice == device && promptBindingDevice == bindingDevice)
             {
                 return;
             }
 
             PromptDevice = device;
+            promptBindingDevice = bindingDevice;
             PromptDeviceChanged?.Invoke(device);
         }
 
@@ -723,6 +742,19 @@ namespace BooterBigArm.TopDown3D
                 return fallback ?? string.Empty;
             }
 
+            var control=ResolveBindingControl(action,bindingGroup,device);
+            if(control!=null)
+            {
+                var name=string.IsNullOrWhiteSpace(control.shortDisplayName)?control.displayName:control.shortDisplayName;
+                if(!string.IsNullOrWhiteSpace(name))return name;
+            }
+            var resolved = action.GetBindingDisplayString(DisplayOptions,bindingGroup);
+            return string.IsNullOrWhiteSpace(resolved)?fallback??string.Empty:resolved;
+        }
+
+        internal static InputControl ResolveBindingControl(InputAction action,string bindingGroup,InputDevice device,string controlName=null)
+        {
+            if(action==null||device==null||string.IsNullOrWhiteSpace(bindingGroup))return null;
             var bindingMask = InputBinding.MaskByGroup(bindingGroup);
             if (device != null)
             {
@@ -737,23 +769,18 @@ namespace BooterBigArm.TopDown3D
                     var bindingIndex = action.GetBindingIndexForControl(control);
                     if (bindingIndex >= 0 && bindingMask.Matches(action.bindings[bindingIndex]))
                     {
-                        var displayName = !string.IsNullOrWhiteSpace(control.shortDisplayName)
-                            ? control.shortDisplayName
-                            : control.displayName;
-                        if (!string.IsNullOrWhiteSpace(displayName))
-                        {
-                            return displayName;
-                        }
+                        // Vector navigation composites resolve to directional child buttons. Show
+                        // the containing stick/D-pad instead of implying only "LS Up" is usable.
+                        InputControl resolved=control;
+                        if (action.expectedControlType == "Vector2" && action.bindings[bindingIndex].isPartOfComposite
+                            && control.parent is UnityEngine.InputSystem.Controls.Vector2Control vector)
+                            resolved=vector;
+                        if(controlName==null||resolved.name==controlName)return resolved;
                     }
                 }
             }
 
-            var resolved = action.GetBindingDisplayString(
-                DisplayOptions,
-                bindingGroup);
-            return string.IsNullOrWhiteSpace(resolved)
-                ? fallback ?? string.Empty
-                : resolved;
+            return null;
         }
     }
 }

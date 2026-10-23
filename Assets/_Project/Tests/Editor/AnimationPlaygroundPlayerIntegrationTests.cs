@@ -156,6 +156,9 @@ namespace BooterBigArm.Tests
             try
             {
                 var session = TopDown3DAnimationPlaygroundSession.Find(scene);
+                // Review cases explicitly reset onto AP02. Its deck is hidden
+                // in the author scene, so enable fixtures only in this test copy.
+                if (review) session.transform.Find("Testing Fixtures")?.gameObject.SetActive(true);
                 draft=Object.Instantiate(session.Bindings);
                 if(!continuation){draft.continuationReview=null;draft.continuationReviewRequired=false;
                     // Historical three-gait cases pair their own calibration and

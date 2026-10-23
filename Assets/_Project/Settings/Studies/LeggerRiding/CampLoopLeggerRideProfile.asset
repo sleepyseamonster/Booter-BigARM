@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6fe91d252649048d0ecad36df5a0af, type: 3}
   m_Name: CampLoopLeggerRideProfile
   m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DLeggerRideProfile
-  normalSpeed: 6
-  fastSpeed: 10
+  normalSpeed: 10
+  fastSpeed: 24
   acceleration: 16
   braking: 24
   slowTurn: 500
   fastTurn: 360
-  slopeDegrees: 55
+  slopeDegrees: 75
+  fullSpeedSlopeDegrees: 45
+  steepSlopeSpeedMultiplier: 0.35
   stepUp: 1
   stepDown: 1.25
   stepSpeed: 2.5

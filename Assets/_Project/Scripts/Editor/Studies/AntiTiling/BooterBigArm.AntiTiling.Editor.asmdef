@@ -1,0 +1,7 @@
+{
+  "name": "BooterBigArm.AntiTiling.Editor",
+  "rootNamespace": "BooterBigArm.Editor",
+  "references": ["Unity.RenderPipelines.Core.Runtime", "Unity.RenderPipelines.Universal.Runtime"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true
+}

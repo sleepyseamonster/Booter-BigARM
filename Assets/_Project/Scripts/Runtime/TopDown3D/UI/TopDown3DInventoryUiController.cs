@@ -448,6 +448,7 @@ namespace BooterBigArm.TopDown3D
 
         private void Subscribe()
         {
+            if(CampExpeditionFeature.Enabled(gameObject.scene))return;
             if (subscribed || input == null || inventory == null)
             {
                 return;

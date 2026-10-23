@@ -83,6 +83,26 @@ namespace BooterBigArm.TopDown3D
             return BeginTransition(AnimationPlaygroundCrouchRole.Exit);
         }
 
+        // Reserve the outgoing pose before releasing crouch. The standing capsule
+        // is conservative throughout the visual rise and must fit before any travel.
+        public bool TryReleaseForSprint(object blendOwner, float blendSeconds)
+        {
+            if (disposed || suspended || resetPending || !isActiveAndEnabled || State != AnimationPlaygroundCrouchState.Crouched
+                || coordinator.IsBusy || paused?.Invoke() == true || !motor.IsGrounded || !motor.IsStandingAnimationShapeClear()
+                || !driver.TryCapturePoseBlend(blendOwner, blendSeconds)) return false;
+            if (!motor.TryRestoreAnimationPosture(coordinator)) { driver.EndPoseBlend(blendOwner); return false; }
+            driver.EndCrouchPresentation(this); motor.SetLaboratoryCrouchFacing(coordinator, facing, false);
+            State = AnimationPlaygroundCrouchState.Standing; clock.Reset(); exitRequested = false;
+            return true;
+        }
+
+        public bool TryResumeAfterSprintFailure()
+        {
+            if (disposed || suspended || resetPending || !isActiveAndEnabled || Active || coordinator.IsBusy
+                || !motor.IsGrounded || !motor.TrySetAnimationPosture(coordinator, AnimationPlaygroundPosture.Crouched, profile.crouchHeight, profile.crouchRadius)) return false;
+            HoldCrouch(); return true;
+        }
+
         private bool BeginTransition(AnimationPlaygroundCrouchRole role)
         {
             var entry=profile.Get(role);

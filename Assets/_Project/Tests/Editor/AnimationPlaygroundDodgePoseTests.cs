@@ -9,6 +9,41 @@ namespace BooterBigArm.Tests
     public sealed class AnimationPlaygroundDodgePoseTests
     {
         [TestCase(SkinWeights.OneBone)] [TestCase(SkinWeights.TwoBones)] [TestCase(SkinWeights.FourBones)]
+        public void PostLandingDirectionalDodgeEntryRetainsFootingOnCurvedModerateTerrain(SkinWeights quality)
+        {
+            var p=AnimationPlaygroundDodgeTests.Profile().Select(3);
+            using var f=new AnimationPlaygroundNativeGroundTests.NativeFixture(quality);
+            var actions=f.Inner.Forward.Actor.AddComponent<AnimationPlaygroundActionCoordinator>();
+            actions.Configure(f.Inner.Motor,f.Inner.Driver,new AnimationPlaygroundResetRegistry(),new[]{f.Inner.Motor.Position});
+            var owner=new object();var mesh=new Mesh();
+            var binding=new AnimationPlaygroundMotionBinding{sourceId="Post-landing curved entry",clip=p.roll,
+                readiness=AnimationPlaygroundMotionReadiness.PhysicalQualified};
+            try
+            {
+                for(var phase=0;phase<16;phase++)
+                {
+                    f.Place(new Vector2(-1605.70f,-1658.58f),40);f.Inner.Lock(true);f.Inner.Frame(3,phase/16d,Vector2.left,1);
+                    Assert.That(f.Inner.Driver.TryCapturePoseBlend(owner,p.entryBlend,true),Is.True);
+                    Assert.That(actions.TryBeginPhysical(binding,AnimationPlaygroundMotionMode.Dodge,null,
+                        _=>new AnimationPlaygroundMotorIntent(Vector3.zero,Vector3.forward),null,
+                        policy:AnimationPlaygroundMotionPolicy.DodgeLocomotion),Is.True);
+                    f.Inner.Driver.SetAnimationBodyProjection(actions,p.bodyProjection);
+                    f.Inner.Driver.SetAnimationDodgeProjection(actions,Quaternion.Euler(0,310,0)*Vector3.forward);
+                    f.Inner.Driver.SetAnimationGarmentFloor(actions,true,p.maximumGarmentProjection,p.garmentClearance);
+                    for(var frame=0;frame<=12;frame++)
+                    {
+                        var time=p.entryBlend*frame/12;f.Inner.Forward.Call("PrepareForwardGraphUpdate");
+                        f.Inner.Driver.SetAnimationPresentationTime(actions,time);f.Inner.Driver.SetPoseBlendElapsed(owner,time);
+                        f.Inner.Forward.Call("PresentAnimationAction");f.Inner.Forward.Call("LateUpdate");
+                        Assert.That(f.MeshMinimum(mesh),Is.GreaterThanOrEqualTo(-.002f),$"{quality}/{phase}/{frame}/{f.MinimumSkin}");
+                        Assert.That(f.Inner.Driver.LaboratoryNativeBodyLift,Is.LessThanOrEqualTo(.18f));
+                    }
+                    f.Inner.Driver.EndPoseBlend(owner);actions.Cancel();
+                }
+            }
+            finally{f.Inner.Driver.EndPoseBlend(owner);actions.DisposeOwnedServices();Object.DestroyImmediate(mesh);}
+        }
+        [TestCase(SkinWeights.OneBone)] [TestCase(SkinWeights.TwoBones)] [TestCase(SkinWeights.FourBones)]
         public void CompleteDodgeFitsEquippedPosesOnTheNativeCampTerrain(SkinWeights quality)
         {
             var p = AnimationPlaygroundDodgeTests.Profile(); using var f = new AnimationPlaygroundNativeGroundTests.NativeFixture(quality);

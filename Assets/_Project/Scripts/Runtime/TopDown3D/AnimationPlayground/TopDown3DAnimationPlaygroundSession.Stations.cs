@@ -59,6 +59,7 @@ namespace BooterBigArm.TopDown3D
         private bool TryDispatchStation(TopDown3DInteractionTarget capture,out bool handled)
         {
             handled=false;
+            if(CampExpeditionFeature.Enabled(gameObject.scene)){handled=true;playerAction?.ReportFeedback("This station is unavailable during an expedition.");return false;}
             if (!servicesBound || !PreviewReady || !capture.IsValid || capture.Object is not TopDown3DAnimationPlaygroundTarget target) return false;
             TopDown3DAnimationPlaygroundStation station = null;
             foreach (var value in stations) if (value != null && value.Owns(target)) { station = value; break; }

@@ -10,6 +10,23 @@ namespace BooterBigArm.Tests
     public sealed class FixedTerrainRenderWindowTests
     {
         [Test]
+        public void DiagnosticLookupFindsDontSaveRuntimeRootAndIgnoresDisabledOwners()
+        {
+            var scene = EditorSceneManager.NewPreviewScene();
+            try
+            {
+                var root = new GameObject("Runtime terrain owner") { hideFlags = HideFlags.DontSave };
+                SceneManager.MoveGameObjectToScene(root, scene);
+                var owner = root.AddComponent<GreaterWastelandTerrainRendering>();
+                Assert.That(GreaterWastelandTerrainRendering.FindRuntimeOwner(scene), Is.SameAs(owner));
+                owner.enabled = false;
+                Assert.That(GreaterWastelandTerrainRendering.FindRuntimeOwner(scene), Is.Null);
+                Assert.That(GreaterWastelandTerrainRendering.FindRuntimeOwner(default), Is.Null);
+            }
+            finally { EditorSceneManager.ClosePreviewScene(scene); }
+        }
+
+        [Test]
         public void DistantEditorPreviewCamerasDoNotUndoGameRenderingWindow()
         {
             Assert.That(GreaterWastelandTerrainRendering.ContributesCoverage(CameraType.Game), Is.True);

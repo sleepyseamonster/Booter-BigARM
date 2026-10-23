@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81605b79f6bb48b18dcdb159136018fe, type: 3}
+  m_Name: author_tool_iron_headed_digger
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DItemDefinition
+  itemId: author.tool.iron_headed_digger
+  displayName: Iron-headed multi-tool
+  description: 'A full-length, two-handed iron-headed multi-tool with a transverse
+    dual-ended head: a broad downturned hoe/adze-like digging blade on one side and
+    a rough blunt iron hammer poll on the other. Its stone-bone shaft, reinforcing
+    iron collar, shell butt cap, iron retaining pin and captured gripping-pad scales
+    make a more effective prying and shallow-digging tool than the bone version.'
+  category: Tools
+  icon: {fileID: 21300000, guid: 6f047ecae40e47d4684f1af4758279c5, type: 3}
+  maxStack: 1
+  mass: 0.75
+  carryPreference: 0
+  packingPreference: 0
+  equipmentSlot: 4
+  fieldSupply: 0

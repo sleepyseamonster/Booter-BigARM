@@ -193,7 +193,10 @@ namespace BooterBigArm.TopDown3D
         public void Disable()
         {
             if (IsDisposed || !node.IsValid()) return;
-            var data = node.GetJobData<ContactJob>(); data.enabled = data.available = false; node.SetJobData(data);
+            var data = node.GetJobData<ContactJob>(); data.enabled = data.available = false;
+            // A newly enabled stage has no result until its graph evaluates.
+            // Do not carry a previous activation's failure into that pending state.
+            data.unavailableReason=0;node.SetJobData(data);
         }
         public void Dispose()
         {

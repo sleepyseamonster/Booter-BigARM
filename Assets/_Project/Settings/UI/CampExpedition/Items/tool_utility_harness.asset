@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81605b79f6bb48b18dcdb159136018fe, type: 3}
+  m_Name: tool_utility_harness
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DItemDefinition
+  itemId: tool.utility_harness
+  displayName: Utility harness
+  description: A simple waist harness belt with two attachment mounts. Supports the
+    Personal Phagia canister and the dust harvester canister in this loadout.
+  category: Tools
+  icon: {fileID: 21300000, guid: f38dae6a087c1e042ba5a4df6000785d, type: 3}
+  maxStack: 1
+  mass: 0.75
+  carryPreference: 0
+  packingPreference: 0
+  equipmentSlot: 7
+  fieldSupply: 0

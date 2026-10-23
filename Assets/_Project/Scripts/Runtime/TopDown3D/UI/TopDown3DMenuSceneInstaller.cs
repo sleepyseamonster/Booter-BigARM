@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 namespace BooterBigArm.TopDown3D
 {
@@ -10,7 +11,12 @@ namespace BooterBigArm.TopDown3D
         public static TopDown3DMenuController TryInstall(Scene scene, TopDown3DInputRouter input,
             TopDown3DInventoryUiController inventory, EventSystem eventSystem, string preferenceDirectory = null)
         {
-            var existing = TopDown3DGameHudCanvas.FindInScene<TopDown3DMenuController>(scene);
+            if(!scene.IsValid()||!scene.isLoaded)return null;
+            var existing = CampExpeditionFeature.Enabled(scene)
+                ? scene.GetRootGameObjects().SelectMany(root=>root.GetComponentsInChildren<TopDown3DMenuController>(true)).FirstOrDefault(owner=>owner.isActiveAndEnabled)
+                : TopDown3DGameHudCanvas.FindInScene<TopDown3DMenuController>(scene);
+            if(existing!=null&&CampExpeditionFeature.Enabled(scene)&&existing.LostExpeditionServices)
+            {existing.RetireLostExpeditionServices();existing=null;}
             if (existing != null && existing.IsConfigured) return existing;
             var radial = TopDown3DGameHudCanvas.FindInScene<TopDown3DRadialMenuController>(scene);
             var prefab = Resources.Load<GameObject>("SystemMenu");

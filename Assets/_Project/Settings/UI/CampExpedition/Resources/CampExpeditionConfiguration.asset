@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d0193058729b34caba688e7a13300f, type: 3}
+  m_Name: CampExpeditionConfiguration
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.CampExpeditionConfiguration
+  enabledForCampLoop: 1
+  definition: {fileID: 11400000, guid: 38f630a76e386e8498d7cc969501195d, type: 2}
+  menuPrefab: {fileID: 4724725959353538503, guid: 76079a2d806878f429ce302275eccce3, type: 3}
+  terrainIdentity: CampLoopTesting/a9fa77587d74e86ababb2ce4309f63f71e1bba3b6c5792a21c17f9cf9f52cf00
+  startingStorageSlots: 24
+  startingCommons: 50
+  overflowFeePerSlot: 1
+  autosaveSeconds: 30
+  gameDaySeconds: 1200

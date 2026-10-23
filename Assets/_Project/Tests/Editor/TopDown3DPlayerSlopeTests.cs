@@ -63,6 +63,18 @@ namespace BooterBigArm.Tests
             Assert.That(lateral.z, Is.EqualTo(1f).Within(0.0001f));
         }
 
+        [TestCase(0f)] [TestCase(10f)] [TestCase(25f)] [TestCase(40f)]
+        public void IdleAndBrakingVelocityRemainTangentRatherThanDrivingDownhill(float slope)
+        {
+            var normal = Quaternion.Euler(slope, 31, slope * .3f) * Vector3.up;
+            foreach (var planar in new[] { Vector3.zero, Vector3.right * 3, Vector3.back * 6, new Vector3(-2, 0, 4) })
+            {
+                var velocity = planar + Vector3.up * TopDown3DSlopeMath.VerticalVelocityOnPlane(planar, normal);
+                Assert.That(Vector3.Dot(velocity, normal), Is.EqualTo(0).Within(.00001f));
+                if (planar == Vector3.zero) Assert.That(velocity, Is.EqualTo(Vector3.zero));
+            }
+        }
+
         [Test]
         public void GroundNormalSmoothing_FiltersTriangleChangesWithoutFlatteningThem()
         {

@@ -49,12 +49,14 @@ namespace BooterBigArm.TopDown3D
         private void Update() { if (!configured && !recovery) TryInitializeWhenReady(); }
         private void TryInitializeWhenReady()
         {
+            if(CampExpeditionFeature.Enabled(gameObject.scene))return;
             var lab = TopDown3DAnimationPlaygroundSession.Find(gameObject.scene);
             if (lab == null || !lab.PreviewReady) return;
             try { Initialize(); } catch (Exception error) { Fail(error.Message); }
         }
         internal bool Initialize()
         {
+            if(CampExpeditionFeature.Enabled(gameObject.scene))return false;
             if (configured) return Ready;
             if (TopDown3DAnimationPlaygroundSession.Find(gameObject.scene)?.PreviewReady != true) return false;
             if (!GreaterWastelandSceneScope.IsCampLoop(gameObject.scene) || !TopDown3DAnimationPlaygroundSession.IsSessionOnly(gameObject.scene)
@@ -94,7 +96,8 @@ namespace BooterBigArm.TopDown3D
                     || refinery.CaptureState().HasCanister || refinery.CaptureState().HasBattery)
                     return Fail("A new economy session requires one packed starter canister and empty refinery sockets.");
                 var mutation = new TopDown3DInventoryTransaction.Mutation(cache.State);
-                foreach (var ingredient in workbench.Recipe.Ingredients)
+                foreach (var ingredient in CampFirstToolScenario.Find(gameObject.scene) == null
+                    ? workbench.Recipe.Ingredients : Array.Empty<TopDown3DCraftingRecipe.Ingredient>())
                 {
                     var added = mutation.Draft.TryAdd(new TopDown3DItemAmount(ingredient.itemId, ingredient.quantity));
                     if (!added.Succeeded) return Fail(added.Message);
@@ -162,6 +165,8 @@ namespace BooterBigArm.TopDown3D
 
         public TopDown3DInventoryResult ResetEconomy(uint expectedEpoch)
         {
+            if (CampFirstToolScenario.Find(gameObject.scene) != null)
+                return TopDown3DCraftingService.Failure("Use Inventory: Reset trial to restore source stock and inventories together.");
             if (!Ready || expectedEpoch != epoch || epoch == uint.MaxValue || input.Mode != TopDown3DInputMode.Inventory || locked
                 || !ValidateOwnership()) return TopDown3DCraftingService.Failure("Camp reset is unavailable; current contents were preserved.");
             var vitals = kit.GetComponent<TopDown3DSurvivalVitals>();

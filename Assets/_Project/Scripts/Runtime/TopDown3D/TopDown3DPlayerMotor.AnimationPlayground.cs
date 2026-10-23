@@ -89,6 +89,7 @@ namespace BooterBigArm.TopDown3D
         public AnimationPlaygroundMotorSnapshot AnimationSnapshot {get;private set;}
         public event Action AnimationMotionPreparing,AnimationMotionAdvanced;
         public event Action AnimationLocomotionAdvanced;
+        public event Action AnimationLocomotionPreparing;
         public bool LaboratoryStandingActionsAllowed=>animationPostureOwner==null || AnimationPosture==AnimationPlaygroundPosture.Standing;
 
         public bool SetLaboratoryCrouchFacing(object owner,Vector3 facing,bool locked)
@@ -182,7 +183,7 @@ namespace BooterBigArm.TopDown3D
                 || !Enum.IsDefined(typeof(AnimationPlaygroundMotionPolicy),policy) || animationMotionOwner != null)return false;
             if(policy==AnimationPlaygroundMotionPolicy.JumpLocomotion ? !TryBeginJumpConstraint(owner)
                 : policy==AnimationPlaygroundMotionPolicy.DodgeLocomotion ? !TryBeginDodgeConstraint(owner) : !TryBeginActionConstraint(owner))return false;
-            EnsureAnimationShape();animationMotionOwner=owner;AnimationMotionMode=mode;
+            ClearDodgeRunOut();EnsureAnimationShape();animationMotionOwner=owner;AnimationMotionMode=mode;
             animationMotionPolicy=policy;
             animationOriginalGravity=body.useGravity;animationGravity=!disableGravity;
             animationColliderEnabled=capsule.enabled;animationPreviousPosition=Position;
@@ -335,7 +336,17 @@ namespace BooterBigArm.TopDown3D
                 if(animationIntent.OwnsVertical)desired=constrained;else{desired.x=constrained.x;desired.z=constrained.z;}
                 blocked=true;
             }
-            if(animationIntent.Facing.sqrMagnitude>.0001f)FacePlanarDirection(animationIntent.Facing);
+            if(animationIntent.Facing.sqrMagnitude>.0001f)
+            {
+                if(AnimationMotionMode==AnimationPlaygroundMotionMode.Turn)
+                {
+                    // Match interpolated turn translation. Direct Transform
+                    // writes would jump yaw ahead of the rendered source pose.
+                    facingDirection=Vector3.ProjectOnPlane(animationIntent.Facing,Vector3.up).normalized;
+                    body.MoveRotation(Quaternion.LookRotation(facingDirection,Vector3.up));
+                }
+                else FacePlanarDirection(animationIntent.Facing);
+            }
             body.linearVelocity=desired;body.angularVelocity=Vector3.zero;SprintActive=false;PlanarAcceleration=Vector3.zero;
             var supported=AnimationLowShapeActive ? TryGetAnimationLowGroundNormal(out var normal) : TryGetGroundNormal(out normal);
             if(animationSupportReleaseTicks>0){if(!animationIntent.Paused)animationSupportReleaseTicks--;supported=false;}
@@ -351,12 +362,13 @@ namespace BooterBigArm.TopDown3D
         {
             if(animationMotionOwner==null)return;
             var jump=JumpLocomotionActive;var dodge=DodgeLocomotionActive;
-            jumpPreserveGroundObservationOnRelease=jump && JumpUsesGroundedLocomotion;
+            jumpPreserveGroundObservationOnRelease=jump && (JumpUsesGroundedLocomotion
+                || IsGrounded && JumpObservation.Supported && jumpSupportCollider!=null);
             dodgePreserveGroundObservationOnRelease=dodge && IsGrounded && laboratoryGroundSupport!=null;
-            // A grounded roll releases after its current support ray. Retain
-            // that ray so the normal post-tick observation can rebase in place;
+            // Grounded rolls and landings retain their completed support so
+            // the normal post-tick observation can rebase in place;
             // clearing it here invalidates the first recovery-facing lease.
-            if(!(jump && JumpUsesGroundedLocomotion) && !dodgePreserveGroundObservationOnRelease)
+            if(!jumpPreserveGroundObservationOnRelease && !dodgePreserveGroundObservationOnRelease)
                 ResetStandingMotionObservation();
             if(body!=null){body.useGravity=animationOriginalGravity;var velocity=animationWasPaused ? animationPausedVelocity : body.linearVelocity;
                 body.linearVelocity=jump || dodge ? velocity : Vector3.up*velocity.y;body.angularVelocity=Vector3.zero;}
@@ -365,7 +377,7 @@ namespace BooterBigArm.TopDown3D
         }
         private void DisableAnimationCapability()
         {
-            ReleaseAnimationMotionCore();
+            ClearDodgeRunOut();ReleaseAnimationMotionCore();
             if(animationShapeCaptured && capsule!=null && AnimationShapeClear(animationOriginalHeight,animationOriginalCenter,Position,animationOriginalRadius))
             {capsule.direction=1;capsule.height=animationOriginalHeight;capsule.radius=animationOriginalRadius;capsule.center=animationOriginalCenter;AnimationPosture=AnimationPlaygroundPosture.Standing;}
             animationPostureOwner=null;

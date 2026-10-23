@@ -44,6 +44,8 @@ namespace BooterBigArm.TopDown3D
                 if(clip.isLooping && delta<0)delta+=clip.length;
                 jumpSourceRate=Mathf.Clamp((float)(delta/Math.Max(.0001,Time.fixedDeltaTime)),0,3);
             }
+            ObserveAdaptedTurnSourceTime();
+            ObserveDodgeSourceTime();
             animationPresentationTime = seconds;
             return true;
         }
@@ -93,10 +95,11 @@ namespace BooterBigArm.TopDown3D
             if (animationPresentationOwner is UnityEngine.Object owner && owner == null)
             { ReleaseAnimationPresentation(); return false; }
             if(JumpPresentationOwned)return PresentJumpAction();
-            animationActionPlayable.SetTime(animationPresentationTime);
+            animationActionPlayable.SetTime(DodgePresentationTime);
             if(mixer.GetInputCount()>CrouchInputIndex)mixer.SetInputWeight(CrouchInputIndex,0);
             for (var i = 0; i < ClipCount; i++) mixer.SetInputWeight(i, i == AnimationActionIndex ? 1 : 0);
             visualInstance.transform.SetLocalPositionAndRotation(visualLocalPosition+Vector3.up*animationHeightCorrection, Quaternion.Euler(visualLocalEulerAngles));
+            ApplyAdaptedTurnVisualHeading();
             CurrentLocomotionState = TopDown3DLocomotionState.ConstrainedAction;
             PrepareContinuationActionTerrain();
             var blending=PoseBlendOwned;ApplyPoseBlend();

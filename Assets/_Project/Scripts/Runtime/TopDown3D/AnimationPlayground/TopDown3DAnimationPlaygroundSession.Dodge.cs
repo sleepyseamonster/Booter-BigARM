@@ -14,12 +14,28 @@ namespace BooterBigArm.TopDown3D
                 () => !isActiveAndEnabled || !servicesBound || !PreviewReady || !Application.isFocused
                     || playerInput.Mode != TopDown3DInputMode.Gameplay,
                 () => playerAction.IsBusy || crouch != null && crouch.Active || lowMotion != null && lowMotion.Active
-                    || airborne != null && airborne.Active || turning != null && turning.Active);
+                    || airborne != null && airborne.Active || turning != null && turning.Active || sprintEntries != null && sprintEntries.Active);
         }
         private void RequestDodge()
         {
             if (!DodgeReady) { playerAction?.ReportFeedback("Dodge calibration is unavailable."); return; }
-            if (!dodge.TryDodge()) playerAction.ReportFeedback(dodge.LastFailure);
+            var activity=playerAction.Activity;
+            // MotorOwned/StationActive include our outgoing action. Keep actual
+            // work, placement, camp and other animation owners non-interruptible.
+            if(dodge.CanAcceptHandoff && !activity.LegacyWork && !activity.Placement && !activity.CampActive
+                && ResourceCombatBusy?.Invoke()!=true && !(crouch!=null && crouch.Active)
+                && !(lowMotion!=null && lowMotion.Active) && !(airborne!=null && airborne.Active && !airborne.CanYieldToGroundedAction))
+            {
+                if(airborne!=null && airborne.Active)airborne.TryYieldToGroundedAction(dodge);
+                if(sprintEntries!=null && sprintEntries.Active)sprintEntries.TryYieldTo(dodge);
+                if(locomotionTransitions!=null && locomotionTransitions.Active)locomotionTransitions.TryYieldTo(dodge);
+                if(turning!=null && turning.Active)turning.TryYieldTo(dodge);
+            }
+            if (!dodge.TryDodge())
+            {
+                if(!dodge.Active)presentation.EndPoseBlend(dodge);
+                playerAction.ReportFeedback(dodge.LastFailure);
+            }
         }
         private void DetachDodge()
         {

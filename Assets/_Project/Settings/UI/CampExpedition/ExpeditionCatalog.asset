@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3de2879cd9b432abc1e02225e235bed, type: 3}
+  m_Name: ExpeditionCatalog
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DItemCatalog
+  definitions:
+  - {fileID: 11400000, guid: 7eb64cd1ed424034f8fe9ba0762bf7a5, type: 2}
+  - {fileID: 11400000, guid: dd38905601758484bb80c801a6ce0f27, type: 2}
+  - {fileID: 11400000, guid: e30d685c8e84a1943a83002e079130b7, type: 2}
+  - {fileID: 11400000, guid: b1448b8b475951347bb5c1bfbdd365e7, type: 2}
+  - {fileID: 11400000, guid: ae337c8ccda5ea04b8da3d1cb995e94d, type: 2}
+  - {fileID: 11400000, guid: e969b676168658a4bb381e1806b1d614, type: 2}
+  - {fileID: 11400000, guid: 5cca92508fd71cd47bf8e270f753c696, type: 2}
+  - {fileID: 11400000, guid: 69624357f886ba14d9d70064dc4628e4, type: 2}
+  - {fileID: 11400000, guid: ce6cce8f7ab83054590498f121e10162, type: 2}
+  - {fileID: 11400000, guid: 139dd8933c0b26c48877570753bbeaa8, type: 2}
+  - {fileID: 11400000, guid: d5d837d3a9af96a43a8460cda9f892f6, type: 2}
+  - {fileID: 11400000, guid: 9736f5e3d0d6a7e44a69fa56c94bb0ba, type: 2}
+  - {fileID: 11400000, guid: 73b41c99d8364c5438ea7076e01ca21f, type: 2}
+  - {fileID: 11400000, guid: 6b79681e6fae793408f0c976cce79ec3, type: 2}
+  - {fileID: 11400000, guid: 92a2fd200e57d974ebd395e029ca294e, type: 2}

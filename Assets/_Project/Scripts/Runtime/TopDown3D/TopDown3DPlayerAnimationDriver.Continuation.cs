@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Playables;
 
 namespace BooterBigArm.TopDown3D
 {
@@ -10,6 +11,26 @@ namespace BooterBigArm.TopDown3D
         private object turnPoseOwner;
         private bool turnPoseLeft;
         private Vector3 turnPoseAnchor;
+        private Quaternion turnPoseBasis;
+        private double turnPreviousSourceTime,turnSourceSampleTime=double.NegativeInfinity;
+        private void ObserveAdaptedTurnSourceTime()
+        {
+            if(turnPoseOwner!=null && turnSourceSampleTime!=Time.fixedTimeAsDouble)
+            {turnPreviousSourceTime=animationPresentationTime;turnSourceSampleTime=Time.fixedTimeAsDouble;}
+        }
+        private double SampleAdaptedTurnSourceTime(float alpha)
+            =>turnPreviousSourceTime+(animationPresentationTime-turnPreviousSourceTime)*Mathf.Clamp01(alpha);
+        private double AdaptedTurnPresentationTime=>turnPoseOwner!=null && Application.isPlaying
+            ? SampleAdaptedTurnSourceTime(JumpRenderAlpha()) : animationPresentationTime;
+        private void ApplyAdaptedTurnVisualHeading()
+        {
+            if(turnPoseOwner==null || continuationReview==null || visualInstance==null)return;
+            var take=turnPoseLeft ? continuationReview.left : continuationReview.right;
+            take.Sample((float)animationActionPlayable.GetTime(),out _,out var yaw);
+            // Physics yaw can lead its interpolated translation. Present the
+            // mesh at the exact source yaw rather than pulling its planted foot.
+            visualInstance.transform.localRotation=Quaternion.Inverse(transform.rotation)*turnPoseBasis*yaw*Quaternion.Euler(visualLocalEulerAngles);
+        }
         private TopDown3DAnimationPlaygroundStation continuationJumpStation;
         private bool continuationActionTerrainApplied;
         private object continuationActionTerrainOwner;
@@ -26,9 +47,10 @@ namespace BooterBigArm.TopDown3D
         {continuationRejectedSupport=null;LaboratoryContinuationFailure=null;LaboratoryNativeGroundAdapted=false;LaboratoryNativeGroundFailure=null;LaboratoryNativeBodyLift=0;}
         private readonly Vector2[] continuationFootprint = { new(-.3f,-.45f), new(.3f,-.45f), new(-.3f,.45f), new(.3f,.45f) };
         public bool LaboratoryContinuationConfigured => continuationReview != null;
+        private static bool TurnContactFailed(AnimationPlaygroundTangentFootPose.ContactJob sample)
+            =>sample.enabled && !sample.available && sample.unavailableReason!=0;
         public bool LaboratoryTurnContactUnavailable => turnPoseOwner != null
-            && (turnPoseLeft ? turnLeftPose : turnRightPose).Sample.enabled
-            && !(turnPoseLeft ? turnLeftPose : turnRightPose).Sample.available;
+            && TurnContactFailed((turnPoseLeft ? turnLeftPose : turnRightPose).Sample);
 
         public void ConfigureLaboratoryContinuation(AnimationPlaygroundContinuationProfile profile)
         {
@@ -132,6 +154,8 @@ namespace BooterBigArm.TopDown3D
             turnRightPose ??= new AnimationPlaygroundTangentFootPose(humanoidAnimator,visualInstance.transform,
                 laboratoryFootProjection,continuationReview.right.soleVertex,playableGraph);
             turnPoseOwner=owner;turnPoseLeft=left;turnPoseAnchor=anchor;
+            turnPoseBasis=Quaternion.LookRotation(Vector3.ProjectOnPlane(motor.FacingDirection,Vector3.up).normalized,Vector3.up);
+            turnPreviousSourceTime=animationPresentationTime;turnSourceSampleTime=double.NegativeInfinity;
             return true;
         }
         private void PrepareAdaptedTurnPose()
@@ -143,7 +167,7 @@ namespace BooterBigArm.TopDown3D
             (turnPoseLeft ? turnLeftPose : turnRightPose).Configure(turnPoseAnchor,influences<=1 ? 1 : influences<=2 ? 2 : 4);
         }
         private void ReleaseAdaptedTurnPose()
-        {turnPoseOwner=null;turnLeftPose?.Disable();turnRightPose?.Disable();}
+        {turnPoseOwner=null;turnPreviousSourceTime=0;turnSourceSampleTime=double.NegativeInfinity;turnLeftPose?.Disable();turnRightPose?.Disable();}
         private void DisposeAdaptedTurnPose()
         {
             ReleaseAdaptedTurnPose();turnRightPose?.Dispose();turnRightPose=null;turnLeftPose?.Dispose();turnLeftPose=null;

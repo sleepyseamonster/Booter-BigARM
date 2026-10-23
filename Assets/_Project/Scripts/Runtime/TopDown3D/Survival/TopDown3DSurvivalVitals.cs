@@ -106,6 +106,7 @@ namespace BooterBigArm.TopDown3D
 
         public void AdvanceActivity(float elapsedSeconds)
         {
+            if(!CampExpeditionFeature.FieldAllowed(gameObject.scene))return;
             if (!(elapsedSeconds > 0) || !float.IsFinite(elapsedSeconds)) return;
             if (activity == TopDown3DSurvivalActivity.Ordinary) { Advance(elapsedSeconds); return; }
             var mode = activity;
@@ -169,6 +170,7 @@ namespace BooterBigArm.TopDown3D
 
         public void Advance(float elapsedSeconds, bool exerting)
         {
+            if(!CampExpeditionFeature.FieldAllowed(gameObject.scene))return;
             if (elapsedSeconds <= 0f || float.IsNaN(elapsedSeconds) || float.IsInfinity(elapsedSeconds))
             {
                 return;

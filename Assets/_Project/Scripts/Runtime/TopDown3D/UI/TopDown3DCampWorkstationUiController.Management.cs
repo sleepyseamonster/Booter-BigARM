@@ -64,6 +64,7 @@ namespace BooterBigArm.TopDown3D
             var text = station.Label + (station.CanAccess(session.Kit.transform) ? " · within reach" : " · inspection only");
             if (station.Target is TopDown3DCampWorkbench bench)
             {
+                if (bench.HasRecipeRoster) return text + "\n" + FirstToolBenchSummary();
                 foreach (var ingredient in bench.Recipe.Ingredients)
                 {
                     var count = 0; foreach (var slot in bench.Chest.State.Slots) if (slot.ItemId == ingredient.itemId) count += slot.Quantity;
@@ -98,6 +99,7 @@ namespace BooterBigArm.TopDown3D
                 inspectedStation = station;
                 if (!station.CanAccess(session.Kit.transform)) { message = station.Label + " is out of reach. Approach it physically."; Refresh(); return true; }
                 target = station.Target; management = ManagementView.Detail; source = target is TopDown3DIronstoneProcessor ? 2 : 0;
+                PrepareFirstToolView();
                 processQuote = null; resetPending = false; selected = -1; Arm(); Refresh(); view.SelectFirst(events); return true;
             }
             if (id == "Call")

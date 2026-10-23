@@ -1,0 +1,585 @@
+fileFormatVersion: 2
+guid: fda1ed45aa02cef45ac320e7d37b1971
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2498680423493218034
+    second: shell-tool-butt-cap-painted-hue-study-v1_0
+  - first:
+      213: 6177557958808675899
+    second: shell-tool-butt-cap-painted-hue-study-v1_1
+  - first:
+      213: -1938337501395991999
+    second: shell-tool-butt-cap-painted-hue-study-v1_2
+  - first:
+      213: -8486756400662778812
+    second: shell-tool-butt-cap-painted-hue-study-v1_3
+  - first:
+      213: -8550645775590244444
+    second: shell-tool-butt-cap-painted-hue-study-v1_4
+  - first:
+      213: 1254929467601411106
+    second: shell-tool-butt-cap-painted-hue-study-v1_5
+  - first:
+      213: 5005473425140267215
+    second: shell-tool-butt-cap-painted-hue-study-v1_6
+  - first:
+      213: -4593499772419810281
+    second: shell-tool-butt-cap-painted-hue-study-v1_7
+  - first:
+      213: 9094784880086134145
+    second: shell-tool-butt-cap-painted-hue-study-v1_8
+  - first:
+      213: -7052255196328222421
+    second: shell-tool-butt-cap-painted-hue-study-v1_9
+  - first:
+      213: 6896249873933957846
+    second: shell-tool-butt-cap-painted-hue-study-v1_10
+  - first:
+      213: -8702116239669373659
+    second: shell-tool-butt-cap-painted-hue-study-v1_11
+  - first:
+      213: 8067745094330880609
+    second: shell-tool-butt-cap-painted-hue-study-v1_12
+  - first:
+      213: 606594518291010767
+    second: shell-tool-butt-cap-painted-hue-study-v1_13
+  - first:
+      213: 5844895754931289400
+    second: shell-tool-butt-cap-painted-hue-study-v1_14
+  - first:
+      213: -5773511118945928357
+    second: shell-tool-butt-cap-painted-hue-study-v1_15
+  - first:
+      213: 1136006454296862800
+    second: shell-tool-butt-cap-painted-hue-study-v1_16
+  - first:
+      213: 4784989569270571162
+    second: shell-tool-butt-cap-painted-hue-study-v1_17
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1241
+        height: 1248
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fe29894b981da220800000000000000
+      internalID: 2498680423493218034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_1
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 1175
+        width: 9
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b36ad22cb381bb550800000000000000
+      internalID: 6177557958808675899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_2
+      rect:
+        serializedVersion: 2
+        x: 924
+        y: 1181
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 142497eef44a915e0800000000000000
+      internalID: -1938337501395991999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_3
+      rect:
+        serializedVersion: 2
+        x: 945
+        y: 1189
+        width: 13
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44ce833b40cf83a80800000000000000
+      internalID: -8486756400662778812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_4
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 1130
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4afbfb968f0065980800000000000000
+      internalID: -8550645775590244444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_5
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 1020
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22c5d8ea3b76a6110800000000000000
+      internalID: 1254929467601411106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_6
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 812
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc8b42e5f83077540800000000000000
+      internalID: 5005473425140267215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_7
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 540
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71c541d5b4c9040c0800000000000000
+      internalID: -4593499772419810281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_8
+      rect:
+        serializedVersion: 2
+        x: 1149
+        y: 459
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18da02689aa273e70800000000000000
+      internalID: 9094784880086134145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_9
+      rect:
+        serializedVersion: 2
+        x: 920
+        y: 77
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b21247d634b512e90800000000000000
+      internalID: -7052255196328222421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_10
+      rect:
+        serializedVersion: 2
+        x: 930
+        y: 83
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6da7a22f8b664bf50800000000000000
+      internalID: 6896249873933957846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_11
+      rect:
+        serializedVersion: 2
+        x: 940
+        y: 81
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5255954c26fdb3780800000000000000
+      internalID: -8702116239669373659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_12
+      rect:
+        serializedVersion: 2
+        x: 1156
+        y: 77
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1621ef52b6366ff60800000000000000
+      internalID: 8067745094330880609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_13
+      rect:
+        serializedVersion: 2
+        x: 1147
+        y: 63
+        width: 12
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc45f61208e0b6800800000000000000
+      internalID: 606594518291010767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_14
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 53
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83d3ed5b8bd3d1150800000000000000
+      internalID: 5844895754931289400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_15
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 27
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5bb5780a3e50efa0800000000000000
+      internalID: -5773511118945928357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_16
+      rect:
+        serializedVersion: 2
+        x: 956
+        y: 40
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0506ae2f9d7e3cf00800000000000000
+      internalID: 1136006454296862800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shell-tool-butt-cap-painted-hue-study-v1_17
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 22
+        width: 11
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a90625a49a2b76240800000000000000
+      internalID: 4784989569270571162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      shell-tool-butt-cap-painted-hue-study-v1_0: 2498680423493218034
+      shell-tool-butt-cap-painted-hue-study-v1_1: 6177557958808675899
+      shell-tool-butt-cap-painted-hue-study-v1_10: 6896249873933957846
+      shell-tool-butt-cap-painted-hue-study-v1_11: -8702116239669373659
+      shell-tool-butt-cap-painted-hue-study-v1_12: 8067745094330880609
+      shell-tool-butt-cap-painted-hue-study-v1_13: 606594518291010767
+      shell-tool-butt-cap-painted-hue-study-v1_14: 5844895754931289400
+      shell-tool-butt-cap-painted-hue-study-v1_15: -5773511118945928357
+      shell-tool-butt-cap-painted-hue-study-v1_16: 1136006454296862800
+      shell-tool-butt-cap-painted-hue-study-v1_17: 4784989569270571162
+      shell-tool-butt-cap-painted-hue-study-v1_2: -1938337501395991999
+      shell-tool-butt-cap-painted-hue-study-v1_3: -8486756400662778812
+      shell-tool-butt-cap-painted-hue-study-v1_4: -8550645775590244444
+      shell-tool-butt-cap-painted-hue-study-v1_5: 1254929467601411106
+      shell-tool-butt-cap-painted-hue-study-v1_6: 5005473425140267215
+      shell-tool-butt-cap-painted-hue-study-v1_7: -4593499772419810281
+      shell-tool-butt-cap-painted-hue-study-v1_8: 9094784880086134145
+      shell-tool-butt-cap-painted-hue-study-v1_9: -7052255196328222421
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

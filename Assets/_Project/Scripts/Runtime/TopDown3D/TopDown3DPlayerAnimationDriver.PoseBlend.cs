@@ -32,6 +32,19 @@ namespace BooterBigArm.TopDown3D
             if(!ReferenceEquals(owner,poseBlendOwner))return false;
             poseBlendOwner=successor;return true;
         }
+        // Publish the reserved pose before its physical clip lease is released.
+        // The successor can recapture that same graph immediately in this input callback.
+        public bool TryReservePoseBlendHandoff(object owner,object successor,float seconds)
+        {
+            if(successor==null || !TryCapturePoseBlend(owner,seconds))return false;
+            return TransferPoseBlendOwner(owner,successor);
+        }
+        public bool SelectReservedPoseBlend(object owner)
+        {
+            if(owner==null || !ReferenceEquals(owner,poseBlendOwner) || !poseBlendSnapshot.IsValid())return false;
+            for(var i=0;i<mixer.GetInputCount();i++)mixer.SetInputWeight(i,i==PoseBlendInputIndex ? 1 : 0);
+            return true;
+        }
         private readonly struct PoseSource
         {
             public readonly AnimationClip Clip;
@@ -106,7 +119,7 @@ namespace BooterBigArm.TopDown3D
         {
             if(poseBlendOwner==null)return;
             if(poseBlendOwner is UnityEngine.Object owner && owner==null){ReleasePoseBlend();return;}
-            var elapsed=poseBlendAdvanceSources ? Math.Max(0,poseBlendPreviousElapsed+(poseBlendElapsed-poseBlendPreviousElapsed)*JumpRenderAlpha()) : poseBlendElapsed;
+            var elapsed=poseBlendAdvanceSources ? Math.Max(0,poseBlendPreviousElapsed+(poseBlendElapsed-poseBlendPreviousElapsed)*JumpRenderAlpha()) : DodgeBlendPresentationElapsed;
             if(poseBlendAdvanceSources)
                 for(var i=0;i<poseBlendClips.Count;i++)
                 {
@@ -134,7 +147,8 @@ namespace BooterBigArm.TopDown3D
             var sampler=animationBodyProjection || poseBlendBodyProjection ? bodyProjectionSampler : footProjectionSampler;
             if(sampler==null)return;
             if (!animationBodyProjection && !poseBlendBodyProjection
-                && TryEvaluateNativeCampGround(visualInstance.transform.localPosition.y-visualLocalPosition.y, out var nativeCorrection))
+                && TryEvaluateNativeCampGround(visualInstance.transform.localPosition.y-visualLocalPosition.y, out var nativeCorrection,
+                    JumpPresentationOwned && jumpDirectionalUnderlay))
             {
                 visualInstance.transform.localPosition = visualLocalPosition + Vector3.up * nativeCorrection;
                 return;
@@ -144,6 +158,11 @@ namespace BooterBigArm.TopDown3D
             var plane=transform.TransformPoint(Vector3.up*laboratoryFeetPlane).y;
             var correction=forwardTerrainApplied ? Mathf.Max(0,-sampler.MinimumDistance(forwardTerrainPlane))/forwardTerrainPlane.normal.y
                 : Mathf.Max(0,plane-minimum);
+            if(DodgeProjectionActive)
+            {
+                var supportPlane=forwardTerrainApplied ? forwardTerrainPlane : new Plane(Vector3.up,new Vector3(0,plane,0));
+                correction=Mathf.Max(correction,Mathf.Max(0,-MinimumDodgeEquipmentDistance(false,supportPlane))/supportPlane.normal.y);
+            }
             if(!float.IsFinite(correction) || correction>.18f)throw new InvalidOperationException("The posture ground correction exceeds its qualified envelope.");
             visualInstance.transform.localPosition+=Vector3.up*correction;LastPoseBlendGroundCorrection=correction;
         }

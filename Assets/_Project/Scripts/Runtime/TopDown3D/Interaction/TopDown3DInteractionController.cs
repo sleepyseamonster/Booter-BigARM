@@ -122,7 +122,9 @@ namespace BooterBigArm.TopDown3D
                 var facing = planarDirection.sqrMagnitude > 0.0001f
                     ? Vector3.Dot(actorFacing, planarDirection.normalized)
                     : 1f;
-                if (distance > candidate.InteractionRange || facing < minimumFacingDot
+                // The arrival beacon is activated by proximity from any approach/facing.
+                // It still requires range and a clear path, like other world interactions.
+                if (distance > candidate.InteractionRange || candidate is not CampRootBeaconSession && facing < minimumFacingDot
                     || !HasLineOfSight(candidate, collider, actorPosition))
                 {
                     continue;

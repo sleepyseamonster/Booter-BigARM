@@ -111,6 +111,13 @@ namespace BooterBigArm.TopDown3D
             }
 
             committed = true;
+            if(target is ICampDurableGatherTarget durable)
+            {
+                bool success=capturedTarget.IsValid && IsValidTarget(target,actorPosition) && durable.TryCommitHarvest(destinationInventory,out var error);
+                if(!success)FailureMessage=durable.Failure;
+                LastCompletionWasBigArm=success&&destination.IsBigArm;Reset();
+                return success?TopDown3DGatherActionResult.Completed:TopDown3DGatherActionResult.CommitFailed;
+            }
             var reward = target.Reward;
             var addResult = destinationInventory.TryAdd(
                 new[] { reward },

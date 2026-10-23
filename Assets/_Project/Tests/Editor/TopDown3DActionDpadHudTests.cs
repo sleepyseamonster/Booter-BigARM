@@ -11,6 +11,22 @@ namespace BooterBigArm.Tests
 {
     public sealed class TopDown3DActionDpadHudTests
     {
+        [Test] public void ReloadedCanisterHudRebindsOnlyItsOwnPromptReferences()
+        {
+            var source=new GameObject("Canister HUD reload source");source.SetActive(false);
+            var unrelated=new GameObject("Drink",typeof(RectTransform),typeof(Text));
+            try
+            {
+                var hud=source.AddComponent<TopDown3DAlgaeCanisterHud>();
+                var details=new GameObject("Algae canister",typeof(RectTransform));details.transform.SetParent(source.transform);
+                var expected=new Text[3];string[] names={"Drink","Eat","Treat"};
+                for(int i=0;i<3;i++){var child=new GameObject(names[i],typeof(RectTransform),typeof(Text));child.transform.SetParent(details.transform);expected[i]=child.GetComponent<Text>();}
+                var field=typeof(TopDown3DAlgaeCanisterHud).GetField("labels",BindingFlags.Instance|BindingFlags.NonPublic);
+                typeof(TopDown3DAlgaeCanisterHud).GetMethod("OnEnable",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(hud,null);
+                for(int i=0;i<3;i++)Assert.That(((Text[])field.GetValue(hud))[i],Is.SameAs(expected[i]));
+            }
+            finally{Object.DestroyImmediate(source);Object.DestroyImmediate(unrelated);}
+        }
         [Test]
         public void Install_BuildsPolishedDpadUnderSharedCanvas()
         {

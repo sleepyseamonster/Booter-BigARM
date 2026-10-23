@@ -25,12 +25,14 @@ namespace BooterBigArm.TopDown3D
         private int standingStrafePlantStart, standingStrafePlantCount;
         public bool LaboratoryStandingStrafeConfigured => standingStrafeReview != null;
         public bool LaboratoryStandingStrafeActive => standingStrafeRendered && standingStrafeOutputApplied;
+        private string StandingFacingControl => motor != null && motor.InputRouter != null
+            ? motor.InputRouter.GetBindingDisplayName("Gameplay/CameraLookAhead", "facing control") : "facing control";
         public string LaboratoryStandingStrafeStatus => !LaboratoryStandingStrafeConfigured ? null
-            : standingStrafeReview.AllDirections ? "LT: lock facing and move in every direction. Side run 5 m/s / backward run 4 m/s. Look-ahead retained."
-            : standingStrafeMotionUnavailable && motor != null && motor.LaboratoryStandingLateral ? "LT review: completed travel left the lateral envelope; pose paused."
-            : motor != null && motor.LaboratoryStandingDirectionUnsupported ? "LT review: diagonal/backward travel unavailable; release LT to steer normally."
-            : motor != null && motor.LaboratoryStandingFacingLocked ? "LT facing locked: forward or slow left/right (0.5 m/s). Release LT to steer normally."
-            : (LaboratoryContinuationConfigured ? "Camp Loop" : "AP02") + ": hold LT for facing lock and slow left/right strafe. Look-ahead remains active.";
+            : standingStrafeReview.AllDirections ? StandingFacingControl + ": lock facing and move in every direction. Side run 5 m/s / backward run 4 m/s. Look-ahead retained."
+            : standingStrafeMotionUnavailable && motor != null && motor.LaboratoryStandingLateral ? "Facing review: completed travel left the lateral envelope; pose paused."
+            : motor != null && motor.LaboratoryStandingDirectionUnsupported ? "Facing review: diagonal/backward travel unavailable; release the facing control to steer normally."
+            : motor != null && motor.LaboratoryStandingFacingLocked ? "Facing locked: forward or slow left/right (0.5 m/s). Release the facing control to steer normally."
+            : (LaboratoryContinuationConfigured ? "Camp Loop" : "AP02") + ": hold " + StandingFacingControl + " for facing lock and slow left/right strafe. Look-ahead remains active.";
 
         public void ConfigureLaboratoryStandingStrafeReview(AnimationPlaygroundStandingStrafeProfile profile)
         {

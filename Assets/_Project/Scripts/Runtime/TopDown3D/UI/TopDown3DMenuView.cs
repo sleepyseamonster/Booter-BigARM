@@ -23,9 +23,21 @@ namespace BooterBigArm.TopDown3D
         private GridLayoutGroup columns;
         private int selectedSlot;
         private readonly List<Selectable> activeControls = new();
+        private ITopDown3DMenuPresentation presentation;
+        private ITopDown3DMenuPresentation Host=>presentation is UnityEngine.Object component&&component==null?null:presentation;
+        internal void AttachPresentation(ITopDown3DMenuPresentation host)
+        {
+            if(activePanel!=null)throw new InvalidOperationException("Attach a presentation while the system menu is closed.");
+            presentation=host;
+            if(host!=null)foreach(var button in buttons)host.SetActive(button.Key,button.Value.gameObject.activeSelf);
+        }
+        internal void DispatchCommand(string key)=>Command?.Invoke(key);
+        internal void DispatchRename(string value)=>Rename?.Invoke(value);
+        internal void DrawRadialSummary(TopDown3DRadialPreferences preferences)=>Host?.DrawRadialSummary(preferences);
+        internal void RevealNotice(string key)=>Host?.RevealNotice(key);
         public event Action<string> Command;
         public event Action<string> Rename;
-        public bool IsEditingText => pageName != null && pageName.isFocused;
+        public bool IsEditingText => Host?.IsEditingText??(pageName != null && pageName.isFocused);
         public string ActivePanel => activePanel;
 
         public void Initialize(EventSystem system)
@@ -53,6 +65,11 @@ namespace BooterBigArm.TopDown3D
         public void Show(string panel, string focus = null)
         {
             activePanel = panel;
+            if(Host!=null)
+            {
+                foreach(var entry in panels)if(entry.Value!=null)entry.Value.SetActive(false);
+                group.alpha=0;group.blocksRaycasts=group.interactable=false;fade=0;Host.Show(panel,focus);return;
+            }
             foreach (var entry in panels) if (entry.Value != null) entry.Value.SetActive(entry.Key == panel);
             if (group == null) return;
             group.alpha = panel == null ? 0 : (reducedMotion ? 1 : 0);
@@ -80,36 +97,39 @@ namespace BooterBigArm.TopDown3D
             ApplySettings(new TopDown3DMenuSettings{largeText=large,reducedMotion=reducedMotion});
         }
 
-        public void SetInputReady(bool ready) => group.interactable = ready && activePanel != null;
+        public void SetInputReady(bool ready){if(Host!=null){Host.SetInputReady(ready);return;}group.interactable = ready && activePanel != null;}
         public bool HasCameraPanel => panels.ContainsKey("Camera");
         public void SetText(string key, string value)
         {
+            Host?.SetText(key,value);
             if (texts.TryGetValue(key, out var label) && label != null) label.text = value;
             else if (buttons.TryGetValue(key, out var button)) button.GetComponentInChildren<Text>().text = value;
         }
         public void SetButton(string key, bool enabled)
-        { if (buttons.TryGetValue(key, out var button)) button.interactable = enabled; }
+        { Host?.SetButton(key,enabled);if (buttons.TryGetValue(key, out var button)) button.interactable = enabled; }
         public void SetActive(string key, bool enabled)
-        { var target = Find(key); if (target != null) target.SetActive(enabled); }
+        { Host?.SetActive(key,enabled);var target = Find(key); if (target != null) target.SetActive(enabled); }
         private GameObject Find(string name)
         {
             foreach (var child in GetComponentsInChildren<Transform>(true)) if (child.name == name) return child.gameObject;
             return null;
         }
-        public void SetPageName(string name) => pageName.SetTextWithoutNotify(name);
-        public void EndTextEdit() { pageName.DeactivateInputField(); eventSystem?.SetSelectedGameObject(buttons["SetupBack"].gameObject); }
-        public string FocusKey => eventSystem != null && eventSystem.currentSelectedGameObject != null
+        public void SetPageName(string name){if(Host!=null){Host.SetPageName(name);return;}pageName.SetTextWithoutNotify(name);}
+        public void EndTextEdit() {if(Host!=null){Host.EndTextEdit();return;}pageName.DeactivateInputField(); eventSystem?.SetSelectedGameObject(buttons["SetupBack"].gameObject); }
+        public string FocusKey => Host!=null?Host.FocusKey:eventSystem != null && eventSystem.currentSelectedGameObject != null
             && eventSystem.currentSelectedGameObject.transform.IsChildOf(transform) ? eventSystem.currentSelectedGameObject.name : null;
 
         public void ApplySettings(TopDown3DMenuSettings settings)
         {
             large = settings.largeText; reducedMotion = settings.reducedMotion;
+            Host?.ApplySettings(settings);
             foreach (var entry in fontSizes) if (entry.Key != null) entry.Key.fontSize = Mathf.RoundToInt(entry.Value * (large ? 1.25f : 1f));
             Reflow();
         }
 
         public void DrawSlots(TopDown3DRadialPage page, int selected)
         {
+            if(Host!=null){Host.DrawSlots(page,selected);return;}
             selectedSlot = selected;
             var directions = page.slots.Length == 8 ? new[] { "N", "NE", "E", "SE", "S", "SW", "W", "NW" } : new[] { "N", "E", "S", "W" };
             for (var i = 0; i < 8; i++)
@@ -131,6 +151,7 @@ namespace BooterBigArm.TopDown3D
 
         public void RefreshNavigation()
         {
+            if(Host!=null){Host.RefreshNavigation();return;}
             activeControls.Clear();
             if (activePanel == null) return;
             if (panels[activePanel] == null) return;

@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4ce147ccce6a4c408361e1aa121e6a1, type: 3}
+  m_Name: MenuStyle
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.CampExpeditionMenuStyle
+  backdrop: {fileID: 2800000, guid: d112144468253fd44802f464a8588c7b, type: 3}
+  grain: {fileID: 21300000, guid: 3cf3fed49844bb742b06c31f1c8e4553, type: 3}
+  iron: {fileID: 21300000, guid: b77e8209a5b74bf4d82f5cf0b25b68fc, type: 3}
+  character: {fileID: 21300000, guid: e1e4833e4be812b4db655d2f7a4ce65c, type: 3}
+  font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  glyphs:
+  - key: back
+    sprite: {fileID: 21300000, guid: 2af9a780330d5b24c88f5aef1caf8e0c, type: 3}
+  - key: frame
+    sprite: {fileID: 21300000, guid: b33e8040da57260428a260368d394dfb, type: 3}
+  - key: chest
+    sprite: {fileID: 21300000, guid: d5e2fee49b95d794b99f3d021d5793ef, type: 3}
+  - key: legs
+    sprite: {fileID: 21300000, guid: c533c5db8afa38e4b97be5204ff2d9a2, type: 3}
+  - key: head
+    sprite: {fileID: 21300000, guid: b6a3f3b8ff398ce42ab88e29aae3f417, type: 3}
+  - key: hands
+    sprite: {fileID: 21300000, guid: d014d130d2eb9a244a0809bb57d5e33a, type: 3}
+  - key: feet
+    sprite: {fileID: 21300000, guid: ebb522439519f3b4db5932fc663ba91e, type: 3}
+  - key: weapon
+    sprite: {fileID: 21300000, guid: 7617e613d8bb69c4683239fde1e6ed2e, type: 3}
+  - key: tool
+    sprite: {fileID: 21300000, guid: 949e1601ffc0b77498536abdbc564344, type: 3}
+  - key: attachment-0
+    sprite: {fileID: 21300000, guid: 9d04797a02d6c754a837c7664a6c41e2, type: 3}
+  - key: attachment-1
+    sprite: {fileID: 21300000, guid: 9d04797a02d6c754a837c7664a6c41e2, type: 3}
+  - key: prompt-menu
+    sprite: {fileID: 21300000, guid: 23b3838819d8fee41bc0c5bb3eccd720, type: 3}
+  - key: prompt-view
+    sprite: {fileID: 21300000, guid: c1b7bf0a18249bd468949145df5b072e, type: 3}
+  - key: prompt-select
+    sprite: {fileID: 21300000, guid: f6516aa42d397ac40890fb3f4eb3b95d, type: 3}
+  - key: prompt-west
+    sprite: {fileID: 21300000, guid: 15b111a14200e7241a08a11cc0a8d4fc, type: 3}
+  - key: prompt-back
+    sprite: {fileID: 21300000, guid: 888e5724c10b33f43b0aa77c4b4e2de0, type: 3}
+  - key: prompt-lb
+    sprite: {fileID: 21300000, guid: f2eb8b1d8a242424b8e81a0b558bc0f2, type: 3}
+  - key: prompt-rb
+    sprite: {fileID: 21300000, guid: 783b98983479f7a448c865440b392609, type: 3}
+  - key: prompt-lt
+    sprite: {fileID: 21300000, guid: e590043b676c6724b9bf31f9d4df6f8c, type: 3}
+  - key: prompt-rt
+    sprite: {fileID: 21300000, guid: 3dd5fa26efe4ff54aa220c8521806099, type: 3}
+  background: {r: 0.09411765, g: 0.105882354, b: 0.101960786, a: 1}
+  surface: {r: 0.13333334, g: 0.14901961, b: 0.14117648, a: 1}
+  raised: {r: 0.16470589, g: 0.18039216, b: 0.16862746, a: 1}
+  ink: {r: 0.87058824, g: 0.84705883, b: 0.78039217, a: 1}
+  muted: {r: 0.6509804, g: 0.6627451, b: 0.60784316, a: 1}
+  line: {r: 0.25490198, g: 0.27058825, b: 0.24313726, a: 1}
+  accent: {r: 0.8117647, g: 0.60784316, b: 0.41960785, a: 1}
+  gold: {r: 0.8627451, g: 0.69803923, b: 0.40392157, a: 1}

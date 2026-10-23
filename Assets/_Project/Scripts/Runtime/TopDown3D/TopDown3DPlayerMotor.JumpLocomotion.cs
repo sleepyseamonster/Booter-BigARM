@@ -205,8 +205,13 @@ namespace BooterBigArm.TopDown3D
 
         private void AdvanceUnpausedJump(bool supported,bool fresh,Vector3 completedVelocity)
         {
-            if(jumpGroundedRequested && (supported || !jumpLaunched && IsGrounded))
+            if(jumpGroundedRequested)
             {
+                // Soft recovery has returned movement to the ordinary ground
+                // controller. It must run its physical probe even when this
+                // step has no completed collision callback. The observation
+                // above still reports only the actual callback contacts.
+                IsGrounded=supported || !jumpLaunched && IsGrounded;
                 if(animationWasPaused)body.linearVelocity=animationPausedVelocity;
                 animationWasPaused=false;body.useGravity=animationGravity;
                 AdvanceMotorFixedTick(true);

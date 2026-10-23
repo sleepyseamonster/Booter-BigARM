@@ -35,9 +35,9 @@ namespace BooterBigArm.TopDown3D
         [NonSerialized] private TopDown3DInventoryState state;
         [SerializeField, HideInInspector] private TopDown3DInventorySnapshot reloadSnapshot;
 
-        public TopDown3DItemCatalog ItemCatalog => TopDown3DCampLoopLoadoutProfile.Resolve(gameObject.scene, itemCatalog);
-        public int Capacity => UsesLoadout ? TopDown3DLoadoutLayout.Capacity : capacity;
-        public bool UsesLoadout => (campLoopLoadout || TopDown3DCampLoopLoadoutProfile.For(gameObject.scene, itemCatalog) != null) && TopDown3DAnimationPlaygroundSession.IsSessionOnly(gameObject.scene);
+        public TopDown3DItemCatalog ItemCatalog => CampExpeditionFeature.Enabled(gameObject.scene) ? CampExpeditionFeature.Configuration.definition.itemCatalog : TopDown3DCampLoopLoadoutProfile.Resolve(gameObject.scene, itemCatalog);
+        public int Capacity => CampExpeditionFeature.Enabled(gameObject.scene)?CampExpeditionLayout.Capacity:UsesLoadout ? TopDown3DLoadoutLayout.Capacity : capacity;
+        public bool UsesLoadout => !CampExpeditionFeature.Enabled(gameObject.scene) && (campLoopLoadout || TopDown3DCampLoopLoadoutProfile.For(gameObject.scene, itemCatalog) != null) && TopDown3DAnimationPlaygroundSession.IsSessionOnly(gameObject.scene);
         public IReadOnlyList<TopDown3DStartingInventoryItem> StartingItems =>
             startingItems ?? Array.Empty<TopDown3DStartingInventoryItem>();
         public TopDown3DInventoryState State => EnsureState();
@@ -135,6 +135,8 @@ namespace BooterBigArm.TopDown3D
 
         private TopDown3DInventoryState CreateInitialState()
         {
+            if(CampExpeditionFeature.Enabled(gameObject.scene))
+                return new TopDown3DInventoryState(ItemCatalog,new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.Booter,CampExpeditionLayout.Capacity,expeditionLayout:true));
             var catalog = ItemCatalog;
             var profile = TopDown3DCampLoopLoadoutProfile.For(gameObject.scene, itemCatalog);
             var loadout = profile != null || campLoopLoadout && TopDown3DAnimationPlaygroundSession.IsSessionOnly(gameObject.scene);

@@ -21,6 +21,14 @@ namespace BooterBigArm.TopDown3D
         }
         private bool ResolveRidingCommands(bool modalRequested)
         {
+            // Departure cancellation owns C only during this scene's active countdown.
+            // Otherwise pickup/cancel keeps its existing item and riding meaning.
+            if(this!=null&&(pickupRequested||itemCancelRequested)&&!modalRequested&&CanCaptureGameplayCommand)
+            {
+                var departure=CampExpeditionSession.Find(gameObject.scene)?.CurrentBeacon;
+                if(departure?.IsDeparting==true)
+                {pickupRequested=itemCancelRequested=false;departure.Cancel();return true;}
+            }
             if (RidingController == null || !RidingController.State.OwnsMount) return false;
             if (modalRequested || !CanCaptureGameplayCommand)
             {

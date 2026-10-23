@@ -50,6 +50,54 @@ namespace BooterBigArm.Tests
             Assert.That(bodyMinimum,Is.GreaterThanOrEqualTo(-.002f),worstBody);
             } finally {Object.DestroyImmediate(mesh);}
         }
+        [TestCase(false)] [TestCase(true)] public void NativeFootProbeTracksTheSupportSlopeAcrossTheStride(bool airborne)
+        {
+            using var f = new NativeFixture(SkinWeights.FourBones);
+            f.Place(new Vector2(-1604, -1660), 0);
+            Assert.That(f.Inner.Motor.TryGetLaboratorySupportPlane(out var plane, true), Is.True);
+            var support=f.Inner.Motor.LaboratorySupportCollider;
+            AnimationPlaygroundActionCoordinator coordinator=null;
+            try
+            {
+            if(airborne)
+            {
+                coordinator=f.Inner.Forward.Actor.AddComponent<AnimationPlaygroundActionCoordinator>();
+                coordinator.Configure(f.Inner.Motor,f.Inner.Driver,new AnimationPlaygroundResetRegistry(),new[]{f.Inner.Motor.Position});
+                var profile=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundAirborneProfile>("Assets/_Project/Settings/AnimationPlayground/PrivateBindings/AirborneProfile.asset");
+                var binding=new AnimationPlaygroundMotionBinding{sourceId="Retained takeoff support",clip=profile.standing.continuous,
+                    readiness=AnimationPlaygroundMotionReadiness.PhysicalQualified};
+                Assert.That(coordinator.TryBeginPhysicalSequence(this,binding,AnimationPlaygroundMotionMode.Jump,null,
+                    _=>new AnimationPlaygroundMotorIntent(Vector3.zero,Vector3.forward),null,
+                    policy:AnimationPlaygroundMotionPolicy.JumpLocomotion),Is.True);
+                f.Inner.Driver.ConfigureJumpPresentation(coordinator,1);f.Inner.Driver.SetJumpPresentationState(coordinator,1,false,false);
+                typeof(TopDown3DPlayerMotor).GetProperty("IsGrounded").SetValue(f.Inner.Motor,false);
+                f.Inner.Driver.SetJumpSupportPrediction(coordinator,support,plane,1);
+                f.Inner.Forward.Call("PrepareContinuationActionTerrain");
+            }
+            var uphill = Vector3.ProjectOnPlane(-plane.normal, Vector3.up).normalized;
+            var point = f.Inner.Motor.Position - uphill * 1.2f;
+            Assert.That(f.Hit(point, out var hit), Is.True);
+            var flat = f.Inner.Motor.Position.y - .91f;
+            Assert.That(Mathf.Abs(hit.point.y - flat), Is.GreaterThan(.35f), "Exercise the old world-height rejection on real native terrain.");
+            var args = new object[] { point, default(RaycastHit) };
+            var available = (bool)typeof(TopDown3DPlayerAnimationDriver).GetMethod("NativeFootHit", Private).Invoke(f.Inner.Driver, args);
+            Assert.That(available, Is.True, "A walkable stride must gather local support before bounded reach/IK qualification.");
+            if(airborne)Assert.That(f.Inner.Motor.IsGrounded,Is.False,"The retained presentation plane must not invent physical grounding.");
+            }
+            finally{if(coordinator!=null){coordinator.DisposeOwnedServices();Object.DestroyImmediate(coordinator);}}
+        }
+        [Test] public void LandingHandoffClearsAnEdgeWarningWhenForwardGroundingNoLongerNeedsNativeFitting()
+        {
+            using var f=new AnimationPlaygroundDirectionalTests.Fixture(SkinWeights.FourBones);f.Flat();f.Lock(true);
+            f.Forward.Ground.GetComponent<BoxCollider>().size=new Vector3(.1f,.1f,.1f);Physics.SyncTransforms();
+            f.Frame(3,.25,Vector2.right,1);
+            Assert.That(f.Driver.LaboratoryNativeGroundFailure,Is.Not.Null,"The narrow ledge cannot support both feet.");
+            f.Flat();f.Lock(false);
+            typeof(TopDown3DPlayerAnimationDriver).GetMethod("PresentForwardFrame",Private).Invoke(f.Driver,new object[]{3f,.25d,0f});
+            Assert.That(f.Driver.LaboratoryNativeGroundAdapted,Is.False,"Flat forward movement uses its existing grounding path.");
+            Assert.That(f.Driver.LaboratoryNativeGroundFailure,Is.Null,"A warning from the previous edge must not outlive the fitting attempt.");
+        }
+
         [Test] public void ALocalFootFailureDoesNotRejectTheWholeNativeTerrainTileOrTheForwardFamily()
         {
             using var f=new NativeFixture(SkinWeights.FourBones);f.Place(Sites[0],0);f.Inner.Lock(true);
@@ -100,12 +148,12 @@ namespace BooterBigArm.Tests
             readonly Transform[] bones;
             readonly AnimationPlaygroundSkinPoint[][] vertices;
             public string MinimumSkin;public Vector3 MinimumPoint;
-            public NativeFixture(SkinWeights quality)
+            public NativeFixture(SkinWeights quality, AnimationPlaygroundStandingStrafeProfile selected = null)
             {
-                Inner=new AnimationPlaygroundDirectionalTests.Fixture(quality);Inner.Forward.Ground.SetActive(false);
+                Inner=new AnimationPlaygroundDirectionalTests.Fixture(quality,selected);Inner.Forward.Ground.SetActive(false);
                 terrains=Inner.Forward.Scene.GetRootGameObjects().SelectMany(r=>r.GetComponentsInChildren<TerrainCollider>(true))
                     .Select(t=>(t,t.bounds)).ToArray();Assert.That(terrains.Length,Is.EqualTo(9));
-                var data=AnimationPlaygroundDirectionalTests.Profile().footProjection;
+                var data=(selected ?? AnimationPlaygroundDirectionalTests.Profile()).footProjection;
                 var visual=Inner.Forward.Get<GameObject>("visualInstance").transform;
                 bones=data.bonePaths.Select(p=>p.Length==0 ? visual : visual.Find(p)).ToArray();
                 vertices=data.vertices.Select(v=>v.points.OrderByDescending(p=>p.weight).Take((int)quality).ToArray()).ToArray();

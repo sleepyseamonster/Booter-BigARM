@@ -22,7 +22,7 @@ namespace BooterBigArm.TopDown3D
         private Vector3 proposedPlacement;
         private bool placementValid;
         private bool placingHarvester;
-        private string pickupHarvesterId;
+        [NonSerialized] private string pickupHarvesterId;
         private TopDown3DHarvesterView pickupHarvesterView;
         private float harvesterActionElapsed;
         private const float HarvesterActionDuration = 0.75f;
@@ -35,7 +35,7 @@ namespace BooterBigArm.TopDown3D
         public bool IsAwaitingCargo => pendingResource != null;
 
         public bool IsGathering => gatherAction != null && gatherAction.IsActive
-            || placingHarvester || pickupHarvesterId != null || IsAwaitingCargo;
+            || placingHarvester || !string.IsNullOrEmpty(pickupHarvesterId) || IsAwaitingCargo;
         public bool IsPlacingHarvester => placementPreview != null;
         public TopDown3DPlacedHarvesterState HarvesterState => harvesterState;
         public TopDown3DActivitySnapshot Activity
@@ -128,8 +128,10 @@ namespace BooterBigArm.TopDown3D
         {
             if (pendingResource != null) return TopDown3DGatherActionResult.AwaitingCargo;
             if (placementPreview != null) CancelPlacementPreview();
-            if(IsBusy) return TopDown3DGatherActionResult.Rejected;
+            if(IsBusy) {ReportBeaconBlocker();return TopDown3DGatherActionResult.Rejected;}
             var selection=interaction != null ? interaction.CaptureTarget() : default;
+            if(!selection.IsValid)ReportBeaconBlocker();
+            if(selection.Target is CampRootBeaconSession beacon) return beacon.TryBeginDeparture() ? TopDown3DGatherActionResult.Started : TopDown3DGatherActionResult.Rejected;
             if(selection.Target is TopDown3DLeggerMountTarget) return TryBeginMount(selection);
             if(selection.Target is ITopDown3DStationInteraction) return TryBeginStation(selection);
             EnsureGatherAction();
@@ -229,7 +231,7 @@ namespace BooterBigArm.TopDown3D
             pressedTarget = default; hasPressedTarget = false;
             pendingResource = null;
             CancelPlacementPreview();
-            if (placingHarvester || pickupHarvesterId != null)
+            if (placingHarvester || !string.IsNullOrEmpty(pickupHarvesterId))
             {
                 placingHarvester = false;
                 pickupHarvesterId = null;
@@ -247,6 +249,7 @@ namespace BooterBigArm.TopDown3D
 
         private void Update()
         {
+            if(!CampExpeditionFeature.FieldAllowed(gameObject.scene)){CancelGather();return;}
             if (pendingResource != null)
             {
                 approachSeconds += Time.unscaledDeltaTime;
@@ -270,7 +273,7 @@ namespace BooterBigArm.TopDown3D
                 return;
             }
             if (placementPreview != null) RefreshPlacementPreview();
-            if (placingHarvester || pickupHarvesterId != null)
+            if (placingHarvester || !string.IsNullOrEmpty(pickupHarvesterId))
             {
                 AdvanceHarvesterAction();
                 return;
@@ -320,9 +323,10 @@ namespace BooterBigArm.TopDown3D
             var captured = hasPressedTarget;
             pressedTarget = default; hasPressedTarget = false;
             if(placementPreview != null) CancelPlacementPreview();
-            if(IsBusy) return;
+            if(IsBusy) {ReportBeaconBlocker();return;}
             if (!captured) { interaction?.RefreshTarget(); TryBeginCurrentTarget(); return; }
-            if (!target.IsValid || interaction == null || !interaction.CanReachTarget(target.Target)) return;
+            if (!target.IsValid || interaction == null || !interaction.CanReachTarget(target.Target)) {ReportBeaconBlocker();return;}
+            if(target.Target is CampRootBeaconSession beacon){beacon.TryBeginDeparture();return;}
             if(target.Target is TopDown3DLeggerMountTarget){TryBeginMount(target);return;}
             if(target.Target is ITopDown3DStationInteraction){TryBeginStation(target);return;}
             EnsureGatherAction();
@@ -334,6 +338,13 @@ namespace BooterBigArm.TopDown3D
             interaction?.RefreshTarget();
             pressedTarget = interaction != null ? interaction.CaptureTarget() : default;
             hasPressedTarget = true;
+        }
+
+        private void ReportBeaconBlocker()
+        {
+            var beacon=CampExpeditionSession.Find(gameObject.scene)?.CurrentBeacon;
+            if(beacon!=null&&motor!=null&&Vector3.Distance(motor.Position,beacon.InteractionPoint)<=4)
+            {var reason=beacon.DepartureBlocker;if(reason!=null)ReportFeedback(reason);}
         }
 
         private void HandleCargoOpenRequested()
@@ -470,7 +481,7 @@ namespace BooterBigArm.TopDown3D
                 else
                     FeedbackRequested?.Invoke("Could not place dust canister");
             }
-            else if (pickupHarvesterId != null)
+            else if (!string.IsNullOrEmpty(pickupHarvesterId))
             {
                 var id = pickupHarvesterId;
                 pickupHarvesterId = null;

@@ -59,7 +59,22 @@ namespace BooterBigArm.TopDown3D
             if (animationPostureOwner == null || IsActionConstrained && !JumpUsesGroundedLocomotion || laboratoryPostureSuspended
                 || AnimationPosture != AnimationPlaygroundPosture.Standing || !IsGrounded
                 || standingStrafeSupport?.Invoke() != true)
-            { ResetStandingStrafe(held); return; }
+            {
+                // Retain an existing held lock during jump ownership and the
+                // first ordinary tick rebasing on the same static support.
+                var rebasingSameGround=IsGrounded && !hasCompletedLaboratoryGroundPlane && LaboratoryGroundedMotion.Rebased
+                    && observedGroundSupport!=null && laboratoryGroundSupport==observedGroundSupport
+                    && observedGroundSupport.attachedRigidbody==null
+                    && observedGroundSupport.transform.localToWorldMatrix==observedSupportMatrix;
+                if((JumpLocomotionActive || rebasingSameGround) && standingStrafeLocked && held && animationPostureOwner!=null
+                    && !laboratoryPostureSuspended && AnimationPosture==AnimationPlaygroundPosture.Standing)
+                {
+                    standingStrafeIntent=AnimationPlaygroundDirectionalMath.Local(direction,standingStrafeFacing);
+                    LaboratoryStandingTravel=AnimationPlaygroundDirectionalMath.Classify(standingStrafeIntent);
+                    return;
+                }
+                ResetStandingStrafe(held);return;
+            }
             if (standingStrafeProfile.AllDirections)
             {
                 if (!held) { ResetStandingStrafe(false); return; }

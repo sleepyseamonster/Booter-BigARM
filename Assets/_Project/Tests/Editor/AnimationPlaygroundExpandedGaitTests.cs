@@ -33,7 +33,8 @@ namespace BooterBigArm.Tests
             CollectionAssert.AreEqual(new[] { 1.4f, 3f, 4f, 4.9f, 6.15f }, p.gaits.Select(g => g.nominalSpeed));
             Assert.That(AssetDatabase.GetAssetPath(p.gaits[3].sourceClip), Does.EndWith("SprintArmDriveReview.anim"));
             Assert.That(p.gaits[4].sourceClip, Is.Not.SameAs(p.gaits[3].sourceClip));
-            var source = AssetDatabase.LoadAllAssetsAtPath("Assets/_Project/Art/Characters/Prototype/UnityStandardHumanoid/Animations/m@SprintForwards.fbx")
+            Assert.That(AssetDatabase.GetAssetPath(p.gaits[4].sourceClip),Does.EndWith("SelectedRunningSprintAlignedTwoCycles.anim"));
+            var source = AssetDatabase.LoadAllAssetsAtPath("Assets/_Project/Art/Animations/Mixamo/Qualification/Movement20261017/RunningSelectedSource.fbx")
                 .OfType<AnimationClip>().Single(c => !c.name.StartsWith("__preview__"));
             Assert.That(p.gaits[4].sourceClip.length, Is.EqualTo(source.length * 2).Within(.00001f));
             Assert.That(p.gaits[4].sourceClip.isHumanMotion && p.gaits[4].sourceClip.isLooping, Is.True);

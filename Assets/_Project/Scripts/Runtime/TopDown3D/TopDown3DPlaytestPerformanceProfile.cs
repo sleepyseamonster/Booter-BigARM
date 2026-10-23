@@ -1,7 +1,9 @@
 using System;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 namespace BooterBigArm.TopDown3D
 {
@@ -41,6 +43,7 @@ namespace BooterBigArm.TopDown3D
         private int frameTimeCursor;
         private float nextReportTime;
         private TopDown3DProceduralWorld world;
+        private GreaterWastelandTerrainRendering fixedTerrain;
         private bool stressOverridesApplied;
         private bool fullContentTelemetryMode;
 
@@ -169,7 +172,12 @@ namespace BooterBigArm.TopDown3D
 
         private void ReportTelemetry()
         {
-            if (world == null)
+            // Resolve the active production owner before the preserved generated-world reference.
+            // Its counters are maintained by the window; reporting must not scan 9,216 terrains.
+            if (fixedTerrain == null)
+                for (var i = 0; i < SceneManager.sceneCount && fixedTerrain == null; i++)
+                    fixedTerrain = GreaterWastelandTerrainRendering.FindRuntimeOwner(SceneManager.GetSceneAt(i));
+            if (fixedTerrain == null && world == null)
             {
                 world = FindAnyObjectByType<TopDown3DProceduralWorld>();
             }
@@ -195,7 +203,11 @@ namespace BooterBigArm.TopDown3D
 
             var activeRenderScale = activePipeline != null ? activePipeline.renderScale : 1f;
             var profileMode = fullContentTelemetryMode ? "full-content" : "stress";
-            var worldSummary = world == null
+            var worldSummary = fixedTerrain != null && fixedTerrain.ResidentTerrainCount > 0
+                ? $"world=fixed residentTerrains={fixedTerrain.ResidentTerrainCount} "
+                    + $"enabledTerrains={fixedTerrain.EnabledTerrainCount} "
+                    + "terrainCollision=resident-unmeasured sceneryRenderers=unavailable"
+                : world == null
                 ? "world=not-found"
                 : $"chunks={world.LoadedChunkCount} decorated={world.DecoratedChunkCount} "
                     + $"pendingTerrain={world.PendingTerrainChunkCount} pendingDecoration={world.PendingDecorationCount} "
@@ -207,12 +219,17 @@ namespace BooterBigArm.TopDown3D
                 $"[TopDown3D Performance] mode={profileMode} "
                 + $"fps={(averageMilliseconds > 0f ? 1000f / averageMilliseconds : 0f):F1} "
                 + $"frameMs avg={averageMilliseconds:F2} p95={p95Milliseconds:F2} p99={p99Milliseconds:F2} "
-                + $"cpu={timing.cpuFrameTime:F2} gpu={timing.gpuFrameTime:F2} "
+                + $"cpu={FormatTiming(timing.cpuFrameTime, timingCount)} "
+                + $"gpu={FormatTiming(timing.gpuFrameTime, timingCount)} timingSamples={timingCount} "
                 + $"resolution={Screen.width}x{Screen.height} scale={activeRenderScale:F2} "
                 + $"textureMipLimit={QualitySettings.globalTextureMipmapLimit} "
                 + $"managedMB={GC.GetTotalMemory(false) / (1024f * 1024f):F0} {worldSummary}",
                 this);
         }
+
+        internal static string FormatTiming(double milliseconds, uint samples)
+            => samples > 0 && double.IsFinite(milliseconds) && milliseconds > 0
+                ? milliseconds.ToString("F2", CultureInfo.InvariantCulture) : "unavailable";
 
         internal static bool IsFullContentProfileRequested(string[] arguments)
         {

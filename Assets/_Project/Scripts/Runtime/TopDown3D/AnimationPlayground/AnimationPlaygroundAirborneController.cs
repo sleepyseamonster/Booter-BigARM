@@ -23,6 +23,11 @@ namespace BooterBigArm.TopDown3D
         public AnimationPlaygroundAirborneState State {get;private set;}
         public bool Active=>State!=AnimationPlaygroundAirborneState.Standing;
         public bool Ready=>profile!=null && profile.schema==2 && profile.Validate(out _);
+        public bool CanYieldToGroundedAction=>!disposed && isActiveAndEnabled && Ready && paused?.Invoke()!=true
+            && State==AnimationPlaygroundAirborneState.Landing && !hardLanding
+            && motor!=null && motor.isActiveAndEnabled && motor.IsGrounded
+            && coordinator!=null && coordinator.isActiveAndEnabled && coordinator.IsSequenceOwner(this)
+            && driver!=null && driver.isActiveAndEnabled && driver.IsAnimationPresentationOwner(coordinator);
         public string LastFailure {get;private set;}
         public event Action<float> Landed;
         public Func<float,bool> LandingRecovery {get;set;}
@@ -194,12 +199,19 @@ namespace BooterBigArm.TopDown3D
             if(paused?.Invoke()==true){DisarmJumpRequest();return;}
             if(!coordinator.IsSequenceOwner(this)){State=AnimationPlaygroundAirborneState.Standing;driver.EndPoseBlend(this);return;}
             var sample=motor.JumpObservation;
+            // A short manifold gap over the same nearby floor is still the
+            // current landing. Physics retains gravity and its real contacts;
+            // only the recovery presentation/event is kept continuous.
+            var continuingLanding=State==AnimationPlaygroundAirborneState.Landing
+                && (Now-lastGroundedTime<=.06 && sample.DownwardImpactSpeed<1
+                    || motor.IsGrounded && sample.DownwardImpactSpeed<profile.hardLandingSpeed);
             if(sample.Supported)lastGroundedTime=Now;
             if(State==AnimationPlaygroundAirborneState.Takeoff)return;
             // The impulse commits after this tick's completed contact observation.
             if(launched && !genericFall && coordinator.PhysicalStageSeconds<=launchStageTime+.000001)return;
             if(sample.Supported && sample.TouchdownId!=lastTouchdown)
             {
+                if(continuingLanding){lastTouchdown=sample.TouchdownId;TryConsumeJumpRequest();return;}
                 lastTouchdown=sample.TouchdownId;impactSpeed=sample.DownwardImpactSpeed;
                 pendingJump &= Now<=pendingUntil;
                 if(LandingRecovery?.Invoke(impactSpeed)==true)
@@ -234,7 +246,9 @@ namespace BooterBigArm.TopDown3D
             }
             if(State==AnimationPlaygroundAirborneState.Landing)
             {
-                if(!sample.Supported && motor.Velocity.y<-.1f){BeginPassiveFall(true);return;}
+                if(!sample.Supported && !motor.IsGrounded && motor.Velocity.y<-.1f
+                    && !(Now-lastGroundedTime<=.06 && motor.TryPredictJumpSupport(coordinator,.04f,out _)))
+                {BeginPassiveFall(true);return;}
                 if(!hardLanding && coordinator.PhysicalStageSeconds-landingStageTime>=AnimationPlaygroundJumpTiming.SoftLandingSeconds+Time.fixedDeltaTime)
                 {Finish();TryConsumeJumpRequest();}
                 return;
@@ -274,6 +288,11 @@ namespace BooterBigArm.TopDown3D
             if(coordinator!=null)coordinator.CancelPhysicalSequence(this);
             if(!retainBlend && driver!=null)driver.EndPoseBlend(this);
             State=AnimationPlaygroundAirborneState.Standing;hardLanding=false;genericFall=false;
+        }
+        public bool TryYieldToGroundedAction(object successor)
+        {
+            if(successor==null || !CanYieldToGroundedAction || !driver.TryReservePoseBlendHandoff(this,successor,.08f))return false;
+            Finish(true);pendingJump=false;driver.SelectReservedPoseBlend(successor);return true;
         }
         public bool TryCancel()
         {

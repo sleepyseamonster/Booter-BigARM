@@ -68,10 +68,22 @@ namespace BooterBigArm.TopDown3D
                     laboratoryForwardProfile.footProjection, playableGraph, laboratoryForwardProfile.maximumTerrainBodyLowering);
             LaboratoryForwardReady = true; BindForwardMotion();
         }
-        private void OnEnable() => BindForwardMotion();
+        private void OnEnable()
+        {
+            // Assembly reload retains native actor/Animator references but drops managed
+            // gait clocks and playable handles. Rebuild presentation on that same actor.
+            if(Application.isPlaying&&LaboratoryForwardReady&&forwardClock==null
+                &&humanoidAnimator!=null&&visualInstance!=null)
+            {
+                if(!playableGraph.IsValid())CreatePlayableGraph(humanoidAnimator);
+                if(laboratoryFootProjection!=null)footProjectionSampler=laboratoryFootProjection.Bind(visualInstance.transform);
+                InitializeForwardLocomotion();
+            }
+            BindForwardMotion();
+        }
         private void BindForwardMotion()
         {
-            if (!LaboratoryForwardReady || motor == null || forwardBound) return;
+            if (!LaboratoryForwardReady || motor == null || forwardBound || forwardClock==null) return;
             motor.LaboratoryGroundedMotionCompleted += AdvanceForwardMotion; forwardBound = true;
             forwardClock.Reset(); forwardSpeed = forwardPreviousSpeed = 0;
             forwardPlantStart = forwardPlantCount = 0; forwardMotion = default;

@@ -26,6 +26,8 @@ namespace BooterBigArm.TopDown3D
                 AddButton(gameplay,"AnimationSlowWalk","<Keyboard>/leftAlt","Keyboard&Mouse",replacementIds);
                 AddButton(gameplay,"AnimationCancel","<Keyboard>/backspace","Keyboard&Mouse",replacementIds);
                 AddButton(gameplay,"AnimationDodge","<Gamepad>/buttonEast","Gamepad",replacementIds);
+                AddButton(gameplay,"AnimationDodge","<Keyboard>/leftCtrl","Keyboard&Mouse",replacementIds);
+                AddButton(gameplay,"CameraLookAhead","<Mouse>/rightButton","Keyboard&Mouse",replacementIds);
                 var pickup=gameplay.FindAction("PickupCanister",true);
                 for(var i=0;i<pickup.bindings.Count;i++)
                     if(pickup.bindings[i].path=="<Gamepad>/buttonEast")pickup.ChangeBinding(i).WithPath("<Gamepad>/select");

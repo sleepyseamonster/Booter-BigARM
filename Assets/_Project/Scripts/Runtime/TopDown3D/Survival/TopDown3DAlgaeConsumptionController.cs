@@ -29,6 +29,7 @@ namespace BooterBigArm.TopDown3D
         }
         public string UnavailableReason(TopDown3DAlgaeUse use)
         {
+            if(CampExpeditionFeature.Enabled(gameObject.scene) && (CampExpeditionSession.Find(gameObject.scene)?.HasMountedPhagia!=true || !CampExpeditionFeature.FieldAllowed(gameObject.scene)))return "Mount the Phagia canister on the Utility harness first";
             if (state == null || vitals == null || input == null || !input.HasAlgaeActions) return "Canister unavailable";
             var inventory = GetComponent<TopDown3DPlayerInventory>();
             if (inventory != null && inventory.UsesLoadout && inventory.State.IsCommitting) return "Inventory unavailable";

@@ -15,12 +15,16 @@ namespace BooterBigArm.TopDown3D
         [SerializeField, HideInInspector] private TopDown3DInventorySnapshot reloadSnapshot;
         private TopDown3DBigArmLoadProfile loadProfile;
 
-        public TopDown3DItemCatalog ItemCatalog => TopDown3DCampLoopLoadoutProfile.Resolve(gameObject.scene, itemCatalog);
+        public TopDown3DItemCatalog ItemCatalog => CampExpeditionFeature.Enabled(gameObject.scene)?CampExpeditionFeature.Configuration.definition.itemCatalog:TopDown3DCampLoopLoadoutProfile.Resolve(gameObject.scene, itemCatalog);
         public TopDown3DPackingSettings PackingSettings => packingSettings;
         public TopDown3DInventoryState State => EnsureState();
         public TopDown3DBigArmLoadProfile LoadProfile => loadProfile;
         public float AccessRange => accessRange;
         public event Action Changed;
+        // Expedition feature identity is available before scene Awake/marker registration.
+        // Use the same contents policy on initial setup and checkpoint reconstruction.
+        private bool SupportsSavedContents=>campCanisterContents
+            &&(CampExpeditionFeature.Enabled(gameObject.scene)||TopDown3DAnimationPlaygroundSession.IsSessionOnly(gameObject.scene));
 
         public void Configure(TopDown3DItemCatalog catalog, TopDown3DPackingSettings settings)
         {
@@ -35,7 +39,7 @@ namespace BooterBigArm.TopDown3D
                 throw new ArgumentException(error ?? "Packing settings are required.", nameof(settings));
             }
             itemCatalog = catalog; packingSettings = settings; reloadSnapshot = null;
-            SetState(new TopDown3DInventoryState(catalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, DefaultCapacity, settings.HardMass)));
+            SetState(new TopDown3DInventoryState(catalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, DefaultCapacity, settings.HardMass,canisterContents:SupportsSavedContents)));
             Recalculate();
         }
 
@@ -66,7 +70,7 @@ namespace BooterBigArm.TopDown3D
             if (state != null && state.IsInitialized) return state;
             if (itemCatalog == null || packingSettings == null) throw new InvalidOperationException("BigARM cargo requires an item catalog and packing settings.");
             SetState(new TopDown3DInventoryState(ItemCatalog, new TopDown3DInventoryPolicy(TopDown3DInventoryOwner.BigArm, DefaultCapacity, packingSettings.HardMass,
-                canisterContents: campCanisterContents && TopDown3DAnimationPlaygroundSession.IsSessionOnly(gameObject.scene))));
+                canisterContents: SupportsSavedContents)));
             if (reloadSnapshot != null && reloadSnapshot.Version > 0 && !state.ApplySnapshot(reloadSnapshot).Succeeded)
             {
                 state.RetainForRecovery();

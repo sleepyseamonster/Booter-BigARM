@@ -23,7 +23,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (command == "CameraOptions")
             {
-                if (cameraOptions != null && view.HasCameraPanel) Show("Camera", "CameraView");
+                if (cameraOptions != null && view.HasCameraPanel){Show("Camera", "CameraView");if(!settings.CanSave)view.RevealNotice("CameraNotice");}
                 return true;
             }
             if (panel != "Camera") return false;
@@ -38,7 +38,7 @@ namespace BooterBigArm.TopDown3D
                 case "CameraFov": settingsDraft.cameraFieldOfView = settingsDraft.cameraFieldOfView >= 75 ? 55 : settingsDraft.cameraFieldOfView + 5; break;
                 case "CameraBack": Show("Settings", "CameraOptions"); return true;
                 case "CameraApply":
-                    if (!settings.TrySave(settingsDraft, out var error)) { view.SetText("CameraNotice", error); return true; }
+                    if (!settings.TrySave(settingsDraft, out var error)) { view.SetText("CameraNotice", error);view.RevealNotice("CameraNotice");return true; }
                     cameraOptions.ApplyPreferences(settings.Accepted);
                     cameraRange?.SetPreset(settings.Accepted.viewDistancePreset);
                     view.ApplySettings(settings.Accepted);
@@ -58,7 +58,7 @@ namespace BooterBigArm.TopDown3D
             view.SetText("CameraSensX", "Third person horizontal sensitivity: " + settingsDraft.cameraSensitivityX.ToString("0.00"));
             view.SetText("CameraSensY", "Third person vertical sensitivity: " + settingsDraft.cameraSensitivityY.ToString("0.00"));
             view.SetText("CameraFov", "Third person vertical field of view: " + settingsDraft.cameraFieldOfView.ToString("0") + "°");
-            view.SetText("CameraNotice", cameraOptions.Notice ?? "Apply saves your preference. The view changes on resume when space is clear.");
+            view.SetText("CameraNotice",!settings.CanSave?settings.Notice:cameraOptions.Notice ?? "Apply saves your preference. The view changes on resume when space is clear.");
             view.SetButton("CameraApply", settings.CanSave);
         }
     }

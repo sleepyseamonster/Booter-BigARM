@@ -165,11 +165,15 @@ namespace BooterBigArm.TopDown3D
             if (State.Phase == LeggerRidePhase.Dismounting && AllowedInput) State.ObserveExitInput(input.MoveValue);
             var move = AllowedInput && State.Phase == LeggerRidePhase.Mounted ? input.MoveValue : Vector2.zero;
             var direction = TopDown3DMovementBasis.ToWorldDirection(move, cameraRig.transform.forward, cameraRig.transform.right);
+            float slopeSpeed = 1;
             if (direction.sqrMagnitude > .0001f && ground.TrySupport(start, rotation, runtimeProfile.slopeDegrees, out _))
+            {
                 direction = Vector3.ProjectOnPlane(direction, ground.SupportNormal).normalized * move.magnitude;
+                slopeSpeed = runtimeProfile.SpeedMultiplierForSlope(ground.SupportNormal);
+            }
             float loadSpeed = cargo != null ? cargo.LoadProfile.SpeedMultiplier : 1;
             float loadAcceleration = cargo != null ? cargo.LoadProfile.AccelerationMultiplier : 1;
-            var speed = (AllowedInput && input.SprintHeld ? runtimeProfile.fastSpeed : runtimeProfile.normalSpeed) * loadSpeed;
+            var speed = (AllowedInput && input.SprintHeld ? runtimeProfile.fastSpeed : runtimeProfile.normalSpeed) * loadSpeed * slopeSpeed;
             var target = direction * speed;
             bool reversal = velocity.sqrMagnitude > .01f && Vector3.Dot(velocity, target) < 0;
             if (reversal) target = Vector3.zero;
@@ -211,6 +215,23 @@ namespace BooterBigArm.TopDown3D
             State.CommitMount(State.Epoch); player.SetRiderPose(this, seat, rotation); velocity = Vector3.zero;
             input.FenceRidingInteraction();
             cameraRig.SetRidingFrame(this, seatFrame, follower.transform);
+        }
+        // Rebind the saved relationship only inside the frozen expedition restoration barrier.
+        internal bool RestoreExpeditionCheckpoint()
+        {
+            if(!CampExpeditionFeature.Enabled(gameObject.scene)||CampExpeditionSession.Find(gameObject.scene)?.RestoringRiderCheckpoint!=true||!Bind()||State.OwnsMount)return false;
+            var position=follower.transform.position;var rotation=follower.transform.rotation;
+            ground.BeginTick();ground.RiderAttached=true;
+            if(!ground.Clear(position,rotation,true)||!State.BeginMount())return false;
+            if(!presentation.TryBeginMountedPresentation(this)){State.Clear();return false;}
+            if(!player.TryAcquireRider(this,true)){presentation.EndMountedPresentation(this);State.Clear();return false;}
+            State.CommitMount(State.Epoch);player.SetRiderPose(this,position+rotation*seatOffset,rotation);velocity=Vector3.zero;
+            input.FenceRidingInteraction();cameraRig.SetRidingFrame(this,seatFrame,follower.transform);return true;
+        }
+        internal void ReleaseExpeditionTownRider()
+        {
+            if(!CampExpeditionFeature.Enabled(gameObject.scene)||CampExpeditionSession.Find(gameObject.scene)?.IsSettledTown!=true||!HasRider)return;
+            if(player.ReleaseExpeditionTownRider(this))CompleteRelease();
         }
         private bool TryExit(Vector3 position, Quaternion rotation)
         {

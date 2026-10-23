@@ -108,6 +108,7 @@ namespace BooterBigArm.TopDown3D
                 confirmed = null; Show(dialogParent, dialogFocus); return;
             }
             if (panel == "Root") Close();
+            else if(expeditionHost && panel=="Settings")LeaveChild(Close);
             else LeaveChild(ReturnFromChild);
         }
 
@@ -115,6 +116,8 @@ namespace BooterBigArm.TopDown3D
         {
             if (directSetup) Close();
             else if (panel == "Controls") Show("Settings", "Controls");
+            else if(expeditionHost&&panel=="Setup"&&radialReturnSettings)Show("Settings","RadialSetup");
+            else if (expeditionHost) Close();
             else Show("Root", panel == "Settings" ? "Settings" : "RadialSetup");
         }
 
@@ -149,12 +152,14 @@ namespace BooterBigArm.TopDown3D
             else if (returnInventory && inventory != null && inventory.IsSuspended) inventory.ResumeFromMenu();
             else if (input != null && input.Mode == TopDown3DInputMode.SystemMenu) input.EnterGameplayMode();
             directSetup = false;
+            radialReturnSettings=false;
+            if(expeditionHost)ExpeditionSettingsClosed?.Invoke();
         }
 
         private void BeginSetup()
         {
             radialDraft = radial.BeginSetup(); page = radialDraft.defaultPage; sector = 0; more = false;
-            Show("Setup", "Slot0");
+            Show("Setup", "Slot0");if(!radial.CanSavePreferences)view.RevealNotice("SetupNotice");
         }
 
         private void OnCommand(string command)
@@ -173,7 +178,7 @@ namespace BooterBigArm.TopDown3D
                 TopDown3DGameHudCanvas.FindInScene<TopDown3DWaypointCampController>(gameObject.scene)?.Open();
                 return;
             }
-            if (command == "RadialSetup") { directSetup = false; BeginSetup(); return; }
+            if (command == "RadialSetup") { radialReturnSettings=expeditionHost&&panel=="Settings";directSetup = false; BeginSetup(); return; }
             if (command == "Settings") { settingsDraft = settings.Accepted.Clone(); Show("Settings", "TextSize"); return; }
             if (command == "Exit")
             { Dialog("Exit game?", "Current session progress will not be saved.", "Keep Playing", "Exit Game", () => ExitRequested?.Invoke()); return; }
@@ -187,14 +192,14 @@ namespace BooterBigArm.TopDown3D
             }
             else if (command == "SettingsApply")
             {
-                if (!settings.TrySave(settingsDraft, out var error)) { view.SetText("SettingsNotice", error); return; }
+                if (!settings.TrySave(settingsDraft, out var error)) { view.SetText("SettingsNotice", error);view.RevealNotice("SettingsNotice");return; }
                 cameraRange?.SetPreset(settings.Accepted.viewDistancePreset);
                 cameraOptions?.ApplyPreferences(settings.Accepted);
                 view.ApplySettings(settings.Accepted); ReturnFromChild(); return;
             }
             else if (command == "SetupApply")
             {
-                if (!radial.TryApplySetup(radialDraft, out var error)) { view.SetText("SetupNotice", error); return; }
+                if (!radial.TryApplySetup(radialDraft, out var error)) { view.SetText("SetupNotice", error);view.RevealNotice("SetupNotice");return; }
                 radial.EndSetup(); ReturnFromChild(); return;
             }
             else if (command.StartsWith("Slot", StringComparison.Ordinal)) sector = int.Parse(command.Substring(4));
@@ -258,13 +263,14 @@ namespace BooterBigArm.TopDown3D
                     + BadwaterCameraRange.GetDistance(settingsDraft.viewDistancePreset).ToString("N0") + " m");
                 view.SetText("SettingsNotice", settings.Notice ?? "Changes are saved with Apply.");
                 view.SetButton("SettingsApply", settings.CanSave); view.ApplySettings(settingsDraft);
+                if(expeditionHost){view.DrawRadialSummary(radial.Preferences);view.SetText("RadialNotice",radial.PreferenceNotice??"");}
             }
             if (panel == "Setup")
             {
                 view.SetPageName(radialDraft.pages[page].name);
                 view.SetText("PageNumber", $"{radialDraft.pages[page].name}\n{page + 1} / {radialDraft.pages.Length}");
                 view.DrawSlots(radialDraft.pages[page], sector);
-                view.SetText("SetupNotice", "Choose a direction, then an action. Apply saves your layout.");
+                view.SetText("SetupNotice", radial.PreferenceNotice??"Choose a direction, then an action. Apply saves your layout.");view.SetButton("SetupApply",radial.CanSavePreferences);
                 view.SetText("SelectedDirection", "Selected: " + TopDown3DRadialCanvas.Name(radialDraft.pages[page].slots[sector]));
                 view.SetActive("Advanced", more);
                 view.SetButton("AddPage", radialDraft.pages.Length < 4); view.SetButton("DeletePage", radialDraft.pages.Length > 1);
@@ -287,6 +293,7 @@ namespace BooterBigArm.TopDown3D
                 if (control is UnityEngine.InputSystem.Controls.ButtonControl button && button.isPressed) submitHeld = true;
             var clickHeld = Mouse.current?.leftButton.isPressed == true;
             if (submitHeld || clickHeld) return;
+            if(UsesExpeditionPresentation&&module.move?.action is InputAction move&&move.enabled&&move.ReadValue<Vector2>().sqrMagnitude>.04f)return;
             waitingRelease = false; module.submit = submitReference; module.leftClick = clickReference;
             view.SetInputReady(true);
         }

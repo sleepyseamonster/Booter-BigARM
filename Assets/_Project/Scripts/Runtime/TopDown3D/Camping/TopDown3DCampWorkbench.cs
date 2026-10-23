@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace BooterBigArm.TopDown3D
 {
@@ -9,6 +10,9 @@ namespace BooterBigArm.TopDown3D
         [SerializeField] private TopDown3DCraftingRecipe recipe;
         [SerializeField] private TopDown3DResourceCache chest;
         public TopDown3DCraftingRecipe Recipe => recipe;
+        public IReadOnlyList<TopDown3DCraftingRecipe> Recipes => CampFirstToolScenario.Find(gameObject.scene)?.Recipes
+            ?? new[] { recipe };
+        public bool HasRecipeRoster => CampFirstToolScenario.Find(gameObject.scene) != null;
         public TopDown3DResourceCache Chest => chest;
         public string StableId => stationId;
         public Object UnityObject => this;
@@ -26,6 +30,15 @@ namespace BooterBigArm.TopDown3D
         public TopDown3DInventoryResult Craft(TopDown3DPlayerInventory player) =>
             player == null ? TopDown3DCraftingService.Failure("Player inventory is unavailable.")
                 : TopDown3DCraftingService.Craft(recipe, chest.State, player.State, () => CanAccess(player.transform));
+
+        public TopDown3DInventoryResult CraftSelected(TopDown3DPlayerInventory player, int index)
+        {
+            if (player == null || index < 0 || index >= Recipes.Count) return TopDown3DCraftingService.Failure("Select a valid recipe.");
+            var selected = Recipes[index];
+            var output = player.ItemCatalog.GetRequiredDefinition(selected.Output.ItemId);
+            return TopDown3DCraftingService.Craft(selected, chest.State, output.IsEquipment ? player.State : chest.State,
+                () => isActiveAndEnabled && index < Recipes.Count && Recipes[index] == selected && CanAccess(player.transform));
+        }
 
         internal void Configure(TopDown3DCraftingRecipe value, TopDown3DResourceCache storage)
         { recipe = value; chest = storage; }

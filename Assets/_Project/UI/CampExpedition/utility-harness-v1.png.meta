@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: f38dae6a087c1e042ba5a4df6000785d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6567753281513863854
+    second: utility-harness-v1_0
+  - first:
+      213: 406043758178827815
+    second: utility-harness-v1_1
+  - first:
+      213: 998668332378409664
+    second: utility-harness-v1_2
+  - first:
+      213: -1577552947980760392
+    second: utility-harness-v1_3
+  - first:
+      213: 1635866992783810007
+    second: utility-harness-v1_4
+  - first:
+      213: -4199736891699589367
+    second: utility-harness-v1_5
+  - first:
+      213: -6602902154052472376
+    second: utility-harness-v1_6
+  - first:
+      213: 8224472456690224616
+    second: utility-harness-v1_7
+  - first:
+      213: -8904604141094561310
+    second: utility-harness-v1_8
+  - first:
+      213: -8828292401404844573
+    second: utility-harness-v1_9
+  - first:
+      213: -2952398275554779168
+    second: utility-harness-v1_10
+  - first:
+      213: -1174651980110327913
+    second: utility-harness-v1_11
+  - first:
+      213: 2225693962837430849
+    second: utility-harness-v1_12
+  - first:
+      213: 4661297917360897415
+    second: utility-harness-v1_13
+  - first:
+      213: 3156924803869488378
+    second: utility-harness-v1_14
+  - first:
+      213: -7785576418072263722
+    second: utility-harness-v1_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: utility-harness-v1_0
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 1034
+        width: 257
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eaa3a05efc8552b50800000000000000
+      internalID: 6567753281513863854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_1
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 1150
+        width: 138
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72e738195ae82a500800000000000000
+      internalID: 406043758178827815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_2
+      rect:
+        serializedVersion: 2
+        x: 635
+        y: 1099
+        width: 104
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cac8df9e8bfbdd00800000000000000
+      internalID: 998668332378409664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_3
+      rect:
+        serializedVersion: 2
+        x: 788
+        y: 1150
+        width: 162
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ba8c39b3f76b1ae0800000000000000
+      internalID: -1577552947980760392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_4
+      rect:
+        serializedVersion: 2
+        x: 997
+        y: 1078
+        width: 33
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dd5aacdc54c3b610800000000000000
+      internalID: 1635866992783810007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1225
+        height: 1148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90f84245c8987b5c0800000000000000
+      internalID: -4199736891699589367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_6
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 1132
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c17a0d7977cd54a0800000000000000
+      internalID: -6602902154052472376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_7
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 1071
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ed410ecf12332270800000000000000
+      internalID: 8224472456690224616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_8
+      rect:
+        serializedVersion: 2
+        x: 926
+        y: 1071
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e9169856bd7c6480800000000000000
+      internalID: -8904604141094561310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_9
+      rect:
+        serializedVersion: 2
+        x: 987
+        y: 1060
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e5ebf0d5da9b7580800000000000000
+      internalID: -8828292401404844573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_10
+      rect:
+        serializedVersion: 2
+        x: 571
+        y: 1060
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0efd41e2969f607d0800000000000000
+      internalID: -2952398275554779168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_11
+      rect:
+        serializedVersion: 2
+        x: 852
+        y: 1054
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79f80d66f3cc2bfe0800000000000000
+      internalID: -1174651980110327913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_12
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 1014
+        width: 39
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14218a1fdd043ee10800000000000000
+      internalID: 2225693962837430849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_13
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 1030
+        width: 9
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78d709c52c140b040800000000000000
+      internalID: 4661297917360897415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_14
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 1012
+        width: 7
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af4b24d0266afcb20800000000000000
+      internalID: 3156924803869488378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: utility-harness-v1_15
+      rect:
+        serializedVersion: 2
+        x: 948
+        y: 144
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d3052d5f7314f390800000000000000
+      internalID: -7785576418072263722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      utility-harness-v1_0: 6567753281513863854
+      utility-harness-v1_1: 406043758178827815
+      utility-harness-v1_10: -2952398275554779168
+      utility-harness-v1_11: -1174651980110327913
+      utility-harness-v1_12: 2225693962837430849
+      utility-harness-v1_13: 4661297917360897415
+      utility-harness-v1_14: 3156924803869488378
+      utility-harness-v1_15: -7785576418072263722
+      utility-harness-v1_2: 998668332378409664
+      utility-harness-v1_3: -1577552947980760392
+      utility-harness-v1_4: 1635866992783810007
+      utility-harness-v1_5: -4199736891699589367
+      utility-harness-v1_6: -6602902154052472376
+      utility-harness-v1_7: 8224472456690224616
+      utility-harness-v1_8: -8904604141094561310
+      utility-harness-v1_9: -8828292401404844573
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -10,17 +10,24 @@ namespace BooterBigArm.TopDown3D
         private TopDown3DPlayerAnimationDriver driver;
         private AnimationPlaygroundActionCoordinator coordinator;
         private AnimationPlaygroundDodgeProfile profile;
+        private AnimationPlaygroundDodgeProfile family;
         private AnimationPlaygroundResetRegistry registry;
         private Func<bool> paused, otherBusy;
         // A running roll may shed momentum, but must not inherit the standing
         // source's instantaneous braking. Ordinary gaits keep their own tuning.
         private const float MovingBraking = 8f;
         private Vector3 direction, entryDirection, entryFacing;
-        private float entrySpeed, previousSpeed, previousTime, blendTime, cooldown;
-        private bool rolling, blending, disposed;
+        private float entrySpeed, previousSpeed, previousTime, previousSeconds, blendTime, recoverySeconds, cooldown;
+        private bool rolling, blending, disposed, facingHeld;
         public bool Active => rolling || blending;
-        public bool Ready => profile != null && profile.Validate(profile.targetModel, out _);
+        public bool Ready => family != null && family.Validate(family.targetModel, out _);
         public string LastFailure { get; private set; }
+        // Admission before an outgoing turn is released. Foreign activity and
+        // ownership are checked by the session and again by TryDodge after handoff.
+        public bool CanAcceptHandoff => !disposed && isActiveAndEnabled && Ready && !Active && cooldown <= .000001f
+            && paused?.Invoke()!=true && motor!=null && motor.isActiveAndEnabled && motor.IsGrounded
+            && motor.AnimationPosture==AnimationPlaygroundPosture.Standing
+            && (motor.GetComponent<TopDown3DSurvivalVitals>()==null || motor.GetComponent<TopDown3DSurvivalVitals>().Health>0);
         public string ResetId => "CampLoop.Booter.Dodge";
         public AnimationPlaygroundResetStage ResetStage => AnimationPlaygroundResetStage.Actor;
 
@@ -31,10 +38,11 @@ namespace BooterBigArm.TopDown3D
             if (motor != null || value == null || presentation == null || actions == null || resets == null
                 || calibration == null || !calibration.Validate(calibration.targetModel, out _))
                 throw new ArgumentException("Configure one qualified dodge family and its existing motor owner.");
-            motor = value; driver = presentation; coordinator = actions; profile = calibration; registry = resets;
+            motor = value; driver = presentation; coordinator = actions; family = profile = calibration; registry = resets;
             paused = shouldPause; otherBusy = activityBusy; registry.Register(this);
             coordinator.ActionCompleted += StageCompleted; motor.AnimationLocomotionAdvanced += ObserveLocomotion;
             motor.AnimationMotionPreparing += GuardActiveMotion;
+            motor.AnimationMotionAdvanced += AfterMotion;
         }
 
         public bool TryDodge()
@@ -48,16 +56,20 @@ namespace BooterBigArm.TopDown3D
             if (direction.sqrMagnitude < .01f) direction = Vector3.ProjectOnPlane(motor.FacingDirection, Vector3.up);
             if (direction.sqrMagnitude < .000001f) return Fail("A dodge direction is unavailable.");
             direction.Normalize(); entryFacing = motor.FacingDirection;
+            facingHeld = motor.InputRouter!=null && motor.InputRouter.LaboratoryStandingFacingHeld;
             entryDirection = Vector3.ProjectOnPlane(motor.Velocity, Vector3.up);
             entryDirection = entryDirection.sqrMagnitude > .0001f ? entryDirection.normalized : direction;
             var normal = motor.TryGetLaboratorySupportPlane(out var support, true) ? support.normal : Vector3.up;
+            // Select once from completed velocity; a decelerating roll must never switch takes mid-action.
+            profile = family.Select(Vector3.ProjectOnPlane(motor.Velocity, normal).magnitude);
             entrySpeed = previousSpeed = Mathf.Min(profile.maximumSpeed, Vector3.ProjectOnPlane(motor.Velocity, normal).magnitude);
-            previousTime = 0;
-            if (!driver.TryCapturePoseBlend(this, profile.entryBlend)) return Fail("The dodge entry pose is unavailable.");
+            previousTime = previousSeconds = 0;
+            if (!driver.TryCapturePoseBlend(this, profile.entryBlend,true)) return Fail("The dodge entry pose is unavailable.");
             var binding = new AnimationPlaygroundMotionBinding { sourceId = "QualifiedDodge.Roll", clip = profile.roll,
                 readiness = AnimationPlaygroundMotionReadiness.PhysicalQualified };
             if (!coordinator.TryBeginPhysicalSequence(this, binding, AnimationPlaygroundMotionMode.Dodge,
-                null, Intent, null, policy: AnimationPlaygroundMotionPolicy.DodgeLocomotion))
+                null, Intent, null, seconds=>profile.SourceSeconds(seconds),looping:true,
+                policy: AnimationPlaygroundMotionPolicy.DodgeLocomotion))
             { driver.EndPoseBlend(this); return Fail("The dodge could not acquire its movement and presentation."); }
             rolling = true; LastFailure = null;
             if (!driver.SetAnimationBodyProjection(coordinator, profile.bodyProjection)
@@ -69,20 +81,41 @@ namespace BooterBigArm.TopDown3D
 
         private AnimationPlaygroundMotorIntent Intent(double seconds)
         {
-            var time = Mathf.Min((float)seconds, profile.roll.length);
-            var entry = Mathf.SmoothStep(0, 1, Mathf.Clamp01(time / profile.entryBlend));
-            var speed = Mathf.Lerp(entrySpeed, profile.Speed(previousTime, time), entry);
+            if(paused?.Invoke()!=true)
+            {
+                var held=motor.InputRouter!=null && motor.InputRouter.LaboratoryStandingFacingHeld;
+                if(held && !facingHeld)entryFacing=motor.FacingDirection;
+                facingHeld=held;
+            }
+            var time = profile.SourceSeconds(seconds);
+            var entry = Mathf.SmoothStep(0, 1, Mathf.Clamp01((float)seconds / profile.entryBlend));
+            var speed = Mathf.Lerp(entrySpeed, profile.CommandSpeed(previousSeconds,seconds), entry);
             var heading = BlendHeading(entryDirection, direction, entry);
             var phase = time / profile.roll.length;
-            var runOut = Mathf.SmoothStep(0, 1, Mathf.InverseLerp(1 - profile.runOutFraction, 1, phase));
+            var responsePhase=profile.responseDuration>0?(float)seconds/profile.Duration:phase;
+            var runOut = Mathf.SmoothStep(0, 1, Mathf.InverseLerp(1 - profile.runOutFraction, 1, responsePhase));
             var target = motor.DodgeRunOutVelocity(coordinator);
-            speed = Mathf.Lerp(speed, target.magnitude, runOut);
-            if (target.sqrMagnitude > .0001f) heading = BlendHeading(heading, target, runOut);
-            if (entrySpeed > .18f) speed = Mathf.Max(speed, previousSpeed - MovingBraking * Mathf.Max(0, time - previousTime));
+            // Keep the somersault aligned with its committed visual axis. A
+            // sideways/counter request sheds speed here and is accepted by the
+            // ordinary motor after release, rather than curling under the roll.
+            var alignedTarget = AlignedRunOutSpeed(target, direction);
+            speed = Mathf.Lerp(speed, alignedTarget, runOut);
+            // Response-phase compression must not multiply physical braking.
+            if (entrySpeed > .18f) speed = Mathf.Max(speed, previousSpeed - MovingBraking * profile.playbackRate * Mathf.Max(0, (float)seconds - previousSeconds));
             speed = Mathf.Clamp(speed, 0, profile.maximumSpeed);
-            if (paused?.Invoke() != true) { previousTime = time; previousSpeed = speed; }
-            driver.SetPoseBlendElapsed(this, time);
-            return new AnimationPlaygroundMotorIntent(heading * speed, entryFacing, phase: phase, paused: paused?.Invoke() == true);
+            if (paused?.Invoke() != true) { previousTime = time; previousSeconds=(float)seconds; previousSpeed = speed; }
+            driver.SetPoseBlendElapsed(this, seconds);
+            // Free facing follows the roll. Once recovery starts, prepare the
+            // requested run-out heading beneath the still-committed visual pose.
+            var facing=facingHeld ? entryFacing : runOut>0 && target.sqrMagnitude>.0001f ? target : direction;
+            return new AnimationPlaygroundMotorIntent(heading * speed, facing, phase: phase, paused: paused?.Invoke() == true);
+        }
+
+        private static float AlignedRunOutSpeed(Vector3 target,Vector3 heading)
+        {
+            var planar=Vector3.ProjectOnPlane(target,Vector3.up);
+            // Compare yaw without reducing an aligned slope-tangent speed twice.
+            return planar.sqrMagnitude>.000001f ? target.magnitude*Mathf.Max(0,Vector3.Dot(planar.normalized,heading)) : 0;
         }
 
         private static Vector3 BlendHeading(Vector3 from, Vector3 to, float blend)
@@ -94,11 +127,17 @@ namespace BooterBigArm.TopDown3D
 
         private void StageCompleted()
         { if (rolling && coordinator.IsSequenceOwner(this)) Finish(); }
+        private void AfterMotion()
+        { if(rolling && previousTime>=profile.roll.length && coordinator.IsSequenceOwner(this))Finish(); }
         private void Finish()
         {
-            blending = driver.TryCapturePoseBlend(this, profile.exitBlend); blendTime = -Time.fixedDeltaTime;
+            var requested = motor.DodgeRunOutVelocity(coordinator);
+            var facing = facingHeld ? entryFacing
+                : requested.sqrMagnitude > .0001f ? requested : direction;
+            recoverySeconds = Mathf.Max(profile.exitBlend, Mathf.Lerp(.08f, .12f, Vector3.Angle(direction, Vector3.ProjectOnPlane(facing,Vector3.up)) / 180f));
+            blending = driver.TryCapturePoseBlend(this, recoverySeconds); blendTime = 0;
             motor.RestoreDodgeFacing(coordinator); coordinator.CancelPhysicalSequence(this);
-            rolling = false; cooldown = profile.cooldown;
+            motor.BeginDodgeRunOut(coordinator);rolling = false; cooldown = profile.cooldown;
         }
         private void ObserveLocomotion()
         {
@@ -110,7 +149,7 @@ namespace BooterBigArm.TopDown3D
             if (rolling && !coordinator.IsSequenceOwner(this)) { rolling = false; driver.EndPoseBlend(this); cooldown = profile.cooldown; }
             if (!blending) return;
             blendTime += Time.fixedDeltaTime; driver.SetPoseBlendElapsed(this, blendTime);
-            if (blendTime >= profile.exitBlend) { driver.EndPoseBlend(this); blending = false; }
+            if (blendTime + .000001f >= recoverySeconds) { driver.EndPoseBlend(this); blending = false; }
         }
         private void GuardActiveMotion()
         {
@@ -120,7 +159,8 @@ namespace BooterBigArm.TopDown3D
         public void Cancel()
         {
             if (coordinator != null) { if (motor != null) motor.RestoreDodgeFacing(coordinator); coordinator.CancelPhysicalSequence(this); }
-            driver?.EndPoseBlend(this); rolling = blending = false; cooldown = profile != null ? profile.cooldown : 0;
+            if(motor!=null && coordinator!=null)motor.EndDodgeRunOut(coordinator);
+            driver?.EndPoseBlend(this); rolling = blending = facingHeld = false; cooldown = profile != null ? profile.cooldown : 0;
         }
         private bool Fail(string reason) { LastFailure = reason; return false; }
         public void InvalidateForReset(uint epoch) => Cancel();
@@ -132,6 +172,7 @@ namespace BooterBigArm.TopDown3D
             if (coordinator != null) coordinator.ActionCompleted -= StageCompleted;
             if (motor != null) motor.AnimationLocomotionAdvanced -= ObserveLocomotion;
             if (motor != null) motor.AnimationMotionPreparing -= GuardActiveMotion;
+            if (motor != null) motor.AnimationMotionAdvanced -= AfterMotion;
             registry?.Unregister(this);
         }
         private void OnDestroy() => DisposeOwnedServices();

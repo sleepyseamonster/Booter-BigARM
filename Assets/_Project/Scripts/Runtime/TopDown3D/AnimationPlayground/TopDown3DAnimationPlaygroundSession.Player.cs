@@ -17,9 +17,14 @@ namespace BooterBigArm.TopDown3D
         private Func<bool> ownsInput;
         private string selectedSource;
         private DelegateResetParticipant legacyReset, vitalsReset, inputReset;
-        public bool IsBusy => coordinator != null && coordinator.IsBusy || crouch!=null && crouch.Transitioning || airborne!=null && airborne.Active || lowMotion!=null && lowMotion.Active || dodge!=null && dodge.Active || ResourceCombatBusy?.Invoke() == true;
+        public bool IsBusy => coordinator != null && coordinator.IsBusy || crouch!=null && crouch.Transitioning || airborne!=null && airborne.Active || lowMotion!=null && lowMotion.Active || dodge!=null && dodge.Active || sprintEntries!=null && sprintEntries.Active || locomotionTransitions!=null && locomotionTransitions.Active || ResourceCombatBusy?.Invoke() == true;
         public TopDown3DPlayerMotor Player => player;
         public AnimationPlaygroundActionCoordinator Coordinator => coordinator;
+        // The aggregate busy flag includes this session and its own motor lease.
+        // It gates admission, but cannot suspend an already owned turn/recovery.
+        private bool TurnBlockedByPlayerActivity=>TurnActivityUnavailable(playerAction.Activity,turning!=null && turning.Active);
+        private static bool TurnActivityUnavailable(TopDown3DActivitySnapshot activity,bool turningActive)
+            =>activity.LegacyWork || activity.Placement || activity.CampActive || !turningActive && activity.IsBusy;
         public bool CrouchReady=>servicesBound && isActiveAndEnabled && PreviewReady && crouch!=null && bindings!=null
             && bindings.crouch!=null && bindings.crouch.contactsQualified && bindings.crouch.groundingQualified && bindings.footProjection!=null;
 
@@ -108,14 +113,15 @@ namespace BooterBigArm.TopDown3D
                         () => !Application.isFocused || playerInput.Mode != TopDown3DInputMode.Gameplay,() => playerAction.IsBusy);
                     playerInput.AnimationCrouchRequested+=ToggleCrouch;
                 }
-                BindLowMotion();BindAirborne();BindDodge();
+                BindLowMotion();BindAirborne();BindDodge();BindSprintEntries();
                 if(bindings.continuationReview!=null && presentation.LaboratoryContinuationConfigured)
                 {
                     turning=player.gameObject.AddComponent<AnimationPlaygroundTurnController>();
                     turning.Configure(player,presentation,coordinator,bindings.continuationReview,ResetRegistry,
-                        ()=>!Application.isFocused || playerInput.Mode!=TopDown3DInputMode.Gameplay || playerAction.IsBusy
-                            || crouch!=null && crouch.Active || lowMotion!=null && lowMotion.Active || airborne!=null && airborne.Active || dodge!=null && dodge.Active);
+                        ()=>!Application.isFocused || playerInput.Mode!=TopDown3DInputMode.Gameplay || TurnBlockedByPlayerActivity
+                            || crouch!=null && crouch.Active || lowMotion!=null && lowMotion.Active || airborne!=null && airborne.Active || dodge!=null && dodge.Active || sprintEntries!=null && sprintEntries.Active);
                 }
+                BindLocomotionTransitions();
                 ownsInput = () => IsBusy || crouch!=null && crouch.Active;
                 playerInput.AnimationActionOwned = ownsInput;
                 playerInput.AnimationCancelRequested += CancelOwnedAction;
@@ -157,8 +163,9 @@ namespace BooterBigArm.TopDown3D
         private void ToggleCrouch()
         {
             if(!CrouchReady){playerAction?.ReportFeedback("Qualified crouch dependencies are unavailable.");return;}
+            if(locomotionTransitions!=null && locomotionTransitions.Active)locomotionTransitions.TryYieldTo(crouch);
             if(!crouch.Active && player.SprintActive){RequestSlide();return;}
-            if(!crouch.TryToggle())playerAction.ReportFeedback(crouch.LastFailure);
+            if(!crouch.TryToggle()){presentation.EndPoseBlend(crouch);playerAction.ReportFeedback(crouch.LastFailure);}
         }
         private void UnavailableAction()
         {
@@ -167,6 +174,8 @@ namespace BooterBigArm.TopDown3D
         }
         private void CancelOwnedAction()
         {
+            if(locomotionTransitions!=null && locomotionTransitions.Active){locomotionTransitions.Cancel();return;}
+            if(sprintEntries!=null && sprintEntries.Active){sprintEntries.Cancel();return;}
             if(dodge!=null && dodge.Active){dodge.Cancel();return;}
             if(turning!=null && turning.Active){turning.Cancel("Turn cancelled; release the stick to rearm.");return;}
             if(lowMotion!=null && lowMotion.Active){lowMotion.TryCancel();return;}
@@ -186,6 +195,7 @@ namespace BooterBigArm.TopDown3D
         }
         public void ResetSession()
         {
+            if(CampExpeditionFeature.Enabled(gameObject.scene)){playerAction?.ReportFeedback("The expedition checkpoint owns this session.");return;}
             if (!isActiveAndEnabled || !servicesBound) return;
             playerInput.SetLaboratoryResetBlocked(true);
             if (!ResetRegistry.TryReset()) playerAction.ReportFeedback(ResetRegistry.LastFailure);
@@ -223,6 +233,8 @@ namespace BooterBigArm.TopDown3D
         private void DetachPlayerServices()
         {
             if(turning!=null){turning.DisposeOwnedServices();if(Application.isPlaying)Destroy(turning);else DestroyImmediate(turning);turning=null;}
+            DetachLocomotionTransitions();
+            DetachSprintEntries();
             coordinator?.Cancel();
             DetachDodge();
             DetachAirborne();

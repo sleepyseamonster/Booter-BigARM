@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bef56bb18621d87458dba8b8b2edb004, type: 3}
+  m_Name: CampExpeditionSourceLibrary
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.CampExpeditionSourceLibrary
+  entries:
+  - itemId: author.bio.stone_bone
+    prefab: {fileID: 770807535598333754, guid: f49cc27009c4bae439b14ebb9f3b6b1e, type: 3}
+  - itemId: proposal.bio.gripping_pad_scales
+    prefab: {fileID: 8920633339985896060, guid: 2137b2b4a270e8944b89c0d34876d370, type: 3}
+  - itemId: proposal.bio.shell
+    prefab: {fileID: 598204739788806832, guid: 485fb57dddda63b4b824952bf4ca6027, type: 3}
+  - itemId: resource.ironstone_ore
+    prefab: {fileID: 8435825430534923614, guid: ac16f8c518a9a3748ac5faad83d571ad, type: 3}
+  - itemId: component.mining.bone_shaft
+    prefab: {fileID: 5319487326329956492, guid: 6151946e4a150ad449214683a30514f2, type: 3}
+  - itemId: component.mining.iron_digging_head
+    prefab: {fileID: 1551166403596279498, guid: 23857d83a62d508478f7dd5f7716fb11, type: 3}
+  - itemId: component.mining.iron_head_collar
+    prefab: {fileID: 2738193537694538633, guid: dde0a1f83597da14d85152c9a6648265, type: 3}
+  - itemId: component.mining.iron_retaining_pin
+    prefab: {fileID: 3569192589867225647, guid: 2c31ef72e56730b4ca00e3173df13a1e, type: 3}
+  - itemId: component.mining.shell_butt_cap
+    prefab: {fileID: 4156530750387254792, guid: 55203072017b9b44c9ba99dd0c12e6ed, type: 3}

@@ -20,6 +20,7 @@ namespace BooterBigArm.TopDown3D
         private Action<int> selected;
         private Rect lastSafeArea;
         private bool largeText;
+        private bool recipeLayout;
         private readonly Dictionary<Text, int> baseSizes = new();
 
         public bool IsVisible => canvas != null && canvas.enabled;
@@ -59,8 +60,14 @@ namespace BooterBigArm.TopDown3D
             SetLargeText(false); SetVisible(false); UpdateSafeArea();
         }
 
-        public void Present(string heading, string state, string message, IReadOnlyList<string> labels, int selection, bool enabled)
+        public void Present(string heading, string state, string message, IReadOnlyList<string> labels, int selection, bool enabled, bool recipes = false)
         {
+            recipeLayout = recipes;
+            var grid = rows.GetComponent<GridLayoutGroup>();
+            grid.constraintCount = recipes ? 1 : 2; grid.cellSize = recipes ? new Vector2(450, 52) : new Vector2(220, 38);
+            detail.rectTransform.sizeDelta = new Vector2(445, recipes ? 260 : 210);
+            notice.rectTransform.anchoredPosition = new Vector2(35, recipes ? -720 : -770);
+            notice.rectTransform.sizeDelta = new Vector2(930, recipes ? 145 : 95);
             title.text = heading; detail.text = state; notice.text = message;
             while (items.Count < labels.Count)
             {
@@ -103,7 +110,7 @@ namespace BooterBigArm.TopDown3D
             foreach (var pair in commands)
             {
                 if (pair.Key == "Source" || !pair.Value.gameObject.activeSelf) continue;
-                Place(pair.Value.GetComponent<RectTransform>(), new Vector2(520, -320 - row++ * 40), new Vector2(445, 36));
+                Place(pair.Value.GetComponent<RectTransform>(), new Vector2(520, -(recipeLayout ? 380 : 320) - row++ * 40), new Vector2(445, 36));
             }
         }
         private void Update() { if (IsVisible && lastSafeArea != Screen.safeArea) UpdateSafeArea(); }

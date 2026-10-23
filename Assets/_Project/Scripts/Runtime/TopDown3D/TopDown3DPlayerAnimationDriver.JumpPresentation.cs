@@ -7,7 +7,7 @@ namespace BooterBigArm.TopDown3D
 {
     public sealed partial class TopDown3DPlayerAnimationDriver
     {
-        private bool jumpPresentation,jumpComposingUnderlay,jumpGrounded,jumpPaused;
+        private bool jumpPresentation,jumpComposingUnderlay,jumpGrounded,jumpPaused,jumpDirectionalUnderlay;
         private float jumpActionWeight=1,jumpPreviousWeight=1;
         private float jumpRawSourceHeight,jumpSourceRate=1;
         private float jumpSupportBlend=1,jumpSupportFrom=1,jumpSupportElapsed,jumpGroundVisualDelta;
@@ -20,6 +20,7 @@ namespace BooterBigArm.TopDown3D
         private bool jumpLandingReferenceValid;
         private float jumpLiftSourceTime=-1;
         private bool jumpRenderGroundBoundary;
+        private float jumpGroundRecoveryElapsed=float.PositiveInfinity;
         private Plane jumpLastSupportPlane;
         private Collider jumpLastSupportCollider;
         private bool JumpPresentationSupportCurrent=>JumpPredictionCurrent || JumpPresentationOwned && jumpRenderGroundBoundary
@@ -37,6 +38,7 @@ namespace BooterBigArm.TopDown3D
                 jumpGroundVisualDelta=0;jumpHadGroundSupportPose=false;jumpSourceRate=1;
                 jumpPredictionCollider=null;jumpPredictionBlend=jumpPredictionPreviousBlend=0;jumpPredictionSampleTime=double.NegativeInfinity;
                 jumpLandingReferenceValid=false;
+                jumpGroundRecoveryElapsed=float.PositiveInfinity;
                 jumpLastSupportCollider=null;jumpRenderGroundBoundary=false;
                 jumpPoseSampleTime=double.NegativeInfinity;jumpWeightSampleTime=double.NegativeInfinity;}
             jumpLiftSourceTime=liftSourceTime;jumpPresentation=true;return true;
@@ -125,8 +127,22 @@ namespace BooterBigArm.TopDown3D
             var actionClip=animationActionPlayable.GetAnimationClip();
             if(actionClip.isLooping && current<previous)previous-=actionClip.length;
             var seconds=Math.Max(0,previous+(current-previous)*alpha);
-            jumpRenderGroundBoundary=!jumpGrounded && jumpLiftSourceTime>=0 && seconds<=jumpLiftSourceTime+.000001
+            // The impulse can release motor support after this tick's intent
+            // still requested a grounded takeoff. Follow the displayed source
+            // boundary through that tick rather than its stale intent flag.
+            jumpRenderGroundBoundary=!motor.IsGrounded && jumpLiftSourceTime>=0 && seconds<=jumpLiftSourceTime+.000001
                 && jumpLastSupportCollider!=null;
+            if(jumpGrounded && motor.IsGrounded)jumpGroundRecoveryElapsed=0;
+            else if(!jumpPaused)jumpGroundRecoveryElapsed+=renderDelta;
+            // Preserve visual footing across the controller's brief near-floor
+            // recovery grace; the Rigidbody remains physically unsupported.
+            if(jumpGrounded && !motor.IsGrounded && motor.AnimationMotionMode==AnimationPlaygroundMotionMode.Recovery
+                && jumpGroundRecoveryElapsed<=.06f
+                && motor.TryPredictJumpSupport(animationPresentationOwner,.04f,out var recoverySupport))
+            {
+                jumpRenderGroundBoundary=true;jumpLastSupportCollider=recoverySupport.collider;
+                jumpLastSupportPlane=new Plane(recoverySupport.normal,recoverySupport.point);
+            }
             if(jumpRenderGroundBoundary){jumpSupportElapsed=0;jumpSupportFrom=jumpSupportBlend=1;}
             else
             {
@@ -136,6 +152,7 @@ namespace BooterBigArm.TopDown3D
             }
             animationActionPlayable.SetTime(seconds);
             var actionWeight=Mathf.Lerp(jumpPreviousWeight,jumpActionWeight,alpha);
+            jumpDirectionalUnderlay=false;
             var sourceHeight=animationHeightCorrection;
             if(actionWeight<.99999f && LaboratoryForwardReady && forwardClock!=null)
             {
@@ -147,7 +164,7 @@ namespace BooterBigArm.TopDown3D
                     var cycles=forwardClock.RenderCycles(alpha,forwardSpeed,laboratoryForwardProfile);
                     var lateral=0f;for(var i=6;i<DirectionalChannels;i++)lateral+=directionalWeights[i];
                     if(LaboratoryDirectionalConfigured && (lateral>.0001f || AnimationPlaygroundDirectionalMath.Weights(directionalLocal).x<.99999f))
-                        PresentDirectionalFrame(speed,cycles,jumpPaused ? 0 : renderDelta);
+                    {jumpDirectionalUnderlay=true;PresentDirectionalFrame(speed,cycles,jumpPaused ? 0 : renderDelta);}
                     else PresentForwardFrame(speed,cycles,jumpPaused ? 0 : renderDelta);
                     sourceHeight=Mathf.Lerp(visualInstance.transform.localPosition.y-visualLocalPosition.y,animationHeightCorrection,actionWeight);
                     for(var i=0;i<mixer.GetInputCount();i++)mixer.SetInputWeight(i,mixer.GetInputWeight(i)*(1-actionWeight));
@@ -167,7 +184,9 @@ namespace BooterBigArm.TopDown3D
             {
                 PrepareContinuationActionTerrain();ProjectLaboratoryFootPlane();
                 jumpGroundVisualDelta=visualInstance.transform.localPosition.y-visualLocalPosition.y-jumpRawSourceHeight;
-                visualInstance.transform.localPosition=visualLocalPosition+Vector3.up*(jumpRawSourceHeight+jumpGroundVisualDelta*jumpSupportBlend);
+                // The IK job already blends predicted support. Its resulting
+                // collision-clear body correction must not be attenuated again.
+                visualInstance.transform.localPosition=visualLocalPosition+Vector3.up*(jumpRawSourceHeight+jumpGroundVisualDelta);
                 jumpHadGroundSupportPose=forwardTerrainApplied;
                 if(jumpGrounded)
                 {jumpLastSupportPlane=forwardTerrainPlane;jumpLastSupportCollider=continuationActionSupport ?? motor.LaboratorySupportCollider;}

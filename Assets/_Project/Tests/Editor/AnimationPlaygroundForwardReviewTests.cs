@@ -18,6 +18,21 @@ namespace BooterBigArm.Tests
         private const BindingFlags Private = BindingFlags.Instance | BindingFlags.NonPublic;
         private const string PolicyPath = "Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ForwardLocomotionDistanceAlignedCandidate.asset";
 
+        [Test] public void RetainedReadinessCannotBindAClockLostDuringAssemblyReload()
+        {
+            var actor=new GameObject("Reloaded gait binding");actor.SetActive(false);
+            try
+            {
+                var motor=actor.AddComponent<TopDown3DPlayerMotor>();
+                var driver=actor.AddComponent<TopDown3DPlayerAnimationDriver>();
+                typeof(TopDown3DPlayerAnimationDriver).GetField("motor",Private).SetValue(driver,motor);
+                typeof(TopDown3DPlayerAnimationDriver).GetProperty("LaboratoryForwardReady").SetValue(driver,true);
+                Assert.DoesNotThrow(()=>typeof(TopDown3DPlayerAnimationDriver).GetMethod("BindForwardMotion",Private).Invoke(driver,null));
+                Assert.That((bool)typeof(TopDown3DPlayerAnimationDriver).GetField("forwardBound",Private).GetValue(driver),Is.False);
+            }
+            finally{Object.DestroyImmediate(actor);}
+        }
+
         [Test, Category("PrivateAnimationQualification")]
         public void ReviewIsAnExplicitRouteAndDoesNotRelaxTheNormalBindingGate()
         {
@@ -70,6 +85,19 @@ namespace BooterBigArm.Tests
             Assert.That(f.Session.CheckDependencies(), Is.False);
             Assert.That(f.Session.UnavailableReason, Does.Contain("forward review profile is missing"));
             Assert.That(f.Session.ForwardReviewStatus, Does.Contain("unavailable"));
+        }
+
+        [Test, Category("PrivateAnimationQualification")]
+        public void StationStatusSurvivesPlayerDriverBeingDestroyedBeforeSessionShutdown()
+        {
+            using var f = new Fixture(false);
+            f.Session.ConfigureForwardReview(f.Policy);
+            typeof(TopDown3DAnimationPlaygroundSession).GetField("presentation", Private).SetValue(f.Session, f.Driver);
+            typeof(TopDown3DPlayerAnimationDriver).GetField("continuationReview", Private).SetValue(f.Driver, f.Session.Bindings.continuationReview);
+            Object.DestroyImmediate(f.Actor);
+            Assert.That(f.Driver == null, Is.True, "Destroy the actor with its dependent components, as Play Mode teardown does.");
+            Assert.That(f.Session.ForwardReviewStatus, Does.Contain("awaiting player startup"));
+            Assert.DoesNotThrow(() => typeof(TopDown3DAnimationPlaygroundSession).GetMethod("OnDisable", Private).Invoke(f.Session, null));
         }
 
         [Test, Category("PrivateAnimationQualification")]
@@ -249,6 +277,10 @@ namespace BooterBigArm.Tests
                 Scene = EditorSceneManager.OpenScene(TopDown3DAnimationPlaygroundSession.ScenePath, OpenSceneMode.Additive);
                 Session = TopDown3DAnimationPlaygroundSession.Find(Scene); Assert.That(Session, Is.Not.Null);
                 Station = Session.Stations.Single(s => s.StationId == "AP02");
+                // The author's scene deliberately hides test fixtures. This
+                // additive test owns its deck and must enable it explicitly.
+                var fixtures = Session.transform.Find("Testing Fixtures");
+                if (fixtures != null) fixtures.gameObject.SetActive(true);
                 Actor = Session.Player.gameObject; Actor.SetActive(false); Motor = Session.Player; Player = Actor.GetComponent<Rigidbody>();
                 Actor.transform.position = Station.transform.position + Vector3.up * 2; Player.position = Actor.transform.position;
                 Policy = Object.Instantiate(AssetDatabase.LoadAssetAtPath<AnimationPlaygroundForwardLocomotionProfile>(profilePath ?? PolicyPath));

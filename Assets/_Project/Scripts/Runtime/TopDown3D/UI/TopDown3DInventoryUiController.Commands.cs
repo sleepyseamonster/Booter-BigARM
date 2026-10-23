@@ -55,6 +55,7 @@ namespace BooterBigArm.TopDown3D
 
         private void BindCommands()
         {
+            if(CampExpeditionFeature.Enabled(gameObject.scene))return;
             UnbindCommands();
             nextInventory = input?.InputActions?.FindAction("UI/NextInventory", false);
             previousInventory = input?.InputActions?.FindAction("UI/PreviousInventory", false);

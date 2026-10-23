@@ -2,7 +2,7 @@ using System;
 
 namespace BooterBigArm.TopDown3D
 {
-    public enum TopDown3DEquipmentSlot { None, DustCanister, AlgaeCanister, GrapplingHook, DiggingTool, Cloak, Jacket }
+    public enum TopDown3DEquipmentSlot { None, DustCanister, AlgaeCanister, GrapplingHook, DiggingTool, Cloak, Jacket, BodyFrame, Legs, Head, Hands, Feet, Weapon }
 
     /// <summary>Stable equipment addresses and a distinct four-pocket supply region.</summary>
     public static class TopDown3DLoadoutLayout

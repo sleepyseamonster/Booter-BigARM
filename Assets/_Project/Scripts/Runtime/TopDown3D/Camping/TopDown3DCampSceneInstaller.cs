@@ -8,6 +8,7 @@ namespace BooterBigArm.TopDown3D
     {
         public static TopDown3DCampController TryInstall(Scene scene, TopDown3DInputRouter input, TopDown3DPlayerInventory inventory, EventSystem system)
         {
+            if(CampExpeditionFeature.Enabled(scene))return null;
             if (!GreaterWastelandSceneScope.SupportsAuthoredLoop(scene)
                 && scene.path != "Assets/_Project/Scenes/Reference/CampSleepStudy.unity") return null;
             var settings = TopDown3DCampSettings.Load();

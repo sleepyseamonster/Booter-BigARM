@@ -161,7 +161,17 @@ namespace BooterBigArm.TopDown3D
             controller.Consumed-=Consumed;controller.Rejected-=Rejected;
             controller.State.Restored-=ResetPresentation;controller.Vitals.ResetPerformed-=ResetPresentation;subscribed=false;
         }
-        private void OnEnable(){RefreshLayout();Subscribe();}
+        private void OnEnable()
+        {
+            // Also adopt prompts created before the serialized-reference repair was installed.
+            if(DetailsRect==null)DetailsRect=transform.Find("Algae canister") as RectTransform;
+            if(DetailsRect!=null)
+            {
+                string[] names={"Drink","Eat","Treat"};
+                for(int i=0;i<labels.Length;i++)if(labels[i]==null)labels[i]=DetailsRect.Find(names[i])?.GetComponent<Text>();
+            }
+            RefreshLayout();Subscribe();
+        }
         private void OnDisable(){Unsubscribe();if(dpad!=null)dpad.SetDirectionPressed(pulseDirection,false);}
         public static TopDown3DAlgaeCanisterHud TryInstallForScene(Scene scene,TopDown3DAlgaeConsumptionController controller)
         {

@@ -5,6 +5,27 @@ namespace BooterBigArm.Tests
 {
     public sealed class TopDown3DPlaytestPerformanceProfileTests
     {
+        [TestCase(0d, 1u)]
+        [TestCase(-1d, 1u)]
+        [TestCase(12d, 0u)]
+        [TestCase(double.NaN, 1u)]
+        [TestCase(double.PositiveInfinity, 1u)]
+        [TestCase(double.NegativeInfinity, 1u)]
+        public void MissingOrInvalidTimingIsNotReportedAsMeasuredTime(double value, uint samples)
+            => Assert.That(TopDown3DPlaytestPerformanceProfile.FormatTiming(value, samples), Is.EqualTo("unavailable"));
+
+        [Test]
+        public void TimingUsesInvariantMillisecondsWhenSamplesExist()
+        {
+            var prior = System.Globalization.CultureInfo.CurrentCulture;
+            try
+            {
+                System.Globalization.CultureInfo.CurrentCulture = new System.Globalization.CultureInfo("fr-FR");
+                Assert.That(TopDown3DPlaytestPerformanceProfile.FormatTiming(12.126, 1), Is.EqualTo("12.13"));
+            }
+            finally { System.Globalization.CultureInfo.CurrentCulture = prior; }
+        }
+
         [Test]
         public void FullContentProfile_RequiresTheExactCommandLineFlag()
         {

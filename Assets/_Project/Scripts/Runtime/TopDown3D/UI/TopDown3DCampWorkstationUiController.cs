@@ -64,6 +64,7 @@ namespace BooterBigArm.TopDown3D
             if (value is TopDown3DIronstoneProcessor) source = 2;
             destination = 0; selected = -1; openedEpoch = session.Epoch; resetPending = false;
             message = "Choose a source and an item. Contents stay in their physical owner until an action succeeds.";
+            PrepareFirstToolView();
             session.Action.SetCampModalOpen(true); session.Input.EnterInventoryMode();
             view.SetVisible(true); Arm(); Refresh(); view.SelectFirst(events);
         }
@@ -117,6 +118,7 @@ namespace BooterBigArm.TopDown3D
         }
         private void Select(int index)
         {
+            if (FirstToolRecipes) { SelectFirstToolRecipe(index); return; }
             if (!CanCommand || !session.CanAccessOwner(source)) return;
             var state = session.Owner(source); if (index < 0 || index >= state.Capacity) return;
             selected = index; selectedRevision = state.Revision; resetPending = false; Refresh();
@@ -127,6 +129,7 @@ namespace BooterBigArm.TopDown3D
         private void Command(string id)
         {
             if (!CanCommand) return;
+            if (FirstToolRecipes && id == "Craft") { CraftFirstToolRecipe(); return; }
             if (ManagementCommand(id)) return;
             if (management != ManagementView.Detail && (id == "Craft" || id == "Insert" || id == "Refine" || id == "Battery"
                 || id == "Canister" || id == "Deploy" || id == "Transfer")) return;
@@ -180,6 +183,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (!open || suspended) return;
             if (!ActorAlive || !RegistrationValid || !TargetAccessible) { Close(); return; }
+            if (FirstToolRecipes) { PresentFirstToolRecipes(); return; }
             var state = session.Owner(source); if (selected >= 0 && selectedRevision != state.Revision) selected = -1;
             var labels = new List<string>(state.Capacity);
             foreach (var slot in state.Slots) labels.Add(slot.IsEmpty ? "Empty" : slot.CanisterContents.IsPresent
@@ -193,7 +197,9 @@ namespace BooterBigArm.TopDown3D
             }
             var description = isBench ? recipeText + "\nOutput: Booter supply pocket"
                 : isRefinery ? $"Canister: {(refinery.HasCanister ? refinery.dust + "/100 dust" : "empty socket")}\nBattery: {(refinery.HasBattery ? refinery.batteryItemId == TopDown3DDustRefineryState.ChargedBatteryId ? "charged" : "empty battery" : "empty socket")}\nCost: {session.Refinery.DustPerBattery} dust per battery"
-                : target is TopDown3DResourceCache ? "Local camp storage\nResources stay with Legger.\nEquipment and batteries may transfer to legal destinations."
+                : target is TopDown3DResourceCache ? FirstTool != null
+                    ? "First multi-tool: bring materials home.\nChoose LEGGER as source.\nChoose CAMP CHEST as destination.\nSelect each stack, then Transfer.\nNext: workbench."
+                    : "Local camp storage\nResources stay with Legger.\nEquipment and batteries may transfer to legal destinations."
                 : "Select the exact canister to deploy.\nLegger cargo and camp chest require physical access.";
             var accessible = session.CanAccessOwner(source);
             view.Present(isBench ? "CAMP WORKBENCH" : isRefinery ? "DUST REFINERY" : target == null ? "DEPLOY CANISTER" : "CAMP CHEST",
@@ -206,9 +212,11 @@ namespace BooterBigArm.TopDown3D
             view.SetCommand("Refine", isRefinery && session.Refinery.CanRefine, isRefinery);
             view.SetCommand("Battery", refinery.HasBattery && session.CanAccessOwner(destination), isRefinery);
             view.SetCommand("Canister", refinery.HasCanister && session.CanAccessOwner(destination), isRefinery);
-            view.SetCommand("Deploy", selected >= 0 && accessible && state.Slots[selected].ItemId == TopDown3DHarvesterSettings.CanisterItemId, !isRefinery && !isBench);
+            var selectedCanister = selected >= 0 && state.Slots[selected].ItemId == TopDown3DHarvesterSettings.CanisterItemId;
+            view.SetCommand("Deploy", selectedCanister && accessible,
+                !isRefinery && !isBench && (FirstTool == null || target is not TopDown3DResourceCache || selectedCanister));
             view.SetCommand("Transfer", selected >= 0 && accessible && source != destination && session.CanAccessOwner(destination), target is TopDown3DResourceCache);
-            view.SetCommand("Reset", true, target != null, resetPending ? "CONFIRM CAMP ECONOMY RESET" : "RESET CAMP ECONOMY");
+            view.SetCommand("Reset", true, target != null && FirstTool == null, resetPending ? "CONFIRM CAMP ECONOMY RESET" : "RESET CAMP ECONOMY");
             PresentManagement();
         }
         private void OnDisable() => Teardown();

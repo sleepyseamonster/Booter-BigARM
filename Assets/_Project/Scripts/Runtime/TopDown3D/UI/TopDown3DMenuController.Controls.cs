@@ -14,6 +14,7 @@ namespace BooterBigArm.TopDown3D
         private int controlIndex;
         private InputAction captureControl;
         private InputActionRebindingExtensions.RebindingOperation controlRebind;
+        private bool controlRebindRejected;
         private static readonly string[] ControlActions = { "Gameplay/Interact", "Gameplay/Sprint", "Gameplay/RecallBigArm",
             "Gameplay/DeployCanister", "Gameplay/PickupCanister", "Gameplay/DrinkAlgae", "Gameplay/EatAlgae",
             "Gameplay/TreatWithAlgae", "Gameplay/CancelItemAction", "System/ToggleInventory", "System/OpenRadial" };
@@ -64,7 +65,7 @@ namespace BooterBigArm.TopDown3D
             {
                 controlsDraft = controls.Accepted.Clone(); controlIndex = 0;
                 controlGroup = input.PromptDevice == TopDown3DPromptDevice.Gamepad ? "Gamepad" : "Keyboard&Mouse";
-                controlNotice = controls.Notice; Show("Controls", "ControlDevice"); return true;
+                controlNotice = controls.Notice; Show("Controls", "ControlDevice");if(!controls.CanSave||!controlsCompatible)view.RevealNotice("ControlNotice");return true;
             }
             if (panel != "Controls") return false;
             if (command == "ControlsBack") { Back(); return true; }
@@ -86,7 +87,7 @@ namespace BooterBigArm.TopDown3D
             else if (command == "ControlsApply")
             {
                 if (!controlsCompatible || !controls.TrySave(controlsDraft, input.InputActions, out controlNotice))
-                { Refresh(); return true; }
+                { Refresh();view.RevealNotice("ControlNotice");return true; }
                 input.RefreshControlPrompts(); Show("Settings", "Controls"); return true;
             }
             Refresh(); return true;
@@ -94,7 +95,7 @@ namespace BooterBigArm.TopDown3D
         private void RefreshControls()
         {
             var choices = ControlChoices(); controlIndex = Mathf.Clamp(controlIndex, 0, Math.Max(0, choices.Count - 1));
-            view.SetText("ControlDevice", "Device: " + (controlGroup == "Gamepad" ? "Gamepad" : "Keyboard"));
+            view.SetText("ControlDevice", "Device: " + (controlGroup == "Gamepad" ? "Gamepad" : "Keyboard & mouse"));
             if (choices.Count > 0)
             {
                 var choice = choices[controlIndex]; var binding = choice.action.bindings[choice.index];
@@ -115,6 +116,7 @@ namespace BooterBigArm.TopDown3D
         private void BeginControlRebind()
         {
             if (!controls.CanSave || !controlsCompatible || IsRebindingControls) return;
+            controlRebindRejected=false;
             var choices = ControlChoices(); if (choices.Count == 0) return;
             var choice = choices[controlIndex]; var path = choice.action.actionMap.name + "/" + choice.action.name;
             var id = choice.action.bindings[choice.index].id.ToString();
@@ -123,7 +125,7 @@ namespace BooterBigArm.TopDown3D
                 .WithControlsHavingToMatchPath(controlGroup == "Gamepad" ? "<Gamepad>" : "<Keyboard>")
                 .WithControlsExcluding("<Gamepad>/start").WithControlsExcluding("<Gamepad>/buttonSouth").WithControlsExcluding("<Gamepad>/buttonEast")
                 .WithControlsExcluding("<Keyboard>/enter").WithCancelingThrough("<Keyboard>/escape").WithTimeout(10f).OnMatchWaitForAnother(0f)
-                .OnGeneratePath(control => (control.device is Gamepad ? "<Gamepad>/" : "<Keyboard>/")
+                .OnGeneratePath(control => (control.device is Gamepad ? "<Gamepad>/" : control.device is Mouse ? "<Mouse>/" : "<Keyboard>/")
                     + control.path.Substring(control.device.path.Length + 1))
                 .OnApplyBinding((operation, newPath) =>
                 {
@@ -140,19 +142,21 @@ namespace BooterBigArm.TopDown3D
                     draft.bindings.Add(new TopDown3DControlBindingOverride { actionPath = path, bindingId = id, path = newPath });
                     if (TopDown3DControlPreferencesService.TryValidate(draft, input.InputActions, out var error))
                     { controlsDraft = draft; controlNotice = "Binding changed in your draft. Apply to save."; }
-                    else controlNotice = error;
+                    else {controlNotice = error;controlRebindRejected=true;}
                 })
                 .OnComplete(operation => EndControlRebind())
                 .OnCancel(operation => { controlNotice = "Binding change cancelled."; EndControlRebind(); });
+            if(controlGroup=="Keyboard&Mouse" && AnimationPlaygroundInputFactory.IsLabAsset(input.InputActions))
+                controlRebind.WithControlsHavingToMatchPath("<Mouse>");
             controlNotice = "Press a button for this device. Back, Escape or Start cancels; listening ends after 10 seconds.";
             module.submit = null; module.leftClick = null; view.SetInputReady(false);
-            Refresh(); controlRebind.Start();
+            Refresh();view.RevealNotice("ControlNotice");controlRebind.Start();
         }
         private void CancelControlRebind() => controlRebind?.Cancel();
         private void EndControlRebind()
         {
             DisposeControlRebind();
-            if (IsOpen && panel == "Controls") Show("Controls", "ControlBinding");
+            if (IsOpen && panel == "Controls") {Show("Controls", "ControlBinding");if(controlRebindRejected)view.RevealNotice("ControlNotice");}
         }
         private void DisposeControlRebind()
         {
@@ -165,7 +169,7 @@ namespace BooterBigArm.TopDown3D
             if (this == null) { InputSystem.onDeviceChange -= ControlDeviceChanged; return; }
             if (!IsRebindingControls || change != InputDeviceChange.Disconnected && change != InputDeviceChange.Removed
                 && change != InputDeviceChange.Disabled) return;
-            if (controlGroup == "Gamepad" && device is Gamepad || controlGroup == "Keyboard&Mouse" && device is Keyboard)
+            if (controlGroup == "Gamepad" && device is Gamepad || controlGroup == "Keyboard&Mouse" && (device is Keyboard || device is Mouse))
                 CancelControlRebind();
         }
     }

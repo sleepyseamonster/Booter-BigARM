@@ -15,7 +15,8 @@ namespace BooterBigArm.TopDown3D
         public static TopDown3DCampLoopLoadoutProfile For(Scene scene, TopDown3DItemCatalog catalog)
         {
             if (!TopDown3DAnimationPlaygroundSession.IsSessionOnly(scene)) return null;
-            var profile = Resources.Load<TopDown3DCampLoopLoadoutProfile>("CampLoopLoadoutProfile");
+            var scenario = CampFirstToolScenario.Find(scene);
+            var profile = scenario != null ? scenario.Loadout : Resources.Load<TopDown3DCampLoopLoadoutProfile>("CampLoopLoadoutProfile");
             return profile != null && profile.sourceCatalog == catalog ? profile : null;
         }
         public static TopDown3DItemCatalog Resolve(Scene scene, TopDown3DItemCatalog catalog)

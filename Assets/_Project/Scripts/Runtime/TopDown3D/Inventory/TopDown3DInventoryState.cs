@@ -106,6 +106,7 @@ namespace BooterBigArm.TopDown3D
             Revision++; PublishDraft(); return true;
         }
         public bool CanRelease(int index) => index >= 0 && index < slots.Count && !slots[index].IsEmpty
+            && !(policy.IsExpeditionLayout && index == 1 && (!slots[9].IsEmpty || !slots[10].IsEmpty))
             && !(policy.IsLoadout && catalog.GetRequiredDefinition(slots[index].ItemId).EquipmentSlot == TopDown3DEquipmentSlot.AlgaeCanister)
             && (ReleaseAllowed == null || ReleaseAllowed(slots[index].ItemId));
         private bool Accepts(int index, TopDown3DItemDefinition definition, string instance = null)
@@ -344,6 +345,8 @@ namespace BooterBigArm.TopDown3D
                 nextSlots.Add(next);
             }
 
+            if (policy.IsExpeditionLayout && !CampExpeditionLayout.Valid(nextSlots))
+                return Failure(TopDown3DInventoryResultCode.InvalidSnapshot, "Attachment mounts require the equipped Utility harness.");
             if (policy.MaximumMass > 0f && CalculateMass(nextSlots) > policy.MaximumMass + 0.0001f)
             {
                 return Failure(TopDown3DInventoryResultCode.InvalidSnapshot, "Snapshot exceeds the inventory mass limit.");
@@ -410,6 +413,7 @@ namespace BooterBigArm.TopDown3D
                 for (var i = 0; i < simulated.Count && remaining > 0; i++)
                 {
                     var slot = simulated[i];
+                    if (policy.IsExpeditionLayout && i >= 9 && i < 11 && simulated[1].ItemId != CampExpeditionDefinition.HarnessId) continue;
                     if (!slot.IsEmpty || !Accepts(i, definition, amount.InstanceId))
                     {
                         continue;
@@ -427,6 +431,8 @@ namespace BooterBigArm.TopDown3D
                 }
             }
 
+            if (policy.IsExpeditionLayout && !CampExpeditionLayout.Valid(simulated))
+            { failure = Failure(TopDown3DInventoryResultCode.IncompatibleSlots, "Attachment mounts require the equipped Utility harness."); return false; }
             if (policy.MaximumMass > 0f && CalculateMass(simulated) > policy.MaximumMass + 0.0001f)
             {
                 failure = Failure(TopDown3DInventoryResultCode.TooHeavy, "The load exceeds this inventory's mass limit.");

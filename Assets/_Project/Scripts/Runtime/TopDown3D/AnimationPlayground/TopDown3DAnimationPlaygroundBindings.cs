@@ -39,6 +39,10 @@ namespace BooterBigArm.TopDown3D
         public AnimationPlaygroundLowMotionProfile lowMotion;
         public AnimationPlaygroundDodgeProfile dodge;
         public bool dodgeRequired;
+        public AnimationPlaygroundSprintEntryProfile sprintEntries;
+        public bool sprintEntriesRequired;
+        public AnimationPlaygroundLocomotionTransitionProfile locomotionTransitions;
+        public bool locomotionTransitionsRequired;
         public float visualScale = 1f;
         public Vector3 visualOffset;
         public Material bodyMaterial;
@@ -90,6 +94,12 @@ namespace BooterBigArm.TopDown3D
             else if(dodgeRequired && dodge==null)
                 reason="Restore the required private dodge calibration.";
             else if(dodge!=null && !dodge.Validate(targetModel,out reason))return false;
+            else if(sprintEntriesRequired && sprintEntries==null)
+                reason="Restore the required sprint entry calibration.";
+            else if(sprintEntries!=null && !sprintEntries.Validate(targetModel,out reason))return false;
+            else if(locomotionTransitionsRequired && locomotionTransitions==null)
+                reason="Restore the required locomotion stop/turn calibration.";
+            else if(locomotionTransitions!=null && !locomotionTransitions.Validate(targetModel,out reason))return false;
             else if(continuationReviewRequired && continuationReview==null)
                 reason="Restore the required private Camp Loop motion continuation.";
             else if(continuationReview!=null && (forwardReviewOverride==null || !forwardReviewOverride.ExpandedReview

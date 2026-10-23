@@ -19,7 +19,8 @@ namespace BooterBigArm.TopDown3D
         private Matrix4x4 supportMatrix;
         private bool settling,disposed,blockedUntilNeutral;
         private float settleSeconds;
-        private const float EntryBlendSeconds=.12f;
+        private const float EntryBlendSeconds=.05f, TurnSeconds=.38f, ExitBlendSeconds=.08f;
+        private float SourceRate=>turn==null?1:turn.clip.length/TurnSeconds;
         public bool Active => turn != null || settling;
         public string LastFailure {get;private set;}
         public string ResetId => "CampLoop.Booter.AdaptedTurn";
@@ -43,7 +44,7 @@ namespace BooterBigArm.TopDown3D
             if(settling)
             {
                 settleSeconds+=Time.fixedDeltaTime;driver.SetPoseBlendElapsed(this,settleSeconds);
-                if(settleSeconds>=.12f){driver.EndPoseBlend(this);motor.EndActionConstraint(this);settling=false;}
+                if(settleSeconds>=ExitBlendSeconds){driver.EndPoseBlend(this);motor.EndActionConstraint(this);settling=false;}
                 return;
             }
             if(motor.LaboratoryTurnBraking)TryBeginTurn(motor.LaboratoryMoveDirection);
@@ -55,7 +56,9 @@ namespace BooterBigArm.TopDown3D
                 || Vector3.ProjectOnPlane(motor.Velocity,Vector3.up).sqrMagnitude>.01f
                 || !driver.StandingStrafeReviewSupportAvailable() || !motor.TryGetLaboratorySupportPlane(out var plane,true)
                 || Vector3.Angle(plane.normal,Vector3.up)>.25f)return false;
-            var facing=Vector3.ProjectOnPlane(transform.forward,Vector3.up).normalized;
+            // Transform rotation can still be interpolating the preceding turn.
+            // The curve, foot constraint and motor must share completed facing.
+            var facing=Vector3.ProjectOnPlane(motor.FacingDirection,Vector3.up).normalized;
             var angle=Vector3.SignedAngle(facing,direction,Vector3.up);
             if(!float.IsFinite(direction.sqrMagnitude) || direction.sqrMagnitude<.01f || Mathf.Abs(angle)<150)return false;
             origin=motor.Position;basis=Quaternion.LookRotation(facing);expected=origin;
@@ -65,7 +68,7 @@ namespace BooterBigArm.TopDown3D
             var binding=new AnimationPlaygroundMotionBinding{sourceId="CampReview.AdaptedTurn."+turn.clip.name,
                 clip=turn.clip,readiness=AnimationPlaygroundMotionReadiness.PhysicalQualified};
             if(!coordinator.TryBeginPhysicalSequence(this,binding,AnimationPlaygroundMotionMode.Turn,null,Intent,null,
-                seconds=>Math.Min(turn.clip.length,Math.Max(0,seconds-EntryBlendSeconds-Time.fixedDeltaTime)),true))
+                seconds=>Math.Min(turn.clip.length,Math.Max(0,seconds-EntryBlendSeconds)*SourceRate),true))
             {driver.EndPoseBlend(this);turn=null;return false;}
             var anchor=origin+basis*new Vector3(turn.soleAnchor.x,0,turn.soleAnchor.y);
             try
@@ -79,10 +82,12 @@ namespace BooterBigArm.TopDown3D
         private AnimationPlaygroundMotorIntent Intent(double seconds)
         {
             driver.SetPoseBlendElapsed(this,Math.Min(EntryBlendSeconds,seconds));
-            var current=Mathf.Min(turn.clip.length,Mathf.Max(0,(float)seconds-EntryBlendSeconds-Time.fixedDeltaTime));
-            turn.Sample(current,out var point,out var yaw);expected=origin+basis*point;
-            turn.Sample(Mathf.Min(Mathf.Max(0,(float)seconds-EntryBlendSeconds),turn.clip.length),out var next,out _);
-            return new AnimationPlaygroundMotorIntent(basis*(next-point)/Time.fixedDeltaTime,basis*yaw*Vector3.forward);
+            var current=Mathf.Min(turn.clip.length,Mathf.Max(0,(float)seconds-EntryBlendSeconds-Time.fixedDeltaTime)*SourceRate);
+            turn.Sample(current,out var point,out _);expected=origin+basis*point;
+            turn.Sample(Mathf.Min(Mathf.Max(0,(float)seconds-EntryBlendSeconds)*SourceRate,turn.clip.length),out var next,out var nextYaw);
+            // Both position and rotation describe the completed physics step.
+            // The render graph interpolates that same pair of source times.
+            return new AnimationPlaygroundMotorIntent(basis*(next-point)/Time.fixedDeltaTime,basis*nextYaw*Vector3.forward);
         }
         private void ObserveTurn()
         {
@@ -95,14 +100,24 @@ namespace BooterBigArm.TopDown3D
             {Cancel("Turn travel or support was blocked; steer to resume.");return;}
             if(driver.LaboratoryTurnContactUnavailable)
             {Cancel("Turn contact left its bounded envelope; release the stick to rearm.");return;}
-            if(coordinator.PhysicalStageSeconds<turn.clip.length+EntryBlendSeconds+Time.fixedDeltaTime*.5f)return;
-            if(driver.TryCapturePoseBlend(this,.12f))
+            if(coordinator.PhysicalStageSeconds<TurnSeconds+EntryBlendSeconds+Time.fixedDeltaTime*.5f)return;
+            if(driver.TryCapturePoseBlend(this,ExitBlendSeconds))
             {
                 coordinator.CancelPhysicalSequence(this);turn=null;
                 if(motor.TryBeginActionConstraint(this)){settling=true;settleSeconds=0;return;}
                 driver.EndPoseBlend(this);
             }
             Cancel(null);
+        }
+        // Capture before releasing the turn's physical lease, including its
+        // recovery constraint. The successor receives the currently displayed pose.
+        public bool TryYieldTo(object successor)
+        {
+            if(disposed || !Active || !driver.TryReservePoseBlendHandoff(this,successor,ExitBlendSeconds))return false;
+            coordinator.CancelPhysicalSequence(this);motor.EndActionConstraint(this);
+            driver.SelectReservedPoseBlend(successor);
+            turn=null;settling=false;support=null;LastFailure=null;blockedUntilNeutral=true;
+            return true;
         }
         public void Cancel(string reason)
         {

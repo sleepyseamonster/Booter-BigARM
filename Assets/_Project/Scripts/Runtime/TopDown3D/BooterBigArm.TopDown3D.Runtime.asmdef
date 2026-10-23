@@ -3,6 +3,7 @@
   "rootNamespace": "BooterBigArm.TopDown3D",
   "references": [
     "Unity.Cinemachine",
+    "Unity.Collections",
     "Unity.InputSystem",
     "Unity.ugui",
     "Unity.RenderPipelines.Core.Runtime",

@@ -37,9 +37,9 @@ namespace BooterBigArm.TopDown3D
         public float InteractionRange => 2.8f;
         public float ActionDuration => 0.01f;
         public TopDown3DItemAmount Reward => default;
-        public bool IsAvailable => isActiveAndEnabled;
+        public bool IsAvailable => isActiveAndEnabled && !CampExpeditionFeature.Enabled(gameObject.scene);
         public bool TryConsume(out int remainingUses) { remainingUses = 1; return false; }
-        public bool CanAccess(Transform actor) => isActiveAndEnabled && actor != null
+        public bool CanAccess(Transform actor) => IsAvailable && actor != null
             && actor.gameObject.scene == gameObject.scene
             && Vector3.Distance(actor.position, InteractionPoint) <= InteractionRange
             && TopDown3DCargoAccess.HasLineOfSight(actor, transform);

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81605b79f6bb48b18dcdb159136018fe, type: 3}
+  m_Name: proposal_natural_iron_stock
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DItemDefinition
+  itemId: proposal.natural.iron_stock
+  displayName: Consolidated iron bar stock
+  description: Worked iron consolidated into unfitted bars for fasteners, tool bodies
+    and structural fittings. It is the metal-working stage after an iron bloom or
+    selected ore has been processed, rather than another grade of loose ore. Final
+    section, grade and forging conditions remain to be chosen.
+  category: Crafting components
+  icon: {fileID: 21300000, guid: 78037f2bfe7303346ab76b20b66a0018, type: 3}
+  maxStack: 20
+  mass: 0.75
+  carryPreference: 0
+  packingPreference: 0
+  equipmentSlot: 0
+  fieldSupply: 0

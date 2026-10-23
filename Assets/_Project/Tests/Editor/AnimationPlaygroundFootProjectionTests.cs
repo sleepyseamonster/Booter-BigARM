@@ -88,6 +88,11 @@ namespace BooterBigArm.Tests
             try
             {
                 bindings.crouch=profile;profile.contactsQualified=true;profile.groundingQualified=true;
+                  // Isolate the crouch dependency from later optional families,
+                  // which also depend on the same missing projection.
+                  bindings.movingTurns=null;bindings.movingTurnsRequired=false;
+                  bindings.standingStrafeReview=null;bindings.standingStrafeReviewRequired=false;
+                  bindings.continuationReview=null;bindings.continuationReviewRequired=false;
                 Assert.That(bindings.ValidatePlayer(out var error),Is.True,error);
                 bindings.footProjection=null;
                 Assert.That(bindings.ValidatePlayer(out error),Is.False);

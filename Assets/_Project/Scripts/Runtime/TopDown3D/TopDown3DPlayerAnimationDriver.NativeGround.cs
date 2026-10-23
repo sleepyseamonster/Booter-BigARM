@@ -43,6 +43,7 @@ namespace BooterBigArm.TopDown3D
         private bool TryEvaluateNativeCampGround(float sourceCorrection, out float correction, bool directionalPose = false)
         {
             correction = sourceCorrection; LaboratoryNativeGroundAdapted = false; LaboratoryNativeBodyLift = 0;
+            LaboratoryNativeGroundFailure = null;
             if (continuationReview == null || !continuationReview.NativeCampGround || forwardTerrainPose == null || motor == null || !motor.IsGrounded && !JumpPresentationSupportCurrent) return false;
             var standing = motor.TryGetLaboratorySupportPlane(out var plane, true);
             var support = standing ? motor.LaboratorySupportCollider : continuationActionSupport;
@@ -67,7 +68,7 @@ namespace BooterBigArm.TopDown3D
                 || JumpPredictionCurrent && motor.AnimationMotionMode==AnimationPlaygroundMotionMode.Fall))
             {
                 nativeBodySampler ??= continuationReview.nativeBodyProjection.Bind(visualInstance.transform);
-                for (var iteration = 0; iteration < 3; iteration++)
+                for (var iteration = 0; iteration < 10; iteration++)
                 {
                     var minimum = nativeBodySampler.MinimumTerrainDistance(nativeGarmentHeight,out _);
                     if (minimum >= -.00025f) break;
@@ -84,7 +85,10 @@ namespace BooterBigArm.TopDown3D
                     visualInstance.transform.localPosition = visualLocalPosition + Vector3.up * correction;
                     // Raising the visual host must not turn a planted foot into
                     // a flying foot. Retain its original source-relative gap.
-                    forwardTerrainPose.ConfigureFeet(plane,flat + LaboratoryNativeBodyLift,left,right);
+                    // In flight, clearance may raise a foot away from predicted
+                    // support. Pinning that foot before contact can exhaust the
+                    // leg's reach and discard the safe body correction.
+                    forwardTerrainPose.ConfigureFeet(plane,flat + (JumpPresentationOwned && !jumpGrounded ? 0 : LaboratoryNativeBodyLift),left,right);
                     if(JumpPresentationOwned)forwardTerrainPose.SetSupportBlend(jumpSupportBlend);
                     playableGraph.Evaluate(0);
                 }
@@ -92,7 +96,7 @@ namespace BooterBigArm.TopDown3D
                 if (sample.incompatibleReach > .001f || sample.requiredLowering > laboratoryForwardProfile.maximumTerrainBodyLowering + .00001f
                     || nativeBodySampler.MinimumTerrainDistance(nativeGarmentHeight,out _) < -.002f)
                 {
-                    LaboratoryNativeGroundFailure = "Grounded body/foot reach is unavailable in this pose.";
+                    LaboratoryNativeGroundFailure = $"Grounded body/foot reach is unavailable (lowering {sample.requiredLowering:R}, reach {sample.incompatibleReach:R}, clearance {nativeBodySampler.MinimumTerrainDistance(nativeGarmentHeight,out _):R}).";
                     forwardTerrainPose.Disable(); visualInstance.transform.localPosition = visualLocalPosition + Vector3.up * sourceCorrection;
                     correction = sourceCorrection; LaboratoryNativeBodyLift = 0; playableGraph.Evaluate(0); return true;
                 }
@@ -124,9 +128,22 @@ namespace BooterBigArm.TopDown3D
         private bool NativeFootHit(Vector3 point, out RaycastHit hit)
         {
             var flat = transform.TransformPoint(Vector3.up * laboratoryFeetPlane).y;
-            return Physics.Raycast(new Vector3(point.x, flat + .65f, point.z), Vector3.down, out hit, 1.3f,
+            // Probe around the local support height. A valid stride on a slope
+            // can lie over 350 mm above/below the root's world-height band;
+            // foot reach and body lowering remain bounded by the pose solver.
+            var expected = flat;
+            var supportPlane=default(Plane);
+            var hasSupport=motor!=null && motor.TryGetLaboratorySupportPlane(out supportPlane,true);
+            // Predicted/retained jump support is already verified for this
+            // rendered action. Its foot queries need the same slope reference
+            // after physical support ends, rather than a horizontal height band.
+            if(!hasSupport && JumpPresentationOwned && ContinuationActionTerrainCurrent)
+            {supportPlane=forwardTerrainPlane;hasSupport=true;}
+            if (hasSupport && supportPlane.normal.y > .0001f)
+                expected -= supportPlane.GetDistanceToPoint(new Vector3(point.x, flat, point.z)) / supportPlane.normal.y;
+            return Physics.Raycast(new Vector3(point.x, expected + .65f, point.z), Vector3.down, out hit, 1.3f,
                 Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore) && ContinuationSurface(hit.collider)
-                && !hit.collider.transform.IsChildOf(transform) && Mathf.Abs(hit.point.y - flat) <= .35f
+                && !hit.collider.transform.IsChildOf(transform) && Mathf.Abs(hit.point.y - expected) <= .35f
                 && Vector3.Angle(hit.normal, Vector3.up) <= continuationReview.maximumSlope + .001f;
         }
     }

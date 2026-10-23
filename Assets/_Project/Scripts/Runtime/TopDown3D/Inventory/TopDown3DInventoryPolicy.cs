@@ -6,7 +6,7 @@ namespace BooterBigArm.TopDown3D
 
     public readonly struct TopDown3DInventoryPolicy
     {
-        public TopDown3DInventoryPolicy(TopDown3DInventoryOwner owner, int capacity, float maximumMass = 0f, bool loadout = false, bool campStorage = false, bool canisterContents = false)
+        public TopDown3DInventoryPolicy(TopDown3DInventoryOwner owner, int capacity, float maximumMass = 0f, bool loadout = false, bool campStorage = false, bool canisterContents = false, bool expeditionLayout = false)
         {
             Owner = owner;
             Capacity = Math.Max(1, capacity);
@@ -14,6 +14,9 @@ namespace BooterBigArm.TopDown3D
             IsLoadout = loadout;
             IsCampStorage = campStorage;
             SupportsCanisterContents = canisterContents;
+            IsExpeditionLayout = expeditionLayout;
+            if (expeditionLayout && (loadout || owner != TopDown3DInventoryOwner.Booter || capacity != CampExpeditionLayout.Capacity))
+                throw new ArgumentException("Expedition layout requires its own versioned Booter capacity.");
             if (loadout && (owner != TopDown3DInventoryOwner.Booter || capacity != TopDown3DLoadoutLayout.Capacity))
                 throw new ArgumentException("Loadout requires exactly six equipment slots and four supply pockets on Booter.");
         }
@@ -24,7 +27,9 @@ namespace BooterBigArm.TopDown3D
         public bool IsLoadout { get; }
         public bool IsCampStorage { get; }
         public bool SupportsCanisterContents { get; }
-        public bool AllowsSlot(int index, TopDown3DItemDefinition item) => Allows(item) && (!IsLoadout || TopDown3DLoadoutLayout.Accepts(index, item));
+        public bool IsExpeditionLayout { get; }
+        public bool AllowsSlot(int index, TopDown3DItemDefinition item) => Allows(item) && (!IsLoadout || TopDown3DLoadoutLayout.Accepts(index, item))
+            && (!IsExpeditionLayout || CampExpeditionLayout.Allows(index,item));
 
         public bool Allows(TopDown3DItemDefinition definition)
         {

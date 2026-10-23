@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: 4895c8be0ed4e6c449fc286e9a702207
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7705888310788887794
+    second: phagia-canister-v1_0
+  - first:
+      213: 6319320156939448346
+    second: phagia-canister-v1_1
+  - first:
+      213: 8184451688939900
+    second: phagia-canister-v1_2
+  - first:
+      213: -104193182810063375
+    second: phagia-canister-v1_3
+  - first:
+      213: 1004792396552971701
+    second: phagia-canister-v1_4
+  - first:
+      213: -5186307535826693713
+    second: phagia-canister-v1_5
+  - first:
+      213: -8523421635739992980
+    second: phagia-canister-v1_6
+  - first:
+      213: -9147785105874591022
+    second: phagia-canister-v1_7
+  - first:
+      213: 6459333836288212657
+    second: phagia-canister-v1_8
+  - first:
+      213: 7327120141911895741
+    second: phagia-canister-v1_9
+  - first:
+      213: 6048373934841160787
+    second: phagia-canister-v1_10
+  - first:
+      213: 486201057721061885
+    second: phagia-canister-v1_11
+  - first:
+      213: 3047412985717465580
+    second: phagia-canister-v1_12
+  - first:
+      213: 354535177615445234
+    second: phagia-canister-v1_13
+  - first:
+      213: -1000772140258633587
+    second: phagia-canister-v1_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: phagia-canister-v1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 879
+        width: 218
+        height: 250
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f418635790d0fa60800000000000000
+      internalID: 7705888310788887794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phagia-canister-v1_1
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 0
+        width: 1183
+        height: 1216
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a107758933cb2b750800000000000000
+      internalID: 6319320156939448346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phagia-canister-v1_2
+      rect:
+        serializedVersion: 2
+        x: 1049
+        y: 1042
+        width: 67
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c71c99727b31d1000800000000000000
+      internalID: 8184451688939900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phagia-canister-v1_3
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 1014
+        width: 19
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fdb69e2ad4dd8ef0800000000000000
+      internalID: -104193182810063375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phagia-canister-v1_4
+      rect:
+        serializedVersion: 2
+        x: 1091
+        y: 1011
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b5ad8d6c5db1fd00800000000000000
+      internalID: 1004792396552971701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phagia-canister-v1_5
+      rect:
+        serializedVersion: 2
+        x: 1109
+        y: 955
+        width: 17
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa15e1f36c88608b0800000000000000
+      internalID: -5186307535826693713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phagia-canister-v1_6
+      rect:
+        serializedVersion: 2
+        x: 1123
+        y: 962
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6cb6da6e29b6b980800000000000000
+      internalID: -8523421635739992980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phagia-canister-v1_7
+      rect:
+        serializedVersion: 2
+        x: 1135
+        y: 953
+        width: 34
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d26cbac9e98c0180800000000000000
+      internalID: -9147785105874591022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phagia-canister-v1_8
+      rect:
+        serializedVersion: 2
+        x: 1149
+        y: 883
+        width: 34
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bebe9da6e924a950800000000000000
+      internalID: 6459333836288212657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phagia-canister-v1_9
+      rect:
+        serializedVersion: 2
+        x: 1155
+        y: 935
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbea445c2f82fa560800000000000000
+      internalID: 7327120141911895741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phagia-canister-v1_10
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 923
+        width: 8
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35460fe4c0420f350800000000000000
+      internalID: 6048373934841160787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phagia-canister-v1_11
+      rect:
+        serializedVersion: 2
+        x: 1238
+        y: 851
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df112e639455fb600800000000000000
+      internalID: 486201057721061885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phagia-canister-v1_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 369
+        width: 174
+        height: 387
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce12a91f6f59a4a20800000000000000
+      internalID: 3047412985717465580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phagia-canister-v1_13
+      rect:
+        serializedVersion: 2
+        x: 1214
+        y: 236
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fc062a9ddf8be400800000000000000
+      internalID: 354535177615445234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: phagia-canister-v1_14
+      rect:
+        serializedVersion: 2
+        x: 1181
+        y: 186
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d88d6ce6a0b8c12f0800000000000000
+      internalID: -1000772140258633587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      phagia-canister-v1_0: 7705888310788887794
+      phagia-canister-v1_1: 6319320156939448346
+      phagia-canister-v1_10: 6048373934841160787
+      phagia-canister-v1_11: 486201057721061885
+      phagia-canister-v1_12: 3047412985717465580
+      phagia-canister-v1_13: 354535177615445234
+      phagia-canister-v1_14: -1000772140258633587
+      phagia-canister-v1_2: 8184451688939900
+      phagia-canister-v1_3: -104193182810063375
+      phagia-canister-v1_4: 1004792396552971701
+      phagia-canister-v1_5: -5186307535826693713
+      phagia-canister-v1_6: -8523421635739992980
+      phagia-canister-v1_7: -9147785105874591022
+      phagia-canister-v1_8: 6459333836288212657
+      phagia-canister-v1_9: 7327120141911895741
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

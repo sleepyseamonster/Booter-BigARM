@@ -57,10 +57,151 @@ namespace BooterBigArm.Tests
             }
             finally{coordinator.DisposeOwnedServices();Object.DestroyImmediate(coordinator);}
         }
+        [TestCase(SkinWeights.OneBone)] [TestCase(SkinWeights.TwoBones)] [TestCase(SkinWeights.FourBones)]
+        public void PredictedUnarmedLandingConvergesAtRecordedModerateSlopeSeam(SkinWeights quality)
+        {
+            using var f=new AnimationPlaygroundNativeGroundTests.NativeFixture(quality);
+            var driver=f.Inner.Driver;var motor=f.Inner.Motor;
+            var coordinator=f.Inner.Forward.Actor.AddComponent<AnimationPlaygroundActionCoordinator>();
+            coordinator.Configure(motor,driver,new AnimationPlaygroundResetRegistry(),new[]{motor.Position});
+            var profile=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundAirborneProfile>("Assets/_Project/Settings/AnimationPlayground/PrivateBindings/AirborneProfile.asset");
+            var continuation=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundContinuationProfile>(AnimationPlaygroundDirectionalTests.NativePath);
+            var body=continuation.nativeBodyProjection.Bind(f.Inner.Forward.Get<GameObject>("visualInstance").transform);
+            var height=(Func<Vector3,float?>)typeof(TopDown3DPlayerAnimationDriver).GetField("nativeGarmentHeight",Private).GetValue(driver);
+            var mesh=new Mesh();
+            try
+            {
+                // Recorded PlayerLoop near-contact pose plus a small spatial/time
+                // neighborhood. Six body/foot passes discarded an otherwise
+                // bounded correction and left the displayed body 99 mm below terrain.
+                foreach(var dx in new[]{-.02f,0,.02f})foreach(var dy in new[]{-.02f,0,.02f})
+                foreach(var source in new[]{.6987f,.7070324f,.7133f})
+                {
+                    f.Place(new Vector2(-1607.68762f+dx,-1660.36047f),40);f.Inner.Lock(true);
+                    f.Inner.Frame(4.07015228f,.25,new Vector2(-.7071068f,-.7071068f),1);
+                    var position=new Vector3(-1607.68762f+dx,-47.52311f+dy,-1660.36047f);
+                    f.Inner.Forward.Actor.transform.position=position;f.Inner.Forward.Player.position=position;Physics.SyncTransforms();
+                    var binding=new AnimationPlaygroundMotionBinding{sourceId="Recorded unarmed slope seam",clip=profile.unarmed.continuous,
+                        readiness=AnimationPlaygroundMotionReadiness.PhysicalQualified};
+                    Assert.That(coordinator.TryBeginPhysicalSequence(this,binding,AnimationPlaygroundMotionMode.Jump,null,
+                        _=>new AnimationPlaygroundMotorIntent(Vector3.zero,Vector3.forward),null,
+                        policy:AnimationPlaygroundMotionPolicy.JumpLocomotion),Is.True);
+                    Assert.That(driver.ConfigureJumpPresentation(coordinator,1),Is.True);
+                    typeof(TopDown3DPlayerMotor).GetProperty("IsGrounded").SetValue(motor,false);motor.SetJumpGroundedLocomotion(coordinator,false);
+                    driver.SetJumpPresentationState(coordinator,1,false,false);driver.SetAnimationPresentationTime(coordinator,source);
+                    Assert.That(motor.TryPredictJumpSupport(coordinator,.65f,out var predicted),Is.True);
+                    driver.SetJumpSupportPrediction(coordinator,predicted.collider,new Plane(predicted.normal,predicted.point),.9344983f);
+                    f.Inner.Forward.Call("PrepareForwardGraphUpdate");Render(driver,1,0);f.Inner.Forward.Call("LateUpdate");
+                    Assert.That(driver.LaboratoryNativeGroundFailure,Is.Null,$"{quality}/{dx}/{dy}/{source}");
+                    Assert.That(body.MinimumTerrainDistance(height,out _),Is.GreaterThanOrEqualTo(-.002f));
+                    Assert.That(f.MeshMinimum(mesh),Is.GreaterThanOrEqualTo(-.002f),f.MinimumSkin);
+                    Assert.That(driver.LaboratoryNativeBodyLift,Is.InRange(0f,.18f));
+                    Assert.That(motor.IsGrounded,Is.False);Assert.That(motor.Position,Is.EqualTo(position));
+                    Assert.That(motor.JumpObservation.TouchdownId,Is.Zero);
+                    Assert.That(f.Inner.Forward.Get<PlayableGraph>("playableGraph").GetOutputCount(),Is.EqualTo(1));
+                    coordinator.Cancel();
+                }
+            }
+            finally{coordinator.DisposeOwnedServices();Object.DestroyImmediate(coordinator);Object.DestroyImmediate(mesh);}
+        }
+
         private static void Render(TopDown3DPlayerAnimationDriver driver,float alpha,float seconds)
         {
             try{typeof(TopDown3DPlayerAnimationDriver).GetMethod("PresentJumpActionAt",Private).Invoke(driver,new object[]{alpha,seconds});}
             catch(TargetInvocationException error){throw new InvalidOperationException(error.InnerException?.Message,error.InnerException);}
+        }
+        [TestCase(SkinWeights.OneBone)] [TestCase(SkinWeights.TwoBones)] [TestCase(SkinWeights.FourBones)]
+        public void LandingHandoffPreservesFadedDirectionalPoseOnFlatSupport(SkinWeights quality)
+        {
+            using var f=new AnimationPlaygroundDirectionalTests.Fixture(quality);f.Flat();f.Lock(true);
+            var driver=f.Driver;var motor=f.Motor;
+            var coordinator=f.Forward.Actor.AddComponent<AnimationPlaygroundActionCoordinator>();
+            coordinator.Configure(motor,driver,new AnimationPlaygroundResetRegistry(),new[]{motor.Position});
+            var profile=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundAirborneProfile>("Assets/_Project/Settings/AnimationPlayground/PrivateBindings/AirborneProfile.asset");
+            var bones=Joints.Select(f.Forward.Get<Animator>("humanoidAnimator").GetBoneTransform).ToArray();
+            try
+            {
+                foreach(var angle in new[]{135f,225f})for(var phase=0;phase<16;phase++)
+                {
+                    f.Flat(); // Reinstall the completed support cleared by the previous sequence's release.
+                    var direction=new Vector2(Mathf.Sin(angle*Mathf.Deg2Rad),Mathf.Cos(angle*Mathf.Deg2Rad));
+                    var clock=f.Forward.Get<AnimationPlaygroundGaitClock>("forwardClock");clock.RebasePhase(phase/16f);
+                    f.Frame(4.5f,clock.Cycles,direction,1);
+                    var binding=new AnimationPlaygroundMotionBinding{sourceId="Faded directional landing",clip=profile.standing.continuous,
+                        readiness=AnimationPlaygroundMotionReadiness.PhysicalQualified};
+                    Assert.That(coordinator.TryBeginPhysicalSequence(this,binding,AnimationPlaygroundMotionMode.Recovery,null,
+                        _=>new AnimationPlaygroundMotorIntent(Vector3.forward*4.5f,Vector3.forward),null,
+                        policy:AnimationPlaygroundMotionPolicy.JumpLocomotion),Is.True);
+                    driver.ConfigureJumpPresentation(coordinator,0);driver.SetJumpPresentationState(coordinator,0,true,false);
+                    driver.SetAnimationPresentationTime(coordinator,profile.standing.contactTime+.24f);
+                    typeof(TopDown3DPlayerAnimationDriver).GetField("forwardSpeed",Private).SetValue(driver,4.5f);
+                    typeof(TopDown3DPlayerAnimationDriver).GetField("forwardPreviousSpeed",Private).SetValue(driver,4.5f);
+                    f.Forward.Call("PrepareForwardGraphUpdate");Render(driver,1,0);f.Forward.Call("LateUpdate");
+                    var before=bones.Select(b=>b.position).ToArray();coordinator.Cancel();
+                    f.Frame(4.5f,clock.Cycles,direction,0);
+                    var gap=bones.Select((b,i)=>Vector3.Distance(b.position,before[i])).Max();
+                    Assert.That(gap,Is.LessThanOrEqualTo(.002f),$"{angle}/{phase}/{quality}: releasing a fully faded action moved a joint {gap:R}m.");
+                }
+            }
+            finally{coordinator.DisposeOwnedServices();Object.DestroyImmediate(coordinator);}
+        }
+        [TestCase(SkinWeights.OneBone)] [TestCase(SkinWeights.TwoBones)] [TestCase(SkinWeights.FourBones)]
+        public void LandingHandoffPredictionKeepsEquippedClearanceAtSolverBoundary(SkinWeights quality)
+        {
+            using var f=new AnimationPlaygroundNativeGroundTests.NativeFixture(quality);
+            var driver=f.Inner.Driver;var motor=f.Inner.Motor;
+            var coordinator=f.Inner.Forward.Actor.AddComponent<AnimationPlaygroundActionCoordinator>();
+            coordinator.Configure(motor,driver,new AnimationPlaygroundResetRegistry(),new[]{motor.Position});
+            var profile=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundAirborneProfile>("Assets/_Project/Settings/AnimationPlayground/PrivateBindings/AirborneProfile.asset");
+            var continuation=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundContinuationProfile>(AnimationPlaygroundDirectionalTests.NativePath);
+            var body=continuation.nativeBodyProjection.Bind(f.Inner.Forward.Get<GameObject>("visualInstance").transform);
+            var height=(Func<Vector3,float?>)typeof(TopDown3DPlayerAnimationDriver).GetField("nativeGarmentHeight",Private).GetValue(driver);
+            try
+            {
+                foreach(var takeoff in new[]{false,true})
+                {
+                    f.Place(new Vector2(-1636,-1516),175);f.Inner.Frame(takeoff?1.4f:0,.25,Vector2.up,1);
+                    motor.TryGetLaboratorySupportPlane(out var plane,true);var support=motor.LaboratorySupportCollider;
+                    // The real PlayerLoop checkpoint includes one interpolated
+                    // frame below rest while the solver resolves touchdown.
+                    var position=motor.Position+Vector3.down*(takeoff?0:.05f);
+                    f.Inner.Forward.Actor.transform.position=position;f.Inner.Forward.Player.position=position;
+                    var variant=takeoff?profile.running:profile.standing;
+                    var binding=new AnimationPlaygroundMotionBinding{sourceId="Predicted clearance seam",clip=variant.continuous,
+                        readiness=AnimationPlaygroundMotionReadiness.PhysicalQualified};
+                    Assert.That(coordinator.TryBeginPhysicalSequence(this,binding,AnimationPlaygroundMotionMode.Jump,null,
+                        _=>new AnimationPlaygroundMotorIntent(Vector3.zero,Vector3.forward),null,
+                        policy:AnimationPlaygroundMotionPolicy.JumpLocomotion),Is.True);
+                    typeof(TopDown3DPlayerMotor).GetProperty("IsGrounded").SetValue(motor,false);
+                    driver.ConfigureJumpPresentation(coordinator,takeoff?.74f:1);
+                    driver.SetJumpPresentationState(coordinator,takeoff?.74f:1,false,false);
+                    driver.SetAnimationPresentationTime(coordinator,takeoff?variant.liftTime:variant.contactTime-.01f);
+                    driver.SetJumpSupportPrediction(coordinator,support,plane,takeoff?1:.94f);
+                    f.Inner.Forward.Get<AnimationPlaygroundGaitClock>("forwardClock").RebasePhase(.25f);
+                    typeof(TopDown3DPlayerAnimationDriver).GetField("forwardSpeed",Private).SetValue(driver,takeoff?1.4f:0);
+                    typeof(TopDown3DPlayerAnimationDriver).GetField("forwardPreviousSpeed",Private).SetValue(driver,takeoff?1.4f:0);
+                    if(takeoff)
+                    {
+                        typeof(TopDown3DPlayerMotor).GetProperty("IsGrounded").SetValue(motor,true);
+                        driver.ConfigureJumpPresentation(coordinator,.74f,variant.liftTime);
+                        driver.SetJumpPresentationState(coordinator,.74f,true,false);
+                        driver.SetAnimationPresentationTime(coordinator,variant.liftTime-.02f);
+                        f.Inner.Forward.Call("PrepareForwardGraphUpdate");Render(driver,1,.06f);f.Inner.Forward.Call("LateUpdate");
+                        Assert.That(motor.TryAnimationTakeoff(coordinator,variant.upwardSpeed),Is.True);
+                        f.Inner.Forward.Actor.transform.position+=Vector3.down*.014f;
+                        driver.SetAnimationPresentationTime(coordinator,variant.liftTime);
+                        typeof(TopDown3DPlayerAnimationDriver).GetField("jumpPreviousSourceTime",Private).SetValue(driver,(double)(variant.liftTime-.02f));
+                        typeof(TopDown3DPlayerAnimationDriver).GetField("jumpPreviousWeight",Private).SetValue(driver,.5f);
+                        f.Inner.Forward.Call("PrepareForwardGraphUpdate");Render(driver,1f/6,1f/60);f.Inner.Forward.Call("LateUpdate");
+                    }
+                    else{f.Inner.Forward.Call("PrepareForwardGraphUpdate");Render(driver,1,0);f.Inner.Forward.Call("LateUpdate");}
+                    Assert.That(driver.LaboratoryNativeGroundFailure,Is.Null,$"takeoff={takeoff}/{quality}");
+                    Assert.That(body.MinimumTerrainDistance(height,out _),Is.GreaterThanOrEqualTo(-.002f),$"takeoff={takeoff}/{quality}");
+                    Assert.That(driver.LaboratoryNativeBodyLift,Is.LessThanOrEqualTo(.18f));
+                    coordinator.Cancel();
+                }
+            }
+            finally{coordinator.DisposeOwnedServices();Object.DestroyImmediate(coordinator);}
         }
         [TestCase(SkinWeights.OneBone)] [TestCase(SkinWeights.TwoBones)] [TestCase(SkinWeights.FourBones)]
         public void PredictedSupportDoesNotBecomeAPoseSnapOrGameplayContactAtTouchdown(SkinWeights quality)

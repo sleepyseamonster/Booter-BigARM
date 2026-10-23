@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0d28436222c4a6692e95b50ebdc5f76, type: 3}
+  m_Name: FirstToolLoadout
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DCampLoopLoadoutProfile
+  sourceCatalog: {fileID: 11400000, guid: 9b53a13b5b81f9f4f923c87dacf9661b, type: 2}
+  definitions:
+  - {fileID: 11400000, guid: bd4a3ff1934a48b488d00178f2ea5f5b, type: 2}
+  - {fileID: 11400000, guid: fa4af7c1e566472397b27e5d1c631328, type: 2}
+  - {fileID: 11400000, guid: 92b09b6ae45c408a81226d4e4d27e460, type: 2}
+  - {fileID: 11400000, guid: 74792313cdb24854bf9c117032b2f0dc, type: 2}
+  - {fileID: 11400000, guid: e67c8f80513d4e829c8de0f3905ad920, type: 2}
+  - {fileID: 11400000, guid: a8b0a825cc7745ceaaa73598f24f3afd, type: 2}
+  - {fileID: 11400000, guid: e9dadbfe6e894f93a4c07d2c4540217e, type: 2}
+  - {fileID: 11400000, guid: e066041e1eaed074a92933f9098b3db5, type: 2}
+  - {fileID: 11400000, guid: 5405b0f665c6f1c49a463acc88d7378f, type: 2}
+  - {fileID: 11400000, guid: 7cff2822933cc1849a0ac212a05cc9eb, type: 2}
+  - {fileID: 11400000, guid: 751f940bed9a82f47b0f8cc165c6348a, type: 2}
+  - {fileID: 11400000, guid: 25b6a5b387542084683a25cae7ab3286, type: 2}
+  - {fileID: 11400000, guid: f3ab2bd8ec16bfa48b3f5d8436c649c8, type: 2}
+  - {fileID: 11400000, guid: 7bbd78331477adc4ea5353e129b8c43a, type: 2}
+  - {fileID: 11400000, guid: 766530b83f2e76b479b5625ee6f52c02, type: 2}
+  - {fileID: 11400000, guid: d1b3900c8ee88ab4c9bee6f75ad09c4d, type: 2}
+  - {fileID: 11400000, guid: c5c73285b297cc14ba060fe43dd951e8, type: 2}
+  - {fileID: 11400000, guid: 9cb4ba4186560ef448e46c2b3f9f39ca, type: 2}
+  - {fileID: 11400000, guid: bdb4cd42fff60a44392b359a0163912c, type: 2}
+  - {fileID: 11400000, guid: d4f31d916197b6047a52f2e3554c8fe3, type: 2}
+  - {fileID: 11400000, guid: 3018db16160cae04884269cc245607ff, type: 2}
+  - {fileID: 11400000, guid: 57ef04498dc48aa46b6946c4d4f9282d, type: 2}
+  - {fileID: 11400000, guid: 25e61de8b9179374eab836248ff4e192, type: 2}
+  - {fileID: 11400000, guid: da40bd4fbf0bc0e409c5397c400d3672, type: 2}
+  startingEquipment:
+  - itemId: equipment.algae_canister
+    quantity: 1
+  - itemId: equipment.grappling_hook
+    quantity: 1
+  - itemId: equipment.cloak
+    quantity: 1
+  - itemId: equipment.jacket
+    quantity: 1

@@ -42,18 +42,34 @@ namespace BooterBigArm.TopDown3D
             return weights.x * profile.maximumSpeed + (weights.y + weights.z) * profile.maximumLateralSpeed + weights.w * profile.maximumBackwardSpeed;
         }
 
-        // idle; five accepted forward channels; L walk/run; R walk/run; back walk/run.
+        // Idle and five forward channels, then lateral pairs (schema 2) or
+        // walk/jog/run triples (schema 3), followed by the unchanged backward pair.
         public static void FillPoseWeights(AnimationPlaygroundStandingStrafeProfile profile,
             AnimationPlaygroundForwardLocomotionProfile forward, float speed, Vector2 direction, float[] result)
         {
-            if (result == null || result.Length != 12 || !float.IsFinite(speed) || speed < 0) throw new ArgumentException("Twelve finite directional channels required.");
+            if (profile == null || result == null || result.Length != profile.DirectionalChannelCount || !float.IsFinite(speed) || speed < 0)
+                throw new ArgumentException("Use the complete paired directional channel array and a finite speed.");
             Array.Clear(result, 0, result.Length); var angles = Weights(direction); var f = forward.PoseWeights(speed);
             for (var i = 0; i < 6; i++) result[i] = f[i] * angles.x;
             for (var side = 0; side < 3; side++)
             {
-                var angular = angles[side+1]; var walk = profile.directionalGaits[side*2]; var run = profile.directionalGaits[side*2+1];
+                var first = profile.HasJog ? side < 2 ? side * 3 : 6 : side * 2;
+                var angular = angles[side+1]; var walk = profile.directionalGaits[first];
+                if (profile.HasJog && side < 2)
+                {
+                    var jog = profile.directionalGaits[first+1]; var fast = profile.directionalGaits[first+2];
+                    var moving = Mathf.Clamp01(speed / walk.nominalSpeed);
+                    var jogging = Mathf.InverseLerp(walk.nominalSpeed, jog.nominalSpeed, speed);
+                    var runningFast = Mathf.InverseLerp(jog.nominalSpeed, fast.nominalSpeed, speed);
+                    result[0] += angular * (1-moving);
+                    result[6+first] = angular * moving * (1-jogging);
+                    result[7+first] = angular * moving * jogging * (1-runningFast);
+                    result[8+first] = angular * moving * runningFast;
+                    continue;
+                }
+                var run = profile.directionalGaits[first+1];
                 var travel = Mathf.Clamp01(speed / walk.nominalSpeed); var running = Mathf.InverseLerp(walk.nominalSpeed, run.nominalSpeed, speed);
-                result[0] += angular * (1 - travel); result[6+side*2] = angular * travel * (1-running); result[7+side*2] = angular * travel * running;
+                result[0] += angular * (1 - travel); result[6+first] = angular * travel * (1-running); result[7+first] = angular * travel * running;
             }
         }
 
@@ -61,18 +77,21 @@ namespace BooterBigArm.TopDown3D
             AnimationPlaygroundFootProjection projection, out string reason)
         {
             reason = null;
-            if (p.schema != 2 || model == null || p.targetModel != model || projection == null || p.footProjection != projection
+            if (!p.AllDirections || model == null || p.targetModel != model || projection == null || p.footProjection != projection
                 || !float.IsFinite(p.maximumSpeed) || p.maximumSpeed < 6 || p.maximumSpeed > 6.15f || p.maximumLateralSpeed != 5 || p.maximumBackwardSpeed != 4
-                || p.directionalGaits == null || p.directionalGaits.Length != 6)
-            { reason = "Restore the paired six-source standing directional review and its calibrated speed limits."; return false; }
-            for (var i = 0; i < 6; i++)
+                || p.directionalGaits == null || p.directionalGaits.Length != (p.HasJog ? 8 : 6))
+            { reason = "Restore the complete paired directional sources and their calibrated speed limits."; return false; }
+            for (var i = 0; i < p.directionalGaits.Length; i++)
             {
-                var gait = p.directionalGaits[i]; var maximum = i < 4 ? p.maximumLateralSpeed : p.maximumBackwardSpeed;
+                var lateral = i < (p.HasJog ? 6 : 4);
+                var stage = p.HasJog && lateral ? i % 3 : i % 2;
+                var nominal = lateral ? stage == 0 ? 1.4f : stage == 1 ? 3f : 5f : stage == 0 ? 1.1f : 1.8f;
+                var gait = p.directionalGaits[i]; var maximum = lateral ? p.maximumLateralSpeed : p.maximumBackwardSpeed;
                 if (gait?.sourceClip == null || !gait.sourceClip.isHumanMotion || !gait.sourceClip.isLooping
-                    || gait.nominalSpeed != (i < 4 ? (i % 2 == 0 ? 1.4f : 3f) : (i == 4 ? 1.1f : 1.8f)) || !float.IsFinite(gait.metresPerCycle) || gait.metresPerCycle <= 0
+                    || gait.nominalSpeed != nominal || !float.IsFinite(gait.metresPerCycle) || gait.metresPerCycle <= 0
                     || gait.nativeContacts == null || gait.nativeContacts.Length != 4 || gait.phaseMap == null || gait.phaseMap.Length < 5
                     || gait.signedHeight == null || gait.signedHeight.length < 2)
-                { reason = "Directional walk/run channels require complete humanoid loops and measured stride, phase and height data."; return false; }
+                { reason = "Directional gait channels require complete humanoid loops and measured stride, phase and height data."; return false; }
                 for (var k = 0; k < gait.phaseMap.Length; k++)
                 {
                     var point = gait.phaseMap[k];
@@ -81,7 +100,7 @@ namespace BooterBigArm.TopDown3D
                     if (k == 0) continue;
                     var previous = gait.phaseMap[k-1];
                     var derivative = (point.native - previous.native) / (point.semantic - previous.semantic);
-                    var speed = i % 2 == 0 ? gait.nominalSpeed : maximum;
+                    var speed = stage == 0 || p.HasJog && lateral && stage == 1 ? gait.nominalSpeed : maximum;
                     var rate = derivative * gait.sourceClip.length * speed / gait.metresPerCycle;
                     if (rate < .25f || rate > 1.65f)
                     { reason = "Directional native timing exceeds its measured playback budget."; return false; }

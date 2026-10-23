@@ -16,10 +16,10 @@ namespace BooterBigArm.Tests
     {
         const BindingFlags Private=BindingFlags.Instance|BindingFlags.NonPublic;
         const string Forward="Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset";
-        const string Turns="Assets/_Project/Settings/AnimationPlayground/PrivateBindings/MovingTurnReview.asset";
         static AnimationPlaygroundMovingTurnProfile Pair(AnimationPlaygroundForwardLocomotionProfile policy)
         {
-            var source=AssetDatabase.LoadAssetAtPath<AnimationPlaygroundMovingTurnProfile>(Turns);Assert.That(source,Is.Not.Null);
+            var bindings=AssetDatabase.LoadAssetAtPath<TopDown3DAnimationPlaygroundBindings>("Assets/_Project/Settings/AnimationPlayground/PrivateBindings/PlayerBindings.asset");
+            var source=bindings!=null?bindings.movingTurns:null;Assert.That(source,Is.Not.Null,"Restore the selected source-paired moving-turn profile.");
             var p=Object.Instantiate(source);p.forwardProfile=policy;Assert.That(p.Validate(policy,out var reason),Is.True,reason);return p;
         }
         static void Set(TopDown3DPlayerAnimationDriver d,string n,object value)=>typeof(TopDown3DPlayerAnimationDriver).GetField(n,Private).SetValue(d,value);

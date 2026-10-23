@@ -236,6 +236,15 @@ namespace BooterBigArm.Tests
                     preview = EditorSceneManager.NewPreviewScene();
                     var template = TopDown3DAnimationPlaygroundSession.Find(scene);
                     bindings = Object.Instantiate(template.Bindings); bindings.locomotion = policy.locomotion; bindings.forwardLocomotion = policy;
+                    // This fixture exercises the retained three-gait terrain policy,
+                    // independently of the current five-band Camp Loop selection.
+                    bindings.slowWalkSpeed = policy.gaits[0].nominalSpeed;
+                    bindings.runSpeed = policy.gaits[1].nominalSpeed;
+                    bindings.sprintSpeed = policy.gaits[2].nominalSpeed;
+                    bindings.forwardReviewOverride = null; bindings.forwardReviewOverrideRequired = false;
+                    bindings.movingTurns = null; bindings.movingTurnsRequired = false;
+                    bindings.standingStrafeReview = null; bindings.standingStrafeReviewRequired = false;
+                    bindings.continuationReview = null; bindings.continuationReviewRequired = false;
                     Actor = new GameObject("Terrain graph contract"); Actor.SetActive(false); SceneManager.MoveGameObjectToScene(Actor, preview);
                     Motor = Actor.AddComponent<TopDown3DPlayerMotor>(); Driver = Actor.AddComponent<TopDown3DPlayerAnimationDriver>();
                     var shape = Actor.GetComponent<CapsuleCollider>(); shape.height = bindings.capsuleHeight; shape.radius = bindings.capsuleRadius;

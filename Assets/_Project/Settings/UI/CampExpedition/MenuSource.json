@@ -1,0 +1,352 @@
+{
+  "version": 1,
+  "catalogRevision": "154",
+  "rootId": "author.tool.iron_headed_digger",
+  "items": [
+    {
+      "id": "equipment.algae_canister",
+      "name": "Phagia Canister",
+      "purpose": "Booter’s attached living-algae reserve, carried for eating, drinking and treating injuries. The canister holds the survival supply rather than creating a separate meal or drink each time it is used; its existing attachment and reserve rules still apply.",
+      "category": "Tools",
+      "tier": "T3",
+      "rarity": "Rare",
+      "artName": "phagia-canister-v1",
+      "equipmentAddress": "attachment",
+      "inputs": [],
+      "treeX": 0,
+      "treeY": 0,
+      "visibleInTree": false,
+      "sourceStatus": "catalog revision 154"
+    },
+    {
+      "id": "resource.ironstone_ore",
+      "name": "Raw Ironstone ore",
+      "purpose": "Bulk iron-bearing rock gathered from exposed Ironstone deposits. It feeds the dry-sorting process, which separates several material fractions; it is raw mineral cargo rather than ready-to-use metal.",
+      "category": "Crafting components",
+      "tier": "T0",
+      "rarity": "Common",
+      "artName": "raw-ironstone-ore-painted-hue-study-v1",
+      "equipmentAddress": "",
+      "inputs": [],
+      "treeX": 36,
+      "treeY": 592,
+      "visibleInTree": true,
+      "sourceStatus": "catalog revision 154"
+    },
+    {
+      "id": "proposal.natural.iron_stock",
+      "name": "Consolidated iron bar stock",
+      "purpose": "Worked iron consolidated into unfitted bars for fasteners, tool bodies and structural fittings. It is the metal-working stage after an iron bloom or selected ore has been processed, rather than another grade of loose ore. Final section, grade and forging conditions remain to be chosen.",
+      "category": "Crafting components",
+      "tier": "T1",
+      "rarity": "Common",
+      "artName": "consolidated-iron-bar-stock-painted-hue-study-v1",
+      "equipmentAddress": "",
+      "inputs": [
+        {
+          "itemId": "resource.ironstone_ore",
+          "quantity": 1
+        }
+      ],
+      "treeX": 521,
+      "treeY": 592,
+      "visibleInTree": true,
+      "sourceStatus": "catalog revision 154"
+    },
+    {
+      "id": "proposal.bio.shell",
+      "name": "Shell husks / shed plates",
+      "purpose": "Cheap raw shell/husk material; source of scraped fibers and candidate basic casing/guards. It provides candidate material or a shaped starting piece for making other objects, with the final form set by the receiving design.",
+      "category": "Crafting components",
+      "tier": "T0",
+      "rarity": "Common",
+      "artName": "shell-husks-shed-plates-painted-hue-study-v1",
+      "equipmentAddress": "",
+      "inputs": [],
+      "treeX": 521,
+      "treeY": 1426,
+      "visibleInTree": true,
+      "sourceStatus": "catalog revision 154"
+    },
+    {
+      "id": "component.mining.bone_shaft",
+      "name": "Bone multi-tool shaft",
+      "purpose": "A full-length shaped stone-bone shaft for the two-handed T0 or T1 multi-tool. It provides the head seat and long handhold; the T1 variant captures textured gripping-pad scales between its fitted end hardware.",
+      "category": "Crafting components",
+      "tier": "T0",
+      "rarity": "Common",
+      "artName": "bone-multi-tool-shaft-painted-hue-study-v1",
+      "equipmentAddress": "",
+      "inputs": [
+        {
+          "itemId": "author.bio.stone_bone",
+          "quantity": 1
+        },
+        {
+          "itemId": "proposal.bio.gripping_pad_scales",
+          "quantity": 1
+        }
+      ],
+      "treeX": 1006,
+      "treeY": 175,
+      "visibleInTree": true,
+      "sourceStatus": "catalog revision 154"
+    },
+    {
+      "id": "component.mining.shell_butt_cap",
+      "name": "Shell tool butt cap",
+      "purpose": "A rounded shell cap covering the butt end of the full-length stone-bone shaft on the T0 and T1 multi-tools. It finishes the rear palm-contact surface and protects the shaft end.",
+      "category": "Crafting components",
+      "tier": "T0",
+      "rarity": "Common",
+      "artName": "shell-tool-butt-cap-painted-hue-study-v1",
+      "equipmentAddress": "",
+      "inputs": [
+        {
+          "itemId": "proposal.bio.shell",
+          "quantity": 1
+        }
+      ],
+      "treeX": 1006,
+      "treeY": 1426,
+      "visibleInTree": true,
+      "sourceStatus": "catalog revision 154"
+    },
+    {
+      "id": "component.mining.iron_retaining_pin",
+      "name": "Iron tool retaining pin",
+      "purpose": "A fitted iron pin securing a digging head and bone shaft through their aligned retaining holes. It is distinct from a Legger pivot pin.",
+      "category": "Crafting components",
+      "tier": "T1",
+      "rarity": "Common",
+      "artName": "iron-tool-retaining-pin-painted-hue-study-v1",
+      "equipmentAddress": "",
+      "inputs": [
+        {
+          "itemId": "proposal.natural.iron_stock",
+          "quantity": 1
+        }
+      ],
+      "treeX": 1006,
+      "treeY": 1148,
+      "visibleInTree": true,
+      "sourceStatus": "catalog revision 154"
+    },
+    {
+      "id": "component.mining.iron_digging_head",
+      "name": "Forged iron digging head",
+      "purpose": "A full-size transverse forged iron head combining a downturned broad hoe/adze-like digging blade and an opposite rough blunt hammer poll. It mounts on the T1 stone-bone shaft for shallow digging, prying and crude hammering.",
+      "category": "Crafting components",
+      "tier": "T1",
+      "rarity": "Common",
+      "artName": "forged-iron-digging-head-completion-v2",
+      "equipmentAddress": "",
+      "inputs": [
+        {
+          "itemId": "proposal.natural.iron_stock",
+          "quantity": 1
+        }
+      ],
+      "treeX": 1006,
+      "treeY": 592,
+      "visibleInTree": true,
+      "sourceStatus": "catalog revision 154"
+    },
+    {
+      "id": "component.mining.iron_head_collar",
+      "name": "Iron tool head collar",
+      "purpose": "A fitted iron reinforcing collar around the T1 multi-tool or T2 multi-tool head connection. Tool-specific forms are separate fit variants.",
+      "category": "Crafting components",
+      "tier": "T0",
+      "rarity": "Uncommon",
+      "artName": "iron-tool-head-collar-v1",
+      "equipmentAddress": "",
+      "inputs": [
+        {
+          "itemId": "proposal.natural.iron_stock",
+          "quantity": 1
+        }
+      ],
+      "treeX": 1006,
+      "treeY": 870,
+      "visibleInTree": true,
+      "sourceStatus": "catalog revision 154"
+    },
+    {
+      "id": "proposal.t1.iron_bloom",
+      "name": "Unconsolidated iron bloom",
+      "purpose": "A rough mass of iron-bearing metal from the proposed smelting stage, awaiting consolidation into usable working stock. It precedes the consolidated iron bars and steel-making branches. Metal yield, entrained residue and the required working process remain unqualified.",
+      "category": "Crafting components",
+      "tier": "T1",
+      "rarity": "Uncommon",
+      "artName": "unconsolidated-iron-bloom-painted-hue-study-v1",
+      "equipmentAddress": "",
+      "inputs": [],
+      "treeX": 0,
+      "treeY": 0,
+      "visibleInTree": false,
+      "sourceStatus": "catalog revision 154"
+    },
+    {
+      "id": "author.bio.stone_bone",
+      "name": "Stone bone",
+      "purpose": "An extremely hard bone that occurs in some fauna. A selected sound length can supply the base material for a fitted bone multi-tool shaft; source selection and shaping still require design.",
+      "category": "Crafting components",
+      "tier": "T0",
+      "rarity": "Uncommon",
+      "artName": "stone-bone-painted-hue-study-v1",
+      "equipmentAddress": "",
+      "inputs": [],
+      "treeX": 521,
+      "treeY": 36,
+      "visibleInTree": true,
+      "sourceStatus": "catalog revision 154"
+    },
+    {
+      "id": "proposal.bio.gripping_pad_scales",
+      "name": "Faunal gripping-pad scales",
+      "purpose": "Candidate textured feed for tool grips, foot-contact surfaces and cargo-rest friction pads. It provides candidate material or a shaped starting piece for making other objects, with the final form set by the receiving design.",
+      "category": "Crafting components",
+      "tier": "T0",
+      "rarity": "Common",
+      "artName": "faunal-gripping-pad-scales-v1",
+      "equipmentAddress": "",
+      "inputs": [],
+      "treeX": 521,
+      "treeY": 314,
+      "visibleInTree": true,
+      "sourceStatus": "catalog revision 154"
+    },
+    {
+      "id": "author.tool.iron_headed_digger",
+      "name": "Iron-headed multi-tool",
+      "purpose": "A full-length, two-handed iron-headed multi-tool with a transverse dual-ended head: a broad downturned hoe/adze-like digging blade on one side and a rough blunt iron hammer poll on the other. Its stone-bone shaft, reinforcing iron collar, shell butt cap, iron retaining pin and captured gripping-pad scales make a more effective prying and shallow-digging tool than the bone version.",
+      "category": "Tools",
+      "tier": "T1",
+      "rarity": "Common",
+      "artName": "iron-headed-multi-tool-completion-v4",
+      "equipmentAddress": "tool",
+      "inputs": [
+        {
+          "itemId": "component.mining.iron_digging_head",
+          "quantity": 1
+        },
+        {
+          "itemId": "component.mining.bone_shaft",
+          "quantity": 1
+        },
+        {
+          "itemId": "component.mining.shell_butt_cap",
+          "quantity": 1
+        },
+        {
+          "itemId": "component.mining.iron_head_collar",
+          "quantity": 1
+        },
+        {
+          "itemId": "component.mining.iron_retaining_pin",
+          "quantity": 1
+        }
+      ],
+      "treeX": 1491,
+      "treeY": 731,
+      "visibleInTree": true,
+      "sourceStatus": "catalog revision 154"
+    },
+    {
+      "id": "author.tool.jawbone_salvage_digger",
+      "name": "Bone salvage multi-tool",
+      "purpose": "A full-length, two-handed bone salvage multi-tool with a broad wedge-shaped jawbone head on a stone-bone shaft. The wedge loosens shallow ground and pries salvage; the thick hard bony poll on its opposite side provides crude light hammering. A fitted shell collar, shell butt cap and iron retaining pin hold the simple build together.",
+      "category": "Tools",
+      "tier": "T0",
+      "rarity": "Common",
+      "artName": "jawbone-completed-realistic-portrait-v1",
+      "equipmentAddress": "tool",
+      "inputs": [],
+      "treeX": 0,
+      "treeY": 0,
+      "visibleInTree": false,
+      "sourceStatus": "catalog revision 154"
+    },
+    {
+      "id": "tool.utility_harness",
+      "name": "Utility harness",
+      "purpose": "A simple waist harness belt with two attachment mounts. Supports the Personal Phagia canister and the dust harvester canister in this loadout.",
+      "category": "Tools",
+      "tier": "",
+      "rarity": "",
+      "artName": "utility-harness-v1",
+      "equipmentAddress": "frame",
+      "inputs": [],
+      "treeX": 0,
+      "treeY": 0,
+      "visibleInTree": false,
+      "sourceStatus": "author-directed browser-local body frame"
+    }
+  ],
+  "stations": [
+    {
+      "id": "author.station.workbench",
+      "name": "Workbench",
+      "purpose": "General camp work surface for fitting parts, assembling tools and repairing ordinary gear. The existing Camp Loop trial uses its workbench to craft an empty Arc Battery; this catalog entry does not expand the trial recipe roster."
+    },
+    {
+      "id": "author.station.dust_refinery",
+      "name": "Dust refinery",
+      "purpose": "Refine collected Arc Dust into Arc Energy and charge an existing empty Arc Battery. Accept a dust canister and an empty battery, retain the canister and unused dust, and return the same battery charged; dust alone does not create a battery casing."
+    },
+    {
+      "id": "author.station.ironstone_refinery",
+      "name": "Ironstone refinery",
+      "purpose": "Camp facility for breaking down and separating raw Ironstone Ore into coarse aggregate, iron-rich concentrate, mineral sand and mineral dust. Represents the existing manual Ironstone sorter; further refining or smelting would require separately designed operations."
+    },
+    {
+      "id": "camp-menu.cooking",
+      "name": "Cooking station",
+      "purpose": "Prepare food at camp. Ingredients, preparation, heat and atmosphere requirements are still to be designed."
+    },
+    {
+      "id": "proposal.station.ceramic_forming_bench",
+      "name": "Ceramic forming bench",
+      "purpose": "Prepare and shape qualified ceramic feed into unfired vessels, molds or fitted blanks before drying and kiln firing. Complements the existing firing kiln; binder chemistry, usable process liquids and feed suitability must be selected explicitly."
+    },
+    {
+      "id": "proposal.station.contained_chemical_processing_station",
+      "name": "Contained chemical processing station",
+      "purpose": "Process separately contained faunal and mineral feedstocks into candidate industrial binders, sealants, lubricants or other processing agents. Select compatible vessels and a qualified process for each product; keep industrial chemicals separate from Phagia and food equipment."
+    },
+    {
+      "id": "proposal.audit.controlled_heating_firing_kiln",
+      "name": "Controlled-heating firing kiln",
+      "purpose": "Candidate stationary kiln. Qualified external power, thermal controls and atmosphere management remain unresolved."
+    },
+    {
+      "id": "proposal.forging.hearth",
+      "name": "Forge hearth",
+      "purpose": "Proposed bounded workshop heat source for bringing metal to a workable state. It supports a controlled metalworking operation; the workpiece, heat source and suitable supporting tools must be established for the process."
+    },
+    {
+      "id": "proposal.station.husk_processing_table",
+      "name": "Husk processing table",
+      "purpose": "Hold shell husks and shed plates for scraping chitin/icore fibers and sorting useful shell pieces. Supplies candidate fiber feed for husk paper and later pressing; cheap raw shell does not imply cheap finished textiles."
+    },
+    {
+      "id": "proposal.station.husk_fiber_press",
+      "name": "Husk-fiber press",
+      "purpose": "Press prepared husk-fiber feed into candidate paper sheets or difficult dense fiber stock using process-specific tooling. Paper and garment-grade material remain separate processes; pressing alone does not supply ordinary cloth or bypass costly textile preparation."
+    },
+    {
+      "id": "proposal.station.legger_service_stand",
+      "name": "Legger service stand",
+      "purpose": "Support accessible Legger assemblies during inspection, cleaning, lubrication and replacement of compatible mechanical parts. Requires the Legger's physical presence and appropriate tools; service outcomes depend on parts and access rather than automatic full repair."
+    },
+    {
+      "id": "proposal.station.salvage_dismantling_bench",
+      "name": "Salvage dismantling bench",
+      "purpose": "Secure recovered scrap and damaged mechanisms for inspection and careful disassembly. Candidate outputs are sorted scrap and individually qualified reusable parts; dismantling does not guarantee repair or reproduce ancient technology."
+    }
+  ],
+  "treeWidth": 1672,
+  "treeHeight": 1700,
+  "quantityStatus": "provisional unit quantities for the scoped runtime trial; not catalog canon"
+}

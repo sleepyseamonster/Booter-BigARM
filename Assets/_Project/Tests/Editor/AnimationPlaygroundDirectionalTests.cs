@@ -143,10 +143,10 @@ namespace BooterBigArm.Tests
             public readonly AnimationPlaygroundForwardReviewTests.Fixture Forward;
             public TopDown3DPlayerAnimationDriver Driver=>Forward.Driver;
             public TopDown3DPlayerMotor Motor=>Forward.Motor;
-            public Fixture(SkinWeights quality)
+            public Fixture(SkinWeights quality, AnimationPlaygroundStandingStrafeProfile selected = null)
             {
                 Forward=new AnimationPlaygroundForwardReviewTests.Fixture(false,quality,"Assets/_Project/Settings/AnimationPlayground/PrivateBindings/ExpandedForwardGaitReview.asset");
-                Driver.ConfigureLaboratoryForwardReview(Forward.Policy,Forward.Station);Driver.ConfigureLaboratoryStandingStrafeReview(Profile());
+                Driver.ConfigureLaboratoryForwardReview(Forward.Policy,Forward.Station);Driver.ConfigureLaboratoryStandingStrafeReview(selected ?? Profile());
                 Driver.ConfigureLaboratoryContinuation(AssetDatabase.LoadAssetAtPath<AnimationPlaygroundContinuationProfile>(NativePath));
                 Forward.Call("Awake");Forward.Actor.SetActive(true);typeof(TopDown3DPlayerMotor).GetField("input",Private).SetValue(Motor,null);
                 Driver.ConfigureCamp(TopDown3DCampSettings.Load());Driver.SetCampPresentation(-1,1,false,true);

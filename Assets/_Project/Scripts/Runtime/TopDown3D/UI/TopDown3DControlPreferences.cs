@@ -40,7 +40,7 @@ namespace BooterBigArm.TopDown3D
         private static readonly HashSet<string> PadButtons = new(StringComparer.OrdinalIgnoreCase)
         { "buttonWest", "buttonEast", "buttonNorth", "leftShoulder", "rightShoulder", "leftTrigger", "rightTrigger", "dpad/up", "dpad/down", "dpad/left", "dpad/right" };
         public static readonly string[] LabActions = { "Gameplay/Jump", "Gameplay/Attack", "Gameplay/Crouch",
-            "Gameplay/AnimationSlowWalk", "Gameplay/AnimationCancel", "Gameplay/AnimationDodge", AnimationPlaygroundInputFactory.PalettePath };
+            "Gameplay/AnimationSlowWalk", "Gameplay/AnimationCancel", "Gameplay/AnimationDodge", "Gameplay/CameraLookAhead", AnimationPlaygroundInputFactory.PalettePath };
         private static bool IsActive(InputActionAsset asset,string path) => Active.Contains(path)
             || AnimationPlaygroundInputFactory.IsLabAsset(asset) && Array.IndexOf(LabActions,path)>=0;
         private static readonly HashSet<string> CardinalActions = new(StringComparer.Ordinal)
@@ -172,7 +172,8 @@ namespace BooterBigArm.TopDown3D
                 if (!ids.Add(entry.bindingId)) { error = "A control was edited more than once."; return false; }
                 var binding = action.bindings[index];
                 bool labPath=AnimationPlaygroundInputFactory.IsLabAsset(asset) &&
-                    (Group(binding)=="Keyboard&Mouse" && entry.path == "<Keyboard>/space"
+                    (Group(binding)=="Keyboard&Mouse" && (entry.path == "<Keyboard>/space"
+                    || entry.path == "<Mouse>/leftButton" || entry.path == "<Mouse>/rightButton" || entry.path == "<Mouse>/middleButton")
                     || Group(binding)=="Gamepad" && (entry.path == "<Gamepad>/buttonSouth"
                     || (entry.actionPath == AnimationPlaygroundInputFactory.PalettePath || entry.actionPath == "Gameplay/PickupCanister") && entry.path == "<Gamepad>/select"
                     || entry.actionPath == "Gameplay/Crouch" && entry.path == "<Gamepad>/leftStickPress"));
@@ -211,7 +212,8 @@ namespace BooterBigArm.TopDown3D
             foreach (var action in map.actions)
             {
                 string actionPath = map.name + "/" + action.name;
-                bool reservation = actionPath == "Gameplay/Move" || actionPath == "Gameplay/CameraLookAhead";
+                bool reservation = actionPath == "Gameplay/Move"
+                    || actionPath == "Gameplay/CameraLookAhead" && !IsActive(asset,actionPath);
                 if (!IsActive(asset,actionPath) && !reservation) continue;
                 foreach (var binding in action.bindings)
                 {

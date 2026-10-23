@@ -8,7 +8,7 @@ namespace BooterBigArm.TopDown3D
         {
             if (transactionLocked || Revision > 3 && !policy.SupportsCanisterContents) return null;
             var nextPolicy = new TopDown3DInventoryPolicy(policy.Owner, policy.Capacity, policy.MaximumMass, policy.IsLoadout,
-                campStorage || policy.IsCampStorage, true);
+                campStorage || policy.IsCampStorage, true, policy.IsExpeditionLayout);
             var prepared = new TopDown3DInventoryState(catalog, nextPolicy);
             if (!prepared.ApplySnapshot(CaptureSnapshot()).Succeeded) return null;
             var expected = Revision;

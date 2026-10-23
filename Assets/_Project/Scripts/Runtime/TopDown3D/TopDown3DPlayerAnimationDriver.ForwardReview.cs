@@ -19,7 +19,8 @@ namespace BooterBigArm.TopDown3D
         public bool LaboratoryForwardReviewActive => LaboratoryForwardReviewConfigured && forwardPoseRenderedThisFrame
             && forwardReviewOutputApplied && ForwardReviewSupportAvailable() && !AnimationPresentationOwned && !CrouchPresentationOwned
             && !PoseBlendOwned && motor != null && !motor.IsMounted && !motor.IsActionConstrained;
-        public string LaboratoryForwardReviewStatus => (!LaboratoryForwardReviewConfigured ? null
+        public string LaboratoryForwardReviewStatus => this == null ? "Player presentation is unavailable."
+            : (!LaboratoryForwardReviewConfigured ? null
             : LaboratoryForwardFailure != null ? "Forward gait review unavailable: " + LaboratoryForwardFailure
             : LaboratoryContinuationFailure != null ? "Motion review fallback: " + LaboratoryContinuationFailure
             : LaboratoryContinuationConfigured ? continuationReview.NativeCampGround

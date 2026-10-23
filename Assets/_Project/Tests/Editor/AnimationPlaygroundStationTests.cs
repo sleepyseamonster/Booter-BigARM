@@ -118,7 +118,17 @@ namespace BooterBigArm.Tests
                 Invoke(session,"ToggleCrouch");Assert.That(feedback,Does.Contain("unavailable"));Assert.That(session.Coordinator.IsBusy,Is.False);
                 Assert.That(player.AnimationPosture,Is.EqualTo(AnimationPlaygroundPosture.Standing));
                 typeof(TopDown3DPlayerMotor).GetField("<SprintActive>k__BackingField",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(player,false);
-                foreach(var command in new[]{"AnimationJumpRequested","AnimationActionRequested"})
+                // Jump now buffers until support is available; accepted input
+                // need not emit unavailable feedback or acquire motion immediately.
+                var airborne=player.GetComponent<AnimationPlaygroundAirborneController>();
+                typeof(AnimationPlaygroundAirborneController).GetField("paused",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(airborne,(Func<bool>)(()=>false));
+                var wasGrounded=player.IsGrounded;
+                typeof(TopDown3DPlayerMotor).GetField("<IsGrounded>k__BackingField",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(player,false);
+                ((Action)typeof(TopDown3DInputRouter).GetField("AnimationJumpRequested",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(input)).Invoke();
+                Assert.That((bool)typeof(AnimationPlaygroundAirborneController).GetField("pendingJump",BindingFlags.Instance|BindingFlags.NonPublic).GetValue(airborne),Is.True);
+                Assert.That(session.Coordinator.IsBusy,Is.False);airborne.DisarmJumpRequest();
+                typeof(TopDown3DPlayerMotor).GetField("<IsGrounded>k__BackingField",BindingFlags.Instance|BindingFlags.NonPublic).SetValue(player,wasGrounded);
+                foreach(var command in new[]{"AnimationActionRequested"})
                 {
                     feedback=null;
                     ((Action)typeof(TopDown3DInputRouter).GetField(command,BindingFlags.Instance|BindingFlags.NonPublic).GetValue(input)).Invoke();

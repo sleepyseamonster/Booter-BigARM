@@ -94,7 +94,10 @@ namespace BooterBigArm.TopDown3D
             {
                 module = eventSystem.gameObject.AddComponent<InputSystemUIInputModule>();
             }
-            ConfigureInputModule(module, actions);
+            // Repeated lab installation must preserve the native host's release fence,
+            // Back routing, tree navigation and any active settings/rebind child.
+            if (CampExpeditionSession.Find(scene)?.OwnedInputModule != module)
+                ConfigureInputModule(module, actions);
             resolvedEventSystem = eventSystem;
             return true;
         }

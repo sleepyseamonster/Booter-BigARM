@@ -21,6 +21,19 @@ namespace BooterBigArm.TopDown3D
         public int ResidentTerrainCount => window?.Count ?? 0;
         public int EnabledTerrainCount => window?.EnabledCount ?? 0;
 
+        // The installer creates a DontSave root. Object.FindAnyObjectByType intentionally
+        // omits it, so diagnostics resolve this explicit ownership boundary instead.
+        internal static GreaterWastelandTerrainRendering FindRuntimeOwner(Scene scene)
+        {
+            if (!scene.IsValid() || !scene.isLoaded) return null;
+            foreach (var root in scene.GetRootGameObjects())
+            {
+                var owner = root.GetComponent<GreaterWastelandTerrainRendering>();
+                if (owner != null && owner.isActiveAndEnabled) return owner;
+            }
+            return null;
+        }
+
         private void OnEnable()
         {
             if (!Application.isPlaying || gameObject.scene.path != ScenePath) return;

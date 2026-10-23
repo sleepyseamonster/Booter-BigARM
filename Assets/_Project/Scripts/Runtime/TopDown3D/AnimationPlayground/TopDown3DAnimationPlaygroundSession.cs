@@ -22,7 +22,7 @@ namespace BooterBigArm.TopDown3D
         public AnimationPlaygroundForwardLocomotionProfile ExperimentalForwardReview => forwardReviewExplicit ? experimentalForwardReview
             : bindings != null && bindings.forwardReviewOverride != null ? bindings.forwardReviewOverride : experimentalForwardReview;
         public string ForwardReviewStatus => ExperimentalForwardReview == null
-            ? experimentalForwardReviewRequired ? "Experimental forward gait review unavailable: restore its private profile." : null : presentation?.LaboratoryForwardReviewStatus
+            ? experimentalForwardReviewRequired ? "Experimental forward gait review unavailable: restore its private profile." : null : (presentation != null ? presentation.LaboratoryForwardReviewStatus : null)
             ?? "Experimental forward gait review — awaiting player startup.";
         public void ConfigureForwardReview(AnimationPlaygroundForwardLocomotionProfile value)
         {

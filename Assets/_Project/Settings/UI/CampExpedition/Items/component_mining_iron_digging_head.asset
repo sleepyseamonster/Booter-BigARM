@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81605b79f6bb48b18dcdb159136018fe, type: 3}
+  m_Name: component_mining_iron_digging_head
+  m_EditorClassIdentifier: BooterBigArm.TopDown3D.Runtime::BooterBigArm.TopDown3D.TopDown3DItemDefinition
+  itemId: component.mining.iron_digging_head
+  displayName: Forged iron digging head
+  description: A full-size transverse forged iron head combining a downturned broad
+    hoe/adze-like digging blade and an opposite rough blunt hammer poll. It mounts
+    on the T1 stone-bone shaft for shallow digging, prying and crude hammering.
+  category: Crafting components
+  icon: {fileID: 21300000, guid: c1e8c18cfb004404dbf73ce25974b09a, type: 3}
+  maxStack: 20
+  mass: 0.75
+  carryPreference: 0
+  packingPreference: 0
+  equipmentSlot: 0
+  fieldSupply: 0

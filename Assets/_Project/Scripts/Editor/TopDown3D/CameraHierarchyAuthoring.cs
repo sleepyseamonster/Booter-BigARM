@@ -21,6 +21,7 @@ namespace BooterBigArm.Editor
                 throw new InvalidOperationException("This scene must explicitly enable the camera study.");
             var root = Create("Camera Options", rig.transform.parent, rig.gameObject.scene);
             var selection = Undo.AddComponent<TopDown3DCameraSelection>(root);
+            selection.startingView = TopDown3DCameraView.Elevated;
             var elevated = Undo.AddComponent<TopDown3DElevatedCameraSettings>(Create("Elevated Camera Rig", root.transform, root.scene));
             var third = Undo.AddComponent<TopDown3DThirdPersonCameraSettings>(Create("Third Person Camera Rig", root.transform, root.scene));
             var source = new SerializedObject(rig);
@@ -76,12 +77,19 @@ namespace BooterBigArm.Editor
         {
             if (!File.Exists(".camera-options-validation")) throw new InvalidOperationException("Use the marked camera candidate.");
             var scene = EditorSceneManager.OpenScene(CameraOptionsStudyAuthoring.StudyPath);
+            ValidateScene(scene);
+        }
+
+        public static void ValidateScene(Scene scene)
+        {
+            if (EditorApplication.isPlayingOrWillChangePlaymode || scene.path != CameraOptionsStudyAuthoring.StudyPath)
+                throw new InvalidOperationException("Validate the camera study in Edit Mode.");
             var components = scene.GetRootGameObjects();
             var rig = components.SelectMany(root => root.GetComponentsInChildren<TopDown3DCameraRig>(true)).Single();
             var selection = rig.CameraSelection;
             if (selection == null || !selection.IsConfigured || selection.OutputRig != rig
-                || selection.startingView != TopDown3DCameraView.ThirdPerson)
-                throw new InvalidOperationException("The authored scene must select its two configured rigs and start in Third Person.");
+                || selection.startingView != TopDown3DCameraView.Elevated)
+                throw new InvalidOperationException("The authored scene must select its two configured rigs and start in Elevated.");
             var legacy = new SerializedObject(rig); var settings = new SerializedObject(selection.elevated);
             var property = settings.GetIterator();
             if (property.NextVisible(true)) do
@@ -105,7 +113,7 @@ namespace BooterBigArm.Editor
                 throw new InvalidOperationException("Independent previews must preserve output identity and clean up temporary solvers.");
             Directory.CreateDirectory("Logs/CameraHierarchy");
             File.WriteAllText("Logs/CameraHierarchy/validated.json", "{\"configuredRigs\":2,\"cameraCount\":1,\"audioListeners\":1,"
-                + "\"startingView\":\"ThirdPerson\",\"elevatedSettingsPreserved\":true,\"bothPreviewsPassed\":true,\"previewCleanupPassed\":true}");
+                + "\"startingView\":\"Elevated\",\"elevatedSettingsPreserved\":true,\"bothPreviewsPassed\":true,\"previewCleanupPassed\":true}");
             Debug.Log("CAMERA_HIERARCHY_VALIDATED: authored settings; independent previews; one output; clean temporary ownership.");
         }
     }

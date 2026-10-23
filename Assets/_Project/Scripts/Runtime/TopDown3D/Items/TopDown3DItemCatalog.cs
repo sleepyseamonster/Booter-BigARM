@@ -14,6 +14,7 @@ namespace BooterBigArm.TopDown3D
 
         [NonSerialized] private Dictionary<string, TopDown3DItemDefinition> lookup;
         [NonSerialized] private List<TopDown3DItemDefinition> loadoutDefinitions;
+        [NonSerialized] private TopDown3DCampLoopLoadoutProfile appliedProfile;
 
         public IReadOnlyList<TopDown3DItemDefinition> Definitions => loadoutDefinitions ?? definitions;
         public bool HasEquipmentDefinitions
@@ -21,7 +22,7 @@ namespace BooterBigArm.TopDown3D
 
         internal void ApplyLoadoutProfile(TopDown3DCampLoopLoadoutProfile profile)
         {
-            if (loadoutDefinitions != null) return;
+            if (loadoutDefinitions != null && appliedProfile == profile) return;
             var overrides = new Dictionary<string, TopDown3DItemDefinition>(StringComparer.Ordinal);
             foreach (var item in profile.definitions)
                 if (item == null || !item.TryValidate(out _) || !overrides.TryAdd(item.ItemId, item))
@@ -34,6 +35,7 @@ namespace BooterBigArm.TopDown3D
             }
             resolved.AddRange(overrides.Values);
             loadoutDefinitions = resolved;
+            appliedProfile = profile;
             lookup = null;
         }
 

@@ -26,6 +26,10 @@ namespace BooterBigArm.TopDown3D
         private Vector2 lastPointer, lastStick;
         private int page, selected = -1;
         private TopDown3DRadialPreferences preferences;
+        private bool preferenceCanSave=true;
+        private string preferenceNotice;
+        public bool CanSavePreferences=>preferenceCanSave;
+        public string PreferenceNotice=>preferenceNotice;
         public bool IsOpen => open;
         public bool IsCustomizing => editing;
         public TopDown3DRadialPreferences Preferences => preferences;
@@ -183,7 +187,7 @@ namespace BooterBigArm.TopDown3D
         }
 
         private bool CanExecute(TopDown3DRadialCommand c) => c switch {
-            TopDown3DRadialCommand.PlayerInventory => inventoryUi != null,
+            TopDown3DRadialCommand.PlayerInventory => InventoryRequested!=null||inventoryUi != null,
             TopDown3DRadialCommand.CallLegger => legger != null && legger.isActiveAndEnabled,
             TopDown3DRadialCommand.DustCanister => action != null && action.CanSelectCanister,
             TopDown3DRadialCommand.AutoPack => cargo != null && cargo.IsInAccessRange(inventory.transform.position),
@@ -201,7 +205,7 @@ namespace BooterBigArm.TopDown3D
             if (!CanExecute(command)) { if (command != TopDown3DRadialCommand.Empty) action?.ReportFeedback(Reason(command)); return; }
             switch (command)
             {
-                case TopDown3DRadialCommand.PlayerInventory: inventoryUi.Open(); break;
+                case TopDown3DRadialCommand.PlayerInventory: if(InventoryRequested!=null)InventoryRequested();else inventoryUi.Open(); break;
                 case TopDown3DRadialCommand.CallLegger:
                     legger.RequestCallOver(); watchCallOver = true; reportedBlocked = false;
                     callWatchAfter = Time.time + 0.25f; action?.ReportFeedback("Legger approaching"); break;
@@ -212,6 +216,7 @@ namespace BooterBigArm.TopDown3D
         }
 
         public Action CustomizationRequested;
+        internal Action InventoryRequested;
         private string preferencePathOverride;
         public void OpenCustomization() => CustomizationRequested?.Invoke();
         public void CancelForSystemMenu() => Close(false);
@@ -225,6 +230,7 @@ namespace BooterBigArm.TopDown3D
         public bool TryApplySetup(TopDown3DRadialPreferences candidate, out string error)
         {
             error = null;
+            if(!preferenceCanSave){error=preferenceNotice;return false;}
             if (candidate == null || !candidate.IsValid()) { error = "Layout is invalid."; return false; }
             try
             {
@@ -243,8 +249,17 @@ namespace BooterBigArm.TopDown3D
         private string PreferencePath => preferencePathOverride ?? Path.Combine(Application.persistentDataPath, "radial-layout-v1.json");
         private TopDown3DRadialPreferences LoadPreferences()
         {
-            try { if (File.Exists(PreferencePath)) { var p = JsonUtility.FromJson<TopDown3DRadialPreferences>(File.ReadAllText(PreferencePath)); if (p != null && p.IsValid()) return p; } }
-            catch (Exception e) when (e is IOException || e is ArgumentException || e is UnauthorizedAccessException) { Debug.LogWarning("Radial layout could not be loaded; using defaults."); }
+            preferenceCanSave=true;preferenceNotice=null;
+            try
+            {
+                if(File.Exists(PreferencePath))
+                {
+                    var saved=JsonUtility.FromJson<TopDown3DRadialPreferences>(File.ReadAllText(PreferencePath));if(saved!=null&&saved.IsValid())return saved;
+                    preferenceNotice=saved!=null&&saved.version>1?"This radial layout comes from a newer version. The original is preserved; defaults are shown and Apply is disabled.":"The saved radial layout is invalid. The original is preserved; defaults are shown and Apply is disabled.";preferenceCanSave=false;
+                }
+            }
+            catch(Exception error) when(error is IOException||error is ArgumentException||error is UnauthorizedAccessException)
+            {preferenceCanSave=false;preferenceNotice="The saved radial layout could not be read. The original is preserved; defaults are shown and Apply is disabled.";}
             return new TopDown3DRadialPreferences();
         }
         private void OnModeChanged(TopDown3DInputMode mode) { if (open && mode != TopDown3DInputMode.Radial) Close(false); }

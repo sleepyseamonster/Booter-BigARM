@@ -44,6 +44,12 @@ namespace BooterBigArm.TopDown3D
             var next=Math.Floor(Cycles)+phase;if(next<Cycles)next++;
             Cycles=previousCycles=next;lastTick=-1;motionEpoch=-1;contactEpoch++;Travelling=false;
         }
+        public void RebasePhase(float phase)
+        {
+            if (!float.IsFinite(phase) || phase < 0 || phase >= 1) throw new ArgumentException("Use a measured outgoing gait phase.");
+            var next = Math.Floor(Cycles) + phase; if (next < Cycles) next++;
+            Cycles = previousCycles = next; lastTick = -1; motionEpoch = -1; contactEpoch++; Travelling = false;
+        }
 
         public AnimationPlaygroundGaitContacts Advance(AnimationPlaygroundGroundedMotion sample, double metresPerCycle)
             => Advance(sample, metresPerCycle, null);

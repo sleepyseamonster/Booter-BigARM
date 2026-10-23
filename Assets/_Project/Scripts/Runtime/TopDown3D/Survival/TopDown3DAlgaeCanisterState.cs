@@ -39,6 +39,7 @@ namespace BooterBigArm.TopDown3D
         /// <summary>Grow on the survival simulation timeline, including accelerated sleep; no offline catch-up.</summary>
         public void Advance(double elapsedSeconds)
         {
+            if(CampExpeditionFeature.Enabled(gameObject.scene) && (!CampExpeditionFeature.FieldAllowed(gameObject.scene)||CampExpeditionSession.Find(gameObject.scene)?.HasMountedPhagia!=true))return;
             if (transactionActive || !initialized || settings == null || !settings.IsValid
                 || !double.IsFinite(elapsedSeconds) || elapsedSeconds <= 0) return;
             var next = Math.Min(settings.capacity, remaining + (double)settings.replenishmentPerSecond * elapsedSeconds);

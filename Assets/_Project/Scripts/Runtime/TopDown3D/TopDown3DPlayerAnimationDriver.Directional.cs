@@ -7,14 +7,16 @@ namespace BooterBigArm.TopDown3D
 {
     public sealed partial class TopDown3DPlayerAnimationDriver
     {
-        private const int DirectionalChannels = 12;
-        private readonly float[] directionalWeights = new float[DirectionalChannels], directionalTarget = new float[DirectionalChannels];
+        private int DirectionalChannels => standingStrafeReview != null ? standingStrafeReview.DirectionalChannelCount : 12;
+        private float[] directionalWeights = new float[12], directionalTarget = new float[12];
         private Vector2 directionalLocal = Vector2.up;
         private bool directionalInitialized;
         public bool LaboratoryDirectionalConfigured => standingStrafeReview != null && standingStrafeReview.AllDirections;
 
         private void InitializeDirectionalInputs()
         {
+            if (directionalWeights.Length != DirectionalChannels)
+            { directionalWeights = new float[DirectionalChannels]; directionalTarget = new float[DirectionalChannels]; }
             if (mixer.GetInputCount() <= StandingStrafeInputIndex) mixer.SetInputCount(StandingStrafeInputIndex + 1);
             standingStrafeMixer = AnimationMixerPlayable.Create(playableGraph, DirectionalChannels);
             standingStrafeClips = new AnimationClipPlayable[DirectionalChannels];
